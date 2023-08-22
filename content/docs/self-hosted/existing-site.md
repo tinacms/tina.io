@@ -9,7 +9,7 @@ If you want to self-host the Tina backend, and don't want to use our [pre-config
 
 We offer a CLI init to quickly setup the backend on NextJS sites, or you can take the manual setup approach if you're using another framework.
 
-> This guide assumes that you have already init the TinaCMS admin into your site. If you haven't already done so, see our [Getting Started Guide](docs/setup-overview/)
+> This guide assumes that you have already init the TinaCMS admin into your site. If you haven't already done so, see our [Getting Started Guide](/docs/setup-overview/)
 
 ## Using the CLI init command (NextJS Only)
 
