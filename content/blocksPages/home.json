@@ -1,7 +1,7 @@
 {
   "blocks": [
     {
-      "headline": "Own  Your Content",
+      "headline": "Hello world!",
       "text": "Tina is an open-source headless CMS that supports Markdown",
       "actions": [
         {
@@ -63,7 +63,7 @@
           "username": "billybest5276",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
           "date": "2023-08-06T03:00:00.000Z",
-          "testimonial": "Just found this and I think I am already in love. \n",
+          "testimonial": "Just found this and I think I am already in love.\n",
           "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
         },
         {
