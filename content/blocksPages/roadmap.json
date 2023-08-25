@@ -21,18 +21,9 @@
       "headline": "Recently Released",
       "items": [
         {
-          "headline": "Self-Hosted Alternative to Tina Cloud",
+          "headline": "Editorial Workflow",
           "status": "Released",
-          "content": "Offering a way to self-host the Tina Cloud backend, to avoid vendor lock-in.\n",
-          "actions": [
-            {
-              "label": "See Docs",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://tina.io/docs/self-hosted/overview/"
-            }
-          ]
+          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.\n"
         },
         {
           "headline": "Document Search",
@@ -64,9 +55,9 @@
       "headline": "Next 3 months",
       "items": [
         {
-          "headline": "Drafts / Branching",
-          "status": "In Progress",
-          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.\n"
+          "headline": "Improving Self-hosted experience",
+          "status": "In-progress",
+          "content": "We are currently working on some improvements to the self-hosted experience, to bring closer parity to using Tina Cloud\n"
         },
         {
           "headline": "Improving Media Management UX",
@@ -79,20 +70,6 @@
               "variant": "blue",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/3418"
-            }
-          ]
-        },
-        {
-          "headline": "Registering Multiple Forms Per Page",
-          "status": "Needs RFC",
-          "content": "The ability to register multiple forms on a page through separate useTina hooks.\n",
-          "actions": [
-            {
-              "label": "GitHub Discussion",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/3420"
             }
           ]
         }
