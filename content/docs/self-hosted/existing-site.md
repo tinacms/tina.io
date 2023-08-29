@@ -122,7 +122,7 @@ export default isLocal
 
 You will need a [backend endpoint](/docs/self-hosted/graphql-endpoint/overview) that hosts the GraphQL API.
 
-In this example we will show how to host the GraphQL API on Vercel. You can use any hosting provider you want (May need to addjust the code to suite your chosen framwork)
+In this example we will show how to host the GraphQL API on Vercel. You can use any hosting provider you want (May need to adjust the code to suite your chosen framework)
 
 ```js
 // pages/api/graphql.js
