@@ -12,6 +12,8 @@ TinaCMS's front-end is offered as free and open-source. Support is provided via 
 
 The Tina team provides prioritized Discord support to individuals on a paid plan. To link your Discord account to your Tina Cloud account, you can click "verify" under the `#✅-verify` channel in the [TinaCMS Discord](https://discord.com/invite/zumN63Ybpf).
 
+![](http://res.cloudinary.com/forestry-demo/image/upload/v1693410187/tina-io/Screenshot_2023-08-30_at_12.00.27_PM_pnlyp6.png)
+
 ## Enterprise Support
 
 To learn more about our Enterprise Support Plans, check out our [Enterprise Page](https://tina.io/enterprise/).
