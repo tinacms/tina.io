@@ -167,7 +167,7 @@ const footerLinks = [
     label: 'License',
   },
   {
-    link: '/support/',
+    link: '/docs/support/',
     label: 'Support',
   },
 ]
