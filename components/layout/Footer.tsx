@@ -166,6 +166,10 @@ const footerLinks = [
     link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
     label: 'License',
   },
+  {
+    link: '/support/',
+    label: 'Support',
+  },
 ]
 
 const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
