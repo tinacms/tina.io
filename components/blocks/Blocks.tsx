@@ -9,6 +9,7 @@ import {
   FaqBlock,
   ContentBlock,
   LogoGridBlock,
+  QuoteBlock,
 } from './'
 import { ColumnsBlock } from './Columns'
 import { RecentPostsBlock } from './RecentPosts'
@@ -82,6 +83,14 @@ export const Blocks = ({
       case 'PageBlocksTestimonials':
         return (
           <TestimonialsBlock
+            key={`block-${index}`}
+            data={block}
+            index={index}
+          />
+        )
+      case 'PageBlocksQuote':
+        return (
+          <QuoteBlock
             key={`block-${index}`}
             data={block}
             index={index}
