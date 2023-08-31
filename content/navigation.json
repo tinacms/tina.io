@@ -32,6 +32,12 @@
         "label": "Blog",
         "href": "/blog",
         "external": false
+      },
+      {
+        "id": "support",
+        "label": "Support",
+        "href": "/docs/support",
+        "external": false
       }
     ]
   },
