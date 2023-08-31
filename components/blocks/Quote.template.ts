@@ -1,7 +1,4 @@
 import type { TinaTemplate } from 'tinacms'
-import { actionsTemplate } from './Actions.template'
-import { socialTemplate } from './Social.template'
-import { newsletterTemplate } from './Newsletter.template'
 
 export const quoteTemplate: TinaTemplate = {
   label: 'Quote',
