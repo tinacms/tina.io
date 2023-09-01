@@ -32,6 +32,10 @@ const footerNav = [
         link: '/docs/product-tour/',
         label: 'How Tina Works',
       },
+      {
+        link: '/press/',
+        label: 'Press',
+      },
     ],
   },
   {
@@ -222,7 +226,7 @@ const SocialLink = ({ link, children }) => {
   )
 }
 
-export const Footer = ({}) => {
+export const Footer = ({ }) => {
   return (
     <div>
       {/* Top */}
