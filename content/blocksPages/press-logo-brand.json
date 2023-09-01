@@ -5,18 +5,18 @@
       "text": "",
       "actions": [
         {
-          "label": "Figma Version",
+          "label": "Figma",
           "icon": true,
-          "variant": "default",
+          "variant": "white",
           "size": "medium",
           "url": "https://www.figma.com/file/AYC22Jv5AdqLTTHdYByj7g/TinaCMS-Logo-and-Branding-Assets?type=design&node-id=0%3A1&mode=design&t=pLsPV8WTo8vN6ikS-1"
         },
         {
           "label": "Download ",
           "icon": true,
-          "variant": "orange",
+          "variant": "blue",
           "size": "medium",
-          "url": "/"
+          "url": "https://drive.google.com/file/d/1c1Clwtvb6dCI2iyGdnsWc9OJ1mmapvND/view?usp=drive_link"
         }
       ],
       "media": [
