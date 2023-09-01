@@ -26,6 +26,30 @@
         }
       ],
       "_template": "hero"
+    },
+    {
+      "features": [
+        {
+          "headline": "Logos",
+          "text": "Download the SVG and PNG logo kit",
+          "actions": [
+            {
+              "label": "Download",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://drive.google.com/file/d/1c1Clwtvb6dCI2iyGdnsWc9OJ1mmapvND/view?usp=drive_link"
+            }
+          ],
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1693577211/logo-black-on-background-min_j7zxie.png",
+              "_template": "image"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
     }
   ]
 }
