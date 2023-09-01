@@ -1,1 +1,31 @@
-{}
+{
+  "blocks": [
+    {
+      "headline": "Tina Brand Assets",
+      "text": "",
+      "actions": [
+        {
+          "label": "Figma Version",
+          "icon": true,
+          "variant": "default",
+          "size": "medium",
+          "url": "https://www.figma.com/file/AYC22Jv5AdqLTTHdYByj7g/TinaCMS-Logo-and-Branding-Assets?type=design&node-id=0%3A1&mode=design&t=pLsPV8WTo8vN6ikS-1"
+        },
+        {
+          "label": "Download ",
+          "icon": true,
+          "variant": "orange",
+          "size": "medium",
+          "url": "/"
+        }
+      ],
+      "media": [
+        {
+          "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1693576387/Logo_Small_-_Default_ray7ls.png",
+          "_template": "image"
+        }
+      ],
+      "_template": "hero"
+    }
+  ]
+}
