@@ -1,10 +1,6 @@
 {
   "blocks": [
     {
-      "title2": "Hello world. ",
-      "_template": "quote"
-    },
-    {
       "headline": "Own  Your Content",
       "text": "Tina is an open-source headless CMS that supports Markdown",
       "actions": [
@@ -90,6 +86,27 @@
       "_template": "testimonials"
     },
     {
+      "title2": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet ligula porta felis euismod semper.",
+      "subtext": "Some guy, that does something great.",
+      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693503685/tina-io/new-homepage/unity-logo.png",
+      "_template": "quote"
+    },
+    {
+      "features": [
+        {
+          "headline": "Configure with Code",
+          "text": "Define your content's schema and Tina will provide you with a user friendly editing experience.",
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1669651061/cld-sample-2.jpg",
+              "_template": "image"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "features": [
         {
           "headline": "Configure with Code",
@@ -164,22 +181,22 @@
       "title": "Trusted by",
       "items": [
         {
-          "name": "Devolver Digital",
-          "link": "https://www.devolverdigital.com/",
-          "logo": "/svg/logos/devolverdigital.svg",
-          "size": 209
-        },
-        {
-          "name": "Planet Scale",
-          "link": "https://planetscale.com/",
-          "logo": "/svg/logos/planetscale.svg",
-          "size": 110
+          "name": "Unity",
+          "link": "https://unity.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/w_600,q_auto/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+          "size": 300
         },
         {
           "name": "Protocol Labs",
           "link": "https://protocol.ai/",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 110
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "https://www.devolverdigital.com/",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 209
         },
         {
           "name": "Smashing Magazine",

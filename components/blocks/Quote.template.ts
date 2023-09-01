@@ -10,7 +10,19 @@ export const quoteTemplate: TinaTemplate = {
     {
       label: 'Title',
       name: 'title2',
+      ui: { component: "textarea" },
       type: 'string',
     },
+    {
+      label: 'Sub Text',
+      name: 'subtext',
+      ui: { component: "textarea" },
+      type: 'string',
+    },
+    {
+      label: 'logo',
+      name: 'logo',
+      type: 'image',
+    }
   ],
 }
