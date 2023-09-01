@@ -19,7 +19,8 @@
           "url": "https://drive.google.com/file/d/1giltlZmy7nTA19Z0zRXDpejwfUYeeNHw/view?usp=drive_link"
         }
       ],
-      "margin": "py-4",
+      "margin": "",
+      "spacing": "gap-12",
       "_template": "hero"
     },
     {
