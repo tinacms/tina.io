@@ -16,15 +16,10 @@
           "icon": true,
           "variant": "blue",
           "size": "medium",
-          "url": "https://drive.google.com/file/d/1c1Clwtvb6dCI2iyGdnsWc9OJ1mmapvND/view?usp=drive_link"
+          "url": "https://drive.google.com/file/d/1giltlZmy7nTA19Z0zRXDpejwfUYeeNHw/view?usp=drive_link"
         }
       ],
-      "media": [
-        {
-          "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1693577211/logo-black-on-background-min_j7zxie.png",
-          "_template": "image"
-        }
-      ],
+      "margin": "py-4",
       "_template": "hero"
     },
     {
@@ -44,6 +39,25 @@
           "media": [
             {
               "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1693577211/logo-black-on-background-min_j7zxie.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "Backgrounds",
+          "text": "Download TinaCMS official backgrounds and dividers",
+          "actions": [
+            {
+              "label": "Download Zip",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://drive.google.com/file/d/1qkuje4otH-T9Q_2KRFvVeiY5gxiTfg8a/view?usp=drive_link"
+            }
+          ],
+          "media": [
+            {
+              "image": "http://res.cloudinary.com/forestry-demo/image/upload/v1693578367/background-min_nhs6ao.png",
               "_template": "image"
             }
           ]
