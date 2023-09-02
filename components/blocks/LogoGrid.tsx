@@ -11,7 +11,7 @@ const Logo = ({ data, index, windowWidth = 1000 }) => {
       href={data.link}
       title={data.name}
       target="_blank"
-      className="block flex-none transition ease-out duration-150 hover:opacity-70 cursor-pointer"
+      className="block flex-none transition ease-out duration-150 hover:brightness-0 cursor-pointer"
       style={{
         width: data.size ? data.size * scaleFactor : 200 * scaleFactor,
       }}
@@ -56,17 +56,17 @@ export function LogoGridBlock({ data, index }) {
     <section
       key={'feature-grid-' + index}
       className={
-        'relative z-10 py-16 lg:py-24 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000'
+        'relative z-10 py-16 lg:pb-20 lg:pt-16'
       }
     >
       <Container width="wide">
         <div className="flex flex-col items-center">
           {data.title && (
-            <h3 className="font-tuner inline-block text-center text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-200 via-blue-300 to-blue-500 bg-clip-text text-transparent mb-6 lg:mb-8">
+            <h3 className="font-tuner inline-block text-center text-xl lg:text-md lg:leading-tight bg-gradient-to-br text-gray-400 mb-6 lg:mb-8">
               {data.title}
             </h3>
           )}
-          <div className="w-full flex items-center flex-wrap justify-center gap-10 md:gap-16 lg:gap-20">
+          <div className="w-full flex items-center flex-wrap justify-center gap-10 md:gap-16 lg:gap-20  brightness-[.15]">
             {data.items &&
               data.items.map((data, index) => {
                 return (
