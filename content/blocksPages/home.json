@@ -1,8 +1,8 @@
 {
   "blocks": [
     {
-      "headline": "Own  Your Content",
-      "text": "Tina is an open-source headless CMS that supports Markdown",
+      "headline": "Commit Your Content",
+      "text": "A headless CMS that supports Markdown and Git",
       "actions": [
         {
           "label": "Getting Started",
@@ -18,6 +18,41 @@
           "url": "/"
         }
       ],
+      "_template": "hero"
+    },
+    {
+      "title": "Trusted by",
+      "items": [
+        {
+          "name": "Unity",
+          "link": "https://unity.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/w_600,q_auto/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+          "size": 250
+        },
+        {
+          "name": "Protocol Labs",
+          "link": "https://protocol.ai/",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 90
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "https://www.devolverdigital.com/",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 180
+        },
+        {
+          "name": "Smashing Magazine",
+          "link": "https://www.smashingmagazine.com/",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 110
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
+      "headline": "",
+      "text": "",
       "media": [
         {
           "src": "tina-io/new-homepage/homepage-demo-2",
@@ -29,20 +64,20 @@
     {
       "testimonials": [
         {
-          "name": "Vatosteve",
-          "username": "vatosteve",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
-          "date": "2023-01-30T04:00:00.000Z",
-          "testimonial": "Loving Tina CMS so far. It is exactly what I’ve been looking for.\n",
-          "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
-        },
-        {
           "name": " Dave Keen",
           "username": "ccapndave",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
           "date": "2023-06-02T03:00:00.000Z",
           "testimonial": "I’ve been playing with TinaCMS for the last week and it’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets and compared to other CMSs the admin is incredibly easy for editors to understand and use.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
+        },
+        {
+          "name": "Vatosteve",
+          "username": "vatosteve",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
+          "date": "2023-01-30T04:00:00.000Z",
+          "testimonial": "Loving Tina CMS so far. It is exactly what I’ve been looking for.\n",
+          "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
         },
         {
           "name": "david.oviedo",
@@ -86,28 +121,48 @@
       "_template": "testimonials"
     },
     {
-      "title2": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet ligula porta felis euismod semper.",
-      "subtext": "Some guy, that does something great.",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693503685/tina-io/new-homepage/unity-logo.png",
-      "_template": "quote"
-    },
-    {
       "features": [
         {
-          "headline": "Configure with Code",
-          "text": "Define your content's schema and Tina will provide you with a user friendly editing experience.",
+          "headline": "Own Your Content",
+          "text": "Don't store your content in a 3rd-party service.  Tina stores content in your repository (Markdown, JSON, etc) and gives you a queryable data layer for fetching that content. ",
+          "actions": [
+            {
+              "label": "Learn More",
+              "icon": false,
+              "variant": "default",
+              "size": "large",
+              "url": "https://tina.io/docs/product-tour/"
+            }
+          ],
           "media": [
             {
-              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1669651061/cld-sample-2.jpg",
-              "_template": "image"
+              "file": "about.mdx",
+              "code": "---\ntitle: Collaborate With Your Team\n---\n\nOnline tools help drive your business forward.\nReach new audiences and collaborate with your\nteam – **All in the cloud.**\n\n<Button\ntext=\"Get Started\"\nlink=\"/get-started\"\n/>",
+              "language": "markdown",
+              "scale": 1,
+              "_template": "code"
             }
           ]
-        }
-      ],
-      "_template": "features"
-    },
-    {
-      "features": [
+        },
+        {
+          "headline": "User-friendly Branches",
+          "text": "Review, approve, and manage content changes with version control",
+          "actions": [
+            {
+              "label": "Editorial Workflow",
+              "icon": false,
+              "variant": "blue",
+              "size": "small",
+              "url": "https://tina.io/editorial-workflow"
+            }
+          ],
+          "media": [
+            {
+              "src": "v1689260393/blog-media/editorial-workflow/create-branch",
+              "_template": "video"
+            }
+          ]
+        },
         {
           "headline": "Configure with Code",
           "text": "Define your content's schema and Tina will provide you with a user friendly editing experience.",
@@ -129,83 +184,15 @@
               "_template": "code"
             }
           ]
-        },
-        {
-          "headline": "Own Your Content",
-          "text": "Tina saves to MDX, Markdown, and JSON and provides a queryable data layer on top of your static files.",
-          "actions": [
-            {
-              "label": "Learn More",
-              "icon": false,
-              "variant": "default",
-              "size": "large",
-              "url": "https://tina.io/docs/product-tour/"
-            }
-          ],
-          "media": [
-            {
-              "file": "about.mdx",
-              "code": "---\ntitle: Collaborate With Your Team\n---\n\nOnline tools help drive your business forward.\nReach new audiences and collaborate with your\nteam – **All in the cloud.**\n\n<Button\ntext=\"Get Started\"\nlink=\"/get-started\"\n/>",
-              "language": "markdown",
-              "scale": 1,
-              "_template": "code"
-            }
-          ]
-        },
-        {
-          "headline": "Built-in Version Control ",
-          "text": "Let your editorial team focus on writing content, while Tina commits to your repository.",
-          "actions": [
-            {
-              "label": "Learn More",
-              "icon": false,
-              "variant": "default",
-              "size": "large",
-              "url": "docs/"
-            }
-          ],
-          "media": [
-            {
-              "file": "",
-              "code": "commit 4ca9edc2ee64c1ab5127a1fd4519a83426731cd7\nAuthor:  Scott Gallant <scott@acme.com>\nDate:    Thu May 26 13:31:02 2022 -0300\nMessage: Update From Tina",
-              "language": "md",
-              "scale": 1,
-              "_template": "code"
-            }
-          ]
         }
       ],
       "_template": "features"
     },
     {
-      "title": "Trusted by",
-      "items": [
-        {
-          "name": "Unity",
-          "link": "https://unity.com",
-          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/w_600,q_auto/v1693531489/tina-io/new-homepage/unity-logo-white.png",
-          "size": 300
-        },
-        {
-          "name": "Protocol Labs",
-          "link": "https://protocol.ai/",
-          "logo": "/svg/logos/protocollabs.svg",
-          "size": 110
-        },
-        {
-          "name": "Devolver Digital",
-          "link": "https://www.devolverdigital.com/",
-          "logo": "/svg/logos/devolverdigital.svg",
-          "size": 209
-        },
-        {
-          "name": "Smashing Magazine",
-          "link": "https://www.smashingmagazine.com/",
-          "logo": "/svg/logos/smashing.svg",
-          "size": 128
-        }
-      ],
-      "_template": "logoGrid"
+      "title2": "\"Tina is transforming the way we do documentation at Unity. It makes our content authors and engineers incredibly productive.\"",
+      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
+      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+      "_template": "quote"
     },
     {
       "items": [
