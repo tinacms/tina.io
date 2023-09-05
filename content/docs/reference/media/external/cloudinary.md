@@ -6,7 +6,7 @@ next: /docs/reference/media/external/do-spaces
 
 Manage **Cloudinary media assets** in TinaCMS.
 
-> The following guide relies on NextJS's API functions to authenticate the 3rd-party media interactions. We hope to document a framework-agnostic approach soon.
+> The following guide uses NextJS's API functions to authenticate the 3rd-party media interactions. If you are using another framework with Vercel, this guide still applies (with a small tweak that you need to use `/api/...` instead of `/pages/api` for your Serverless function).
 
 ## Installation
 
@@ -18,14 +18,12 @@ yarn add next-tinacms-cloudinary @tinacms/auth
 
 You need to provide your Cloudinary credentials to connect to your media library. Do [register on Cloudinary](https://cloudinary.com/users/register/free) if you don't have an account yet, your account details are displayed on the Cloudinary dashboard.
 
-**next-tinacms-cloudinary** uses environment variables within the context of a Next.js site to properly access your Cloudinary account.
-
 Add the following variables to an `.env` file.
 
 ```env
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=<Your Cloudinary Cloud Name>
+CLOUDINARY_CLOUD_NAME=<Your Cloudinary Cloud Name>
 
-NEXT_PUBLIC_CLOUDINARY_API_KEY=<Your Cloudinary API key>
+CLOUDINARY_API_KEY=<Your Cloudinary API key>
 
 CLOUDINARY_API_SECRET=<Your Cloudinary API secret>
 ```
@@ -54,22 +52,13 @@ export default defineConfig({
 })
 ```
 
-## Set up API routes (Next.js example)
+## Set up API routes
 
-> \*\* NOTE: \*\*this step will show you how to set up an API route for Next.js. If you are using a different framework, you will need to set up your own API route.
+Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to setup this handler:
 
-Tina's "external media provider" support requires a light backend media handler, that needs to be setup/hosted by the user. There are multiple ways to do this, including the framework-agnostic [Netlify Functions implementation](/docs/reference/media/external/authentication/#netlify).
+### "NextJS API Routes"
 
-### "NextJS API Routes" example (NextJS-only)
-
-Set up a new API route in the `pages` directory of your Next.js app at `pages/api/cloudinary/[...media].ts`.
-Then add a new catch all API route for media.
-
-Call `createMediaHandler` to set up routes and connect your instance of the Media Store to your Cloudinary account.
-
-Import `isAuthorized` from ["@tinacms/auth"](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth).
-
-The `authorized` key will make it so only authorized users within Tina Cloud can upload and make media edits.
+For sites using NextJS, you can setup the handler as a NextJS Server function. To do so, create a `pages/api/cloudinary/[...media].ts` file in your project, with the following implementation:
 
 ```ts
 // pages/api/cloudinary/[...media].ts
@@ -84,8 +73,8 @@ import { isAuthorized } from '@tinacms/auth'
 export const config = mediaHandlerConfig
 
 export default createMediaHandler({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
   authorized: async (req, _res) => {
     try {
@@ -103,6 +92,17 @@ export default createMediaHandler({
   },
 })
 ```
+
+Here's what's happening in the above snippet:
+
+- We call `createMediaHandler` to set up routes and connect your instance of the Media Store to your Cloudinary account.
+- The `authorized` key will make it so only authorized users within Tina Cloud can upload and make media edits.
+
+### Framework Agnostic implementations
+
+In the above example, we showed how to host the backend handler as a NextJS API function. If you are using Vercel with another framework, the same approach applies (with the small difference that you need to use `/api/...` instead of `/pages/api/...` for your handler).
+
+You can also check out our [Netlify Functions](/docs/reference/media/external/authentication/#option-3-netlify-functions) implementation.
 
 ## Update Schema
 
