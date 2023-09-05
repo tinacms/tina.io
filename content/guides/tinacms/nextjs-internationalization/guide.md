@@ -1,5 +1,5 @@
 ---
-title: Adding Internationalization to Tina
+title: Internationalization with NextJS+Tina
 last_edited: '2022-04-08T10:00:00.000Z'
 ---
 

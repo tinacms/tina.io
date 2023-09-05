@@ -1,0 +1,11 @@
+{
+  "title": "Adding Internationlization to Tina",
+  "steps": [
+    {
+      "title": "Guide",
+      "id": "/guides/tinacms/nextjs-internationalization/guide/",
+      "slug": "/guides/tinacms/nextjs-internationalization/guide/",
+      "data": "./guide.md"
+    }
+  ]
+}
