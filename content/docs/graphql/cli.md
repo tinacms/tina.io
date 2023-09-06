@@ -55,11 +55,11 @@ Your console might show something like:
 > yarn dev
 
 Started Filesystem GraphQL server on port: 4001
-Visit the playground at http://localhost:4001/altair/
+Visit the playground at http://localhost:3000/admin/index.html#/graphql
 Generating Tina config
 ...
 ```
 
-Once the graphql server is running, you can start to explore your graphQL content through the Altair client at `http://localhost:4001/altair/`
+Once the graphql server is running, you can start to explore your graphQL content through the Altair client at `http://localhost:3000/admin/index.html#/graphql`
 
 ![Altair client](https://res.cloudinary.com/forestry-demo/image/upload/v1645712822/tina-io/docs/altair_doc.gif)
