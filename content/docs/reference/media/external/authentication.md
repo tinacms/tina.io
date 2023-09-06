@@ -52,7 +52,13 @@ export default createMediaHandler({
 })
 ```
 
-### Option 2) Netlify Functions
+### Option 2) Vercel API Routes
+
+Vercel supports creating Serverless functions by creating a `/api` directory at the project root. To set this up, follow the above [NextJS-specific instructions](/docs/reference/media/external/authentication/#option-1-nextjs-api-routes-nextjs-only), but use `/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts` instead of `/pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`
+
+> Note: You may notice that the package names may contain "next" (e.g: `next-tinacms-cloudinary`). You can still use these packages for other frameworks.
+
+### Option 3) Netlify Functions
 
 If your site is hosted on Netlify, you can use ["Netlify Functions"](https://docs.netlify.com/functions/overview/) to host your media handler.
 
