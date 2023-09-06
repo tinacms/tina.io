@@ -8,7 +8,7 @@ last_edited: '2023-09-05T10:00:00.000Z'
 Managing multilingual content is essential for global reach. TinaCMS provides versatile options to facilitate this. This guide focuses on two main strategies:
 
 - Directory-Based Localization
-- Directory-Based Localization
+- Field-Based Localization
 
 ### Directory-Based Localization
 
@@ -90,7 +90,7 @@ If a user wants to create a new localized version of an existing document, they 
 
 ### Field-Based Localization
 
-In this approach, each localizad field contains nested values for multiple languages. For example, a single Markdown file might look like this:
+In this approach, each localized field contains nested values for multiple languages. For example, a single Markdown file might look like this:
 
 ```json
 {
