@@ -16,12 +16,6 @@
     "label": "Resources",
     "items": [
       {
-        "id": "playground",
-        "label": "Schema Playground",
-        "href": "https://tina-gql-playground.vercel.app/",
-        "external": false
-      },
-      {
         "id": "roadmap",
         "label": "Roadmap",
         "href": "/roadmap",
