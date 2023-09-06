@@ -532,6 +532,10 @@
     {
       "source": "/docs/editing/active-field-indicator",
       "destination": "/docs/contextual-editing/react/#click-to-edit-experimental"
+    },
+    {
+      "source": "/guides/tinacms/nextjs-internationalization/guide",
+      "destination": "/guides/tinacms/adding-internationalization-to-tina/guide"
     }
   ]
 }

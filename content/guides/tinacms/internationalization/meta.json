@@ -1,0 +1,11 @@
+{
+  "title": "Internationalization",
+  "steps": [
+    {
+      "title": "Guide",
+      "id": "/guides/tinacms/internationalization/guide/",
+      "slug": "/guides/tinacms/internationalization/guide/",
+      "data": "./guide.md"
+    }
+  ]
+}

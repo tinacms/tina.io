@@ -292,8 +292,8 @@
                 "title": "Querying Tina Content in NextJS"
               },
               {
-                "slug": "/guides/tinacms/adding-internationalization-to-tina/guide/",
-                "title": "Adding Internationalization to Tina"
+                "slug": "/guides/tinacms/nextjs-internationalization/guide/",
+                "title": "Internationalization with NextJS+Tina"
               },
               {
                 "title": "Using Drafts with Visual Editing",
@@ -319,6 +319,10 @@
       {
         "slug": "/guides/tinacms/react-data-fetching/guide/",
         "title": "Querying Tina Content at Runtime"
+      },
+      {
+        "slug": "/guides/tinacms/internationalization/guide/",
+        "title": "Internationalization"
       },
       {
         "title": "Migrating From Forestry",
