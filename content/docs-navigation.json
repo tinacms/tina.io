@@ -22,11 +22,5 @@
     "label": "Community",
     "href": "/community",
     "external": false
-  },
-  {
-    "id": "playground",
-    "label": "Playground",
-    "href": "https://tina-gql-playground.vercel.app/",
-    "external": true
   }
 ]
