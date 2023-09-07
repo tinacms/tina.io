@@ -118,3 +118,5 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 ```
 
 > If you do not use Github, you can [make your own Git Provider](/docs/reference/self-hosted/git-provider/make-your-own).
+
+**Note on Licensing -** TinaCMS is licensed under the Apache 2.0 license.
