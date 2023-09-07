@@ -32,6 +32,10 @@ const footerNav = [
         link: '/docs/product-tour/',
         label: 'How Tina Works',
       },
+      {
+        link: '/press/',
+        label: 'Press',
+      },
     ],
   },
   {
@@ -166,6 +170,10 @@ const footerLinks = [
     link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
     label: 'License',
   },
+  {
+    link: '/docs/support/',
+    label: 'Support',
+  },
 ]
 
 const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
@@ -218,7 +226,7 @@ const SocialLink = ({ link, children }) => {
   )
 }
 
-export const Footer = ({}) => {
+export const Footer = ({ }) => {
   return (
     <div>
       {/* Top */}

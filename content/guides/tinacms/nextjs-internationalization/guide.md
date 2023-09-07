@@ -1,11 +1,11 @@
 ---
-title: Adding Internationalization to Tina
+title: Internationalization with NextJS+Tina
 last_edited: '2022-04-08T10:00:00.000Z'
 ---
 
 ## Overview
 
-![Localized List](https://res.cloudinary.com/forestry-demo/image/upload/v1649448539/tina-io/docs/i18n/subfolder-list-page.png)
+![Localized List](https://res.cloudinary.com/forestry-demo/image/upload/v1694005020/tina-io/docs/i18n/lang-folders.png)
 
 Here at Tina, we are still working on our built-in solution for internationalizing your website.
 
