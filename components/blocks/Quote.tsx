@@ -13,7 +13,7 @@ export const QuoteBlock = ({ data, index }) => {
               <img src={data.logo} />
             </div>
             <div className="min-w-0 lg:w-1/2 ">
-              <h2 className="text-xl mb-2" data-tina-field={tinaField(data, 'title2')}>{data.title2}</h2>
+              <blockquote className="text-3xl italic mb-2" data-tina-field={tinaField(data, 'title2')}>{data.title2}</blockquote>
               <p data-tina-field={tinaField(data, 'subtext')}>{data.subtext}</p>
             </div>
           </div>
