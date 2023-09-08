@@ -12,9 +12,8 @@ export function FeatureBlock({ data, index }) {
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] gap-12 perspective ${
-          isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
-        }`}
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] gap-12 perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+          }`}
       >
         <div className="w-full lg:w-2/5 max-w-prose flex flex-col gap-6 lg:gap-8">
           {data.headline && (
@@ -36,20 +35,17 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`w-full min-w-0 lg:w-1/2 ${
-              isReversed ? 'pivot-reverse' : 'pivot'
-            } ${
-              (data.media[0].image || data.media[0].src) &&
+            className={`w-full min-w-0 lg:w-1/2 ${(data.media[0].image || data.media[0].src) &&
               'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
-            }`}
+              }`}
           >
             {data.media && data.media[0].image && (
               <img
                 src={data.media[0].image}
                 alt={data.headline}
                 className="w-full h-auto"
-                // width="1120px"
-                // height="800px"
+              // width="1120px"
+              // height="800px"
               />
             )}
             {data.media && data.media[0].src && (
@@ -63,11 +59,10 @@ export function FeatureBlock({ data, index }) {
                   </div>
                 )}
                 <div
-                  className={`file relative ${
-                    data.media[0].file
-                      ? 'rounded-lg rounded-tl-none'
-                      : 'rounded-lg'
-                  } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
+                  className={`file relative ${data.media[0].file
+                    ? 'rounded-lg rounded-tl-none'
+                    : 'rounded-lg'
+                    } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
                   style={{
                     fontSize:
                       1.25 * (data.media[0].scale ? data.media[0].scale : 1) +
