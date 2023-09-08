@@ -35,8 +35,7 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`w-full min-w-0 lg:w-1/2 ${isReversed ? 'pivot-reverse' : 'pivot'
-              } ${(data.media[0].image || data.media[0].src) &&
+            className={`w-full min-w-0 lg:w-1/2 ${(data.media[0].image || data.media[0].src) &&
               'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
               }`}
           >
@@ -61,8 +60,8 @@ export function FeatureBlock({ data, index }) {
                 )}
                 <div
                   className={`file relative ${data.media[0].file
-                      ? 'rounded-lg rounded-tl-none'
-                      : 'rounded-lg'
+                    ? 'rounded-lg rounded-tl-none'
+                    : 'rounded-lg'
                     } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
                   style={{
                     fontSize:

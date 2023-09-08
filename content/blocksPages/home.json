@@ -4,7 +4,7 @@
       "features": [
         {
           "headline": "A CMS With Version Control Built-in",
-          "text": "Tina is a fully open-source CMS that supports Git...and content editors love it.",
+          "text": "Tina is a fully open-source headless CMS that supports Git",
           "actions": [
             {
               "label": "npx create-tina-app@latest",
@@ -85,12 +85,12 @@
           ]
         },
         {
-          "headline": "API For Your Files",
-          "text": "Easily fetch your file-based content using Tina's Data Layer.",
+          "headline": "An API For Your Files",
+          "text": "Easily fetch your file-based content using Tina's Data Layer. With Tina, Markdown content can be federated across other sites and applications. ",
           "media": [
             {
-              "file": "page.tsx",
-              "code": "query {\n  post(relativePath: \"my-file.md\") {\n    title\n  }\n}",
+              "file": "query.gql",
+              "code": "query {\n  post(relativePath: \"about.mdx\") {\n    title\n  }\n}",
               "language": "javascript",
               "scale": 1,
               "_template": "code"
@@ -112,9 +112,9 @@
           "media": [
             {
               "file": "config.tsx",
-              "code": "{\n  type: \"string\",\n  label: \"Title\",\n  name: \"title\"\n},\n{\n  type: 'string',\n  label: 'Body',\n  name: 'body',\n  isBody: true,\n},",
+              "code": "const tinaConfig = defineConfig({\n  schema: {\n    collections: [\n      {\n        name: 'doc',\n        label: 'Docs',\n        path: 'content/docs',\n        fields: [\n          {\n            name: 'title',\n            label: 'Title',\n            type: 'string',\n          },\n          {\n            type: 'rich-text',\n            name: 'body',\n            label: 'Body',\n            isBody: true,\n          },\n        ],\n      },\n    ],\n  },\n  // ...\n})\n",
               "language": "javascript",
-              "scale": 1.25,
+              "scale": 0.8,
               "_template": "code"
             }
           ]
@@ -123,10 +123,70 @@
       "_template": "features"
     },
     {
-      "title2": "\"Tina is transforming the way we do documentation at Unity\"",
-      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693531489/tina-io/new-homepage/unity-logo-white.png",
-      "_template": "quote"
+      "testimonials": [
+        {
+          "name": "Peter Rusin",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
+          "date": "2023-09-05T03:00:00.000Z",
+          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
+          "link": "https://rusin.work"
+        },
+        {
+          "name": " Dave Keen",
+          "username": "ccapndave",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
+          "date": "2023-06-02T03:00:00.000Z",
+          "testimonial": "I’ve been playing with TinaCMS for the last week and it’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets and compared to other CMSs the admin is incredibly easy for editors to understand and use.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
+        },
+        {
+          "name": "Vatosteve",
+          "username": "vatosteve",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
+          "date": "2023-01-30T04:00:00.000Z",
+          "testimonial": "Loving Tina CMS so far. It is exactly what I’ve been looking for.\n",
+          "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
+        },
+        {
+          "name": "david.oviedo",
+          "username": "david.oviedo",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355030/testimonials/avatars/david-oviedo_htuynx.png",
+          "date": "2023-07-30T03:00:00.000Z",
+          "testimonial": "Been running a project with Tina for a few months now and we absolutely love it. I had been looking for a CMS that let us build our sites the way we wanted to while letting the non-techies edit the content in a visual and painless way, and Tina just lets you do that.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1124253741802061934"
+        },
+        {
+          "name": "Sean Pearce",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
+          "date": "2023-03-30T03:00:00.000Z",
+          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
+        },
+        {
+          "name": "Billy Best",
+          "username": "billybest5276",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
+          "date": "2023-08-06T03:00:00.000Z",
+          "testimonial": "Just found this and I think I am already in love.\n",
+          "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
+        },
+        {
+          "name": "Mravec",
+          "username": "mravec",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354995/testimonials/avatars/mravec_tglyht.webp",
+          "date": "2023-06-14T03:00:00.000Z",
+          "testimonial": "Just tried out click-to-edit and wanted to let you know it's really awesome, great feature, super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
+        },
+        {
+          "name": "rascode",
+          "username": "rascode11",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
+          "date": "2022-12-06T04:00:00.000Z",
+          "testimonial": "@tinacms is a dream come true.\n",
+          "link": "https://twitter.com/rascode11/status/1600175861621088266"
+        }
+      ],
+      "_template": "testimonials"
     },
     {
       "features": [
@@ -148,12 +208,7 @@
               "_template": "video"
             }
           ]
-        }
-      ],
-      "_template": "features"
-    },
-    {
-      "features": [
+        },
         {
           "headline": "Unbeatable UX",
           "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level.",
@@ -222,72 +277,6 @@
         }
       ],
       "_template": "featureGrid"
-    },
-    {
-      "testimonials": [
-        {
-          "name": "Peter Rusin",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
-          "date": "2023-09-05T03:00:00.000Z",
-          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
-          "link": "https://rusin.work"
-        },
-        {
-          "name": " Dave Keen",
-          "username": "ccapndave",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
-          "date": "2023-06-02T03:00:00.000Z",
-          "testimonial": "I’ve been playing with TinaCMS for the last week and it’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets and compared to other CMSs the admin is incredibly easy for editors to understand and use.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
-        },
-        {
-          "name": "Vatosteve",
-          "username": "vatosteve",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356052/testimonials/avatars/vatosteve_ppkbvj.webp",
-          "date": "2023-01-30T04:00:00.000Z",
-          "testimonial": "Loving Tina CMS so far. It is exactly what I’ve been looking for.\n",
-          "link": "https://discord.com/channels/835168149439643678/835168149439643681/1069765204130398247"
-        },
-        {
-          "name": "david.oviedo",
-          "username": "david.oviedo",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355030/testimonials/avatars/david-oviedo_htuynx.png",
-          "date": "2023-07-30T03:00:00.000Z",
-          "testimonial": "Been running a project with Tina for a few months now and we absolutely love it. I had been looking for a CMS that let us build our sites the way we wanted to while letting the non-techies edit the content in a visual and painless way, and Tina just lets you do that.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1124253741802061934"
-        },
-        {
-          "name": "Sean Pearce",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
-          "date": "2023-03-30T03:00:00.000Z",
-          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
-        },
-        {
-          "name": "Billy Best",
-          "username": "billybest5276",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
-          "date": "2023-08-06T03:00:00.000Z",
-          "testimonial": "Just found this and I think I am already in love.\n",
-          "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
-        },
-        {
-          "name": "Mravec",
-          "username": "mravec",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354995/testimonials/avatars/mravec_tglyht.webp",
-          "date": "2023-06-14T03:00:00.000Z",
-          "testimonial": "Just tried out click-to-edit and wanted to let you know it's really awesome, great feature, super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
-        },
-        {
-          "name": "rascode",
-          "username": "rascode11",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
-          "date": "2022-12-06T04:00:00.000Z",
-          "testimonial": "@tinacms is a dream come true.\n",
-          "link": "https://twitter.com/rascode11/status/1600175861621088266"
-        }
-      ],
-      "_template": "testimonials"
     },
     {
       "title": "Recent Posts",
