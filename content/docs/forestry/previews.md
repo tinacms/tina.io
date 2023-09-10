@@ -7,7 +7,7 @@ Forestry allowed your editors to hit "preview", where your site would build and 
 
 Instead of traditional previews, Tina offers "visual editing", where changes are reflected on the site's preview in realtime.
 
-![using-tina-sidebar](https://res.cloudinary.com/forestry-demo/image/upload/v1638554818/tina-io/using-tina/sidebar.gif)
+![visual editing with Tina](https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/tina-io/new-homepage/homepage-demo-2.gif)
 
 This feature is optional, and is only available in React-based sites (Vue-support coming in the future).
 
