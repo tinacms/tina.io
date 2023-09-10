@@ -24,4 +24,4 @@ yarn dev
 
 Next we'll show you how to use the Tina editor!
 
-![using-tina-sidebar](https://res.cloudinary.com/forestry-demo/image/upload/v1638554818/tina-io/using-tina/sidebar.gif)
+![Visua Editing with Tina](https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/tina-io/new-homepage/homepage-demo-2.gif)
