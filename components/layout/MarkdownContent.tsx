@@ -1,4 +1,11 @@
 import React from 'react'
+import remarkDirective from 'remark-directive'
+import remarkDirectiveRehype from 'remark-directive-rehype'
+import { Disclosure } from '@headlessui/react'
+import {
+  MinusSmIcon as MinusSmallIcon,
+  PlusSmIcon as PlusSmallIcon,
+} from '@heroicons/react/outline'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 // Need this to render tables
@@ -131,6 +138,65 @@ const ShortcodeRenderer = ({ identifier, attributes }) => {
   return <Renderer {...attributes} />
 }
 
+const CodeSnippets = (props) => {
+  return (
+    <div className="my-8 code-snippets">
+      <style>{`.code-snippets .prism-code {height: 100%; margin: 0}`}</style>
+      <style>{`.code-snippets .code-wrapper { height: 100% }`}</style>
+      <style>{`.code-snippets h3 { margin-bottom: 0; }`}</style>
+      <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
+        {props.children}
+      </dl>
+    </div>
+  )
+}
+const CodeSnippet = (props) => {
+  const headingIndex = props.node.children.findIndex(
+    (child) => child.tagName === 'h3'
+  )
+  const descriptionIndex = props.node.children.findIndex(
+    (child) => child.tagName === 'p'
+  )
+  const codeIndex = props.node.children.findIndex(
+    (child) => child.tagName === 'pre'
+  )
+  return (
+    <Disclosure defaultOpen={props.open} as="div" className="pt-6">
+      {({ open }) => (
+        <>
+          <dt>
+            <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
+              {props.children[headingIndex]}
+              <span className="ml-6 flex h-7 items-center">
+                {open ? (
+                  <MinusSmallIcon className="h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <PlusSmallIcon className="h-6 w-6" aria-hidden="true" />
+                )}
+              </span>
+            </Disclosure.Button>
+          </dt>
+          <Disclosure.Panel as="dd" className="mt-2 pr-12">
+            {
+              <div className="py-4 text-base leading-7">
+                {descriptionIndex !== -1
+                  ? props.children[descriptionIndex]
+                  : null}
+              </div>
+            }
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="flex-1">{props.children[codeIndex]}</div>
+              <div className="flex-1 bg-gray-50 bg-[#f6f6f9] border border-gray-100 rounded-md overflow-hidden">
+                <img src={props.url} />
+              </div>
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+  )
+}
+
 export function MarkdownContent({
   content,
   escapeHtml,
@@ -152,6 +218,7 @@ export function MarkdownContent({
   return (
     <ReactMarkdown
       rehypePlugins={[rehypeRaw, remarkGfm]}
+      remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
       skipHtml={skipHtml ? skipHtml : false}
       components={{
         ul: ({ node, ...props }) => {
@@ -163,10 +230,14 @@ export function MarkdownContent({
         pre({ node, ...props }) {
           return <>{props.children}</>
         },
+        // @ts-ignore
+        'code-snippet': CodeSnippet,
+        // @ts-ignore
+        'code-snippets': CodeSnippets,
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '') || props.lang
           return !inline && match ? (
-            <CodeWrapper>
+            <CodeWrapper className="code-wrapper">
               <Prism
                 lang={match[1]}
                 theme="nightOwl"

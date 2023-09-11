@@ -29,12 +29,23 @@ type BooleanField = {
 }
 ```
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/boolean" />
-
 ## Examples
 
-### `boolean` with custom component
+Tina will generate the appropriate component depending on the
+configuration provided.
 
-This example shows how a [custom component](/docs/extending-tina/custom-field-components/) can be rendered to the user instead of the default component.
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/boolean-1.png"}
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/boolean-component" />
+### Simple
+
+```ts
+{
+  type: 'boolean',
+  name: 'published',
+  label: 'Published'
+}
+```
+
+:::
+::::

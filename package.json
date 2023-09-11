@@ -99,6 +99,8 @@
     "react-use-size": "^3.0.1",
     "rehype-raw": "^6.1.1",
     "remark": "^11.0.2",
+    "remark-directive": "^2.0.1",
+    "remark-directive-rehype": "^0.4.2",
     "remark-gfm": "^3.0.1",
     "remark-parse": "^8.0.0",
     "serve": "11.2.0",

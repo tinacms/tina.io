@@ -7,57 +7,34 @@ next: '/docs/extending-tina/custom-field-components'
 
 Tina allows client-side validation using a validation function. This function returns a `string` error message if the value is **invalid** or `null` if the field is **valid**.
 
-Example;
+To include other field values of the form in the validation, a data argument can be used.
+
+## Example
+
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/invalid-1.png"}
+
+### Validate the length of a `string` field
 
 ```ts
-//...
 {
-    type: 'string'
-    name: 'title',
-    ui: {
-        validate: (value)=>{
-            if(value.length > 40){
-                return 'Title cannot be more than 40 characters long'
-            }
-        }
+  label: "Title",
+  name: "title",
+  type: "string",
+  ui: {
+    validate: (value, data)=>{
+      const lengthOfTitle = value?.length || 0
+      const lengthOfDescription = data?.description?.length || 0
+      if(lengthOfTitle >= lengthOfDescription){
+        return 'The description must be longer than the title'
+      }
     }
+  }
 }
 ```
 
-<!-- TODO: add screenshot -->
-
-To include other field values of the form in the validation, a data argument can be used.
-
-```ts
-/// ...
-fields: [
-  // Other fields...
-  {
-    name: 'title',
-    type: 'string',
-    ui: {
-      validate: (value, data) => {
-        const lengthOfTitle = value?.length || 0
-        //  We have access to value of description by using data?.<Name of field>
-        const lengthOfDescription = data?.description?.length || 0
-        if (lengthOfTitle >= lengthOfDescription) {
-          return 'The description must be longer than the title'
-        }
-      },
-    },
-  },
-  {
-    name: 'description',
-    type: 'string',
-  },
-]
-```
-
-<!-- TODO: add screenshots -->
-
-See live example below;
-
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/validation" />
+:::
+::::
 
 The following schema types support the use of `validate`:
 

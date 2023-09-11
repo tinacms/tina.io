@@ -29,12 +29,23 @@ type NumberField = {
 }
 ```
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/number" />
-
 ## Examples
 
-### `number` with validate
+Tina will generate the appropriate component depending on the
+configuration provided.
 
-This is an example of how to use the [frontend validate function](/docs/extending-tina/validation/) with the number field
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/number-1.png"}
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/number-validate" />
+### Simple
+
+```ts
+{
+  type: 'string',
+  name: 'count',
+  label: 'Count'
+}
+```
+
+:::
+::::
