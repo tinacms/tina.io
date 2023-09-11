@@ -101,4 +101,19 @@ When querying for a `post` document, the `author` key in the response will conta
 }
 ```
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/reference" />
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/reference-1.png"}
+
+### Basic dropdown
+
+```ts
+{
+  type: 'reference',
+  name: 'author',
+  label: 'Author'
+  collectins: ['author']
+}
+```
+
+:::
+::::

@@ -35,54 +35,125 @@ type StringField = {
 }
 ```
 
-<iframe width="100%" height="450px" src="https://tina-gql-playground.vercel.app/iframe/string" />
-
 ## Examples
 
-### With `options`
+Tina will generate the appropriate component depending on the
+configuration provided.
 
-Specifying an `options` array will provide a selection list
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/string-1.png"}
 
-<a href="https://tina-gql-playground.vercel.app/string-options" target="_blank">See Example</a>
+### Simple
 
-### As a `list`
+```ts
+{
+  type: 'string',
+  name: 'title',
+  label: 'Title'
+}
+```
+
+:::
+:::code-snippet{url="/img/code-snippets/string-2.png"}
+
+### Simple w/list
 
 Setting `list: true` will make the value an array
 
-<a href="https://tina-gql-playground.vercel.app/string-list" target="_blank">See Example</a>
+```ts
+{
+  type: 'string',
+  name: 'title',
+  label: 'Title'
+  list: true
+}
+```
 
-### As a `list` with `options`
+:::
+:::code-snippet{url="/img/code-snippets/string-3.png"}
+
+### As a list with options
 
 Setting `list: true` and providing `options` will make the value an array with a selection list
 
-<a href="https://tina-gql-playground.vercel.app/string-list-options" target="_blank">See Example</a>
+```ts
+{
+  type: 'string',
+  name: 'title',
+  label: 'Title'
+  list: true,
+  options: [
+    {
+      value: "movies",
+      label: "Movies"
+    }, {
+      value: "music",
+      label: "Music"
+    }
+  ]
+}
+```
 
-## The `isBody` property
+:::
+
+:::code-snippet{url="/img/code-snippets/string-4.png"}
+
+### Using the `isBody` property
 
 When working with markdown, you can indicate that a given field should represent the markdown body
 
-<a href="https://tina-gql-playground.vercel.app/string-body" target="_blank">See Example</a>
+```ts
+{
+  type: 'string',
+  name: 'body',
+  label: 'Body'
+  // Indicates this field should repesent the file's body
+  isBody: true
+}
+```
 
-## Overriding the component
+:::
+:::code-snippet{url="/img/code-snippets/string-5.png"}
 
-By default, the `text` field is used for strings. To use a different core field plugin, specify it with the `ui.component` property
+### Override the built-in component
 
-<a href="https://tina-gql-playground.vercel.app/iframe/string-textarea" target="_blank">See Example</a>
+By default, the text field is used for `strings`. To use a different core field plugin, specify it with the `ui.component property`
 
-## Providing a custom component
+```ts
+{
+  label: "Description",
+  name: "description",
+  type: "string",
+  ui: {
+    component: "textarea"
+  }
+}
+```
+
+:::
+:::code-snippet{url="/img/code-snippets/string-6.png"}
+
+### Providing a custom component
 
 You can [create your own components](/docs/extending-tina/custom-field-components/)
 
-<a href="https://tina-gql-playground.vercel.app/string-component" target="_blank">See Example</a>
+```ts
+{
+  label: "Title",
+  name: "title",
+  type: "string",
+  ui: {
+    component: ({ input }) => {
+      return (
+        <div>
+          <label htmlFor="title">Title: </label>
+          <input {...input}></input>
+        </div>
+      );
+    },
+  },
+}
+```
 
-## Providing validation
-
-You can provide a [validation function](/docs/extending-tina/validation/) for frontend validation
-
-<a href="https://tina-gql-playground.vercel.app/validation" target="_blank">See Example</a>
-
-## Format and parse
-
-You can provide [custom format and parse functions](/docs/extending-tina/format-and-parse/) to a string field
-
-<a href="https://tina-gql-playground.vercel.app/string-format-parse" target="_blank">See Example</a>
+:::
+::::

@@ -28,25 +28,60 @@ type DatetimeField = {
 
 The return value for a datetime is in [ISO string format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
 
-<a href="https://tina-gql-playground.vercel.app/iframe/datetime" target="_blank">See example</a>
+## Examples
 
-## Custom format
+Tina will generate the appropriate component depending on the
+configuration provided.
+
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/date-1.png"}
+
+### Simple
+
+```ts
+{
+  type: 'datetime',
+  name: 'date',
+  label: 'Date'
+}
+```
+
+:::
+:::code-snippet{url="/img/code-snippets/date-2.png"}
+
+### Custom format
 
 You can customize the format that the date field use by customizing the `dateFormat` & `parse` properties.
 
-<a href="https://tina-gql-playground.vercel.app/iframe/datetime-format" target="_blank">See example</a>
+```ts
+{
+  label: "Date",
+  name: "date",
+  type: "datetime",
+  ui: {
+    dateFormat: 'YY-MM-DD',
+    parse: (value) => value && value.format('YY-MM-DD'),
+  },
+}
+```
 
-## Using a time picker
+:::
+:::code-snippet{url="/img/code-snippets/date-3.png"}
+
+### Using a time picker
 
 You can add a timepicker to the date UI by supplying the `ui.timeFormat` property
 
-```javascript
+```ts
 {
-  type: "datetime",
-  name: "date",
   label: "Date",
+  name: "date",
+  type: "datetime",
   ui: {
     timeFormat: "HH:mm"
   },
-},
+}
 ```
+
+:::
+::::
