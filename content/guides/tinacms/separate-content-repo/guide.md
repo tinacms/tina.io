@@ -97,6 +97,6 @@ yarn build
 To learn more about Tina, take a look at the following resources:
 
 - [Tina Docs](https://tina.io/docs)
-- [Getting starter guide](https://tina.io/guides/tina-cloud/starter/overview/)
+- [Getting started guide](https://tina.io/guides/tina-cloud/starter/overview/)
 
 You can check out [Tina Github repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
