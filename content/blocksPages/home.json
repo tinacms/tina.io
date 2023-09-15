@@ -189,6 +189,12 @@
       "_template": "testimonials"
     },
     {
+      "title2": "\"Tina is transforming the way we do docs at Unity\"",
+      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
+      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+      "_template": "quote"
+    },
+    {
       "features": [
         {
           "headline": "Merge With Confidence",
