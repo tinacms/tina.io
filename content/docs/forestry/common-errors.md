@@ -174,6 +174,6 @@ In TinaCMS the match property is set for each collection and is nested.
 }
 ```
 
-Check out the [match property docs](/docs/collections/#match) for more info.
+Check out the [match property docs](/docs/reference/collections/#matchinclude) for more info.
 
 Since this migration tool is converting from Forestry to TinaCMS, it will automatically convert the match property to the TinaCMS format. It is a good idea to double check that it is matching correctly.
