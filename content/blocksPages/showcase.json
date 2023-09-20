@@ -179,35 +179,11 @@
           }
         },
         {
-          "headline": "pcode",
-          "text": "A marketing site for an Austrian-based agency focused on customer journey development, UX/UI design, software development, and e-commerce. ",
-          "url": "https://www.pcode.at/",
-          "media": {
-            "src": "/img/pcode.png"
-          }
-        },
-        {
           "headline": "APFX",
           "text": "A marketing site for APFX, an international foreign exchange firm providing bespoke services for corporate businesses globally.",
           "url": "https://www.apfx.com.au/en-us",
           "media": {
             "src": "/img/apfx.png"
-          }
-        },
-        {
-          "headline": "Maximum Image",
-          "text": "The corporate website of Maximum Image , a promotional company that creates and maintains corporate images for top level clients. Developed by Sols.mk",
-          "url": "https://www.maximumimage.eu/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/maximumimage.png"
-          }
-        },
-        {
-          "headline": "Metrics Watch",
-          "text": "A marketing site for Metrics Watch, a marketing reporting platform for agencies. ",
-          "url": "https://metricswatch.com/",
-          "media": {
-            "src": "/img/metrics-watch.png"
           }
         }
       ],
