@@ -6,7 +6,7 @@
   "blocks": [
     {
       "headline": "Showcase",
-      "text": "Selected sites running TinaCMS",
+      "text": "Selected sites that use TinaCMS",
       "_template": "hero"
     },
     {
