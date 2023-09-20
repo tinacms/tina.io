@@ -21,7 +21,7 @@
         },
         {
           "headline": "Unity ",
-          "text": "Unity is building an improved documentation platform with TinaCMS and Next.js. They chose Tina to supercharge their Markdown and MDX content with Tina's queryable API and to provide their content teams with an enterprise-grade editing UI that's backed by Git.",
+          "text": "Unity, the game engine powering games such as Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina to enable queries to their Markdown and MDX content using Tina's API and to provide their content teams with an enterprise-grade editing UI that's backed by Git.",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/w_800/v1695250407/tina-showcase/unity-documentation.png"
           }
