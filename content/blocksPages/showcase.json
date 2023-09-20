@@ -6,11 +6,19 @@
   "blocks": [
     {
       "headline": "Showcase",
-      "text": "Real projects built with Tina",
+      "text": "TinaCMS in the Wild",
       "_template": "hero"
     },
     {
       "items": [
+        {
+          "headline": "Smashing Magazine",
+          "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
+          "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1695247872/tina-showcase/smashingmagazine-tinacms.gif"
+          }
+        },
         {
           "headline": "Locality Bank",
           "text": "[Locality](https://localitybank.com) is reinventing local business banking – pairing the best of personal relationships with comprehensive financing experience and innovative technology to help South Florida businesses flourish. ",
