@@ -24,6 +24,42 @@
       "_template": "hero"
     },
     {
+      "title": "Trusted by",
+      "items": [
+        {
+          "name": "Unity",
+          "link": "https://unity.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/w_600,q_auto/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+          "size": 250
+        },
+        {
+          "name": "Protocol Labs",
+          "link": "https://protocol.ai/",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 90
+        },
+        {
+          "name": "City of London",
+          "link": "https://www.cityoflondon.gov.uk/",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1694021728/tina-io/new-homepage/city-of-london.svg",
+          "size": 75
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "https://www.devolverdigital.com/",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 180
+        },
+        {
+          "name": "Smashing Magazine",
+          "link": "https://www.smashingmagazine.com/",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 110
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
       "items": [
         {
           "headline": "Built-in Version Control",
