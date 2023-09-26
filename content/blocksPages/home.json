@@ -99,7 +99,7 @@
         },
         {
           "headline": "Configure with Code",
-          "text": "Tina is code-first and fully typed. Define your CMS in a config file and check it into Git. ",
+          "text": "Tina is code-first and fully typed. Define your CMS in the Tina config file in your repository",
           "actions": [
             {
               "label": "Read The Docs",
