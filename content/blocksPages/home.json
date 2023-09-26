@@ -64,7 +64,7 @@
       "features": [
         {
           "headline": "Own Your Content",
-          "text": "You don't need to lock your content in a 3rd-party service.  Tina writes to your repository (MDX, Markdown, JSON, etc) and gives you a queryable Data Layer for fetching that content. ",
+          "text": "Don't lock your content in a 3rd-party service.  Tina writes to files in your repository (MDX, Markdown, JSON, etc)",
           "actions": [
             {
               "label": "Learn More",
