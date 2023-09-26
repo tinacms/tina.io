@@ -85,8 +85,8 @@
           ]
         },
         {
-          "headline": "An API For Your Files",
-          "text": "Easily fetch your file-based content using Tina's Data Layer. With Tina, Markdown content can be federated across other sites and applications. ",
+          "headline": "An API for your Content",
+          "text": "Easily fetch your file-based content using Tina's Data Layer",
           "media": [
             {
               "file": "query.gql",
