@@ -198,7 +198,7 @@
       "features": [
         {
           "headline": "Merge With Confidence",
-          "text": "Tina Cloud Enterprise customers can review, approve, and manage content  on different branches. ",
+          "text": "Tina Cloud Enterprise customers can review, approve, and manage content  on different branches",
           "actions": [
             {
               "label": "Editorial Workflow",
@@ -217,7 +217,7 @@
         },
         {
           "headline": "Unbeatable UX",
-          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level.",
+          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
           "media": [
             {
               "src": "tina-io/new-homepage/homepage-demo-2",
