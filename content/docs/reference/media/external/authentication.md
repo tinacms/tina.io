@@ -136,27 +136,25 @@ export const handler = ServerlessHttp(app)
 
 Now, you can replace the default repo-based media with the external media store. You can register a media store via the `loadCustomStore` prop.
 
-The `loadCustomStore` prop can be configured within `tina/schema.ts`.
+The `loadCustomStore` prop can be configured within `tina/config` file.
 
 ```diff
-// tina/schema.ts
+// tina/config.{ts,js,jsx}
 
 // ...
 
-export default defineSchema({
-  // ...
-  config: {
-     media: {
--       tina: {
--         publicFolder: "",
--         mediaRoot: ""
--       },
-+       loadCustomStore: async () => {
-+         const pack = await import("next-tinacms-<YOUR_MEDIA_STORE_NAME>");
-+         return pack.TinaCloud<YOUR_MEDIA_STORE>;
-+       },
-     }
-  },
+export default defineConfig({
+    // ...
+    media: {
+-      tina: {
+-        publicFolder: "",
+-        mediaRoot: ""
+-      },
++      loadCustomStore: async () => {
++        const pack = await import("next-tinacms-<YOUR_MEDIA_STORE_NAME>");
++        return pack.TinaCloud<YOUR_MEDIA_STORE>;
++      },
+    }
 })
 ```
 
