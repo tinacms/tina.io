@@ -125,6 +125,14 @@
     {
       "testimonials": [
         {
+          "name": "Boko Colse",
+          "username": "@struhy_xd",
+          "avatar": "http://res.cloudinary.com/forestry-demo/image/upload/v1696342922/testimonials/avatars/Boko-C%CC%8Colse_um356c.jpg",
+          "date": "2023-09-26T03:00:00.000Z",
+          "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
+          "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
+        },
+        {
           "name": "Peter Rusin",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
           "date": "2023-09-05T03:00:00.000Z",
@@ -156,12 +164,6 @@
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1124253741802061934"
         },
         {
-          "name": "Sean Pearce",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
-          "date": "2023-03-30T03:00:00.000Z",
-          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
-        },
-        {
           "name": "Billy Best",
           "username": "billybest5276",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
@@ -184,6 +186,12 @@
           "date": "2022-12-06T04:00:00.000Z",
           "testimonial": "@tinacms is a dream come true.\n",
           "link": "https://twitter.com/rascode11/status/1600175861621088266"
+        },
+        {
+          "name": "Sean Pearce",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
+          "date": "2023-03-30T03:00:00.000Z",
+          "testimonial": "We really liked using Tina and we will definitely suggest it to clients in the future. Tina's in-context editor cannot be beaten. We are actually planning on using it for our new website as well, so we’re all in on it.\n"
         }
       ],
       "_template": "testimonials"
