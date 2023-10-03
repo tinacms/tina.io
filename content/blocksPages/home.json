@@ -139,14 +139,6 @@
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
         },
         {
-          "name": "david.oviedo",
-          "username": "david.oviedo",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355030/testimonials/avatars/david-oviedo_htuynx.png",
-          "date": "2023-07-30T03:00:00.000Z",
-          "testimonial": "Been running a project with Tina for a few months now and we absolutely love it. I had been looking for a CMS that let us build our sites the way we wanted to while letting the non-techies edit the content in a visual and painless way, and Tina just lets you do that.\n",
-          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1124253741802061934"
-        },
-        {
           "name": " Dave Keen",
           "username": "ccapndave",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
@@ -163,13 +155,6 @@
           "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
         },
         {
-          "name": "Peter Rusin",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
-          "date": "2023-09-05T03:00:00.000Z",
-          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
-          "link": "https://rusin.work"
-        },
-        {
           "name": "Mravec",
           "username": "mravec",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354995/testimonials/avatars/mravec_tglyht.webp",
@@ -178,18 +163,25 @@
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
         },
         {
-          "name": "rascode",
-          "username": "rascode11",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
-          "date": "2022-12-06T04:00:00.000Z",
-          "testimonial": "@tinacms is a dream come true.\n",
-          "link": "https://twitter.com/rascode11/status/1600175861621088266"
+          "name": "Peter Rusin",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
+          "date": "2023-09-05T03:00:00.000Z",
+          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
+          "link": "https://rusin.work"
         },
         {
           "name": "Sean Pearce",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
           "date": "2023-03-30T03:00:00.000Z",
           "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n"
+        },
+        {
+          "name": "rascode",
+          "username": "rascode11",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
+          "date": "2022-12-06T04:00:00.000Z",
+          "testimonial": "@tinacms is a dream come true.\n",
+          "link": "https://twitter.com/rascode11/status/1600175861621088266"
         }
       ],
       "_template": "testimonials"
