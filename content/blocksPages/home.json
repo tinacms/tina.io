@@ -126,8 +126,8 @@
       "testimonials": [
         {
           "name": "Boko Colse",
-          "username": "@struhy_xd",
-          "avatar": "http://res.cloudinary.com/forestry-demo/image/upload/v1696342922/testimonials/avatars/Boko-C%CC%8Colse_um356c.jpg",
+          "username": "struhy_xd",
+          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1696342922/testimonials/avatars/Boko-C%CC%8Colse_um356c.jpg",
           "date": "2023-09-26T03:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
