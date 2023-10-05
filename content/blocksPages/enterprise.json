@@ -98,13 +98,10 @@
       "_template": "featureGrid"
     },
     {
-      "options": {
-        "narrow": true,
-        "color": "white",
-        "align": "center"
-      },
-      "content": "## Reduced Hosting and Operating Costs\n\nMost customers see greater than 50% reduction in licensing and operating costs when switching from other enterprise-level CMS platforms to TinaCMS\n",
-      "_template": "content"
+      "title2": "\"Tina is transforming the way we do docs at Unity\"",
+      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
+      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+      "_template": "quote"
     },
     {
       "items": [
@@ -136,7 +133,20 @@
       "_template": "featureGrid"
     },
     {
+      "options": {
+        "narrow": true,
+        "color": "white",
+        "align": "center"
+      },
+      "content": "## Reduced Hosting and Operating Costs\n\nMost customers reduce licensing and operating costs by more than 50% when switching to TinaCMS from other enterprise-level CMS platforms.\n",
+      "_template": "content"
+    },
+    {
       "items": [
+        {
+          "headline": "Reduced Hosting and Operating Costs",
+          "text": "Most customers reduce licensing and operating costs by more than 50% when switching to TinaCMS from other enterprise-level CMS platforms."
+        },
         {
           "headline": "Training & Support",
           "text": "Get access to the team behind TinaCMS for training, priority support, and custom development."
@@ -145,11 +155,11 @@
       "_template": "featureGrid"
     },
     {
-      "headline": "Request a Demo",
-      "text": "",
+      "headline": "Get a Demo",
+      "text": "Discuss your project and get a demo from a TinaCMS team member",
       "actions": [
         {
-          "label": "Contact Us",
+          "label": "Schedule Demo",
           "icon": false,
           "variant": "blue",
           "size": "large",
