@@ -30,4 +30,4 @@ It’s self-evident, then, that Tina’s content API cannot rely solely on the G
 
 ## A Brief History
 
-In 2010 Mozilla took a position against the [Web SQL Database](https://www.w3.org/TR/webdatabase/) standard developed by Apple. As Arun Ranganathan argued:
+In 2010 Mozilla took a position against the [Web SQL Database](https://www.w3.org/TR/webdatabase/) standard developed by [Apple](https://www.cnet.com/news/consensus-emerges-for-key-web-app-standard/). As Arun Ranganathan [argued](https://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/):
