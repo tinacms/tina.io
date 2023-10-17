@@ -12,4 +12,4 @@ Tina CMS is an open-source, Git-backed headless content management system (CMS) 
 
 # The Challenge of Building a CMS on Git
 
-One of the key features of Tina CMS is that instead of writing content to a database, it is stored in a Git repository. With Git, Tina gets built-in version control and enables Git-based collaborative workflows. Similar to other headless CMS products, content is exposed for rendering using a queryable API that is generated using a developer-defined schema.
+One of the key features of Tina CMS is that instead of writing content to a database, it is stored in a Git repository. By using Git, Tina gets built-in version control and enables Git-based collaborative workflows. Similar to other headless CMS products, content is exposed for rendering using a queryable API that is generated using a developer-defined schema.
