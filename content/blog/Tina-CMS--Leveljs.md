@@ -8,7 +8,7 @@ prev: content/blog/Supercharge-Your-Markdown-Blog-with-AI.md
 
 Tina CMS is an open-source, Git-backed headless content management system (CMS) with a unique approach to content storage and retrieval. In this article, we are going to dive into its architecture and discover how Level.js strikes the perfect balance between simplicity and functionality needed by Tina.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1697555670/tina-io/new-homepage/homepage-demo-2_ij82cj.gif)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1697555916/tina-io/new-homepage/homepage-demo-2b_lmoaj8.gif)
 
 # The Challenge of Building a CMS on Git
 
