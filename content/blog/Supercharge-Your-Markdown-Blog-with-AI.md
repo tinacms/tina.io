@@ -3,6 +3,8 @@ title: Markdown Bot - An AI friend who improves your content
 date: '2023-07-14T04:00:00.000Z'
 last_edited: '2023-07-14T04:00:00.000Z'
 author: Logan Anderson
+prev: content/blog/Introducing-the-Deep-Dive-Video-Series.md
+next: content/blog/Tina-CMS--Leveljs.md
 ---
 
 With [TinaCMS](https://tina.io), all your content changes are committed directly to Git. This enables your team to create a variety of workflows for reviewing and merging content updates. By leaning on GitHub, you can integrate CI/CD into your content workflow.
