@@ -3,6 +3,7 @@ title: Markdown Bot - An AI friend who improves your content
 date: '2023-07-14T04:00:00.000Z'
 last_edited: '2023-07-14T04:00:00.000Z'
 author: Logan Anderson
+prev: content/blog/Introducing-the-Deep-Dive-Video-Series.md
 next: content/blog/Tina-CMS--Leveljs.md
 ---
 
