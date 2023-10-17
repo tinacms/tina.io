@@ -31,3 +31,7 @@ It’s self-evident, then, that Tina’s content API cannot rely solely on the G
 ## A Brief History
 
 In 2010 Mozilla took a position against the [Web SQL Database](https://www.w3.org/TR/webdatabase/) standard developed by [Apple](https://www.cnet.com/news/consensus-emerges-for-key-web-app-standard/). As Arun Ranganathan [argued](https://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/):
+
+> We don’t think it is the right basis for an API exposed to general web content, not least of all because there isn’t a credible, widely accepted standard that subsets SQL in a useful way. Additionally, we don’t want changes to SQLite to affect the web later, and don’t think harnessing major browser releases (and a web standard) to SQLite is prudent.
+
+Mozilla instead championed the simpler [Indexed Database API](https://en.wikipedia.org/wiki/Indexed_Database_API) standard (IndexedDB). This standard has a simpler and more stable API for developers to rely upon than Web SQL. It exposes a Javascript API over a NoSQL database. It also provides more storage over the existing [Web storage](https://en.wikipedia.org/wiki/Web_storage) standard.
