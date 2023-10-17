@@ -77,6 +77,6 @@ LevelDB emerged from the necessity for an embedded database capable of supportin
 ### Footnotes
 
 1. \[1] Web SQL is currently scheduled for removal from Chrome in November 2023: [https://developer.chrome.com/blog/deprecating-web-sql/](https://developer.chrome.com/blog/deprecating-web-sql/)
-2. \[2] See chrome://credits/
+2. \[2] See [chrome://credits/](chrome://credits/)
 3. \[3] Somewhat ironically, Mozilla Firefox is still using SQLite for its implementation of IndexedDB.
 4. \[4] In older versions of Level.js, this feature was provided by a [module](https://github.com/dominictarr/level-sublevel), but has since been incorporated into the core library.
