@@ -1,18 +1,18 @@
 ---
-title: Tina CMS & Level.js
+title: TinaCMS & Level.js
 date: '2023-10-17T04:00:00.000Z'
 last_edited: '2023-10-17T04:00:00.000Z'
 author: Kelly Davis
 prev: content/blog/Supercharge-Your-Markdown-Blog-with-AI.md
 ---
 
-Tina CMS is an open-source, Git-backed headless content management system (CMS) with a unique approach to content storage and retrieval. In this article, we are going to dive into its architecture and discover how Level.js strikes the perfect balance between simplicity and functionality needed by Tina.
+TinaCMS is an open-source, Git-backed headless content management system (CMS) with a unique approach to content storage and retrieval. In this article, we are going to dive into its architecture and discover how Level.js strikes the perfect balance between simplicity and functionality needed by Tina.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1697555916/tina-io/new-homepage/homepage-demo-2b_lmoaj8.gif)
 
 # The Challenge of Building a CMS on Git
 
-One of the key features of Tina CMS is that instead of writing content to a database, it is stored in a Git repository. By using Git, Tina gets built-in version control and enables Git-based collaborative workflows. Similar to other headless CMS products, content is exposed for rendering using a queryable API that is generated using a developer-defined schema.
+One of the key features of TinaCMS is that instead of writing content to a database, it is stored in a Git repository. By using Git, Tina gets built-in version control and enables Git-based collaborative workflows. Similar to other headless CMS products, content is exposed for rendering using a queryable API that is generated using a developer-defined schema.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1675375259/tinacms-data-layer_geyrv8.png)
 
@@ -77,6 +77,6 @@ LevelDB emerged from the necessity for an embedded database capable of supportin
 ### Footnotes
 
 1. \[1] Web SQL is currently scheduled for removal from Chrome in November 2023: [https://developer.chrome.com/blog/deprecating-web-sql/](https://developer.chrome.com/blog/deprecating-web-sql/)
-2. \[2] See [chrome://credits/](chrome://credits/)
+2. \[2] See [chrome://credits/]()
 3. \[3] Somewhat ironically, Mozilla Firefox is still using SQLite for its implementation of IndexedDB.
 4. \[4] In older versions of Level.js, this feature was provided by a [module](https://github.com/dominictarr/level-sublevel), but has since been incorporated into the core library.
