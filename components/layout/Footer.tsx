@@ -255,11 +255,11 @@ export const Footer = ({ }) => {
               </div>
             )
           })}
-          <div className="flex flex-col lg:items-start">
+          <div className="flex flex-col lg:items-center">
             <div className="flex w-1/2 flex-col lg:items-end gap-4 drop-shadow-sm">
               <SocialLink link="https://github.com/tinacms/tinacms">
                 <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                Github
+                GitHub
               </SocialLink>
               <SocialLink link="https://twitter.com/tinacms">
                 <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
