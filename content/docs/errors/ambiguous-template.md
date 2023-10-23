@@ -36,6 +36,7 @@ If it was a JSON file it would look like this.\
 etc.
 
 \
-Here is a quick video wth more explanation:
+[Check out this video](https://www.loom.com/share/077e2a626f4246b1b680526433ef1e33?sid=612ce485-d386-479b-a9c2-1de55ec6f24c "Ambiguous Template Video") for a deeper explanation.\
+
 
 \
