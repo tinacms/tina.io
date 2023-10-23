@@ -7,13 +7,10 @@ This error happens when a collection uses templates and there is no template key
 
 ## How to fix
 
-\
-This error can be fixed by adding a root level field of \_template to every document with this error.  Unfortunately,  we do not have anyway to automatically migrate the content. It will have to be done manually or with custom scripts. \
-\
-Ex:\
-If you had a markdown file you would add\
-\
+This error can be fixed by adding a root level field of \_template to every document with this error.  Unfortunately,  we do not have anyway to automatically migrate the content. It will have to be done manually or with custom scripts.
 
+Ex:
+If you had a markdown file you would add:
 
 ```markdown
 ---
@@ -21,10 +18,9 @@ _template: templateName
 ---
 ```
 
-Where templateName is the name of the template in your collection =\
-\
-If it was a JSON file it would look like this.\
+Where `templateName` is the name of the template in your collection
 
+If it was a JSON file it would look like this.
 
 ```json
 {
@@ -32,11 +28,6 @@ If it was a JSON file it would look like this.\
 }
 ```
 
-\
 etc.
 
-\
-[Check out this video](https://www.loom.com/share/077e2a626f4246b1b680526433ef1e33?sid=612ce485-d386-479b-a9c2-1de55ec6f24c "Ambiguous Template Video") for a deeper explanation.\
-
-
-\
+[Check out this video](https://www.loom.com/share/077e2a626f4246b1b680526433ef1e33?sid=612ce485-d386-479b-a9c2-1de55ec6f24c "Ambiguous Template Video") for a deeper explanation.
