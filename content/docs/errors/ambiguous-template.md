@@ -7,7 +7,7 @@ This error happens when a collection uses templates and there is no template key
 
 ## How to fix
 
-This error can be fixed by adding a root level field of \_template to every document with this error.  Unfortunately,  we do not have anyway to automatically migrate the content. It will have to be done manually or with custom scripts.
+This error can be fixed by adding a root level field of \_template to every document with this error.  There is not currently any way to automatically migrate the content and it must be done manually or with custom scripts.
 
 Ex:
 If you had a markdown file you would add:
