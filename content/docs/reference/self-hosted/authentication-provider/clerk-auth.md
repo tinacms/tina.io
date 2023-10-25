@@ -12,7 +12,7 @@ next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
 To get started you will need to install the following dependencies:
 
 ```bash
-yarn add @clerk/clerk-js @clerk/backend
+yarn add @clerk/clerk-js @clerk/backend tinacms-clerk
 ```
 
 ## Setup
@@ -45,89 +45,16 @@ When self-hosting, you may want to disable auth for local development.
 Add the following to your `tina/config.{ts.js}` file, be sure to replace "my-email@gmail.com" with the email you're signing in with:
 
 ```ts
-import Clerk from '@clerk/clerk-js'
+import { ClerkAuthProvider } from 'tinacms-clerk/dist/frontend'
 
-const clerk = new Clerk(process.env.TINA_PUBLIC_CLERK_PUBLIC_KEY)
-
-/**
- * For premium Clerk users, you can use restrictions
- * https://clerk.com/docs/authentication/allowlist
- */
-export const isUserAllowed = (emailAddress: string) => {
-  const allowList = [process.env.TINA_PUBLIC_ALLOWED_EMAIL]
-  if (allowList.includes(emailAddress)) {
-    return true
-  }
-  return false
-}
+//...
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
-let clerk: Clerk | null = null
-let auth: Config['admin']['auth']
-if (!isLocal) {
-  clerk = new Clerk(process.env.TINA_PUBLIC_CLERK_PUBLIC_KEY)
-  auth = {
-    useLocalAuth: false,
-    customAuth: true,
-    /**
-     * Generates a short-lived token when Tina makes a request
-     */
-    getToken: async () => {
-      await clerk.load()
-      if (clerk.session) {
-        return { id_token: await clerk.session.getToken() }
-      }
-    },
-    logout: async () => {
-      await clerk.load()
-      await clerk.session.remove()
-    },
-    /**
-     * Prompts the Clerk auth
-     */
-    authenticate: async () => {
-      clerk.openSignIn({
-        redirectUrl: '/admin/index.html', // This should be the Tina admin path
-        appearance: {
-          elements: {
-            // Tina's sign in modal is in the way without this
-            modalBackdrop: { zIndex: 20000 },
-            // Some styles clash with Tina's styling
-            socialButtonsBlockButton: 'px-4 py-2 border border-gray-100',
-            formFieldInput: `px-4 py-2`,
-            formButtonPrimary: 'bg-blue-600 text-white p-4',
-            formFieldInputShowPasswordButton: 'm-2',
-            dividerText: 'px-2',
-          },
-        },
-      })
-    },
-    /**
-     * A falsey response here will prompt the login screen to be displayed
-     */
-    getUser: async () => {
-      await clerk.load()
-      console.log('info', clerk)
-      if (clerk.user) {
-        if (isUserAllowed(clerk.user.primaryEmailAddress.emailAddress)) {
-          return true
-        }
-        // Handle when a user is logged in outside of the org
-        clerk.session.end()
-      }
-      return false
-    },
-  }
-} else {
-  auth = { useLocalAuth: true }
-}
 
 export default defineConfig({
   //...
   contentApiUrlOverride: '/api/tina/gql',
-  admin: {
-    auth: auth,
-  },
+  authProvider: isLocal ? new LocalAuthProvider() : new ClerkAuthProvider(),
   //...
 })
 ```
@@ -137,51 +64,34 @@ Note that we're checking if the signed-in user's email exists in a hardcoded arr
 - Create an organization in Clerk, and check to see if the signed-in user is part of the org for this project
 - Create an ["allow-list"](https://clerk.com/docs/authentication/allowlist). Note that this is a paid feature.
 
-## Protect your GraphQL API endpoint
+## Update the Tina Backend
 
-Add the following to your `pages/api/gql.ts` file
+Add the following to your `pages/api/tina/[...routes].{ts,js}` file
 
 ```ts
-import { NextApiHandler, NextApiRequest } from 'next'
-import { databaseRequest } from '../../lib/databaseConnection'
-import { Clerk } from '@clerk/backend'
-// The same logic here is used during auth
-import { isUserAllowed } from '../../tina/config'
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { ClerkBackendAuthentication } from 'tinacms-clerk'
 
-const secretKey = process.env.CLERK_SECRET
-const clerk = Clerk({
-  secretKey,
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : ClerkBackendAuthentication({
+        /**
+         * For premium Clerk users, you can use restrictions
+         * https://clerk.com/docs/authentication/allowlist
+         */
+        allowList: [process.env.TINA_PUBLIC_ALLOWED_EMAIL],
+        secretKey: process.env.CLERK_SECRET,
+      }),
+  databaseClient,
 })
 
-const isAuthorized = async (req: NextApiRequest) => {
-  if (process.env.TINA_PUBLIC_IS_LOCAL === 'true') {
-    return true
-  }
-
-  const requestState = await clerk.authenticateRequest({
-    headerToken: req.headers['authorization'],
-  })
-  if (requestState.status === 'signed-in') {
-    const user = await clerk.users.getUser(requestState.toAuth().userId)
-    const primaryEmail = user.emailAddresses.find(
-      ({ id }) => id === user.primaryEmailAddressId
-    )
-    if (primaryEmail && isUserAllowed(primaryEmail.emailAddress)) {
-      return true
-    }
-  }
-  return false
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
 }
-
-const nextApiHandler: NextApiHandler = async (req, res) => {
-  if (await isAuthorized(req)) {
-    const { query, variables } = req.body
-    const result = await databaseRequest({ query, variables })
-    return res.json(result)
-  } else {
-    return res.status(401).json({ error: 'Unauthorized' })
-  }
-}
-
-export default nextApiHandler
 ```
