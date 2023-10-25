@@ -25,7 +25,7 @@ Since we are using Tina Cloud no extra setup is required.
 //...
 export defualt defineConfig({
   // Make sure this is set to point to your graphql endpoint
-  contentApiUrlOverride: "/api/gql",
+  contentApiUrlOverride: "/api/tina/gql",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   //...
   admin: {
@@ -36,37 +36,35 @@ export defualt defineConfig({
 })
 ```
 
-## Protecting routes
+## Update the Tina Backend
 
-Update your graphql endpoint to look like the following
+First install the `@tinacms/auth` package:
 
-`/pages/api/gql.{ts,js}`
+```bash
+yarn add @tinacms/auth
+```
+
+Next you can update your Tina Backend to use the `TinaCloudBackendAuthentication` class.
+
+`/pages/api/tina/[...routs].{ts,js}`
 
 ```ts
-import { NextApiHandler } from 'next'
-import { isUserAuthorized } from '@tinacms/auth'
-import databaseClient from '../../tina/__generated__/databaseClient'
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { TinaCloudBackendAuthentication } from '@tinacms/auth'
 
-const nextApiHandler: NextApiHandler = async (req, res) => {
-  // Example if using TinaCloud for auth
-  const tinaCloudUser = await isUserAuthorized({
-    clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-    token: req.headers.authorization,
-  })
+import databaseClient from '../../../tina/__generated__/databaseClient'
 
-  const isAuthorized =
-    process.env.TINA_PUBLIC_IS_LOCAL === 'true' ||
-    tinaCloudUser?.verified ||
-    false
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
-  if (isAuthorized) {
-    const { query, variables } = req.body
-    const result = await databaseClient.request({ query, variables })
-    return res.json(result)
-  } else {
-    return res.status(401).json({ error: 'Unauthorized' })
-  }
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : TinaCloudBackendAuthentication(),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
 }
-
-export default nextApiHandler
 ```
