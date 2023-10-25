@@ -124,7 +124,7 @@ if (!isLocal) {
 
 export default defineConfig({
   //...
-  contentApiUrlOverride: '/api/gql',
+  contentApiUrlOverride: '/api/tina/gql',
   admin: {
     auth: auth,
   },

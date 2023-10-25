@@ -176,7 +176,7 @@ Now you can configure this endpoint in the config:
 
 ```typescript
 const config = defineConfig({
-  contentApiUrlOverride: '/api/gql',
+  contentApiUrlOverride: '/api/tina/gql',
   admin: {
     auth: {
       useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === 'true',
@@ -207,7 +207,7 @@ Add the functions to your `config.{ts,js}`&#x20;
 
 ```javascript
 export default defineConfig({
-  contentApiUrlOverride: '/api/gql',
+  contentApiUrlOverride: '/api/tina/gql',
   admin: {
     auth: {
       customAuth: true,

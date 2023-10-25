@@ -55,7 +55,7 @@ Next Make sure to update your TinaCMS config to use the new endpoint.
 
 export default defineConfig({
   // This is the url to your graphql endpoint
-  contentApiUrlOverride: '/api/gql',
+  contentApiUrlOverride: '/api/tina/gql',
   //...
 })
 ```

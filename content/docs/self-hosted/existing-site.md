@@ -168,7 +168,7 @@ Update the TinaCMS config to use the GraphQL API you created in the previous ste
 
 export default defineConfig({
   // Make sure to set this to the url of your GraphQL API
-  contentApiUrlOverride: '/api/gql',
+  contentApiUrlOverride: '/api/tina/gql',
   authProvider:  // Add your authentication provider. Please refer to the docs for your chosen authentication provider.
   //...
 })
