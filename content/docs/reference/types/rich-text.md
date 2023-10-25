@@ -6,7 +6,7 @@ last_edited: '2021-07-27T15:51:56.737Z'
 # `rich-text`
 
 Tina's `rich-text` field leverages MDX so you can embed your own structured blocks. To render
-a `rich-text` field with React we recommend the `<TinaMarkdown>` component from `tinacms`. See [usage](#usage "")
+a `rich-text` field with React we recommend the `<TinaMarkdown>` component from `tinacms`. See [usage](#usage)
 for details.
 
 ```ts
@@ -79,7 +79,7 @@ Results in the following response from the content API:
 ## Using `TinaMarkdown`
 
 The `<TinaMarkdown>` component allows you to control how each element
-is rendered. You *must* provide a component for each template registered
+is rendered. You _must_ provide a component for each template registered
 in the `templates` property of your field definition. Note that you can also
 control rendering of built-in elements like `<h1>, <a>, <img>`
 
@@ -114,21 +114,21 @@ export default function MyPage(props) {
 }
 ```
 
-***
+---
 
 ## Caveats
 
 Since markdown and MDX are traditionally handled through some sort of build
 step, Tina's approach adds some constraints to make things work as expected.
-[Read more](/docs/editing/markdown/ "") about Tina's approach to handling markdown
+[Read more](/docs/editing/markdown/) about Tina's approach to handling markdown
 and MDX.
 
-### All content must be *serializable*
+### All content must be _serializable_
 
 When we say serializable, we mean that they must not be JavaScript expressions that would need to be executed at any point.
 
-* No support for `import`/`export`
-* No support for JavaScript expressions (eg. `const a = 2`, `console.log("Hello")`)
+- No support for `import`/`export`
+- No support for JavaScript expressions (eg. `const a = 2`, `console.log("Hello")`)
 
 For example:
 
@@ -146,10 +146,10 @@ Then you can create a `Date` component which returns `new Date().toLocaleString(
 
 ### All JSX must be registered as a `template`
 
-In the above example, if you failed to add the `Cta` *template* in your schema definition, the JSX element
+In the above example, if you failed to add the `Cta` _template_ in your schema definition, the JSX element
 will be treated as html
 
-***
+---
 
 ## Handling markdown
 
@@ -157,13 +157,12 @@ Since markdown is an open-format Tina does its best to handle the most common sy
 
 ### Unsupported elements
 
-While most markdown features are supported out of the box, Tina will ignore elements that it cannot handle. We *do not* expect to support the full [CommonMark](https://commonmark.org/ "") and
-[Github Flavored Markdown](https://github.github.com/gfm/ "") specs. Be sure to voice your support for various rich-text features by reaching out through one of our [community channels](/community/ "")!
+While most markdown features are supported out of the box, Tina will ignore elements that it cannot handle. We _do not_ expect to support the full [CommonMark](https://commonmark.org/) and
+[Github Flavored Markdown](https://github.github.com/gfm/) specs. Be sure to voice your support for various rich-text features by reaching out through one of our [community channels](/community/)!
 
-* Tables
-* Footnotes
-* Code blocks via indentation (use ` ``` ` instead)
-* Strikethrough
+- Footnotes
+- Code blocks via indentation (use ` ``` ` instead)
+- Strikethrough
 
 ### Automatic transforms
 
@@ -205,6 +204,52 @@ Will be transformed to:
 
 ```
 * My blockquote
+```
+
+## Markdown tables
+
+<div class="short-code-warning">
+  <div>
+    <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a></p>
+  </div>
+
+  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
+  </svg>
+</div>
+
+Tables are supported through a custom template which is exported from `tinacms`. To use it, import it and provide it as a `template` for your `rich-text` field:
+
+```ts
+import { tinaTableTemplate } from 'tinacms'
+
+{
+  type: 'rich-text',
+  label: 'Body',
+  name: '_body',
+  templates: [
+    tinaTableTemplate,
+  ]
+}
+```
+
+Render it with the `table` component in `<TinaMarkdown>`. Note that the table cell's `value` is a rich-text element so should be rendered with a nested `<TinaMarkdown>` component:
+
+```tsx
+
+const MyTable = props => <table>
+  {props.tableRows.map((tableRow) => (
+    <tr>
+      {tableRow.tableCells.map((tableCell) => (
+        <td>
+          <TinaMarkdown content={tableCell.value} />
+        </td>
+      ))}
+    </tr>
+  ))}
+</table>
+
+<TinaMarkdown components={{ table: (props) => <MyTable {...props} /> }} />
 ```
 
 ## Custom shortcode syntax
@@ -370,8 +415,8 @@ fields: [
 
 ### Full Spec
 
-The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "TinaCMS MDX Spec")
+The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md 'TinaCMS MDX Spec')
 
 ### Default values
 
-If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text "")
+If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
