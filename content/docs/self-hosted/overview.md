@@ -119,4 +119,6 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 
 > If you do not use Github, you can [make your own Git Provider](/docs/reference/self-hosted/git-provider/make-your-own).
 
+If you're interested in self-hosting Tina, you can read about this solution on [GitHub](https://github.com/tinacms/tinacms/discussions/3589) or in this [blog](https://tina.io/blog/self-hosted-datalayer/) post.
+
 **Note on Licensing -** TinaCMS is licensed under the Apache 2.0 license.
