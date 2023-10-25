@@ -5,11 +5,11 @@ prev: null
 next: '/docs/reference/self-hosted/authentication-provider/next-auth'
 ---
 
-The concept of an "Authentication Provider" refers to how TinaCMS will authenticate and authorize a user. There is two places that will require changes when setting up an authentication provder.
+The concept of an "Authentication Provider" refers to how TinaCMS will authenticate and authorize a user. There is two places that will require changes when setting up an authentication provider.
 
-1. The config file (`tina/config.{ts,tsx,js}`)
+## 1. The config file (tina/config.{ts,tsx,js})
 
-This is done by providing [various functions](/docs/reference/self-hosted/authentication-provider/bring-your-own#) to the `auth` option in `defineConfig`. If you are using a [pre-built authentication provider](), it will provide these functions for you.
+This is done by providing an [Auth Provider](/docs/reference/self-hosted/authentication-provider/bring-your-own#) to the `authProvider` option in `defineConfig`.
 
 Example:
 
@@ -17,33 +17,42 @@ Example:
 import { createHandlers } from 'tinacms-some-auth-provider'
 
 export default defineConfig({
-  // ...
-  auth: createHandlers({
-    // ...
-  }),
+  authProvider: new SomeAuthProvider(),
+  //...
 })
 ```
 
-2. Your GraphQL endpoint
+## 2. Your Tina Backend
 
-EX: /api/gql.{ts,tsx,js}
+`/api/tina/[...routs].{ts,tsx,js}`
 
 ```ts
-import { NextApiHandler } from 'next'
-import databaseClient from '../../tina/__generated__/databaseClient'
-import { withAuth } from 'tinacms-some-auth-provider'
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { BackendAuthentication } from 'example-package'
 
-const nextApiHandler: NextApiHandler = async (req, res) => {
-  const { query, variables } = req.body
-  const result = await databaseClient.request({ query, variables })
-  return res.json(result)
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : BackendAuthentication(),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
 }
-
-export default withNextAuthApiRoute(nextApiHandler)
 ```
-
-See [Bring Your Own Authentication Provider](/docs/reference/self-hosted/authentication-provider/bring-your-own) for more information on how to implement your own authentication provider.
 
 ## Pre-Built Authentication Providers
 
-- [NextAuth](/docs/reference/self-hosted/authentication-provider/next-auth)
+- [AuthJS](/docs/reference/self-hosted/authentication-provider/next-auth)
+- [Tina Cloud](/docs/reference/self-hosted/authentication-provider/tina-cloud)
+- [Clerk](/docs/reference/self-hosted/authentication-provider/clerk-auth)
+
+## Implementing an Authentication Provider
+
+See [Bring Your Own Authentication Provider](/docs/reference/self-hosted/authentication-provider/bring-your-own) for more information on how to implement your own authentication provider.

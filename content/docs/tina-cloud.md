@@ -32,6 +32,8 @@ To start moving from local-mode to prod-mode, the next steps are to:
 - Push your repository to GitHub (if it isn't already)
 - Set up a project in the Tina Cloud dashboard. (See next page)
 
+> Wanting to self host your backend? Check out the [Self Hosted Docs](/docs/self-hosted/overview) for more information.
+
 ## Video Tutorial
 
 For those who prefer to learn from video, you can check out a snippet on "Tina Cloud" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.

@@ -17,26 +17,31 @@ For users who want to be independent of Tina Cloud, **we also offer a self-hoste
 By Self-hosting TinaCMS's backend, you can host the API in a single API function. This API function acts as a GraphQL endpoint w/ CRUD for your content.
 
 ```js
-// pages/api/graphql.js
-import databaseClient from '../../tina/__generated__/databaseClient'
+// pages/api/tina/[...routes].{ts,js}
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
 
-const apiHandler = async (req, res) => {
-  const { query, variables } = req.body
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
 
-  // Your custom authentication function
-  const isAuthenticated = await authenticate({
-    token: req.headers.authorization,
-  })
-  if (!isAuthenticated) {
-    return res.status(401).json({ message: 'Unauthorized' })
-  }
+import databaseClient from '../../../tina/__generated__/databaseClient'
 
-  // make the request
-  const result = await databaseClient.request({ query, variables })
-  return res.json(result)
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : AuthJsBackendAuthentication({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
 }
-
-export default apiHandler
 ```
 
 The backend relies upon a three configurable modules:
@@ -62,9 +67,7 @@ import { defineConfig } from 'tinacms'
 
 export default defineConfig({
   // ...
-  auth: {
-    // ...
-  },
+  authenticationProvider: //...
 })
 ```
 

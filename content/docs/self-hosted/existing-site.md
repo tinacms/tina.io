@@ -9,9 +9,9 @@ If you want to self-host the Tina backend, and don't want to use our [pre-config
 
 We offer a CLI init to quickly setup the backend on NextJS sites, or you can take the manual setup approach if you're using another framework.
 
-> This guide assumes that you have already init the TinaCMS admin into your site. If you haven't already done so, see our [Getting Started Guide](/docs/setup-overview/)
-
 ## Using the CLI init command (NextJS Only)
+
+<!-- TODO: Add demo short video of using the init command -->
 
 In the terminal, run:
 
@@ -29,19 +29,24 @@ Make sure to assign it `repo` access to your new repository with Read/Write acce
 
 ### Choosing a Database Adapter
 
-Out of the box, TinaCMS provides two database adapters in the init workflow: "Redis" & "Vercel KV". Learn more about Database Adapters [here](/docs/reference/self-hosted/database-adapter/overview/).
+Out of the box, TinaCMS provides two database adapters in the init workflow: "Redis" (VercelKV) & "MongoDB". Learn more about Database Adapters [here](/docs/reference/self-hosted/database-adapter/overview/).
 
-### Enable NextAuth.js integration
+### What the init command does
 
-The "init-backend" command offers one out-of-the-box auth solution, which is built with Next-Auth. The will store your CMS users inside your own database alongside your content.
+The init commands does the following:
 
-If you wish to use another auth provider, or want to learn more about Tina auth, see our [reference docs](/docs/reference/self-hosted/authentication-provider/overview/).
+- Sets up pages/tina/[...routes].{ts,js} to handle TinaCMS GraphQL and authentication requests
+- Sets up tina/database.{ts,js} to handle the database
+  - Adds the Github Git provider
+  - Adds the chosen database adapter
+- Adds the AuthJS authentication provider to your config file
+- Installs any dependencies needed for the chosen Git provider, database adapter, and authentication provider
 
-### Apply Output self-hosted config
+### After the init command
 
-Once you've finished going through all the prompts, the CLI will output some code that needs to be added to your tina/config.ts file.
+Once the init command finishes **make sure to copy the environment variables** that are printed in the terminal. You will also need to add these to your hosting provider.
 
-At this point, your self-hosted setup should be complete.
+After that the `dev` and `build` commands should be ready for use
 
 ## Manually configuring the Self-hosted backend
 
@@ -118,34 +123,41 @@ export default isLocal
     })
 ```
 
-### 4. Host the GraphQL API
+### 4. Host the Tina Backend
 
-You will need a [backend endpoint](/docs/self-hosted/graphql-endpoint/overview) that hosts the GraphQL API.
+You will need a [backend endpoint](/docs/self-hosted/graphql-endpoint/overview) that hosts the GraphQL / authentication API.
 
 In this example we will show how to host the GraphQL API on Vercel. You can use any hosting provider you want (May need to adjust the code to suite your chosen framework)
 
 ```js
-// pages/api/graphql.js
-import { NextApiHandler } from 'next'
-import databaseClient from '../../tina/__generated__/databaseClient'
+// pages/api/tina/[...routes].{ts,js}
 
-const nextApiHandler: NextApiHandler = async (req, res) => {
-  // Your custom authentication function that returns true if the user is authenticated.
-  const isAuthenticated = await customAuthFunction({
-    token: req.headers.authorization,
-  })
-  if (!isAuthenticated) {
-    return res.status(401).json({ message: 'Unauthorized' })
-  }
-  const { query, variables } = req.body
-  const result = await databaseClient.request({ query, variables })
-  return res.json(result)
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : AuthJsBackendAuthentication({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
 }
-
-export default nextApiHandler
 ```
 
-> For more info see [GraphQL endpont docs](/docs/self-hosted/graphql-endpoint/overview)
+> For more info see [Tina Backend docs](/docs/self-hosted/graphql-endpoint/overview)
 
 ### 5. Update the TinaCMS config
 
@@ -157,12 +169,7 @@ Update the TinaCMS config to use the GraphQL API you created in the previous ste
 export default defineConfig({
   // Make sure to set this to the url of your GraphQL API
   contentApiUrlOverride: '/api/gql',
-  admin: {
-    auth: {
-      // Add your authentication provider's functions here. Please refer to the docs for your chosen authentication provider.
-    },
-    //...
-  },
+  authProvider:  // Add your authentication provider. Please refer to the docs for your chosen authentication provider.
   //...
 })
 ```
