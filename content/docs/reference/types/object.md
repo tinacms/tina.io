@@ -33,17 +33,112 @@ type ObjectField = {
 }
 ```
 
-<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/object" />
+## Examples
 
-### As a `list`
+Tina will generate the appropriate component depending on the
+configuration provided.
 
-> **Default Values**  
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/object-1.png"}
+
+### A basic object configuration
+
+```ts
+{
+  label: "Testimonial",
+  name: "testimonial",
+  type: "object",
+  fields: [
+    {
+      label: "Author",
+      name: "author",
+      type: "string"
+    },
+    {
+      label: "Role",
+      name: "role",
+      type: "string"
+    },
+    {
+      label: "Quote",
+      name: "quote",
+      type: "string",
+      ui: {
+        component: "textarea"
+      }
+    }
+  ]
+}
+```
+
+:::
+:::code-snippet{open=true url="/img/code-snippets/object-2.png"}
+
+### As a list with default values
+
+> **Default Values**
 > To display default values when fields are first added to a page, use the `ui.defaultItem` property.
 
-<a href="https://tina-gql-playground.vercel.app/object-list-data" target="_blank">See this example</a> of a list of objects with default values.
+```ts
+{
+  label: "Testimonials",
+  name: "testimonials",
+  type: "object",
+  list: true,
+  ui: {
+    itemProps: (item) => {
+      return { label: `${item?.author}  ( ${item?.role} ) `}
+    },
+    defaultItem: {
+      author: "Judith Black",
+      role: "CEO",
+      quote: "Lorem ipsum dol..."
+    }
+  },
+  fields: [
+    {
+      name: "author",
+      // ...
+    },
+    {
+      name: "role",
+      // ...
+    },
+    {
+      name: "quote",
+      // ...
+    }
+  ]
+}
+```
 
-### With multiple `templates`
+:::
+:::code-snippet{open=true url="/img/code-snippets/object-3.png"}
 
-If you always want your object to have the same fields, use the `fields` property. But if an object can be one of any different shape, define them as `templates`.
+### Using `templates` instead of fields
 
-<a href="https://tina-gql-playground.vercel.app/object-list-templates" target="_blank">See Example</a>
+If you always want your object to have the same fields, use the fields property. But if an object can be one of any different shape, define them as templates.
+
+```ts
+{
+  label: "Page Blocks",
+  name: "pageBlocks",
+  type: "object",
+  list: true,
+  templates: [
+    {
+      label: "CTA",
+      name: "cta",
+      fields: [...]
+    },
+    {
+      label: "Testimonial",
+      name: "testimonial",
+      fields: [...]
+    }
+  ]
+}
+```
+
+:::
+::::

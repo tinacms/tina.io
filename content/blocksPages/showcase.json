@@ -6,11 +6,26 @@
   "blocks": [
     {
       "headline": "Showcase",
-      "text": "Real projects built with Tina",
+      "text": "Selected sites that use TinaCMS",
       "_template": "hero"
     },
     {
       "items": [
+        {
+          "headline": "Smashing Magazine",
+          "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
+          "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1695247872/tina-showcase/smashingmagazine-tinacms.gif"
+          }
+        },
+        {
+          "headline": "Unity ",
+          "text": "Unity, the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina to enable queries to their Markdown and MDX content using Tina's API and to provide their content teams with an enterprise-grade editing UI that's backed by Git.",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/w_800/v1695250407/tina-showcase/unity-documentation.png"
+          }
+        },
         {
           "headline": "Locality Bank",
           "text": "[Locality](https://localitybank.com) is reinventing local business banking – pairing the best of personal relationships with comprehensive financing experience and innovative technology to help South Florida businesses flourish. ",
@@ -77,7 +92,7 @@
         },
         {
           "headline": "We Are Many Hands",
-          "text": "[ManyHands](https://wearemanyhands.com) is an event  for product people.  The event (and website) is by [Lighthouse](https://wearelighthouse.com), a specialist UX and UI design agency based in London design agency based in London.  ",
+          "text": "[ManyHands](https://wearemanyhands.com) is an event  for product people.  The event (and website) is by [Lighthouse](https://wearelighthouse.com), a specialist UX and UI design agency based in London.",
           "url": "https://wearemanyhands.com",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678369877/tina-showcase/wearemanyhands.png"
@@ -164,35 +179,11 @@
           }
         },
         {
-          "headline": "pcode",
-          "text": "A marketing site for an Austrian-based agency focused on customer journey development, UX/UI design, software development, and e-commerce. ",
-          "url": "https://www.pcode.at/",
-          "media": {
-            "src": "/img/pcode.png"
-          }
-        },
-        {
           "headline": "APFX",
           "text": "A marketing site for APFX, an international foreign exchange firm providing bespoke services for corporate businesses globally.",
           "url": "https://www.apfx.com.au/en-us",
           "media": {
             "src": "/img/apfx.png"
-          }
-        },
-        {
-          "headline": "Maximum Image",
-          "text": "The corporate website of Maximum Image , a promotional company that creates and maintains corporate images for top level clients. Developed by Sols.mk",
-          "url": "https://www.maximumimage.eu/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/maximumimage.png"
-          }
-        },
-        {
-          "headline": "Metrics Watch",
-          "text": "A marketing site for Metrics Watch, a marketing reporting platform for agencies. ",
-          "url": "https://metricswatch.com/",
-          "media": {
-            "src": "/img/metrics-watch.png"
           }
         }
       ],

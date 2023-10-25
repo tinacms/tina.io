@@ -18,47 +18,52 @@ type RichTextField = {
 }
 ```
 
-<iframe width="100%" height="700px" src="https://tina-gql-playground.vercel.app/iframe/rich-text" />
+## Examples
+
+Tina will generate the appropriate component depending on the
+configuration provided.
+
+::::code-snippets
+:::code-snippet{open=true url="/img/code-snippets/rich-text-1.png"}
+
+### Simple
 
 ```ts
-import { defineConfig } from 'tinacms'
-
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        label: 'Blog Posts',
-        name: 'post',
-        // This assumes that you have a /content/post directory
-        path: 'content/post',
-        fields: [
-          // ...
-          {
-            type: 'rich-text',
-            label: 'Body',
-            name: 'body',
-            isBody: true,
-            templates: [
-              {
-                name: 'Cta',
-                label: 'Call to Action',
-                fields: [
-                  {
-                    type: 'string',
-                    name: 'heading',
-                    label: 'Heading',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-})
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+}
 ```
+
+:::
+:::code-snippet{open=true url="/img/code-snippets/rich-text-3.png"}
+
+### Custom custom templates
+
+```ts
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+  templates: [
+    {
+      name: "Cta",
+      label: "Cta",
+      fields: [{
+        name: "heading",
+        label: "Heading",
+        type: "string"
+      }
+    ]}
+  ]
+}
+```
+
+:::
+::::
 
 Given a markdown file like this:
 
@@ -73,8 +78,6 @@ This is some text
 Results in the following response from the content API:
 
 <iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20body%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
-
-> Notice the `body` response, it's a structured object instead of a string!
 
 ## Using `TinaMarkdown`
 

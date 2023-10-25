@@ -7,7 +7,7 @@ next: '/docs/setup-overview'
 
 Here we give a quick **2 minute overview of TinaCMS**, and how it fits into your website.
 
-> If you're instead just looking to quicky get started, jump to our [Getting Started Guide](/docs/setup-overview/).
+> If you're instead just looking to quickly get started, jump to our [Getting Started Guide](/docs/setup-overview/).
 
 ## Introduction
 

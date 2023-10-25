@@ -3,13 +3,13 @@ title: Data Layer
 last_edited: '2022-06-15T15:51:56.737Z'
 ---
 
-Tina Cloud implements a database layer between the Tina GraphQL API and the
+TinaCMS implements a database layer between the Tina GraphQL API and the
 underlying Git repository. This data layer buffers requests between Tina Cloud and GitHub resulting in improved editing performance with TinaCMS. It also enables additional capabilities such as:
 
-- [sorting](/docs/graphql/queries/advanced/sorting/)
-- [filtering](/docs/graphql/queries/advanced/filter-documents/)
-- [pagination](/docs/graphql/queries/advanced/pagination/)
-- referential integrity
+* [sorting](/docs/graphql/queries/advanced/sorting/)
+* [filtering](/docs/graphql/queries/advanced/filter-documents/)
+* [pagination](/docs/graphql/queries/advanced/pagination/)
+* referential integrity
 
 # Indexing
 
@@ -19,10 +19,10 @@ GitHub remote repository and storing a copy in the database. After the initial i
 index content that has been updated. There are some circumstances where a full re-indexing may be required. Some example
 scenarios are:
 
-- Changes to `tina/config.{ts,js}`
-- Changes to the [path to tina](/docs/tina-cloud/dashboard/projects/#path-to-tina)
-- Changes to the configured [repository](/docs/tina-cloud/dashboard/projects/#changing-the-repository)
-- New branches in GitHub
+* Changes to `tina/config.{ts,js}`
+* Changes to the [path to tina](/docs/tina-cloud/dashboard/projects/#path-to-tina)
+* Changes to the configured [repository](/docs/tina-cloud/dashboard/projects/#changing-the-repository)
+* New branches in GitHub
 
 ## Synchronization Issues
 
