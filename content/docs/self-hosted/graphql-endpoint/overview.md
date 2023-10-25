@@ -1,58 +1,48 @@
 ---
-title: Hosting the GraphQL Endpoint
+title: Hosting The Tina Backend
 id: '/docs/self-hosted/graphql-endpoint/overview'
 ---
 
-The GraphQL endpoint is used when an Editor switches to edit mode to edit the content of the site. It is responsible for passing GraphQL queries to the backend and returning the results. The endpoint should also ensure that the user is authenticated.
+The Tina Backend is hosted in a single endpoint that is responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
+
+The handler can be created with a `TinaNodeBackend` function. This function takes a `TinaNodeBackendOptions` object as an argument.
 
 ## Configuration
 
 You need to create an endpoint that can handle post requests. In this example we will use Next.js api routes, but you can use any framework you want.
 
 ```js
-// pages/api/graphql.js
-import { NextApiHandler } from 'next'
-import databaseClient from '../../tina/__generated__/databaseClient'
+// pages/api/tina/[...routes].{ts,js}
 
-const nextApiHandler: NextApiHandler = async (req, res) => {
-  const { query, variables } = req.body
-  const result = await databaseClient.request({ query, variables })
-  return res.json(result)
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : AuthJsBackendAuthentication({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
 }
-
-export default nextApiHandler
-```
-
-## Authentication
-
-We need to add authentication to the endpoint so that only editors can access it. For more information on authentication see the [Authentication Provider docs](/docs/reference/self-hosted/authentication-provider/overview)
-
-Depending on the authentication provider, the code may look a bit different, but in general it will look something like this:
-
-```js
-// pages/api/graphql.js
-import { NextApiHandler } from "next";
-import databaseClient from "../../tina/__generated__/databaseClient";
-
-const nextApiHandler: NextApiHandler = async (req, res) => {
-  // Your custom authentication function
-  const isAuthenticated = await authenticate({token: req.headers.authorization});
-  if (!isAuthenticated) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-  const { query, variables } = req.body;
-  const result = await databaseClient.request({ query, variables });
-  return res.json(result);
-};
-
-export defualt nextApiHandler
 ```
 
 Next Make sure to update your TinaCMS config to use the new endpoint.
 
 ```js
 // tina/config.{js,ts}
-
 export default defineConfig({
   // This is the url to your graphql endpoint
   contentApiUrlOverride: '/api/tina/gql',
