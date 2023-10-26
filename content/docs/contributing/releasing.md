@@ -65,7 +65,7 @@ The general release process looks like this:
 
    You must have an NPM_TOKEN set locally that has access to the `@tinacms` organization
 
-1. **Push CHANGELOGs and Git tags to Github:**
+1. **Push CHANGELOGs and Git tags to GitHub:**
 
    Let everyone know!
 
@@ -100,7 +100,7 @@ The exact commands vary slightly depending on the type of release being made.
    ```
    lerna publish from-package --dist-tag next
    ```
-1. **Push CHANGELOGs and Git tags to Github:**
+1. **Push CHANGELOGs and Git tags to GitHub:**
    ```
    git push && git push --tags
    ```
@@ -136,7 +136,7 @@ The exact commands vary slightly depending on the type of release being made.
    lerna publish from-package
    ```
 
-1) **Push CHANGELOGs and Git tags to Github:**
+1) **Push CHANGELOGs and Git tags to GitHub:**
    ```
    git push && git push --tags
    ```
@@ -169,7 +169,7 @@ The exact commands vary slightly depending on the type of release being made.
    ```
    lerna publish from-package
    ```
-1. **Push CHANGELOGs and Git tags to Github:**
+1. **Push CHANGELOGs and Git tags to GitHub:**
    ```
    git push && git push --tags
    ```

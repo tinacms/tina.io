@@ -328,7 +328,7 @@ Tina\u2019s source code is open-source. Your content lives in accessible formats
     {
       type: "string",
       name: "github",
-      label: "Github"
+      label: "GitHub"
     },
     {
       type: "string",

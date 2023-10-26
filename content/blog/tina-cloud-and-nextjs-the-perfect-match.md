@@ -24,7 +24,7 @@ During the build step, we have access to the file system, so we can source our c
 
 Another powerful feature from Next.s is [server-side rendering](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (SSR): this time the React component is rendered on the server and then sent to the client. This is roughly the same process as static site generation but it happens _every time the page is requested_. SSR is useful when you have dynamic content that changes often.  For example, the stock count on an e-commerce product page or user-specific data.
 
-With [Tina Cloud](/cloud/), our headless API that talks to GitHub handles the authentication for you, editable content is fetched from Github directly from the browser. That’s the approach we take in the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter). This doesn't mean you are limited to only using `getStaticProps` or you're unable to use SSR, just means that we handle the complex authentication for you with Tina Cloud.
+With [Tina Cloud](/cloud/), our headless API that talks to GitHub handles the authentication for you, editable content is fetched from GitHub directly from the browser. That’s the approach we take in the [Tina Cloud Starter](https://github.com/tinacms/tina-cloud-starter). This doesn't mean you are limited to only using `getStaticProps` or you're unable to use SSR, just means that we handle the complex authentication for you with Tina Cloud.
 
 ## Next.js: a Natural fit for Tina Cloud
 

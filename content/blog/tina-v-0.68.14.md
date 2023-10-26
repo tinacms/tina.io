@@ -156,7 +156,7 @@ For more information, see the new [data fetching](/docs/features/data-fetching) 
 
 ## Data layer is enabled by default
 
-The [data layer](/docs/reference/content-api/data-layer/) is now enabled by default. With this feature your repository is cached, allowing the content to be queried without using Github's API. This makes data fetching faster and it also allows us to bypass Github's [api limits](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps).
+The [data layer](/docs/reference/content-api/data-layer/) is now enabled by default. With this feature your repository is cached, allowing the content to be queried without using GitHub's API. This makes data fetching faster and it also allows us to bypass GitHub's [api limits](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps).
 
 There is no action required for this change besides updating to the latest version of `@tinacms/cli`.
 

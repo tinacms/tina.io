@@ -86,9 +86,9 @@ const formOptions = {
           component: 'text',
         },
         {
-          label: 'Github',
+          label: 'GitHub',
           name: 'github_handle',
-          description: 'Github username',
+          description: 'GitHub username',
           component: 'text',
         },
       ],

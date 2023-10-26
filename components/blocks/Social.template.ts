@@ -23,7 +23,7 @@ export const socialTemplate = {
     {
       type: 'string',
       name: 'github',
-      label: 'Github',
+      label: 'GitHub',
     },
     {
       type: 'string',

@@ -19,7 +19,7 @@ To illustrate the potential of this combination, we're excited to introduce **Ma
 
 AI can be a valuable tool for assisting with writing and editing content. We've designed this bot not to replace content editors, but rather to augment their capabilities. The bot offers content suggestions directly in your pull requests. If you find the suggestions helpful, you can commit them with a click. If not, they're just as easily dismissed.
 
-![AI Suggestion in Github](https://res.cloudinary.com/forestry-demo/image/upload/v1689957451/blog-media/markdown-bot/Screenshot_2023-07-21_at_12.36.48_PM_ztpdes.png "AI Suggestion in Github")
+![AI Suggestion in GitHub](https://res.cloudinary.com/forestry-demo/image/upload/v1689957451/blog-media/markdown-bot/Screenshot_2023-07-21_at_12.36.48_PM_ztpdes.png "AI Suggestion in GitHub")
 
 ## Markdown Bot Works On Your PRs
 
@@ -29,7 +29,7 @@ There are many AI writing tools out there but if you use them with markdown cont
 
 After you've integrated the bot into your repository, you can command it to make suggestions by commenting `ai fix: <path to file>`. A custom prompt can be added by using `prompt: <Custom Prompt>` underneath. The bot will then offer commit suggestions in the form of a pull request review.
 
-To get started [check out the open source repo](https://github.com/tinacms/markdown-bot "AI Content Github repo").
+To get started [check out the open source repo](https://github.com/tinacms/markdown-bot "AI Content GitHub repo").
 
 ## Looking Ahead: AI and Git-based Content
 
