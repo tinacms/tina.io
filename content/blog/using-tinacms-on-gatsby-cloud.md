@@ -67,7 +67,7 @@ Let's start by creating a new keypair using the following command. (Make a note 
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-This should have created a **private key**, and a **public key**. We'll need to add the **public key** to your site's repo within your Git provider (Github, Gitlab, Bitbucket etc). In Github, This can be done in "Settings" > "Deploy Keys". Make sure to **enable write access.**
+This should have created a **private key**, and a **public key**. We'll need to add the **public key** to your site's repo within your Git provider (GitHub, GitLab, Bitbucket etc). In GitHub, This can be done in "Settings" > "Deploy Keys". Make sure to **enable write access.**
 
 We can log out our public key by running the following command in your terminal:
 
@@ -128,4 +128,4 @@ Hopefully this gets you started editing **your Gatsby site with Tina on the clou
 
 We'll continue to detail how to host cloud editing environments on a few different services. You can also sign up for our [Tina Teams Alpha](http://tinacms.org/teams) to try out some extended team features!
 
-If you run into trouble or have any questions, head over to the [Tina Forum](https://community.tinacms.org/) for help. Stoked on TinaCMS? Please ⭐️ us on [Github](https://github.com/tinacms/tinacms) or [Tweet us](https://twitter.com/Tina_cms) 🐦 to show-off your Tina projects.
+If you run into trouble or have any questions, head over to the [Tina Forum](https://community.tinacms.org/) for help. Stoked on TinaCMS? Please ⭐️ us on [GitHub](https://github.com/tinacms/tinacms) or [Tweet us](https://twitter.com/Tina_cms) 🐦 to show-off your Tina projects.

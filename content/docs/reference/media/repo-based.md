@@ -74,7 +74,7 @@ When your editors add an image to a document, the value that is saved will be a 
 
 `"/<mediaRoot>/<imgName>"`
 
-> Not seeing your media? To see your media in the media manager, you will need to press the "Sync Media" button in the media manager. This will pull all of your media from Github and add it to TinaCMS.
+> Not seeing your media? To see your media in the media manager, you will need to press the "Sync Media" button in the media manager. This will pull all of your media from GitHub and add it to TinaCMS.
 
 ## Branching Caveats
 

@@ -44,9 +44,9 @@ Once you enter the new branch name, the following actions will occur:
 
 When you are ready to publish your content, merge the draft pull request into the protected branch (e.g., main) through GitHub. After the pull request is successfully merged, the updated content will be available on the protected branch.
 
-## Github Pull Request links
+## GitHub Pull Request links
 
-In the branch list modal, you can click on the dropdown and click "View Pull Request" to view the pull request on Github. This will open a new tab in your browser. This link will only aprear of the pull request has been created with TinaCMS and not if it was created manually.
+In the branch list modal, you can click on the dropdown and click "View Pull Request" to view the pull request on GitHub. This will open a new tab in your browser. This link will only aprear of the pull request has been created with TinaCMS and not if it was created manually.
 
 ![PR Links](https://res.cloudinary.com/forestry-demo/image/upload/v1689082820/blog-media/editorial-workflow/preview-link.png)
 

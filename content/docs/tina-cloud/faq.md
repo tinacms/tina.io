@@ -7,7 +7,7 @@ last_edited: '2022-01-24T15:50:19.525Z'
 
 TinaCMS is an open source toolkit that enables developers to create a live editing experience on their site.
 
-Tina Cloud adds a GraphQL API to Tina's open-source content editor allowing it to read and write content stored in your Github repository (ie. Markdown and soon JSON). It also grants authorization for other users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub
+Tina Cloud adds a GraphQL API to Tina's open-source content editor allowing it to read and write content stored in your GitHub repository (ie. Markdown and soon JSON). It also grants authorization for other users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub
 
 ## Where do I start?
 

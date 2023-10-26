@@ -23,7 +23,7 @@ Despite the technical gains, **static sites can have a hampered content editing 
 
 To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to _use this as a reference for adding TinaCMS to an existing Gatsby site!_
 
-> **In a rush?** Check out the code [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)
+> **In a rush?** Check out the code [on GitHub](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)
 
 ## Getting Started with Tina
 
@@ -615,14 +615,14 @@ Now we can use our new plugin in the sidebar! Hitting the "plus" icon in the sid
 
 ## Conclusions + Next Steps
 
-That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed content authors to easily create and edit new posts, right on the blog itself. You can **check out the finished result** over [on Github](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)!
+That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed content authors to easily create and edit new posts, right on the blog itself. You can **check out the finished result** over [on GitHub](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)!
 
 This only scratches the surface of what you can build using Tina. If you want to go further, there's several more advanced features you can use to expand your Gatsby site!
 
 - Creating [custom form fields](https://tinacms.org/docs/plugins/fields/custom-fields) for new data types,
 - Or adding [block-level editing](https://tinacms.org/docs/plugins/fields/blocks) to allow for completely custom pages!
 
-The Tina project is also [active on Github](https://github.com/tinacms/tinacms), with a [guide to contribution](https://tinacms.org/docs/contributing/guidelines) if you want to hack on the code!
+The Tina project is also [active on GitHub](https://github.com/tinacms/tinacms), with a [guide to contribution](https://tinacms.org/docs/contributing/guidelines) if you want to hack on the code!
 
 ---
 

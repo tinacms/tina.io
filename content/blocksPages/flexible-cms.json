@@ -10,7 +10,7 @@
         "narrow": true,
         "color": "white"
       },
-      "content": "## Experience Limitless Flexibility with TinaCMS\n\nWith TinaCMS, there are no bounds to your creativity. Craft custom field widgets, add bespoke validation to fields, and take advantage of Git-based content to create workflows beyond the CMS interface, including Github Actions.\n",
+      "content": "## Experience Limitless Flexibility with TinaCMS\n\nWith TinaCMS, there are no bounds to your creativity. Craft custom field widgets, add bespoke validation to fields, and take advantage of Git-based content to create workflows beyond the CMS interface, including GitHub Actions.\n",
       "_template": "content"
     },
     {
@@ -32,8 +32,8 @@
           "text": "Maximize the power of Git-based content for creating flexible workflows, extending the potential of your project beyond the CMS."
         },
         {
-          "headline": "Github Actions Integration",
-          "text": "Automate your workflows and improve productivity by integrating with Github Actions."
+          "headline": "GitHub Actions Integration",
+          "text": "Automate your workflows and improve productivity by integrating with GitHub Actions."
         },
         {
           "headline": "Limitless Flexibility",

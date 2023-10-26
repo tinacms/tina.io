@@ -182,7 +182,7 @@ Now, you can launch using `yarn dev` and navigate back to [http://localhost:3000
 
 ![Image with syntax highlighting](https://res.cloudinary.com/forestry-demo/image/upload/v1642686958/blog-media/syntax-highlighting-with-tina/after-image.webp)
 
-You can find the finished code in our [Github](https://github.com/tinacms/examples/tree/main/syntax-highlighting)
+You can find the finished code in our [GitHub](https://github.com/tinacms/examples/tree/main/syntax-highlighting)
 
 ## Where can you keep up to date with Tina?
 
