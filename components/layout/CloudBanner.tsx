@@ -10,7 +10,7 @@ export function CloudBanner() {
       <div className="banner">
         <div className="banner-content w-full flex justify-center items-center">
           <span className="desktop">
-            <p className="text mr-5">Help TinaCMS get to 10K ⭐️ on&nbsp;<a href="https://github.com/tinacms/tinacms" target="new">GitHub</a></p>
+            <p className="mr-5">Loving Tina? ⭐️ us on <a href="https://github.com/tinacms/tinacms" target="new">GitHub</a></p>
           </span>
           {/* @ts-ignore */}
           <GitHubButton
@@ -24,24 +24,6 @@ export function CloudBanner() {
         </div>
       </div>
       <style jsx>{`
-        .desktop {
-          display: none;
-        }
-
-        @media (min-width: 1200px) {
-          .desktop {
-            display: initial;
-          }
-          .mobile {
-            display: none;
-          }
-        }
-
-        .text {
-          display: flex;
-          align-items: center;
-        }
-
         .wordmark {
           display: inline-flex;
           align-items: center;
