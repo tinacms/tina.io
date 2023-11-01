@@ -10,6 +10,7 @@ import 'components/styles/fontImports.css'
 import path from 'path'
 import '../styles/tailwind.css'
 import { useEditState } from 'tinacms/dist/react'
+import { CloudBanner } from '../components/layout/CloudBanner'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
@@ -60,6 +61,7 @@ const MainLayout = ({ Component, pageProps }) => {
       />
       <GlobalStyle />
       <AdminLink />
+      <CloudBanner />
       <Component {...pageProps} />
     </>
   )
@@ -72,8 +74,8 @@ const AdminLink = () => {
   useEffect(() => {
     setShowAdminLink(
       !edit &&
-        JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
-          ?.access_token
+      JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
+        ?.access_token
     )
   }, [edit])
 
