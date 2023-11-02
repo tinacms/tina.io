@@ -1,5 +1,5 @@
 ---
-title: Self Hosted Tina
+title: Self-hosting Tina
 last_edited: '2023-07-06T07:00:00.000Z'
 next: /docs/self-hosted/starters/nextjs-vercel
 ---
