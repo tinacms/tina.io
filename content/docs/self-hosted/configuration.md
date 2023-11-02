@@ -4,13 +4,13 @@ id: /docs/self-hosted/configuration
 last_edited: '2023-02-01T04:00:00.000Z'
 ---
 
-## Elements of Self Hosted Tina
+## Elements of Self-hosted Tina
 
 ### Database File
 
 The database is configured in **`.tina/database.{js,ts}`** .
 
-This file is the main element of the self hosted solution. It exports an instance of the TinaCMS Database, which handles indexing, queries and CRUD operations. A database instance requires a LevelDB implementation. It is also configured with optional onPut/onDelete handlers which are used to make updates to your Git repository. The database acts as an ephemeral caching layer, so that when you query your content it is not necessary to retrieve it from the git provider.
+This file is the main element of the self-hosted solution. It exports an instance of the TinaCMS Database, which handles indexing, queries and CRUD operations. A database instance requires a LevelDB implementation. It is also configured with optional onPut/onDelete handlers which are used to make updates to your Git repository. The database acts as an ephemeral caching layer, so that when you query your content it is not necessary to retrieve it from the Git provider.
 
 ```typescript
 import { createDatabase, TinaLevelClient } from '@tinacms/datalayer'
@@ -75,13 +75,13 @@ You must provide an [abstract-level database](https://github.com/Level/abstract-
 
 #### `onPut` and `onDelete`
 
-The onPut and onDelete functions are used to update the git repository when there are updates and deletes via the TinaCMS api. In the example above we show how to save data to Github, but feel free to swap our example for any git provider.
+The onPut and onDelete functions are used to update the Git repository when there are updates and deletes via the TinaCMS api. In the example above we show how to save data to GitHub, but feel free to swap that example for any Git provider.
 
 The onPut function takes key and value parameters. The key is the path to the file in the repository that was updated and the value is the file contents. The onDelete function takes a key parameter, which is the path to the file in the repository that was deleted.
 
 ### Using the database on the server
 
-Querying the database from the server works a bit different when using self hosted Tina. When using Tina, you normally use [The Tina Client](https://tina.io/docs/features/data-fetching/ 'The Tina Client'), but when self hosting, it is likely that that the GraphQL endpoint will not be available at build time (If you are using Next.js api endpoints, for example). So when querying content from the server, we recommend querying the database directly. We have created an example of what this looks like:
+Querying the database from the server works a bit different when using self-hosted Tina. When using Tina, you normally use [The Tina Client](https://tina.io/docs/features/data-fetching/ 'The Tina Client'), but when self-hosting, it is likely that the GraphQL endpoint will not be available at build time (if you are using Next.js api endpoints, for example). So when querying content from the server, we recommend querying the database directly. We have created an example of what this looks like:
 
 ##### `lib/databaseConnection.ts`&#x20;
 
@@ -127,7 +127,7 @@ export function getDatabaseConnection<GenQueries = Record<string, unknown>>({
 export const dbConnection = getDatabaseConnection({ queries })
 ```
 
-With this, you can use `dbConnection` just like [the Tina Client would be used](https://tina.io/docs/features/data-fetching/#making-requests-with-the-tina-client 'TinaCMS Client'). It will have all the generated queries and a request function for raw GraphQL requests.
+With this, you can use `dbConnection` just like the [Tina Client](https://tina.io/docs/features/data-fetching/#making-requests-with-the-tina-client 'TinaCMS Client') would be used. It will have all the generated queries and a request function for raw GraphQL requests.
 
 Here is an example of using this:
 
@@ -150,7 +150,7 @@ export const getStaticProps = async ({ params }) => {
 
 ### The GraphQL Endpoint
 
-When editing with TinaCMS, CRUD operations get sent to a GraphQL endpoint. Normally this is Tina Cloud, but when you self host you must provide this endpoint. The following examples show how this can be done in a Next.js API route, but it can adapted for use in any environment. You must add your own authorization function here or use Tina Cloud's auth server if you wish.
+When editing with TinaCMS, CRUD operations get sent to a GraphQL endpoint. Normally this is Tina Cloud, but when self-hosting you must provide this endpoint. The following examples show how this can be done in a Next.js API route, but it can adapted for use in any environment. You must add your own authorization function here or use Tina Cloud's auth server if you wish.
 
 ##### `pages/api/gql.{ts,js}`
 
@@ -187,11 +187,11 @@ const config = defineConfig({
 
 ### Authentication&#x20;
 
-Self hosted Tina allows you to integrate your own Auth provder. Our self-hosted-starter uses NextAuth, which provides connections to various auth providers under the hood.
+Self-hosted Tina allows you to integrate your own Auth provider. Our self-hosted-starter uses Auth.js, which provides connections to various auth providers.
 
-#### Self hosting your Authentication
+#### Self-hosting your Auth
 
-To self host your own authentication, you must implement several functions. These functions are passed to the TinaCMS client when it is initialized. The following functions are available:
+To self-host your own authentication, you must implement several functions. These functions are passed to the TinaCMS client when it is initialized. The following functions are available:
 
 `authenticate`: This function is called when the user goes into `/admin` and they are not logged in (determined by `getUser`). This function should redirect the user to the login page or do whatever is necessary to authenticate the user.
 
@@ -250,7 +250,7 @@ export default defineConfig({
 
 ```
 
-Next you can use the value passed from `getToken` in your backend function to make sure the user is authenticated:
+Next you can use the value passed from `getToken` in your backend function to make sure the user is authorized:
 
 `pages/api/gql.{js,ts}`
 

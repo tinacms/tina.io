@@ -1,5 +1,5 @@
 ---
-title: Setting up Self-Hosted Backend on an existing project
+title: Setting up the self-hosted Backend on an existing project
 id: /docs/self-hosted/existing-site
 last_edited: '2023-07-07T04:00:00.000Z'
 next: /docs/self-hosted/querying-data
@@ -7,9 +7,9 @@ next: /docs/self-hosted/querying-data
 
 If you want to self-host the Tina backend, and don't want to use our [pre-configured starter](/docs/self-hosted/starters/nextjs-vercel/), you can follow the steps below.
 
-We offer a CLI init to quickly setup the backend on NextJS sites, or you can take the manual setup approach if you're using another framework.
+We offer a CLI init to quickly setup the backend on Next.js sites, or you can take the manual setup approach if you're using another framework.
 
-## Using the CLI init command (NextJS Only)
+## Using the CLI init command (Next.js Only)
 
 <!-- TODO: Add demo short video of using the init command -->
 
@@ -29,30 +29,30 @@ Make sure to assign it `repo` access to your new repository with Read/Write acce
 
 ### Choosing a Database Adapter
 
-Out of the box, TinaCMS provides two database adapters in the init workflow: "Redis" (VercelKV) & "MongoDB". Learn more about Database Adapters [here](/docs/reference/self-hosted/database-adapter/overview/).
+TinaCMS provides two database adapters in the init workflow: "Redis" (VercelKV) & "MongoDB". Learn more about Database Adapters [here](/docs/reference/self-hosted/database-adapter/overview/).
 
 ### What the init command does
 
 The init commands does the following:
 
-- Sets up pages/tina/[...routes].{ts,js} to handle TinaCMS GraphQL and authentication requests
+- Sets up pages/tina/[...routes].{ts,js} to handle TinaCMS GraphQL and auth requests
 - Sets up tina/database.{ts,js} to handle the database
-  - Adds the Github Git provider
-  - Adds the chosen database adapter
-- Adds the AuthJS authentication provider to your config file
+  - Configures the GitHub Git provider
+  - Configures the database adapter
+- Configures the TinaCMS Auth.js auth provider
 - Installs any dependencies needed for the chosen Git provider, database adapter, and authentication provider
 
 ### After the init command
 
 Once the init command finishes **make sure to copy the environment variables** that are printed in the terminal. You will also need to add these to your hosting provider.
 
-After that the `dev` and `build` commands should be ready for use
+After these steps are completed the `dev` and `build` commands should be ready for use
 
-## Manually configuring the Self-hosted backend
+## Manually configuring the self-hosted backend
 
 ### 1. Choose a Git provider, database adapter, and authentication provider
 
-You will need to choose a [Git provider](/docs/reference/self-hosted/git-provider/overview/), [database adapter](/docs/reference/self-hosted/database-adapter/overview/), and [authentication provider](/docs/reference/self-hosted/authentication-provider/overview/). You can use any of the providers we have created or you can create your own. In the example below we will use GitHub, VercelKV, and Next Auth.
+You will need to choose a [Git provider](/docs/reference/self-hosted/git-provider/overview/), [database adapter](/docs/reference/self-hosted/database-adapter/overview/), and [auth provider](/docs/reference/self-hosted/authentication-provider/overview/). You can use any of the providers we have created or you can create your own. In the example below we will use GitHub, Vercel KV, and the TinaCMS Auth.js provider.
 
 ### 2. Install the dependencies
 
@@ -64,15 +64,15 @@ yarn add tinacms @tinacms/datalayer
 yarn add --dev @tinacms/cli
 ```
 
-Install any dependencies for your chosen git provider, database adapter, and authentication provider (This may very to depending on what you have chosen)
+Install any dependencies for your chosen git provider, database adapter, and auth provider (This may very to depending on what you have chosen)
 
 ```bash
-yarn add tinacms-gitprovider-github tinacms-next-auth upstash-redis-level @upstash/redis
+yarn add tinacms-gitprovider-github tinacms-authjs upstash-redis-level @upstash/redis
 ```
 
 ### 3. Create a database file
 
-Create a file called `database.{js,ts}` in the the `/tina` folder of your project. This file will be used to create the database.
+Create a file called `database.{js,ts}` in the `tina` folder of your project. This file will be used to create the database.
 
 `tina/database.{ts,js}`
 
@@ -125,9 +125,9 @@ export default isLocal
 
 ### 4. Host the Tina Backend
 
-You will need a [backend endpoint](/docs/self-hosted/graphql-endpoint/overview) that hosts the GraphQL / authentication API.
+You will need a [backend endpoint](/docs/self-hosted/graphql-endpoint/overview) that hosts the GraphQL and auth api endpoints.
 
-In this example we will show how to host the GraphQL API on Vercel. You can use any hosting provider you want (May need to adjust the code to suite your chosen framework)
+In this example we will show how to host the GraphQL API on Vercel. You can use any hosting provider you want (code may need to be adjusted to suit your chosen framework).
 
 ```js
 // pages/api/tina/[...routes].{ts,js}

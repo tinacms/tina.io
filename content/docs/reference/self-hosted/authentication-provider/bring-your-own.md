@@ -1,11 +1,11 @@
 ---
-title: Bring your own Authentication Provider
+title: Custom Auth Provider
 id: '/docs/reference/self-hosted/authentication-provider/bring-your-own'
 prev: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
 next: null
 ---
 
-To self host your own authentication, you will need to do do two things.
+To self-host with a custom auth provider, you will need to do do two things.
 
 ## 1. Create a custom Authentication Provider Class
 
@@ -15,15 +15,15 @@ You can do so by extending the `AbstractAuthProvider` class and implementing the
 
 `authenticate`: This function is called when the user goes into `/admin` and they are not logged in (determined by `getUser`). This function should redirect the user to the login page or do whatever is necessary to authenticate the user.
 
-`getUser`: This function is called when the user goes into `/admin` and is used to determine if the user is logged in. If it returns a truthy value, the user is logged in and if it returns a falsy value the user is not logged in.
+`getUser`: This function is called when the user goes into `/admin` and is used to determine if the user is logged in. If it returns a truthy value, the user is logged in. If it returns a falsy value the user is not logged in.
 
 `getToken`: This function is called when a request is made to the GraphQL endpoint. It should return an object with an `id_token` property. This will be passed as an `Authorization` header in the format `Bearer <id_token>`
 
-`logOut`: This function is called when the user clicks the logout button in the admin.
+`logOut`: This function is called when the user clicks the logout button.
 
 ### Optional Functions
 
-`getSessionProvider`: Return a React context provider to that will wrap the admin
+`getSessionProvider`: Return a React context provider that wraps the TinaCMS UI.
 
 ```ts
 import { AbstractAuthProvider } from 'tinacms'
@@ -63,7 +63,7 @@ export default defineConfig({
 })
 ```
 
-## 2. Add Authentication to your Tina Backend
+## 2. Add Authentication to the Tina Backend
 
 `TinaNodeBackend` takes an `authentication` Prop.
 

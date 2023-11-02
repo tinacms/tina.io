@@ -5,7 +5,7 @@ prev: '/docs/reference/self-hosted/authentication-provider/overview'
 next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
 ---
 
-[Clerk](https://clerk.com) is a user management service which you can use for any self-hosted Tina setup.
+[Clerk](https://clerk.com) is a user management service which you can use with a self-hosted Tina setup.
 
 ## Getting Started
 
@@ -42,7 +42,7 @@ When self-hosting, you may want to disable auth for local development.
 
 ## Update your Tina Config
 
-Add the following to your `tina/config.{ts.js}` file, be sure to replace "my-email@gmail.com" with the email you're signing in with:
+Add the following to your `tina/config.{ts.js}` file. Be sure to replace "my-email@gmail.com" with the email you're signing in with:
 
 ```ts
 import { ClerkAuthProvider } from 'tinacms-clerk/dist/frontend'
@@ -59,7 +59,7 @@ export default defineConfig({
 })
 ```
 
-Note that we're checking if the signed-in user's email exists in a hardcoded array. There are a few ways to do this properly:
+Note that we're checking if the signed-in user's email exists in a hardcoded array. There are a few ways to do this in a more maintainable way:
 
 - Create an organization in Clerk, and check to see if the signed-in user is part of the org for this project
 - Create an ["allow-list"](https://clerk.com/docs/authentication/allowlist). Note that this is a paid feature.

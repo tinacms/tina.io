@@ -7,27 +7,27 @@ next: /docs/self-hosted/existing-site
 
 ## Introduction
 
-This doc will guide you through setting up our pre-configured self-hosted example repository. This implementation uses;
+This doc will guide you through setting up our pre-configured self-hosted example repository. This implementation uses:
 
 - [NextJS](https://nextjs.org/)
-- [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [databasae adapter](/docs/reference/self-hosted/database-adapters/overview)
-- [NextAuth](/docs/reference/self-hosted/authentication-provider/next-auth) for its [authentication provider](/docs/reference/self-hosted/authentication-providers/overview)
+- [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [database adapter](/docs/reference/self-hosted/database-adapters/overview)
+- [NextAuth](/docs/reference/self-hosted/authentication-provider/next-auth) for its [auth provider](/docs/reference/self-hosted/authentication-providers/overview)
 
 ## Deploy The Starter Template
 
-First you can, deploy the [the self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
+You can deploy the [the self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_JAMES_REST_API_URL,KV_REST_API_JAMES_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
 
-This will
+This will:
 
-- Create a copy of the [self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) to your github account
+- Create a copy of the self-hosted starter [repository](https://github.com/tinacms/tina-self-hosted-demo) in your GitHub account
 - Create a new Vercel project with the starter code
-- Create a new Vercel KV store for your project
+- Create a new Vercel KV store for the project
 
 ### Setup KV Store
 
-In the initial Vercel project setup. You will be prompted to setup your Vercel KV store in a few clicks. Use the default `KV_` environment variables prefix.
+In the initial Vercel project setup, you will be prompted to setup the Vercel KV store. Use the default `KV_` environment variables prefix.
 
 ### Setup Environment Variables
 
@@ -35,25 +35,17 @@ You will be prompted to enter values for the following environment variables:
 
 #### `GITHUB_PERSONAL_ACCESS_TOKEN`
 
-GitHub personal access token generated in your [GitHub developer settings](https://github.com/settings/personal-access-tokens/new). Make sure to assign it `repo` access to your new repository with Read/Write access to Contents.
+A GitHub personal access token can be generated in your [GitHub developer settings](https://github.com/settings/personal-access-tokens/new). Make sure to assign it `repo` access to the new repository with Read/Write access to Contents.
 
 #### `NEXTAUTH_SECRET`
 
 Random string used by NextAuth.js for JWT encryption
 
-#### `NEXTAUTH_CREDENTIALS_KEY`
 
-The key name to use for storing user credentials in the KV database (i.e. `tinacms_users`).
+### Test Deployment
 
-Click the **Deploy** button to finish deploying the site.
+At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you should be prompted to login.
 
-### Test Out Your New Deployment
-
-At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you'll see that you'll be prompted to login.
-
-### Creating Your First User
-
-When you first visit the sign in screen, you will be prompted to setup a user to login. Once the user is created, you will be redirected to login. Use the new account credentials to sign in and you will be redirected to TinaCMS.
 
 ## Local Development
 

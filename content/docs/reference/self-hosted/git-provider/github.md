@@ -5,7 +5,7 @@ prev: '/docs/reference/self-hosted/git-provider/overview'
 next: '/docs/reference/self-hosted/git-provider/make-your-own'
 ---
 
-The GitHub Git Provider handles saving and deleting content to a GitHub hosted git repository. It is configured as a parameter to the `createDatabase` function.
+The GitHub Git Provider handles saving and deleting content to a GitHub hosted Git repository. It is configured as a parameter to the `createDatabase` function.
 
 ## Adding the GitHub Git Provider
 
@@ -42,4 +42,4 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `commitMessage`  | The commit message to use when saving content. Defaults to `Edited with TinaCMS`.                                           |
 | `rootPath`       | This path will be prefixed to all paths. Usually only used in monorepos. Optional.                                          |
-| `octokitOptions` | Options passed to the [Octokit constructor ](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) |
+| `octokitOptions` | Options passed to the [Octokit constructor](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) |

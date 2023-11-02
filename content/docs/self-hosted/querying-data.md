@@ -1,5 +1,5 @@
 ---
-title: Querying Content in Self-Hosted Backend
+title: Querying Content in Self-hosted Backend
 id: '/docs/self-hosted/querying-data'
 next: '/docs/self-hosted/graphql-endpoint/overview'
 ---
@@ -29,7 +29,7 @@ When self-hosting, since your database content is fully scoped to your project, 
 // ...
 ```
 
-This `databaseClient` should be used when querying data on the server. For example; `getStaticProps`, `getServerSideProps`, or using React Server Components, etc.
+This `databaseClient` should be used when querying data on the server. For example: `getStaticProps`, `getServerSideProps`, or using React Server Components, etc.
 
 ## How does it work?
 

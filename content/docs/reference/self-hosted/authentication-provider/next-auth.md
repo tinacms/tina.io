@@ -9,7 +9,7 @@ The AuthJS Authentication Provider allows you to use [Authjs](https://authjs.dev
 
 ## Getting Started
 
-> Note: If you do not have setup self hosting yet, we recommend using the `init backend` command please see the [Getting started doc](/docs/self-hosted/existing-site/) for more information.
+> Note: If you do not have setup self-hosting yet, we recommend using the `init backend` command. See the [Getting started doc](/docs/self-hosted/existing-site/) for more information.
 
 To get started you will need to install the following dependencies:
 
@@ -21,9 +21,9 @@ yarn add next-auth tinacms-authjs
 
 ### Update Your Tina Config file
 
-We need to add the Authentication Provider and the user collection to the `tina/config.{ts,jss}` file.
+We need to add the Authentication Provider and the user collection to the `tina/config.{ts,js}` file.
 
-The `TinaUserCollection` is a special collection that is used to store user information. This collection will be seeded from the`content/users/index.json` file but the file will not be updated when the users collection is update. This is so that sensitive information such as passwords are not stored in your repository.
+The `TinaUserCollection` is a special collection that is used to store user information. This collection will be seeded from the`content/users/index.json` file, but the file will not be updated when the users collection is updated. This prevents sensitive information such as passwords from being written to the Git repository.
 
 ```ts
 import {
@@ -49,7 +49,7 @@ export default defineConfig({
 
 ### Add Seed Data
 
-Create a file called `collections/users/index.json` that contains the seeded user.
+Create a file called `content/users/index.json` that contains the initial seed user:
 
 ```json
 {
@@ -64,7 +64,7 @@ Create a file called `collections/users/index.json` that contains the seeded use
 }
 ```
 
-> Don't worry the you can update the username and password after you log in.
+> After logging in, you can update the username and password 
 
 ### Update Tina Backend
 

@@ -32,7 +32,7 @@ To start moving from local-mode to prod-mode, the next steps are to:
 - Push your repository to GitHub (if it isn't already)
 - Set up a project in the Tina Cloud dashboard. (See next page)
 
-> Wanting to self host your backend? Check out the [Self Hosted Docs](/docs/self-hosted/overview) for more information.
+> Wanting to self-host your backend? Check out the [self-hosted docs](/docs/self-hosted/overview) for more information.
 
 ## Video Tutorial
 

@@ -5,9 +5,9 @@ prev: '/docs/reference/self-hosted/authentication-provider/next-auth'
 next: '/docs/reference/self-hosted/authentication-provider/bring-your-own'
 ---
 
-You can use Tina Cloud for your authenticaion. This is the easiet way to get up and running quickly.
+You can use Tina Cloud for your authenticaion. This is the easiest way to get up and running quickly.
 
-If you have not alreay you can [create a tina cloud account](app.tina.io) and create a new project.
+If you have not already you can create a Tina Cloud [account](app.tina.io) and create a new project.
 
 Once you have created a project you will need to add the following environment variables to your project:
 
@@ -46,7 +46,7 @@ yarn add @tinacms/auth
 
 Next you can update your Tina Backend to use the `TinaCloudBackendAuthentication` class.
 
-`/pages/api/tina/[...routs].{ts,js}`
+`/pages/api/tina/[...routes].{ts,js}`
 
 ```ts
 import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'

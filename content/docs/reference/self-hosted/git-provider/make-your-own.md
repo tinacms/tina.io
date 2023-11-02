@@ -1,11 +1,11 @@
 ---
-title: Making your own Git Provider
+title: Custom Git Provider
 id: '/docs/reference/self-hosted/git-provider/make-your-own'
 prev: '/docs/reference/self-hosted/git-provider/github'
 next: null
 ---
 
-Making your own Git Provider is easy. It is just a class or object that implements the [`GitProvider`](#gitprovider-interface) interface.
+Implement a Git Provider is easy. It is a class or object that implements the [`GitProvider`](#gitprovider-interface) interface.
 
 ## GitProvider Interface
 
@@ -18,11 +18,11 @@ export interface GitProvider {
 
 ### `onPut`
 
-This is used to save content to git. It is called whenever a value is saved in the CMS.
+This is used to save content to Git. It is called whenever a value is saved in the CMS.
 
 ### `onDelete`
 
-This is used to delete content from git. It is called whenever a value is deleted in the CMS.
+This is used to delete content from Git. It is called whenever a value is deleted in the CMS.
 
 ## Example
 

@@ -5,7 +5,7 @@ last_edited: '2023-06-08T04:00:00.000Z'
 
 TinaCMS provides built-in search functionality for content. This is useful for allowing editors to quickly finding content in a site. Tina Cloud's content search is powered by [Fergus McDowall](https://github.com/fergiemcdowall 'Fergus McDowall')'s [search-index](https://www.npmjs.com/package/search-index 'search-index') library.
 
-> Note: Search is not currently supported in Self-hosted Tina.
+> Note: Search is not currently supported in self-hosted Tina.
 
 ## Configuration
 

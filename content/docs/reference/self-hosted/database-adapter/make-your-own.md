@@ -5,9 +5,9 @@ prev: '/docs/reference/self-hosted/database-adapter/mongodb'
 next: null
 ---
 
-The database adapter accepts any [abstract level](https://github.com/Level/abstract-level) implementation. To implement your own database adapter you will need to extend the abstract class.
+The database adapter accepts any [abstract-level](https://github.com/Level/abstract-level) implementation. To implement your own database adapter, you will need to extend the AbstractLevel class.
 
-Here is some example of the ones we have built:
+Here are some example level implementations:
 
 - [upstash-redis-level](https://github.com/tinacms/upstash-redis-level)
 - [mongodb-level](https://github.com/tinacms/mongodb-level)

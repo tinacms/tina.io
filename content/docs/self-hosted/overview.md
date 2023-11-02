@@ -8,13 +8,13 @@ next: /docs/self-hosted/starters/nextjs-vercel
 
 By default, TinaCMS uses Tina Cloud as its backend. Tina Cloud is a powerful, out-of-the-box solution that handles reading/writing to your GitHub repository, caching content in a queryable data layer, and authentication / authorization.
 
-For users who want to be independent of Tina Cloud, **we also offer a self-hosted alternative** where you can host your own Tina Data Layer and provide your own database, user authentication, and custom Git integration.
+For users who want to be independent of Tina Cloud, **we also offer a self-hosted alternative** where you can host your own Tina Data Layer and provide your own database, auth, and Git integration.
 
-> In this doc, we will give an overview of the Self-hosted architecture. If you're looking to skip ahead, check out our [Self-hosted Starter Docs](/docs/self-hosted/starters/overview/)
+> In this doc, we will give an overview of the self-hosted architecture. If you're looking to skip ahead, check out our [self-hosted Starter Docs](/docs/self-hosted/starters/overview/)
 
 ## How does it work?
 
-By Self-hosting TinaCMS's backend, you can host the API in a single API function. This API function acts as a GraphQL endpoint w/ CRUD for your content.
+By self-hosting TinaCMS's backend, you can host the API in a single API function. This API function provides a GraphQL endpoint for your content.
 
 ```js
 // pages/api/tina/[...routes].{ts,js}
@@ -46,20 +46,20 @@ export default (req, res) => {
 
 The backend relies upon a three configurable modules:
 
-- [Auth](/docs/self-hosted/authentication/overview)
+- [Auth Provider](/docs/self-hosted/authentication/overview)
   - Handles authentication and authorization for CMS operations.
-- [The Database](/docs/reference/self-hosted/database-adapter/overview)
+- [Database Adapter](/docs/reference/self-hosted/database-adapter/overview)
   - Handles indexing and interaction with the database
-- [The Git Provider](/docs/reference/self-hosted/git-provider/overview)
+- [Git Provider](/docs/reference/self-hosted/git-provider/overview)
   - Handles saving content to Git
 
-### Custom Authentication
+### Authentication / Authorization
 
-Tina's self-hosted solution allows you to bring your own authentication.
+Tina's self-hosted solution allows you to host your own authentication / authorization.
 
-> Out of the box, we provide a default implementation with NextAuth, and we also have an example [working with Clerk](https://github.com/tinacms/tina-cloud-starter-self-hosted-clerk).
+> By default we enable a username / password auth backed by Auth.js. We also have an example working with [Clerk](https://github.com/tinacms/tina-cloud-starter-self-hosted-clerk).
 
-Custom authentication is setup in the **`tina/config.{js,ts}`** file.
+Self-hosted auth is configured in the **`tina/config.{js,ts}`** file.
 
 ```ts
 // tina/config.ts
@@ -73,13 +73,13 @@ export default defineConfig({
 
 There are also a few boilerplate auth files that are generated in your project during the `tina init` process.
 
-> For more information on configuring auth, check out the [Auth Provider docs](/docs/reference/self-hosted/authentication-provider/overview/).
+> For more information on configuring auth, check out the Auth Provider [docs](/docs/reference/self-hosted/authentication-provider/overview/).
 
 ### Configuring the database
 
-Content in a Tina projects needs to be indexed in a database. Tina's self-hosted backend works with several different types of databases.
+Content in a Tina project is indexed in a database. Tina's self-hosted backend works with several different databases.
 
-Tina provides 2 types database adapters out of the box: Redis & MongoDB.
+Tina provides two types database adapters out of the box: Vercel KV / Upstash Redis & MongoDB.
 
 The database is configured in **`.tina/database.{js,ts}`**.
 
@@ -104,11 +104,11 @@ export default isLocal
     })
 ```
 
-> For more information of configuring a Database Provider, check out our [reference docs](/docs/reference/self-hosted/database-adapter/overview/).
+> For more information on configuring a Database Provider, check out our [reference docs](/docs/reference/self-hosted/database-adapter/overview/).
 
 ### Configuring the Git Provider
 
-The Git Provider is responsible for saving content to git when your editors make updates. It is configured within a prop on the `createDatabase` function. Out of the box we support a [GitHub Git Provider](/docs/reference/self-hosted/git-provider/github).
+The Git Provider is responsible for saving content to Git when editors make updates. It is configured as a property on the configuration passed to the `createDatabase` function. By default we support a GitHub [Git Provider](/docs/reference/self-hosted/git-provider/github).
 
 ```ts
 // database.{ts,js}
@@ -120,6 +120,6 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 })
 ```
 
-> If you do not use Github, you can [make your own Git Provider](/docs/reference/self-hosted/git-provider/make-your-own).
+> If you do not use GitHub, you can [make your own Git Provider](/docs/reference/self-hosted/git-provider/make-your-own).
 
 **Note on Licensing -** TinaCMS is licensed under the Apache 2.0 license.
