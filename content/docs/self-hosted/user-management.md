@@ -10,7 +10,7 @@ When using the default self-hosted auth, logins and passwords are stored in a co
 
 > Note: The user collection is not stored in your Git repository. All changes to the collection are persisted to the self-hosted database.
 
-![Collections sidebar menu](https://res.cloudinary.com/forestry-demo/image/upload/v1698938364/self-hosted/user_management_users_collection_asmouc.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1698949345/self-hosted/user_management_users_collection_small_gjxgld.png)
 
 # Adding a New User
 
