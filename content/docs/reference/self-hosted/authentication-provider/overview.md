@@ -14,10 +14,13 @@ This is done by providing an [Auth Provider](/docs/reference/self-hosted/authent
 Example:
 
 ```ts
-import { SomeAuthProvider } from 'tinacms-some-auth-provider'
+import { UsernamePasswordAuthJSProvider } from 'tinacms-authjs/dist/tinacms'
+import { LocalAuthProvider } from 'tinacms'
 
 export default defineConfig({
-  authProvider: new SomeAuthProvider(),
+  authProvider: isLocal
+    ? new LocalAuthProvider()
+    : new UsernamePasswordAuthJSProvider(),
   //...
 })
 ```
@@ -28,8 +31,7 @@ export default defineConfig({
 
 ```ts
 import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { BackendAuthentication } from 'example-package'
-
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
 import databaseClient from '../../../tina/__generated__/databaseClient'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
@@ -37,7 +39,12 @@ const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 const handler = TinaNodeBackend({
   authentication: isLocal
     ? LocalBackendAuthentication()
-    : BackendAuthentication(),
+    : AuthJsBackendAuthentication({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
   databaseClient,
 })
 
