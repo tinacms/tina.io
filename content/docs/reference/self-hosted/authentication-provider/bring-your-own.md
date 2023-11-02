@@ -49,6 +49,7 @@ export class CustomAuthProvider extends AbstractAuthProvider {
     // Do any authorization logic here
   }
   getSessionProvider() {
+    // GetSessionProvider can be deleted if not needed
     // OPTIONALLY Return a React context provider to that will wrap the admin
   }
 }
