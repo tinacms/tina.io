@@ -249,6 +249,10 @@
       {
         "title": "Hosting the GraphQL API",
         "slug": "/docs/self-hosted/graphql-endpoint/overview/"
+      },
+      {
+          "title": "User Management",
+          "slug": "/docs/self-hosted/user-management"
       }
     ]
   },
