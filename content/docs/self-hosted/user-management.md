@@ -9,13 +9,19 @@ When using the default self-hosted auth, logins and passwords are stored in a co
 
 > Note: The user collection is not stored in your Git repository. All changes to the collection are persisted to the self-hosted database.
 
+![Collections sidebar menu](https://res.cloudinary.com/forestry-demo/image/upload/v1698938364/self-hosted/user_management_users_collection_asmouc.png)
+
 # Adding a New User
 
 Click the plus button to add a new user. Assign a unique username and set an initial password and click the Save button.
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1698938355/self-hosted/user_management_list_users_woxeve.png)
+
 # Editing a User
 
 Click on the user to be edited. Update any details on the user and click the save button.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1698938359/self-hosted/user_management_edit_user_mhebwp.png)
 
 # Reset Password
 
@@ -30,4 +36,4 @@ The default user collection consists of the following fields:
 * Email
 * Password
 
-The only required fields for a user collection are a password type field (with required: true) and a string type field marked with uid: true, required: true to indicate that it is a username. Additional fields can be added as needed.
+The only required fields for a user collection are a password-type field (with `required: true`) and a string-type field marked with `uid: true, required: true` to indicate that it is a username. Additional fields can be added as needed.
