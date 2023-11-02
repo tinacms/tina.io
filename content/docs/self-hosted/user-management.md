@@ -38,3 +38,27 @@ The default user collection consists of the following fields:
 * Password
 
 The only required fields for a user collection are a password-type field (with `required: true`) and a string-type field marked with `uid: true, required: true` to indicate that it is a username. Additional fields can be added as needed.
+
+```js
+import { TinaUserCollection } from 'tinacms-authjs'
+
+const config = defineStaticConfig({
+  ...
+  schema: {
+    collections: [
+      ...,
+      {
+        ...TinaUserCollection,
+        fields: [
+          ...TinaUserCollection.fields,
+          // Add phone number to existing fields
+          {
+            type: 'string',
+            label: 'Phone',
+            name: 'phone'
+          },
+        ]
+      }
+    ]
+  }
+```
