@@ -1,7 +1,6 @@
 ---
 title: User Management
 last_edited: '2023-11-02T04:00:00.000Z'
-prev: /docs/self-hosted/querying-data/
 ---
 
 # Users Collection
