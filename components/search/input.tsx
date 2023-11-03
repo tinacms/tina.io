@@ -21,7 +21,7 @@ export const logSearchQuery = async (query: string) => {
     aid = crypto.randomBytes(16).toString('hex')
     window.sessionStorage.setItem('tina_anon_sessionid', aid)
   }
-  return axios.post('/api/analytics', {
+  return axios.post('/api/analytics/', {
     id: aid,
     query,
     timestamp: Date.now()
