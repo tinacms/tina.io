@@ -247,8 +247,21 @@
         "slug": "/docs/self-hosted/querying-data/"
       },
       {
-        "title": "Hosting the GraphQL API",
-        "slug": "/docs/self-hosted/graphql-endpoint/overview/"
+        "title": "Hosting the Tina Backend",
+        "items": [
+          {
+            "title": "NextJS",
+            "slug": "/docs/self-hosted/tina-backend/nextjs/"
+          },
+          {
+            "title": "Vercel Serverless Functions",
+            "slug": "/docs/self-hosted/tina-backend/vercel-functions/"
+          },
+          {
+            "title": "Netlify Functions",
+            "slug": "/docs/self-hosted/tina-backend/netlify-functions/"
+          }
+        ]
       }
     ]
   },

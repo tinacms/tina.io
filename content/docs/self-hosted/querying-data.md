@@ -1,7 +1,7 @@
 ---
 title: Querying Content in Self-hosted Backend
 id: '/docs/self-hosted/querying-data'
-next: '/docs/self-hosted/graphql-endpoint/overview'
+next: '/docs/self-hosted/tina-backend/nextjs'
 ---
 
 ## Overview
