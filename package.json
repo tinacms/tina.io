@@ -67,7 +67,7 @@
     "matter": "^0.2.0",
     "moment": "^2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
-    "next": "^13.4.13",
+    "next": "^13.5.0",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
     "next-tinacms-cloudinary": "4.3.1",
