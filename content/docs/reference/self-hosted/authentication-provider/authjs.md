@@ -1,15 +1,15 @@
 ---
 id: '/docs/reference/self-hosted/authentication-provider/next-auth'
-title: AuthJS Authentication Provider
+title: Auth.js Authentication Provider
 prev: '/docs/reference/self-hosted/authentication-provider/overview'
 next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
 ---
 
-The AuthJS Authentication Provider allows you to use [Authjs](https://authjs.dev/) to authenticate users with your TinaCMS instance.
+The Auth.js Auth Provider allows you to use [Auth.js](https://authjs.dev/) to authenticate users with your TinaCMS instance.
 
 ## Getting Started
 
-> Note: If you do not have setup self-hosting yet, we recommend using the `init backend` command. See the [Getting started doc](/docs/self-hosted/existing-site/) for more information.
+> Note: If you have not set up self-hosting yet, we recommend using the `init backend` command. See the [Getting started doc](/docs/self-hosted/existing-site/) for more information.
 
 To get started you will need to install the following dependencies:
 
@@ -19,9 +19,9 @@ yarn add next-auth tinacms-authjs
 
 > Hint: Make sure you have a [database adapter](/docs/reference/self-hosted/database-adapter/overview/) setup before continuing.
 
-### Update Your Tina Config file
+### Update Your Tina Config
 
-We need to add the Authentication Provider and the user collection to the `tina/config.{ts,js}` file.
+We need to add the Auth Provider and a user collection to the `tina/config.{ts,js}` file.
 
 The `TinaUserCollection` is a special collection that is used to store user information. This collection will be seeded from the`content/users/index.json` file, but the file will not be updated when the users collection is updated. This prevents sensitive information such as passwords from being written to the Git repository.
 
@@ -68,7 +68,7 @@ Create a file called `content/users/index.json` that contains the initial seed u
 
 ### Update Tina Backend
 
-Update your `/api/tina/[...routes].{ts,js}` file to use the AuthJS backend.
+Update your `/api/tina/[...routes].{ts,js}` file to use the Auth.js backend.
 
 ```ts
 import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
@@ -101,7 +101,7 @@ export default (req, res) => {
 
 <!-- TODO: Maybe a short video for this section -->
 
-Now that you have setup the AuthJS Authentication Provider you can test it out.
+Now that you have set up the Auth.js auth provider you can test it out.
 
 ### Testing Authentication Locally
 
@@ -121,16 +121,8 @@ Now you can open your browser and navigate to `http://localhost:3000/adnmin/inde
 
 ### Updating Your Password
 
-Once you have logged in you can update your password by clicking on the update password button in the sidebar. This should be done so that the password is not stored in plain text in your repository.
+Once you have logged in, you will be prompted to update your password. This should be done so that the password is not stored in plain text in your repository.
 
 ### Managing users
 
-TODO:
-
-<!-- The first time you run the authentication flow you will be redirected to the `/auth/register` page. This page will allow you to add your first user. Once you have added your first user you not be able to add anymore users via the UI. You can add them by running our local CLI that will allow you to add users to your database.
-
-```bash
-npx tinacms-next-auth setup
-```
-
-This will allow you to add and delete users. -->
+To add additional users, navigate to the Users collection in the sidebar to add or edit users. See [User Management](/docs/self-hosted/user-management/) for more details.

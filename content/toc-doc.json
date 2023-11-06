@@ -744,8 +744,8 @@
                 "slug": "/docs/reference/self-hosted/authentication-provider/overview/"
               },
               {
-                "title": "Next Auth",
-                "slug": "/docs/reference/self-hosted/authentication-provider/next-auth/"
+                "title": "Auth.js",
+                "slug": "/docs/reference/self-hosted/authentication-provider/authjs/"
               },
               {
                 "title": "Clerk Auth",
