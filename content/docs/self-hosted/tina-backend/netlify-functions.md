@@ -3,7 +3,9 @@ title: Hosting The Tina Backend on Netlify Functions
 id: '/docs/self-hosted/tina-backend/netlify-functions'
 ---
 
-If you are not using Next.js but are using Netlify to host your site, you can deploy the Tina Backend as a [Netlify function](https://docs.netlify.com/functions/overview/). This function will be responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
+If you are not using Next.js but are using netlify to host your site, you can deploy the Tina Backend as a [Netlify function](https://www.netlify.com/platform/core/functions/). This function will be responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
+
+If you want to see netlify functions in action, check out the [demo repo](https://github.com/tinacms/tina-self-hosted-static-demo)
 
 ## Configuration
 
