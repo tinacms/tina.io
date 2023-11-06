@@ -247,10 +247,6 @@
         "slug": "/docs/self-hosted/querying-data/"
       },
       {
-        "title": "Hosting the GraphQL API",
-        "slug": "/docs/self-hosted/graphql-endpoint/overview/"
-      },
-      {
         "title": "Hosting the Tina Backend",
         "items": [
           {

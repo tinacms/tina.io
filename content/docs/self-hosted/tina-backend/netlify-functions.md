@@ -3,7 +3,7 @@ title: Hosting The Tina Backend on Netlify Functions
 id: '/docs/self-hosted/tina-backend/netlify-functions'
 ---
 
-If you are not using Next.js but are using netlify to host your site, you can deploy the Tina Backend as a [Netlify function](). This function will be responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
+If you are not using Next.js but are using Netlify to host your site, you can deploy the Tina Backend as a [Netlify function](https://docs.netlify.com/functions/overview/). This function will be responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
 
 ## Configuration
 
@@ -50,7 +50,7 @@ Since Vercel Functions do not support catch all routes, you will need to add the
 }
 ```
 
-Next Make sure to update your TinaCMS config to use the new endpoint.
+Next make sure to update your TinaCMS config to use the new endpoint.
 
 ```js
 // tina/config.{js,ts}
@@ -71,4 +71,4 @@ Next make sure to update your dev command to pass in the correct port so that bo
 }
 ```
 
-Now you can run your site locally with `vercel dev`.
+Now you can run your site locally with `netlify dev`.

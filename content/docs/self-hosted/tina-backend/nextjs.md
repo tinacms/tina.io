@@ -40,7 +40,7 @@ export default (req, res) => {
 }
 ```
 
-Next Make sure to update your TinaCMS config to use the new endpoint.
+Next make sure to update your TinaCMS config to use the new endpoint.
 
 ```js
 // tina/config.{js,ts}
