@@ -37,15 +37,15 @@ You will be prompted to enter values for the following environment variables:
 
 A GitHub personal access token can be generated in your [GitHub developer settings](https://github.com/settings/personal-access-tokens/new). Make sure to assign it `repo` access to the new repository with Read/Write access to Contents.
 
+![Github Auth Settings](https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1699036547/tina-io/docs/self-hosted/personal-access-token.png)
+
 #### `NEXTAUTH_SECRET`
 
 Random string used by NextAuth.js for JWT encryption
 
-
 ### Test Deployment
 
 At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you should be prompted to login.
-
 
 ## Local Development
 
@@ -87,12 +87,12 @@ KV_REST_API_TOKEN="<REPLACE-THIS-VALUE>"
 yarn dev
 ```
 
-You will be able to view your starter on http://localhost:3000. To play around with TinaCMS and edit some content, you can go to http://localhost:3000/admin
+You will be able to view your starter on http://localhost:3000. To edit content with TinaCMS go to http://localhost:3000/admin
 
 ## Adding Additional Users
 
 When you are testing TinaCMS locally, you don't need to be logged in to access the CMS.
-When you navigate to /admin on your Vercel deployment, or if you run `yarn build` & `yarn start`, you will be required to login. If you want to add additional users or update a user's password, you can run the user management script:
+If you visit \<Your Production URL\>/admin, or if you run `yarn build` & `yarn start`, you will be required to login. If you want to add additional users or update a user's password, you can run the user management script:
 
 ```shell
 yarn setup:users

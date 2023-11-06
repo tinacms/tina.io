@@ -1,6 +1,7 @@
 ---
-title: Hosting The Tina Backend
-id: '/docs/self-hosted/graphql-endpoint/overview'
+title: Hosting The Tina Backend on Next.js
+id: '/docs/self-hosted/tina-backend/nextjs'
+next: '/docs/self-hosted/tina-backend/vercel-functions'
 ---
 
 The Tina Backend is hosted in a single endpoint that is responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.

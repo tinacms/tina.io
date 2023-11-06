@@ -179,7 +179,7 @@
         "title": "Overview"
       },
       {
-        "title": "Tina Cloud Dashboard",
+        "title": "Tina Cloud",
         "items": [
           {
             "slug": "/docs/tina-cloud/dashboard/",
@@ -251,8 +251,25 @@
         "slug": "/docs/self-hosted/graphql-endpoint/overview/"
       },
       {
-          "title": "User Management",
-          "slug": "/docs/self-hosted/user-management"
+        "title": "Hosting the Tina Backend",
+        "items": [
+          {
+            "title": "NextJS",
+            "slug": "/docs/self-hosted/tina-backend/nextjs/"
+          },
+          {
+            "title": "Vercel Serverless Functions",
+            "slug": "/docs/self-hosted/tina-backend/vercel-functions/"
+          },
+          {
+            "title": "Netlify Functions",
+            "slug": "/docs/self-hosted/tina-backend/netlify-functions/"
+          }
+        ]
+      },
+      {
+        "title": "User Management",
+        "slug": "/docs/self-hosted/user-management"
       }
     ]
   },
