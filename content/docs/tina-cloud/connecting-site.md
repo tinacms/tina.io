@@ -166,7 +166,7 @@ or if you are using yarn:
 
 Your GitHub Action will look something like:
 
-![Github Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png 'Github Action')
+![GitHub Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png 'GitHub Action')
 
 #### Common Issues:
 

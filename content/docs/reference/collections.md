@@ -197,7 +197,7 @@ This will exclude all `index.md` files from your collection.
 
 The default item that will be used when a new document is created. This is useful for setting default values for fields. The default item can be a function that takes in the `collection` and returns the default item. This is useful for setting default values that are based on the collection.
 
-> Note: This will not updated existing documents. It will only be used when a new document is created.
+> Note: This will not update existing documents. It will only be used when a new document is created.
 
 ### Default Item Example
 

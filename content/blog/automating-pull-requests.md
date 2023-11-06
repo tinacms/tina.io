@@ -29,15 +29,15 @@ Now, the PR Scheduler can now be used to schedule any of your pull requests. To 
 
 That's it! Now when that time comes, your PR will be merged. If you make a mistake with the time or date, just run the same command and it will reschedule.
 
-## Github Actions
+## GitHub Actions
 
-Github Actions are a powerful and flexible way to allow you to run all sorts of DevOps workflows without needing separate tooling. Github Actions uses YAML to define workflows. This makes a great option for scheduling your pull requests where you want to have maximum control.
+GitHub Actions are a powerful and flexible way to allow you to run all sorts of DevOps workflows without needing separate tooling. GitHub Actions uses YAML to define workflows. This makes a great option for scheduling your pull requests where you want to have maximum control.
 
 ### Creating your GitHub Action
 
 Create a file in your project called `.github/workflows/scheduler.yml`. We will use this to create our action.
 
-There are quite a few options for Github Actions. I have used **merge-schedule-action** in multiple personal projects, it has create customization and is easy to use. This action takes a few different arguments and uses the date to schedule your PR:
+There are quite a few options for GitHub Actions. I have used **merge-schedule-action** in multiple personal projects, it has create customization and is easy to use. This action takes a few different arguments and uses the date to schedule your PR:
 
 ```
 name: Merge Schedule
@@ -74,7 +74,7 @@ The `GITHUB_TOKEN` doesn’t need to be set, since GitHub will retrieve a `GITHU
 
 ### How to run the action
 
-Now that we have created the action, when you create a pull request, you need to add `/schedule YYYY-MM-DD` to your pull request description. This Github Action will run on the schedule defined in the cron statement and check for PRs where the date matches and then deploy the code. If you need precise deployments you can use `/schedule 2019-12-31T00:00:00.000Z.`
+Now that we have created the action, when you create a pull request, you need to add `/schedule YYYY-MM-DD` to your pull request description. This GitHub Action will run on the schedule defined in the cron statement and check for PRs where the date matches and then deploy the code. If you need precise deployments you can use `/schedule 2019-12-31T00:00:00.000Z.`
 
 ## How to keep up to date with Tina?
 

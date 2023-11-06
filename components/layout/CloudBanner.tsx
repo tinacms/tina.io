@@ -2,57 +2,28 @@ import React from 'react'
 import Link from 'next/link'
 import { IconRight } from '../blocks'
 import { Button, ButtonGroup } from '../../components/ui'
+import GitHubButton from 'react-github-btn'
 
 export function CloudBanner() {
   return (
     <>
       <div className="banner">
-        <div className="banner-content">
+        <div className="banner-content w-full flex justify-center items-center">
           <span className="desktop">
-            <p className="text">We're excited about what's coming in 2022!</p>
+            <p className="mr-5">Loving Tina? ⭐️ us on <a href="https://github.com/tinacms/tinacms" target="new">GitHub</a></p>
           </span>
-          <Link legacyBehavior href="/blog/tinacms-2022/">
-            <a className="link">
-              <span className="desktop">Read more</span>
-              <span className="mobile">From the blog: TinaCMS in 2022</span>
-              <IconRight />
-            </a>
-          </Link>
-        </div>
-        <div className="actions">
-          <ButtonGroup>
-            <Link legacyBehavior href="https://app.tina.io/">
-              <Button size="small" color="white">
-                Sign In
-              </Button>
-            </Link>
-            <Link legacyBehavior href="https://tina.io/docs/setup-overview/">
-              <Button size="small" color="blue">
-                Get Started
-              </Button>
-            </Link>
-          </ButtonGroup>
+          {/* @ts-ignore */}
+          <GitHubButton
+            href="https://github.com/tinacms/tinacms"
+            data-size="medium"
+            data-show-count="true"
+            aria-label="Star TinaCMS on GitHub"
+          >
+            Star
+          </GitHubButton>
         </div>
       </div>
       <style jsx>{`
-        .desktop {
-          display: none;
-        }
-
-        @media (min-width: 1200px) {
-          .desktop {
-            display: initial;
-          }
-          .mobile {
-            display: none;
-          }
-        }
-
-        .text {
-          display: flex;
-          align-items: center;
-        }
-
         .wordmark {
           display: inline-flex;
           align-items: center;
@@ -87,25 +58,8 @@ export function CloudBanner() {
           width: 100%;
 
           :global(a) {
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: inherit;
-            transition: opacity 150ms ease-out;
-            font-size: 1.125rem;
-            opacity: 0.7;
+            text-decoration: underline;
 
-            &:not(:hover) {
-              text-decoration: none;
-            }
-            &:hover {
-              opacity: 1;
-            }
-
-            @media (min-width: 1200px) {
-              margin-left: 1rem;
-            }
           }
 
           :global(em) {

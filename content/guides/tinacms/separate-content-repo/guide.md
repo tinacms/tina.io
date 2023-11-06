@@ -29,7 +29,7 @@ You might want to do this for a variety of reasons, such as:
 
 - You must have _both_ the "content repo" and the "website repo" checked out onto your local machine.
 - You must provide the location of your content repo in your Tina config (more about that below).
-- When making changes, you'll need to ensure you've pushed _both_ repos to Github, with the "content repo"
+- When making changes, you'll need to ensure you've pushed _both_ repos to GitHub, with the "content repo"
   changes first
 
 ## Create the website repository
@@ -76,7 +76,7 @@ From here you can add more fields to you content models in `tina/config.js`. [Vi
 
 Next we'll want to create a Tina Cloud project from our "content repo"
 
-Initialize Git in your content repo and push it to Github. From there [connect to Tina Cloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
+Initialize Git in your content repo and push it to GitHub. From there [connect to Tina Cloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
 
 Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
 
@@ -99,4 +99,4 @@ To learn more about Tina, take a look at the following resources:
 - [Tina Docs](https://tina.io/docs)
 - [Getting started guide](https://tina.io/guides/tina-cloud/starter/overview/)
 
-You can check out [Tina Github repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
+You can check out [Tina GitHub repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!

@@ -46,6 +46,6 @@ Keep in mind, TinaCMS's frontend is open source, so we are open to community add
 |                            | Ability to create folders in the UI                                      | In Review                                                                                                |
 |                            | Previews (for non-react based sites)                                     | Considering Support (<a href="https://github.com/tinacms/tinacms/discussions/3509">in some capacity</a>) |
 | **Git Providers:**         | GitLab                                                                   | Support planned                                                                                          |
-|                            | BitBucket                                                                | Considering support                                                                                      |
+|                            | Bitbucket                                                                | Considering support                                                                                      |
 |                            | Azure DevOps                                                             | Considering support                                                                                      |
 |                            | Ability to connect via SSH key                                           | Considering support                                                                                      |

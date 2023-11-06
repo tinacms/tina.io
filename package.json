@@ -23,7 +23,8 @@
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
     "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
     "deploy": "yarn build && yarn export",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.0",
@@ -38,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "@uiw/react-monacoeditor": "^3.4.5",
+    "@vercel/postgres": "^0.5.1",
     "airtable": "^0.9.0",
     "algoliasearch": "^4.0.0",
     "autoprefixer": "^10.4.12",

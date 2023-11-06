@@ -19,7 +19,7 @@ When you install Tina, your site gets a floating _edit_ icon in the corner that 
 
 ### Where does Tina store my content?
 
-Currently, Tina writes to Markdown and data files and commits to Git but it can be extended to write to other data sources (think, a WordPress database, Google Sheets, Airtable, etc). When running locally, Tina writes to the file system and if you're using [Tina Teams](http://tinacms.org/teams), it commits to your GitHub /GitLab repo.
+Currently, Tina writes to Markdown and data files and commits to Git but it can be extended to write to other data sources (think, a WordPress database, Google Sheets, Airtable, etc). When running locally, Tina writes to the file system and if you're using [Tina Teams](http://tinacms.org/teams), it commits to your GitHub/GitLab repo.
 
 ### Why Tina?
 

@@ -161,7 +161,7 @@ Since markdown is an open-format Tina does its best to handle the most common sy
 ### Unsupported elements
 
 While most markdown features are supported out of the box, Tina will ignore elements that it cannot handle. We _do not_ expect to support the full [CommonMark](https://commonmark.org/) and
-[Github Flavored Markdown](https://github.github.com/gfm/) specs. Be sure to voice your support for various rich-text features by reaching out through one of our [community channels](/community/)!
+[GitHub Flavored Markdown](https://github.github.com/gfm/) specs. Be sure to voice your support for various rich-text features by reaching out through one of our [community channels](/community/)!
 
 - Tables
 - Footnotes
