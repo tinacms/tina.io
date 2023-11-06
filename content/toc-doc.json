@@ -247,6 +247,10 @@
         "slug": "/docs/self-hosted/querying-data/"
       },
       {
+        "title": "Hosting the GraphQL API",
+        "slug": "/docs/self-hosted/graphql-endpoint/overview/"
+      },
+      {
         "title": "Hosting the Tina Backend",
         "items": [
           {
@@ -262,6 +266,10 @@
             "slug": "/docs/self-hosted/tina-backend/netlify-functions/"
           }
         ]
+      },
+      {
+        "title": "User Management",
+        "slug": "/docs/self-hosted/user-management"
       }
     ]
   },
