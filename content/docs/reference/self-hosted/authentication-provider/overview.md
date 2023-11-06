@@ -5,7 +5,7 @@ prev: null
 next: '/docs/reference/self-hosted/authentication-provider/next-auth'
 ---
 
-The concept of an "Authentication Provider" refers to how TinaCMS will authenticate and authorize a user. There are two places that will require changes when setting up an authentication provider.
+The concept of an "Auth Provider" refers to how TinaCMS will authenticate and authorize a user. There are two places that will require changes when setting up an auth provider.
 
 ## 1. The config file (tina/config.{ts,tsx,js})
 
@@ -56,10 +56,10 @@ export default (req, res) => {
 
 ## Pre-Built Authentication Providers
 
-- [AuthJS](/docs/reference/self-hosted/authentication-provider/next-auth)
+- [Auth.js](/docs/reference/self-hosted/authentication-provider/next-auth)
 - [Tina Cloud](/docs/reference/self-hosted/authentication-provider/tina-cloud)
 - [Clerk](/docs/reference/self-hosted/authentication-provider/clerk-auth)
 
-## Implementing an Authentication Provider
+## Implementing an Auth Provider
 
 See [Custom Auth Provider](/docs/reference/self-hosted/authentication-provider/bring-your-own) for more information on how to implement your own auth provider.

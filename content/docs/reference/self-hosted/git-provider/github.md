@@ -5,7 +5,7 @@ prev: '/docs/reference/self-hosted/git-provider/overview'
 next: '/docs/reference/self-hosted/git-provider/make-your-own'
 ---
 
-The GitHub Git Provider handles saving and deleting content to a GitHub hosted Git repository. It is configured as a parameter to the `createDatabase` function.
+The GitHub Git Provider handles saving and deleting content to a GitHub hosted Git repository. It is configured as a parameter to the `createDatabase` [function](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function).
 
 ## Adding the GitHub Git Provider
 
@@ -25,12 +25,12 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 })
 ```
 
-## Github Git Provider Options
+## GitHub Git Provider Options
 
 ### Required Parameters
 
 | Option   | Description                                                                               |
-| -------- | ----------------------------------------------------------------------------------------- |
+|----------|-------------------------------------------------------------------------------------------|
 | `branch` | The branch to save content to.                                                            |
 | `owner`  | The owner of the repo.                                                                    |
 | `repo`   | The repo to save content to.                                                              |
@@ -38,8 +38,8 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 
 ### Optional Parameters
 
-| Option           | Description                                                                                                                 |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `commitMessage`  | The commit message to use when saving content. Defaults to `Edited with TinaCMS`.                                           |
-| `rootPath`       | This path will be prefixed to all paths. Usually only used in monorepos. Optional.                                          |
+| Option           | Description                                                                                                                |
+|------------------|----------------------------------------------------------------------------------------------------------------------------|
+| `commitMessage`  | The commit message to use when saving content. Defaults to `Edited with TinaCMS`.                                          |
+| `rootPath`       | This path will be prefixed to all paths. Usually only used in monorepos. Optional.                                         |
 | `octokitOptions` | Options passed to the [Octokit constructor](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) |

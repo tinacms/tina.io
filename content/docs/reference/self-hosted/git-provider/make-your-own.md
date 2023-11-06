@@ -128,7 +128,7 @@ export class MyGitHubProvider implements GitProvider {
 
 ## Adding your Git Provider
 
-This can now be used as a prop to the `createDatabase` function.
+This can now be used as a prop to the `createDatabase` [function](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function).
 
 database.{ts,js}
 

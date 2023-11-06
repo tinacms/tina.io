@@ -23,6 +23,8 @@ You can do so by extending the `AbstractAuthProvider` class and implementing the
 
 ### Optional Functions
 
+`authorize`: This function is called when the user goes into `/admin` and is logged in. It is used to determine if the user is authorized to access the admin. If it returns a truthy value, the user is authorized. If it returns a falsy value the user is not authorized.
+
 `getSessionProvider`: Return a React context provider that wraps the TinaCMS UI.
 
 ```ts
@@ -95,7 +97,7 @@ export interface BackendAuthentication {
 }
 ```
 
-This Interface must be passed to the `authentication` prop of `TinaNodeBackend`. You can get the token from the request by calling `req.headers.authorization`.This token should be validated in the `isAuthorized` function.
+This interface must be passed to the `authentication` prop of `TinaNodeBackend`. You can get the token from the request by calling `req.headers.authorization`. This token should be validated in the `isAuthorized` function.
 
 ```ts
 const CustomBackendAuth = () => {
@@ -111,9 +113,9 @@ const CustomBackendAuth = () => {
 }
 ```
 
-For an example of how to do this, see the [AuthJS Backend]()
+For an example of how to do this, see the [Auth.js Backend](/docs/reference/self-hosted/authentication-provider/next-auth).
 
-Once you have created an object that implements the `BackendAuthentication` interface, you can pass it to the `authentication` prop of `TinaNodeBackend`
+Once you have created an object that implements the `BackendAuthentication` interface, you can pass it to the `authentication` prop of `TinaNodeBackend`.
 
 `/pages/api/tina/[...routes].{ts,js}`
 
