@@ -2,7 +2,7 @@
 id: '/docs/reference/self-hosted/authentication-provider/overview'
 title: Choosing an Authentication Provider
 prev: null
-next: '/docs/reference/self-hosted/authentication-provider/next-auth'
+next: '/docs/reference/self-hosted/authentication-provider/authjs'
 ---
 
 The concept of an "Auth Provider" refers to how TinaCMS will authenticate and authorize a user. There are two places that will require changes when setting up an auth provider.
@@ -56,7 +56,7 @@ export default (req, res) => {
 
 ## Pre-Built Authentication Providers
 
-- [Auth.js](/docs/reference/self-hosted/authentication-provider/next-auth)
+- [Auth.js](/docs/reference/self-hosted/authentication-provider/authjs)
 - [Tina Cloud](/docs/reference/self-hosted/authentication-provider/tina-cloud)
 - [Clerk](/docs/reference/self-hosted/authentication-provider/clerk-auth)
 

@@ -11,7 +11,7 @@ This doc will guide you through setting up our pre-configured self-hosted exampl
 
 - [NextJS](https://nextjs.org/)
 - [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [database adapter](/docs/reference/self-hosted/database-adapters/overview)
-- [NextAuth](/docs/reference/self-hosted/authentication-provider/next-auth) for its [auth provider](/docs/reference/self-hosted/authentication-providers/overview)
+- [NextAuth](/docs/reference/self-hosted/authentication-provider/authjs) for its [auth provider](/docs/reference/self-hosted/authentication-providers/overview)
 
 ## Deploy The Starter Template
 

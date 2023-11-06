@@ -1,5 +1,5 @@
 ---
-id: '/docs/reference/self-hosted/authentication-provider/next-auth'
+id: '/docs/reference/self-hosted/authentication-provider/clerk-auth'
 title: NextAuth Authentication Provider
 prev: '/docs/reference/self-hosted/authentication-provider/overview'
 next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'

@@ -113,7 +113,7 @@ const CustomBackendAuth = () => {
 }
 ```
 
-For an example of how to do this, see the [Auth.js Backend](/docs/reference/self-hosted/authentication-provider/next-auth).
+For an example of how to do this, see the [Auth.js Backend](/docs/reference/self-hosted/authentication-provider/authjs).
 
 Once you have created an object that implements the `BackendAuthentication` interface, you can pass it to the `authentication` prop of `TinaNodeBackend`.
 

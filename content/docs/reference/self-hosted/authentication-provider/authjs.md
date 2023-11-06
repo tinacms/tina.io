@@ -1,5 +1,5 @@
 ---
-id: '/docs/reference/self-hosted/authentication-provider/next-auth'
+id: '/docs/reference/self-hosted/authentication-provider/authjs'
 title: Auth.js Authentication Provider
 prev: '/docs/reference/self-hosted/authentication-provider/overview'
 next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
@@ -64,7 +64,7 @@ Create a file called `content/users/index.json` that contains the initial seed u
 }
 ```
 
-> After logging in, you can update the username and password 
+> After logging in, you can update the username and password
 
 ### Update Tina Backend
 

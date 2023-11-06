@@ -1,7 +1,7 @@
 ---
 title: Tina Cloud Authentication Provider
 id: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
-prev: '/docs/reference/self-hosted/authentication-provider/next-auth'
+prev: '/docs/reference/self-hosted/authentication-provider/authjs'
 next: '/docs/reference/self-hosted/authentication-provider/bring-your-own'
 ---
 
