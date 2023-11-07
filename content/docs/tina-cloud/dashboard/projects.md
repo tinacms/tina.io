@@ -1,6 +1,5 @@
 ---
 title: Projects
-id: /docs/tina-cloud/dashboard/projects
 next: /docs/tina-cloud/dashboard/users
 ---
 
@@ -100,13 +99,6 @@ can then be created to merge the changes to your desired branch.
 
 Clicking "Reindex" on a branch will completely reset the cached copy of that branch in your GitHub repository and initiate a reindexing process. Any changes only present in the cached copy will be lost. Before reindexing, you should ensure that any changes have
 been successfully pushed to GitHub using the Export Branch feature.
-
-##### Force Push
-
-If there are changes in the repository cache which cannot be automatically merged to your GitHub repository, it may be
-necessary to execute a force push. With a force push, the commit history on the remote will be forcefully overwritten
-with the history in the repository cache. This should only be used if you are confident that the changes in the
-TinaCMS repository cache are correct.
 
 ### API tokens
 
