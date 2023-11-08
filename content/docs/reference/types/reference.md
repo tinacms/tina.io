@@ -111,7 +111,7 @@ When querying for a `post` document, the `author` key in the response will conta
   type: 'reference',
   name: 'author',
   label: 'Author'
-  collectins: ['author']
+  collections: ['author']
 }
 ```
 
