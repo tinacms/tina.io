@@ -1,5 +1,6 @@
 ---
 title: User Management
+id: /docs/self-hosted/user-management/
 last_edited: '2023-11-02T04:00:00.000Z'
 prev: /docs/self-hosted/querying-data
 ---
@@ -32,10 +33,10 @@ Click on the user. Update the password and click the Require Password Change on 
 
 The default user collection consists of the following fields:
 
-* Username
-* Name
-* Email
-* Password
+- Username
+- Name
+- Email
+- Password
 
 The only required fields for a user collection are a password-type field (with `required: true`) and a string-type field marked with `uid: true, required: true` to indicate that it is a username. Additional fields can be added as needed.
 

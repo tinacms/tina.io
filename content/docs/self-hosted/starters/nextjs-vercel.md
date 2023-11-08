@@ -92,10 +92,4 @@ You will be able to view your starter on http://localhost:3000. To edit content 
 ## Adding Additional Users
 
 When you are testing TinaCMS locally, you don't need to be logged in to access the CMS.
-If you visit \<Your Production URL\>/admin, or if you run `yarn build` & `yarn start`, you will be required to login. If you want to add additional users or update a user's password, you can run the user management script:
-
-```shell
-yarn setup:users
-```
-
-If the KV_REST_API_URL & KV_REST_API_TOKEN variables are not set, you will be prompted for them the first time the script is executed. Once you have created a user with a password, they will be able to login to your production site, make changes, and have those updates persisted to your live site.
+If you visit \<Your Production URL\>/admin, or if you run `yarn build` & `yarn start`, you will be required to login. Check out the [User management docs](/docs/self-hosted/user-management/) for information on how to add additional users.
