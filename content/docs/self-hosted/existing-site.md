@@ -11,7 +11,13 @@ We offer a CLI init to quickly setup the backend on Next.js sites, or you can ta
 
 ## Using the CLI init command (Next.js Only)
 
-<!-- TODO: Add demo short video of using the init command -->
+> Prefer a video walkthrough? Check out this video:
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/Jq5yWF1c0aM" title="Adding Self Hosted TinaCMS to an existing site" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
 
 In the terminal, run:
 
