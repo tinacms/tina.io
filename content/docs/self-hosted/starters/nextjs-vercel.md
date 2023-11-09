@@ -53,7 +53,7 @@ openssl rand -hex 16
 
 ### Test Deployment
 
-At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you should be prompted to login. You can login with the **default username** of `admin` and **password** of `admin`. Once logged in you will be prompted to change your password.
+At this point you should be able to see your deployed starter site. If you add `/admin` to the URL, you should be prompted to login. You can login with the **default username** of `admin` and **password** of `admin`. Once logged in you will be prompted to change your password.
 
 ## Adding Additional Users
 
