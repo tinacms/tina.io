@@ -1,5 +1,5 @@
 ---
-title: Setting up the self-hosted Backend on an existing project
+title: Setting up the self-hosted backend on an existing project
 id: /docs/self-hosted/existing-site
 last_edited: '2023-07-07T04:00:00.000Z'
 next: /docs/self-hosted/querying-data
