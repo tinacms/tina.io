@@ -17,7 +17,9 @@ This doc will guide you through setting up our pre-configured self-hosted exampl
 
 You can deploy the [the self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_JAMES_REST_API_URL,KV_REST_API_JAMES_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
+<!-- TODO: update url to point to `main` once https://github.com/tinacms/tina-self-hosted-demo/pull/110 is merged -->
+
+<a target="_blank" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fself-host&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&amp;stores=%5B%7B%22type%22%3A%22kv%22%7D%5D"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
 
 This will:
 
@@ -41,7 +43,13 @@ A GitHub personal access token can be generated in your [GitHub developer settin
 
 #### `NEXTAUTH_SECRET`
 
-Random string used by NextAuth.js for JWT encryption
+Random string used by NextAuth.js for JWT encryption.
+
+Can be generated with the following command:
+
+```shell
+openssl rand -hex 16
+```
 
 ### Test Deployment
 
