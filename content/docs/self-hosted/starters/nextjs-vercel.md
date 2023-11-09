@@ -53,7 +53,12 @@ openssl rand -hex 16
 
 ### Test Deployment
 
-At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you should be prompted to login.
+At this point you'll be able to poke around with your new starter. If you add `/admin` to the URL, you should be prompted to login. You can login with the **default username** of `admin` and **password** of `admin`. Once logged in you will be prompted to change your password.
+
+## Adding Additional Users
+
+When you are testing TinaCMS locally, you don't need to be logged in to access the CMS.
+If you visit \<Your Production URL\>/admin, or if you run `yarn build` & `yarn start`, you will be required to login. Check out the [User management docs](/docs/self-hosted/user-management/) for information on how to add additional users.
 
 ## Local Development
 
