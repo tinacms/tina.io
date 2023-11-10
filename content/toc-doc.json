@@ -205,67 +205,54 @@
           {
             "slug": "/docs/tina-cloud/dashboard/organizations/",
             "title": "Organizations"
+          },
+          {
+            "slug": "/docs/tina-cloud/connecting-site/",
+            "title": "Connecting the Site"
+          },
+          {
+            "slug": "/docs/tina-cloud/api-versioning/",
+            "title": "API Versioning"
           }
         ]
       },
       {
-        "slug": "/docs/tina-cloud/connecting-site/",
-        "title": "Connecting the Site"
+        "title": "Self-Hosted",
+        "items": [
+          {
+            "title": "Introduction",
+            "slug": "/docs/self-hosted/overview/"
+          },
+          {
+            "title": "Getting Started",
+            "items": [
+              {
+                "title": "Deploy a (Next.js) Example Site",
+                "slug": "/docs/self-hosted/starters/nextjs-vercel/"
+              },
+              {
+                "title": "CLI Quick Start on an Existing site (Next.js only)",
+                "slug": "/docs/self-hosted/existing-site/"
+              },
+              {
+                "title": "Manual Setup (Agnostic)",
+                "slug": "/docs/self-hosted/manual-setup/"
+              }
+            ]
+          },
+          {
+            "title": "Querying Content",
+            "slug": "/docs/self-hosted/querying-data/"
+          },
+          {
+            "title": "User Management",
+            "slug": "/docs/self-hosted/user-management"
+          }
+        ]
       },
       {
         "slug": "/docs/tina-cloud/faq/",
         "title": "FAQ"
-      },
-      {
-        "slug": "/docs/tina-cloud/api-versioning/",
-        "title": "API Versioning"
-      }
-    ]
-  },
-  {
-    "title": "Self-hosting Tina",
-    "items": [
-      {
-        "title": "Introduction",
-        "slug": "/docs/self-hosted/overview/"
-      },
-      {
-        "title": "Getting Started",
-        "items": [
-          {
-            "title": "Self-Hosted Starter",
-            "slug": "/docs/self-hosted/starters/nextjs-vercel/"
-          },
-          {
-            "title": "Implementing on an Existing Site",
-            "slug": "/docs/self-hosted/existing-site/"
-          }
-        ]
-      },
-      {
-        "title": "Querying Content",
-        "slug": "/docs/self-hosted/querying-data/"
-      },
-      {
-        "title": "Hosting the Tina Backend",
-        "items": [
-          {
-            "title": "NextJS",
-            "slug": "/docs/self-hosted/tina-backend/nextjs/"
-          },
-          {
-            "title": "Vercel Serverless Functions",
-            "slug": "/docs/self-hosted/tina-backend/vercel-functions/"
-          },
-          {
-            "title": "Netlify Functions",
-            "slug": "/docs/self-hosted/tina-backend/netlify-functions/"
-          }
-        ]
-      },
-      {
-        "title": "User Management",
-        "slug": "/docs/self-hosted/user-management"
       }
     ]
   },
@@ -602,98 +589,25 @@
         "slug": "/docs/contextual-editing/tinafield/"
       },
       {
-        "title": "CMS Toolkit",
-        "items": [
-          {
-            "slug": "/docs/reference/toolkit/overview/",
-            "title": "Overview"
-          },
-          {
-            "slug": "/docs/reference/toolkit/cms/",
-            "title": "The CMS"
-          },
-          {
-            "slug": "/docs/reference/toolkit/forms/",
-            "title": "Forms"
-          },
-          {
-            "title": "Field Plugins",
-            "items": [
-              {
-                "slug": "/docs/reference/toolkit/fields/",
-                "title": "Overview"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/text/",
-                "title": "Text"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/textarea/",
-                "title": "Text Area"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/number/",
-                "title": "Number"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/image/",
-                "title": "Image"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/color/",
-                "title": "Color"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/toggle/",
-                "title": "Toggle"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/radio-group/",
-                "title": "Radio Group"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/select/",
-                "title": "Select"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/tags/",
-                "title": "Tags"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/list/",
-                "title": "List"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/group/",
-                "title": "Group"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/group-list/",
-                "title": "Group List"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/blocks/",
-                "title": "Blocks"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/date/",
-                "title": "Date & Time"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/markdown/",
-                "title": "Markdown"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/html/",
-                "title": "HTML"
-              }
-            ]
-          }
-        ]
-      },
-      {
         "title": "Self-Hosted Components",
         "items": [
+          {
+            "title": "Hosting the Tina Backend",
+            "items": [
+              {
+                "title": "NextJS",
+                "slug": "/docs/self-hosted/tina-backend/nextjs/"
+              },
+              {
+                "title": "Vercel Serverless Functions",
+                "slug": "/docs/self-hosted/tina-backend/vercel-functions/"
+              },
+              {
+                "title": "Netlify Functions",
+                "slug": "/docs/self-hosted/tina-backend/netlify-functions/"
+              }
+            ]
+          },
           {
             "title": "Git Providers",
             "items": [

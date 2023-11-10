@@ -35,7 +35,7 @@ When in local-mode, you **will not** need to login to enter edit-mode.
 
 Once you are ready to host your site in production and put editing behind authentication, you can self-host the CMS backend yourself or you can use TinaCloud's hosted backend.
 
-Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using Tina Cloud, Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Any changes that are saved by your editors will be committed to the configured branch in your GitHub repository.
+Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using [Tina Cloud](/docs/tina-cloud/dashboard/), Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Any changes that are saved by your editors will be committed to the configured branch in your GitHub repository.
 
 To start moving from local-mode to prod-mode, the next steps are to:
 

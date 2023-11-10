@@ -1,5 +1,5 @@
 ---
-title: Tina Cloud FAQ
+title: FAQ
 last_edited: '2022-01-24T15:50:19.525Z'
 ---
 
@@ -9,11 +9,10 @@ Tina Cloud is a hosted [datalayer](/docs/reference/content-api/datalayer) for Ti
 
 For more information, see [Tina Cloud Overview](/docs/tina-cloud/overview).
 
-## Where do I start?
+## Where do I get help?
 
-- Have a look at the updated [Tina Cloud docs](/docs/setup-overview/) and try out a starter.
-- [Sign up for Tina Cloud](https://app.tina.io/register)!
 - [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
+- For business inquiries contact info@tina.io
 
 ## Why do I need a database when using markdown?
 
