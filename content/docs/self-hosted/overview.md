@@ -32,7 +32,7 @@ export default (req, res) => {
 
 > Note: This is a Next.js example, but you can use TinaCMS with any framework.
 
-Your backend setup will be comprised of three main, configurable modules:
+The backend setup consists of three main, configurable modules:
 
 - [Auth Provider](/docs/self-hosted/authentication/overview)
   - Handles authentication and authorization for CMS operations.
@@ -45,7 +45,7 @@ Each module is designed to be standalone, meaning you have the option to replace
 
 ## Next Steps
 
-- Start from scratch by checking out the [Nextjs self hosted starter guide](/docs/self-hosted/starters/nextjs-vercel/).
+- Start from scratch by checking out the [Next.js self-hosted starter guide](/docs/self-hosted/starters/nextjs-vercel/).
 - Add TinaCMS to an existing project by following the [existing site setup](/docs/self-hosted/existing-site/).
 
 ## Join the TinaCMS Community

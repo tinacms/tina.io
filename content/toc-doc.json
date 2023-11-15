@@ -592,24 +592,28 @@
         "title": "Self-Hosted Components",
         "items": [
           {
-            "title": "Hosting the Tina Backend",
+            "title": "Overview",
+            "slug": "/docs/reference/self-hosted/overview/"
+          },
+          {
+            "title": "Backend Host",
             "items": [
               {
-                "title": "NextJS",
-                "slug": "/docs/self-hosted/tina-backend/nextjs/"
+                "title": "Next.js",
+                "slug": "/docs/reference/self-hosted/tina-backend/nextjs/"
               },
               {
                 "title": "Vercel Serverless Functions",
-                "slug": "/docs/self-hosted/tina-backend/vercel-functions/"
+                "slug": "/docs/reference/self-hosted/tina-backend/vercel-functions/"
               },
               {
                 "title": "Netlify Functions",
-                "slug": "/docs/self-hosted/tina-backend/netlify-functions/"
+                "slug": "/docs/reference/self-hosted/tina-backend/netlify-functions/"
               }
             ]
           },
           {
-            "title": "Git Providers",
+            "title": "Git Provider",
             "items": [
               {
                 "title": "Overview",
@@ -626,7 +630,7 @@
             ]
           },
           {
-            "title": "Database Adapters",
+            "title": "Database Adapter",
             "items": [
               {
                 "title": "Overview",
@@ -647,27 +651,27 @@
             ]
           },
           {
-            "title": "Authentication Providers",
+            "title": "Auth Provider",
             "items": [
               {
                 "title": "Overview",
-                "slug": "/docs/reference/self-hosted/authentication-provider/overview/"
+                "slug": "/docs/reference/self-hosted/auth-provider/overview/"
               },
               {
-                "title": "Auth.js",
-                "slug": "/docs/reference/self-hosted/authentication-provider/authjs/"
+                "title": "Default (Auth.js)",
+                "slug": "/docs/reference/self-hosted/auth-provider/authjs/"
               },
               {
-                "title": "Clerk Auth",
-                "slug": "/docs/reference/self-hosted/authentication-provider/clerk-auth/"
+                "title": "Tina Cloud",
+                "slug": "/docs/reference/self-hosted/auth-provider/tina-cloud/"
               },
               {
-                "title": "Using Tina Cloud for Authentication",
-                "slug": "/docs/reference/self-hosted/authentication-provider/tina-cloud/"
+                "title": "Clerk",
+                "slug": "/docs/reference/self-hosted/auth-provider/clerk-auth/"
               },
               {
-                "title": "Bring Your Own Authentication",
-                "slug": "/docs/reference/self-hosted/authentication-provider/bring-your-own/"
+                "title": "Bring Your Own Auth",
+                "slug": "/docs/reference/self-hosted/auth-provider/bring-your-own/"
               }
             ]
           }

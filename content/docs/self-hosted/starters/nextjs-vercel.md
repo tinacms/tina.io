@@ -11,11 +11,11 @@ This doc will guide you through setting up our pre-configured self-hosted exampl
 
 - [NextJS](https://nextjs.org/)
 - [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [database adapter](/docs/reference/self-hosted/database-adapters/overview)
-- [NextAuth](/docs/reference/self-hosted/authentication-provider/authjs) for its [auth provider](/docs/reference/self-hosted/authentication-providers/overview)
+- [NextAuth](/docs/reference/self-hosted/auth-provider/authjs) for its [auth provider](/docs/reference/self-hosted/auth-providers/overview)
 
 ## Deploy The Starter Template
 
-You can deploy the [the self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
+You can deploy the [self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
 
 <!-- TODO: update url to point to `main` once https://github.com/tinacms/tina-self-hosted-demo/pull/110 is merged -->
 
@@ -27,9 +27,9 @@ This will:
 - Create a new Vercel project with the starter code
 - Create a new Vercel KV store for the project
 
-### Setup KV Store
+### Setup Vercel KV Store
 
-In the initial Vercel project setup, you will be prompted to setup the Vercel KV store. Use the default `KV_` environment variables prefix.
+In the initial Vercel project setup, you will be prompted to set up the Vercel KV store. Use the default `KV_` environment variables prefix.
 
 ### Setup Environment Variables
 
