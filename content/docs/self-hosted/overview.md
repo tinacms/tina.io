@@ -34,7 +34,7 @@ export default (req, res) => {
 
 The backend setup consists of three main, configurable modules:
 
-- [Auth Provider](/docs/self-hosted/authentication/overview)
+- [Auth Provider](/docs/reference/self-hosted/auth-provider/overview)
   - Handles authentication and authorization for CMS operations.
 - [Database Adapter](/docs/reference/self-hosted/database-adapter/overview)
   - Handles indexing and interaction with the [database](/docs/tina-cloud/faq/#why-do-i-need-a-database-when-using-markdown) (e.g. MongoDB, Postgres, etc.)
