@@ -1,6 +1,6 @@
 ---
 title: User Management
-id: /docs/self-hosted/user-management/
+id: /docs/self-hosted/user-management
 last_edited: '2023-11-02T04:00:00.000Z'
 prev: /docs/self-hosted/querying-data
 ---
