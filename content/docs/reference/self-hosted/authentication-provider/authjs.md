@@ -117,7 +117,7 @@ This will allow you to test the authentication flow locally.
 yarn dev:prod
 ```
 
-Now you can open your browser and navigate to `http://localhost:3000/adnmin/index.html` and you should be redirected to the login page.
+Now you can open your browser and navigate to `http://localhost:3000/admin/index.html` and you should be redirected to the login page.
 
 ### Updating Your Password
 
