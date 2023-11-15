@@ -5,7 +5,7 @@ prev: '/docs/reference/self-hosted/auth-provider/overview'
 next: '/docs/reference/self-hosted/auth-provider/tina-cloud'
 ---
 
-The default (Auth.js) auth provider uses [Auth.js](https://authjs.dev/) and a user collection to authenticate and authorize users with your TinaCMS instance.
+The default (Auth.js) auth provider uses [Auth.js](https://authjs.dev/) and a user collection to authenticate and authorize users to your TinaCMS instance.
 
 ## Getting Started
 
