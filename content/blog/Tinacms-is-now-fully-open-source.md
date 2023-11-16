@@ -6,6 +6,8 @@ author: James O'Halloran
 prev: content/blog/Tina-CMS--Leveljs.md
 ---
 
+**TL;DR** TinaCMS is now fully open-source and easier to self-host. We also built a Next.js + TinaCMS starter site that can be hosted entirely on Vercel. 
+
 Earlier this year, we [released](/blog/self-hosted-datalayer/ "released") the first iteration of the self-hosted TinaCMS backend. The initial [demo](https://github.com/tinacms/tina-self-hosted-demo/tree/274c0d9ee004629ff0cef2539b56c88324abd8f8) relied on Tina Cloud for auth and used MongoDB for the [Data Layer](/blog/self-hosted-datalayer/). That was the first step in helping our users avoid vendor lock-in, but there were limitations, such as requiring a custom auth implementation when not using Tina Cloud and requiring MongoDB for the Data Layer.
 
 We initially released the self-hosted backend under a "source available" license. While this was a very permissive license, we still want developers to feel comfortable building on TinaCMS without fearing that they'll hit a ceiling.
