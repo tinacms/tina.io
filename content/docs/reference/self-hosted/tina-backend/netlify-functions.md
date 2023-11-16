@@ -13,43 +13,65 @@ Create a file called `netlify/functions/tina.{ts,js}` and add the following code
 
 ```ts
 // netlify/functions/tina.{ts,js}
+import express from 'express'
+import type { RequestHandler } from 'express'
+import cookieParser from 'cookie-parser'
+import ServerlessHttp from 'serverless-http'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { AuthJsBackendAuthProvider, TinaAuthJSOptions } from 'tinacms-authjs'
+import cors from 'cors'
+import dotenv from 'dotenv'
 
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+import { databaseClient } from '../../tina/__generated__/databaseClient'
 
-import databaseClient from '../../../tina/__generated__/databaseClient'
+dotenv.config()
+
+const app = express()
+
+app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+app.use(express.json())
+app.use(cookieParser())
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
-const handler = TinaNodeBackend({
-  authentication: isLocal
-    ? LocalBackendAuthentication()
-    : AuthJsBackendAuthentication({
+const tinaBackend = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
         authOptions: TinaAuthJSOptions({
-          databaseClient: databaseClient,
-          secret: process.env.NEXTAUTH_SECRET,
+          databaseClient,
+          secret: process.env.NEXTAUTH_SECRET!,
+          debug: true,
         }),
       }),
   databaseClient,
 })
 
-export default (req, res) => {
-  // Modify the request here if you need to
-  return handler(req, res)
-}
+app.post('/api/tina/*', async (req, res, next) => {
+  // Modify request if needed
+  tinaBackend(req, res, next)
+})
+
+app.get('/api/tina/*', async (req, res, next) => {
+  // Modify request if needed
+  tinaBackend(req, res, next)
+})
+
+export const handler = ServerlessHttp(app)
 ```
 
-Since Netlify Functions do not support catch all routes, you will need to add the following to your `vercel.json` file.
+Since Netlify Functions do not support catch all routes, you will need to add the following to your `netilfy.toml` file.
 
-```json
-{
-  "rewrites": [
-    {
-      "source": "/api/tina/:path*",
-      "destination": "/api/tina/backend"
-    }
-  ]
-}
+```toml
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/tina/*"
+  to = "/.netlify/functions/tina"
+  status = 200
+  force = true
 ```
 
 Next make sure to update your TinaCMS config to use the new endpoint.
@@ -63,14 +85,4 @@ export default defineConfig({
 })
 ```
 
-Next make sure to update your dev command to pass in the correct port so that both the backend and frontend are running on the same port.
-
-```json
-{
-  "scripts": {
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \" <Your Dev Command> --port $PORT\""
-  }
-}
-```
-
-Now you can run your site locally with `netlify dev`.
+Now you can run your site locally with the `netlify dev` command

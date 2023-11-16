@@ -13,65 +13,44 @@ If you want to see Vercel Functions in action, check out the [demo repo](https:/
 Create a file called `api/tina/backend.{ts,js}` and add the following code:
 
 ```ts
-import express from 'express'
-import type { RequestHandler } from 'express'
-import cookieParser from 'cookie-parser'
-import ServerlessHttp from 'serverless-http'
-import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
-import { AuthJsBackendAuthProvider, TinaAuthJSOptions } from 'tinacms-authjs'
-import cors from 'cors'
-import dotenv from 'dotenv'
+// `api/tina/backend.{ts,js}`
 
-import { databaseClient } from '../../tina/__generated__/databaseClient'
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
 
-dotenv.config()
-
-const app = express()
-
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
-app.use(express.json())
-app.use(cookieParser())
+import databaseClient from '../../../tina/__generated__/databaseClient'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
-const tinaBackend = TinaNodeBackend({
-  authProvider: isLocal
-    ? LocalBackendAuthProvider()
-    : AuthJsBackendAuthProvider({
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : AuthJsBackendAuthentication({
         authOptions: TinaAuthJSOptions({
-          databaseClient,
-          secret: process.env.NEXTAUTH_SECRET!,
-          debug: true,
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
         }),
       }),
   databaseClient,
 })
 
-app.post('/api/tina/*', async (req, res, next) => {
-  // Modify request if needed
-  tinaBackend(req, res, next)
-})
-
-app.get('/api/tina/*', async (req, res, next) => {
-  // Modify request if needed
-  tinaBackend(req, res, next)
-})
-
-export const handler = ServerlessHttp(app)
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
+}
 ```
 
-Add the following to your `vercel.json` file.
+Since Vercel Functions do not support catch all routes, you will need to add the following to your `vercel.json` file.
 
-```toml
-[functions]
-  node_bundler = "esbuild"
-
-[[redirects]]
-  from = "/api/tina/*"
-  to = "/.netlify/functions/tina"
-  status = 200
-  force = true
+```json
+{
+  "rewrites": [
+    {
+      "source": "/api/tina/:path*",
+      "destination": "/api/tina/backend"
+    }
+  ]
+}
 ```
 
 Next make sure to update your TinaCMS config to use the new endpoint.
@@ -85,4 +64,14 @@ export default defineConfig({
 })
 ```
 
-Now you can run your site locally with the `next dev` command
+Next make sure to update your dev command to pass in the correct port so that both the backend and frontend are running on the same port.
+
+```json
+{
+  "scripts": {
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \" <Your Dev Command> --port $PORT\""
+  }
+}
+```
+
+Now you can run your site locally with the `vercel dev` command

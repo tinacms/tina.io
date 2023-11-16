@@ -12,6 +12,14 @@ For users who do not wish to host their CMS backend on Tina Cloud, **we provide 
 
 > Want to jump into the code? Check out the [Self-hosted Starter Docs](/docs/self-hosted/starters/nextjs-vercel/).
 
+## What is the Tina Data Layer
+
+The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
+
+![TinaCMS GraphQL Data Layer](https://res.cloudinary.com/forestry-demo/image/upload/v1675375259/tinacms-data-layer_geyrv8.png 'TinaCMS Data Layer')
+
+[Check out the blog post for more info](/blog/self-hosted-datalayer/)
+
 ## How Does Self-hosting Work?
 
 When you opt to self-host TinaCMS's backend, you'll be configuring a single API function to act as the backend service. This function will expose a GraphQL endpoint for your content and handle all aspects of authentication and authorization.

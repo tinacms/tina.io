@@ -19,7 +19,7 @@ You can deploy the [self-hosted starter](https://github.com/tinacms/tina-self-ho
 
 <!-- TODO: update url to point to `main` once https://github.com/tinacms/tina-self-hosted-demo/pull/110 is merged -->
 
-<a target="_blank" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fself-host&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&amp;stores=%5B%7B%22type%22%3A%22kv%22%7D%5D"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
+<a target="_blank" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fself-host&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew&amp;stores=%5B%7B%22type%22%3A%22kv%22%7D%5D"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
 
 This will:
 
