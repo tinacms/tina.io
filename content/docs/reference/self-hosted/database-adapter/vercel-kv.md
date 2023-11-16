@@ -25,7 +25,6 @@ KV_REST_API_TOKEN=***
 ```ts
 //...
 import { RedisLevel } from 'upstash-redis-level'
-import { Redis } from '@upstash/redis'
 
 export default isLocal
   ? createLocalDatabase()
@@ -34,10 +33,10 @@ export default isLocal
 
       databaseAdapter: new RedisLevel({
         namespace: branch,
-        redis: new Redis({
+        redis: {
           url: process.env.KV_REST_API_URL || 'http://localhost:8079',
           token: process.env.KV_REST_API_TOKEN || 'example_token',
-        }),
+        },
         debug: process.env.DEBUG === 'true' || false,
       }),
     })
