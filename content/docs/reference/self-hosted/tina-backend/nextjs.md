@@ -1,7 +1,7 @@
 ---
 title: Hosting The Tina Backend on Next.js
-id: '/docs/self-hosted/tina-backend/nextjs'
-next: '/docs/self-hosted/tina-backend/vercel-functions'
+id: '/docs/reference/self-hosted/tina-backend/nextjs'
+next: '/docs/reference/self-hosted/tina-backend/vercel-functions'
 ---
 
 The Tina Backend is hosted in a single endpoint that is responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
@@ -15,17 +15,17 @@ You need to create an endpoint that can handle post requests. In this example we
 ```js
 // pages/api/tina/[...routes].{ts,js}
 
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
 
 import databaseClient from '../../../tina/__generated__/databaseClient'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
 const handler = TinaNodeBackend({
-  authentication: isLocal
-    ? LocalBackendAuthentication()
-    : AuthJsBackendAuthentication({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
         authOptions: TinaAuthJSOptions({
           databaseClient: databaseClient,
           secret: process.env.NEXTAUTH_SECRET,

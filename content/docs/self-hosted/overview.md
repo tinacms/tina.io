@@ -40,10 +40,10 @@ export default (req, res) => {
 
 > Note: This is a Next.js example, but you can use TinaCMS with any framework.
 
-Your backend setup will be comprised of three main, configurable modules:
+The backend setup consists of three main, configurable modules:
 
-- [Auth Provider](/docs/reference/self-hosted/authentication-provider/overview)
-  - Handles authentication and authorization for CMS operations.
+- [Auth Provider](/docs/reference/self-hosted/auth-provider/overview)
+  - Handles authentication and authorization for CMS operations. A default [Auth.js](/docs/reference/self-hosted/auth-provider/authjs) implementation backed by a user collection in your database is provided.
 - [Database Adapter](/docs/reference/self-hosted/database-adapter/overview)
   - Handles indexing and interaction with the [database](/docs/tina-cloud/faq/#why-do-i-need-a-database-when-using-markdown) (e.g. MongoDB, Postgres, etc.)
 - [Git Provider](/docs/reference/self-hosted/git-provider/overview)
@@ -53,8 +53,8 @@ Each module is designed to be standalone, meaning you have the option to replace
 
 ## Next Steps
 
-- Don't have an existing site? **check out the [Nextjs self hosted starter guide](/docs/self-hosted/starters/nextjs-vercel/)**.
-- Add TinaCMS to an existing project by **following the [existing site setup](/docs/self-hosted/existing-site/)**.
+- Start from scratch by checking out the [Next.js self-hosted starter guide](/docs/self-hosted/starters/nextjs-vercel/).
+- Add TinaCMS to an existing project by following the [existing site setup](/docs/self-hosted/existing-site/).
 
 ## Join the TinaCMS Community
 

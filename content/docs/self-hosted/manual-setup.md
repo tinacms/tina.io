@@ -5,9 +5,9 @@ last_edited: '2023-07-07T04:00:00.000Z'
 next: /docs/self-hosted/querying-data
 ---
 
-## 1. Choose a Git provider, database adapter, and authentication provider
+## 1. Choose a Git provider, database adapter, and auth provider
 
-You will need to choose a [Git provider](/docs/reference/self-hosted/git-provider/overview/), [database adapter](/docs/reference/self-hosted/database-adapter/overview/), and [auth provider](/docs/reference/self-hosted/authentication-provider/overview/). You can use any of the providers we have created or you can create your own. In the example below we will use GitHub, Vercel KV, and the TinaCMS Auth.js provider.
+You will need to choose a [Git provider](/docs/reference/self-hosted/git-provider/overview/), [database adapter](/docs/reference/self-hosted/database-adapter/overview/), and [auth provider](/docs/reference/self-hosted/auth-provider/overview/). You can use any of the providers we have created, or you can create your own. In the example below we will use GitHub, Vercel KV, and the TinaCMS Auth.js provider.
 
 If the Git provider, Database adapter, or Authentication provider you require is not available, you have the option to create your own. For assistance in this process, please refer to the documentation for self-hosted solutions, which provides detailed guidance.
 
@@ -82,7 +82,7 @@ export default isLocal
 
 ## 4. Host the Tina Backend
 
-You will need a [backend endpoint](/docs/self-hosted/tina-backend/nextjs) that hosts the GraphQL and auth api endpoints.
+You will need a [backend endpoint](/docs/reference/self-hosted/tina-backend/nextjs) that hosts the GraphQL and auth api endpoints.
 
 In this example we will show how to host the GraphQL API on Vercel. You can use any hosting provider you want (code may need to be adjusted to suit your chosen framework).
 
@@ -114,9 +114,7 @@ export default (req, res) => {
 }
 ```
 
-<!-- TODO: move backend docs to reference -->
-
-> For more info see [Tina Backend docs](/docs/self-hosted/tina-backend/nextjs)
+> For more info see [Backend Host](/docs/reference/self-hosted/tina-backend/nextjs)
 
 ## 5. Update the TinaCMS config
 
@@ -133,10 +131,10 @@ export default defineConfig({
 })
 ```
 
-Now you should be able to run your site and use TinaCMS to edit your content. Pleas see our [Hosting the API docs](/docs/self-hosted/graphql-endpoint/overview/) for more info on how to self-host TinaCMS.
+Now you should be able to run your site and use TinaCMS to edit your content. See our [Hosting the API docs](/docs/self-hosted/graphql-endpoint/overview/) for more info on how to self-host TinaCMS.
 
 ## Next Steps
 
 - [Querying Data](/docs/self-hosted/querying-data)
-- If you want to change your Git provider, database adapter, or authentication provider, check out the [reference](/docs/reference/self-hosted/overview/).
+- If you want to change your Git provider, database adapter, or auth provider, check out the [reference](/docs/reference/self-hosted/overview/).
 - Got questions? Feel ask in our [Discord](https://discord.com/invite/zumN63Ybpf)

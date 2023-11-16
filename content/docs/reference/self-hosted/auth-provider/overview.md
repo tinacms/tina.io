@@ -1,0 +1,74 @@
+---
+id: '/docs/reference/self-hosted/auth-provider/overview'
+title: Self-hosted Auth Provider Overview
+prev: null
+next: '/docs/reference/self-hosted/auth-provider/authjs'
+---
+
+The term "Auth Provider" refers to the TinaCMS component that handles authentication and authorization of users when self-hosting.
+
+The recommended auth provider for Tina is based on [Auth.js](https://authjs.dev/). It leverages a user collection
+in your database to store user information and uses the Auth.js api to handle authentication and authorization. By leveraging Auth.js,
+you can also easily add support for any Auth.js [Login Provider](https://authjs.dev/getting-started/providers) such as Auth0, GitHub, Google, etc.
+
+The auth provider is configured in two places when self-hosting:
+
+- The Tina Config
+- The Tina Backend
+
+## 1. Tina Config (tina/config.{ts,tsx,js})
+
+This is done by providing an [Auth Provider](/docs/reference/self-hosted/auth-provider/bring-your-own#) to the `authProvider` option in `defineConfig`.
+
+Example:
+
+```ts
+import { UsernamePasswordAuthJSProvider } from 'tinacms-authjs/dist/tinacms'
+import { LocalAuthProvider } from 'tinacms'
+
+export default defineConfig({
+  authProvider: isLocal
+    ? new LocalAuthProvider()
+    : new UsernamePasswordAuthJSProvider(),
+  //...
+})
+```
+
+## 2. Tina Backend
+
+`/api/tina/[...routes].{ts,js}`
+
+```ts
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
+}
+```
+
+## Pre-Built Auth Providers
+
+- [Default (Auth.js)](/docs/reference/self-hosted/auth-provider/authjs)
+- [Tina Cloud](/docs/reference/self-hosted/auth-provider/tina-cloud)
+- [Clerk](/docs/reference/self-hosted/auth-provider/clerk-auth)
+
+## Implementing an Auth Provider
+
+See [Custom Auth Provider](/docs/reference/self-hosted/auth-provider/bring-your-own) for more information on how to implement your own auth provider.
