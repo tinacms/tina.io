@@ -14,7 +14,7 @@ For users who do not wish to host their CMS backend on Tina Cloud, **we provide 
 
 ## What is the Tina Data Layer
 
-he Tina Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
+The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
 
 ![TinaCMS GraphQL Data Layer](https://res.cloudinary.com/forestry-demo/image/upload/v1675375259/tinacms-data-layer_geyrv8.png 'TinaCMS Data Layer')
 
