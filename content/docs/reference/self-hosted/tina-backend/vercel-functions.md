@@ -1,24 +1,24 @@
 ---
 title: Hosting The Tina Backend with Vercel Functions
-id: '/docs/self-hosted/tina-backend/vercel-functions'
-next: '/docs/self-hosted/tina-backend/netlify-functions'
+id: '/docs/reference/self-hosted/tina-backend/vercel-functions'
+next: '/docs/reference/self-hosted/tina-backend/netlify-functions'
 ---
 
-If you are not using Next.js but are using vercel to host your site, you can deploy the Tina Backend as a [vercel function](https://vercel.com/docs/functions/serverless-functions). This function will be responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
+If you are not using Next.js but are using Vercel to host your site, you can deploy the Tina Backend as a [Vercel Function](https://vercel.com/docs/functions/serverless-functions). This function will be responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
 
-If you want to see netlify functions in action, check out the [demo repo](https://github.com/tinacms/tina-self-hosted-static-demo)
+If you want to see Vercel Functions in action, check out the [demo repo](https://github.com/tinacms/tina-self-hosted-static-demo)
 
 ## Configuration
 
-Create a file called api/tina/backend.{ts,js} and add the following code:
+Create a file called `api/tina/backend.{ts,js}` and add the following code:
 
 ```ts
 import express from 'express'
 import type { RequestHandler } from 'express'
 import cookieParser from 'cookie-parser'
 import ServerlessHttp from 'serverless-http'
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { AuthJsBackendAuthentication, TinaAuthJSOptions } from 'tinacms-authjs'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { AuthJsBackendAuthProvider, TinaAuthJSOptions } from 'tinacms-authjs'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
@@ -36,9 +36,9 @@ app.use(cookieParser())
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
 const tinaBackend = TinaNodeBackend({
-  authentication: isLocal
-    ? LocalBackendAuthentication()
-    : AuthJsBackendAuthentication({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
         authOptions: TinaAuthJSOptions({
           databaseClient,
           secret: process.env.NEXTAUTH_SECRET!,

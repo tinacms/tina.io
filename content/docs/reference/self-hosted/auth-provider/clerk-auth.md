@@ -1,8 +1,8 @@
 ---
-id: '/docs/reference/self-hosted/authentication-provider/clerk-auth'
-title: NextAuth Authentication Provider
-prev: '/docs/reference/self-hosted/authentication-provider/overview'
-next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
+id: '/docs/reference/self-hosted/auth-provider/clerk-auth'
+title: Clerk Auth Provider
+prev: '/docs/reference/self-hosted/auth-provider/tina-cloud'
+next: '/docs/reference/self-hosted/auth-provider/bring-your-own'
 ---
 
 [Clerk](https://clerk.com) is a user management service which you can use with a self-hosted Tina setup.
@@ -61,7 +61,7 @@ export default defineConfig({
 
 Note that we're checking if the signed-in user's email exists in a hardcoded array. There are a few ways to do this in a more maintainable way:
 
-- Create an organization in Clerk, and check to see if the signed-in user is part of the org for this project
+- Create an organization in Clerk, and check to see if the signed-in user is part of the org for this project. Note that organizations are currently limited to 3 users on the free plan.
 - Create an ["allow-list"](https://clerk.com/docs/authentication/allowlist). Note that this is a paid feature.
 
 ## Update the Tina Backend
@@ -69,17 +69,17 @@ Note that we're checking if the signed-in user's email exists in a hardcoded arr
 Add the following to your `pages/api/tina/[...routes].{ts,js}` file
 
 ```ts
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { ClerkBackendAuthentication } from 'tinacms-clerk'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { ClerkBackendAuthProvider } from 'tinacms-clerk'
 
 import databaseClient from '../../../tina/__generated__/databaseClient'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
 const handler = TinaNodeBackend({
-  authentication: isLocal
-    ? LocalBackendAuthentication()
-    : ClerkBackendAuthentication({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : ClerkBackendAuthProvider({
         /**
          * For premium Clerk users, you can use restrictions
          * https://clerk.com/docs/authentication/allowlist

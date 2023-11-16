@@ -1,13 +1,13 @@
 ---
 title: Custom Auth Provider
-id: '/docs/reference/self-hosted/authentication-provider/bring-your-own'
-prev: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
+id: '/docs/reference/self-hosted/auth-provider/bring-your-own'
+prev: '/docs/reference/self-hosted/auth-provider/clerk-auth'
 next: null
 ---
 
-To self-host with a custom auth provider, you will need to do do two things.
+To self-host with a custom auth provider, you will need to do the following steps.
 
-## 1. Create a custom Authentication Provider Class
+## 1. Create a custom Auth Provider Class
 
 You can do so by extending the `AbstractAuthProvider` class and implementing the following functions:
 
@@ -66,12 +66,12 @@ export default defineConfig({
 })
 ```
 
-## 2. Add Authentication to the Tina Backend
+## 2. Add Auth to the Tina Backend
 
-`TinaNodeBackend` takes an `authentication` Prop.
+`TinaNodeBackend` takes an `authProvider` Prop.
 
 ```ts
-export interface BackendAuthentication {
+export interface BackendAuthProvider {
   initialize?: () => Promise<void>
   isAuthorized: (
     req: IncomingMessage,
@@ -97,7 +97,7 @@ export interface BackendAuthentication {
 }
 ```
 
-This interface must be passed to the `authentication` prop of `TinaNodeBackend`. You can get the token from the request by calling `req.headers.authorization`. This token should be validated in the `isAuthorized` function.
+This interface must be passed to the `authProvider` prop of `TinaNodeBackend`. You can get the token from the request by calling `req.headers.authorization`. This token should be validated in the `isAuthorized` function.
 
 ```ts
 const CustomBackendAuth = () => {
@@ -113,15 +113,15 @@ const CustomBackendAuth = () => {
 }
 ```
 
-For an example of how to do this, see the [Auth.js Backend](/docs/reference/self-hosted/authentication-provider/authjs).
+For an example of how to do this, see the [Auth.js Backend](/docs/reference/self-hosted/auth-provider/authjs).
 
-Once you have created an object that implements the `BackendAuthentication` interface, you can pass it to the `authentication` prop of `TinaNodeBackend`.
+Once you have created an object that implements the `BackendAuthProvider` interface, you can pass it to the `authProvider` prop of `TinaNodeBackend`.
 
 `/pages/api/tina/[...routes].{ts,js}`
 
 ```ts
 const handler = TinaNodeBackend({
-  authentication: isLocal ? LocalBackendAuthentication() : CustomBackendAuth(),
+  authProvider: isLocal ? LocalBackendAuthProvider() : CustomBackendAuth(),
   databaseClient,
 })
 ```

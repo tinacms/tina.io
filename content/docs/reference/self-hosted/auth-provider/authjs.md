@@ -1,11 +1,11 @@
 ---
-id: '/docs/reference/self-hosted/authentication-provider/authjs'
-title: Auth.js Authentication Provider
-prev: '/docs/reference/self-hosted/authentication-provider/overview'
-next: '/docs/reference/self-hosted/authentication-provider/tina-cloud'
+id: '/docs/reference/self-hosted/auth-provider/authjs'
+title: Default (Auth.js) Auth Provider
+prev: '/docs/reference/self-hosted/auth-provider/overview'
+next: '/docs/reference/self-hosted/auth-provider/tina-cloud'
 ---
 
-The Auth.js Auth Provider allows you to use [Auth.js](https://authjs.dev/) to authenticate users with your TinaCMS instance.
+The default (Auth.js) auth provider uses [Auth.js](https://authjs.dev/) and a user collection to authenticate and authorize users to your TinaCMS instance.
 
 ## Getting Started
 
@@ -71,18 +71,18 @@ Create a file called `content/users/index.json` that contains the initial seed u
 Update your `/api/tina/[...routes].{ts,js}` file to use the Auth.js backend.
 
 ```ts
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
 
-import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
 
 import databaseClient from '../../../tina/__generated__/databaseClient'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
 const handler = TinaNodeBackend({
-  authentication: isLocal
-    ? LocalBackendAuthentication()
-    : AuthJsBackendAuthentication({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
         authOptions: TinaAuthJSOptions({
           databaseClient: databaseClient,
           secret: process.env.NEXTAUTH_SECRET,
