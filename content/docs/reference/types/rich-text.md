@@ -163,7 +163,6 @@ Since markdown is an open-format Tina does its best to handle the most common sy
 While most markdown features are supported out of the box, Tina will ignore elements that it cannot handle. We _do not_ expect to support the full [CommonMark](https://commonmark.org/) and
 [GitHub Flavored Markdown](https://github.github.com/gfm/) specs. Be sure to voice your support for various rich-text features by reaching out through one of our [community channels](/community/)!
 
-- Tables
 - Footnotes
 - Code blocks via indentation (use ` ``` ` instead)
 - Strikethrough
@@ -208,6 +207,52 @@ Will be transformed to:
 
 ```
 * My blockquote
+```
+
+## Markdown tables
+
+<div class="short-code-warning">
+  <div>
+    <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a></p>
+  </div>
+
+  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
+  </svg>
+</div>
+
+Tables are supported through a custom template which is exported from `tinacms`. To use it, import it and provide it as a `template` for your `rich-text` field:
+
+```ts
+import { tinaTableTemplate } from 'tinacms'
+
+{
+  type: 'rich-text',
+  label: 'Body',
+  name: '_body',
+  templates: [
+    tinaTableTemplate,
+  ]
+}
+```
+
+Render it with the `table` component in `<TinaMarkdown>`. Note that the table cell's `value` is a rich-text element so should be rendered with a nested `<TinaMarkdown>` component:
+
+```tsx
+
+const MyTable = props => <table>
+  {props.tableRows.map((tableRow) => (
+    <tr>
+      {tableRow.tableCells.map((tableCell) => (
+        <td>
+          <TinaMarkdown content={tableCell.value} />
+        </td>
+      ))}
+    </tr>
+  ))}
+</table>
+
+<TinaMarkdown components={{ table: (props) => <MyTable {...props} /> }} />
 ```
 
 ## Custom shortcode syntax
