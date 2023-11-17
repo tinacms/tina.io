@@ -15,6 +15,12 @@ This doc will guide you through setting up our pre-configured self-hosted exampl
 
 ## Deploy The Starter Template
 
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/DAJpnjkLBbM" title="Adding Self Hosted TinaCMS to an existing site" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 You can deploy the [self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using our preconfigured Vercel template:
 
 <!-- TODO: update url to point to `main` once https://github.com/tinacms/tina-self-hosted-demo/pull/110 is merged -->
