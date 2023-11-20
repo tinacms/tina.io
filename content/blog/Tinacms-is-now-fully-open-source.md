@@ -1,7 +1,7 @@
 ---
 title: TinaCMS is Now Fully Open-Source
-date: '2023-11-15T05:00:00.000Z'
-last_edited: '2023-11-15T05:00:00.000Z'
+date: '2023-11-20T05:00:00.000Z'
+last_edited: '2023-11-20T05:00:00.000Z'
 author: James O'Halloran
 prev: content/blog/Tina-CMS--Leveljs.md
 ---
@@ -22,7 +22,7 @@ To test self-hosting TinaCMS independently of Tina Cloud, we put together a demo
 
 Try it out with our NextJS starter:
 
-<Button link="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fmain&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew&amp;stores=%5B%7B%22type%22%3A%22kv%22%7D%5D" label="Deploy to Vercel" />
+<Button link="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fmain&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D" label="Deploy to Vercel" />
 
 ## Does self-hosted TinaCMS require Next.js / Vercel?
 
