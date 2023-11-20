@@ -18,7 +18,7 @@ The `router` property is used by the CMS's Document List to navigate to a docume
 router: ({ collection: Collection, document: Document }) => string | undefined
 ```
 
-The `router` property is a function function, that is run when a document is clicked within a Document List:
+The `router` property is a function, that is run when a document is clicked within a Document List:
 
 - If `router` returns a `string`, the `string` is used as the document's route rather than the default.
 - If `router` returns `undefined`, the user is navigated to the document's basic editor.
