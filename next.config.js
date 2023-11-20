@@ -4,6 +4,18 @@ const withSvgr = require('next-svgr')
 
 require('dotenv').config()
 
+const isStatic = process.env.EXPORT_MODE === 'static'
+
+/**
+ * @type {import('next').NextConfig}
+ */
+let extraConfig = {}
+
+if (isStatic) {
+  console.log('Exporting static site')
+  extraConfig.output = 'export'
+}
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -12,6 +24,7 @@ const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
 
 const config = {
+  ...extraConfig,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
     remotePatterns: [
