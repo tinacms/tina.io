@@ -1,0 +1,88 @@
+---
+title: Hosting The Tina Backend on Netlify Functions
+id: '/docs/reference/self-hosted/tina-backend/netlify-functions'
+---
+
+If you are not using Next.js but are using Netlify to host your site, you can deploy the Tina Backend as a [Netlify function](https://www.netlify.com/platform/core/functions/). This function will be responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
+
+If you want to see Netlify functions in action, check out the [demo repo](https://github.com/tinacms/tina-self-hosted-static-demo)
+
+## Configuration
+
+Create a file called `netlify/functions/tina.{ts,js}` and add the following code:
+
+```ts
+// netlify/functions/tina.{ts,js}
+import express from 'express'
+import type { RequestHandler } from 'express'
+import cookieParser from 'cookie-parser'
+import ServerlessHttp from 'serverless-http'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { AuthJsBackendAuthProvider, TinaAuthJSOptions } from 'tinacms-authjs'
+import cors from 'cors'
+import dotenv from 'dotenv'
+
+import { databaseClient } from '../../tina/__generated__/databaseClient'
+
+dotenv.config()
+
+const app = express()
+
+app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+app.use(express.json())
+app.use(cookieParser())
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const tinaBackend = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
+        authOptions: TinaAuthJSOptions({
+          databaseClient,
+          secret: process.env.NEXTAUTH_SECRET!,
+          debug: true,
+        }),
+      }),
+  databaseClient,
+})
+
+app.post('/api/tina/*', async (req, res, next) => {
+  // Modify request if needed
+  tinaBackend(req, res, next)
+})
+
+app.get('/api/tina/*', async (req, res, next) => {
+  // Modify request if needed
+  tinaBackend(req, res, next)
+})
+
+export const handler = ServerlessHttp(app)
+```
+
+Since Netlify Functions do not support catch all routes, you will need to add the following to your `netilfy.toml` file.
+
+```toml
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/tina/*"
+  to = "/.netlify/functions/tina"
+  status = 200
+  force = true
+```
+
+Next make sure to update your TinaCMS config to use the new endpoint.
+
+```js
+// tina/config.{js,ts}
+export default defineConfig({
+  // This is the url to your graphql endpoint
+  contentApiUrlOverride: '/api/tina/gql',
+  //...
+})
+```
+
+Now you can run your site locally with the `netlify dev` command

@@ -3,7 +3,9 @@ title: Search Overview
 last_edited: '2023-06-08T04:00:00.000Z'
 ---
 
-TinaCMS provides built-in search functionality for content. This is useful for allowing editors to quickly finding content in a site. Tina Cloud's content search is powered by [Fergus McDowall](https://github.com/fergiemcdowall "Fergus McDowall")'s [search-index](https://www.npmjs.com/package/search-index "search-index") library.
+TinaCMS provides built-in search functionality for content. This is useful for allowing editors to quickly finding content in a site. Tina Cloud's content search is powered by [Fergus McDowall](https://github.com/fergiemcdowall 'Fergus McDowall')'s [search-index](https://www.npmjs.com/package/search-index 'search-index') library.
+
+> Note: Search is not currently supported in self-hosted Tina.
 
 ## Configuration
 
@@ -15,15 +17,15 @@ export default defineConfig({
   schema: {
     collections: [
       // Array of collections
-    ]
+    ],
   },
   search: {
     tina: {
       indexerToken: '<Your Search Token>',
-      stopwordLanguages: ['eng']
+      stopwordLanguages: ['eng'],
     },
     indexBatchSize: 100,
-    maxSearchIndexFieldLength: 100
+    maxSearchIndexFieldLength: 100,
   },
   //.. Other config
 })
@@ -31,12 +33,12 @@ export default defineConfig({
 
 ### Definition
 
-| Property          | Description                                                                                  |
-| ----------------- |----------------------------------------------------------------------------------------------|
-| `search.tina.indexerToken` | Tina Cloud search token (*required*) |
-| `search.tina.stopwordLanguages` | Optional array of string stopword languages. Defaults to `['eng']`. See the [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub repository for a full list of supported languages. |
-| `search.indexBatchSize`   | Used by the indexing process to determine the number of documents to index per request. Defaults to `100`. |
-| `search.maxSearchIndexFieldLength` | For variable length text fields, this controls how much of the text is considered when indexing. A higher value will increase the indexing time and size of the search index. Defaults to `100` characters.|
+| Property                           | Description                                                                                                                                                                                                 |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `search.tina.indexerToken`         | Tina Cloud search token (_required_)                                                                                                                                                                        |
+| `search.tina.stopwordLanguages`    | Optional array of string stopword languages. Defaults to `['eng']`. See the [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub repository for a full list of supported languages.  |
+| `search.indexBatchSize`            | Used by the indexing process to determine the number of documents to index per request. Defaults to `100`.                                                                                                  |
+| `search.maxSearchIndexFieldLength` | For variable length text fields, this controls how much of the text is considered when indexing. A higher value will increase the indexing time and size of the search index. Defaults to `100` characters. |
 
 ## Building the search index
 

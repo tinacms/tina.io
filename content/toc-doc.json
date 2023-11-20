@@ -179,7 +179,7 @@
         "title": "Overview"
       },
       {
-        "title": "Tina Cloud Dashboard",
+        "title": "Tina Cloud",
         "items": [
           {
             "slug": "/docs/tina-cloud/dashboard/",
@@ -205,24 +205,54 @@
           {
             "slug": "/docs/tina-cloud/dashboard/organizations/",
             "title": "Organizations"
+          },
+          {
+            "slug": "/docs/tina-cloud/connecting-site/",
+            "title": "Connecting the Site"
+          },
+          {
+            "slug": "/docs/tina-cloud/api-versioning/",
+            "title": "API Versioning"
           }
         ]
       },
       {
-        "slug": "/docs/tina-cloud/connecting-site/",
-        "title": "Connecting the Site"
+        "title": "Self-Hosted",
+        "items": [
+          {
+            "title": "Introduction",
+            "slug": "/docs/self-hosted/overview/"
+          },
+          {
+            "title": "Getting Started",
+            "items": [
+              {
+                "title": "Deploy a (Next.js) Example Site",
+                "slug": "/docs/self-hosted/starters/nextjs-vercel/"
+              },
+              {
+                "title": "CLI Quick Start on an Existing site (Next.js only)",
+                "slug": "/docs/self-hosted/existing-site/"
+              },
+              {
+                "title": "Manual Setup (Agnostic)",
+                "slug": "/docs/self-hosted/manual-setup/"
+              }
+            ]
+          },
+          {
+            "title": "Querying Content",
+            "slug": "/docs/self-hosted/querying-data/"
+          },
+          {
+            "title": "User Management",
+            "slug": "/docs/self-hosted/user-management/"
+          }
+        ]
       },
       {
         "slug": "/docs/tina-cloud/faq/",
         "title": "FAQ"
-      },
-      {
-        "slug": "/docs/tina-cloud/api-versioning/",
-        "title": "API Versioning"
-      },
-      {
-        "slug": "/docs/self-hosted/overview/",
-        "title": "Self Hosted Tina"
       }
     ]
   },
@@ -559,90 +589,89 @@
         "slug": "/docs/contextual-editing/tinafield/"
       },
       {
-        "title": "CMS Toolkit",
+        "title": "Self-Hosted Components",
         "items": [
           {
-            "slug": "/docs/reference/toolkit/overview/",
-            "title": "Overview"
+            "title": "Overview",
+            "slug": "/docs/reference/self-hosted/overview/"
           },
           {
-            "slug": "/docs/reference/toolkit/cms/",
-            "title": "The CMS"
-          },
-          {
-            "slug": "/docs/reference/toolkit/forms/",
-            "title": "Forms"
-          },
-          {
-            "title": "Field Plugins",
+            "title": "Backend Host",
             "items": [
               {
-                "slug": "/docs/reference/toolkit/fields/",
-                "title": "Overview"
+                "title": "Next.js",
+                "slug": "/docs/reference/self-hosted/tina-backend/nextjs/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/text/",
-                "title": "Text"
+                "title": "Vercel Serverless Functions",
+                "slug": "/docs/reference/self-hosted/tina-backend/vercel-functions/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/textarea/",
-                "title": "Text Area"
+                "title": "Netlify Functions",
+                "slug": "/docs/reference/self-hosted/tina-backend/netlify-functions/"
+              }
+            ]
+          },
+          {
+            "title": "Git Provider",
+            "items": [
+              {
+                "title": "Overview",
+                "slug": "/docs/reference/self-hosted/git-provider/overview/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/number/",
-                "title": "Number"
+                "title": "GitHub",
+                "slug": "/docs/reference/self-hosted/git-provider/github/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/image/",
-                "title": "Image"
+                "title": "Bring Your Own Git Provider",
+                "slug": "/docs/reference/self-hosted/git-provider/make-your-own/"
+              }
+            ]
+          },
+          {
+            "title": "Database Adapter",
+            "items": [
+              {
+                "title": "Overview",
+                "slug": "/docs/reference/self-hosted/database-adapter/overview/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/color/",
-                "title": "Color"
+                "title": "Vercel KV",
+                "slug": "/docs/reference/self-hosted/database-adapter/vercel-kv/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/toggle/",
-                "title": "Toggle"
+                "title": "Mongo DB",
+                "slug": "/docs/reference/self-hosted/database-adapter/mongodb/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/radio-group/",
-                "title": "Radio Group"
+                "title": "Bring Your Own  Database Adapter",
+                "slug": "/docs/reference/self-hosted/database-adapter/make-your-own/"
+              }
+            ]
+          },
+          {
+            "title": "Auth Provider",
+            "items": [
+              {
+                "title": "Overview",
+                "slug": "/docs/reference/self-hosted/auth-provider/overview/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/select/",
-                "title": "Select"
+                "title": "Default (Auth.js)",
+                "slug": "/docs/reference/self-hosted/auth-provider/authjs/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/tags/",
-                "title": "Tags"
+                "title": "Tina Cloud",
+                "slug": "/docs/reference/self-hosted/auth-provider/tina-cloud/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/list/",
-                "title": "List"
+                "title": "Clerk",
+                "slug": "/docs/reference/self-hosted/auth-provider/clerk-auth/"
               },
               {
-                "slug": "/docs/reference/toolkit/fields/group/",
-                "title": "Group"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/group-list/",
-                "title": "Group List"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/blocks/",
-                "title": "Blocks"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/date/",
-                "title": "Date & Time"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/markdown/",
-                "title": "Markdown"
-              },
-              {
-                "slug": "/docs/reference/toolkit/fields/html/",
-                "title": "HTML"
+                "title": "Bring Your Own Auth",
+                "slug": "/docs/reference/self-hosted/auth-provider/bring-your-own/"
               }
             ]
           }

@@ -221,6 +221,12 @@ export function MarkdownContent({
       remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
       skipHtml={skipHtml ? skipHtml : false}
       components={{
+        ul: ({ node, ...props }) => {
+          return <ul className="list-disc ml-6" {...props} />
+        },
+        ol: ({ node, ...props }) => {
+          return <ul className="list-decimal ml-6" {...props} />
+        },
         pre({ node, ...props }) {
           return <>{props.children}</>
         },

@@ -1,0 +1,45 @@
+---
+title: Vercel KV Database Adapter (Upstash Redis)
+id: '/docs/reference/self-hosted/database-adapter/vercel-kv'
+prev: '/docs/reference/self-hosted/database-adapter/overview'
+next: '/docs/reference/self-hosted/database-adapter/mongodb'
+---
+
+The Vercel KV database adapter allows you to use the [Vercel KV](https://vercel.com/docs/storage/vercel-kv) database with Tina. This adapter uses the [Upstash Redis client](https://www.npmjs.com/package/@upstash/redis), allowing it to also work with [Upstash Redis](https://docs.upstash.com/redis) as well.
+
+> Looking for the code? Check out the [GitHub repository](https://github.com/tinacms/upstash-redis-level).
+
+To get started, you will need to set up some environment variables.
+
+First copy your values from the Vercel or Upstash dashboard.
+
+![Vercel Dashboard](https://res.cloudinary.com/forestry-demo/image/upload/v1690998148/tina-io/docs/self-hosted/Screenshot_2023-08-02_at_1.29.58_PM.png)
+
+Then add the following environment variables to your project:
+
+```env
+KV_REST_API_URL=***
+KV_REST_API_TOKEN=***
+```
+
+## Create the database adapter
+
+```ts
+//...
+import { RedisLevel } from 'upstash-redis-level'
+
+export default isLocal
+  ? createLocalDatabase()
+  : createDatabase({
+      // ...
+
+      databaseAdapter: new RedisLevel({
+        namespace: branch,
+        redis: {
+          url: process.env.KV_REST_API_URL || 'http://localhost:8079',
+          token: process.env.KV_REST_API_TOKEN || 'example_token',
+        },
+        debug: process.env.DEBUG === 'true' || false,
+      }),
+    })
+```

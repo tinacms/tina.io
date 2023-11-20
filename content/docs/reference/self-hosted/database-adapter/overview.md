@@ -1,0 +1,47 @@
+---
+title: Choosing a Database Adapter
+id: /docs/reference/self-hosted/database-adapter/overview
+prev: null
+next: /docs/reference/self-hosted/database-adapter/vercel-kv
+---
+
+## Overview
+
+A database adapter provides an interface between the Tina database and the underlying database implementation. It implements a limited subset of functionality required by a sorted key-value store, which can be provided by almost any database implementation. We currently have database adapters for the following database implementations:
+
+- [Vercel KV](/docs/reference/self-hosted/database-adapter/vercel-kv)
+- [MongoDB](/docs/reference/self-hosted/database-adapter/mongodb)
+
+We also plan to support additional database adapters for common databases in the future.
+
+Configuring a database adapter can be done in the `database.{ts,js}` file by passing it to the `createDatabase` function.
+
+```ts
+// ...
+
+export isLocal ? createLocalDatabase() : createDatabase({
+    // ...
+    databaseAdapter: new DatabaseAdapter()
+})
+```
+
+## createDatabase Function
+
+This is a factory function that creates a new instance of the TinaCMS Database. It takes a [`databaseAdapter`](/docs/reference/self-hosted/database-adapter/overview/) and a [`gitProvider`](/docs/reference/self-hosted/git-provider/overview/).
+
+| Parameter             | Description                                                                                                                                                                                                                                                                                    |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `databaseAdapter`     | The [database adapter](/docs/reference/self-hosted/database-adapter/overview) to use. (Required)                                                                                                                                                                                               |
+| `gitProvider`         | The [git provider](/docs/reference/self-hosted/git-provider/overview) to use. (Required)                                                                                                                                                                                                       |
+| `tinaDirectory`       | The directory used to store tina files. Defaults to `tina` (Optional)                                                                                                                                                                                                                          |
+| `bridge`              | The bridge used to index the content to the database adapter. This defaults to the FileSystem. The `bridge` is a more advanced use case if you want to index from a different source other than the filesystem. Please [reach out on Discord](https://discord.gg/zumN63Ybpf) for further help. |
+| `indexStatusCallback` | async function called to report the status of the current indexing operation. (Optional)                                                                                                                                                                                                       |
+| `namespace`           | Specifies the namespace for the current indexed content. If specified, this will usually be an environment variable with the name of the current branch.                                                                                                                                       |
+
+## createLocalDatabase Function
+
+This is a factory function that creates a database that can be used for local development or [static builds](/docs/cli-overview/#examples).
+
+It uses a local in-memory database adapter and a file-system Git provider that only writes changes to the file-system without committing them.
+
+(_does not take any parameter_)

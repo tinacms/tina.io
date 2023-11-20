@@ -1,0 +1,52 @@
+---
+title: Hosting The Tina Backend on Next.js
+id: '/docs/reference/self-hosted/tina-backend/nextjs'
+next: '/docs/reference/self-hosted/tina-backend/vercel-functions'
+---
+
+The Tina Backend is hosted in a single endpoint that is responsible for handling all TinaCMS requests. This includes the GraphQL API, authentication, and authorization.
+
+The handler can be created with a `TinaNodeBackend` function. This function takes a `TinaNodeBackendOptions` object as an argument.
+
+## Configuration
+
+You need to create an endpoint that can handle post requests. In this example we will use Next.js api routes, but you can use any framework you want.
+
+```js
+// pages/api/tina/[...routes].{ts,js}
+
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // Modify the request here if you need to
+  return handler(req, res)
+}
+```
+
+Next make sure to update your TinaCMS config to use the new endpoint.
+
+```js
+// tina/config.{js,ts}
+export default defineConfig({
+  // This is the url to your graphql endpoint
+  contentApiUrlOverride: '/api/tina/gql',
+  //...
+})
+```
