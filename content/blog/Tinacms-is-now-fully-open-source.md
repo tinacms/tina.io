@@ -6,7 +6,7 @@ author: James O'Halloran
 prev: content/blog/Tina-CMS--Leveljs.md
 ---
 
-**TL;DR** TinaCMS is now fully open-source and easier to self-host. We also built a Next.js + TinaCMS starter site that can be hosted entirely on Vercel.
+**TL;DR** TinaCMS is now fully open-source and easier to self-host. We also built a [Next.js + TinaCMS demo site](https://github.com/tinacms/tina-self-hosted-demo) that can be hosted entirely on Vercel.
 
 Earlier this year, we [released](/blog/self-hosted-datalayer/ "released") the first iteration of the self-hosted TinaCMS backend. The initial [demo](https://github.com/tinacms/tina-self-hosted-demo/tree/274c0d9ee004629ff0cef2539b56c88324abd8f8) relied on Tina Cloud for auth and used MongoDB for the [Data Layer](/blog/self-hosted-datalayer/). That was the first step in helping our users avoid vendor lock-in, but there were limitations, such as requiring a custom auth implementation when not using Tina Cloud and requiring MongoDB for the Data Layer.
 
@@ -22,11 +22,11 @@ To test self-hosting TinaCMS independently of Tina Cloud, we put together a demo
 
 Try it out with our NextJS starter:
 
-<Button link="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fmain&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew&amp;stores=%5B%7B%22type%22%3A%22kv%22%7D%5D" label="Deploy" />
+<Button link="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fmain&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew&amp;stores=%5B%7B%22type%22%3A%22kv%22%7D%5D" label="Deploy to Vercel" />
 
 ## Does self-hosted TinaCMS require Next.js / Vercel?
 
-While our self-hosted Next.js demo provides an easy way to get started self-hosting using Vercel, self-hosted Tina does not require Vercel and can be used with any framework that is supported by Tina. The main consideration when self-hosting is the backend API which provides the GraphQL and auth endpoints. The backend API can be hosted on any platform that supports Express request handlers, including AWS, Google Cloud, and Netlify.
+While our self-hosted Next.js demo provides an easy way to get started on Vercel, self-hosted Tina **does not require Vercel** and can be used with **any framework** that is supported by Tina. The main consideration when self-hosting is the backend API which provides the GraphQL and auth endpoints. The backend API can be hosted on any platform that supports Express request handlers, including AWS, Google Cloud, and Netlify.
 
 ## Is self-hosted TinaCMS open-source?
 
