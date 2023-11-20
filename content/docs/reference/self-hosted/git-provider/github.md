@@ -7,6 +7,8 @@ next: '/docs/reference/self-hosted/git-provider/make-your-own'
 
 The GitHub Git Provider handles saving and deleting content to a GitHub hosted Git repository. It is configured as a parameter to the `createDatabase` [function](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function).
 
+> Looking for the code? Check out the [GitHub repository](https://github.com/tinacms/tinacms/tree/main/packages/tinacms-gitprovider-github).
+
 ## Adding the GitHub Git Provider
 
 ```ts
@@ -30,7 +32,7 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 ### Required Parameters
 
 | Option   | Description                                                                               |
-|----------|-------------------------------------------------------------------------------------------|
+| -------- | ----------------------------------------------------------------------------------------- |
 | `branch` | The branch to save content to.                                                            |
 | `owner`  | The owner of the repo.                                                                    |
 | `repo`   | The repo to save content to.                                                              |
@@ -39,7 +41,7 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 ### Optional Parameters
 
 | Option           | Description                                                                                                                |
-|------------------|----------------------------------------------------------------------------------------------------------------------------|
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `commitMessage`  | The commit message to use when saving content. Defaults to `Edited with TinaCMS`.                                          |
 | `rootPath`       | This path will be prefixed to all paths. Usually only used in monorepos. Optional.                                         |
 | `octokitOptions` | Options passed to the [Octokit constructor](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) |

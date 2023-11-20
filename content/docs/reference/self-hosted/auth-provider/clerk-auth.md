@@ -7,6 +7,8 @@ next: '/docs/reference/self-hosted/auth-provider/bring-your-own'
 
 [Clerk](https://clerk.com) is a user management service which you can use with a self-hosted Tina setup.
 
+> Looking for the code? Check out the [GitHub repository](https://github.com/tinacms/tinacms/tree/main/packages/tinacms-clerk).
+
 ## Getting Started
 
 To get started you will need to install the following dependencies:

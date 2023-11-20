@@ -7,6 +7,8 @@ next: '/docs/reference/self-hosted/database-adapter/make-your-own'
 
 The MongoDB database adapter allows you to store your data in a [MongoDB](https://www.mongodb.com/) database. This adapter uses the [MongoDB Node.js Driver](https://www.npmjs.com/package/mongodb), so it will work on any MongoDB database.
 
+> Looking for the code? Check out the [GitHub repository](https://github.com/tinacms/mongodb-level).
+
 To get started you will need to add the following environment variables to your project:
 
 ```env
