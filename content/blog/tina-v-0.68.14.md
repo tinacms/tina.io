@@ -65,7 +65,7 @@ export default schema
 
 The token must be a wildcard token (`*`) and can be generated from the Tina dashboard. Read more about read only tokens [here](https://tina.io/docs/graphql/read-only-tokens/)
 
-For more information about where to get these values, see the ["going to production"](/docs/tina-cloud/connecting-site/#enabling-tina-cloud-in-tinacms) docs.
+For more information about where to get these values, see the ["going to production"](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) docs.
 
 ### Updates to scripts in package.json
 

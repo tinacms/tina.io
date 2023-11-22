@@ -182,33 +182,55 @@
         "title": "Tina Cloud",
         "items": [
           {
-            "slug": "/docs/tina-cloud/dashboard/",
+            "slug": "/docs/tina-cloud/overview/",
             "title": "Overview"
           },
           {
-            "slug": "/docs/tina-cloud/dashboard/registration/",
-            "title": "Registration"
-          },
-          {
-            "title": "Projects",
+            "title": "The Dashboard",
             "items": [
               {
-                "slug": "/docs/tina-cloud/dashboard/projects/",
+                "slug": "/docs/tina-cloud/dashboard/",
                 "title": "Overview"
               },
               {
-                "slug": "/docs/tina-cloud/dashboard/users/",
-                "title": "Project Collaborators"
+                "slug": "/docs/tina-cloud/dashboard/registration/",
+                "title": "Registration"
+              },
+              {
+                "title": "Projects",
+                "items": [
+                  {
+                    "slug": "/docs/tina-cloud/dashboard/projects/",
+                    "title": "Overview"
+                  },
+                  {
+                    "slug": "/docs/tina-cloud/dashboard/users/",
+                    "title": "Project Collaborators"
+                  }
+                ]
+              },
+              {
+                "slug": "/docs/tina-cloud/dashboard/organizations/",
+                "title": "Organizations"
               }
             ]
           },
           {
-            "slug": "/docs/tina-cloud/dashboard/organizations/",
-            "title": "Organizations"
-          },
-          {
-            "slug": "/docs/tina-cloud/connecting-site/",
-            "title": "Connecting the Site"
+            "title": "Deployment Options",
+            "items": [
+              {
+                "slug": "/docs/tina-cloud/deployment-options/vercel/",
+                "title": "Vercel"
+              },
+              {
+                "slug": "/docs/tina-cloud/deployment-options/netlify/",
+                "title": "Netlify"
+              },
+              {
+                "slug": "/docs/tina-cloud/deployment-options/github-pages/",
+                "title": "Github Pages"
+              }
+            ]
           },
           {
             "slug": "/docs/tina-cloud/api-versioning/",

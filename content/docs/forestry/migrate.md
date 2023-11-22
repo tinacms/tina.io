@@ -144,7 +144,7 @@ You should prepend `yarn tinacms build && ` or `npx tinacms build && ` to your s
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1670337650/tina-io/docs/forestry-migration/Screen_Shot_2022-12-06_at_10.38.10_AM.png)
 
-For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tina-cloud/connecting-site/#deploying-your-site-with-the-tinacms-admin)
+For more information on deploying Tina with Netlify, Vercel, or GitHub Pages, [see this doc](/docs/tina-cloud/overview/#deploying-your-site-with-the-tinacms-admin)
 
 ### Step 5) Start using Tina!
 

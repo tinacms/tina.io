@@ -18,6 +18,33 @@ For more information, see [Tina Cloud Overview](/docs/tina-cloud/overview).
 
 A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations. Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by Tina Cloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.
 
+## What is the difference between Tina Cloud and TinaCMS?
+
+TODO:
+
+## What is "Local Mode" vs "Prod Mode"?
+
+### Local-Mode
+
+When developers are developing locally, it's often convenient to load/save content from their local filesystem rather than connecting to the content on Tina Cloud.
+
+When in local-mode, you **will not** need to login to enter edit-mode.
+
+<div class="short-code-warning">
+   <div>
+      <p>Note: Local-mode is meant for developing locally, and will not work when your site is hosted on production. When in local-mode, Tina tries to hit `http://localhost:4001`, which isn't available at runtime on your production site (and neither is the underlying filesystem content).</p>
+   </div>
+   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
+   </svg>
+</div>
+
+### Prod-Mode
+
+Once you are ready to host your site in production and put editing behind authentication, you can self-host the CMS backend yourself or you can use TinaCloud's hosted backend.
+
+Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using [Tina Cloud](/docs/tina-cloud/dashboard/), Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Any changes that are saved by your editors will be committed to the configured branch in your GitHub repository.
+
 ## Does Tina Cloud only work with GitHub repositories?
 
 Currently, yes, the first Git provider that Tina Cloud integrates with is GitHub. Other Git providers may be available in the future.
