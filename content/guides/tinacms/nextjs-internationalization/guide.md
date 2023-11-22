@@ -62,7 +62,7 @@ import { client } from '../[pathToTina]/tina/__generated__/client'
 // ...
 
 // `locales` is provided to `getStaticPaths` and matches `locales` in the `config`
-const getStaticPaths = async({ locales }) => {
+const getStaticPaths = async ({ locales }) => {
   const postConnection = await client.postConnection();
   const paths = [];
 
