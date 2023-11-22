@@ -304,7 +304,7 @@
         "title": "Overview"
       },
       {
-        "title": "Supported Frameworks",
+        "title": "Framework Guides",
         "items": [
           {
             "slug": "/docs/integration/frameworks/",
@@ -326,11 +326,6 @@
                 "slug": "/guides/tinacms/contextual-drafts/guide/"
               }
             ]
-          },
-          {
-            "title": "Gatsby",
-            "slug": "/guides/tinacms/gatsby-data-fetching/guide/",
-            "status": "Beta"
           },
           {
             "title": "Docusaurus",

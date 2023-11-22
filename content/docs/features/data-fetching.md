@@ -20,7 +20,7 @@ To interface with the API, you can use Tina's type-safe client for data-fetching
 
 The Tina client is the easiest way to fetch your site's content. The client can be configured the `tina/config.<js|ts>` in the `defineConfig` function.
 
-> Note: token, clientId and branch are **not** used in [local-mode](/docs/tina-cloud/#local-mode). To setup these values for production see [this doc](/docs/tina-cloud/connecting-site)
+> Note: token, clientId and branch are **not** used in [local-mode](/docs/tina-cloud/#local-mode). To setup these values for production see [this doc](/docs/tina-cloud/overview)
 
 ```js
 // tina/config.{js,ts,tsx}
