@@ -21,9 +21,10 @@
         },
         {
           "headline": "Unity ",
-          "text": "Unity, the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina to enable queries to their Markdown and MDX content using Tina's API and to provide their content teams with an enterprise-grade editing UI that's backed by Git.",
+          "text": "Unity, the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina because it provides a GUI for their Markdown content and because Tina's GraphQL API allows them to ingest docs content into other systems such as their AI chatbot. ",
+          "url": "https://docs.unity.com/cloud/en-us",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/w_800/v1695250407/tina-showcase/unity-documentation.png"
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700680405/tina-showcase/unity-documentation-tinacms.png"
           }
         },
         {
