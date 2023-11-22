@@ -21,9 +21,10 @@
         },
         {
           "headline": "Unity ",
-          "text": "Unity, the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina to enable queries to their Markdown and MDX content using Tina's API and to provide their content teams with an enterprise-grade editing UI that's backed by Git.",
+          "text": "Unity, the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina because it provides a GUI for their Markdown content and because Tina's GraphQL API allows them to ingest docs content into other systems such as their AI chatbot. ",
+          "url": "https://docs.unity.com/cloud/en-us",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/w_800/v1695250407/tina-showcase/unity-documentation.png"
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700680405/tina-showcase/unity-documentation-tinacms.png"
           }
         },
         {
@@ -67,11 +68,11 @@
           }
         },
         {
-          "headline": "bunny.net",
-          "text": "Hop on [bunny.net](https://bunny.net/) and speed up your web presence with the next-generation Content Delivery Service (CDN), Edge Storage, and Optimization Services at any scale.",
-          "url": "https://bunny.net/",
+          "headline": "Supernova",
+          "text": "Supernova is 150+ exited founders backing top startups with advisory, operational, and investment support.  The site was developed by [Zeon studio](https://zeon.studio/). ",
+          "url": "https://1supernova.com/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683568421/tina-showcase/bunny-net.png"
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700681406/tina-showcase/supernova.png"
           }
         },
         {
@@ -83,22 +84,6 @@
           }
         },
         {
-          "headline": "Nerdfish",
-          "text": "The personal site of Daren Malfait, a freelance full-stack JavaScript/TypeScript & ReactJS engineer from Harelbeke, Belgium. [Check it out ](https://www.nerdfish.be/)",
-          "url": "https://www.nerdfish.be/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1679679691/tina-showcase/nerdfish.png"
-          }
-        },
-        {
-          "headline": "We Are Many Hands",
-          "text": "[ManyHands](https://wearemanyhands.com) is an event  for product people.  The event (and website) is by [Lighthouse](https://wearelighthouse.com), a specialist UX and UI design agency based in London.",
-          "url": "https://wearemanyhands.com",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678369877/tina-showcase/wearemanyhands.png"
-          }
-        },
-        {
           "headline": "Paradise Helicopters",
           "text": "A marketing site for Hawaii's largest locally owned and operated helicopter company. Built by [Murmur Creative](https://murmurcreative.com/) in Portland, Oregon. ",
           "url": "https://paradisecopters.com/",
@@ -107,43 +92,11 @@
           }
         },
         {
-          "headline": "Microgen",
-          "text": "[Microgen](https://microgen.site/) is an open-source site builder developed by [Protocol Labs](https://protocol.ai/) and [Bustout](https://bustout.com/). Find it on [GitHub here](https://github.com/pathfindertools/microgen).\n",
-          "url": "https://microgen.site/",
+          "headline": "bunny.net",
+          "text": "Hop on [bunny.net](https://bunny.net/) and speed up your web presence with the next-generation Content Delivery Service (CDN), Edge Storage, and Optimization Services at any scale.",
+          "url": "https://bunny.net/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/microgen.png"
-          }
-        },
-        {
-          "headline": "TinySurvey",
-          "text": "[TinySurvey](https://tinysurvey.co.uk/) is a service that lelt's  you create super-specific, one-question surveys that are a breeze for your users to complete. ",
-          "url": "https://tinysurvey.co.uk/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679406617/tina-showcase/tinasurvey.png"
-          }
-        },
-        {
-          "headline": "Simon Austerberry",
-          "text": "Freelance UX Designer based out of Manchester, UK.    \n[simonausterberry.co.uk](https://www.simonausterberry.co.uk/)",
-          "url": "https://www.simonausterberry.co.uk/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679406617/tina-showcase/Simon-Austerberry.png"
-          }
-        },
-        {
-          "headline": "Jeroen van Wissen",
-          "text": "A personal site and blog for [Jeroen van Wissen](https://jeroenvanwissen.nl/), a\nJavaScript Developer, Engineering Manager, and Tech Lead. ",
-          "url": "https://jeroenvanwissen.nl/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1679428687/tina-showcase/Jeroen-van-Wissen.png"
-          }
-        },
-        {
-          "headline": "Photography Portfolio",
-          "text": "A beautiful personal portfolio site by [Aníbal Santos Gómez](https://github.com/ansango/). ",
-          "url": "https://www.anibalsantosgomez.com/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1666102900/tina-showcase/anibalsantosgomez.com.gif"
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683568421/tina-showcase/bunny-net.png"
           }
         },
         {
@@ -155,35 +108,27 @@
           }
         },
         {
+          "headline": "Microgen",
+          "text": "[Microgen](https://microgen.site/) is an open-source site builder developed by [Protocol Labs](https://protocol.ai/) and [Bustout](https://bustout.com/). Find it on [GitHub here](https://github.com/pathfindertools/microgen).\n",
+          "url": "https://microgen.site/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/microgen.png"
+          }
+        },
+        {
+          "headline": "We Are Many Hands",
+          "text": "[ManyHands](https://wearemanyhands.com) is an event  for product people.  The event (and website) is by [Lighthouse](https://wearelighthouse.com), a specialist UX and UI design agency based in London.",
+          "url": "https://wearemanyhands.com",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678369877/tina-showcase/wearemanyhands.png"
+          }
+        },
+        {
           "headline": "Labrys",
           "text": "A marketing site for Labrys, a global leader in blockchain product development. They design, develop and launch products using blockchain technology.",
           "url": "https://labrys.io/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900,g_face/v1651840687/tina-showcase/labrys.gif"
-          }
-        },
-        {
-          "headline": "Session",
-          "text": "A marketing site for Session, a global online coaching company that connects professionals and companies with world-class business coaches.\n\n",
-          "url": "https://getsession.com/",
-          "media": {
-            "src": "/img/getsession.png"
-          }
-        },
-        {
-          "headline": "Catalyst Miami",
-          "text": "A blog-style site showcasing the work of a non-profit organization built by the team at [Code Nation](https://www.codenation.com/). Catalyst Miami's mission is to identify and collectively solve issues adversely affecting low-wealth communities throughout Miami-Dade County. \n",
-          "url": "https://stories.catalystmiami.org/",
-          "media": {
-            "src": "/img/catalyst.png"
-          }
-        },
-        {
-          "headline": "APFX",
-          "text": "A marketing site for APFX, an international foreign exchange firm providing bespoke services for corporate businesses globally.",
-          "url": "https://www.apfx.com.au/en-us",
-          "media": {
-            "src": "/img/apfx.png"
           }
         }
       ],
