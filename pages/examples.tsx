@@ -5,7 +5,7 @@ import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { Examples, ExamplesExamples } from 'tina/__generated__/types'
-import { IconTopRightOnSquare } from 'components/blocks'
+import { Container, IconTopRightOnSquare } from 'components/blocks'
 
 function ExamplesPage(
   props: Awaited<ReturnType<typeof getStaticProps>>['props']
@@ -21,7 +21,9 @@ function ExamplesPage(
           description: 'TinaCMS Examples',
         }}
       />
-      <ExampleGrid examples={data.examples?.examples} />
+      <Container width="medium">
+        <ExampleGrid examples={data.examples?.examples} />
+      </Container>
     </Layout>
   )
 }
