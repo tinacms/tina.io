@@ -69,14 +69,16 @@ const Example = ({ example }: { example: ExamplesExamples }) => {
       href={example.link}
     >
       {/* Image container */}
-      <div className="w-full">
-        <img
-          src={example.image}
-          alt="Example Image"
-          className="w-full rounded-t-md object-cover" // Tailwind classes for full width, rounded top corners, and cover object fit
-          style={{ height: '150px' }} // Inline style for fixed height, you can also use Tailwind h-xx class
-        />
-      </div>
+      {example.image && (
+        <div className="w-full">
+          <img
+            src={example.image}
+            alt="Example Image"
+            className="w-full rounded-t-md object-cover" // Tailwind classes for full width, rounded top corners, and cover object fit
+            style={{ height: '150px' }} // Inline style for fixed height, you can also use Tailwind h-xx class
+          />
+        </div>
+      )}
       <div className="px-7 lg:px-8 py-6 lg:py-7">
         <div className="flex gap-4 items-center ">
           <div className="flex flex-col">
