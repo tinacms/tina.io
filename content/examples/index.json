@@ -23,6 +23,12 @@
       "description": "This demo shows how self hosted Tina works with static site generators. This demo uses 11ty but could be adapted to use any SSG.\n",
       "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758371/tina-io/examples/Tina_Static_Starter_Self_Hosted_kknsnf.png",
       "link": "https://github.com/tinacms/tina-cloud-starter"
+    },
+    {
+      "label": "Tina Self Hosted Demo",
+      "description": "A demo of how to use self-hosted TinaCMS with Nextjs.\\\n\\\nUses\n\n* Vercel KV\n* Github\n* Auth.js\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758685/tina-io/examples/Tina_Self_Hosted_Demo_k4vpql.png",
+      "link": "https://github.com/tinacms/tina-cloud-starter"
     }
   ]
 }
