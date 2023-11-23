@@ -19,6 +19,12 @@
       "link": "https://github.com/tinacms/tina-self-hosted-demo"
     },
     {
+      "label": "Tina Remix Starter",
+      "description": "An example of how to use TinaCMS and remix.\n",
+      "image": "",
+      "link": "https://github.com/tinacms/tina-remix-starter"
+    },
+    {
       "label": "Tina Hugo Starter",
       "description": "A starter showing how TinaCMS can be used with a static site generator like hugo. This starter could be modified to use any SSG.\n",
       "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758367/tina-io/examples/Tina_Hugo_Starter_bwulx5.png",
@@ -29,12 +35,6 @@
       "description": "This demo shows how self hosted Tina works with static site generators. This demo uses 11ty but could be adapted to use any SSG.\n",
       "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758371/tina-io/examples/Tina_Static_Starter_Self_Hosted_kknsnf.png",
       "link": "https://github.com/tinacms/tina-self-hosted-ssg-demo"
-    },
-    {
-      "label": "Tina Remix Starter",
-      "description": "An example of how to use TinaCMS and remix.\n",
-      "image": "",
-      "link": "https://github.com/tinacms/tina-remix-starter"
     },
     {
       "label": "Self Hosted Google Cloud Demo",
