@@ -163,7 +163,7 @@ const footerNav = [
       // },
     ],
   },
-]
+] as const
 
 const footerLinks = [
   {
