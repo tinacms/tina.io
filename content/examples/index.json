@@ -1,0 +1,10 @@
+{
+  "examples": [
+    {
+      "label": "Tina Tailwind Starter",
+      "description": "A full featured starter that uses tailwind and Tinacms",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif",
+      "link": "https://github.com/tinacms/tina-cloud-starter"
+    }
+  ]
+}
