@@ -5,6 +5,7 @@ import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { Examples, ExamplesExamples } from 'tina/__generated__/types'
+import { IconTopRightOnSquare } from 'components/blocks'
 
 function ExamplesPage(
   props: Awaited<ReturnType<typeof getStaticProps>>['props']
@@ -65,10 +66,12 @@ const Example = ({ example }: { example: ExamplesExamples }) => {
   return (
     <a
       target={'_blank'}
-      className={`group mb-6 break-inside-avoid rounded-md bg-gradient-to-b from-white to-white/30 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] flex flex-col gap-5 text-gray-700 cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out`}
+      className={`relative group mb-6 break-inside-avoid rounded-md bg-gradient-to-b from-white to-white/30 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] flex flex-col gap-5 text-gray-700 cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out`}
       href={example.link}
     >
-      {/* Image container */}
+      <div className="absolute bottom-3 right-3 z-20">
+        <IconTopRightOnSquare />
+      </div>
       {example.image && (
         <div className="w-full">
           <img
