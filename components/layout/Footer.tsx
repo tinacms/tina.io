@@ -42,6 +42,22 @@ const footerNav = [
     label: 'Resources',
     items: [
       {
+        label: 'Blog',
+        link: '/blog',
+      },
+      {
+        label: 'Examples',
+        link: '/examples',
+      },
+      {
+        label: 'Roadmap',
+        link: '/roadmap',
+      },
+      {
+        label: 'Support',
+        link: '/docs/support',
+      },
+      {
         label: 'Use Cases',
         children: [
           {
@@ -226,7 +242,7 @@ const SocialLink = ({ link, children }) => {
   )
 }
 
-export const Footer = ({ }) => {
+export const Footer = ({}) => {
   return (
     <div>
       {/* Top */}
