@@ -18,10 +18,6 @@ For more information, see [Tina Cloud Overview](/docs/tina-cloud/overview).
 
 A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations. Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by Tina Cloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.
 
-## What is the difference between Tina Cloud and TinaCMS?
-
-TODO:
-
 ## What is "Local Mode" vs "Prod Mode"?
 
 ### Local-Mode
