@@ -36,14 +36,6 @@
           }
         },
         {
-          "headline": "comedia",
-          "text": "[comedia](\nhttp://www.comediadesign.com) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC,  and Postmates.",
-          "url": " http://www.comediadesign.com",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900/v1683032122/tina-showcase/comedia.gif"
-          }
-        },
-        {
           "headline": "Roev",
           "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
           "url": "https://www.roev.com/",
@@ -60,19 +52,27 @@
           }
         },
         {
+          "headline": "RRE Ventures",
+          "text": "RRE Ventures is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries.",
+          "url": "https://rre.com",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_600,g_face/v1700761210/tina-showcase/rre-ventures.gif"
+          }
+        },
+        {
+          "headline": "comedia",
+          "text": "[comedia](\nhttp://www.comediadesign.com) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC,  and Postmates.",
+          "url": " http://www.comediadesign.com",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900/v1683032122/tina-showcase/comedia.gif"
+          }
+        },
+        {
           "headline": "Devolver Digital",
           "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
           "url": "https://www.devolverdigital.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680282376/tina-showcase/devolver.png"
-          }
-        },
-        {
-          "headline": "Supernova",
-          "text": "Supernova is 150+ exited founders backing top startups with advisory, operational, and investment support.  The site was developed by [Zeon studio](https://zeon.studio/). ",
-          "url": "https://1supernova.com/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700681406/tina-showcase/supernova.png"
           }
         },
         {
@@ -89,6 +89,14 @@
           "url": "https://paradisecopters.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900,g_face/v1653398867/tina-showcase/paradise-helicopters.png"
+          }
+        },
+        {
+          "headline": "Supernova",
+          "text": "Supernova is 150+ exited founders backing top startups with advisory, operational, and investment support.  The site was developed by [Zeon studio](https://zeon.studio/). ",
+          "url": "https://1supernova.com/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700681406/tina-showcase/supernova.png"
           }
         },
         {
@@ -121,14 +129,6 @@
           "url": "https://wearemanyhands.com",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678369877/tina-showcase/wearemanyhands.png"
-          }
-        },
-        {
-          "headline": "Labrys",
-          "text": "A marketing site for Labrys, a global leader in blockchain product development. They design, develop and launch products using blockchain technology.",
-          "url": "https://labrys.io/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900,g_face/v1651840687/tina-showcase/labrys.gif"
           }
         }
       ],
