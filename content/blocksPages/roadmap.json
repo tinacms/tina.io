@@ -33,7 +33,7 @@
         {
           "headline": "Forestry.io -> Tina Migration CLI Tool",
           "status": "Released",
-          "content": "When you run \\`@tinacms/cli init@latest init\\` on a site with Forestry config, we will import some defaults, as well as your front-matter-templates.\n",
+          "content": "When you run \\`@tinacms/cli init\\@latest init\\` on a site with Forestry config, we will import some defaults, as well as your front-matter-templates.\n",
           "actions": [
             {
               "label": "See Guide",
@@ -41,6 +41,20 @@
               "variant": "blue",
               "size": "medium",
               "url": "https://tina.io/docs/forestry/migrate/"
+            }
+          ]
+        },
+        {
+          "headline": "Improving Self-hosted experience",
+          "status": "Released",
+          "content": "Improvements to the self-hosted experience, to make it easier and to bring closer parity to using Tina Cloud.\n",
+          "actions": [
+            {
+              "label": "Read Post",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "./blog/Tinacms-is-now-fully-open-source/"
             }
           ]
         }
@@ -54,11 +68,6 @@
     {
       "headline": "Next 3 months",
       "items": [
-        {
-          "headline": "Improving Self-hosted experience",
-          "status": "In-progress",
-          "content": "We are currently working on some improvements to the self-hosted experience, to bring closer parity to using Tina Cloud\n"
-        },
         {
           "headline": "Improving Media Management UX",
           "status": "In Progress",
