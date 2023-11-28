@@ -2,7 +2,7 @@
 title: Remix + Tina Setup Guide
 id: '/docs/frameworks/remix'
 prev: '/docs/setup-overview'
-next: '/docs/using-tina-editor'
+next: '/docs/schema'
 ---
 
 ## Introduction
