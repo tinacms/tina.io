@@ -14,6 +14,28 @@ For more information, see [Tina Cloud Overview](/docs/tina-cloud/overview).
 - [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
 - For business inquiries contact info@tina.io
 
+## Features Unavailable in Self-Hosted Tina Compared to Tina Cloud
+
+When comparing Tina Cloud with self-hosting Tina, there are specific features unique to Tina Cloud. These include:
+
+### 1. Git Backed Media
+
+In Tina Cloud, there's a Git backed media feature. This integrates media into the Tina Media Manager and commits it directly to the Git repository. However, this functionality is not present in self-hosted Tina.
+
+The reason for its absence is due to the process involving media uploads. When using the media manager in Tina Cloud, images are uploaded to Tina Cloud servers and distributed via a CDN. This ensures that images are accessible through the Tina Media Manager, as they require a URL for accessibility. Without this, images won't appear in the Media Manager until the site is rebuilt.
+
+### 2. Dynamic Branch Switching at Runtime
+
+Tina Cloud allows for changing the content branch at runtime, a feature managed through URL modification. However, in self-hosted Tina, changing branches is restricted to the build phase only.
+
+This limitation means that commands like:
+
+```ts
+client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
+```
+
+are not functional in a self-hosted Tina setup.
+
 ## Why do I need a database when using markdown?
 
 A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations. Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by Tina Cloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.

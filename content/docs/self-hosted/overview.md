@@ -51,6 +51,8 @@ The backend setup consists of three main, configurable modules:
 
 Each module is designed to be standalone, meaning you have the option to replace any module with a different implementation or develop a custom solution to fit your specific needs.
 
+> Note: Some features are not available when self-hosting TinaCMS. See the [Self-hosted Limitations](/docs/tina-cloud/faq/#features-unavailable-in-self-hosted-tina-compared-to-tina-cloud) section for more info.
+
 ## Next Steps
 
 - Start from scratch by checking out the [Next.js self-hosted starter guide](/docs/self-hosted/starters/nextjs-vercel/).
