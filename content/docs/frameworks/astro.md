@@ -2,7 +2,7 @@
 title: Astro + Tina Setup Guide
 id: '/docs/frameworks/astro'
 prev: '/docs/setup-overview'
-next: '/docs/using-tina-editor'
+next: '/docs/schema'
 ---
 
 ## Introduction
