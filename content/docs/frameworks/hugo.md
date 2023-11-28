@@ -2,7 +2,7 @@
 title: Hugo + TinaCMS Setup Guide
 id: '/docs/frameworks/hugo'
 prev: '/docs/setup-overview'
-next: '/docs/using-tina-editor'
+next: '/docs/schema'
 ---
 
 ## Introduction
