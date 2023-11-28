@@ -2,7 +2,7 @@
 title: Gatsby + Tina Setup Guide
 id: '/docs/frameworks/gatsby'
 prev: '/docs/setup-overview'
-next: '/docs/using-tina-editor'
+next: '/docs/schema'
 ---
 
 ## Introduction
