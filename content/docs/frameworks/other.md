@@ -2,7 +2,7 @@
 title: Framework-Agnostic TinaCMS Setup Guide
 id: '/docs/frameworks/other'
 prev: '/docs/setup-overview'
-next: '/docs/using-tina-editor'
+next: '/docs/schema'
 ---
 
 ## Introduction
