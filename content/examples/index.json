@@ -1,0 +1,46 @@
+{
+  "examples": [
+    {
+      "label": "Tina Tailwind Starter",
+      "description": "A full featured starter that uses TailwindCSS, Next.js and Tinacms\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700757938/tina-io/examples/Tina_Cloud_Starter_pxdxfu.png",
+      "link": "https://github.com/tinacms/tina-cloud-starter"
+    },
+    {
+      "label": "Barebones Starter",
+      "description": "A simple TinaCMS starter that uses Next.js with no styling, and minimal content.\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700757687/tina-io/examples/tina_qoie8s.png",
+      "link": "https://github.com/tinacms/tina-barebones-starter"
+    },
+    {
+      "label": "Tina Self Hosted Demo",
+      "description": "A demo of how to use self-hosted TinaCMS with Nextjs.\\\n\\\nUses\n\n* Vercel KV\n* Github\n* Auth.js\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758685/tina-io/examples/Tina_Self_Hosted_Demo_k4vpql.png",
+      "link": "https://github.com/tinacms/tina-self-hosted-demo"
+    },
+    {
+      "label": "Tina Remix Starter",
+      "description": "An example of how to use TinaCMS and remix.\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700767927/tina-io/examples/Tina_Remix_w3cpe4.png",
+      "link": "https://github.com/tinacms/tina-remix-starter"
+    },
+    {
+      "label": "Tina Hugo Starter",
+      "description": "A starter showing how TinaCMS can be used with a static site generator like hugo. This starter could be modified to use any SSG.\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758367/tina-io/examples/Tina_Hugo_Starter_bwulx5.png",
+      "link": "https://github.com/tinacms/tina-hugo-starter"
+    },
+    {
+      "label": "Tina Self Hosted SSG Demo",
+      "description": "This demo shows how self hosted Tina works with static site generators. This demo uses 11ty but could be adapted to use any SSG.\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758371/tina-io/examples/Tina_Static_Starter_Self_Hosted_kknsnf.png",
+      "link": "https://github.com/tinacms/tina-self-hosted-ssg-demo"
+    },
+    {
+      "label": "Self Hosted Google Cloud Demo",
+      "description": "A demo of how to self host TinaCMS on google cloud.\n",
+      "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700758685/tina-io/examples/Tina_Self_Hosted_Demo_k4vpql.png",
+      "link": "https://github.com/tinacms/tina-self-hosted-gc-demo"
+    }
+  ]
+}

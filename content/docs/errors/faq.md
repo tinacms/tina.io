@@ -16,7 +16,7 @@ Everything in the `tina` directory (except the `__generated__` folder) needs to 
 
 ## API URL is misformatted
 
-The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/connecting-site/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
+The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL _should_ be formatted.
 
 ## Trying to access local GraphQL server when it's not running or in prod.
 

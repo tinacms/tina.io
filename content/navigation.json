@@ -28,6 +28,12 @@
         "external": false
       },
       {
+        "label": "Examples",
+        "id": "examples",
+        "href": "/examples",
+        "external": false
+      },
+      {
         "id": "support",
         "label": "Support",
         "href": "/docs/support",

@@ -66,6 +66,11 @@ const config = {
         destination: '/blog/tinasaurus-docusaurus-starter/',
         permanent: true,
       },
+      {
+        source: '/tina-cloud/connecting-site/',
+        destination: '/tina-cloud/overview',
+        permanent: true,
+      },
     ]
   },
   env: {

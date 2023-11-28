@@ -1,7 +1,7 @@
 ---
 title: Organizations
 id: '/docs/tina-cloud/dashboard/organizations'
-next: '/docs/tina-cloud/connecting-site'
+next: '/docs/tina-cloud/api-versioning'
 ---
 
 Organizations make it easy to manage users across multiple projects.
