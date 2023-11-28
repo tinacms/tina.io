@@ -25,7 +25,7 @@ npx @tinacms/cli init backend
 
 This will
 
-- Ask you for your ClintId: Can be found in the "Overview" tab of your project.
+- Ask you for your ClientId: Can be found in the "Overview" tab of your project.
 - Ask you for a Read Only Token: Can be found in the "Tokens" tab of your project.
 - Populate your `.env` file with the necessary environment variables to connect to Tina Cloud.
   - If you are using a different environment variable file, OR you have an existing .env fileyou will need to copy these variables over manually.
