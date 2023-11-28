@@ -23,6 +23,7 @@ type ObjectField = {
   ui?: {
      /** Weather or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental **/
     visualSelector?: boolean,
+    // Note: defaultItem can only can be used when {list: true}
     defaultItem?: Record<string, any> | () => Record<string, any>,
     itemProps?(
       item: Record<string, any>
