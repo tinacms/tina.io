@@ -39,7 +39,7 @@
     "airtable": "^0.9.0",
     "algoliasearch": "^4.0.0",
     "autoprefixer": "^10.4.12",
-    "axios": "^0.21.2",
+    "axios": "^1.6.0",
     "btoa": "^1.2.1",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
