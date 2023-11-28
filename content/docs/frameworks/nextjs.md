@@ -2,7 +2,7 @@
 title: NextJS + TinaCMS Setup Guide
 id: '/docs/frameworks/nextjs'
 prev: '/docs/setup-overview'
-next: '/docs/using-tina-editor'
+next: '/docs/schema'
 ---
 
 ## Introduction
