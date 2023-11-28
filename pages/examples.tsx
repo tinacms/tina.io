@@ -79,8 +79,7 @@ const Example = ({ example }: { example: ExamplesExamples }) => {
           <img
             src={example.image}
             alt="Example Image"
-            className="w-full rounded-t-md object-cover" // Tailwind classes for full width, rounded top corners, and cover object fit
-            style={{ height: '150px' }} // Inline style for fixed height, you can also use Tailwind h-xx class
+            className="w-full rounded-t-md object-cover object-top" // Tailwind classes for full width, rounded top corners, and cover object fit
           />
         </div>
       )}
