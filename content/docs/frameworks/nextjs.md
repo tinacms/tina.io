@@ -5,6 +5,14 @@ prev: '/docs/setup-overview'
 next: '/docs/schema'
 ---
 
+## Video Guide
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/0oYSzT1DDLg" title="TinaCMS Branching Demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 ## Introduction
 
 TinaCMS can be added to your NextJS site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
