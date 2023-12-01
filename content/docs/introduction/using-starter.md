@@ -5,6 +5,14 @@ last_edited: '2022-02-04T15:51:56.737Z'
 next: '/docs/using-tina-editor'
 ---
 
+> Prefer to watch a video? Check out the video guide below:
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width="560" frameborder="0" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/_9lDNSIh8rw" title="TinaCMS Branching Demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+  </iframe>
+</div>
+
 To quickly setup a new Tina starter, from the command line:
 
 ```bash
