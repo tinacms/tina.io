@@ -9,7 +9,7 @@ If your content editors need to work on multiple branches, you can enable Tina's
 
 ## Installation
 
-Simply add the branch-switcher flag to your CMS callback function in your tina [config file](http://localhost:3000/docs/reference/config/). If your site does not already make use of the CMS callback function, add this to your config.
+Simply add the branch-switcher flag to your CMS callback function in your Tina [config file](/docs/reference/config/). If your site does not already make use of the CMS callback function, add this to your config.
 
 ```javascript
 cmsCallback: cms => {
