@@ -134,6 +134,9 @@ export const handler = ServerlessHttp(app)
 
 ### Option 3) AWS Lambda
 
+If your site is hosted on AWS, you can use [AWS Lambda](https://aws.amazon.com/lambda/) to host your media handler. The following example
+uses the S3 media handler, but you can use any media handler.
+
 #### Prerequisites
 `npm install express @vendia/serverless-express @tinacms/auth body-parser`
 
@@ -141,58 +144,58 @@ export const handler = ServerlessHttp(app)
 
 1.  To connect TinaCMS endpoints to AWS services, you'll need to create a Lambda Function in Node 14.x. Here's the code you'll need:
 
-    ```tsx
-    # index.ts
-    import express, { Router } from 'express';
-    import serverlessExpress from '@vendia/serverless-express';
-    import { isAuthorized } from '@tinacms/auth';
-    import {  createMediaHandler,
-    } from "next-tinacms-s3/dist/handlers";
-    import bodyParser from 'body-parser';
+```ts
+// index.ts
+import express, { Router } from 'express';
+import serverlessExpress from '@vendia/serverless-express';
+import { isAuthorized } from '@tinacms/auth';
+import {  createMediaHandler,
+} from 'next-tinacms-s3/dist/handlers';
+import bodyParser from 'body-parser';
 
-    // Configure TinaCMS
-    const mediaHandler = createMediaHandler({
-      config: {
-        credentials: {
-          accessKeyId: process.env.TINA_AWS_ACCESS_KEY_ID || "",
-          secretAccessKey: process.env.TINA_AWS_SECRET_ACCESS_KEY || "",
-        },
-        region: process.env.TINA_AWS_REGION,
-      },
-      bucket: process.env.TINA_AWS_BUCKET_NAME   || "",
-      authorized: async (req, _res): Promise<any> => {
-        if (process.env.NODE_ENV === "development") {
-          return true;
-        }
-        try {
-          const user = await isAuthorized(req);
-          return user && user.verified;
-        } catch (e) {
-          console.error(e);
-          return false;
-        }
-      },
-    })
+// Configure TinaCMS
+const mediaHandler = createMediaHandler({
+  config: {
+    credentials: {
+      accessKeyId: process.env.TINA_AWS_ACCESS_KEY_ID || "",
+      secretAccessKey: process.env.TINA_AWS_SECRET_ACCESS_KEY || "",
+    },
+    region: process.env.TINA_AWS_REGION,
+  },
+  bucket: process.env.TINA_AWS_BUCKET_NAME   || '',
+  authorized: async (req, _res): Promise<any> => {
+    if (process.env.NODE_ENV === 'development') {
+      return true;
+    }
+    try {
+      const user = await isAuthorized(req);
+      return user && user.verified;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  },
+})
 
-    // Set up the express app and router
-    const app = express()
-    const router = Router()
-    app.use(bodyParser.json())
+// Set up the express app and router
+const app = express()
+const router = Router()
+app.use(bodyParser.json())
 
-    // Define routes for media handling
-    router.get('/s3/media', mediaHandler)
-    router.post('/s3/media', mediaHandler)
-    router.delete("/s3/media/:media", (req, res) => {
-      req.query.media = ["media", req.params.media];
-      return mediaHandler(req, res);
-    });
+// Define routes for media handling
+router.get('/s3/media', mediaHandler)
+router.post('/s3/media', mediaHandler)
+router.delete('/s3/media/:media', (req, res) => {
+  req.query.media = ['media', req.params.media];
+  return mediaHandler(req, res);
+});
 
-    // Mount the router on the app
-    app.use('/api/', router)
+// Mount the router on the app
+app.use('/api/', router)
 
-    // Export the handler function
-    exports.handler = serverlessExpress({ app})
-    ```
+// Export the handler function
+exports.handler = serverlessExpress({ app})
+```
 
 2.  Be sure to configure the necessary environment variables:
 
