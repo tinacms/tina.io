@@ -259,6 +259,10 @@
               {
                 "title": "Manual Setup (Agnostic)",
                 "slug": "/docs/self-hosted/manual-setup/"
+              },
+              {
+                "title": "Migrating From Tina Cloud",
+                "slug": "/docs/self-hosted/migrating-from-tina-cloud"
               }
             ]
           },
