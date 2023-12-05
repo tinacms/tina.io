@@ -132,6 +132,108 @@ app.use('/.netlify/functions/api/', router)
 export const handler = ServerlessHttp(app)
 ```
 
+### Option 3) AWS Lambda
+
+If your site is hosted on AWS, you can use [AWS Lambda](https://aws.amazon.com/lambda/) to host your media handler. The following example
+uses the S3 media handler, but you can use any media handler.
+
+#### Prerequisites
+`npm install express @vendia/serverless-express @tinacms/auth body-parser`
+
+#### Lambda Function
+
+1.  To connect TinaCMS endpoints to AWS services, you'll need to create a Lambda Function in Node 14.x. Here's the code you'll need:
+
+```ts
+// index.ts
+import express, { Router } from 'express';
+import serverlessExpress from '@vendia/serverless-express';
+import { isAuthorized } from '@tinacms/auth';
+import {  createMediaHandler,
+} from 'next-tinacms-s3/dist/handlers';
+import bodyParser from 'body-parser';
+
+// Configure TinaCMS
+const mediaHandler = createMediaHandler({
+  config: {
+    credentials: {
+      accessKeyId: process.env.TINA_AWS_ACCESS_KEY_ID || "",
+      secretAccessKey: process.env.TINA_AWS_SECRET_ACCESS_KEY || "",
+    },
+    region: process.env.TINA_AWS_REGION,
+  },
+  bucket: process.env.TINA_AWS_BUCKET_NAME   || '',
+  authorized: async (req, _res): Promise<any> => {
+    if (process.env.NODE_ENV === 'development') {
+      return true;
+    }
+    try {
+      const user = await isAuthorized(req);
+      return user && user.verified;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  },
+})
+
+// Set up the express app and router
+const app = express()
+const router = Router()
+app.use(bodyParser.json())
+
+// Define routes for media handling
+router.get('/s3/media', mediaHandler)
+router.post('/s3/media', mediaHandler)
+router.delete('/s3/media/:media', (req, res) => {
+  req.query.media = ['media', req.params.media];
+  return mediaHandler(req, res);
+});
+
+// Mount the router on the app
+app.use('/api/', router)
+
+// Export the handler function
+exports.handler = serverlessExpress({ app})
+```
+
+2.  Be sure to configure the necessary environment variables:
+
+    ```yaml
+    TINA_AWS_ACCESS_KEY_ID=******************
+    TINA_AWS_BUCKET_NAME=******************
+    TINA_AWS_REGION=********
+    TINA_AWS_SECRET_ACCESS_KEY=******************
+    ```
+
+
+#### API Gateway
+
+1.  With the Lambda Function in place, you can proceed to create an API Gateway:
+
+    1.  Click on **`Create API`**
+    2.  Select **REST API**
+2.  Once the API is created, create a resource under the root path named **`/api`** by going to _Resources_ and selecting _Create Resource_
+
+3.  Next, create a nested child path that takes all **`/api`** child paths by creating a resource that uses the **`{proxy+}`** special syntax. Make sure to tick the **_Configure as proxy resource._**
+
+    When setting up the ANY method, pass the Lambda Function that handles the TinaCMS media manager logic.
+
+    Click on **`save`** and allow API Gateway to add permission to the Lambda Function
+
+4.  Deploy your API by clicking on the _Action_ dropdown and selecting Deploy API
+
+    1.  Select **`[New Stage]`** for the Deployment Stage and type a _Stage name_
+    2.  Once the API is deployed, you can see the _Invoke URL_ in the _Stages_ menu by clicking on the stage you've created.
+5.  Configure **Binary Media Types** by going to the _Settings_ Menu and adding the **`/*`** wildcard
+
+#### CloudFront
+
+1.  To complete the connection, create a new **Origin** for CloudFront using the _Invocation URL_ of the API Gateway that was just created. Set the Origin Path to the name of the stage where the API was deployed.
+2.  Create a new **Behaviour** for CloudFront that will intercept requests with the **`/api/s3/media*`** path and use the API Gateway origin that was just created. Make sure to allow the following HTTP methods: **`GET`**, **`HEAD`**, **`OPTIONS`**, **`PUT`**, **`POST`**, **`PATCH`**, and **`DELETE`**.
+    1.  Under the **Cache key and origin requests** section, select the _Cache policy and origin request policy_ option. For the _Cache policy_, select **CachingDisabled**. For the _Origin request policy_, select **AllViewerExceptHostHeader**.
+3.  Repeat the above process to create another behaviour that intercepts requests with the **`/api/s3/media/*`** path.
+
 ## Register the Media Store on the frontend
 
 Now, you can replace the default repo-based media with the external media store. You can register a media store via the `loadCustomStore` prop.
