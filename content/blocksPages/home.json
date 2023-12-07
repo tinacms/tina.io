@@ -4,7 +4,7 @@
       "features": [
         {
           "headline": "A CMS With Version Control Built-in",
-          "text": "Tina is a fully open-source headless CMS that supports Git",
+          "text": "Tina is a fully open-source headless CMS that supports Git.",
           "actions": [
             {
               "label": "npx create-tina-app@latest",
