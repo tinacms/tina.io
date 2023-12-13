@@ -32,7 +32,7 @@ export default connectSearchBox(
   ({ refine, expanded, ...rest }: SearchBoxProps) => {
     const debouncedSearch = debounce((e: any) => {
       refine(e.target.value)
-      logSearchQuery(e.target.value).catch(console.error)
+      // logSearchQuery(e.target.value).catch(console.error)
     }, 250)
     const onChange = (e: any) => {
       e.persist()
