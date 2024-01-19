@@ -52,6 +52,14 @@
           }
         },
         {
+          "headline": "Redactive AI",
+          "text": "Redactive provides AI application developers secure & scalable pipelines to enable real time data retrieval from business data sources, based on an end user's request & level of access control.  Site by [CoMedia](https://www.comediadesign.com/).",
+          "url": "https://www.redactive.ai/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1705693925/tina-showcase/redactive-ai.png"
+          }
+        },
+        {
           "headline": "RRE Ventures",
           "text": "RRE Ventures is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries. The site was designed and built by [Studio Freight](https://studiofreight.com/).",
           "url": "https://rre.com",
