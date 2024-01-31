@@ -46,7 +46,7 @@ export const config = {
 
 #### Routing and File Structure:
 
-Whether your using Next.js, or another framework, your routing logic should be updated to pick the correct locale based on either the URL or user setting.
+Whether you're using Next.js, or another framework, your routing logic should be updated to pick the correct locale based on either the URL or user setting.
 
 ```jsx
 // Example: Fetching the page list in NextJS
@@ -56,7 +56,7 @@ const getStaticPaths = async({ locales }) {
 })
 ```
 
-Using the the locale, you can filter for document(s) based on the path
+Using the locale, you can filter for document(s) based on the path
 
 ```jsx
 /**
