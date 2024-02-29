@@ -61,7 +61,7 @@ openssl rand -hex 16
 
 At this point you should be able to see your deployed starter site. If you add `/admin` to the URL, you should be prompted to login. You can login with the **default username** of `tinauser` and **password** of `tinarocks`. Once logged in you will be prompted to change your password.
 
-![TinaCMS username and password](https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_600,g_face/v1699559718/tina-io/docs/self-hosted/tina-login-screen.png)
+![TinaCMS username and password](https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_600,g_face/v1699559718/tina-io/docs/self-hosted/tina-login-screen2.png)
 
 ## Adding Additional Users
 
