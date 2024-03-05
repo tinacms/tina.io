@@ -25,7 +25,7 @@ export function FeatureGridBlock({ data, index }) {
   return (
     <section
       key={'feature-grid-' + index}
-      className={'relative z-10 py-20 lg:py-28'}
+      className={'relative z-0 py-20 lg:py-28'}
     >
       <Container width="wide">
         <div className="grid gap-[0.5px] grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg auto-rows-auto w-full rounded-xl overflow-hidden shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30">
