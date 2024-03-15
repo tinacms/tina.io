@@ -38,13 +38,13 @@ export class CustomAuthProvider extends AbstractAuthProvider {
   async authenticate(props?: {}): Promise<any> {
     // Do any authentication here
   }
-  getToken() {
+  async getToken() {
     // Return the token here. The token will be passed as an Authorization header in the format `Bearer <token>`
   }
   async getUser() {
     // Returns a truthy value, the user is logged in and if it returns a falsy value the user is not logged in.
   }
-  logout() {
+  async logout() {
     // Do any logout logic here
   }
   async authorize(context?: any): Promise<any> {
