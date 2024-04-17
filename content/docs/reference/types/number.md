@@ -41,7 +41,7 @@ configuration provided.
 
 ```ts
 {
-  type: 'string',
+  type: 'number',
   name: 'count',
   label: 'Count'
 }
