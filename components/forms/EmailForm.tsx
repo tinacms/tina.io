@@ -40,6 +40,7 @@ export const EmailForm = (props: EmailFormProps) => {
       id="newsletter-signup"
       onSubmit={handleSubmit}
       isFooter={props.isFooter}
+      isEntering={isEntering}
     >
       <Input
         placeholder="Your email..."
@@ -65,6 +66,7 @@ EmailForm.defaultProps = {
 
 interface StyledEmailFormProps {
   isFooter?: boolean
+  isEntering: boolean
 }
 
 const StyledEmailForm = styled.form<StyledEmailFormProps>`
@@ -72,15 +74,22 @@ const StyledEmailForm = styled.form<StyledEmailFormProps>`
   grid-template-rows: auto auto;
   grid-template-columns: auto;
   align-items: center;
-  grid-gap: 1rem;
   width: 100%;
   max-width: 38rem;
   padding: 0;
 
+  
   @media (min-width: 800px) {
     grid-template-rows: auto;
     grid-template-columns: 1fr auto;
   }
+
+  ${props =>
+    props.isEntering &&
+    css`
+    grid-gap: 0.5rem; 
+    align-items: top;
+    `}
 
   ${props =>
     props.isFooter &&
