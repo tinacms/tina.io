@@ -7,38 +7,39 @@ import { EmailForm } from '../forms/EmailForm'
 export function CloudBanner() {
   return (
     <>
-    
-    <div className="banner">
-    <div className="banner-content flex justify-center items-center banner-left-padding">
-        <span className="mobile">
+      <div className="banner">
+        <div className="banner-content flex justify-center items-center banner-left-padding">
+          <span className="mobile">
             <p className="mr-5">
-                Loving Tina? ⭐️ us on{' '}
-                <a href="https://github.com/tinacms/tinacms" target="new">
-                    GitHub
-                </a>
+              Loving Tina? ⭐️ us on{' '}
+              <a href="https://github.com/tinacms/tinacms" target="new">
+                GitHub
+              </a>
             </p>
-        </span>
-        {/* @ts-ignore */}
-        <GitHubButton
+          </span>
+          {/* @ts-ignore */}
+          <GitHubButton
             href="https://github.com/tinacms/tinacms"
             data-size="medium"
             data-show-count="true"
             aria-label="Star TinaCMS on GitHub"
-        >
+          >
             Star
-        </GitHubButton>
-    </div>
-    <div className="banner-content w-auto flex justify-center">
-        <div className="mr-1 mt-1 justify-top"><p>Stay in touch 👉</p></div>
-        <span><EmailForm isFooter /></span>
-    </div>
-</div>
+          </GitHubButton>
+        </div>
+        <div className="banner-content banner-content-subscribe w-auto justify-center">
+          <div className=" banner-content mr-1 mt-1 justify-top">
+            Stay in touch <span className="hand-emoji">👉</span>
+          </div>
+          <EmailForm isFooter />
+        </div>
+      </div>
 
       <style jsx>{`
         .wordmark {
           display: inline-flex;
           align-items: center;
-          margin-right: 0.5rem;  
+          margin-right: 0.5rem;
 
           :global(svg) {
             height: 1rem;
@@ -66,8 +67,8 @@ export function CloudBanner() {
           z-index: 10;
           line-height: 1.2;
           flex: 0 1 auto;
-          width: 100%;    
-          flex-direction: column;     
+          width: 100%;
+          flex-direction: column;
 
           :global(a) {
             text-decoration: underline;
@@ -77,34 +78,42 @@ export function CloudBanner() {
             font-style: normal;
             font-weight: bold;
           }
-        }   
+        }
 
         .banner-content {
           display: flex;
           align-items: center;
-          margin-bottom: 1rem;
-          
+          margin-top: 0.3rem;
+          margin-bottom: 0.5rem;
         }
 
-        @media (min-width: 680px) {
+        .banner-content-subscribe {
+          flex-direction: column;
+        }
+
+        .hand-emoji {
+          display: none;
+        }
+
+        @media (min-width: 1024px) {
           .banner {
-              flex-direction: row; 
-              padding-left: 2rem;
-              padding-right: 2.5rem; 
+            flex-direction: row;
+            padding-left: 2rem;
+            padding-right: 2.5rem;
           }
-      
+
+          .hand-emoji {
+            display: block;
+          }
+
+          .banner-content-subscribe {
+            flex-direction: row;
+          }
+
           .banner-content {
-              margin-bottom: 0; 
+            margin-bottom: 0;
           }
-      
-          .desktop {
-              order: 1;
-          }
-      
-          .w-auto {
-              order: 2; 
-          }
-      }
+        }
 
         .actions {
           flex: 1 0 auto;

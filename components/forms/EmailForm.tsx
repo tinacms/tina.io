@@ -42,20 +42,22 @@ export const EmailForm = (props: EmailFormProps) => {
       isFooter={props.isFooter}
       isEntering={isEntering}
     >
-      <Input
-        placeholder="Your email..."
-        name="email"
-        type="text"
-        onChange={handleEmailChange}
-        onFocus={handleEmailChange}
-      />
-      {props.isFooter ? (
-        isEntering && <Button type="submit">Subscribe</Button>
-      ) : (
-        <Button type="submit" color="orange">
-          Subscribe
-        </Button>
-      )}
+      <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <Input
+          placeholder="Your email..."
+          name="email"
+          type="text"
+          onChange={handleEmailChange}
+          onFocus={handleEmailChange}
+        />
+        {props.isFooter ? (
+          isEntering && <Button type="submit" color="orange" size='small'>Subscribe</Button>
+        ) : (
+          <Button type='submit' color="orange" size='small' >
+            Subscribe
+          </Button>
+        )}
+      </div>
     </StyledEmailForm>
   )
 }
@@ -88,20 +90,21 @@ const StyledEmailForm = styled.form<StyledEmailFormProps>`
     props.isEntering &&
     css`
     grid-gap: 0.5rem; 
-    align-items: top;
+    align-items: center;
     `}
-
+    
   ${props =>
     props.isFooter &&
     css`
       width: auto;
       ${Input} {
         width: 18rem;
-        background: rgba(0, 0, 0, 0.1);
-        color: white;
+        background: rgba(0, 0, 0, 0.05);
+        color: via-blue-900;
         ::placeholder {
-          color: white;
+          color: via-blue-900;
         }
+        align-self: center;
       }
     `};
 `
