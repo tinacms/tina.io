@@ -1,11 +1,9 @@
 import React from 'react'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
-import { EmailForm } from '../forms/EmailForm'
 import { TinaIcon } from '../../components/logo'
 import Link from 'next/link'
 import { DynamicLink } from '../../components/ui'
-
 import { BsDiscord } from 'react-icons/bs'
 
 const footerNav = [
@@ -291,9 +289,9 @@ export const Footer = ({}) => {
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col lg:flex-row w-full lg:items-center lg:justify-between bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-12 gap-6">
-        <div className="flex drop-shadow-sm flex-wrap justify-end gap-6">
-          <div className="flex flex-wrap justify-end gap-x-6 gap-y-2">
+      <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-12 gap-6 ">
+        <div className="flex drop-shadow-sm flex-wrap gap-6">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
             {footerLinks.map((item) => {
               const { link, label } = item
               return <FooterLink key={label} link={link} label={label} />
