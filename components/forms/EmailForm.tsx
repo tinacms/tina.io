@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-
 import { addToMailchimp } from '../../utils'
 import { Input, Button } from '../ui'
 
@@ -42,22 +41,24 @@ export const EmailForm = (props: EmailFormProps) => {
       isFooter={props.isFooter}
       isEntering={isEntering}
     >
-      <div style={{ display: 'flex', gap: '0.5rem' }}>
-        <Input
-          placeholder="Your email..."
-          name="email"
-          type="text"
-          onChange={handleEmailChange}
-          onFocus={handleEmailChange}
-        />
-        {props.isFooter ? (
-          isEntering && <Button type="submit" color="orange" size='small'>Subscribe</Button>
-        ) : (
-          <Button type='submit' color="orange" size='small' >
+      <Input
+        placeholder="Your email..."
+        name="email"
+        type="text"
+        onChange={handleEmailChange}
+        onFocus={handleEmailChange}
+      />
+      {props.isFooter ? (
+        isEntering && (
+          <Button type="submit" color="orange" size="small">
             Subscribe
           </Button>
-        )}
-      </div>
+        )
+      ) : (
+        <Button type="submit" color="orange" size="small">
+          Subscribe
+        </Button>
+      )}
     </StyledEmailForm>
   )
 }
@@ -72,28 +73,21 @@ interface StyledEmailFormProps {
 }
 
 const StyledEmailForm = styled.form<StyledEmailFormProps>`
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto;
+  display: flex;
   align-items: center;
   width: 100%;
   max-width: 38rem;
   padding: 0;
+  gap: 0.5rem;
 
-  
-  @media (min-width: 800px) {
-    grid-template-rows: auto;
-    grid-template-columns: 1fr auto;
-  }
-
-  ${props =>
+  ${(props) =>
     props.isEntering &&
     css`
-    grid-gap: 0.5rem; 
-    align-items: center;
+      grid-gap: 0.5rem;
+      align-items: center;
     `}
-    
-  ${props =>
+
+  ${(props) =>
     props.isFooter &&
     css`
       width: auto;
