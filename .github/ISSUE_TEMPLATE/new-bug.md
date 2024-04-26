@@ -7,7 +7,7 @@ title: "🐛 "
 
 <!-- **Tip:** Delete parts that are not relevent -->
 
-### 🐛 Desrcibe the Bug
+### 🐛 Describe the Bug
 <!-- A clear and concise description of what the bug is -->
 
 ### 🧑‍💻 Reproduction Steps
@@ -26,9 +26,10 @@ title: "🐛 "
 
 ### ✅ Acceptance Criteria 
 <!-- Add the "contract" that defines the requirements for the GitHub issue to be completed as per the team's agreement -->
+<!-- Only once all Acceptance Criteria is fulfilled can an issue be marked as completed -->
 
 ### ➕ More Information
-<!-- Add any other context here -->
+<!-- Add any other context here, this section is useful for adding context for other users to action -->
 
 ### 📸 Screenshots 
 <!-- If applicable, add screenshots that are relevent to the feature (i.e mock-ups, diagrams) -->
