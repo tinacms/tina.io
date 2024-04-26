@@ -5,7 +5,7 @@ labels: 'Type: Bug'
 title: "🐛 "
 ---
 
-<!-- **Tip:** Delete parts that are not relevent -->
+<!-- **Tip:** Delete parts that are not relevant -->
 
 ### 🐛 Describe the Bug
 <!-- A clear and concise description of what the bug is -->

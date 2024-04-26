@@ -5,7 +5,7 @@ labels: 'Type: Feature'
 title: "✨ "
 ---
 
-<!-- **Tip:** Delete parts that are not relevent -->
+<!-- **Tip:** Delete parts that are not relevant -->
 
 ### 🩸 Pain
 <!-- Explain the pain you are experiencing -->
