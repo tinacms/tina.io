@@ -7,9 +7,6 @@ title: "✨ "
 
 <!-- **Tip:** Delete parts that are not relevent -->
 
-<!-- Below the Cc, @ mention users who should be in the loop -->
-Cc: 
-
 ### 🩸 Pain
 <!-- Explain the pain you are experiencing -->
 
@@ -29,3 +26,6 @@ Cc:
 
 ### 📸 Screenshots 
 <!-- If applicable, add screenshots that are relevent to the feature (i.e mock-ups, diagrams) -->
+
+<!-- Below the Cc, @ mention users who should be in the loop -->
+Cc: 

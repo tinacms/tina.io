@@ -7,9 +7,6 @@ title: "🐛 "
 
 <!-- **Tip:** Delete parts that are not relevent -->
 
-<!-- Below the Cc, @ mention users who should be in the loop -->
-Cc: 
-
 ### 🐛 Desrcibe the Bug
 <!-- A clear and concise description of what the bug is -->
 
@@ -35,3 +32,6 @@ Cc:
 
 ### 📸 Screenshots 
 <!-- If applicable, add screenshots that are relevent to the feature (i.e mock-ups, diagrams) -->
+
+<!-- Below the Cc, @ mention users who should be in the loop -->
+Cc: 
