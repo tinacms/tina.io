@@ -26,7 +26,7 @@ title: "✨ "
 <!-- Add any other context here, this section is useful for adding context for other users to action -->
 
 ### 📸 Screenshots 
-<!-- If applicable, add screenshots that are relevent to the feature (i.e mock-ups, diagrams) -->
+<!-- If applicable, add screenshots that are relevant to the feature (i.e mock-ups, diagrams) -->
 
 <!-- Below the Cc, @ mention users who should be in the loop -->
 Cc: 
