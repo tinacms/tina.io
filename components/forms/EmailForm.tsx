@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-
 import { addToMailchimp } from '../../utils'
 import { Input, Button } from '../ui'
 
@@ -40,6 +39,7 @@ export const EmailForm = (props: EmailFormProps) => {
       id="newsletter-signup"
       onSubmit={handleSubmit}
       isFooter={props.isFooter}
+      isEntering={isEntering}
     >
       <Input
         placeholder="Your email..."
@@ -49,9 +49,13 @@ export const EmailForm = (props: EmailFormProps) => {
         onFocus={handleEmailChange}
       />
       {props.isFooter ? (
-        isEntering && <Button type="submit">Subscribe</Button>
+        isEntering && (
+          <Button type="submit" color="orange" size="small">
+            Subscribe
+          </Button>
+        )
       ) : (
-        <Button type="submit" color="orange">
+        <Button type="submit" color="orange" size="small">
           Subscribe
         </Button>
       )}
@@ -65,34 +69,36 @@ EmailForm.defaultProps = {
 
 interface StyledEmailFormProps {
   isFooter?: boolean
+  isEntering: boolean
 }
 
 const StyledEmailForm = styled.form<StyledEmailFormProps>`
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto;
+  display: flex;
   align-items: center;
-  grid-gap: 1rem;
   width: 100%;
   max-width: 38rem;
   padding: 0;
+  gap: 0.5rem;
 
-  @media (min-width: 800px) {
-    grid-template-rows: auto;
-    grid-template-columns: 1fr auto;
-  }
+  ${(props) =>
+    props.isEntering &&
+    css`
+      grid-gap: 0.5rem;
+      align-items: center;
+    `}
 
-  ${props =>
+  ${(props) =>
     props.isFooter &&
     css`
       width: auto;
       ${Input} {
         width: 18rem;
-        background: rgba(0, 0, 0, 0.1);
-        color: white;
+        background: rgba(0, 0, 0, 0.05);
+        color: via-blue-900;
         ::placeholder {
-          color: white;
+          color: via-blue-900;
         }
+        align-self: center;
       }
     `};
 `

@@ -3,14 +3,19 @@ import Link from 'next/link'
 import { IconRight } from '../blocks'
 import { Button, ButtonGroup } from '../../components/ui'
 import GitHubButton from 'react-github-btn'
-
+import { EmailForm } from '../forms/EmailForm'
 export function CloudBanner() {
   return (
     <>
       <div className="banner">
-        <div className="banner-content w-full flex justify-center items-center">
-          <span className="desktop">
-            <p className="mr-5">Loving Tina? ⭐️ us on <a href="https://github.com/tinacms/tinacms" target="new">GitHub</a></p>
+        <div className="banner-content flex justify-center items-center banner-left-padding">
+          <span className="mobile">
+            <p className="mr-5">
+              Loving Tina? ⭐️ us on{' '}
+              <a href="https://github.com/tinacms/tinacms" target="new">
+                GitHub
+              </a>
+            </p>
           </span>
           {/* @ts-ignore */}
           <GitHubButton
@@ -22,7 +27,14 @@ export function CloudBanner() {
             Star
           </GitHubButton>
         </div>
+        <div className="banner-content banner-content-subscribe w-auto justify-center">
+          <div className=" banner-content mr-1 mt-1 justify-top">
+            Stay in touch <span className="hand-emoji">👉</span>
+          </div>
+          <EmailForm isFooter />
+        </div>
       </div>
+
       <style jsx>{`
         .wordmark {
           display: inline-flex;
@@ -56,25 +68,51 @@ export function CloudBanner() {
           line-height: 1.2;
           flex: 0 1 auto;
           width: 100%;
+          flex-direction: column;
 
           :global(a) {
             text-decoration: underline;
-
           }
 
           :global(em) {
             font-style: normal;
             font-weight: bold;
           }
-
-          @media (min-width: 680px) {
-            padding: 0.75rem 1.5rem;
-          }
         }
 
         .banner-content {
           display: flex;
           align-items: center;
+          margin-top: 0.3rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .banner-content-subscribe {
+          flex-direction: column;
+        }
+
+        .hand-emoji {
+          display: none;
+        }
+
+        @media (min-width: 1024px) {
+          .banner {
+            flex-direction: row;
+            padding-left: 2rem;
+            padding-right: 2.5rem;
+          }
+
+          .hand-emoji {
+            display: block;
+          }
+
+          .banner-content-subscribe {
+            flex-direction: row;
+          }
+
+          .banner-content {
+            margin-bottom: 0;
+          }
         }
 
         .actions {
