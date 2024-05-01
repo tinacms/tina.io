@@ -59,4 +59,4 @@ This plugin system demonstrates how the principle of Inversion of Control influe
 
 This approach benefits both sides: plugin authors don’t have to worry about implementing some complex configuration scheme, and developers can apply the plugin in both simple and complex use cases without resorting to hacks.
 
-If you're interested in learning more about plugins in TinaCMS, checkout the [documentation](https://tinacms.org/docs/cms#plugins). Interested in creating your own plugin? Head over to the contribution [guidelines](https://tinacms.org/docs/contributing/guidelines). Feel free to post any questions or comments in the [Tina Forum](https://community.tinacms.org/t/dynamic-plugins-in-tinacms/37).
+If you're interested in learning more about plugins in TinaCMS, checkout the [documentation](https://tinacms.org/docs/cms#plugins). Interested in creating your own plugin? Head over to the contribution [guidelines](https://tinacms.org/docs/contributing/guidelines). Feel free to post any questions or comments in the [Tina Discord](https://discord.com/invite/zumN63Ybpf).

@@ -18,4 +18,4 @@ In this video, David shows how to:
 
 <Youtube embedSrc="https://www.youtube.com/embed/3MSbRzhHtX8" />
 
-See the source code for this project here: [https://github.com/konsumer/tina-gettingstarted.](https://github.com/konsumer/tina-gettingstarted.)&#x20;
+See the source code for this project here: [https://github.com/konsumer/tina-gettingstarted](https://github.com/konsumer/tina-gettingstarted)&#x20;

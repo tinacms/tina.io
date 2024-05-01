@@ -8,7 +8,7 @@ prev: content/blog/what-are-blocks.md
 warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 
-TinaCMS allows you to build live-editing functionality directly into your site. Tina differs from other headless CMS's (e.g. [Forestry.io](https://Forestry.io), [NetlifyCMS](https://NetlifyCMS.org), [Contentful](https://contentful.com)) which simply allow you to edit your site's content and are relatively detached from your site's code. Having Tina sit in between your content and your site's template gives editors an amazing real-time editing experience where they can navigate to any area of the site, start making changes, and immediately see these changes reflected within the site.
+TinaCMS allows you to build live-editing functionality directly into your site. Tina differs from other headless CMS's (e.g. [Forestry.io](https://Forestry.io), [Decap CMS (formerly Netlify CMS](https://decapcms.org/docs/intro), [Contentful](https://contentful.com)) which simply allow you to edit your site's content and are relatively detached from your site's code. Having Tina sit in between your content and your site's template gives editors an amazing real-time editing experience where they can navigate to any area of the site, start making changes, and immediately see these changes reflected within the site.
 
 ![tina-diagram](/img/how_tina_works_asset.png)
 
@@ -16,7 +16,7 @@ With most JAMstack sites, there are various transformations happening that trans
 
 > So, do my editors need to run a local dev server to edit a TinaCMS site?
 
-Nope! You'll be able to setup a **cloud editing environment** for your Tina site, and optionally use [Tina Teams](https://tinacms.org/teams) for some extended collaboration features.
+Nope! You'll be able to setup a **cloud editing environment** for your Tina site, and optionally use [Tina Teams](https://tina.io/cms-for-teams/) for some extended collaboration features.
 
 ### Hosting Your Cloud Editing Environment ☁️
 
@@ -57,4 +57,4 @@ We've also got some other "down the road" features planned which will make it mu
 
 # ✨
 
-Thanks for reading! If you think Tina Teams might be a fit, you can sign up for our [Tina Teams Alpha](http://tinacms.org/teams) to try it out early!
+Thanks for reading! If you think Tina Teams might be a fit, you can sign up for our Tina Teams Alpha to try it out early!

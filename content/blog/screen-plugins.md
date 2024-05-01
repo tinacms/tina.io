@@ -12,7 +12,7 @@ prev: content/blog/designing-an-extensible-styling-system.md
 
 Plugins are a powerful concept. In general plugins are used to extend core functionality of a base system. While many plugin systems are static, TinaCMS is powered by a [dynamic plugin system](https://tinacms.org/blog/dynamic-plugin-system/). In this approach, plugins are added and removed programmatically. This dynamism allows developers to add and remove CMS features based on the context.
 
-If you’ve worked with Tina, you may have already used a few plugins without realizing it. The most common plugin used in `tinacms` is the `FormPlugin` which adds forms for editing content to the [sidebar](https://tinacms.org/docs/concepts/sidebar).
+If you’ve worked with Tina, you may have already used a few plugins without realizing it. The most common plugin used in `tinacms` is the `FormPlugin` which adds forms for editing content to the sidebar.
 
 Another plugin worth noting is the [`ContentCreatorPlugin`](/docs/plugins/content-creators). This plugin provides the foundation for creating new data source files.
 

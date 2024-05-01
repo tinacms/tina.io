@@ -58,7 +58,7 @@ Given all the options for creating components and sourcing data in Gatsby, we ha
 First, Let’s dive into how to hook up TinaCMS with a Page Query.
 The `remarkForm` Component in TinaCMS is a [Higher Order Component](https://reactjs.org/docs/higher-order-components.html), a HOC in short. This means that it is a function that takes in another component and will return a new component that has added functionality to it.
 
-> If you’re not familiar with HOC's, I suggest you read about them in the [React official docs]("https://reactjs.org/docs/higher-order-components.html"). They are considered “advanced usage” in the React world.
+> If you’re not familiar with HOC's, I suggest you read about them in the [React official docs](https://legacy.reactjs.org/docs/higher-order-components.html). They are considered “advanced usage” in the React world.
 
 The `remarkForm` component wants another component as an argument and is intended for Page Queries. A Page Query injects the data as a prop to the component and we access the data from this prop. With a `useStaticQuery` hook, the data is collected in a variable, that you choose, inside the component itself. That means if you're using the `useStaticQuery` hook in Gatsby you won’t have a component to give the `remarkForm` HOC. Bummer!😞 That’s why you can only use the `remarkForm` component with Page Queries.
 
