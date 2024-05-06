@@ -11,9 +11,12 @@ import path from 'path'
 import '../styles/tailwind.css'
 import { useEditState } from 'tinacms/dist/react'
 import { CloudBanner } from '../components/layout/CloudBanner'
+import dynamic from 'next/dynamic'
+import ChatBaseBot from '../components/ui/TinaChatBot'
 
 // the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
+
 
 const MainLayout = ({ Component, pageProps }) => {
   return (
@@ -63,6 +66,7 @@ const MainLayout = ({ Component, pageProps }) => {
       <AdminLink />
       <CloudBanner />
       <Component {...pageProps} />
+      <ChatBaseBot />
     </>
   )
 }
