@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Modal from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import classes from './ModalConfirmation.module.css';
-import ReactDOM from 'react-dom';
 
 interface ModalConfirmationProps {
     isOpen: boolean;
@@ -12,7 +11,9 @@ interface ModalConfirmationProps {
 
 const ModalConfirmation: React.FC<ModalConfirmationProps> = ({ isOpen, onClose, body }) => {
     return (
-        <Modal open={isOpen} onClose={onClose} 
+        <Modal 
+        open={isOpen}
+        onClose={onClose} 
         center
         classNames={{
           overlay: classes.customOverlay,

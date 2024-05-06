@@ -48,7 +48,7 @@ export const addToMailchimp = function addToMailchimp(email) {
   if (!isEmailValid) {
     return Promise.resolve({
       result: 'error',
-      msg: 'The email you entered is not valid.',
+      msg: 'Invalid',
     })
   }
 

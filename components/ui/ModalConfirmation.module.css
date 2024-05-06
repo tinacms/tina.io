@@ -3,8 +3,11 @@
   }
   .customModal {
     background: rgb(255, 255, 255);
-    max-width: 500px;
-    width: 100%;
+    width: 40rem;
+    border-radius: 1rem;
+    text-align: left;
+    max-width: 70%;
   }
-  
-
+  .react-responsive-modal-closeButton {
+    display: none !important; 
+  }
