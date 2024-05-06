@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { addToMailchimp } from '../../utils'
 import { Input, Button } from '../ui'
-
+import ModalConfirmation from '../ui/ModalConfirmation'
 interface EmailFormProps {
   isFooter: boolean
 }
@@ -10,8 +10,18 @@ interface EmailFormProps {
 export const EmailForm = (props: EmailFormProps) => {
   const [email, setEmail] = useState('')
   const [isEntering, setIsEntering] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+};
+
+const handleCloseModal = () => {
+    setIsOpen(false);
+};
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault()
     addToMailchimp(email)
       .then((data: any) => {
@@ -21,10 +31,15 @@ export const EmailForm = (props: EmailFormProps) => {
         // Errors in here are client side
         // Mailchimp always returns a 200
         if (error.message === 'Timeout') {
-          alert(
-            'Looks like your browser is blocking this. Try to disable any tracker-blocking feature and resubmit.'
-          )
+
+          handleOpenModal();
+          // alert(
+          //   'Looks like your browser is blocking this. Try to disable any tracker-blocking feature and resubmit.'
+          // )
+          
         }
+
+        
         console.error(error)
       })
   }
@@ -48,6 +63,26 @@ export const EmailForm = (props: EmailFormProps) => {
         onChange={handleEmailChange}
         onFocus={handleEmailChange}
       />
+
+      {isOpen ? <ModalConfirmation isOpen={isOpen} onClose={handleCloseModal} 
+      body={
+      <div>
+        <div>
+          <h1 className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}>
+            Welcome Aboard!
+          </h1>
+        </div>
+        <div>
+          <p className="text-base lg:text-md">Thank you for subscribing to our newsletter. We will keep you updated with the latest news and updates.</p>
+        </div>
+        <div>
+        <Button color="blue" size='small'>
+          Subscribe
+        </Button>
+        </div>
+      </div>
+      } /> : false}
+
       {props.isFooter ? (
         isEntering && (
           <Button type="submit" color="orange" size="small">
