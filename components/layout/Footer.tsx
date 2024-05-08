@@ -18,23 +18,23 @@ const footerNav = [
       //   label: 'Demo',
       // },
       {
-        link: '/showcase/',
+        link: '/showcase',
         label: 'Showcase',
       },
       {
-        link: 'https://app.tina.io/',
+        link: 'https://app.tina.io',
         label: 'Tina Cloud',
       },
       {
-        link: '/docs/',
+        link: '/docs',
         label: 'Introduction',
       },
       {
-        link: '/docs/product-tour/',
+        link: '/docs/product-tour',
         label: 'How Tina Works',
       },
       {
-        link: '/press/',
+        link: '/press',
         label: 'Press',
       },
     ],
@@ -168,19 +168,19 @@ const footerNav = [
 
 const footerLinks = [
   {
-    link: '/security/',
+    link: '/security',
     label: 'Security',
   },
   {
-    link: '/telemetry/',
+    link: '/telemetry',
     label: 'Open Source Telemetry',
   },
   {
-    link: '/terms-of-service/',
+    link: '/terms-of-service',
     label: 'Terms of Service',
   },
   {
-    link: '/privacy-notice/',
+    link: '/privacy-notice',
     label: 'Privacy Notice',
   },
   {
@@ -188,7 +188,7 @@ const footerLinks = [
     label: 'License',
   },
   {
-    link: '/docs/support/',
+    link: '/docs/support',
     label: 'Support',
   },
 ]

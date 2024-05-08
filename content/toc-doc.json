@@ -4,7 +4,7 @@
     "description": "Quickly Setup Tina on your site",
     "items": [
       {
-        "slug": "/docs/",
+        "slug": "/docs",
         "title": "Overview"
       },
       {
@@ -30,31 +30,31 @@
                 "title": "NextJS"
               },
               {
-                "slug": "/docs/frameworks/astro/",
+                "slug": "/docs/frameworks/astro",
                 "title": "Astro"
               },
               {
-                "slug": "/docs/frameworks/hugo/",
+                "slug": "/docs/frameworks/hugo",
                 "title": "Hugo"
               },
               {
-                "slug": "/docs/frameworks/gatsby/",
+                "slug": "/docs/frameworks/gatsby",
                 "title": "Gatsby"
               },
               {
-                "slug": "/docs/frameworks/jekyll/",
+                "slug": "/docs/frameworks/jekyll",
                 "title": "Jekyll"
               },
               {
-                "slug": "/docs/frameworks/remix/",
+                "slug": "/docs/frameworks/remix",
                 "title": "Remix"
               },
               {
-                "slug": "/docs/frameworks/11ty/",
+                "slug": "/docs/frameworks/11ty",
                 "title": "11ty"
               },
               {
-                "slug": "/docs/frameworks/other/",
+                "slug": "/docs/frameworks/other",
                 "title": "Other"
               }
             ]
@@ -62,7 +62,7 @@
         ]
       },
       {
-        "slug": "/docs/using-tina-editor/",
+        "slug": "/docs/using-tina-editor",
         "title": "Using the Tina Editor"
       }
     ]
@@ -73,11 +73,11 @@
     "items": [
       {
         "title": "Content Modeling",
-        "slug": "/docs/schema/"
+        "slug": "/docs/schema"
       },
       {
         "title": "Data Fetching",
-        "slug": "/docs/features/data-fetching/"
+        "slug": "/docs/features/data-fetching"
       },
       {
         "title": "Visual Editing",
