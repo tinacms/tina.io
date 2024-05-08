@@ -1,6 +1,9 @@
 import React from 'react'
 import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
+import XIconSvg from '../../public/svg/x-icon.svg'
 import GithubIconSvg from '../../public/svg/github-icon.svg'
+import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg'
+import YoutubeIconSvg from '../../public/svg/youtube-icon.svg'
 import { TinaIcon } from '../../components/logo'
 import Link from 'next/link'
 import { DynamicLink } from '../../components/ui'
@@ -270,18 +273,26 @@ export const Footer = ({}) => {
             )
           })}
           <div className="flex flex-col lg:items-center">
-            <div className="flex w-1/2 flex-col lg:items-end gap-4 drop-shadow-sm">
+            <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm">
               <SocialLink link="https://github.com/tinacms/tinacms">
                 <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 GitHub
               </SocialLink>
               <SocialLink link="https://twitter.com/tinacms">
-                <TwitterIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+                <XIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 Twitter
               </SocialLink>
               <SocialLink link="https://discord.com/invite/zumN63Ybpf">
                 <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
                 Discord
+              </SocialLink>
+              <SocialLink link="https://www.youtube.com/@TinaCMS">
+                <YoutubeIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+                YouTube
+              </SocialLink>
+              <SocialLink link="https://www.linkedin.com/company/tinacms">
+                <LinkedInIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
+                LinkedIn
               </SocialLink>
             </div>
           </div>
