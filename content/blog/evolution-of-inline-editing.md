@@ -36,7 +36,7 @@ The usability benefits of inline editing could outweigh these concerns depending
 
 ### Ref-Based Inline Editing
 
-`useFieldRef` is the first part of an experimental new API for creating a ref-based inline editing experience with Tina. With `useFieldRef`, inline editing components are defined in the form configuration, and you assign a [ref](https://reactjs.org/docs/refs-and-the-dom.html) to the component in your layout that the field should attach to.
+`useFieldRef` is the first part of an experimental new API for creating a ref-based inline editing experience with Tina. With `useFieldRef`, inline editing components are defined in the form configuration, and you assign a [ref](https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom) to the component in your layout that the field should attach to.
 
 Inline fields created in this fashion are absolutely positioned on top of the referenced component and conform to its dimensions. Ref-based inline editing makes it possible for the field to appear as if it's replacing the layout component in the DOM without altering the markup.
 
