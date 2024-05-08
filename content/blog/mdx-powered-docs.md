@@ -31,7 +31,7 @@ We are big fans of markdown and have just introduced the ability to support MDX.
 
 ![CleanShot 2021-11-02 at 09.18.07.png](https://res.craft.do/user/full/c67cad1b-6dc6-4909-0f8e-19d468ba9fd4/doc/F38A8651-6C07-422F-A3E4-DBB7464B4570/6E8FBA41-E9EF-4E94-8A8B-0B659D9054F4_2/CleanShot%202021-11-02%20at%2009.18.07.png)
 
-### [Video player](https://github.com/tinacms/tina-docs-starter/blob/main/pages/docs/%5Bslug%5D.js#L28)
+### Video player
 
 ![CleanShot 2021-11-02 at 09.25.50.png](https://res.craft.do/user/full/c67cad1b-6dc6-4909-0f8e-19d468ba9fd4/doc/F38A8651-6C07-422F-A3E4-DBB7464B4570/5370BD6C-2B6A-4915-9D31-AF1E21A67B93_2/CleanShot%202021-11-02%20at%2009.25.50.png)
 

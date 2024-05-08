@@ -11,7 +11,7 @@ warningMessage: '**Update:** Inline editing is evolving and the current version 
 
 <Youtube embedSrc={"https://www.youtube.com/embed/4qGz0cP_DSA"} />
 
-We chose to specifically focus on [Inline Blocks](https://tinacms.org/docs/ui/inline-editing/inline-blocks), to hone in on the page builder capacities of Tina. What follows are some **improvements and changes** made within [react-tinacms-inline](https://github.com/tinacms/tinacms/tree/master/packages/react-tinacms-inline), along with process notes gathered throughout the course of this project:
+We chose to specifically focus on [Inline Blocks](https://tinacms.org/docs/ui/inline-editing/inline-blocks), to hone in on the page builder capacities of Tina. What follows are some **improvements and changes** made within react-tinacms-inline, along with process notes gathered throughout the course of this project:
 
 ## Aesthetics
 

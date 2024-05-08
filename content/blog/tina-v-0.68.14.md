@@ -63,7 +63,7 @@ export const tinaConfig = defineConfig({
 export default schema
 ```
 
-The token must be a wildcard token (`*`) and can be generated from the Tina dashboard. Read more about read only tokens [here](https://tina.io/docs/graphql/read-only-tokens/)
+The token must be a wildcard token (`*`) and can be generated from the Tina dashboard. Read more about read only tokens [here](https://tina.io/blog/read-only-tokens-content-anytime)
 
 For more information about where to get these values, see the ["going to production"](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) docs.
 

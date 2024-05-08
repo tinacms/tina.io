@@ -38,7 +38,7 @@ This makes the writing experience much more enjoyable when you write long format
 
 ## Next.js and Tailwind Demo 👀
 
-Our [default demo](https://tina-demo-two.vercel.app/iframe/) is based on Next.js and Tailwind CSS. It currently showcases how you can set up Tina to provide: theme colors, component variants, dark mode, responsive blocks, etc. In the near future, we’ll dedicate a post on how we built this demo, so you will be able to dig in further and learn from it. For now, feel free to play around and [let us know if you have any feedback](https://github.com/tinacms/tina-tailwind-inline-demo/issues).
+Our default demo is based on Next.js and Tailwind CSS. It currently showcases how you can set up Tina to provide: theme colors, component variants, dark mode, responsive blocks, etc. In the near future, we’ll dedicate a post on how we built this demo, so you will be able to dig in further and learn from it. For now, feel free to play around and [let us know if you have any feedback](https://github.com/tinacms/tina-tailwind-inline-demo/issues).
 
 ## Contentful plugin 🔌
 

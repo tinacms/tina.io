@@ -76,7 +76,7 @@ You should add the following two files in the `.tina/components` folder.
 
 ### 3. Add `.tina/components/TinaProvider.js`
 
-This file handles the Tina configuration and the tina provider component, and this will only load when in edit mode, and an [you can find an example of the Tina Provider here](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/components/TinaProvider.jsx) and below.
+This file handles the Tina configuration and the tina provider component, and this will only load when in edit mode, and an example below.
 
 ```js
 import TinaCMS from 'tinacms'
@@ -95,7 +95,7 @@ const TinaProvider = ({ children }) => {
 
 ### 4. Add `.tina/components/TinaDynamicProvider.js`
 
-The `TinaDynamicProvider.js` handles the loading of the TinaProvider when in "Edit mode." [See this example](https://github.com/tinacms/tina-cloud-starter/blob/main/.tina/components/TinaDynamicProvider.jsx) or the example provided below
+The `TinaDynamicProvider.js` handles the loading of the TinaProvider when in "Edit mode." See the provided below
 
 ```js
 import dynamic from 'next/dynamic'

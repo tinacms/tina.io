@@ -39,8 +39,6 @@ Here's an example where we override the primary color (blue by default) and use 
 
 Reducing the complexity of our theme system makes it easier for us to adapt the UI to new features, but also makes it easier for those integrating TinaCMS with their project.
 
-> [Take a look at the docs](https://tinacms.org/docs/ui/styles) for `@tinacms/styles` for a full reference of available properties.
-
 ## What's the next challenge?
 
 Styled Components are easy to use and generally a pleasure to work with, but unfortunately require a runtime. While this isn't an issue in an app or website, it's problematic for a library. It's possible the library consumer is already using a different version of styled components, or even a different css-in-js library that requires a separate runtime. Ideally TinaCMS styles would be framework agnostic with no runtime, consumable by any HTML page. Moving our theme system to CSS custom properties was the first step in aligning our style system with the needs of our project.

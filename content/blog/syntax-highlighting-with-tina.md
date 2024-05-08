@@ -144,7 +144,7 @@ This gives us access to the component, and we can create a variable called `comp
 const components = {}
 ```
 
-We are going to override the `code_block` element, if you are wondering what elements can be overridden you can find them all in our [tinacms](https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/rich-text.tsx) package.
+We are going to override the `code_block` element, if you are wondering what elements can be overridden you can find them all in our [tinacms](https://github.com/tinacms/tinacms) package.
 
 Inside our component variable we can put a property named `code_block` which we can then use to override the original styling:
 

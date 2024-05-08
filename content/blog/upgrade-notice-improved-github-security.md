@@ -88,4 +88,4 @@ const onLogin = async () => {
 
 ## Questions?
 
-Discuss it in the [forums](https://community.tinacms.org/t/upgrade-notice-improved-github-security/226).
+Discuss them in our [Community Discord Server](https://discord.com/invite/zumN63Ybpf) (Please use the #help channel).

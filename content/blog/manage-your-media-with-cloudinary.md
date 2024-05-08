@@ -146,6 +146,4 @@ export default createMediaHandler({
 
 Now when you launch your application you will see a change in the sidebar, that gives you access to the media manager:
 
-![Tina Cloudinary Media manager](https://res.cloudinary.com/dub20ptvt/image/upload/v1625834243/Tina/AnimatedImage_z7kaub.gif)
-
 Note that developers can [pass a `pageSize` option to the media store](https://github.com/tinacms/tina-graphql-gateway/blob/main/packages/next-tinacms-cloudinary/README.md) in order to decide how many media should be displayed per page in the manager. We'll continue improving Cloudinary integration and look into media caching later, for now, we feel it's already a huge step to make sure your content team can manage media like a pro in Tina.
