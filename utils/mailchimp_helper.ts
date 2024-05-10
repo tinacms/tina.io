@@ -64,6 +64,7 @@ export const addToMailchimp = function addToMailchimp(email) {
   endpoint = endpoint.replace(/\/post/g, '/post-json')
   const queryParams = `&EMAIL=${emailEncoded}`
   const url = `${endpoint}${queryParams}`
+  console.log(url)
 
   return subscribeEmailToMailchimp(url)
 }
