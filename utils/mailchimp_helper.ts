@@ -66,5 +66,7 @@ export const addToMailchimp = function addToMailchimp(email) {
   const url = `${endpoint}${queryParams}`
   console.log(url)
 
+  console.log(subscribeEmailToMailchimp(url));
+
   return subscribeEmailToMailchimp(url)
 }
