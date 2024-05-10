@@ -44,7 +44,10 @@ const subscribeEmailToMailchimp = url =>
 
 export const addToMailchimp = function addToMailchimp(email) {
   const isEmailValid = validate(email)
+  console.log(isEmailValid)
   const emailEncoded = encodeURIComponent(email)
+  console.log(email)
+  console.log(emailEncoded)
   if (!isEmailValid) {
     return Promise.resolve({
       result: 'error',
