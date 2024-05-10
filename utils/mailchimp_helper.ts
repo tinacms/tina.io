@@ -1,72 +1,34 @@
-/*
- ** Adapted from @benjaminhoffman's gatsby-plugin-mailchimp
- */
+import jsonp from 'jsonp';
+import { validate } from 'email-validator';
+import mailchimp from '@mailchimp/mailchimp_marketing';
 
-import jsonp from 'jsonp'
-import { validate } from 'email-validator'
 
-/**
- * Make a jsonp request to user's mailchimp list
- *  `param` object avoids CORS issues
- *  timeout to 3.5s so user isn't waiting forever
- *  usually occurs w/ privacy plugins enabled
- *  3.5s is a bit longer than the time it would take on a Slow 3G connection
- *
- * @param {String} url - concatenated string of user's gatsby-config.js
- *  options, along with any MC list fields as query params.
- *
- * @return {Promise} - a promise that resolves a data object
- *  or rejects an error object
- */
-
-const subscribeEmailToMailchimp = url =>
-  new Promise((resolve, reject) =>
-    jsonp(url, { param: 'c', timeout: 3500 }, (err, data) => {
-      if (err) reject(err)
-      if (data) resolve(data)
-    })
-  )
+mailchimp.setConfig({
+  apiKey: 'p758b512d14cfd5cfe1379082118efe9d-us20',
+  server: 'us20', 
+});
 
 /**
  * Subscribe an email address to a Mailchimp email list.
- * We use ES5 function syntax (instead of arrow) because we need `arguments.length`
- *
  * @param {String} email - required; the email address you want to subscribe
- * NOTE: For the EmailForm, I removed fields and endpointOverride since we
- * weren't using them. check the original source code if they are needed
- * https://github.com/benjaminhoffman/gatsby-plugin-mailchimp/blob/master/src/index.js
- * @return {Object} -
- *  {
- *    result: <String>(`success` || `error`)
- *    msg: <String>(`Thank you for subscribing!` || `The email you entered is not valid.`),
- *  }
+ * @return {Object} - result and message indicating subscription status
  */
-
-export const addToMailchimp = function addToMailchimp(email) {
-  const isEmailValid = validate(email)
-  console.log(isEmailValid)
-  const emailEncoded = encodeURIComponent(email)
-  console.log(email)
-  console.log(emailEncoded)
-  if (!isEmailValid) {
-    return Promise.resolve({
+export const addToMailchimp = async function addToMailchimp(email) {
+  const listId = 'c1062536a1';
+  const url = `https://${'us20'}.api.mailchimp.com/3.0/lists/${listId}/members`;
+  console.log(`Mailchimp API URL: ${url}`);
+  
+  if (!validate(email)) {
+    return {
       result: 'error',
       msg: 'The email you entered is not valid.',
-    })
+    };
   }
 
-  // eslint-disable-next-line no-undef
-  let endpoint = process.env.MAILCHIMP_ADDRESS
-  console.log(endpoint);
+    const response = await mailchimp.lists.addListMember(listId, {
+      email_address: email,
+      status: 'pending', 
+    });
 
-  // Generates MC endpoint for our jsonp request. We have to
-  // change `/post` to `/post-json` otherwise, MC returns an error
-  endpoint = endpoint.replace(/\/post/g, '/post-json')
-  const queryParams = `&EMAIL=${emailEncoded}`
-  const url = `${endpoint}${queryParams}`
-  console.log(url)
-
-  console.log(subscribeEmailToMailchimp(url));
-
-  return subscribeEmailToMailchimp(url)
-}
+    console.log('API response:', response)
+};

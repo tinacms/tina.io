@@ -26,6 +26,7 @@
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^10.0.0",
     "@react-hook/window-size": "^3.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
