@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components'
 import { addToMailchimp } from '../../utils'
 import { Input, Button } from '../ui'
 import ModalConfirmation from 'components/ui/ModalConfirmation'
+import useToggle from '../../utils/useToggle';
+
 
 interface EmailFormProps {
   isFooter: boolean
@@ -11,37 +13,29 @@ interface EmailFormProps {
 export const EmailForm = (props: EmailFormProps) => {
   const [email, setEmail] = useState('')
   const [isEntering, setIsEntering] = useState(false)
-  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
-  const [isErrorOpen, setIsErrorOpen] = useState(false);
 
-  const handleSuccessModal = () => {
-    setIsSuccessOpen(true);
-};
-
-const handleCloseModal = () => {
-    setIsSuccessOpen(false);
-};
-
-const handleOpenErrorModal = () => {
-  setIsErrorOpen(true);
-};
-
-const handleCloseErrorModal = () => {
-  setIsErrorOpen(false);
-};
+  const [isSuccessOpen, toggleSuccess] = useToggle(false);
+  const [isErrorOpen, toggleError] = useToggle(false);
+  const [isDuplicateOpen, toggleDuplicate] = useToggle(false);
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   try {
     const result = await addToMailchimp(email);
     if (result.result === 'success') {
-      handleSuccessModal();
+      toggleSuccess();
     } else {
-      handleOpenErrorModal();
+      if(result.message === 'Bad Request'){
+        toggleDuplicate();
+      }
+      else
+      {
+        toggleError();
+      }
     }
   } catch (error) {
     console.error('Error submitting email:', error);
-    handleOpenErrorModal();
+    toggleError();
   }
 };
 
@@ -68,7 +62,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       {isSuccessOpen && (
   <ModalConfirmation
     isOpen={isSuccessOpen}
-    onClose={handleCloseModal}
+    onClose={toggleSuccess}
     body={
       <div
         style={{
@@ -97,7 +91,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             padding: '0.5rem 0',
           }}
         >
-          <Button color="blue" size="medium" onClick={handleCloseModal}>
+          <Button color="blue" size="medium" onClick={toggleSuccess}>
             OK
           </Button>
         </div>
@@ -109,7 +103,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 {isErrorOpen && (
   <ModalConfirmation
     isOpen={isErrorOpen}
-    onClose={handleCloseErrorModal}
+    onClose={toggleError}
     body={
       <div
         style={{
@@ -134,8 +128,48 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             justifyContent: 'flex-end',
           }}
         >
-          <Button color="orange" size="medium" onClick={handleCloseErrorModal}>
+          <Button color="orange" size="medium" onClick={toggleError}>
             GO BACK
+          </Button>
+        </div>
+      </div>
+    }
+  />
+)}
+
+{isDuplicateOpen && (
+  <ModalConfirmation
+    isOpen={isDuplicateOpen}
+    onClose={toggleDuplicate}
+    body={
+      <div
+        style={{
+          padding: '1.5rem',
+        }}
+      >
+        <h1
+          className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+          style={{ fontSize: '2.5rem', margin: '0' }}
+        >
+          Already Subscribed
+        </h1>
+        <p
+          className="text-base lg:text-md"
+          style={{ marginBottom: '1rem' }}
+        >
+          You're already in our herd! Missing our emails? Let's fix that!
+        </p>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Button color="white" size="medium" onClick={toggleDuplicate} style={{marginRight: '1rem'}}>
+            GO BACK
+          </Button>
+          <Button color="blue" size="medium" onClick={toggleDuplicate}>
+            CONTACT US
           </Button>
         </div>
       </div>
