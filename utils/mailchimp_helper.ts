@@ -1,34 +1,35 @@
-import jsonp from 'jsonp';
+import mailchimp from '../pages/api/mailchimp';
 import { validate } from 'email-validator';
-import mailchimp from '@mailchimp/mailchimp_marketing';
 
+interface SubscriptionResult {
+  result: 'success' | 'error';
+  message: string;
+}
 
-mailchimp.setConfig({
-  apiKey: 'p758b512d14cfd5cfe1379082118efe9d-us20',
-  server: 'us20', 
-});
-
-/**
- * Subscribe an email address to a Mailchimp email list.
- * @param {String} email - required; the email address you want to subscribe
- * @return {Object} - result and message indicating subscription status
- */
-export const addToMailchimp = async function addToMailchimp(email) {
-  const listId = 'c1062536a1';
-  const url = `https://${'us20'}.api.mailchimp.com/3.0/lists/${listId}/members`;
-  console.log(`Mailchimp API URL: ${url}`);
-  
+export async function addToMailchimp(email: string): Promise<SubscriptionResult> {
   if (!validate(email)) {
     return {
       result: 'error',
-      msg: 'The email you entered is not valid.',
+      message: 'The email you entered is not valid.'
     };
   }
 
+  try {
+    const listId = process.env.MAILCHIMP_LIST_ID || '';
     const response = await mailchimp.lists.addListMember(listId, {
       email_address: email,
-      status: 'pending', 
+      status: 'pending'  
     });
-
-    console.log('API response:', response)
-};
+    console.log('API response:', response);
+    return {
+      result: 'success',
+      message: 'Email successfully added to the list.'
+    };
+  } catch (error) {
+    console.error('Error adding to Mailchimp:', error);
+    return {
+      result: 'error',
+      message: 'Failed to add email to the list.'
+    };
+  }
+}

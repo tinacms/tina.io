@@ -30,21 +30,21 @@ const handleCloseErrorModal = () => {
   setIsErrorOpen(false);
 };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    addToMailchimp(email)
-      .then((data: any) => {
-        handleOpenErrorModal();
-      })
-      .catch((error: Error) => {
-        // Errors in here are client side
-        // Mailchimp always returns a 200
-        if (error.message === 'Timeout') {
-          handleSuccessModal();
-        }
-        console.error(error)
-      })
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  try {
+    const result = await addToMailchimp(email);
+    if (result.result === 'success') {
+      handleSuccessModal();
+    } else {
+      handleOpenErrorModal();
+    }
+  } catch (error) {
+    console.error('Error submitting email:', error);
+    handleOpenErrorModal();
   }
+};
+
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsEntering(true)
