@@ -4,6 +4,7 @@ import { addToMailchimp } from '../../utils'
 import { Input, Button } from '../ui'
 import ModalConfirmation from 'components/ui/ModalConfirmation'
 import useToggle from '../../utils/useToggle';
+import { useRouter } from 'next/router'
 
 
 interface EmailFormProps {
@@ -17,6 +18,8 @@ export const EmailForm = (props: EmailFormProps) => {
   const [isSuccessOpen, toggleSuccess] = useToggle(false);
   const [isErrorOpen, toggleError] = useToggle(false);
   const [isDuplicateOpen, toggleDuplicate] = useToggle(false);
+
+  const {push} = useRouter()
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -119,7 +122,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 <Button color="white" size="medium" onClick={toggleDuplicate} className="mr-4">
                   GO BACK
                 </Button>
-                <Button color="blue" size="medium" onClick={toggleDuplicate}>
+                <Button color="blue" size="medium" onClick={ () => 
+                  {
+                    push('docs/support');
+                    toggleDuplicate();  
+                  }}>
                   CONTACT US
                 </Button>
               </div>
