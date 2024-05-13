@@ -26,6 +26,7 @@
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^10.0.0",
     "@react-hook/window-size": "^3.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -73,6 +74,7 @@
     "react-instantsearch-dom": "^6.3.0",
     "react-intersection-observer": "^9.4.0",
     "react-markdown": "^8.0.3",
+    "react-responsive-modal": "^6.4.2",
     "react-tinacms-editor": "^0.53.26",
     "react-use-size": "^3.0.1",
     "rehype-raw": "^6.1.1",
