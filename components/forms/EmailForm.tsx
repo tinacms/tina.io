@@ -60,122 +60,73 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         onFocus={handleEmailChange}
       />
       {isSuccessOpen && (
-  <ModalConfirmation
-    isOpen={isSuccessOpen}
-    onClose={toggleSuccess}
-    body={
-      <div
-        style={{
-          padding: '1.5rem',
-          margin: '0',
-        }}
-      >
-        <h1
-          className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
-          style={{ fontSize: '2.5rem', margin: '0' }}
-        >
-          Welcome Aboard!
-        </h1>
-        <p
-          className="text-base lg:text-md"
-          style={{ marginBottom: '1rem' }}
-        >
-          You've been added to the llama list.
-        </p>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            margin: '0',
-            padding: '0.5rem 0',
-          }}
-        >
-          <Button color="blue" size="medium" onClick={toggleSuccess}>
-            OK
-          </Button>
-        </div>
-      </div>
-    }
-  />
-)}
+        <ModalConfirmation
+          isOpen={isSuccessOpen}
+          onClose={toggleSuccess}
+          body={
+            <div className="p-6 m-0">
+              <h1 className="font-tuner inline-block text-4xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent m-0">
+                Welcome Aboard!
+              </h1>
+              <p className="text-base lg:text-md mb-4">
+                You've been added to the llama list.
+              </p>
+              <div className="flex justify-end items-center m-0 py-2">
+                <Button color="blue" size="medium" onClick={toggleSuccess}>
+                  OK
+                </Button>
+              </div>
+            </div>
+          }
+        />
+      )}
 
-{isErrorOpen && (
-  <ModalConfirmation
-    isOpen={isErrorOpen}
-    onClose={toggleError}
-    body={
-      <div
-        style={{
-          padding: '1.5rem',
-        }}
-      >
-        <h1
-          className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
-          style={{ fontSize: '2.5rem', margin: '0' }}
-        >
-          Hold your llamas!
-        </h1>
-        <p
-          className="text-base lg:text-md"
-          style={{ marginBottom: '1rem' }}
-        >
-          Couldn't sign you up. Please retry or contact us!
-        </p>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <Button color="orange" size="medium" onClick={toggleError}>
-            GO BACK
-          </Button>
-        </div>
-      </div>
-    }
-  />
-)}
+      {isErrorOpen && (
+        <ModalConfirmation
+          isOpen={isErrorOpen}
+          onClose={toggleError}
+          body={
+            <div className="p-6">
+              <h1 className="font-tuner inline-block text-4xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent m-0">
+                Hold your llamas!
+              </h1>
+              <p className="text-base lg:text-md mb-4">
+                Couldn't sign you up. Please retry or contact us!
+              </p>
+              <div className="flex justify-end">
+                <Button color="orange" size="medium" onClick={toggleError}>
+                  GO BACK
+                </Button>
+              </div>
+            </div>
+          }
+        />
+      )}
 
-{isDuplicateOpen && (
-  <ModalConfirmation
-    isOpen={isDuplicateOpen}
-    onClose={toggleDuplicate}
-    body={
-      <div
-        style={{
-          padding: '1.5rem',
-        }}
-      >
-        <h1
-          className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
-          style={{ fontSize: '2.5rem', margin: '0' }}
-        >
-          Already Subscribed
-        </h1>
-        <p
-          className="text-base lg:text-md"
-          style={{ marginBottom: '1rem' }}
-        >
-          You're already in our herd! Missing our emails? Let's fix that!
-        </p>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <Button color="white" size="medium" onClick={toggleDuplicate} style={{marginRight: '1rem'}}>
-            GO BACK
-          </Button>
-          <Button color="blue" size="medium" onClick={toggleDuplicate}>
-            CONTACT US
-          </Button>
-        </div>
-      </div>
-    }
-  />
-)}
+      {isDuplicateOpen && (
+        <ModalConfirmation
+          isOpen={isDuplicateOpen}
+          onClose={toggleDuplicate}
+          body={
+            <div className="p-6">
+              <h1 className="font-tuner inline-block text-4xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent m-0">
+                Already Subscribed
+              </h1>
+              <p className="text-base lg:text-md mb-4">
+                You're already in our herd! Missing our emails? Let's fix that!
+              </p>
+              <div className="flex justify-end">
+                <Button color="white" size="medium" onClick={toggleDuplicate} className="mr-4">
+                  GO BACK
+                </Button>
+                <Button color="blue" size="medium" onClick={toggleDuplicate}>
+                  CONTACT US
+                </Button>
+              </div>
+            </div>
+          }
+        />
+      )}
       {props.isFooter ? (
         isEntering && (
           <Button type="submit" color="orange" size="small">
