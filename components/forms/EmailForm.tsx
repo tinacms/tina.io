@@ -14,15 +14,18 @@ interface EmailFormProps {
 export const EmailForm = (props: EmailFormProps) => {
   const [email, setEmail] = useState('')
   const [isEntering, setIsEntering] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const [isSuccessOpen, toggleSuccess] = useToggle(false);
   const [isErrorOpen, toggleError] = useToggle(false);
   const [isDuplicateOpen, toggleDuplicate] = useToggle(false);
 
+
   const {push} = useRouter()
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
+  setIsProcessing(true);
   try {
     const result = await addToMailchimp(email);
     if (result.result === 'success') {
@@ -40,8 +43,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.error('Error submitting email:', error);
     toggleError();
   }
+  setIsProcessing(false);
 };
-
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsEntering(true)
@@ -61,7 +64,24 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         type="text"
         onChange={handleEmailChange}
         onFocus={handleEmailChange}
+        disabled= {isProcessing}
       />
+      {isEntering && (
+          <Button 
+            type="submit" 
+            color="orange" 
+            disabled={isProcessing}
+            >
+            {isProcessing ? (
+              <>
+                <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" strokeDasharray="80" strokeDashoffset="60" />
+                </svg>
+                Processing...
+              </>
+            ) : 'Subscribe'}
+          </Button>
+        )}
       {isSuccessOpen && (
         <ModalConfirmation
           isOpen={isSuccessOpen}
@@ -133,17 +153,6 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             </div>
           }
         />
-      )}
-      {props.isFooter ? (
-        isEntering && (
-          <Button type="submit" color="orange" size="small">
-            Subscribe
-          </Button>
-        )
-      ) : (
-        <Button type="submit" color="orange" size="small">
-          Subscribe
-        </Button>
       )}
     </StyledEmailForm>
   )

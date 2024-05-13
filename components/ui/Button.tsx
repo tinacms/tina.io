@@ -7,6 +7,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   href?: string
   type?: 'button' | 'submit' | 'reset'
   children: React.ReactNode | React.ReactNode[]
+  disabled?: boolean
 }
 
 const baseClasses =
