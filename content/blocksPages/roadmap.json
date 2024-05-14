@@ -21,7 +21,7 @@
       "headline": "Recently Released",
       "items": [
         {
-          "headline": "GitHub Enterprise On-Premise",
+          "headline": "GitHub Enterprise Support",
           "status": "Released",
           "content": "Tina Cloud now supports connecting to GitHub enterprise on-premise installations.\n"
         }
