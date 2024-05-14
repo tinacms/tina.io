@@ -5,11 +5,9 @@ last_edited: '2024-05-14T01:00:00.000Z'
 author: Scott Gallant
 ---
 
-I’m happy to share that Tina has been acquired by [SSW](https://ssw.com.au/), an Australian software development company and long-time Tina customer. There will be no disruptions to our service and no action will be required by any of our users. 
+I’m excited to share that Tina has been acquired by [SSW](https://ssw.com.au/), an Australian software development company and long-time Tina customer. There will be no disruptions to our service and no action will be required by any of our users. 
 
-Here's why I’m excited about Tina’s new home.  
-
-Before the acquisition, we were operating on a tight budget and a skeleton crew of just 4 developers. We were struggling to keep up with the needs of our customers and community.  
+Before the acquisition we were operating on a tight budget and a skeleton crew of just four developers. We were struggling to keep up with the needs of our customers and community.  Now, we have the resources to bring Tina to the next level.
 
 SSW’s founder, Adam Cogan, is a big believer in our approach to content management.  His company has been using TinaCMS on their site, [SSW.com.au](https://ssw.com.au/), since the early days of Tina.  When he was interested in purchasing Tina, I asked him why and his answer stuck with me. He said, **“I just want the project to live forever”**. After spending more time with Adam and his team, it became obvious that they care deeply about open-source software and they are very aligned with our long-term vision of building a world-class CMS that supports Git.  
 
