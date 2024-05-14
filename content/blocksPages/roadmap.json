@@ -14,35 +14,16 @@
         "narrow": true,
         "color": "white"
       },
-      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. We'll move tickets to the roadmap once we have a high degree of confidence that they will be worked on in a given time-frame. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\")\n",
+      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\")\n",
       "_template": "content"
     },
     {
       "headline": "Recently Released",
       "items": [
         {
-          "headline": "Editorial Workflow",
+          "headline": "GitHub Enterprise Support",
           "status": "Released",
-          "content": "Supporting Drafts on un-published documents through a \"`draft: true`\" front-matter field. \\\nWe are also looking into some ways to better support working from separate branch deployments, for bigger sets of changes.\n"
-        },
-        {
-          "headline": "Document Search",
-          "status": "Released",
-          "content": "Document Discoverability can be a challenge as the number of posts grow. We're looking into improving this either by providing our own search.\n"
-        },
-        {
-          "headline": "Forestry.io -> Tina Migration CLI Tool",
-          "status": "Released",
-          "content": "When you run \\`@tinacms/cli init@latest init\\` on a site with Forestry config, we will import some defaults, as well as your front-matter-templates.\n",
-          "actions": [
-            {
-              "label": "See Guide",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://tina.io/docs/forestry/migrate/"
-            }
-          ]
+          "content": "Tina Cloud now supports connecting to GitHub enterprise on-premise installations.\n"
         }
       ],
       "options": {
@@ -52,24 +33,34 @@
       "_template": "roadmapGrid"
     },
     {
-      "headline": "Next 3 months",
+      "headline": "Coming Soon",
       "items": [
-        {
-          "headline": "Improving Self-hosted experience",
-          "status": "In-progress",
-          "content": "We are currently working on some improvements to the self-hosted experience, to bring closer parity to using Tina Cloud\n"
-        },
         {
           "headline": "Improving Media Management UX",
           "status": "In Progress",
-          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc). We'd like to invest some time making Tina+media more powerful for editors and developers.\n",
+          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc). \n"
+        },
+        {
+          "headline": "AI Tooling",
+          "status": "Soon",
+          "content": "We're working on some ways to leverage AI in the content creation process.\n"
+        },
+        {
+          "headline": "Docs Template",
+          "status": "Soon",
+          "content": "Since Tina works so well with documentation sites, we're building a best-of-breed Tina + Docs starter template. \n"
+        },
+        {
+          "headline": "Improved PR workflow",
+          "status": "Soon",
+          "content": "We are making some improvements to Tina's editorial workflow that will allow you to merge Pull Requests from within the CMS UI. \n",
           "actions": [
             {
-              "label": "GitHub Discussion",
+              "label": "Editorial Workflow",
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/discussions/3418"
+              "url": "https://tina.io/editorial-workflow/"
             }
           ]
         }
