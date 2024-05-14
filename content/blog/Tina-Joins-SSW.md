@@ -20,5 +20,3 @@ I’m going from CEO to Product Owner. That means I’m going to spend 100% of m
 Thank you to everyone in the TinaCMS community who has supported us over the years.  
 
 I’m looking forward to our next chapter! 
-
-Scott Gallant 
