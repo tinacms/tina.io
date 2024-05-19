@@ -7,4 +7,4 @@ author: 'Landon Maxwell'
 
 The team is traveling to Oceania to sponsor the [/serverless/DAYS ANZ conference](https://serverlessdays.io/) in Australia & New Zealand, a family of events around the world focused on fostering a community around serverless technologies.
 
-Read more [news](https://www.ssw.com.au/company/news)
+Read more at [SSW news](https://www.ssw.com.au/company/news)
