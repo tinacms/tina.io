@@ -53,8 +53,8 @@
       },
       {
         "id": "plugins",
-        "label": "Plugins & Themes",
-        "href": "https://github.com/tinacms/ecosystem/",
+        "label": "Awesome TinaCMS",
+        "href": "https://github.com/tinacms/awesome-tinacms",
         "external": true
       },
       {
