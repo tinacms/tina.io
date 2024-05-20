@@ -121,7 +121,7 @@ const footerNav = [
           },
           {
             link: '/tinacms-netlifycms-comparison',
-            label: 'TinaCMS vs NetlifyCMS',
+            label: 'TinaCMS vs DecapCMS',
           },
           {
             link: '/tinacms-contentful-comparison',
