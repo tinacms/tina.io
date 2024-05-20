@@ -7,6 +7,20 @@
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "actions": [
             {
+              "label": "Book a Demo",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "/"
+            },
+            {
+              "label": "Try it!",
+              "icon": true,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://aus01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fquick-edit-demo.vercel.app%2Fadmin%23%2F~&data=05%7C02%7CJoshBerman%40ssw.com.au%7Cf7d6efe51dc047a5eec108dc78982f54%7Cac2f7c34b93548e9abdc11e5d4fcb2b0%7C0%7C0%7C638517842278398073%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=UWkneJuFElcXgZH6kY1LVBA8EjT1badVXTp0o%2F9rX%2Fo%3D&reserved=0"
+            },
+            {
               "label": "npx create-tina-app@latest",
               "icon": false,
               "variant": "command",
