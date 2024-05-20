@@ -3,7 +3,7 @@ name: Create Indices
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   create_indices:
     runs-on: ubuntu-latest
