@@ -19,6 +19,19 @@ path.resolve('./content/')
 
 
 const MainLayout = ({ Component, pageProps }) => {
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      TagManager.initialize({
+        gtmId: process.env.GTM_ID,
+      });
+
+      TagManager.initialize({
+        gtmId: process.env.SSW_GTM_ID,
+      });
+    }
+  }, []);
+  
   return (
     <>
       <DefaultSeo
@@ -98,7 +111,7 @@ const AdminLink = () => {
             Edit This Page
           </a>
           <button onClick={handleDismiss} className="ml-2 text-sm">
-            x
+            xx
           </button>
         </div>
       )}
@@ -108,14 +121,6 @@ const AdminLink = () => {
 
 // TODO: Probably should use hooks here
 class Site extends App {
-  componentDidMount() {
-    if (process.env.NODE_ENV === 'production') {
-      TagManager.initialize({
-        gtmId: process.env.GTM_ID,
-      })
-    }
-  }
-
   render() {
     const { Component, pageProps } = this.props
     return <MainLayout Component={Component} pageProps={pageProps} />

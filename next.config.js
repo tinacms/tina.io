@@ -78,6 +78,7 @@ const config = {
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     GTM_ID: process.env.GTM_ID,
+    SSW_GTM_ID: process.env.SSW_GTM_ID,
   },
   //avoiding CORS error, more here: https://vercel.com/support/articles/how-to-enable-cors
   async headers() {
