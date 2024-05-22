@@ -32,6 +32,7 @@ export const Actions = ({ items, align = 'left' }) => {
             return (
               <LinkButton
                 key={label}
+                id={item.replace(/\s+/g, '-').replace(/[^a-z0-9\s-]/g, '').toLowerCase()}
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 color={variant}
@@ -114,6 +115,7 @@ export const CodeButton = ({ children, ...props }) => {
     <>
       <button
         className="button event-cmd-button"
+        id={children.replace(/\s+/g, '-').replace(/[^a-z0-9\s-]/g, '').toLowerCase()}
         onClick={clickEvent}
         {...props}
       >

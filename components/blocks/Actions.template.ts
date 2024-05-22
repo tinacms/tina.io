@@ -69,5 +69,11 @@ export const actionsTemplate = {
       ],
     },
     { name: 'url', label: 'URL', type: 'string' },
+    {
+      name: 'GA_Tracking',
+      label: 'Track with Google Analytics',
+      type: 'boolean',
+      description: 'Enable to track this action with Google Analytics'
+    },
   ],
 }
