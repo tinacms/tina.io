@@ -9,11 +9,13 @@ export const sanitizeLabel = (label: string): string => {
 };
 
 export const Actions = ({ items, align = 'left' }) => {
+  const isList = items.length > 2;
   return (
     <>
       <div
         className={[
           'actionGroup',
+          isList ? 'actionGroupList' : 'actionGroupRow',
           align === 'center' && 'actionGroupCenter',
         ].join(' ')}
       >
@@ -64,6 +66,16 @@ export const Actions = ({ items, align = 'left' }) => {
           :global(button) {
             margin: 0.5rem 0.75rem;
           }
+        }
+
+        .actionGroupRow {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .actionGroupList {
+          flex-direction: column;
+          align-items: flex-start;
         }
         
         .or-text{
