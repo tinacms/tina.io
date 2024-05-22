@@ -4,6 +4,10 @@ import { copyToClipboard } from '../../components/layout/MarkdownContent'
 import { LinkButton } from '../../components/ui'
 import { tinaField } from 'tinacms/dist/react'
 
+export const sanitizeLabel = (label: string): string => {
+  return label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
 export const Actions = ({ items, align = 'left' }) => {
   return (
     <>
@@ -19,7 +23,10 @@ export const Actions = ({ items, align = 'left' }) => {
               return (
                 <React.Fragment key={item.label}>
                   {index === 2 && <span className="or-text">or</span>} {}
-                  <CodeButton data-tina-field={tinaField(item, 'label')}>
+                  <CodeButton
+                  data-tina-field={tinaField(item, 'label')}
+                  id={sanitizeLabel(item.label)}
+                  >
                     {item.label}
                   </CodeButton>
                 </React.Fragment>
@@ -32,6 +39,7 @@ export const Actions = ({ items, align = 'left' }) => {
             return (
               <LinkButton
                 key={label}
+                id={label}
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 color={variant}
