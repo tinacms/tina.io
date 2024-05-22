@@ -4,6 +4,18 @@ import { copyToClipboard } from '../../components/layout/MarkdownContent'
 import { LinkButton } from '../../components/ui'
 import { tinaField } from 'tinacms/dist/react'
 
+function sanitizeLabel(label)
+{
+  if (typeof label !== 'string') 
+  {
+    return ''
+  }
+  return label
+  .toLowerCase()
+  .replace(/[^a-z0-9\s-]/g, '') 
+  .replace(/\s+/g, '-'); 
+}
+
 export const Actions = ({ items, align = 'left' }) => {
   return (
     <>
@@ -32,7 +44,7 @@ export const Actions = ({ items, align = 'left' }) => {
             return (
               <LinkButton
                 key={label}
-                id={item.replace(/\s+/g, '-').replace(/[^a-z0-9\s-]/g, '').toLowerCase()}
+                id={sanitizeLabel(label)}
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 color={variant}
@@ -115,7 +127,7 @@ export const CodeButton = ({ children, ...props }) => {
     <>
       <button
         className="button event-cmd-button"
-        id={children.replace(/\s+/g, '-').replace(/[^a-z0-9\s-]/g, '').toLowerCase()}
+        id={sanitizeLabel(children)}
         onClick={clickEvent}
         {...props}
       >
