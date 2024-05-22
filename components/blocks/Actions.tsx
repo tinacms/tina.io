@@ -44,6 +44,7 @@ export const Actions = ({ items, align = 'left' }) => {
                 id={label}
                 size={item.size ? item.size : 'medium'}
                 link={url}
+                target="_blank"
                 color={variant}
                 data-tina-field={tinaField(item, 'label')}
               >
