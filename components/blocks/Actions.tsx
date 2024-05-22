@@ -122,11 +122,12 @@ export const Actions = ({ items, align = 'left' }) => {
 
 export const CodeButton = ({ children, ...props }) => {
   const [copied, setCopied] = React.useState(false)
+  const id = sanitizeLabel(children.toString())
 
   const clickEvent = () => {
     setCopied(true)
     copyToClipboard(children)
-    setTimeout(() => {
+        setTimeout(() => {
       setCopied(false)
     }, 2000)
   }
@@ -137,7 +138,7 @@ export const CodeButton = ({ children, ...props }) => {
         className="button event-cmd-button"
         onClick={clickEvent}
         {...props}
-        id={sanitizeLabel(children.toString())}
+        id={id}
       >
         <span className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!

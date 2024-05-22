@@ -1,3 +1,4 @@
+import { sanitizeLabel } from 'components/blocks'
 import Link from 'next/link'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -66,6 +67,7 @@ export const LinkButton = ({
   children,
   ...props
 }) => {
+  const id = sanitizeLabel(children[0].toString());
   return (
     <Link legacyBehavior href={link} passHref>
       <a
