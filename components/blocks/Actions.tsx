@@ -127,7 +127,7 @@ export const CodeButton = ({ children, ...props }) => {
   const clickEvent = () => {
     setCopied(true)
     copyToClipboard(children)
-        setTimeout(() => {
+    setTimeout(() => {
       setCopied(false)
     }, 2000)
   }
