@@ -67,7 +67,6 @@ export const LinkButton = ({
   children,
   ...props
 }) => {
-  const id = sanitizeLabel(children[0].toString());
   return (
     <Link legacyBehavior href={link} passHref>
       <a

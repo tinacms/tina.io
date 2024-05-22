@@ -26,6 +26,7 @@ export const Actions = ({ items, align = 'left' }) => {
                 <React.Fragment key={item.label}>
                   {index === 2 && <span className="or-text">or</span>} {}
                   <CodeButton
+                  label={item.label}
                   data-tina-field={tinaField(item, 'label')}
                   id={sanitizeLabel(item.label)}
                   >
@@ -41,7 +42,7 @@ export const Actions = ({ items, align = 'left' }) => {
             return (
               <LinkButton
                 key={label}
-                id={label}
+                id={sanitizeLabel(label)}
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 target="_blank"
@@ -120,9 +121,8 @@ export const Actions = ({ items, align = 'left' }) => {
   )
 }
 
-export const CodeButton = ({ children, ...props }) => {
+export const CodeButton = ({ children, label, ...props }) => {
   const [copied, setCopied] = React.useState(false)
-  const id = sanitizeLabel(children[0].toString())
 
   const clickEvent = () => {
     setCopied(true)
@@ -138,7 +138,6 @@ export const CodeButton = ({ children, ...props }) => {
         className="button event-cmd-button"
         onClick={clickEvent}
         {...props}
-        id={id}
       >
         <span className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
