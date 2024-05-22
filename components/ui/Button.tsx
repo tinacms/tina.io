@@ -1,4 +1,3 @@
-import { sanitizeLabel } from 'components/blocks'
 import Link from 'next/link'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
