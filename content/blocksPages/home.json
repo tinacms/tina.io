@@ -14,7 +14,7 @@
               "url": "https://quick-edit-demo.vercel.app/admin#/~"
             },
             {
-              "label": "📅 Book a Demo",
+              "label": "Book a Demo",
               "icon": true,
               "variant": "blue",
               "size": "medium",
