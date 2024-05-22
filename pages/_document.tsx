@@ -32,7 +32,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          /* !-- Google Tag Manager (SSW 22/05) */
           <script
             dangerouslySetInnerHTML={{
               __html: `
