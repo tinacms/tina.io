@@ -14,11 +14,16 @@ export const Actions = ({ items, align = 'left' }) => {
         ].join(' ')}
       >
         {items &&
-          items.map((item) => {
+          items.map((item, index) => {
             if (item.variant == 'command') {
-              return <CodeButton key={item.label}
-                data-tina-field={tinaField(item, 'label')}
-              >{item.label}</CodeButton>
+              return (
+                <React.Fragment key={item.label}>
+                  {index === 2 && <span className="or-text">or</span>} {}
+                  <CodeButton data-tina-field={tinaField(item, 'label')}>
+                    {item.label}
+                  </CodeButton>
+                </React.Fragment>
+              );
             }
             const { variant, label, icon, url } = item
             const externalUrlPattern = /^((http|https|ftp):\/\/)/
@@ -43,14 +48,21 @@ export const Actions = ({ items, align = 'left' }) => {
       <style jsx>{`
         .actionGroup {
           display: flex;
-          flex-wrap: wrap;
-          align-items: center;
+          flex-direction: column;
+          align-items: flex-start;
           margin: 0 -0.75rem -0.5rem -0.75rem;
 
           :global(a),
           :global(button) {
             margin: 0.5rem 0.75rem;
           }
+        }
+        
+        .or-text{
+          margin: 0.5rem 1.5rem 0.5rem 0.75rem;
+          font-size: 1.125rem;
+          color: var(--color-secondary);
+          font-weight: bold;
         }
 
         .actionGroupCenter {
