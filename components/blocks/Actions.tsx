@@ -122,7 +122,7 @@ export const Actions = ({ items, align = 'left' }) => {
 
 export const CodeButton = ({ children, ...props }) => {
   const [copied, setCopied] = React.useState(false)
-  const id = sanitizeLabel(children.toString())
+  const id = sanitizeLabel(children[0].toString())
 
   const clickEvent = () => {
     setCopied(true)
