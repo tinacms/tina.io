@@ -124,6 +124,7 @@ export const CodeButton = ({ children, ...props }) => {
         className="button event-cmd-button"
         onClick={clickEvent}
         {...props}
+        id={sanitizeLabel(children.toString())}
       >
         <span className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
