@@ -1,7 +1,6 @@
 {
   "env": {
     "GTM_ID": "@gtm_id",
-    "SSW_GTM_ID": "@ssw_gtm_id",
     "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
     "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
     "MAILCHIMP_ENDPOINT": "@mailchimp_endpoint"
@@ -10,7 +9,6 @@
     "env": {
       "USE_CONTENT_API": "true",
       "GTM_ID": "@gtm_id",
-      "SSW_GTM_ID": "@ssw_gtm_id",
       "HUBSPOT_TEAMS_FORM_ID": "@hubspot_teams_form_id",
       "HUBSPOT_PORTAL_ID": "@hubspot_portal_id",
       "MAILCHIMP_ENDPOINT": "@mailchimp_endpoint"
