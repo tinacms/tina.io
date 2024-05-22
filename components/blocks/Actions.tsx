@@ -44,7 +44,7 @@ export const Actions = ({ items, align = 'left' }) => {
             return (
               <LinkButton
                 key={label}
-                id={sanitizeLabel(label)}
+                id={sanitizeLabel(item.label)}
                 size={item.size ? item.size : 'medium'}
                 link={url}
                 color={variant}
