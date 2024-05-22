@@ -4,12 +4,18 @@ import { copyToClipboard } from '../../components/layout/MarkdownContent'
 import { LinkButton } from '../../components/ui'
 import { tinaField } from 'tinacms/dist/react'
 
+export const sanitizeLabel = (label: string): string => {
+  return label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
 export const Actions = ({ items, align = 'left' }) => {
+  const isList = items.length > 2;
   return (
     <>
       <div
         className={[
           'actionGroup',
+          isList ? 'actionGroupList' : 'actionGroupRow',
           align === 'center' && 'actionGroupCenter',
         ].join(' ')}
       >
@@ -19,7 +25,11 @@ export const Actions = ({ items, align = 'left' }) => {
               return (
                 <React.Fragment key={item.label}>
                   {index === 2 && <span className="or-text">or</span>} {}
-                  <CodeButton data-tina-field={tinaField(item, 'label')}>
+                  <CodeButton
+                  label={item.label}
+                  data-tina-field={tinaField(item, 'label')}
+                  id={sanitizeLabel(item.label)}
+                  >
                     {item.label}
                   </CodeButton>
                 </React.Fragment>
@@ -32,8 +42,10 @@ export const Actions = ({ items, align = 'left' }) => {
             return (
               <LinkButton
                 key={label}
+                id={sanitizeLabel(label)}
                 size={item.size ? item.size : 'medium'}
                 link={url}
+                target="_blank"
                 color={variant}
                 data-tina-field={tinaField(item, 'label')}
               >
@@ -56,6 +68,16 @@ export const Actions = ({ items, align = 'left' }) => {
           :global(button) {
             margin: 0.5rem 0.75rem;
           }
+        }
+
+        .actionGroupRow {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .actionGroupList {
+          flex-direction: column;
+          align-items: flex-start;
         }
         
         .or-text{
@@ -99,7 +121,7 @@ export const Actions = ({ items, align = 'left' }) => {
   )
 }
 
-export const CodeButton = ({ children, ...props }) => {
+export const CodeButton = ({ children, label, ...props }) => {
   const [copied, setCopied] = React.useState(false)
 
   const clickEvent = () => {
