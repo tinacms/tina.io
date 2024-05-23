@@ -21,6 +21,7 @@ export const Actions = ({ items, align = 'left' }) => {
       >
         {items &&
           items.map((item, index) => {
+            const id = sanitizeLabel(item.label);
             if (item.variant == 'command') {
               return (
                 <React.Fragment key={item.label}>
@@ -28,7 +29,7 @@ export const Actions = ({ items, align = 'left' }) => {
                   <CodeButton
                   label={item.label}
                   data-tina-field={tinaField(item, 'label')}
-                  id={sanitizeLabel(item.label)}
+                  id={id}
                   >
                     {item.label}
                   </CodeButton>
