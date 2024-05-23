@@ -75,6 +75,20 @@
       "_template": "logoGrid"
     },
     {
+      "headline": "📱Talk to a Tina expert",
+      "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect. ",
+      "actions": [
+        {
+          "label": "Schedule Call",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "/"
+        }
+      ],
+      "_template": "flying"
+    },
+    {
       "features": [
         {
           "headline": "Own Your Content",
