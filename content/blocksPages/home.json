@@ -238,7 +238,8 @@
       "items": [
         {
           "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit. "
+          "text": "See content changes in real-time as you edit. ",
+          "url": "www.google.com"
         },
         {
           "headline": "Open-Source",
