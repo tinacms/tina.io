@@ -21,15 +21,15 @@ export const Actions = ({ items, align = 'left' }) => {
       >
         {items &&
           items.map((item, index) => {
-            const id = sanitizeLabel(item.label);
             if (item.variant == 'command') {
+              //const id = sanitizeLabel(item.label);
               return (
                 <React.Fragment key={item.label}>
                   {index === 2 && <span className="or-text">or</span>} {}
                   <CodeButton
                   label={item.label}
+                  id={sanitizeLabel(item.label)}
                   data-tina-field={tinaField(item, 'label')}
-                  id={id}
                   >
                     {item.label}
                   </CodeButton>
@@ -122,7 +122,7 @@ export const Actions = ({ items, align = 'left' }) => {
   )
 }
 
-export const CodeButton = ({ children, label, ...props }) => {
+export const CodeButton = ({ children, label, id, ...props }) => {
   const [copied, setCopied] = React.useState(false)
 
   const clickEvent = () => {
@@ -133,14 +133,16 @@ export const CodeButton = ({ children, label, ...props }) => {
     }, 2000)
   }
 
+
   return (
     <>
       <button
         className="button event-cmd-button"
         onClick={clickEvent}
+        id={id}
         {...props}
       >
-        <span className={`success-message ${copied ? `visible` : ``}`}>
+        <span id={id} className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
         </span>
         <span className="text">
