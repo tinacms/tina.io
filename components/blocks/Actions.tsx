@@ -143,7 +143,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
         id={id}
         {...props}
       >
-        <span className={`success-message ${copied ? `visible` : ``}`}>
+        <span id={id} className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
         </span>
         <span className="text">
