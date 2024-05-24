@@ -238,54 +238,35 @@
       "items": [
         {
           "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit. ",
-          "actions": [
-            {
-              "label": "Try Demo",
-              "icon": false,
-              "variant": "default",
-              "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~"
-            }
-          ]
+          "text": "See content changes in real-time as you edit. "
         },
         {
-          "headline": "Fully Open-Source",
+          "headline": "Open-Source",
           "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on Tina Cloud."
         },
         {
           "headline": "Develop Locally",
-          "text": "Run Tina locally and talk to your local filesystem. "
+          "text": "Easily set up and run Tina locally to talk to your local filesystem."
         },
         {
           "headline": "3rd-party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, etc.",
-          "actions": [
-            {
-              "label": "Read Docs",
-              "icon": false,
-              "variant": "default",
-              "size": "small",
-              "url": "/docs/reference/media/external/authentication/"
-            }
-          ]
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud."
         },
         {
-          "headline": "Composable Blocks",
-          "text": "Create reusable components that you can edit with Tina. Let your team assemble pages like a site-builder.",
-          "actions": [
-            {
-              "label": "Read Docs",
-              "icon": false,
-              "variant": "default",
-              "size": "small",
-              "url": "/docs/editing/blocks/"
-            }
-          ]
+          "headline": "Control your Components",
+          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want."
         },
         {
           "headline": "Markdown at Scale ",
-          "text": "Tina powers sites with 10’s of thousands of pages with great performance."
+          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content."
+        },
+        {
+          "headline": "Git Integration",
+          "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub."
+        },
+        {
+          "headline": "Easy Documentation",
+          "text": "Tina’s docs run on TinaCMS – check it out!"
         }
       ],
       "_template": "featureGrid"
