@@ -6,61 +6,29 @@ import GradGlow from '../../public/svg/grad-glow.svg'
 import { tinaField } from 'tinacms/dist/react'
 
 const Feature = ({ data, index }) => {
-  const { headline, text, actions, url} = data;
-
-  const formattedUrl = url && !url.match(/^https?:\/\//) ? `http://${url}` : url;
-  return formattedUrl ? (
-    <a
-      href={formattedUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-10"
-      style={{ textDecoration: 'none' }}
-    >
-      <div data-tina-field={tinaField(data, 'headline')} className="flex flex-col gap-4">
-        {headline && (
-          <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white">
-            {headline}
-          </h3>
-        )}
-        {text && <p className="group-hover:text-white">{text}</p>}
-        {actions && <Actions items={actions} />}
-      </div>
-    </a>
-  ) : (
-    <div 
-    className="group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-10"
-    >
-      <div data-tina-field={tinaField(data, 'headline')} className="flex flex-col gap-4">
-        {headline && (
-          <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white">
-            {headline}
-          </h3>
-        )}
-        {text && <p className="group-hover:text-white">{text}</p>}
-        {actions && <Actions items={actions} />}
-      </div>
+  return (
+    <div
+      data-tina-field={tinaField(data, 'headline')}
+      className="py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 flex flex-col gap-4 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)]">
+      {data.headline && (
+        <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
+          {data.headline}
+        </h3>
+      )}
+      {data.text && <p className="">{data.text}</p>}
+      {data.actions && <Actions items={data.actions} />}
     </div>
-  );
-};
-
-export default Feature;
+  )
+}
 
 export function FeatureGridBlock({ data, index }) {
-  const isMoreThanSix = data.items && data.items.length > 6;
   return (
     <section
       key={'feature-grid-' + index}
       className={'relative z-0 py-20 lg:py-28'}
     >
       <Container width="wide">
-      <div
-          className={`grid gap-[0.5px] ${
-            isMoreThanSix
-              ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4'
-              : 'grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg'
-          } auto-rows-auto w-full rounded-xl overflow-hidden shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30`}
-        >
+        <div className="grid gap-[0.5px] grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg auto-rows-auto w-full rounded-xl overflow-hidden shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30">
           {data.items &&
             data.items.map((data, index) => {
               return (

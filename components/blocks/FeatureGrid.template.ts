@@ -28,11 +28,6 @@ export const featureGridTemplate: TinaTemplate = {
           ui: { component: 'textarea' },
           type: 'string',
         },
-        {
-          name: 'url',
-          label: 'URL',
-          type: 'string',
-        },
         // @ts-ignore
         actionsTemplate,
       ],
