@@ -128,14 +128,12 @@ export const CodeButton = ({ children, label, id, ...props }) => {
   const clickEvent = () => {
     setCopied(true)
     copyToClipboard(children)
-    console.log('label: ', label)
-    console.log('id: ', id)
     setTimeout(() => {
       setCopied(false)
     }, 2000)
   }
 
-  
+
   return (
     <>
       <button
