@@ -22,14 +22,14 @@ export const Actions = ({ items, align = 'left' }) => {
         {items &&
           items.map((item, index) => {
             if (item.variant == 'command') {
-              const id = sanitizeLabel(item.label);
+              //const id = sanitizeLabel(item.label);
               return (
                 <React.Fragment key={item.label}>
                   {index === 2 && <span className="or-text">or</span>} {}
                   <CodeButton
                   label={item.label}
+                  id={sanitizeLabel(item.label)}
                   data-tina-field={tinaField(item, 'label')}
-                  id={id}
                   >
                     {item.label}
                   </CodeButton>
