@@ -238,35 +238,43 @@
       "items": [
         {
           "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit. "
+          "text": "See content changes in real-time as you edit. ",
+          "url": "https://quick-edit-demo.vercel.app/admin#/"
         },
         {
           "headline": "Open-Source",
-          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on Tina Cloud."
+          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on Tina Cloud.",
+          "url": "https://github.com/tinacms/tinacms"
         },
         {
           "headline": "Develop Locally",
-          "text": "Easily set up and run Tina locally to talk to your local filesystem."
+          "text": "Easily set up and run Tina locally to talk to your local filesystem.",
+          "url": "/"
         },
         {
           "headline": "3rd-party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud."
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud.",
+          "url": "/docs/reference/media/overview/"
         },
         {
           "headline": "Control your Components",
-          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want."
+          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want.",
+          "url": "/docs/editing/blocks/"
         },
         {
           "headline": "Markdown at Scale ",
-          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content."
+          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content.",
+          "url": "/docs/editing/overview/"
         },
         {
           "headline": "Git Integration",
-          "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub."
+          "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub.",
+          "url": "/editorial-workflow/"
         },
         {
           "headline": "Easy Documentation",
-          "text": "Tina’s docs run on TinaCMS – check it out!"
+          "text": "Tina’s docs run on TinaCMS – check it out!",
+          "url": "/docs/"
         }
       ],
       "_template": "featureGrid"
