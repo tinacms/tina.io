@@ -249,32 +249,32 @@
         {
           "headline": "Develop Locally",
           "text": "Easily set up and run Tina locally to talk to your local filesystem.",
-          "url": "https://tina.io/"
+          "url": "/"
         },
         {
           "headline": "3rd-party Media",
           "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud.",
-          "url": "https://tina.io/docs/reference/media/overview/"
+          "url": "/docs/reference/media/overview/"
         },
         {
           "headline": "Control your Components",
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want.",
-          "url": "https://tina.io/docs/editing/blocks/"
+          "url": "/docs/editing/blocks/"
         },
         {
           "headline": "Markdown at Scale ",
           "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content.",
-          "url": "https://tina.io/docs/editing/overview/"
+          "url": "/docs/editing/overview/"
         },
         {
           "headline": "Git Integration",
           "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub.",
-          "url": "https://tina.io/editorial-workflow/"
+          "url": "/editorial-workflow/"
         },
         {
           "headline": "Easy Documentation",
           "text": "Tina’s docs run on TinaCMS – check it out!",
-          "url": "https://tina.io/docs/"
+          "url": "/docs/"
         }
       ],
       "_template": "featureGrid"
