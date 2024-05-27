@@ -34,8 +34,8 @@ const Feature = ({ data, index }) => {
   (
     <Link 
     href={formattedUrl} passHref
-    className="group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-20"
-    >
+    className="w-full h-full" 
+     >
       <a
         className="group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-20"
         style={{ textDecoration: 'none', overflow: 'visible' }}
