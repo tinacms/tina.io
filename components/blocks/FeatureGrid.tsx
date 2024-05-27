@@ -19,7 +19,7 @@ const Feature = ({ data, index }) => {
     >
       <div data-tina-field={tinaField(data, 'headline')} className="flex flex-col gap-4">
         {headline && (
-          <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white">
+          <h3 className="text-2xl md:text-xl lg:text-3xl font-tuner leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white break-words">
             {headline}
           </h3>
         )}
@@ -28,12 +28,12 @@ const Feature = ({ data, index }) => {
       </div>
     </a>
   ) : (
-    <div 
-    className="group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-10"
+    <div
+      className="group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-10"
     >
       <div data-tina-field={tinaField(data, 'headline')} className="flex flex-col gap-4">
         {headline && (
-          <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white">
+          <h3 className="text-2xl md:text-xl lg:text-3xl font-tuner leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white break-words">
             {headline}
           </h3>
         )}
@@ -45,6 +45,8 @@ const Feature = ({ data, index }) => {
 };
 
 export default Feature;
+
+
 
 export function FeatureGridBlock({ data, index }) {
   const isMoreThanSix = data.items && data.items.length > 6;
