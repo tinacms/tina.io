@@ -19,7 +19,7 @@ const Feature = ({ data, index }) => {
     >
       <div data-tina-field={tinaField(data, 'headline')} className="flex flex-col gap-4">
         {headline && (
-          <h3 className="text-2xl md:text-xl lg:text-3xl font-tuner leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white break-words">
+          <h3 className="text-2xl md:text-xl lg:text-2xl font-tuner leading-tight text-transparent bg-gradient-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text mb-2 group-hover:text-white break-words">
             {headline}
           </h3>
         )}
