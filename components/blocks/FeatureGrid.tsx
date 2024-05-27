@@ -64,7 +64,7 @@ export function FeatureGridBlock({ data, index }) {
         <div
           className={`grid gap-[0.5px] ${
             isMoreThanSix
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+              ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4'
               : 'grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg'
           } auto-rows-auto w-full rounded-xl overflow-visible shadow border border-blue-50/50 bg-gradient-to-br from-seafoam-200/30 to-blue-100/30`}
         >
