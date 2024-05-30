@@ -5,10 +5,7 @@ import { Container } from './Container';
 import { Actions } from './Actions';
 import GradGlow from '../../public/svg/grad-glow.svg';
 import { tinaField } from 'tinacms/dist/react';
-
-export const sanitizeLabel = (label: string): string => {
-  return label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-};
+import { sanitizeLabel } from './Actions';
 
 const Feature = ({ data, index, id }) => {
   const { headline, text, actions, url } = data;
