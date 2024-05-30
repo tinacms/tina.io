@@ -65,6 +65,8 @@ const Feature = ({ data, index, id }) => {
   );
 };
 
+
+
 export default Feature;
 
 export function FeatureGridBlock({ data, index }) {
