@@ -6,11 +6,19 @@ import { Actions } from './Actions';
 import GradGlow from '../../public/svg/grad-glow.svg';
 import { tinaField } from 'tinacms/dist/react';
 
-const Feature = ({ data, index }) => {
+export const sanitizeLabel = (label: string): string => {
+  return label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
+const Feature = ({ data, index, id }) => {
   const { headline, text, actions, url } = data;
 
   const formattedUrl = url && !url.match(/^https?:\/\//) && !url.startsWith('/') ? `http://${url}` : url;
   const isInternalLink = formattedUrl && formattedUrl.startsWith('/');
+
+  const handleClick = () => { 
+    console.log(id);
+  }
 
   return !isInternalLink ? (
     <a
@@ -19,6 +27,8 @@ const Feature = ({ data, index }) => {
       rel="noopener noreferrer"
       className="group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-20"
       style={{ textDecoration: 'none', overflow: 'visible' }}
+      id={id}
+      onClick={handleClick}
     >
       <div data-tina-field={tinaField(data, 'headline')} className="flex flex-col gap-4">
         {headline && (
@@ -38,6 +48,8 @@ const Feature = ({ data, index }) => {
       <a
         className="h-full w-full group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-sm bg-gradient-to-br from-white via-white to-white/50 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] transition duration-500 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:via-orange-400 hover:to-orange-600 hover:z-20"
         style={{ textDecoration: 'none', overflow: 'visible' }}
+        id={id}
+        onClick={handleClick}
       >
         <div data-tina-field={tinaField(data, 'headline')} className="flex flex-col gap-4">
           {headline && (
@@ -78,6 +90,7 @@ export function FeatureGridBlock({ data, index }) {
                   key={Object.values(data).join('')}
                   data={data}
                   index={index}
+                  id={sanitizeLabel(data.headline)}
                 />
               );
             })}
