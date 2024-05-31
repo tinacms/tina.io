@@ -76,5 +76,11 @@
     "label": "Enterprise",
     "href": "/enterprise",
     "external": false
+  },
+  {
+    "id": "tinacloud",
+    "label": "TinaCloud",
+    "href": "https://app.tina.io/signin",
+    "external": false
   }
 ]
