@@ -10,6 +10,7 @@ import {
   ContentBlock,
   LogoGridBlock,
   QuoteBlock,
+  CarouselFeatureBlock,
 } from './'
 import { ColumnsBlock } from './Columns'
 import { RecentPostsBlock } from './RecentPosts'
@@ -91,6 +92,14 @@ export const Blocks = ({
       case 'PageBlocksQuote':
         return (
           <QuoteBlock
+            key={`block-${index}`}
+            data={block}
+            index={index}
+          />
+        )
+      case 'PageBlocksCarouselFeature':
+        return (
+          <CarouselFeatureBlock
             key={`block-${index}`}
             data={block}
             index={index}
