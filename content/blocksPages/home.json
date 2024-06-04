@@ -1,6 +1,7 @@
 {
   "seo": {
-    "description": "testing"
+    "title": "The Markdown CMS | Tina",
+    "description": "TinaCMS is an open-source headless CMS for editing websites with Markdown. Integrates with GitHub and many front-end web frameworks."
   },
   "blocks": [
     {
