@@ -2,7 +2,7 @@
 draft: false
 title: How To Create a Markdown Blog With Next.js
 date: '2023-01-11T04:00:00.000Z'
-last_edited: '2023-01-11T04:00:00.000Z'
+last_edited: '2024-06-03T14:30:00.000Z'
 author: Antonello Zanini
 next: content/blog/using-tinacms-with-nextjs.md
 ---
