@@ -43,8 +43,10 @@ export const carouselFeatureTemplate: TinaTemplate = {
           description: 'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
           type: 'string',
         },
-        // @ts-ignore
-        actionsTemplate,
+        {
+          // @ts-ignore
+          actionsTemplate,
+        },
       ],
     },
   ],
