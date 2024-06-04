@@ -52,7 +52,13 @@ export const schema = defineSchema({
           name: 'seo',
           label: 'SEO Information',
           fields: [
-            { type: 'string', label: 'Title', name: 'title' },
+            {
+              type: 'string',
+              label: 'Title',
+              name: 'title',
+              description:
+                ' | Tina will be appended to the end of the value. If left blank the default value in global settings is use',
+            },
             {
               type: 'string',
               label: ' Description',
