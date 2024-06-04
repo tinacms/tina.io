@@ -2,6 +2,7 @@ import type { TinaTemplate } from 'tinacms';
 import IconSelector from './IconSelector';
 import { actionsTemplate } from './Actions.template';
 
+
 export const carouselFeatureTemplate: TinaTemplate = {
   label: 'Carousel Feature',
   name: 'carouselFeature',
