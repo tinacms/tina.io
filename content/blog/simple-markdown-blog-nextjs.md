@@ -1,15 +1,15 @@
 ---
+draft: false
 title: How To Create a Markdown Blog With Next.js
 date: '2023-01-11T04:00:00.000Z'
 last_edited: '2023-01-11T04:00:00.000Z'
 author: Antonello Zanini
-draft: false
 next: content/blog/using-tinacms-with-nextjs.md
 ---
 
 ## Creating a Markdown Blog With Next.js
 
-> This post has been updated to use Next.js 13 and its latest features.
+> This post has been updated to use Next.js 15 and its latest features.
 
 *Want to skip to using Tina with Next.js? [checkout our quickstart](https://tina.io/docs/setup-overview/ "TinaCMS Quickstart")*
 
@@ -177,7 +177,7 @@ The global style of the blog app is handled in the `globals.css` you can find in
 // pages/_app.js
 
 import "../styles/globals.css"
-import { Work_Sans } from "@next/font/google"
+import { Work_Sans } from "next/font/google"
 
 // importing the Work Sans font with
 // the Next.js 13 Font Optimization Feature
@@ -210,12 +210,13 @@ Here's an example of filler content for `/posts/my-post.md` with commonly used f
 
 ```markdown
 ---
-  title: A trip to Iceland
+title: A trip to Iceland
 author: 'Watson & Crick '
 date: '2019-07-10T16:04:44.000Z'
 hero_image: /norris-niman-iceland.jpg
 ---
-  Brain is the seed of intelligence something incredible is waiting to be known.
+
+Brain is the seed of intelligence something incredible is waiting to be known.
 ```
 
 If you aren't familiar with this concept, **a frontmatter is a way to store metadata in Markdown files**. Typically, **frontmatter metadata is stored in [YAML](https://en.wikipedia.org/wiki/YAML) format** in a block wrapped by three dashes placed at the beginning of a Markdown file.
