@@ -1,4 +1,4 @@
-import type { TinaTemplate } from 'tinacms';
+import type { TinaField, TinaTemplate } from 'tinacms';
 import IconSelector from './IconSelector';
 import { actionsTemplate } from './Actions.template';
 
@@ -42,9 +42,8 @@ export const carouselFeatureTemplate: TinaTemplate = {
           description: 'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
           type: 'string',
         },
-        // @ts-ignore
-        ...actionsTemplate.fields,
-      ],
+        actionsTemplate
+      ] as TinaField[],
     },
   ],
 };
