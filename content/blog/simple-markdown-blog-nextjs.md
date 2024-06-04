@@ -9,7 +9,7 @@ next: content/blog/using-tinacms-with-nextjs.md
 
 ## Creating a Markdown Blog With Next.js
 
-> This post has been updated to use Next.js 15 and its latest features.
+> This post has been updated to use Next.js 14 and its latest features.
 
 *Want to skip to using Tina with Next.js? [checkout our quickstart](https://tina.io/docs/setup-overview/ "TinaCMS Quickstart")*
 
@@ -211,8 +211,8 @@ Here's an example of filler content for `/posts/my-post.md` with commonly used f
 ```markdown
 ---
 title: A trip to Iceland
-author: 'Watson & Crick '
-date: '2019-07-10T16:04:44.000Z'
+author: "Watson & Crick "
+date: "2019-07-10T16:04:44.000Z"
 hero_image: /norris-niman-iceland.jpg
 ---
 
@@ -518,7 +518,7 @@ function reformatDate(fullDate) {
 const BlogList = ({ allBlogs }) => {
   return (
     <ul>
-      {allBlogs && allBlogs.length > 1 &&
+      {allBlogs && allBlogs.length >= 1 &&
         allBlogs.map(post => (
           <li key={post.slug}>
             <Link href={{ pathname: `/blog/${post.slug}` }} className={styles.blog__link}>
