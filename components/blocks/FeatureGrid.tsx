@@ -35,7 +35,7 @@ const Feature = ({ data, index, id }) => {
     </a>
   ) : 
   (
-    <Link 
+    <Link legacyBehavior
     href={formattedUrl} passHref
      >
       <a

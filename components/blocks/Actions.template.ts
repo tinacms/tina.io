@@ -47,6 +47,10 @@ export const actionsTemplate = {
           value: 'command',
           label: 'Command',
         },
+        {
+         value: 'ghost-blue',
+         label: 'Ghost Blue',
+        },
       ],
     },
     {
