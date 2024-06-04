@@ -583,15 +583,4 @@ After setting up your Markdown-based blog site, you'll most likely need a CMS ([
 
 You know that you want to be part of this creative, innovative, supportive community of developers (and even some editors and designers) who are experimenting and implementing Tina daily.
 
-### Tina Community Discord
-
-Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
-
-* To get help with issues
-* Find the latest Tina news and sneak previews
-* Share your project with the Tina community, and talk about your experience
-* Chat about the Jamstack
-
-### Tina Twitter
-
-Our Twitter account ([@tinacms](https://twitter.com/tinacms)) announces the latest features, improvements, and sneak peeks to Tina. We would also be psyched if you tagged us in projects you have built.
+Check out Tina's community at [https://tina.io/community/](https://tina.io/community/)
