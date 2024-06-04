@@ -282,6 +282,11 @@
     {
       "title": "Recent Posts",
       "_template": "recentPosts"
+    },
+    {
+      "title2": "Content builds relationships.\nRelationships build trust.\nTrust Drives Revenue.",
+      "subtext": "Andrew Davis",
+      "_template": "quote"
     }
   ]
 }
