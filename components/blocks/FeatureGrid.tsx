@@ -37,6 +37,7 @@ const Feature = ({ data, index, id }) => {
         {actions && <Actions items={actions} />}
       </div>
     </a>
+
   ) : (
     <Link
       href={formattedUrl}
@@ -56,6 +57,7 @@ const Feature = ({ data, index, id }) => {
         {text && <p className="group-hover:text-white">{text}</p>}
         {actions && <Actions items={actions} />}
       </div>
+
     </Link>
   );
 };
