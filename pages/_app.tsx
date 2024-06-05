@@ -45,7 +45,7 @@ const MainLayout = ({ Component, pageProps }) => {
           site_name: data.title,
           images: [
             {
-              url: 'https://tinacms.org/img/tina-twitter-share.png',
+              url: './public/img/tina-og.png',
               width: 1200,
               height: 628,
               alt: `Tina - The Markdown CMS`,
