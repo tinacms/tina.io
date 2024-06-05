@@ -15,7 +15,7 @@ export function FeatureBlock({ data, index }) {
         className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] gap-12 perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
           }`}
       >
-        <div className="w-full lg:w-2/5 max-w-prose flex flex-col gap-6 lg:gap-8">
+        <div className="w-full lg:w-3/7  max-w-prose flex flex-col gap-6 lg:gap-8">
           {data.headline && (
             <h3
               className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance"
@@ -31,7 +31,9 @@ export function FeatureBlock({ data, index }) {
           >
             {data.text}
           </p>
-          {data.actions && <Actions items={data.actions} />}
+          <div className="flex lg:flex-row">
+            {data.actions && <Actions items={data.actions} />}
+          </div>
         </div>
         {data.media && data.media[0] && (
           <div

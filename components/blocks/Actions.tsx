@@ -9,15 +9,16 @@ export const sanitizeLabel = (label: string): string => {
 };
 
 export const Actions = ({ items, align = 'left' }) => {
-  const isList = items.length > 2;
+  const isList = items.length >= 2;
   return (
     <>
       <div
         className={[
           'actionGroup',
-          isList ? 'actionGroupList' : 'actionGroupRow',
+          'items-center',
+          isList ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row' : 'flex flex-row',
           align === 'center' && 'actionGroupCenter',
-        ].join(' ')}
+        ].filter(Boolean).join(' ')}
       >
         {items &&
           items.map((item, index) => {
@@ -25,7 +26,7 @@ export const Actions = ({ items, align = 'left' }) => {
               //const id = sanitizeLabel(item.label);
               return (
                 <React.Fragment key={item.label}>
-                  {index === 2 && <span className="or-text">or</span>} {}
+                  <span className="or-text">or</span>
                   <CodeButton
                   label={item.label}
                   id={sanitizeLabel(item.label)}
@@ -57,12 +58,9 @@ export const Actions = ({ items, align = 'left' }) => {
               </LinkButton>
             )
           })}
-      </div >
+      </div>
       <style jsx>{`
         .actionGroup {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
           margin: 0 -0.75rem -0.5rem -0.75rem;
 
           :global(a),
