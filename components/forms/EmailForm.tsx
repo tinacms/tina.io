@@ -31,7 +31,7 @@ export const EmailForm = (props: EmailFormProps) => {
       const result = await addToMailchimp(email, firstName, lastName);
       if (result.result === 'success') {
         setMessage({ text: "You've been added to the llama list.", type: 'success' });
-      } else if (result.message === 'Bad Request') {
+      } else if (result.message.includes('400')){
         setMessage({ text: "You're already in our herd!", type: 'warning' });
       } else {
         setMessage({ text: 'There was an error. Please try again.', type: 'error' });
