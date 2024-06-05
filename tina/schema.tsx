@@ -57,7 +57,7 @@ export const schema = defineSchema({
               label: 'Title',
               name: 'title',
               description:
-                ' | Tina will be appended to the end of the value. If left blank the default value in global settings is use',
+                '\' | Tina\' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.',
             },
             {
               type: 'string',
