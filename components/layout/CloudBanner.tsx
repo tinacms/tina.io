@@ -9,7 +9,7 @@ export function CloudBanner() {
     <>
       <div className="banner">
         <div className="banner-content">
-          <span className="mobile">
+          <span className="mobile pr-2">
               Loving Tina? ⭐️ us on{' '}
               <a href="https://github.com/tinacms/tinacms" target="new">
                 GitHub
