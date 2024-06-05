@@ -1,24 +1,30 @@
-import { Actions } from './Actions'
-import { Container } from './Container'
-import { Prism } from '../styles/Prism'
-import { tinaField } from 'tinacms/dist/react'
-import DocsRichText from '../styles/DocsRichText'
-import styled from 'styled-components'
+import { Actions } from './Actions';
+import { Container } from './Container';
+import { Prism } from '../styles/Prism';
+import { tinaField } from 'tinacms/dist/react';
+import DocsRichText from '../styles/DocsRichText';
+import styled from 'styled-components';
+import playImage from '../../public/img/playButton.png';
 
 export function FeatureBlock({ data, index }) {
-  const isReversed = index % 2 === 1
+  const isReversed = index % 2 === 1;
+
+const handlePlayClick = () => {
+  const url = "https://youtube.com/tinacms"
+  window.open(url, '_blank');
+}
 
   return (
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] gap-12 perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
           }`}
       >
-        <div className="w-full lg:w-3/7  max-w-prose flex flex-col gap-6 lg:gap-8">
+        <div className="w-full lg:w-3/7 max-w-prose flex flex-col gap-6 lg:gap-8">
           {data.headline && (
             <h3
-              className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance"
+              className="font-tuner inline-block text-3xl sm:pt-8 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance"
               data-tina-field={tinaField(data, 'headline')}
             >
               {data.headline}
@@ -37,21 +43,33 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`w-full min-w-0 lg:w-1/2 ${(data.media[0].image || data.media[0].src) &&
-              'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
-              }`}
+            className={`relative min-w-0 lg:w-1/2 ${(data.media[0].image || data.media[0].src) && ''}`}
           >
             {data.media && data.media[0].image && (
-              <img
-                src={data.media[0].image}
-                alt={data.headline}
-                className="w-full h-auto"
-              // width="1120px"
-              // height="800px"
-              />
+              <>
+                <img
+                  src={data.media[0].image}
+                  alt={data.headline}
+                  className="w-full h-auto rounded-lg shadow-panel overflow-hidden bg-transparent"
+                />
+              </>
             )}
             {data.media && data.media[0].src && (
-              <FeatureVideo className="w-full h-auto" src={data.media[0].src} />
+              <>
+                <button
+                  type="button"
+                  className="absolute w-20 h-20 sm:left-1/2 sm:top-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2 md:left-1/2 md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 lg:left-[-35px] lg:top-[70px] lg:transform-none z-10"
+                  id="play-button-overlay"
+                  onClick={handlePlayClick}
+                >
+                  <img
+                    src={playImage.src}
+                    alt="Play-button-overlay"
+                    className="w-full h-full"
+                  />
+                </button>
+                <FeatureVideo className="w-full h-auto" src={data.media[0].src} />
+              </>
             )}
             {data.media && data.media[0].code && (
               <div className="flex flex-col justify-start items-start">
