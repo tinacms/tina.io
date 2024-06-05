@@ -52,7 +52,13 @@ export const schema = defineSchema({
           name: 'seo',
           label: 'SEO Information',
           fields: [
-            { type: 'string', label: 'Title', name: 'title' },
+            {
+              type: 'string',
+              label: 'Title',
+              name: 'title',
+              description:
+                '\' | Tina\' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.',
+            },
             {
               type: 'string',
               label: ' Description',
