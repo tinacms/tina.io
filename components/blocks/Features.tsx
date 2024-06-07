@@ -9,11 +9,6 @@ import playImage from '../../public/img/playButton.png';
 export function FeatureBlock({ data, index }) {
   const isReversed = index % 2 === 1;
 
-const handlePlayClick = () => {
-  const url = "https://youtube.com/tinacms"
-  window.open(url, '_blank');
-}
-
   return (
     <>
       <div
@@ -56,18 +51,19 @@ const handlePlayClick = () => {
             )}
             {data.media && data.media[0].src && (
               <>
-                <button
-                  type="button"
+                <a
+                  href="https://youtube.com/tinacms"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="absolute w-20 h-20 sm:left-1/2 sm:top-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2 md:left-1/2 md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 lg:left-[-35px] lg:top-[70px] lg:transform-none z-10"
                   id="play-button-overlay"
-                  onClick={handlePlayClick}
                 >
                   <img
                     src={playImage.src}
                     alt="Play-button-overlay"
                     className="w-full h-full"
                   />
-                </button>
+                </a>
                 <FeatureVideo className="w-full h-auto" src={data.media[0].src} />
               </>
             )}
