@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-infinite-logo-slider';
 const Logo = ({ data, windowWidth = 1000 }) => {
-  const scaleFactor = windowWidth > 1200 ? 1 : windowWidth > 600 ? 0.75 : 0.5;
+  const scaleFactor = windowWidth > 1200 ? 1 : windowWidth > 600 ? 1 : 1;
 
   return (
     <a

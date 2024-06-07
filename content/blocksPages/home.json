@@ -67,7 +67,7 @@
           "name": "City of London",
           "link": "https://www.cityoflondon.gov.uk/",
           "logo": "/svg/logos/cityoflondon.svg",
-          "size": 90
+          "size": 120
         },
         {
           "name": "Devolver Digital",
@@ -79,7 +79,7 @@
           "name": "Smashing Magazine",
           "link": "https://www.smashingmagazine.com/",
           "logo": "/svg/logos/smashing.svg",
-          "size": 110
+          "size": 90
         },
         {
           "name": "Supernova",
@@ -92,6 +92,12 @@
           "link": "https://paradisecopters.com/",
           "logo": "/svg/logos/paradisehelicopters.svg",
           "size": 150
+        },
+        {
+          "name": "SSW",
+          "link": "https://ssw.com/",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size":  150
         },
         {
           "name": "Comedia",
@@ -123,8 +129,7 @@
           "logo": "/svg/logos/localitybank.svg",
           "size": 200
         }
-        
-        
+
       ],
       "_template": "logoGrid"
     },
