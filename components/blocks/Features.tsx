@@ -55,7 +55,7 @@ export function FeatureBlock({ data, index }) {
                   href="https://youtube.com/tinacms"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute w-20 h-20 sm:left-1/2 sm:top-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2 md:left-1/2 md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 lg:left-[-35px] lg:top-[70px] lg:transform-none z-10"
+                  className="absolute w-20 h-20 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:left-[-35px] lg:top-[70px] lg:transform-none z-10"
                   id="play-button-overlay"
                 >
                   <img
