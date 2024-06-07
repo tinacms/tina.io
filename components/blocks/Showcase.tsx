@@ -5,10 +5,12 @@ import { Container } from './Container'
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
+  const id = data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
   return (
     <>
       <div
+        id={id}
         key={'showcase-' + index}
         className={`feature ${isReversed ? 'featureReverse' : ''}`}
       >

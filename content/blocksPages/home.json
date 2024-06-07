@@ -40,89 +40,88 @@
       "items": [
         {
           "name": "Bunny Net",
-          "link": "https://www.bunny.net/",
+          "link": "https://tina.io/showcase#bunny-net",
           "logo": "/svg/logos/bunnynet.svg",
           "size": 220
         },
         {
           "name": "Unity",
-          "link": "https://unity.com",
+          "link": "https://tina.io/showcase#unity",
           "logo": "/svg/logos/unity.svg",
           "size": 220
         },
         {
           "name": "Protocol Labs",
-          "link": "https://protocol.ai/",
+          "link": "https://tina.io/showcase#protocol-labs",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 90
         },
         {
           "name": "City of London",
-          "link": "https://www.cityoflondon.gov.uk/",
+          "link": "https://tina.io/showcase#city-of-london",
           "logo": "/svg/logos/cityoflondon.svg",
           "size": 120
         },
         {
           "name": "Devolver Digital",
-          "link": "https://www.devolverdigital.com/",
+          "link": "https://tina.io/showcase#devolver-digital",
           "logo": "/svg/logos/devolverdigital.svg",
           "size": 150
         },
         {
           "name": "Smashing Magazine",
-          "link": "https://www.smashingmagazine.com/",
+          "link": "https://tina.io/showcase#smashing-magazine",
           "logo": "/svg/logos/smashing.svg",
           "size": 90
         },
         {
           "name": "Supernova",
-          "link": "https://www.1supernova.com/",
+          "link": "https://tina.io/showcase#supernova",
           "logo": "/svg/logos/supernova.svg",
           "size": 240
         },
         {
           "name": "Paradise Helicopters",
-          "link": "https://paradisecopters.com/",
+          "link": "https://tina.io/showcase#paradise-helicopters",
           "logo": "/svg/logos/paradisehelicopters.svg",
           "size": 150
         },
         {
           "name": "SSW",
-          "link": "https://ssw.com/",
+          "link": "https://tina.io/showcase#ssw",
           "logo": "/svg/logos/ssw-logo-charcoal.svg",
-          "size":  150
+          "size": 150
         },
         {
           "name": "Comedia",
-          "link": "http://www.comediadesign.com/",
+          "link": "https://tina.io/showcase#comedia",
           "logo": "/svg/logos/comedia.svg",
           "size": 110
         },
         {
           "name": "RRE Ventures",
-          "link": "https://rre.com/",
+          "link": "https://tina.io/showcase#rre-ventures",
           "logo": "/svg/logos/rreventures.svg",
           "size": 220
         },
         {
-          "name": "Shadown Lion",
-          "link": "https://shadowlion.com/",
+          "name": "Shadow Lion",
+          "link": "https://tina.io/showcase#shadow-lion",
           "logo": "/svg/logos/shadowlion.svg",
           "size": 220
         },
         {
           "name": "Roev",
-          "link": "https://roev.com/",
+          "link": "https://tina.io/showcase#roev",
           "logo": "/svg/logos/roe.svg",
           "size": 200
         },
         {
           "name": "Locality Bank",
-          "link": "https://localitybank.com/",
+          "link": "https://tina.io/showcase#locality-bank",
           "logo": "/svg/logos/localitybank.svg",
           "size": 200
         }
-
       ],
       "_template": "logoGrid"
     },
