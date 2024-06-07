@@ -38,7 +38,7 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-0 lg:w-1/2 ${(data.media[0].image || data.media[0].src) && ''}`}
+            className={`relative min-w-0 lg:w-1/2 ${isReversed ? 'lg:pr-8' : ''} ${(data.media[0].image || data.media[0].src) && ''}`}
           >
             {data.media && data.media[0].image && (
               <>
@@ -132,7 +132,7 @@ export function FeatureBlock({ data, index }) {
         /* Code Styles */
 
         :global(.hljs) {
-          font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)			');
+          font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)');
           padding: 1.5em;
           color: var(--blue-250);
           font-weight: medium;
@@ -169,7 +169,7 @@ export function FeatureBlock({ data, index }) {
         }
       `}</style>
     </>
-  )
+  );
 }
 
 export function FeaturesBlock({ data, index }) {
@@ -184,12 +184,12 @@ export function FeaturesBlock({ data, index }) {
           {/* @ts-ignore */}
           {data.features &&
             data.features.map((data, index) => {
-              return <FeatureBlock data={data} index={index} />
+              return <FeatureBlock data={data} index={index} />;
             })}
         </div>
       </Container>
     </section>
-  )
+  );
 }
 
 export const FeatureVideo = ({ src, className = '' }) => {
@@ -211,9 +211,9 @@ export const FeatureVideo = ({ src, className = '' }) => {
         type="video/mp4"
       />
     </video>
-  )
+  );
 }
 
 const CodeWrapper = styled.div`
   ${DocsRichText}
-`
+`;
