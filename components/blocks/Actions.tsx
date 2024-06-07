@@ -23,7 +23,6 @@ export const Actions = ({ items, align = 'left' }) => {
         {items &&
           items.map((item, index) => {
             if (item.variant == 'command') {
-              //const id = sanitizeLabel(item.label);
               return (
                 <React.Fragment key={item.label}>
                   <span className="or-text">or</span>
