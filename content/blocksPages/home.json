@@ -39,10 +39,16 @@
       "title": "Trusted by",
       "items": [
         {
+          "name": "Bunny Net",
+          "link": "https://www.bunny.net/",
+          "logo": "/svg/logos/bunnynet.svg",
+          "size": 220
+        },
+        {
           "name": "Unity",
           "link": "https://unity.com",
-          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/w_600,q_auto/v1693531489/tina-io/new-homepage/unity-logo-white.png",
-          "size": 250
+          "logo": "/svg/logos/unity.svg",
+          "size": 220
         },
         {
           "name": "Protocol Labs",
@@ -53,21 +59,70 @@
         {
           "name": "City of London",
           "link": "https://www.cityoflondon.gov.uk/",
-          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1694021728/tina-io/new-homepage/city-of-london.svg",
-          "size": 75
+          "logo": "/svg/logos/cityoflondon.svg",
+          "size": 120
         },
         {
           "name": "Devolver Digital",
           "link": "https://www.devolverdigital.com/",
           "logo": "/svg/logos/devolverdigital.svg",
-          "size": 180
+          "size": 150
         },
         {
           "name": "Smashing Magazine",
           "link": "https://www.smashingmagazine.com/",
           "logo": "/svg/logos/smashing.svg",
+          "size": 90
+        },
+        {
+          "name": "Supernova",
+          "link": "https://www.1supernova.com/",
+          "logo": "/svg/logos/supernova.svg",
+          "size": 240
+        },
+        {
+          "name": "Paradise Helicopters",
+          "link": "https://paradisecopters.com/",
+          "logo": "/svg/logos/paradisehelicopters.svg",
+          "size": 150
+        },
+        {
+          "name": "SSW",
+          "link": "https://ssw.com/",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size":  150
+        },
+        {
+          "name": "Comedia",
+          "link": "http://www.comediadesign.com/",
+          "logo": "/svg/logos/comedia.svg",
           "size": 110
+        },
+        {
+          "name": "RRE Ventures",
+          "link": "https://rre.com/",
+          "logo": "/svg/logos/rreventures.svg",
+          "size": 220
+        },
+        {
+          "name": "Shadown Lion",
+          "link": "https://shadowlion.com/",
+          "logo": "/svg/logos/shadowlion.svg",
+          "size": 220
+        },
+        {
+          "name": "Roev",
+          "link": "https://roev.com/",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
+          "name": "Locality Bank",
+          "link": "https://localitybank.com/",
+          "logo": "/svg/logos/localitybank.svg",
+          "size": 200
         }
+
       ],
       "_template": "logoGrid"
     },
