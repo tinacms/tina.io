@@ -2,4 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* This is a hack to override the responsive modal's custom styling */
+.react-responsive-modal-modal {
+ padding: 0 0 0 0 !important;
+ width: 75% !important;
+ max-width: 1200px !important;
+ border-radius: 16px !important;
+ overflow: hidden !important;
+ max-height: 100% !important;
+}
 
+.react-responsive-modal-closeButton {
+    background-color: white !important;
+    border-radius: 50% !important;
+    opacity: 50% !important;
+}
