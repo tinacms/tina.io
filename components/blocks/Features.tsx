@@ -32,7 +32,7 @@ export function FeatureBlock({ data, index }) {
           >
             {data.text}
           </p>
-          <div className="flex lg:flex-row">
+          <div className="flex lg:flex-row justify-evenly lg:justify-start">
             {data.actions && <Actions items={data.actions} />}
           </div>
         </div>
@@ -64,7 +64,7 @@ export function FeatureBlock({ data, index }) {
                     className="w-full h-full"
                   />
                 </a>
-                <FeatureVideo className="w-full h-auto" src={data.media[0].src} />
+                <FeatureVideo className="w-full h-auto pb-4" src={data.media[0].src} />
               </>
             )}
             {data.media && data.media[0].code && (
