@@ -164,11 +164,14 @@ module.exports = {
           800: '#A91D04',
           900: '#861103',
         },
+        success: 'green',
+        warning: 'orange',
+        error: '#D22F2F',
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         tuner: ['tuner-medium', ...defaultTheme.fontFamily.sans],
-        'tuner-light': ['tuner-regular', ...defaultTheme.fontFamily.sans],
+        'tuner-regular': ['tuner-regular', ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',

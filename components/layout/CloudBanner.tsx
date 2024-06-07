@@ -8,14 +8,12 @@ export function CloudBanner() {
   return (
     <>
       <div className="banner">
-        <div className="banner-content flex justify-center items-center banner-left-padding">
-          <span className="mobile">
-            <p className="mr-5">
+        <div className="banner-content">
+          <span className="mobile pr-2">
               Loving Tina? ⭐️ us on{' '}
               <a href="https://github.com/tinacms/tinacms" target="new">
                 GitHub
               </a>
-            </p>
           </span>
           {/* @ts-ignore */}
           <GitHubButton
@@ -26,12 +24,6 @@ export function CloudBanner() {
           >
             Star
           </GitHubButton>
-        </div>
-        <div className="banner-content banner-content-subscribe w-auto justify-center">
-          <div className=" banner-content mr-1 mt-1 justify-top">
-            Stay in touch <span className="hand-emoji">👉</span>
-          </div>
-          <EmailForm isFooter />
         </div>
       </div>
 
@@ -59,7 +51,7 @@ export function CloudBanner() {
           border-bottom: 1px solid #d1faf6;
           color: var(--color-tina-blue);
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           padding: 0.75rem 1rem;
           font-size: 1rem;
