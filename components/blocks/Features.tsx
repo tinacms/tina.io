@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import playImage from '../../public/img/playButton.png';
 
 export function FeatureBlock({ data, index }) {
-  const isReversed = index % 2 === 1;
+  const isReversed = data.textPosition;
 
   return (
     <>

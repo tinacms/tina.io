@@ -160,7 +160,8 @@
               "scale": 1,
               "_template": "code"
             }
-          ]
+          ],
+          "textPosition": true
         },
         {
           "headline": "Configure with Code",
@@ -182,7 +183,32 @@
               "scale": 0.8,
               "_template": "code"
             }
-          ]
+          ],
+          "textPosition": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "features": [
+        {
+          "headline": "Talk to a Tina Expert",
+          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
+          "actions": [
+            {
+              "label": "Schedule Call",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/"
+            }
+          ],
+          "media": [
+            {
+              "_template": "image"
+            }
+          ],
+          "textPosition": true
         }
       ],
       "_template": "features"
