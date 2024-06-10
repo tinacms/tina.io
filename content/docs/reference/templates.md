@@ -42,6 +42,7 @@ export default defineConfig({
           {
             name: 'marketing',
             label: 'Marketing Page',
+            inline: true,
             fields: [
               //... marketing page fields
             ],
