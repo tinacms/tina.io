@@ -205,7 +205,9 @@
           ],
           "media": [
             {
-              "_template": "image"
+              "_template": "image",
+              "image": "/img/TinaExpert.png"
+            
             }
           ],
           "textPosition": true
