@@ -134,7 +134,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
   return (
     <>
       <button
-        className="button event-cmd-button"
+        className="code-button event-cmd-button"
         onClick={clickEvent}
         id={id}
         {...props}
@@ -178,7 +178,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
         }
 
         .icon {
-          width: 2.75rem;
+          width: 2.5rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -190,21 +190,22 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           transition: opacity 180ms ease-out;
 
           :global(svg) {
-            height: 1.5em;
+            height: 1.5em; 
             width: auto;
           }
         }
 
         .text {
-          padding: 1rem 1.25rem;
+          padding: 0.75rem 1rem; 
+          font-size: 1rem; 
         }
 
-        .button {
+        .code-button {
           display: flex;
           font-weight: bold;
           overflow: hidden;
-          font-size: 1rem;
-          border-radius: 0.5rem;
+          font-size: 1rem; 
+          border-radius: 0.375rem;
           cursor: pointer;
           transition: all 150ms ease-out;
           width: max-content;
