@@ -7,8 +7,12 @@ import styled from 'styled-components';
 import playImage from '../../public/img/playButton.png';
 
 export function FeatureBlock({ data, index }) {
+
   const isReversed = data.textPosition;
   const isBackgroundEnabled = data.imageBackground;
+
+  const isVideo = data.media && data.media[0] && data.media[0].src;
+
 
   return (
     <>
@@ -17,7 +21,7 @@ export function FeatureBlock({ data, index }) {
         className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
           }`}
       >
-        <div className="w-full lg:w-3/7 max-w-prose flex flex-col gap-6 lg:gap-8">
+        <div className={`w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:gap-8 ${isVideo ? 'lg:mr-8' : ''}`}>
           {data.headline && (
             <h3
               className="font-tuner inline-block text-3xl sm:pt-8 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance"
@@ -28,7 +32,7 @@ export function FeatureBlock({ data, index }) {
           )}
           <hr className="!my-0" />
           <p
-            className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-prose text-balance"
+            className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-60ch text-balance"
             data-tina-field={tinaField(data, 'text')}
           >
             {data.text}
@@ -106,6 +110,10 @@ export function FeatureBlock({ data, index }) {
         )}
       </div>
       <style jsx>{`
+        .max-w-60ch {
+          max-width: 65ch;
+        }
+
         .pane-container {
           perspective: 1000px;
           -moz-perspective: none;
@@ -129,8 +137,6 @@ export function FeatureBlock({ data, index }) {
         .text-balance {
           text-wrap: balance;
         }
-
-        /* Code Styles */
 
         :global(.hljs) {
           font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)');
