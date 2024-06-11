@@ -205,12 +205,12 @@
           ],
           "media": [
             {
-              "_template": "image",
-              "image": "/img/TinaExpert.png"
-            
+              "image": "/img/TinaExpert.png",
+              "_template": "image"
             }
           ],
-          "textPosition": true
+          "textPosition": true,
+          "imageBackground": false
         }
       ],
       "_template": "features"

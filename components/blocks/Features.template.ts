@@ -104,6 +104,7 @@ export const featuresTemplate: Template = {
         {
           name: 'textPosition',
           label: 'Text Position',
+          description: 'This is the position of the text, relative to the media.',
           type: 'boolean',
           ui: {
             component: 'toggle',
@@ -111,6 +112,17 @@ export const featuresTemplate: Template = {
             format: (value) => !!value,
           },
         },
+        {
+          name: 'imageBackground',
+          label: 'Image Background',
+          description: 'This will toggle the background and bordering of the media.',
+          type: 'boolean',
+          ui: {
+            component: 'toggle',
+            parse: (value) => !!value,
+            format: (value) => !!value,
+          },
+        }
       ] as TinaField[],
     },
   ],
