@@ -16,6 +16,7 @@ In most cases, just using [`fields`](/docs/reference/fields/) is enough, however
 | -------- | --------------------------------------------------------- |
 | `name`   | The name of the template                                  |
 | `label`  | A human friendly label that will be displayed to the user |
+| `inline` | Changes the component to inline styling                   |
 | `fields` | An array of [fields](/docs/reference/fields/)             |
 
 ## Example using templates instead of fields
@@ -41,6 +42,7 @@ export default defineConfig({
           {
             name: 'marketing',
             label: 'Marketing Page',
+            inline: true,
             fields: [
               //... marketing page fields
             ],
