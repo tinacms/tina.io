@@ -8,7 +8,7 @@ import playImage from '../../public/img/playButton.png';
 
 export function FeatureBlock({ data, index }) {
 
-  const isReversed = data.textPosition;
+  const isReversed = data.isReversed;
   const isBackgroundEnabled = data.imageBackground;
 
   const isVideo = data.media && data.media[0] && data.media[0].src;

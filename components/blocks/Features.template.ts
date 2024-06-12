@@ -102,8 +102,8 @@ export const featuresTemplate: Template = {
           ],
         },
         {
-          name: 'textPosition',
-          label: 'Text Position',
+          name: 'isReversed',
+          label: 'Text on Right?',
           description: 'This is the position of the text, relative to the media. Off is left, and on is right.',
           type: 'boolean',
           ui: {
