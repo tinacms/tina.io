@@ -15,7 +15,7 @@ export const featuresTemplate: Template = {
       list: true,
       ui: {
         itemProps: (item) => {
-          return { label: item?.headline }
+          return { label: item?.headline };
         },
       },
       fields: [
@@ -28,7 +28,6 @@ export const featuresTemplate: Template = {
         },
         // @ts-ignore
         actionsTemplate,
-        // Block field with image, video or text as template options
         {
           name: 'media',
           label: 'Media',
@@ -102,7 +101,29 @@ export const featuresTemplate: Template = {
             },
           ],
         },
+        {
+          name: 'isReversed',
+          label: 'Text on Right?',
+          description: 'This is the position of the text, relative to the media. Off is left, and on is right.',
+          type: 'boolean',
+          ui: {
+            component: 'toggle',
+            parse: (value) => !!value,
+            format: (value) => !!value,
+          },
+        },
+        {
+          name: 'imageBackground',
+          label: 'Image Background',
+          description: 'This will toggle the background and bordering of the media. This will only have visible changes if the media has a transparent background.',
+          type: 'boolean',
+          ui: {
+            component: 'toggle',
+            parse: (value) => !!value,
+            format: (value) => !!value,
+          },
+        }
       ] as TinaField[],
     },
   ],
-}
+};
