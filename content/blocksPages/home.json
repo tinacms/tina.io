@@ -161,7 +161,7 @@
               "_template": "code"
             }
           ],
-          "textPosition": true
+          "isReversed": true
         },
         {
           "headline": "Configure with Code",
@@ -183,8 +183,7 @@
               "scale": 0.8,
               "_template": "code"
             }
-          ],
-          "textPosition": false
+          ]
         }
       ],
       "_template": "features"
@@ -209,7 +208,7 @@
               "_template": "image"
             }
           ],
-          "textPosition": true,
+          "isReversed": true,
           "imageBackground": false
         }
       ],
