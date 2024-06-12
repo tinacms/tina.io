@@ -104,7 +104,7 @@ export const featuresTemplate: Template = {
         {
           name: 'textPosition',
           label: 'Text Position',
-          description: 'This is the position of the text, relative to the media.',
+          description: 'This is the position of the text, relative to the media. Off is left, and on is right.',
           type: 'boolean',
           ui: {
             component: 'toggle',
@@ -115,7 +115,7 @@ export const featuresTemplate: Template = {
         {
           name: 'imageBackground',
           label: 'Image Background',
-          description: 'This will toggle the background and bordering of the media.',
+          description: 'This will toggle the background and bordering of the media. This will only have visible changes if the media has a transparent background.',
           type: 'boolean',
           ui: {
             component: 'toggle',
