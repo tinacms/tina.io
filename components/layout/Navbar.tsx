@@ -243,6 +243,7 @@ export function Navbar({}) {
       </div>
       <div className={`relative w-full`} style={{ height: ref.current?.clientHeight }}></div>
 
+
       <Modal
         open={isModalOpen}
         onClose={closeModal}
