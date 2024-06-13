@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import data from '../../content/navigation.json';
 import { Button, LinkButton } from '../../components/ui/Button';
@@ -9,9 +9,11 @@ import {
   BiLinkExternal,
 } from 'react-icons/bi';
 import { TinaIcon } from '../../components/logo';
+import { useInView } from 'react-intersection-observer';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import { IoMdClose } from 'react-icons/io';
 import Divider from '../../public/svg/hr.svg';
+import { useComponentSize } from 'react-use-size';
 import { FaCalendarDay } from 'react-icons/fa';
 import { MdEmail } from "react-icons/md";
 import { Modal } from 'react-responsive-modal';
@@ -22,23 +24,17 @@ export function Navbar({}) {
   const [open, setOpen] = useState(false);
   const [stuck, setStuck] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const ref = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (ref.current) {
-        const { top } = ref.current.getBoundingClientRect();
-        setStuck(top < 0);
-      }
-    };
+  const { ref, inView } = useInView({
+    rootMargin: '128px 0px',
+    initialInView: true,
+  });
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+  const { ref: navRef, height } = useComponentSize();
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  React.useEffect(() => {
+    setStuck(!inView);
+  }, [inView]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -150,11 +146,12 @@ export function Navbar({}) {
           </div>
         </div>
         <div
-          className={`${
+          ref={navRef}
+          className={`absolute ${
             stuck
-              ? `fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
+              ? `min-[1135px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full px-10 hidden min-[1135px]:flex items-center justify-between gap-6`}
+          } z-40 w-full min-[1135px]:px-10 hidden min-[1135px]:flex items-center justify-between gap-6`}
         >
           <Link legacyBehavior href={'/'}>
             <a>
@@ -241,12 +238,13 @@ export function Navbar({}) {
           </nav>
         </div>
       </div>
-      <div className={`relative w-full`} style={{ height: ref.current?.clientHeight }}></div>
+      <div className={`relative w-full`} style={{ height: height }}></div>
 
       <Modal
         open={isModalOpen}
         onClose={closeModal}
         center
+
       >
         <EmailForm isFooter={false} />
       </Modal>
