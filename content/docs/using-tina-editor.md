@@ -25,12 +25,11 @@ Depending on how Tina is configured, one or more Collections will appear in the 
 
 ![Tina Editor List Page](/img/tina-list-page.png)
 
-The table here lists all documents for the chosen Collection. This page also allows the user to create a new document or a new folder see below. \
-\
+The table here lists all documents for the chosen Collection. This page also allows the user to create a new document or a new folder see below. 
+
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1718664908/add-folder-tinacms_c8pxte.png)\
 Can create folders to manage content.
 
-\
 If **contextual-editing** has been configured, clicking on a document will navigate the user to that document's preview with the Sidebar open and ready for editing.
 
 ![Tina Editor Visual Editing](/img/tina-contextual-editing.png)
