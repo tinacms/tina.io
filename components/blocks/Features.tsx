@@ -5,14 +5,13 @@ import { tinaField } from 'tinacms/dist/react';
 import DocsRichText from '../styles/DocsRichText';
 import styled from 'styled-components';
 import playImage from '../../public/img/playButton.png';
+import PlayIcon from './play-button.svg';
 
 export function FeatureBlock({ data, index }) {
-
   const isReversed = data.isReversed;
   const isBackgroundEnabled = data.imageBackground;
 
   const isVideo = data.media && data.media[0] && data.media[0].src;
-
 
   return (
     <>
@@ -60,14 +59,10 @@ export function FeatureBlock({ data, index }) {
                   href="https://youtube.com/tinacms"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute w-20 h-20 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:left-[-35px] lg:top-[70px] lg:transform-none z-10"
+                  className="absolute w-20 h-20 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:left-[-40px] lg:top-1/3 lg:-translate-y-1/2 lg:transform-none z-10"
                   id="play-button-overlay"
                 >
-                  <img
-                    src={playImage.src}
-                    alt="Play-button-overlay"
-                    className="w-full h-full"
-                  />
+                  <PlayIcon className="w-full h-full opacity-90 hover:opacity-70" />
                 </a>
                 <FeatureVideo className="w-full h-auto pb-4" src={data.media[0].src} />
               </>
