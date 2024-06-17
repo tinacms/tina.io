@@ -1,8 +1,8 @@
 ---
-title: Using the Tina Editor
 id: /docs/using-tina-editor/
+title: Using the Tina Editor
 last_edited: '2022-01-09T00:00:00.000Z'
-next: '/docs/schema'
+next: /docs/schema
 ---
 
 Tina is very flexible & extendable, so any Tina site may have a unique experience. As an introduction, we'll cover the out-of-the-box experience that most of our starters implement.
@@ -25,8 +25,12 @@ Depending on how Tina is configured, one or more Collections will appear in the 
 
 ![Tina Editor List Page](/img/tina-list-page.png)
 
-The table here lists all documents for the chosen Collection. This page also allows the user to create a new document.
+The table here lists all documents for the chosen Collection. This page also allows the user to create a new document or a new folder see below. \
+\
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1718664908/add-folder-tinacms_c8pxte.png)\
+Can create folders to manage content.
 
+\
 If **contextual-editing** has been configured, clicking on a document will navigate the user to that document's preview with the Sidebar open and ready for editing.
 
 ![Tina Editor Visual Editing](/img/tina-contextual-editing.png)
@@ -43,6 +47,6 @@ Once saved, the changes to the document will be stored against the files.
 
 There's plenty to do to customize your editing experience. We suggest:
 
-- Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood.
-- Learn how [Tina can be extended](/docs/advanced/extending-tina/) to create new field components
-- Make your site [editable with Tina on production](/docs/tina-cloud/)
+* Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood.
+* Learn how [Tina can be extended](/docs/advanced/extending-tina/) to create new field components
+* Make your site [editable with Tina on production](/docs/tina-cloud/)
