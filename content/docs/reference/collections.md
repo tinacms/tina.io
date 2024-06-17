@@ -101,7 +101,7 @@ The final pattern used would be
 ### Basic Syntax
 
 * `?` matches a single character
-* `*` matches any number of any characters (except `/`).
+* `*` matches any number of any characters (except `/`)
 * `[abc]` matches any one character in the given set
 * `[a-z]` matches a range.
 * `{foo,bar}` matches any whole word in the given set
