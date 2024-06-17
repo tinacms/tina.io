@@ -1,24 +1,29 @@
-import { Actions } from './Actions';
-import { Container } from './Container';
-import { Prism } from '../styles/Prism';
-import { tinaField } from 'tinacms/dist/react';
-import DocsRichText from '../styles/DocsRichText';
-import styled from 'styled-components';
-import playImage from '../../public/img/playButton.png';
+import { Actions } from './Actions'
+import { Container } from './Container'
+import { Prism } from '../styles/Prism'
+import { tinaField } from 'tinacms/dist/react'
+import DocsRichText from '../styles/DocsRichText'
+import styled from 'styled-components'
+import playImage from '../../public/img/playButton.png'
 
 export function FeatureBlock({ data, index }) {
-  const isReversed = data.isReversed;
-  const isBackgroundEnabled = data.imageBackground;
-  const isVideo = data.media && data.media[0] && data.media[0].src;
+  const isReversed = data.isReversed
+  const isBackgroundEnabled = data.imageBackground
+  const isVideo = data.media && data.media[0] && data.media[0].src
 
   return (
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
-          }`}
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${
+          isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+        }`}
       >
-        <div className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:gap-8 ${isVideo ? 'lg:mr-8' : ''}`}>
+        <div
+          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:gap-8 ${
+            isVideo ? 'lg:mr-8' : ''
+          }`}
+        >
           {data.headline && (
             <h3
               className="font-tuner inline-block text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
@@ -27,10 +32,10 @@ export function FeatureBlock({ data, index }) {
               {data.headline}
             </h3>
           )}
-          <div className=''>
-          <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-6">
-            <hr className="!my-0 w-full" />
-          </div>
+          <div className="">
+            <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-6">
+              <hr className="!my-0 w-full" />
+            </div>
 
             <p
               className="text-lg lg:text-xl lg:leading-normal bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-60ch text-balance text-center lg:text-left"
@@ -45,14 +50,18 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-0 lg:w-1/2 ${isReversed ? 'lg:pr-8' : ''} ${(data.media[0].image || data.media[0].src) && ''}`}
+            className={`relative min-w-0 lg:w-1/2 ${
+              isReversed ? 'lg:pr-8' : ''
+            } ${(data.media[0].image || data.media[0].src) && ''}`}
           >
             {data.media && data.media[0].image && (
               <>
                 <img
                   src={data.media[0].image}
                   alt={data.headline}
-                  className={`w-full h-auto rounded-lg ${isBackgroundEnabled ? 'shadow-panel' : ''} overflow-hidden bg-transparent`}
+                  className={`w-full h-auto rounded-lg ${
+                    isBackgroundEnabled ? 'shadow-panel' : ''
+                  } overflow-hidden bg-transparent`}
                 />
               </>
             )}
@@ -71,7 +80,10 @@ export function FeatureBlock({ data, index }) {
                     className="w-full h-full"
                   />
                 </a>
-                <FeatureVideo className="w-full h-auto pb-4" src={data.media[0].src} />
+                <FeatureVideo
+                  className="w-full h-auto pb-4"
+                  src={data.media[0].src}
+                />
               </>
             )}
             {data.media && data.media[0].code && (
@@ -82,10 +94,13 @@ export function FeatureBlock({ data, index }) {
                   </div>
                 )}
                 <div
-                  className={`file relative ${data.media[0].file
-                    ? 'rounded-lg rounded-tl-none'
-                    : 'rounded-lg'
-                    } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 ${isBackgroundEnabled ? 'shadow-panel' : ''}`}
+                  className={`file relative ${
+                    data.media[0].file
+                      ? 'rounded-lg rounded-tl-none'
+                      : 'rounded-lg'
+                  } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 ${
+                    isBackgroundEnabled ? 'shadow-panel' : ''
+                  }`}
                   style={{
                     fontSize:
                       1.25 * (data.media[0].scale ? data.media[0].scale : 1) +
@@ -178,7 +193,7 @@ export function FeatureBlock({ data, index }) {
         }
       `}</style>
     </>
-  );
+  )
 }
 
 export function FeaturesBlock({ data, index }) {
@@ -193,12 +208,12 @@ export function FeaturesBlock({ data, index }) {
           {/* @ts-ignore */}
           {data.features &&
             data.features.map((data, index) => {
-              return <FeatureBlock data={data} index={index} />;
+              return <FeatureBlock data={data} index={index} />
             })}
         </div>
       </Container>
     </section>
-  );
+  )
 }
 
 export const FeatureVideo = ({ src, className = '' }) => {
@@ -220,9 +235,9 @@ export const FeatureVideo = ({ src, className = '' }) => {
         type="video/mp4"
       />
     </video>
-  );
+  )
 }
 
 const CodeWrapper = styled.div`
   ${DocsRichText}
-`;
+`
