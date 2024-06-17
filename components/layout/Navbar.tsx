@@ -25,8 +25,7 @@ export function Navbar({}) {
 
   const handleScroll = () => {
     if (navRef.current) {
-      const navHeight = navRef.current.getBoundingClientRect().height;
-      setStuck(window.scrollY > navHeight * 3);
+      setStuck(window.scrollY > 50);
     }
   };
 
