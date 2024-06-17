@@ -7,12 +7,9 @@ import styled from 'styled-components';
 import playImage from '../../public/img/playButton.png';
 
 export function FeatureBlock({ data, index }) {
-
   const isReversed = data.isReversed;
   const isBackgroundEnabled = data.imageBackground;
-
   const isVideo = data.media && data.media[0] && data.media[0].src;
-
 
   return (
     <>
@@ -21,23 +18,28 @@ export function FeatureBlock({ data, index }) {
         className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
           }`}
       >
-        <div className={`w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:gap-8 ${isVideo ? 'lg:mr-8' : ''}`}>
+        <div className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:gap-8 ${isVideo ? 'lg:mr-8' : ''}`}>
           {data.headline && (
             <h3
-              className="font-tuner inline-block text-3xl sm:pt-8 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance"
+              className="font-tuner inline-block text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
               data-tina-field={tinaField(data, 'headline')}
             >
               {data.headline}
             </h3>
           )}
-          <hr className="!my-0" />
-          <p
-            className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-60ch text-balance"
-            data-tina-field={tinaField(data, 'text')}
-          >
-            {data.text}
-          </p>
-          <div className="flex lg:flex-row justify-evenly lg:justify-start">
+          <div className=''>
+          <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-6">
+            <hr className="!my-0 w-full" />
+          </div>
+
+            <p
+              className="text-lg lg:text-xl lg:leading-normal bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-60ch text-balance text-center lg:text-left"
+              data-tina-field={tinaField(data, 'text')}
+            >
+              {data.text}
+            </p>
+          </div>
+          <div className="flex flex-col lg:flex-row md:justify-center lg:justify-start items-center">
             {data.actions && <Actions items={data.actions} />}
           </div>
         </div>
