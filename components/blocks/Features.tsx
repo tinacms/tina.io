@@ -32,7 +32,6 @@ export function FeatureBlock({ data, index }) {
               {data.headline}
             </h3>
           )}
-          <div className="">
             <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-6">
               <hr className="!my-0 w-full" />
             </div>
@@ -43,7 +42,6 @@ export function FeatureBlock({ data, index }) {
             >
               {data.text}
             </p>
-          </div>
           <div className="flex flex-col lg:flex-row md:justify-center lg:justify-start items-center">
             {data.actions && <Actions items={data.actions} />}
           </div>
