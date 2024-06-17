@@ -46,6 +46,6 @@ Once saved, the changes to the document will be stored against the files.
 
 There's plenty to do to customize your editing experience. We suggest:
 
-* Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood.
+* Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood
 * Learn how [Tina can be extended](/docs/advanced/extending-tina/) to create new field components
 * Make your site [editable with Tina on production](/docs/tina-cloud/)
