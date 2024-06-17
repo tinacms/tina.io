@@ -20,7 +20,9 @@ export const Layout = ({ children, color }: LayoutProps) => {
             url: 'https://tina.io' + router.asPath,
           }}
         />
-        <Navbar />
+        <div className="lg:pb-14">
+          <Navbar />
+        </div>
         <div className="flex flex-col flex-1">{children}</div>
         <Footer />
       </div>
