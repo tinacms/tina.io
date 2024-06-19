@@ -1,28 +1,28 @@
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
-const withSvgr = require('next-svgr')
-const fs = require('fs')
-const path = require('path')
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const withSvgr = require('next-svgr');
+const fs = require('fs');
+const path = require('path');
 
-require('dotenv').config()
+require('dotenv').config();
 
-const isStatic = process.env.EXPORT_MODE === 'static'
+const isStatic = process.env.EXPORT_MODE === 'static';
 
 /**
  * @type {import('next').NextConfig}
  */
-let extraConfig = {}
+let extraConfig = {};
 
 if (isStatic) {
-  console.log('Exporting static site')
-  extraConfig.output = 'export'
+  console.log('Exporting static site');
+  extraConfig.output = 'export';
 }
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-})
+});
 
 const dummyMailchimpEndpoint =
-  'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
+  'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1';
 
 const config = {
   ...extraConfig,
@@ -43,7 +43,7 @@ const config = {
         source: '/admin',
         destination: '/admin/index.html',
       },
-    ]
+    ];
   },
   async redirects() {
     return [
@@ -72,7 +72,7 @@ const config = {
         destination: '/tina-cloud/overview',
         permanent: true,
       },
-    ]
+    ];
   },
   env: {
     MAILCHIMP_ADDRESS: process.env.MAILCHIMP_ADDRESS || dummyMailchimpEndpoint,
@@ -81,7 +81,7 @@ const config = {
     GTM_ID: process.env.GTM_ID,
     SSW_GTM_ID: process.env.SSW_GTM_ID,
   },
-  //avoiding CORS error, more here: https://vercel.com/support/articles/how-to-enable-cors
+  // Avoiding CORS error, more here: https://vercel.com/support/articles/how-to-enable-cors
   async headers() {
     const headers = [
       {
@@ -96,12 +96,12 @@ const config = {
         key: 'Access-Control-Allow-Headers',
         value: 'Accept, Content-Length, Content-Type',
       },
-    ]
+    ];
     if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview') {
       headers.push({
         key: 'X-Robots-Tag',
         value: 'noindex',
-      })
+      });
     }
 
     return [
@@ -109,21 +109,21 @@ const config = {
         source: '/:path*',
         headers,
       },
-    ]
+    ];
   },
   trailingSlash: true,
   exportPathMap: async function () {
-    return {}
+    return {};
   },
   webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
-    })
+    });
 
-    config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' }
+    config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' };
 
-    config.plugins.push(new MomentLocalesPlugin())
+    config.plugins.push(new MomentLocalesPlugin());
 
     if (isServer) {
       config.plugins.push({
@@ -139,8 +139,8 @@ const config = {
       });
     }
 
-    return config
+    return config;
   },
-}
+};
 
-module.exports = withBundleAnalyzer(withSvgr(config))
+module.exports = withBundleAnalyzer(withSvgr(config));
