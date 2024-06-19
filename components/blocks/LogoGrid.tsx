@@ -23,6 +23,7 @@ const Logo = ({ data, windowWidth = 1000 }) => {
       />
     </a>
   );
+  
 };
 
 function getWindowSize() {
