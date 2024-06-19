@@ -8,7 +8,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "tinacms dev  --noTelemetry  -c \"next dev\" ",
+    "dev": "tinacms dev  --noTelemetry  -c \"next dev\"",
     "build": "yarn create-rss && tinacms build && next build",
     "export": "tinacms build && EXPORT_MODE=static,UNOPTIMIZED_IMAGES=true next build",
     "prestart": "tinacms build  && npm run export",
@@ -22,9 +22,10 @@
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
     "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
     "deploy": "yarn build && yarn export",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap && rm -rf .next/cache/webpack",
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
-  },
+  }
+  ,
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^10.0.0",
