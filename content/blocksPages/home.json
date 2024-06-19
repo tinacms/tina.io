@@ -36,6 +36,91 @@
       "_template": "features"
     },
     {
+      "criteriaItems": [
+        {},
+        {
+          "criteria": "Open Source Front-end"
+        },
+        {
+          "criteria": "Content API"
+        },
+        {
+          "criteria": "Git-based Content Management "
+        },
+        {
+          "criteria": "GitHub Contributions"
+        },
+        {
+          "criteria": "Markdown Support",
+          "description": ""
+        },
+        {
+          "criteria": "Visual Editing Capabilities "
+        },
+        {
+          "criteria": "Local Development Workflow "
+        },
+        {
+          "criteria": "Free Option"
+        },
+        {
+          "criteria": "Self-hosted Option"
+        }
+      ],
+      "companies": [
+        {
+          "headline": "TinaCMS",
+          "active": true,
+          "isHidden": true,
+          "backgroundColor": "#EA7C5F",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "Prepr CMS"
+        },
+        {
+          "headline": "Umbraco"
+        },
+        {
+          "headline": "Decap CMS"
+        },
+        {
+          "headline": "Adobe Experience Manager"
+        },
+        {
+          "headline": "Contentstack"
+        },
+        {
+          "headline": "Contentful"
+        },
+        {
+          "headline": "Storyblok",
+          "backgroundColor": "#50E3C2"
+        },
+        {
+          "headline": "Sanity",
+          "backgroundColor": "#EA2525"
+        },
+        {
+          "headline": "builder.io",
+          "backgroundColor": "#047CF6"
+        },
+        {
+          "headline": "Strapi",
+          "backgroundColor": "#9013FE"
+        }
+      ],
+      "_template": "CompareBox"
+    },
+    {
       "title": "Trusted by",
       "items": [
         {
