@@ -5,8 +5,6 @@ last_edited: '2024-06-18T14:00:00.000Z'
 author: Brook Jeynes
 ---
 
-# Improving TinaCloud Indexing with Native Git CLI and Sparse-Checkout
-
 TinaCloud is now using the native Git CLI to clone repositories for indexing. This significantly reduces memory usage and improves performance for large repositories in the first part of the indexing process
 
 If you're using TinaCMS, then you're most likely using TinaCloud. When not self-hosting TinaCMS, TinaCloud is the backend TinaCMS interacts with. It provides helpful features such as searching files. In order for Tina to do things like this, the content in your repo needs to be indexed.
