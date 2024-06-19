@@ -22,7 +22,7 @@
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
     "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
     "deploy": "yarn build && yarn export",
-    "postbuild": "next-sitemap && rm -rf .next/cache/webpack",
+    "postbuild": "next-sitemap",
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
   }
   ,
