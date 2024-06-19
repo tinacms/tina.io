@@ -111,8 +111,12 @@ const CompanyCard = ({ company }) => {
   );
 };
 
+interface CompareBoxBlockProps {
+  data: any;
+  index: number;
+}
 
-export function CompareBoxBlock({ data }) {
+export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
   const [companies, setCompanies] = useState([]);
   const [userInteracted, setUserInteracted] = useState(false);
   const [maxActive, setMaxActive] = useState(4);
