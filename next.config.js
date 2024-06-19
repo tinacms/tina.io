@@ -1,6 +1,7 @@
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
-
 const withSvgr = require('next-svgr')
+const fs = require('fs')
+const path = require('path')
 
 require('dotenv').config()
 
@@ -114,7 +115,7 @@ const config = {
   exportPathMap: async function () {
     return {}
   },
-  webpack(config) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
@@ -123,6 +124,20 @@ const config = {
     config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' }
 
     config.plugins.push(new MomentLocalesPlugin())
+
+    if (isServer) {
+      config.plugins.push({
+        apply: (compiler) => {
+          compiler.hooks.done.tap('RemoveNextCache', () => {
+            const cachePath = path.resolve(__dirname, '.next/cache');
+            if (fs.existsSync(cachePath)) {
+              fs.rmdirSync(cachePath, { recursive: true });
+              console.log('.next/cache removed');
+            }
+          });
+        },
+      });
+    }
 
     return config
   },
