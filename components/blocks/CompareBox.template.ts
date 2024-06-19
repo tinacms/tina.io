@@ -27,7 +27,7 @@ export const compareBoxTemplate: TinaTemplate = {
       list: true,
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
-        { name: 'logo', label: 'Logo', type: 'image' },
+        { name: 'logo', label: 'Logo Link', type: 'string' },
         { name: 'active', label: 'Active', type: 'boolean', description: 'Toggle to highlight which company is BY DEFAULT active' },
         { name: 'isHidden', label: 'Hidden', type: 'boolean', description: 'Toggle will hide the company item from the list of clickable companies - it will also ensure it cannot be turned off.'},
         { name: 'backgroundColor', label: 'Background Color', type: 'string', ui: { component: 'color' }, description: 'Choose a background color for the company' },

@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { FaCircle } from 'react-icons/fa'
+import React, { useState, useEffect, useRef } from 'react';
+import { FaCircle } from 'react-icons/fa';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import css from 'styled-jsx/css';
 
 function hexToRgba(hex, alpha) {
-  let r = parseInt(hex.slice(1, 3), 16)
-  let g = parseInt(hex.slice(3, 5), 16)
-  let b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+  let r = parseInt(hex.slice(1, 3), 16);
+  let g = parseInt(hex.slice(3, 5), 16);
+  let b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 const commonHeightStyle = {
   height: '60px',
   marginBottom: '2px',
-}
+};
 
 const CompanyItem = ({ company, onClick }) => {
   if (company.isHidden) {
@@ -47,18 +51,22 @@ const CriteriaCard = ({ criteriaItems }) => {
   return (
     <div className="rounded">
       {criteriaItems.map((item, idx) => (
-        <div key={idx} className="py-5 flex items-center" style={commonHeightStyle}>
-          <h3 className="font-normal">{item.criteria}</h3>
+        <div
+          key={idx}
+          className="py-5 flex items-center"
+          style={commonHeightStyle}
+        >
+          <h3 className="font-normal md:text-sm sm:text-xs">{item.criteria}</h3>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const CompanyCard = ({ company }) => {
-  const baseColor = company.backgroundColor || '#000000'
+  const baseColor = company.backgroundColor || '#000000';
   return (
-    <div className="rounded flex flex-col items-center w-full">
+    <div className="rounded flex flex-col items-center w-full company-card">
       <div
         className="w-full flex justify-center items-center text-center py-4 opacity-100"
         style={{
@@ -72,7 +80,8 @@ const CompanyCard = ({ company }) => {
           )} 100%)`,
         }}
       >
-        <h3 className="text-2xl font-bold text-white">{company.headline}</h3>
+        <img src={company.logo} alt={`${company.headline} logo`} className="h-10 w-10 mr-2" />
+        <h3 className="lg:text-2xl md:text-xl sm:text-lg font-bold text-white">{company.headline}</h3>
       </div>
 
       <div className="w-full">
@@ -99,76 +108,205 @@ const CompanyCard = ({ company }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export function CompareBoxBlock({ data, index }) {
-  const [companies, setCompanies] = useState([])
+
+export function CompareBoxBlock({ data }) {
+  const [companies, setCompanies] = useState([]);
+  const [userInteracted, setUserInteracted] = useState(false);
+  const [maxActive, setMaxActive] = useState(4);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     if (data && data.companies) {
-      const updatedCompanies = data.companies.map((company) => {
-        const updatedCompany = { ...company }
+      const updatedCompanies = data.companies.map((company, idx) => {
+        const updatedCompany = {
+          ...company,
+          isHidden: company.headline === 'TinaCMS',
+          active: idx === 0 ? true : company.active,
+        };
         data.criteriaItems.forEach((criteria, idx) => {
           updatedCompany[`criteria${idx + 1}`] =
-            updatedCompany[`criteria${idx + 1}`] || false
-        })
-        return updatedCompany
-      })
-      setCompanies(updatedCompanies)
+            updatedCompany[`criteria${idx + 1}`] || false;
+        });
+        return updatedCompany;
+      });
+      setCompanies(updatedCompanies);
     }
-  }, [data])
+  }, [data]);
+
+  useEffect(() => {
+    if (userInteracted) return;
+
+    let currentIndex = 1;
+    const interval = setInterval(() => {
+      setCompanies((prevCompanies) => {
+        const newCompanies = prevCompanies.map((company, idx) => ({
+          ...company,
+          active: idx === 0 ? true : idx === currentIndex,
+        }));
+        if (sliderRef.current) {
+          sliderRef.current.slickGoTo(currentIndex - 1);
+        }
+        currentIndex = (currentIndex + 1) % prevCompanies.length;
+        if (currentIndex === 0) currentIndex = 1;
+        return newCompanies;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [userInteracted]);
+
+  useEffect(() => {
+    const updateMaxActive = () => {
+      const width = window.innerWidth;
+      if (width < 600) {
+        setMaxActive(2);
+      } else if (width < 1024) {
+        setMaxActive(3);
+      } else {
+        setMaxActive(4);
+      }
+    };
+
+    updateMaxActive();
+    window.addEventListener('resize', updateMaxActive);
+
+    return () => window.removeEventListener('resize', updateMaxActive);
+  }, []);
 
   const toggleActive = (companyIdx) => {
-    const activeCompanies = companies.filter(company => company.active);
-    const activeCompaniesCount = activeCompanies.length;
-    const company = companies[companyIdx];
-    
-    if (company.isHidden) {
-      return;
-    }
+    setUserInteracted(true);
 
-    if (!company.active && activeCompaniesCount >= 4) {
-      const firstActiveIdx = companies.findIndex(comp => comp.active && !comp.isHidden);
-      if (firstActiveIdx !== -1) {
-        companies[firstActiveIdx].active = false;
+    setCompanies((prevCompanies) => {
+      const activeCompanies = prevCompanies.filter((company) => company.active);
+      const activeCompaniesCount = activeCompanies.length;
+      const company = prevCompanies[companyIdx];
+
+      if (company.isHidden) {
+        return prevCompanies;
       }
-    }
 
-    const updatedCompanies = companies.map((company, idx) =>
-      idx === companyIdx ? { ...company, active: !company.active } : company
-    )
-    setCompanies([...updatedCompanies])
-  }
+      if (!company.active && activeCompaniesCount >= maxActive) {
+        const firstActiveIdx = prevCompanies.findIndex(
+          (comp) => comp.active && !comp.isHidden && comp.headline !== 'TinaCMS'
+        );
+        if (firstActiveIdx !== -1) {
+          prevCompanies[firstActiveIdx].active = false;
+        }
+      }
+
+      return prevCompanies.map((company, idx) =>
+        idx === companyIdx ? { ...company, active: !company.active } : company
+      );
+    });
+  };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '40px',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
-    <div className="px-12">
+    <div className="px-8 md:px-24">
       <h1 className="pl-3 font-tuner flex items-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left px-2 mt-10 pb-8">
         Why you should use TinaCMS
       </h1>
-      <div className="flex justify-center flex-wrap space-x-4 mb-8">
-        {companies.map((company, companyIdx) => (
-          <div
-            key={`company-${companyIdx}`}
-            className="flex flex-col items-center"
-          >
-            <CompanyItem
-              company={company}
-              onClick={() => toggleActive(companyIdx)}
-            />
+      <div className="items-center w-full" style={{justifyContent: "center" }}>
+        <Slider ref={sliderRef} {...settings} className="pb-10 ml-4 mr-4 pl-4">
+          {companies.map(
+            (company, companyIdx) =>
+              !company.isHidden && (
+                <div key={`company-${companyIdx}`}>
+                  <CompanyItem
+                    company={company}
+                    onClick={() => toggleActive(companyIdx)}
+                  />
+                </div>
+              )
+          )}
+        </Slider>
+      </div>
+
+      <div className="flex justify-center">
+        <div
+          className="grid gap-4"
+          style={{
+            gridTemplateColumns: `repeat(${
+              companies.filter((company) => company.active).length + 1
+            }, minmax(0, 1fr))`,
+            maxWidth: '100%',
+          }}
+        >
+          <div className="col-span-1">
+            <CriteriaCard criteriaItems={data.criteriaItems} />
           </div>
-        ))}
-      </div>
-      <div className="grid grid-cols-5 gap-4">
-        <div className="col-span-1">
-          <CriteriaCard criteriaItems={data.criteriaItems} />
+          {companies
+            .filter((company) => company.active)
+            .map((company, idx) => (
+              <CompanyCard key={`company-card-${idx}`} company={company} />
+            ))}
         </div>
-        {companies
-          .filter((company) => company.active)
-          .map((company, idx) => (
-            <CompanyCard key={`company-card-${idx}`} company={company} />
-          ))}
       </div>
+
+      <style jsx>{styles}</style>
+      <style jsx global>{`
+        .slick-next:before {
+          color: black !important;
+          content: "→" !important; 
+        }
+
+        .slick-prev:before {
+          color: black !important;
+          content: "←" !important;
+        }
+      `}</style>
     </div>
-  )
+  );
 }
+
+const styles = css`
+  .company-card {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.75s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+export default CompareBoxBlock;

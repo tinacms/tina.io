@@ -70,9 +70,10 @@
       "companies": [
         {
           "headline": "TinaCMS",
+          "logo": "",
           "active": true,
           "isHidden": true,
-          "backgroundColor": "#EA7C5F",
+          "backgroundColor": "#EC4815",
           "criteria1": true,
           "criteria2": true,
           "criteria3": true,
@@ -84,38 +85,91 @@
           "criteria9": true
         },
         {
-          "headline": "Prepr CMS"
+          "headline": "Prepr CMS",
+          "logo": "",
+          "backgroundColor": "#5237E6",
+          "criteria2": true
         },
         {
-          "headline": "Umbraco"
+          "headline": "Umbraco",
+          "backgroundColor": "#3544B1",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": false,
+          "criteria4": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
         },
         {
-          "headline": "Decap CMS"
+          "headline": "Decap CMS",
+          "backgroundColor": "#FF0080",
+          "criteria1": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria8": true
         },
         {
-          "headline": "Adobe Experience Manager"
+          "headline": "Adobe (AEM)",
+          "backgroundColor": "#EB1000",
+          "criteria2": true,
+          "criteria6": true
         },
         {
-          "headline": "Contentstack"
+          "headline": "Contentstack",
+          "backgroundColor": "#6610F2",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": false,
+          "criteria7": false
         },
         {
-          "headline": "Contentful"
+          "headline": "Contentful",
+          "backgroundColor": "#007AFF",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria8": true
         },
         {
           "headline": "Storyblok",
-          "backgroundColor": "#50E3C2"
+          "backgroundColor": "#2DB47D",
+          "criteria2": true,
+          "criteria6": true,
+          "criteria8": true
         },
         {
           "headline": "Sanity",
-          "backgroundColor": "#EA2525"
+          "backgroundColor": "#EF4434",
+          "criteria1": true,
+          "criteria3": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
         },
         {
-          "headline": "builder.io",
-          "backgroundColor": "#047CF6"
+          "headline": "Payload",
+          "backgroundColor": "#007FAE",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
         },
         {
-          "headline": "Strapi",
-          "backgroundColor": "#9013FE"
+          "headline": "prismic.io",
+          "backgroundColor": "#8E44EC",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria8": true
         }
       ],
       "_template": "CompareBox"
