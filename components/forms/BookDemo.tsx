@@ -10,7 +10,7 @@ const DemoForm = () => {
       <div className="py-10">
         <div className="flex justify-center pb-8">
           <h1 className="inline-block m-0 md:text-4xl font-tuner lg:text-3xl md:text-2xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-            Speak to Someone Closer to you!
+            Choose your location
           </h1>
         </div>
         <div className="grid lg:grid-cols-3 gap-3 px-6 md:px-0 lg:px-6">
@@ -27,9 +27,9 @@ const DemoForm = () => {
                   className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
                 />
                 <div className="flex-grow text-center md:text-left lg:text-left">
-                  <div className="font-medium text-lg">North America</div>
+                  <div className="font-medium text-lg">Americas</div>
                   <div className="text-muted-foreground text-xs">
-                    Speak with Scott for US, Canada, or Mexico.
+                    Meet with Scott (English)
                   </div>
                 </div>
                 <div className="flex-shrink-0">
@@ -53,7 +53,7 @@ const DemoForm = () => {
                 <div className="flex-grow text-center md:text-left lg:text-left">
                   <div className="font-medium text-lg">Europe</div>
                   <div className="text-muted-foreground text-xs">
-                    Speak with Jean for UK, Germany, or France.
+                    Meet with Jean (English and French)
                   </div>
                 </div>
                 <div className="flex-shrink-0">
@@ -77,7 +77,7 @@ const DemoForm = () => {
                 <div className="flex-grow text-center md:text-left lg:text-left">
                   <div className="font-medium text-lg">Oceania and Asia</div>
                   <div className="text-muted-foreground text-xs">
-                    Speak with Levi for Australia and Asia.
+                    Meet with Levi (English)
                   </div>
                 </div>
                 <div className="flex-shrink-0">
