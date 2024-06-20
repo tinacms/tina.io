@@ -68,7 +68,7 @@ const CompanyCard = ({ company }) => {
   return (
     <div className="rounded flex flex-col items-center w-full company-card">
       <div
-        className="w-full flex justify-center items-center text-center py-4 opacity-100"
+        className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100"
         style={{
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(
@@ -80,8 +80,15 @@ const CompanyCard = ({ company }) => {
           )} 100%)`,
         }}
       >
-        <img src={company.logo} alt={`${company.headline} logo`} className="h-10 w-10 mr-2" />
-        <h3 className="lg:text-2xl md:text-xl sm:text-lg font-bold text-white">{company.headline}</h3>
+        <img
+          src={company.logo}
+          alt={`${company.headline} logo`}
+          className="h-10 w-10 mr-2 filter-transparent"
+          style={{ filter: 'invert(100%)' }}
+        />
+        <h3 className="lg:text-xl md:text-xl sm:text-lg font-bold text-white whitespace-nowrap">
+          {company.headline}
+        </h3>
       </div>
 
       <div className="w-full">
@@ -110,6 +117,8 @@ const CompanyCard = ({ company }) => {
     </div>
   );
 };
+
+
 
 interface CompareBoxBlockProps {
   data: any;

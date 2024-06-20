@@ -70,7 +70,7 @@
       "companies": [
         {
           "headline": "TinaCMS",
-          "logo": "",
+          "logo": "/svg/logos/tina-black.svg",
           "active": true,
           "isHidden": true,
           "backgroundColor": "#EC4815",
@@ -92,6 +92,7 @@
         },
         {
           "headline": "Umbraco",
+          "logo": "/svg/logos/umbraco-black.svg",
           "backgroundColor": "#3544B1",
           "criteria1": true,
           "criteria2": true,
@@ -104,6 +105,7 @@
         },
         {
           "headline": "Decap CMS",
+          "logo": "/svg/logos/decap.svg",
           "backgroundColor": "#FF0080",
           "criteria1": true,
           "criteria4": true,
@@ -112,12 +114,14 @@
         },
         {
           "headline": "Adobe (AEM)",
+          "logo": "/svg/logos/AdobeEM.svg",
           "backgroundColor": "#EB1000",
           "criteria2": true,
           "criteria6": true
         },
         {
           "headline": "Contentstack",
+          "logo": "/svg/logos/contentstack.svg",
           "backgroundColor": "#6610F2",
           "criteria2": true,
           "criteria5": true,
@@ -126,6 +130,7 @@
         },
         {
           "headline": "Contentful",
+          "logo": "/svg/logos/contentful.svg",
           "backgroundColor": "#007AFF",
           "criteria2": true,
           "criteria5": true,
@@ -134,6 +139,7 @@
         },
         {
           "headline": "Storyblok",
+          "logo": "/svg/logos/storyblok.svg",
           "backgroundColor": "#2DB47D",
           "criteria2": true,
           "criteria6": true,
@@ -141,6 +147,7 @@
         },
         {
           "headline": "Sanity",
+          "logo": "/svg/logos/sanity.svg",
           "backgroundColor": "#EF4434",
           "criteria1": true,
           "criteria3": true,
@@ -152,6 +159,7 @@
         },
         {
           "headline": "Payload",
+          "logo": "/svg/logos/payload.svg",
           "backgroundColor": "#007FAE",
           "criteria1": true,
           "criteria2": true,
@@ -165,6 +173,7 @@
         },
         {
           "headline": "prismic.io",
+          "logo": "/svg/logos/prismic.svg",
           "backgroundColor": "#8E44EC",
           "criteria2": true,
           "criteria5": true,
