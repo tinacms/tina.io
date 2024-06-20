@@ -4,6 +4,7 @@ import JeanCircle from '../../public/img/people/jean-circle.png';
 import LeviCircle from '../../public/img/people/levi-circle.png';
 import ScottImage from '../../public/img/people/scottImage.jpg';
 
+
 const DemoForm = () => {
   return (
     <>
