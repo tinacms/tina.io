@@ -27,9 +27,9 @@ const DemoForm = () => {
                   className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
                 />
                 <div className="flex-grow text-center md:text-left lg:text-left">
-                  <div className="font-medium">North America</div>
-                  <div className="text-muted-foreground">
-                    Speak with a representative from the US, Canada, or Mexico.
+                  <div className="font-medium text-lg">North America</div>
+                  <div className="text-muted-foreground text-xs">
+                    Speak with Scott for US, Canada, or Mexico.
                   </div>
                 </div>
                 <div className="flex-shrink-0">
@@ -51,9 +51,9 @@ const DemoForm = () => {
                   className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
                 />
                 <div className="flex-grow text-center md:text-left lg:text-left">
-                  <div className="font-medium">Europe</div>
-                  <div className="text-muted-foreground">
-                    Speak with a representative from the UK, Germany, or France.
+                  <div className="font-medium text-lg">Europe</div>
+                  <div className="text-muted-foreground text-xs">
+                    Speak with Jean for UK, Germany, or France.
                   </div>
                 </div>
                 <div className="flex-shrink-0">
@@ -75,9 +75,9 @@ const DemoForm = () => {
                   className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
                 />
                 <div className="flex-grow text-center md:text-left lg:text-left">
-                  <div className="font-medium">Oceania and Asia</div>
-                  <div className="text-muted-foreground">
-                    Speak with a representative from Australia.
+                  <div className="font-medium text-lg">Oceania and Asia</div>
+                  <div className="text-muted-foreground text-xs">
+                    Speak with Levi for Australia and Asia.
                   </div>
                 </div>
                 <div className="flex-shrink-0">
