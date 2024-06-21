@@ -49,7 +49,7 @@ const CompanyItem = ({ company, onClick }) => {
 
 const CriteriaCard = ({ criteriaItems }) => {
   return (
-    <div className="rounded-lg shadow-lg">
+    <div className="rounded-lg">
       {criteriaItems.map((item, idx) => (
         <div
           key={idx}
@@ -68,7 +68,7 @@ const CriteriaCard = ({ criteriaItems }) => {
 const CompanyCard = ({ company }) => {
   const baseColor = company.backgroundColor || '#000000'
   return (
-    <div className="rounded-lg flex flex-col items-center w-full company-card shadow-lg">
+    <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
         className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg"
         style={{
