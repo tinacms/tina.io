@@ -126,6 +126,34 @@
       "_template": "logoGrid"
     },
     {
+      "title": "Where is Tina Going? 🦙",
+      "cardItems": [
+        {
+          "headline": "NDC Oslo",
+          "timeDate": "10th - 14th June",
+          "location": "Oslo, Norway",
+          "image": "/img/ndcoslo.png"
+        },
+        {
+          "headline": "ServerlessDays",
+          "timeDate": "24th May",
+          "location": "Auckland New Zealand"
+        },
+        {
+          "headline": "ServerlessDays",
+          "timeDate": "21st May",
+          "location": "Sydney, Australia"
+        },
+        {
+          "headline": "/NEW Conference ",
+          "description": "",
+          "timeDate": "15th - 16th May",
+          "location": "Newcastle, Australia"
+        }
+      ],
+      "_template": "verticalCards"
+    },
+    {
       "features": [
         {
           "headline": "Own Your Content",

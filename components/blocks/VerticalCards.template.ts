@@ -1,0 +1,32 @@
+import type { TinaTemplate } from 'tinacms';
+
+export const verticalCardsTemplate: TinaTemplate = {
+  label: 'Vertical Cards',
+  name: 'verticalCards',
+  ui: {
+    previewSrc: '',
+  },
+  fields: [
+    {name: 'title', label: 'Title', type: 'string'},
+    {
+      name: 'cardItems',
+      label: 'Card Items',
+      type: 'object',
+      list: true,
+      ui: {
+        itemProps: (item) => ({
+          key: item.id,
+          label: item.headline,
+        }),
+      },
+      fields: [
+        { name: 'headline', label: 'Headline', type: 'string' },
+        { name: 'description', label: 'Description', type: 'string' },
+        { name: 'timeDate', label: 'Time and Date', type: 'string' },
+        { name: 'location', label: 'Location', type: 'string' },
+        { name: 'price', label: 'Price', type: 'string' },
+        { name: 'image', label: 'Image', type: 'string' },
+      ],
+    },
+  ],
+};

@@ -16,6 +16,7 @@ import { RecentPostsBlock } from './RecentPosts'
 import { RoadmapGridBlock } from './RoadmapGrid'
 import { ShowcaseItemsBlock } from './Showcase'
 import { TestimonialsBlock } from './Testimonials'
+import { VerticalCardsBlock } from './VerticalCards'
 
 export const Blocks = ({
   blocks,
@@ -33,6 +34,8 @@ export const Blocks = ({
         )
       case 'PageBlocksFlying':
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />
+      case 'PageBlocksVerticalCards':
+        return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksHero':
         return <HeroBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksPricing':
