@@ -309,6 +309,10 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             color: black !important;
             content: '←' !important;
           }
+
+          .slick-prev, .slick-next {
+            top: 30%;
+          }
         `}</style>
       </div>
     </div>
