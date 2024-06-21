@@ -1,25 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaCircle } from 'react-icons/fa';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import css from 'styled-jsx/css';
+import React, { useState, useEffect, useRef } from 'react'
+import { FaCircle } from 'react-icons/fa'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import css from 'styled-jsx/css'
 
 function hexToRgba(hex, alpha) {
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  let r = parseInt(hex.slice(1, 3), 16)
+  let g = parseInt(hex.slice(3, 5), 16)
+  let b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
 const commonHeightStyle = {
   height: '60px',
   marginBottom: '2px',
-};
+}
 
 const CompanyItem = ({ company, onClick }) => {
   if (company.isHidden) {
-    return null;
+    return null
   }
 
   return (
@@ -41,35 +41,34 @@ const CompanyItem = ({ company, onClick }) => {
             : 'text-gray-500'
         }`}
       >
-        <div className="lg:text-xl md:text-sm text-xs">
-            {company.headline}
-        </div>
+        <div className="lg:text-xl md:text-sm text-xs">{company.headline}</div>
       </span>
     </div>
-  );
-};
+  )
+}
 
 const CriteriaCard = ({ criteriaItems }) => {
   return (
-    <div className="rounded-lg">
+    <div className="rounded-lg shadow-lg">
       {criteriaItems.map((item, idx) => (
         <div
           key={idx}
           className="py-5 flex justify-center items-center"
           style={commonHeightStyle}
         >
-          <h3 className="font-normal md:text-sm sm:text-xs text-center">{item.criteria}</h3>
+          <h3 className="font-normal md:text-sm sm:text-xs text-center">
+            {item.criteria}
+          </h3>
         </div>
       ))}
     </div>
-  );
-};
-
+  )
+}
 
 const CompanyCard = ({ company }) => {
-  const baseColor = company.backgroundColor || '#000000';
+  const baseColor = company.backgroundColor || '#000000'
   return (
-    <div className="rounded-lg flex flex-col items-center w-full company-card">
+    <div className="rounded-lg flex flex-col items-center w-full company-card shadow-lg">
       <div
         className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg"
         style={{
@@ -117,19 +116,19 @@ const CompanyCard = ({ company }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 interface CompareBoxBlockProps {
-  data: any;
-  index: number;
+  data: any
+  index: number
 }
 
 export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
-  const [companies, setCompanies] = useState([]);
-  const [userInteracted, setUserInteracted] = useState(false);
-  const [maxActive, setMaxActive] = useState(4);
-  const sliderRef = useRef(null);
+  const [companies, setCompanies] = useState([])
+  const [userInteracted, setUserInteracted] = useState(false)
+  const [maxActive, setMaxActive] = useState(4)
+  const sliderRef = useRef(null)
 
   useEffect(() => {
     if (data && data.companies) {
@@ -138,83 +137,83 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
           ...company,
           isHidden: company.headline === 'TinaCMS',
           active: idx === 0 ? true : company.active,
-        };
+        }
         data.criteriaItems.forEach((criteria, idx) => {
           updatedCompany[`criteria${idx + 1}`] =
-            updatedCompany[`criteria${idx + 1}`] || false;
-        });
-        return updatedCompany;
-      });
-      setCompanies(updatedCompanies);
+            updatedCompany[`criteria${idx + 1}`] || false
+        })
+        return updatedCompany
+      })
+      setCompanies(updatedCompanies)
     }
-  }, [data]);
+  }, [data])
 
   useEffect(() => {
-    if (userInteracted) return;
+    if (userInteracted) return
 
-    let currentIndex = 1;
+    let currentIndex = 1
     const interval = setInterval(() => {
       setCompanies((prevCompanies) => {
         const newCompanies = prevCompanies.map((company, idx) => ({
           ...company,
           active: idx === 0 ? true : idx === currentIndex,
-        }));
+        }))
         if (sliderRef.current) {
-          sliderRef.current.slickGoTo(currentIndex - 1);
+          sliderRef.current.slickGoTo(currentIndex - 1)
         }
-        currentIndex = (currentIndex + 1) % prevCompanies.length;
-        if (currentIndex === 0) currentIndex = 1;
-        return newCompanies;
-      });
-    }, 3000);
+        currentIndex = (currentIndex + 1) % prevCompanies.length
+        if (currentIndex === 0) currentIndex = 1
+        return newCompanies
+      })
+    }, 3000)
 
-    return () => clearInterval(interval);
-  }, [userInteracted]);
+    return () => clearInterval(interval)
+  }, [userInteracted])
 
   useEffect(() => {
     const updateMaxActive = () => {
-      const width = window.innerWidth;
+      const width = window.innerWidth
       if (width < 600) {
-        setMaxActive(2);
+        setMaxActive(2)
       } else if (width < 1024) {
-        setMaxActive(3);
+        setMaxActive(3)
       } else {
-        setMaxActive(4);
+        setMaxActive(4)
       }
-    };
+    }
 
-    updateMaxActive();
-    window.addEventListener('resize', updateMaxActive);
+    updateMaxActive()
+    window.addEventListener('resize', updateMaxActive)
 
-    return () => window.removeEventListener('resize', updateMaxActive);
-  }, []);
+    return () => window.removeEventListener('resize', updateMaxActive)
+  }, [])
 
   const toggleActive = (companyIdx) => {
-    setUserInteracted(true);
+    setUserInteracted(true)
 
     setCompanies((prevCompanies) => {
-      const activeCompanies = prevCompanies.filter((company) => company.active);
-      const activeCompaniesCount = activeCompanies.length;
-      const company = prevCompanies[companyIdx];
+      const activeCompanies = prevCompanies.filter((company) => company.active)
+      const activeCompaniesCount = activeCompanies.length
+      const company = prevCompanies[companyIdx]
 
       if (company.isHidden) {
-        return prevCompanies;
+        return prevCompanies
       }
 
       if (!company.active && activeCompaniesCount >= maxActive) {
         const firstActiveIdx = prevCompanies.findIndex(
           (comp) => comp.active && !comp.isHidden && comp.headline !== 'TinaCMS'
-        );
+        )
         if (firstActiveIdx !== -1) {
-          prevCompanies[firstActiveIdx].active = false;
+          prevCompanies[firstActiveIdx].active = false
         }
       }
 
       return prevCompanies.map((company, idx) =>
         idx === companyIdx ? { ...company, active: !company.active } : company
-      );
-    });
-  };
+      )
+    })
+  }
 
   const settings = {
     dots: false,
@@ -247,64 +246,73 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
         },
       },
     ],
-  };
+  }
 
   return (
-    <div className="px-8 md:px-24">
-      <h1 className="pl-3 font-tuner flex items-center text-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8">
-        Why Tina?
-      </h1>
-      <div className="items-center w-full" style={{justifyContent: "center" }}>
-        <Slider ref={sliderRef} {...settings} className="pb-10 ml-4 mr-4 pl-4">
-          {companies.map(
-            (company, companyIdx) =>
-              !company.isHidden && (
-                <div key={`company-${companyIdx}`}>
-                  <CompanyItem
-                    company={company}
-                    onClick={() => toggleActive(companyIdx)}
-                  />
-                </div>
-              )
-          )}
-        </Slider>
-      </div>
-
-      <div className="flex justify-center">
+    <div className="px-10 rounded-lg">
+      <div className="px-8 py-8 md:px-24 bg-gradient-to-b from-white to-white/30 break-inside-avoid rounded-xl shadow-2xl">
+        <h1 className="pl-3 font-tuner flex items-center text-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8">
+          Why Tina?
+        </h1>
         <div
-          className="grid lg:gap-4 md:gap-2 gap-2"
-          style={{
-            gridTemplateColumns: `repeat(${
-              companies.filter((company) => company.active).length + 1
-            }, minmax(0, 1fr))`,
-            maxWidth: '100%',
-          }}
+          className="items-center w-full"
+          style={{ justifyContent: 'center' }}
         >
-          <div className="col-span-1">
-            <CriteriaCard criteriaItems={data.criteriaItems} />
-          </div>
-          {companies
-            .filter((company) => company.active)
-            .map((company, idx) => (
-              <CompanyCard key={`company-card-${idx}`} company={company} />
-            ))}
+          <Slider
+            ref={sliderRef}
+            {...settings}
+            className="pb-10 ml-4 mr-4 pl-4"
+          >
+            {companies.map(
+              (company, companyIdx) =>
+                !company.isHidden && (
+                  <div key={`company-${companyIdx}`}>
+                    <CompanyItem
+                      company={company}
+                      onClick={() => toggleActive(companyIdx)}
+                    />
+                  </div>
+                )
+            )}
+          </Slider>
         </div>
+
+        <div className="flex justify-center">
+          <div
+            className="grid lg:gap-4 md:gap-2 gap-2"
+            style={{
+              gridTemplateColumns: `repeat(${
+                companies.filter((company) => company.active).length + 1
+              }, minmax(0, 1fr))`,
+              maxWidth: '100%',
+            }}
+          >
+            <div className="col-span-1">
+              <CriteriaCard criteriaItems={data.criteriaItems} />
+            </div>
+            {companies
+              .filter((company) => company.active)
+              .map((company, idx) => (
+                <CompanyCard key={`company-card-${idx}`} company={company} />
+              ))}
+          </div>
+        </div>
+
+        <style jsx>{styles}</style>
+        <style jsx global>{`
+          .slick-next:before {
+            color: black !important;
+            content: '→' !important;
+          }
+
+          .slick-prev:before {
+            color: black !important;
+            content: '←' !important;
+          }
+        `}</style>
       </div>
-
-      <style jsx>{styles}</style>
-      <style jsx global>{`
-        .slick-next:before {
-          color: black !important;
-          content: "→" !important; 
-        }
-
-        .slick-prev:before {
-          color: black !important;
-          content: "←" !important;
-        }
-      `}</style>
     </div>
-  );
+  )
 }
 
 const styles = css`
@@ -320,6 +328,6 @@ const styles = css`
       transform: translateY(0);
     }
   }
-`;
+`
 
-export default CompareBoxBlock;
+export default CompareBoxBlock
