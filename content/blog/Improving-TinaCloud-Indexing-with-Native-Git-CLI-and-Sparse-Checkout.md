@@ -24,3 +24,4 @@ When indexing a 1.9GB repository with content and images, the memory usage decre
 This enhancement marks a significant step forward in making TinaCloud more robust and efficient, ensuring that users can manage their content seamlessly, regardless of the size of their repositories.
 
 We're thrilled to continue improving Tina and look forward to delivering more updates about what we're doing behind the scenes. If you have any feedback or questions, please feel free to reach out to our team via the [Discord](https://discord.com/invite/zumN63Ybpf) or visit our [documentation](https://tinacms.org/docs) for more information.
+
