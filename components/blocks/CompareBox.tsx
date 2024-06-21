@@ -37,7 +37,7 @@ const CompanyItem = ({ company, onClick }) => {
       <span
         className={`font-tuner  ${
           company.active
-            ? 'text-transparent bg-gradient-to-br text-black bg-clip-text'
+            ? 'bg-gradient-to-br text-black bg-clip-text'
             : 'text-gray-500'
         }`}
       >
