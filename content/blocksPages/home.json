@@ -70,7 +70,8 @@
       "companies": [
         {
           "headline": "TinaCMS",
-          "logo": "/svg/logos/tina-black.svg",
+          "logoColour": "/svg/logos/tina.svg",
+          "logoWhite": "/svg/logos/tina-white.svg",
           "active": true,
           "isHidden": true,
           "backgroundColor": "#EC4815",
@@ -86,13 +87,15 @@
         },
         {
           "headline": "Prepr CMS",
-          "logo": "",
+          "logoColour": "/svg/logos/prepr-clr.svg",
+          "logoWhite": "/svg/logos/prepr-wht.svg",
           "backgroundColor": "#5237E6",
           "criteria2": true
         },
         {
           "headline": "Umbraco",
-          "logo": "/svg/logos/umbraco-black.svg",
+          "logoColour": "/svg/logos/Umbraco-clr.svg",
+          "logoWhite": "/svg/logos/Umbraco-wht.svg",
           "backgroundColor": "#3544B1",
           "criteria1": true,
           "criteria2": true,
@@ -105,7 +108,8 @@
         },
         {
           "headline": "Decap CMS",
-          "logo": "/svg/logos/decap.svg",
+          "logoColour": "/svg/logos/Decap-clr.svg",
+          "logoWhite": "/svg/logos/Decap-wht.svg",
           "backgroundColor": "#FF0080",
           "criteria1": true,
           "criteria4": true,
@@ -114,14 +118,16 @@
         },
         {
           "headline": "Adobe (AEM)",
-          "logo": "/svg/logos/AdobeEM.svg",
+          "logoColour": "/svg/logos/AEM-clr.svg",
+          "logoWhite": "/svg/logos/AEM-wht.svg",
           "backgroundColor": "#EB1000",
           "criteria2": true,
           "criteria6": true
         },
         {
           "headline": "Contentstack",
-          "logo": "/svg/logos/contentstack.svg",
+          "logoColour": "/svg/logos/Contentstack-clr.svg",
+          "logoWhite": "/svg/logos/Contentstack-wht.svg",
           "backgroundColor": "#6610F2",
           "criteria2": true,
           "criteria5": true,
@@ -130,7 +136,8 @@
         },
         {
           "headline": "Contentful",
-          "logo": "/svg/logos/contentful.svg",
+          "logoColour": "/svg/logos/Contentful-clr.svg",
+          "logoWhite": "/svg/logos/Contentful-wht.svg",
           "backgroundColor": "#007AFF",
           "criteria2": true,
           "criteria5": true,
@@ -139,7 +146,8 @@
         },
         {
           "headline": "Storyblok",
-          "logo": "/svg/logos/storyblok.svg",
+          "logoColour": "/svg/logos/Storyblok-clr.svg",
+          "logoWhite": "/svg/logos/Storyblok-wht.svg",
           "backgroundColor": "#2DB47D",
           "criteria2": true,
           "criteria6": true,
@@ -147,7 +155,8 @@
         },
         {
           "headline": "Sanity",
-          "logo": "/svg/logos/sanity.svg",
+          "logoColour": "/svg/logos/Sanity-clr.svg",
+          "logoWhite": "/svg/logos/Sanity-wht.svg",
           "backgroundColor": "#EF4434",
           "criteria1": true,
           "criteria3": true,
@@ -159,7 +168,8 @@
         },
         {
           "headline": "Payload",
-          "logo": "/svg/logos/payload.svg",
+          "logoColour": "/svg/logos/Payload-clr.svg",
+          "logoWhite": "/svg/logos/Payload-wht.svg",
           "backgroundColor": "#007FAE",
           "criteria1": true,
           "criteria2": true,
@@ -173,7 +183,8 @@
         },
         {
           "headline": "prismic.io",
-          "logo": "/svg/logos/prismic.svg",
+          "logoColour": "/svg/logos/Prismic-clr.svg",
+          "logoWhite": "/svg/logos/Prismic-wht.svg",
           "backgroundColor": "#8E44EC",
           "criteria2": true,
           "criteria5": true,

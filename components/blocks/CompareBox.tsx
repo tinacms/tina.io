@@ -30,18 +30,20 @@ const CompanyItem = ({ company, onClick }) => {
       onClick={onClick}
     >
       <img
-        src={company.logo}
+        src={company.logoColour}
         alt={`${company.headline} logo`}
-        className="h-10 w-10"
+        className="lg:h-10 lg:w-10 md:h-8 md:w-8 h-6 w-6 "
       />
       <span
-        className={`font-tuner ${
+        className={`font-tuner  ${
           company.active
-            ? 'text-transparent bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text'
+            ? 'text-transparent bg-gradient-to-br text-black bg-clip-text'
             : 'text-gray-500'
         }`}
       >
-        {company.headline}
+        <div className="lg:text-xl md:text-sm text-xs">
+            {company.headline}
+        </div>
       </span>
     </div>
   );
@@ -49,26 +51,27 @@ const CompanyItem = ({ company, onClick }) => {
 
 const CriteriaCard = ({ criteriaItems }) => {
   return (
-    <div className="rounded">
+    <div className="rounded-lg">
       {criteriaItems.map((item, idx) => (
         <div
           key={idx}
-          className="py-5 flex items-center"
+          className="py-5 flex justify-center items-center"
           style={commonHeightStyle}
         >
-          <h3 className="font-normal md:text-sm sm:text-xs">{item.criteria}</h3>
+          <h3 className="font-normal md:text-sm sm:text-xs text-center">{item.criteria}</h3>
         </div>
       ))}
     </div>
   );
 };
 
+
 const CompanyCard = ({ company }) => {
   const baseColor = company.backgroundColor || '#000000';
   return (
-    <div className="rounded flex flex-col items-center w-full company-card">
+    <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
-        className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100"
+        className="w-full flex justify-center items-center text-center px-2 py-4 opacity-100 rounded-t-lg"
         style={{
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(
@@ -81,12 +84,11 @@ const CompanyCard = ({ company }) => {
         }}
       >
         <img
-          src={company.logo}
+          src={company.logoWhite}
           alt={`${company.headline} logo`}
-          className="h-10 w-10 mr-2 filter-transparent"
-          style={{ filter: 'invert(100%)' }}
+          className="lg:h-10 lg:w-10 md:h-7 md:w-7 h-4 w-4 pr-1 filter-transparent"
         />
-        <h3 className="lg:text-xl md:text-xl sm:text-lg font-bold text-white whitespace-nowrap">
+        <h3 className="lg:text-xl md:text-md text-xs font-bold text-white whitespace-nowrap">
           {company.headline}
         </h3>
       </div>
@@ -117,8 +119,6 @@ const CompanyCard = ({ company }) => {
     </div>
   );
 };
-
-
 
 interface CompareBoxBlockProps {
   data: any;
@@ -228,7 +228,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -251,8 +251,8 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
 
   return (
     <div className="px-8 md:px-24">
-      <h1 className="pl-3 font-tuner flex items-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left px-2 mt-10 pb-8">
-        Why you should use TinaCMS
+      <h1 className="pl-3 font-tuner flex items-center text-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8">
+        Why Tina?
       </h1>
       <div className="items-center w-full" style={{justifyContent: "center" }}>
         <Slider ref={sliderRef} {...settings} className="pb-10 ml-4 mr-4 pl-4">
@@ -272,7 +272,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
 
       <div className="flex justify-center">
         <div
-          className="grid gap-4"
+          className="grid lg:gap-4 md:gap-2 gap-2"
           style={{
             gridTemplateColumns: `repeat(${
               companies.filter((company) => company.active).length + 1
