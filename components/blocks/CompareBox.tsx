@@ -311,7 +311,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
           }
 
           .slick-prev, .slick-next {
-            top: 30%;
+            top: 25%;
           }
         `}</style>
       </div>
