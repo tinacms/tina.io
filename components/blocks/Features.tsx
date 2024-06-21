@@ -87,7 +87,7 @@ export function FeatureBlock({ data, index }) {
             {data.media && data.media[0].code && (
               <div className="flex flex-col justify-start items-start">
                 {data.media[0].file && (
-                  <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-gradient-to-tl from-blue-800 to-blue-900 px-7 py-3 font-tuner">
+                  <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-gradient-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-tuner">
                     {data.media[0].file}
                   </div>
                 )}
@@ -96,7 +96,7 @@ export function FeatureBlock({ data, index }) {
                     data.media[0].file
                       ? 'rounded-lg rounded-tl-none'
                       : 'rounded-lg'
-                  } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 ${
+                  } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-gradient-to-br from-[#333333] via-[#1a1a1a] to-black ${
                     isBackgroundEnabled ? 'shadow-panel' : ''
                   }`}
                   style={{
