@@ -63,7 +63,7 @@ export function LogoGridBlock({ data, index }) {
         <div className="flex flex-col items-center w-full">
           {data.title && (
             <h1
-              className="pl-3 font-tuner flex items-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-8"
+              className="pl-3 font-tuner flex items-center justify-center text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-8"
             >
               Trusted By
             </h1>
