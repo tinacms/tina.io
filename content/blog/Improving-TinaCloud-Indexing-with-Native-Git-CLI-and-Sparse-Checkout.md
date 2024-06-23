@@ -1,7 +1,7 @@
 ---
 title: Improving TinaCloud Indexing with Native Git CLI and Sparse-Checkout
 date: '2024-06-18T14:00:00.000Z'
-last_edited: '2024-06-18T14:00:00.000Z'
+last_edited: '2024-06-23T14:00:00.000Z'
 author: Brook Jeynes
 ---
 
