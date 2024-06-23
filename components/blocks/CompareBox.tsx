@@ -85,9 +85,9 @@ const CompanyCard = ({ company }) => {
         <img
           src={company.logoWhite}
           alt={`${company.headline} logo`}
-          className="lg:h-10 lg:w-10 md:h-7 md:w-7 h-4 w-4 pr-1 filter-transparent"
+          className="xl:h-10 xl:w-10 lg:h-7 lg:w-7 md:h-7 md:w-7 h-4 w-4 pr-1 filter-transparent"
         />
-        <h3 className="lg:text-xl md:text-md text-xs font-bold text-white whitespace-nowrap">
+        <h3 className="xl:text-xl xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
           {company.headline}
         </h3>
       </div>
@@ -105,7 +105,7 @@ const CompanyCard = ({ company }) => {
               }}
             >
               {company[`criteria${idx + 1}`] && (
-                <FaCircle style={{ color: company.backgroundColor }} />
+                <FaCircle style={{ color: company.backgroundColor }} className="xl:h-5 xl:w-5 lg:h-5 lg:w-5 md:h-4 md:w-4 h-4 w-4"/>
               )}
             </div>
             <div
