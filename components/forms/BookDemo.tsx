@@ -14,7 +14,7 @@ const DemoForm = () => {
             Choose your location
           </h1>
         </div>
-        <div className="grid lg:grid-cols-3 gap-3 px-6 md:px-0 lg:px-6">
+        <div className="grid lg:grid-cols-2 gap-3 px-6 md:px-0 lg:px-6">
           <div className="flex justify-center w-full items-center h-full">
             <div className="w-full max-w-sm h-full">
               <Link
@@ -39,7 +39,7 @@ const DemoForm = () => {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center w-full items-center h-full">
+          {/* <div className="flex justify-center w-full items-center h-full">
             <div className="w-full max-w-sm h-full">
               <Link
                 href="#"
@@ -62,7 +62,7 @@ const DemoForm = () => {
                 </div>
               </Link>
             </div>
-          </div>
+          </div> */}
           <div className="flex justify-center w-full items-center h-full">
             <div className="w-full max-w-sm h-full">
               <Link
