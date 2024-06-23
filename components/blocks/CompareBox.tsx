@@ -250,7 +250,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
 
   return (
     <div className="px-10 rounded-lg">
-      <div className="px-8 py-8 md:px-24 bg-gradient-to-b from-white to-white/30 break-inside-avoid rounded-xl shadow-2xl">
+<div className="px-8 py-8 md:px-24 bg-gradient-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h1 className="pl-3 font-tuner flex items-center text-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8">
           Why Tina?
         </h1>
