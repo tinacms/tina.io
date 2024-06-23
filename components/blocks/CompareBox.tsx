@@ -53,10 +53,10 @@ const CriteriaCard = ({ criteriaItems }) => {
       {criteriaItems.map((item, idx) => (
         <div
           key={idx}
-          className="py-5 flex justify-center items-center"
+          className="py-5 flex"
           style={commonHeightStyle}
         >
-          <h3 className="font-normal md:text-sm sm:text-xs text-center">
+          <h3 className="font-normal md:text-sm sm:text-xs ]\">
             {item.criteria}
           </h3>
         </div>
