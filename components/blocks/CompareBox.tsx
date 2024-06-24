@@ -13,7 +13,7 @@ function hexToRgba(hex, alpha) {
 }
 
 const commonHeightStyle = {
-  height: '60px',
+  height: '50px',
   marginBottom: '2px',
 }
 
@@ -51,11 +51,7 @@ const CriteriaCard = ({ criteriaItems }) => {
   return (
     <div className="rounded-lg">
       {criteriaItems.map((item, idx) => (
-        <div
-          key={idx}
-          className="py-5 flex"
-          style={commonHeightStyle}
-        >
+        <div key={idx} className="py-5 flex" style={commonHeightStyle}>
           <h3 className="font-normal md:text-sm sm:text-xs ]\">
             {item.criteria}
           </h3>
@@ -105,7 +101,10 @@ const CompanyCard = ({ company }) => {
               }}
             >
               {company[`criteria${idx + 1}`] && (
-                <FaCircle style={{ color: company.backgroundColor }} className="xl:h-5 xl:w-5 lg:h-5 lg:w-5 md:h-4 md:w-4 h-4 w-4"/>
+                <FaCircle
+                  style={{ color: company.backgroundColor }}
+                  className="xl:h-5 xl:w-5 lg:h-5 lg:w-5 md:h-4 md:w-4 h-4 w-4"
+                />
               )}
             </div>
             <div
@@ -250,7 +249,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
 
   return (
     <div className="px-10 rounded-lg">
-<div className="px-8 py-8 md:px-24 bg-gradient-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
+      <div className="px-8 py-8 md:px-24 bg-gradient-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h1 className="pl-3 font-tuner flex items-center text-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8">
           Why Tina?
         </h1>
@@ -310,7 +309,8 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             content: '←' !important;
           }
 
-          .slick-prev, .slick-next {
+          .slick-prev,
+          .slick-next {
             top: 25%;
           }
         `}</style>
