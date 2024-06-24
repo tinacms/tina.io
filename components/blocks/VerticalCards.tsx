@@ -4,7 +4,7 @@ import css from 'styled-jsx/css';
 
 const Card = ({ cardItem }) => (
   <Link href={cardItem.link || "#"}>
-    <div className="relative p-6 m-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid rounded-xl shadow-xl transform transition-transform duration-300 hover:scale-105 transform-origin-center">
+    <div className="relative p-6 m-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid rounded-xl shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center">
       <div className="w-full lg:w-1/3 lg:h-full mb-4 lg:mb-0 mr-0 lg:mr-6">
         <img src={cardItem.image} alt={cardItem.headline} className="object-cover w-full h-full" />
       </div>
