@@ -1,29 +1,33 @@
+import Link from 'next/link';
 import React from 'react';
 import css from 'styled-jsx/css';
 
 const Card = ({ cardItem }) => (
-  <div className="card relative p-6 rounded-md group">
-    <div className="grid-container">
-      <div className="image-container">
-        <img src={cardItem.image} alt={cardItem.headline} className="card-image" />
+  <Link href={cardItem.link || "#"}>
+      <div className="card relative p-6 m-4 rounded-md group flex bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid rounded-xl shadow-xl transform transition-transform duration-300 hover:scale-105 transform-origin-center">
+        <div className="image-container w-1/4 h-full mr-6">
+          <img src={cardItem.image} alt={cardItem.headline} className="card-image object-contain" />
+        </div>
+        <div className="text-container flex-grow">
+          <h2 className="font-bold text-3xl mb-2">{cardItem.headline}</h2>
+          <p className="text-gray-700 mb-2">{cardItem.description}</p>
+          <p className="text-gray-500 text-md mb-1">{cardItem.timeDate}</p>
+          <p className="text-gray-500 text-md mb-1">{cardItem.location}</p>
+          <div className="flex justify-between items-center">
+            <p className="text-gray-800 font-semibold">{cardItem.price}</p>
+            <p className="text-orange-500 underline pr-4">Read more</p>
+          </div>
+        </div>
+        <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
       </div>
-      <div className="text-container">
-        <h2 className="font-bold text-xl mb-2">{cardItem.headline}</h2>
-        <p className="text-gray-700 mb-2">{cardItem.description}</p>
-        <p className="text-gray-500 text-sm mb-2">{cardItem.timeDate}</p>
-        <p className="text-gray-500 text-sm mb-2">{cardItem.location}</p>
-        <p className="text-gray-800 font-semibold">{cardItem.price}</p>
-      </div>
-    </div>
-    <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-  </div>
+  </Link>
 );
 
 const VerticalCardsBlock = ({ data, index }) => {
   if (!data || !data.cardItems) return null;
 
   return (
-    <div className="px-18">
+    <div className="md:px-18 lg:px-18 px-3 md:w-3/4 lg:w-3/4 w-100 mx-auto">
       <h1 className="pl-3 font-tuner flex items-center justify-center text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-8">
         {data.title}
       </h1>
@@ -35,7 +39,7 @@ const VerticalCardsBlock = ({ data, index }) => {
       <style jsx>{styles}</style>
     </div>
   );
-};
+  }
 
 const styles = css`
   .card {
@@ -44,41 +48,41 @@ const styles = css`
     position: relative;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
   }
   .card:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Three even-sized columns */
-    gap: 10px;
-    align-items: center;
-  }
   .image-container {
+    flex: 0 0 25%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 1.5rem;
   }
   .card-image {
-    width: 50px; /* Set image width */
-    height: 50px; /* Set image height */
+    width: 100%; 
+    height: auto; 
     object-fit: cover;
   }
   .text-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
   }
   .vertical-cards-container {
-    max-height: 400px; 
+    max-height: 560px; 
     overflow-y: auto;
-    padding-right: 1rem; 
+    padding-right: 2rem; 
+    padding-left: 2rem;
   }
   .vertical-cards-container::-webkit-scrollbar {
     width: 8px;
   }
   .vertical-cards-container::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
   .vertical-cards-container::-webkit-scrollbar-thumb {
     background-color: rgba(255, 165, 0, 0.5);

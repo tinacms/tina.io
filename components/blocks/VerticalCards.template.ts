@@ -26,6 +26,7 @@ export const verticalCardsTemplate: TinaTemplate = {
         { name: 'location', label: 'Location', type: 'string' },
         { name: 'price', label: 'Price', type: 'string' },
         { name: 'image', label: 'Image', type: 'string' },
+        { name: 'link', label: 'URL', type: 'string'},
       ],
     },
   ],
