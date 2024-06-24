@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { FaChevronRight } from "react-icons/fa";
 import JeanCircle from '../../public/img/people/jean-circle.png';
 import LeviCircle from '../../public/img/people/levi-circle.png';
 import ScottImage from '../../public/img/people/scottImage.jpg';
-
 
 const DemoForm = () => {
   return (
@@ -22,10 +23,12 @@ const DemoForm = () => {
                 className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700"
                 prefetch={false}
               >
-                <img
+                <Image
                   src={ScottImage.src}
                   alt="North America Portrait"
                   className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
+                  width={72}
+                  height={72}
                 />
                 <div className="flex-grow text-center md:text-left lg:text-left">
                   <div className="font-medium text-lg">Americas</div>
@@ -34,7 +37,7 @@ const DemoForm = () => {
                   </div>
                 </div>
                 <div className="flex-shrink-0">
-                  <ChevronRightIcon className="h-6 w-6 text-muted-foreground" />
+                  <FaChevronRight className="h-6 w-6 text-muted-foreground" />
                 </div>
               </Link>
             </div>
@@ -46,10 +49,12 @@ const DemoForm = () => {
                 className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700"
                 prefetch={false}
               >
-                <img
+                <Image
                   src={JeanCircle.src}
                   alt="Europe Portrait"
                   className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
+                  width={72}
+                  height={72}
                 />
                 <div className="flex-grow text-center md:text-left lg:text-left">
                   <div className="font-medium text-lg">Europe</div>
@@ -58,7 +63,7 @@ const DemoForm = () => {
                   </div>
                 </div>
                 <div className="flex-shrink-0">
-                  <ChevronRightIcon className="h-6 w-6 text-muted-foreground" />
+                  <FaChevronRight className="h-6 w-6 text-muted-foreground" />
                 </div>
               </Link>
             </div>
@@ -70,10 +75,12 @@ const DemoForm = () => {
                 className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700"
                 prefetch={false}
               >
-                <img
+                <Image
                   src={LeviCircle.src}
                   alt="Oceania and Asia Portrait"
                   className="hidden md:block w-18 h-18 rounded-full lg:mr-4 md:mr-4"
+                  width={72}
+                  height={72}
                 />
                 <div className="flex-grow text-center md:text-left lg:text-left">
                   <div className="font-medium text-lg">Oceania and Asia</div>
@@ -82,7 +89,7 @@ const DemoForm = () => {
                   </div>
                 </div>
                 <div className="flex-shrink-0">
-                  <ChevronRightIcon className="h-6 w-6 text-muted-foreground" />
+                  <FaChevronRight className="h-6 w-6 text-muted-foreground" />
                 </div>
               </Link>
             </div>
@@ -94,22 +101,3 @@ const DemoForm = () => {
 };
 
 export default DemoForm;
-
-function ChevronRightIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m9 18 6-6-6-6" />
-    </svg>
-  );
-}
