@@ -52,7 +52,7 @@ const CriteriaCard = ({ criteriaItems }) => {
     <div className="criteria-card rounded-lg">
       {criteriaItems.map((item, idx) => (
         <div key={idx} className="py-5 flex" style={commonHeightStyle}>
-          <h3 className="font-normal lg:text-lg md:text-sm sm:text-xs">
+          <h3 className="font-semibold lg:text-lg md:text-sm sm:text-xs">
             {item.criteria}
           </h3>
         </div>
