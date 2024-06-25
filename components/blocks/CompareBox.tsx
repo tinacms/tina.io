@@ -4,6 +4,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import css from 'styled-jsx/css'
+import Image from 'next/image'
 
 function hexToRgba(hex, alpha) {
   let r = parseInt(hex.slice(1, 3), 16)
@@ -29,10 +30,12 @@ const CompanyItem = ({ company, onClick }) => {
       }`}
       onClick={onClick}
     >
-      <img
+      <Image
         src={company.logoColour}
         alt={`${company.headline} logo`}
         className="lg:h-10 lg:w-10 md:h-8 md:w-8 h-6 w-6 "
+        width={40}
+        height={40}
       />
       <span
         className={`font-tuner  ${
@@ -78,10 +81,12 @@ const CompanyCard = ({ company }) => {
           )} 100%)`,
         }}
       >
-        <img
+        <Image
           src={company.logoWhite}
           alt={`${company.headline} logo`}
           className="xl:h-10 xl:w-10 lg:h-7 lg:w-7 md:h-7 md:w-7 h-4 w-4 pr-1 filter-transparent"
+          width={40}
+          height={40}
         />
         <h3 className="xl:text-xl xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
           {company.headline}

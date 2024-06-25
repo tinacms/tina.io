@@ -24,8 +24,7 @@
     "deploy": "yarn build && yarn export",
     "postbuild": "next-sitemap",
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
-  }
-  ,
+  },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^10.0.0",
