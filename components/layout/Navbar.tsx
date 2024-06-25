@@ -25,6 +25,9 @@ export function Navbar({}) {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
   const navRef = useRef(null)
 
+  const navLinkClasses =
+                  'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
+
   const handleScroll = () => {
     if (navRef.current) {
       setStuck(window.scrollY > 50)
@@ -79,8 +82,6 @@ export function Navbar({}) {
                 </Link>
               </li>
               {data.map((item) => {
-                const navLinkClasses =
-                  'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
                 if (item.href) {
                   const { id, href, label, external } = item
                   return (
@@ -167,8 +168,6 @@ export function Navbar({}) {
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1135px]:items-center gap-2 min-[1135px]:gap-x-12">
             <ul className="flex gap-6 min-[1135px]:gap-8 min-[1135px]:gap-12 relative z-20">
               {data.map((item) => {
-                const navLinkClasses =
-                  'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
                 if (item.href) {
                   const { id, href, label, external } = item
                   return (

@@ -19,7 +19,7 @@ const DemoForm = () => {
           <div className="flex justify-center w-full items-center h-full">
             <div className="w-full max-w-sm h-full">
               <Link
-                href="https://meetings-eu1.hubspot.com/scott15?uuid=2f12f1a3-8b6a-4472-bfb5-2f3f930a1b19"
+                href="https://meetings-eu1.hubspot.com/scott15"
                 className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700"
                 prefetch={false}
               >
@@ -42,10 +42,10 @@ const DemoForm = () => {
               </Link>
             </div>
           </div>
-          {/* <div className="flex justify-center w-full items-center h-full">
+          <div className="flex justify-center w-full items-center h-full">
             <div className="w-full max-w-sm h-full">
               <Link
-                href="#"
+                href="https://meetings-eu1.hubspot.com/jean-thirion"
                 className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700"
                 prefetch={false}
               >
@@ -67,11 +67,11 @@ const DemoForm = () => {
                 </div>
               </Link>
             </div>
-          </div> */}
+          </div>
           <div className="flex justify-center w-full items-center h-full">
             <div className="w-full max-w-sm h-full">
               <Link
-                href="https://meetings-eu1.hubspot.com/levi-jackson?uuid=2eb9cf82-25fe-40b6-86c3-466c365d34a5"
+                href="https://meetings-eu1.hubspot.com/levi-jackson"
                 className="flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between rounded-lg border border-input bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700"
                 prefetch={false}
               >
