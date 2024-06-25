@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import css from 'styled-jsx/css';
+import Globe from './zzGlobe'; // Import the Globe component
 
 const Card = ({ cardItem }) => (
   <Link href={cardItem.link || "#"}>
@@ -31,7 +32,8 @@ const VerticalCardsBlock = ({ data, index }) => {
       <h1 className="pl-3 font-tuner flex items-center justify-center text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-12">
         {data.title}
       </h1>
-      <section key={`vertical-cards-${index}`} className="vertical-cards-container max-h-560 overflow-y-auto pr-8 pl-8 pb-4">
+      <Globe />
+      <section key={`vertical-cards-${index}`} className="vertical-cards-container pr-8 pl-8 pb-4">
         {data.cardItems.map((cardItem, idx) => (
           <Card key={`${index}-${idx}`} cardItem={cardItem} />
         ))}
@@ -55,24 +57,6 @@ const styles = css`
   }
   .card:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  .vertical-cards-container {
-    max-height: 560px;
-    overflow-y: auto;
-  }
-  .vertical-cards-container::-webkit-scrollbar {
-    width: 8px;
-  }
-  .vertical-cards-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  .vertical-cards-container::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 165, 0, 0.5);
-    border-radius: 10px;
-  }
-  .vertical-cards-container::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 165, 0, 0.9);
   }
 `;
 
