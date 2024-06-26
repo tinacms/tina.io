@@ -8,7 +8,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "tinacms dev  --noTelemetry  -c \"next dev\" ",
+    "dev": "tinacms dev  --noTelemetry  -c \"next dev\"",
     "build": "yarn create-rss && tinacms build && next build",
     "export": "tinacms build && EXPORT_MODE=static,UNOPTIMIZED_IMAGES=true next build",
     "prestart": "tinacms build  && npm run export",
@@ -76,6 +76,7 @@
     "react-intersection-observer": "^9.4.0",
     "react-markdown": "^8.0.3",
     "react-responsive-modal": "^6.4.2",
+    "react-slick": "^0.30.2",
     "react-tinacms-editor": "^0.53.26",
     "react-use-size": "^3.0.1",
     "rehype-raw": "^6.1.1",
@@ -84,6 +85,7 @@
     "remark-directive-rehype": "^0.4.2",
     "remark-gfm": "^3.0.1",
     "serve": "11.2.0",
+    "slick-carousel": "^1.8.1",
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",

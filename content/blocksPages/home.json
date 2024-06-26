@@ -189,6 +189,165 @@
       "_template": "features"
     },
     {
+      "criteriaItems": [
+        {},
+        {
+          "criteria": "Open Source Front-end"
+        },
+        {
+          "criteria": "Content API"
+        },
+        {
+          "criteria": "Git-based Content Management "
+        },
+        {
+          "criteria": "GitHub Contributions"
+        },
+        {
+          "criteria": "Markdown Support",
+          "description": ""
+        },
+        {
+          "criteria": "Visual Editing Capabilities "
+        },
+        {
+          "criteria": "Local Development Workflow "
+        },
+        {
+          "criteria": "Free Option"
+        },
+        {
+          "criteria": "Self-hosted Option"
+        }
+      ],
+      "companies": [
+        {
+          "headline": "TinaCMS",
+          "logoColour": "/svg/logos/tina.svg",
+          "logoWhite": "/svg/logos/tina-white.svg",
+          "active": true,
+          "isHidden": true,
+          "backgroundColor": "#EC4815",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "Prepr CMS",
+          "logoColour": "/svg/logos/Prepr-clr.svg",
+          "logoWhite": "/svg/logos/Prepr-wht.svg",
+          "backgroundColor": "#5237E6",
+          "criteria2": true
+        },
+        {
+          "headline": "Umbraco",
+          "logoColour": "/svg/logos/Umbraco-clr.svg",
+          "logoWhite": "/svg/logos/Umbraco-wht.svg",
+          "backgroundColor": "#3544B1",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": false,
+          "criteria4": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "Decap CMS",
+          "logoColour": "/svg/logos/Decap-clr.svg",
+          "logoWhite": "/svg/logos/Decap-wht.svg",
+          "backgroundColor": "#FF0080",
+          "criteria1": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria8": true
+        },
+        {
+          "headline": "Adobe (AEM)",
+          "logoColour": "/svg/logos/AEM-clr.svg",
+          "logoWhite": "/svg/logos/AEM-wht.svg",
+          "backgroundColor": "#EB1000",
+          "criteria2": true,
+          "criteria6": true
+        },
+        {
+          "headline": "Contentstack",
+          "logoColour": "/svg/logos/Contentstack-clr.svg",
+          "logoWhite": "/svg/logos/Contentstack-wht.svg",
+          "backgroundColor": "#6610F2",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": false,
+          "criteria7": false
+        },
+        {
+          "headline": "Contentful",
+          "logoColour": "/svg/logos/Contentful-clr.svg",
+          "logoWhite": "/svg/logos/Contentful-wht.svg",
+          "backgroundColor": "#007AFF",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria8": true
+        },
+        {
+          "headline": "Storyblok",
+          "logoColour": "/svg/logos/Storyblok-clr.svg",
+          "logoWhite": "/svg/logos/Storyblok-wht.svg",
+          "backgroundColor": "#2DB47D",
+          "criteria2": true,
+          "criteria6": true,
+          "criteria8": true
+        },
+        {
+          "headline": "Sanity",
+          "logoColour": "/svg/logos/Sanity-clr.svg",
+          "logoWhite": "/svg/logos/Sanity-wht.svg",
+          "backgroundColor": "#EF4434",
+          "criteria1": true,
+          "criteria3": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "Payload",
+          "logoColour": "/svg/logos/Payload-clr.svg",
+          "logoWhite": "/svg/logos/Payload-wht.svg",
+          "backgroundColor": "#007FAE",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "prismic.io",
+          "logoColour": "/svg/logos/Prismic-clr.svg",
+          "logoWhite": "/svg/logos/Prismic-wht.svg",
+          "backgroundColor": "#8E44EC",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria8": true
+        }
+      ],
+      "_template": "CompareBox"
+    },
+    {
       "features": [
         {
           "headline": "Talk to a Tina Expert",
