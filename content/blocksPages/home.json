@@ -130,19 +130,21 @@
       "cardItems": [
         {
           "headline": "NDC Oslo",
-          "description": "This is a description",
+          "description": "",
           "timeDate": "10th - 14th June",
           "location": "Oslo, Norway",
-          "price": "$420",
+          "price": "",
           "image": "/img/ndcoslo.png",
-          "link": "/blog/Tina-sponsoring-NDC-Oslo-conference/"
+          "link": "/blog/Tina-sponsoring-NDC-Oslo-conference/",
+          "globeid": 3
         },
         {
           "headline": "ServerlessDays Auckland",
           "timeDate": "24th May",
           "location": "Auckland New Zealand",
           "image": "/img/serverlessAuckland.jpg",
-          "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/"
+          "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/",
+          "globeid": 2
         },
         {
           "headline": "ServerlessDays Sydney",
@@ -150,7 +152,8 @@
           "location": "Sydney, Australia",
           "price": "",
           "image": "/img/serverlessSydney.png",
-          "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/"
+          "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/",
+          "globeid": 1
         },
         {
           "headline": "/NEW Conference ",
@@ -158,7 +161,8 @@
           "timeDate": "15th - 16th May",
           "location": "Newcastle, Australia",
           "image": "/img/slashNew.png",
-          "link": "/blog/Tina-sponsoring-the-NEW-conference/"
+          "link": "/blog/Tina-sponsoring-the-NEW-conference/",
+          "globeid": 1
         }
       ],
       "_template": "verticalCards"

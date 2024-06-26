@@ -27,6 +27,7 @@ export const verticalCardsTemplate: TinaTemplate = {
         { name: 'price', label: 'Price', type: 'string' },
         { name: 'image', label: 'Image', type: 'string' },
         { name: 'link', label: 'URL', type: 'string'},
+        { name: 'globeid', label:'globe-id', type: 'number', description: 'Note this field corresponds to a location on the globe. When adding new events contact a developer to add new locations to the globe.'}
       ],
     },
   ],

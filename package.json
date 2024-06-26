@@ -31,6 +31,7 @@
     "@react-hook/window-size": "^3.1.1",
     "@react-three/drei": "^9.107.0",
     "@react-three/fiber": "^8.16.8",
+    "@react-three/postprocessing": "^2.16.2",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.0.3",
     "@tinacms/datalayer-old": "npm:@tinacms/datalayer@0.2.3",
