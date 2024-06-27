@@ -7,7 +7,7 @@ import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
 
 const Model = ({ activeGlobeId, ...props }) => {
   const fbx = useLoader(FBXLoader, '/lowpoly-earth.fbx');
-  const llamaFbx = useLoader(FBXLoader, '/llama.fbx');
+  const llamaFbx = useLoader(FBXLoader, '/llama-chunky.fbx');
 
   const markerPositions = [
     { id: 0, position: [-80, -58, -48] }, // Sydney
@@ -42,11 +42,11 @@ const Marker = ({ index, isActive, llamaObject }) => {
         const targetPosition = ref.current.getWorldPosition(vec);
         if (activePosition.y < 0)
         {
-          const targetPosition = activePosition.add(new THREE.Vector3(-1, -1, -1)); 
+          const targetPosition = activePosition.add(new THREE.Vector3(-1, -0.5, -1.5)); 
         }
 
         if (activePosition.y > 0){
-          const targetPosition = activePosition.add(new THREE.Vector3(1,1, 1));
+          const targetPosition = activePosition.add(new THREE.Vector3(1 , 0.5, 1.5));
         }
         state.camera.position.lerp(targetPosition, 0.05);
         state.camera.lookAt(ref.current.getWorldPosition(vec));
