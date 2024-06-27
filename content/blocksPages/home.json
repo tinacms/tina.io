@@ -129,11 +129,17 @@
       "title": "Where is Tina Going? 🦙",
       "cardItems": [
         {
+          "headline": "NDC Porto",
+          "timeDate": "14th - 18th October",
+          "location": "Porto, Portugal ",
+          "image": "/img/ndc-porto.png",
+          "link": "#",
+          "globeid": 4
+        },
+        {
           "headline": "NDC Oslo",
-          "description": "",
           "timeDate": "10th - 14th June",
           "location": "Oslo, Norway",
-          "price": "",
           "image": "/img/ndcoslo.png",
           "link": "/blog/Tina-sponsoring-NDC-Oslo-conference/",
           "globeid": 3
@@ -150,18 +156,8 @@
           "headline": "ServerlessDays Sydney",
           "timeDate": "21st May",
           "location": "Sydney, Australia",
-          "price": "",
           "image": "/img/serverlessSydney.png",
           "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/",
-          "globeid": 1
-        },
-        {
-          "headline": "/NEW Conference ",
-          "description": "",
-          "timeDate": "15th - 16th May",
-          "location": "Newcastle, Australia",
-          "image": "/img/slashNew.png",
-          "link": "/blog/Tina-sponsoring-the-NEW-conference/",
           "globeid": 1
         }
       ],

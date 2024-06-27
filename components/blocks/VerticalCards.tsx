@@ -40,7 +40,7 @@ const VerticalCardsBlock = ({ data, index }) => {
   if (!data || !data.cardItems) return null
 
   return (
-    <div className="md:px-18 lg:px-18 px-3 md:w-3/4 lg:w-5/6 w-full mx-auto pb-4 pt-8">
+    <div className="md:px-18 lg:px-18 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
       <h1 className="pl-3 font-tuner flex items-center justify-center text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-12">
         {data.title}
       </h1>

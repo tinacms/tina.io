@@ -1,17 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
+import { Environment, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
 
 const Model = ({ activeGlobeId, ...props }) => {
-  const fbx = useLoader(FBXLoader, '/polyearth.fbx');
+  const fbx = useLoader(FBXLoader, '/lowpoly-earth.fbx');
+  const llamaFbx = useLoader(FBXLoader, '/llama.fbx');
 
   const markerPositions = [
-    { id: 0, position: [20, -60, 93] }, // Sydney
-    { id: 1, position: [50, -70, 70] }, // Auckland
-    { id: 2, position: [-40, 100, -18] }, // Oslo
+    { id: 0, position: [-80, -58, -48] }, // Sydney
+    { id: 1, position: [-80, -70, -10] }, // Auckland
+    { id: 2, position: [50, 95, -10] }, // Oslo
+    { id: 3, position: [80, 70, 10] }, // Porto
   ];
 
   return (
@@ -19,14 +21,14 @@ const Model = ({ activeGlobeId, ...props }) => {
       <primitive object={fbx} />
       {markerPositions.map((marker) => (
         <group key={marker.id} position={new THREE.Vector3(...marker.position)}>
-          <Marker index={marker.id} isActive={marker.id === (activeGlobeId - 1)} />
+          <Marker index={marker.id} isActive={marker.id === (activeGlobeId - 1)} llamaObject={llamaFbx} />
         </group>
       ))}
     </group>
   );
 };
 
-const Marker = ({ index, isActive }) => {
+const Marker = ({ index, isActive, llamaObject }) => {
   const ref = useRef<THREE.Group>(null);
   const { camera } = useThree();
   const vec = new THREE.Vector3();
@@ -40,11 +42,11 @@ const Marker = ({ index, isActive }) => {
         const targetPosition = ref.current.getWorldPosition(vec);
         if (activePosition.y < 0)
         {
-          const targetPosition = activePosition.add(new THREE.Vector3(0, 0, 2)); 
+          const targetPosition = activePosition.add(new THREE.Vector3(-1, -1, -1)); 
         }
 
         if (activePosition.y > 0){
-          const targetPosition = activePosition.add(new THREE.Vector3(1, 1, 0));
+          const targetPosition = activePosition.add(new THREE.Vector3(1,1, 1));
         }
         state.camera.position.lerp(targetPosition, 0.05);
         state.camera.lookAt(ref.current.getWorldPosition(vec));
@@ -54,10 +56,7 @@ const Marker = ({ index, isActive }) => {
 
   return (
     <group ref={ref}>
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.1, 5, 10, 32]} />
-        <meshStandardMaterial color={isActive ? '#FF8000' : 'red'} />
-      </mesh>
+      <primitive object={llamaObject.clone()} scale={[0.1, 0.1, 0.1]} />
     </group>
   );
 };
@@ -104,17 +103,37 @@ const GlobeScene = () => {
 };
 
 const Globe = ({ activeGlobeId }) => {
+ const [isEnabledOrbitControls, setEnableOrbitControls] = useState(false);
+ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
+
+ useEffect(() => {
+    const updateControls = () => {
+        setEnableOrbitControls(window.innerWidth > 768 ? false : true);
+
+        if (window.innerWidth <= 425)
+        {
+            setCameraPosition([0, 0, 4.5]);
+        }
+    }
+
+    updateControls();
+    window.addEventListener('resize', updateControls);
+ })
+
+
+
   return (
     <>
       <Canvas
         style={{ width: '100%', height: '700px', borderRadius: '1rem' }}
-        camera={{ position: [-1.5, -1, 2.4], fov: 50 }}
+        camera={{ position: cameraPosition, fov: 50 }}
       >
-        <ambientLight intensity={1} />
-        <Model position={[0, 0.25, 0]} activeGlobeId={activeGlobeId} />
-        <Environment preset="apartment" />
+        <ambientLight intensity={3} />
+        <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} />
+        <Environment preset="forest" />
         <GlobeScene />
-      </Canvas>
+        {isEnabledOrbitControls &&  <OrbitControls/>}
+    </Canvas>
     </>
   );
 };
