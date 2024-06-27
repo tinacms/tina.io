@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
-import css from 'styled-jsx/css'
 import Globe from '../ui/Globe'
 import Image from 'next/image'
 
@@ -13,13 +12,13 @@ const Card = ({ cardItem, onHover }) => (
     >
       <div className="flex flex-col lg:w-1/3">
         <div className="relative h-36 w-full">
-          
+
           <Image
             src={cardItem.image}
             alt={cardItem.headline}
             className="object-cover"
             layout="fill"
-            
+
           />
         </div>
       </div>
@@ -58,24 +57,8 @@ const VerticalCardsBlock = ({ data, index }) => {
           ))}
         </div>
       </div>
-      <style jsx>{styles}</style>
     </div>
   )
 }
-
-const styles = css`
-  .card {
-    position: relative;
-    overflow: hidden;
-  }
-  @media (min-width: 1024px) {
-    .card {
-      flex-direction: row;
-    }
-  }
-  .card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-`
 
 export { VerticalCardsBlock }
