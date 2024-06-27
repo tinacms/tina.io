@@ -51,7 +51,7 @@ const Marker = ({ index, isActive, llamaObject }) => {
         state.camera.position.lerp(targetPosition, 0.05);
         state.camera.lookAt(ref.current.getWorldPosition(vec));
 
-        console.log(`Camera Position: ${state.camera.position.x}, ${state.camera.position.y}, ${state.camera.position.z}`);
+        //console.log(`Camera Position: ${state.camera.position.x}, ${state.camera.position.y}, ${state.camera.position.z}`);
       }
     }
   });
