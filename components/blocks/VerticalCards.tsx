@@ -23,7 +23,7 @@ const Card = ({ cardItem, onHover }) => (
         </div>
       </div>
       <div className="flex-grow flex flex-col pl-4">
-        <h2 className="font-bold text-3xl mb-1">{cardItem.headline}</h2>
+        <h3 className="font-bold text-3xl mb-1">{cardItem.headline}</h3>
         <p className="text-gray-500 text-md">{cardItem.timeDate }</p>
         <p className="text-gray-500 text-md ">{cardItem.location}</p>
         <p className="text-orange-500 underline pr-4">Read more</p>
