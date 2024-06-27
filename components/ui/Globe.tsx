@@ -40,14 +40,7 @@ const Marker = ({ index, isActive, llamaObject }) => {
       if (isActive) {
         const activePosition = ref.current.getWorldPosition(vec)
         const targetPosition = ref.current.getWorldPosition(vec);
-        if (activePosition.y < 0)
-        {
-          const targetPosition = activePosition.add(new THREE.Vector3(-1, -0.5, -1.5)); 
-        }
-
-        if (activePosition.y > 0){
-          const targetPosition = activePosition.add(new THREE.Vector3(1 , 0.5, 1.5));
-        }
+        activePosition.y < 0 ? targetPosition.add(new THREE.Vector3(-1, -0.5, -1.5)) : targetPosition.add(new THREE.Vector3(1 , 0.5, 1.5));
         state.camera.position.lerp(targetPosition, 0.05);
         state.camera.lookAt(ref.current.getWorldPosition(vec));
 
