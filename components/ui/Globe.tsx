@@ -50,6 +50,8 @@ const Marker = ({ index, isActive, llamaObject }) => {
         }
         state.camera.position.lerp(targetPosition, 0.05);
         state.camera.lookAt(ref.current.getWorldPosition(vec));
+
+        console.log(`Camera Position: ${state.camera.position.x}, ${state.camera.position.y}, ${state.camera.position.z}`);
       }
     }
   });
@@ -124,16 +126,21 @@ const Globe = ({ activeGlobeId }) => {
 
   return (
     <>
-      <Canvas
-        style={{ width: '100%', height: '700px', borderRadius: '1rem' }}
-        camera={{ position: cameraPosition, fov: 50 }}
-      >
-        <ambientLight intensity={3} />
-        <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} />
-        <Environment preset="forest" />
-        <GlobeScene />
-        {isEnabledOrbitControls &&  <OrbitControls/>}
-    </Canvas>
+<Canvas
+  style={{ width: '100%', height: '700px', borderRadius: '1rem' }}
+  camera={{ position: cameraPosition, fov: 50 }}
+>
+  <ambientLight intensity={3} />
+  <directionalLight position={[5, 5, 5]} intensity={1} />
+  <directionalLight position={[-5, 5, 5]} intensity={1} />
+  <directionalLight position={[5, -5, 5]} intensity={1} />
+  <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} />
+  <Environment preset="forest" />
+  <GlobeScene />
+  <OrbitControls />
+</Canvas>
+
+
     </>
   );
 };
