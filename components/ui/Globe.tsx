@@ -98,14 +98,11 @@ const GlobeScene = () => {
 };
 
 const Globe = ({ activeGlobeId }) => {
- const [isEnabledOrbitControls, setEnableOrbitControls] = useState(false);
  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
  const [canvasHeight, setCanvasHeight] = useState('700px');
 
  useEffect(() => {
     const updateControls = () => {
-        setEnableOrbitControls(window.innerWidth > 768 ? false : true);
-
         if (window.innerWidth <= 425)
         {
             setCameraPosition([0, 0, 4.5]);
