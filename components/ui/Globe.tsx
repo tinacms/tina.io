@@ -107,6 +107,7 @@ const GlobeScene = () => {
 const Globe = ({ activeGlobeId }) => {
  const [isEnabledOrbitControls, setEnableOrbitControls] = useState(false);
  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
+ const [canvasHeight, setCanvasHeight] = useState('700px');
 
  useEffect(() => {
     const updateControls = () => {
@@ -116,31 +117,45 @@ const Globe = ({ activeGlobeId }) => {
         {
             setCameraPosition([0, 0, 4.5]);
         }
-    }
+    };
+
+    const updateHeight = () => {
+        if (window.innerWidth <= 600) {
+          setCanvasHeight('500px');
+        } else {
+          setCanvasHeight('700px');
+        }
+    };
 
     updateControls();
+    updateHeight();
+
     window.addEventListener('resize', updateControls);
- })
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateControls);
+      window.removeEventListener('resize', updateHeight);
+    };
+ }, []);
 
 
 
   return (
     <>
-<Canvas
-  style={{ width: '100%', height: '700px', borderRadius: '1rem' }}
-  camera={{ position: cameraPosition, fov: 50 }}
->
-  <ambientLight intensity={3} />
-  <directionalLight position={[5, 5, 5]} intensity={1} />
-  <directionalLight position={[-5, 5, 5]} intensity={1} />
-  <directionalLight position={[5, -5, 5]} intensity={1} />
-  <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} />
-  <Environment preset="forest" />
-  <GlobeScene />
-  <OrbitControls />
-</Canvas>
-
-
+      <Canvas
+        style={{ width: '100%', height: canvasHeight, borderRadius: '1rem' }}
+        camera={{ position: cameraPosition, fov: 50 }}
+      >
+        <ambientLight intensity={3} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <directionalLight position={[-5, 5, 5]} intensity={1} />
+        <directionalLight position={[5, -5, 5]} intensity={1} />
+        <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} />
+        <Environment preset="forest" />
+        <GlobeScene />
+        <OrbitControls />
+      </Canvas>
     </>
   );
 };
