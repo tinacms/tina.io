@@ -34,17 +34,32 @@ const Marker = ({ index, isActive, llamaObject }) => {
   const vec = new THREE.Vector3();
   const center = new THREE.Vector3(0, 0, 0);
 
+  const restrictedRadius = 1.5;
+
   useFrame((state) => {
     if (ref.current) {
       ref.current.lookAt(center);
       if (isActive) {
-        const activePosition = ref.current.getWorldPosition(vec)
+        const activePosition = ref.current.getWorldPosition(vec);
         const targetPosition = ref.current.getWorldPosition(vec);
-        activePosition.y < 0 ? targetPosition.add(new THREE.Vector3(-1, -0.5, -1.5)) : targetPosition.add(new THREE.Vector3(1 , 0.5, 1.5));
-        state.camera.position.lerp(targetPosition, 0.05);
-        state.camera.lookAt(ref.current.getWorldPosition(vec));
+        activePosition.y < 0 ? targetPosition.add(new THREE.Vector3(-1, -0.5, -1.5)) : targetPosition.add(new THREE.Vector3(1, 0.5, 1.5));
 
-        //console.log(`Camera Position: ${state.camera.position.x}, ${state.camera.position.y}, ${state.camera.position.z}`);
+        const distance = targetPosition.distanceTo(center);
+
+        if (distance < restrictedRadius) {
+          const direction = targetPosition.clone().normalize();
+          targetPosition.copy(direction.multiplyScalar(restrictedRadius));
+        }
+
+        state.camera.position.lerp(targetPosition, 0.05);
+
+        const newDistance = state.camera.position.distanceTo(center);
+        if (newDistance < restrictedRadius) {
+          const direction = state.camera.position.clone().normalize();
+          state.camera.position.copy(direction.multiplyScalar(restrictedRadius));
+        }
+
+        state.camera.lookAt(ref.current.getWorldPosition(vec));
       }
     }
   });
@@ -98,23 +113,22 @@ const GlobeScene = () => {
 };
 
 const Globe = ({ activeGlobeId }) => {
- const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
- const [canvasHeight, setCanvasHeight] = useState('700px');
+  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
+  const [canvasHeight, setCanvasHeight] = useState('700px');
 
- useEffect(() => {
+  useEffect(() => {
     const updateControls = () => {
-        if (window.innerWidth <= 425)
-        {
-            setCameraPosition([0, 0, 4.5]);
-        }
+      if (window.innerWidth <= 425) {
+        setCameraPosition([0, 0, 4.5]);
+      }
     };
 
     const updateHeight = () => {
-        if (window.innerWidth <= 600) {
-          setCanvasHeight('500px');
-        } else {
-          setCanvasHeight('700px');
-        }
+      if (window.innerWidth <= 600) {
+        setCanvasHeight('500px');
+      } else {
+        setCanvasHeight('700px');
+      }
     };
 
     updateControls();
@@ -127,9 +141,7 @@ const Globe = ({ activeGlobeId }) => {
       window.removeEventListener('resize', updateControls);
       window.removeEventListener('resize', updateHeight);
     };
- }, []);
-
-
+  }, []);
 
   return (
     <>
