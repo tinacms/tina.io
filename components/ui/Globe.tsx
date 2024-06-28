@@ -113,8 +113,9 @@ const GlobeScene = () => {
 };
 
 const Globe = ({ activeGlobeId }) => {
+  const containerRef = useRef(null);
   const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
-  const [canvasHeight, setCanvasHeight] = useState('700px');
+  const [canvasSize, setCanvasSize] = useState({ width: '100%', height: '700px' });
 
   useEffect(() => {
     const updateControls = () => {
@@ -123,30 +124,30 @@ const Globe = ({ activeGlobeId }) => {
       }
     };
 
-    const updateHeight = () => {
-      if (window.innerWidth <= 600) {
-        setCanvasHeight('500px');
-      } else {
-        setCanvasHeight('700px');
+    const updateSize = () => {
+      if (containerRef.current) {
+        const container = containerRef.current;
+        const height = window.innerWidth <= 600 ? '500px' : '700px';
+        setCanvasSize({ width: container.clientWidth, height });
       }
     };
 
     updateControls();
-    updateHeight();
+    updateSize();
 
     window.addEventListener('resize', updateControls);
-    window.addEventListener('resize', updateHeight);
+    window.addEventListener('resize', updateSize);
 
     return () => {
       window.removeEventListener('resize', updateControls);
-      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('resize', updateSize);
     };
   }, []);
 
   return (
-    <>
+    <div ref={containerRef} style={{ width: '100%', height: '700px' }}>
       <Canvas
-        style={{ width: '100%', height: canvasHeight, borderRadius: '1rem' }}
+        style={{ width: canvasSize.width, height: canvasSize.height, borderRadius: '1rem' }}
         camera={{ position: cameraPosition, fov: 50 }}
       >
         <ambientLight intensity={3} />
@@ -158,7 +159,7 @@ const Globe = ({ activeGlobeId }) => {
         <GlobeScene />
         <OrbitControls />
       </Canvas>
-    </>
+    </div>
   );
 };
 
