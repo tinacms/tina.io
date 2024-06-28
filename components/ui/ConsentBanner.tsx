@@ -26,8 +26,8 @@ const ConsentBanner = () => {
 
   return (
     isVisible && (
-      <div className="fixed bottom-0 w-full bg-gradient-to-br from-orange-400 to-orange-600 text-white p-4 text-center z-50">
-        <p>
+      <div className="fixed bottom-0 w-full bg-gradient-to-br from-orange-400 to-orange-600 text-white p-6  text-center z-50">
+        <p className="pb-2">
           We use cookies to improve your experience. By continuing, you agree to our use of cookies.{' '}
           <Link href="/privacy-notice" className="text-white underline">
             Learn More
@@ -36,13 +36,13 @@ const ConsentBanner = () => {
         <div className="mt-2">
           <button
             onClick={handleAccept}
-            className="mx-2 px-4 py-2 bg-white text-[#ea6d43] rounded-3xl"
+            className=" font-tuner text-sm mx-2 px-4 py-2 bg-white text-[#ea6d43] rounded-3xl"
           >
             Accept
           </button>
           <button
             onClick={handleDecline}
-            className="mx-2 px-4 py-2"
+            className="mx-2 px-4 py-2 font-tuner text-sm"
           >
             Decline
           </button>
