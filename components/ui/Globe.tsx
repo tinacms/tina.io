@@ -5,16 +5,24 @@ import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
 
-const Model = ({ activeGlobeId, ...props }) => {
+const geographicToCartesian = (latitude, longitude, radius = 1) => {
+  const latRad = (latitude * Math.PI) / 180;
+  const lonRad = (longitude * Math.PI) / 180;
+  const x = radius * Math.cos(latRad) * Math.cos(lonRad);
+  const y = radius * Math.cos(latRad) * Math.sin(lonRad);
+  const z = radius * Math.sin(latRad);
+  return [x, y, z];
+};
+
+const Model = ({ activeGlobeId, cardItems, ...props }) => {
   const fbx = useLoader(FBXLoader, '/lowpoly-earth.fbx');
   const llamaFbx = useLoader(FBXLoader, '/llama-chunky.fbx');
 
-  const markerPositions = [
-    { id: 0, position: [-80, -58, -48] }, // Sydney
-    { id: 1, position: [-80, -70, -10] }, // Auckland
-    { id: 2, position: [50, 95, -10] }, // Oslo
-    { id: 3, position: [80, 70, 10] }, // Porto
-  ];
+  const markerPositions = cardItems.map((item, index) => {
+    const position = geographicToCartesian(item.markerLAT, item.markerLONG, 110); 
+    console.log(`Marker ID: ${index}, Position: ${position}`);
+    return { id: index, position };
+  });
 
   return (
     <group {...props} dispose={null} scale={[0.01, 0.01, 0.01]}>
@@ -34,15 +42,17 @@ const Marker = ({ index, isActive, llamaObject }) => {
   const vec = new THREE.Vector3();
   const center = new THREE.Vector3(0, 0, 0);
 
-  const restrictedRadius = 1.5;
+  const restrictedRadius = 2.5;
 
   useFrame((state) => {
     if (ref.current) {
       ref.current.lookAt(center);
+      ref.current.rotation.z += Math.PI / 2;
+
       if (isActive) {
         const activePosition = ref.current.getWorldPosition(vec);
         const targetPosition = ref.current.getWorldPosition(vec);
-        activePosition.y < 0 ? targetPosition.add(new THREE.Vector3(-1, -0.5, -1.5)) : targetPosition.add(new THREE.Vector3(1, 0.5, 1.5));
+        activePosition.y < 0 ? targetPosition.add(new THREE.Vector3(0, -0.5, 0)) : targetPosition.add(new THREE.Vector3(0, -0.75, 0));
 
         const distance = targetPosition.distanceTo(center);
 
@@ -66,7 +76,7 @@ const Marker = ({ index, isActive, llamaObject }) => {
 
   return (
     <group ref={ref}>
-      <primitive object={llamaObject.clone()} scale={[0.1, 0.1, 0.1]} />
+      <primitive object={llamaObject.clone()} scale={[0.1, 0.1, 0.1]} /> 
     </group>
   );
 };
@@ -112,7 +122,7 @@ const GlobeScene = () => {
   return null;
 };
 
-const Globe = ({ activeGlobeId }) => {
+const Globe = ({ activeGlobeId, cardItems }) => {
   const containerRef = useRef(null);
   const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
   const [canvasSize, setCanvasSize] = useState({ width: '100%', height: '700px' });
@@ -144,6 +154,10 @@ const Globe = ({ activeGlobeId }) => {
     };
   }, []);
 
+  const handleOrbitChange = (event) => {
+    setCameraPosition([event.target.object.position.x, event.target.object.position.y, event.target.object.position.z]);
+  };
+
   return (
     <div ref={containerRef} style={{ width: '100%', height: '700px' }}>
       <Canvas
@@ -154,10 +168,10 @@ const Globe = ({ activeGlobeId }) => {
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <directionalLight position={[-5, 5, 5]} intensity={1} />
         <directionalLight position={[5, -5, 5]} intensity={1} />
-        <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} />
+        <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} cardItems={cardItems} />
         <Environment preset="forest" />
         <GlobeScene />
-        <OrbitControls />
+        <OrbitControls onChange={handleOrbitChange} />
       </Canvas>
     </div>
   );

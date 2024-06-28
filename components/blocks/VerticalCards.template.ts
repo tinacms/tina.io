@@ -25,7 +25,9 @@ export const verticalCardsTemplate: TinaTemplate = {
         { name: 'location', label: 'Location', type: 'string' },
         { name: 'image', label: 'Image', type: 'string' },
         { name: 'link', label: 'URL', type: 'string'},
-        { name: 'globeid', label:'globe-id', type: 'number', description: 'Note this field corresponds to a location on the globe. When adding new events contact a developer to add new locations to the globe.'}
+        { name: 'globeid', label:'globe-id', type: 'number', description: 'Note this field corresponds to a location on the globe. When adding new events contact a developer to add new locations to the globe.'},
+        { name: 'markerLAT', label: 'Marker Latitude', type: 'number', description: 'Note this field corresponds to the Latitude position of the marker on the globe.'},
+        { name: 'markerLONG', label: 'Marker Longitude', type: 'number', description: 'Note this field corresponds to the Longitude position of the marker on the globe.'},
       ],
     },
   ],

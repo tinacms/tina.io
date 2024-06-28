@@ -134,7 +134,9 @@
           "location": "Porto, Portugal ",
           "image": "/img/ndc-porto.png",
           "link": "#",
-          "globeid": 4
+          "globeid": 1,
+          "markerLAT": 6,
+          "markerLONG": 41
         },
         {
           "headline": "NDC Oslo",
@@ -142,7 +144,9 @@
           "location": "Oslo, Norway",
           "image": "/img/ndcoslo.png",
           "link": "/blog/Tina-sponsoring-NDC-Oslo-conference/",
-          "globeid": 3
+          "globeid": 2,
+          "markerLAT": -4,
+          "markerLONG": 59.9
         },
         {
           "headline": "ServerlessDays Auckland",
@@ -150,7 +154,9 @@
           "location": "Auckland New Zealand",
           "image": "/img/serverlessAuckland.jpg",
           "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/",
-          "globeid": 2
+          "globeid": 3,
+          "markerLAT": 186,
+          "markerLONG": 40
         },
         {
           "headline": "ServerlessDays Sydney",
@@ -158,7 +164,9 @@
           "location": "Sydney, Australia",
           "image": "/img/serverlessSydney.png",
           "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/",
-          "globeid": 1
+          "globeid": 4,
+          "markerLAT": 211,
+          "markerLONG": 33
         }
       ],
       "_template": "verticalCards"
