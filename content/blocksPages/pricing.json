@@ -8,8 +8,8 @@
     {
       "intro": "Tina has a **per-project** pricing model that can scale to meet your needs.\n",
       "base": {
-        "name": "Basic",
-        "price": "Free Forever",
+        "name": "Free",
+        "price": "$0",
         "interval": "",
         "body": "* 2 Users\n* 2 Roles\n* No Additional Users\n* Forum Support\n",
         "actions": [
