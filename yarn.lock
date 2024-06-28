@@ -10616,6 +10616,11 @@ js-base64@^2.4.9:
   resolved "https://registry.npmjs.org/js-base64/-/js-base64-2.6.4.tgz"
   integrity sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==
 
+js-cookie@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmjs.org/js-cookie/-/js-cookie-3.0.5.tgz"
+  integrity sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==
+
 js-sha1@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmjs.org/js-sha1/-/js-sha1-0.6.0.tgz"
