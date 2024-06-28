@@ -14,13 +14,21 @@ const geographicToCartesian = (latitude, longitude, radius = 1) => {
   return [x, y, z];
 };
 
+const cartesianToGeographic = (x, y, z, radius = 1) => {
+  const latRad = Math.asin(z / radius);
+  const lonRad = Math.atan2(y, x);
+  const latitude = (latRad * 180) / Math.PI;
+  const longitude = (lonRad * 180) / Math.PI;
+  return [latitude, longitude];
+};
+
 const Model = ({ activeGlobeId, cardItems, ...props }) => {
   const fbx = useLoader(FBXLoader, '/lowpoly-earth.fbx');
-  const llamaFbx = useLoader(FBXLoader, '/llama-chunky.fbx');
+  const chunkyLlamaFbx = useLoader(FBXLoader, '/llama-chunky.fbx');
+  const greyLlamaFbx = useLoader(FBXLoader, '/grey-llama.fbx');
 
   const markerPositions = cardItems.map((item, index) => {
-    const position = geographicToCartesian(item.markerLAT, item.markerLONG, 110); 
-    console.log(`Marker ID: ${index}, Position: ${position}`);
+    const position = geographicToCartesian(item.markerLAT, item.markerLONG, 110);
     return { id: index, position };
   });
 
@@ -29,20 +37,20 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
       <primitive object={fbx} />
       {markerPositions.map((marker) => (
         <group key={marker.id} position={new THREE.Vector3(...marker.position)}>
-          <Marker index={marker.id} isActive={marker.id === (activeGlobeId - 1)} llamaObject={llamaFbx} />
+          <Marker index={marker.id} isActive={marker.id === (activeGlobeId - 1)} chunkyLlamaObject={chunkyLlamaFbx} greyLlamaObject={greyLlamaFbx} />
         </group>
       ))}
     </group>
   );
 };
 
-const Marker = ({ index, isActive, llamaObject }) => {
+const Marker = ({ index, isActive, chunkyLlamaObject, greyLlamaObject }) => {
   const ref = useRef<THREE.Group>(null);
   const { camera } = useThree();
   const vec = new THREE.Vector3();
   const center = new THREE.Vector3(0, 0, 0);
 
-  const restrictedRadius = 2.5;
+  const restrictedRadius = 3.0;
 
   useFrame((state) => {
     if (ref.current) {
@@ -51,17 +59,19 @@ const Marker = ({ index, isActive, llamaObject }) => {
 
       if (isActive) {
         const activePosition = ref.current.getWorldPosition(vec);
-        const targetPosition = ref.current.getWorldPosition(vec);
-        activePosition.y < 0 ? targetPosition.add(new THREE.Vector3(0, -0.5, 0)) : targetPosition.add(new THREE.Vector3(0, -0.75, 0));
+        const targetPosition = cartesianToGeographic(activePosition.x, activePosition.y, activePosition.z, 110);
+        activePosition.y < 0 ? targetPosition[1] = targetPosition[1] + 40 : targetPosition[1] = targetPosition[1] - 40
+        activePosition.y < 0 ? targetPosition[0] = targetPosition[0] - 30 : targetPosition[0] = targetPosition[0] - 5
 
-        const distance = targetPosition.distanceTo(center);
+        const targetGeometric = new THREE.Vector3(...geographicToCartesian(targetPosition[0], targetPosition[1], 3));
+        const distance = targetGeometric.distanceTo(center);
 
-        if (distance < restrictedRadius) {
-          const direction = targetPosition.clone().normalize();
-          targetPosition.copy(direction.multiplyScalar(restrictedRadius));
-        }
+        // if (distance < restrictedRadius) {
+        //   const direction = targetGeometric.clone().normalize();
+        //   //targetGeometric.copy(direction.multiplyScalar(restrictedRadius));
+        // }
 
-        state.camera.position.lerp(targetPosition, 0.05);
+        state.camera.position.lerp(targetGeometric, 0.05);
 
         const newDistance = state.camera.position.distanceTo(center);
         if (newDistance < restrictedRadius) {
@@ -70,13 +80,19 @@ const Marker = ({ index, isActive, llamaObject }) => {
         }
 
         state.camera.lookAt(ref.current.getWorldPosition(vec));
+
+        if (activePosition.y < 0) {
+          //console.log('woooo we upside down now')
+          camera.rotation.z =  Math.PI/2
+        }
+
       }
     }
   });
 
   return (
     <group ref={ref}>
-      <primitive object={llamaObject.clone()} scale={[0.1, 0.1, 0.1]} /> 
+      <primitive object={isActive ? chunkyLlamaObject.clone() : greyLlamaObject.clone()} scale={[0.1, 0.1, 0.1]} />
     </group>
   );
 };
@@ -124,7 +140,7 @@ const GlobeScene = () => {
 
 const Globe = ({ activeGlobeId, cardItems }) => {
   const containerRef = useRef(null);
-  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.4]);
+  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([0, 0, 3.5]);
   const [canvasSize, setCanvasSize] = useState({ width: '100%', height: '700px' });
 
   useEffect(() => {
