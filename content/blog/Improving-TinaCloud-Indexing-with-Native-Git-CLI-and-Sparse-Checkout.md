@@ -1,7 +1,7 @@
 ---
 title: Improving TinaCloud Indexing with Native Git CLI and Sparse-Checkout
 date: '2024-06-18T14:00:00.000Z'
-last_edited: '2024-06-18T14:00:00.000Z'
+last_edited: '2024-06-23T14:00:00.000Z'
 author: Brook Jeynes
 ---
 
@@ -19,8 +19,9 @@ The key to this solution lies in leveraging Git's sparse-checkout feature in com
 
 By implementing these changes, TinaCloud is now able to efficiently pull down only the files needed for indexing, significantly reducing memory usage and improving performance for large repositories in the first part of the indexing process.
 
-When indexing a 1.9GB repository with content and images, the memory usage decreased from 7.9GB with the old implementation to 883MB for the new one.
+![Graph showcasing memory usage decrease from before and after using native Git CLI.](https://res.cloudinary.com/forestry-demo/image/upload/v1719276485/blog-media/native-git-indexing/chart-native-git_dn9gbf.png "When indexing a 1.9GB repository with content and images, the memory usage decreased from 7.9GB with the old implementation to 883MB for the new one.")
 
 This enhancement marks a significant step forward in making TinaCloud more robust and efficient, ensuring that users can manage their content seamlessly, regardless of the size of their repositories.
 
 We're thrilled to continue improving Tina and look forward to delivering more updates about what we're doing behind the scenes. If you have any feedback or questions, please feel free to reach out to our team via the [Discord](https://discord.com/invite/zumN63Ybpf) or visit our [documentation](https://tinacms.org/docs) for more information.
+
