@@ -13,16 +13,11 @@ export const initializeGTM = (consentState: {
   window.dataLayer = window.dataLayer || [];
 
   window.dataLayer.push({
-    'gtm.start': new Date().getTime(),
-    event: 'gtm.js',
-  });
-
-  window.dataLayer.push({
-    event: 'default_consent',
-    ad_storage: consentState.ad_storage ? 'granted' : 'denied',
-    ad_personalization: consentState.ad_personalization ? 'granted' : 'denied',
-    analytics_storage: consentState.analytics_storage ? 'granted' : 'denied',
-    ad_user_data: consentState.ad_user_data ? 'granted' : 'denied',
+    'event': 'consent_update',
+    'ad_storage': consentState.ad_storage ? 'granted' : 'denied',
+    'ad_personalization': consentState.ad_personalization ? 'granted' : 'denied',
+    'analytics_storage': consentState.analytics_storage ? 'granted' : 'denied',
+    'ad_user_data': consentState.ad_user_data ? 'granted' : 'denied',
   });
 
   const script = document.createElement('script');

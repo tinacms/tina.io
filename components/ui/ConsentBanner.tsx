@@ -57,8 +57,7 @@ const ConsentBanner = () => {
     isVisible && (
       <div className="fixed bottom-0 w-full bg-gradient-to-br from-orange-400 to-orange-600 text-white p-6 text-center z-50">
         <p className="pb-2">
-          We use cookies to improve your experience. By continuing, you agree to
-          our use of cookies.{' '}
+          We use cookies to improve your experience. By continuing, you agree to our use of cookies.{' '}
           <Link href="/privacy-notice" className="text-white underline">
             Learn More
           </Link>
