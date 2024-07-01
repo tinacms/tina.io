@@ -21,7 +21,8 @@ export const verticalCardsTemplate: TinaTemplate = {
       },
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
-        { name: 'timeDate', label: 'Time and Date', type: 'string' },
+        { name: 'startDate', label: 'Start Date', type: 'datetime' },
+        { name: 'endDate', label: 'End Date', type: 'datetime', description: 'Note this field is not mandatory. Leave blank if no end date specified (or only 1 day event)' },
         { name: 'location', label: 'Location', type: 'string' },
         { name: 'image', label: 'Image', type: 'string' },
         { name: 'link', label: 'URL', type: 'string' },

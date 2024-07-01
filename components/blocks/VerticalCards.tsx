@@ -1,9 +1,43 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
-import Globe from '../ui/Globe'
-import Image from 'next/image'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Globe from '../ui/Globe';
+import Image from 'next/image';
+import { format } from 'date-fns';
 
 const Card = ({ cardItem, onHover }) => {
+  const getOrdinalSuffix = (day) => {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+
+  const formatStartDate = (date) => {
+    const d = new Date(date);
+    return `${d.getDate()}${getOrdinalSuffix(d.getDate())} ${format(d, 'MMM')}`;
+  };
+
+  const formatDateRange = (start, end) => {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    if (startDate.getMonth() === endDate.getMonth()) {
+      return `${startDate.getDate()}${getOrdinalSuffix(startDate.getDate())} - ${endDate.getDate()}${getOrdinalSuffix(endDate.getDate())} ${format(endDate, 'MMM')}`;
+    }
+    return `${startDate.getDate()}${getOrdinalSuffix(startDate.getDate())} ${format(startDate, 'MMM')} - ${endDate.getDate()}${getOrdinalSuffix(endDate.getDate())} ${format(endDate, 'MMM')}`;
+  };
+
+  const displayDate = () => {
+    if (cardItem.startDate && cardItem.endDate) {
+      return formatDateRange(cardItem.startDate, cardItem.endDate);
+    } else if (cardItem.startDate) {
+      return formatStartDate(cardItem.startDate);
+    }
+    return '';
+  };
+
   return (
     <Link href={cardItem.link || '#'}>
       <div
@@ -25,10 +59,11 @@ const Card = ({ cardItem, onHover }) => {
         </div>
         <div className="flex-grow flex flex-col pl-4">
           <h3 className="font-bold text-3xl mb-1">{cardItem.headline}</h3>
-          <p className="text-gray-500 text-md">{cardItem.timeDate}</p>
+          <p className="text-gray-500 text-md">{displayDate()}</p>
           <p className="text-gray-500 text-md">{cardItem.location}</p>
           <p className="text-orange-500 underline pr-4">Read more</p>
         </div>
+        <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
       </div>
     </Link>
   )
