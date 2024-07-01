@@ -11,14 +11,16 @@ const Card = ({ cardItem, onHover }) => (
       onMouseLeave={() => onHover(null)}
     >
       <div className="flex flex-col lg:w-1/3">
-        <div className="relative h-36 w-full">
-          <Image
-            src={cardItem.image}
-            alt={cardItem.headline}
-            className="object-cover"
-            layout="fill"
-          />
-        </div>
+        {cardItem.image && (
+          <div className="relative h-36 w-full">
+            <Image
+              src={cardItem.image}
+              alt={cardItem.headline}
+              className="object-cover"
+              layout="fill"
+            />
+          </div>
+        )}
       </div>
       <div className="flex-grow flex flex-col pl-4">
         <h3 className="font-bold text-3xl mb-1">{cardItem.headline}</h3>
