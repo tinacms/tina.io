@@ -7,10 +7,10 @@ import { initializeGTM } from 'utils/gtm';
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [consent, setConsent] = useState({
-    ad_storage: false,
-    ad_personalization: false,
-    analytics_storage: false,
-    ad_user_data: false,
+    ad_storage: true,
+    ad_personalization: true,
+    analytics_storage: true,
+    ad_user_data: true,
   });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
