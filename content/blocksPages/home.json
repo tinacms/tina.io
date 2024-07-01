@@ -190,7 +190,6 @@
     },
     {
       "criteriaItems": [
-        {},
         {
           "criteria": "Open Source Front-end"
         },
@@ -326,8 +325,8 @@
           "backgroundColor": "#007FAE",
           "criteria1": true,
           "criteria2": true,
-          "criteria3": true,
-          "criteria4": true,
+          "criteria3": false,
+          "criteria4": false,
           "criteria5": true,
           "criteria6": true,
           "criteria7": true,

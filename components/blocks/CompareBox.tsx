@@ -53,8 +53,10 @@ const CompanyItem = ({ company, onClick }) => {
 const CriteriaCard = ({ criteriaItems }) => {
   return (
     <div className="criteria-card rounded-lg">
+      {/* This empty div acts as a spacer to offset the start point of the criteria list. */}
+      <div key={0} className="py-3 flex" style={commonHeightStyle} />
       {criteriaItems.map((item, idx) => (
-        <div key={idx} className="py-5 flex" style={commonHeightStyle}>
+        <div key={idx} className="py-3 flex" style={commonHeightStyle}>
           <h3 className="md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs">
             {item.criteria}
           </h3>
