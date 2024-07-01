@@ -24,6 +24,6 @@ export const initializeGTM = (consentState: {
   script.id = 'gtag-base';
   script.type = 'text/javascript';
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtm.js?id=${process.env.GTM_ID_NEW}`;
+  script.src = `https://www.googletagmanager.com/gtm.js?id=${process.env.GTM_ID}`;
   document.head.appendChild(script);
 };
