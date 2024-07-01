@@ -66,11 +66,6 @@ const Marker = ({ index, isActive, chunkyLlamaObject, greyLlamaObject }) => {
         const targetGeometric = new THREE.Vector3(...geographicToCartesian(targetPosition[0], targetPosition[1], 3));
         const distance = targetGeometric.distanceTo(center);
 
-        // if (distance < restrictedRadius) {
-        //   const direction = targetGeometric.clone().normalize();
-        //   //targetGeometric.copy(direction.multiplyScalar(restrictedRadius));
-        // }
-
         state.camera.position.lerp(targetGeometric, 0.05);
 
         const newDistance = state.camera.position.distanceTo(center);
@@ -80,12 +75,6 @@ const Marker = ({ index, isActive, chunkyLlamaObject, greyLlamaObject }) => {
         }
 
         state.camera.lookAt(ref.current.getWorldPosition(vec));
-
-        if (activePosition.y < 0) {
-          //console.log('woooo we upside down now')
-          camera.rotation.z =  Math.PI/2
-        }
-
       }
     }
   });
