@@ -126,6 +126,50 @@
       "_template": "logoGrid"
     },
     {
+      "title": "Where is Tina Going? 🦙",
+      "cardItems": [
+        {
+          "headline": "NDC Porto",
+          "startDate": "2024-10-13T13:00:00.000Z",
+          "endDate": "2024-10-17T13:00:00.000Z",
+          "location": "Porto, Portugal ",
+          "image": "/img/ndc-porto.png",
+          "link": "#",
+          "markerLAT": 6,
+          "markerLONG": 41
+        },
+        {
+          "headline": "NDC Oslo",
+          "startDate": "2024-06-09T14:00:00.000Z",
+          "endDate": "2024-06-13T14:00:00.000Z",
+          "location": "Oslo, Norway",
+          "image": "/img/ndcoslo.png",
+          "link": "/blog/Tina-sponsoring-NDC-Oslo-conference/",
+          "markerLAT": -4,
+          "markerLONG": 59.9
+        },
+        {
+          "headline": "ServerlessDays Auckland",
+          "startDate": "2024-05-23T14:00:00.000Z",
+          "location": "Auckland New Zealand",
+          "image": "/img/serverlessAuckland.jpg",
+          "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/",
+          "markerLAT": 186,
+          "markerLONG": 40
+        },
+        {
+          "headline": "ServerlessDays Sydney",
+          "startDate": "2024-05-20T14:00:00.000Z",
+          "location": "Sydney, Australia",
+          "image": "/img/serverlessSydney.png",
+          "link": "/blog/Tina-sponsoring-the-serverless-DAYS-ANZ-conference/",
+          "markerLAT": 211,
+          "markerLONG": 33
+        }
+      ],
+      "_template": "verticalCards"
+    },
+    {
       "features": [
         {
           "headline": "Own Your Content",
