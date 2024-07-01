@@ -187,7 +187,7 @@ const Globe = ({ activeGlobeId, cardItems }) => {
         <Model position={[0, 0, 0]} activeGlobeId={activeGlobeId} cardItems={cardItems} />
         <Environment preset="forest" />
         <GlobeScene />
-        <OrbitControls onChange={handleOrbitChange} />
+        <OrbitControls onChange={handleOrbitChange} minDistance={2} maxDistance={5} />
       </Canvas>
     </div>
   );
