@@ -14,21 +14,21 @@ import dynamic from 'next/dynamic';
 import ChatBaseBot from '../components/ui/TinaChatBot';
 import ConsentBanner from '../components/ui/ConsentBanner';
 import Cookies from 'js-cookie';
-import { initializeGTM } from '../utils/gtm';
+import { initializeGTM } from 'utils/gtm';
 
 path.resolve('./content/');
 
 const MainLayout = ({ Component, pageProps }) => {
-
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       const consentGiven = Cookies.get('consentGiven');
-      if (consentGiven === 'true') {
-        initializeGTM();
+      if (consentGiven) {
+        const consentState = JSON.parse(consentGiven);
+        initializeGTM(consentState);
       }
     }
   }, []);
-  
+
   return (
     <>
       <DefaultSeo
@@ -70,20 +70,20 @@ const MainLayout = ({ Component, pageProps }) => {
 }
 
 const AdminLink = () => {
-  const { edit } = useEditState()
-  const [showAdminLink, setShowAdminLink] = React.useState(false)
+  const { edit } = useEditState();
+  const [showAdminLink, setShowAdminLink] = React.useState(false);
 
   useEffect(() => {
     setShowAdminLink(
       !edit &&
       JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
         ?.access_token
-    )
-  }, [edit])
+    );
+  }, [edit]);
 
   const handleDismiss = () => {
-    setShowAdminLink(false)
-  }
+    setShowAdminLink(false);
+  };
 
   return (
     <>
@@ -101,15 +101,15 @@ const AdminLink = () => {
         </div>
       )}
     </>
-  )
+  );
 }
 
 // TODO: Probably should use hooks here
 class Site extends App {
   render() {
-    const { Component, pageProps } = this.props
-    return <MainLayout Component={Component} pageProps={pageProps} />
+    const { Component, pageProps } = this.props;
+    return <MainLayout Component={Component} pageProps={pageProps} />;
   }
 }
 
-export default Site
+export default Site;
