@@ -260,4 +260,6 @@ export default defineConfig({
 })
 ```
 
+> Make sure you commit your changes to the config and [`tina-lock.json`](/docs/tina-folder/overview/#tina-lockjson) file at the same time as you push to production on tina.cloud as otherwise your assets will still be prefixed with `https://assets.tina.io` as if you were [still using repo based media](/docs/reference/media/repo-based/)
+
 Now you can manage external media store inside TinaCMS. To learn more about each media store in detail, please refer to the next sections.
