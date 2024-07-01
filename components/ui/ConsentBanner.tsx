@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { initializeGTM } from 'utils/gtm';
 import Link from 'next/link';
 import { FaChevronDown } from 'react-icons/fa';
+import { initializeGTM } from 'utils/gtm';
 
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [consent, setConsent] = useState({
-    ad_storage: true,
-    ad_personalization: true,
-    analytics_storage: true,
-    ad_user_data: true,
+    ad_storage: false,
+    ad_personalization: false,
+    analytics_storage: false,
+    ad_user_data: false,
   });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
