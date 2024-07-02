@@ -20,27 +20,15 @@ By clicking "Configure" on the action it's created for us, we can then tweak the
 
 Add the following step **before** your site's build step:
 
-If you are using npm as your package name, you can use the following:
 
 ```yml
 - name: Build TinaCMS
   env:
-    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+    NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: npx tinacms build
-```
-
-or if you are using yarn:
-
-```yml
-- name: Build TinaCMS
-  env:
-    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-    TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: yarn build
-  # This assumes that your "build" script in your
-  # package.json is "tinacms build"
-```
+  run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
+``` 
+NB: If you're using a package manager other than `npm` or `yarn`, you must replace `${{ steps.detect-package-manager.outputs.runner }}` with your own.
 
 Your GitHub Action will look something like:
 
@@ -88,6 +76,40 @@ Check to make sure that the build command is running and not failing
 
 > Note: If you are using [the github pages setup from hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/) you will need to make sure that a `package-lock.json` exists in the root of your repo.
 
+### Common Issue: Github actions fail due to `rewrites` error
+
+When running the CI, you get this message
+
+```shell 
+ > Build error occurred
+Error: Specified "rewrites" cannot be used with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+```
+
+That's because you have a `rewrites` configuration in your `next.config.js`, like the following (from [Tina Starter](https://github.com/tinacms/tina-cloud-starter/blob/main/next.config.js)):
+
+```js
+async rewrites() {
+  return [
+    {
+      source: "/",
+      destination: "/home",
+    },
+    {
+      source: "/admin",
+      destination: "/admin/index.html",
+    },
+  ];
+},
+```
+
+You need to remove them for this to work.  
+A solution to get the right redirection for the home page is to add these lines after the build step in `nextjs.yml`.
+
+```shell
+  - name: Rename home.html to index.html
+    run: mv ./out/home.html ./out/index.html
+```
+
 ## Environment variables
 
-Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `TINA_PUBLIC_CLIENT_ID` & `TINA_TOKEN`
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `NEXT_PUBLIC_TINA_CLIENT_ID` & `TINA_TOKEN`
