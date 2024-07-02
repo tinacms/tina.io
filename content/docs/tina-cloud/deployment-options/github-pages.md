@@ -24,7 +24,7 @@ Add the following step **before** your site's build step:
 ```yml
 - name: Build TinaCMS
   env:
-    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+    NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
   run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
 ``` 
@@ -78,4 +78,4 @@ Check to make sure that the build command is running and not failing
 
 ## Environment variables
 
-Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `TINA_PUBLIC_CLIENT_ID` & `TINA_TOKEN`
+Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `NEXT_PUBLIC_TINA_CLIENT_ID` & `TINA_TOKEN`
