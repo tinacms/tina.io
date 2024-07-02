@@ -20,27 +20,15 @@ By clicking "Configure" on the action it's created for us, we can then tweak the
 
 Add the following step **before** your site's build step:
 
-If you are using npm as your package name, you can use the following:
 
 ```yml
 - name: Build TinaCMS
   env:
     TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
     TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: npx tinacms build
-```
-
-or if you are using yarn:
-
-```yml
-- name: Build TinaCMS
-  env:
-    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-    TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-  run: yarn build
-  # This assumes that your "build" script in your
-  # package.json is "tinacms build"
-```
+  run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
+``` 
+NB: If you're using a package manager other than `npm` or `yarn`, you must replace `${{ steps.detect-package-manager.outputs.runner }}` with your own.
 
 Your GitHub Action will look something like:
 
