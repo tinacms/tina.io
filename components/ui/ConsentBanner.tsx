@@ -6,11 +6,14 @@ import { initializeGTM } from 'utils/gtm';
 
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [consent, setConsent] = useState({
-    ad_storage: false,
-    ad_personalization: false,
-    analytics_storage: false,
-    ad_user_data: false,
+  const [consent, setConsent] = useState(() => {
+    const consentGiven = Cookies.get('consentGiven');
+    return consentGiven ? JSON.parse(consentGiven) : {
+      ad_storage: false,
+      ad_personalization: false,
+      analytics_storage: false,
+      ad_user_data: false,
+    };
   });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
