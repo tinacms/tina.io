@@ -104,47 +104,6 @@ const Marker = ({ index, isActive, chunkyLlamaObject, greyLlamaObject }) => {
   )
 }
 
-const GlobeScene = () => {
-  const { gl, scene, camera } = useThree()
-  const labelRenderer = useRef<CSS2DRenderer | null>(null)
-
-  useEffect(() => {
-    if (!labelRenderer.current) {
-      labelRenderer.current = new CSS2DRenderer()
-      labelRenderer.current.setSize(window.innerWidth, window.innerHeight)
-      labelRenderer.current.domElement.style.position = 'absolute'
-      labelRenderer.current.domElement.style.top = '0px'
-      document.body.appendChild(labelRenderer.current.domElement)
-    }
-
-    const handleResize = () => {
-      const currentCamera = camera as THREE.PerspectiveCamera
-      currentCamera.aspect = window.innerWidth / window.innerHeight
-      currentCamera.updateProjectionMatrix()
-      gl.setSize(window.innerWidth, window.innerHeight)
-      labelRenderer.current?.setSize(window.innerWidth, window.innerHeight)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      if (labelRenderer.current) {
-        document.body.removeChild(labelRenderer.current.domElement)
-        labelRenderer.current = null
-      }
-    }
-  }, [camera, gl])
-
-  useFrame(() => {
-    if (labelRenderer.current) {
-      labelRenderer.current.render(scene, camera)
-    }
-  })
-
-  return null
-}
-
 const Globe = ({ activeGlobeId, cardItems }) => {
   const containerRef = useRef(null)
   const [cameraPosition, setCameraPosition] = useState<
@@ -210,7 +169,6 @@ const Globe = ({ activeGlobeId, cardItems }) => {
           cardItems={cardItems}
         />
         <Environment preset="forest" />
-        <GlobeScene />
         <OrbitControls
           onChange={handleOrbitChange}
           minDistance={2}
