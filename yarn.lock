@@ -16648,9 +16648,9 @@ thenify-all@^1.0.0:
     any-promise "^1.0.0"
 
 three-mesh-bvh@^0.7.0:
-  version "0.7.5"
-  resolved "https://registry.npmjs.org/three-mesh-bvh/-/three-mesh-bvh-0.7.5.tgz"
-  integrity sha512-WDd77RklE52pZSKZx8sDXzrd2JCF/gL/hugFvsIBylpMRlJxxwesKn2rW7TcQZ809NocDVkQx1UJo9pJtVAPYg==
+  version "0.7.6"
+  resolved "https://registry.npmjs.org/three-mesh-bvh/-/three-mesh-bvh-0.7.6.tgz"
+  integrity sha512-rCjsnxEqR9r1/C/lCqzGLS67NDty/S/eT6rAJfDvsanrIctTWdNoR4ZOGWewCB13h1QkVo2BpmC0wakj1+0m8A==
 
 three-stdlib@^2.23.4, three-stdlib@^2.29.9:
   version "2.30.3"
