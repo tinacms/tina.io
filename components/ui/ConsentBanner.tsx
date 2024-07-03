@@ -8,12 +8,14 @@ const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [consent, setConsent] = useState(() => {
     const consentGiven = Cookies.get('consentGiven');
-    return consentGiven ? JSON.parse(consentGiven) : {
-      ad_storage: false,
-      ad_personalization: false,
-      analytics_storage: false,
-      ad_user_data: false,
-    };
+    return consentGiven
+      ? JSON.parse(consentGiven)
+      : {
+          ad_storage: false,
+          ad_personalization: false,
+          analytics_storage: false,
+          ad_user_data: false,
+        };
   });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
@@ -108,9 +110,7 @@ const ConsentBanner = () => {
                       className="sr-only peer"
                     />
                     <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-                    <span className="ms-3 text-sm font-tuner">
-                      Ad Storage
-                    </span>
+                    <span className="ms-3 text-sm font-tuner">Ad Storage</span>
                   </label>
                 </div>
               </li>
@@ -125,9 +125,7 @@ const ConsentBanner = () => {
                       className="sr-only peer"
                     />
                     <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-                    <span className="ms-3 text-sm font-tuner">
-                      Ad Personalization
-                    </span>
+                    <span className="ms-3 text-sm font-tuner">Ad Personalization</span>
                   </label>
                 </div>
               </li>
@@ -142,9 +140,7 @@ const ConsentBanner = () => {
                       className="sr-only peer"
                     />
                     <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-                    <span className="ms-3 text-sm font-tuner">
-                      Analytics Storage
-                    </span>
+                    <span className="ms-3 text-sm font-tuner">Analytics Storage</span>
                   </label>
                 </div>
               </li>
@@ -159,9 +155,7 @@ const ConsentBanner = () => {
                       className="sr-only peer"
                     />
                     <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-[-100%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-                    <span className="ms-3 text-sm font-tuner">
-                      Ad User Data
-                    </span>
+                    <span className="ms-3 text-sm font-tuner">Ad User Data</span>
                   </label>
                 </div>
               </li>

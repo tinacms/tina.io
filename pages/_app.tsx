@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import App from 'next/app';
 import Head from 'next/head';
-import Script from 'next/script';
 import { DefaultSeo } from 'next-seo';
 import data from '../content/siteConfig.json';
 import { GlobalStyle } from 'components/styles/GlobalStyle';
@@ -20,12 +19,10 @@ path.resolve('./content/');
 
 const MainLayout = ({ Component, pageProps }) => {
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      const consentGiven = Cookies.get('consentGiven');
-      if (consentGiven) {
-        const consentState = JSON.parse(consentGiven);
-        initializeGTM(consentState);
-      }
+    const consentGiven = Cookies.get('consentGiven');
+    if (consentGiven) {
+      const consentState = JSON.parse(consentGiven);
+      initializeGTM(consentState);
     }
   }, []);
 
@@ -66,8 +63,8 @@ const MainLayout = ({ Component, pageProps }) => {
       <Component {...pageProps} />
       <ChatBaseBot />
     </>
-  )
-}
+  );
+};
 
 const AdminLink = () => {
   const { edit } = useEditState();
@@ -76,8 +73,8 @@ const AdminLink = () => {
   useEffect(() => {
     setShowAdminLink(
       !edit &&
-      JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
-        ?.access_token
+        JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
+          ?.access_token
     );
   }, [edit]);
 
@@ -102,7 +99,7 @@ const AdminLink = () => {
       )}
     </>
   );
-}
+};
 
 // TODO: Probably should use hooks here
 class Site extends App {
