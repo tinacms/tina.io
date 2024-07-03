@@ -18,7 +18,6 @@ export const EmailForm = (props: EmailFormProps) => {
   const [lastName, setLastName] = useState('');
   const [isEntering, setIsEntering] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-
   const [message, setMessage] = useState({ text: '', type: '' });
 
   const { push } = useRouter();
@@ -31,7 +30,7 @@ export const EmailForm = (props: EmailFormProps) => {
       const result = await addToMailchimp(email, firstName, lastName);
       if (result.result === 'success') {
         setMessage({ text: "You've been added to the llama list.", type: 'success' });
-      } else if (result.message.includes('400')){
+      } else if (result.message.includes('400')) {
         setMessage({ text: "You're already in our herd!", type: 'warning' });
       } else {
         setMessage({ text: 'There was an error. Please try again.', type: 'error' });
@@ -61,7 +60,7 @@ export const EmailForm = (props: EmailFormProps) => {
           className="w-full h-full" 
         />
       </div>
-      <div className="lg:pt-12 lg:pb-7">
+      <div className={`${message.text ? 'lg:pt-7 lg:pb-3' : 'lg:pt-12 lg:pb-7'}`}>
         <form
           id="newsletter-signup"
           onSubmit={handleSubmit}
