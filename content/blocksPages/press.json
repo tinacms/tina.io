@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "TinaCMS Logo and Brand Assets",
+    "description": "Download official TinaCMS logos and brand assets"
+  },
   "blocks": [
     {
       "headline": "TinaCMS Logo and Brand Assets",
@@ -9,14 +13,14 @@
           "icon": true,
           "variant": "white",
           "size": "medium",
-          "url": "https://www.figma.com/file/AYC22Jv5AdqLTTHdYByj7g/TinaCMS-Logo-and-Branding-Assets?type=design&node-id=0%3A1&mode=design&t=pLsPV8WTo8vN6ikS-1"
+          "url": "https://sswcom.sharepoint.com/sites/SSWDESIGN/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=vL13Cy&CID=c221107a%2D832a%2D474b%2D9a34%2D2993d0f091a5&FolderCTID=0x012000B6BF72AABC74FE4B945D57002722E9F0&id=%2Fsites%2FSSWDESIGN%2FShared%20Documents%2FGeneral%2F1%2DSSW%2DLogos%2FTinaCMS%2Ftinacms%2Dfull%2Dbrand%2Dkit&viewid=2d692eea%2Da503%2D40f2%2Da1c3%2D3af443adf996"
         },
         {
           "label": "Download Zip",
           "icon": true,
           "variant": "blue",
           "size": "medium",
-          "url": "https://drive.google.com/file/d/1giltlZmy7nTA19Z0zRXDpejwfUYeeNHw/view?usp=drive_link"
+          "url": "https://sswcom.sharepoint.com/sites/SSWDESIGN/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=vL13Cy&CID=c221107a%2D832a%2D474b%2D9a34%2D2993d0f091a5&FolderCTID=0x012000B6BF72AABC74FE4B945D57002722E9F0&id=%2Fsites%2FSSWDESIGN%2FShared%20Documents%2FGeneral%2F1%2DSSW%2DLogos%2FTinaCMS&viewid=2d692eea%2Da503%2D40f2%2Da1c3%2D3af443adf996"
         }
       ],
       "margin": "",
@@ -66,9 +70,5 @@
       ],
       "_template": "features"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS Logo and Brand Assets",
-    "description": "Download official TinaCMS logos and brand assets"
-  }
+  ]
 }
