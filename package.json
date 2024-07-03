@@ -29,6 +29,9 @@
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^10.0.0",
     "@react-hook/window-size": "^3.1.1",
+    "@react-three/drei": "^9.107.0",
+    "@react-three/fiber": "^8.16.8",
+    "@react-three/postprocessing": "^2.16.2",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.0.3",
     "@tinacms/datalayer-old": "npm:@tinacms/datalayer@0.2.3",
@@ -90,6 +93,7 @@
     "strip-markdown": "^3.1.1",
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
+    "three": "^0.165.0",
     "tinacms": "^1.5.24",
     "webpack": "^5.76.0"
   },

@@ -12,7 +12,7 @@ export const compareBoxTemplate: TinaTemplate = {
       ui: {
         itemProps: (item) => ({
           key: item.id,
-          label: item.headline,
+          label: item.criteria,
         }),
       },
       fields: [
@@ -25,12 +25,18 @@ export const compareBoxTemplate: TinaTemplate = {
       label: 'Company',
       type: 'object',
       list: true,
+      ui: {
+        itemProps: (item) => ({
+          key: item.id,
+          label: item.headline,
+        }),
+      },
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         { name: 'logoColour', label: 'Logo Link (Colour)', type: 'string' },
         { name: 'logoWhite', label: 'Logo Link (White)', type: 'string' },
         { name: 'active', label: 'Active', type: 'boolean', description: 'Toggle to highlight which company is BY DEFAULT active' },
-        { name: 'isHidden', label: 'Hidden', type: 'boolean', description: 'Toggle will hide the company item from the list of clickable companies - it will also ensure it cannot be turned off.'},
+        { name: 'isHidden', label: 'Hidden', type: 'boolean', description: 'Toggle will hide the company item from the list of clickable companies - it will also ensure it cannot be turned off.' },
         { name: 'backgroundColor', label: 'Background Color', type: 'string', ui: { component: 'color' }, description: 'Choose a background color for the company' },
         { name: 'criteria1', label: 'Criteria 1', type: 'boolean' },
         { name: 'criteria2', label: 'Criteria 2', type: 'boolean' },
