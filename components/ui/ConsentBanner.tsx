@@ -34,12 +34,20 @@ const ConsentBanner = () => {
     });
   };
 
-  const handleAccept = () => {
-    Cookies.set('consentGiven', JSON.stringify(consent), { expires: 365 });
+  const handleAcceptAll = () => {
+    const acceptedConsent = {
+      ad_storage: true,
+      ad_personalization: true,
+      analytics_storage: true,
+      ad_user_data: true,
+    };
+    Cookies.set('consentGiven', JSON.stringify(acceptedConsent), { expires: 365 });
+    setConsent(acceptedConsent);
     setIsVisible(false);
   };
+  
 
-  const handleDecline = () => {
+  const handleDeclineAll = () => {
     const deniedConsent = {
       ad_storage: false,
       ad_personalization: false,
@@ -65,16 +73,16 @@ const ConsentBanner = () => {
         </p>
         <div className="flex justify-center mt-2">
           <button
-            onClick={handleAccept}
+            onClick={handleAcceptAll}
             className="font-tuner text-sm mx-2 px-4 py-2 bg-white text-[#ea6d43] rounded-3xl hover:bg-gray-200"
           >
-            Accept
+            Accept All
           </button>
           <button
-            onClick={handleDecline}
+            onClick={handleDeclineAll}
             className="mx-2 px-4 py-2 font-tuner text-sm border-2 border-white rounded-3xl hover:bg-orange-600"
           >
-            Decline
+            Reject All
           </button>
           <button
             id="dropdownToggleButton"
