@@ -13,7 +13,6 @@ import dynamic from 'next/dynamic';
 import ChatBaseBot from '../components/ui/TinaChatBot';
 import ConsentBanner from '../components/ui/ConsentBanner';
 import Cookies from 'js-cookie';
-import { initializeGTM } from 'utils/gtm';
 
 path.resolve('./content/');
 
@@ -22,7 +21,6 @@ const MainLayout = ({ Component, pageProps }) => {
     const consentGiven = Cookies.get('consentGiven');
     if (consentGiven) {
       const consentState = JSON.parse(consentGiven);
-      initializeGTM(consentState);
     }
   }, []);
 

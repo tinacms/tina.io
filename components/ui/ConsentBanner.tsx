@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { FaChevronDown } from 'react-icons/fa';
-import { initializeGTM } from 'utils/gtm';
 
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,7 +24,6 @@ const ConsentBanner = () => {
       setIsVisible(true);
     } else {
       const consentState = JSON.parse(consentGiven);
-      initializeGTM(consentState);
     }
   }, []);
 
@@ -39,7 +37,6 @@ const ConsentBanner = () => {
   const handleAccept = () => {
     Cookies.set('consentGiven', JSON.stringify(consent), { expires: 365 });
     setIsVisible(false);
-    initializeGTM(consent);
   };
 
   const handleDecline = () => {
@@ -51,7 +48,6 @@ const ConsentBanner = () => {
     };
     Cookies.set('consentGiven', JSON.stringify(deniedConsent), { expires: 365 });
     setIsVisible(false);
-    initializeGTM(deniedConsent);
   };
 
   const toggleDropdown = () => {
