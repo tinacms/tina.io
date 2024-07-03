@@ -65,7 +65,6 @@ const ConsentBanner = () => {
   const closeModal = () => {
     Cookies.set('consentGiven', JSON.stringify(consent), { expires: 365 });
     setIsModalOpen(false);
-    setIsVisible(false);
   };
 
   return (
@@ -108,7 +107,7 @@ const ConsentBanner = () => {
             <h2 className="text-xl md:text-xl lg:text-3xl text-orange-600 font-tuner mb-4 text-center">
               Customize your Consent Preferences
             </h2>
-            <div className="ml-4 sm:ml-8 md:ml-16 lg:flex lg:justify-center lg:ml-auto lg:mr-auto">
+            <div className="lg:flex lg:justify-center lg:ml-auto lg:mr-auto">
               <ul className="p-3 space-y-1 text-sm text-gray-700">
                 <li>
                   <div className="flex p-2 rounded">
