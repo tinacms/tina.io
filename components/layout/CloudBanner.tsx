@@ -3,17 +3,17 @@ import Link from 'next/link'
 import { IconRight } from '../blocks'
 import { Button, ButtonGroup } from '../../components/ui'
 import GitHubButton from 'react-github-btn'
-import { EmailForm } from '../forms/EmailForm'
+import { EmailForm } from '../modals/EmailForm'
 export function CloudBanner() {
   return (
     <>
       <div className="banner">
         <div className="banner-content">
           <span className="mobile pr-2">
-              Loving Tina? ⭐️ us on{' '}
-              <a href="https://github.com/tinacms/tinacms" target="new">
-                GitHub
-              </a>
+            Loving Tina? ⭐️ us on{' '}
+            <a href="https://github.com/tinacms/tinacms" target="new">
+              GitHub
+            </a>
           </span>
           {/* @ts-ignore */}
           <GitHubButton

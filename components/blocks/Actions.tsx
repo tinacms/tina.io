@@ -1,15 +1,36 @@
-import React from 'react'
-import { BiArrowBack, BiCopy } from 'react-icons/bi'
-import { copyToClipboard } from '../../components/layout/MarkdownContent'
-import { LinkButton } from '../../components/ui'
-import { tinaField } from 'tinacms/dist/react'
+import React, { useState } from 'react';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import { BiArrowBack, BiCopy } from 'react-icons/bi';
+import { copyToClipboard } from '../../components/layout/MarkdownContent';
+import { LinkButton, ModalButton } from '../../components/ui';
+import { tinaField } from 'tinacms/dist/react';
+import { EmailForm } from 'components/forms';
+import { DemoForm } from 'components/modals/BookDemo';
 
-export const sanitizeLabel = (label: string): string => {
+
+export const sanitizeLabel = (label) => {
   return label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
 };
 
+const modals = {
+  'BookDemo.tsx': <DemoForm/>,
+  'EmailForm.tsx': <EmailForm/>,
+};
+
 export const Actions = ({ items, align = 'left' }) => {
+  const [open, setOpen] = useState(false);
+  const [ModalContent, setModalContent] = useState(null);
+
+  const openModal = (modal) => {
+    setModalContent(modals[modal]);
+    setOpen(true);
+  };
+
+  const closeModal = () => setOpen(false);
+
   const isList = items.length >= 2;
+
   return (
     <>
       <div
@@ -21,64 +42,65 @@ export const Actions = ({ items, align = 'left' }) => {
         ].filter(Boolean).join(' ')}
       >
         {items &&
-          items.map((item, index) => {
-            if (item.variant == 'command') {
+          items.map((item) => {
+            const { variant, label, icon, url, buttonType, modal } = item;
+
+            
+            if (buttonType === 'command') {
               return (
-                <React.Fragment key={item.label}>
+                <React.Fragment key={label}>
                   <span className="or-text">or</span>
-                  <CodeButton
-                  label={item.label}
-                  id={sanitizeLabel(item.label)}
-                  data-tina-field={tinaField(item, 'label')}
-                  >
-                    {item.label}
+                  <CodeButton label={label} id={sanitizeLabel(label)} data-tina-field={tinaField(item, 'label')}>
+                    {label}
                   </CodeButton>
                 </React.Fragment>
               );
+            } 
+            
+            else if (buttonType === 'modal') {
+              return (
+                <ModalButton
+                  key={label}
+                  color={variant}
+                  className={`modal-button ${variant}`}
+                  onClick={() => openModal(modal)}
+                  data-tina-field={tinaField(item, 'label')}
+                >
+                  {label}
+                  {icon && <BiArrowBack className="icon-class" />}
+                </ModalButton>
+              );
+            } 
+            
+            else {
+              const externalUrlPattern = /^((http|https|ftp):\/\/)/;
+              const external = externalUrlPattern.test(url);
+              return (
+                <LinkButton
+                  key={label}
+                  id={sanitizeLabel(label)}
+                  size={item.size ? item.size : 'medium'}
+                  link={url}
+                  target={external ? '_blank' : '_self'}
+                  color={variant}
+                  data-tina-field={tinaField(item, 'label')}
+                >
+                  {label}
+                  {icon && <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />}
+                </LinkButton>
+              );
             }
-            const { variant, label, icon, url } = item
-            const externalUrlPattern = /^((http|https|ftp):\/\/)/
-            const external = externalUrlPattern.test(url)
-            let link = null
-            return (
-              <LinkButton
-                key={label}
-                id={sanitizeLabel(label)}
-                size={item.size ? item.size : 'medium'}
-                link={url}
-                target="_blank"
-                color={variant}
-                data-tina-field={tinaField(item, 'label')}
-              >
-                {label}{' '}
-                {icon && (
-                  <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
-                )}
-              </LinkButton>
-            )
           })}
       </div>
+      <Modal open={open} onClose={closeModal} center>
+        {ModalContent}
+      </Modal>
       <style jsx>{`
         .actionGroup {
           margin: 0 -0.75rem -0.5rem -0.75rem;
-
-          :global(a),
-          :global(button) {
-            margin: 0.5rem 0.75rem;
-          }
         }
 
-        .actionGroupRow {
-          flex-direction: row;
-          align-items: center;
-        }
-
-        .actionGroupList {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        
-        .or-text{
+        .or-text {
           margin: 0.5rem 1.5rem 0.5rem 0.75rem;
           font-size: 1.125rem;
           color: var(--color-secondary);
@@ -89,56 +111,43 @@ export const Actions = ({ items, align = 'left' }) => {
           justify-content: center;
         }
 
-        .link {
+        .modal-button {
           font-size: 1.125rem;
           color: var(--color-orange);
           padding: 0;
+        }
 
-          &:after {
-            width: calc(100% + 1.5rem);
-            height: calc(100% + 1rem);
-            top: -0.5rem;
-            left: -0.75rem;
-          }
+        .icon-class {
+          display: inline-block;
+          fill: currentColor;
+          margin-left: 0.375em;
+          height: 1em;
+          width: auto;
+          transition: opacity ease-out 150ms;
+        }
 
-          :global(svg) {
-            display: inline-block;
-            fill: currentColor;
-            margin-left: 0.375em;
-            margin-right: 0;
-            height: 1em;
-            width: auto;
-            transition: opacity ease-out 150ms;
-          }
-          :not(:hover):global(svg) {
-            opacity: 0.85;
-          }
+        .modal-button:hover .icon-class {
+          opacity: 0.85;
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
 export const CodeButton = ({ children, label, id, ...props }) => {
-  const [copied, setCopied] = React.useState(false)
+  const [copied, setCopied] = useState(false);
 
   const clickEvent = () => {
-    setCopied(true)
-    copyToClipboard(children)
+    setCopied(true);
+    copyToClipboard(children);
     setTimeout(() => {
-      setCopied(false)
-    }, 2000)
-  }
-
+      setCopied(false);
+    }, 2000);
+  };
 
   return (
     <>
-      <button
-        className="code-button event-cmd-button"
-        onClick={clickEvent}
-        id={id}
-        {...props}
-      >
+      <button className="code-button event-cmd-button" onClick={clickEvent} id={id} {...props}>
         <span id={id} className={`success-message ${copied ? `visible` : ``}`}>
           Copied to clipboard!
         </span>
@@ -188,29 +197,22 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           align-self: stretch;
           opacity: 0.5;
           transition: opacity 180ms ease-out;
-
-          :global(svg) {
-            height: 1.5em; 
-            width: auto;
-          }
         }
 
         .text {
-          padding: 0.75rem 1rem; 
-          font-size: 1rem; 
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
         }
 
         .code-button {
           display: flex;
           font-weight: bold;
           overflow: hidden;
-          font-size: 1rem; 
+          font-size: 1rem;
           border-radius: 0.375rem;
           cursor: pointer;
           transition: all 150ms ease-out;
           width: max-content;
-          transform: translate3d(0px, 0px, 0px);
-          display: flex;
           align-items: center;
           background-color: white;
           color: var(--color-secondary);
@@ -250,5 +252,5 @@ export const CodeButton = ({ children, label, id, ...props }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};

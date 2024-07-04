@@ -82,6 +82,27 @@ export const LinkButton = ({
   )
 }
 
+export const ModalButton = ({
+  color = 'seafoam',
+  size = 'medium',
+  className = '',
+  children,
+  ...props
+}) => {
+  return (
+    <button
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+      } ${
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+      } ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
+
 export const ButtonGroup = ({ children }) => {
   return (
     <div className="w-full flex justify-start flex-wrap items-center gap-4">

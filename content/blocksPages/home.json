@@ -22,6 +22,7 @@
               "icon": false,
               "variant": "command",
               "size": "small",
+              "buttonType": "command",
               "url": ""
             }
           ],
@@ -354,10 +355,12 @@
           "actions": [
             {
               "label": "Schedule Call",
-              "icon": true,
-              "variant": "blue",
+              "icon": false,
+              "variant": "orange",
               "size": "medium",
-              "url": "https://meetings-eu1.hubspot.com/levi-jackson"
+              "buttonType": "modal",
+              "url": "",
+              "modal": "BookDemo.tsx"
             }
           ],
           "media": [

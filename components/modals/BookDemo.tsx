@@ -6,7 +6,7 @@ import JeanCircle from '../../public/img/people/jean-circle.png';
 import LeviCircle from '../../public/img/people/levi-circle.png';
 import ScottImage from '../../public/img/people/scottImage.jpg';
 
-const DemoForm = () => {
+export const DemoForm = () => {
   return (
     <>
       <div className="py-10">
@@ -99,5 +99,3 @@ const DemoForm = () => {
     </>
   );
 };
-
-export default DemoForm;
