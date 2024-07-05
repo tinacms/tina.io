@@ -29,7 +29,7 @@ export const Blocks = ({
 }) => {
   if (!blocks) return null
   return blocks.map((block, index) => {
-    // console.log(block.__typename) // Debugging log
+    console.log(block.__typename) // Debugging log
     switch (block.__typename) {
       case 'PageBlocksFeatures':
         return (

@@ -4,7 +4,6 @@ import CloudsTwo from '../../public/svg/clouds-2.svg'
 import RenderButton from 'utils/renderButtonArrayHelper'
 
 export function FlyingBlock({ data, index }) {
-  console.log(data.buttons)
   return (
     <>
       <div key={index} className="learnTina">

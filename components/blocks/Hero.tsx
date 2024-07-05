@@ -37,7 +37,6 @@ export function HeroBlock({ data, index }) {
 }
 
 export const HeroFeature = ({ item, spacing, children }) => {
-  console.log(item.buttons);
   return (
     <>
       <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>

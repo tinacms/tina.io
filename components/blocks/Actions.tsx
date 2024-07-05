@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
-import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import { BiArrowBack, BiCopy } from 'react-icons/bi';
-import { copyToClipboard } from '../../components/layout/MarkdownContent';
-import { LinkButton, ModalButton } from '../../components/ui';
+import { BiArrowBack } from 'react-icons/bi';
+import { LinkButton } from '../../components/ui';
 import { tinaField } from 'tinacms/dist/react';
-import { EmailForm } from 'components/forms';
-import { DemoForm } from 'components/modals/BookDemo';
 
 export const sanitizeLabel = (label) => {
   return label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
 };
 
 export const Actions = ({ items, align = 'left' }) => {
-//  const isList = items.length >= 2;
 const isList = true;
 
   return (
