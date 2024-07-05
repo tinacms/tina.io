@@ -2,13 +2,15 @@ import { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { BiCopy } from 'react-icons/bi';
 import { copyToClipboard } from '../../components/layout/MarkdownContent';
+import { sanitizeLabel } from './ActionsButton';
+
 
 export const CodeButton = ({ children, label, id, ...props }) => {
   const [copied, setCopied] = useState(false);
 
   const clickEvent = () => {
     setCopied(true);
-    copyToClipboard(children);
+    copyToClipboard(label);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
@@ -19,7 +21,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
       <button
         className="code-button event-cmd-button"
         onClick={clickEvent}
-        id={id}
+        id={sanitizeLabel(label)}
         {...props}
       >
         <div className="content">
