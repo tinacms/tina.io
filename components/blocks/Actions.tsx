@@ -20,7 +20,6 @@ const isList = true;
     <>
       <div
         className={[
-          'actionGroup',
           'items-center',
           isList ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row' : 'flex flex-row',
           align === 'center' && 'actionGroupCenter',
@@ -50,9 +49,6 @@ const isList = true;
           })}
       </div>
       <style jsx>{`
-        .actionGroup {
-          margin: 0 -0.75rem -0.5rem -0.75rem;
-        }
 
         .or-text {
           margin: 0.5rem 1.5rem 0.5rem 0.75rem;

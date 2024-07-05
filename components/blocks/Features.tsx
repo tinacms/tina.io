@@ -20,7 +20,7 @@ export function FeatureBlock({ data, index }) {
   const renderButtonsWithOr = (buttons) => {
     return buttons.reduce((acc, button, index) => {
       if (index > 0 && isOrNeeded) {
-        acc.push(<span key={`or-${index}`} className="or-text">or</span>);
+        acc.push(<span key={`or-${index}`} className="or-text font-tuner">or</span>);
       }
       acc.push(<RenderButton key={index} button={button} index={index} />);
       return acc;

@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import 'react-responsive-modal/styles.css'
-import { BiCopy } from 'react-icons/bi'
-import { copyToClipboard } from '../../components/layout/MarkdownContent'
+import { useState } from 'react';
+import 'react-responsive-modal/styles.css';
+import { BiCopy } from 'react-icons/bi';
+import { copyToClipboard } from '../../components/layout/MarkdownContent';
 
 export const CodeButton = ({ children, label, id, ...props }) => {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
 
   const clickEvent = () => {
-    setCopied(true)
-    copyToClipboard(children)
+    setCopied(true);
+    copyToClipboard(children);
     setTimeout(() => {
-      setCopied(false)
-    }, 2000)
-  }
+      setCopied(false);
+    }, 2000);
+  };
 
   return (
     <>
@@ -22,15 +22,17 @@ export const CodeButton = ({ children, label, id, ...props }) => {
         id={id}
         {...props}
       >
-        <span className="text">
-          <span className="bash">&gt;</span> {children}
-        </span>
-        <span className="label">{label}</span>
-        <span id={id} className={`success-message ${copied ? `visible` : ``}`}>
+        <div className="content">
+          <span className="text">
+            <span className="bash">&gt;</span> {children}
+          </span>
+          <span className="label">{label}</span>
+          <span className="icon">
+            <BiCopy />
+          </span>
+        </div>
+        <span id={id} className={`success-message ${copied ? 'visible' : ''}`}>
           Copied to clipboard!
-        </span>
-        <span className="icon">
-          <BiCopy />
         </span>
       </button>
       <style jsx>{`
@@ -41,6 +43,8 @@ export const CodeButton = ({ children, label, id, ...props }) => {
 
         .label {
           margin-right: 0.5rem;
+          position: relative;
+          z-index: 1;
         }
 
         .success-message {
@@ -48,8 +52,10 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 100%;
-          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           text-align: center;
           color: var(--color-orange);
           font-family: var(--font-tuner);
@@ -85,6 +91,8 @@ export const CodeButton = ({ children, label, id, ...props }) => {
 
         .code-button {
           display: flex;
+          align-items: center;
+          justify-content: center;
           font-weight: bold;
           overflow: hidden;
           font-size: 1rem;
@@ -92,7 +100,6 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           cursor: pointer;
           transition: all 150ms ease-out;
           width: max-content;
-          align-items: center;
           background-color: white;
           color: var(--color-secondary);
           font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -104,6 +111,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           white-space: nowrap;
           opacity: 1;
           line-height: 1;
+          position: relative;
 
           &:hover,
           &:focus {
@@ -129,7 +137,12 @@ export const CodeButton = ({ children, label, id, ...props }) => {
             filter: none;
           }
         }
+
+        .content {
+          display: flex;
+          align-items: center;
+        }
       `}</style>
     </>
-  )
-}
+  );
+};
