@@ -96,7 +96,6 @@ export const schema = defineSchema({
             testimonialsTemplate as Template,
             quoteTemplate as Template,
             verticalCardsTemplate as Template,
-
             compareBoxTemplate as Template,
 
           ],

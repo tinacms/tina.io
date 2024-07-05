@@ -1,8 +1,10 @@
 import { Actions } from './Actions'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
+import RenderButton from 'utils/renderButtonArrayHelper'
 
 export function FlyingBlock({ data, index }) {
+  console.log(data.buttons)
   return (
     <>
       <div key={index} className="learnTina">
@@ -10,7 +12,9 @@ export function FlyingBlock({ data, index }) {
           <div>
             {data.headline && <h3 className="title">{data.headline}</h3>}
             {data.text && <p className="text">{data.text}</p>}
-            {data.actions && <Actions items={data.actions} />}
+            {data.buttons && data.buttons.map((button, index) => (
+            <RenderButton key={index} button={button} index={index} />
+          ))}
           </div>
           <div className="learnImageWrapper">
             <img

@@ -1,15 +1,32 @@
-import { Actions } from './Actions'
+import { CodeButton } from './CodeButton'
 import { Container } from './Container'
 import { Prism } from '../styles/Prism'
 import { tinaField } from 'tinacms/dist/react'
 import DocsRichText from '../styles/DocsRichText'
 import styled from 'styled-components'
 import playImage from '../../public/img/playButton.png'
+import { Actions } from './Actions'
+import { ModalB } from './ModalButton'
+import RenderButton from 'utils/renderButtonArrayHelper'
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed
   const isBackgroundEnabled = data.imageBackground
   const isVideo = data.media && data.media[0] && data.media[0].src
+
+  const isOrNeeded = data.buttons && data.buttons.length >= 2
+
+
+  const renderButtonsWithOr = (buttons) => {
+    return buttons.reduce((acc, button, index) => {
+      if (index > 0 && isOrNeeded) {
+        acc.push(<span key={`or-${index}`} className="or-text">or</span>);
+      }
+      acc.push(<RenderButton key={index} button={button} index={index} />);
+      return acc;
+    }, []);
+  };
+
 
   return (
     <>
@@ -20,7 +37,7 @@ export function FeatureBlock({ data, index }) {
         }`}
       >
         <div
-          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:gap-8 ${
+          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 ${
             isVideo ? 'lg:mr-8' : ''
           }`}
         >
@@ -32,18 +49,17 @@ export function FeatureBlock({ data, index }) {
               {data.headline}
             </h3>
           )}
-            <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-6">
-              <hr className="!my-0 w-full" />
-            </div>
-
-            <p
-              className="text-lg lg:text-xl lg:leading-normal bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-60ch text-balance text-center lg:text-left"
-              data-tina-field={tinaField(data, 'text')}
-            >
-              {data.text}
-            </p>
-          <div className="flex flex-col lg:flex-row md:justify-center lg:justify-start items-center">
-            {data.actions && <Actions items={data.actions} />}
+          <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-6">
+            <hr className="!my-0 w-full" />
+          </div>
+          <p
+            className="text-lg lg:text-xl lg:leading-normal bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-60ch text-balance text-center lg:text-left"
+            data-tina-field={tinaField(data, 'text')}
+          >
+            {data.text}
+          </p>
+          <div className="flex flex-col lg:flex-row md:justify-center lg:justify-start items-center gap-10">
+            {data.buttons && renderButtonsWithOr(data.buttons)}
           </div>
         </div>
         {data.media && data.media[0] && (
@@ -205,8 +221,14 @@ export function FeaturesBlock({ data, index }) {
           {/* TODO: why is there a type error here */}
           {/* @ts-ignore */}
           {data.features &&
-            data.features.map((data, index) => {
-              return <FeatureBlock data={data} index={index} />
+            data.features.map((featureData, featureIndex) => {
+              return (
+                <FeatureBlock
+                  key={'feature-' + featureIndex}
+                  data={featureData}
+                  index={featureIndex}
+                />
+              )
             })}
         </div>
       </Container>

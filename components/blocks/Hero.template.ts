@@ -1,5 +1,7 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template, TinaTemplate } from 'tinacms'
 import { actionsTemplate } from './Actions.template'
+import { modalButtonTemplate } from './ModalButton.template'
+import { codeButtonTemplate } from './CodeButton.template'
 
 export const heroTemplate: TinaTemplate = {
   label: 'Hero',
@@ -28,8 +30,6 @@ export const heroTemplate: TinaTemplate = {
   fields: [
     { name: 'headline', label: 'Headline', type: 'string' },
     { name: 'text', label: 'Text', type: 'string' },
-    // @ts-ignore
-    actionsTemplate,
     {
       name: 'media',
       label: 'Media',
@@ -77,6 +77,16 @@ export const heroTemplate: TinaTemplate = {
       description: 'Default is gap-6',
       label: 'Custom Spacing',
       type: 'string',
+    },
+    {
+      label: 'Buttons',
+      list: true,
+      name: 'buttons',
+      type: 'object',
+      ui: {
+        visualSelector: true
+      },
+      templates: [actionsTemplate as Template, modalButtonTemplate as Template, codeButtonTemplate as Template],
     },
   ],
 }

@@ -1,5 +1,6 @@
 import type { TinaTemplate } from 'tinacms'
 import { actionsTemplate } from './Actions.template'
+import { cardTemplate } from './Pricing.template'
 
 export const featureGridTemplate: TinaTemplate = {
   label: 'Feature Grid',

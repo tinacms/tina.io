@@ -1,3 +1,4 @@
+import RenderButton from 'utils/renderButtonArrayHelper'
 import { Actions } from './Actions'
 import { Container } from './Container'
 import { tinaField } from 'tinacms/dist/react'
@@ -36,12 +37,25 @@ export function HeroBlock({ data, index }) {
 }
 
 export const HeroFeature = ({ item, spacing, children }) => {
+  console.log(item.buttons);
   return (
     <>
       <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
-        {item.headline && <h2 className="heading" data-tina-field={tinaField(item, 'headline')}>{item.headline}</h2>}
-        {item.text && <p className="text-xl" data-tina-field={tinaField(item, 'text')}>{item.text}</p>}
-        {item.actions && <Actions items={item.actions} align="center" />}
+        {item.headline && (
+          <h2 className="heading" data-tina-field={tinaField(item, 'headline')}>
+            {item.headline}
+          </h2>
+        )}
+        {item.text && (
+          <p className="text-xl" data-tina-field={tinaField(item, 'text')}>
+            {item.text}
+          </p>
+        )}
+        <div className="flex justify-center items-center gap-10">
+          {item.buttons && item.buttons.map((button, index) => (
+            <RenderButton key={index} button={button} index={index} />
+          ))}
+        </div>
         {children}
       </div>
       <style jsx>{`
@@ -76,8 +90,8 @@ export const HeroFeature = ({ item, spacing, children }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
 export const Video = ({ src, className }) => {
   return (
