@@ -9,21 +9,18 @@
         {
           "headline": "A CMS With Version Control Built-in",
           "text": "Tina is a fully open-source headless CMS that supports Git",
-          "actions": [
+          "buttons": [
             {
               "label": "Try the editor now",
-              "icon": false,
+              "icon": true,
               "variant": "blue",
               "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~"
+              "url": "https://quick-edit-demo.vercel.app/admin#/~",
+              "_template": "actions"
             },
             {
               "label": "npx create-tina-app@latest",
-              "icon": false,
-              "variant": "command",
-              "size": "small",
-              "buttonType": "command",
-              "url": ""
+              "_template": "codeButton"
             }
           ],
           "media": [
@@ -131,13 +128,14 @@
         {
           "headline": "Own Your Content",
           "text": "Don't lock your content in a 3rd-party service.  Tina writes to files in your repository (MDX, Markdown, JSON, etc)",
-          "actions": [
+          "buttons": [
             {
               "label": "Learn More",
               "icon": false,
               "variant": "white",
-              "size": "small",
-              "url": "https://tina.io/docs/product-tour/"
+              "size": "medium",
+              "url": "/docs/product-tour/",
+              "_template": "actions"
             }
           ],
           "media": [
@@ -167,13 +165,14 @@
         {
           "headline": "Configure with Code",
           "text": "Tina is code-first and fully typed. Define your CMS in the Tina config file in your repository",
-          "actions": [
+          "buttons": [
             {
-              "label": "Read The Docs",
+              "label": "Read the Docs",
               "icon": false,
               "variant": "white",
               "size": "small",
-              "url": "docs/schema/"
+              "url": "/docs/schema",
+              "_template": "actions"
             }
           ],
           "media": [
@@ -352,15 +351,14 @@
         {
           "headline": "Talk to a Tina Expert",
           "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
-          "actions": [
+          "buttons": [
             {
               "label": "Schedule Call",
-              "icon": false,
-              "variant": "orange",
-              "size": "medium",
-              "buttonType": "modal",
-              "url": "",
-              "modal": "BookDemo.tsx"
+              "icon": true,
+              "color": "blue",
+              "size": "small",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
             }
           ],
           "media": [
@@ -444,13 +442,14 @@
         {
           "headline": "Merge With Confidence",
           "text": "Tina Cloud Enterprise customers can review, approve, and manage content  on different branches",
-          "actions": [
+          "buttons": [
             {
               "label": "Editorial Workflow",
               "icon": false,
               "variant": "blue",
               "size": "small",
-              "url": "https://tina.io/editorial-workflow"
+              "url": "/editorial-workflow",
+              "_template": "actions"
             }
           ],
           "media": [

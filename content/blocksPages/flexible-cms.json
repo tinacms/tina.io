@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Experience Limitless Flexibility with TinaCMS",
+    "description": "Experience the limitless customization and flexible workflows with TinaCMS. Craft custom field widgets, add bespoke validation to fields, and leverage Git-based content to create workflows beyond the CMS."
+  },
   "blocks": [
     {
       "headline": "TinaCMS: The Epitome of Flexibility and Customization.",
@@ -45,20 +49,17 @@
     {
       "headline": "Ready for limitless customization and flexibility?",
       "text": "Get started with TinaCMS now.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "Experience Limitless Flexibility with TinaCMS",
-    "description": "Experience the limitless customization and flexible workflows with TinaCMS. Craft custom field widgets, add bespoke validation to fields, and leverage Git-based content to create workflows beyond the CMS."
-  }
+  ]
 }

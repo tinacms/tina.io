@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "TinaCMS vs Contentful: Explore the TinaCMS Advantage",
+    "description": "See why TinaCMS could be the perfect fit for your project. Experience the benefits of an open-source frontend, customizability, visual editing capabilities, and more with TinaCMS."
+  },
   "blocks": [
     {
       "headline": "TinaCMS vs Contentful: Why TinaCMS Could Be Right For You",
@@ -45,20 +49,17 @@
     {
       "headline": "Discover the power of TinaCMS",
       "text": "Experience a new standard of content management with TinaCMS.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS vs Contentful: Explore the TinaCMS Advantage",
-    "description": "See why TinaCMS could be the perfect fit for your project. Experience the benefits of an open-source frontend, customizability, visual editing capabilities, and more with TinaCMS."
-  }
+  ]
 }

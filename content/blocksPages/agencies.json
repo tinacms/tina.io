@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Agencies",
+    "description": "Unleash the potential of your agency with TinaCMS. Simplify website development and content management for your clients."
+  },
   "blocks": [
     {
       "headline": "TinaCMS is a perfect match for agencies.",
@@ -37,20 +41,17 @@
     {
       "headline": "Let's talk! ",
       "text": "Interested in using TinaCMS for your agency? We'd love to chat! ",
-      "actions": [
+      "buttons": [
         {
           "label": "Contact Us",
           "icon": false,
-          "variant": "blue",
-          "size": "medium",
-          "url": "mailto:info@tina.io"
+          "color": "blue",
+          "size": "small",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "Agencies",
-    "description": "Unleash the potential of your agency with TinaCMS. Simplify website development and content management for your clients."
-  }
+  ]
 }
