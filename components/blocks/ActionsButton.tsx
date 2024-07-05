@@ -4,6 +4,9 @@ import { LinkButton } from '../ui'
 import { tinaField } from 'tinacms/dist/react'
 
 export const sanitizeLabel = (label) => {
+  if (!label) {
+    return
+  }
   return label
     .toLowerCase()
     .replace(/\s+/g, '-')
