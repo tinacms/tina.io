@@ -6,6 +6,7 @@ import { ModalButton } from '../../components/ui';
 import { tinaField } from 'tinacms/dist/react';
 import { EmailForm } from 'components/forms';
 import { DemoForm } from 'components/modals/BookDemo';
+import { sanitizeLabel } from './ActionsButton';
 
 const modals = {
   'BookDemo.tsx': <DemoForm />,
@@ -43,6 +44,7 @@ const isList = true;
               <ModalButton
                 key={label}
                 color={color}
+                id={sanitizeLabel(label)}
                 className={`modal-button ${color}`}
                 onClick={() => openModal(modal)}
                 data-tina-field={tinaField(item, 'label')}
