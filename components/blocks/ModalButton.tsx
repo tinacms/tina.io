@@ -45,7 +45,7 @@ const isList = true;
                 key={label}
                 color={color}
                 id={sanitizeLabel(label)}
-                className={`modal-button ${color}`}
+                className={`modal-button`}
                 onClick={() => openModal(modal)}
                 data-tina-field={tinaField(item, 'label')}
               >
