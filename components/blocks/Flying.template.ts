@@ -1,5 +1,5 @@
 import type { Template, TinaTemplate } from 'tinacms'
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
 import { modalButtonTemplate } from './ModalButton.template'
 import { codeButtonTemplate } from './CodeButton.template'
 
@@ -23,9 +23,13 @@ export const flyingTemplate: TinaTemplate = {
       name: 'buttons',
       type: 'object',
       ui: {
-        visualSelector: true
+        visualSelector: true,
       },
-      templates: [actionsTemplate as Template, modalButtonTemplate as Template, codeButtonTemplate as Template],
+      templates: [
+        actionsButtonTemplate as Template,
+        modalButtonTemplate as Template,
+        codeButtonTemplate as Template,
+      ],
     },
   ],
 }

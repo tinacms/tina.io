@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import type { TinaTemplate } from 'tinacms'
 
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
 
 export const cardTemplate: TinaTemplate = {
   name: 'card',
@@ -31,7 +31,7 @@ export const cardTemplate: TinaTemplate = {
       type: 'rich-text',
     },
     // @ts-ignore
-    actionsTemplate,
+    actionsButtonTemplate,
   ],
 }
 

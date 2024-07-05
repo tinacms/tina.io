@@ -1,6 +1,6 @@
 import { RichTextWrapper } from '../layout/RichTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 const PricingCard = ({ data, single = false }) => {

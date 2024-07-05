@@ -5,7 +5,7 @@ import { tinaField } from 'tinacms/dist/react'
 import DocsRichText from '../styles/DocsRichText'
 import styled from 'styled-components'
 import playImage from '../../public/img/playButton.png'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import { ModalB } from './ModalButton'
 import RenderButton from 'utils/renderButtonArrayHelper'
 
@@ -16,17 +16,19 @@ export function FeatureBlock({ data, index }) {
 
   const isOrNeeded = data.buttons && data.buttons.length >= 2
 
-
   const renderButtonsWithOr = (buttons) => {
     return buttons.reduce((acc, button, index) => {
       if (index > 0 && isOrNeeded) {
-        acc.push(<span key={`or-${index}`} className="or-text font-tuner">or</span>);
+        acc.push(
+          <span key={`or-${index}`} className="or-text font-tuner">
+            or
+          </span>
+        )
       }
-      acc.push(<RenderButton key={index} button={button} index={index} />);
-      return acc;
-    }, []);
-  };
-
+      acc.push(<RenderButton key={index} button={button} index={index} />)
+      return acc
+    }, [])
+  }
 
   return (
     <>

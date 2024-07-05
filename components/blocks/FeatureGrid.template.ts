@@ -1,5 +1,5 @@
 import type { TinaTemplate } from 'tinacms'
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
 import { cardTemplate } from './Pricing.template'
 
 export const featureGridTemplate: TinaTemplate = {
@@ -35,7 +35,7 @@ export const featureGridTemplate: TinaTemplate = {
           type: 'string',
         },
         // @ts-ignore
-        actionsTemplate,
+        actionsButtonTemplate,
       ],
     },
   ],

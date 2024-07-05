@@ -1,5 +1,5 @@
 import type { Template, TinaField } from 'tinacms'
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
 import { act } from '@react-three/fiber'
 import { ModalButton } from 'components/ui'
 import { modalButtonTemplate } from './ModalButton.template'
@@ -38,10 +38,14 @@ export const featuresTemplate: Template = {
           ui: {
             visualSelector: true,
             itemProps: (item) => {
-              return {label: item?.label}
-            }
+              return { label: item?.label }
+            },
           },
-          templates: [actionsTemplate as Template, modalButtonTemplate as Template, codeButtonTemplate as Template],
+          templates: [
+            actionsButtonTemplate as Template,
+            modalButtonTemplate as Template,
+            codeButtonTemplate as Template,
+          ],
         },
         {
           name: 'media',

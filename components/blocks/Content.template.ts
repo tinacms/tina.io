@@ -1,7 +1,7 @@
 import { TinaTemplate } from 'tinacms'
 
 import { newsletterTemplate } from './Newsletter.template'
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
 import { socialTemplate } from './Social.template'
 
 export const contentTemplate: TinaTemplate = {
@@ -66,7 +66,7 @@ export const contentTemplate: TinaTemplate = {
       },
       templates: [
         // @ts-ignore
-        actionsTemplate,
+        actionsButtonTemplate,
         // @ts-ignore
         socialTemplate,
         // @ts-ignore

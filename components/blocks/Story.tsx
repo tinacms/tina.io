@@ -1,7 +1,7 @@
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Container } from './Container'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import { Prism } from '../styles/Prism'
 import styled from 'styled-components'
 import DocsRichText from 'components/styles/DocsRichText'

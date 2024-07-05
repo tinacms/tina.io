@@ -1,13 +1,13 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
+const modals = ['BookDemo.tsx', 'EmailForm.tsx']
 
-export const actionsTemplate = {
+export const actionsButtonTemplate = {
   label: 'Actions',
   name: 'actions',
   type: 'object',
   list: true,
   ui: {
     itemProps: (item) => {
-      return { label: item?.label };
+      return { label: item?.label }
     },
     defaultItem: {
       variant: 'default',
@@ -42,5 +42,6 @@ export const actionsTemplate = {
         { value: 'large', label: 'Large' },
       ],
     },
-    { name: 'url', label: 'URL', type: 'string'},  ],
-};
+    { name: 'url', label: 'URL', type: 'string' },
+  ],
+}

@@ -1,5 +1,5 @@
 import RenderButton from 'utils/renderButtonArrayHelper'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import { Container } from './Container'
 import { tinaField } from 'tinacms/dist/react'
 
@@ -7,16 +7,18 @@ export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
-      className={`relative overflow-visible z-10 text-center ${data.margin ? data.margin : 'px-8 py-12 lg:py-16'
-        }`}
+      className={`relative overflow-visible z-10 text-center ${
+        data.margin ? data.margin : 'px-8 py-12 lg:py-16'
+      }`}
     >
       <Container width="narrow" center>
         <HeroFeature item={data} spacing={data.spacing}>
           {data.media && data.media[0] && (
             <div
-              className={`mt-6 min-w-0 w-full ${(data.media[0].image || data.media[0].src) &&
+              className={`mt-6 min-w-0 w-full ${
+                (data.media[0].image || data.media[0].src) &&
                 'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
-                }`}
+              }`}
             >
               {data.media && data.media[0].image && (
                 <img
@@ -51,9 +53,10 @@ export const HeroFeature = ({ item, spacing, children }) => {
           </p>
         )}
         <div className="flex justify-center items-center gap-10">
-          {item.buttons && item.buttons.map((button, index) => (
-            <RenderButton key={index} button={button} index={index} />
-          ))}
+          {item.buttons &&
+            item.buttons.map((button, index) => (
+              <RenderButton key={index} button={button} index={index} />
+            ))}
         </div>
         {children}
       </div>
@@ -89,8 +92,8 @@ export const HeroFeature = ({ item, spacing, children }) => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
 export const Video = ({ src, className }) => {
   return (

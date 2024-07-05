@@ -1,5 +1,5 @@
 import type { TinaTemplate } from 'tinacms'
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
 import { socialTemplate } from './Social.template'
 import { newsletterTemplate } from './Newsletter.template'
 
@@ -80,7 +80,7 @@ export const columnsTemplate: TinaTemplate = {
       },
       templates: [
         // @ts-ignore
-        actionsTemplate,
+        actionsButtonTemplate,
         // @ts-ignore
         socialTemplate,
         // @ts-ignore
@@ -96,7 +96,7 @@ export const columnsTemplate: TinaTemplate = {
       },
       templates: [
         // @ts-ignore
-        actionsTemplate,
+        actionsButtonTemplate,
         // @ts-ignore
         socialTemplate,
         // @ts-ignore
