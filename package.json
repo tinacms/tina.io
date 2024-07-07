@@ -53,6 +53,7 @@
     "github-slugger": "^1.2.1",
     "graphql": "^15.5.1",
     "gray-matter": "^4.0.2",
+    "js-cookie": "^3.0.5",
     "jsonp": "^0.2.1",
     "markdown-toc": "^1.2.0",
     "moment": "^2.24.0",
