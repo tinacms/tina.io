@@ -34,7 +34,7 @@ const footerNav = [
         label: 'How Tina Works',
       },
       {
-        link: '/press',
+        link: '/media',
         label: 'Media',
       },
     ],
@@ -57,6 +57,10 @@ const footerNav = [
       {
         label: 'Support',
         link: '/docs/support',
+      },
+      {
+        link: '/press',
+        label: 'Media',
       },
       {
         label: 'Use Cases',
