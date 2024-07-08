@@ -35,7 +35,7 @@ const footerNav = [
       },
       {
         link: '/press',
-        label: 'Press',
+        label: 'Media',
       },
     ],
   },
