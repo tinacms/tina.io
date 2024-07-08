@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { FaChevronRight } from 'react-icons/fa'
 
-const BookingCard = ({ cardItem, onHover }) => {
+const BookingCard = ({ cardItem }) => {
   const isValidImage = (url) => {
     return url && (url.startsWith('http') || url.startsWith('/'))
   }
@@ -34,7 +34,7 @@ const BookingCard = ({ cardItem, onHover }) => {
   )
 }
 
-const BookingBlock = ({ data }) => {
+const BookingBlock = ({  data, index } ) => {
   const [activeCardId, setActiveCardId] = useState(null)
 
   if (!data || !data.bookingCard) return null
@@ -82,7 +82,6 @@ const BookingBlock = ({ data }) => {
               <BookingCard
                 key={idx}
                 cardItem={cardItem}
-                onHover={setActiveCardId}
               />
             ))}
           </div>
