@@ -2,7 +2,7 @@ import { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { BiCopy } from 'react-icons/bi';
 import { copyToClipboard } from '../../components/layout/MarkdownContent';
-import { sanitizeLabel } from './ActionsButton';
+import { sanitizeLabel } from 'utils/sanitizeLabel'
 
 
 export const CodeButton = ({ children, label, id, ...props }) => {

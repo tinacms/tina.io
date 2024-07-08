@@ -4,7 +4,7 @@ import { Container } from './Container'
 import { Actions } from './ActionsButton'
 import GradGlow from '../../public/svg/grad-glow.svg'
 import { tinaField } from 'tinacms/dist/react'
-import { sanitizeLabel } from './ActionsButton'
+import { sanitizeLabel } from 'utils/sanitizeLabel'
 
 const Feature = ({ data, index, id }) => {
   const { headline, text, actions, url } = data

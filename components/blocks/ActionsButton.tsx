@@ -2,16 +2,8 @@ import 'react-responsive-modal/styles.css'
 import { BiArrowBack } from 'react-icons/bi'
 import { LinkButton } from '../ui'
 import { tinaField } from 'tinacms/dist/react'
+import { sanitizeLabel } from 'utils/sanitizeLabel'
 
-export const sanitizeLabel = (label) => {
-  if (!label) {
-    return
-  }
-  return label
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9\-]/g, '')
-}
 
 export const Actions = ({ items, align = 'left' }) => {
   const isList = true

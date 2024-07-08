@@ -6,7 +6,7 @@ import { ModalButton } from '../../components/ui';
 import { tinaField } from 'tinacms/dist/react';
 import { EmailForm } from 'components/forms';
 import { DemoForm } from 'components/modals/BookDemo';
-import { sanitizeLabel } from './ActionsButton';
+import { sanitizeLabel } from 'utils/sanitizeLabel'
 
 const modals = {
   'BookDemo.tsx': <DemoForm />,
