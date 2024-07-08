@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-import type { TinaTemplate } from 'tinacms'
+import type { Template, TinaTemplate } from 'tinacms'
 
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
+import { modalButtonTemplate } from './ModalButton.template'
+import { codeButtonTemplate } from './CodeButton.template'
 
 export const cardTemplate: TinaTemplate = {
   name: 'card',
@@ -30,8 +32,20 @@ export const cardTemplate: TinaTemplate = {
       label: 'Body',
       type: 'rich-text',
     },
-    // @ts-ignore
-    actionsTemplate,
+    {
+      label: 'Buttons',
+      list: true,
+      name: 'buttons',
+      type: 'object',
+      ui: {
+        visualSelector: true,
+      },
+      templates: [
+        actionsButtonTemplate as Template,
+        modalButtonTemplate as Template,
+        codeButtonTemplate as Template,
+      ],
+    },
   ],
 }
 

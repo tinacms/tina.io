@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "The Best CMS For Markdown",
+    "description": "Elevate your Markdown projects with TinaCMS. Enjoy a customized CMS experience tailored for your Markdown content with configurable shortcodes."
+  },
   "blocks": [
     {
       "headline": "TinaCMS: The Best CMS For Markdown.",
@@ -45,20 +49,17 @@
     {
       "headline": "Ready to transform your Markdown projects?",
       "text": "Get started with TinaCMS now.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "The Best CMS For Markdown",
-    "description": "Elevate your Markdown projects with TinaCMS. Enjoy a customized CMS experience tailored for your Markdown content with configurable shortcodes."
-  }
+  ]
 }

@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "TinaCMS for Teams: Boost Your Team’s Productivity",
+    "description": "Unleash your team’s potential with TinaCMS. Offering Git power with CMS simplicity, TinaCMS is an excellent choice for teams seeking a flexible, intuitive solution."
+  },
   "blocks": [
     {
       "headline": "TinaCMS: Empowering Teams to Achieve More",
@@ -45,20 +49,17 @@
     {
       "headline": "Elevate Your Team’s Workflow Today",
       "text": "Start using TinaCMS to boost your team’s productivity and collaboration.",
-      "actions": [
+      "buttons": [
         {
           "label": "Get Started",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS for Teams: Boost Your Team’s Productivity",
-    "description": "Unleash your team’s potential with TinaCMS. Offering Git power with CMS simplicity, TinaCMS is an excellent choice for teams seeking a flexible, intuitive solution."
-  }
+  ]
 }

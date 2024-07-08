@@ -14,9 +14,9 @@ import { IoMdClose } from 'react-icons/io'
 import { FaCalendarDay } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import { Modal } from 'react-responsive-modal'
-import { EmailForm } from '../forms/EmailForm'
+import { EmailForm } from '../modals/EmailForm'
 import 'react-responsive-modal/styles.css'
-import DemoForm from '../forms/BookDemo'
+import { DemoForm } from 'components/modals/BookDemo'
 
 export function Navbar({}) {
   const [open, setOpen] = useState(false)
@@ -26,7 +26,7 @@ export function Navbar({}) {
   const navRef = useRef(null)
 
   const navLinkClasses =
-                  'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
+    'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium'
 
   const handleScroll = () => {
     if (navRef.current) {

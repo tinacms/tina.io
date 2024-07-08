@@ -1,26 +1,32 @@
 {
+  "seo": {
+    "title": "TinaCMS Logo and Brand Assets",
+    "description": "Download official TinaCMS logos and brand assets"
+  },
   "blocks": [
     {
       "headline": "TinaCMS Logo and Brand Assets",
       "text": "",
-      "actions": [
+      "margin": "",
+      "spacing": "gap-12",
+      "buttons": [
         {
           "label": "Figma",
-          "icon": true,
+          "icon": false,
           "variant": "white",
           "size": "medium",
-          "url": "https://www.figma.com/file/AYC22Jv5AdqLTTHdYByj7g/TinaCMS-Logo-and-Branding-Assets?type=design&node-id=0%3A1&mode=design&t=pLsPV8WTo8vN6ikS-1"
+          "url": "https://www.figma.com/file/AYC22Jv5AdqLTTHdYByj7g/TinaCMS-Logo-and-Branding-Assets?type=design&node-id=0%3A1&mode=design&t=pLsPV8WTo8vN6ikS-1",
+          "_template": "actions"
         },
         {
           "label": "Download Zip",
-          "icon": true,
+          "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://drive.google.com/file/d/1giltlZmy7nTA19Z0zRXDpejwfUYeeNHw/view?usp=drive_link"
+          "url": "https://drive.google.com/file/d/1giltlZmy7nTA19Z0zRXDpejwfUYeeNHw/view?usp=drive_link",
+          "_template": "actions"
         }
       ],
-      "margin": "",
-      "spacing": "gap-12",
       "_template": "hero"
     },
     {
@@ -28,13 +34,14 @@
         {
           "headline": "Logos",
           "text": "Download the SVG and PNG logo kit",
-          "actions": [
+          "buttons": [
             {
               "label": "Download",
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "https://drive.google.com/file/d/19et9HDMaTQL54tNbnun2JetmjHZnqnKf/view?usp=drive_link"
+              "url": "https://drive.google.com/file/d/19et9HDMaTQL54tNbnun2JetmjHZnqnKf/view?usp=drive_link",
+              "_template": "actions"
             }
           ],
           "media": [
@@ -47,13 +54,14 @@
         {
           "headline": "Backgrounds",
           "text": "Download TinaCMS official backgrounds and dividers",
-          "actions": [
+          "buttons": [
             {
               "label": "Download Zip",
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "https://drive.google.com/file/d/1qkuje4otH-T9Q_2KRFvVeiY5gxiTfg8a/view?usp=drive_link"
+              "url": "https://drive.google.com/file/d/1qkuje4otH-T9Q_2KRFvVeiY5gxiTfg8a/view?usp=drive_link",
+              "_template": "actions"
             }
           ],
           "media": [
@@ -66,9 +74,5 @@
       ],
       "_template": "features"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS Logo and Brand Assets",
-    "description": "Download official TinaCMS logos and brand assets"
-  }
+  ]
 }

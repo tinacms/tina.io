@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import { Container } from './Container'
 
 export function ShowcaseBlock({ data, index }) {

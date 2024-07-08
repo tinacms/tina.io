@@ -130,5 +130,3 @@ export const EmailForm = (props: EmailFormProps) => {
 EmailForm.defaultProps = {
   isFooter: false,
 };
-
-export default EmailForm;
