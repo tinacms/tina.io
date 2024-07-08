@@ -42,11 +42,7 @@ export const Blocks = ({
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksVerticalCards':
         return (
-          <VerticalCardsBlock
-            key={`block-${index}`}
-            data={block}
-            index={index}
-          />
+          <VerticalCardsBlock key={`block-${index}`} data={block} index={index}/>
         )
       case 'PageBlocksHero':
         return <HeroBlock key={`block-${index}`} data={block} index={index} />
