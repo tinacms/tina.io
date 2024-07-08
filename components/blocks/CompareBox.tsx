@@ -225,7 +225,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '40px',
