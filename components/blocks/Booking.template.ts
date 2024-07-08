@@ -1,13 +1,9 @@
-import { Template } from "tinacms";
+import { Template } from 'tinacms';
 
-
-export const bookingTemplate: Template =
-{
-    label: 'Booking',
-    name: 'booking',
-    fields: 
-    [
-
+export const bookingTemplate: Template = {
+  label: 'Booking',
+  name: 'booking',
+  fields: [
     {
       name: 'bookingCard',
       label: 'Booking Card',
@@ -20,12 +16,10 @@ export const bookingTemplate: Template =
       },
       fields: [
         { name: 'name', label: 'Name', type: 'string' },
-        { name: 'description', label: 'description', type: 'string' },
+        { name: 'description', label: 'Description', type: 'string' },
         { name: 'image', label: 'Image', type: 'string' },
         { name: 'url', label: 'URL', type: 'string' },
       ],
     },
-
-    ]
-
-}
+  ],
+};
