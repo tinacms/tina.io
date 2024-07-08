@@ -1,6 +1,6 @@
 
 import { actionsButtonTemplate } from './ActionsButton.template'
-import type { Template } from '@tinacms/cli'
+import type { Template } from 'tinacms'
 
 export const roadmapGridTemplate: Template = {
   label: 'Roadmap Grid',
