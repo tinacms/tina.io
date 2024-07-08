@@ -2,9 +2,11 @@ import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
 import { LevelStore } from '@tinacms/datalayer-old'
 // @ts-ignore TODO: fix this it will fail since indexDB is no longer exported
+//TODO: Remove usage - do config as per the new docs https://tina.io/docs/tina-folder/overview/#object-object
+// see https://github.com/tinacms/tina.io/issues/1899
 import { createDatabase, resolve, indexDB } from '@tinacms/graphql-old'
-import type { TinaCloudSchema } from '@tinacms/graphql-old' //TODO: Remove usage - do config as per the new docs https://tina.io/docs/tina-folder/overview/#object-object
-import { Template } from 'tinacms'
+import type { TinaCloudSchema } from '@tinacms/graphql-old'
+import { TinaTemplate } from 'tinacms'
 
 
 export default async function feedback(req, res) {
@@ -145,7 +147,7 @@ Lorem markdownum evinctus ut cape
   }),
 }
 
-const heroBlock: Template = {
+const heroBlock: TinaTemplate = {
   name: 'hero',
   label: 'Hero',
   fields: [
@@ -170,7 +172,7 @@ const heroBlock: Template = {
   ],
 }
 
-const featureBlock: Template = {
+const featureBlock: TinaTemplate = {
   name: 'features',
   label: 'Features',
   fields: [
@@ -195,7 +197,7 @@ const featureBlock: Template = {
   ],
 }
 
-const contentBlock: Template = {
+const contentBlock: TinaTemplate = {
   name: 'content',
   label: 'Content',
   fields: [
