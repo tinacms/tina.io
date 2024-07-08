@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { FaChevronRight } from 'react-icons/fa'
@@ -10,7 +10,7 @@ const BookingCard = ({ cardItem }) => {
 
   return (
     <Link href={cardItem.url || '#'}>
-      <div className="relative p-2 mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700 bg-gradient-to-br from-white/25 via-white/50 to-white/75">
+      <div className="relative p-2 mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700 bg-gradient-to-br from-white/25 via-white/50 to-white/75 sm:pt-1">
         {isValidImage(cardItem.image) && (
           <Image
             src={cardItem.image}
@@ -26,7 +26,7 @@ const BookingCard = ({ cardItem }) => {
             {cardItem.description}
           </div>
         </div>
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 sm:self-center">
           <FaChevronRight className="h-10 w-10 text-muted-foreground pr-6" />
         </div>
       </div>
@@ -43,7 +43,7 @@ const BookingBlock = ({ data, index }) => {
 
   return (
     <div className="flex justify-center">
-      <div className="my-18 lg:w-1/2 p-6">
+      <div className="md:my-18 lg:w-1/2 p-6 sm:pt-1">
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-6">
             <div className="step-indicator flex items-center">
@@ -69,7 +69,7 @@ const BookingBlock = ({ data, index }) => {
               </div>
             </div>
           </div>
-          <div className="grid gap-3 my-16 px-8 py-12 md:bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
+          <div className="grid gap-3 my-16 px-10 py-12 md:bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
             <h1 className="w-full text-center inline-block m-0 md:text-4xl font-tuner lg:text-4xl text-2xl whitespace-nowrap lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
               Choose Your Location
             </h1>
@@ -77,10 +77,7 @@ const BookingBlock = ({ data, index }) => {
               Book a meeting with a 🦙TinaCMS expert in your timezone{' '}
             </h3>
             {data.bookingCard.map((cardItem, idx) => (
-              <BookingCard
-                key={idx}
-                cardItem={cardItem}
-              />
+              <BookingCard key={idx} cardItem={cardItem} />
             ))}
           </div>
         </div>
