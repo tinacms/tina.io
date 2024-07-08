@@ -20,6 +20,7 @@ export default defineConfig({
     tina: {
       publicFolder: 'public',
       mediaRoot: 'uploads',
+      static: false,  //default is false
     },
   },
 })
@@ -40,6 +41,13 @@ E.g, in our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/t
 > Note, anything in this directory will be synced with Tina Cloud's media server, and the images will be publicly accessible.
 
 `mediaRoot` can be set to "", if you want your media to be uploaded to the root of your `publicFolder`.
+
+### `static` (Boolean)
+
+This property determines whether media files can be uploaded, edited, or deleted directly through the editor.
+
+- **`static: true`** Editors cannot upload/delete media (static assets)
+- **`static: false`** (default): Editors can upload/delete media (dynamic assets).
 
 ### next/image
 
