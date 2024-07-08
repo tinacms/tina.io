@@ -29,7 +29,6 @@ export const Blocks = ({
 }) => {
   if (!blocks) return null
   return blocks.map((block, index) => {
-    console.log(block.__typename) // Debugging log
     switch (block.__typename) {
       case 'PageBlocksFeatures':
         return (
@@ -42,7 +41,13 @@ export const Blocks = ({
       case 'PageBlocksFlying':
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksVerticalCards':
-        return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />
+        return (
+          <VerticalCardsBlock
+            key={`block-${index}`}
+            data={block}
+            index={index}
+          />
+        )
       case 'PageBlocksHero':
         return <HeroBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksPricing':
@@ -99,13 +104,7 @@ export const Blocks = ({
           />
         )
       case 'PageBlocksQuote':
-        return (
-          <QuoteBlock
-            key={`block-${index}`}
-            data={block}
-            index={index}
-          />
-        )
+        return <QuoteBlock key={`block-${index}`} data={block} index={index} />
       default:
         return null
     }

@@ -3,7 +3,7 @@ import { graphqlHTTP } from 'express-graphql'
 import { LevelStore } from '@tinacms/datalayer-old'
 // @ts-ignore TODO: fix this it will fail since indexDB is no longer exported
 import { createDatabase, resolve, indexDB } from '@tinacms/graphql-old'
-import type { TinaCloudSchema, TinaTemplate } from '@tinacms/graphql-old'
+import type { TinaCloudSchema, Template } from '@tinacms/graphql-old'
 
 export default async function feedback(req, res) {
   const database = await createDatabase({
@@ -143,7 +143,7 @@ Lorem markdownum evinctus ut cape
   }),
 }
 
-const heroBlock: TinaTemplate = {
+const heroBlock: Template = {
   name: 'hero',
   label: 'Hero',
   fields: [
@@ -168,7 +168,7 @@ const heroBlock: TinaTemplate = {
   ],
 }
 
-const featureBlock: TinaTemplate = {
+const featureBlock: Template = {
   name: 'features',
   label: 'Features',
   fields: [
@@ -193,7 +193,7 @@ const featureBlock: TinaTemplate = {
   ],
 }
 
-const contentBlock: TinaTemplate = {
+const contentBlock: Template = {
   name: 'content',
   label: 'Content',
   fields: [

@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 
-export const faqTemplate: TinaTemplate = {
+export const faqTemplate: Template = {
   label: 'FAQ',
   name: 'faq',
   ui: {

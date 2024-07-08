@@ -1,8 +1,8 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 import { actionsButtonTemplate } from './ActionsButton.template'
 import { cardTemplate } from './Pricing.template'
 
-export const featureGridTemplate: TinaTemplate = {
+export const featureGridTemplate: Template = {
   label: 'Feature Grid',
   name: 'featureGrid',
   ui: {

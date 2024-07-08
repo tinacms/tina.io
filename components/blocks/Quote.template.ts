@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 
-export const quoteTemplate: TinaTemplate = {
+export const quoteTemplate: Template = {
   label: 'Quote',
   name: 'quote',
   ui: {

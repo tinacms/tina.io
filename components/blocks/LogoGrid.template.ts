@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 
-export const logoGridTemplate: TinaTemplate = {
+export const logoGridTemplate: Template = {
   label: 'Logo Grid',
   name: 'logoGrid',
   ui: {

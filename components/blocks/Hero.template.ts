@@ -1,9 +1,9 @@
-import type { Template, TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 import { actionsButtonTemplate } from './ActionsButton.template'
 import { modalButtonTemplate } from './ModalButton.template'
 import { codeButtonTemplate } from './CodeButton.template'
 
-export const heroTemplate: TinaTemplate = {
+export const heroTemplate: Template = {
   label: 'Hero',
   name: 'hero',
   ui: {

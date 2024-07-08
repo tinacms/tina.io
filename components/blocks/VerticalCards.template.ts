@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms';
+import type { Template } from 'tinacms';
 
-export const verticalCardsTemplate: TinaTemplate = {
+export const verticalCardsTemplate: Template = {
   label: 'Vertical Cards',
   name: 'verticalCards',
   ui: {

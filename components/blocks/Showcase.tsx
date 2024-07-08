@@ -132,7 +132,13 @@ export function ShowcaseItemsBlock({ data, index }) {
         {/* @ts-ignore */}
         {data.items &&
           data.items.map((data, index) => {
-            return <ShowcaseBlock data={data} index={index} />
+            return (
+              <ShowcaseBlock
+                key={`showcase-block-${index}`}
+                data={data}
+                index={index}
+              />
+            )
           })}
       </Container>
     </section>

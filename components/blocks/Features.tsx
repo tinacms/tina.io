@@ -225,11 +225,13 @@ export function FeaturesBlock({ data, index }) {
           {data.features &&
             data.features.map((featureData, featureIndex) => {
               return (
+                (
                 <FeatureBlock
-                  key={'feature-' + featureIndex}
+                  key={`feature-block-${index}`}
                   data={featureData}
                   index={featureIndex}
                 />
+              )
               )
             })}
         </div>

@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms';
+import type { Template } from 'tinacms';
 
-export const compareBoxTemplate: TinaTemplate = {
+export const compareBoxTemplate: Template = {
   label: 'Compare Box',
   name: 'CompareBox',
   fields: [
