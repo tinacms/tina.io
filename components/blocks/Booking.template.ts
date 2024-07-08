@@ -19,6 +19,7 @@ export const bookingTemplate: Template = {
         { name: 'description', label: 'Description', type: 'string' },
         { name: 'image', label: 'Image', type: 'string' },
         { name: 'url', label: 'URL', type: 'string' },
+        
       ],
     },
   ],
