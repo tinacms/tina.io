@@ -49,21 +49,21 @@ const BookingBlock = ({ data, index }) => {
             <div className="step-indicator flex items-center">
               <div className="step flex flex-col items-center relative z-10">
                 <div className="step-icon w-6 h-6 border-2 border-orange-300 flex items-center justify-center rounded-full"></div>
-                <p className="text-center absolute bottom-[-20px] text-xs whitespace-nowrap">
+                <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
                   CHOOSE LOCATION
                 </p>
               </div>
               <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
               <div className="step flex flex-col items-center relative z-10">
                 <div className="step-icon w-6 h-6 bg-none border-2 border-gray-300 text-white flex items-center justify-center rounded-full"></div>
-                <p className="text-center absolute bottom-[-20px] text-xs whitespace-nowrap">
+                <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
                   CHOOSE TIME
                 </p>
               </div>
               <div className="indicator-line h-0.5 w-20 md:w-40 bg-gray-300"></div>
               <div className="step flex flex-col items-center relative z-10">
                 <div className="step-icon w-6 h-6 bg-none border-2 border-gray-300 flex items-center justify-center rounded-full"></div>
-                <p className="text-center absolute bottom-[-20px] text-xs whitespace-nowrap">
+                <p className="text-center absolute bottom-[-20px] text-xxs md:text-xs whitespace-nowrap">
                   YOUR INFO
                 </p>
               </div>

@@ -62,6 +62,7 @@ module.exports = {
       8: '8px',
     },
     fontSize: {
+      xxs: ['10px', { lineHeight: '1.2' }],
       xs: ['13px', { lineHeight: '1.33' }],
       sm: ['14px', { lineHeight: '1.43' }],
       base: ['16px', { lineHeight: '1.5' }],
