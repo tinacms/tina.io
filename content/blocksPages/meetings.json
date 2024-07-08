@@ -3,6 +3,12 @@
     {
       "bookingCard": [
         {
+          "name": "Americas",
+          "description": "Meet with Scott (English)",
+          "image": "/img/people/scottImage.jpg",
+          "url": "https://meetings-eu1.hubspot.com/scott15"
+        },
+        {
           "name": "Europe",
           "description": "Meet with Jean (English & French)",
           "image": "/img/people/jean-circle.png",
@@ -13,12 +19,6 @@
           "description": "Meet with Levi (English)",
           "image": "/img/people/levi-circle.png",
           "url": "https://meetings-eu1.hubspot.com/levi-jackson"
-        },
-        {
-          "name": "Americas",
-          "description": "Meet with Scott (English)",
-          "image": "/img/people/scottImage.jpg",
-          "url": "https://meetings-eu1.hubspot.com/scott15"
         }
       ],
       "_template": "booking"
