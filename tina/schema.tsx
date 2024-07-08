@@ -32,6 +32,7 @@ import { testimonialsTemplate } from '../components/blocks/Testimonials.template
 import { quoteTemplate } from '../components/blocks/Quote.template'
 import { verticalCardsTemplate } from '../components/blocks/VerticalCards.template'
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
+import { bookingTemplate } from '../components/blocks/Booking.template'
 
 export const schema = defineSchema({
   collections: [
@@ -97,6 +98,7 @@ export const schema = defineSchema({
             quoteTemplate as Template,
             verticalCardsTemplate as Template,
             compareBoxTemplate as Template,
+            bookingTemplate as Template,
 
           ],
         },
