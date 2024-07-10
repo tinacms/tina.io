@@ -73,12 +73,10 @@ export function Navbar({}) {
             </button>
             <ul className="flex flex-col py-4 px-6 relative z-20">
               <li className="pb-4 pt-2">
-                <Link legacyBehavior href={'/'}>
-                  <a onClick={toggleMenu}>
+                <Link href={'/'} onClick={toggleMenu}>
                     <h1 className="flex items-center">
                       <TinaIconSvg className={`w-7 h-auto fill-orange-500`} />
                     </h1>
-                  </a>
                 </Link>
               </li>
               {data.map((item) => {
@@ -86,15 +84,13 @@ export function Navbar({}) {
                   const { id, href, label, external } = item
                   return (
                     <li key={id} className={`group ${navLinkClasses}`}>
-                      <Link legacyBehavior href={href}>
-                        <a className="py-2" onClick={toggleMenu}>
+                      <Link href={href} className="py-2" onClick={toggleMenu}>
                           {label}{' '}
                           {external && (
                             <BiLinkExternal
                               className={`text-blue-200 group-hover:text-blue-400 inline`}
                             />
                           )}
-                        </a>
                       </Link>
                     </li>
                   )
@@ -105,15 +101,13 @@ export function Navbar({}) {
                       const { id, href, label, external } = child
                       return (
                         <li key={id} className={`group ${navLinkClasses}`}>
-                          <Link legacyBehavior href={href}>
-                            <a className="py-2" onClick={toggleMenu}>
+                          <Link href={href} className="py-2" onClick={toggleMenu}>
                               {label}{' '}
                               {external && (
                                 <BiLinkExternal
                                   className={`text-blue-200 group-hover:text-blue-400 inline`}
                                 />
                               )}
-                            </a>
                           </Link>
                         </li>
                       )
@@ -131,12 +125,11 @@ export function Navbar({}) {
             }`}
             onClick={toggleMenu}
           ></div>
-          <Link legacyBehavior href={'/'}>
-            <a>
+          <Link href={'/'}>
               <h1 className="flex items-center">
                 <TinaIconSvg className={`w-10 h-auto fill-orange-500`} />
               </h1>
-            </a>
+
           </Link>
           <div className="w-full flex justify-end items-center gap-4">
             <Button color="white" size="small" onClick={openEmailModal}>
@@ -156,14 +149,12 @@ export function Navbar({}) {
               : `translate-y-2 px-4 pt-4 pb-6`
           } z-40 w-full min-[1135px]:px-10 hidden min-[1135px]:flex items-center justify-between gap-6`}
         >
-          <Link legacyBehavior href={'/'}>
-            <a>
+          <Link href={'/'}>
               <h1 className="flex items-center">
                 <TinaIconSvg
                   className={`${stuck ? 'w-8' : 'w-10'} h-auto fill-orange-500`}
                 />
               </h1>
-            </a>
           </Link>
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1135px]:items-center gap-2 min-[1135px]:gap-x-12">
             <ul className="flex gap-6 min-[1135px]:gap-8 min-[1135px]:gap-12 relative z-20">
@@ -172,15 +163,13 @@ export function Navbar({}) {
                   const { id, href, label, external } = item
                   return (
                     <li key={id} className={`group ${navLinkClasses}`}>
-                      <Link legacyBehavior href={href}>
-                        <a className="py-2">
+                      <Link  href={href} className="py-2">
                           {label}{' '}
                           {external && (
                             <BiLinkExternal
                               className={`text-blue-200 group-hover:text-blue-400 inline`}
                             />
                           )}
-                        </a>
                       </Link>
                     </li>
                   )
@@ -201,15 +190,13 @@ export function Navbar({}) {
                                 key={id}
                                 className={`${navLinkClasses} w-full whitespace-nowrap`}
                               >
-                                <Link legacyBehavior href={href}>
-                                  <a className="block px-2 py-1.5 text-gray-600 hover:text-blue-500">
+                                <Link  href={href} className="block px-2 py-1.5 text-gray-600 hover:text-blue-500">
                                     {label}{' '}
                                     {external && (
                                       <BiLinkExternal
                                         className={`text-blue-200 group-hover:text-blue-400 inline`}
                                       />
                                     )}
-                                  </a>
                                 </Link>
                               </li>
                             )

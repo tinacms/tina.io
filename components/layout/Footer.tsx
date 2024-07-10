@@ -208,9 +208,9 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
         {item.children.map((subItem) => (
           <div>
             <DynamicLink href={subItem.link} passHref>
-              <a className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+              <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
-              </a>
+              </div>
             </DynamicLink>
           </div>
         ))}
@@ -224,9 +224,9 @@ export const LinkItem = ({ item }) => {
 
   return (
     <DynamicLink href={link} passHref>
-      <a className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
+      <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
         {label}
-      </a>
+      </div>
     </DynamicLink>
   )
 }
@@ -322,10 +322,8 @@ export const Footer = ({}) => {
 
 const FooterLink = ({ link, label }) => {
   return (
-    <Link legacyBehavior href={link} passHref>
-      <a className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap">
+    <Link href={link} className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap" passHref>
         {label}
-      </a>
     </Link>
   )
 }

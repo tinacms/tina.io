@@ -10,7 +10,7 @@ interface DynamicLinkProps extends ExtraProps {
 
 export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
   return (
-    <Link legacyBehavior href={href} {...props}>
+    <Link href={href} {...props}>
       {children}
     </Link>
   )
