@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DynamicLink } from 'components/ui/DynamicLink'
 import { GetStaticProps } from 'next'
 import { FaDiscord, FaTwitter, FaGithub } from 'react-icons/fa'
 import TinaIconSvg from '../public/svg/tina-icon.svg'

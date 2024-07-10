@@ -67,17 +67,17 @@ export const LinkButton = ({
   ...props
 }) => {
   return (
-    <Link legacyBehavior href={link} passHref>
-      <a
-        className={`${baseClasses} ${
-          colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
-        } ${
-          sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
-        } ${className}`}
-        {...props}
-      >
-        {children}
-      </a>
+    <Link
+      href={link}
+      passHref
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+      } ${
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+      } ${className}`}
+      {...props}
+    >
+      {children}
     </Link>
   )
 }

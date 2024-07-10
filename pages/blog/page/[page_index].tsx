@@ -33,7 +33,7 @@ const Index = (props) => {
               href={`/blog/${post.data.slug}`}
               passHref
             >
-              <a className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
+              <div className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
                 <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                   {post.data.title}
                 </h3>
@@ -47,7 +47,7 @@ const Index = (props) => {
                   <MarkdownContent skipHtml={true} content={post.content} />
                   <hr />
                 </RichTextWrapper>
-              </a>
+              </div>
             </DynamicLink>
           ))}
           <BlogPagination currentPage={currentPage} numPages={numPages} />
