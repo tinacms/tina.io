@@ -1,26 +1,6 @@
 {
   "blocks": [
     {
-      "bookingCard": [
-        {
-          "name": "Americas",
-          "description": "Meet with Scott (English)",
-          "image": "/img/people/scott-circle2.jpg",
-          "url": "https://meetings-eu1.hubspot.com/scott15"
-        },
-        {
-          "name": "Europe",
-          "description": "Meet with Jean (English & French)",
-          "image": "/img/people/jean-circle.png",
-          "url": "https://meetings-eu1.hubspot.com/jean-thirion"
-        },
-        {
-          "name": "Oceania & Asia",
-          "description": "Meet with Levi (English)",
-          "image": "/img/people/levi-circle.png",
-          "url": "https://meetings-eu1.hubspot.com/levi-jackson"
-        }
-      ],
       "_template": "booking"
     }
   ]
