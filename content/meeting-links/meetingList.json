@@ -1,0 +1,23 @@
+{
+  "meetingList": [
+    {
+      "bookingCard": [
+        {
+          "name": "Oceania & Asia",
+          "description": "Meet with Levi (English)",
+          "url": "https://meetings-eu1.hubspot.com/levi-jackson"
+        },
+        {
+          "name": "Europe",
+          "description": "Meet with Jean (English & French)",
+          "url": "https://meetings-eu1.hubspot.com/jean-thirion"
+        },
+        {
+          "name": "Americas",
+          "description": "Meet with Scott (English)",
+          "url": "https://meetings-eu1.hubspot.com/scott15"
+        }
+      ]
+    }
+  ]
+}

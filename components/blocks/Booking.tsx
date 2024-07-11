@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { FaChevronRight } from 'react-icons/fa'
+import { fetchMeetingLinks } from 'utils/getMeetingLinks'
+
+export type BookingItem = {
+  name: string
+  description: string
+  image: string
+  url: string
+}
 
 const BookingCard = ({ cardItem }) => {
   const isValidImage = (url) => {
@@ -35,11 +43,18 @@ const BookingCard = ({ cardItem }) => {
 }
 
 const BookingBlock = ({ data, index }) => {
-  if (!data || !data.bookingCard) return null
+  const [meetingPeople, setMeetingPeople] = useState<BookingItem[]>([]);
 
-  data.bookingCard.forEach((cardItem, idx) => {
-    cardItem.index = idx
-  })
+  useEffect(() => { 
+    const fetchData = async () => {
+      const meetingPeopleData = await fetchMeetingLinks();
+      setMeetingPeople(meetingPeopleData);
+    }
+
+    fetchData();
+  }, []);
+
+  if (!meetingPeople.length) return null;
 
   return (
     <div className="flex justify-center">
@@ -76,7 +91,7 @@ const BookingBlock = ({ data, index }) => {
             <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
               Book a meeting with a 🦙TinaCMS expert in your timezone{' '}
             </h3>
-            {data.bookingCard.map((cardItem, idx) => (
+            {meetingPeople.map((cardItem, idx) => (
               <BookingCard key={idx} cardItem={cardItem} />
             ))}
           </div>

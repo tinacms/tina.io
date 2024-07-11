@@ -99,7 +99,6 @@ export const schema = defineSchema({
             verticalCardsTemplate as Template,
             compareBoxTemplate as Template,
             bookingTemplate as Template,
-
           ],
         },
       ],
@@ -478,6 +477,39 @@ export const schema = defineSchema({
               type: 'string',
               label: 'Link',
               name: 'link',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'meetingLinks',
+      label: 'Meeting Links',
+      path: 'content/meeting-links',
+      format: 'json',
+      fields: [
+        {
+          type: 'object',
+          label: 'Meeting List',
+          name: 'meetingList',
+          list: true,
+          fields: [
+            {
+              name: 'bookingCard',
+              label: 'Booking Card',
+              type: 'object',
+              list: true,
+              ui: {
+                itemProps: (item) => ({
+                  label: item.name,
+                }),
+              },
+              fields: [
+                { name: 'name', label: 'Name', type: 'string' },
+                { name: 'description', label: 'Description', type: 'string' },
+                { name: 'image', label: 'Image', type: 'image' },
+                { name: 'url', label: 'URL', type: 'string' },
+              ],
             },
           ],
         },
