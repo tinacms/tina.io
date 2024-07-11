@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import Slider from 'react-infinite-logo-slider';
 
@@ -16,10 +17,12 @@ const Logo = ({ data, windowWidth = 1000 }) => {
         padding: '0 8px',
       }}
     >
-      <img
+      <Image
         src={data.logo}
         className="block w-full h-auto m-0"
         alt={data.name}
+        width={200}
+        height={200}
       />
     </a>
   );

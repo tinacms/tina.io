@@ -8,6 +8,7 @@ import playImage from '../../public/img/playButton.png'
 import { Actions } from './ActionsButton'
 import { ModalB } from './ModalButton'
 import RenderButton from 'utils/renderButtonArrayHelper'
+import Image from 'next/image'
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed
@@ -72,13 +73,14 @@ export function FeatureBlock({ data, index }) {
           >
             {data.media && data.media[0].image && (
               <>
-                <img
-                  src={data.media[0].image}
-                  alt={data.headline}
-                  className={`w-full h-auto rounded-lg ${
-                    isBackgroundEnabled ? 'shadow-panel' : ''
-                  } overflow-hidden bg-transparent`}
-                />
+          <Image
+            src={data.media[0].image}
+            alt={data.headline}
+            className={`w-full h-auto rounded-lg ${isBackgroundEnabled ? 'shadow-panel' : ''} overflow-hidden bg-transparent`}
+            width={1200}
+            height={1200}
+          />
+
               </>
             )}
             {data.media && data.media[0].src && (
@@ -90,10 +92,12 @@ export function FeatureBlock({ data, index }) {
                   className="absolute w-20 h-20 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:left-[-35px] lg:top-[70px] lg:transform-none z-10"
                   id="play-button-overlay"
                 >
-                  <img
+                  <Image
                     src={playImage.src}
                     alt="Play-button-overlay"
                     className="w-full h-full"
+                    width={72}
+                    height={72}
                   />
                 </a>
                 <FeatureVideo

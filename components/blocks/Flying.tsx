@@ -2,6 +2,7 @@ import { Actions } from './ActionsButton'
 import CloudsOne from '../../public/svg/clouds-1.svg'
 import CloudsTwo from '../../public/svg/clouds-2.svg'
 import RenderButton from 'utils/renderButtonArrayHelper'
+import Image from 'next/image'
 
 export function FlyingBlock({ data, index }) {
   return (
@@ -17,10 +18,12 @@ export function FlyingBlock({ data, index }) {
               ))}
           </div>
           <div className="learnImageWrapper">
-            <img
+            <Image
               className="learnImage"
               src="/img/flyingTina.png"
               alt="Tina learning"
+              width={600}
+              height={600}
             />
           </div>
         </div>

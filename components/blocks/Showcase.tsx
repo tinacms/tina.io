@@ -2,6 +2,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { Actions } from './ActionsButton'
 import { Container } from './Container'
+import Image from 'next/image'
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
@@ -31,12 +32,12 @@ export function ShowcaseBlock({ data, index }) {
         {data.media && data.media.src && (
           <div className={`featureImage`}>
             <a href={data.url} target="_blank">
-              <img
+              <Image
                 className="showcaseImage"
                 src={data.media.src}
                 alt={data.headline}
-                width="1120px"
-                height="800px"
+                width={1120}
+                height={800}
               />
             </a>
           </div>

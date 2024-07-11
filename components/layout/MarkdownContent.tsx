@@ -19,6 +19,7 @@ import styled from 'styled-components'
 import * as shortcodeRenderers from '../../utils/shortcodes'
 
 import GithubSlugger from 'github-slugger'
+import Image from 'next/image'
 
 interface MarkdownContentProps {
   content: string
@@ -187,7 +188,7 @@ const CodeSnippet = (props) => {
             <div className="flex flex-col lg:flex-row gap-4">
               <div className="flex-1">{props.children[codeIndex]}</div>
               <div className="flex-1 bg-gray-50 bg-[#f6f6f9] border border-gray-100 rounded-md overflow-hidden">
-                <img src={props.url} />
+                <Image src={props.url} alt={props.children} height={1200} width={1200} />
               </div>
             </div>
           </Disclosure.Panel>
