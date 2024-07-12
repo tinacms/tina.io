@@ -11,6 +11,7 @@ import {
 import { NextSeo } from 'next-seo'
 import { Button, ButtonGroup } from 'components/ui'
 import { DynamicLink } from 'components/ui/DynamicLink'
+import Image from 'next/image'
 
 function Page404() {
   return (
@@ -119,7 +120,7 @@ const InfoText = styled.div`
 const InfoImage = styled(({ src, ...styleProps }) => {
   return (
     <div {...styleProps}>
-      <img src={src} alt="" />
+      <Image src={src} alt="404 Llama" width={600} height={600} />
     </div>
   )
 })`
