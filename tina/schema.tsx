@@ -507,7 +507,7 @@ export const schema = defineSchema({
               fields: [
                 { name: 'name', label: 'Name', type: 'string' },
                 { name: 'description', label: 'Description', type: 'string' },
-                { name: 'image', label: 'Image', type: 'image' },
+                { name: 'image', label: 'Image', type: 'image', description: 'Image headshot for a meeting card' },
                 { name: 'url', label: 'URL', type: 'string' },
               ],
             },
