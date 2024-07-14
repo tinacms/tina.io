@@ -83,10 +83,10 @@ const BookingBlock = ({ data, index }) => {
         </div>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
           <h1 className="w-full text-center inline-block m-0 md:text-4xl font-tuner lg:text-4xl text-2xl whitespace-nowrap lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-            Choose Your Location
+            {data.title}
           </h1>
           <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
-            Book a meeting with a 🦙TinaCMS expert in your timezone
+            {data.description}
           </h3>
           {meetingPeople.map((cardItem, idx) => (
             <BookingCard key={idx} cardItem={cardItem} />

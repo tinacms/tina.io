@@ -1,6 +1,8 @@
 {
   "blocks": [
     {
+      "title": "Choose your Location",
+      "description": "Book a meeting with a 🦙TinaCMS expert in your timezone",
       "_template": "booking"
     }
   ]
