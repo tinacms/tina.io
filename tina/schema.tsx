@@ -508,7 +508,7 @@ export const schema = defineSchema({
                 { name: 'name', label: 'Name', type: 'string' },
                 { name: 'description', label: 'Description', type: 'string' },
                 { name: 'image', label: 'Image', type: 'image', description: 'Image headshot for a meeting card' },
-                { name: 'url', label: 'URL', type: 'string' },
+                { name: 'url', label: 'URL', type: 'string', description: 'URL to a meeting link (i.e HubSpot)' },
               ],
             },
           ],
