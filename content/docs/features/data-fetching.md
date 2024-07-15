@@ -1,7 +1,8 @@
 ---
+id: /docs/features/data-fetching
 title: Data Fetching
-id: '/docs/features/data-fetching'
-next: '/docs/contextual-editing/overview'
+prev: /docs/schema
+next: /docs/contextual-editing/overview
 ---
 
 ## Introduction
@@ -10,9 +11,9 @@ With Tina, your content is stored in Git along with your codebase. Tina provides
 
 You can:
 
-- Query content for a given collection
-- Apply filters, sorting, pagination, etc
-- Query your content based on relational fields.
+* Query content for a given collection
+* Apply filters, sorting, pagination, etc
+* Query your content based on relational fields.
 
 To interface with the API, you can use Tina's type-safe client for data-fetching, or manually write custom GraphQL queries and hit the API yourself.
 
@@ -32,7 +33,7 @@ export default defineConfig({
 })
 ```
 
-When working locally, the client is built with the local url (http://localhost:4001/graphql). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query Tina Cloud.
+When working locally, the client is built with the local url ([http://localhost:4001/graphql](http://localhost:4001/graphql)). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query Tina Cloud.
 
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
@@ -44,7 +45,7 @@ const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 console.log(myPost.data.title)
 ```
 
-The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on _your_ defined schema, (where you have a "post" collection defined).
+The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on *your* defined schema, (where you have a "post" collection defined).
 
 On a page that displays a list of posts, you can fetch the posts like so:
 
@@ -66,7 +67,7 @@ When developing locally, it's often beneficial to talk to the content on your lo
 
 ## Video Tutorial
 
-For those who prefer to learn from video, you can check out a snippet on "Data Fetching" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+For those who prefer to learn from video, you can check out a snippet on "Data Fetching" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
 <div style="position:relative;padding-top:56.25%;">
   <iframe width="560" frameborder="0" allowfullscreen
@@ -76,7 +77,7 @@ For those who prefer to learn from video, you can check out a snippet on "Data F
 
 ## Summary
 
-- Tina provides a GraphQL API for querying your git-based content.
-- Tina provides a client that allows you to make type-safe requests to the Content API.
-- The client's "queries" property is generated based on _your_ schema.
-- A local version of the Content API can be used for local development.
+* Tina provides a GraphQL API for querying your git-based content.
+* Tina provides a client that allows you to make type-safe requests to the Content API.
+* The client's "queries" property is generated based on *your* schema.
+* A local version of the Content API can be used for local development.
