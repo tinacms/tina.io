@@ -18,7 +18,7 @@ We are going to break this tutorial into two sections:
 
 ## Creating our Tina application
 
-This blog post is going to use the Tailwind Starter. Using the `create-tina-app` command, choose "Tailwind Starter" as the starter template:
+This blog post is going to use the Tailwind Starter. Using the `create-tina-app` command, choose "Next.js Starter" as the starter template:
 
 ```bash
 # create our Tina application
@@ -26,7 +26,7 @@ This blog post is going to use the Tailwind Starter. Using the `create-tina-app`
 npx create-tina-app@latest a-b-testing
 
 ✔ Which package manager would you like to use? › Yarn
-✔ What starter code would you like to use? › Tailwind Starter
+✔ What starter code would you like to use? › Next.js Starter
 Downloading files from repo tinacms/tina-cloud-starter. This might take a moment.
 Installing packages. This might take a couple of minutes.
 
