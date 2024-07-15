@@ -1,6 +1,7 @@
 ---
-title: Sorting query results
 id: /docs/graphql/queries/advanced/sorting
+title: Sorting query results
+prev: /docs/graphql/queries/advanced/filter-documents
 next: /docs/graphql/queries/advanced/pagination
 ---
 
