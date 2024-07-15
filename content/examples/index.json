@@ -1,8 +1,8 @@
 {
   "examples": [
     {
-      "label": "Tina Tailwind Starter",
-      "description": "A full featured starter that uses TailwindCSS, Next.js and Tinacms\n",
+      "label": "Tina NextJS Starter",
+      "description": "A Next.js blog site built with TinaCMS.\n",
       "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1700757938/tina-io/examples/Tina_Cloud_Starter_pxdxfu.png",
       "link": "https://github.com/tinacms/tina-cloud-starter"
     },
