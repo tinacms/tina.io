@@ -487,6 +487,7 @@ export const schema = defineSchema({
       label: 'Meeting Links',
       path: 'content/meeting-links',
       format: 'json',
+      // @ts-ignore
       fields: [
         {
           name: 'bookingCard',
@@ -505,7 +506,7 @@ export const schema = defineSchema({
               name: 'image',
               label: 'Image',
               type: 'image',
-              // @ts-expect-error - tina cms types are incorrect
+              //@ts-ignore
               uploadDir: () => "/people",
               description: 'Image headshot for a meeting card',
             },
