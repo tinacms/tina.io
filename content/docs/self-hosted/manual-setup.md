@@ -1,8 +1,9 @@
 ---
-title: Self Hosted Manual Setup
 id: /docs/self-hosted/manual-setup
+title: Self Hosted Manual Setup
 last_edited: '2023-07-07T04:00:00.000Z'
-next: /docs/self-hosted/querying-data
+prev: /docs/self-hosted/existing-site
+next: /docs/self-hosted/migrating-from-tina-cloud
 ---
 
 ## 1. Choose a Git provider, database adapter, and auth provider
@@ -135,6 +136,6 @@ Now you should be able to run your site and use TinaCMS to edit your content. Se
 
 ## Next Steps
 
-- [Querying Data](/docs/self-hosted/querying-data)
-- If you want to change your Git provider, database adapter, or auth provider, check out the [reference](/docs/reference/self-hosted/overview/).
-- Got questions? Feel ask in our [Discord](https://discord.com/invite/zumN63Ybpf)
+* [Querying Data](/docs/self-hosted/querying-data)
+* If you want to change your Git provider, database adapter, or auth provider, check out the [reference](/docs/reference/self-hosted/overview/).
+* Got questions? Feel ask in our [Discord](https://discord.com/invite/zumN63Ybpf)
