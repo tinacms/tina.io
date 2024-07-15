@@ -1,7 +1,8 @@
 ---
+id: /docs/drafts/editorial-workflow
 title: Editorial Workflow
 last_edited: '2023-06-14T04:00:00.000Z'
-id: '/docs/drafts/editorial-workflow'
+prev: /docs/drafts/draft-fields
 ---
 
 <div style="position:relative;padding-top:56.25%;">
@@ -35,10 +36,10 @@ After completing the setup, you can access the CMS, and a new branch switcher bu
 
 Once you enter the new branch name, the following actions will occur:
 
-- The new branch will be created.
-- The content of the new branch will be indexed (this process may take a few minutes).
-- The changes will be saved to the new branch.
-- A draft pull request will be created.
+* The new branch will be created.
+* The content of the new branch will be indexed (this process may take a few minutes).
+* The changes will be saved to the new branch.
+* A draft pull request will be created.
 
 ## Publishing Content
 
