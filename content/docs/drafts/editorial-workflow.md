@@ -2,7 +2,7 @@
 id: /docs/drafts/editorial-workflow
 title: Editorial Workflow
 last_edited: '2023-06-14T04:00:00.000Z'
-prev: /docs/drafts/draft-fields
+prev:
 ---
 
 <div style="position:relative;padding-top:56.25%;">
