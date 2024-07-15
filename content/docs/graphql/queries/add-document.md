@@ -3,6 +3,7 @@ id: /docs/graphql/queries/add-document
 //: null
 title: Add a pending document
 prev: /docs/graphql/queries/update-document
+next: /docs/reference/content-api/content-delivery
 ---
 
 ## Adding a document with `addPendingDocument`
