@@ -1,7 +1,8 @@
 ---
-title: Using the Next.js Vercel Example
 id: /docs/self-hosted/starters/nextjs-vercel
+title: Using the Next.js Vercel Example
 last_edited: '2023-07-07T04:00:00.000Z'
+prev: /docs/self-hosted/overview
 next: /docs/self-hosted/existing-site
 ---
 
@@ -9,9 +10,9 @@ next: /docs/self-hosted/existing-site
 
 This doc will guide you through setting up our pre-configured self-hosted example repository. This implementation uses:
 
-- [NextJS](https://nextjs.org/)
-- [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [database adapter](/docs/reference/self-hosted/database-adapters/overview)
-- [NextAuth](/docs/reference/self-hosted/auth-provider/authjs) for its [auth provider](/docs/reference/self-hosted/auth-providers/overview)
+* [NextJS](https://nextjs.org/)
+* [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [database adapter](/docs/reference/self-hosted/database-adapters/overview)
+* [NextAuth](/docs/reference/self-hosted/auth-provider/authjs) for its [auth provider](/docs/reference/self-hosted/auth-providers/overview)
 
 ## Deploy The Starter Template
 
@@ -27,9 +28,9 @@ You can deploy the [self-hosted starter](https://github.com/tinacms/tina-self-ho
 
 This will:
 
-- Create a copy of the self-hosted starter [repository](https://github.com/tinacms/tina-self-hosted-demo) in your GitHub account
-- Create a new Vercel project with the starter code
-- Create a new Vercel KV store for the project
+* Create a copy of the self-hosted starter [repository](https://github.com/tinacms/tina-self-hosted-demo) in your GitHub account
+* Create a new Vercel project with the starter code
+* Create a new Vercel KV store for the project
 
 ### Setup Vercel KV Store
 
@@ -119,4 +120,4 @@ KV_REST_API_TOKEN=
 yarn dev
 ```
 
-You will be able to view your starter on http://localhost:3000. To edit content with TinaCMS go to http://localhost:3000/admin
+You will be able to view your starter on [http://localhost:3000](http://localhost:3000). To edit content with TinaCMS go to [http://localhost:3000/admin](http://localhost:3000/admin)
