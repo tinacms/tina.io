@@ -19,6 +19,7 @@ import { ShowcaseItemsBlock } from './Showcase'
 import { TestimonialsBlock } from './Testimonials'
 import { VerticalCardsBlock } from './VerticalCards'
 import { CompareBoxBlock } from './CompareBox'
+import { BookingBlock } from './Booking'
 
 export const Blocks = ({
   blocks,
@@ -43,6 +44,9 @@ export const Blocks = ({
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksVerticalCards':
         return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />
+      case 'PageBlocksBooking':
+        return <BookingBlock key={`block-${index}`} data={block} index={index} />
+      
       case 'PageBlocksHero':
         return <HeroBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksPricing':

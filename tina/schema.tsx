@@ -32,6 +32,7 @@ import { testimonialsTemplate } from '../components/blocks/Testimonials.template
 import { quoteTemplate } from '../components/blocks/Quote.template'
 import { verticalCardsTemplate } from '../components/blocks/VerticalCards.template'
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
+import { bookingTemplate } from '../components/blocks/Booking.template'
 
 export const schema = defineSchema({
   collections: [
@@ -97,7 +98,7 @@ export const schema = defineSchema({
             quoteTemplate as Template,
             verticalCardsTemplate as Template,
             compareBoxTemplate as Template,
-
+            bookingTemplate as Template,
           ],
         },
       ],
@@ -476,6 +477,41 @@ export const schema = defineSchema({
               type: 'string',
               label: 'Link',
               name: 'link',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'meetingLinks',
+      label: 'Meeting Links',
+      path: 'content/meeting-links',
+      format: 'json',
+      fields: [
+        {
+          name: 'bookingCard',
+          label: 'Booking Card',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.name,
+            }),
+          },
+          fields: [
+            { name: 'name', label: 'Name', type: 'string' },
+            { name: 'description', label: 'Description', type: 'string' },
+            {
+              name: 'image',
+              label: 'Image',
+              type: 'image',
+              description: 'Image headshot for a meeting card',
+            },
+            {
+              name: 'url',
+              label: 'URL',
+              type: 'string',
+              description: 'URL to a meeting link (i.e HubSpot)',
             },
           ],
         },
