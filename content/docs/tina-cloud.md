@@ -1,6 +1,7 @@
 ---
+id: /docs/tina-cloud
 title: Going to Production
-id: '/docs/tina-cloud'
+next: /docs/tina-cloud/overview/
 ---
 
 To deploy your site to production, you'll need to connect Tina to a hosted backend. This doc will walk you through the steps to get your site from [running locally to running for production](/docs/tina-cloud/faq/#what-is-local-mode-vs-prod-mode).
@@ -9,7 +10,7 @@ To deploy your site to production, you'll need to connect Tina to a hosted backe
 
 ## Video Tutorial
 
-For those who prefer to learn from video, you can check out a snippet on "Tina Cloud" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+For those who prefer to learn from video, you can check out a snippet on "Tina Cloud" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
 <div style="position:relative;padding-top:56.25%;">
   <iframe width="560" frameborder="0" allowfullscreen
