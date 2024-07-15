@@ -505,6 +505,8 @@ export const schema = defineSchema({
               name: 'image',
               label: 'Image',
               type: 'image',
+              // @ts-expect-error - tina cms types are incorrect
+              uploadDir: () => '/people',
               description: 'Image headshot for a meeting card',
             },
             {
