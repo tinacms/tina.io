@@ -177,7 +177,6 @@ export function PricingBlock({ data, index }) {
                 <TinaMarkdown content={data.intro} />
               </div>
             )}
-            {data.base && <PricingCard data={data.base} single />}
             <div className="segue"></div>
           </Wrapper>
           <div className="px-8 xl:px-12">
@@ -209,7 +208,7 @@ export function PricingBlock({ data, index }) {
         }
 
         .intro-text {
-          margin: 0 auto 4.5rem auto;
+          margin: 0 auto 0 auto;
           max-width: 40rem;
 
           :global(p) {

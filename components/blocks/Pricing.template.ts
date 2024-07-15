@@ -66,13 +66,6 @@ export const pricingTemplate: TinaTemplate = {
       type: 'rich-text',
     },
     {
-      name: 'base',
-      label: 'Base Plan',
-      // @ts-ignore
-      type: cardTemplate.type,
-      fields: cardTemplate.fields,
-    },
-    {
       name: 'plans',
       label: 'Pricing Plans',
       // @ts-ignore

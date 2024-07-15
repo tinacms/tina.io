@@ -25,6 +25,22 @@
       },
       "plans": [
         {
+          "name": "Basic",
+          "price": "Free",
+          "interval": "forever",
+          "body": "* 2 Users\n* 2 Roles\n* No Additional users\n* Forum Support\n",
+          "buttons": [
+            {
+              "label": "Sign up",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://app.tina.io/app.tina.io",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
           "name": "Team",
           "price": "$29",
           "interval": "month",
