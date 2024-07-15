@@ -1,6 +1,7 @@
 ---
 title: The "string" field
 last_edited: '2021-07-27T15:51:56.737Z'
+prev: /docs/reference/types
 next: /docs/reference/types/number
 ---
 
