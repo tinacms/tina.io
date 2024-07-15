@@ -2,6 +2,7 @@ import RenderButton from 'utils/renderButtonArrayHelper'
 import { Actions } from './ActionsButton'
 import { Container } from './Container'
 import { tinaField } from 'tinacms/dist/react'
+import Image from 'next/image'
 
 export function HeroBlock({ data, index }) {
   return (
@@ -21,10 +22,12 @@ export function HeroBlock({ data, index }) {
               }`}
             >
               {data.media && data.media[0].image && (
-                <img
+                <Image
                   src={data.media[0].image}
                   alt={data.headline}
                   className="w-full h-auto"
+                  width={1200}
+                  height={1200}
                 />
               )}
               {data.media && data.media[0].src && (
