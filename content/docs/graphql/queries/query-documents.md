@@ -1,6 +1,7 @@
 ---
-title: Querying a List of Documents
 id: /docs/graphql/queries/query-documents
+title: Querying a List of Documents
+prev: /docs/graphql/queries/get-document
 next: /docs/graphql/queries/advanced/filter-documents
 ---
 
