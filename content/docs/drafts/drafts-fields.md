@@ -1,6 +1,8 @@
 ---
+id: /docs/drafts/draft-fields
 title: Draft Fields
-id: '/docs/drafts/draft-fields'
+prev: /docs/drafts/overview
+next: /docs/drafts/editorial-workflow
 ---
 
 Adding a "Draft Field" is one approach to handling "drafts" in TinaCMS
@@ -57,4 +59,4 @@ Read more about querying data [here](/docs/data-fetching/overview).
 
 ## Caveats:
 
-- The above solution won't work as-is with [visual editing](/docs/contextual-editing/overview). To setup visual editing with drafts, you will need to implement [NextJS Preview-Mode](/guides/tinacms/contextual-drafts/guide/).
+* The above solution won't work as-is with [visual editing](/docs/contextual-editing/overview). To setup visual editing with drafts, you will need to implement [NextJS Preview-Mode](/guides/tinacms/contextual-drafts/guide/).
