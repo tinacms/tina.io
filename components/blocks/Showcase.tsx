@@ -6,7 +6,9 @@ import Image from 'next/image'
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
-  const id = data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+  const id = data.headline 
+  ? data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-') 
+  : 'showcase-' + index;
 
   return (
     <>
