@@ -2,6 +2,7 @@
 title: The "rich-text" field
 last_edited: '2021-07-27T15:51:56.737Z'
 prev: /docs/reference/types/object
+next: /docs/tina-folder/overview
 ---
 
 # `rich-text`
