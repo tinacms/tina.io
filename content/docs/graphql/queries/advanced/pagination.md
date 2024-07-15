@@ -1,6 +1,7 @@
 ---
-title: Paginating query results
 id: /docs/graphql/queries/advanced/pagination
+title: Paginating query results
+prev: /docs/graphql/queries/advanced/sorting
 next: /docs/graphql/queries/advanced/performance
 ---
 
