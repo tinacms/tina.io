@@ -1,8 +1,9 @@
 ---
-title: Self Hosted Setup on a Next.js Site
 id: /docs/self-hosted/existing-site
+title: Self Hosted Setup on a Next.js Site
 last_edited: '2023-07-07T04:00:00.000Z'
-next: /docs/self-hosted/querying-data
+prev: /docs/self-hosted/starters/nextjs-vercel
+next: /docs/self-hosted/manual-setup
 ---
 
 If you want to self-host the Tina backend, and don't want to use our [pre-configured starter](/docs/self-hosted/starters/nextjs-vercel/), you can follow the steps below.
@@ -45,12 +46,12 @@ TinaCMS provides two database adapters in the init workflow: "Redis" (VercelKV) 
 
 The init commands does the following:
 
-- Sets up pages/tina/[...routes].{ts,js} to handle TinaCMS GraphQL and auth requests
-- Sets up tina/database.{ts,js} to handle the database
-  - Configures the GitHub Git provider
-  - Configures the database adapter
-- Configures the TinaCMS Auth.js auth provider
-- Installs any dependencies needed for the chosen Git provider, database adapter, and authentication provider
+* Sets up pages/tina/\[...routes].{ts,js} to handle TinaCMS GraphQL and auth requests
+* Sets up tina/database.{ts,js} to handle the database
+  * Configures the GitHub Git provider
+  * Configures the database adapter
+* Configures the TinaCMS Auth.js auth provider
+* Installs any dependencies needed for the chosen Git provider, database adapter, and authentication provider
 
 ## After the init command
 
@@ -69,6 +70,6 @@ After these steps are completed the `dev` and `build` commands should be ready f
 
 ## Next Steps
 
-- [Querying Data](/docs/self-hosted/querying-data)
-- If you want to change your Git provider, database adapter, or authentication provider, check out the [reference](/docs/reference/self-hosted/overview/).
-- Got questions? Feel ask in our [Discord](https://discord.com/invite/zumN63Ybpf)
+* [Querying Data](/docs/self-hosted/querying-data)
+* If you want to change your Git provider, database adapter, or authentication provider, check out the [reference](/docs/reference/self-hosted/overview/).
+* Got questions? Feel ask in our [Discord](https://discord.com/invite/zumN63Ybpf)
