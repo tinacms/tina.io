@@ -1,8 +1,8 @@
 ---
-title: Manually editing Tina's edit state
 id: /docs/extending-tina/edit-state
-# next: '/docs/extending-tina/advanced/overview'
-# prev: /docs/extending-tina/customizing-forms
+title: Manually editing Tina's edit state
+prev: /docs/reference/content-api/data-layer
+next: /docs/contextual-editing/tinafield
 ---
 
 ## Manually toggling via `useEditState`
@@ -48,4 +48,4 @@ const MyPublicPage = () => {
 }
 ```
 
-Note that the `tinacms/dist/edit-state (>2kb)` code _will_ be in your production bundle with this pattern.
+Note that the `tinacms/dist/edit-state (>2kb)` code *will* be in your production bundle with this pattern.
