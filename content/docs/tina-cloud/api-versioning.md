@@ -1,5 +1,7 @@
 ---
 title: GraphQL API Versioning
+prev: /docs/tina-cloud/dashboard/organizations
+next: /docs/self-hosted/overview
 ---
 
 Tina is still evolving. In order to support a range of clients using different versions of Tina, Tina's [Content Api](../#content-api) leverages version metadata in your site's generated schema to select the appropriate version of the GraphQL API in Tina Cloud. Starting with version 0.59.3, this version metadata will be compiled into your site's schema json.
@@ -12,7 +14,7 @@ Versions prior to 0.59.3 will continue to work as expected
 
 ### Minor version compatibility
 
-Prior to the 1.0.0 release, there may be breaking changes between _minor_ versions. For a given minor version, Tina Cloud will have the latest patch version of the GraphQL API, depending on what has been compiled into your site's schema. Users should expect compatibility between patch versions.
+Prior to the 1.0.0 release, there may be breaking changes between *minor* versions. For a given minor version, Tina Cloud will have the latest patch version of the GraphQL API, depending on what has been compiled into your site's schema. Users should expect compatibility between patch versions.
 
 For example:
 
