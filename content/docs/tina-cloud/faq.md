@@ -3,9 +3,9 @@ title: FAQ
 last_edited: '2022-01-24T15:50:19.525Z'
 ---
 
-## What is Tina CLoud
+## What is Tina Cloud?
 
-Tina Cloud is a hosted [datalayer](/docs/reference/content-api/datalayer) for TinaCMS. Tina Cloud is the easiest way to use TinaCMS in production. It provides a hosted GraphQL endpoint for your content, Git integration, user management, editorial workflow features and more. It also grants authorization for other users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub. TinaCMS can be [self hosted](/docs/self-hosted/overview) and used independently of Tina Cloud as well.
+Tina Cloud is a hosted [datalayer](/docs/reference/content-api/datalayer) for TinaCMS. Tina Cloud is the easiest way to use TinaCMS in production. It provides a hosted GraphQL endpoint for your content, Git integration, user management, editorial workflow features and more. It also grants authorization for other users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub. TinaCMS can be [self-hosted](/docs/self-hosted/overview) or used independently of Tina Cloud as well.
 
 For more information, see [Tina Cloud Overview](/docs/tina-cloud/overview).
 
@@ -14,7 +14,7 @@ For more information, see [Tina Cloud Overview](/docs/tina-cloud/overview).
 - [Find us on Discord](https://discord.com/invite/zumN63Ybpf)
 - For business inquiries contact info@tina.io
 
-## Features Unavailable in Self-Hosted Tina Compared to Tina Cloud
+## Features unavailable in self-hosted Tina compared to Tina Cloud
 
 When comparing Tina Cloud with self-hosting Tina, there are specific features unique to Tina Cloud. These include:
 
@@ -39,6 +39,7 @@ are not functional in a self-hosted Tina setup.
 ### 3. Search
 
 The self-hosted backend does not currently have endpoints to support search functionality.
+
 ## Why do I need a database when using markdown?
 
 A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations. Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by Tina Cloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.
@@ -153,4 +154,4 @@ There is a known limitation where Tinacms doesn't load assets correctly when the
 
 By default when using Tina Cloud, the author on Git commits is the Tina Cloud GitHub [app](https://github.com/apps/tina-cloud-app). It is possible to [co-author](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git commits in order to attribute the commit to an additional user. This can be enabled per-user in the Tina Cloud account [settings](https://app.tina.io/account/settings). By default, the name and email of the co-author is configured according to your Tina Cloud account, but they can be set to any valid name and email address. Once configured, click the "Enable co-authoring" toggle and the "Save Settings" button.
 
-> Note: The co-author email is publicly viewable on GitHub. If you want to hide your email, GitHub provides an anonymous email address for each user. You can find your anonymous email address in the GitHub email [settings](https://github.com/settings/emails). This email address can then be configured in Tina Cloud as the co-author.
+> **Note:** The co-author email is publicly viewable on GitHub. If you want to hide your email, GitHub provides an anonymous email address for each user. You can find your anonymous email address in the GitHub email [settings](https://github.com/settings/emails). This email address can then be configured in Tina Cloud as the co-author.
