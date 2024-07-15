@@ -1,5 +1,6 @@
 ---
 title: Projects
+prev: /docs/tina-cloud/dashboard/registration
 next: /docs/tina-cloud/dashboard/users
 ---
 
