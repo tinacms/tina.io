@@ -11,7 +11,7 @@ For the most part, TinaCMS is framework-agnostic. Unless you're using "visual ed
 
 We also have some guides tailored for some popular frameworks:
 
-- [NextJS](/docs/frameworks/nextjs/)
+- [Next.js](/docs/frameworks/next/overview)
 - [Astro](/docs/frameworks/astro/)
 - [Hugo](/docs/frameworks/hugo/)
 - [Gatsby](/docs/frameworks/gatsby/)
