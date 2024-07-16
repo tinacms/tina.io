@@ -3,7 +3,7 @@ title: Next.js App Router
 prev: /docs/frameworks/next/overview
 ---
 
-> ☝️ This guide assumes you are using the **Next.js app router.**
+> ☝️ This guide assumes you are using the [**Next.js app router.**](https://nextjs.org/docs/app)
 
 ## Video Guide
 
