@@ -6,7 +6,9 @@ interface SubscriptionResult {
 }
 
 export async function addToMailchimp(
-  email: string
+  email: string,
+  firstName?: string,
+  lastName?: string
 ): Promise<SubscriptionResult> {
   if (!validate(email)) {
     return {
@@ -15,6 +17,10 @@ export async function addToMailchimp(
     }
   }
 
+  const mergeFields: { FNAME?: string; LNAME?: string } = {};
+  if (firstName) mergeFields.FNAME = firstName;
+  if (lastName) mergeFields.LNAME = lastName;
+
   try {
     const response = await fetch('/api/mailchimp', {
       method: 'POST',
@@ -22,7 +28,7 @@ export async function addToMailchimp(
       body: JSON.stringify({
         email_address: email,
         status: 'subscribed',
-        merge_fields: {},
+        merge_fields: mergeFields,
       }),
     })
 

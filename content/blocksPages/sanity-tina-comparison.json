@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "TinaCMS vs Sanity: Why Choose TinaCMS",
+    "description": "Discover why TinaCMS is the preferred choice over Sanity. Experience markdown support, live editing, a seamless local development workflow, Git-based content management, and more with TinaCMS."
+  },
   "blocks": [
     {
       "headline": "TinaCMS vs Sanity: Elevate Your Experience with TinaCMS",
@@ -45,20 +49,17 @@
     {
       "headline": "Ready to switch to TinaCMS?",
       "text": "Get started with TinaCMS now, and see the difference it makes.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS vs Sanity: Why Choose TinaCMS",
-    "description": "Discover why TinaCMS is the preferred choice over Sanity. Experience markdown support, live editing, a seamless local development workflow, Git-based content management, and more with TinaCMS."
-  }
+  ]
 }

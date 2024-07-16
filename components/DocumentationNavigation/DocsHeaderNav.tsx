@@ -12,9 +12,9 @@ export const DocsHeaderNav = () => {
             return (
               <li key={id}>
                 <DynamicLink href={href} passHref>
-                  <a className="flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium">
+                  <div className="flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium">
                     {label}
-                  </a>
+                  </div>
                 </DynamicLink>
               </li>
             )

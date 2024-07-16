@@ -1,4 +1,5 @@
 import type { PageBlocks, PostConnection } from '../../tina/__generated__/types'
+import React from 'react'
 import {
   StoryBlock,
   FeatureGridBlock,
@@ -16,6 +17,9 @@ import { RecentPostsBlock } from './RecentPosts'
 import { RoadmapGridBlock } from './RoadmapGrid'
 import { ShowcaseItemsBlock } from './Showcase'
 import { TestimonialsBlock } from './Testimonials'
+import { VerticalCardsBlock } from './VerticalCards'
+import { CompareBoxBlock } from './CompareBox'
+import { BookingBlock } from './Booking'
 
 export const Blocks = ({
   blocks,
@@ -26,13 +30,23 @@ export const Blocks = ({
 }) => {
   if (!blocks) return null
   return blocks.map((block, index) => {
+    console.log(block.__typename) // Debugging log
     switch (block.__typename) {
       case 'PageBlocksFeatures':
         return (
           <FeaturesBlock key={`block-${index}`} data={block} index={index} />
         )
+      case 'PageBlocksCompareBox':
+        return (
+          <CompareBoxBlock key={`block-${index}`} data={block} index={index} />
+        )
       case 'PageBlocksFlying':
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />
+      case 'PageBlocksVerticalCards':
+        return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />
+      case 'PageBlocksBooking':
+        return <BookingBlock key={`block-${index}`} data={block} index={index} />
+      
       case 'PageBlocksHero':
         return <HeroBlock key={`block-${index}`} data={block} index={index} />
       case 'PageBlocksPricing':

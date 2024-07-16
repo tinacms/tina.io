@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DynamicLink } from 'components/ui/DynamicLink'
 import { GetStaticProps } from 'next'
 import { FaDiscord, FaTwitter, FaGithub } from 'react-icons/fa'
 import TinaIconSvg from '../public/svg/tina-icon.svg'
@@ -16,6 +15,7 @@ import { Button, ButtonGroup, LinkButton } from 'components/ui'
 import { EmailForm } from 'components/forms'
 import { NextSeo } from 'next-seo'
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps'
+import Image from 'next/image'
 
 function CommunityPage(props) {
   const data = props.file.data
@@ -211,7 +211,7 @@ const InfoText = styled.div`
 const InfoImage = styled(({ src, alt, ...styleProps }) => {
   return (
     <div {...styleProps}>
-      <img src={src} alt={alt} />
+      <Image src={src} alt={alt} height={600} width={600} />
     </div>
   )
 })`

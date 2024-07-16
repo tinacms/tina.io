@@ -1,68 +1,126 @@
-import { Actions } from './Actions'
+import { CodeButton } from './CodeButton'
 import { Container } from './Container'
 import { Prism } from '../styles/Prism'
 import { tinaField } from 'tinacms/dist/react'
 import DocsRichText from '../styles/DocsRichText'
 import styled from 'styled-components'
+import playImage from '../../public/img/playButton.png'
+import { Actions } from './ActionsButton'
+import { ModalB } from './ModalButton'
+import RenderButton from 'utils/renderButtonArrayHelper'
+import Image from 'next/image'
 
 export function FeatureBlock({ data, index }) {
-  const isReversed = index % 2 === 1
+  const isReversed = data.isReversed
+  const isBackgroundEnabled = data.imageBackground
+  const isVideo = data.media && data.media[0] && data.media[0].src
+
+  const isOrNeeded = data.buttons && data.buttons.length >= 2
+
+  const renderButtonsWithOr = (buttons) => {
+    return buttons.reduce((acc, button, index) => {
+      if (index > 0 && isOrNeeded) {
+        acc.push(
+          <span key={`or-${index}`} className="or-text font-tuner">
+            or
+          </span>
+        )
+      }
+      acc.push(<RenderButton key={index} button={button} index={index} />)
+      return acc
+    }, [])
+  }
 
   return (
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] gap-12 perspective ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
-          }`}
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${
+          isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+        }`}
       >
-        <div className="w-full lg:w-2/5 max-w-prose flex flex-col gap-6 lg:gap-8">
+        <div
+          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 ${
+            isVideo ? 'lg:mr-8' : ''
+          }`}
+        >
           {data.headline && (
             <h3
-              className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance"
+              className="font-tuner inline-block text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
               data-tina-field={tinaField(data, 'headline')}
             >
               {data.headline}
             </h3>
           )}
-          <hr className="!my-0" />
+          <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-6">
+            <hr className="!my-0 w-full" />
+          </div>
           <p
-            className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-prose text-balance"
+            className="text-lg lg:text-xl lg:leading-normal bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-60ch text-balance text-center lg:text-left"
             data-tina-field={tinaField(data, 'text')}
           >
             {data.text}
           </p>
-          {data.actions && <Actions items={data.actions} />}
+          <div className="flex flex-col lg:flex-row md:justify-center lg:justify-start items-center gap-10">
+            {data.buttons && renderButtonsWithOr(data.buttons)}
+          </div>
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`w-full min-w-0 lg:w-1/2 ${(data.media[0].image || data.media[0].src) &&
-              'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
-              }`}
+            className={`relative min-w-0 lg:w-1/2 ${
+              isReversed ? 'lg:pr-8' : ''
+            } ${(data.media[0].image || data.media[0].src) && ''}`}
           >
             {data.media && data.media[0].image && (
-              <img
-                src={data.media[0].image}
-                alt={data.headline}
-                className="w-full h-auto"
-              // width="1120px"
-              // height="800px"
-              />
+              <>
+          <Image
+            src={data.media[0].image}
+            alt={data.headline}
+            className={`w-full h-auto rounded-lg ${isBackgroundEnabled ? 'shadow-panel' : ''} overflow-hidden bg-transparent`}
+            width={1200}
+            height={1200}
+          />
+
+              </>
             )}
             {data.media && data.media[0].src && (
-              <FeatureVideo className="w-full h-auto" src={data.media[0].src} />
+              <>
+                <a
+                  href="https://youtube.com/tinacms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute w-20 h-20 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:left-[-35px] lg:top-[70px] lg:transform-none z-10"
+                  id="play-button-overlay"
+                >
+                  <Image
+                    src={playImage.src}
+                    alt="Play-button-overlay"
+                    className="w-full h-full"
+                    width={72}
+                    height={72}
+                  />
+                </a>
+                <FeatureVideo
+                  className="w-full h-auto pb-4"
+                  src={data.media[0].src}
+                />
+              </>
             )}
             {data.media && data.media[0].code && (
               <div className="flex flex-col justify-start items-start">
                 {data.media[0].file && (
-                  <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-gradient-to-tl from-blue-800 to-blue-900 px-7 py-3 font-tuner">
+                  <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-gradient-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-tuner">
                     {data.media[0].file}
                   </div>
                 )}
                 <div
-                  className={`file relative ${data.media[0].file
-                    ? 'rounded-lg rounded-tl-none'
-                    : 'rounded-lg'
-                    } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
+                  className={`file relative ${
+                    data.media[0].file
+                      ? 'rounded-lg rounded-tl-none'
+                      : 'rounded-lg'
+                  } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-gradient-to-br from-[#333333] via-[#1a1a1a] to-black ${
+                    isBackgroundEnabled ? 'shadow-panel' : ''
+                  }`}
                   style={{
                     fontSize:
                       1.25 * (data.media[0].scale ? data.media[0].scale : 1) +
@@ -89,6 +147,10 @@ export function FeatureBlock({ data, index }) {
         )}
       </div>
       <style jsx>{`
+        .max-w-60ch {
+          max-width: 65ch;
+        }
+
         .pane-container {
           perspective: 1000px;
           -moz-perspective: none;
@@ -113,10 +175,8 @@ export function FeatureBlock({ data, index }) {
           text-wrap: balance;
         }
 
-        /* Code Styles */
-
         :global(.hljs) {
-          font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)			');
+          font-size: unquote('clamp(0.75em,0.676em + 0.37vw, 1em)');
           padding: 1.5em;
           color: var(--blue-250);
           font-weight: medium;
@@ -167,8 +227,14 @@ export function FeaturesBlock({ data, index }) {
           {/* TODO: why is there a type error here */}
           {/* @ts-ignore */}
           {data.features &&
-            data.features.map((data, index) => {
-              return <FeatureBlock data={data} index={index} />
+            data.features.map((featureData, featureIndex) => {
+              return (
+                <FeatureBlock
+                  key={'feature-' + featureIndex}
+                  data={featureData}
+                  index={featureIndex}
+                />
+              )
             })}
         </div>
       </Container>

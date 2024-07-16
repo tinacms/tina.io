@@ -1,5 +1,9 @@
 import type { Template, TinaField } from 'tinacms'
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
+import { act } from '@react-three/fiber'
+import { ModalButton } from 'components/ui'
+import { modalButtonTemplate } from './ModalButton.template'
+import { codeButtonTemplate } from './CodeButton.template'
 
 export const featuresTemplate: Template = {
   label: 'Features',
@@ -26,9 +30,23 @@ export const featuresTemplate: Template = {
           ui: { component: 'textarea' },
           type: 'string',
         },
-        // @ts-ignore
-        actionsTemplate,
-        // Block field with image, video or text as template options
+        {
+          label: 'Buttons',
+          list: true,
+          name: 'buttons',
+          type: 'object',
+          ui: {
+            visualSelector: true,
+            itemProps: (item) => {
+              return { label: item?.label }
+            },
+          },
+          templates: [
+            actionsButtonTemplate as Template,
+            modalButtonTemplate as Template,
+            codeButtonTemplate as Template,
+          ],
+        },
         {
           name: 'media',
           label: 'Media',
@@ -101,6 +119,30 @@ export const featuresTemplate: Template = {
               ],
             },
           ],
+        },
+        {
+          name: 'isReversed',
+          label: 'Text on Right?',
+          description:
+            'This is the position of the text, relative to the media. Off is left, and on is right.',
+          type: 'boolean',
+          ui: {
+            component: 'toggle',
+            parse: (value) => !!value,
+            format: (value) => !!value,
+          },
+        },
+        {
+          name: 'imageBackground',
+          label: 'Image Background',
+          description:
+            'This will toggle the background and bordering of the media. This will only have visible changes if the media has a transparent background.',
+          type: 'boolean',
+          ui: {
+            component: 'toggle',
+            parse: (value) => !!value,
+            format: (value) => !!value,
+          },
         },
       ] as TinaField[],
     },

@@ -26,8 +26,21 @@
             "title": "Framework-Specific Guides",
             "items": [
               {
-                "slug": "/docs/frameworks/nextjs/",
-                "title": "NextJS"
+                "title": "Next.js",
+                "items": [
+                  {
+                    "title": "Overview",
+                    "slug": "/docs/frameworks/next/overview"
+                  },
+                  {
+                    "title": "App Router",
+                    "slug": "/docs/frameworks/next/app-router"
+                  },
+                  {
+                    "title": "Pages Router",
+                    "slug": "/docs/frameworks/next/pages-router"
+                  }
+                ]
               },
               {
                 "slug": "/docs/frameworks/astro",

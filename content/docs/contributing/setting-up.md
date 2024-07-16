@@ -13,6 +13,8 @@ consumes:
 last_edited: '2021-02-18T13:05:33.946Z'
 ---
 
+TODO: These docs are out of date - check out https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md for the latest information
+
 ## Development
 
 To get started:

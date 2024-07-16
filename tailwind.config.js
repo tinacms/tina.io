@@ -62,6 +62,7 @@ module.exports = {
       8: '8px',
     },
     fontSize: {
+      xxs: ['10px', { lineHeight: '1.2' }],
       xs: ['13px', { lineHeight: '1.33' }],
       sm: ['14px', { lineHeight: '1.43' }],
       base: ['16px', { lineHeight: '1.5' }],
@@ -164,11 +165,14 @@ module.exports = {
           800: '#A91D04',
           900: '#861103',
         },
+        success: 'green',
+        warning: 'orange',
+        error: '#D22F2F',
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         tuner: ['tuner-medium', ...defaultTheme.fontFamily.sans],
-        'tuner-light': ['tuner-regular', ...defaultTheme.fontFamily.sans],
+        'tuner-regular': ['tuner-regular', ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',

@@ -30,6 +30,9 @@ import { roadmapGridTemplate } from '../components/blocks/RoadmapGrid.template'
 import { recentPostsTemplate } from '../components/blocks/RecentPosts.template'
 import { testimonialsTemplate } from '../components/blocks/Testimonials.template'
 import { quoteTemplate } from '../components/blocks/Quote.template'
+import { verticalCardsTemplate } from '../components/blocks/VerticalCards.template'
+import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
+import { bookingTemplate } from '../components/blocks/Booking.template'
 
 export const schema = defineSchema({
   collections: [
@@ -52,7 +55,13 @@ export const schema = defineSchema({
           name: 'seo',
           label: 'SEO Information',
           fields: [
-            { type: 'string', label: 'Title', name: 'title' },
+            {
+              type: 'string',
+              label: 'Title',
+              name: 'title',
+              description:
+                '\' | Tina\' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.',
+            },
             {
               type: 'string',
               label: ' Description',
@@ -87,6 +96,9 @@ export const schema = defineSchema({
             recentPostsTemplate as Template,
             testimonialsTemplate as Template,
             quoteTemplate as Template,
+            verticalCardsTemplate as Template,
+            compareBoxTemplate as Template,
+            bookingTemplate as Template,
           ],
         },
       ],
@@ -470,5 +482,41 @@ export const schema = defineSchema({
         },
       ],
     },
+    {
+      name: 'meetingLinks',
+      label: 'Meeting Links',
+      path: 'content/meeting-links',
+      format: 'json',
+      fields: [
+        {
+          name: 'bookingCard',
+          label: 'Booking Card',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.name,
+            }),
+          },
+          fields: [
+            { name: 'name', label: 'Name', type: 'string' },
+            { name: 'description', label: 'Description', type: 'string' },
+            {
+              name: 'image',
+              label: 'Image',
+              type: 'image',
+              description: 'Image headshot for a meeting card',
+            },
+            {
+              name: 'url',
+              label: 'URL',
+              type: 'string',
+              description: 'URL to a meeting link (i.e HubSpot)',
+            },
+          ],
+        },
+      ],
+    },
   ],
 })
+

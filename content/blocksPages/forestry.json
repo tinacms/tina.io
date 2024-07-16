@@ -1,22 +1,24 @@
 {
+  "seo": {
+    "title": "Forestry.io CMS",
+    "description": "The Forestry.io team is now focused on building TinaCMS. If you wish to migrate your Forestry site to Tina, follow the guide below."
+  },
   "blocks": [
     {
       "headline": "Goodbye Forestry.io, Hello TinaCMS",
       "text": "The Forestry.io team is focused on building TinaCMS, the next iteration of our vision. See the migration guide or test it with the following command. ",
-      "actions": [
+      "buttons": [
         {
           "label": "Tina Migration Guide",
           "icon": false,
           "variant": "blue",
           "size": "small",
-          "url": "/docs/forestry/overview/"
+          "url": "/",
+          "_template": "actions"
         },
         {
           "label": "npx create-tina-app@latest",
-          "icon": false,
-          "variant": "command",
-          "size": "medium",
-          "url": "/"
+          "_template": "codeButton"
         }
       ],
       "_template": "hero"
@@ -70,9 +72,5 @@
       "color": "white",
       "_template": "faq"
     }
-  ],
-  "seo": {
-    "title": "Forestry.io CMS",
-    "description": "The Forestry.io team is now focused on building TinaCMS. If you wish to migrate your Forestry site to Tina, follow the guide below."
-  }
+  ]
 }

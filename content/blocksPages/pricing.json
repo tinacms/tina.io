@@ -12,13 +12,14 @@
         "price": "Free Forever",
         "interval": "",
         "body": "* 2 Users\n* 2 Roles\n* No Additional Users\n* Forum Support\n",
-        "actions": [
+        "buttons": [
           {
-            "label": "Sign Up",
+            "label": "Sign-Up",
             "icon": false,
             "variant": "blue",
             "size": "medium",
-            "url": "/"
+            "url": "https://app.tina.io/app.tina.io",
+            "_template": "actions"
           }
         ]
       },
@@ -28,13 +29,14 @@
           "price": "$29",
           "interval": "month",
           "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $9/seat\n* Forum Support\n",
-          "actions": [
+          "buttons": [
             {
               "label": "Sign Up",
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "https://app.tina.io/register"
+              "url": "https://app.tina.io/app.tina.io",
+              "_template": "actions"
             }
           ]
         },
@@ -43,13 +45,14 @@
           "price": "$599",
           "interval": "month",
           "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO\n* [Editorial Workflow](/editorial-workflow \"Editorial Workflow\")\n",
-          "actions": [
+          "buttons": [
             {
               "label": "Sign Up",
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "https://app.tina.io/register"
+              "url": "https://app.tina.io/app.tina.io",
+              "_template": "actions"
             }
           ]
         },
@@ -58,13 +61,14 @@
           "price": "",
           "interval": " ",
           "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO\n* Custom [Editorial Workflows](/editorial-workflow \"Editorial-Workflow\")\n",
-          "actions": [
+          "buttons": [
             {
               "label": "Contact Us",
               "icon": false,
               "variant": "white",
               "size": "medium",
-              "url": "mailto:info@tina.io"
+              "url": "mailto:info@tina.io",
+              "_template": "actions"
             }
           ]
         }

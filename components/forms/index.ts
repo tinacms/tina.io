@@ -1,2 +1,2 @@
-export * from './EmailForm'
+export * from '../modals/EmailForm'
 export * from './TeamsForm'

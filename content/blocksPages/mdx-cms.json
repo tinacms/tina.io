@@ -45,13 +45,14 @@
     {
       "headline": "Ready to transform your MDX projects?",
       "text": "Get started with TinaCMS now.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"

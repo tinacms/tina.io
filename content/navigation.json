@@ -16,12 +16,6 @@
     "label": "Resources",
     "items": [
       {
-        "id": "roadmap",
-        "label": "Roadmap",
-        "href": "/roadmap",
-        "external": false
-      },
-      {
         "id": "blog",
         "label": "Blog",
         "href": "/blog",
@@ -31,6 +25,12 @@
         "label": "Examples",
         "id": "examples",
         "href": "/examples",
+        "external": false
+      }, 
+      {
+        "id": "roadmap",
+        "label": "Roadmap",
+        "href": "/roadmap",
         "external": false
       },
       {
@@ -75,6 +75,12 @@
     "id": "enterprise",
     "label": "Enterprise",
     "href": "/enterprise",
+    "external": false
+  },
+  {
+    "id": "tinacloud",
+    "label": "My TinaCloud",
+    "href": "https://app.tina.io/signin",
     "external": false
   }
 ]

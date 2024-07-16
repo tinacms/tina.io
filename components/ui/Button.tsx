@@ -67,18 +67,39 @@ export const LinkButton = ({
   ...props
 }) => {
   return (
-    <Link legacyBehavior href={link} passHref>
-      <a
-        className={`${baseClasses} ${
-          colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
-        } ${
-          sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
-        } ${className}`}
-        {...props}
-      >
-        {children}
-      </a>
+    <Link
+      href={link}
+      passHref
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+      } ${
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+      } ${className}`}
+      {...props}
+    >
+      {children}
     </Link>
+  )
+}
+
+export const ModalButton = ({
+  color = 'seafoam',
+  size = 'medium',
+  className = '',
+  children,
+  ...props
+}) => {
+  return (
+    <button
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+      } ${
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+      } ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
   )
 }
 

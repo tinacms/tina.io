@@ -1,6 +1,7 @@
+import RenderButton from 'utils/renderButtonArrayHelper'
 import { RichTextWrapper } from '../layout/RichTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 const PricingCard = ({ data, single = false }) => {
@@ -30,7 +31,10 @@ const PricingCard = ({ data, single = false }) => {
             {/* @ts-ignore */}
             {data.body && <TinaMarkdown content={data.body} />}
           </div>
-          {data.actions && <Actions items={data.actions} />}
+          {data.buttons &&
+              data.buttons.map((button, index) => (
+                <RenderButton key={index} button={button} index={index} />
+              ))}
         </div>
       </div>
       <style jsx>{`
