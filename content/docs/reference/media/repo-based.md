@@ -93,7 +93,7 @@ export default defineConfig({
 })
 ```
 
-### `accept` (String\[])
+### `accept` (List<String>)
 
 This property determines the filetypes that can be uploaded.
 
