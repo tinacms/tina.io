@@ -77,7 +77,7 @@ The following file types are supported by default
 | Videos                                                     | `video/*`                                                    | .mp4, .avi, .mkv, etc.         |
 
 
-If you would like to specify your own allowed file types, add the following below the  **`tina`** property
+If you would like to specify your own allowed file types, add the following to the  **`media`** property
 
 ```javascript
 //tina/config.{ts,js}
