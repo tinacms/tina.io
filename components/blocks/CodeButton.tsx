@@ -2,8 +2,7 @@ import { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { BiCopy } from 'react-icons/bi';
 import { copyToClipboard } from '../../components/layout/MarkdownContent';
-import { sanitizeLabel } from 'utils/sanitizeLabel'
-
+import { sanitizeLabel } from 'utils/sanitizeLabel';
 
 export const CodeButton = ({ children, label, id, ...props }) => {
   const [copied, setCopied] = useState(false);
@@ -16,12 +15,14 @@ export const CodeButton = ({ children, label, id, ...props }) => {
     }, 2000);
   };
 
+  const buttonId = id || sanitizeLabel(label);
+
   return (
     <>
       <button
         className="code-button event-cmd-button"
         onClick={clickEvent}
-        id={sanitizeLabel(label)}
+        id={buttonId}
         {...props}
       >
         <div className="content">
@@ -33,7 +34,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
             <BiCopy />
           </span>
         </div>
-        <span id={id} className={`success-message ${copied ? 'visible' : ''}`}>
+        <span id={buttonId} className={`success-message ${copied ? 'visible' : ''}`}>
           Copied to clipboard!
         </span>
       </button>
