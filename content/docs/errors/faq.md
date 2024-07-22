@@ -8,7 +8,7 @@ When using Tina Cloud without [Editorial Workflow](/editorial-workflow), you nee
 
 If it cannot, you will see an error of the following form:
 
-```diff
+```text
 Tina caught an error while updating the page:
 
 Error: Unable to fetch, errors:
