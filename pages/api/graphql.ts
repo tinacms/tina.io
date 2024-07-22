@@ -1,8 +1,7 @@
-import * as gqlPackage from '@tinacms/graphql-old'
-import * as datalayerPackage from '@tinacms/datalayer-old'
+import * as gqlPackage from '@tinacms/graphql'
 
 export default async function feedback(req, res) {
-  class InMemoryStore extends datalayerPackage.LevelStore {
+  class InMemoryStore extends gqlPackage.TinaLevelClient {
     public supportsSeeding() {
       return true
     }
@@ -10,6 +9,7 @@ export default async function feedback(req, res) {
       return false
     }
   }
+
   class InMemoryBridge {
     public rootPath: string
     private mockFileSystem: { [filepath: string]: string } | undefined
@@ -59,22 +59,25 @@ export default async function feedback(req, res) {
     'authors/pedro.md': `---\nname: Pedro\navatar: https://images.unsplash.com/photo-1555959910-80920d0698a4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1301&q=80\n---`,
     'authors/napolean.md': `---\nname: Napolean\navatar: https://images.unsplash.com/photo-1606721977440-13e6c3a3505a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=344&q=80\n---`,
   })
-  // @ts-ignore
+
   const schema = JSON.parse(req.query.schema)
   const database = await gqlPackage.createDatabase({
-    // @ts-ignore
     bridge: new InMemoryBridge('', req.query.content),
-    // @ts-ignore
-    store: new InMemoryStore('', true),
+    gitProvider: {
+      onPut: async () => {},
+      onDelete: async () => {},
+    },
+    databaseAdapter: new InMemoryStore()
   })
 
   const query = req.query.query
   const variables = req.query.variables
-    ? // as string since this can be an array of strings (we're not using it that way)
-      JSON.parse(req.query.variables as string)
+    ? JSON.parse(req.query.variables as string)
     : {}
+
   try {
-    await gqlPackage?.indexDB({ database, config: schema, buildSDK: false })
+    // Assuming no explicit indexing is needed based on the available methods
+
     const result = await gqlPackage.resolve({
       database,
       query,

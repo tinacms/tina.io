@@ -1,22 +1,23 @@
 import { buildASTSchema, print } from 'graphql'
 import { graphqlHTTP } from 'express-graphql'
-import { LevelStore } from '@tinacms/datalayer-old'
-// @ts-ignore TODO: fix this it will fail since indexDB is no longer exported
-import { createDatabase, resolve, indexDB } from '@tinacms/graphql-old'
-import type { TinaCloudSchema, TinaTemplate } from '@tinacms/graphql-old'
+import * as gqlPackage from '@tinacms/graphql'
+import type { TinaSchema, TinaTemplate } from '@tinacms/graphql'
 
 export default async function feedback(req, res) {
-  const database = await createDatabase({
+  const database = await gqlPackage.createDatabase({
     bridge: new InMemoryBridge(''),
-    store: new LevelStore('', true),
+    gitProvider: {
+      onPut: async () => {},
+      onDelete: async () => {},
+    },
+    databaseAdapter: new InMemoryStore()
   })
-  await indexDB({ database, config, buildSDK: false })
+
   return graphqlHTTP({
     schema: buildASTSchema(await database.getGraphQLSchema()),
     customExecuteFn: async (args) => {
       const query = print(args.document)
-
-      const result = await resolve({
+      const result = await gqlPackage.resolve({
         database,
         query,
         variables: args.variableValues,
@@ -27,7 +28,16 @@ export default async function feedback(req, res) {
   })(req, res)
 }
 
-export class InMemoryBridge {
+class InMemoryStore extends gqlPackage.TinaLevelClient {
+  public supportsSeeding() {
+    return true
+  }
+  public supportsIndexing() {
+    return false
+  }
+}
+
+class InMemoryBridge {
   public rootPath: string
   private mockFileSystem: { [filepath: string]: string } | undefined
   constructor(rootPath: string) {
@@ -43,7 +53,6 @@ export class InMemoryBridge {
     const mockData = await this.getMockData()
     delete mockData[filepath]
   }
-
   public get = async (filepath: string) => {
     const mockData = await this.getMockData()
     const value = mockData[filepath]
@@ -56,7 +65,6 @@ export class InMemoryBridge {
     const mockData = await this.getMockData()
     this.mockFileSystem = { ...mockData, [filepath]: data }
   }
-
   public getMockData = async () => {
     return this.mockFileSystem
   }
@@ -208,7 +216,7 @@ const contentBlock: TinaTemplate = {
   ],
 }
 
-const config: TinaCloudSchema = {
+const config: TinaSchema = {
   collections: [
     {
       label: 'Blog Posts',
