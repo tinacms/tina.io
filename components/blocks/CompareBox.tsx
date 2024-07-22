@@ -228,7 +228,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
     slidesToShow: 6,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: '40px',
+    centerPadding: '20px',
     responsive: [
       {
         breakpoint: 1024,
