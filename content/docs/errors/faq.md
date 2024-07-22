@@ -4,7 +4,7 @@ title: 'FAQ: Content API Errors'
 
 ## There was a problem saving your document
 
-When using Tina Cloud without [Editorial Workflow](https://tina.io/editorial-workflow/), you need to ensure that the [Tina Cloud App](https://github.com/apps/tina-cloud-app) is able to commit to the selected branch of the repository.
+When using Tina Cloud without [Editorial Workflow](/editorial-workflow), you need to ensure that the [Tina Cloud App](https://github.com/apps/tina-cloud-app) is able to commit to the selected branch of the repository.
 
 If it cannot, you will see an error of the following form:
 
@@ -18,7 +18,7 @@ Error: Unable to fetch, errors:
 To fix this issue, either:
 
 - [Modify the branch's protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule#editing-a-branch-protection-rule) to allow the Tina Cloud App to bypass the [require a pull request before merging](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging) rule, or
-- Enable [Editorial Workflow](https://tina.io/editorial-workflow/) to create PRs on the branch.
+- Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch.
 
 ## Invalid or undefined branch
 
