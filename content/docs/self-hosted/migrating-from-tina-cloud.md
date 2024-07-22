@@ -1,6 +1,8 @@
 ---
+id: /docs/self-hosted/migrating-from-tina-cloud
 title: Migrating from Tina Cloud to Self-Hosted
-id: '/docs/self-hosted/migrating-from-tina-cloud'
+prev: /docs/self-hosted/manual-setup
+next: /docs/self-hosted/querying-data
 ---
 
 The easiest way to migrate from Tina Cloud to self-hosted is to use [`@tinacms/cli init backend`](/docs/self-hosted/existing-site) (Next JS only). If you are not using Next.js, you can [check out the manual setup guide](/docs/self-hosted/manual-setup).

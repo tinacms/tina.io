@@ -1,15 +1,16 @@
 ---
+id: /docs/tina-cloud/dashboard/users
 title: Project Collaborators
-id: '/docs/tina-cloud/dashboard/users'
-next: '/docs/tina-cloud/dashboard/organizations'
+prev: /docs/tina-cloud/dashboard/projects
+next: /docs/tina-cloud/dashboard/organizations
 ---
 
 The **Collaborations** tab of a project allows users manage a project.
 
 Project collaborators can have one of the following project-level roles:
 
-- Editor
-- Admin
+* Editor
+* Admin
 
 The following roles/permissions apply to "Project Admins" & "Project Editors":
 
@@ -17,8 +18,8 @@ The following roles/permissions apply to "Project Admins" & "Project Editors":
 | ---------------------------- | ------------- | -------------- |
 | Edit Project Content         | ✔️            | ✔️             |
 | View Project Overview        | ✔️            | ✔️             |
-| Manage Project Configuration | ✔️            | ❌             |
-| Manage Project Collaborators | ✔️            | ❌             |
+| Manage Project Configuration | ✔️            | ❌              |
+| Manage Project Collaborators | ✔️            | ❌              |
 
 Both Admins and Editors are authorized to access the editing route on a Tina configured site. Both users can save content changes directly to a site's GitHub repository using TinaCMS.
 

@@ -1,6 +1,7 @@
 ---
-title: Updating a document
 id: /docs/graphql/queries/update-document
+title: Updating a document
+prev: /docs/graphql/queries/advanced/limitations
 next: /docs/graphql/queries/add-document
 ---
 

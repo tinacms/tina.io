@@ -1,6 +1,7 @@
 ---
 title: Media Overview
 last_edited: '2022-06-29T00:00:00.000Z'
+prev: /docs/cli-overview
 next: /docs/reference/media/repo-based
 ---
 
@@ -48,7 +49,7 @@ TinaCMS also supports pluggable external media providers.
 
 ## Video Tutorial
 
-For those who prefer to learn from video, you can check out a snippet on media from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+For those who prefer to learn from video, you can check out a snippet on media from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
 <div style="position:relative;padding-top:56.25%;">
   <iframe width="560" frameborder="0" allowfullscreen

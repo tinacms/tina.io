@@ -1,7 +1,9 @@
 ---
-title: Content Delivery
 id: /docs/reference/content-api/content-delivery
+title: Content Delivery
 last_edited: '2022-06-15T15:51:56.737Z'
+prev: /docs/graphql/queries/add-document
+next: /docs/reference/content-api/data-layer
 ---
 
 Requests can be made to the Tina Content API with Read Only Tokens. In the majority of cases, these requests are made using the [Tina client](/docs/features/data-fetching/#making-requests-with-the-tina-client), however you can also hit the API directly.

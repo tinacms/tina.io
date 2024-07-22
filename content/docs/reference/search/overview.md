@@ -1,9 +1,11 @@
 ---
 title: Search Overview
 last_edited: '2023-06-08T04:00:00.000Z'
+prev: /docs/reference/media/external/s3
+next: /docs/graphql/overview
 ---
 
-TinaCMS provides built-in search functionality for content. This is useful for allowing editors to quickly finding content in a site. Tina Cloud's content search is powered by [Fergus McDowall](https://github.com/fergiemcdowall 'Fergus McDowall')'s [search-index](https://www.npmjs.com/package/search-index 'search-index') library.
+TinaCMS provides built-in search functionality for content. This is useful for allowing editors to quickly finding content in a site. Tina Cloud's content search is powered by [Fergus McDowall](https://github.com/fergiemcdowall "Fergus McDowall")'s [search-index](https://www.npmjs.com/package/search-index "search-index") library.
 
 > Note: Search is not currently supported in self-hosted Tina.
 
@@ -35,7 +37,7 @@ export default defineConfig({
 
 | Property                           | Description                                                                                                                                                                                                 |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `search.tina.indexerToken`         | Tina Cloud search token (_required_)                                                                                                                                                                        |
+| `search.tina.indexerToken`         | Tina Cloud search token (*required*)                                                                                                                                                                        |
 | `search.tina.stopwordLanguages`    | Optional array of string stopword languages. Defaults to `['eng']`. See the [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub repository for a full list of supported languages.  |
 | `search.indexBatchSize`            | Used by the indexing process to determine the number of documents to index per request. Defaults to `100`.                                                                                                  |
 | `search.maxSearchIndexFieldLength` | For variable length text fields, this controls how much of the text is considered when indexing. A higher value will increase the indexing time and size of the search index. Defaults to `100` characters. |

@@ -1,7 +1,8 @@
 ---
+id: /docs/graphql/overview
 title: The GraphQL API
-id: '/docs/graphql/overview'
-next: '/docs/graphql/cli'
+prev: /docs/reference/search/overview
+next: /docs/graphql/cli
 ---
 
 TinaCMS is a git-backed content management system, that generates a GraphQL API using your local filesystem as the database.

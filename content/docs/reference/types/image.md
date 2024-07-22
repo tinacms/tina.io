@@ -1,6 +1,8 @@
 ---
 title: The "image" field
 last_edited: '2022-06-15T15:51:56.737Z'
+prev: /docs/reference/types/boolean
+next: /docs/reference/types/reference
 ---
 
 # `image`

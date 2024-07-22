@@ -1,6 +1,8 @@
 ---
 title: The "datetime" field
 last_edited: '2021-07-27T15:51:56.737Z'
+prev: /docs/reference/types/number
+next: /docs/reference/types/boolean
 ---
 
 ```ts

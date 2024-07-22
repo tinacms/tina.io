@@ -1,6 +1,7 @@
 ---
-title: Querying a Single Document
 id: /docs/graphql/queries/get-document
+title: Querying a Single Document
+prev: /docs/graphql/queries
 next: /docs/graphql/queries/query-documents
 ---
 
@@ -8,7 +9,7 @@ next: /docs/graphql/queries/query-documents
 
 Get a single document, providing it's `relativePath` as the argument.
 
-- `relativePath` is the portion of the path _relative_ to the `collection`'s path.
+* `relativePath` is the portion of the path *relative* to the `collection`'s path.
 
 In this example, the `post` collection has a path of `content/posts` and your document can be found at `content/posts/voteForPedro.md` giving `relativePath: "voteForPedro.md"`. If your item was at `content/posts/nested-folder/voteForPedro.md` you'd specify: `relativePath: "nested-folder/voteForPedro.md"`.
 
@@ -26,14 +27,14 @@ In a collection, there are a few fields that are common to all documents. These 
 
 The `_sys` field is an object with the following fields:
 
-- `filename`: The name of the file without the extension
-- `basename`: The name of the file with the extension
-- `path`: The full path of the file relative to the project root
-- `breadcrumbs`: An array of the parent folders of the file
-- `relativePath`: The path of the file relative to the collection path
-- `extension`: The extension of the file
-- `template`: The template of the document (or the name of the collection if not using `templates`)
-- `collection`: Information about the collection
+* `filename`: The name of the file without the extension
+* `basename`: The name of the file with the extension
+* `path`: The full path of the file relative to the project root
+* `breadcrumbs`: An array of the parent folders of the file
+* `relativePath`: The path of the file relative to the collection path
+* `extension`: The extension of the file
+* `template`: The template of the document (or the name of the collection if not using `templates`)
+* `collection`: Information about the collection
 
 ### Example with a nester folder
 

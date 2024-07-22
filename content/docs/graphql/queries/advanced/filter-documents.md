@@ -1,6 +1,7 @@
 ---
-title: Filtering a query result
 id: /docs/graphql/queries/advanced/filter-documents
+title: Filtering a query result
+prev: /docs/graphql/queries/query-documents
 next: /docs/graphql/queries/advanced/sorting
 ---
 
@@ -14,17 +15,17 @@ Conditions can be either "binary" or "ternary". A binary condition is composed o
 
 ## Operator types
 
-| Key        | Behavior                 | Type(s)                       |
-| ---------- | ------------------------ | :---------------------------- |
-| eq         | Equals                   | string, number, boolean       |
-| in         | One of                   | string[], number[], boolean[] |
-| gt         | Greater than             | string, number                |
-| gte        | Greater than or equal to | string, number                |
-| lt         | Less than                | string, number                |
-| lte        | Less than or equal to    | string, number                |
-| startsWith | Starts with              | string                        |
-| after      | After                    | datetime                      |
-| before     | Before                   | datetime                      |
+| Key        | Behavior                 | Type(s)                          |
+| :--------- | ------------------------ | -------------------------------- |
+| eq         | Equals                   | string, number, boolean          |
+| in         | One of                   | string\[], number\[], boolean\[] |
+| gt         | Greater than             | string, number                   |
+| gte        | Greater than or equal to | string, number                   |
+| lt         | Less than                | string, number                   |
+| lte        | Less than or equal to    | string, number                   |
+| startsWith | Starts with              | string                           |
+| after      | After                    | datetime                         |
+| before     | Before                   | datetime                         |
 
 > Only `gt`, `gte`, `lt`, `lte`, `after`, `before` may be used in ternary conditions.
 

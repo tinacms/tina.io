@@ -1,6 +1,8 @@
 ---
 title: Data Layer
 last_edited: '2022-06-15T15:51:56.737Z'
+prev: /docs/reference/content-api/content-delivery
+next: /docs/extending-tina/edit-state
 ---
 
 TinaCMS implements a database layer between the Tina GraphQL API and the

@@ -1,6 +1,8 @@
 ---
 title: The "boolean" field
 last_edited: '2021-07-27T15:51:56.737Z'
+prev: /docs/reference/types/datetime
+next: /docs/reference/types/image
 ---
 
 ## `boolean` type

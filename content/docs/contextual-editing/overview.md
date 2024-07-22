@@ -1,8 +1,8 @@
 ---
+id: /docs/contextual-editing/overview
 title: Visual Editing
-id: '/docs/contextual-editing/overview'
-prev: null
-next: '/docs/contextual-editing/react'
+prev: /docs/features/data-fetching
+next: /docs/contextual-editing/react
 ---
 
 Out of the box, once you define a new collection in Tina, its content becomes available through the "basic editor".
@@ -19,7 +19,7 @@ To add visual editing to a page, you'll need to hydrate the pages data. In React
 
 ## Video Tutorial
 
-For those who prefer to learn from video, you can check out a snippet on Visual Editing from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+For those who prefer to learn from video, you can check out a snippet on Visual Editing from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
 <div style="position:relative;padding-top:56.25%;">
   <iframe width="560" frameborder="0" allowfullscreen

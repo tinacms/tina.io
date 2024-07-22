@@ -1,6 +1,7 @@
 ---
-title: Query limitations
 id: /docs/graphql/queries/advanced/limitations
+title: Query limitations
+prev: /docs/graphql/queries/advanced/pagination
 next: /docs/graphql/queries/update-document
 ---
 
@@ -10,9 +11,9 @@ There are a number of limitations to keep in mind when leveraging query function
 
 Some filter operations are not currently supported:
 
-- Combining conditions using a boolean `OR` operation
-- Negating conditions using a boolean `NOT` operation
-- `exists` operation
+* Combining conditions using a boolean `OR` operation
+* Negating conditions using a boolean `NOT` operation
+* `exists` operation
 
 ## Numeric value handling
 

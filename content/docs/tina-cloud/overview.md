@@ -1,15 +1,17 @@
 ---
+id: /docs/tina-cloud/overview
 title: Going to Production with Tina Cloud
-id: '/docs/tina-cloud/overview'
+prev: /docs/tina-cloud
+next: /docs/tina-cloud/dashboard
 ---
 
 To deploy your site to production, you'll need to connect Tina to a hosted backend. This doc will walk you through the steps to get your site from [running locally to running for production](/docs/tina-cloud/faq/#what-is-local-mode-vs-prod-mode).
 
 ## Prerequisites
 
-- Make sure your site is on Github and all changes are pushed (including `tina/tina-lock.json`).
-- Make sure you have a [Tina Cloud](https://app.tina.io) account.
-  - Check out the [Tina Cloud Dashboard](/docs/tina-cloud/dashboard) docs for more information.
+* Make sure your site is on Github and all changes are pushed (including `tina/tina-lock.json`).
+* Make sure you have a [Tina Cloud](https://app.tina.io) account.
+  * Check out the [Tina Cloud Dashboard](/docs/tina-cloud/dashboard) docs for more information.
 
 ## Make a Tina Cloud Project
 
@@ -25,10 +27,10 @@ npx @tinacms/cli init backend
 
 This will
 
-- Ask you for your ClientId: Can be found in the "Overview" tab of your project.
-- Ask you for a Read Only Token: Can be found in the "Tokens" tab of your project.
-- Populate your `.env` file with the necessary environment variables to connect to Tina Cloud.
-  - If you are using a different environment variable file, OR you have an existing .env fileyou will need to copy these variables over manually.
+* Ask you for your ClientId: Can be found in the "Overview" tab of your project.
+* Ask you for a Read Only Token: Can be found in the "Tokens" tab of your project.
+* Populate your `.env` file with the necessary environment variables to connect to Tina Cloud.
+  * If you are using a different environment variable file, OR you have an existing .env fileyou will need to copy these variables over manually.
 
 ## Ensure ClientId and Token are Passed to the Config
 
@@ -120,6 +122,6 @@ In general, you'll want to make sure that your build command is running `tinacms
 
 We have docs for some popular deployment options:
 
-- [Vercel](/docs/tina-cloud/deployment-options/vercel)
-- [Netlify](/docs/tina-cloud/deployment-options/netlify)
-- [GitHub Pages](/docs/tina-cloud/deployment-options/github-pages)
+* [Vercel](/docs/tina-cloud/deployment-options/vercel)
+* [Netlify](/docs/tina-cloud/deployment-options/netlify)
+* [GitHub Pages](/docs/tina-cloud/deployment-options/github-pages)
