@@ -9,7 +9,6 @@ import path from 'path';
 import '../styles/tailwind.css';
 import { useEditState } from 'tinacms/dist/react';
 import { CloudBanner } from '../components/layout/CloudBanner';
-import dynamic from 'next/dynamic';
 import ChatBaseBot from '../components/ui/TinaChatBot';
 import ConsentBanner from '../components/ui/ConsentBanner';
 import Cookies from 'js-cookie';
@@ -53,6 +52,7 @@ const MainLayout = ({ Component, pageProps }) => {
       <Head>
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="theme-color" content="#E6FAF8" />
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={data.siteUrl + "/rss.xml"} />
       </Head>
       <GlobalStyle />
       <ConsentBanner />
