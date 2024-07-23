@@ -19,7 +19,7 @@ export const DocsLayout = React.memo(
       <>
         <DefaultSeo
           openGraph={{
-            url: 'https://tinacms.org' + router.asPath,
+            url: 'https://tina.io' + router.asPath,
           }}
         />
         <DocsLayoutGrid>

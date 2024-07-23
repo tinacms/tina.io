@@ -1,28 +1,27 @@
-import React, { useEffect } from 'react';
-import App from 'next/app';
-import Head from 'next/head';
-import { DefaultSeo } from 'next-seo';
-import data from '../content/siteConfig.json';
-import { GlobalStyle } from 'components/styles/GlobalStyle';
-import 'components/styles/fontImports.css';
-import path from 'path';
-import '../styles/tailwind.css';
-import { useEditState } from 'tinacms/dist/react';
-import { CloudBanner } from '../components/layout/CloudBanner';
-import dynamic from 'next/dynamic';
-import ChatBaseBot from '../components/ui/TinaChatBot';
-import ConsentBanner from '../components/ui/ConsentBanner';
-import Cookies from 'js-cookie';
+import React, { useEffect } from 'react'
+import App from 'next/app'
+import Head from 'next/head'
+import { DefaultSeo } from 'next-seo'
+import data from '../content/siteConfig.json'
+import { GlobalStyle } from 'components/styles/GlobalStyle'
+import 'components/styles/fontImports.css'
+import path from 'path'
+import '../styles/tailwind.css'
+import { useEditState } from 'tinacms/dist/react'
+import { CloudBanner } from '../components/layout/CloudBanner'
+import ChatBaseBot from '../components/ui/TinaChatBot'
+import ConsentBanner from '../components/ui/ConsentBanner'
+import Cookies from 'js-cookie'
 
-path.resolve('./content/');
+path.resolve('./content/')
 
 const MainLayout = ({ Component, pageProps }) => {
   useEffect(() => {
-    const consentGiven = Cookies.get('consentGiven');
+    const consentGiven = Cookies.get('consentGiven')
     if (consentGiven) {
-      const consentState = JSON.parse(consentGiven);
+      const consentState = JSON.parse(consentGiven)
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -37,7 +36,7 @@ const MainLayout = ({ Component, pageProps }) => {
           site_name: data.title,
           images: [
             {
-              url: 'https://tinacms.org/img/tina-og.png',
+              url: 'https://tina.io/img/tina-og.png',
               width: 1200,
               height: 628,
               alt: `Tina - The Markdown CMS`,
@@ -53,6 +52,12 @@ const MainLayout = ({ Component, pageProps }) => {
       <Head>
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="theme-color" content="#E6FAF8" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS Feed"
+          href={data.siteUrl + '/rss.xml'}
+        />
       </Head>
       <GlobalStyle />
       <ConsentBanner />
@@ -61,24 +66,24 @@ const MainLayout = ({ Component, pageProps }) => {
       <Component {...pageProps} />
       <ChatBaseBot />
     </>
-  );
-};
+  )
+}
 
 const AdminLink = () => {
-  const { edit } = useEditState();
-  const [showAdminLink, setShowAdminLink] = React.useState(false);
+  const { edit } = useEditState()
+  const [showAdminLink, setShowAdminLink] = React.useState(false)
 
   useEffect(() => {
     setShowAdminLink(
       !edit &&
         JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
           ?.access_token
-    );
-  }, [edit]);
+    )
+  }, [edit])
 
   const handleDismiss = () => {
-    setShowAdminLink(false);
-  };
+    setShowAdminLink(false)
+  }
 
   return (
     <>
@@ -96,15 +101,15 @@ const AdminLink = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
 // TODO: Probably should use hooks here
 class Site extends App {
   render() {
-    const { Component, pageProps } = this.props;
-    return <MainLayout Component={Component} pageProps={pageProps} />;
+    const { Component, pageProps } = this.props
+    return <MainLayout Component={Component} pageProps={pageProps} />
   }
 }
 
-export default Site;
+export default Site
