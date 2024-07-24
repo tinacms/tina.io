@@ -128,16 +128,16 @@ export const getStaticProps: GetStaticProps = async function (props) {
 export const getStaticPaths: GetStaticPaths = async function () {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
-  const files = await fg(`${contentDir}**/*.md`)
+  const files = await fg(`${contentDir}**/*.mdx`)
   return {
     fallback: false,
     paths: files
       .filter(
         (file) =>
-          !file.endsWith('index.md') && !file.endsWith('product-tour.md')
+          !file.endsWith('index.mdx') && !file.endsWith('product-tour.mdx')
       )
       .map((file) => {
-        const path = file.substring(contentDir.length, file.length - 3)
+        const path = file.substring(contentDir.length, file.length - 4)
         return { params: { slug: path.split('/') } }
       }),
   }

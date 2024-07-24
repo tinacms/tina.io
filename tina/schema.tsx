@@ -107,7 +107,7 @@ export const schema = defineSchema({
       name: 'doc',
       label: 'Docs',
       path: 'content/docs',
-      format: 'md',
+      format: 'mdx',
       fields: [
         {
           name: 'title',
