@@ -47,7 +47,7 @@
           "body": "* 2 Users\n* 2 Roles\n* No Additional users\n* Forum Support\n",
           "buttons": [
             {
-              "label": "Sign up",
+              "label": "Sign Up",
               "icon": false,
               "variant": "blue",
               "size": "medium",
