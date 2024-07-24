@@ -42,7 +42,7 @@ TinaCloud allows for changing the content branch at runtime, a feature managed t
 
 This limitation means that commands like:
 
-```ts
+```javascript
 client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 ```
 
@@ -139,9 +139,9 @@ The most common reasons for this issue are:
 
 ## How do I resolve "The local GraphQL schema doesn't match the remote GraphQL schema." errors?
 
-If you are getting this error in your build logs, it means that the tina/tina-lock.json in your deployed site doesn't match the version that is in TinaCloud. To resolve it, make sure you have latest versions of @tinacms/cli and tinacms in your project, and then run the dev command locally. Commit any changes to the tina/tina-lock.json and push those to the git repository linked in TinaCloud.
+If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud. To resolve it, make sure you have latest versions of `@tinacms/cli` and tinacms in your project, and then run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
 
-If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of tinacms and @tinacms/cli on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the tina/tina-lock.json and push those to the git repository linked in TinaCloud.
+If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of \`tinacms\` and `@tinacms/cli` on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
 
 ## How do I resolve errors caused by unindexed branches?
 
@@ -160,7 +160,7 @@ When you run `tinacms dev` locally, Tina will generate a development admin/index
 
 ### Site is building on a sub-path
 
-There is a known limitation where Tinacms doesn't load assets correctly when the admin is deployed to a sub-path: (`https://jamespohalloran.github.io/my-site-root/admin/` for example). To resolve the issue, set the `build.basePath` property to value of the sub-path (e.g. `my-site-root`).
+There is a known limitation where Tinacms doesn't load assets correctly when the admin is deployed to a sub-path: (e.g. `https://jamespohalloran.github.io/my-site-root/admin/`). To resolve the issue, set the `build.basePath` property to value of the sub-path (e.g. `my-site-root`).
 
 ## Enabling co-author on Git commits
 
