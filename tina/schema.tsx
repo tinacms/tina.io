@@ -145,7 +145,7 @@ export const schema = defineSchema({
       name: 'post',
       label: 'Blog Posts',
       path: 'content/blog',
-      format: 'md',
+      format: 'mdx',
       fields: [
         {
           type: 'string',
