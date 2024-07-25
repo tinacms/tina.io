@@ -20,11 +20,23 @@ We are excited to announce the release of `tinacms@2.1.0` and `@tinacms/cli@1.5.
 5. **New `toolbarOverride` Option for Rich Text Fields**
    * A new `toolbarOverride` option has been added to rich text fields, giving you greater control over your editor toolbar configurations. Checkout the [docs](/docs/reference/types/rich-text/) for more info
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1721881770/blog-media/2.1/ray-so-export_3_x7baul.png)
+:::code-snippet{open=true url="/img/code-snippets/rich-text-toolbar-override.png"}
 
+### Toolbar Override
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1721881650/blog-media/2.1/SCR-20240725-mvmu_gfqxxv.png)
+Change what you want to display and the order it is displayed in the editor
 
+```ts
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+  toolbarOverride: ["heading", "bold", "italic"],
+}
+```
+
+:::
 
 6. **Enhanced Media Uploads with Cloudinary Support**
    * The default media upload types now include support for Cloudinary files, allowing you to upload videos and other media directly through the media manager.
