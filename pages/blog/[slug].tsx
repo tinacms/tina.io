@@ -303,7 +303,7 @@ export const getStaticProps: GetStaticProps = async function ({
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  const vars = { relativePath: `${slug}.md` }
+  const vars = { relativePath: `${slug}.mdx` }
   const res = await client.queries.getExpandedPostDocument(vars)
 
   return {
@@ -317,7 +317,7 @@ export const getStaticProps: GetStaticProps = async function ({
 }
 
 export const getStaticPaths: GetStaticPaths = async function () {
-  const blogs = await fg(`./content/blog/**/*.md`)
+  const blogs = await fg(`./content/blog/**/*.mdx`)
   return {
     paths: blogs.map((file) => {
       const slug = fileToUrl(file, 'blog')

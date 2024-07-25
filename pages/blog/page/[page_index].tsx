@@ -66,7 +66,7 @@ const POSTS_PER_PAGE = 8
 export const getStaticPaths: GetStaticPaths = async function () {
   const fg = require('fast-glob')
   const contentDir = './content/blog/'
-  const posts = await fg(`${contentDir}**/*.md`)
+  const posts = await fg(`${contentDir}**/*.mdx`)
 
   const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
 

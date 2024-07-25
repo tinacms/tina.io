@@ -1,0 +1,69 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS Logo and Brand Assets",
+      "text": "",
+      "margin": "",
+      "spacing": "gap-12",
+      "buttons": [
+        {
+          "label": "Download Zip",
+          "icon": false,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://drive.google.com/file/d/1giltlZmy7nTA19Z0zRXDpejwfUYeeNHw/view?usp=drive_link",
+          "_template": "actions"
+        }
+      ],
+      "_template": "hero"
+    },
+    {
+      "features": [
+        {
+          "headline": "Logos",
+          "text": "Download the SVG and PNG logo kit",
+          "buttons": [
+            {
+              "label": "Download",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://drive.google.com/file/d/19et9HDMaTQL54tNbnun2JetmjHZnqnKf/view?usp=drive_link",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1693577211/logo-black-on-background-min_j7zxie.png",
+              "_template": "image"
+            }
+          ],
+          "imageBackground": true
+        },
+        {
+          "headline": "Backgrounds",
+          "text": "Download TinaCMS official backgrounds and dividers",
+          "buttons": [
+            {
+              "label": "Download Zip",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://drive.google.com/file/d/1qkuje4otH-T9Q_2KRFvVeiY5gxiTfg8a/view?usp=drive_link",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1693578367/background-min_nhs6ao.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": true
+        }
+      ],
+      "_template": "features"
+    }
+  ]
+}

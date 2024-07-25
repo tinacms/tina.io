@@ -10,7 +10,8 @@ interface DynamicLinkProps extends ExtraProps {
 
 export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
   return (
-    <Link href={href} {...props}>
+    //Work around for using legacyBehaviour so that anchors in HTML in MDX files do not cause legacy errors
+    <Link href={href} {...props} legacyBehavior>
       {children}
     </Link>
   )

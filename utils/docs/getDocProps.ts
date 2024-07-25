@@ -12,7 +12,7 @@ export async function getDocsNav(preview: boolean, previewData: any) {
 export async function getDocProps({ preview, previewData }: any, slug: string) {
   const currentDoc = (
     await getMarkdownPreviewProps(
-      `content/docs/${slug}.md`,
+      `content/docs/${slug}.mdx`,
       preview,
       previewData
     )
@@ -54,7 +54,7 @@ export async function getPageRef(
     }
   }
   const prevDoc = await getMarkdownFile(
-    `content${slug}.md`,
+    `content${slug}.mdx`,
     preview,
     previewData
   )
