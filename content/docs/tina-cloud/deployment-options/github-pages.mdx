@@ -1,18 +1,20 @@
 ---
-id: '/docs/tina-cloud/deployment-options/github-pages'
+id: /docs/tina-cloud/deployment-options/github-pages
 title: Deploying to GitHub Pages
+nextP: content/docs/tina-cloud/api-versioning.mdx
+previous: content/docs/tina-cloud/deployment-options/netlify.mdx
 ---
 
-GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **<your-repo>** > **Settings** > **Pages**.
+GitHub Pages is a popular hosting option for static sites. GitHub Pages can be configured in **\<your-repo>** > **Settings** > **Pages**.
 
 ## Build Configuration
 
 GitHub Pages offers a few build options:
 
-- GitHub Actions
-- Deploy from a branch
+* GitHub Actions
+* Deploy from a branch
 
-![GitHub Actions](https://res.cloudinary.com/forestry-demo/image/upload/v1674654344/tina-io/docs/tina-cloud/Screen_Shot_2023-01-25_at_9.40.52_AM_fby9q2.png 'GitHub Actions')
+![GitHub Actions](https://res.cloudinary.com/forestry-demo/image/upload/v1674654344/tina-io/docs/tina-cloud/Screen_Shot_2023-01-25_at_9.40.52_AM_fby9q2.png "GitHub Actions")
 
 We want to choose "**GitHub Actions**" so that we can control the build script, and make sure it's also building the TinaCMS admin
 
@@ -44,7 +46,7 @@ or if you are using yarn:
 
 Your GitHub Action will look something like:
 
-![GitHub Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png 'GitHub Action')
+![GitHub Action](https://res.cloudinary.com/forestry-demo/image/upload/v1675783496/tina-io/docs/tina-cloud/gh-config.png "GitHub Action")
 
 ## Common Issues:
 

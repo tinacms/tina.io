@@ -1,16 +1,16 @@
 ---
-title: Next.js App Router
 prev: /docs/frameworks/next/overview
+title: Next.js App Router
+nextP: content/docs/frameworks/next/pages-router.mdx
+previous: content/docs/frameworks/next/overview.mdx
 ---
 
-> ☝️ This guide assumes you are using the [**Next.js app router.**](https://nextjs.org/docs/app)
+> 👆This guide assumes you are using the **[Next.js app router.](https://nextjs.org/docs/app)**
 
 ## Video Guide
 
 <div style="position:relative;padding-top:56.25%;">
-  <iframe width="560" frameborder="0" allowfullscreen
-      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/0oYSzT1DDLg" title="TinaCMS - Setting up Next.js" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-  </iframe>
+  <iframe width="560" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/0oYSzT1DDLg" title="TinaCMS - Setting up Next.js" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
 </div>
 
 ## Installing dependencies
@@ -44,6 +44,7 @@ You can start TinaCMS with:
 ```bash
 pnpm dev
 ```
+
 **We recommend using pnpm.**
 
 With TinaCMS running, navigate to `http://localhost:3000/admin/index.html`.
@@ -119,12 +120,12 @@ export default defineConfig({
 **For a more detailed overview about the config see [Content Modeling with TinaCMS](docs/extending-tina/overview/)**
 
 > 💡 If you've followed this guide using the `tina  init` command, you might have noticed that a `content` and a `pages` folder got created:
->
-> ```bash
-> Adding file at content/posts/hello-world.md... ✅
-> Adding file at pages/demo/blog/[filename].tsx... ✅
-> ```
->
+
+```bash
+Adding file at content/posts/hello-world.md... ✅
+Adding file at pages/demo/blog/[filename].tsx... ✅
+```
+
 > These can be used as a quick reference but are safe to delete.
 
 ## Creating a New Post
@@ -178,10 +179,11 @@ export default async function Page() {
   )
 }
 ```
+
 As you may have noticed this is a Server Rendered page. Depending on how this page is generated can mean Next will either,
 
-- **A. Build this as a Dynamic / Server Rendered page**
-- **B. Build this as a Static page.**
+* **A. Build this as a Dynamic / Server Rendered page**
+* **B. Build this as a Static page.**
 
 This is up to you on how you want this page to be rendered.
 
@@ -220,8 +222,6 @@ export default async function PostPage({
   );
 }
 ```
-
-
 
 Here we are using [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params) to build these pages as SSG. You are free to change this however you like.
 
@@ -265,7 +265,6 @@ export default function Post(props : ClientPageProps) {
 
 ## Next Steps
 
-- [Check out the content modeling docs](/docs/schema/)
-- [Learn how to query your content](/docs/features/data-fetching/)
-- [Deploy Your Site](/docs/tina-cloud)
-
+* [Check out the content modeling docs](/docs/schema/)
+* [Learn how to query your content](/docs/features/data-fetching/)
+* [Deploy Your Site](/docs/tina-cloud)

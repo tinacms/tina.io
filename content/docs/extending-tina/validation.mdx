@@ -1,8 +1,10 @@
 ---
+id: /docs/extending-tina/validation/
+prev: /docs/extending-tina/overview
+next: /docs/extending-tina/custom-field-components
 title: Validation
-id: '/docs/extending-tina/validation/'
-prev: '/docs/extending-tina/overview'
-next: '/docs/extending-tina/custom-field-components'
+nextP: content/docs/extending-tina/custom-field-components.mdx
+previous: content/docs/extending-tina/overview.mdx
 ---
 
 Tina allows client-side validation using a validation function. This function returns a `string` error message if the value is **invalid** or `null` if the field is **valid**.
@@ -11,10 +13,9 @@ To include other field values of the form in the validation, a data argument can
 
 ## Example
 
-::::code-snippets
-:::code-snippet{open=true url="/img/code-snippets/invalid-1.png"}
+### Validate the length of a \`string\` field
 
-### Validate the length of a `string` field
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1721970062/invalid1_biaxzz.png)
 
 ```ts
 {
@@ -33,13 +34,10 @@ To include other field values of the form in the validation, a data argument can
 }
 ```
 
-:::
-::::
-
 The following schema types support the use of `validate`:
 
-- [string](/docs/reference/types/string/)
-- [datetime](/docs/reference/types/datetime/)
-- [boolean](/docs/reference/types/boolean/)
-- [image](/docs/reference/types/image/)
-- [number](/docs/reference/types/number/)
+* [string](/docs/reference/types/string/)
+* [datetime](/docs/reference/types/datetime/)
+* [boolean](/docs/reference/types/boolean/)
+* [image](/docs/reference/types/image/)
+* [number](/docs/reference/types/number/)

@@ -1,7 +1,8 @@
 ---
+id: /docs/contextual-editing/router
+prev: /docs/contextual-editing/overview
 title: Setting up a Router for Visual Editing
-id: '/docs/contextual-editing/router'
-prev: '/docs/contextual-editing/overview'
+previous: content/docs/contextual-editing/vue.mdx
 ---
 
 ## Accessing contextual-editing from the CMS
@@ -20,8 +21,8 @@ router: ({ collection: Collection, document: Document }) => string | undefined
 
 The `router` property is a function, that is run when a document is clicked within a Document List:
 
-- If `router` returns a `string`, the `string` is used as the document's route rather than the default.
-- If `router` returns `undefined`, the user is navigated to the document's basic editor.
+* If `router` returns a `string`, the `string` is used as the document's route rather than the default.
+* If `router` returns `undefined`, the user is navigated to the document's basic editor.
 
 This is an example using `router`.
 
@@ -73,21 +74,13 @@ const default defineConfig({
 
 Now when a document is clicked in the CMS we will be re-directed to the page in the site with visual editing.
 
-<video
-className="video"
-autoPlay="true"
-loop
-muted
-playsInline><source
-          src="https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/e_accelerate:-20/v1655919318/tina-io/docs/RoutMapperVid.webm"
-          type="video/webm"
-        /><source
-src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/e_accelerate:-20/v1655919318/tina-io/docs/RoutMapperVid.mp4"
-type="video/mp4"
-/>
+<video className="video" autoPlay="true" loop muted playsInline>
+  <source src="https://res.cloudinary.com/forestry-demo/video/upload/q_100,h_584/e_accelerate:-20/v1655919318/tina-io/docs/RoutMapperVid.webm" type="video/webm" />
+
+  <source src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/e_accelerate:-20/v1655919318/tina-io/docs/RoutMapperVid.mp4" type="video/mp4" />
 </video>
 
 ## Summary
 
-- A piece of content can be made editable by running it through the `useTina` hook. In production, it returns the original data unchanged. In edit-mode, it returns the live data, which is updated as the user types in the sidebar.
-- Make use of the `router` property to automatically navigate to the contextual-editing experience from the CMS.
+* A piece of content can be made editable by running it through the `useTina` hook. In production, it returns the original data unchanged. In edit-mode, it returns the live data, which is updated as the user types in the sidebar.
+* Make use of the `router` property to automatically navigate to the contextual-editing experience from the CMS.
