@@ -43,7 +43,7 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
 }
 export default Toc
 
-const TocDesktopHeader = styled.span`
+export const TocDesktopHeader = styled.span`
   display: none;
   font-size: 1rem;
   color: var(--color-secondary);
@@ -57,7 +57,7 @@ const TocDesktopHeader = styled.span`
   }
 `
 
-const TocWrapper = styled.div`
+export const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
   flex: 0 0 auto;
 
@@ -67,7 +67,7 @@ const TocWrapper = styled.div`
   }
 `
 
-const TocButton = styled.button<{ isOpen: boolean }>`
+export const TocButton = styled.button<{ isOpen: boolean }>`
   display: block;
   padding: 0;
   outline: none;
@@ -122,12 +122,12 @@ const TocButton = styled.button<{ isOpen: boolean }>`
   }
 `
 
-interface TocContentProps {
+export interface TocContentProps {
   isOpen: boolean
   activeIds: string[]
 }
 
-const TocContent = styled.div<TocContentProps>`
+export const TocContent = styled.div<TocContentProps>`
   display: block;
   width: 100%;
   line-height: 1.25;

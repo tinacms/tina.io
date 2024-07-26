@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
@@ -14,6 +14,13 @@ import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { useTocListener } from 'utils/toc_helpers'
 import SetupOverview from '../../components/layout/setup-overview'
+import client from 'tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { components } from 'pages/blog/[slug]'
+import getTableOfContents from 'utils/docs/getTableOfContens'
+import NewToc from 'components/toc/newtoc'
+import { sanitizeLabel } from 'utils/sanitizeLabel'
 
 export function DocTemplate(props) {
   if (props.file.fileRelativePath.includes('setup-overview')) {
@@ -27,21 +34,53 @@ function _DocTemplate(props) {
   if (props.notFound) {
     return <Error statusCode={404} />
   }
-  const data = props.file.data
+  
+  const tdata = props.file.data
+
+  console.log('old data', tdata)
+
+  const { data } = useTina({
+    query: props.new.results.query,
+    data: props.new.results.data,
+    variables: props.new.results.variables,
+  })
 
   const router = useRouter()
-  const isCloudDocs = router.asPath.includes('tina-cloud')
 
-  const isBrowser = typeof window !== `undefined`
-
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
   const excerpt = props.file.data.excerpt
-  const tocItems = props.tocItems
+  const oldToc = props.tocItems
 
-  const { activeIds, contentRef } = useTocListener(data)
+  console.log('oldToc', oldToc)
 
-  React.useEffect(() => {
+  const doc_data = data.doc
+  const previousPage = {
+    slug: doc_data.previous?.id.slice(7, -4),
+    title: doc_data.previous?.title,
+  }
+  const nextPage = {
+    slug: doc_data.nextP?.id.slice(7, -4),
+    title: doc_data.nextP?.title,
+  }
+  const TableOfContents = getTableOfContents(doc_data.body.children)
+
+  console.log('tableofcontents', TableOfContents)
+
+  const usedIds = TableOfContents.map((item) => sanitizeLabel(item.text))
+
+  console.log('used ids', usedIds);
+  
+  // console.log('the next page', nextPage)
+
+  console.log('doc_data', doc_data)
+
+  console.log('doc data body', doc_data.body)
+
+  const { activeIds, contentRef } = useTocListener(doc_data)
+  
+  console.log('active ids', activeIds)
+
+
+  useEffect(() => {
     const handleRouteChange = (url) => {
       ga.pageview(url)
     }
@@ -58,34 +97,32 @@ function _DocTemplate(props) {
   return (
     <>
       <NextSeo
-        title={frontmatter.title}
+        title={doc_data.title}
         titleTemplate={'%s | TinaCMS Docs'}
         description={excerpt}
         openGraph={{
-          title: frontmatter.title,
+          title: doc_data.title,
           description: excerpt,
-          images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
+          images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
       <DocsLayout navItems={props.docsNav}>
         <DocsGrid>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsNav} />
-            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
+            <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
-            <Toc tocItems={tocItems} activeIds={activeIds} />
+            <NewToc tocItems={TableOfContents} activeIds={activeIds} />
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            <LastEdited date={frontmatter.last_edited} />
+            {/* <MarkdownContent escapeHtml={false} content={markdownBody} /> */}
+            <TinaMarkdown content={doc_data.body} components={components} />
+            <LastEdited date={doc_data.last_edited} />
             {(props.prevPage?.slug !== null ||
               props.nextPage?.slug !== null) && (
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
+              <DocsPagination prevPage={previousPage} nextPage={nextPage} />
             )}
           </DocGridContent>
         </DocsGrid>
@@ -107,7 +144,9 @@ export const getStaticProps: GetStaticProps = async function (props) {
   const slug = slugs.join('/')
 
   try {
-    return await getDocProps(props, slug)
+    const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
+    const legacy_results = await getDocProps(props, slug)
+    return { props: { new: { results }, ...legacy_results.props } }
   } catch (e) {
     if (e) {
       return {

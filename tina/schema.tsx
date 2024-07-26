@@ -124,14 +124,16 @@ export const schema = defineSchema({
           },
         },
         {
-          name: 'prev',
-          label: 'Prev',
-          type: 'string',
+          name: 'nextP',
+          label: 'Next',
+          type: 'reference',
+          collections: ['doc']
         },
         {
-          name: 'next',
-          label: 'Next',
-          type: 'string',
+          name: 'previous',
+          label: 'Previous',
+          type: 'reference',
+          collections: ['doc']
         },
         {
           type: 'rich-text',

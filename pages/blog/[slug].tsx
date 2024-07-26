@@ -23,8 +23,9 @@ import path from 'path'
 import { TinaMarkdown, Components } from 'tinacms/dist/rich-text'
 import { Prism } from '../../components/styles/Prism'
 import { BiRightArrowAlt } from 'react-icons/bi'
+import { getDocId } from 'utils/docs/getDocIds'
 
-const components: Components<{
+export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
   Youtube: { embedSrc: string }
   CreateAppCta: { ctaText: string; cliText: string }
@@ -42,6 +43,14 @@ const components: Components<{
   CloudinaryVideo: { src: string }
   Button: { link: string; label: string }
 }> = {
+
+  h1: (props) => <FormatHeaders level={1} {...props} />,
+  h2: (props) => <FormatHeaders level={2} {...props} />,
+  h3: (props) => <FormatHeaders level={3} {...props} />,
+  h4: (props) => <FormatHeaders level={5} {...props} />,
+  h5: (props) => <FormatHeaders level={5} {...props} />,
+  h6: (props) => <FormatHeaders level={6} {...props} />,
+
   Iframe: ({ iframeSrc, height }) => {
     return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
   },
@@ -209,6 +218,18 @@ const components: Components<{
       </a>
     </div>
   ),
+}
+
+function FormatHeaders({ children, level }) {
+  const HeadingTag = `h${level}` as any
+  const id = getDocId(children.props.content[0].text)
+  console.log('the hcildren in basement' , id)
+
+  return (
+    <HeadingTag id={id}>
+      {children.props.content[0].text}
+    </HeadingTag>
+  )
 }
 
 function BlogTemplate({ file, siteConfig, ...props }) {
