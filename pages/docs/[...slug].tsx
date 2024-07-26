@@ -5,7 +5,6 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
 import { getDocProps } from 'utils/docs/getDocProps'
-import Toc from '../../components/toc'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
@@ -20,7 +19,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { components } from 'pages/blog/[slug]'
 import getTableOfContents from 'utils/docs/getTableOfContens'
 import NewToc from 'components/toc/newtoc'
-import { sanitizeLabel } from 'utils/sanitizeLabel'
+import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export function DocTemplate(props) {
   if (props.file.fileRelativePath.includes('setup-overview')) {
@@ -46,12 +45,6 @@ function _DocTemplate(props) {
   })
 
   const router = useRouter()
-
-  const excerpt = props.file.data.excerpt
-  const oldToc = props.tocItems
-
-  console.log('oldToc', oldToc)
-
   const doc_data = data.doc
   const previousPage = {
     slug: doc_data.previous?.id.slice(7, -4),
@@ -62,24 +55,11 @@ function _DocTemplate(props) {
     title: doc_data.nextP?.title,
   }
   const TableOfContents = getTableOfContents(doc_data.body.children)
+  const description = getSeoDescription(doc_data.body)
 
-  console.log('tableofcontents', TableOfContents)
-
-  const usedIds = TableOfContents.map((item) => sanitizeLabel(item.text))
-
-  console.log('used ids', usedIds);
-  
-  // console.log('the next page', nextPage)
-
-  console.log('doc_data', doc_data)
-
-  console.log('doc data body', doc_data.body)
 
   const { activeIds, contentRef } = useTocListener(doc_data)
   
-  console.log('active ids', activeIds)
-
-
   useEffect(() => {
     const handleRouteChange = (url) => {
       ga.pageview(url)
@@ -99,10 +79,10 @@ function _DocTemplate(props) {
       <NextSeo
         title={doc_data.title}
         titleTemplate={'%s | TinaCMS Docs'}
-        description={excerpt}
+        description={description}
         openGraph={{
           title: doc_data.title,
-          description: excerpt,
+          description: description,
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
@@ -117,7 +97,6 @@ function _DocTemplate(props) {
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
-            {/* <MarkdownContent escapeHtml={false} content={markdownBody} /> */}
             <TinaMarkdown content={doc_data.body} components={components} />
             <LastEdited date={doc_data.last_edited} />
             {(props.prevPage?.slug !== null ||

@@ -10,34 +10,46 @@ import { DocsLayout, MarkdownContent } from 'components/layout'
 import {
   DocGridContent,
   DocGridHeader,
-  DocGridToc,
-  DocsGrid,
   DocsPageTitle,
 } from './[...slug]'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
-import Toc from 'components/toc'
 import { DocsPagination, LastEdited } from 'components/ui'
 import styled from 'styled-components'
+import client from 'tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { components } from 'pages/blog/[slug]'
+import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export const getStaticProps: GetStaticProps = async function (props) {
-  return await getDocProps(props, 'product-tour')
+  const new_results = await client.queries.doc({ relativePath: `product-tour.mdx` })
+  const legacy_results = await getDocProps(props, 'product-tour')
+  return { props: { new: { new_results }, ...legacy_results.props } }
 }
 
 export default function Page(props) {
   const router = useRouter()
 
-  const data = props.file.data
+  const legacy_data = props.file.data
 
-  const isCloudDocs = router.asPath.includes('tina-cloud')
+  const { data } = useTina({
+    query: props.new?.new_results.query,
+    data: props.new?.new_results.data,
+    variables: props.new?.new_results.variables,
+  })
 
-  const isBrowser = typeof window !== `undefined`
+  const doc_data = data.doc
+  const previousPage = {
+    slug: doc_data.previous?.id.slice(7, -4),
+    title: doc_data.previous?.title,
+  }
+  const nextPage = {
+    slug: doc_data.nextP?.id.slice(7, -4),
+    title: doc_data.nextP?.title,
+  }
+  const description = getSeoDescription(doc_data.body)
 
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
-  const excerpt = props.file.data.excerpt
-  const tocItems = props.tocItems
-
-  const { activeIds: _activeIds, contentRef } = useTocListener(data)
+  const { activeIds: _activeIds, contentRef } = useTocListener(legacy_data)
   const activeIds = _activeIds.filter((id) => !!id)
   const activeImg = useRef(null)
   const transitionImg = useRef(null)
@@ -128,29 +140,26 @@ export default function Page(props) {
   return (
     <>
       <NextSeo
-        title={frontmatter.title}
+        title={doc_data.title}
         titleTemplate={'%s | TinaCMS Docs'}
-        description={excerpt}
+        description={description}
         openGraph={{
-          title: frontmatter.title,
-          description: excerpt,
-          images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
+          title: doc_data.title,
+          description: description,
+          images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
       <DocsLayout navItems={props.docsNav}>
         <DocContainer>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsNav} />
-            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
+            <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
-          {/* <DocGridToc>
-            <Toc tocItems={tocItems} activeIds={activeIds} />
-          </DocGridToc> */}
           <DocGridContent ref={contentRef}>
             <hr />
             <SplitContent>
               <div id="main-content-container">
-                <MarkdownContent escapeHtml={false} content={markdownBody} />
+                <TinaMarkdown content={doc_data.body} components={components} />
               </div>
               <div id="sticky-img-container">
                 <div className="img-container">
@@ -162,13 +171,10 @@ export default function Page(props) {
                 </div>
               </div>
             </SplitContent>
-            <LastEdited date={frontmatter.last_edited} />
+            <LastEdited date={doc_data.last_edited} />
             {(props.prevPage?.slug !== null ||
               props.nextPage?.slug !== null) && (
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
+              <DocsPagination prevPage={previousPage} nextPage={nextPage} />
             )}
           </DocGridContent>
         </DocContainer>
