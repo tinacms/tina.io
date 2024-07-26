@@ -48,10 +48,6 @@
       "destination": "/teams"
     },
     {
-      "source": "/docs/errors/faqs",
-      "destination": "/docs/introduction/faq/#common-tinacloud-errors"
-    },
-    {
       "source": "/docs/concepts/sidebar",
       "destination": "/docs/cms"
     },
