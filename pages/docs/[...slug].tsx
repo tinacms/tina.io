@@ -40,9 +40,9 @@ function _DocTemplate(props) {
   console.log('old data', tdata)
 
   const { data } = useTina({
-    query: props.new.results.query,
-    data: props.new.results.data,
-    variables: props.new.results.variables,
+    query: props.new?.results.query,
+    data: props.new?.results.data,
+    variables: props.new?.results.variables,
   })
 
   const router = useRouter()
