@@ -195,8 +195,9 @@ export const schema = defineSchema({
               label: 'Image and Text',
               fields: [
                 {
-                  name: 'text',
-                  label: 'text',
+                  name: 'docText',
+                  label: 'docText',
+                  isBody: true,
                   type: 'rich-text',
                 },
                 {
@@ -204,6 +205,23 @@ export const schema = defineSchema({
                   label: 'image',
                   type: 'image',
                 }
+              ]
+            },
+            {
+              name: 'MinimizeText',
+              label: 'Minimize Text Tab',
+              fields: [
+                {
+                  name: 'heading',
+                  label: 'Heading',
+                  type: 'string',
+                },
+                {
+                  name: 'text',
+                  label: 'text',
+                  isBody: true,
+                  type: 'rich-text',
+                },
               ]
             }
             
