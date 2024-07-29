@@ -60,7 +60,7 @@ export const schema = defineSchema({
               label: 'Title',
               name: 'title',
               description:
-                '\' | Tina\' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.',
+                "' | Tina' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.",
             },
             {
               type: 'string',
@@ -127,19 +127,90 @@ export const schema = defineSchema({
           name: 'nextP',
           label: 'Next',
           type: 'reference',
-          collections: ['doc']
+          collections: ['doc', 'examples'],
         },
         {
           name: 'previous',
           label: 'Previous',
           type: 'reference',
-          collections: ['doc']
+          collections: ['doc', 'examples'],
         },
         {
           type: 'rich-text',
           name: 'body',
           label: 'Body',
           isBody: true,
+          templates: [
+            {
+              name: 'Youtube',
+              label: 'Youtube Embed',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'embedSrc',
+                  label: 'Embed URL',
+                  description:
+                    'Looks like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'WarningCallout',
+              label: 'Warning Callout',
+              fields: [
+                {
+                  name: 'body',
+                  label: 'Body',
+                  type: 'string',
+                },
+              ],
+            },
+            {
+              name: 'Iframe',
+              label: 'Embeded an Iframe',
+              fields: [
+                { name: 'iframeSrc', type: 'string' },
+                {
+                  name: 'height',
+                  type: 'number',
+                  label: 'Height',
+                  description: 'The hight of the iframe (in px) ',
+                },
+              ],
+            },
+            {
+              name: 'CloudinaryVideo',
+              label: 'Cloudinary Video',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'src',
+                  label: 'Cloudinary URL',
+                  description: 'Full URL with no file extension',
+                },
+              ],
+            },
+            {
+              name: 'ImageAndText',
+              label: 'Image and Text',
+              fields: [
+                {
+                  name: 'text',
+                  label: 'text',
+                  type: 'rich-text',
+                },
+                {
+                  name: 'image',
+                  label: 'image',
+                  type: 'image',
+                }
+              ]
+            }
+            
+              
+
+            
+          ],
         },
       ],
     },
@@ -521,4 +592,3 @@ export const schema = defineSchema({
     },
   ],
 })
-

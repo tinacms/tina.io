@@ -42,7 +42,16 @@ export const components: Components<{
   CustomFieldComponentDemo: {}
   CloudinaryVideo: { src: string }
   Button: { link: string; label: string }
+  ImageAndText: { text: string; image: string }
 }> = {
+  ImageAndText: ({text, image}) => (
+<div className='grid grid-cols-2 gap-4'>
+  <div> <TinaMarkdown content={text as any} components={components}/> </div>
+  <div>
+    <img src={image} alt='image' className='w-full'/>
+  </div>
+</div>
+  ),
 
   h1: (props) => <FormatHeaders level={1} {...props} />,
   h2: (props) => <FormatHeaders level={2} {...props} />,
