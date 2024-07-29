@@ -1,8 +1,8 @@
 ---
-id: '/docs/reference/self-hosted/auth-provider/authjs'
+id: /docs/reference/self-hosted/auth-provider/authjs
+prev: /docs/reference/self-hosted/auth-provider/overview
+next: /docs/reference/self-hosted/auth-provider/tina-cloud
 title: Default (Auth.js) Auth Provider
-prev: '/docs/reference/self-hosted/auth-provider/overview'
-next: '/docs/reference/self-hosted/auth-provider/tina-cloud'
 ---
 
 The default (Auth.js) auth provider uses [Auth.js](https://authjs.dev/) and a user collection to authenticate and authorize users to your TinaCMS instance.
@@ -99,8 +99,6 @@ export default (req, res) => {
 
 ## Testing
 
-<!-- TODO: Maybe a short video for this section -->
-
 Now that you have set up the Auth.js auth provider you can test it out.
 
 ### Testing Authentication Locally
@@ -186,7 +184,9 @@ export default defineConfig({
   },
 })
 ```
+
 ### Update the seed data
+
 Remove the password field from the seed data.
 
 ```json
@@ -200,6 +200,7 @@ Remove the password field from the seed data.
   ]
 }
 ```
+
 > Note that if you already have users in your database, you will need to remove the password field from them as well.
 
 ### Configure the Discord Login Provider
@@ -231,6 +232,7 @@ export default (req, res) => {
   return handler(req, res)
 }
 ```
+
 Here we specify the DiscordProvider. Also, note that we have added a `uidProp` to the options. This is used to tell Tina which property on the Discord auth object has
 the unique identifier for the user. If you are not sure what this should be, you can enable debug mode to see the auth object.
 
@@ -244,6 +246,7 @@ export default (req, res) => {
   return NextAuth(NextAuthOptions)(req, res)
 }
 ```
+
 Note that this is importing the NextAuthOptions from the other endpoint.
 
 ### Configure the Discord OAuth Application

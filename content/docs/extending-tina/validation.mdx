@@ -15,24 +15,18 @@ To include other field values of the form in the validation, a data argument can
 
 ### Validate the length of a \`string\` field
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1721970062/invalid1_biaxzz.png)
-
-```ts
-{
-  label: "Title",
-  name: "title",
-  type: "string",
-  ui: {
-    validate: (value, data)=>{
-      const lengthOfTitle = value?.length || 0
-      const lengthOfDescription = data?.description?.length || 0
-      if(lengthOfTitle >= lengthOfDescription){
-        return 'The description must be longer than the title'
-      }
+<ImageAndText
+  text={<>
+    ```
+    {
+    label:
+    
+    
     }
-  }
-}
-```
+    ```
+  </>}
+  image="https://res.cloudinary.com/forestry-demo/image/upload/v1722216591/invalid1_fbnwh1.png"
+/>
 
 The following schema types support the use of `validate`:
 

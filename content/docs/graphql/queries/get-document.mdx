@@ -1,8 +1,8 @@
 ---
 id: /docs/graphql/queries/get-document
-title: Querying a Single Document
 prev: /docs/graphql/queries
 next: /docs/graphql/queries/query-documents
+title: Querying a Single Document
 ---
 
 ## Querying a single document
@@ -17,9 +17,9 @@ Our collections for the above [schema](/docs/graphql/queries/#example-schema) ar
 
 ### Example
 
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20category%0A%20%20%20%20author%20%7B%0A%20%20%20%20%20%20...%20on%20Author%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
+<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20category%0A%20%20%20%20author%20%7B%0A%20%20%20%20%20%20...%20on%20Author%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22;" height={400} />
 
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20author(relativePath%3A%20%22napolean.json%22)%20%7B%0A%20%20%20%20name%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
+<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20author(relativePath%3A%20%22napolean.json%22)%20%7B%0A%20%20%20%20name%0A%20%20%7D%0A%7D%0A" height={400} />
 
 ## Common fields
 
@@ -38,8 +38,8 @@ The `_sys` field is an object with the following fields:
 
 ### Example with a nester folder
 
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22nested%2FanotherPost.json%22)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"  width="800" height="400"/>
+<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22nested%2FanotherPost.json%22)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&#x22;" height={400} />
 
 ### Example without a nester folder
 
-<iframe loading="lazy" src='/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20"anotherPost.json")%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D' width="800" height="400"/>
+<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20&#x22;anotherPost.json&#x22;)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&#x22; " height={400} />

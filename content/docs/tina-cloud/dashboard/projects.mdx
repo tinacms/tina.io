@@ -8,7 +8,7 @@ previous: content/docs/tina-cloud/dashboard/projects.mdx
 
 **Projects** connect Tina Cloud with a GitHub repository. A project is the **link between your site and your site's editors**, allowing users that you have authorized to access and modify the site's content.
 
-> If it is your first time accessing the Tina Cloud dashboard, you will be given two options for setting up your first project. You can fork our <a href="https://github.com/tinacms/tina-cloud-starter" target="_blank">pre-built Next.js starter</a> which gets you up and running with Tina quickly and easily. Alternatively, you can connect to an existing GitHub repository.
+> If it is your first time accessing the Tina Cloud dashboard, you will be given two options for setting up your first project. You can fork our [pre-built Next.js starter](https://github.com/tinacms/tina-cloud-starter), which gets you up and running with Tina quickly and easily. Alternatively, you can connect to an existing GitHub repository.
 
 ## Setup
 
@@ -110,15 +110,7 @@ There are two types of tokens associated with projects in Tina Cloud: Content (R
 * Content tokens provide read-only access to your project's content.
 * Search tokens provide write access to the Tina Cloud search API.
 
-<div class="short-code-warning">
-  <div>
-    <p>Warning: API tokens should be considered sensitive and not be committed to your project repository. Content tokens allow clients read-only access to your repository content. Search tokens allow clients to update the Tina Cloud hosted search index for your site. Please use environment variables for these in your Tina configuration.</p>
-  </div>
-
-  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
-  </svg>
-</div>
+<WarningCallout body="Warning: API tokens should be considered sensitive and not be committed to your project repository. Content tokens allow clients read-only access to your repository content. Search tokens allow clients to update the Tina Cloud hosted search index for your site. Please use environment variables for these in your Tina configuration." />
 
 #### Generate tokens from the dashboard
 

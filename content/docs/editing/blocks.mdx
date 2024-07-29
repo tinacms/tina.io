@@ -162,8 +162,6 @@ query PagesDocument($relativePath: String!) {
 }
 ```
 
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20pages(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
-
 <Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20pages(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" height={400} />
 
 > For more info on how to query data with Tina's GraphQL API, check out the [Query Documentation](https://tina.io/docs/graphql/queries/)
@@ -228,15 +226,7 @@ In our case:
 
 ![Preview of Visual Block Selector](https://res.cloudinary.com/forestry-demo/video/upload/w_800/v1647540863/Tina%20Newsletter/visual-selector-preview.gif)
 
-<div class="short-code-warning">
-  <div>
-    <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a>!</p>
-  </div>
-
-  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
-  </svg>
-</div>
+<WarningCallout body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our community channels" />
 
 This visual block selector allows editors to select blocks from a set images instead of text.
 
@@ -339,6 +329,4 @@ const featureBlock = {
 
 For those who prefer to learn from video, you can check out a snippet on "Setting Up Blocks" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
-<div style="position:relative;padding-top:56.25%;">
-  <iframe width="560" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/PcgnJDILv4w?start=555&end=727" title="TinaCMS Deep Dive (Configuring Blocks)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
-</div>
+<Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=555&end=727" />
