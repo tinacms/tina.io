@@ -90,6 +90,28 @@ Check to make sure that the build command is running and not failing
 
 > Note: If you are using [the github pages setup from hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/) you will need to make sure that a `package-lock.json` exists in the root of your repo.
 
+### Common Issue: The root URL is giving a 404
+
+This can happen for a number of reasons but here is the most common reason and fix:
+
+#### 1. Lacking entry file for GitHub Pages
+
+GitHub Pages will look for entry file for the website, it will dislay a 404 error page if you don't have such entry file at the top level of the source folder on the source branch.
+
+To fix this, you'll need to add a file named `index.tsx` to `./pages`. The content of the file should be:
+
+```javascript
+import Filename, { getStaticProps as FilenameStaticProps } from './[filename]'
+
+const Index = Filename
+
+export const getStaticProps = async ({ params }) => {
+  return FilenameStaticProps({ params: { filename: 'home' } })
+}
+
+export default Index
+```
+
 ## Environment variables
 
 Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the GitHub Secrets for your project. The secrets we used in the code snippet above were `TINA_PUBLIC_CLIENT_ID` & `TINA_TOKEN`.
