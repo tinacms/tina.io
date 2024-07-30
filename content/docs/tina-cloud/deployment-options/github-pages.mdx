@@ -94,11 +94,11 @@ Check to make sure that the build command is running and not failing
 
 This can happen for a number of reasons but here is the most common reason and fix:
 
-#### 1. Lacking entry file for GitHub Pages
+#### 1. Missing Entry File for GitHub Pages
 
-GitHub Pages will look for entry file for the website, it will dislay a 404 error page if you don't have such entry file at the top level of the source folder on the source branch.
+When using GitHub Pages, the service requires an entry file at the root of the source folder on the designated source branch. If this file is missing, GitHub Pages will display a 404 error page.
 
-To fix this, you'll need to add a file named `index.tsx` to `./pages`. The content of the file should be:
+To fix this, you'll need to create a file named index.tsx in the ./pages directory. Your index.tsx should look something like this:
 
 ```javascript
 import Filename, { getStaticProps as FilenameStaticProps } from './[filename]'
