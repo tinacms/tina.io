@@ -27,7 +27,6 @@ import { getDocId } from 'utils/docs/getDocIds'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
 
-
 export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
   Youtube: { embedSrc: string }
@@ -48,11 +47,12 @@ export const components: Components<{
   ImageAndText: { docText: string; image: string }
   MinimizeText: { heading: string; text: string }
 }> = {
-  ImageAndText: (props) => {console.log('props are: ' ,props); return (
+  ImageAndText: (props) => {
+    return (
 <div className='grid grid-cols-2 gap-4'>
-  <div> <TinaMarkdown content={props.docText as any} components={components}/> </div>
+  <div className='bg-red'> <TinaMarkdown content={props.docText as any} components={components} /> </div>
   <div>
-    <img src={props.image} alt='image' className='w-full'/>
+    <img src={props?.image} alt='image' className='w-full'/>
   </div>
 </div>
   )},
@@ -63,6 +63,8 @@ export const components: Components<{
     const handleToggle = () => {
       setOpenTab(!openTab);
     };
+
+    console.log('props found', props.text)
 
     return (
       <div>

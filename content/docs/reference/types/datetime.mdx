@@ -1,8 +1,8 @@
 ---
-title: The "datetime" field
-last_edited: '2021-07-27T15:51:56.737Z'
 prev: /docs/reference/types/number
 next: /docs/reference/types/boolean
+title: The "datetime" field
+last_edited: '2021-07-27T15:51:56.737Z'
 ---
 
 ```ts
@@ -35,12 +35,9 @@ The return value for a datetime is in [ISO string format](https://developer.mozi
 Tina will generate the appropriate component depending on the
 configuration provided.
 
-::::code-snippets
-:::code-snippet{open=true url="/img/code-snippets/date-1.png"}
-
 ### Simple
 
-```ts
+```javascript
 {
   type: 'datetime',
   name: 'date',
@@ -48,42 +45,39 @@ configuration provided.
 }
 ```
 
-:::
-:::code-snippet{url="/img/code-snippets/date-2.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722241081/Screenshot_2024-07-29_at_6.17.56_PM_hph9cd.png)
 
-### Custom format
+### Custom Format
 
-You can customize the format that the date field use by customizing the `dateFormat` & `parse` properties.
+You can customize the format that the date field use by customizing the dateFormat & parse properties.
 
-```ts
+```javascript
 {
   label: "Date",
   name: "date",
   type: "datetime",
-  ui: {
+      ui: {
     dateFormat: 'YY-MM-DD',
-    parse: (value) => value && value.format('YY-MM-DD'),
+      parse: (value) => value && value.format('YY-MM-DD'),
   },
 }
 ```
 
-:::
-:::code-snippet{url="/img/code-snippets/date-3.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722241143/Screenshot_2024-07-29_at_6.18.56_PM_ahjipv.png)
 
-### Using a time picker
+### Using a Time Picker
 
-You can add a timepicker to the date UI by supplying the `ui.timeFormat` property
+You can add a timepicker to the date UI by supplying the ui.timeFormat property
 
-```ts
+```javascript
 {
   label: "Date",
   name: "date",
   type: "datetime",
-  ui: {
+      ui: {
     timeFormat: "HH:mm"
   },
 }
 ```
 
-:::
-::::
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722241213/Screenshot_2024-07-29_at_6.20.05_PM_ep6ag1.png)

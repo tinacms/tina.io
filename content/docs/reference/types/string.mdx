@@ -1,8 +1,8 @@
 ---
-title: The "string" field
-last_edited: '2021-07-27T15:51:56.737Z'
 prev: /docs/reference/types
 next: /docs/reference/types/number
+title: The "string" field
+last_edited: '2021-07-27T15:51:56.737Z'
 ---
 
 ## `string` type
@@ -41,12 +41,10 @@ type StringField = {
 Tina will generate the appropriate component depending on the
 configuration provided.
 
-::::code-snippets
-:::code-snippet{open=true url="/img/code-snippets/string-1.png"}
-
 ### Simple
 
-```ts
+```javascript
+
 {
   type: 'string',
   name: 'title',
@@ -54,14 +52,13 @@ configuration provided.
 }
 ```
 
-:::
-:::code-snippet{url="/img/code-snippets/string-2.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722240285/Screenshot_2024-07-29_at_6.04.22_PM_nglp7p.png)
 
-### Simple w/list
+### Simple w/ List
 
-Setting `list: true` will make the value an array
+Setting list: true will make the value an array
 
-```ts
+```javascript
 {
   type: 'string',
   name: 'title',
@@ -70,40 +67,37 @@ Setting `list: true` will make the value an array
 }
 ```
 
-:::
-:::code-snippet{url="/img/code-snippets/string-3.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722240476/Screenshot_2024-07-29_at_6.07.47_PM_u0k6wv.png)
 
-### As a list with options
+### As a list w/ options
 
-Setting `list: true` and providing `options` will make the value an array with a selection list
+Setting list: true and providing options will make the value an array with a selection list
 
-```ts
+```javascript
 {
   type: 'string',
   name: 'title',
   label: 'Title'
   list: true,
-  options: [
-    {
-      value: "movies",
-      label: "Movies"
-    }, {
-      value: "music",
-      label: "Music"
-    }
-  ]
+    options: [
+      {
+        value: "movies",
+        label: "Movies"
+      }, {
+        value: "music",
+        label: "Music"
+      }
+    ]
 }
 ```
 
-:::
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722240556/Screenshot_2024-07-29_at_6.09.08_PM_shcnii.png)
 
-:::code-snippet{url="/img/code-snippets/string-4.png"}
-
-### Using the `isBody` property
+### Using the isBody property
 
 When working with markdown, you can indicate that a given field should represent the markdown body
 
-```ts
+```javascript
 {
   type: 'string',
   name: 'body',
@@ -113,37 +107,35 @@ When working with markdown, you can indicate that a given field should represent
 }
 ```
 
-:::
-:::code-snippet{url="/img/code-snippets/string-5.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722240676/Screenshot_2024-07-29_at_6.11.09_PM_nmqsgs.png)
 
 ### Override the built-in component
 
-By default, the text field is used for `strings`. To use a different core field plugin, specify it with the `ui.component property`
+By default, the text field is used for strings. To use a different core field plugin, specify it with the ui.component property
 
-```ts
+```javascript
 {
   label: "Description",
   name: "description",
   type: "string",
-  ui: {
+      ui: {
     component: "textarea"
   }
 }
 ```
 
-:::
-:::code-snippet{url="/img/code-snippets/string-6.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722240786/Screenshot_2024-07-29_at_6.13.00_PM_cbwz3k.png)
 
 ### Providing a custom component
 
-You can [create your own components](/docs/extending-tina/custom-field-components/)
+You can [create your own components](https://tina.io/docs/extending-tina/custom-field-components/)
 
-```ts
+```javascript
 {
   label: "Title",
   name: "title",
   type: "string",
-  ui: {
+      ui: {
     component: ({ input }) => {
       return (
         <div>
@@ -156,5 +148,4 @@ You can [create your own components](/docs/extending-tina/custom-field-component
 }
 ```
 
-:::
-::::
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722240866/Screenshot_2024-07-29_at_6.14.19_PM_lxkuva.png)

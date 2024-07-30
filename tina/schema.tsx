@@ -199,6 +199,7 @@ export const schema = defineSchema({
                   label: 'docText',
                   isBody: true,
                   type: 'rich-text',
+                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
                 },
                 {
                   name: 'image',
@@ -215,6 +216,7 @@ export const schema = defineSchema({
                   name: 'heading',
                   label: 'Heading',
                   type: 'string',
+                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
                 },
                 {
                   name: 'text',

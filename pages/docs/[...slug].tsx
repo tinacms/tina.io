@@ -34,10 +34,6 @@ function _DocTemplate(props) {
     return <Error statusCode={404} />
   }
   
-  const tdata = props.file.data
-
-  console.log('old data', tdata)
-
   const { data } = useTina({
     query: props.new?.results.query,
     data: props.new?.results.data,

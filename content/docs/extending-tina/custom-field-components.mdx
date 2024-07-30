@@ -9,18 +9,6 @@ previous: content/docs/extending-tina/validation.mdx
 
 A custom component can be passed and rendered by setting the `ui.component` property on a field. This component completely overrides the original component, providing the user with the ability to fully customize the field.
 
-<ImageAndText
-  docText={<>
-    ```json
-    testing this work
-    {
-    "name": 'header'
-    }
-    ```
-  </>}
-  image="https://res.cloudinary.com/forestry-demo/image/upload/v1720757394/SCR-20240530-lrwv_cvz9qe.png"
-/>
-
 ## Providing your own component
 
 A field's `ui.component` property is a React component that accepts three props:
@@ -85,12 +73,10 @@ For example, if you take a look at the color field plugin's definition, it takes
 // ...
 ```
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1652976482/tina-io/docs/extending-tina/image-saturation.png)
+
 ## Video Tutorial
 
 For those who prefer to learn from video, you can check out a snippet on "Customizing Components" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
 <Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
-
-<div style="position:relative;padding-top:56.25%;">
-  <iframe width="560" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/amSRwAbgMR0?start=744" title="TinaCMS Deep Dive (Customizing Components)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
-</div>

@@ -1,8 +1,8 @@
 ---
-title: The "rich-text" field
-last_edited: '2021-07-27T15:51:56.737Z'
 prev: /docs/reference/types/object
 next: /docs/tina-folder/overview
+title: The "rich-text" field
+last_edited: '2021-07-27T15:51:56.737Z'
 ---
 
 # `rich-text`
@@ -25,9 +25,6 @@ type RichTextField = {
 Tina will generate the appropriate component depending on the
 configuration provided.
 
-::::code-snippets
-:::code-snippet{open=true url="/img/code-snippets/rich-text-1.png"}
-
 ### Simple
 
 ```ts
@@ -39,25 +36,23 @@ configuration provided.
 }
 ```
 
-:::
-:::code-snippet{open=true url="/img/code-snippets/rich-text-toolbar-override.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381461/Screenshot_2024-07-31_at_9.17.27_AM_hu7wj1.png)
 
 ### Toolbar Override
 
 Change what you want to display and the order it is displayed in the editor
 
-```ts
+```javascript
 {
   label: "Body",
   name: "body",
   isBody: true,
   type: "rich-text",
-  toolbarOverride: ["heading", "bold", "italic"],
+  toolbarOverride: ["heading","bold", "italic"],
 }
 ```
 
-:::
-:::code-snippet{open=true url="/img/code-snippets/rich-text-3.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381590/Screenshot_2024-07-31_at_9.19.47_AM_dukos7.png)
 
 ### Custom custom templates
 
@@ -81,8 +76,7 @@ Change what you want to display and the order it is displayed in the editor
 }
 ```
 
-:::
-::::
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381505/Screenshot_2024-07-31_at_9.18.10_AM_p93fjv.png)
 
 Given a markdown file like this:
 
@@ -96,7 +90,7 @@ This is some text
 
 Results in the following response from the content API:
 
-<iframe loading="lazy" src="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20body%0A%20%20%7D%0A%7D%0A" width="800" height="400" />
+<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20body%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
 
 ## Using `TinaMarkdown`
 
@@ -230,15 +224,7 @@ Will be transformed to:
 
 ## Markdown tables
 
-<div class="short-code-warning">
-  <div>
-    <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a></p>
-  </div>
-
-  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
-  </svg>
-</div>
+<WarningCallout body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat or through one of our community channels. " />
 
 Tables are supported through a custom template which is exported from `tinacms`. To use it, import it and provide it as a `template` for your `rich-text` field:
 
@@ -276,15 +262,7 @@ const MyTable = props => <table>
 
 ## Custom shortcode syntax
 
-<div class="short-code-warning">
-  <div>
-    <p>This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our <a href="/community/">community channels</a></p>
-  </div>
-
-  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
-  </svg>
-</div>
+<WarningCallout body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our community channels." />
 
 If you have some custom shortcode logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
 
