@@ -317,7 +317,7 @@
     "title": "Guides",
     "items": [
       {
-        "slug": "/guides",
+        "slug": "/docs/guides",
         "title": "Overview"
       },
       {
@@ -331,35 +331,35 @@
             "title": "NextJS",
             "items": [
               {
-                "slug": "/guides/tinacms/nextjs-data-fetching/guide/",
+                "slug": "/docs/guides//nextjs-data-fetching/",
                 "title": "Querying Tina Content in NextJS"
               },
               {
-                "slug": "/guides/tinacms/nextjs-internationalization/guide/",
+                "slug": "/docs/guides//nextjs-internationalization/",
                 "title": "Internationalization with NextJS+Tina"
               },
               {
                 "title": "Using Drafts with Visual Editing",
-                "slug": "/guides/tinacms/contextual-drafts/guide/"
+                "slug": "/docs/guides/contextual-drafts/"
               }
             ]
           },
           {
             "title": "Docusaurus",
-            "slug": "/guides/tinacms/docusaurus/guide/"
+            "slug": "/docs/guides/docusaurus/"
           }
         ]
       },
       {
         "title": "Separate Content Repo",
-        "slug": "/guides/tinacms/separate-content-repo/guide/"
+        "slug": "/docs/guides/separate-content-repo/"
       },
       {
-        "slug": "/guides/tinacms/react-data-fetching/guide/",
+        "slug": "/docs/guides/react-data-fetching/",
         "title": "Querying Tina Content at Runtime"
       },
       {
-        "slug": "/guides/tinacms/internationalization/guide/",
+        "slug": "/docs/guides/internationalization/",
         "title": "Internationalization"
       },
       {
