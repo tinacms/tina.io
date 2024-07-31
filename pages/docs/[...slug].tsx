@@ -18,7 +18,7 @@ import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { components } from 'pages/blog/[slug]'
 import getTableOfContents from 'utils/docs/getTableOfContens'
-import NewToc from 'components/toc/newtoc'
+import ToC from 'components/toc/index'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export function DocTemplate(props) {
@@ -88,7 +88,7 @@ function _DocTemplate(props) {
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
-            <NewToc tocItems={TableOfContents} activeIds={activeIds} />
+            <ToC tocItems={TableOfContents} activeIds={activeIds} />
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
@@ -117,11 +117,12 @@ export const getStaticProps: GetStaticProps = async function (props) {
   try {
     const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
     const tinaDocsNavigation = await client.queries.getAllDocs()
-    const oldNavDocs = await getDocsNav();
+    const oldNavDocs = await getDocsNav()
     return {
       props: {
         new: { results },
-        allDocs: { tinaDocsNavigation }, oldNavDocs
+        allDocs: { tinaDocsNavigation },
+        oldNavDocs,
       },
     }
   } catch (e) {

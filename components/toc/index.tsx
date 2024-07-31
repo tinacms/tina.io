@@ -4,13 +4,21 @@ import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 
 interface TocProps {
-  tocItems: string
+  tocItems: Array<{ type: string; text: string }>
   activeIds: string[]
 }
 
-//TODO: Remove oldToc, replace with newToc https://github.com/tinacms/tina.io/issues/1981
+const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
+  return tocItems
+    .map((item) => {
+      const anchor = item.text.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+      const prefix = item.type === 'h3' ? '  ' : ''
+      return `${prefix}- [${item.text}](#${anchor})`
+    })
+    .join('\n')
+}
 
-const Toc = ({ tocItems, activeIds }: TocProps) => {
+const ToC = ({ tocItems, activeIds }: TocProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -26,24 +34,27 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
     }
   }, [])
 
-  if (!tocItems) {
+  if (!tocItems || tocItems.length === 0) {
     return null
   }
+
+  const tocMarkdown = generateMarkdown(tocItems)
 
   return (
     <TocWrapper>
       <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-        <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>{' '}
+        <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>
         <RightArrowSvg />
       </TocButton>
       <TocContent activeIds={activeIds} isOpen={isOpen}>
         <TocDesktopHeader>Table of Contents</TocDesktopHeader>
-        <ReactMarkdown>{tocItems}</ReactMarkdown>
+        <ReactMarkdown>{tocMarkdown}</ReactMarkdown>
       </TocContent>
     </TocWrapper>
   )
 }
-export default Toc
+
+export default ToC
 
 export const TocDesktopHeader = styled.span`
   display: none;
