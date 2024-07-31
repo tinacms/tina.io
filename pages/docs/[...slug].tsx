@@ -33,7 +33,7 @@ function _DocTemplate(props) {
   if (props.notFound) {
     return <Error statusCode={404} />
   }
-  
+
   const { data } = useTina({
     query: props.new?.results.query,
     data: props.new?.results.data,
@@ -55,7 +55,7 @@ function _DocTemplate(props) {
 
 
   const { activeIds, contentRef } = useTocListener(doc_data)
-  
+
   useEffect(() => {
     const handleRouteChange = (url) => {
       ga.pageview(url)
@@ -95,7 +95,7 @@ function _DocTemplate(props) {
             <hr />
             <TinaMarkdown content={doc_data.body} components={components} />
             <LastEdited date={doc_data.last_edited} />
-              <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+            <DocsPagination prevPage={previousPage} nextPage={nextPage} />
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
@@ -117,8 +117,15 @@ export const getStaticProps: GetStaticProps = async function (props) {
 
   try {
     const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
+    const tinaDocsNavigation = await client.queries.getAllDocs()
     const legacy_results = await getDocProps(props, slug)
-    return { props: { new: { results }, ...legacy_results.props } }
+    return {
+      props: {
+        new: { results },
+        ...legacy_results.props,
+        allDocs: { tinaDocsNavigation },
+      },
+    }
   } catch (e) {
     if (e) {
       return {
