@@ -331,11 +331,11 @@
             "title": "NextJS",
             "items": [
               {
-                "slug": "/docs/guides//nextjs-data-fetching/",
+                "slug": "/docs/guides/nextjs-data-fetching/",
                 "title": "Querying Tina Content in NextJS"
               },
               {
-                "slug": "/docs/guides//nextjs-internationalization/",
+                "slug": "/docs/guides/nextjs-internationalization/",
                 "title": "Internationalization with NextJS+Tina"
               },
               {
