@@ -13,7 +13,6 @@ import {
   DocsTextWrapper,
 } from 'components/layout'
 import { fileToUrl } from 'utils/urls'
-import { getPageRef } from 'utils/docs/getDocProps'
 const fg = require('fast-glob')
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'

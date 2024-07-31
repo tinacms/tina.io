@@ -1,4 +1,4 @@
-import { getDocProps } from 'utils/docs/getDocProps'
+import { getDocsNav } from 'utils/docs/getDocProps'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { useTocListener } from 'utils/toc_helpers'
@@ -23,15 +23,12 @@ import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export const getStaticProps: GetStaticProps = async function (props) {
   const new_results = await client.queries.doc({ relativePath: `product-tour.mdx` })
-  const legacy_results = await getDocProps(props, 'product-tour')
-  return { props: { new: { new_results }, ...legacy_results.props } }
+  const oldNavDocs = await getDocsNav()
+  return { props: { new: { new_results }, oldNavDocs } }
 }
 
 export default function Page(props) {
   const router = useRouter()
-
-  const legacy_data = props.file.data
-
   const { data } = useTina({
     query: props.new?.new_results.query,
     data: props.new?.new_results.data,
@@ -49,7 +46,7 @@ export default function Page(props) {
   }
   const description = getSeoDescription(doc_data.body)
 
-  const { activeIds: _activeIds, contentRef } = useTocListener(legacy_data)
+  const { activeIds: _activeIds, contentRef } = useTocListener(doc_data)
   const activeIds = _activeIds.filter((id) => !!id)
   const activeImg = useRef(null)
   const transitionImg = useRef(null)
@@ -149,10 +146,10 @@ export default function Page(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.docsNav}>
+      <DocsLayout navItems={props.oldNavDocs.data}>
         <DocContainer>
           <DocGridHeader>
-            <Breadcrumbs navItems={props.docsNav} />
+            <Breadcrumbs navItems={props.oldNavDocs.data} />
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridContent ref={contentRef}>
@@ -172,10 +169,7 @@ export default function Page(props) {
               </div>
             </SplitContent>
             <LastEdited date={doc_data.last_edited} />
-            {(props.prevPage?.slug !== null ||
-              props.nextPage?.slug !== null) && (
               <DocsPagination prevPage={previousPage} nextPage={nextPage} />
-            )}
           </DocGridContent>
         </DocContainer>
       </DocsLayout>
