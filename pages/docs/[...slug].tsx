@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
-import { getDocProps } from 'utils/docs/getDocProps'
+import { getDocProps, getDocsNav } from 'utils/docs/getDocProps'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
@@ -22,7 +22,7 @@ import NewToc from 'components/toc/newtoc'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export function DocTemplate(props) {
-  if (props.file.fileRelativePath.includes('setup-overview')) {
+  if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
     return <SetupOverview {...props} />
   }
   return <_DocTemplate {...props} />
@@ -53,7 +53,6 @@ function _DocTemplate(props) {
   const TableOfContents = getTableOfContents(doc_data.body.children)
   const description = getSeoDescription(doc_data.body)
 
-
   const { activeIds, contentRef } = useTocListener(doc_data)
 
   useEffect(() => {
@@ -82,10 +81,10 @@ function _DocTemplate(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.docsNav}>
+      <DocsLayout navItems={props.oldNavDocs.data}>
         <DocsGrid>
           <DocGridHeader>
-            <Breadcrumbs navItems={props.docsNav} />
+            <Breadcrumbs navItems={props.oldNavDocs.data} />
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
@@ -118,12 +117,11 @@ export const getStaticProps: GetStaticProps = async function (props) {
   try {
     const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
     const tinaDocsNavigation = await client.queries.getAllDocs()
-    const legacy_results = await getDocProps(props, slug)
+    const oldNavDocs = await getDocsNav();
     return {
       props: {
         new: { results },
-        ...legacy_results.props,
-        allDocs: { tinaDocsNavigation },
+        allDocs: { tinaDocsNavigation }, oldNavDocs
       },
     }
   } catch (e) {
