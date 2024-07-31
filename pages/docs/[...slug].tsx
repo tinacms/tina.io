@@ -47,8 +47,8 @@ function _DocTemplate(props) {
     title: doc_data.previous?.title,
   }
   const nextPage = {
-    slug: doc_data.nextP?.id.slice(7, -4),
-    title: doc_data.nextP?.title,
+    slug: doc_data.Next?.id.slice(7, -4),
+    title: doc_data.Next?.title,
   }
   const TableOfContents = getTableOfContents(doc_data.body.children)
   const description = getSeoDescription(doc_data.body)
@@ -95,10 +95,7 @@ function _DocTemplate(props) {
             <hr />
             <TinaMarkdown content={doc_data.body} components={components} />
             <LastEdited date={doc_data.last_edited} />
-            {(props.prevPage?.slug !== null ||
-              props.nextPage?.slug !== null) && (
               <DocsPagination prevPage={previousPage} nextPage={nextPage} />
-            )}
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>

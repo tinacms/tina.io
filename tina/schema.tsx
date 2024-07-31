@@ -124,7 +124,7 @@ export const schema = defineSchema({
           },
         },
         {
-          name: 'nextP',
+          name: 'Next',
           label: 'Next',
           type: 'reference',
           collections: ['doc', 'examples'],

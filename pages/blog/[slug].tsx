@@ -260,7 +260,6 @@ export const components: Components<{
 function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any
   const id = getDocId(children.props.content[0].text)
-  console.log('the hcildren in basement' , id)
 
   return (
     <HeadingTag id={id}>

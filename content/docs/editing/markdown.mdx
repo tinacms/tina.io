@@ -1,8 +1,7 @@
 ---
 id: /docs/editing/markdown
-
 title: Markdown & MDX
-nextP: content/docs/editing/blocks.mdx
+Next: content/docs/editing/blocks.mdx
 previous: content/docs/editing/overview.mdx
 ---
 
@@ -76,17 +75,17 @@ const default defineConfig({
 })
 ```
 
-- `format`, at the root of the collection, defines the filetype (`md` in this case).
-- All the **frontmatter** fields can be registered, and assigned a type.
-- Your markdown body is registered by defining a `rich-text` field, and setting `isBody: true`.
+* `format`, at the root of the collection, defines the filetype (`md` in this case).
+* All the **frontmatter** fields can be registered, and assigned a type.
+* Your markdown body is registered by defining a `rich-text` field, and setting `isBody: true`.
 
 ## Rendering content with `TinaMarkdown`
 
-When your markdown content is requested through Tina's API, Tina serves a _parsed AST_ version of the content.
+When your markdown content is requested through Tina's API, Tina serves a *parsed AST* version of the content.
 
-> The _parsed AST_ gives developers the ability to step through each node, and render it with full control.
+> The *parsed AST* gives developers the ability to step through each node, and render it with full control.
 
-Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the _parsed AST_.
+Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the *parsed AST*.
 
 Here's an example of fetching our markdown content, and rendering it on the page.
 
@@ -112,7 +111,7 @@ const MyBlogPost = (props) => {
 
 If you are using `mdx` as the format, you'll have the ability to define custom components that your editors can leverage.
 
-![Docs_Starter_Example](https://res.cloudinary.com/forestry-demo/video/upload/v1638887594/blog-media/Docs_Starter_Example.gif)
+![Docs\_Starter\_Example](https://res.cloudinary.com/forestry-demo/video/upload/v1638887594/blog-media/Docs_Starter_Example.gif)
 
 > How does MDX work with Tina?Tina doesn't require a compilation step like other MDX tooling you
 > might be familiar with, so it needs to know about all the possible elements
