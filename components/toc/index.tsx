@@ -8,6 +8,8 @@ interface TocProps {
   activeIds: string[]
 }
 
+//TODO: Remove oldToc, replace with newToc https://github.com/tinacms/tina.io/issues/1981
+
 const Toc = ({ tocItems, activeIds }: TocProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
