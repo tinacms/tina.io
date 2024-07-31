@@ -71,6 +71,11 @@ const config = {
         destination: '/tina-cloud/overview',
         permanent: true,
       },
+      {
+        source: "/docs/errors/faqs",
+        destination: "/docs/introduction/faq/#common-tinacloud-errors",
+        permanent: true,
+      },
     ]
   },
   env: {

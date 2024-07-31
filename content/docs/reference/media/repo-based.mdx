@@ -11,7 +11,7 @@ Repo-based media storage is the default media storage solution for TinaCMS.
 
 To configure repo-based media in your project, add the following to your schema definition in `tina/config.{ts,js}`
 
-```ts
+```javascript
 //tina/config.{ts,js}
 
 export default defineConfig({
@@ -46,14 +46,62 @@ E.g, in our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/t
 
 This property determines whether media files can be uploaded, edited, or deleted directly through the editor.
 
-- **`static: true`** Editors cannot upload/delete media (static assets)
-- **`static: false`** (default): Editors can upload/delete media (dynamic assets).
+* **`static: true`** Editors cannot upload/delete media (static assets)
+* **`static: false`** (default): Editors can upload/delete media (dynamic assets).
+
+### Overriding the default accepted media types
+The following file types are supported by default
+
+| Format                                                     | MIME Type                                                    | Examples                       |
+|------------------------------------------------------------|--------------------------------------------------------------|--------------------------------|
+| Adobe InDesign                                             | `application/x-indesign`                                     | .indd                          |
+| Apple HTTP Live Streaming                                  | `application/vnd.apple.mpegurl`                              | .m3u8                          |
+| Binary File                                                | `application/octet-stream`                                   | .bin                           |
+| Filmbox                                                    | `model/fbx`                                                  | .fbx                           |
+| GL Transmission Format (JSON)                              | `model/gltf+json`                                            | .gltf                          |
+| Images                                                     | `image/*`                                                    | .jpg, .png, .gif, etc.         |
+| JSON                                                       | `application/json`                                           | .json                          |
+| JSON-LD                                                    | `application/ld+json`                                        | .jsonld                        |
+| Material Exchange Format                                   | `application/mxf`                                            | .mxf                           |
+| Microsoft Excel (Legacy)                                   | `application/vnd.ms-excel`                                   | .xls                           |
+| Microsoft Excel (OpenXML)                                  | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` | .xlsx                          |
+| Microsoft Word (Legacy)                                    | `application/msword`                                         | .doc                           |
+| Microsoft Word (OpenXML)                                   | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | .docx                          |
+| MPEG-DASH                                                  | `application/dash+xml`                                       | .mpd                           |
+| PDF                                                        | `application/pdf`                                            | .pdf                           |
+| Polygon File Format                                        | `model/ply`                                                  | .ply                           |
+| PostScript                                                 | `application/postscript`                                     | .ps, .eps, etc.                |
+| Text Files                                                 | `text/*`                                                     | .txt, .md, etc.                |
+| U3D Mesh                                                   | `model/u3d+mesh`                                             | .u3d                           |
+| USDZ Zip                                                   | `model/vnd.usdz+zip`                                         | .usdz                          |
+| Videos                                                     | `video/*`                                                    | .mp4, .avi, .mkv, etc.         |
+
+
+If you would like to specify your own allowed file types, add the following to the  **`media`** property
+
+```javascript
+//tina/config.{ts,js}
+
+export default defineConfig({
+  // ...
+  media: {
+    tina: {
+      //..
+    },
+    accept: ['image/jpeg', 'video/mp4'],
+  },
+})
+```
+
+### `accept` (List\<String\>)
+
+This property determines the filetypes that can be uploaded.
 
 ### next/image
 
 If you are using Next images, you will need to add the following to your `next.config.js` file to allow access to external images hosted on the Tina media hostname:
 
-```js
+```javascript
 module.exports = {
   images: {
     domains: ['assets.tina.io'],
@@ -69,7 +117,7 @@ Once media has been configured, you can use `image` fields in your collections.
 
 In your `schema` add a new `image` field to a collection, e.g:
 
-```ts
+```javascript
  // ...
  {
   name: 'hero',
@@ -92,9 +140,8 @@ Repo-based media is designed to be used around a single-branch workflow. If your
 * If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
 * If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
 
-If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), you may see this message in the Tina Cloud media settings:\
+If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), you may see this message in the Tina Cloud media settings:
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1688478218/tina-io/docs/media-not-configured_lnr5lw.png)
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1688478218/tina-io/docs/media-not-configured_lnr5lw.png)\
-\
 To workaround this, you may need to enable media **after** merging Tina to your default branch.

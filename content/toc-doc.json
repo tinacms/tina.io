@@ -77,6 +77,10 @@
       {
         "slug": "/docs/using-tina-editor",
         "title": "Using the Tina Editor"
+      },
+      {
+        "slug": "/docs/introduction/faq/",
+        "title": "FAQ"
       }
     ]
   },
@@ -288,10 +292,6 @@
             "slug": "/docs/self-hosted/user-management/"
           }
         ]
-      },
-      {
-        "slug": "/docs/tina-cloud/faq/",
-        "title": "FAQ"
       }
     ]
   },

@@ -40,6 +40,23 @@ configuration provided.
 ```
 
 :::
+:::code-snippet{open=true url="/img/code-snippets/rich-text-toolbar-override.png"}
+
+### Toolbar Override
+
+Change what you want to display and the order it is displayed in the editor
+
+```ts
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+  toolbarOverride: ["heading", "bold", "italic"],
+}
+```
+
+:::
 :::code-snippet{open=true url="/img/code-snippets/rich-text-3.png"}
 
 ### Custom custom templates

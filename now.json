@@ -15,7 +15,10 @@
     }
   },
   "redirects": [
-    { "source": "/cloud/", "destination": "/" },
+    {
+      "source": "/cloud/",
+      "destination": "/"
+    },
     {
       "source": "/blog/tina-v-0.69.0/",
       "destination": "/blog/tina-v-0.68.14"
@@ -28,24 +31,54 @@
       "source": "/docs/tina-cloud/alpha-faq/",
       "destination": "/docs/tina-cloud/faq/"
     },
-    { "source": "/blog/first", "destination": "/blog/announcing-tinacms" },
+    {
+      "source": "/blog/first",
+      "destination": "/blog/announcing-tinacms"
+    },
     {
       "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
       "destination": "/blog/introducing-tina-grande"
     },
-    { "source": "/jamstack-conf", "destination": "/teams" },
-    { "source": "/smashing-conf", "destination": "/teams" },
-    { "source": "/docs/concepts/sidebar", "destination": "/docs/cms" },
-    { "source": "/docs/concepts/forms", "destination": "/docs/forms" },
-    { "source": "/docs/plugins/forms", "destination": "/docs/forms" },
+    {
+      "source": "/jamstack-conf",
+      "destination": "/teams"
+    },
+    {
+      "source": "/smashing-conf",
+      "destination": "/teams"
+    },
+    {
+      "source": "/docs/concepts/sidebar",
+      "destination": "/docs/cms"
+    },
+    {
+      "source": "/docs/concepts/forms",
+      "destination": "/docs/forms"
+    },
+    {
+      "source": "/docs/plugins/forms",
+      "destination": "/docs/forms"
+    },
     {
       "source": "/docs/concepts/fields",
       "destination": "/docs/fields"
     },
-    { "source": "/docs/cms/apis", "destination": "/docs/apis" },
-    { "source": "/docs/ui", "destination": "/docs/sidebar-toolbar" },
-    { "source": "/docs/cms/ui", "destination": "/docs/sidebar-toolbar" },
-    { "source": "/docs/cms/alerts", "destination": "/docs/ui/alerts" },
+    {
+      "source": "/docs/cms/apis",
+      "destination": "/docs/apis"
+    },
+    {
+      "source": "/docs/ui",
+      "destination": "/docs/sidebar-toolbar"
+    },
+    {
+      "source": "/docs/cms/ui",
+      "destination": "/docs/sidebar-toolbar"
+    },
+    {
+      "source": "/docs/cms/alerts",
+      "destination": "/docs/ui/alerts"
+    },
     {
       "source": "/docs/cms/styles",
       "destination": "/docs/advanced/customizing-ui/"
@@ -54,12 +87,30 @@
       "source": "/docs/ui/styles/",
       "destination": "/docs/advanced/customizing-ui/"
     },
-    { "source": "/docs/cms/events", "destination": "/docs/events" },
-    { "source": "/docs/cms/plugins", "destination": "/docs/plugins" },
-    { "source": "/docs/plugins/fields", "destination": "/docs/fields" },
-    { "source": "/docs/plugins/fields/", "destination": "/docs/fields" },
-    { "source": "/docs/concepts/backends", "destination": "/docs/cms#apis" },
-    { "source": "/docs/concepts/plugins", "destination": "/docs/cms#plugins" },
+    {
+      "source": "/docs/cms/events",
+      "destination": "/docs/events"
+    },
+    {
+      "source": "/docs/cms/plugins",
+      "destination": "/docs/plugins"
+    },
+    {
+      "source": "/docs/plugins/fields",
+      "destination": "/docs/fields"
+    },
+    {
+      "source": "/docs/plugins/fields/",
+      "destination": "/docs/fields"
+    },
+    {
+      "source": "/docs/concepts/backends",
+      "destination": "/docs/cms#apis"
+    },
+    {
+      "source": "/docs/concepts/plugins",
+      "destination": "/docs/cms#plugins"
+    },
     {
       "source": "/docs/getting-started/how-tina-works/",
       "destination": "/docs/setup-overview/"
@@ -392,7 +443,6 @@
       "source": "/docs/reference/toolkit/fields/custom-fields",
       "destination": "/docs/advanced/configuring-field-plugin/"
     },
-
     {
       "source": "/docs/plugins/content-creators/",
       "destination": "/docs/legacy-redirect"
@@ -536,6 +586,10 @@
     {
       "source": "/guides/tinacms/nextjs-internationalization/guide",
       "destination": "/guides/tinacms/adding-internationalization-to-tina/guide"
+    },
+    {
+      "source": "/faq",
+      "destination": "/docs/introduction/faq"
     }
   ]
 }
