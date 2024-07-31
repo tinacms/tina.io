@@ -117,6 +117,7 @@ export const getStaticProps: GetStaticProps = async function (props) {
   try {
     const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
     const tinaDocsNavigation = await client.queries.getAllDocs()
+    //TOOD: get rid of line 121. https://github.com/tinacms/tina.io/issues/1982
     const oldNavDocs = await getDocsNav()
     return {
       props: {
