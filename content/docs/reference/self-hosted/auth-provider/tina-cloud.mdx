@@ -1,8 +1,6 @@
 ---
 title: Tina Cloud Auth Provider
 id: '/docs/reference/self-hosted/auth-provider/tina-cloud'
-prev: '/docs/reference/self-hosted/auth-provider/authjs'
-next: '/docs/reference/self-hosted/auth-provider/clerk-auth'
 ---
 
 You can use Tina Cloud for authentication and authorization and self-host the content api. If you do not already have account,
@@ -24,12 +22,12 @@ To enable Tina Cloud for auth, make sure the `clientId` property is set to the `
 //...
 export default defineConfig({
   // Make sure this is set to point to your graphql endpoint
-  contentApiUrlOverride: "/api/tina/gql",
+  contentApiUrlOverride: '/api/tina/gql',
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   //...
   admin: {
     auth: {
-      useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === "true",
+      useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === 'true',
     },
   },
 })

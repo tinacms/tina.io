@@ -1,5 +1,4 @@
 ---
-prev: /docs/frameworks/next/overview
 title: Next.js Pages Router
 nextP: content/docs/frameworks/astro.mdx
 previous: content/docs/frameworks/next/app-router.mdx
@@ -60,14 +59,14 @@ After running the `tina init` command a few files were created to get you starte
 It looks like the following:
 
 ```ts
-import { defineConfig } from "tinacms";
+import { defineConfig } from 'tinacms'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
-  "main";
+  'main'
 
 export default defineConfig({
   branch,
@@ -78,41 +77,40 @@ export default defineConfig({
   token: process.env.TINA_TOKEN,
 
   build: {
-    outputFolder: "admin",
-    publicFolder: "public",
+    outputFolder: 'admin',
+    publicFolder: 'public',
   },
   media: {
     tina: {
-      mediaRoot: "",
-      publicFolder: "public",
+      mediaRoot: '',
+      publicFolder: 'public',
     },
   },
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
+        name: 'post',
+        label: 'Posts',
+        path: 'content/posts',
         fields: [
           {
-            type: "string",
-            name: "title",
-            label: "Title",
+            type: 'string',
+            name: 'title',
+            label: 'Title',
             isTitle: true,
             required: true,
           },
           {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
+            type: 'rich-text',
+            name: 'body',
+            label: 'Body',
             isBody: true,
           },
         ],
       },
     ],
   },
-});
-
+})
 ```
 
 **For a more detailed overview about the config see [Content Modeling with TinaCMS](docs/extending-tina/overview/)**
@@ -155,9 +153,9 @@ Let's start by creating a `/posts` folder. The index here will list all our post
 **File:** `pages/posts/index.tsx`
 
 ```tsx
-import Link from "next/link";
-import { useTina } from "tinacms/dist/react";
-import { client } from "../../tina/__generated__/client";
+import Link from 'next/link'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
 
 export default function PostList(props) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
@@ -165,8 +163,8 @@ export default function PostList(props) {
     query: props.query,
     variables: props.variables,
     data: props.data,
-  });
-  const postsList = data.postConnection.edges;
+  })
+  const postsList = data.postConnection.edges
   return (
     <>
       <h1>Posts</h1>
@@ -180,11 +178,11 @@ export default function PostList(props) {
         ))}
       </div>
     </>
-  );
+  )
 }
 
 export const getStaticProps = async () => {
-  const { data, query, variables } = await client.queries.postConnection();
+  const { data, query, variables } = await client.queries.postConnection()
 
   return {
     props: {
@@ -192,8 +190,8 @@ export const getStaticProps = async () => {
       query,
       variables,
     },
-  };
-};
+  }
+}
 ```
 
 ## Rendering a Single Post
@@ -201,8 +199,8 @@ export const getStaticProps = async () => {
 **File:** `pages/posts/[slug].tsx`
 
 ```tsx
-import { useTina } from "tinacms/dist/react";
-import { client } from "../../tina/__generated__/client";
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
 
 export default function Home(props) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
@@ -210,39 +208,39 @@ export default function Home(props) {
     query: props.query,
     variables: props.variables,
     data: props.data,
-  });
+  })
 
   return (
     <>
       <code>
         <pre
           style={{
-            backgroundColor: "lightgray",
+            backgroundColor: 'lightgray',
           }}
         >
           {JSON.stringify(data.post, null, 2)}
         </pre>
       </code>
     </>
-  );
+  )
 }
 
 export const getStaticPaths = async () => {
-  const { data } = await client.queries.postConnection();
+  const { data } = await client.queries.postConnection()
   const paths = data.postConnection.edges.map((x) => {
-    return { params: { slug: x.node._sys.filename } };
-  });
+    return { params: { slug: x.node._sys.filename } }
+  })
 
   return {
     paths,
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking',
+  }
+}
 
 export const getStaticProps = async (ctx) => {
   const { data, query, variables } = await client.queries.post({
-    relativePath: ctx.params.slug + ".md",
-  });
+    relativePath: ctx.params.slug + '.md',
+  })
 
   return {
     props: {
@@ -250,12 +248,12 @@ export const getStaticProps = async (ctx) => {
       query,
       variables,
     },
-  };
-};
+  }
+}
 ```
 
 ## Next Steps
 
-* [Check out the content modeling docs](/docs/schema/)
-* [Learn how to query your content](/docs/features/data-fetching/)
-* [Deploy Your Site](/docs/tina-cloud)
+- [Check out the content modeling docs](/docs/schema/)
+- [Learn how to query your content](/docs/features/data-fetching/)
+- [Deploy Your Site](/docs/tina-cloud)

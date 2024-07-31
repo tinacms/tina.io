@@ -1,7 +1,6 @@
 ---
 id: /docs/graphql/queries/query-documents
-prev: /docs/graphql/queries/get-document
-next: /docs/graphql/queries/advanced/filter-documents
+
 title: Querying a List of Documents
 ---
 
@@ -11,4 +10,7 @@ Tina's list queries implement the [cursor-based Relay specification](https://rel
 
 Here we will query our `post` collection with `postConnection`
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"
+  height={400}
+/>

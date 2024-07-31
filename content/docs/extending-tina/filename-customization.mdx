@@ -1,7 +1,6 @@
 ---
 id: /docs/extending-tina/filename-customization
-prev: /docs/extending-tina/format-and-parse
-next: /docs/extending-tina/before-submit
+
 title: Filename customization
 nextP: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
@@ -11,13 +10,13 @@ The filename customization API allows you to customize the filename of a documen
 
 A couple things to keep in mind when customizing the filename:
 
-* Filename can not contain any spaces
-* Filename must contain only a-z, A-Z, 0-9, -, \_, ., or /.
-* Filename must be unique within the collection
-* If the filename starts with `/` it will be treated as an absolute path relative to the collection root
-  * Example: `/foo/bar/blog-post` will be saved as `<MyCollectionPath>/post/blog-post.md`
-* If the filename does not start with `/` it will be treated as a relative to your current folder
-  * Example: `bar/blog-post` will be saved as `<MyCollectionPath>/<CurrentDirectory>/bar/blog-post.md`
+- Filename can not contain any spaces
+- Filename must contain only a-z, A-Z, 0-9, -, \_, ., or /.
+- Filename must be unique within the collection
+- If the filename starts with `/` it will be treated as an absolute path relative to the collection root
+  - Example: `/foo/bar/blog-post` will be saved as `<MyCollectionPath>/post/blog-post.md`
+- If the filename does not start with `/` it will be treated as a relative to your current folder
+  - Example: `bar/blog-post` will be saved as `<MyCollectionPath>/<CurrentDirectory>/bar/blog-post.md`
 
 ## Definition
 

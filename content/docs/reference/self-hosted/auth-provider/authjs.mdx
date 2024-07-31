@@ -1,7 +1,6 @@
 ---
 id: /docs/reference/self-hosted/auth-provider/authjs
-prev: /docs/reference/self-hosted/auth-provider/overview
-next: /docs/reference/self-hosted/auth-provider/tina-cloud
+
 title: Default (Auth.js) Auth Provider
 ---
 
@@ -146,9 +145,7 @@ import {
 
 export default defineConfig({
   // When isLocal is true, the CMS will not require authentication
-  authProvider: isLocal
-    ? new LocalAuthProvider()
-    : new DefaultAuthJSProvider(),
+  authProvider: isLocal ? new LocalAuthProvider() : new DefaultAuthJSProvider(),
   schema: {
     collections: [
       {
@@ -173,11 +170,10 @@ export default defineConfig({
                 type: 'string',
                 label: 'Email',
                 name: 'email',
-
               },
-            ]
-          }
-        ]
+            ],
+          },
+        ],
       } as Collection,
       // ...
     ],
@@ -217,8 +213,8 @@ export const NextAuthOptions = TinaAuthJSOptions({
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
-    })
-  ]
+    }),
+  ],
 })
 
 const handler = TinaNodeBackend({
@@ -240,7 +236,7 @@ Next, we'll need to create a separate endpoint for the backend. In `/pages/api/a
 
 ```ts
 import NextAuth from 'next-auth'
-import { NextAuthOptions } from "../tina/[...routes]";
+import { NextAuthOptions } from '../tina/[...routes]'
 
 export default (req, res) => {
   return NextAuth(NextAuthOptions)(req, res)

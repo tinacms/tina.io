@@ -1,7 +1,6 @@
 ---
 id: /docs/graphql/queries/get-document
-prev: /docs/graphql/queries
-next: /docs/graphql/queries/query-documents
+
 title: Querying a Single Document
 ---
 
@@ -9,7 +8,7 @@ title: Querying a Single Document
 
 Get a single document, providing it's `relativePath` as the argument.
 
-* `relativePath` is the portion of the path *relative* to the `collection`'s path.
+- `relativePath` is the portion of the path _relative_ to the `collection`'s path.
 
 In this example, the `post` collection has a path of `content/posts` and your document can be found at `content/posts/voteForPedro.md` giving `relativePath: "voteForPedro.md"`. If your item was at `content/posts/nested-folder/voteForPedro.md` you'd specify: `relativePath: "nested-folder/voteForPedro.md"`.
 
@@ -17,9 +16,15 @@ Our collections for the above [schema](/docs/graphql/queries/#example-schema) ar
 
 ### Example
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20category%0A%20%20%20%20author%20%7B%0A%20%20%20%20%20%20...%20on%20Author%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22;" height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20category%0A%20%20%20%20author%20%7B%0A%20%20%20%20%20%20...%20on%20Author%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22;"
+  height={400}
+/>
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20author(relativePath%3A%20%22napolean.json%22)%20%7B%0A%20%20%20%20name%0A%20%20%7D%0A%7D%0A" height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20author(relativePath%3A%20%22napolean.json%22)%20%7B%0A%20%20%20%20name%0A%20%20%7D%0A%7D%0A"
+  height={400}
+/>
 
 ## Common fields
 
@@ -27,19 +32,25 @@ In a collection, there are a few fields that are common to all documents. These 
 
 The `_sys` field is an object with the following fields:
 
-* `filename`: The name of the file without the extension
-* `basename`: The name of the file with the extension
-* `path`: The full path of the file relative to the project root
-* `breadcrumbs`: An array of the parent folders of the file
-* `relativePath`: The path of the file relative to the collection path
-* `extension`: The extension of the file
-* `template`: The template of the document (or the name of the collection if not using `templates`)
-* `collection`: Information about the collection
+- `filename`: The name of the file without the extension
+- `basename`: The name of the file with the extension
+- `path`: The full path of the file relative to the project root
+- `breadcrumbs`: An array of the parent folders of the file
+- `relativePath`: The path of the file relative to the collection path
+- `extension`: The extension of the file
+- `template`: The template of the document (or the name of the collection if not using `templates`)
+- `collection`: Information about the collection
 
 ### Example with a nester folder
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22nested%2FanotherPost.json%22)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&#x22;" height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22nested%2FanotherPost.json%22)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&#x22;"
+  height={400}
+/>
 
 ### Example without a nester folder
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20&#x22;anotherPost.json&#x22;)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20&#x22;anotherPost.json&#x22;)%20%7B%0A%20%20%20%20id%0A%20%20%20%20_sys%20%7B%0A%20%20%20%20%20%20filename%0A%20%20%20%20%20%20basename%0A%20%20%20%20%20%20path%0A%20%20%20%20%20%20breadcrumbs%0A%20%20%20%20%20%20relativePath%0A%20%20%20%20%20%20extension%0A%20%20%20%20%20%20template%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&#x22; "
+  height={400}
+/>

@@ -1,6 +1,4 @@
 ---
-prev: /docs/tina-folder/overview
-next: /docs/reference/media/overview
 title: The TinaCMS CLI
 nextP: content/docs/reference/media/overview.mdx
 ---
@@ -94,11 +92,11 @@ tinacms build --local -c "next build"
 
 This will
 
-* Start the local graphql server
-* Generate the local TinaCMS client that will query the local file system
-* Produce local image paths
-* build production SPA
-* run Next build
+- Start the local graphql server
+- Generate the local TinaCMS client that will query the local file system
+- Produce local image paths
+- build production SPA
+- run Next build
 
 ### "npx @tinacms/cli\@latest init"
 
@@ -110,10 +108,10 @@ npx @tinacms/cli init
 
 This will:
 
-* Install all required dependencies for Tina.
-* Define a basic content schema in the `tina` directory.
-* Create example content in the demo directory.
-* Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
+- Install all required dependencies for Tina.
+- Define a basic content schema in the `tina` directory.
+- Create example content in the demo directory.
+- Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
 #### Options
 
@@ -125,8 +123,8 @@ This will:
 
 The `audit` command is used for checking for errors in your in your files. It currently does two things.
 
-* Checks to see if the files have the correct extension
-* Submits each file as a Graphql mutation and checks for Graphql errors
+- Checks to see if the files have the correct extension
+- Submits each file as a Graphql mutation and checks for Graphql errors
 
 By default the mutation will not change the content of the files.
 

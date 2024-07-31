@@ -1,7 +1,6 @@
 ---
 id: /docs/self-hosted/starters/nextjs-vercel
-prev: /docs/self-hosted/overview
-next: /docs/self-hosted/existing-site
+
 title: Using the Next.js Vercel Example
 last_edited: '2023-07-07T04:00:00.000Z'
 nextP: content/docs/self-hosted/existing-site.mdx
@@ -12,21 +11,21 @@ previous: content/docs/self-hosted/overview.mdx
 
 This doc will guide you through setting up our pre-configured self-hosted example repository. This implementation uses:
 
-* [NextJS](https://nextjs.org/)
-* [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [database adapter](/docs/reference/self-hosted/database-adapters/overview)
-* [NextAuth](/docs/reference/self-hosted/auth-provider/authjs) for its [auth provider](/docs/reference/self-hosted/auth-providers/overview)
+- [NextJS](https://nextjs.org/)
+- [Vercel](/docs/reference/self-hosted/database-adapters/vercel-kv) KV for the [database adapter](/docs/reference/self-hosted/database-adapters/overview)
+- [NextAuth](/docs/reference/self-hosted/auth-provider/authjs) for its [auth provider](/docs/reference/self-hosted/auth-providers/overview)
 
 ## Deploy The Starter Template
 
 <Youtube embedSrc="https://www.youtube.com/embed/DAJpnjkLBbM" />
 
-You can deploy the [self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using [our preconfigured Vercel template](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fmain\&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET\&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew\&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D):
+You can deploy the [self-hosted starter](https://github.com/tinacms/tina-self-hosted-demo) using [our preconfigured Vercel template](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fmain&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D):
 
 This will:
 
-* Create a copy of the self-hosted starter [repository](https://github.com/tinacms/tina-self-hosted-demo) in your GitHub account
-* Create a new Vercel project with the starter code
-* Create a new Vercel KV store for the project
+- Create a copy of the self-hosted starter [repository](https://github.com/tinacms/tina-self-hosted-demo) in your GitHub account
+- Create a new Vercel project with the starter code
+- Create a new Vercel KV store for the project
 
 ### Setup Vercel KV Store
 

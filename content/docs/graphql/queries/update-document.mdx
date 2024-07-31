@@ -1,7 +1,6 @@
 ---
 id: /docs/graphql/queries/update-document
-prev: /docs/graphql/queries/advanced/limitations
-next: /docs/graphql/queries/add-document
+
 title: Updating a document
 ---
 
@@ -9,6 +8,12 @@ title: Updating a document
 
 Our collections for the above [schema](/docs/graphql/queries/#example-schema) are named "post" and "author", so we can apply an update to each collection type using the `updatePost` & `updateAuthor`
 
-<Iframe iframeSrc="/api/graphiql/?query=mutation%20%7B%0A%20%20updatePost(relativePath%3A%20%22voteForPedro.json%22%2C%20params%3A%20%7Btitle%3A%20%22Vote%20For%20Napolean%20Instead%22%2C%20category%3A%20%22politics%22%2C%20author%3A%20%22content%2Fauthors%2Fnapolean.json%22%7D)%20%7B%0A%20%20%20%20title%0A%20%20%20%20category%0A%20%20%20%20author%20%7B%0A%20%20%20%20%20%20...%20on%20Author%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=mutation%20%7B%0A%20%20updatePost(relativePath%3A%20%22voteForPedro.json%22%2C%20params%3A%20%7Btitle%3A%20%22Vote%20For%20Napolean%20Instead%22%2C%20category%3A%20%22politics%22%2C%20author%3A%20%22content%2Fauthors%2Fnapolean.json%22%7D)%20%7B%0A%20%20%20%20title%0A%20%20%20%20category%0A%20%20%20%20author%20%7B%0A%20%20%20%20%20%20...%20on%20Author%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+  height={400}
+/>
 
-<Iframe iframeSrc="/api/graphiql/?query=mutation%20%7B%0A%20%20updateAuthor(relativePath%3A%20%22napolean.json%22%2C%20params%3A%20%7Bname%3A%20%22Napolean%22%2C%20avatar%3A%20%22https%3A%2F%2Fpath.to%2Fmy-avatar.jpg%22%7D)%20%7B%0A%20%20%20%20name%0A%20%20%20%20avatar%0A%20%20%7D%0A%7D%0A" height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=mutation%20%7B%0A%20%20updateAuthor(relativePath%3A%20%22napolean.json%22%2C%20params%3A%20%7Bname%3A%20%22Napolean%22%2C%20avatar%3A%20%22https%3A%2F%2Fpath.to%2Fmy-avatar.jpg%22%7D)%20%7B%0A%20%20%20%20name%0A%20%20%20%20avatar%0A%20%20%7D%0A%7D%0A"
+  height={400}
+/>

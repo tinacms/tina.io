@@ -1,7 +1,6 @@
 ---
 id: /docs/graphql/queries/advanced/filter-documents
-prev: /docs/graphql/queries/query-documents
-next: /docs/graphql/queries/advanced/sorting
+
 title: Filtering a query result
 ---
 
@@ -35,28 +34,43 @@ Conditions can be either "binary" or "ternary". A binary condition is composed o
 
 Here we will query our `post` collection with `postConnection` and filter the results by the post `title`:
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Btitle%3A%20%7BstartsWith%3A%20%22Vote%22%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Btitle%3A%20%7BstartsWith%3A%20%22Vote%22%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+  height={400}
+/>
 
 ### Filtering on a field with the IN operator
 
 Here we will query our `post` collection with `postConnection` and filter the results so that only members of the specified `category` are returned:
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bcategory%3A%20%7Bin%3A%20%5B%22politics%22%5D%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bcategory%3A%20%7Bin%3A%20%5B%22politics%22%5D%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+  height={400}
+/>
 
 ### Filtering on a date range
 
 Here we will query our `post` collection with `postConnection` and filter the results so that only posts with a `date` between the specified range are returned:
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bdate%3A%20%7Bafter%3A%20%222022-06-01T07%3A00%3A00.000Z%22%2C%20before%3A%20%222022-06-30T07%3A00%3A00.000Z%22%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bdate%3A%20%7Bafter%3A%20%222022-06-01T07%3A00%3A00.000Z%22%2C%20before%3A%20%222022-06-30T07%3A00%3A00.000Z%22%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+  height={400}
+/>
 
 ### Filtering on multiple fields
 
 It is possible to filter on multiple fields. Multiple conditions are currently treated as a boolean `AND` operation. Here we will query our `post` collection with `postConnection` and filter the results by `category` and `title`:
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bcategory%3A%20%7Bin%3A%20%5B%22politics%22%5D%7D%2C%20title%3A%20%7BstartsWith%3A%20%22Vote%22%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bcategory%3A%20%7Bin%3A%20%5B%22politics%22%5D%7D%2C%20title%3A%20%7BstartsWith%3A%20%22Vote%22%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+  height={400}
+/>
 
 #### Filtering on a reference
 
 Here we will query our `post` collection with `postConnection`, and filtering on the referenced `author`'s name:
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bauthor%3A%20%7Bauthor%3A%20%7Bname%3A%20%7Beq%3A%20%22Napolean%22%7D%7D%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(filter%3A%20%7Bauthor%3A%20%7Bauthor%3A%20%7Bname%3A%20%7Beq%3A%20%22Napolean%22%7D%7D%7D%7D)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+  height={400}
+/>

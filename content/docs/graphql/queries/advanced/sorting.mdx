@@ -1,7 +1,6 @@
 ---
 id: /docs/graphql/queries/advanced/sorting
-prev: /docs/graphql/queries/advanced/filter-documents
-next: /docs/graphql/queries/advanced/pagination
+
 title: Sorting query results
 ---
 
@@ -50,10 +49,16 @@ If the `sort` parameter is not specified in a query, results will be returned ba
 
 Here we will query our `post` collection with `postConnection` and sort the results by the `date` field:
 
-<Iframe height={401} iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " />
+<Iframe
+  height={401}
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+/>
 
 ### Sorting by multiple fields
 
 Here we will query our `post` collection with `postConnection` and sort the results first by `category` and then by `date` using the multi-field index named `category-date`:
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22category-date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<Iframe
+  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22category-date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+  height={400}
+/>
