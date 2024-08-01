@@ -40,6 +40,7 @@
     "algoliasearch": "^4.0.0",
     "axios": "^0.21.2",
     "btoa": "^1.2.1",
+    "date-fns": "^3.6.0",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
