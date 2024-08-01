@@ -5,6 +5,7 @@ Source code for the [tina.io](https://tina.io) website.
 ## Development
 
 ```
+corepack enable
 cp .env.example .env
 yarn install
 yarn dev
