@@ -67,8 +67,8 @@ const config = {
         permanent: true,
       },
       {
-        source: '/tina-cloud/connecting-site/',
-        destination: '/tina-cloud/overview',
+        source: '/docs/tina-cloud/connecting-site/',
+        destination: '/docs/tina-cloud/overview',
         permanent: true,
       },
       {
