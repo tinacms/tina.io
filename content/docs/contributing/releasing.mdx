@@ -1,8 +1,5 @@
 ---
-title: Contribution Releases
 id: /docs/contributing/releasing
-prev: /docs/contributing/setting-up
-next: /docs/contributing/troubleshooting
 consumes:
   - file: /RELEASE.md
     details: 'Shares the release process, should mirror'
@@ -10,15 +7,20 @@ consumes:
     details: Uses publish command
   - file: README.md
     details: 'Shows crelease process, should mirror'
+title: Contribution Releases
+prev: /docs/contributing/setting-up
+next: /docs/contributing/troubleshooting
 ---
+
+<WarningCallout body="These docs are out of date - check out https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md for the latest information" />
 
 ## Overarching Process
 
 Tina has three main branches:
 
-- **master:** The bleeding edge of tinacms
-- **next:** A preview of the next release
-- **latest:** The current stable release
+* **master:** The bleeding edge of tinacms
+* **next:** A preview of the next release
+* **latest:** The current stable release
 
 The flow of changes therefore looks like:
 
@@ -26,19 +28,19 @@ The flow of changes therefore looks like:
 
 The process happens over a week:
 
-- On Monday
+* On Monday
   1. `next` is merged into `latest`; then `latest` is published to npm
   2. `master` is merged into `next`; then `next` is published to npm
-- Any hot fixes for bugs will be cherry picked into `next` and `latest`
+* Any hot fixes for bugs will be cherry picked into `next` and `latest`
   and the published accordingly.
-- Every pull request merged to `master` automatically triggers a
+* Every pull request merged to `master` automatically triggers a
   `canary` release.
 
 With this process:
 
-- all accepted changes are available as `canary` releases for early testing
-- critical fixes are published as soon as possible
-- new features and minor fixes take ~1.5 weeks to be published
+* all accepted changes are available as `canary` releases for early testing
+* critical fixes are published as soon as possible
+* new features and minor fixes take \~1.5 weeks to be published
 
 ## Steps to Release
 
@@ -47,25 +49,19 @@ The general release process looks like this:
 1. **Build the source files:**
 
    The source must be compiled, minified, and uglified in preparation for release.
-
-1. **Generate CHANGELOGs and Git tags:**
+2. **Generate CHANGELOGs and Git tags:**
 
    We use `lerna` to generate CHANGELOG files automatically from our commit messages.
-
-1. **Clean the CHANGELOGs**
+3. **Clean the CHANGELOGs**
 
    Lerna sometimes adds empty changelog entries. For example, if `react-tinacms` is changed
    then `tinacms` will get get a patch update with only the dependency updated. Make sure to install `lerna-clean-changelog-cli`:
 
-   ```
-   npm i -g lerna-clean-changelogs-cli
-   ```
+   `npm i -g lerna-clean-changelogs-cli`
+4. **Publish to NPM:**
 
-1. **Publish to NPM:**
-
-   You must have an NPM_TOKEN set locally that has access to the `@tinacms` organization
-
-1. **Push CHANGELOGs and Git tags to GitHub:**
+   You must have an NPM\_TOKEN set locally that has access to the `@tinacms` organization
+5. **Push CHANGELOGs and Git tags to GitHub:**
 
    Let everyone know!
 
@@ -75,101 +71,53 @@ The exact commands vary slightly depending on the type of release being made.
 
 1. **Build the source files:**
 
-   ```
-   npm run build
-   ```
+   `npm run build`
+2. **Generate CHANGELOGs and Git tags:**
 
-1. **Generate CHANGELOGs and Git tags:**
+   `lerna version \   --conventional-commits \   --conventional-prerelease \   --no-push \   --allow-branch next \
+     -m "chore(publish): prerelease"`
+3. **Clean the CHANGELOGs**
 
-   ```
-   lerna version \
-     --conventional-commits \
-     --conventional-prerelease \
-     --no-push \
-     --allow-branch next \
-     -m "chore(publish): prerelease"
-   ```
-
-1. **Clean the CHANGELOGs**
-
-   ```
-   lcc ** && git commit -am "chore: clean changelogs"
-   ```
-
-1. **Publish to NPM:**
-   ```
-   lerna publish from-package --dist-tag next
-   ```
-1. **Push CHANGELOGs and Git tags to GitHub:**
-   ```
-   git push && git push --tags
-   ```
+   `lcc ** && git commit -am "chore: clean changelogs"`
+4. **Publish to NPM:**
+   `lerna publish from-package --dist-tag next`
+5. **Push CHANGELOGs and Git tags to GitHub:**
+   `git push && git push --tags`
 
 ### Graduating Prereleases
 
 1. **Build the source files:**
 
-   ```
-   npm run build
-   ```
+   `npm run build`
+2. **Generate CHANGELOGs and Git tags:**
 
-1. **Generate CHANGELOGs and Git tags:**
+   `lerna version \   --conventional-commits \   --conventional-graduate \   --no-push \   --allow-branch next \
+     -m "chore(publish): graduation"`
+3. **Clean the CHANGELOGs**
 
-   ```
-   lerna version \
-     --conventional-commits \
-     --conventional-graduate \
-     --no-push \
-     --allow-branch next \
-     -m "chore(publish): graduation"
-   ```
+   `lcc ** && git commit -am "chore: clean changelogs"`
 
-1. **Clean the CHANGELOGs**
+<!---->
 
-   ```
-   lcc ** && git commit -am "chore: clean changelogs"
-   ```
+1. **Publish to NPM:**
 
-1) **Publish to NPM:**
-
-   ```
-   lerna publish from-package
-   ```
-
-1) **Push CHANGELOGs and Git tags to GitHub:**
-   ```
-   git push && git push --tags
-   ```
+   `lerna publish from-package`
+2. **Push CHANGELOGs and Git tags to GitHub:**
+   `git push && git push --tags`
 
 ### Release
 
 1. **Build the source files:**
 
-   ```
-   npm run build
-   ```
+   `npm run build`
+2. **Generate CHANGELOGs and Git tags:**
 
-1. **Generate CHANGELOGs and Git tags:**
+   `lerna version \   --conventional-commits \   --no-push \   --allow-branch master \
+     -m "chore(publish): release"`
+3. **Clean the CHANGELOGs**
 
-   ```
-   lerna version \
-     --conventional-commits \
-     --no-push \
-     --allow-branch master \
-     -m "chore(publish): release"
-   ```
-
-1. **Clean the CHANGELOGs**
-
-   ```
-   lcc ** && git commit -am "chore: clean changelogs"
-   ```
-
-1. **Publish to NPM:**
-   ```
-   lerna publish from-package
-   ```
-1. **Push CHANGELOGs and Git tags to GitHub:**
-   ```
-   git push && git push --tags
-   ```
+   `lcc ** && git commit -am "chore: clean changelogs"`
+4. **Publish to NPM:**
+   `lerna publish from-package`
+5. **Push CHANGELOGs and Git tags to GitHub:**
+   `git push && git push --tags`
