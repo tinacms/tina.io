@@ -13,12 +13,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+ 
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: package.json
+          run_install: true
       
-      - name: yarn install, create-indices
+      - name: create-indices
         run: |
-          corepack enable
-          yarn install
-          yarn create-indices
+          pnpm create-indices
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}

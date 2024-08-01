@@ -19,20 +19,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+ 
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: package.json
+          run_install: true
 
-      - name: yarn install, build, and test
-        run: |
-          corepack enable
-          yarn install
-          yarn build
-          yarn lint
-          yarn test
+      - run: pnpm build
         env:
           CI: true
 
-      - name: yarn export
-        run: |
-          yarn export
+      - run: pnpm lint
+        env:
+          CI: true
+
+      - run: pnpm test
+        env:
+          CI: true
+
+      - run: pnpm export
         env:
           CI: true
 
