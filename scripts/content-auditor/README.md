@@ -33,6 +33,6 @@ Install the `requests` package with pip.
 
 4. Active the python virtual environment as above.
 
-5. Run the script with `python3 content-auditor.py`
+5. Run the script with `python3 content-auditor.py {{API URL from step 1}}`
 
 6. Grab a coffee or switch tabs while the LLM reads the docs 🤖☕️
