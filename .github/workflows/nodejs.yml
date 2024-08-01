@@ -22,6 +22,7 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
+          corepack enable
           yarn install
           yarn build
           yarn lint

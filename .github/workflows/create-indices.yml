@@ -16,6 +16,7 @@ jobs:
       
       - name: yarn install, create-indices
         run: |
+          corepack enable
           yarn install
           yarn create-indices
         env:
