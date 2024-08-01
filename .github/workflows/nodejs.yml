@@ -13,17 +13,13 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .nvmrc
+
       - name: yarn install, build, and test
         run: |
           yarn install
@@ -32,11 +28,13 @@ jobs:
           yarn test
         env:
           CI: true
+
       - name: yarn export
         run: |
           yarn export
         env:
           CI: true
+
       - name: 📉 Check HTML
         uses: anishathalye/proof-html@v1.4.0
         with:
