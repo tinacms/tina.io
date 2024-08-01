@@ -22,7 +22,10 @@ const tinaConfig = defineConfig({
     },
   },
 
-  build: { outputFolder: 'admin', publicFolder: 'public' },
+  build: {
+    outputFolder: 'admin',
+    publicFolder: 'public',
+  },
   cmsCallback: (cms) => {
     import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
       cms.plugins.add(MarkdownFieldPlugin)
