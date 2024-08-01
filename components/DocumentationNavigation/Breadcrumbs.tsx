@@ -49,7 +49,7 @@ export function Breadcrumbs({ navItems }: DocsNavProps) {
     <>
       <BreadcrumbList>
         {breadcrumbs.map((breadcrumb, i) => (
-          <li key={breadcrumb.slug}>
+          <li key={breadcrumb}>
             {i != 0 && <ChevronRightIcon />}
             <a href={breadcrumb.slug}>
               {breadcrumb.title || breadcrumb.category}
