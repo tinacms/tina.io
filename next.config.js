@@ -1,5 +1,3 @@
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
-
 const withSvgr = require('next-svgr')
 
 require('dotenv').config()
@@ -118,18 +116,6 @@ const config = {
   trailingSlash: true,
   exportPathMap: async function () {
     return {}
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.md$/,
-      use: 'raw-loader',
-    })
-
-    config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' }
-
-    config.plugins.push(new MomentLocalesPlugin())
-
-    return config
   },
 }
 
