@@ -7992,13 +7992,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abortcontroller-polyfill@npm:^1.4.0":
-  version: 1.7.5
-  resolution: "abortcontroller-polyfill@npm:1.7.5"
-  checksum: 10/aac398f7fc076235fe731adaffd2c319fe6c1527af8ca561890242d5396351350e0705726478778dc90326a69a4c044890c156fe867cba7f3ffeb670f8665a51
-  languageName: node
-  linkType: hard
-
 "abstract-level@npm:^1.0.0, abstract-level@npm:^1.0.2, abstract-level@npm:^1.0.3":
   version: 1.0.3
   resolution: "abstract-level@npm:1.0.3"
@@ -8114,18 +8107,6 @@ __metadata:
     clean-stack: "npm:^2.0.0"
     indent-string: "npm:^4.0.0"
   checksum: 10/1101a33f21baa27a2fa8e04b698271e64616b886795fd43c31068c07533c7b3facfcaf4e9e0cab3624bd88f729a592f1c901a1a229c9e490eafce411a8644b79
-  languageName: node
-  linkType: hard
-
-"airtable@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "airtable@npm:0.9.0"
-  dependencies:
-    abort-controller: "npm:^3.0.0"
-    abortcontroller-polyfill: "npm:^1.4.0"
-    lodash: "npm:4.17.15"
-    node-fetch: "npm:^2.6.0"
-  checksum: 10/fea82aeac51439c26312d7ede31021154bf695e311cb4947330df79fdd6c48eba41fe37216844134c97ac0c6239a4ff20eb59e3b2a6eb68b8fd32f1ebd17487d
   languageName: node
   linkType: hard
 
@@ -15170,13 +15151,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.15":
-  version: 4.17.15
-  resolution: "lodash@npm:4.17.15"
-  checksum: 10/e3e43ed2f66761ade761883ba7662b8ddd753e79632c0bd064facf3b9bb4dcd3f08c5bf05b6c6eea005505c87984027605e7106f02d705a64d972c4be302918f
-  languageName: node
-  linkType: hard
-
 "lodash@npm:4.17.21, lodash@npm:^4.0.1, lodash@npm:^4.17.11, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:~4.17.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
@@ -17140,7 +17114,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2, node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7, node-fetch@npm:~2.6.1":
+"node-fetch@npm:2, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7, node-fetch@npm:~2.6.1":
   version: 2.6.9
   resolution: "node-fetch@npm:2.6.9"
   dependencies:
@@ -21714,7 +21688,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^5.42.0"
     "@typescript-eslint/parser": "npm:^5.42.0"
     "@vercel/postgres": "npm:^0.5.1"
-    airtable: "npm:^0.9.0"
     algoliasearch: "npm:^4.0.0"
     autoprefixer: "npm:^10.4.12"
     axios: "npm:^0.21.2"
