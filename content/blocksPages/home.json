@@ -11,14 +11,6 @@
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "buttons": [
             {
-              "label": "Try the editor now",
-              "icon": true,
-              "variant": "blue",
-              "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~",
-              "_template": "actions"
-            },
-            {
               "label": "npx create-tina-app@latest",
               "_template": "codeButton"
             }
