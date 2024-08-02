@@ -19,7 +19,7 @@
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "https://app.tina.io/app.tina.io",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
           ]
@@ -35,7 +35,7 @@
               "icon": false,
               "variant": "ghost",
               "size": "medium",
-              "url": "https://app.tina.io/app.tina.io",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
           ]
@@ -51,7 +51,7 @@
               "icon": false,
               "variant": "ghost",
               "size": "medium",
-              "url": "https://app.tina.io/app.tina.io",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
               "_template": "actions"
             }
           ]
