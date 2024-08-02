@@ -1,3 +1,4 @@
+//Gets the Document Ids for blog post formatting headers 
 export const getDocId = (label) => {
     if (!label) {
       return;

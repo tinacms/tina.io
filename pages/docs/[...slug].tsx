@@ -17,7 +17,7 @@ import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { components } from 'pages/blog/[slug]'
-import getTableOfContents from 'utils/docs/getTableOfContens'
+import getTableOfContents from 'utils/docs/getTableOfContents'
 import ToC from 'components/toc/index'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
 

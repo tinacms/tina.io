@@ -125,13 +125,13 @@ export const schema = defineSchema({
         },
         {
           name: 'Next',
-          label: 'Next',
+          label: 'Next page',
           type: 'reference',
           collections: ['doc', 'examples'],
         },
         {
           name: 'previous',
-          label: 'Previous',
+          label: 'Previous page',
           type: 'reference',
           collections: ['doc', 'examples'],
         },
@@ -150,7 +150,7 @@ export const schema = defineSchema({
                   name: 'embedSrc',
                   label: 'Embed URL',
                   description:
-                    'Looks like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                  '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
                 },
               ],
             },
@@ -324,7 +324,7 @@ export const schema = defineSchema({
                   name: 'embedSrc',
                   label: 'Embed URL',
                   description:
-                    'Looks like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                    '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
                 },
               ],
             },
