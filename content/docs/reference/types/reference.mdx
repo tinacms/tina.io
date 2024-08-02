@@ -1,15 +1,13 @@
 ---
 title: The "reference" field
 last_edited: '2021-07-27T15:51:56.737Z'
-prev: /docs/reference/types/image
-next: /docs/reference/types/object
 ---
 
 # `reference`
 
-The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
+The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on _one side_.
 
-Once defined, the values of the *referenced* document become available to the parent.
+Once defined, the values of the _referenced_ document become available to the parent.
 
 > Note: `reference` with `list: true` is not currently supported. See the "Temporary work around" section of [issue #2056](https://github.com/tinacms/tinacms/issues/2056) for a suggested approach to achieve a similar result
 
@@ -87,7 +85,7 @@ The `post` collection has a `reference` field to the `author` collection.
 
 When editing in Tina, the user will be able to choose a document in the `author` collection for the value of `author`.
 
-When querying for a `post` document, the `author` key in the response will contain the values of the *referenced* `author` document:
+When querying for a `post` document, the `author` key in the response will contain the values of the _referenced_ `author` document:
 
 ```graphql
 {
@@ -103,12 +101,9 @@ When querying for a `post` document, the `author` key in the response will conta
 }
 ```
 
-::::code-snippets
-:::code-snippet{open=true url="/img/code-snippets/reference-1.png"}
+### Basic Dropdown
 
-### Basic dropdown
-
-```ts
+```javascript
 {
   type: 'reference',
   name: 'author',
@@ -117,5 +112,4 @@ When querying for a `post` document, the `author` key in the response will conta
 }
 ```
 
-:::
-::::
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722241391/Screenshot_2024-07-29_at_6.23.04_PM_tjxgk7.png)

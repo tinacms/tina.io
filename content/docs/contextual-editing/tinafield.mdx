@@ -1,25 +1,13 @@
 ---
-title: 'The tinafield helper'
-id: '/docs/contextual-editing/tinafield'
+id: /docs/contextual-editing/tinafield
+title: The tinafield helper
 ---
 
 ## Introduction
 
 Tina's "click to edit" feature allows editors to select the element they want to edit on the page in order to see it in the sidebar.
 
-<video
-className="video"
-autoPlay="true"
-loop
-muted
-playsInline><source
-src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1684344056/tina-io/docs/quick-edit-demo.mp4"
-type="video/webm"
-/><source
-src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1684344056/tina-io/docs/quick-edit-demo.mp4"
-type="video/mp4"
-/>
-</video>
+<CloudinaryVideo src="https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/v1684344056/tina-io/docs/quick-edit-demo" />
 
 > [Try the demo](https://quick-edit-demo.vercel.app/admin#/~)!
 
@@ -46,7 +34,7 @@ that's been configured.
 
 > "Click to edit" will work for any field in your query, this means you can also click on fields from references as well.
 
-The `tinaField` function used above is a _type-safe_ helper designed to pluck the metadata out of the data object for the given
+The `tinaField` function used above is a *type-safe* helper designed to pluck the metadata out of the data object for the given
 property to be used on the `[data-tina-field]` attribute:
 
 ```js

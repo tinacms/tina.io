@@ -1,8 +1,8 @@
 ---
 id: /docs/data-fetching/custom-queries
+
 title: Writing Custom Queries
-prev: /docs/data-fetching/overview
-next: ''
+previous: content/docs/data-fetching/overview.mdx
 ---
 
 For most simple cases, you should be able to leverage the Tina Client's generated queries to do your data fetching:
@@ -13,8 +13,8 @@ const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 
 In more advanced cases, you may want more control on the underlying GraphQL query. In these cases you have two options:
 
-* Extending the auto-generated `client.queries`, by writing a custom query.
-* Use `client.request`, and write an inline query.
+- Extending the auto-generated `client.queries`, by writing a custom query.
+- Use `client.request`, and write an inline query.
 
 ## Extending the auto-generated `client.queries`
 
@@ -22,9 +22,7 @@ The client can be extended to perform more advanced queries (including querying 
 
 Tina generates custom [GraphQL fragments](https://graphql.org/learn/queries/#fragments) to be used in custom queries so that the queries will not have to be updated when the schema is updated.
 
-<!-- TODO: add internal docs link -->
-
-> Note: These fragments can be seen in [`tina/__generated__/frags.gql`]()
+> Note: These fragments can be seen in `tina/__generated__/frags.gql`
 
 Example of `tina/queries/postWithNav.gql`:
 

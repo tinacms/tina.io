@@ -1,35 +1,23 @@
 ---
-title: Config Reference
 id: /docs/reference/config/
+
+title: Config Reference
 last_edited: '2022-09-29T15:51:56.737Z'
-next: /docs/reference/schema
-prev: /docs/reference/overview
+next: content/docs/reference/schema.mdx
+previous: content/docs/reference/overview.mdx
 ---
-
-<!-- TODO: Move this info somewhere -->
-
-<!-- In contrast to traditional TinaCMS setups, static mode doesn't require you to wrap your site in a `TinaCMS` component.
-The only requirement for enabling "visual editing" is the `useTina` hook. -->
 
 # The config file
 
 When you provide a file at `tina/config.{ts,tsx,js,jsx}` that exports a `defineConfig` function,
 Tina will automatically generate TinaCMS as a static asset. Note that it **must be** the default export of this file.
 
-<div class="short-code-warning">
-  <div>
-    <p>The location for the config file was previously at <code>.tina/config.{ts,tsx,js,jsx}</code>
-  </div>
-
-  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
-  </svg>
-</div>
+> The location for the config file was previously at `.tina/config.{ts,tsx,js,jsx}`
 
 ## Definition
 
 | Property             | Description                                                                                                           |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| -------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `branch`             | The branch that will be used to query content on Tina Cloud (Not used in local mode)                                  |
 | `clientId`           | The ClientId [generated on Tina Cloud](/docs/tina-cloud/dashboard/) (Not used in local mode)                          |
 | `token`              | A read only token [generated on Tina Cloud](/docs/tina-cloud/dashboard/projects/#api-tokens) (Not used in local mode) |

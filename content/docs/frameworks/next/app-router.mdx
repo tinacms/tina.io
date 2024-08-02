@@ -1,17 +1,14 @@
 ---
 title: Next.js App Router
-prev: /docs/frameworks/next/overview
+next: content/docs/frameworks/next/pages-router.mdx
+previous: content/docs/frameworks/next/overview.mdx
 ---
 
-> ☝️ This guide assumes you are using the [**Next.js app router.**](https://nextjs.org/docs/app)
+> 👆This guide assumes you are using the **[Next.js app router.](https://nextjs.org/docs/app)**
 
 ## Video Guide
 
-<div style="position:relative;padding-top:56.25%;">
-  <iframe width="560" frameborder="0" allowfullscreen
-      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/0oYSzT1DDLg" title="TinaCMS - Setting up Next.js" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-  </iframe>
-</div>
+<Youtube embedSrc="https://www.youtube.com/embed/0oYSzT1DDLg" />
 
 ## Installing dependencies
 
@@ -44,6 +41,7 @@ You can start TinaCMS with:
 ```bash
 pnpm dev
 ```
+
 **We recommend using pnpm.**
 
 With TinaCMS running, navigate to `http://localhost:3000/admin/index.html`.
@@ -61,14 +59,14 @@ After running the `tina init` command a few files were created to get you starte
 It looks like the following:
 
 ```ts
-import { defineConfig } from "tinacms";
+import { defineConfig } from 'tinacms'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
-  "main";
+  'main'
 
 export default defineConfig({
   branch,
@@ -79,52 +77,51 @@ export default defineConfig({
   token: process.env.TINA_TOKEN,
 
   build: {
-    outputFolder: "admin",
-    publicFolder: "public",
+    outputFolder: 'admin',
+    publicFolder: 'public',
   },
   media: {
     tina: {
-      mediaRoot: "",
-      publicFolder: "public",
+      mediaRoot: '',
+      publicFolder: 'public',
     },
   },
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
+        name: 'post',
+        label: 'Posts',
+        path: 'content/posts',
         fields: [
           {
-            type: "string",
-            name: "title",
-            label: "Title",
+            type: 'string',
+            name: 'title',
+            label: 'Title',
             isTitle: true,
             required: true,
           },
           {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
+            type: 'rich-text',
+            name: 'body',
+            label: 'Body',
             isBody: true,
           },
         ],
       },
     ],
   },
-});
-
+})
 ```
 
 **For a more detailed overview about the config see [Content Modeling with TinaCMS](docs/extending-tina/overview/)**
 
 > 💡 If you've followed this guide using the `tina  init` command, you might have noticed that a `content` and a `pages` folder got created:
->
-> ```bash
-> Adding file at content/posts/hello-world.md... ✅
-> Adding file at pages/demo/blog/[filename].tsx... ✅
-> ```
->
+
+```bash
+Adding file at content/posts/hello-world.md... ✅
+Adding file at pages/demo/blog/[filename].tsx... ✅
+```
+
 > These can be used as a quick reference but are safe to delete.
 
 ## Creating a New Post
@@ -156,28 +153,29 @@ Let's start by creating a `/posts` folder. The page here will list all our posts
 **File:** `app/posts/page.tsx`
 
 ```tsx
-import PostList from "./client-page";
-import { client } from "../../tina/__generated__/client";
+import PostList from './client-page'
+import { client } from '../../tina/__generated__/client'
 
 export default async function Page() {
-  const {data} = await client.queries.postConnection();
+  const { data } = await client.queries.postConnection()
 
   return (
-     <>
-        <h1>Posts</h1>
-        <div>
-          {data.postConnection.edges.map((post) => (
-            <div key={post.node.id}>
-              <Link href={`/posts/${post.node._sys.filename}`}>
-                {post.node._sys.filename}
-              </Link>
-            </div>
-          ))}
-        </div>
-      </>
+    <>
+      <h1>Posts</h1>
+      <div>
+        {data.postConnection.edges.map((post) => (
+          <div key={post.node.id}>
+            <Link href={`/posts/${post.node._sys.filename}`}>
+              {post.node._sys.filename}
+            </Link>
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 ```
+
 As you may have noticed this is a Server Rendered page. Depending on how this page is generated can mean Next will either,
 
 - **A. Build this as a Dynamic / Server Rendered page**
@@ -192,36 +190,30 @@ To make this work with TinaCMS Visual Editor we are going to break this across 2
 **File:** `app/posts/[...filename].tsx`
 
 ```tsx
-import Post from "./client-page";
-import client from "../../../tina/__generated__/client";
+import Post from './client-page'
+import client from '../../../tina/__generated__/client'
 
 export async function generateStaticParams() {
-  const pages = await client.queries.postConnection();
+  const pages = await client.queries.postConnection()
   const paths = pages.data?.postConnection?.edges?.map((edge) => ({
     filename: edge?.node?._sys.breadcrumbs,
-  }));
+  }))
 
-  return paths || [];
+  return paths || []
 }
-
 
 export default async function PostPage({
   params,
 }: {
-  params: { filename: string[] };
+  params: { filename: string[] }
 }) {
-
   const data = await client.queries.post({
     relativePath: `${params.filename}.md`,
-  });
+  })
 
-  return (
-    <Post {...data}></Post>
-  );
+  return <Post {...data}></Post>
 }
 ```
-
-
 
 Here we are using [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params) to build these pages as SSG. You are free to change this however you like.
 
@@ -230,37 +222,37 @@ Now to make the Visual Editor work, we will create a new "client page":
 **File:** `app/posts/[...filename]/client-page.tsx`
 
 ```tsx
-"use client"
-import { useTina } from "tinacms/dist/react";
-import { PostQuery } from "../../../tina/__generated__/types";
+'use client'
+import { useTina } from 'tinacms/dist/react'
+import { PostQuery } from '../../../tina/__generated__/types'
 
 interface ClientPageProps {
-  query: string;
+  query: string
   variables: {
-    relativePath: string;
-  };
-  data: PostQuery;
+    relativePath: string
+  }
+  data: PostQuery
 }
 
-export default function Post(props : ClientPageProps) {
-    // data passes though in production mode and data is updated to the sidebar data in edit-mode
-    const { data } = useTina({
-      query: props.query,
-      variables: props.variables,
-      data: props.data,
-    });
-    return (
-      <code>
-        <pre
-          style={{
-            backgroundColor: "lightgray",
-          }}
-        >
-          {JSON.stringify(data.post, null, 2)}
-        </pre>
-      </code>
-    );
-  }
+export default function Post(props: ClientPageProps) {
+  // data passes though in production mode and data is updated to the sidebar data in edit-mode
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  })
+  return (
+    <code>
+      <pre
+        style={{
+          backgroundColor: 'lightgray',
+        }}
+      >
+        {JSON.stringify(data.post, null, 2)}
+      </pre>
+    </code>
+  )
+}
 ```
 
 ## Next Steps
@@ -268,4 +260,3 @@ export default function Post(props : ClientPageProps) {
 - [Check out the content modeling docs](/docs/schema/)
 - [Learn how to query your content](/docs/features/data-fetching/)
 - [Deploy Your Site](/docs/tina-cloud)
-

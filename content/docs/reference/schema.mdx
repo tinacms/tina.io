@@ -1,9 +1,10 @@
 ---
-title: The Schema
 id: /docs/reference/schema/
+
+title: The Schema
 last_edited: '2022-06-15T15:51:56.737Z'
-next: /docs/reference/collections
-prev: /docs/reference/overview
+next: content/docs/reference/collections.mdx
+previous: content/docs/reference/config.mdx
 ---
 
 The Schema is located in `tina/config.{ts,tsx,js,jsx}` and it is used to define the shape of the content.
@@ -11,7 +12,7 @@ The Schema is located in `tina/config.{ts,tsx,js,jsx}` and it is used to define 
 ## Definition
 
 | Property          | Description                                                                                  |
-| ----------------- |----------------------------------------------------------------------------------------------|
+| ----------------- | -------------------------------------------------------------------------------------------- |
 | `collections`     | An array of [collections](/docs/reference/collections/).                                     |
 | `config`          | The configuration for tinaCMS                                                                |
 | `config.branch`   | The branch that will be used to query content on Tina Cloud. (Not used in local mode )       |
@@ -36,8 +37,8 @@ export default defineConfig({
   schema: {
     collections: [
       //..Array of collections
-    ]
-  }
+    ],
+  },
 })
 ```
 

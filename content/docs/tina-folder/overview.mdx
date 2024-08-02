@@ -1,8 +1,6 @@
 ---
 id: /docs/tina-folder/overview/
 title: The tina folder
-prev: /docs/reference/types/rich-text
-next: /docs/cli-overview
 ---
 
 ## Overview
@@ -11,16 +9,16 @@ The `tina` folder is where the configuration, schema and UI customization for Ti
 
 The `tina` folder is normally at the root of the repo (unless a [mono repo setup](/docs/tina-cloud/faq/#does-tina-cloud-work-with-monorepos) is being used). It has the following folder structure:
 
-* `config.{ts,tsx,js}`
-* `queries` folder (*optional*)
-* `__generated___` folder
-  * `_graphql.json`
-  * `_lookup.json`
-  * `_schema.json`
-  * `frags.gql`
-  * `queries.gql`
-  * `schema.gql`
-* `tina-lock.json`
+- `config.{ts,tsx,js}`
+- `queries` folder (_optional_)
+- `__generated___` folder
+  - `_graphql.json`
+  - `_lookup.json`
+  - `_schema.json`
+  - `frags.gql`
+  - `queries.gql`
+  - `schema.gql`
+- `tina-lock.json`
 
 ## `Config.{ts,tsx,js}`
 
@@ -39,7 +37,7 @@ export default defineConfig({
 
 > For help defining the Tina schema, see our [content modelling documentation](/docs/schema/)
 
-## `queries` folder (*optional*)
+## `queries` folder (_optional_)
 
 The `queries` folder is optional and is used by the [experimental generated client](/docs/data-fetching/overview/). The queries that are defined in this folder will automatically be attached to the generated client when it is built.
 

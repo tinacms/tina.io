@@ -60,7 +60,7 @@ export const schema = defineSchema({
               label: 'Title',
               name: 'title',
               description:
-                '\' | Tina\' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.',
+                "' | Tina' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.",
             },
             {
               type: 'string',
@@ -124,20 +124,113 @@ export const schema = defineSchema({
           },
         },
         {
-          name: 'prev',
-          label: 'Prev',
-          type: 'string',
+          name: 'next',
+          label: 'Next page',
+          type: 'reference',
+          collections: ['doc', 'examples'],
         },
         {
-          name: 'next',
-          label: 'Next',
-          type: 'string',
+          name: 'previous',
+          label: 'Previous page',
+          type: 'reference',
+          collections: ['doc', 'examples'],
         },
         {
           type: 'rich-text',
           name: 'body',
           label: 'Body',
           isBody: true,
+          templates: [
+            {
+              name: 'Youtube',
+              label: 'Youtube Embed',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'embedSrc',
+                  label: 'Embed URL',
+                  description:
+                  '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'WarningCallout',
+              label: 'Warning Callout',
+              fields: [
+                {
+                  name: 'body',
+                  label: 'Body',
+                  type: 'string',
+                },
+              ],
+            },
+            {
+              name: 'Iframe',
+              label: 'Embeded an Iframe',
+              fields: [
+                { name: 'iframeSrc', type: 'string' },
+                {
+                  name: 'height',
+                  type: 'number',
+                  label: 'Height',
+                  description: 'The hight of the iframe (in px) ',
+                },
+              ],
+            },
+            {
+              name: 'CloudinaryVideo',
+              label: 'Cloudinary Video',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'src',
+                  label: 'Cloudinary URL',
+                  description: 'Full URL with no file extension',
+                },
+              ],
+            },
+            {
+              name: 'ImageAndText',
+              label: 'Image and Text',
+              fields: [
+                {
+                  name: 'docText',
+                  label: 'docText',
+                  isBody: true,
+                  type: 'rich-text',
+                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
+                },
+                {
+                  name: 'image',
+                  label: 'image',
+                  type: 'image',
+                }
+              ]
+            },
+            {
+              name: 'SummaryTab',
+              label: 'Summary Tab',
+              fields: [
+                {
+                  name: 'heading',
+                  label: 'Heading',
+                  type: 'string',
+                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
+                },
+                {
+                  name: 'text',
+                  label: 'text',
+                  isBody: true,
+                  type: 'rich-text',
+                },
+              ]
+            }
+            
+              
+
+            
+          ],
         },
       ],
     },
@@ -231,7 +324,7 @@ export const schema = defineSchema({
                   name: 'embedSrc',
                   label: 'Embed URL',
                   description:
-                    'Looks like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                    '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
                 },
               ],
             },
@@ -519,4 +612,3 @@ export const schema = defineSchema({
     },
   ],
 })
-

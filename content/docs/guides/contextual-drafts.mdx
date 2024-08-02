@@ -1,6 +1,6 @@
 ---
-title: Using Drafts with Visual Editing
-last_edited: '2022-12-05T10:00:00.000Z'
+id: /docs/guides/contextual-drafts
+title: 'Using Drafts with Visual Editing '
 ---
 
 > The following guide requires tinacms: 1.0.2 or later.
@@ -115,7 +115,7 @@ Depending on your use case you can also safely use any value for `fallback`.
 
 First we will create a util function that will either return all the documents or just the production documents depending on if we are in preview-mode.
 
-_`util/getPosts.{ts,js}`_
+*`util/getPosts.{ts,js}`*
 
 ```ts
 import { client } from '../<PathToTina>/tina/__generated__/client'
@@ -157,7 +157,7 @@ export const getStaticProps = async ({ preview = false }) => {
 }
 ```
 
-#### Slug pages (_optional_)
+#### Slug pages (*optional*)
 
 On pages that use SSR or "incremental static regeneration" (ISR), your `getStaticProps` function will be called on every request. This means that we need to return a 404 when the document is a draft and we are not in preview-mode.
 
