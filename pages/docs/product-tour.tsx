@@ -169,7 +169,9 @@ export default function Page(props) {
               </div>
             </SplitContent>
             <LastEdited date={doc_data.last_edited} />
-              <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+            <div className='w-1/2'>
+                            <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+            </div>
           </DocGridContent>
         </DocContainer>
       </DocsLayout>
