@@ -1,6 +1,5 @@
 ---
 id: /docs/contextual-editing/react
-
 title: Visual Editing in React
 next: content/docs/contextual-editing/vue.mdx
 previous: content/docs/contextual-editing/overview.mdx
@@ -45,14 +44,14 @@ export const getStaticProps = async () => {
 
 ![usetina-hello-world](https://res.cloudinary.com/forestry-demo/image/upload/q_32/v1643294947/tina-io/hello-world.png)
 
-## The `useTina` hook:
+## The useTina hook:
 
 `useTina` is used to make a piece of Tina content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
 
 `useTina` takes in a parameter with a few keys:
 
-- `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
-- `data`: This is the production value that gets passed through to the response unchanged in production.
+* `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
+* `data`: This is the production value that gets passed through to the response unchanged in production.
 
 > Note: Only queries for individual documents can be used with `useTina`
 
