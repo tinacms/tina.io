@@ -34,7 +34,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
       {nextPage && nextPage.slug && (
         <DynamicLink href={`${nextPage.slug}`} passHref>
           <a
-            className="block p-4 text-right pr-14 relative transition-all group border border-gray-100"
+            className=" col-start-2 block p-4 text-right pr-14 relative transition-all group border border-gray-100"
             style={{ backgroundColor: '#FAFAFA' }}
           >
             <span className="text-sm uppercase opacity-50">Next</span>
