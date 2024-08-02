@@ -43,7 +43,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
       >
         {nextPage.title}
       </h5>
-      <RightArrowSvg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 pt-1 mt-2" />
+      <RightArrowSvg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 pt-3 mt-2" />
     </a>
   </DynamicLink>
 )}
