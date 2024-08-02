@@ -44,7 +44,7 @@ export const components: Components<{
   CloudinaryVideo: { src: string }
   Button: { link: string; label: string }
   ImageAndText: { docText: string; image: string }
-  MinimizeText: { heading: string; text: string }
+  Summary: { heading: string; text: string }
 }> = {
   ImageAndText: (props) => {
     return (
@@ -56,7 +56,7 @@ export const components: Components<{
 </div>
   )},
 
-  MinimizeText: (props) => {
+  Summary: (props) => {
     const [openTab, setOpenTab] = useState(false);
 
     const handleToggle = () => {

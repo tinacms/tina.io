@@ -209,8 +209,8 @@ export const schema = defineSchema({
               ]
             },
             {
-              name: 'MinimizeText',
-              label: 'Minimize Text Tab',
+              name: 'SummaryTab',
+              label: 'Summary Tab',
               fields: [
                 {
                   name: 'heading',
