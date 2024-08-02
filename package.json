@@ -63,7 +63,7 @@
     "next-svgr": "0.0.2",
     "next-tinacms-cloudinary": "^4.4.3",
     "node-sass": "^9.0.0",
-    "postcss": "^8.4.18",
+    "postcss": "^8.4.40",
     "prism-react-renderer": "^2.0.6",
     "prismjs": "^1.29.0",
     "prop-types": "^15.7.2",
