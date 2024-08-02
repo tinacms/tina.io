@@ -18,12 +18,12 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
       {prevPage && prevPage.slug && (
         <DynamicLink href={`${prevPage.slug}`} passHref>
           <a
-            className="block p-4 text-left pl-14 relative transition-all group border border-gray-100"
+            className="block p-4 text-left relative transition-all group border border-gray-100"
             style={{ backgroundColor: '#FAFAFA' }}
           >
-            <span className="text-sm uppercase opacity-50">Previous</span>
+            <span className="text-sm uppercase opacity-50 pl-10">Previous</span>
             <h5
-              className="text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center"
+              className="text-xl leading-[1.3] m-0 pl transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center"
             >
               <RightArrowSvg className="w-8 h-8 fill-gray-400 transition-all ease-out duration-150 rotate-180 group-hover:fill-orange-500 mr-2" />
               {prevPage.title}
@@ -34,10 +34,10 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
       {nextPage && nextPage.slug && (
         <DynamicLink href={`${nextPage.slug}`} passHref>
           <a
-            className="col-start-2 block p-4 text-right pr-14 relative transition-all group border border-gray-100"
+            className="col-start-2 block p-4 text-right relative transition-all group border border-gray-100"
             style={{ backgroundColor: '#FAFAFA' }}
           >
-            <span className="text-sm uppercase opacity-50">Next</span>
+            <span className="text-sm uppercase opacity-50 pr-10">Next</span>
             <h5
               className="text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end"
             >
