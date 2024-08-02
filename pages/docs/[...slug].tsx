@@ -47,8 +47,8 @@ function _DocTemplate(props) {
     title: doc_data.previous?.title,
   }
   const nextPage = {
-    slug: doc_data.Next?.id.slice(7, -4),
-    title: doc_data.Next?.title,
+    slug: doc_data.next?.id.slice(7, -4),
+    title: doc_data.next?.title,
   }
   const TableOfContents = getTableOfContents(doc_data.body.children)
   const description = getSeoDescription(doc_data.body)
