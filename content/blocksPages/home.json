@@ -7,8 +7,8 @@
     {
       "features": [
         {
-          "headline": "A CMS With Version Control Built-in",
-          "text": "Tina is a fully open-source headless CMS that supports Git",
+          "headline": "Develop your content the right way",
+          "text": "Completely own your content forever, powered by GitHub and Markdown, with TinaCMS.",
           "buttons": [
             {
               "label": "Try the editor now",
