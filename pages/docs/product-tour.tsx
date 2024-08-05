@@ -7,11 +7,7 @@ import * as ga from '../../utils/ga'
 import { NextSeo } from 'next-seo'
 import { openGraphImage } from 'utils/open-graph-image'
 import { DocsLayout, MarkdownContent } from 'components/layout'
-import {
-  DocGridContent,
-  DocGridHeader,
-  DocsPageTitle,
-} from './[...slug]'
+import { DocGridContent, DocGridHeader, DocsPageTitle } from './[...slug]'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { DocsPagination, LastEdited } from 'components/ui'
 import styled from 'styled-components'
@@ -22,7 +18,9 @@ import { components } from 'pages/blog/[slug]'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export const getStaticProps: GetStaticProps = async function (props) {
-  const new_results = await client.queries.doc({ relativePath: `product-tour.mdx` })
+  const new_results = await client.queries.doc({
+    relativePath: `product-tour.mdx`,
+  })
   const oldNavDocs = await getDocsNav()
   return { props: { new: { new_results }, oldNavDocs } }
 }
@@ -169,8 +167,8 @@ export default function Page(props) {
               </div>
             </SplitContent>
             <LastEdited date={doc_data.last_edited} />
-            <div className='w-1/2'>
-                            <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+            <div className="w-1/2">
+              <DocsPagination prevPage={previousPage} nextPage={nextPage} />
             </div>
           </DocGridContent>
         </DocContainer>

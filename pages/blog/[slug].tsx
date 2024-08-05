@@ -29,6 +29,7 @@ import { BiRightArrowAlt } from 'react-icons/bi'
 import { getDocId } from 'utils/docs/getDocIds'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
+import Image from 'next/image'
 
 export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
@@ -61,7 +62,7 @@ export const components: Components<{
           />{' '}
         </div>
         <div>
-          <img src={props?.image} alt="image" className="w-full" />
+          <Image src={props?.image} alt="image" className="w-full" />
         </div>
       </div>
     )

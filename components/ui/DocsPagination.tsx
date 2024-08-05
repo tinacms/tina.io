@@ -17,8 +17,8 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
     <div className="mt-8 grid grid-cols-2 gap-4">
       {prevPage && prevPage.slug && (
         <DynamicLink href={`${prevPage.slug}`} passHref>
-          <a
-            className="block p-4 text-left relative transition-all group border border-gray-100"
+          <div
+            className="block p-4 text-left relative transition-all group border border-gray-100 cursor-pointer"
             style={{ backgroundColor: '#FAFAFA' }}
           >
             <span className="text-sm uppercase opacity-50 pl-10">Previous</span>
@@ -28,13 +28,13 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
               <RightArrowSvg className="w-8 h-8 fill-gray-400 transition-all ease-out duration-150 rotate-180 group-hover:fill-orange-500 mr-2" />
               {prevPage.title}
             </h5>
-          </a>
+          </div>
         </DynamicLink>
       )}
       {nextPage && nextPage.slug && (
         <DynamicLink href={`${nextPage.slug}`} passHref>
-          <a
-            className="col-start-2 block p-4 text-right relative transition-all group border border-gray-100"
+          <div
+            className="col-start-2 block p-4 text-right relative transition-all group border border-gray-100 cursor-pointer"
             style={{ backgroundColor: '#FAFAFA' }}
           >
             <span className="text-sm uppercase opacity-50 pr-10">Next</span>
@@ -44,7 +44,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
               {nextPage.title}
               <RightArrowSvg className="w-8 h-8 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 ml-2" />
             </h5>
-          </a>
+          </div>
         </DynamicLink>
       )}
     </div>
