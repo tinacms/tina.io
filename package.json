@@ -94,7 +94,7 @@
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
     "three": "^0.165.0",
-    "tinacms": "^1.6.7",
+    "tinacms": "^2.1.0",
     "webpack": "^5.76.0"
   },
   "devDependencies": {
