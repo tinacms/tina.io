@@ -1,7 +1,7 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 import { DynamicLink } from '../ui/DynamicLink'
+
 interface NextPrevPageProps {
   title: string
   slug: string
@@ -14,109 +14,41 @@ interface PaginationProps {
 
 export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
   return (
-    <Wrapper>
+    <div className="mt-8 grid grid-cols-2 gap-4">
       {prevPage && prevPage.slug && (
         <DynamicLink href={`${prevPage.slug}`} passHref>
-          <PaginationLink previous>
-            <span>Previous</span>
-            <h5>{prevPage.title}</h5>
-            <RightArrowSvg />
-          </PaginationLink>
+          <div
+            className="block p-4 text-left relative transition-all group border border-gray-100 cursor-pointer"
+            style={{ backgroundColor: '#FAFAFA' }}
+          >
+            <span className="text-sm uppercase opacity-50 pl-10">Previous</span>
+            <h5
+              className="text-xl leading-[1.3] m-0 pl transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center"
+            >
+              <RightArrowSvg className="w-8 h-8 fill-gray-400 transition-all ease-out duration-150 rotate-180 group-hover:fill-orange-500 mr-2" />
+              {prevPage.title}
+            </h5>
+          </div>
         </DynamicLink>
       )}
       {nextPage && nextPage.slug && (
         <DynamicLink href={`${nextPage.slug}`} passHref>
-          <PaginationLink>
-            <span>Next</span>
-            <h5>{nextPage.title}</h5>
-            <RightArrowSvg />
-          </PaginationLink>
+          <div
+            className="col-start-2 block p-4 text-right relative transition-all group border border-gray-100 cursor-pointer"
+            style={{ backgroundColor: '#FAFAFA' }}
+          >
+            <span className="text-sm uppercase opacity-50 pr-10">Next</span>
+            <h5
+              className="text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end"
+            >
+              {nextPage.title}
+              <RightArrowSvg className="w-8 h-8 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 ml-2" />
+            </h5>
+          </div>
         </DynamicLink>
       )}
-    </Wrapper>
+    </div>
   )
 }
 
 export default DocsPagination
-
-/*
- ** Styles ------------------------------------------
- */
-
-interface PaginationLinkProps {
-  previous?: boolean
-}
-
-const PaginationLink = styled.a<PaginationLinkProps>`
-  padding: 1rem;
-  display: block;
-  flex: 1 1 auto;
-  font-family: var(--font-tuner);
-  font-weight: regular;
-  font-style: normal;
-  text-decoration: none;
-  background-color: #fafafa;
-  color: var(--color-secondary);
-  position: relative;
-  text-align: right;
-  padding-right: 3.5rem;
-  margin: 0 1px 1px 0;
-
-  span {
-    font-size: 0.9375rem;
-    text-transform: uppercase;
-    opacity: 0.5;
-  }
-
-  h5 {
-    font-size: 1.25rem;
-    line-height: 1.3;
-    margin: 0 !important;
-    transition: all 180ms ease-out;
-  }
-
-  svg {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translate3d(0, -50%, 0);
-    width: 2rem;
-    height: auto;
-    fill: var(--color-grey);
-    transition: all 180ms ease-out;
-  }
-
-  &:hover {
-    h5 {
-      color: var(--color-orange);
-    }
-    svg {
-      fill: var(--color-orange);
-    }
-  }
-
-  ${props =>
-    props.previous &&
-    css`
-      padding-right: 1rem;
-      padding-left: 3.5rem;
-      text-align: left;
-
-      svg {
-        right: auto;
-        left: 0.75rem;
-        transform: translate3d(0, -50%, 0) rotate(180deg);
-      }
-    `};
-`
-
-const Wrapper = styled.div`
-  margin-top: 2rem;
-  background-color: var(--color-light-dark);
-  display: flex;
-  border-radius: 5px;
-  overflow: hidden;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 1px 0 0 1px;
-`
