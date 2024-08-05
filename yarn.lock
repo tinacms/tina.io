@@ -13816,6 +13816,27 @@ prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.2.4, pr
     prosemirror-transform "^1.0.0"
     prosemirror-view "^1.27.0"
 
+prosemirror-tables@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/prosemirror-tables/-/prosemirror-tables-1.4.0.tgz"
+  integrity sha512-fxryZZkQG12fSCNuZDrYx6Xvo2rLYZTbKLRd8rglOPgNJGMKIS8uvTt6gGC38m7UCu/ENnXIP9pEz5uDaPc+cA==
+  dependencies:
+    prosemirror-keymap "^1.1.2"
+    prosemirror-model "^1.8.1"
+    prosemirror-state "^1.3.1"
+    prosemirror-transform "^1.2.1"
+    prosemirror-view "^1.13.3"
+
+prosemirror-tables@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/prosemirror-tables/-/prosemirror-tables-1.0.0.tgz"
+  integrity sha512-zFw5Us4G5Vdq0yIj8GiqZOGA6ud5UKpMKElux9O0HrfmhkuGa1jf1PCpz2R5pmIQJv+tIM24H1mox/ODBAX37Q==
+  dependencies:
+    prosemirror-keymap "^1.1.2"
+    prosemirror-model "^1.8.1"
+    prosemirror-state "^1.3.1"
+    prosemirror-transform "^1.2.1"
+    prosemirror-view "^1.13.3"
 
 prosemirror-transform@^1.0.0, prosemirror-transform@^1.1.0, prosemirror-transform@^1.2.1:
   version "1.7.1"
@@ -14364,6 +14385,7 @@ react-tinacms-editor@^0.53.26:
     prosemirror-model "^1.0.0"
     prosemirror-schema-list "^1.0.3"
     prosemirror-state "^1.2.4"
+    prosemirror-tables "1.0.0"
     prosemirror-transform "^1.0.0"
     prosemirror-utils "^0.9.6"
     prosemirror-view "^1.11.3"
