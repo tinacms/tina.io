@@ -25,6 +25,9 @@
     "postbuild": "next-sitemap",
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
   },
+  "resolutions": {
+    "graphql": "^15.5.1"
+  },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^10.0.0",
