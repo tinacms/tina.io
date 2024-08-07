@@ -43,7 +43,7 @@ export const Blocks = ({
       case 'PageBlocksVerticalCards':
         return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksMediaComponent':
-        return <MediaComponent key={`block-${index}`} data={block} index={index} />;
+        return <MediaComponent key={`block-${index}`} data={block} />;
       case 'PageBlocksBooking':
         return <BookingBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksHero':
