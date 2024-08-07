@@ -3,13 +3,19 @@ import Image from 'next/image';
 
 const MediaComponent = ({ data }) => {
   const { headline, mediaItem } = data;
+  
+  const [isPlayingArray, setIsPlayingArray] = useState(
+    mediaItem.map(() => false)
+  );
 
-  const renderMedia = (media) => {
-    const [isPlaying, setIsPlaying] = useState(false);
+  const handlePlayVideo = (index) => {
+    const newIsPlayingArray = [...isPlayingArray];
+    newIsPlayingArray[index] = true;
+    setIsPlayingArray(newIsPlayingArray);
+  };
 
-    const handlePlayVideo = () => {
-      setIsPlaying(true);
-    };
+  const renderMedia = (media, index) => {
+    const isPlaying = isPlayingArray[index];
 
     if (
       media.__typename ===
@@ -35,7 +41,7 @@ const MediaComponent = ({ data }) => {
           <div
             className="relative rounded-lg shadow-2xl"
             style={{ width: '600px', height: '340px', overflow: 'hidden' }}
-            onClick={handlePlayVideo}
+            onClick={() => handlePlayVideo(index)}
           >
             {isPlaying ? (
               <video
@@ -101,7 +107,7 @@ const MediaComponent = ({ data }) => {
               key={index}
               className="relative flex justify-center items-center"
             >
-              {renderMedia(item)}
+              {renderMedia(item, index)}
             </div>
           ))}
       </div>
