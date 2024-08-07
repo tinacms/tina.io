@@ -17,6 +17,8 @@ const MediaComponent = ({ data }) => {
   const renderMedia = (media, index) => {
     const isPlaying = isPlayingArray[index];
 
+    const sizeClasses = "w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]";
+
     if (
       media.__typename ===
       'PageBlocksMediaComponentMediaItemCloudinaryMediaComponent'
@@ -24,8 +26,7 @@ const MediaComponent = ({ data }) => {
       if (media.media && media.media.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
         return (
           <div
-            className="relative rounded-lg shadow-2xl"
-            style={{ width: '600px', height: '340px', overflow: 'hidden' }}
+            className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}
           >
             <Image
               src={media.media}
@@ -39,8 +40,7 @@ const MediaComponent = ({ data }) => {
       } else if (media.media && media.media.match(/\.(mp4|webm|ogg)$/)) {
         return (
           <div
-            className="relative rounded-lg shadow-2xl"
-            style={{ width: '600px', height: '340px', overflow: 'hidden' }}
+            className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}
             onClick={() => handlePlayVideo(index)}
           >
             {isPlaying ? (
@@ -49,10 +49,10 @@ const MediaComponent = ({ data }) => {
                 controls
                 autoPlay
                 className="object-cover rounded-lg"
-                style={{ width: '600px', height: '340px' }}
+                style={{ width: '100%', height: '100%' }}
               />
             ) : (
-              <div className="relative rounded-lg shadow-2xl" style={{ width: '600px', height: '340px' }}>
+              <div className={`relative rounded-lg shadow-2xl ${sizeClasses}`}>
                 {media.thumbnail && (
                   <Image
                     src={media.thumbnail}
@@ -77,12 +77,11 @@ const MediaComponent = ({ data }) => {
     ) {
       return (
         <div
-          className="overflow-hidden rounded-lg shadow-2xl"
-          style={{ width: '600px', height: '340px' }}
+          className={`overflow-hidden rounded-lg shadow-2xl ${sizeClasses}`}
         >
           <iframe
-            width="600"
-            height="340"
+            width="100%"
+            height="100%"
             src={media.embedUrl}
             title="YouTube video player"
             className="object-cover rounded-lg"
