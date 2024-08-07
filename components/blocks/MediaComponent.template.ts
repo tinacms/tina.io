@@ -1,6 +1,4 @@
-import { Template, TinaTemplate } from 'tinacms'
-import { actionsButtonTemplate } from './ActionsButton.template'
-import { modalButtonTemplate } from './ModalButton.template'
+import { Template } from 'tinacms'
 import { cloudinaryMediaComponent } from './CloudinaryMedia.template'
 import { youtubeMediaTemplate } from './YoutubeMediaTemplate'
 
