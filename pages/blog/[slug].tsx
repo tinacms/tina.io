@@ -283,7 +283,7 @@ function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any
   const id = getDocId(children.props.content[0].text)
 
-  return <HeadingTag id={id}>{children.props.content[0].text}</HeadingTag>
+  return <HeadingTag id={id}>{children}</HeadingTag>
 }
 
 function BlogTemplate({ file, siteConfig, ...props }) {
