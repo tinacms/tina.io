@@ -8,6 +8,10 @@
       "headline": "Headline",
       "mediaItem": [
         {
+          "embedUrl": "https://youtu.be/UUFuedso2iQ",
+          "_template": "youtubeMedia"
+        },
+        {
           "embedUrl": "https://www.youtube.com/embed/daOyL5Qn6W0?si=dA2qrU8J1peywmdU",
           "_template": "youtubeMedia"
         },
