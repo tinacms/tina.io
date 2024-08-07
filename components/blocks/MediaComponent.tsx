@@ -95,11 +95,11 @@ const MediaComponent = ({ data }) => {
   };
 
   return (
-    <div className="media-component md:px-8 xl:px-8 lg:px-8 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
+    <div className="media-component md:px-8 xl:px-8 lg:px-8 px-3 max-w-screen-xl mx-auto pb-4 pt-8">
       <h2 className="text-center font-tuner text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent pb-10">
         {headline}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {mediaItem &&
           mediaItem.map((item, index) => (
             <div
