@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react'
+import Image from 'next/image'
+import { FaYoutube } from 'react-icons/fa'
 
 const MediaComponent = ({ data }) => {
-  const { headline, mediaItem } = data;
-  
+  const { headline, mediaItem } = data
+
   const [isPlayingArray, setIsPlayingArray] = useState(
     mediaItem.map(() => false)
-  );
+  )
 
   const handlePlayVideo = (index) => {
-    const newIsPlayingArray = [...isPlayingArray];
-    newIsPlayingArray[index] = true;
-    setIsPlayingArray(newIsPlayingArray);
-  };
+    const newIsPlayingArray = [...isPlayingArray]
+    newIsPlayingArray[index] = true
+    setIsPlayingArray(newIsPlayingArray)
+  }
 
   const renderMedia = (media, index) => {
-    const isPlaying = isPlayingArray[index];
+    const isPlaying = isPlayingArray[index]
 
-    const sizeClasses = "w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]";
+    const sizeClasses =
+      'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]'
 
     if (
       media.__typename ===
@@ -36,7 +38,7 @@ const MediaComponent = ({ data }) => {
               className="rounded-lg"
             />
           </div>
-        );
+        )
       } else if (media.media && media.media.match(/\.(mp4|webm|ogg)$/)) {
         return (
           <div
@@ -63,22 +65,25 @@ const MediaComponent = ({ data }) => {
                   />
                 )}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="text-orange-500 text-3xl">
-                    ▶
+                  <button className="relative text-7xl text-orange-500">
+                    <div className="relative inline-block">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="bg-white w-5 h-5"></div>
+                      </div>
+                      <FaYoutube className="relative" />
+                    </div>
                   </button>
                 </div>
               </div>
             )}
           </div>
-        );
+        )
       }
     } else if (
       media.__typename === 'PageBlocksMediaComponentMediaItemYoutubeMedia'
     ) {
       return (
-        <div
-          className={`overflow-hidden rounded-lg shadow-2xl ${sizeClasses}`}
-        >
+        <div className={`overflow-hidden rounded-lg shadow-2xl ${sizeClasses}`}>
           <iframe
             width="100%"
             height="100%"
@@ -89,10 +94,10 @@ const MediaComponent = ({ data }) => {
             allowFullScreen
           />
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <div className="media-component md:px-8 xl:px-8 lg:px-8 px-3 max-w-screen-xl mx-auto pb-4 pt-8">
@@ -111,7 +116,7 @@ const MediaComponent = ({ data }) => {
           ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export { MediaComponent };
+export { MediaComponent }
