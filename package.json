@@ -25,6 +25,9 @@
     "postbuild": "next-sitemap",
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
   },
+  "resolutions": {
+    "graphql": "^15.5.1"
+  },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^10.0.0",
@@ -61,12 +64,13 @@
     "next": "^14.0.3",
     "next-seo": "^4.1.0",
     "next-svgr": "0.0.2",
-    "next-tinacms-cloudinary": "^4.4.3",
+    "next-tinacms-cloudinary": "^7.0.0",
     "node-sass": "^9.0.0",
     "postcss": "^8.4.18",
     "prism-react-renderer": "^2.0.6",
     "prismjs": "^1.29.0",
     "prop-types": "^15.7.2",
+    "prosemirror-tables": "^1.4.0",
     "raw-loader": "^4.0.0",
     "react": "^18.2.0",
     "react-animate-height": "^3.1.0",
@@ -94,13 +98,13 @@
     "styled-components": "^5.3.3",
     "styled-jsx-plugin-sass": "^1.0.0",
     "three": "^0.165.0",
-    "tinacms": "^1.6.7",
+    "tinacms": "^2.1.0",
     "webpack": "^5.76.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.10.4",
     "@tailwindcss/forms": "^0.5.3",
-    "@tinacms/cli": "^1.5.49",
+    "@tinacms/cli": "^1.5.52",
     "@types/cookie": "^0.3.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^25.1.2",
