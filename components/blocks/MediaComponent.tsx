@@ -94,12 +94,12 @@ const MediaComponent = ({ data }) => {
       <h2 className="text-center font-tuner text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent pb-10">
         {headline}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
         {mediaItem &&
           mediaItem.map((item, index) => (
             <div
               key={index}
-              className="relative flex justify-center items-center p-2"
+              className="relative flex justify-center items-center"
             >
               {renderMedia(item)}
             </div>
