@@ -42,7 +42,7 @@ As Tina approaches 1.0 you will see some rough edges smoothed out like the UX ar
 
 Tina has been focused on Next.js while in beta. This has reduced our maintenance “surface area” while we get the product right.  Before 1.0, we will open up Tina to other frameworks.  Phase 1 will include modern, data-agnostic, Javascript frameworks like Remix, Nuxt, and SvelteKit.  Phase 2 will include all JAMstack frameworks (Jekyll, Hugo, 11ty, etc).
 
-> For up to date details on supported frameworks, please see the [our framework-specific guides]()
+> For up to date details on supported frameworks, please see [our framework-specific guides]()
 
 ## A Headless API on top of your Git content
 
@@ -56,7 +56,7 @@ As mentioned above, we’re big believers in using Markdown, MDX, and JSON files
 
 However, using Git as content storage comes with limitations.  Typically, files like Markdown are only queried at build time and ideal for statically generated pages, and not used for dynamic pages with server-side rendering (SSR).  To allow for SSR with Git-backed content, Tina will be expanding on its GraphQL API to allow public access (with a read-only token), so you can query your Git-backed content like you would with any other API-first Headless CMS. This gives you the best of both worlds: the ability to use open, reliable formats and version control for your content, and the flexibility to query that data dynamically, if needed (i.e. getStaticProps in [Next.js](https://nextjs.org/) or useLoaderData in [Remix](https://remix.run/)).
 
-Tina’s headless API will allow you to use advanced queries for your content (i.e. sort, filter, paginate, and relations) which we will cover in the next section. 
+Tina’s headless API will allow you to use advanced queries for your content (i.e. sort, filter, paginate, and relations) which we will cover in the next section.
 
 ## Markdown at Scale
 
