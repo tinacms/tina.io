@@ -1,16 +1,16 @@
 ---
-title: Choosing a Database Adapter
 id: /docs/reference/self-hosted/database-adapter/overview
+title: Choosing a Database Adapter
 ---
 
 ## Overview
 
 A database adapter provides an interface between the Tina database and the underlying database implementation. It implements a limited subset of functionality required by a sorted key-value store, which can be provided by almost any database implementation. We currently have database adapters for the following database implementations:
 
-- [Vercel KV](/docs/reference/self-hosted/database-adapter/vercel-kv)
-- [MongoDB](/docs/reference/self-hosted/database-adapter/mongodb)
+* [Vercel KV](/docs/reference/self-hosted/database-adapter/vercel-kv)
+* [MongoDB](/docs/reference/self-hosted/database-adapter/mongodb)
 
-We also plan to support additional database adapters for common databases in the future.
+We're considering support for additional database adapters for common databases in the future, if this interests you let us know in [GitHub discussions](https://github.com/tinacms/tinacms/discussions "GitHub discussions").
 
 Configuring a database adapter can be done in the `database.{ts,js}` file by passing it to the `createDatabase` function.
 
@@ -42,4 +42,4 @@ This is a factory function that creates a database that can be used for local de
 
 It uses a local in-memory database adapter and a file-system Git provider that only writes changes to the file-system without committing them.
 
-(_does not take any parameter_)
+(*does not take any parameter*)
