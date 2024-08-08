@@ -1,15 +1,15 @@
 ---
 title: The Evolution of Inline Editing
 date: '2021-05-05T10:00:00.000Z'
-author: Mitch MacKenzie & DJ Walker
 last_edited: '2021-05-05T10:00:00.000Z'
+author: Mitch MacKenzie & DJ Walker
 ---
 
 Inline editing removes many usability hurdles that content editors face when working with traditionally decoupled CMS forms. Editors get to see their content changes immediately in the context of their actual website. But developers have been sharing the trade-offs associated with inline editing's current implementation with us.
 
 We're continuing to learn from our development community and looking at better ways of integrating the superpowers that inline editing bestows.
 
-And let's not forget about sidebar editing in this discussion! The attractiveness of inline editing often overshadows the flexible setup and usability wins that we get with sidebar editing. **We recommend starting with **[**sidebar editing**](/docs/getting-started/cms-set-up/#sidebar)** to get up and running quickly.**
+And let's not forget about sidebar editing in this discussion! The attractiveness of inline editing often overshadows the flexible setup and usability wins that we get with sidebar editing. **We recommend starting with [sidebar editing](/docs/getting-started/cms-set-up/#sidebar) to get up and running quickly.**
 
 ## A review of the original approach
 
@@ -23,8 +23,8 @@ We gain a lot of control as developers with this approach. The inline editing co
 
 But there are a [few trade-offs to this approach](/blog/more-changes-coming-to-inline-editing/):
 
-- Components like `InlineText` add markup and behaviour that can interfere with your desired layout and styling. You now have an `input` element and wrapping `divs` where you'd typically just render text.
-- Sidebar editing forms are constructed from a single configuration object. Inline editing brings a different developer experience and another set of concepts to understand.
+* Components like `InlineText` add markup and behaviour that can interfere with your desired layout and styling. You now have an `input` element and wrapping `divs` where you'd typically just render text.
+* Sidebar editing forms are constructed from a single configuration object. Inline editing brings a different developer experience and another set of concepts to understand.
 
 Another side effect of having inline editing coupled to your components is that you're now bringing TinaCMS with your components, everywhere.
 
@@ -48,11 +48,13 @@ We then call `useFieldRef` to acquire the ref that will be attached to our title
 
 ### Editing Routes
 
-You can create editing-specific routes if you are concerned about the performance implications of TinaCMS being bundled with your website. Frameworks like [Next.js](https://nextjs.org) optimize Javascript bundles so that TinaCMS is _not_ included on routes that don't need it.
+You can create editing-specific routes if you are concerned about the performance implications of TinaCMS being bundled with your website. Frameworks like [Next.js](https://nextjs.org) optimize Javascript bundles so that TinaCMS is *not* included on routes that don't need it.
 
 The drawback of this approach is that you need to duplicate aspects of your website's components between the normal view-only routes and the routes where TinaCMS is included.
 
 ## What's next?
+
+> The following section may no longer be accurate, see the[ official roadmap](https://tina.io/roadmap/ "Roadmap") and [GitHub](https://github.com/tinacms) pages for up to date development info
 
 We are making it clear in our documentation and guides that the **original inline editing approach and Ref-Based inline editing are still experimental**.
 
