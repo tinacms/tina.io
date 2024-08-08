@@ -1,15 +1,13 @@
 ---
-title: Select Field
-
 consumes:
   - file: /packages/@tinacms/fields/src/Select.tsx
     details: Shows select field and Option interfaces
   - file: /packages/@tinacms/fields/src/plugins/SelectFieldPlugin.tsx
     details: Shows select field and Option interfaces
+title: Select Field
 ---
 
 <WarningCallout body="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the content types reference!" />
-
 
 The `select` field represents a select element.
 
@@ -22,8 +20,8 @@ The `select` field represents a select element.
 | `component`   | The name of the plugin component. Always 'select'.                                              |
 | `name`        | The path to some value in the data being edited.                                                |
 | `options`     | An array of strings or Options to select from.                                                  |
-| `label`       | A human readable label for the field. Defaults to the name. _(Optional)_                        |
-| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
+| `label`       | A human readable label for the field. Defaults to the name. *(Optional)*                        |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. *(Optional)* |
 
 ```typescript
 interface SelectField {
@@ -40,9 +38,7 @@ type Option = {
 }
 ```
 
-> This interfaces only shows the keys unique to the select field.
->
-> Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
+> This interfaces only shows the keys unique to the select field.Visit the [Field Config](/docs/extending-tina/custom-field-components/#default-field-plugins "link to field config page") docs for a complete list of options.
 
 ## Example #1: Select an Author
 
