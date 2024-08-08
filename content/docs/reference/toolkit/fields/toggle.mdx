@@ -1,15 +1,13 @@
 ---
-title: Toggle Field
-
 consumes:
   - file: /packages/tinacms/src/plugins/fields/ToggleFieldPlugin.tsx
     details: Shows toggle field interface and config options
   - file: /packages/@tinacms/fields/src/Toggle.ts
     details: Shows toggle field interface and config options
+title: Toggle Field
 ---
 
 <WarningCallout body="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the content types reference!" />
-
 
 The `toggle` field represents a true/false toggle. This field is typically used for boolean content values. You could use this to toggle a certain feature on the page on or off.
 
@@ -31,13 +29,11 @@ interface ToggleConfig extends FieldConfig {
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `component`    | The name of the plugin component. Always `'toggle'`                                                                                                                                                                                                                          |
 | `name`         | The path to some value in the data being edited.                                                                                                                                                                                                                             |
-| `label`        | A human readable label for the field. Defaults to the `name`. _(Optional)_                                                                                                                                                                                                   |
-| `description`  | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_                                                                                                                                                                              |
-| `toggleLabels` | Customize 'labels' next to the true / false states of the toggle. When `true`, the labels default to 'Yes' and 'No'. Alternatively, you can pass an object with the properties `true` and `false` with custom strings to render as labels. _(Optional: Defaults to `false`)_ |
+| `label`        | A human readable label for the field. Defaults to the `name`. *(Optional)*                                                                                                                                                                                                   |
+| `description`  | Description that expands on the purpose of the field or prompts a specific action. *(Optional)*                                                                                                                                                                              |
+| `toggleLabels` | Customize 'labels' next to the true / false states of the toggle. When `true`, the labels default to 'Yes' and 'No'. Alternatively, you can pass an object with the properties `true` and `false` with custom strings to render as labels. *(Optional: Defaults to `false`)* |
 
-> This interfaces only shows the keys unique to the date field.
->
-> Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
+> This interfaces only shows the keys unique to the date field.Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
 
 ## Example: Published Flag
 
