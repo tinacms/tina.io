@@ -38,7 +38,7 @@ jobs:
         env:
           CI: true
       - name: 📉 Check HTML
-        uses: anishathalye/proof-html@v1.4.0
+        uses: anishathalye/proof-html@v2.1.3
         with:
           directory: './out'
           enforce_https: false
