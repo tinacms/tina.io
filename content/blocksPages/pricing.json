@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Pricing",
+    "description": "TinaCMS Pricing - Find the best model for your business's content."
+  },
   "blocks": [
     {
       "headline": "Pricing",
