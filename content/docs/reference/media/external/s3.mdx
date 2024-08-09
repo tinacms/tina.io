@@ -42,9 +42,10 @@ You need to setup S3 Bucket and IAM user correctly.
 
 ### 1. The IAM user should have at least the following permissions for your bucket.
 
-"s3:ListBucket",
-"s3:PutObject",
-"s3:DeleteObject"
+* `s3:ListBucket`
+* `s3:PutObject`
+* `s3:PutObjectAcl`
+* `s3:DeleteObject`
 
 ### 2. The S3 bucket should have ACLs enabled.
 
@@ -75,6 +76,15 @@ i.e. You can disable `block public access settings` and set up the bucket policy
       },
       "Action": ["s3:PutObject", "s3:PutObjectAcl", "s3:DeleteObject"],
       "Resource": "arn:aws:s3:::<S3-Bucket-NAME>/*"
+    },
+    {
+      "Sid": "ListBucket",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "<ARN of the IAM user>"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::<S3-Bucket-NAME>"
     }
   ]
 }
