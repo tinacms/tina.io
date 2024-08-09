@@ -108,6 +108,14 @@ export const schema = defineSchema({
       label: 'Docs',
       path: 'content/docs',
       format: 'mdx',
+      ui: {
+        beforeSubmit: async ({ values, cms, form }) => {
+          return {
+            ...values,
+            last_edited: new Date().toISOString(),
+          }
+        },
+      },
       fields: [
         {
           name: 'title',
@@ -115,12 +123,11 @@ export const schema = defineSchema({
           type: 'string',
         },
         {
-          // note: this should be a hidden field that auto-updates
           type: 'string',
           name: 'last_edited',
           label: 'Last Edited',
           ui: {
-            component: 'date',
+            component: 'hidden',
           },
         },
         {
@@ -150,7 +157,7 @@ export const schema = defineSchema({
                   name: 'embedSrc',
                   label: 'Embed URL',
                   description:
-                  '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                    '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
                 },
               ],
             },
@@ -226,10 +233,10 @@ export const schema = defineSchema({
                 },
               ]
             }
-            
-              
 
-            
+
+
+
           ],
         },
       ],
