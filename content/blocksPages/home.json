@@ -5,25 +5,6 @@
   },
   "blocks": [
     {
-      "headline": "Headline",
-      "mediaItem": [
-        {
-          "embedUrl": "https://youtu.be/UUFuedso2iQ",
-          "_template": "youtubeMedia"
-        },
-        {
-          "embedUrl": "https://www.youtube.com/embed/daOyL5Qn6W0?si=dA2qrU8J1peywmdU",
-          "_template": "youtubeMedia"
-        },
-        {
-          "media": "https://res.cloudinary.com/forestry-demo/video/upload/v1699630009/demos/tina-vercel-kv.mp4",
-          "thumbnail": "https://res.cloudinary.com/forestry-demo/image/upload/v1717742403/Tina_1_np6ra8.png",
-          "_template": "cloudinaryMediaComponent"
-        }
-      ],
-      "_template": "mediaComponent"
-    },
-    {
       "features": [
         {
           "headline": "A CMS With Version Control Built-in",
