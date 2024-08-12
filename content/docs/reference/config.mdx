@@ -1,6 +1,5 @@
 ---
 id: /docs/reference/config/
-
 title: Config Reference
 last_edited: '2022-09-29T15:51:56.737Z'
 next: content/docs/reference/schema.mdx
@@ -56,14 +55,4 @@ export default defineConfig({
 ```
 
 In this example, the TinaCMS admin will be viewable at `<my-site-url>/admin/index.html`.
-For more information [check out the content modeling section](/docs/schema/)
-
-# Enabling visual editing
-
-> We're in the early stages of adding visual editing support in static mode, check back for more details soon!
-
-For NextJS sites, the [visual-editing](/docs/tinacms-context/) guide is still applicable for static mode, with 2 key differences:
-
-1. The `useTina` hook should be imported from `tinacms/dist/react`.
-2. Visual mode is only enabled when you visit your site _through_ the Tina CMS iframe. For the example config
-   above, this would be at `<my-site-url>/admin/index.html#/preview`.
+For more information [check out the content modeling section](/docs/schema/).
