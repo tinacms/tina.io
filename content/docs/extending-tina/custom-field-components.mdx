@@ -1,8 +1,9 @@
 ---
-title: 'Custom field components'
-id: '/docs/extending-tina/custom-field-components'
-prev: /docs/extending-tina/validation
-next: /docs/extending-tina/customize-list-ui
+id: /docs/extending-tina/custom-field-components
+
+title: Custom field components
+next: content/docs/extending-tina/customize-list-ui.mdx
+previous: content/docs/extending-tina/validation.mdx
 ---
 
 A custom component can be passed and rendered by setting the `ui.component` property on a field. This component completely overrides the original component, providing the user with the ability to fully customize the field.
@@ -20,43 +21,6 @@ Checkout the [react-final-form](https://github.com/final-form/react-final-form#f
 ### Custom Component Example
 
 Here is a custom slider component that can be used for adjusting image saturation.
-
-![A basic slider custom component](https://res.cloudinary.com/forestry-demo/image/upload/v1652976482/tina-io/docs/extending-tina/image-saturation.png)
-
-```tsx
-import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
-
-//.. other fields
-{
-  label: "Image Saturation",
-  name: "saturation",
-  type: "number",
-  description: "My custom saturation field",
-  ui: {
-    parse: (val) => Number(val),
-
-    // wrapping our component in wrapFieldsWithMeta renders our label & description.
-    component: wrapFieldsWithMeta(({ field, input, meta }) => {
-      return (
-        <div>
-          <input
-            name="saturation"
-            id="saturation"
-            type="range"
-            min="0"
-            max="10"
-            step=".1"
-            // This will pass along props.input.onChange to set our form values as this input changes.
-            {...input}
-          />
-          <br />
-          Value: {input.value}
-        </div>
-      )
-    })
-  }
-}
-```
 
 > Note: in this example, `parse` is also needed. [Read more about `parse`](/docs/extending-tina/format-and-parse/).
 
@@ -108,12 +72,10 @@ For example, if you take a look at the color field plugin's definition, it takes
 // ...
 ```
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1652976482/tina-io/docs/extending-tina/image-saturation.png)
+
 ## Video Tutorial
 
 For those who prefer to learn from video, you can check out a snippet on "Customizing Components" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
 
-<div style="position:relative;padding-top:56.25%;">
-  <iframe width="560" frameborder="0" allowfullscreen
-      style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/amSRwAbgMR0?start=744" title="TinaCMS Deep Dive (Customizing Components)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-  </iframe>
-</div>
+<Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />

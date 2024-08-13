@@ -60,3 +60,24 @@ query pageWithRecentPosts($relativePath: String!) {
     }
   }
 }
+
+query getAllDocs {
+  docConnection(first: 1000) { 
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+      }
+    }
+  }
+}

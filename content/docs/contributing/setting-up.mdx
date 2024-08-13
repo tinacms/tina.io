@@ -1,8 +1,5 @@
 ---
 id: /docs/contributing/setting-up
-title: Contribution Set-up
-prev: /docs/contributing/guidelines
-next: /docs/contributing/releasing
 consumes:
   - file: /package.json
     details: Uses scripts for local dev
@@ -10,10 +7,11 @@ consumes:
     details: Uses the `run` script
   - file: README.md
     details: 'Shows commands, how to get started'
+title: Contribution Set-up
 last_edited: '2021-02-18T13:05:33.946Z'
 ---
 
-TODO: These docs are out of date - check out https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md for the latest information
+<WarningCallout body="This page is out of date - check out [the TinaCMS GitHub](https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md) for the latest contribution information" />
 
 ## Development
 
@@ -33,21 +31,21 @@ npm run start
 
 **Do not run** `npm install` from inside the `packages` directory
 
-> **TinaCMS** uses [**Lerna**](https://lerna.js.org/) to manage dependencies when developing locally. This allows the various packages to reference each other via symlinks. Running `npm install` from within a package replaces the symlinks with references to the packages in the npm registry.
+> **TinaCMS** uses **[Lerna](https://lerna.js.org/)** to manage dependencies when developing locally. This allows the various packages to reference each other via symlinks. Running `npm install` from within a package replaces the symlinks with references to the packages in the npm registry.
 
 ## Commands
 
-| Commands                          | Description                                   |
-| --------------------------------- | --------------------------------------------- |
-| npm run bootstrap                 | Install dependencies and link local packages. |
-| npm run build                     | Build all packages                            |
-| npm run test                      | Run tests for all packages                    |
-| lerna run build --scope <package> | Build only <package>.                         |
-| lerna run watch                   | Watch all packages for rebuilds.              |
+| Commands                            | Description                                   |
+| ----------------------------------- | --------------------------------------------- |
+| `npm run bootstrap`                 | Install dependencies and link local packages. |
+| `npm run build`                     | Build all packages                            |
+| `npm run test`                      | Run tests for all packages                    |
+| `lerna run build --scope <package>` | Build only `<package>`.                       |
+| `lerna run watch`                   | Watch all packages for rebuilds.              |
 
 ## Run Development Packages
 
-After installing the development setup you can run demo applications contained in the _packages_ directory **demo-cra**, **demo-gatsby** and **demo-next**.
+After installing the development setup you can run demo applications contained in the *packages* directory **demo-cra**, **demo-gatsby** and **demo-next**.
 
 These projects can be used as a development environment for Tina packages, you can edit any other package contained within Tina packages.
 

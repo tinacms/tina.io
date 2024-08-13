@@ -5,18 +5,9 @@ consumes:
   - file: /packages/@tinacms/fields/src/plugins/RadioGroupFieldPlugin.tsx
     details: Shows radio group field and Option interfaces
 title: Radio Group Field
-prev: /docs/reference/toolkit/fields/toggle
-next: /docs/reference/toolkit/fields/select
 ---
 
-<div class="short-code-warning">
-   <div>
-      <p>This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the <a href="/docs/reference/types/">content types reference</a>!</p>
-   </div>
-   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-      <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z"></path>
-   </svg>
-</div>
+<WarningCallout body="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the content types reference!" />
 
 The `radio-group` field represents a group of radio inputs. It can rendered in a "horizontal" or "vertical" direction.
 
@@ -51,7 +42,7 @@ type Option = {
 }
 ```
 
-> These interfaces only show the keys unique to the radio group field. Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
+> These interfaces only show the keys unique to the radio group field. Visit the [Field Config](/docs/extending-tina/custom-field-components/#default-field-plugins "link to field configuration page") docs for a complete list of options.
 
 ## Example: Select an Rating
 

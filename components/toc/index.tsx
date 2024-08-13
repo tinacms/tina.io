@@ -4,11 +4,21 @@ import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
 
 interface TocProps {
-  tocItems: string
+  tocItems: Array<{ type: string; text: string }>
   activeIds: string[]
 }
 
-const Toc = ({ tocItems, activeIds }: TocProps) => {
+const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
+  return tocItems
+    .map((item) => {
+      const anchor = item.text.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+      const prefix = item.type === 'h3' ? '  ' : ''
+      return `${prefix}- [${item.text}](#${anchor})`
+    })
+    .join('\n')
+}
+
+const ToC = ({ tocItems, activeIds }: TocProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -24,26 +34,29 @@ const Toc = ({ tocItems, activeIds }: TocProps) => {
     }
   }, [])
 
-  if (!tocItems) {
+  if (!tocItems || tocItems.length === 0) {
     return null
   }
+
+  const tocMarkdown = generateMarkdown(tocItems)
 
   return (
     <TocWrapper>
       <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-        <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>{' '}
+        <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>
         <RightArrowSvg />
       </TocButton>
       <TocContent activeIds={activeIds} isOpen={isOpen}>
         <TocDesktopHeader>Table of Contents</TocDesktopHeader>
-        <ReactMarkdown>{tocItems}</ReactMarkdown>
+        <ReactMarkdown>{tocMarkdown}</ReactMarkdown>
       </TocContent>
     </TocWrapper>
   )
 }
-export default Toc
 
-const TocDesktopHeader = styled.span`
+export default ToC
+
+export const TocDesktopHeader = styled.span`
   display: none;
   font-size: 1rem;
   color: var(--color-secondary);
@@ -57,7 +70,7 @@ const TocDesktopHeader = styled.span`
   }
 `
 
-const TocWrapper = styled.div`
+export const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
   flex: 0 0 auto;
 
@@ -67,7 +80,7 @@ const TocWrapper = styled.div`
   }
 `
 
-const TocButton = styled.button<{ isOpen: boolean }>`
+export const TocButton = styled.button<{ isOpen: boolean }>`
   display: block;
   padding: 0;
   outline: none;
@@ -122,12 +135,12 @@ const TocButton = styled.button<{ isOpen: boolean }>`
   }
 `
 
-interface TocContentProps {
+export interface TocContentProps {
   isOpen: boolean
   activeIds: string[]
 }
 
-const TocContent = styled.div<TocContentProps>`
+export const TocContent = styled.div<TocContentProps>`
   display: block;
   width: 100%;
   line-height: 1.25;

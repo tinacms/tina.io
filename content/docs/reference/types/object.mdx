@@ -36,64 +36,54 @@ type ObjectField = {
 
 ## Examples
 
-Tina will generate the appropriate component depending on the
-configuration provided.
-
-::::code-snippets
-:::code-snippet{open=true url="/img/code-snippets/object-1.png"}
+Tina will generate the appropriate component depending on the configuration provided.
 
 ### A basic object configuration
 
-```ts
+```json
 {
   label: "Testimonial",
   name: "testimonial",
   type: "object",
   fields: [
-    {
-      label: "Author",
-      name: "author",
-      type: "string"
-    },
-    {
-      label: "Role",
-      name: "role",
-      type: "string"
-    },
-    {
-      label: "Quote",
-      name: "quote",
-      type: "string",
-      ui: {
-        component: "textarea"
+      {
+        label: "Author",
+        name: "author",
+        type: "string"
+      },
+      {
+        label: "Role",
+        name: "role",
+        type: "string"
+      },
+      {
+        label: "Quote",
+        name: "quote",
+        type: "string",
+        ui: {
+          component: "textarea"
+        }
       }
-    }
-  ]
+        ]
 }
 ```
 
-:::
-:::code-snippet{open=true url="/img/code-snippets/object-2.png"}
-
 ### As a list with default values
 
-> **Default Values**
-> To display default values when fields are first added to a page, use the `ui.defaultItem` property.
-
-```ts
+```javascript
 {
   label: "Testimonials",
   name: "testimonials",
   type: "object",
-  list: true,
-  ui: {
+        list: true,
+          ui: {
     itemProps: (item) => {
-      return { label: `${item?.author}  ( ${item?.role} ) `}
+      return { label: `${item?.author}  ( ${item?.role} ) ` }
     },
-    defaultItem: {
+      defaultItem: {
       author: "Judith Black",
-      role: "CEO",
-      quote: "Lorem ipsum dol..."
+        role: "CEO",
+          quote: "Lorem ipsum dol..."
     }
   },
   fields: [
@@ -113,14 +103,11 @@ configuration provided.
 }
 ```
 
-:::
-:::code-snippet{open=true url="/img/code-snippets/object-3.png"}
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381170/Screenshot_2024-07-31_at_9.12.43_AM_gahppr.png)
 
-### Using `templates` instead of fields
+### Using templates instead of fields
 
-If you always want your object to have the same fields, use the fields property. But if an object can be one of any different shape, define them as templates.
-
-```ts
+```javascript
 {
   label: "Page Blocks",
   name: "pageBlocks",
@@ -141,5 +128,4 @@ If you always want your object to have the same fields, use the fields property.
 }
 ```
 
-:::
-::::
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381325/Screenshot_2024-07-31_at_9.15.20_AM_rniq4e.png)
