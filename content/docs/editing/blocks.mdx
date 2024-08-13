@@ -1,6 +1,5 @@
 ---
 id: /docs/editing/blocks
-
 title: Block-based editing
 next: content/docs/editing/single-document-collections.mdx
 previous: content/docs/editing/markdown.mdx
@@ -12,9 +11,9 @@ Tina supports block-based editing, so that your editors can build out full pages
 
 Let's say you want your editors to build out a page, and you have 3 main "block" types to start.
 
-- a "Hero" block
-- a "Feature" block
-- a "Main Content" block
+* a "Hero" block
+* a "Feature" block
+* a "Main Content" block
 
 We want to allow our editors to use various blocks on each page.
 
@@ -22,7 +21,7 @@ We want to allow our editors to use various blocks on each page.
 
 We are going to use the [`object` type](/docs/schema/#grouping-properties-within-an-object), and provide a list of `templates`, where each "template" represents a unique block type.
 
-```ts
+```typescript
 import { defineConfig } from 'tinacms'
 import type { TinaTemplate } from 'tinacms'
 
@@ -161,10 +160,7 @@ query PagesDocument($relativePath: String!) {
 }
 ```
 
-<Iframe
-  iframeSrc="/api/graphiql/?query=%7B%0A%20%20pages(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"
-  height={400}
-/>
+<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20pages(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" height={400} />
 
 > For more info on how to query data with Tina's GraphQL API, check out the [Query Documentation](https://tina.io/docs/graphql/queries/)
 
@@ -220,9 +216,9 @@ Note that the `__typename` on each blog is `{CollectionName}{FieldName}{BlockTem
 
 In our case:
 
-- CollectionName: "Pages"
-- FieldName: "Blocks"
-- BlockTemplateName: "Content" | "Hero" | "Features"
+* CollectionName: "Pages"
+* FieldName: "Blocks"
+* BlockTemplateName: "Content" | "Hero" | "Features"
 
 ## Adding a visual block selector (Experimental)
 
@@ -294,7 +290,7 @@ const featureBlock = {
 
 The `previewSrc` is an image URL that will be rendered in the visual selector. If a preview isn't provided the block will still be available with a title to click on, just no preview image will be displayed.
 
-_optionally_ a `category` can be provided that allow the blocks to be grouped into different categories.
+*optionally* a `category` can be provided that allow the blocks to be grouped into different categories.
 
 ```diff
 const featureBlock = {
@@ -329,6 +325,6 @@ const featureBlock = {
 
 ## Video Tutorial
 
-For those who prefer to learn from video, you can check out a snippet on "Setting Up Blocks" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+For those who prefer to learn from video, you can check out a snippet on "Setting Up Blocks" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
 <Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=555&end=727" />

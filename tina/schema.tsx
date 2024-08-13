@@ -155,6 +155,32 @@ export const schema = defineSchema({
               ],
             },
             {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'request',
+                  label: 'Request',
+                  description:
+                    'Paste GraphQL request code here.',
+                  ui: {
+                    component: 'textarea'
+                  }
+                },
+                {
+                  type: 'string',
+                  name: 'response',
+                  label: 'Response',
+                  description:
+                    'Paste GraphQL response data here.',
+                  ui: {
+                    component: 'textarea'
+                  }
+                },
+              ],
+            },
+            {
               name: 'WarningCallout',
               label: 'Warning Callout',
               fields: [
@@ -325,6 +351,26 @@ export const schema = defineSchema({
                   label: 'Embed URL',
                   description:
                     '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'rich-text',
+                  name: 'request',
+                  label: 'Request',
+                  description:
+                    'Paste GraphQL request code here.',
+                },
+                {
+                  type: 'rich-text',
+                  name: 'response',
+                  label: 'Response',
+                  description:
+                    'Paste GraphQL response data here.',
                 },
               ],
             },

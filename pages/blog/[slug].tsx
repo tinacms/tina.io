@@ -35,6 +35,7 @@ export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
   Youtube: { embedSrc: string;}
   CreateAppCta: { ctaText: string; cliText: string }
+  GraphQLCodeBlock: { request: string, response: string }
   Callout: {
     title: string
     description: string
@@ -50,6 +51,7 @@ export const components: Components<{
   Button: { link: string; label: string }
   ImageAndText: { docText: string; image: string }
   Summary: { heading: string; text: string }
+
 }> = {
   ImageAndText: (props) => {
     return (
@@ -238,6 +240,47 @@ export const components: Components<{
         lang={lang || 'jsx'}
         theme="nightOwl"
       />
+    )
+  },
+  GraphQLCodeBlock: ({ request, response }) => {
+    return (
+      <>
+      <div
+          style={{
+            position: "relative",
+            width: "fit-content",
+            padding: "0.1rem 0.5rem"
+          }}>
+          <div
+            style={{
+              position: "absolute",
+              top: "1rem",
+              left: "1rem",
+              transform: "perspective(200px) rotateX(40deg)",
+              borderRadius: '5px',
+              border: '1px solid rgba(0,0,0,0.1)',
+              width: '100%',
+              height: '100%'
+            }}>
+          </div>
+          <h4
+            style={{
+              color: '#ec4815',
+              position: "relative",
+              left: "1.1rem",
+            }}>Request</h4>
+      </div>
+          <Prism
+            value={request || ''}
+            lang={'graphql'}
+            theme="nightOwlLight"
+          />
+        <Prism
+          value={response || ''}
+          lang={'graphql'}
+          theme="nightOwlLight"
+        />
+      </>
     )
   },
   CustomFieldComponentDemo: () => (
