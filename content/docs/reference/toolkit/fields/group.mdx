@@ -1,13 +1,11 @@
 ---
-title: Group Field
-
 consumes:
   - file: /packages/tinacms/src/plugins/fields/GroupFieldPlugin.tsx
     details: Shows group field interface and how to use
+title: Group Field
 ---
 
 <WarningCallout body="This is an advanced-use feature, and likely not something you'll need to configure. What you probably want is the content types reference!" />
-
 
 The `group` field represents a group of values. This field is best used when there is a **single** group to be edited, typically with a single JSON object or nested frontmatter values. If there are multiple groups, checkout the [group-list](/docs/reference/toolkit/fields/group-list) field.
 
@@ -31,14 +29,10 @@ interface GroupConfig {
 | `component`   | The name of the plugin component. Always `'group'`                                             |
 | `name`        | The path to some value in the data being edited.                                               |
 | `fields`      | An array of [`Field`](/docs/reference/toolkit/fields) values that will render as a sub-menu.   |
-| `label`       | A human readable label for the field. Defaults to the `name` _(Optional)_                      |
-| `description` | Description that expands on the purpose of the field or prompts a specific action _(Optional)_ |
+| `label`       | A human readable label for the field. Defaults to the `name` *(Optional)*                      |
+| `description` | Description that expands on the purpose of the field or prompts a specific action *(Optional)* |
 
-> ### FieldConfig
->
-> This interfaces only shows the keys unique to the group field.
->
-> Visit the [Field Config](/docs/reference/toolkit/fields) docs for a complete list of options.
+> This interfaces only shows the keys unique to the group field. Visit the [Field Config](/docs/extending-tina/custom-field-components/#default-field-plugins "link to custom field components") docs for a complete list of options.
 
 ## Definition
 
