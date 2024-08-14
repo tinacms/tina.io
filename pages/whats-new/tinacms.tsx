@@ -19,12 +19,11 @@ export const versionComponents = {
 
 export const getStaticProps = async () => {
   const { data: connectionData } = await client.queries.WhatsNewTinaCMSConnection({
-    first: 10,
+    last: 10,
     sort: "dateReleased", 
   });
 
-  const items = connectionData?.WhatsNewTinaCMSConnection?.edges.map(edge => edge.node).reverse() || [];
-  console.log(items)
+  const items = connectionData?.WhatsNewTinaCMSConnection?.edges.map(edge => edge.node) || [];
   return {
     props: {
       items,
