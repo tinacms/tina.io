@@ -3,10 +3,10 @@ import Image from 'next/image'
 import { FaYoutube } from 'react-icons/fa'
 
 const MediaComponent = ({ data }) => {
-  const { headline, mediaItem } = data
+  const { headline, mediaItem } = data || {}
 
   const [isPlayingArray, setIsPlayingArray] = useState(
-    mediaItem.map(() => false)
+    Array.isArray(mediaItem) ? mediaItem.map(() => false) : []
   )
 
   const handlePlayVideo = (index) => {
@@ -105,7 +105,7 @@ const MediaComponent = ({ data }) => {
         {headline}
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {mediaItem &&
+        {Array.isArray(mediaItem) &&
           mediaItem.map((item, index) => (
             <div
               key={index}
