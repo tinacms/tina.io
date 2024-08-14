@@ -619,5 +619,27 @@ export const schema = defineSchema({
         },
       ],
     },
+    {
+      name: 'WhatsNewTinaCMS',
+      label: 'Whats new - TinaCMS',
+      path: 'content/whats-new-tinacms',
+      format: 'mdx',
+      fields: [
+        { name: 'versionNumber', label: 'Version Number', type: 'string' },
+        { name: 'dateReleased', label: 'Date Released', type: 'datetime'},
+        { name: 'body', label: 'Body', type: 'rich-text', isBody: true, description: 'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).'},
+      ],
+    },
+    {
+      name: 'WhatsNewTinaCloud',
+      label: 'Whats new - TinaCloud',
+      path: 'content/whats-new-tinacloud',
+      format: 'mdx',
+      fields: [
+        { name: 'versionNumber', label: 'Version Number', type: 'string' },
+        { name: 'dateReleased', label: 'Date Released', type: 'datetime'},
+        { name: 'body', label: 'Body', type: 'rich-text', isBody: true, description: 'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).' },
+      ],
+    }
   ],
 })
