@@ -35,7 +35,7 @@ export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
   Youtube: { embedSrc: string;}
   CreateAppCta: { ctaText: string; cliText: string }
-  GraphQLCodeBlock: { request: string, response: string }
+  GraphQLCodeBlock: { query: string, response: string }
   Callout: {
     title: string
     description: string
@@ -242,44 +242,69 @@ export const components: Components<{
       />
     )
   },
-  GraphQLCodeBlock: ({ request, response }) => {
+  GraphQLCodeBlock: ({ query, response }) => {
+    const [isQuery, setIsQuery] = useState(true);
     return (
       <>
       <div
           style={{
-            position: "relative",
+            display: "flex",
             width: "fit-content",
-            padding: "0.1rem 0.5rem"
+            padding: "0 1rem",
+            position: 'relative',
+            top: '0.7rem'
           }}>
+          <button
+            onClick={() => setIsQuery(true)}
+            className="mr-2 px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
+          >
+            Query
+          </button>
+          <button
+            onClick={() => setIsQuery(false)}
+            className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
+          >
+            Response
+          </button>
+      </div>
+      <div
+      style={{
+        height: 'fit-content',
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        width: '100%',
+      }}>
           <div
             style={{
-              position: "absolute",
-              top: "1rem",
-              left: "1rem",
-              transform: "perspective(200px) rotateX(40deg)",
-              borderRadius: '5px',
-              border: '1px solid rgba(0,0,0,0.1)',
+              gridColumn: 1,
+              gridRow: 1,
+              display: 'flex',
+              zIndex: isQuery ? 5 : 1,
+              flex: 1,
               width: '100%',
-              height: '100%'
             }}>
+              <Prism
+                value={query || ''}
+                lang={'graphql'}
+                theme="nightOwl"
+              />
           </div>
-          <h4
+          <div
             style={{
-              color: '#ec4815',
-              position: "relative",
-              left: "1.1rem",
-            }}>Request</h4>
+              gridColumn: 1,
+              gridRow: 1,
+              display: 'flex',
+              zIndex: isQuery ? 1 : 5,
+              flex: 1,
+              width: '100%'
+            }}>
+              <Prism
+                value={response || ''}
+                lang={'json'}
+                theme="nightOwl"
+              />
+          </div>
       </div>
-          <Prism
-            value={request || ''}
-            lang={'graphql'}
-            theme="nightOwlLight"
-          />
-        <Prism
-          value={response || ''}
-          lang={'graphql'}
-          theme="nightOwlLight"
-        />
       </>
     )
   },

@@ -160,10 +160,10 @@ export const schema = defineSchema({
               fields: [
                 {
                   type: 'string',
-                  name: 'request',
-                  label: 'Request',
+                  name: 'query',
+                  label: 'Query',
                   description:
-                    'Paste GraphQL request code here.',
+                    'Paste GraphQL query here.',
                   ui: {
                     component: 'textarea'
                   }
@@ -175,7 +175,7 @@ export const schema = defineSchema({
                   description:
                     'Paste GraphQL response data here.',
                   ui: {
-                    component: 'textarea'
+                    component: 'textarea',
                   }
                 },
               ],

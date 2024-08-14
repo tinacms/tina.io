@@ -20,7 +20,7 @@ export const Prism = (props: {
       language={props.lang || ''}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={style}>
+        <pre className={className} style={{...style, width: "100%", border: 'none'}}>
           {tokens.map((line, i) => (
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
