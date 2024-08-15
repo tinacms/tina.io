@@ -5787,18 +5787,6 @@ autolinker@~0.28.0:
   dependencies:
     gulp-header "^1.7.1"
 
-autoprefixer@^10.4.12:
-  version "10.4.12"
-  resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.4.12.tgz"
-  integrity sha512-WrCGV9/b97Pa+jtwf5UGaRjgQIg7OK3D06GnoYoZNcG1Xb8Gt3EfuKjlhh9i/VtT16g6PYjZ69jdJ2g8FxSC4Q==
-  dependencies:
-    browserslist "^4.21.4"
-    caniuse-lite "^1.0.30001407"
-    fraction.js "^4.2.0"
-    normalize-range "^0.1.2"
-    picocolors "^1.0.0"
-    postcss-value-parser "^4.2.0"
-
 available-typed-arrays@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
@@ -6204,7 +6192,7 @@ browser-resolve@^1.11.3:
   dependencies:
     resolve "1.1.7"
 
-browserslist@^4.14.5, browserslist@^4.21.4, browserslist@^4.21.5, browserslist@^4.23.1:
+browserslist@^4.14.5, browserslist@^4.21.5, browserslist@^4.23.1:
   version "4.23.2"
   resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.23.2.tgz"
   integrity sha512-qkqSyistMYdxAcw+CzbZwlBy8AGmS/eEWs+sEV5TnLRGDOL+C5M2EnH6tlZyg0YoAxGJAFKh61En9BR941GnHA==
@@ -6443,7 +6431,7 @@ camera-controls@^2.4.2:
   resolved "https://registry.npmjs.org/camera-controls/-/camera-controls-2.8.5.tgz"
   integrity sha512-7VTwRk7Nu1nRKsY7bEt9HVBfKt8DETvzyYhLN4OW26OByBayMDB5fUaNcPI+z++vG23RH5yqn6ZRhZcgLQy2rA==
 
-caniuse-lite@^1.0.30001407, caniuse-lite@^1.0.30001579, caniuse-lite@^1.0.30001640:
+caniuse-lite@^1.0.30001579, caniuse-lite@^1.0.30001640:
   version "1.0.30001642"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001642.tgz"
   integrity sha512-3XQ0DoRgLijXJErLSl+bLnJ+Et4KqV1PY6JJBGAFlsNsz31zeAIncyeZfLCabHK/jtSh+671RM9YMldxjUPZtA==
@@ -8432,11 +8420,6 @@ forwarded@0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz"
   integrity sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==
-
-fraction.js@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/fraction.js/-/fraction.js-4.2.0.tgz"
-  integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -12727,11 +12710,6 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-normalize-range@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.npmjs.org/normalize-range/-/normalize-range-0.1.2.tgz"
-  integrity sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==
-
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.npmjs.org/npm-run-path/-/npm-run-path-2.0.2.tgz"
@@ -13293,7 +13271,7 @@ postcss-selector-parser@6.0.10:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
 
-postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.2, postcss-value-parser@^4.2.0:
+postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.2:
   version "4.2.0"
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
