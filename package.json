@@ -44,7 +44,6 @@
     "axios": "^0.21.2",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
-    "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "fast-glob": "^3.1.1",
     "github-slugger": "^1.2.1",
