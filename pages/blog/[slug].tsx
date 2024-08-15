@@ -25,7 +25,7 @@ import {
   TinaMarkdownContent,
 } from 'tinacms/dist/rich-text'
 import { Prism } from '../../components/styles/Prism'
-import { CodeComparisonTabs } from 'components/ui/CodeComparisonTabs'
+import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { getDocId } from 'utils/docs/getDocIds'
 import { FaPlus, FaMinus } from 'react-icons/fa'
@@ -244,7 +244,7 @@ export const components: Components<{
     )
   },
   GraphQLCodeBlock: ({ query, response }) => {
-    return <CodeComparisonTabs 
+    return <GraphQLQueryResponseTabs 
       query={query} 
       response={response}
     />

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Prism } from '../styles/Prism'
 
-export const CodeComparisonTabs = ({ ...props }) => {
+export const GraphQLQueryResponseTabs = ({ ...props }) => {
 
     const [isQuery, setIsQuery] = useState(true);
 
