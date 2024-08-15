@@ -8,7 +8,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
     const buttonStyling = "flex justify-center relative leading-tight text-white mx-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-tuner whitespace-nowrap px-2"
     const activeButtonStyling = " hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px hover:text-gray-50 opacity-50 hover:opacity-100"
     const overlay = <div
-        className="w-full flex-grow opacity-70 rounded-md"
+        className="w-full flex-grow rounded-md"
         style={{
             backgroundColor: 'rgb(1, 22, 39)',
         }}></div>
