@@ -1,7 +1,7 @@
 ---
 id: /docs/data-fetching/custom-queries
-
 title: Writing Custom Queries
+last_edited: '2024-08-13T00:50:07.040Z'
 previous: content/docs/data-fetching/overview.mdx
 ---
 
@@ -13,8 +13,8 @@ const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
 
 In more advanced cases, you may want more control on the underlying GraphQL query. In these cases you have two options:
 
-- Extending the auto-generated `client.queries`, by writing a custom query.
-- Use `client.request`, and write an inline query.
+* Extending the auto-generated `client.queries` by writing a custom query.
+* Use `client.request`, and write an inline query.
 
 ## Extending the auto-generated `client.queries`
 

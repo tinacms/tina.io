@@ -3,11 +3,11 @@ title: The "reference" field
 last_edited: '2021-07-27T15:51:56.737Z'
 ---
 
-# `reference`
+## `reference`
 
-The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on _one side_.
+The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
 
-Once defined, the values of the _referenced_ document become available to the parent.
+Once defined, the values of the *referenced* document become available to the parent.
 
 > Note: `reference` with `list: true` is not currently supported. See the "Temporary work around" section of [issue #2056](https://github.com/tinacms/tinacms/issues/2056) for a suggested approach to achieve a similar result
 
@@ -85,7 +85,7 @@ The `post` collection has a `reference` field to the `author` collection.
 
 When editing in Tina, the user will be able to choose a document in the `author` collection for the value of `author`.
 
-When querying for a `post` document, the `author` key in the response will contain the values of the _referenced_ `author` document:
+When querying for a `post` document, the `author` key in the response will contain the values of the *referenced* `author` document:
 
 ```graphql
 {
@@ -112,4 +112,31 @@ When querying for a `post` document, the `author` key in the response will conta
 }
 ```
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1722241391/Screenshot_2024-07-29_at_6.23.04_PM_tjxgk7.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1723171157/Screenshot_2024-08-09_123906_huk6oz.png)
+
+**Figure:** File name will be displayed in the reference field selector.
+
+### Search reference
+
+You can search your reference with reference selector
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1723171500/Screenshot_2024-08-09_124448_xx0g7v.png)
+
+> Note: The reference selector will only work if you have either the "name" or "label" field, otherwise it will default to the filename. Customizing reference fields with a chosen field is still under development. See [issue](https://github.com/tinacms/tinacms/issues/4707)
+
+```ts
+{
+      label: 'Authors',
+      name: 'author',
+      path: 'content/author',
+      format: 'md',
+      fields: [
+        {
+          type: 'string',
+          label: 'Name',
+          name: 'name',
+          required: true,
+        },
+      ],
+    }
+```

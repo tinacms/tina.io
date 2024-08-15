@@ -1,6 +1,7 @@
 ---
 id: /docs/editing/blocks
 title: Block-based editing
+last_edited: '2024-08-15T00:21:26.449Z'
 next: content/docs/editing/single-document-collections.mdx
 previous: content/docs/editing/markdown.mdx
 ---
@@ -133,34 +134,68 @@ Because each item in a list of blocks can have a unique schema, querying this da
 
 The fragment names are automatically generated based on the collection name and parent field name. For example, if the collection is `pages`, the field is `blocks`, and the block's name is `hero`, the fragment will be named `PagesBlocksHero`.
 
-```graphql
-query PagesDocument($relativePath: String!) {
-  pages(relativePath: $relativePath) {
-    blocks {
-      __typename
-      ... on PagesBlocksHero {
-        __typename
-        tagline
-        headline
-        text
-      }
-      ... on PagesBlocksFeatures {
-        __typename
-        items {
-          title
-          text
-        }
-      }
-      ... on PagesBlocksContent {
-        __typename
-        body
-      }
-    }
-  }
-}
-```
-
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20pages(relativePath%3A%20%22turbo.json%22)%20%7B%0A%20%20%20%20blocks%20%7B%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20...%20on%20PagesBlocksHero%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20tagline%0A%20%20%20%20%20%20%20%20headline%0A%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksFeatures%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20items%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20text%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20...%20on%20PagesBlocksContent%20%7B%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20body%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" height={400} />
+<GraphQLCodeBlock
+  query="{
+  ##pages(relativePath:#&#x22;turbo.json&#x22;)#{
+  ####blocks#{
+  ######__typename
+  ######...#on#PagesBlocksHero#{
+  ########__typename
+  ########tagline
+  ########headline
+  ########text
+  ######}
+  ######...#on#PagesBlocksFeatures#{
+  ########__typename
+  ########items#{
+  ##########title
+  ##########text
+  ########}
+  ######}
+  ######...#on#PagesBlocksContent#{
+  ########__typename
+  ########body
+  ######}
+  ####}
+  ##}"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;pages&#x22;:#{
+  ######&#x22;blocks&#x22;:#[
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksHero&#x22;,
+  ##########&#x22;tagline&#x22;:#&#x22;Turbo#means#good&#x22;,
+  ##########&#x22;headline&#x22;:#&#x22;The#All-New#Turbo#Model&#x22;,
+  ##########&#x22;text&#x22;:#&#x22;Think#fast.#Think#Turbo.&#x22;
+  ########},
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksFeatures&#x22;,
+  ##########&#x22;items&#x22;:#[
+  ############{
+  ##############&#x22;title&#x22;:#&#x22;10%#Faster&#x22;,
+  ##############&#x22;text&#x22;:#&#x22;Than#our#slow#one&#x22;
+  ############},
+  ############{
+  ##############&#x22;title&#x22;:#&#x22;Safer#Than#Ever&#x22;,
+  ##############&#x22;text&#x22;:#&#x22;We#settled#the#lawsuits#out#of#court&#x22;
+  ############}
+  ##########]
+  ########},
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksHero&#x22;,
+  ##########&#x22;tagline&#x22;:#null,
+  ##########&#x22;headline&#x22;:#&#x22;Our#Story&#x22;,
+  ##########&#x22;text&#x22;:#&#x22;Read#about#the#history#of#Turbo&#x22;
+  ########},
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksContent&#x22;,
+  ##########&#x22;body&#x22;:#&#x22;Lorem#ipsum#dolor#sit#amet&#x22;
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
 
 > For more info on how to query data with Tina's GraphQL API, check out the [Query Documentation](https://tina.io/docs/graphql/queries/)
 

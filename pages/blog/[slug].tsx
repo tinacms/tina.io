@@ -25,6 +25,7 @@ import {
   TinaMarkdownContent,
 } from 'tinacms/dist/rich-text'
 import { Prism } from '../../components/styles/Prism'
+import { CodeComparisonTabs } from 'components/ui/CodeComparisonTabs'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { getDocId } from 'utils/docs/getDocIds'
 import { FaPlus, FaMinus } from 'react-icons/fa'
@@ -243,70 +244,10 @@ export const components: Components<{
     )
   },
   GraphQLCodeBlock: ({ query, response }) => {
-    const [isQuery, setIsQuery] = useState(true);
-    return (
-      <>
-      <div
-          style={{
-            display: "flex",
-            width: "fit-content",
-            padding: "0 1rem",
-            position: 'relative',
-            top: '0.7rem'
-          }}>
-          <button
-            onClick={() => setIsQuery(true)}
-            className="mr-2 px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
-          >
-            Query
-          </button>
-          <button
-            onClick={() => setIsQuery(false)}
-            className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
-          >
-            Response
-          </button>
-      </div>
-      <div
-      style={{
-        height: 'fit-content',
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        width: '100%',
-      }}>
-          <div
-            style={{
-              gridColumn: 1,
-              gridRow: 1,
-              display: 'flex',
-              zIndex: isQuery ? 5 : 1,
-              flex: 1,
-              width: '100%',
-            }}>
-              <Prism
-                value={query || ''}
-                lang={'graphql'}
-                theme="nightOwl"
-              />
-          </div>
-          <div
-            style={{
-              gridColumn: 1,
-              gridRow: 1,
-              display: 'flex',
-              zIndex: isQuery ? 1 : 5,
-              flex: 1,
-              width: '100%'
-            }}>
-              <Prism
-                value={response || ''}
-                lang={'json'}
-                theme="nightOwl"
-              />
-          </div>
-      </div>
-      </>
-    )
+    return <CodeComparisonTabs 
+      query={query} 
+      response={response}
+    />
   },
   CustomFieldComponentDemo: () => (
     <iframe
