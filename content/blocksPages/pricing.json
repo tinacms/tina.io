@@ -28,7 +28,8 @@
           "cardItem": [
             {
               "name": "3 Users",
-              "icon": "AiOutlineUser"
+              "icon": "AiOutlineUser",
+              "description": "$9/additional seat"
             },
             {
               "name": "2 Roles",
@@ -40,12 +41,13 @@
             },
             {
               "name": "Up to 10 Users",
-              "icon": "AiOutlineUsergroupAdd"
+              "icon": "AiOutlineUsergroupAdd",
+              "description": ""
             }
           ],
           "buttons": [
             {
-              "label": "Start Team Plan",
+              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
@@ -62,7 +64,8 @@
           "cardItem": [
             {
               "name": "5 Users",
-              "icon": "AiOutlineUser"
+              "icon": "AiOutlineUser",
+              "description": "$15/additional seat"
             },
             {
               "name": "2 Roles",
@@ -74,7 +77,8 @@
             },
             {
               "name": "Up to 20 Users",
-              "icon": "AiOutlineUsergroupAdd"
+              "icon": "AiOutlineUsergroupAdd",
+              "description": ""
             },
             {
               "name": "Editorial Workflow",
@@ -87,7 +91,7 @@
           ],
           "buttons": [
             {
-              "label": "Start Team Plan",
+              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
@@ -104,7 +108,8 @@
           "cardItem": [
             {
               "name": "20 Users",
-              "icon": "AiOutlineUser"
+              "icon": "AiOutlineUser",
+              "description": "$18/additional seat"
             },
             {
               "name": "3 Roles (Beta)",
@@ -116,7 +121,8 @@
             },
             {
               "name": "No User Limit",
-              "icon": "AiOutlineUsergroupAdd"
+              "icon": "AiOutlineUsergroupAdd",
+              "description": ""
             },
             {
               "name": "Editorial Workflow",
@@ -151,7 +157,8 @@
           "cardItem": [
             {
               "name": "Custom Users",
-              "icon": "AiOutlineUser"
+              "icon": "AiOutlineUser",
+              "description": "Variable user pricing"
             },
             {
               "name": "Custom Roles",
@@ -184,7 +191,7 @@
           ],
           "buttons": [
             {
-              "label": "Contact Sales",
+              "label": "‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎Contact Sales‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",

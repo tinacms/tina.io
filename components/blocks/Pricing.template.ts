@@ -57,8 +57,12 @@ export const cardTemplate: Template = {
           ui : {
             component: IconSelector
           }
-        }
-
+        },
+        {
+          name: 'description',
+          label: 'Description',
+          type: 'string',
+        },
       ]
     },
     {

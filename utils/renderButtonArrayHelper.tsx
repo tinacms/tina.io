@@ -5,7 +5,8 @@ import { CodeButton } from 'components/blocks/CodeButton'
 
 const RenderButton = ({ button, index }) => {
   if (button.__typename.includes('Actions')) {
-    return <Actions key={index} items={[button]} />
+    return <div className=''><Actions key={index} items={[button]} />
+      </div>
   } else if (button.__typename.includes('ModalButton')) {
     return <ModalB key={index} items={[button]} />
   } else if (button.__typename.includes('CodeButton')) {
