@@ -135,7 +135,7 @@ const PaidTier = ({ data }) => {
                     <span>{item.name}</span>
                   </div>
                   {item.description && (
-                    <div className="my-1 ml-5 text-sm text-gray-500">{item.description}</div>
+                    <div className="my-1 ml-5 text-sm text-gray-600/70">{item.description}</div>
                   )}
                 </div>
               )
