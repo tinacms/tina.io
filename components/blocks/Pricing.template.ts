@@ -38,6 +38,12 @@ export const cardTemplate: Template = {
       label: 'Card Item',
       type: 'object',
       list: true,
+      ui: {
+        itemProps: (item) => ({
+          key: item.id,
+          label: item.name,
+        }),
+      },
       fields: [
         {
           name: 'name',
@@ -69,6 +75,12 @@ export const cardTemplate: Template = {
         codeButtonTemplate as Template,
       ],
     },
+    {
+      name: 'isStarred',
+      label: 'Is Starred?',
+      type: 'boolean',
+      description: 'Enabling this will add a star to the pricing block',
+    }
   ],
 }
 

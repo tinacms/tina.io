@@ -1,19 +1,44 @@
-import React from 'react';
-import { FaClock, FaUnlock, FaCodeBranch, FaCloudDownloadAlt, FaPuzzlePiece, FaMarkdown, FaGithub, FaFileAlt } from 'react-icons/fa';
+import React from 'react'
+import {
+  FaClock,
+  FaUnlock,
+  FaCodeBranch,
+  FaCloudDownloadAlt,
+  FaPuzzlePiece,
+  FaMarkdown,
+  FaGithub,
+  FaFileAlt,
+} from 'react-icons/fa'
+import { AiOutlineUser } from 'react-icons/ai'
+import { BiBadge } from 'react-icons/bi'
+import { BiSupport } from 'react-icons/bi'
+import { AiOutlineUsergroupAdd } from 'react-icons/ai'
+import { CgCrown } from 'react-icons/cg'
+import { HiOutlineSparkles } from "react-icons/hi2";
+import { TbPlugConnected } from 'react-icons/tb'
+import { SlLock } from 'react-icons/sl'
 
 const icons = {
-    FaClock,
-    FaUnlock,
-    FaCodeBranch,
-    FaCloudDownloadAlt,
-    FaPuzzlePiece,
-    FaMarkdown,
-    FaGithub,
-    FaFileAlt
-};
+  FaClock,
+  FaUnlock,
+  FaCodeBranch,
+  FaCloudDownloadAlt,
+  FaPuzzlePiece,
+  FaMarkdown,
+  FaGithub,
+  FaFileAlt,
+  AiOutlineUser,
+  BiBadge,
+  BiSupport,
+  AiOutlineUsergroupAdd,
+  CgCrown,
+  HiOutlineSparkles,
+  TbPlugConnected,
+  SlLock,
+}
 
 const IconSelector = ({ input }) => {
-  const iconKeys = Object.keys(icons);
+  const iconKeys = Object.keys(icons)
 
   return (
     <select
@@ -26,7 +51,7 @@ const IconSelector = ({ input }) => {
         </option>
       ))}
     </select>
-  );
-};
+  )
+}
 
-export default IconSelector;
+export default IconSelector

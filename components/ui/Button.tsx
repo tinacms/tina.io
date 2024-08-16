@@ -29,6 +29,7 @@ const colorClasses = {
     raisedButtonClasses +
     ' text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50',
   ghost: 'text-orange-500 hover:text-orange-400',
+  orangeWithBorder: 'text-orange-500 hover:text-orange-400 border border-orange-500 bg-white',
 }
 
 const sizeClasses = {
