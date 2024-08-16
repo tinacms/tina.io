@@ -1,18 +1,30 @@
 {
   "blocks": [
     {
-      "headline": "Pricing",
-      "text": "",
-      "_template": "hero"
-    },
-    {
+      "headline": "Plans & Pricing",
+      "freeTier": {
+        "name": "Hobby",
+        "description": "Enjoy our basic package with **2 users, 2 roles**, and exclusive **forums support** - no strings attached!\n",
+        "price": "$0",
+        "interval": "Free Forever",
+        "buttons": [
+          {
+            "label": "Start Free",
+            "icon": false,
+            "variant": "white",
+            "size": "medium",
+            "url": "/",
+            "_template": "actions"
+          }
+        ]
+      },
       "intro": "Tina has a **per-project** pricing model that can scale to meet your needs.\n",
       "plans": [
         {
           "name": "Business",
+          "description": "",
           "price": "$599",
           "interval": "month",
-          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO\n* [👑 Editorial Workflow](/editorial-workflow \"Editorial Workflow\")\n",
           "buttons": [
             {
               "label": "Sign Up",
@@ -26,9 +38,9 @@
         },
         {
           "name": "Team",
+          "description": "",
           "price": "$29",
           "interval": "month",
-          "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $9/seat\n* Forum Support\n",
           "buttons": [
             {
               "label": "Sign Up",
@@ -42,9 +54,9 @@
         },
         {
           "name": "Basic",
+          "description": "",
           "price": "Free",
           "interval": "forever",
-          "body": "* 2 Users\n* 2 Roles\n* No Additional users\n* Forum Support\n",
           "buttons": [
             {
               "label": "Sign Up",
@@ -58,9 +70,9 @@
         },
         {
           "name": "Enterprise",
+          "description": "",
           "price": "",
           "interval": " ",
-          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO\n* Custom [Editorial Workflows](/editorial-workflow \"Editorial-Workflow\")\n",
           "buttons": [
             {
               "label": "Contact Us",

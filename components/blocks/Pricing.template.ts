@@ -1,12 +1,13 @@
 import * as React from 'react'
 
-import type { Template, TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 
 import { actionsButtonTemplate } from './ActionsButton.template'
 import { modalButtonTemplate } from './ModalButton.template'
 import { codeButtonTemplate } from './CodeButton.template'
+import IconSelector from './IconSelector'
 
-export const cardTemplate: TinaTemplate = {
+export const cardTemplate: Template = {
   name: 'card',
   label: 'Card',
   //@ts-ignore
@@ -16,6 +17,11 @@ export const cardTemplate: TinaTemplate = {
       name: 'name',
       label: 'Name',
       type: 'string',
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'rich-text',
     },
     {
       name: 'price',
@@ -28,9 +34,26 @@ export const cardTemplate: TinaTemplate = {
       type: 'string',
     },
     {
-      name: 'body',
-      label: 'Body',
-      type: 'rich-text',
+      name: 'cardItem',
+      label: 'Card Item',
+      type: 'object',
+      list: true,
+      fields: [
+        {
+          name: 'name',
+          label: 'Name',
+          type: 'string',
+        },
+        {
+          name: 'icon',
+          label: 'Icon',
+          type: 'string',
+          ui : {
+            component: IconSelector
+          }
+        }
+
+      ]
     },
     {
       label: 'Buttons',
@@ -49,7 +72,7 @@ export const cardTemplate: TinaTemplate = {
   ],
 }
 
-export const pricingTemplate: TinaTemplate = {
+export const pricingTemplate: Template = {
   name: 'pricing',
   label: 'Pricing',
   ui: {
@@ -60,6 +83,17 @@ export const pricingTemplate: TinaTemplate = {
     },
   },
   fields: [
+    {
+      name: 'headline',
+      label: 'Headline',
+      type: 'string',
+    },
+    {
+      name: 'freeTier',
+      label: 'Free Tier',
+      type: 'object',
+      fields: cardTemplate.fields,
+    },
     {
       name: 'intro',
       label: 'Intro Text',
