@@ -38,8 +38,8 @@ const Tinacms = ({ items }) => {
     <Layout>
       <div className="p-6">
         <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
-          <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
-            What's New with TinaCMS
+        <h3 className="text-center justify-center font-tuner text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+            What's new with TinaCMS
           </h3>
           <div className="mt-8">
             {items.map((item) => (
