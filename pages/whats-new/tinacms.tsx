@@ -4,6 +4,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const versionComponents = {
   h1: (props) => <h1 className="text-lg font-bold mt-8 mb-4" {...props} />,
@@ -52,6 +53,9 @@ const Tinacms = ({ items }) => {
                 <TinaMarkdown content={item.body} components={versionComponents} />
               </div>
             ))}
+          </div>
+          <div className="font-tuner text-lg text-center text-blue-700">
+            <Link href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md#patch-changes-4"> See More </Link>
           </div>
         </div>
       </div>
