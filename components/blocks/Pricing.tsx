@@ -84,7 +84,7 @@ const FreeTier = ({ data }) => {
 
 const PaidTier = ({ data }) => {
   return (
-    <div className="relative p-10 rounded-xl shadow-xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden" style={popInStyle}>
+    <div className="relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden" style={popInStyle}>
       {data.isStarred && (
         <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
           <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
