@@ -23,7 +23,6 @@ export const getStaticProps = async () => {
 }
 
 const Tinacloud = ({ items }) => {
-  console.log(items)
   return (
     <Layout>
       <div className="p-6">
@@ -32,30 +31,34 @@ const Tinacloud = ({ items }) => {
             What's new with TinaCloud
           </h1>
           <div className="mt-8">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105"
-              >
-                <h2 className="text-2xl bg-gradient-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent text-blue-700 font-semibold">
-                  Version {item.versionNumber}
-                </h2>
-                <p className="text-sm text-gray-500">
-                  Released on {new Date(item.dateReleased).toLocaleDateString()}
-                </p>
-                <TinaMarkdown
-                  content={item.body}
-                  components={versionComponents}
-                />
-              </div>
-            ))}
+            {items === null || items.length === 0 ? (
+              <p className='text-gray-500'>No items found</p>
+            ) : (
+              items.map((item) => (
+                <div
+                  key={item.id}
+                  className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105"
+                >
+                  <h2 className="text-2xl bg-gradient-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent text-blue-700 font-semibold">
+                    Version {item.versionNumber}
+                  </h2>
+                  <p className="text-sm text-gray-500">
+                    Released on {new Date(item.dateReleased).toLocaleDateString()}
+                  </p>
+                  <TinaMarkdown
+                    content={item.body}
+                    components={versionComponents}
+                  />
+                </div>
+              ))
+            )}
           </div>
-          <div className="font-tuner text-lg text-center text-blue-700">
-          </div>
+          <div className="font-tuner text-lg text-center text-blue-700"></div>
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
+
 
 export default Tinacloud
