@@ -39,9 +39,9 @@ const Tinacms = ({ items }) => {
                 key={item.id}
                 className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105"
               >
-                <h4 className="text-2xl bg-gradient-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent text-blue-700 font-semibold">
+                <h2 className="text-2xl bg-gradient-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent text-blue-700 font-semibold">
                   Version {item.versionNumber}
-                </h4>
+                </h2>
                 <p className="text-sm text-gray-500">
                   Released on {new Date(item.dateReleased).toLocaleDateString()}
                 </p>
