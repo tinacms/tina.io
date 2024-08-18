@@ -58,10 +58,6 @@ const footerNav = [
         link: '/media',
         label: 'Media',
       },
-      // {
-      //   link: '/',
-      //   label: 'Releases',
-      // },
     ],
   },
   {
