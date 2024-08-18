@@ -1,22 +1,8 @@
 import { Layout } from 'components/layout'
 import client from 'tina/__generated__/client'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { FaPlus, FaMinus } from 'react-icons/fa'
-import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import { versionComponents } from 'components/styles/WhatsNewVisualComponents'
 
-export const versionComponents = {
-  h1: (props) => <h1 className="text-lg font-bold mt-8 mb-4" {...props} />,
-  h2: (props) => <h2 className="text-lg font-semibold mt-6 mb-4" {...props} />,
-  h3: (props) => <h3 className="text-lg font-semibold mt-5 mb-3" {...props} />,
-  h4: (props) => <h4 className="text-lg font-medium mt-4 mb-3" {...props} />,
-  h5: (props) => <h5 className="text-lg font-medium mt-3 mb-2" {...props} />,
-  h6: (props) => <h6 className="text-base font-medium mt-2 mb-2" {...props} />,
-  ul: (props) => <ul className="list-disc ml-5 mb-4" {...props} />,
-  ol: (props) => <ol className="list-decimal ml-5 mb-4" {...props} />,
-  li: (props) => <li className="mb-2" {...props} />,
-}
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
@@ -42,9 +28,9 @@ const Tinacloud = ({ items }) => {
     <Layout>
       <div className="p-6">
         <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
-          <h3 className="text-center justify-center font-tuner text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+          <h1 className="text-center justify-center font-tuner text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
             What's new with TinaCloud
-          </h3>
+          </h1>
           <div className="mt-8">
             {items.map((item) => (
               <div
