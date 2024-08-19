@@ -124,6 +124,41 @@
       "_template": "logoGrid"
     },
     {
+      "title": "Where's Tina?",
+      "cardItems": [
+        {
+          "headline": "NDC Porto",
+          "startDate": "2024-10-13T13:00:00.000Z",
+          "endDate": "2024-10-17T13:00:00.000Z",
+          "location": "Porto, Portugal",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724040511/images_lnibvs.png",
+          "link": "https://ndcporto.com/",
+          "markerLAT": 8,
+          "markerLONG": 41
+        },
+        {
+          "headline": "Copenhagen Developer Festival",
+          "startDate": "2024-08-25T14:00:00.000Z",
+          "endDate": "2024-08-29T14:00:00.000Z",
+          "location": "Copenhagen, Denmark",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724040626/Developers_festival_Copenhagen_RELIANOID_qcvg7f.jpg",
+          "link": "https://cphdevfest.com/",
+          "markerLAT": -8,
+          "markerLONG": 59
+        },
+        {
+          "headline": "NDC Oslo",
+          "startDate": "2024-05-18T14:00:00.000Z",
+          "endDate": "2024-05-22T14:00:00.000Z",
+          "location": "Oslo, Norway",
+          "link": "https://ndcoslo.com/",
+          "markerLAT": -1,
+          "markerLONG": 59
+        }
+      ],
+      "_template": "verticalCards"
+    },
+    {
       "features": [
         {
           "headline": "Own Your Content",
