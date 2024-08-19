@@ -19,7 +19,7 @@ import { HiOutlineSparkles } from 'react-icons/hi2'
 import { TbPlugConnected } from 'react-icons/tb'
 import { SlLock } from 'react-icons/sl'
 import { FaStar } from 'react-icons/fa'
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { useState } from 'react'
 
 const icons = {
@@ -42,14 +42,8 @@ const icons = {
 }
 
 const pricingComponents = {
-  strong: ({ children }) => {
-    return <strong>{children}</strong>
-  },
-
-  b: ({ children }) => {
-    return <strong>{children}</strong>
-  },
-}
+  p: (props) => <p className="text-xl" {...props} />,
+  strong: (props) => <strong className="font-bold text-xl" {...props} />,}
 
 const FreeTier = ({ data }) => {
   return (
@@ -58,11 +52,11 @@ const FreeTier = ({ data }) => {
       style={popInStyle}
     >
       {data.freeTier && (
-        <div className="flex justify-between pb-2">
+        <div className="flex flex-col sm:flex-row justify-between pb-2">
           <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
             {data.freeTier.name}
           </h2>
-          <div className="flex items-baseline">
+          <div className="flex items-baseline mt-2 sm:mt-0">
             <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
               {data.freeTier.price}
             </h2>
@@ -72,26 +66,31 @@ const FreeTier = ({ data }) => {
           </div>
         </div>
       )}
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row justify-between">
         <TinaMarkdown
           content={data.freeTier.description}
           components={pricingComponents}
         />
-        {data.freeTier.buttons &&
-          data.freeTier.buttons.map((button, index) => (
-            <RenderButton key={index} button={button} index={index} />
-          ))}
+        <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start sm:justify-start">
+          {data.freeTier.buttons &&
+            data.freeTier.buttons.map((button, index) => (
+              <RenderButton key={index} button={button} index={index} />
+            ))}
+        </div>
       </div>
     </div>
   )
 }
 
+
+
+
 const PaidTier = ({ data }) => {
-  const [isAccordionOpen, setAccordionOpen] = useState(false);
+  const [isAccordionOpen, setAccordionOpen] = useState(false)
 
   const toggleAccordion = () => {
-    setAccordionOpen(!isAccordionOpen);
-  };
+    setAccordionOpen(!isAccordionOpen)
+  }
 
   return (
     <div
@@ -124,26 +123,28 @@ const PaidTier = ({ data }) => {
           </span>
         )}
       </div>
-      <div className="pt-6 flex justify-center">
+      <div className="pt-6 flex">
         {data.buttons &&
           data.buttons.map((button, index) => (
             <RenderButton key={index} button={button} index={index} />
           ))}
       </div>
       <div className="pt-6">
-
         <div className="sm:block md:block lg:hidden xl:hidden">
-          <p className="font-semibold cursor-pointer flex items-center" onClick={toggleAccordion}>
-            Includes:
+          <div
+            className="flex justify-between items-center font-semibold cursor-pointer"
+            onClick={toggleAccordion}
+          >
+            <p className="flex text-xl items-center">Includes:</p>
             <span className="ml-2">
               {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
             </span>
-          </p>
+          </div>
           {isAccordionOpen && (
             <div className="pl-2">
               {data.cardItem &&
                 data.cardItem.map((item, index) => {
-                  const Icon = icons[item.icon];
+                  const Icon = icons[item.icon]
                   return (
                     <div key={index} className="flex flex-col items-start mt-2">
                       <div className="flex items-center">
@@ -151,10 +152,12 @@ const PaidTier = ({ data }) => {
                         <span>{item.name}</span>
                       </div>
                       {item.description && (
-                        <div className="my-1 ml-5 text-sm text-gray-600/70">{item.description}</div>
+                        <div className="my-1 ml-5 text-sm text-gray-600/70">
+                          {item.description}
+                        </div>
                       )}
                     </div>
-                  );
+                  )
                 })}
             </div>
           )}
@@ -165,7 +168,7 @@ const PaidTier = ({ data }) => {
           <div className="pl-2">
             {data.cardItem &&
               data.cardItem.map((item, index) => {
-                const Icon = icons[item.icon];
+                const Icon = icons[item.icon]
                 return (
                   <div key={index} className="flex flex-col items-start mt-2">
                     <div className="flex items-center">
@@ -173,18 +176,21 @@ const PaidTier = ({ data }) => {
                       <span>{item.name}</span>
                     </div>
                     {item.description && (
-                      <div className="my-1 ml-5 text-sm text-gray-600/70">{item.description}</div>
+                      <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        {item.description}
+                      </div>
                     )}
                   </div>
-                );
+                )
               })}
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 export function PricingBlock({ data }) {
+  console.log(data.intro)
   return (
     <div className="p-6">
       <style>{style}</style>
@@ -198,7 +204,7 @@ export function PricingBlock({ data }) {
         <div className="py-2 max-w-4xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
-        <div className="pt-10 pb-6 text-center">
+        <div className="pt-10 px-4 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
         </div>
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 auto-rows-min">
