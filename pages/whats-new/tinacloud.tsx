@@ -1,7 +1,7 @@
 import { Layout } from 'components/layout'
 import client from 'tina/__generated__/client'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { versionComponents } from 'components/styles/WhatsNewVisualComponents'
+import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents'
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
@@ -45,7 +45,7 @@ const Tinacloud = ({ items }) => {
                 </p>
                 <TinaMarkdown
                   content={item.body}
-                  components={versionComponents}
+                  components={whatsNewMDComponents}
                 />
               </div>
             ))

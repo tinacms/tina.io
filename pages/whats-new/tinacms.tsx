@@ -5,7 +5,7 @@ import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { versionComponents } from 'components/styles/WhatsNewVisualComponents'
+import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents'
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
@@ -45,7 +45,7 @@ const Tinacms = ({ items }) => {
               </p>
               <TinaMarkdown
                 content={item.body}
-                components={versionComponents}
+                components={whatsNewMDComponents}
               />
             </div>
           ))}
