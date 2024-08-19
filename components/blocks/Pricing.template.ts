@@ -110,7 +110,7 @@ export const pricingTemplate: Template = {
       name: 'freeTier',
       label: 'Free Tier',
       type: 'object',
-      fields: cardTemplate.fields,
+      fields: cardTemplate.fields as any,
     },
     {
       name: 'intro',
@@ -123,7 +123,7 @@ export const pricingTemplate: Template = {
       // @ts-ignore
       type: cardTemplate.type,
       list: true,
-      fields: cardTemplate.fields,
+      fields: cardTemplate.fields as any,
       ui: {
         itemProps: (item) => ({
           key: item.id,
