@@ -45,42 +45,43 @@ const pricingComponents = {
   p: (props) => <p className="text-xl" {...props} />,
   strong: (props) => <strong className="font-bold text-xl" {...props} />,}
 
-const FreeTier = ({ data }) => {
-  return (
-    <div
-      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105"
-      style={popInStyle}
-    >
-      {data.freeTier && (
-        <div className="flex flex-col sm:flex-row justify-between pb-2">
-          <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-            {data.freeTier.name}
-          </h2>
-          <div className="flex items-baseline mt-2 sm:mt-0">
+  const FreeTier = ({ data }) => {
+    return (
+      <div
+        className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105"
+        style={popInStyle}
+      >
+        {data.freeTier && (
+          <div className="flex flex-col sm:flex-row justify-between pb-2">
             <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.freeTier.price}
+              {data.freeTier.name}
             </h2>
-            <span className="text-lg ml-2 bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.freeTier.interval}
-            </span>
+            <div className="flex items-baseline mt-2 sm:mt-0">
+              <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+                {data.freeTier.price}
+              </h2>
+              <span className="text-lg ml-2 bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+                {data.freeTier.interval}
+              </span>
+            </div>
+          </div>
+        )}
+        <div className="flex flex-col sm:flex-row justify-between">
+          <TinaMarkdown
+            content={data.freeTier.description}
+            components={pricingComponents}
+          />
+          <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
+            {data.freeTier.buttons &&
+              data.freeTier.buttons.map((button, index) => (
+                <RenderButton key={index} button={button} index={index} />
+              ))}
           </div>
         </div>
-      )}
-      <div className="flex flex-col sm:flex-row justify-between">
-        <TinaMarkdown
-          content={data.freeTier.description}
-          components={pricingComponents}
-        />
-        <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start sm:justify-start">
-          {data.freeTier.buttons &&
-            data.freeTier.buttons.map((button, index) => (
-              <RenderButton key={index} button={button} index={index} />
-            ))}
-        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+  
 
 
 
