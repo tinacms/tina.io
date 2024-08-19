@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import Globe from '../ui/Globe';
 import Image from 'next/image';
 import { format } from 'date-fns';
+
+const LazyGlobe = React.lazy(() => import('../ui/Globe'));
 
 const Card = ({ cardItem, onHover }) => {
   const getOrdinalSuffix = (day) => {
@@ -66,17 +67,37 @@ const Card = ({ cardItem, onHover }) => {
         <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
       </div>
     </Link>
-  )
-}
+  );
+};
 
 const VerticalCardsBlock = ({ data, index }) => {
-  const [activeGlobeId, setActiveGlobeId] = useState(null)
+  const [activeGlobeId, setActiveGlobeId] = useState(null);
+  const [isGlobeVisible, setIsGlobeVisible] = useState(false);
+  const globeContainerRef = useRef(null);
 
-  if (!data || !data.cardItems) return null
+  if (!data || !data.cardItems) return null;
 
   data.cardItems.forEach((cardItem, idx) => {
-    cardItem.index = idx
-  })
+    cardItem.index = idx;
+  });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsGlobeVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (globeContainerRef.current) {
+      observer.observe(globeContainerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="md:px-18 lg:px-18 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
@@ -84,8 +105,12 @@ const VerticalCardsBlock = ({ data, index }) => {
         {data.title}
       </h1>
       <div className="flex flex-col lg:flex-row lg:gap-4">
-        <div className="w-full lg:w-1/2 flex justify-center items-center rounded-lg">
-          <Globe activeGlobeId={activeGlobeId} cardItems={data.cardItems} />
+        <div className="w-full lg:w-1/2 flex justify-center items-center rounded-lg" ref={globeContainerRef}>
+          {isGlobeVisible && (
+            <Suspense fallback={<div>Loading Globe...</div>}>
+              <LazyGlobe activeGlobeId={activeGlobeId} cardItems={data.cardItems} />
+            </Suspense>
+          )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2">
           {data.cardItems.map((cardItem, idx) => (
@@ -98,7 +123,7 @@ const VerticalCardsBlock = ({ data, index }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { VerticalCardsBlock }
+export { VerticalCardsBlock };
