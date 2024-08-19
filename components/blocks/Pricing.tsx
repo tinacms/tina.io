@@ -19,6 +19,8 @@ import { HiOutlineSparkles } from 'react-icons/hi2'
 import { TbPlugConnected } from 'react-icons/tb'
 import { SlLock } from 'react-icons/sl'
 import { FaStar } from 'react-icons/fa'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { useState } from 'react'
 
 const icons = {
   FaClock,
@@ -85,6 +87,12 @@ const FreeTier = ({ data }) => {
 }
 
 const PaidTier = ({ data }) => {
+  const [isAccordionOpen, setAccordionOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setAccordionOpen(!isAccordionOpen);
+  };
+
   return (
     <div
       className="relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
@@ -97,7 +105,7 @@ const PaidTier = ({ data }) => {
         </div>
       )}
       <h2
-        className={`font-tuner xl:text-3xl lg:text-2xl md:text-xl bg-gradient-to-br bg-clip-text text-transparent ${
+        className={`font-tuner text-3xl bg-gradient-to-br bg-clip-text text-transparent ${
           data.isStarred
             ? 'from-orange-400 via-orange-600 to-orange-800'
             : 'from-blue-600 via-blue-800 to-blue-1000'
@@ -123,36 +131,66 @@ const PaidTier = ({ data }) => {
           ))}
       </div>
       <div className="pt-6">
-        <p className="font-semibold">Includes:</p>
-        <div className="pl-2">
-          {data.cardItem &&
-            data.cardItem.map((item, index) => {
-              const Icon = icons[item.icon]
-              return (
-                <div key={index} className="flex flex-col items-start mt-2">
-                  <div className="flex items-center">
-                    {Icon && <Icon className="mr-2" />}
-                    <span>{item.name}</span>
+
+        <div className="sm:block md:block lg:hidden xl:hidden">
+          <p className="font-semibold cursor-pointer flex items-center" onClick={toggleAccordion}>
+            Includes:
+            <span className="ml-2">
+              {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
+            </span>
+          </p>
+          {isAccordionOpen && (
+            <div className="pl-2">
+              {data.cardItem &&
+                data.cardItem.map((item, index) => {
+                  const Icon = icons[item.icon];
+                  return (
+                    <div key={index} className="flex flex-col items-start mt-2">
+                      <div className="flex items-center">
+                        {Icon && <Icon className="mr-2" />}
+                        <span>{item.name}</span>
+                      </div>
+                      {item.description && (
+                        <div className="my-1 ml-5 text-sm text-gray-600/70">{item.description}</div>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </div>
+
+        <div className="hidden lg:block xl:block">
+          <p className="font-semibold">Includes:</p>
+          <div className="pl-2">
+            {data.cardItem &&
+              data.cardItem.map((item, index) => {
+                const Icon = icons[item.icon];
+                return (
+                  <div key={index} className="flex flex-col items-start mt-2">
+                    <div className="flex items-center">
+                      {Icon && <Icon className="mr-2" />}
+                      <span>{item.name}</span>
+                    </div>
+                    {item.description && (
+                      <div className="my-1 ml-5 text-sm text-gray-600/70">{item.description}</div>
+                    )}
                   </div>
-                  {item.description && (
-                    <div className="my-1 ml-5 text-sm text-gray-600/70">{item.description}</div>
-                  )}
-                </div>
-              )
-            })}
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>
-  )
-}
-
+  );
+};
 export function PricingBlock({ data }) {
   return (
     <div className="p-6">
       <style>{style}</style>
       <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
         <h1
-          className="text-center justify-center font-tuner lg:text-4xl md:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
+          className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
           style={popInStyle}
         >
           {data.headline}
