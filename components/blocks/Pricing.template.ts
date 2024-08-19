@@ -54,6 +54,7 @@ export const cardTemplate: Template = {
           name: 'icon',
           label: 'Icon',
           type: 'string',
+          description: 'Please ask a developer to add icons that are not included',
           ui : {
             component: IconSelector
           }
