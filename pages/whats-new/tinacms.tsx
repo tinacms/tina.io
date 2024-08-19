@@ -25,7 +25,6 @@ export const getStaticProps = async () => {
 }
 
 const Tinacms = ({ items }) => {
-  console.log(items)
   return (
     <Layout>
       <div className="p-6 py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
