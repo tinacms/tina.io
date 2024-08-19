@@ -112,17 +112,17 @@ When querying for a `post` document, the `author` key in the response will conta
 }
 ```
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1723171157/Screenshot_2024-08-09_123906_huk6oz.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1724058959/reference_field/reference_field_example_tszsxd.png)
 
 **Figure:** File name will be displayed in the reference field selector.
 
 ### Search reference
 
-You can search your reference with reference selector
+You can search your reference with reference selector.
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1723171500/Screenshot_2024-08-09_124448_xx0g7v.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1724066194/reference_field/search_reference_p5w3ce.png)
 
-> Note: The reference selector will only work if you have either the "name" or "label" field, otherwise it will default to the filename. Customizing reference fields with a chosen field is still under development. See [issue](https://github.com/tinacms/tinacms/issues/4707)
+> Note: This search functionality only works based on the file path of the document.
 
 ```ts
 {
@@ -140,3 +140,113 @@ You can search your reference with reference selector
       ],
     }
 ```
+
+### Customizing Reference Selector with selectComponents
+
+The default reference selector displays the file path, there are cases where you may want to customize what is displayed in the dropdown to provide a better user experience. For example, showing the author's name instead of the file name can make the selection process more intuitive.
+
+Here are example of how to customize the  reference select using `ui.selectComponents`. Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
+
+```ts
+    {
+      label: 'Page Content',
+      name: 'page',
+      path: 'content/page',
+      format: 'mdx',
+      fields: [
+        referenceField,
+      ],
+    },
+```
+
+```ts
+const referenceField = {
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    selectComponents: (props: CollectionProps, filepath: string) => {
+      switch (props._collection) {
+        case COLLECTIONS.AUTHOR:
+          return (
+            <AuthorCollectionCustomReference
+              name={props.name}
+              description={props.description}
+            />
+          )
+
+        case COLLECTIONS.POST:
+          return <PostCollectionCustomReference title={props.title} />
+
+        default:
+          return filepath
+      }
+    },
+  },
+  collections: ['author', 'post'],
+}
+```
+
+In this example, the Author collection and Post collection are used as a reference for the Page collection. The `selectComponents`  function allows you to create a custom reference display by providing two parameters: `props` and `filepath`.
+
+* `props` represents the fields from the reference collection (in this case, the fields from the Author collection).
+* `filepath` represents the file path of the referenced document within the Author collection.
+* AuthorCollectionCustomReference and PostCollectionCustomReference are the custom components that I want to display in the reference select dropdown.
+
+```ts
+// You should define the types for the fields in the author collection for typesafety
+export interface AuthorProps {
+  name: string
+  description: string
+  _collection: 'author'
+}
+
+// You should define the types for the fields in the post collection for typesafety
+export interface PostProps {
+  title: string
+  excerpt: string
+  _collection: 'post'
+}
+
+// You should define the list of collection used in the reference for typesafety
+export enum COLLECTIONS {
+  AUTHOR = 'author',
+  POST = 'post',
+}
+
+export type CollectionProps = AuthorProps | PostProps
+
+```
+
+**Figure : Recommended Implementation for Custom Reference Selection with Type Safety.**
+
+```ts
+{
+      label: 'Authors',
+      name: 'author',
+      path: 'content/author',
+      format: 'md',
+      fields: [
+        {
+          type: 'string',
+          label: 'Name',
+          name: 'name',
+          required: true,
+        },
+        {
+          type: 'string',
+          label: 'description',
+          name: 'description',
+          required: true,
+        },
+      ],
+    },
+```
+
+**Figure: Author Collection Schema**
+
+You can enforce type safety in your custom reference selection, reducing the likelihood of errors and ensuring consistency across your application.
+
+Using the AuthorProps interface as an example, the name and description fields are predefined in the schema and will be passed to the selectComponents function. The \_collection field is automatically provided by the system to represent the specific collection (author in this case).
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1724068658/reference_field/custom-reference-field-ui_ojtrlx.png)Figure: UI for custom reference select
