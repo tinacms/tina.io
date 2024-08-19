@@ -55,9 +55,10 @@ export const cardTemplate: Template = {
           label: 'Icon',
           type: 'string',
           description: 'Please ask a developer to add icons that are not included',
-          ui : {
-            component: IconSelector
-          }
+          ui: {
+            // @ts-expect-error component is a valid field, but Tina's type definition doesn't include it
+            component: IconSelector,
+          },
         },
         {
           name: 'description',

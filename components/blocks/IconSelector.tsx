@@ -14,9 +14,10 @@ import { BiBadge } from 'react-icons/bi'
 import { BiSupport } from 'react-icons/bi'
 import { AiOutlineUsergroupAdd } from 'react-icons/ai'
 import { CgCrown } from 'react-icons/cg'
-import { HiOutlineSparkles } from "react-icons/hi2";
+import { HiOutlineSparkles } from 'react-icons/hi2'
 import { TbPlugConnected } from 'react-icons/tb'
 import { SlLock } from 'react-icons/sl'
+import { wrapFieldsWithMeta } from 'tinacms'
 
 const icons = {
   FaClock,
@@ -37,7 +38,7 @@ const icons = {
   SlLock,
 }
 
-const IconSelector = ({ input }) => {
+const IconSelector = wrapFieldsWithMeta(({ input }) => {
   const iconKeys = Object.keys(icons)
 
   return (
@@ -52,6 +53,6 @@ const IconSelector = ({ input }) => {
       ))}
     </select>
   )
-}
+})
 
 export default IconSelector
