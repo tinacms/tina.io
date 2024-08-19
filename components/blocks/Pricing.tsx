@@ -152,7 +152,7 @@ export function PricingBlock({ data }) {
       <style>{style}</style>
       <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
         <h1
-          className="text-center justify-center font-tuner text-4xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
+          className="text-center justify-center font-tuner lg:text-4xl md:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
           style={popInStyle}
         >
           {data.headline}
@@ -163,7 +163,7 @@ export function PricingBlock({ data }) {
         <div className="pt-10 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
         </div>
-        <div className="grid grid-cols-4 gap-4 auto-rows-min">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 auto-rows-min">
           {data.plans &&
             data.plans.map((plan, index) => (
               <div key={index} className="flex flex-col">
