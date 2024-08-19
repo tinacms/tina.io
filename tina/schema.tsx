@@ -172,8 +172,9 @@ export const schema = defineSchema({
                   name: 'query',
                   label: 'Query',
                   description:
-                    'Paste GraphQL query here. # are auto-inserted as spcing placeholders.',
+                    'Paste GraphQL query here. "#" are auto-inserted as spacing placeholders and should not be used.',
                   ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */ 
                     component: 'textarea',
                     format: (val?: string) => val && val.replaceAll('#', ' '),
                     parse: (val?: string) => val && val.replaceAll(' ', '#'),
@@ -184,8 +185,9 @@ export const schema = defineSchema({
                   name: 'response',
                   label: 'Response',
                   description:
-                    'Paste GraphQL response data here. # are auto-inserted as spcing placeholders.',
+                    'Paste GraphQL response data here. "#" are auto-inserted as spacing placeholders and should not be used.',
                   ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                     component: 'textarea',
                     format: (val?: string) => val && val.replaceAll('#', ' '),
                     parse: (val?: string) => val && val.replaceAll(' ', '#'),

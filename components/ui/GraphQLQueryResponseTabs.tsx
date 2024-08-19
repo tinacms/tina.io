@@ -50,6 +50,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
                 style={{
                     zIndex: isQuery ? 5 : 1,
                 }}>
+                {/* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */}
                 <Prism
                     value={props.query?.replaceAll('#', ' ') || ''}
                     lang={'graphql'}
@@ -62,6 +63,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
                 style={{
                     zIndex: isQuery ? 1 : 5,
                 }}>
+                {/* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */}
                 <Prism
                     value={props.response?.replaceAll('#', ' ') || ''}
                     lang={'json'}
