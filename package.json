@@ -95,7 +95,7 @@
     "serve": "11.2.0",
     "slick-carousel": "^1.8.1",
     "strip-markdown": "^3.1.1",
-    "styled-components": "^5.3.3",
+    "styled-components": "^6.1.12",
     "styled-jsx-plugin-sass": "^1.0.0",
     "three": "^0.165.0",
     "tinacms": "^2.1.0",
