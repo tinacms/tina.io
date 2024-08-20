@@ -93,8 +93,9 @@ const NavLevel = ({
       hasNestedSlug(categoryData.items, router.asPath) ||
       level === 0
   )
-  const selected = router.asPath == categoryData.slug
-  const childSelected = hasNestedSlug(categoryData.items, router.asPath)
+  const selected = router.asPath === categoryData.slug || router.asPath.startsWith(`${categoryData.slug}/`);
+  const childSelected = hasNestedSlug(categoryData.items, router.asPath);
+
 
   React.useEffect(() => {
     if (
