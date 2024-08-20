@@ -6,15 +6,15 @@ next: content/docs/editing/single-document-collections.mdx
 previous: content/docs/editing/markdown.mdx
 ---
 
-Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks
+Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks.
 
 ![block-based-editing](https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif)
 
-Let's say you want your editors to build out a page, and you have 3 main "block" types to start.
+Let's say you want your editors to build out a page, and you have 3 main "block" types to start:
 
-- a "Hero" block
-- a "Feature" block
-- a "Main Content" block
+- "Hero" block
+- "Feature" block
+- "Main Content" block
 
 We want to allow our editors to use various blocks on each page.
 
@@ -216,7 +216,7 @@ export const Blocks = (props: Pages) => {
 }
 ```
 
-Note that the `__typename` on each blog is `{CollectionName}{FieldName}{BlockTemplateName}`
+Note that the `__typename` on each blog is `{CollectionName}{FieldName}{BlockTemplateName}`.
 
 In our case:
 
