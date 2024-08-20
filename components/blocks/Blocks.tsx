@@ -22,6 +22,7 @@ import { CompareBoxBlock } from './CompareBox';
 import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
+import { ImageRowComponent } from './ImageRow';
 
 export const Blocks = ({
   blocks,
@@ -82,6 +83,8 @@ export const Blocks = ({
         return <QuoteBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksTextMediaColumnComponent':
         return <TextAndMediaColumnsComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksImageRow':
+        return <ImageRowComponent key={`block-${index}`} data={block} />;
       default:
         return null;
     }

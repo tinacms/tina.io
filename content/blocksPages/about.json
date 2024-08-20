@@ -6,7 +6,8 @@
   "blocks": [
     {
       "headline": "About Tina",
-      "body": "###### TinaCMS is a developer-friendly, open-source CMS that lets you edit content directly on your site with live previews.\n\nPowered by Git and Markdown, it's flexible enough for devs to integrate with their workflows while still offering a smooth experience for content creators.\n\nWith real-time visual editing, drag-and-drop features, and easy GitHub integration, Tina keeps your content version-controlled and in your hands–no databases, no hassle.\n\nIt's fully customisable, works locally, and makes managing content feel natural for everyone involved.\n\nTo see a few ways you can edit your content, check out the intro video.\n",
+      "subheading": "TinaCMS is a developer-friendly, open-source CMS that lets you edit content directly on your site with live previews. ",
+      "body": "###### A quick look at editing in TinaCMS\n\nPowered by Git and Markdown, it's flexible enough for devs to integrate with their workflows while still offering a smooth experience for content creators.\n\nWith real-time visual editing, drag-and-drop features, and easy GitHub integration, Tina keeps your content version-controlled and in your hands–no databases, no hassle.\n\nIt's fully customisable, works locally, and makes managing content feel natural for everyone involved.\n\nTo see a few ways you can edit your content, check out the intro video.\n",
       "mediaColumnItem": [
         {
           "embedUrl": "https://www.youtube.com/embed/eCrEg89fsN0?si=S_1Ke9Hr8ZpXdUiG",
@@ -14,6 +15,16 @@
         }
       ],
       "_template": "textMediaColumnComponent"
+    },
+    {
+      "backdrop": "https://res.cloudinary.com/forestry-demo/image/upload/v1724130042/tina-brand-assets/poster-and-about-page-assets/grass_rv2vlv.svg",
+      "leftFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724131819/tina-brand-assets/poster-and-about-page-assets/creator_vkhvir.svg",
+      "rightFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724133916/tina-brand-assets/poster-and-about-page-assets/developer_olcl0m.svg",
+      "leftScreen": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132546/tina-brand-assets/poster-and-about-page-assets/visual-editor_pqqpuh.svg",
+      "rightScreen": "https://res.cloudinary.com/forestry-demo/image/upload/v1724133924/tina-brand-assets/poster-and-about-page-assets/npx-command_cbez1b.svg",
+      "centerFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132795/tina-brand-assets/poster-and-about-page-assets/street-lamp_kfw1ch.svg",
+      "llama": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132785/tina-brand-assets/poster-and-about-page-assets/llama_e1bcn5.svg",
+      "_template": "imageRow"
     }
   ]
 }
