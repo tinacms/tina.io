@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import type { Template } from 'tinacms'
+import { wrapFieldsWithMeta, type Template } from 'tinacms'
 
 import { actionsButtonTemplate } from './ActionsButton.template'
 import { modalButtonTemplate } from './ModalButton.template'
@@ -54,10 +52,9 @@ export const cardTemplate: Template = {
           name: 'icon',
           label: 'Icon',
           type: 'string',
-          description: 'Please ask a developer to add icons that are not included',
+          description: "Can't find the icon you want? ask a developer to add it",
           ui: {
-            // @ts-expect-error component is a valid field, but Tina's type definition doesn't include it
-            component: IconSelector,
+            component: wrapFieldsWithMeta(IconSelector),
           },
         },
         {

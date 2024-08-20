@@ -17,7 +17,6 @@ import { CgCrown } from 'react-icons/cg'
 import { HiOutlineSparkles } from 'react-icons/hi2'
 import { TbPlugConnected } from 'react-icons/tb'
 import { SlLock } from 'react-icons/sl'
-import { wrapFieldsWithMeta } from 'tinacms'
 
 const icons = {
   FaClock,
@@ -38,7 +37,7 @@ const icons = {
   SlLock,
 }
 
-const IconSelector = wrapFieldsWithMeta(({ input }) => {
+const IconSelector = ({ input }) => {
   const iconKeys = Object.keys(icons)
 
   return (
@@ -53,6 +52,6 @@ const IconSelector = wrapFieldsWithMeta(({ input }) => {
       ))}
     </select>
   )
-})
+}
 
 export default IconSelector
