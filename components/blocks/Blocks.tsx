@@ -49,7 +49,7 @@ export const Blocks = ({
       case 'PageBlocksHero':
         return <HeroBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksPricing':
-        return <PricingBlock key={`block-${index}`} data={block} index={index} />;
+        return <PricingBlock key={`block-${index}`} data={block} />;
       case 'PageBlocksFaq':
         return <FaqBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksContent':
