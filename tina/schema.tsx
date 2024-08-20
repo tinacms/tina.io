@@ -13,7 +13,7 @@ limitations under the License.
 import React from 'react'
 
 import { defineSchema } from 'tinacms'
-import type { Template } from 'tinacms'
+import type { Template, TinaField } from 'tinacms'
 
 import { heroTemplate } from '../components/blocks/Hero.template'
 import { featuresTemplate } from '../components/blocks/Features.template'
@@ -34,6 +34,11 @@ import { verticalCardsTemplate } from '../components/blocks/VerticalCards.templa
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+
+const WhatsNewFields: TinaField[] = [{ name: 'versionNumber', label: 'Version Number', type: 'string' },
+{ name: 'dateReleased', label: 'Date Released', type: 'datetime'},
+{ name: 'body', label: 'Body', type: 'rich-text', isBody: true, description: 'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).' },]
+
 
 export const schema = defineSchema({
   collections: [
@@ -671,5 +676,19 @@ export const schema = defineSchema({
         },
       ],
     },
+    {
+      name: 'WhatsNewTinaCMS',
+      label: 'Whats new - TinaCMS',
+      path: 'content/whats-new-tinacms',
+      format: 'mdx',
+      fields: WhatsNewFields
+    },
+    {
+      name: 'WhatsNewTinaCloud',
+      label: 'Whats new - TinaCloud',
+      path: 'content/whats-new-tinacloud',
+      format: 'mdx',
+      fields: WhatsNewFields ,
+    }
   ],
 })
