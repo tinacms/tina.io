@@ -34,6 +34,7 @@ import { verticalCardsTemplate } from '../components/blocks/VerticalCards.templa
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+import { textAndMediaColumnsComponentTemplate } from '../components/blocks/TextAndMediaColumns.template'
 
 export const schema = defineSchema({
   collections: [
@@ -101,6 +102,7 @@ export const schema = defineSchema({
             compareBoxTemplate as Template,
             bookingTemplate as Template,
             mediaComponentTemplate as Template,
+            textAndMediaColumnsComponentTemplate as Template
           ],
         },
       ],

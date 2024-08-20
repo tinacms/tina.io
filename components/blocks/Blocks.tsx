@@ -21,6 +21,7 @@ import { VerticalCardsBlock } from './VerticalCards';
 import { CompareBoxBlock } from './CompareBox';
 import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
+import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
 
 export const Blocks = ({
   blocks,
@@ -79,6 +80,8 @@ export const Blocks = ({
         return <TestimonialsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksQuote':
         return <QuoteBlock key={`block-${index}`} data={block} index={index} />;
+      case 'PageBlocksTextMediaColumnComponent':
+        return <TextAndMediaColumnsComponent key={`block-${index}`} data={block} />;
       default:
         return null;
     }
