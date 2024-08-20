@@ -102,6 +102,9 @@ export const components: Components<{
   h4: (props) => <FormatHeaders level={5} {...props} />,
   h5: (props) => <FormatHeaders level={5} {...props} />,
   h6: (props) => <FormatHeaders level={6} {...props} />,
+  ul: (props) => <ul className="list-disc ml-5" {...props} />,
+  ol: (props) => <ol className="list-decimal ml-5" {...props} />,
+  li: (props) => <li className="mb-2" {...props} />,
 
   Iframe: ({ iframeSrc, height }) => {
     return (
@@ -380,6 +383,8 @@ export const getStaticProps: GetStaticProps = async function ({
 
   const vars = { relativePath: `${slug}.mdx` }
   const res = await client.queries.getExpandedPostDocument(vars)
+
+  console.log(res);
 
   return {
     props: {
