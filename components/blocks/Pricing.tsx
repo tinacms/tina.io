@@ -160,7 +160,6 @@ const PaidTier = ({ data }) => {
             </div>
           )}
         </div>
-
         <div className="non-accordion-content">
           <p className="font-semibold">Includes:</p>
           <div className="pl-2">
