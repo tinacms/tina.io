@@ -17,7 +17,7 @@ import { RecentPostsBlock } from './RecentPosts';
 import { RoadmapGridBlock } from './RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase';
 import { TestimonialsBlock } from './Testimonials';
-import { VerticalCardsBlock } from './VerticalCards';
+import { VerticalCardsBlock } from './Events';
 import { CompareBoxBlock } from './CompareBox';
 import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
@@ -40,7 +40,7 @@ export const Blocks = ({
         return <CompareBoxBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksFlying':
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />;
-      case 'PageBlocksVerticalCards':
+      case 'PageBlocksEvents':
         return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksMediaComponent':
         return <MediaComponent key={`block-${index}`} data={block} />;
