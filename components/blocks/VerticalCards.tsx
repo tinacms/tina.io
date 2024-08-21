@@ -107,7 +107,7 @@ const VerticalCardsBlock = ({ data, index }) => {
       <div className="flex flex-col lg:flex-row lg:gap-4">
         <div className="w-full lg:w-1/2 flex justify-center items-center rounded-lg" ref={globeContainerRef}>
           {isGlobeVisible && (
-            <Suspense fallback={<div className='font-tuner text-2xl'>Loading Globe...</div>}>
+            <Suspense fallback={<div className='font-tuner text-2xl'>Loading Globe....</div>}>
               <LazyGlobe activeGlobeId={activeGlobeId} cardItems={data.cardItems} />
             </Suspense>
           )}
