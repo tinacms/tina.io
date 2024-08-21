@@ -15,8 +15,8 @@ function hexToRgba(hex, alpha) {
 
 const commonHeightStyle = {
   height: '50px',
-  marginBottom: '2px',
-  lineHeight: '12px',
+  marginBottom: '8px',
+  lineHeight: '16px',
 }
 
 const CompanyItem = ({ company, onClick }) => {
@@ -87,7 +87,7 @@ const CompanyCard = ({ company }) => {
         <Image
           src={company.logoWhite}
           alt={`${company.headline} logo`}
-          className="xl:h-10 xl:w-10 lg:h-7 lg:w-7 md:h-7 md:w-7 h-10 w-10 pr-1 filter-transparent"
+          className="xl:h-10 xl:w-10 lg:h-7 lg:w-7 md:h-7 md:w-7 h-8 w-8 pr-1 filter-transparent"
           width={40}
           height={40}
         />
