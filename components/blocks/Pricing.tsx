@@ -28,7 +28,6 @@ const PricingCard = ({ data, single = false }) => {
         </div>
         <div className="body">
           <div className="content">
-            {/* @ts-ignore */}
             {data.body && <TinaMarkdown content={data.body} />}
           </div>
           {data.buttons &&
