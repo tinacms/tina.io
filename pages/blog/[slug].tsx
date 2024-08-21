@@ -25,6 +25,7 @@ import {
   TinaMarkdownContent,
 } from 'tinacms/dist/rich-text'
 import { Prism } from '../../components/styles/Prism'
+import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { getDocId } from 'utils/docs/getDocIds'
 import { FaPlus, FaMinus } from 'react-icons/fa'
@@ -35,6 +36,7 @@ export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
   Youtube: { embedSrc: string;}
   CreateAppCta: { ctaText: string; cliText: string }
+  GraphQLCodeBlock: { query: string, response: string }
   Callout: {
     title: string
     description: string
@@ -50,6 +52,7 @@ export const components: Components<{
   Button: { link: string; label: string }
   ImageAndText: { docText: string; image: string }
   Summary: { heading: string; text: string }
+
 }> = {
   ImageAndText: (props) => {
     return (
@@ -102,6 +105,9 @@ export const components: Components<{
   h4: (props) => <FormatHeaders level={5} {...props} />,
   h5: (props) => <FormatHeaders level={5} {...props} />,
   h6: (props) => <FormatHeaders level={6} {...props} />,
+  ul: (props) => <ul className="list-disc ml-5" {...props} />,
+  ol: (props) => <ol className="list-decimal ml-5" {...props} />,
+  li: (props) => <li className="mb-2" {...props} />,
 
   Iframe: ({ iframeSrc, height }) => {
     return (
@@ -239,6 +245,12 @@ export const components: Components<{
         theme="nightOwl"
       />
     )
+  },
+  GraphQLCodeBlock: ({ query, response }) => {
+    return <GraphQLQueryResponseTabs 
+      query={query} 
+      response={response}
+    />
   },
   CustomFieldComponentDemo: () => (
     <iframe
@@ -380,6 +392,8 @@ export const getStaticProps: GetStaticProps = async function ({
 
   const vars = { relativePath: `${slug}.mdx` }
   const res = await client.queries.getExpandedPostDocument(vars)
+
+  console.log(res);
 
   return {
     props: {

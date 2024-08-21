@@ -33,6 +33,10 @@ const footerNav = [
         link: '/docs/product-tour',
         label: 'How Tina Works',
       },
+      {
+        label: 'Roadmap',
+        link: '/roadmap',
+      },
     ],
   },
   {
@@ -47,16 +51,30 @@ const footerNav = [
         link: '/examples',
       },
       {
-        label: 'Roadmap',
-        link: '/roadmap',
-      },
-      {
         label: 'Support',
         link: '/docs/support',
       },
       {
         link: '/media',
         label: 'Media',
+      },
+    ],
+  },
+  {
+    label: '',
+    items: [
+      {
+        label: 'Whats New',
+        children: [
+          {
+            link: '/whats-new/tinacms',
+            label: 'TinaCMS',
+          },
+          {
+            link: '/whats-new/tinacloud',
+            label: 'TinaCloud',
+          },
+        ],
       },
       {
         label: 'Use Cases',
@@ -158,10 +176,6 @@ const footerNav = [
           },
         ],
       },
-      // {
-      //   link: '/',
-      //   label: 'Releases',
-      // },
     ],
   },
 ] as const
@@ -251,7 +265,7 @@ export const Footer = ({}) => {
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
-        <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {footerNav.map((item) => {
             const { label, items } = item
             return (
@@ -322,8 +336,12 @@ export const Footer = ({}) => {
 
 const FooterLink = ({ link, label }) => {
   return (
-    <Link href={link} className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap" passHref>
-        {label}
+    <Link
+      href={link}
+      className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap"
+      passHref
+    >
+      {label}
     </Link>
   )
 }

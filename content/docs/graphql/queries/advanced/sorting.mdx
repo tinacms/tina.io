@@ -1,7 +1,7 @@
 ---
 id: /docs/graphql/queries/advanced/sorting
-
 title: Sorting query results
+last_edited: '2024-08-15T02:40:25.065Z'
 ---
 
 To sort collection results by a collection field, pass the `sort` argument to the `<collection>Connection` query, with the value corresponding to the desired collection field to sort by. Results are returned in ascending order.
@@ -49,16 +49,96 @@ If the `sort` parameter is not specified in a query, results will be returned ba
 
 Here we will query our `post` collection with `postConnection` and sort the results by the `date` field:
 
-<Iframe
-  height={401}
-  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;date&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########date
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
 />
 
 ### Sorting by multiple fields
 
 Here we will query our `post` collection with `postConnection` and sort the results first by `category` and then by `date` using the multi-field index named `category-date`:
 
-<Iframe
-  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22category-date%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20category%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
-  height={400}
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;category-date&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ########date
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
 />
