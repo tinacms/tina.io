@@ -84,11 +84,11 @@ const FreeTier = ({ data }) => {
 }
 
 const PaidTier = ({ data }) => {
-  const [isAccordionOpen, setAccordionOpen] = useState(false)
+  const [isAccordionOpen, setAccordionOpen] = useState(false);
 
   const toggleAccordion = () => {
-    setAccordionOpen(!isAccordionOpen)
-  }
+    setAccordionOpen(!isAccordionOpen);
+  };
 
   return (
     <div
@@ -128,7 +128,7 @@ const PaidTier = ({ data }) => {
           ))}
       </div>
       <div className="pt-6">
-        <div className="sm:block md:block lg:hidden xl:hidden">
+        <div className="accordion-content">
           <div
             className="flex justify-between items-center font-semibold cursor-pointer"
             onClick={toggleAccordion}
@@ -142,7 +142,7 @@ const PaidTier = ({ data }) => {
             <div className="pl-2">
               {data.cardItem &&
                 data.cardItem.map((item, index) => {
-                  const Icon = icons[item.icon]
+                  const Icon = icons[item.icon];
                   return (
                     <div key={index} className="flex flex-col items-start mt-2">
                       <div className="flex items-center">
@@ -155,18 +155,18 @@ const PaidTier = ({ data }) => {
                         </div>
                       )}
                     </div>
-                  )
+                  );
                 })}
             </div>
           )}
         </div>
 
-        <div className="hidden lg:block xl:block">
+        <div className="non-accordion-content">
           <p className="font-semibold">Includes:</p>
           <div className="pl-2">
             {data.cardItem &&
               data.cardItem.map((item, index) => {
-                const Icon = icons[item.icon]
+                const Icon = icons[item.icon];
                 return (
                   <div key={index} className="flex flex-col items-start mt-2">
                     <div className="flex items-center">
@@ -179,14 +179,35 @@ const PaidTier = ({ data }) => {
                       </div>
                     )}
                   </div>
-                )
+                );
               })}
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @media (min-width: 0px) and (max-width: 1250px) {
+          .accordion-content {
+            display: block;
+          }
+          .non-accordion-content {
+            display: none;
+          }
+        }
+
+        @media (min-width: 1250px) {
+          .accordion-content {
+            display: none;
+          }
+          .non-accordion-content {
+            display: block;
+          }
+        }
+      `}</style>
     </div>
-  )
-}
+  );
+};
+
 export function PricingBlock({ data }) {
   return (
     <div className="p-6">
