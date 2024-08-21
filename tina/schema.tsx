@@ -119,7 +119,7 @@ export const schema = defineSchema({
         beforeSubmit: async ({ values, cms, form }) => {
           return {
             ...values,
-            last_edited: new Date().toISOString(),
+            last_edited: new Date().toISOString()
           }
         },
       },
@@ -165,6 +165,38 @@ export const schema = defineSchema({
                   label: 'Embed URL',
                   description:
                     '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'query',
+                  label: 'Query',
+                  description:
+                    'Paste GraphQL query here. "#" are auto-inserted as spacing placeholders and should not be used.',
+                  ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */ 
+                    component: 'textarea',
+                    format: (val?: string) => val && val.replaceAll('#', ' '),
+                    parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                  }
+                },
+                {
+                  type: 'string',
+                  name: 'response',
+                  label: 'Response',
+                  description:
+                    'Paste GraphQL response data here. "#" are auto-inserted as spacing placeholders and should not be used.',
+                  ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
+                    component: 'textarea',
+                    format: (val?: string) => val && val.replaceAll('#', ' '),
+                    parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                  }
                 },
               ],
             },
@@ -339,6 +371,26 @@ export const schema = defineSchema({
                   label: 'Embed URL',
                   description:
                     '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'rich-text',
+                  name: 'request',
+                  label: 'Request',
+                  description:
+                    'Paste GraphQL request code here.',
+                },
+                {
+                  type: 'rich-text',
+                  name: 'response',
+                  label: 'Response',
+                  description:
+                    'Paste GraphQL response data here.',
                 },
               ],
             },
