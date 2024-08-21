@@ -242,7 +242,6 @@ export const GlobalStyle = React.memo(createGlobalStyle`
       font-family: inherit;
       line-height: inherit;
       font-size: 100%;
-      font-weight: inherit;
     }
   }
 

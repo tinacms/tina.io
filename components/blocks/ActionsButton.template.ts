@@ -30,6 +30,7 @@ export const actionsButtonTemplate = {
         { value: 'orange', label: 'Orange' },
         { value: 'white', label: 'White' },
         { value: 'ghost', label: 'Ghost' },
+        { value: 'orangeWithBorder', label: 'Orange with Border' },
       ],
     },
     {
