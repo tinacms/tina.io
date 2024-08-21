@@ -92,7 +92,7 @@ const PaidTier = ({ data }) => {
 
   return (
     <div
-      className="hover:bg-gradient-to-br from-white via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
+      className="hover:bg-gradient-to-br from-transparent via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
       style={popInStyle}
     >
       {data.isStarred && (
