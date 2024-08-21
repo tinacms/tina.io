@@ -35,10 +35,18 @@ import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
 
-const WhatsNewFields: TinaField[] = [{ name: 'versionNumber', label: 'Version Number', type: 'string' },
-{ name: 'dateReleased', label: 'Date Released', type: 'datetime'},
-{ name: 'body', label: 'Body', type: 'rich-text', isBody: true, description: 'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).' },]
-
+const WhatsNewFields: TinaField[] = [
+  { name: 'versionNumber', label: 'Version Number', type: 'string' },
+  { name: 'dateReleased', label: 'Date Released', type: 'datetime' },
+  {
+    name: 'body',
+    label: 'Body',
+    type: 'rich-text',
+    isBody: true,
+    description:
+      'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).',
+  },
+]
 
 export const schema = defineSchema({
   collections: [
@@ -208,6 +216,9 @@ export const schema = defineSchema({
                   name: 'body',
                   label: 'Body',
                   type: 'string',
+                  ui: {
+                    component: 'textarea',
+                  },
                 },
               ],
             },
@@ -245,14 +256,15 @@ export const schema = defineSchema({
                   label: 'docText',
                   isBody: true,
                   type: 'rich-text',
-                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
+                  description:
+                    'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
                 },
                 {
                   name: 'image',
                   label: 'image',
                   type: 'image',
-                }
-              ]
+                },
+              ],
             },
             {
               name: 'SummaryTab',
@@ -262,7 +274,8 @@ export const schema = defineSchema({
                   name: 'heading',
                   label: 'Heading',
                   type: 'string',
-                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
+                  description:
+                    'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
                 },
                 {
                   name: 'text',
@@ -270,12 +283,8 @@ export const schema = defineSchema({
                   isBody: true,
                   type: 'rich-text',
                 },
-              ]
-            }
-
-
-
-
+              ],
+            },
           ],
         },
       ],
@@ -358,6 +367,9 @@ export const schema = defineSchema({
                   name: 'body',
                   label: 'Body',
                   type: 'string',
+                  ui: {
+                    component: 'textarea',
+                  },
                 },
               ],
             },
@@ -681,14 +693,14 @@ export const schema = defineSchema({
       label: 'Whats new - TinaCMS',
       path: 'content/whats-new-tinacms',
       format: 'mdx',
-      fields: WhatsNewFields
+      fields: WhatsNewFields,
     },
     {
       name: 'WhatsNewTinaCloud',
       label: 'Whats new - TinaCloud',
       path: 'content/whats-new-tinacloud',
       format: 'mdx',
-      fields: WhatsNewFields ,
-    }
+      fields: WhatsNewFields,
+    },
   ],
 })
