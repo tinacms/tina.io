@@ -1,0 +1,131 @@
+---
+title: The "object" field
+last_edited: '2021-07-27T15:51:56.737Z'
+---
+
+# `object`
+
+```ts
+type ObjectField = {
+  label: string
+  name: string
+  type: 'object'
+  list?: boolean
+  /** `fields OR `templates` may be provided, not both **/
+  fields?: Field[]
+  templates?: Template[]
+  /** Customize the default "_template" key that gets set
+     in a document to identify a block-type.
+     Only applicable when list: true **/
+  templatesKey?: string
+  list?: boolean
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  ui?: {
+     /** Weather or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental **/
+    visualSelector?: boolean,
+    // Note: defaultItem can only can be used when {list: true}
+    defaultItem?: Record<string, any> | () => Record<string, any>,
+    itemProps?(
+      item: Record<string, any>
+    ): {
+      label?: string
+    }
+  }
+}
+```
+
+## Examples
+
+Tina will generate the appropriate component depending on the configuration provided.
+
+### A basic object configuration
+
+```json
+{
+  label: "Testimonial",
+  name: "testimonial",
+  type: "object",
+  fields: [
+      {
+        label: "Author",
+        name: "author",
+        type: "string"
+      },
+      {
+        label: "Role",
+        name: "role",
+        type: "string"
+      },
+      {
+        label: "Quote",
+        name: "quote",
+        type: "string",
+        ui: {
+          component: "textarea"
+        }
+      }
+        ]
+}
+```
+
+### As a list with default values
+
+```javascript
+{
+  label: "Testimonials",
+  name: "testimonials",
+  type: "object",
+        list: true,
+          ui: {
+    itemProps: (item) => {
+      return { label: `${item?.author}  ( ${item?.role} ) ` }
+    },
+      defaultItem: {
+      author: "Judith Black",
+        role: "CEO",
+          quote: "Lorem ipsum dol..."
+    }
+  },
+  fields: [
+    {
+      name: "author",
+      // ...
+    },
+    {
+      name: "role",
+      // ...
+    },
+    {
+      name: "quote",
+      // ...
+    }
+  ]
+}
+```
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381170/Screenshot_2024-07-31_at_9.12.43_AM_gahppr.png)
+
+### Using templates instead of fields
+
+```javascript
+{
+  label: "Page Blocks",
+  name: "pageBlocks",
+  type: "object",
+  list: true,
+  templates: [
+    {
+      label: "CTA",
+      name: "cta",
+      fields: [...]
+    },
+    {
+      label: "Testimonial",
+      name: "testimonial",
+      fields: [...]
+    }
+  ]
+}
+```
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381325/Screenshot_2024-07-31_at_9.15.20_AM_rniq4e.png)

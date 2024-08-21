@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from './Container'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import GradGlow from '../../public/svg/grad-glow.svg'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { spawn } from 'child_process'

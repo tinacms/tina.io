@@ -13,21 +13,30 @@ import {
   DocsTextWrapper,
 } from 'components/layout'
 import { fileToUrl } from 'utils/urls'
-import { getPageRef } from 'utils/docs/getDocProps'
 const fg = require('fast-glob')
 import { LastEdited, DocsPagination } from 'components/ui'
 import { openGraphImage } from 'utils/open-graph-image'
 import { WarningCallout } from '../../utils/shortcodes'
 import { useTina } from 'tinacms/dist/react'
 import path from 'path'
-import { TinaMarkdown, Components } from 'tinacms/dist/rich-text'
+import {
+  TinaMarkdown,
+  Components,
+  TinaMarkdownContent,
+} from 'tinacms/dist/rich-text'
 import { Prism } from '../../components/styles/Prism'
+import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs'
 import { BiRightArrowAlt } from 'react-icons/bi'
+import { getDocId } from 'utils/docs/getDocIds'
+import { FaPlus, FaMinus } from 'react-icons/fa'
+import { useState } from 'react'
+import Image from 'next/image'
 
-const components: Components<{
+export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
-  Youtube: { embedSrc: string }
+  Youtube: { embedSrc: string;}
   CreateAppCta: { ctaText: string; cliText: string }
+  GraphQLCodeBlock: { query: string, response: string }
   Callout: {
     title: string
     description: string
@@ -41,20 +50,83 @@ const components: Components<{
   CustomFieldComponentDemo: {}
   CloudinaryVideo: { src: string }
   Button: { link: string; label: string }
+  ImageAndText: { docText: string; image: string }
+  Summary: { heading: string; text: string }
+
 }> = {
+  ImageAndText: (props) => {
+    return (
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-red">
+          {' '}
+          <TinaMarkdown
+            content={props.docText as any}
+            components={components}
+          />{' '}
+        </div>
+        <div>
+          <Image src={props?.image} alt="image" className="w-full" />
+        </div>
+      </div>
+    )
+  },
+
+  Summary: (props) => {
+    const [openTab, setOpenTab] = useState(false)
+
+    const handleToggle = () => {
+      setOpenTab(!openTab)
+    }
+
+    console.log('props found', props.text)
+
+    return (
+      <div>
+        <hr></hr>
+        <button
+          className="flex w-full items-start justify-between text-left text-gray-900"
+          onClick={handleToggle}
+        >
+          <h3>{props.heading}</h3>
+          {openTab ? <FaMinus /> : <FaPlus />}
+        </button>
+        {openTab && (
+          <div>
+            <TinaMarkdown content={props.text as any} components={components} />
+          </div>
+        )}
+      </div>
+    )
+  },
+
+  h1: (props) => <FormatHeaders level={1} {...props} />,
+  h2: (props) => <FormatHeaders level={2} {...props} />,
+  h3: (props) => <FormatHeaders level={3} {...props} />,
+  h4: (props) => <FormatHeaders level={5} {...props} />,
+  h5: (props) => <FormatHeaders level={5} {...props} />,
+  h6: (props) => <FormatHeaders level={6} {...props} />,
+  ul: (props) => <ul className="list-disc ml-5" {...props} />,
+  ol: (props) => <ol className="list-decimal ml-5" {...props} />,
+  li: (props) => <li className="mb-2" {...props} />,
+
   Iframe: ({ iframeSrc, height }) => {
-    return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+    return (
+      <div>
+        <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+      </div>
+    )
   },
   Youtube: ({ embedSrc }) => (
-    <iframe
-      width="560"
-      height="315"
-      src={embedSrc}
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen={true}
-    ></iframe>
+    <div className="youtube-container">
+      <iframe
+        width="560"
+        height="315"
+        src={embedSrc}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen={true}
+      ></iframe>
+    </div>
   ),
   CreateAppCta: ({ ctaText, cliText }) => (
     <>
@@ -119,20 +191,22 @@ const components: Components<{
     </div>
   ),
   Codesandbox: ({ embedSrc, title }) => (
-    <iframe
-      src={embedSrc}
-      style={{
-        width: '100%',
-        height: '500px',
-        border: 'none',
-        borderRadius: '4px',
-        overflow: 'hidden',
-      }}
-      title={title}
-      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      className="wide"
-    ></iframe>
+    <div>
+      <iframe
+        src={embedSrc}
+        style={{
+          width: '100%',
+          height: '500px',
+          border: 'none',
+          borderRadius: '4px',
+          overflow: 'hidden',
+        }}
+        title={title}
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        className="wide"
+      ></iframe>
+    </div>
   ),
   Diagram: ({ alt, src }) => (
     <img
@@ -172,6 +246,12 @@ const components: Components<{
       />
     )
   },
+  GraphQLCodeBlock: ({ query, response }) => {
+    return <GraphQLQueryResponseTabs 
+      query={query} 
+      response={response}
+    />
+  },
   CustomFieldComponentDemo: () => (
     <iframe
       height="450"
@@ -209,6 +289,13 @@ const components: Components<{
       </a>
     </div>
   ),
+}
+
+function FormatHeaders({ children, level }) {
+  const HeadingTag = `h${level}` as any
+  const id = getDocId(children.props.content.map(content => content.text).join(''))
+
+  return <HeadingTag id={id}>{children}</HeadingTag>
 }
 
 function BlogTemplate({ file, siteConfig, ...props }) {
@@ -303,8 +390,10 @@ export const getStaticProps: GetStaticProps = async function ({
   //TODO - move to readFile
   const { default: siteConfig } = await import('../../content/siteConfig.json')
 
-  const vars = { relativePath: `${slug}.md` }
+  const vars = { relativePath: `${slug}.mdx` }
   const res = await client.queries.getExpandedPostDocument(vars)
+
+  console.log(res);
 
   return {
     props: {
@@ -317,7 +406,7 @@ export const getStaticProps: GetStaticProps = async function ({
 }
 
 export const getStaticPaths: GetStaticPaths = async function () {
-  const blogs = await fg(`./content/blog/**/*.md`)
+  const blogs = await fg(`./content/blog/**/*.mdx`)
   return {
     paths: blogs.map((file) => {
       const slug = fileToUrl(file, 'blog')

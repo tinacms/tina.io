@@ -7,6 +7,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   href?: string
   type?: 'button' | 'submit' | 'reset'
   children: React.ReactNode | React.ReactNode[]
+  disabled?: boolean
 }
 
 const baseClasses =
@@ -28,6 +29,7 @@ const colorClasses = {
     raisedButtonClasses +
     ' text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50',
   ghost: 'text-orange-500 hover:text-orange-400',
+  orangeWithBorder: 'text-orange-500 hover:text-orange-400 border border-orange-500 bg-white',
 }
 
 const sizeClasses = {
@@ -66,18 +68,39 @@ export const LinkButton = ({
   ...props
 }) => {
   return (
-    <Link legacyBehavior href={link} passHref>
-      <a
-        className={`${baseClasses} ${
-          colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
-        } ${
-          sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
-        } ${className}`}
-        {...props}
-      >
-        {children}
-      </a>
+    <Link
+      href={link}
+      passHref
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+      } ${
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+      } ${className}`}
+      {...props}
+    >
+      {children}
     </Link>
+  )
+}
+
+export const ModalButton = ({
+  color = 'seafoam',
+  size = 'medium',
+  className = '',
+  children,
+  ...props
+}) => {
+  return (
+    <button
+      className={`${baseClasses} ${
+        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+      } ${
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+      } ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
   )
 }
 

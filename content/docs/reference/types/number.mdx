@@ -1,0 +1,46 @@
+---
+title: The "number" field
+last_edited: '2021-07-27T15:51:56.737Z'
+---
+
+## `number` type
+
+```ts
+type NumberField = {
+  label: string
+  name: string
+  type: 'number'
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  list?: boolean
+  ui?: {
+    label?: string
+    description?: string
+    component?: FC<any> | string | null
+    parse?: (value: number | number[], name: string, field: F) => any
+    format?: (value: number | number[], name: string, field: F) => any
+    validate?(
+      // number or  number[] depends on list true or false
+      value: number | number[],
+      allValues: any,
+      meta: any,
+      field: UIField<F, Shape>
+    ): string | undefined | void
+  }
+}
+```
+
+## Examples
+
+Tina will generate the appropriate component depending on the configuration provided.
+
+### Simple
+
+```javascript
+{
+  type: 'number',
+  name: 'count',
+  label: 'Count'
+}
+```
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722240951/Screenshot_2024-07-29_at_6.15.46_PM_hjbije.png)

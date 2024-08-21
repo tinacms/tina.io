@@ -1,70 +1,189 @@
 {
   "blocks": [
     {
-      "headline": "Pricing",
-      "text": "",
-      "_template": "hero"
-    },
-    {
-      "intro": "Tina has a **per-project** pricing model that can scale to meet your needs.\n",
-      "base": {
-        "name": "Basic",
-        "price": "Free Forever",
-        "interval": "",
-        "body": "* 2 Users\n* 2 Roles\n* No Additional Users\n* Forum Support\n",
-        "actions": [
+      "headline": "Plans & Pricing",
+      "freeTier": {
+        "name": "Free",
+        "description": "Includes **2 users, 2 roles**, and exclusive **forums support.**\n",
+        "price": "$0",
+        "interval": "Forever",
+        "buttons": [
           {
-            "label": "Sign Up",
+            "label": "Start Free",
             "icon": false,
-            "variant": "blue",
+            "variant": "orangeWithBorder",
             "size": "medium",
-            "url": "/"
+            "url": "/",
+            "_template": "actions"
           }
         ]
       },
+      "intro": "Need to scale? No Probllama! Tina offers a per-project pricing model that grows with your needs.\n\nAll prices in USD\n",
       "plans": [
         {
-          "name": "Team",
-          "price": "$29",
-          "interval": "month",
-          "body": "* 3 Users\n* 2 Roles\n* Max 10 Users\n* Additional Users $9/seat\n* Forum Support\n",
-          "actions": [
+          "name": "Free",
+          "description": "For personal projects\n",
+          "price": "$0",
+          "interval": " forever",
+          "cardItem": [
             {
-              "label": "Sign Up",
+              "name": "2 Users",
+              "icon": "AiOutlineUser",
+              "description": "No additional users"
+            },
+            {
+              "name": "2 Roles",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Forum Support",
+              "icon": "BiSupport"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "‏‏‎ ‎‏‏‎ ‎Start Free Plan‏‏‎ ‎‏‏‎ ‎",
               "icon": false,
-              "variant": "blue",
+              "variant": "orangeWithBorder",
               "size": "medium",
-              "url": "https://app.tina.io/register"
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "name": "Team",
+          "description": "For growing teams\n",
+          "price": "$29",
+          "interval": "/ month",
+          "cardItem": [
+            {
+              "name": "3 Users",
+              "icon": "AiOutlineUser",
+              "description": "$9/additional seat"
+            },
+            {
+              "name": "Up to 10 Users",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": ""
+            },
+            {
+              "name": "2 Roles",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Forum Support",
+              "icon": "BiSupport"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
             }
           ]
         },
         {
           "name": "Business",
+          "description": "For premium support\n",
           "price": "$599",
-          "interval": "month",
-          "body": "* 10 Users\n* 3 Roles *(coming soon)*\n* No User Limit\n* Additional Users $9/seat\n* Priority Support\n* SSO\n* [Editorial Workflow](/editorial-workflow \"Editorial Workflow\")\n",
-          "actions": [
+          "interval": "/ month",
+          "cardItem": [
             {
-              "label": "Sign Up",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://app.tina.io/register"
+              "name": "10 Users",
+              "icon": "AiOutlineUser",
+              "description": "$9/additional seat"
+            },
+            {
+              "name": "No User Limit",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": ""
+            },
+            {
+              "name": "3 Roles (Beta)",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Premium Support",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "Editorial Workflow",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "API (Beta)",
+              "icon": "TbPlugConnected"
+            },
+            {
+              "name": "AI Features (Beta)",
+              "icon": "HiOutlineSparkles"
             }
-          ]
+          ],
+          "buttons": [
+            {
+              "label": "Start Business Plan",
+              "icon": false,
+              "variant": "orange",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ],
+          "isStarred": true
         },
         {
           "name": "Enterprise",
-          "price": "",
-          "interval": " ",
-          "body": "**Bulk pricing available**\n\n* Custom Users\n* Custom Roles\n* No User Limit\n* Variable user pricing\n* Enterprise Support\n* SSO\n* Custom [Editorial Workflows](/editorial-workflow \"Editorial-Workflow\")\n",
-          "actions": [
+          "description": "For custom needs\n",
+          "price": "Custom",
+          "interval": "",
+          "cardItem": [
             {
-              "label": "Contact Us",
+              "name": "Custom Users",
+              "icon": "AiOutlineUser",
+              "description": "Variable user pricing"
+            },
+            {
+              "name": "No User Limit",
+              "icon": "AiOutlineUsergroupAdd"
+            },
+            {
+              "name": "Custom Roles",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Enterprise Support",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "Custom Editorial Workflow",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "API (Beta)",
+              "icon": "TbPlugConnected"
+            },
+            {
+              "name": "AI Features (Beta)",
+              "icon": "HiOutlineSparkles"
+            },
+            {
+              "name": "SSO",
+              "icon": "SlLock"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎Contact Sales‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎",
               "icon": false,
-              "variant": "white",
+              "variant": "orangeWithBorder",
               "size": "medium",
-              "url": "mailto:info@tina.io"
+              "url": "mailto:info@tina.io",
+              "_template": "actions"
             }
           ]
         }

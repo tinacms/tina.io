@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { DocsLayout, MarkdownContent } from 'components/layout'
 import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
-import { getDocProps } from 'utils/docs/getDocProps'
-import Toc from '../../components/toc'
+import { getDocsNav } from 'utils/docs/getDocProps'
 import { openGraphImage } from 'utils/open-graph-image'
 import Error from 'next/error'
 import { NotFoundError } from 'utils/error/NotFoundError'
@@ -14,9 +13,16 @@ import * as ga from '../../utils/ga'
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
 import { useTocListener } from 'utils/toc_helpers'
 import SetupOverview from '../../components/layout/setup-overview'
+import client from 'tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { components } from 'pages/blog/[slug]'
+import getTableOfContents from 'utils/docs/getTableOfContents'
+import ToC from 'components/toc/index'
+import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export function DocTemplate(props) {
-  if (props.file.fileRelativePath.includes('setup-overview')) {
+  if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
     return <SetupOverview {...props} />
   }
   return <_DocTemplate {...props} />
@@ -27,21 +33,29 @@ function _DocTemplate(props) {
   if (props.notFound) {
     return <Error statusCode={404} />
   }
-  const data = props.file.data
+
+  const { data } = useTina({
+    query: props.new?.results.query,
+    data: props.new?.results.data,
+    variables: props.new?.results.variables,
+  })
 
   const router = useRouter()
-  const isCloudDocs = router.asPath.includes('tina-cloud')
+  const doc_data = data.doc
+  const previousPage = {
+    slug: doc_data.previous?.id.slice(7, -4),
+    title: doc_data.previous?.title,
+  }
+  const nextPage = {
+    slug: doc_data.next?.id.slice(7, -4),
+    title: doc_data.next?.title,
+  }
+  const TableOfContents = getTableOfContents(doc_data.body.children)
+  const description = getSeoDescription(doc_data.body)
 
-  const isBrowser = typeof window !== `undefined`
+  const { activeIds, contentRef } = useTocListener(doc_data)
 
-  const frontmatter = data.frontmatter
-  const markdownBody = data.markdownBody
-  const excerpt = props.file.data.excerpt
-  const tocItems = props.tocItems
-
-  const { activeIds, contentRef } = useTocListener(data)
-
-  React.useEffect(() => {
+  useEffect(() => {
     const handleRouteChange = (url) => {
       ga.pageview(url)
     }
@@ -58,35 +72,29 @@ function _DocTemplate(props) {
   return (
     <>
       <NextSeo
-        title={frontmatter.title}
+        title={doc_data.title}
         titleTemplate={'%s | TinaCMS Docs'}
-        description={excerpt}
+        description={description}
         openGraph={{
-          title: frontmatter.title,
-          description: excerpt,
-          images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
+          title: doc_data.title,
+          description: description,
+          images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.docsNav}>
+      <DocsLayout navItems={props.oldNavDocs.data}>
         <DocsGrid>
           <DocGridHeader>
-            <Breadcrumbs navItems={props.docsNav} />
-            <DocsPageTitle>{frontmatter.title}</DocsPageTitle>
+            <Breadcrumbs navItems={props.oldNavDocs.data} />
+            <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
-            <Toc tocItems={tocItems} activeIds={activeIds} />
+            <ToC tocItems={TableOfContents} activeIds={activeIds} />
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
-            <MarkdownContent escapeHtml={false} content={markdownBody} />
-            <LastEdited date={frontmatter.last_edited} />
-            {(props.prevPage?.slug !== null ||
-              props.nextPage?.slug !== null) && (
-              <DocsPagination
-                prevPage={props.prevPage}
-                nextPage={props.nextPage}
-              />
-            )}
+            <TinaMarkdown content={doc_data.body} components={components} />
+            <LastEdited date={doc_data.last_edited} />
+            <DocsPagination prevPage={previousPage} nextPage={nextPage} />
           </DocGridContent>
         </DocsGrid>
       </DocsLayout>
@@ -107,7 +115,17 @@ export const getStaticProps: GetStaticProps = async function (props) {
   const slug = slugs.join('/')
 
   try {
-    return await getDocProps(props, slug)
+    const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
+    const tinaDocsNavigation = await client.queries.getAllDocs()
+    //TOOD: get rid of line 121. https://github.com/tinacms/tina.io/issues/1982
+    const oldNavDocs = await getDocsNav()
+    return {
+      props: {
+        new: { results },
+        allDocs: { tinaDocsNavigation },
+        oldNavDocs,
+      },
+    }
   } catch (e) {
     if (e) {
       return {
@@ -128,16 +146,16 @@ export const getStaticProps: GetStaticProps = async function (props) {
 export const getStaticPaths: GetStaticPaths = async function () {
   const fg = require('fast-glob')
   const contentDir = './content/docs/'
-  const files = await fg(`${contentDir}**/*.md`)
+  const files = await fg(`${contentDir}**/*.mdx`)
   return {
     fallback: false,
     paths: files
       .filter(
         (file) =>
-          !file.endsWith('index.md') && !file.endsWith('product-tour.md')
+          !file.endsWith('index.mdx') && !file.endsWith('product-tour.mdx')
       )
       .map((file) => {
-        const path = file.substring(contentDir.length, file.length - 3)
+        const path = file.substring(contentDir.length, file.length - 4)
         return { params: { slug: path.split('/') } }
       }),
   }

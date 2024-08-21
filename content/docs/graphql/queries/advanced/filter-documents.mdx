@@ -1,0 +1,210 @@
+---
+id: /docs/graphql/queries/advanced/filter-documents
+title: Filtering a query result
+last_edited: '2024-08-15T02:32:02.867Z'
+---
+
+Tina automatically creates filters for collections defined in your schema.
+
+To filter collection results, pass the `filter` argument to the `<collection>Connection` query, followed by any of the filter [operator types](/docs/graphql/queries/advanced/filter-documents/#operator-types) for the fields on your collection.
+
+The `filter` object is a nested set of conditions where the keys correspond to the collection field and the value describes the condition.
+
+Conditions can be either "binary" or "ternary". A binary condition is composed of a single operator and a single operand (i.e. `{"eq":"foo"}`). A ternary condition is composed of two operators and two operands (.i.e. `{"gt":0, "lte": 10}`).
+
+## Operator types
+
+| Key        | Behavior                 | Type(s)                          |
+| :--------- | ------------------------ | -------------------------------- |
+| eq         | Equals                   | string, number, boolean          |
+| in         | One of                   | string\[], number\[], boolean\[] |
+| gt         | Greater than             | string, number                   |
+| gte        | Greater than or equal to | string, number                   |
+| lt         | Less than                | string, number                   |
+| lte        | Less than or equal to    | string, number                   |
+| startsWith | Starts with              | string                           |
+| after      | After                    | datetime                         |
+| before     | Before                   | datetime                         |
+
+> Only `gt`, `gte`, `lt`, `lte`, `after`, `before` may be used in ternary conditions.
+
+## Examples
+
+### Filtering on a field
+
+Here we will query our `post` collection with `postConnection` and filter the results by the post `title`:
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{title:#{startsWith:#&#x22;Vote&#x22;}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### Filtering on a field with the IN operator
+
+Here we will query our `post` collection with `postConnection` and filter the results so that only members of the specified `category` are returned:
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{category:#{in:#[&#x22;politics&#x22;]}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### Filtering on a date range
+
+Here we will query our `post` collection with `postConnection` and filter the results so that only posts with a `date` between the specified range are returned:
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{date:#{after:#&#x22;2022-06-01T07:00:00.000Z&#x22;,#before:#&#x22;2022-06-30T07:00:00.000Z&#x22;}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### Filtering on multiple fields
+
+It is possible to filter on multiple fields. Multiple conditions are currently treated as a boolean `AND` operation. Here we will query our `post` collection with `postConnection` and filter the results by `category` and `title`:
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{category:#{in:#[&#x22;politics&#x22;]},#title:#{startsWith:#&#x22;Vote&#x22;}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+#### Filtering on a reference
+
+Here we will query our `post` collection with `postConnection`, and filtering on the referenced `author`'s name:
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{author:#{author:#{name:#{eq:#&#x22;Napolean&#x22;}}}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>

@@ -1,10 +1,11 @@
-import * as React from 'react'
+import { wrapFieldsWithMeta, type Template } from 'tinacms'
 
-import type { TinaTemplate } from 'tinacms'
+import { actionsButtonTemplate } from './ActionsButton.template'
+import { modalButtonTemplate } from './ModalButton.template'
+import { codeButtonTemplate } from './CodeButton.template'
+import IconSelector from './IconSelector'
 
-import { actionsTemplate } from './Actions.template'
-
-export const cardTemplate: TinaTemplate = {
+export const cardTemplate: Template = {
   name: 'card',
   label: 'Card',
   //@ts-ignore
@@ -14,6 +15,11 @@ export const cardTemplate: TinaTemplate = {
       name: 'name',
       label: 'Name',
       type: 'string',
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'rich-text',
     },
     {
       name: 'price',
@@ -26,16 +32,62 @@ export const cardTemplate: TinaTemplate = {
       type: 'string',
     },
     {
-      name: 'body',
-      label: 'Body',
-      type: 'rich-text',
+      name: 'cardItem',
+      label: 'Card Item',
+      type: 'object',
+      list: true,
+      ui: {
+        itemProps: (item) => ({
+          key: item.id,
+          label: item.name,
+        }),
+      },
+      fields: [
+        {
+          name: 'name',
+          label: 'Name',
+          type: 'string',
+        },
+        {
+          name: 'icon',
+          label: 'Icon',
+          type: 'string',
+          description: "Can't find the icon you want? ask a developer to add it",
+          ui: {
+            component: wrapFieldsWithMeta(IconSelector),
+          },
+        },
+        {
+          name: 'description',
+          label: 'Description',
+          type: 'string',
+        },
+      ]
     },
-    // @ts-ignore
-    actionsTemplate,
+    {
+      label: 'Buttons',
+      list: true,
+      name: 'buttons',
+      type: 'object',
+      ui: {
+        visualSelector: true,
+      },
+      templates: [
+        actionsButtonTemplate as Template,
+        modalButtonTemplate as Template,
+        codeButtonTemplate as Template,
+      ],
+    },
+    {
+      name: 'isStarred',
+      label: 'Is Starred?',
+      type: 'boolean',
+      description: 'Enabling this will add a star to the pricing block',
+    }
   ],
 }
 
-export const pricingTemplate: TinaTemplate = {
+export const pricingTemplate: Template = {
   name: 'pricing',
   label: 'Pricing',
   ui: {
@@ -47,16 +99,20 @@ export const pricingTemplate: TinaTemplate = {
   },
   fields: [
     {
+      name: 'headline',
+      label: 'Headline',
+      type: 'string',
+    },
+    {
+      name: 'freeTier',
+      label: 'Free Tier',
+      type: 'object',
+      fields: cardTemplate.fields as any,
+    },
+    {
       name: 'intro',
       label: 'Intro Text',
       type: 'rich-text',
-    },
-    {
-      name: 'base',
-      label: 'Base Plan',
-      // @ts-ignore
-      type: cardTemplate.type,
-      fields: cardTemplate.fields,
     },
     {
       name: 'plans',
@@ -64,7 +120,7 @@ export const pricingTemplate: TinaTemplate = {
       // @ts-ignore
       type: cardTemplate.type,
       list: true,
-      fields: cardTemplate.fields,
+      fields: cardTemplate.fields as any,
       ui: {
         itemProps: (item) => ({
           key: item.id,

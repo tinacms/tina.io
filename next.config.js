@@ -67,8 +67,13 @@ const config = {
         permanent: true,
       },
       {
-        source: '/tina-cloud/connecting-site/',
-        destination: '/tina-cloud/overview',
+        source: '/docs/tina-cloud/connecting-site/',
+        destination: '/docs/tina-cloud/overview',
+        permanent: true,
+      },
+      {
+        source: "/docs/errors/faqs",
+        destination: "/docs/introduction/faq/#common-tinacloud-errors",
         permanent: true,
       },
     ]
@@ -78,6 +83,7 @@ const config = {
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
     HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     GTM_ID: process.env.GTM_ID,
+    SSW_GTM_ID: process.env.SSW_GTM_ID,
   },
   //avoiding CORS error, more here: https://vercel.com/support/articles/how-to-enable-cors
   async headers() {

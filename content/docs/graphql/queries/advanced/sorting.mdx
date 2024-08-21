@@ -1,0 +1,144 @@
+---
+id: /docs/graphql/queries/advanced/sorting
+title: Sorting query results
+last_edited: '2024-08-15T02:40:25.065Z'
+---
+
+To sort collection results by a collection field, pass the `sort` argument to the `<collection>Connection` query, with the value corresponding to the desired collection field to sort by. Results are returned in ascending order.
+
+> See [reverse pagination](/docs/graphql/queries/advanced/pagination/) for how to retrieve results in descending order.
+
+## Sorting on multiple fields
+
+To sort collection results by multiple fields, we need to define a multi-field "index" in our schema. An index definition determines which fields in a collection are included in the index and the order of the fields when sorting results.
+
+> In addition to determining the sort order of query results, indexes also impact query [performance](/docs/graphql/queries/advanced/performance/).
+
+Here is an example index definition for our posts collection:
+
+```ts
+{
+  collections: [
+    {
+      label: "Blog Posts",
+      name: "post",
+      path: "content/posts",
+      format: "mdx",
+      fields: [...],
+      indexes: [{
+        name: "category-date",
+        fields: [
+          { name:"category" },
+          { name:"date" }
+        ]
+      }]
+    }
+  ]
+}
+```
+
+The `name` property on the index definition is used when referencing it in the `sort` argument. The `fields` property is an ordered list of the fields from the collection that should be indexed, identified by the field `name`. Results returned using the associated sort for this example would be first ordered by `category` and then by `date`.
+
+## Default sort order
+
+If the `sort` parameter is not specified in a query, results will be returned based on the default filename ordering.
+
+## Examples
+
+### Sorting by a single field
+
+Here we will query our `post` collection with `postConnection` and sort the results by the `date` field:
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;date&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########date
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### Sorting by multiple fields
+
+Here we will query our `post` collection with `postConnection` and sort the results first by `category` and then by `date` using the multi-field index named `category-date`:
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;category-date&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ########date
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>

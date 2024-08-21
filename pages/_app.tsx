@@ -1,24 +1,28 @@
 import React, { useEffect } from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import Script from 'next/script'
 import { DefaultSeo } from 'next-seo'
 import data from '../content/siteConfig.json'
-import TagManager from 'react-gtm-module'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
 import path from 'path'
 import '../styles/tailwind.css'
 import { useEditState } from 'tinacms/dist/react'
 import { CloudBanner } from '../components/layout/CloudBanner'
-import dynamic from 'next/dynamic'
 import ChatBaseBot from '../components/ui/TinaChatBot'
+import ConsentBanner from '../components/ui/ConsentBanner'
+import Cookies from 'js-cookie'
 
-// the following line will cause all content files to be available in a serverless context
 path.resolve('./content/')
 
-
 const MainLayout = ({ Component, pageProps }) => {
+  useEffect(() => {
+    const consentGiven = Cookies.get('consentGiven')
+    if (consentGiven) {
+      const consentState = JSON.parse(consentGiven)
+    }
+  }, [])
+
   return (
     <>
       <DefaultSeo
@@ -32,7 +36,7 @@ const MainLayout = ({ Component, pageProps }) => {
           site_name: data.title,
           images: [
             {
-              url: 'https://tinacms.org/img/tina-twitter-share.png',
+              url: 'https://tina.io/img/tina-og.png',
               width: 1200,
               height: 628,
               alt: `Tina - The Markdown CMS`,
@@ -48,21 +52,15 @@ const MainLayout = ({ Component, pageProps }) => {
       <Head>
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="theme-color" content="#E6FAF8" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS Feed"
+          href={data.siteUrl + '/rss.xml'}
+        />
       </Head>
-      <Script
-        id="gtag-base"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer', '${process.env.GTM_ID}');
-          `,
-        }}
-      />
       <GlobalStyle />
+      <ConsentBanner />
       <AdminLink />
       <CloudBanner />
       <Component {...pageProps} />
@@ -78,8 +76,8 @@ const AdminLink = () => {
   useEffect(() => {
     setShowAdminLink(
       !edit &&
-      JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
-        ?.access_token
+        JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
+          ?.access_token
     )
   }, [edit])
 
@@ -98,7 +96,7 @@ const AdminLink = () => {
             Edit This Page
           </a>
           <button onClick={handleDismiss} className="ml-2 text-sm">
-            x
+            xx
           </button>
         </div>
       )}
@@ -108,14 +106,6 @@ const AdminLink = () => {
 
 // TODO: Probably should use hooks here
 class Site extends App {
-  componentDidMount() {
-    if (process.env.NODE_ENV === 'production') {
-      TagManager.initialize({
-        gtmId: process.env.GTM_ID,
-      })
-    }
-  }
-
   render() {
     const { Component, pageProps } = this.props
     return <MainLayout Component={Component} pageProps={pageProps} />

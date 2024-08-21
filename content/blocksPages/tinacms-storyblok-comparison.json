@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "TinaCMS vs Storyblok: Discover the TinaCMS Advantage",
+    "description": "Uncover why TinaCMS might be the best choice for your project. Experience markdown support, visual editing, seamless local development workflow, Git-based content management, and more with TinaCMS."
+  },
   "blocks": [
     {
       "headline": "TinaCMS vs Storyblok: Why TinaCMS Could Be Your Choice",
@@ -45,20 +49,17 @@
     {
       "headline": "Ready to explore TinaCMS?",
       "text": "Get started with TinaCMS now, and experience the difference.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS vs Storyblok: Discover the TinaCMS Advantage",
-    "description": "Uncover why TinaCMS might be the best choice for your project. Experience markdown support, visual editing, seamless local development workflow, Git-based content management, and more with TinaCMS."
-  }
+  ]
 }

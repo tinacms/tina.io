@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "TinaCMS vs Netlify CMS: Unleash the Power of TinaCMS",
+    "description": "Explore why TinaCMS might be the right choice for your project. Discover features like a content API, visual editing, seamless local development workflow, Git-based content management, and more with TinaCMS."
+  },
   "blocks": [
     {
       "headline": "TinaCMS vs Netlify CMS: Why TinaCMS Stands Out",
@@ -45,20 +49,17 @@
     {
       "headline": "Ready to get started with TinaCMS?",
       "text": "Experience the difference with TinaCMS now.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS vs Netlify CMS: Unleash the Power of TinaCMS",
-    "description": "Explore why TinaCMS might be the right choice for your project. Discover features like a content API, visual editing, seamless local development workflow, Git-based content management, and more with TinaCMS."
-  }
+  ]
 }

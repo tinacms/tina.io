@@ -1,0 +1,51 @@
+---
+id: /docs/graphql/queries/update-document
+title: Updating a document
+last_edited: '2024-08-15T02:27:03.859Z'
+---
+
+## Updating a document with `update<collection>`
+
+Our collections for the above [schema](/docs/graphql/queries/#example-schema) are named "post" and "author", so we can apply an update to each collection type using the `updatePost` & `updateAuthor`.
+
+<GraphQLCodeBlock
+  query="mutation#{
+  ##updateAuthor(relativePath:#&#x22;napolean.json&#x22;,#params:#{name:#&#x22;Napolean&#x22;,#avatar:#&#x22;https://path.to/my-avatar.jpg&#x22;})#{
+  ####name
+  ####avatar
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;updateAuthor&#x22;:#{
+  ######&#x22;name&#x22;:#&#x22;Napolean&#x22;,
+  ######&#x22;avatar&#x22;:#&#x22;https://path.to/my-avatar.jpg&#x22;
+  ####}
+  ##}
+  }"
+/>
+
+<GraphQLCodeBlock
+  query="mutation#{
+  ##updatePost(relativePath:#&#x22;voteForPedro.json&#x22;,#params:#{title:#&#x22;Vote#For#Napolean#Instead&#x22;,#category:#&#x22;politics&#x22;,#author:#&#x22;content/authors/napolean.json&#x22;})#{
+  ####title
+  ####category
+  ####author#{
+  ######...#on#Author#{
+  ########id
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;updatePost&#x22;:#{
+  ######&#x22;title&#x22;:#&#x22;Vote#For#Napolean#Instead&#x22;,
+  ######&#x22;category&#x22;:#&#x22;politics&#x22;,
+  ######&#x22;author&#x22;:#{
+  ########&#x22;id&#x22;:#&#x22;content/authors/napolean.json&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>

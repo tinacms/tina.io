@@ -1,0 +1,93 @@
+---
+id: /docs/frameworks/other
+prev: /docs/setup-overview
+title: Framework-Agnostic TinaCMS Setup Guide
+---
+
+## Introduction
+
+For the most part, TinaCMS is framework-agnostic. Unless you're using "visual editing", the setup is mostly the same regardless of the site's framework.
+
+We also have some guides tailored for some popular frameworks:
+
+* [Next.js](/docs/frameworks/next/overview)
+* [Astro](/docs/frameworks/astro/)
+* [Hugo](/docs/frameworks/hugo/)
+* [Gatsby](/docs/frameworks/gatsby/)
+* [Jekyll](/docs/frameworks/jekyll/)
+* [Remix](/docs/frameworks/remix/)
+* [11ty](/docs/frameworks/11ty/)
+
+#### Want your framework supported?
+
+Make it known via [GitHub discussions](https://github.com/tinacms/tinacms/discussions "GitHub discussions"):
+
+* [Nuxt](https://github.com/tinacms/tinacms/discussions/3460 "Vue + Nuxt discussion")
+
+> Note: popularity can be seen from [Google Trends](https://trends.google.com/trends/explore?q=nuxt%20web,hugo%20web,astro%20web,Gatsby%20web,11ty%20web\&hl=en "google trends frameworks")
+
+## Getting Started
+
+From within your site's directory, run:
+
+```bash
+ npx @tinacms/cli@latest init
+```
+
+This will ask you a few setup questions.
+
+When prompted for the "**public assets directory**", see our [list of frameworks](/docs/integration/frameworks/) for help.
+
+## Updating your build scripts
+
+Depending on your framework, `tina init` may try to update your `package.json` scripts.
+
+```json
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start"
+  }
+```
+
+These should be applied manually if they haven't been set by the CLI.
+
+## Model your content
+
+To edit your site's content in Tina, you can model your content in the tina/config.ts file.
+
+Learn more about content modelling [here](/docs/schema/)
+
+## Starting TinaCMS
+
+You can start TinaCMS with:
+
+```bash
+npx tinacms dev -c "<your-dev-process>"
+```
+
+> `<your-dev-process>`can be replaced with your site's custom dev command.
+
+With TinaCMS running, navigate to `http://localhost:3000/admin/index.html`
+
+> ^ The above default port may differ depending on your framework.
+
+> Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
+
+At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
+
+![](/img/hugo-tina-admin-screenshot.png)
+
+## Setting up Visual Editing (Optional)
+
+If you want to power your pages with TinaCMS's API, and you're using a React-based framework, you may be able to leverage TinaCMS's visual editing features.
+
+![block-based-editing-visual](/gif/blocks.gif)
+
+Read more about [data fetching](/docs/features/data-fetching/) and [visual editing](/docs/contextual-editing/overview/).
+
+## Next Steps
+
+* [Check out the content Modeling docs](/docs/schema/)
+* [Learn how to query your content](/docs/features/data-fetching/)
+* [Deploy Your Site](/docs/tina-cloud)

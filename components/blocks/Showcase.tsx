@@ -1,14 +1,19 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { Actions } from './Actions'
+import { Actions } from './ActionsButton'
 import { Container } from './Container'
+import Image from 'next/image'
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
+  const id = data.headline 
+  ? data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-') 
+  : 'showcase-' + index;
 
   return (
     <>
       <div
+        id={id}
         key={'showcase-' + index}
         className={`feature ${isReversed ? 'featureReverse' : ''}`}
       >
@@ -29,12 +34,12 @@ export function ShowcaseBlock({ data, index }) {
         {data.media && data.media.src && (
           <div className={`featureImage`}>
             <a href={data.url} target="_blank">
-              <img
+              <Image
                 className="showcaseImage"
                 src={data.media.src}
                 alt={data.headline}
-                width="1120px"
-                height="800px"
+                width={1120}
+                height={800}
               />
             </a>
           </div>

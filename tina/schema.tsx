@@ -13,7 +13,7 @@ limitations under the License.
 import React from 'react'
 
 import { defineSchema } from 'tinacms'
-import type { Template } from 'tinacms'
+import type { Template, TinaField } from 'tinacms'
 
 import { heroTemplate } from '../components/blocks/Hero.template'
 import { featuresTemplate } from '../components/blocks/Features.template'
@@ -30,6 +30,23 @@ import { roadmapGridTemplate } from '../components/blocks/RoadmapGrid.template'
 import { recentPostsTemplate } from '../components/blocks/RecentPosts.template'
 import { testimonialsTemplate } from '../components/blocks/Testimonials.template'
 import { quoteTemplate } from '../components/blocks/Quote.template'
+import { eventsTemplate } from '../components/blocks/Events.template'
+import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
+import { bookingTemplate } from '../components/blocks/Booking.template'
+import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+
+const WhatsNewFields: TinaField[] = [
+  { name: 'versionNumber', label: 'Version Number', type: 'string' },
+  { name: 'dateReleased', label: 'Date Released', type: 'datetime' },
+  {
+    name: 'body',
+    label: 'Body',
+    type: 'rich-text',
+    isBody: true,
+    description:
+      'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).',
+  },
+]
 
 export const schema = defineSchema({
   collections: [
@@ -52,7 +69,13 @@ export const schema = defineSchema({
           name: 'seo',
           label: 'SEO Information',
           fields: [
-            { type: 'string', label: 'Title', name: 'title' },
+            {
+              type: 'string',
+              label: 'Title',
+              name: 'title',
+              description:
+                "' | Tina' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.",
+            },
             {
               type: 'string',
               label: ' Description',
@@ -87,6 +110,10 @@ export const schema = defineSchema({
             recentPostsTemplate as Template,
             testimonialsTemplate as Template,
             quoteTemplate as Template,
+            eventsTemplate as Template,
+            compareBoxTemplate as Template,
+            bookingTemplate as Template,
+            mediaComponentTemplate as Template,
           ],
         },
       ],
@@ -95,7 +122,15 @@ export const schema = defineSchema({
       name: 'doc',
       label: 'Docs',
       path: 'content/docs',
-      format: 'md',
+      format: 'mdx',
+      ui: {
+        beforeSubmit: async ({ values, cms, form }) => {
+          return {
+            ...values,
+            last_edited: new Date().toISOString(),
+          }
+        },
+      },
       fields: [
         {
           name: 'title',
@@ -103,29 +138,154 @@ export const schema = defineSchema({
           type: 'string',
         },
         {
-          // note: this should be a hidden field that auto-updates
           type: 'string',
           name: 'last_edited',
           label: 'Last Edited',
           ui: {
-            component: 'date',
+            component: 'hidden',
           },
         },
         {
-          name: 'prev',
-          label: 'Prev',
-          type: 'string',
+          name: 'next',
+          label: 'Next page',
+          type: 'reference',
+          collections: ['doc', 'examples'],
         },
         {
-          name: 'next',
-          label: 'Next',
-          type: 'string',
+          name: 'previous',
+          label: 'Previous page',
+          type: 'reference',
+          collections: ['doc', 'examples'],
         },
         {
           type: 'rich-text',
           name: 'body',
           label: 'Body',
           isBody: true,
+          templates: [
+            {
+              name: 'Youtube',
+              label: 'Youtube Embed',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'embedSrc',
+                  label: 'Embed URL',
+                  description:
+                    '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'query',
+                  label: 'Query',
+                  description:
+                    'Paste GraphQL query here. "#" are auto-inserted as spacing placeholders and should not be used.',
+                  ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
+                    component: 'textarea',
+                    format: (val?: string) => val && val.replaceAll('#', ' '),
+                    parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                  },
+                },
+                {
+                  type: 'string',
+                  name: 'response',
+                  label: 'Response',
+                  description:
+                    'Paste GraphQL response data here. "#" are auto-inserted as spacing placeholders and should not be used.',
+                  ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
+                    component: 'textarea',
+                    format: (val?: string) => val && val.replaceAll('#', ' '),
+                    parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                  },
+                },
+              ],
+            },
+            {
+              name: 'WarningCallout',
+              label: 'Warning Callout',
+              fields: [
+                {
+                  name: 'body',
+                  label: 'Body',
+                  type: 'string',
+                  ui: {
+                    component: 'textarea',
+                  },
+                },
+              ],
+            },
+            {
+              name: 'Iframe',
+              label: 'Embeded an Iframe',
+              fields: [
+                { name: 'iframeSrc', type: 'string' },
+                {
+                  name: 'height',
+                  type: 'number',
+                  label: 'Height',
+                  description: 'The hight of the iframe (in px) ',
+                },
+              ],
+            },
+            {
+              name: 'CloudinaryVideo',
+              label: 'Cloudinary Video',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'src',
+                  label: 'Cloudinary URL',
+                  description: 'Full URL with no file extension',
+                },
+              ],
+            },
+            {
+              name: 'ImageAndText',
+              label: 'Image and Text',
+              fields: [
+                {
+                  name: 'docText',
+                  label: 'docText',
+                  isBody: true,
+                  type: 'rich-text',
+                  description:
+                    'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
+                },
+                {
+                  name: 'image',
+                  label: 'image',
+                  type: 'image',
+                },
+              ],
+            },
+            {
+              name: 'SummaryTab',
+              label: 'Summary Tab',
+              fields: [
+                {
+                  name: 'heading',
+                  label: 'Heading',
+                  type: 'string',
+                  description:
+                    'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
+                },
+                {
+                  name: 'text',
+                  label: 'text',
+                  isBody: true,
+                  type: 'rich-text',
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -133,7 +293,7 @@ export const schema = defineSchema({
       name: 'post',
       label: 'Blog Posts',
       path: 'content/blog',
-      format: 'md',
+      format: 'mdx',
       fields: [
         {
           type: 'string',
@@ -207,6 +367,9 @@ export const schema = defineSchema({
                   name: 'body',
                   label: 'Body',
                   type: 'string',
+                  ui: {
+                    component: 'textarea',
+                  },
                 },
               ],
             },
@@ -219,7 +382,25 @@ export const schema = defineSchema({
                   name: 'embedSrc',
                   label: 'Embed URL',
                   description:
-                    'Looks like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                    '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'rich-text',
+                  name: 'request',
+                  label: 'Request',
+                  description: 'Paste GraphQL request code here.',
+                },
+                {
+                  type: 'rich-text',
+                  name: 'response',
+                  label: 'Response',
+                  description: 'Paste GraphQL response data here.',
                 },
               ],
             },
@@ -469,6 +650,55 @@ export const schema = defineSchema({
           ],
         },
       ],
+    },
+    {
+      name: 'meetingLinks',
+      label: 'Meeting Links',
+      path: 'content/meeting-links',
+      format: 'json',
+      fields: [
+        {
+          name: 'bookingCard',
+          label: 'Booking Card',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.name,
+            }),
+          },
+          fields: [
+            { name: 'name', label: 'Name', type: 'string' },
+            { name: 'description', label: 'Description', type: 'string' },
+            {
+              name: 'image',
+              label: 'Image',
+              type: 'image',
+              description: 'Image headshot for a meeting card',
+            },
+            {
+              name: 'url',
+              label: 'URL',
+              type: 'string',
+              description: 'URL to a meeting link (i.e HubSpot)',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'WhatsNewTinaCMS',
+      label: 'Whats new - TinaCMS',
+      path: 'content/whats-new-tinacms',
+      format: 'mdx',
+      fields: WhatsNewFields,
+    },
+    {
+      name: 'WhatsNewTinaCloud',
+      label: 'Whats new - TinaCloud',
+      path: 'content/whats-new-tinacloud',
+      format: 'mdx',
+      fields: WhatsNewFields,
     },
   ],
 })

@@ -1,4 +1,4 @@
-export * from './Actions'
+export * from './ActionsButton'
 export * from './Container'
 export * from './Divider'
 export * from './Features'

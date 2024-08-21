@@ -47,3 +47,8 @@ public/rss.xml
 /public/sitemap-0.xml
 
 tina/__generated__
+
+# script output
+scripts/content-auditor/auditor-found-files.txt
+scripts/content-auditor/auditor-responses.md
+scripts/content-auditor/content-auditor-prompt.txt

@@ -54,12 +54,12 @@ const NavTitle = ({
       : headerLevelClasses[headerLevel][selectedClass]
 
   return (
-    <a
+    <div
       className={`group flex items-center gap-1 transition duration-150 ease-out cursor-pointer hover:opacity-100 leading-tight pb-0.5 pl-4 ${classes}`}
       {...props}
     >
       {children}
-    </a>
+    </div>
   )
 }
 
@@ -248,7 +248,7 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
           docsLinks.map(({ id, href, label }) => {
             return (
               <DynamicLink key={id + href} href={href} passHref>
-                <a key={id}>{label}</a>
+                <div key={id}>{label}</div>
               </DynamicLink>
             )
           })}

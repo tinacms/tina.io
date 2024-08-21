@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "TinaCMS + Hugo: Enhance Your Workflow",
+    "description": "Bring the power of Markdown, shortcodes, and Git into your Hugo projects with TinaCMS. Experience a seamless, highly customizable content management solution."
+  },
   "blocks": [
     {
       "headline": "TinaCMS + Hugo = ❤️",
@@ -45,20 +49,17 @@
     {
       "headline": "Boost Your Hugo Project",
       "text": "Experience the benefits of TinaCMS for your Hugo workflow.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "TinaCMS + Hugo: Enhance Your Workflow",
-    "description": "Bring the power of Markdown, shortcodes, and Git into your Hugo projects with TinaCMS. Experience a seamless, highly customizable content management solution."
-  }
+  ]
 }

@@ -1,303 +1,275 @@
-import { RichTextWrapper } from '../layout/RichTextWrapper'
-import { Wrapper } from '../layout/Wrapper'
-import { Actions } from './Actions'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import RenderButton from 'utils/renderButtonArrayHelper'
+import {
+  FaClock,
+  FaUnlock,
+  FaCodeBranch,
+  FaCloudDownloadAlt,
+  FaPuzzlePiece,
+  FaMarkdown,
+  FaGithub,
+  FaFileAlt,
+} from 'react-icons/fa'
+import { AiOutlineUser } from 'react-icons/ai'
+import { BiBadge } from 'react-icons/bi'
+import { BiSupport } from 'react-icons/bi'
+import { AiOutlineUsergroupAdd } from 'react-icons/ai'
+import { CgCrown } from 'react-icons/cg'
+import { HiOutlineSparkles } from 'react-icons/hi2'
+import { TbPlugConnected } from 'react-icons/tb'
+import { SlLock } from 'react-icons/sl'
+import { FaStar } from 'react-icons/fa'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { useState } from 'react'
 
-const PricingCard = ({ data, single = false }) => {
-  if (!data) return null
+const icons = {
+  FaClock,
+  FaUnlock,
+  FaCodeBranch,
+  FaCloudDownloadAlt,
+  FaPuzzlePiece,
+  FaMarkdown,
+  FaGithub,
+  FaFileAlt,
+  AiOutlineUser,
+  BiBadge,
+  BiSupport,
+  AiOutlineUsergroupAdd,
+  CgCrown,
+  HiOutlineSparkles,
+  TbPlugConnected,
+  SlLock,
+}
 
+const pricingComponents = {
+  p: (props) => <p className="text-xl" {...props} />,
+  strong: (props) => <strong className="font-bold text-xl" {...props} />,
+}
+
+const FreeTier = ({ data }) => {
   return (
-    <>
-      <div className={`card ${single ? 'single' : 'grouped'}`}>
-        <div className="header">
-          <h3 className="title">{data.name}</h3>
-          {data.price ? (
-            <>
-              <span className="dotted"></span>
-              <h3 className="price !text-blue-800">
-                <span className="number">{data.price}</span>
-                {data.interval && (
-                  <span className="interval">{data.interval}</span>
-                )}
-              </h3>
-            </>
-          ) : (
-            <div className="price-placeholder"></div>
-          )}
-        </div>
-        <div className="body">
-          <div className="content">
-            {/* @ts-ignore */}
-            {data.body && <TinaMarkdown content={data.body} />}
+    <div
+      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105"
+      style={popInStyle}
+    >
+      {data.freeTier && (
+        <div className="flex flex-col sm:flex-row justify-between pb-2">
+          <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+            {data.freeTier.name}
+          </h2>
+          <div className="flex items-baseline mt-2 sm:mt-0">
+            <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+              {data.freeTier.price}
+            </h2>
+            <span className="text-lg ml-2 bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+              {data.freeTier.interval}
+            </span>
           </div>
-          {data.actions && <Actions items={data.actions} />}
+        </div>
+      )}
+      <div className="flex flex-col sm:flex-row justify-between">
+        <TinaMarkdown
+          content={data.freeTier.description}
+          components={pricingComponents}
+        />
+        <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
+          {data.freeTier.buttons &&
+            data.freeTier.buttons.map((button, index) => (
+              <RenderButton key={index} button={button} index={index} />
+            ))}
         </div>
       </div>
-      <style jsx>{`
-        .card {
-          flex: 1 1 auto;
-          width: 100%;
-          margin: 0 auto;
-          border: 1px solid var(--color-seafoam-300);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        .single {
-          border-radius: 0.75rem;
-          background: white;
-          max-width: 38rem;
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
-        }
-        .grouped {
-          box-shadow: inset 0 6px 24px rgba(0, 37, 91, 0.03),
-            inset 0 2px 4px rgba(0, 37, 91, 0.03);
-        }
-        .header {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 1rem;
-          line-height: 1.2;
-          background: linear-gradient(
-            to bottom right,
-            var(--color-seafoam-200),
-            var(--color-seafoam-100),
-            white
-          );
-          border-bottom: 1px solid var(--color-seafoam-300);
-          padding: 1.5rem 1.5rem;
-
-          @media (min-width: 1400px) {
-            padding: 1.5rem 2rem;
-          }
-        }
-        .title {
-          font-family: var(--font-tuner);
-          color: var(--color-orange);
-          font-size: 1.5rem;
-          flex: 0 0 auto;
-          margin: 0;
-        }
-        .price-placeholder {
-          flex: 1 1 auto;
-          min-width: 1px;
-          height: 56px;
-        }
-        .price {
-          height: 56px;
-          font-family: var(--font-tuner);
-          font-size: 1.5rem;
-          flex: 0 0 auto;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          item-align: center;
-          justify-content: center;
-          text-align: center;
-        }
-        .interval {
-          font-size: 0.75em;
-          color: var(--color-seaforam-500);
-        }
-        .body {
-          flex: 1 1 auto;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          color: var(--color-secondary);
-          padding: 1.75rem 1.5rem;
-
-          @media (min-width: 1400px) {
-            padding: 2.25rem 2rem;
-          }
-        }
-        .content {
-          :global(strong) {
-            opacity: 0.8;
-          }
-          :global(ul) {
-            margin: 0 0 1.5rem 0;
-            padding: 0;
-            list-style-type: none;
-          }
-          :global(li) {
-            position: relative;
-            margin: 0 0 0.5rem 0;
-            padding: 0 0 0 1.5rem;
-            &:before {
-              content: '';
-              position: absolute;
-              left: 0;
-              top: 0.6em;
-              width: 0.5em;
-              height: 0.5em;
-              border-radius: 100%;
-              background: var(--color-seafoam-400);
-            }
-          }
-          :global(p) {
-            font-size: 1.125rem;
-          }
-        }
-        .dotted {
-          border-top: none;
-          border-right: none;
-          border-left: none;
-          border-image: initial;
-          border-bottom: 5px dotted var(--color-seafoam-dark);
-          width: 100%;
-          max-width: 100%;
-          flex: 1 1 0;
-          display: block;
-          height: 0px;
-          margin: 0.5rem 0 0.5rem 0;
-        }
-      `}</style>
-    </>
+    </div>
   )
 }
 
-export function PricingBlock({ data, index }) {
+const PaidTier = ({ data }) => {
+  const [isAccordionOpen, setAccordionOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setAccordionOpen(!isAccordionOpen);
+  };
+
   return (
-    <>
-      <section key={index} className="section pricing">
-        <RichTextWrapper>
-          <Wrapper>
-            {data.intro && (
-              <div className="intro-text text-center">
-                <TinaMarkdown content={data.intro} />
-              </div>
-            )}
-            {data.base && <PricingCard data={data.base} single />}
-            <div className="segue"></div>
-          </Wrapper>
-          <div className="px-8 xl:px-12">
-            <div className="card-wrapper">
-              {data.plans &&
-                data.plans.map((plan, index) => (
-                  <PricingCard data={plan} key={index} />
-                ))}
-            </div>
+    <div
+      className="hover:bg-gradient-to-br from-transparent via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
+      style={popInStyle}
+    >
+      {data.isStarred && (
+        <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
+          <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
+          <FaStar className="text-lg text-white absolute -translate-x-5 translate-y-5" />
+        </div>
+      )}
+      <h2
+        className={`font-tuner text-3xl bg-gradient-to-br bg-clip-text text-transparent ${
+          data.isStarred
+            ? 'from-orange-400 via-orange-600 to-orange-800'
+            : 'from-blue-600 via-blue-800 to-blue-1000'
+        }`}
+      >
+        {data.name}
+      </h2>
+      <TinaMarkdown content={data.description} components={pricingComponents} />
+      <div className="pt-10">
+        <span className="text-3xl font-tuner bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+          {data.price}
+        </span>{' '}
+        {data.interval && (
+          <span className="pl-2 text-lg bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+            {data.interval}
+          </span>
+        )}
+      </div>
+      <div className="pt-6 flex">
+        {data.buttons &&
+          data.buttons.map((button, index) => (
+            <RenderButton key={index} button={button} index={index} />
+          ))}
+      </div>
+      <div className="pt-6">
+        <div className="accordion-content">
+          <div
+            className="flex justify-between items-center font-semibold cursor-pointer"
+            onClick={toggleAccordion}
+          >
+            <p className="flex text-xl items-center">Includes:</p>
+            <span className="ml-2">
+              {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
+            </span>
           </div>
-        </RichTextWrapper>
-      </section>
+          {isAccordionOpen && (
+            <div className="pl-2">
+              {data.cardItem &&
+                data.cardItem.map((item, index) => {
+                  const Icon = icons[item.icon];
+                  return (
+                    <div key={index} className="flex flex-col items-start mt-2">
+                      <div className="flex items-center">
+                        {Icon && <Icon className="mr-2" />}
+                        <span>{item.name}</span>
+                      </div>
+                      {item.description && (
+                        <div className="my-1 ml-5 text-sm text-gray-600/70">
+                          {item.description}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </div>
+        <div className="non-accordion-content">
+          <p className="font-semibold">Includes:</p>
+          <div className="pl-2">
+            {data.cardItem &&
+              data.cardItem.map((item, index) => {
+                const Icon = icons[item.icon];
+                return (
+                  <div key={index} className="flex flex-col items-start mt-2">
+                    <div className="flex items-center">
+                      {Icon && <Icon className="mr-2" />}
+                      <span>{item.name}</span>
+                    </div>
+                    {item.description && (
+                      <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        {item.description}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      </div>
+
       <style jsx>{`
-        .section {
-          padding: 3rem 0;
-
-          @media (min-width: 800px) {
-            padding: 5rem 0;
+        @media (min-width: 0px) and (max-width: 1250px) {
+          .accordion-content {
+            display: block;
+          }
+          .non-accordion-content {
+            display: none;
           }
         }
 
-        .seafoam {
-          background-color: var(--color-seafoam);
-          background: linear-gradient(
-            to bottom,
-            var(--color-seafoam-200) 8rem,
-            var(--color-seafoam-100)
-          );
-        }
-
-        .intro-text {
-          margin: 0 auto 4.5rem auto;
-          max-width: 40rem;
-
-          :global(p) {
-            &:first-of-type {
-              font-size: 1.5rem;
-            }
-
-            font-size: 1.25rem;
-            color: var(--color-secondary);
+        @media (min-width: 1250px) {
+          .accordion-content {
+            display: none;
           }
-        }
-        .faq-wrapper {
-          :global(h3) {
-            font-size: 2rem;
-            color: var(--color-secondary);
-            font-family: var(--font-tuner);
-          }
-          :global(p) {
-            &:first-of-type {
-              font-size: 1.5rem;
-              margin-bottom: 2.5rem;
-            }
-            color: var(--color-secondary);
-          }
-        }
-        .segue {
-          display: block;
-          border: none;
-          border-image: initial;
-          background: url('/svg/vr.svg');
-          background-position: center;
-          background-size: 100% auto;
-          background-repeat: no-repeat;
-          width: 7px;
-          height: 200px;
-          margin: 0 auto;
-        }
-
-        .card-wrapper {
-          display: flex;
-          width: 100%;
-          overflow: hidden;
-          border-radius: 0.75rem;
-          box-shadow: 0 6px 24px rgba(0, 37, 91, 0.05),
-            0 2px 4px rgba(0, 37, 91, 0.03);
-          background: white;
-          max-width: 152rem;
-          margin: 0 auto 4rem auto
-
-          :global(> *) {
-            box-shadow: none;
-          }
-
-          @media (max-width: 1099px) {
-            max-width: 40rem;
-            margin: 0 auto;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: stretch;
-
-            :global(> *) {
-              &:not(:last-child) {
-                border-bottom-right-radius: 0;
-                border-bottom-left-radius: 0;
-                border-bottom: none;
-              }
-              &:not(:first-child) {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
-              }
-            }
-          }
-
-          @media (min-width: 1100px) {
-            flex-direction: row;
-            align-items: stretch;
-            justify-content: space-between;
-
-            :global(> *) {
-              &:not(:last-child) {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                border-right: none;
-              }
-              &:not(:first-child) {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-              }
-            }
+          .non-accordion-content {
+            display: block;
           }
         }
       `}</style>
-    </>
+    </div>
+  );
+};
+
+export function PricingBlock({ data }) {
+  return (
+    <div className="p-6">
+      <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
+        <h1
+          className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
+          style={popInStyle}
+        >
+          {data.headline}
+        </h1>
+        <div className="py-2 max-w-4xl mx-auto flex justify-center">
+          {/* <FreeTier data={data} /> */}
+        </div>
+        <div className="pt-10 px-4 pb-6 text-center">
+          <TinaMarkdown content={data.intro} components={pricingComponents} />
+        </div>
+        <div className="responsive-grid">
+          {data.plans &&
+            data.plans.map((plan, index) => (
+              <div key={index} className="flex flex-col">
+                <PaidTier data={plan} />
+              </div>
+            ))}
+        </div>
+      </div>
+      
+      <style jsx global>{`
+        @keyframes popIn {
+           0% {
+            opacity: 0;
+            transform: scale(0.75);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
+
+      <style jsx>{`
+        .responsive-grid {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1rem;
+          grid-auto-rows: min-content;
+        }
+
+        @media (min-width: 768px) {
+          .responsive-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 1250px) {
+          .responsive-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+      `}</style>
+    </div>
   )
+}
+
+const popInStyle = {
+  animation: 'popIn 0.5s ease-out forwards',
 }
