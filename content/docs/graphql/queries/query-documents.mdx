@@ -1,16 +1,50 @@
 ---
 id: /docs/graphql/queries/query-documents
-
 title: Querying a List of Documents
+last_edited: '2024-08-15T02:22:39.588Z'
 ---
 
 Tina's list queries implement the [cursor-based Relay specification](https://relay.dev/graphql/connections.htm). Collection lists can be queried with `<collection>Connection`.
 
 ## Example
 
-Here we will query our `post` collection with `postConnection`
+Here we will query our `post` collection with `postConnection`.
 
-<Iframe
-  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"
-  height={400}
+<GraphQLCodeBlock
+  query="{
+  ##postConnection#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
 />
