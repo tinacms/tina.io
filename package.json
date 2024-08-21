@@ -43,6 +43,7 @@
     "@vercel/postgres": "^0.5.1",
     "airtable": "^0.9.0",
     "algoliasearch": "^4.0.0",
+    "autoprefixer": "^10.4.20",
     "axios": "^0.21.2",
     "btoa": "^1.2.1",
     "dotenv": "^8.2.0",
