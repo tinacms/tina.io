@@ -13855,11 +13855,6 @@ react-use-measure@^2.1.1:
   dependencies:
     debounce "^1.2.1"
 
-react-use-size@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/react-use-size/-/react-use-size-3.0.1.tgz"
-  integrity sha512-pkO/UIqeWQTS0NVbgh/FrHkWDqkQnaOQfd+6Hj6w9SewiP3CtqcW3rbfDktvwl6vDtz/a+/0rP/e3tJyFT0RAQ==
-
 react@^18.2.0, react@^18.3.1:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
