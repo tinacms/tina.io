@@ -34,6 +34,8 @@ import { verticalCardsTemplate } from '../components/blocks/VerticalCards.templa
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+import { submenuTemplate } from '../components/toc/toc-submenu.template'
+import { itemTemplate } from '../components/toc/toc-item.template'
 
 const WhatsNewFields: TinaField[] = [{ name: 'versionNumber', label: 'Version Number', type: 'string' },
 { name: 'dateReleased', label: 'Date Released', type: 'datetime'},
@@ -637,6 +639,38 @@ export const schema = defineSchema({
       path: 'content/whats-new-tinacloud',
       format: 'mdx',
       fields: WhatsNewFields ,
-    }
+    },
+    {
+      name: 'docsTableOfContents',
+      label: 'Docs Table of Contents',
+      path: 'content/docs-toc',
+      format: 'json',
+      fields: [
+        {
+          name: 'supermenuGroup',
+          label: 'Supermenu Group',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: '🗂️ ' + (item?.name ?? "Unnamed Menu Group") };
+            },
+          },
+          fields: [
+            {name: 'name', label: "Name", type: 'string'},
+            {
+              name: 'itemOrSubmenuGroup',
+              label: 'Page or Submenu',
+              type: 'object',
+              list: true,
+              templates: [
+                submenuTemplate as Template,
+                itemTemplate as Template
+              ]
+            }
+          ]
+        },
+      ]
+    },
   ],
 })

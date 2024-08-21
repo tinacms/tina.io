@@ -1,0 +1,871 @@
+{
+  "supermenuGroup": [
+    {
+      "name": "Introduction",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "content/docs/index.mdx",
+          "page": "Overview",
+          "_template": "item"
+        },
+        {
+          "name": "content/docs/product-tour.mdx",
+          "page": "Introduction To TinaCMS",
+          "_template": "item"
+        },
+        {
+          "name": "Getting Started",
+          "submenuItems": [
+            {
+              "name": "content/docs/setup-overview.mdx",
+              "page": "Overview",
+              "_template": "item"
+            },
+            {
+              "name": "content/docs/introduction/using-starter.mdx",
+              "page": "Using a Starter",
+              "_template": "item"
+            },
+            {
+              "name": "Framework-Specific Guides",
+              "submenuItems": [
+                {
+                  "name": "Next.js",
+                  "submenuItems": [
+                    {
+                      "name": "Overview",
+                      "page": "content/docs/frameworks/next/overview.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "App Router",
+                      "page": "content/docs/frameworks/next/app-router.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "Pages Router",
+                      "page": "content/docs/frameworks/next/pages-router.mdx",
+                      "_template": "item"
+                    }
+                  ],
+                  "_template": "submenu"
+                },
+                {
+                  "name": "content/docs/frameworks/astro.mdx",
+                  "page": "Astro",
+                  "_template": "item"
+                },
+                {
+                  "name": "content/docs/frameworks/hugo.mdx",
+                  "page": "Hugo",
+                  "_template": "item"
+                },
+                {
+                  "name": "content/docs/frameworks/gatsby.mdx",
+                  "page": "Gatsby",
+                  "_template": "item"
+                },
+                {
+                  "name": "content/docs/frameworks/jekyll.mdx",
+                  "page": "Jekyll",
+                  "_template": "item"
+                },
+                {
+                  "name": "content/docs/frameworks/remix.mdx",
+                  "page": "Remix",
+                  "_template": "item"
+                },
+                {
+                  "name": "content/docs/frameworks/11ty.mdx",
+                  "page": "11ty",
+                  "_template": "item"
+                },
+                {
+                  "name": "content/docs/frameworks/other.mdx",
+                  "page": "Other",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            }
+          ],
+          "_template": "submenu"
+        },
+        {
+          "name": "content/docs/using-tina-editor.mdx",
+          "page": "Using the Tina Editor",
+          "_template": "item"
+        },
+        {
+          "name": "content/docs/introduction/faq.mdx",
+          "page": "FAQ",
+          "_template": "item"
+        }
+      ]
+    },
+    {
+      "name": "Core Concepts",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Content Modeling.mdx",
+          "page": "content/docs/schema",
+          "_template": "item"
+        },
+        {
+          "name": "Data Fetching",
+          "page": "content/docs/features/data-fetching.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Visual Editing",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/contextual-editing/overview.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "React",
+              "page": "content/docs/contextual-editing/react.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Vue",
+              "page": "content/docs/contextual-editing/vue.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Setting up the Router",
+              "page": "content/docs/contextual-editing/router.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "submenu"
+        }
+      ]
+    },
+    {
+      "name": "Querying Content",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Overview",
+          "page": "content/docs/data-fetching/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Writing custom queries",
+          "page": "content/docs/data-fetching/custom-queries.mdx",
+          "_template": "item"
+        }
+      ]
+    },
+    {
+      "name": "Editing",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Overview",
+          "page": "content/docs/editing/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Markdown & MDX",
+          "page": "content/docs/editing/markdown.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Block-based editing",
+          "page": "content/docs/editing/blocks.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Single Document Collections",
+          "page": "content/docs/editing/single-document-collections.mdx",
+          "_template": "item"
+        }
+      ]
+    },
+    {
+      "name": "Customizing Tina",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Overview",
+          "page": "content/docs/extending-tina/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Validation",
+          "page": "content/docs/extending-tina/validation.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Custom Field Components",
+          "page": "content/docs/extending-tina/custom-field-components.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Custom List Rendering",
+          "page": "content/docs/extending-tina/customize-list-ui.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Format and Parse Input",
+          "page": "content/docs/extending-tina/format-and-parse.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Filename Customization",
+          "page": "content/docs/extending-tina/filename-customization.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Before Submit function",
+          "page": "content/docs/extending-tina/before-submit.mdx",
+          "_template": "item"
+        }
+      ]
+    },
+    {
+      "name": "Going To Production",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Overview",
+          "page": "content/docs/tina-cloud.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Tina Cloud",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/tina-cloud/overview.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "The Dashboard",
+              "submenuItems": [
+                {
+                  "name": "Overview",
+                  "page": "content/docs/tina-cloud/dashboard.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Registration",
+                  "page": "content/docs/tina-cloud/dashboard/registration.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Projects",
+                  "submenuItems": [
+                    {
+                      "name": "Overview",
+                      "page": "content/docs/tina-cloud/dashboard/projects.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "Project Collaborators",
+                      "page": "content/docs/tina-cloud/dashboard/users.mdx",
+                      "_template": "item"
+                    }
+                  ],
+                  "_template": "submenu"
+                },
+                {
+                  "name": "Organizations",
+                  "page": "content/docs/tina-cloud/dashboard/organizations.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Deployment Options",
+              "submenuItems": [
+                {
+                  "name": "Vercel",
+                  "page": "content/docs/tina-cloud/deployment-options/vercel.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Netlify",
+                  "page": "content/docs/tina-cloud/deployment-options/netlify.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Github Pages",
+                  "page": "content/docs/tina-cloud/deployment-options/github-pages.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "API Versioning",
+              "page": "content/docs/tina-cloud/api-versioning.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "submenu"
+        },
+        {
+          "name": "Self-Hosted",
+          "submenuItems": [
+            {
+              "name": "Introduction",
+              "page": "content/docs/self-hosted/overview.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Getting Started",
+              "submenuItems": [
+                {
+                  "name": "Deploy a (Next.js) Example Site",
+                  "page": "content/docs/self-hosted/starters/nextjs-vercel.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "CLI Quick Start on an Existing site (Next.js only)",
+                  "page": "content/docs/self-hosted/existing-site.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Manual Setup (Agnostic)",
+                  "page": "content/docs/self-hosted/manual-setup.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Migrating From Tina Cloud",
+                  "page": "content/docs/self-hosted/migrating-from-tina-cloud.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Querying Content",
+              "page": "content/docs/self-hosted/querying-data.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "User Management",
+              "page": "content/docs/self-hosted/user-management.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "submenu"
+        }
+      ]
+    },
+    {
+      "name": "Drafts",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Overview",
+          "page": "content/docs/drafts/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Draft Fields",
+          "page": "content/docs/drafts/drafts-fields.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Editorial Workflow",
+          "page": "content/docs/drafts/editorial-workflow.mdx",
+          "_template": "item"
+        }
+      ]
+    },
+    {
+      "name": "Guides",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Overview",
+          "page": "content/docs/guides.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Framework Guides",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/integration/frameworks.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "NextJS",
+              "submenuItems": [
+                {
+                  "name": "Querying Tina Content in NextJS",
+                  "page": "content/docs/guides/nextjs-data-fetching.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Internationalization with NextJS+Tina",
+                  "page": "content/docs/guides/nextjs-internationalization.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Using Drafts with Visual Editing",
+                  "page": "content/docs/guides/contextual-drafts.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Docusaurus",
+              "page": "content/docs/guides/docusaurus.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "submenu"
+        },
+        {
+          "name": "Separate Content Repo",
+          "page": "content/docs/guides/separate-content-repo.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Querying Tina Content at Runtime",
+          "page": "content/docs/guides/react-data-fetching.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Internationalization",
+          "page": "content/docs/guides/internationalization.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Migrating From Forestry",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/forestry/overview.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Setting up Tina",
+              "page": "content/docs/forestry/migrate.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Common Errors & Fixes when Migrating to TinaCMS",
+              "page": "content/docs/forestry/common-errors.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Comparing Forestry & Tina Concepts",
+              "submenuItems": [
+                {
+                  "name": "Accessing the CMS",
+                  "page": "content/docs/forestry/accessing-cms.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Local Workflow",
+                  "page": "content/docs/forestry/local-workflow.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Previews",
+                  "page": "content/docs/forestry/previews.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Content Modelling",
+                  "page": "content/docs/forestry/content-modelling.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Drafts",
+                  "page": "content/docs/forestry/drafts.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Data Files",
+                  "page": "content/docs/forestry/data-files.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Media",
+                  "page": "content/docs/forestry/media.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Missing Forestry Features",
+              "page": "content/docs/forestry/missing-forestry-features.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "submenu"
+        }
+      ]
+    },
+    {
+      "name": "Further Reference",
+      "itemOrSubmenuGroup": [
+        {
+          "name": "Overview",
+          "page": "content/docs/reference/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Config",
+          "page": "content/docs/reference/config.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Schema",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/reference/schema.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Collections",
+              "page": "content/docs/reference/collections.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Fields",
+              "page": "content/docs/reference/fields.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Templates",
+              "page": "content/docs/reference/templates.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Field Types",
+              "submenuItems": [
+                {
+                  "name": "Overview",
+                  "page": "content/docs/reference/types.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "string",
+                  "page": "content/docs/reference/types/string.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "number",
+                  "page": "content/docs/reference/types/number.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "datetime",
+                  "page": "content/docs/reference/types/datetime.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "boolean",
+                  "page": "content/docs/reference/types/boolean.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "image",
+                  "page": "content/docs/reference/types/image.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "reference",
+                  "page": "content/docs/reference/types/reference.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "object",
+                  "page": "content/docs/reference/types/object.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "rich-text",
+                  "page": "content/docs/reference/types/rich-text.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            }
+          ],
+          "_template": "submenu"
+        },
+        {
+          "name": "The \"tina\" folder",
+          "page": "content/docs/tina-folder/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "The TinaCMS CLI",
+          "page": "content/docs/cli-overview.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Media",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/reference/media/overview.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Repo-based Media",
+              "page": "content/docs/reference/media/repo-based.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "External Media Providers",
+              "submenuItems": [
+                {
+                  "name": "Setting up Authentication",
+                  "page": "content/docs/reference/media/external/authentication.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Cloudinary",
+                  "page": "content/docs/reference/media/external/cloudinary.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Digital Ocean Spaces",
+                  "page": "content/docs/reference/media/external/do-spaces.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "AWS S3 Bucket",
+                  "page": "content/docs/reference/media/external/s3.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            }
+          ],
+          "_template": "submenu"
+        },
+        {
+          "name": "Search",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/reference/search/overview.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "submenu"
+        },
+        {
+          "name": "Content API",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/graphql/overview.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Running the Local GraphQL API",
+              "page": "content/docs/graphql/cli.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Querying the API",
+              "submenuItems": [
+                {
+                  "name": "Overview",
+                  "page": "content/docs/graphql/queries.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Getting a Single Document",
+                  "page": "content/docs/graphql/queries/get-document.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Querying a List of Documents",
+                  "submenuItems": [
+                    {
+                      "name": "Overview",
+                      "page": "content/docs/graphql/queries/query-documents.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "Filtering",
+                      "page": "content/docs/graphql/queries/advanced/filter-documents.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "Sorting",
+                      "page": "content/docs/graphql/queries/advanced/sorting.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "Paginating",
+                      "page": "content/docs/graphql/queries/advanced/pagination.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "Performance",
+                      "page": "content/docs/graphql/queries/advanced/performance.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "name": "Limitations",
+                      "page": "content/docs/graphql/queries/advanced/limitations.mdx",
+                      "_template": "item"
+                    }
+                  ],
+                  "_template": "submenu"
+                },
+                {
+                  "name": "Updating a Document",
+                  "page": "content/docs/graphql/queries/update-document.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Adding a Document",
+                  "page": "content/docs/graphql/queries/add-document.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Using Curl & Fetch",
+              "page": "content/docs/reference/content-api/content-delivery.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Data Layer",
+              "page": "content/docs/reference/content-api/data-layer.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "submenu"
+        },
+        {
+          "name": "Tina's edit state",
+          "page": "content/docs/extending-tina/edit-state.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "The \"tinaField\" helper",
+          "page": "content/docs/contextual-editing/tinafield.mdx",
+          "_template": "item"
+        },
+        {
+          "name": "Self-Hosted Components",
+          "submenuItems": [
+            {
+              "name": "Overview",
+              "page": "content/docs/reference/self-hosted/overview.mdx",
+              "_template": "item"
+            },
+            {
+              "name": "Backend Host",
+              "submenuItems": [
+                {
+                  "name": "Next.js",
+                  "page": "content/docs/reference/self-hosted/tina-backend/nextjs.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Vercel Serverless Functions",
+                  "page": "content/docs/reference/self-hosted/tina-backend/vercel-functions.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Netlify Functions",
+                  "page": "content/docs/reference/self-hosted/tina-backend/netlify-functions.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Git Provider",
+              "submenuItems": [
+                {
+                  "name": "Overview",
+                  "page": "content/docs/reference/self-hosted/git-provider/overview.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "GitHub",
+                  "page": "content/docs/reference/self-hosted/git-provider/github.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Bring Your Own Git Provider",
+                  "page": "content/docs/reference/self-hosted/git-provider/make-your-own.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Database Adapter",
+              "submenuItems": [
+                {
+                  "name": "Overview",
+                  "page": "content/docs/reference/self-hosted/database-adapter/overview.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Vercel KV",
+                  "page": "content/docs/reference/self-hosted/database-adapter/vercel-kv.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Mongo DB",
+                  "page": "content/docs/reference/self-hosted/database-adapter/mongodb.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Bring Your Own  Database Adapter",
+                  "page": "content/docs/reference/self-hosted/database-adapter/make-your-own.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            },
+            {
+              "name": "Auth Provider",
+              "submenuItems": [
+                {
+                  "name": "Overview",
+                  "page": "content/docs/reference/self-hosted/auth-provider/overview.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Default (Auth.js)",
+                  "page": "content/docs/reference/self-hosted/auth-provider/authjs.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Tina Cloud",
+                  "page": "content/docs/reference/self-hosted/auth-provider/tina-cloud.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Clerk",
+                  "page": "content/docs/reference/self-hosted/auth-provider/clerk-auth.mdx",
+                  "_template": "item"
+                },
+                {
+                  "name": "Bring Your Own Auth",
+                  "page": "content/docs/reference/self-hosted/auth-provider/bring-your-own.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "submenu"
+            }
+          ],
+          "_template": "submenu"
+        }
+      ]
+    }
+  ]
+}
