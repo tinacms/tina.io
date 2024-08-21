@@ -188,10 +188,8 @@ const PaidTier = ({ data }) => {
   )
 }
 export function PricingBlock({ data }) {
-  console.log(data.intro)
   return (
     <div className="p-6">
-      <style>{style}</style>
       <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
         <h1
           className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
@@ -205,7 +203,7 @@ export function PricingBlock({ data }) {
         <div className="pt-10 px-4 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
         </div>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 auto-rows-min">
+        <div className="responsive-grid">
           {data.plans &&
             data.plans.map((plan, index) => (
               <div key={index} className="flex flex-col">
@@ -214,9 +212,32 @@ export function PricingBlock({ data }) {
             ))}
         </div>
       </div>
+      
+      <style jsx>{`
+        .responsive-grid {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1rem;
+          grid-auto-rows: min-content;
+        }
+
+        @media (min-width: 768px) {
+          .responsive-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 1250px) {
+          .responsive-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+      `}</style>
     </div>
   )
 }
+
+
 
 const popInStyle = {
   animation: 'popIn 0.5s ease-out forwards',
