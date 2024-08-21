@@ -233,6 +233,19 @@ export function PricingBlock({ data }) {
         </div>
       </div>
       
+      <style jsx global>{`
+        @keyframes popIn {
+           0% {
+            opacity: 0;
+            transform: scale(0.75);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
+
       <style jsx>{`
         .responsive-grid {
           display: grid;
@@ -257,21 +270,6 @@ export function PricingBlock({ data }) {
   )
 }
 
-
-
 const popInStyle = {
   animation: 'popIn 0.5s ease-out forwards',
 }
-
-const style = `
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.75);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-`
