@@ -70,7 +70,7 @@ const Card = ({ cardItem, onHover }) => {
   );
 };
 
-const VerticalCardsBlock = ({ data, index }) => {
+const EventsBlock = ({ data, index }) => {
   const [activeGlobeId, setActiveGlobeId] = useState(null);
   const [isGlobeVisible, setIsGlobeVisible] = useState(false);
   const globeContainerRef = useRef(null);
@@ -81,7 +81,8 @@ const VerticalCardsBlock = ({ data, index }) => {
     cardItem.index = idx;
   });
 
-  useEffect(() => {
+  useEffect(() => {   
+    //TODO: We are not sure why but without this the lazy loading gets hydration errors 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -126,4 +127,4 @@ const VerticalCardsBlock = ({ data, index }) => {
   );
 };
 
-export { VerticalCardsBlock };
+export { EventsBlock as VerticalCardsBlock };

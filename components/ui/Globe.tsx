@@ -51,7 +51,6 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
 
 const Marker = ({ index, isActive, chunkyLlamaObject, greyLlamaObject }) => {
   const ref = useRef<THREE.Group>(null)
-  const { camera } = useThree()
   const vec = new THREE.Vector3()
   const center = new THREE.Vector3(0, 0, 0)
 
