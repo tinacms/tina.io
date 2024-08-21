@@ -145,12 +145,12 @@ const PaidTier = ({ data }) => {
                   const Icon = icons[item.icon];
                   return (
                     <div key={index} className="flex flex-col items-start mt-2">
-                      <div className="flex items-center">
+                      <div className="flex items-center text-lg">
                         {Icon && <Icon className="mr-2" />}
                         <span>{item.name}</span>
                       </div>
                       {item.description && (
-                        <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        <div className="my-1 ml-5 text-md text-gray-600/70">
                           {item.description}
                         </div>
                       )}
