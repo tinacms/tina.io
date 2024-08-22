@@ -1,4 +1,6 @@
 import { Template } from 'tinacms'
+import { wrapFieldsWithMeta } from 'tinacms';
+import IconSelector from './IconSelector';
 
 export const iconBannerTemplate: Template = {
     label: 'Icon Ribbon Component',
@@ -37,43 +39,10 @@ export const iconBannerTemplate: Template = {
                             name: 'icon',
                             label: 'Icon',
                             type: 'string',
-                            options: [
-                                {
-                                    label: 'GitHub',
-                                    value: 'githubCircleIcon'
-                                },
-                                {
-                                    label: 'Database',
-                                    value: 'DatabaseIcon'
-                                },
-                                {
-                                    label: 'Branch',
-                                    value: 'SourceBranchIcon'
-                                },
-                                {
-                                    label: 'Desktop',
-                                    value: 'DesktopMacIcon'
-                                },
-                                {
-                                    label: 'Open Lock',
-                                    value: 'LockOpenIcon'
-                                },
-                                {
-                                    label: 'Open Lock',
-                                    value: 'LockOpenIcon'
-                                },
-                                {
-                                    label: 'Cursor',
-                                    value: 'CursorDefaultIcon'
-                                },
-                                {
-                                    label: 'Clock',
-                                    value: 'ClockIcon'
-                                },
-                            ],
+                            description: "Can't find the icon you want? ask a developer to add it",
                             ui: {
-                                component: 'select'
-                            }
+                                component: wrapFieldsWithMeta(IconSelector),
+                            },
                         },
                     ]
                 },

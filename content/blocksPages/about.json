@@ -23,13 +23,53 @@
     {
       "iconColumn": [
         {
-          "heading": "Built for Creators"
+          "heading": "Built for Creators",
+          "iconList": [
+            {
+              "name": "Best Version History",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "Own Your Content",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Sharable Drafts",
+              "icon": "FaCodeBranch"
+            },
+            {
+              "name": "Drag-and-Drop Interface",
+              "icon": "FaCloudDownloadAlt"
+            },
+            {
+              "name": "Real-time Visual Editing",
+              "icon": "FaClock"
+            }
+          ]
         },
         {
           "heading": "Loved by Devs",
           "iconList": [
-            {},
-            {}
+            {
+              "name": "Local Development",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "Fully Open Source",
+              "icon": "AiOutlineUsergroupAdd"
+            },
+            {
+              "name": "Git Version Control",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "GitHub Integration",
+              "icon": "AiOutlineUser"
+            },
+            {
+              "name": "Database-Free",
+              "icon": "FaCloudDownloadAlt"
+            }
           ]
         }
       ],
