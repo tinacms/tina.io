@@ -4,7 +4,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { Components } from 'tinacms/dist/rich-text'
 
 const TextAndMediaColumnsComponent = ({ data }) => {
-    const { mediaColumnItem, body } = data || {}
+    const { mediaColumnItem, body, leftVideo } = data || {}
 
     const typenames = {
         cloudinary: 'PageBlocksTextMediaColumnComponentMediaColumnItemCloudinaryMediaComponent',
@@ -24,16 +24,19 @@ const TextAndMediaColumnsComponent = ({ data }) => {
         </>
     }
 
+    const videoComponent = <div className="my-auto lg:col-span-4">
+        {VideoGridComponent({ data: { mediaItem: mediaColumnItem, typenames } })}
+    </div>
+
     return (
-        <div className="md:px-8 xl:px-8 lg:px-8 px-3 max-w-screen-xl mx-auto pb-4 pt-16 w-full">
-            <div className="lg:grid lg:grid-cols-2 mx-auto pb-16">
-                <div className="pb-12 lg:pb-0 mx-6 md:mx-16 lg:mx-30 my-auto relative bottom-5">
+        <div className="px-3 max-w-screen-xl mx-auto pb-4 pt-16 w-full">
+            <div className="lg:grid lg:grid-cols-7 mx-auto pb-16">
+                {leftVideo && videoComponent}
+                <div className="lg:col-span-3 pb-12 lg:pb-0 mx-6 md:mx-16 lg:mx-30 my-auto relative bottom-5">
                     {body && <TinaMarkdown content={body} components={components}/>}
                     
                 </div>
-                <div className="my-auto">
-                    {VideoGridComponent({ data: { mediaItem: mediaColumnItem, typenames } })}
-                </div>
+                {!leftVideo && videoComponent}
             </div>
         </div>
     )

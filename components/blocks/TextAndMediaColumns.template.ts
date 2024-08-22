@@ -6,6 +6,7 @@ export const textAndMediaColumnsComponentTemplate: Template = {
     label: 'Text and Media Column Component',
     name: 'textMediaColumnComponent',
     fields: [
+        { name: 'leftVideo', label: 'Video on Left?', type: 'boolean', ui: {component: 'toggle'}},
         { name: 'body', label: 'Body', type: 'rich-text', isBody: true},
         {
             name: 'mediaColumnItem',

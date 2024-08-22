@@ -11,6 +11,7 @@
       "_template": "hero"
     },
     {
+      "leftVideo": false,
       "body": "###### Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
       "mediaColumnItem": [
         {
@@ -76,6 +77,7 @@
       "_template": "iconBanner"
     },
     {
+      "leftVideo": true,
       "body": "###### Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
       "mediaColumnItem": [
         {
