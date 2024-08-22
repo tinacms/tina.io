@@ -53,17 +53,17 @@ const IconBannerComponent = ({ data }) => {
     // }
 
     return (
-        <div className="h-fit lg:py-16 lg:my-8 bg-gradient-to-r from-orange-400 to-orange-600 w-screen">
-            <div className="flex justify-center lg:gap-36">
+        <div className="h-fit lg:py-16 md:py-8 lg:my-8 bg-gradient-to-r from-orange-400 to-orange-600 w-screen">
+            <div className="md:flex justify-center lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0">
                 {Array.isArray(iconColumn) && iconColumn.map((item, index) => {
-                    return <div className="text-start grid grid-cols-1" key={`iconColumn-${index}`}>
-                        <h4 className="font-tuner text-3xl mb-4 text-white">{item.heading}</h4>
+                    return <div className="text-start grid grid-cols-1 my-16 md:my-0" key={`iconColumn-${index}`}>
+                        <h4 className="font-tuner text-2xl md:text-3xl mb-4 text-white">{item.heading}</h4>
                         {Array.isArray(item.iconList) && item.iconList.map((iconItem, iconIndex) => 
                         {
                             const Icon = icons[iconItem.icon];
                             return <div className="flex mb-4" key={`iconColumns-${index}-${iconIndex}`}>
                                 {Icon && <Icon className="text-3xl mx-2 text-white inline" />}
-                                    <span className="font-inter text-xl text-white">{iconItem.name}</span>
+                                    <span className="font-inter text-lg md:text-xl text-white">{iconItem.name}</span>
                             </div>
                         })}
                     </div>

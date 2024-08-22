@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { FaYoutube } from 'react-icons/fa'
 
 const VideoGridComponent = ({ data }) => {
-  const {mediaItem, typenames} = data || {}
+  const {mediaItem, typenames, mobileMaxHeight} = data || {}
 
   const [isPlayingArray, setIsPlayingArray] = useState(
     Array.isArray(mediaItem) ? mediaItem.map(() => false) : []

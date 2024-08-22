@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-const imageCellSizing = "hidden lg:flex flex-nowrap align-bottom justify-center h-50 md:h-64 lg:h-72 relative";
+const imageCellSizing = "lg:flex flex-nowrap align-bottom justify-center h-64 lg:h-72 relative";
 
 export const ImageRowComponent = ({ data }) => {
     const { backdrop, leftFig, rightFig, centerFig, llama, leftScreen, rightScreen } = data || {}
@@ -16,7 +16,7 @@ export const ImageRowComponent = ({ data }) => {
             </div>
         }
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
-            <div className={imageCellSizing}>
+            <div className={`${imageCellSizing} hidden`}>
                 {leftFig && <img
                     src={leftFig}
                     alt="content creator"
@@ -28,7 +28,7 @@ export const ImageRowComponent = ({ data }) => {
                     className="mb-auto mt-10 h-[35%] mr-auto"
                 />}
             </div>
-            <div className={imageCellSizing}>
+            <div className={`${imageCellSizing} flex w-full`}>
                 {centerFig && <img
                     src={centerFig}
                     alt="creator developer signpost"
@@ -40,7 +40,7 @@ export const ImageRowComponent = ({ data }) => {
                     className="mt-auto h-[85%] mr-8"
                 />}
             </div>
-            <div className={imageCellSizing}>
+            <div className={`${imageCellSizing} hidden`}>
                 {rightScreen && <img
                     src={rightScreen}
                     alt="npx command UI"
