@@ -61,7 +61,7 @@ const IconBannerComponent = ({ data }) => {
                         {
                             const Icon = icons[iconItem.icon];
                             return <div className="flex mb-4" key={`iconColumns-${index}-${iconIndex}`}>
-                                {Icon && <Icon className="text-3xl mx-2 text-white inline" />}
+                                {Icon && <Icon className="text-3xl mr-2 text-white inline" />}
                                     <span className="font-inter text-lg md:text-xl text-white">{iconItem.name}</span>
                             </div>
                         })}
