@@ -8,6 +8,12 @@ import {
     FaMarkdown,
     FaGithub,
     FaFileAlt,
+    FaHandPointer,
+    FaDatabase,
+    FaShare,
+    FaDesktop,
+    FaLockOpen
+
 } from 'react-icons/fa'
 import { AiOutlineUser } from 'react-icons/ai'
 import { BiBadge } from 'react-icons/bi'
@@ -35,22 +41,15 @@ const icons = {
     HiOutlineSparkles,
     TbPlugConnected,
     SlLock,
+    FaDatabase,
+    FaShare,
+    FaDesktop,
+    FaLockOpen,
+    FaHandPointer
 }
 
 const IconBannerComponent = ({ data }) => {
     const { iconColumn } = data || {}
-
-
-    // const components: Components<{}> = {
-    //     p: (props) => <>
-    //         {props.children.props.content.map(content => <p className="text-lg lg:text-xl"> {content.text} </p>)}
-    //         <br />
-    //     </>,
-    //     h6: (props) => <>
-    //         {props.children.props.content.map(content => <h6 className="font-tuner text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent"> {content.text} </h6>)}
-    //         <br />
-    //     </>
-    // }
 
     return (
         <div className="h-fit lg:py-16 md:py-8 lg:my-8 bg-gradient-to-r from-orange-400 to-orange-600 w-screen">

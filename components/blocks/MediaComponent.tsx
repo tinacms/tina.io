@@ -49,7 +49,7 @@ const VideoGridComponent = ({ data }) => {
                 src={media.media}
                 controls
                 autoPlay
-                className="object-cover rounded-lg"
+                className="object-cover rounded-lg *:"
                 style={{ width: '100%', height: '100%' }}
               />
             ) : (

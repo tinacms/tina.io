@@ -21,7 +21,7 @@
       "body": "###### Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
       "mediaColumnItem": [
         {
-          "embedUrl": "https://www.youtube.com/embed/eCrEg89fsN0?si=S_1Ke9Hr8ZpXdUiG",
+          "embedUrl": "https://www.youtube.com/embed/4B7b6-bfWYI?si=vzakrDeab_QfZzQj",
           "_template": "youtubeMedia"
         }
       ],
@@ -33,24 +33,24 @@
           "heading": "Built for Creators",
           "iconList": [
             {
-              "name": "Best Version History",
-              "icon": "CgCrown"
-            },
-            {
-              "name": "Own Your Content",
-              "icon": "BiBadge"
-            },
-            {
-              "name": "Sharable Drafts",
-              "icon": "FaCodeBranch"
+              "name": "Real-time Visual Editing",
+              "icon": "FaClock"
             },
             {
               "name": "Drag-and-Drop Interface",
-              "icon": "FaCloudDownloadAlt"
+              "icon": "FaHandPointer"
             },
             {
-              "name": "Real-time Visual Editing",
-              "icon": "FaClock"
+              "name": "Sharable Drafts",
+              "icon": "FaShare"
+            },
+            {
+              "name": "Own Your Content",
+              "icon": "FaDatabase"
+            },
+            {
+              "name": "Best Version History",
+              "icon": "FaGithub"
             }
           ]
         },
@@ -58,24 +58,24 @@
           "heading": "Loved by Devs",
           "iconList": [
             {
-              "name": "Local Development",
-              "icon": "CgCrown"
-            },
-            {
-              "name": "Fully Open Source",
-              "icon": "AiOutlineUsergroupAdd"
+              "name": "GitHub Integration",
+              "icon": "FaGithub"
             },
             {
               "name": "Git Version Control",
-              "icon": "BiSupport"
-            },
-            {
-              "name": "GitHub Integration",
-              "icon": "AiOutlineUser"
+              "icon": "FaCodeBranch"
             },
             {
               "name": "Database-Free",
-              "icon": "FaCloudDownloadAlt"
+              "icon": "FaFileAlt"
+            },
+            {
+              "name": "Local Development",
+              "icon": "FaDesktop"
+            },
+            {
+              "name": "Fully Open Source",
+              "icon": "FaUnlock"
             }
           ]
         }

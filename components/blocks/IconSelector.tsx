@@ -8,6 +8,12 @@ import {
   FaMarkdown,
   FaGithub,
   FaFileAlt,
+  FaHandPointer,
+  FaDatabase,
+  FaShare,
+  FaDesktop,
+  FaLockOpen
+
 } from 'react-icons/fa'
 import { AiOutlineUser } from 'react-icons/ai'
 import { BiBadge } from 'react-icons/bi'
@@ -35,6 +41,11 @@ const icons = {
   HiOutlineSparkles,
   TbPlugConnected,
   SlLock,
+  FaDatabase,
+  FaShare,
+  FaDesktop,
+  FaLockOpen,
+  FaHandPointer
 }
 
 const IconSelector = ({ input }) => {
