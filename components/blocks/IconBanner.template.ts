@@ -44,7 +44,13 @@ export const iconBannerTemplate: Template = {
                                 component: wrapFieldsWithMeta(IconSelector),
                             },
                         },
-                    ]
+                    ],
+                    ui: {
+                        itemProps: (item) => {
+                            // Field values are accessed by item?.<Field name>
+                            return { label: item?.name };
+                        },
+                    }
                 },
             ],
         },

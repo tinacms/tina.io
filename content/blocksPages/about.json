@@ -76,6 +76,16 @@
       "_template": "iconBanner"
     },
     {
+      "body": "###### Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
+      "mediaColumnItem": [
+        {
+          "embedUrl": "https://www.youtube.com/embed/SjDsLgpuaJI?si=ZmDZ8KZNzti55-gY",
+          "_template": "youtubeMedia"
+        }
+      ],
+      "_template": "textMediaColumnComponent"
+    },
+    {
       "backdrop": "https://res.cloudinary.com/forestry-demo/image/upload/v1724130042/tina-brand-assets/poster-and-about-page-assets/grass_rv2vlv.svg",
       "leftFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724131819/tina-brand-assets/poster-and-about-page-assets/creator_vkhvir.svg",
       "rightFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724133916/tina-brand-assets/poster-and-about-page-assets/developer_olcl0m.svg",
