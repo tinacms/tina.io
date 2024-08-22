@@ -84,15 +84,15 @@ const FreeTier = ({ data }) => {
 }
 
 const PaidTier = ({ data }) => {
-  const [isAccordionOpen, setAccordionOpen] = useState(false)
+  const [isAccordionOpen, setAccordionOpen] = useState(false);
 
   const toggleAccordion = () => {
-    setAccordionOpen(!isAccordionOpen)
-  }
+    setAccordionOpen(!isAccordionOpen);
+  };
 
   return (
     <div
-      className="relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
+      className="hover:bg-gradient-to-br from-transparent via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
       style={popInStyle}
     >
       {data.isStarred && (
@@ -128,7 +128,7 @@ const PaidTier = ({ data }) => {
           ))}
       </div>
       <div className="pt-6">
-        <div className="sm:block md:block lg:hidden xl:hidden">
+        <div className="accordion-content">
           <div
             className="flex justify-between items-center font-semibold cursor-pointer"
             onClick={toggleAccordion}
@@ -142,7 +142,7 @@ const PaidTier = ({ data }) => {
             <div className="pl-2">
               {data.cardItem &&
                 data.cardItem.map((item, index) => {
-                  const Icon = icons[item.icon]
+                  const Icon = icons[item.icon];
                   return (
                     <div key={index} className="flex flex-col items-start mt-2">
                       <div className="flex items-center">
@@ -155,18 +155,17 @@ const PaidTier = ({ data }) => {
                         </div>
                       )}
                     </div>
-                  )
+                  );
                 })}
             </div>
           )}
         </div>
-
-        <div className="hidden lg:block xl:block">
+        <div className="non-accordion-content">
           <p className="font-semibold">Includes:</p>
           <div className="pl-2">
             {data.cardItem &&
               data.cardItem.map((item, index) => {
-                const Icon = icons[item.icon]
+                const Icon = icons[item.icon];
                 return (
                   <div key={index} className="flex flex-col items-start mt-2">
                     <div className="flex items-center">
@@ -179,19 +178,38 @@ const PaidTier = ({ data }) => {
                       </div>
                     )}
                   </div>
-                )
+                );
               })}
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @media (min-width: 0px) and (max-width: 1250px) {
+          .accordion-content {
+            display: block;
+          }
+          .non-accordion-content {
+            display: none;
+          }
+        }
+
+        @media (min-width: 1250px) {
+          .accordion-content {
+            display: none;
+          }
+          .non-accordion-content {
+            display: block;
+          }
+        }
+      `}</style>
     </div>
-  )
-}
+  );
+};
+
 export function PricingBlock({ data }) {
-  console.log(data.intro)
   return (
     <div className="p-6">
-      <style>{style}</style>
       <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
         <h1
           className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
@@ -205,7 +223,7 @@ export function PricingBlock({ data }) {
         <div className="pt-10 px-4 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
         </div>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 auto-rows-min">
+        <div className="responsive-grid">
           {data.plans &&
             data.plans.map((plan, index) => (
               <div key={index} className="flex flex-col">
@@ -214,6 +232,40 @@ export function PricingBlock({ data }) {
             ))}
         </div>
       </div>
+      
+      <style jsx global>{`
+        @keyframes popIn {
+           0% {
+            opacity: 0;
+            transform: scale(0.75);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
+
+      <style jsx>{`
+        .responsive-grid {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1rem;
+          grid-auto-rows: min-content;
+        }
+
+        @media (min-width: 768px) {
+          .responsive-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 1250px) {
+          .responsive-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+      `}</style>
     </div>
   )
 }
@@ -221,16 +273,3 @@ export function PricingBlock({ data }) {
 const popInStyle = {
   animation: 'popIn 0.5s ease-out forwards',
 }
-
-const style = `
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.75);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-`

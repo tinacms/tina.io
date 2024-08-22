@@ -30,7 +30,7 @@ import { roadmapGridTemplate } from '../components/blocks/RoadmapGrid.template'
 import { recentPostsTemplate } from '../components/blocks/RecentPosts.template'
 import { testimonialsTemplate } from '../components/blocks/Testimonials.template'
 import { quoteTemplate } from '../components/blocks/Quote.template'
-import { verticalCardsTemplate } from '../components/blocks/VerticalCards.template'
+import { eventsTemplate } from '../components/blocks/Events.template'
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
@@ -110,7 +110,7 @@ export const schema = defineSchema({
             recentPostsTemplate as Template,
             testimonialsTemplate as Template,
             quoteTemplate as Template,
-            verticalCardsTemplate as Template,
+            eventsTemplate as Template,
             compareBoxTemplate as Template,
             bookingTemplate as Template,
             mediaComponentTemplate as Template,
@@ -127,7 +127,7 @@ export const schema = defineSchema({
         beforeSubmit: async ({ values, cms, form }) => {
           return {
             ...values,
-            last_edited: new Date().toISOString()
+            last_edited: new Date().toISOString(),
           }
         },
       },
@@ -187,11 +187,11 @@ export const schema = defineSchema({
                   description:
                     'Paste GraphQL query here. "#" are auto-inserted as spacing placeholders and should not be used.',
                   ui: {
-                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */ 
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                     component: 'textarea',
                     format: (val?: string) => val && val.replaceAll('#', ' '),
                     parse: (val?: string) => val && val.replaceAll(' ', '#'),
-                  }
+                  },
                 },
                 {
                   type: 'string',
@@ -204,7 +204,7 @@ export const schema = defineSchema({
                     component: 'textarea',
                     format: (val?: string) => val && val.replaceAll('#', ' '),
                     parse: (val?: string) => val && val.replaceAll(' ', '#'),
-                  }
+                  },
                 },
               ],
             },
@@ -394,15 +394,13 @@ export const schema = defineSchema({
                   type: 'rich-text',
                   name: 'request',
                   label: 'Request',
-                  description:
-                    'Paste GraphQL request code here.',
+                  description: 'Paste GraphQL request code here.',
                 },
                 {
                   type: 'rich-text',
                   name: 'response',
                   label: 'Response',
-                  description:
-                    'Paste GraphQL response data here.',
+                  description: 'Paste GraphQL response data here.',
                 },
               ],
             },
