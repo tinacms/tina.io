@@ -5,9 +5,13 @@
   },
   "blocks": [
     {
-      "headline": "About Tina",
-      "subheading": "TinaCMS is a developer-friendly, open-source CMS that lets you edit content directly on your site with live previews. ",
-      "body": "###### A quick look at editing in TinaCMS\n\nPowered by Git and Markdown, it's flexible enough for devs to integrate with their workflows while still offering a smooth experience for content creators.\n\nWith real-time visual editing, drag-and-drop features, and easy GitHub integration, Tina keeps your content version-controlled and in your hands–no databases, no hassle.\n\nIt's fully customisable, works locally, and makes managing content feel natural for everyone involved.\n\nTo see a few ways you can edit your content, check out the intro video.\n",
+      "headline": "Meet Tina",
+      "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs-all while keeping content creators in control. No databases, no hassle.",
+      "margin": "px-8 py-24 lg:py-28 lg:pb-0",
+      "_template": "hero"
+    },
+    {
+      "body": "###### Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
       "mediaColumnItem": [
         {
           "embedUrl": "https://www.youtube.com/embed/eCrEg89fsN0?si=S_1Ke9Hr8ZpXdUiG",
@@ -15,6 +19,21 @@
         }
       ],
       "_template": "textMediaColumnComponent"
+    },
+    {
+      "iconColumn": [
+        {
+          "heading": "Built for Creators"
+        },
+        {
+          "heading": "Loved by Devs",
+          "iconList": [
+            {},
+            {}
+          ]
+        }
+      ],
+      "_template": "iconBanner"
     },
     {
       "backdrop": "https://res.cloudinary.com/forestry-demo/image/upload/v1724130042/tina-brand-assets/poster-and-about-page-assets/grass_rv2vlv.svg",

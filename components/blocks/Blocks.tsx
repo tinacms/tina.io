@@ -23,6 +23,7 @@ import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
 import { ImageRowComponent } from './ImageRow';
+import { IconBannerComponent } from './IconBanner';
 
 export const Blocks = ({
   blocks,
@@ -85,6 +86,8 @@ export const Blocks = ({
         return <TextAndMediaColumnsComponent key={`block-${index}`} data={block} />;
       case 'PageBlocksImageRow':
         return <ImageRowComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksIconBanner':
+        return <IconBannerComponent key={`block-${index}`} data={block} />;
       default:
         return null;
     }

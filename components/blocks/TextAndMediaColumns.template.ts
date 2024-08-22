@@ -6,8 +6,6 @@ export const textAndMediaColumnsComponentTemplate: Template = {
     label: 'Text and Media Column Component',
     name: 'textMediaColumnComponent',
     fields: [
-        { name: 'headline', label: 'Headline', type: 'string' },
-        { name: 'subheading', label: 'Subheading', type: 'string' },
         { name: 'body', label: 'Body', type: 'rich-text', isBody: true},
         {
             name: 'mediaColumnItem',
