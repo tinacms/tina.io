@@ -1,9 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
-import { Environment, OrbitControls } from '@react-three/drei'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer'
 
 const geographicToCartesian = (latitude, longitude, radius = 1) => {
   const latRad = (latitude * Math.PI) / 180
@@ -51,7 +49,6 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
 
 const Marker = ({ index, isActive, chunkyLlamaObject, greyLlamaObject }) => {
   const ref = useRef<THREE.Group>(null)
-  const { camera } = useThree()
   const vec = new THREE.Vector3()
   const center = new THREE.Vector3(0, 0, 0)
 
@@ -108,7 +105,7 @@ const Globe = ({ activeGlobeId, cardItems }) => {
   const containerRef = useRef(null)
   const [cameraPosition, setCameraPosition] = useState<
     [number, number, number]
-  >([0, 0, 3.5])
+  >([-2, -1, -3])
   const [canvasSize, setCanvasSize] = useState({
     width: '100%',
     height: '700px',
@@ -141,14 +138,6 @@ const Globe = ({ activeGlobeId, cardItems }) => {
     }
   }, [])
 
-  const handleOrbitChange = (event) => {
-    setCameraPosition([
-      event.target.object.position.x,
-      event.target.object.position.y,
-      event.target.object.position.z,
-    ])
-  }
-
   return (
     <div ref={containerRef} style={{ width: '100%', height: '700px' }}>
       <Canvas
@@ -167,12 +156,6 @@ const Globe = ({ activeGlobeId, cardItems }) => {
           position={[0, 0, 0]}
           activeGlobeId={activeGlobeId}
           cardItems={cardItems}
-        />
-        <Environment preset="forest" />
-        <OrbitControls
-          onChange={handleOrbitChange}
-          minDistance={2}
-          maxDistance={5}
         />
       </Canvas>
     </div>
