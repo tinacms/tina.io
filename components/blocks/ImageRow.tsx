@@ -1,9 +1,11 @@
 import Image from "next/image"
 
+const imageCellSizing = "hidden lg:flex flex-nowrap align-bottom justify-center h-50 md:h-64 lg:h-72 relative";
+
 export const ImageRowComponent = ({ data }) => {
     const { backdrop, leftFig, rightFig, centerFig, llama, leftScreen, rightScreen } = data || {}
-    return <div className="w-full  relative">
-        {backdrop && <div className="absolute w-full h-20 bottom-0 left-0 -mb-[3px] lg:mb-0 z-20">
+    return <div className="w-full  relative mt-16">
+        {backdrop && <div className="absolute w-full h-14 bottom-0 left-0 -mb-[3px] lg:mb-0 z-20">
             <Image
             src={backdrop}
             alt="backdrop"
@@ -14,11 +16,11 @@ export const ImageRowComponent = ({ data }) => {
             </div>
         }
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
-            <div className="hidden lg:flex flex-nowrap align-bottom justify-center h-60 md:h-72 lg:h-80 relative">
+            <div className={imageCellSizing}>
                 {leftFig && <img
                     src={leftFig}
                     alt="content creator"
-                    className="mt-auto h-[75%] relative ml-8"
+                    className="mt-auto h-[75%] relative ml-16"
                 />}
                 {leftScreen && <img
                     src={leftScreen}
@@ -26,7 +28,7 @@ export const ImageRowComponent = ({ data }) => {
                     className="mb-auto mt-10 h-[35%] mr-auto"
                 />}
             </div>
-            <div className="flex flex-nowrap align-bottom justify-center h-60 md:h-72 lg:h-80 relative">
+            <div className={imageCellSizing}>
                 {centerFig && <img
                     src={centerFig}
                     alt="creator developer signpost"
@@ -38,7 +40,7 @@ export const ImageRowComponent = ({ data }) => {
                     className="mt-auto h-[85%] mr-8"
                 />}
             </div>
-            <div className="hidden lg:flex flex-nowrap align-bottom justify-center h-60 md:h-72 lg:h-80 relative">
+            <div className={imageCellSizing}>
                 {rightScreen && <img
                     src={rightScreen}
                     alt="npx command UI"

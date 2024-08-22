@@ -5,9 +5,15 @@
   },
   "blocks": [
     {
+      "spacingPx": 0,
+      "spacingPxMobile": 18,
+      "_template": "spacer"
+    },
+    {
       "headline": "Meet Tina",
       "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs-all while keeping content creators in control. No databases, no hassle.",
-      "margin": "px-8 py-24 lg:py-28 lg:pb-0",
+      "margin": "py-24 lg:py-28 lg:pb-0",
+      "spacing": "",
       "_template": "hero"
     },
     {

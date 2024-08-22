@@ -37,6 +37,7 @@ import { mediaComponentTemplate } from '../components/blocks/MediaComponent.temp
 import { textAndMediaColumnsComponentTemplate } from '../components/blocks/TextAndMediaColumns.template'
 import { imageRowTemplate } from '../components/blocks/ImageRow.template'
 import { iconBannerTemplate } from '../components/blocks/IconBanner.template'
+import { spacerTemplate } from '../components/blocks/Spacer.template'
 
 const WhatsNewFields: TinaField[] = [
   { name: 'versionNumber', label: 'Version Number', type: 'string' },
@@ -119,7 +120,8 @@ export const schema = defineSchema({
             mediaComponentTemplate as Template,
             textAndMediaColumnsComponentTemplate as Template,
             imageRowTemplate as Template,
-            iconBannerTemplate as Template
+            iconBannerTemplate as Template,
+            spacerTemplate as Template
           ],
         },
       ],

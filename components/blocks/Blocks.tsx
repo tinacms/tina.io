@@ -24,6 +24,7 @@ import { MediaComponent } from './MediaComponent';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
 import { ImageRowComponent } from './ImageRow';
 import { IconBannerComponent } from './IconBanner';
+import { SpacerComponent } from './Spacer';
 
 export const Blocks = ({
   blocks,
@@ -88,6 +89,8 @@ export const Blocks = ({
         return <ImageRowComponent key={`block-${index}`} data={block} />;
       case 'PageBlocksIconBanner':
         return <IconBannerComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksSpacer':
+        return <SpacerComponent key={`block-${index}`} data={block} />;
       default:
         return null;
     }
