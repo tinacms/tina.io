@@ -14,6 +14,7 @@
       "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs-all while keeping content creators in control. No databases, no hassle.",
       "margin": " lg:pb-24",
       "spacing": "",
+      "mobileTextSize": true,
       "_template": "hero"
     },
     {
