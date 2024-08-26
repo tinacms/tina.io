@@ -1,6 +1,6 @@
 ---
 title: The "reference" field
-last_edited: '2024-08-22T04:37:13.199Z'
+last_edited: '2024-08-26T00:34:21.044Z'
 ---
 
 ## `reference`
@@ -147,6 +147,8 @@ The default reference selector displays the file path, there are cases where you
 
 Here are example of how to customize the  reference select using `ui.optionComponent`. Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
 
+Example below show a page collection with author collection as it's reference field. The `reference field` has been extract into a module.
+
 ```ts
     {
       label: 'Page Content',
@@ -158,8 +160,6 @@ Here are example of how to customize the  reference select using `ui.optionCompo
       ],
     },
 ```
-
-**Figure: A page collection with reference field**
 
 ```ts
 {
@@ -183,8 +183,6 @@ Here are example of how to customize the  reference select using `ui.optionCompo
       ],
     },
 ```
-
-**Figure: Author Collection Schema to reference by page collection**
 
 ```ts
 const referenceField = {
@@ -214,19 +212,19 @@ const referenceField = {
 }
 ```
 
-**Figure: Extracted reference field into a module**
-
 In this example, the Author collection and Post collection are used as a reference for the Page collection. The `optionComponent`  function allows you to create a custom reference display by providing two parameters: `props` and `_internalSys`.
 
 * `props` represents the fields from the reference collection (In this case, the fields from the Author collection, which is `name`, and `description`).
 * `_internalSys` contain various useful information for you to use in the custom component such as `file name`, `path`.
 * `AuthorCollectionCustomReference` and `PostCollectionCustomReference` are the custom components that display in the reference select dropdown (see the Image below for custom reference UI).
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1724068658/reference_field/custom-reference-field-ui_ojtrlx.png)**Figure: UI for custom reference select**
+Here are the UI of custom reference field in the example above.![](https://res.cloudinary.com/forestry-demo/image/upload/v1724068658/reference_field/custom-reference-field-ui_ojtrlx.png)****
 
 > Tips: You can do console log(props) or console log(\_internalSys) in the optionComponent to find out all the provided property and used in your custom component.
 
 ### Type Safe custom reference field
+
+Recommended Implementation for Custom Reference Selection with Type Safety.
 
 ```ts
 // You should define the types for the fields in the author collection for typesafety
@@ -257,8 +255,6 @@ export interface InternalSys {
 
 export type CollectionProps = AuthorProps | PostProps
 ```
-
-**Figure : Recommended Implementation for Custom Reference Selection with Type Safety.**
 
 You can enforce type safety in your custom reference selection, reducing the likelihood of errors and ensuring consistency across your application.
 
