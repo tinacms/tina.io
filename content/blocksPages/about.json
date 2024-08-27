@@ -95,7 +95,7 @@
       "_template": "textMediaColumnComponent"
     },
     {
-      "headline": "Overview and History – TinaCMS",
+      "headline": "History of 🦙TinaCMS",
       "items": [
         {
           "headline": "2024: Acquired by SSW",
@@ -107,11 +107,11 @@
         },
         {
           "headline": "2022: Improved Developer Experience",
-          "content": "The team streamlined developer workflows, adding robust documentation to simplify setup and integration. Tina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
+          "content": "The team streamlined developer workflows, adding robust documentation to simplify setup and integration. \n\nTina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
         },
         {
           "headline": "2021: Introduction of TinaCloud",
-          "content": "TinaCMS introduced Tina Cloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting. TinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
+          "content": "TinaCMS introduced Tina Cloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting. \n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
         },
         {
           "headline": "2020: Expansion beyond Gatsby  ",
@@ -119,11 +119,11 @@
         },
         {
           "headline": "2019: TinaCMS was born!",
-          "content": "Initially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed. It aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
+          "content": "Initially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed. \n\nIt aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
         },
         {
           "headline": "2016: Forestry.io was created  ",
-          "content": "This was a revolutionary Headless CMS as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content. The CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
+          "content": "This was a revolutionary Headless CMS as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content. \n\nThe CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
         }
       ],
       "options": {
