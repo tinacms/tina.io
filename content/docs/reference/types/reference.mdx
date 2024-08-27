@@ -1,6 +1,6 @@
 ---
 title: The "reference" field
-last_edited: '2024-08-26T00:34:21.044Z'
+last_edited: '2024-08-27T08:00:17.162Z'
 ---
 
 ## `reference`
@@ -145,9 +145,11 @@ You can search your reference with reference selector.
 
 The default reference selector displays the file path, there are cases where you may want to customize what is displayed in the dropdown to provide a better user experience. For example, showing the author's name instead of the file name can make the selection process more intuitive.
 
-Here are example of how to customize the  reference select using `ui.optionComponent`. Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
+Below are some examples on how to customize the  reference select using `ui.optionComponent`. 
 
-Example below show a page collection with author collection as it's reference field. The `reference field` has been extract into a module.
+Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
+
+The below example shows a page collection with an author collection as it's reference field. The `reference field` has been extract into a module.
 
 ```ts
     {
@@ -212,36 +214,36 @@ const referenceField = {
 }
 ```
 
-In this example, the Author collection and Post collection are used as a reference for the Page collection. The `optionComponent`  function allows you to create a custom reference display by providing two parameters: `props` and `_internalSys`.
+The Author collection and Post collection are used as a reference for the Page collection. The `optionComponent`  function allows you to create a custom reference display by providing two parameters: `props` and `_internalSys`.
 
-* `props` represents the fields from the reference collection (In this case, the fields from the Author collection, which is `name`, and `description`).
-* `_internalSys` contain various useful information for you to use in the custom component such as `file name`, `path`.
-* `AuthorCollectionCustomReference` and `PostCollectionCustomReference` are the custom components that display in the reference select dropdown (see the Image below for custom reference UI).
+* `props` represents the fields from the reference collection (In this case, the fields from the Author collection, which are `name` and `description`).
+* `_internalSys` contains various useful information for you to use in the custom component such as the `file name` and `path`.
+* `AuthorCollectionCustomReference` and `PostCollectionCustomReference` are the custom components that display in the reference select dropdown (see the image below for a visual of the custom reference UI).
 
-Here are the UI of custom reference field in the example above.![](https://res.cloudinary.com/forestry-demo/image/upload/v1724068658/reference_field/custom-reference-field-ui_ojtrlx.png)****
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1724068658/reference_field/custom-reference-field-ui_ojtrlx.png)
 
-> Tips: You can do console log(props) or console log(\_internalSys) in the optionComponent to find out all the provided property and used in your custom component.
+> Tips: You can do console log(props) or console log(\_internalSys) in the optionComponent to find out all the provided properties used in your custom component.
 
 ### Type Safe custom reference field
 
-Recommended Implementation for Custom Reference Selection with Type Safety.
+The recommended implementation for custom reference selection with type safety.
 
 ```ts
-// You should define the types for the fields in the author collection for typesafety
+// You should define the types for the fields in the author collection for type safety
 export interface AuthorProps {
   name: string
   description: string
   _collection: 'author'
 }
 
-// You should define the types for the fields in the post collection for typesafety
+// You should define the types for the fields in the post collection for type safety
 export interface PostProps {
   title: string
   excerpt: string
   _collection: 'post'
 }
 
-// You should define the list of collection used in the reference for typesafety
+// You should define the list of collection used in the reference for type safety
 export enum COLLECTIONS {
   AUTHOR = 'author',
   POST = 'post',
