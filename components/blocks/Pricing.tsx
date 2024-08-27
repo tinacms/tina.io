@@ -49,7 +49,7 @@ const pricingComponents = {
 const FreeTier = ({ data }) => {
   return (
     <div
-      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105"
+      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105 hover:bg-gradient-to-br from-transparent  to-cyan-100"
       style={popInStyle}
     >
       {data.freeTier && (
@@ -218,7 +218,7 @@ export function PricingBlock({ data }) {
           {data.headline}
         </h1>
         <div className="py-2 max-w-4xl mx-auto flex justify-center">
-          {/* <FreeTier data={data} /> */}
+          <FreeTier data={data} />
         </div>
         <div className="pt-10 px-4 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
