@@ -2,59 +2,86 @@ import React, { useState, Suspense, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { format } from 'date-fns'
+import { FaCheck } from 'react-icons/fa'
 
 const LazyGlobe = React.lazy(() => import('../ui/Globe'))
 
 const Card = ({ cardItem, onHover }) => {
   const getOrdinalSuffix = (day) => {
-    if (day > 3 && day < 21) return 'th'
+    if (day > 3 && day < 21) return 'th';
     switch (day % 10) {
       case 1:
-        return 'st'
+        return 'st';
       case 2:
-        return 'nd'
+        return 'nd';
       case 3:
-        return 'rd'
+        return 'rd';
       default:
-        return 'th'
+        return 'th';
     }
-  }
+  };
+
+  const calculateDaysUntilEvent = (date) => {
+    const eventDate = new Date(date);
+    const currentDate = new Date();
+    eventDate.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+
+    const timeDifference = eventDate.getTime() - currentDate.getTime();
+    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    return daysDifference;
+  };
+
+  const isDateInRange = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const current = new Date();
+    start.setHours(0, 0, 0, 0);
+    end.setHours(0, 0, 0, 0);
+    current.setHours(0, 0, 0, 0);
+
+    return current >= start && current <= end;
+  };
 
   const formatStartDate = (date) => {
-    const d = new Date(date)
-    return `${d.getDate()}${getOrdinalSuffix(d.getDate())} ${format(d, 'MMM')}`
-  }
+    const d = new Date(date);
+    return `${d.getDate()}${getOrdinalSuffix(d.getDate())} ${format(d, 'MMM')}`;
+  };
 
   const formatDateRange = (start, end) => {
-    const startDate = new Date(start)
-    const endDate = new Date(end)
+    const startDate = new Date(start);
+    const endDate = new Date(end);
     if (startDate.getMonth() === endDate.getMonth()) {
       return `${startDate.getDate()}${getOrdinalSuffix(
         startDate.getDate()
       )} - ${endDate.getDate()}${getOrdinalSuffix(endDate.getDate())} ${format(
         endDate,
         'MMM'
-      )}`
+      )}`;
     }
     return `${startDate.getDate()}${getOrdinalSuffix(
       startDate.getDate()
     )} ${format(startDate, 'MMM')} - ${endDate.getDate()}${getOrdinalSuffix(
       endDate.getDate()
-    )} ${format(endDate, 'MMM')}`
-  }
+    )} ${format(endDate, 'MMM')}`;
+  };
 
   const displayDate = () => {
     if (cardItem.startDate && cardItem.endDate) {
-      return formatDateRange(cardItem.startDate, cardItem.endDate)
+      return formatDateRange(cardItem.startDate, cardItem.endDate);
     } else if (cardItem.startDate) {
-      return formatStartDate(cardItem.startDate)
+      return formatStartDate(cardItem.startDate);
     }
-    return ''
-  }
+    return '';
+  };
+
+  const daysUntilEvent = calculateDaysUntilEvent(cardItem.startDate);
+  const isPastEvent = daysUntilEvent < 0; // Check if the event is in the past
+  const isLiveEvent = cardItem.startDate && cardItem.endDate && isDateInRange(cardItem.startDate, cardItem.endDate);
 
   return (
     <div
-      className="relative p-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center"
+      className="relative p-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
       onMouseEnter={() => onHover(cardItem.index)}
       onMouseLeave={() => onHover(null)}
     >
@@ -70,7 +97,19 @@ const Card = ({ cardItem, onHover }) => {
           </div>
         )}
       </div>
-      <div className="flex-grow flex flex-col pl-4">
+      <div className="flex-grow flex flex-col pl-4 overflow-hidden">
+        {isLiveEvent ? (
+          <div className="text-sm text-red-500 flex justify-end">LIVE</div>
+        ) : isPastEvent ? (
+          <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
+            <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
+            <FaCheck className="text-lg text-white absolute -translate-x-5 translate-y-5" />
+          </div>
+        ) : (
+          <div className="text-sm text-orange-500 flex justify-end">
+            {daysUntilEvent} day{daysUntilEvent > 1 ? 's' : ''} left
+          </div>
+        )}
         <h3 className="font-bold text-2xl mb-1">{cardItem.headline}</h3>
         <p className="text-gray-500 text-sm">{displayDate()}</p>
         <p className="text-gray-500 text-sm">{cardItem.location}</p>
@@ -82,8 +121,8 @@ const Card = ({ cardItem, onHover }) => {
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
-  )
-}
+  );
+};
 
 const EventsBlock = ({ data, index }) => {
   const [activeGlobeId, setActiveGlobeId] = useState(null)
@@ -149,7 +188,7 @@ const EventsBlock = ({ data, index }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { EventsBlock as VerticalCardsBlock }
+export { EventsBlock as VerticalCardsBlock };
