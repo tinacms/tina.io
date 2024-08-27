@@ -72,8 +72,18 @@ const config = {
         permanent: true,
       },
       {
-        source: "/docs/errors/faqs",
+        source: "/docs/errors/faq",
         destination: "/docs/introduction/faq/#common-tinacloud-errors",
+        permanent: true,
+      },
+      {
+        source: "/faq",
+        destination: "/docs/introduction/faq",
+        permanent: true,
+      },
+      {
+        source: "/docs/tina-cloud/faq",
+        destination: "/docs/introduction/faq",
         permanent: true,
       },
     ]

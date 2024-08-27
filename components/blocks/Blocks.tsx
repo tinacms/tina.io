@@ -21,6 +21,10 @@ import { VerticalCardsBlock } from './Events';
 import { CompareBoxBlock } from './CompareBox';
 import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
+import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
+import { ImageRowComponent } from './ImageRow';
+import { IconBannerComponent } from './IconBanner';
+import { SpacerComponent } from './Spacer';
 
 export const Blocks = ({
   blocks,
@@ -79,6 +83,14 @@ export const Blocks = ({
         return <TestimonialsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksQuote':
         return <QuoteBlock key={`block-${index}`} data={block} index={index} />;
+      case 'PageBlocksTextMediaColumnComponent':
+        return <TextAndMediaColumnsComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksImageRow':
+        return <ImageRowComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksIconBanner':
+        return <IconBannerComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksSpacer':
+        return <SpacerComponent key={`block-${index}`} data={block} />;
       default:
         return null;
     }

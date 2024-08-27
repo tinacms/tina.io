@@ -51,7 +51,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
           </h2>
         )}
         {item.text && (
-          <p className="text-xl" data-tina-field={tinaField(item, 'text')}>
+          <p className={item.mobileTextSize ? "text-lg lg:text-xl" : "text-xl"} data-tina-field={tinaField(item, 'text')}>
             {item.text}
           </p>
         )}
