@@ -1,0 +1,108 @@
+{
+  "seo": {
+    "title": "About",
+    "description": "The context of TinaCMS and intro to the product."
+  },
+  "blocks": [
+    {
+      "spacingPx": 100,
+      "spacingPxMobile": 70,
+      "_template": "spacer"
+    },
+    {
+      "headline": "Meet Tina",
+      "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs-all while keeping content creators in control. No databases, no hassle.",
+      "margin": " lg:pb-24",
+      "spacing": "",
+      "mobileTextSize": true,
+      "_template": "hero"
+    },
+    {
+      "leftVideo": false,
+      "body": "###### Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
+      "mediaColumnItem": [
+        {
+          "embedUrl": "https://www.youtube.com/embed/4B7b6-bfWYI?si=vzakrDeab_QfZzQj",
+          "_template": "youtubeMedia"
+        }
+      ],
+      "_template": "textMediaColumnComponent"
+    },
+    {
+      "iconColumn": [
+        {
+          "heading": "Built for Creators",
+          "iconList": [
+            {
+              "name": "Real-time Visual Editing",
+              "icon": "FaClock"
+            },
+            {
+              "name": "Drag-and-Drop Interface",
+              "icon": "FaHandPointer"
+            },
+            {
+              "name": "Sharable Drafts",
+              "icon": "FaShare"
+            },
+            {
+              "name": "Own Your Content",
+              "icon": "FaDatabase"
+            },
+            {
+              "name": "Best Version History",
+              "icon": "FaGithub"
+            }
+          ]
+        },
+        {
+          "heading": "Loved by Devs",
+          "iconList": [
+            {
+              "name": "GitHub Integration",
+              "icon": "FaGithub"
+            },
+            {
+              "name": "Git Version Control",
+              "icon": "FaCodeBranch"
+            },
+            {
+              "name": "Database-Free",
+              "icon": "FaFileAlt"
+            },
+            {
+              "name": "Local Development",
+              "icon": "FaDesktop"
+            },
+            {
+              "name": "Fully Open Source",
+              "icon": "FaUnlock"
+            }
+          ]
+        }
+      ],
+      "_template": "iconBanner"
+    },
+    {
+      "leftVideo": true,
+      "body": "###### Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
+      "mediaColumnItem": [
+        {
+          "embedUrl": "https://www.youtube.com/embed/SjDsLgpuaJI?si=ZmDZ8KZNzti55-gY",
+          "_template": "youtubeMedia"
+        }
+      ],
+      "_template": "textMediaColumnComponent"
+    },
+    {
+      "backdrop": "https://res.cloudinary.com/forestry-demo/image/upload/v1724130042/tina-brand-assets/poster-and-about-page-assets/grass_rv2vlv.svg",
+      "leftFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724131819/tina-brand-assets/poster-and-about-page-assets/creator_vkhvir.svg",
+      "rightFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724133916/tina-brand-assets/poster-and-about-page-assets/developer_olcl0m.svg",
+      "leftScreen": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132546/tina-brand-assets/poster-and-about-page-assets/visual-editor_pqqpuh.svg",
+      "rightScreen": "https://res.cloudinary.com/forestry-demo/image/upload/v1724133924/tina-brand-assets/poster-and-about-page-assets/npx-command_cbez1b.svg",
+      "centerFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132795/tina-brand-assets/poster-and-about-page-assets/street-lamp_kfw1ch.svg",
+      "llama": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132785/tina-brand-assets/poster-and-about-page-assets/llama_e1bcn5.svg",
+      "_template": "imageRow"
+    }
+  ]
+}
