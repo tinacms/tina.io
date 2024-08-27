@@ -78,7 +78,7 @@ const Marker = ({ index, isActive, chunkyLlamaObject, greyLlamaObject }) => {
           ...geographicToCartesian(targetPosition[0], targetPosition[1], 3)
         )
 
-        state.camera.position.lerp(targetGeometric, 0.05)
+        state.camera.position.lerp(targetGeometric, 0.01)
 
         const newDistance = state.camera.position.distanceTo(center)
         if (newDistance < restrictedRadius) {
