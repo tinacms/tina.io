@@ -60,7 +60,7 @@
           "name": "Team Plus",
           "description": "For bigger teams\n",
           "price": "$49",
-          "interval": " forever",
+          "interval": "/ month",
           "cardItem": [
             {
               "name": "5 Users",
