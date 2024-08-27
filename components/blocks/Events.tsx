@@ -59,7 +59,11 @@ const Card = ({ cardItem, onHover }) => {
           )}
         </div>
         <div className="flex-grow flex flex-col pl-4">
-          <h3 className="font-bold text-3xl mb-1">{cardItem.headline}</h3>
+          <div><h3 className="font-bold text-3xl mb-1 inline">{cardItem.headline}</h3>
+            {new Date() > new Date(cardItem.endDate) ? <span className="rounded-full w-24 ml-3 inline items-center font-tuner whitespace-nowrap text-gray-800 px-4 pt-[5px] pb-[5px] text-sm font-medium border border-gray-300 bg-gradient-to-br from-white to-gray-200">
+              Done
+            </span> : <></>}
+            </div>
           <p className="text-gray-500 text-md">{displayDate()}</p>
           <p className="text-gray-500 text-md">{cardItem.location}</p>
           <p className="text-orange-500 underline pr-4">Read more</p>
