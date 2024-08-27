@@ -4,7 +4,7 @@
       "headline": "Plans & Pricing",
       "freeTier": {
         "name": "Free",
-        "description": "Includes **2 users, 2 roles**, and exclusive **forums support.**\n",
+        "description": "Includes **2 users, 2 roles**, and **community support.**\n",
         "price": "$0",
         "interval": "Forever",
         "buttons": [
@@ -36,7 +36,7 @@
               "icon": "BiBadge"
             },
             {
-              "name": "Forum Support",
+              "name": "Team Support",
               "icon": "BiSupport"
             },
             {
@@ -72,7 +72,7 @@
               "icon": "BiBadge"
             },
             {
-              "name": "Forum Support",
+              "name": "Team Support",
               "icon": "BiSupport"
             },
             {
@@ -116,7 +116,7 @@
               "icon": "BiBadge"
             },
             {
-              "name": "Priority Support",
+              "name": "Premium Business Support",
               "icon": "BiSupport"
             },
             {
