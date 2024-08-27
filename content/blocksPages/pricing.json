@@ -21,37 +21,6 @@
       "intro": "Need to scale? No Probllama! Tina offers a per-project pricing model that grows with your needs.\n\nAll prices in USD\n",
       "plans": [
         {
-          "name": "Free",
-          "description": "For personal projects\n",
-          "price": "$0",
-          "interval": " forever",
-          "cardItem": [
-            {
-              "name": "2 Users",
-              "icon": "AiOutlineUser",
-              "description": "No additional users"
-            },
-            {
-              "name": "2 Roles",
-              "icon": "BiBadge"
-            },
-            {
-              "name": "Forum Support",
-              "icon": "BiSupport"
-            }
-          ],
-          "buttons": [
-            {
-              "label": "‏‏‎ ‎‏‏‎ ‎Start Free Plan‏‏‎ ‎‏‏‎ ‎",
-              "icon": false,
-              "variant": "orangeWithBorder",
-              "size": "medium",
-              "url": "https://app.tina.io/register?origin=https://app.tina.io",
-              "_template": "actions"
-            }
-          ]
-        },
-        {
           "name": "Team",
           "description": "For growing teams\n",
           "price": "$29",
@@ -60,11 +29,6 @@
             {
               "name": "3 Users",
               "icon": "AiOutlineUser",
-              "description": "$9/additional seat"
-            },
-            {
-              "name": "Up to 10 Users",
-              "icon": "AiOutlineUsergroupAdd",
               "description": ""
             },
             {
@@ -74,6 +38,11 @@
             {
               "name": "Forum Support",
               "icon": "BiSupport"
+            },
+            {
+              "name": "Up to 10 Users",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "$9/additional seat"
             }
           ],
           "buttons": [
@@ -88,40 +57,84 @@
           ]
         },
         {
-          "name": "Business",
-          "description": "For premium support\n",
-          "price": "$599",
-          "interval": "/ month",
+          "name": "Team Plus",
+          "description": "For bigger teams\n",
+          "price": "$49",
+          "interval": " forever",
           "cardItem": [
             {
-              "name": "10 Users",
+              "name": "5 Users",
               "icon": "AiOutlineUser",
-              "description": "$9/additional seat"
+              "description": "No additional users"
             },
             {
-              "name": "No User Limit",
-              "icon": "AiOutlineUsergroupAdd",
-              "description": ""
-            },
-            {
-              "name": "3 Roles (Beta)",
+              "name": "2 Roles",
               "icon": "BiBadge"
             },
             {
-              "name": "Premium Support",
+              "name": "Forum Support",
               "icon": "BiSupport"
+            },
+            {
+              "name": "Up to 20 Users",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "$15/additional seat"
             },
             {
               "name": "Editorial Workflow",
               "icon": "CgCrown"
             },
             {
-              "name": "API (Beta)",
-              "icon": "TbPlugConnected"
+              "name": "AI Features (Beta)",
+              "icon": "HiOutlineSparkles"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "‏‏‎ ‎‏‏‎ ‎Start Free Plan‏‏‎ ‎‏‏‎ ‎",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "name": "Business",
+          "description": "For premium support\n",
+          "price": "$299",
+          "interval": "/ month",
+          "cardItem": [
+            {
+              "name": "20 Users",
+              "icon": "AiOutlineUser",
+              "description": "$9/additional seat"
+            },
+            {
+              "name": "3 Roles (Beta)",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Priority Support",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "No User Limit",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "$18/additional seat"
+            },
+            {
+              "name": "Editorial Workflow",
+              "icon": "CgCrown"
             },
             {
               "name": "AI Features (Beta)",
               "icon": "HiOutlineSparkles"
+            },
+            {
+              "name": "API",
+              "icon": "TbPlugConnected"
             }
           ],
           "buttons": [
@@ -148,10 +161,6 @@
               "description": "Variable user pricing"
             },
             {
-              "name": "No User Limit",
-              "icon": "AiOutlineUsergroupAdd"
-            },
-            {
               "name": "Custom Roles",
               "icon": "BiBadge"
             },
@@ -160,16 +169,21 @@
               "icon": "BiSupport"
             },
             {
+              "name": "No User Limit",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "Variable user pricing"
+            },
+            {
               "name": "Custom Editorial Workflow",
               "icon": "CgCrown"
             },
             {
-              "name": "API (Beta)",
-              "icon": "TbPlugConnected"
-            },
-            {
               "name": "AI Features (Beta)",
               "icon": "HiOutlineSparkles"
+            },
+            {
+              "name": "API",
+              "icon": "TbPlugConnected"
             },
             {
               "name": "SSO",

@@ -218,7 +218,7 @@ export function PricingBlock({ data }) {
           {data.headline}
         </h1>
         <div className="py-2 max-w-4xl mx-auto flex justify-center">
-          {/* <FreeTier data={data} /> */}
+          <FreeTier data={data} />
         </div>
         <div className="pt-10 px-4 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
