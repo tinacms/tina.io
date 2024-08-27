@@ -122,6 +122,8 @@ module.exports = {
       colors: {
         seafoam: {
           50: '#EEFCF7',
+          70: '#dbf9fd',
+          80: '#dafcf6',
           100: '#D7F9EE',
           150: '#C1F5EB',
           200: '#A2F1E4',
