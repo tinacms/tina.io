@@ -72,7 +72,7 @@ const config = {
         permanent: true,
       },
       {
-        source: "/docs/errors/faqs",
+        source: "/docs/errors/faq",
         destination: "/docs/introduction/faq/#common-tinacloud-errors",
         permanent: true,
       },
