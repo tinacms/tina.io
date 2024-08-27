@@ -13,7 +13,7 @@
             "icon": false,
             "variant": "orangeWithBorder",
             "size": "medium",
-            "url": "https://app.tina.io/register?origin=/quickstart",
+            "url": "https://app.tina.io/register?origin=https://app.tina.io",
             "_template": "actions"
           }
         ]
