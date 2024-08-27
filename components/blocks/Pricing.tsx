@@ -49,7 +49,7 @@ const pricingComponents = {
 const FreeTier = ({ data }) => {
   return (
     <div
-      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105"
+      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105 hover:bg-gradient-to-br from-transparent  to-cyan-100"
       style={popInStyle}
     >
       {data.freeTier && (
