@@ -52,7 +52,7 @@ const IconBannerComponent = ({ data }) => {
     const { iconColumn } = data || {}
 
     return (
-        <div className="h-fit lg:py-16 md:py-8 lg:my-8 bg-gradient-to-r from-seafoam-80 to-seafoam-70 w-screen">
+        <div className="h-fit lg:py-16 md:py-8 lg:my-8 bg-gradient-to-r from-teal-100 to-cyan-100 bg-cover bg-center bg-opacity-60 w-screen">
             <div className="md:flex justify-center lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0">
                 {Array.isArray(iconColumn) && iconColumn.map((item, index) => {
                     return <div className="text-start grid grid-cols-1 my-16 md:my-0" key={`iconColumn-${index}`}>
