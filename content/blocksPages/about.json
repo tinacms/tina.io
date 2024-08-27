@@ -88,11 +88,49 @@
       "body": "###### Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
       "mediaColumnItem": [
         {
-          "embedUrl": "https://www.youtube.com/embed/SjDsLgpuaJI?si=ZmDZ8KZNzti55-gY",
+          "embedUrl": "https://www.youtube.com/embed/SjDsLgpuaJI?si=6bSk_qhwLycGd5ka",
           "_template": "youtubeMedia"
         }
       ],
       "_template": "textMediaColumnComponent"
+    },
+    {
+      "headline": "Overview and History – TinaCMS",
+      "items": [
+        {
+          "headline": "2024: Acquired by SSW",
+          "content": "SSW loved using Tina so much that they reached out to help and ended up acquiring TinaCMS, bringing greater enterprise resources, support, and expertise. \n\nVersion 2 was released, with big updates including improved content indexing and better performance. Additionally, the team launched the TinaGPT chatbot in June, integrating AI-driven assistance into the platform.\n"
+        },
+        {
+          "headline": "2023: 10,000 stars on GitHub ⭐  ",
+          "content": "Tina reached some exciting milestones, with 1,000 members in our Discord support forum and 10,000 GitHub stargazers, thanks to the amazing Tina community 🥰 \n\nNew features were added, like block-level control, schema-based content models, and enhanced UI customization, allowing for more sophisticated content structuring. \n"
+        },
+        {
+          "headline": "2022: Improved Developer Experience",
+          "content": "The team streamlined developer workflows, adding robust documentation to simplify setup and integration. Tina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
+        },
+        {
+          "headline": "2021: Introduction of TinaCloud",
+          "content": "TinaCMS introduced Tina Cloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting. TinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
+        },
+        {
+          "headline": "2020: Expansion beyond Gatsby  ",
+          "content": "TinaCMS expanded to work with other static site generators like Next.js, Hugo and Jekyll, increasing its reach and versatility. \n"
+        },
+        {
+          "headline": "2019: TinaCMS was born!",
+          "content": "Initially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed. It aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
+        },
+        {
+          "headline": "2016: Forestry.io was created  ",
+          "content": "This was a revolutionary Headless CMS as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content. The CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
+        }
+      ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
+      "_template": "roadmapGrid"
     },
     {
       "backdrop": "https://res.cloudinary.com/forestry-demo/image/upload/v1724130042/tina-brand-assets/poster-and-about-page-assets/grass_rv2vlv.svg",
