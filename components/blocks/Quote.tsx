@@ -15,9 +15,6 @@ export const QuoteBlock = ({ data, index }) => {
               alt={data.title2}
               height={600}
               width={600}
-              style={
-                {filter: "invert(1)"}
-              }
                />
             </div>
             <div className="min-w-0 lg:w-1/2 ">
