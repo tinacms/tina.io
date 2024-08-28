@@ -7,7 +7,7 @@
     {
       "features": [
         {
-          "headline": "Demo",
+          "headline": "TinaCMS does not require a database",
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "buttons": [
             {
