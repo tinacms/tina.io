@@ -104,14 +104,14 @@ const Card = ({ cardItem, onHover }) => {
         <h3 className="font-tuner text-2xl mb-1 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
           {cardItem.headline}
         </h3>
-        <div className="flex items-center text-md text-gray-500">
+        <div className="flex items-center text-md">
           <p className="mr-2">{displayDate()}</p>
           {isLiveEvent ? (
-            <span className="bg-teal-100 px-2 rounded-lg shadow-lg">LIVE</span>
+            <span className="bg-teal-100 px-2 rounded-lg text-teal-500 shadow-lg">LIVE</span>
           ) : isPastEvent ? (
-            <span className="bg-gray-200 px-2 rounded-lg shadow-lg">DONE</span>
+            <span className="bg-gray-200 px-2 rounded-lg text-gray-500 shadow-lg">DONE</span>
           ) : (
-            <span className="bg-teal-100 px-2 rounded-lg shadow-lg">
+            <span className="bg-teal-100 px-2 rounded-lg text-teal-500 shadow-lg">
               {daysUntilEvent} DAY{daysUntilEvent > 1 ? 'S' : ''} TO GO
             </span>
           )}
