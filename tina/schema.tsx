@@ -88,7 +88,7 @@ export const schema = defineSchema({
                 component: "toggle",
               },
               description:
-                "Set to true to the appended suffix ' | Tina'.",
+                "Set to true to remove the appended suffix ' | Tina'.",
             },
             {
               type: 'string',
