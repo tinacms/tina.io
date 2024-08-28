@@ -81,6 +81,16 @@ export const schema = defineSchema({
                 "' | Tina' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.",
             },
             {
+              type: 'boolean',
+              label: 'Has Custom Title Suffix?',
+              name: 'hasCustomSuffix',
+              ui: {
+                component: "toggle",
+              },
+              description:
+                "Set to true to the appended suffix ' | Tina'.",
+            },
+            {
               type: 'string',
               label: ' Description',
               name: 'description',
