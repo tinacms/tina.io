@@ -34,6 +34,10 @@ import { eventsTemplate } from '../components/blocks/Events.template'
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+import { textAndMediaColumnsComponentTemplate } from '../components/blocks/TextAndMediaColumns.template'
+import { imageRowTemplate } from '../components/blocks/ImageRow.template'
+import { iconBannerTemplate } from '../components/blocks/IconBanner.template'
+import { spacerTemplate } from '../components/blocks/Spacer.template'
 
 const WhatsNewFields: TinaField[] = [
   { name: 'versionNumber', label: 'Version Number', type: 'string' },
@@ -114,6 +118,10 @@ export const schema = defineSchema({
             compareBoxTemplate as Template,
             bookingTemplate as Template,
             mediaComponentTemplate as Template,
+            textAndMediaColumnsComponentTemplate as Template,
+            imageRowTemplate as Template,
+            iconBannerTemplate as Template,
+            spacerTemplate as Template
           ],
         },
       ],

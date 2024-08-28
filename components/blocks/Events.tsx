@@ -48,7 +48,7 @@ const Card = ({ cardItem, onHover }) => {
       >
         <div className="flex flex-col lg:w-1/3">
           {cardItem.image && (
-            <div className="relative h-36 w-full">
+            <div className="relative h-36 w-full mb-3">
               <Image
                 src={cardItem.image}
                 alt={cardItem.headline}
@@ -59,14 +59,10 @@ const Card = ({ cardItem, onHover }) => {
           )}
         </div>
         <div className="flex-grow flex flex-col pl-4">
-          <div><h3 className="font-bold text-3xl mb-1 inline">{cardItem.headline}</h3>
-            {new Date() > new Date(cardItem.endDate) ? <span className="rounded-full w-24 ml-3 inline items-center font-tuner whitespace-nowrap text-gray-800 px-4 pt-[5px] pb-[5px] text-sm font-medium border border-gray-300 bg-gradient-to-br from-white to-gray-200">
-              Done
-            </span> : <></>}
-            </div>
-          <p className="text-gray-500 text-md">{displayDate()}</p>
-          <p className="text-gray-500 text-md">{cardItem.location}</p>
-          <p className="text-orange-500 underline pr-4">Read more</p>
+          <h3 className="font-bold text-2xl mb-1">{cardItem.headline}</h3>
+          <p className="text-gray-500 text-sm">{displayDate()}</p>
+          <p className="text-gray-500 text-sm">{cardItem.location}</p>
+          <p className="text-orange-500 underline pt-1 pr-4 text-sm">Read more</p>
         </div>
         <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
       </div>
@@ -110,7 +106,7 @@ const EventsBlock = ({ data, index }) => {
         {data.title}
       </h1>
       <div className="flex flex-col lg:flex-row lg:gap-4">
-        <div className="w-full lg:w-1/2 flex justify-center items-center rounded-lg" ref={globeContainerRef}>
+        <div className="w-full hidden md:flex lg:w-1/2 flex justify-center items-center rounded-lg" ref={globeContainerRef}>
           {isGlobeVisible && (
             <Suspense fallback={<div className='font-tuner text-2xl'>Loading Globe...</div>}>
               <LazyGlobe activeGlobeId={activeGlobeId} cardItems={data.cardItems} />
