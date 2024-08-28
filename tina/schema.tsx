@@ -30,15 +30,27 @@ import { roadmapGridTemplate } from '../components/blocks/RoadmapGrid.template'
 import { recentPostsTemplate } from '../components/blocks/RecentPosts.template'
 import { testimonialsTemplate } from '../components/blocks/Testimonials.template'
 import { quoteTemplate } from '../components/blocks/Quote.template'
-import { verticalCardsTemplate } from '../components/blocks/VerticalCards.template'
+import { eventsTemplate } from '../components/blocks/Events.template'
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+import { textAndMediaColumnsComponentTemplate } from '../components/blocks/TextAndMediaColumns.template'
+import { imageRowTemplate } from '../components/blocks/ImageRow.template'
+import { iconBannerTemplate } from '../components/blocks/IconBanner.template'
+import { spacerTemplate } from '../components/blocks/Spacer.template'
 
-const WhatsNewFields: TinaField[] = [{ name: 'versionNumber', label: 'Version Number', type: 'string' },
-{ name: 'dateReleased', label: 'Date Released', type: 'datetime'},
-{ name: 'body', label: 'Body', type: 'rich-text', isBody: true, description: 'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).' },]
-
+const WhatsNewFields: TinaField[] = [
+  { name: 'versionNumber', label: 'Version Number', type: 'string' },
+  { name: 'dateReleased', label: 'Date Released', type: 'datetime' },
+  {
+    name: 'body',
+    label: 'Body',
+    type: 'rich-text',
+    isBody: true,
+    description:
+      'The content of the release notes. Note that h1-h5 are the same size (i.e text-lg in tailwind).',
+  },
+]
 
 export const schema = defineSchema({
   collections: [
@@ -102,10 +114,14 @@ export const schema = defineSchema({
             recentPostsTemplate as Template,
             testimonialsTemplate as Template,
             quoteTemplate as Template,
-            verticalCardsTemplate as Template,
+            eventsTemplate as Template,
             compareBoxTemplate as Template,
             bookingTemplate as Template,
             mediaComponentTemplate as Template,
+            textAndMediaColumnsComponentTemplate as Template,
+            imageRowTemplate as Template,
+            iconBannerTemplate as Template,
+            spacerTemplate as Template
           ],
         },
       ],
@@ -169,6 +185,38 @@ export const schema = defineSchema({
               ],
             },
             {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'query',
+                  label: 'Query',
+                  description:
+                    'Paste GraphQL query here. "#" are auto-inserted as spacing placeholders and should not be used.',
+                  ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
+                    component: 'textarea',
+                    format: (val?: string) => val && val.replaceAll('#', ' '),
+                    parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                  },
+                },
+                {
+                  type: 'string',
+                  name: 'response',
+                  label: 'Response',
+                  description:
+                    'Paste GraphQL response data here. "#" are auto-inserted as spacing placeholders and should not be used.',
+                  ui: {
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
+                    component: 'textarea',
+                    format: (val?: string) => val && val.replaceAll('#', ' '),
+                    parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                  },
+                },
+              ],
+            },
+            {
               name: 'WarningCallout',
               label: 'Warning Callout',
               fields: [
@@ -176,6 +224,9 @@ export const schema = defineSchema({
                   name: 'body',
                   label: 'Body',
                   type: 'string',
+                  ui: {
+                    component: 'textarea',
+                  },
                 },
               ],
             },
@@ -213,14 +264,15 @@ export const schema = defineSchema({
                   label: 'docText',
                   isBody: true,
                   type: 'rich-text',
-                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
+                  description:
+                    'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
                 },
                 {
                   name: 'image',
                   label: 'image',
                   type: 'image',
-                }
-              ]
+                },
+              ],
             },
             {
               name: 'SummaryTab',
@@ -230,7 +282,8 @@ export const schema = defineSchema({
                   name: 'heading',
                   label: 'Heading',
                   type: 'string',
-                  description: 'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967'
+                  description:
+                    'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
                 },
                 {
                   name: 'text',
@@ -238,12 +291,8 @@ export const schema = defineSchema({
                   isBody: true,
                   type: 'rich-text',
                 },
-              ]
-            }
-
-
-
-
+              ],
+            },
           ],
         },
       ],
@@ -326,6 +375,9 @@ export const schema = defineSchema({
                   name: 'body',
                   label: 'Body',
                   type: 'string',
+                  ui: {
+                    component: 'textarea',
+                  },
                 },
               ],
             },
@@ -339,6 +391,24 @@ export const schema = defineSchema({
                   label: 'Embed URL',
                   description:
                     '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                },
+              ],
+            },
+            {
+              name: 'GraphQLCodeBlock',
+              label: 'GraphQL Code Block',
+              fields: [
+                {
+                  type: 'rich-text',
+                  name: 'request',
+                  label: 'Request',
+                  description: 'Paste GraphQL request code here.',
+                },
+                {
+                  type: 'rich-text',
+                  name: 'response',
+                  label: 'Response',
+                  description: 'Paste GraphQL response data here.',
                 },
               ],
             },
@@ -629,14 +699,14 @@ export const schema = defineSchema({
       label: 'Whats new - TinaCMS',
       path: 'content/whats-new-tinacms',
       format: 'mdx',
-      fields: WhatsNewFields
+      fields: WhatsNewFields,
     },
     {
       name: 'WhatsNewTinaCloud',
       label: 'Whats new - TinaCloud',
       path: 'content/whats-new-tinacloud',
       format: 'mdx',
-      fields: WhatsNewFields ,
-    }
+      fields: WhatsNewFields,
+    },
   ],
 })

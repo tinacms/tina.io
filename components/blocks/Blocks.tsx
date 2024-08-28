@@ -17,10 +17,14 @@ import { RecentPostsBlock } from './RecentPosts';
 import { RoadmapGridBlock } from './RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase';
 import { TestimonialsBlock } from './Testimonials';
-import { VerticalCardsBlock } from './VerticalCards';
+import { VerticalCardsBlock } from './Events';
 import { CompareBoxBlock } from './CompareBox';
 import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
+import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
+import { ImageRowComponent } from './ImageRow';
+import { IconBannerComponent } from './IconBanner';
+import { SpacerComponent } from './Spacer';
 
 export const Blocks = ({
   blocks,
@@ -40,7 +44,7 @@ export const Blocks = ({
         return <CompareBoxBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksFlying':
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />;
-      case 'PageBlocksVerticalCards':
+      case 'PageBlocksEvents':
         return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksMediaComponent':
         return <MediaComponent key={`block-${index}`} data={block} />;
@@ -49,7 +53,7 @@ export const Blocks = ({
       case 'PageBlocksHero':
         return <HeroBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksPricing':
-        return <PricingBlock key={`block-${index}`} data={block} index={index} />;
+        return <PricingBlock key={`block-${index}`} data={block} />;
       case 'PageBlocksFaq':
         return <FaqBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksContent':
@@ -79,6 +83,14 @@ export const Blocks = ({
         return <TestimonialsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksQuote':
         return <QuoteBlock key={`block-${index}`} data={block} index={index} />;
+      case 'PageBlocksTextMediaColumnComponent':
+        return <TextAndMediaColumnsComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksImageRow':
+        return <ImageRowComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksIconBanner':
+        return <IconBannerComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksSpacer':
+        return <SpacerComponent key={`block-${index}`} data={block} />;
       default:
         return null;
     }

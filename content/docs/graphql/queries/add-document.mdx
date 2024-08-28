@@ -1,6 +1,7 @@
 ---
 id: /docs/graphql/queries/add-document
 title: Add a pending document
+last_edited: '2024-08-15T00:50:13.413Z'
 ---
 
 ## Adding a document with `addPendingDocument`
@@ -9,9 +10,19 @@ The `addPendingDocument` mutation will take in the collection name as a paramete
 
 > Note: `addPendingDocument` does not currently support fields of any kind, just creating the record.
 
-<Iframe
-  iframeSrc="/api/graphiql/?query=mutation%20%7B%0A%20%20addPendingDocument(collection%3A%20%22post%22%2C%20relativePath%3A%20%22pedro.json%22)%20%7B%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D&operationName=GetBlogPost"
-  height={400}
+<GraphQLCodeBlock
+  query="mutation#{
+  ##addPendingDocument(collection:#&#x22;post&#x22;,#relativePath:#&#x22;pedro.json&#x22;)#{
+  ####__typename
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;addPendingDocument&#x22;:#{
+  ######&#x22;__typename&#x22;:#&#x22;Post&#x22;
+  ####}
+  ##}
+  }"
 />
 
 > Ready to try out some of these queries using your specific schema? Try [running the Tina CLI](/docs/graphql/cli/) and testing them out using the Altair client

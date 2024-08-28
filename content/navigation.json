@@ -16,6 +16,12 @@
     "label": "Resources",
     "items": [
       {
+        "label": "About TinaCMS",
+        "id": "about",
+        "href": "/about",
+        "external": false
+      },
+      {
         "id": "blog",
         "label": "Blog",
         "href": "/blog",
@@ -25,18 +31,6 @@
         "label": "Examples",
         "id": "examples",
         "href": "/examples",
-        "external": false
-      }, 
-      {
-        "id": "roadmap",
-        "label": "Roadmap",
-        "href": "/roadmap",
-        "external": false
-      },
-      {
-        "id": "support",
-        "label": "Support",
-        "href": "/docs/support",
         "external": false
       }
     ]
@@ -49,6 +43,18 @@
         "id": "showcase",
         "label": "Showcase",
         "href": "/showcase",
+        "external": false
+      },
+      {
+        "id": "roadmap",
+        "label": "Roadmap",
+        "href": "/roadmap",
+        "external": false
+      },
+      {
+        "id": "support",
+        "label": "Support",
+        "href": "/docs/support",
         "external": false
       },
       {
