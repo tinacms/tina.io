@@ -5,7 +5,7 @@
   },
   "blocks": [
     {
-      "headline": "Next Gen Content Management",
+      "headline": "TinaCMS!!",
       "text": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
       "_template": "hero"
     },
