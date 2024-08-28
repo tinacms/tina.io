@@ -7,7 +7,7 @@
     {
       "features": [
         {
-          "headline": "A CMS With Version Control",
+          "headline": "A CMS With Versi",
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "buttons": [
             {
@@ -171,6 +171,20 @@
     {
       "features": [
         {
+          "headline": "An API for your Content",
+          "text": "Easily fetch your file-based content using Tina's Data Layer",
+          "media": [
+            {
+              "file": "query.gql",
+              "code": "query {\n  post(relativePath: \"about.mdx\") {\n    title\n  }\n}",
+              "language": "javascript",
+              "scale": 1,
+              "_template": "code"
+            }
+          ],
+          "isReversed": true
+        },
+        {
           "headline": "Own Your Content",
           "text": "Don't lock your content in a 3rd-party service.  Tina writes to files in your repository (MDX, Markdown, JSON, etc)",
           "buttons": [
@@ -192,20 +206,6 @@
               "_template": "code"
             }
           ]
-        },
-        {
-          "headline": "An API for your Content",
-          "text": "Easily fetch your file-based content using Tina's Data Layer",
-          "media": [
-            {
-              "file": "query.gql",
-              "code": "query {\n  post(relativePath: \"about.mdx\") {\n    title\n  }\n}",
-              "language": "javascript",
-              "scale": 1,
-              "_template": "code"
-            }
-          ],
-          "isReversed": true
         },
         {
           "headline": "Configure with Code",
