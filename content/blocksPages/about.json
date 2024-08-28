@@ -111,7 +111,7 @@
         },
         {
           "headline": "2021: Introduction of TinaCloud",
-          "content": "TinaCMS introduced Tina Cloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting.\n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
+          "content": "TinaCMS introduced TinaCloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting.\n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
         },
         {
           "headline": "2020: Expansion beyond Gatsby  ",
