@@ -35,8 +35,8 @@ import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
 import { textAndMediaColumnsComponentTemplate } from '../components/blocks/TextAndMediaColumns.template'
-import { imageRowTemplate } from '../components/blocks/ImageRow.template'
-import { iconBannerTemplate } from '../components/blocks/IconBanner.template'
+import { tinaBannerTemplate } from '../components/blocks/TinaBanner.template'
+import { highlightsSectionTemplate } from '../components/blocks/HighlightsSection.template'
 import { spacerTemplate } from '../components/blocks/Spacer.template'
 
 const WhatsNewFields: TinaField[] = [
@@ -119,8 +119,8 @@ export const schema = defineSchema({
             bookingTemplate as Template,
             mediaComponentTemplate as Template,
             textAndMediaColumnsComponentTemplate as Template,
-            imageRowTemplate as Template,
-            iconBannerTemplate as Template,
+            tinaBannerTemplate as Template,
+            highlightsSectionTemplate as Template,
             spacerTemplate as Template
           ],
         },
