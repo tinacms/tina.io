@@ -1,6 +1,7 @@
 {
   "seo": {
-    "title": "About TinaCMS",
+    "title": "About TinaCMS | The Git and Markdown CMS",
+    "hasCustomSuffix": true,
     "description": "The context of TinaCMS and intro to the product."
   },
   "blocks": [
