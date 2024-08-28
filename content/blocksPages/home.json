@@ -5,9 +5,14 @@
   },
   "blocks": [
     {
+      "headline": "Next Gen Content Management",
+      "text": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
+      "_template": "hero"
+    },
+    {
       "features": [
         {
-          "headline": "TinaCMS does not require a database",
+          "headline": "demo",
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "buttons": [
             {
