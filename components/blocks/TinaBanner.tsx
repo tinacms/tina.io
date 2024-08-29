@@ -2,7 +2,7 @@ import Image from "next/image"
 
 const imageCellSizing = "lg:flex flex-nowrap align-bottom justify-center h-64 lg:h-72 relative";
 
-export const ImageRowComponent = ({ data }) => {
+export const TinaBanner = ({ data }) => {
     const { backdrop, leftFig, rightFig, centerFig, llama, leftScreen, rightScreen } = data || {}
     return <div className="w-full  relative mt-16">
         {backdrop && <div className="absolute w-full h-14 bottom-0 left-0 -mb-[3px] lg:mb-0 z-20">

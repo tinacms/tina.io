@@ -19,7 +19,7 @@
       "_template": "hero"
     },
     {
-      "leftVideo": false,
+      "isVideoOnLeft": false,
       "body": "###### Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
       "mediaColumnItem": [
         {
@@ -30,10 +30,10 @@
       "_template": "textMediaColumnComponent"
     },
     {
-      "iconColumn": [
+      "highlightColumn": [
         {
           "heading": "Built for Creators",
-          "iconList": [
+          "highlights": [
             {
               "name": "Real-time Visual Editing",
               "icon": "FaClock"
@@ -58,7 +58,7 @@
         },
         {
           "heading": "Loved by Devs",
-          "iconList": [
+          "highlights": [
             {
               "name": "GitHub Integration",
               "icon": "FaGithub"
@@ -82,10 +82,10 @@
           ]
         }
       ],
-      "_template": "iconBanner"
+      "_template": "highlightsSection"
     },
     {
-      "leftVideo": true,
+      "isVideoOnLeft": true,
       "body": "###### Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
       "mediaColumnItem": [
         {
@@ -141,7 +141,7 @@
       "rightScreen": "https://res.cloudinary.com/forestry-demo/image/upload/v1724133924/tina-brand-assets/poster-and-about-page-assets/npx-command_cbez1b.svg",
       "centerFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132795/tina-brand-assets/poster-and-about-page-assets/street-lamp_kfw1ch.svg",
       "llama": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132785/tina-brand-assets/poster-and-about-page-assets/llama_e1bcn5.svg",
-      "_template": "imageRow"
+      "_template": "tinaBanner"
     }
   ]
 }
