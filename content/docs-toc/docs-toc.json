@@ -4,26 +4,26 @@
       "name": "Introduction",
       "itemOrSubmenuGroup": [
         {
-          "name": "content/docs/index.mdx",
-          "page": "Overview",
+          "page": "content/docs/index.mdx",
+          "name": "Overview",
           "_template": "item"
         },
         {
-          "name": "content/docs/product-tour.mdx",
-          "page": "Introduction To TinaCMS",
+          "page": "content/docs/product-tour.mdx",
+          "name": "Introduction To TinaCMS",
           "_template": "item"
         },
         {
           "name": "Getting Started",
           "submenuItems": [
             {
-              "name": "content/docs/setup-overview.mdx",
-              "page": "Overview",
+              "page": "content/docs/setup-overview.mdx",
+              "name": "Overview",
               "_template": "item"
             },
             {
-              "name": "content/docs/introduction/using-starter.mdx",
-              "page": "Using a Starter",
+              "page": "content/docs/introduction/using-starter.mdx",
+              "name": "Using a Starter",
               "_template": "item"
             },
             {
@@ -51,38 +51,38 @@
                   "_template": "submenu"
                 },
                 {
-                  "name": "content/docs/frameworks/astro.mdx",
-                  "page": "Astro",
+                  "page": "content/docs/frameworks/astro.mdx",
+                  "name": "Astro",
                   "_template": "item"
                 },
                 {
-                  "name": "content/docs/frameworks/hugo.mdx",
-                  "page": "Hugo",
+                  "page": "content/docs/frameworks/hugo.mdx",
+                  "name": "Hugo",
                   "_template": "item"
                 },
                 {
-                  "name": "content/docs/frameworks/gatsby.mdx",
-                  "page": "Gatsby",
+                  "page": "content/docs/frameworks/gatsby.mdx",
+                  "name": "Gatsby",
                   "_template": "item"
                 },
                 {
-                  "name": "content/docs/frameworks/jekyll.mdx",
-                  "page": "Jekyll",
+                  "page": "content/docs/frameworks/jekyll.mdx",
+                  "name": "Jekyll",
                   "_template": "item"
                 },
                 {
-                  "name": "content/docs/frameworks/remix.mdx",
-                  "page": "Remix",
+                  "page": "content/docs/frameworks/remix.mdx",
+                  "name": "Remix",
                   "_template": "item"
                 },
                 {
-                  "name": "content/docs/frameworks/11ty.mdx",
-                  "page": "11ty",
+                  "page": "content/docs/frameworks/11ty.mdx",
+                  "name": "11ty",
                   "_template": "item"
                 },
                 {
-                  "name": "content/docs/frameworks/other.mdx",
-                  "page": "Other",
+                  "page": "content/docs/frameworks/other.mdx",
+                  "name": "Other",
                   "_template": "item"
                 }
               ],
@@ -92,13 +92,13 @@
           "_template": "submenu"
         },
         {
-          "name": "content/docs/using-tina-editor.mdx",
-          "page": "Using the Tina Editor",
+          "page": "content/docs/using-tina-editor.mdx",
+          "name": "Using the Tina Editor",
           "_template": "item"
         },
         {
-          "name": "content/docs/introduction/faq.mdx",
-          "page": "FAQ",
+          "page": "content/docs/introduction/faq.mdx",
+          "name": "FAQ",
           "_template": "item"
         }
       ]
@@ -107,8 +107,8 @@
       "name": "Core Concepts",
       "itemOrSubmenuGroup": [
         {
-          "name": "Content Modeling.mdx",
-          "page": "content/docs/schema",
+          "name": "Content Modeling",
+          "page": "content/docs/schema.mdx",
           "_template": "item"
         },
         {
