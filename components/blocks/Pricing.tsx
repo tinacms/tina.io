@@ -50,7 +50,7 @@ const FreeTier = ({ data }) => {
   return (
     <span className="animate-pop-in w-full">
     <div
-      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105 hover:bg-gradient-to-br from-transparent  to-cyan-100"
+        className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.01] hover:bg-gradient-to-br from-transparent via-cyan-50/40 to-cyan-100"
     >
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
@@ -94,7 +94,7 @@ const PaidTier = ({ data }) => {
   return (
     <span className="animate-pop-in">
     <div
-      className="hover:scale-105 hover:bg-gradient-to-br from-transparent via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden"
+      className="hover:scale-[1.01] hover:bg-gradient-to-br from-transparent via-cyan-50/50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden"
     >
       {data.isStarred && (
         <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
