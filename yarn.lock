@@ -13556,11 +13556,6 @@ react-github-btn@^1.4.0:
   dependencies:
     github-buttons "^2.22.0"
 
-react-gtm-module@^2.0.8:
-  version "2.0.11"
-  resolved "https://registry.npmjs.org/react-gtm-module/-/react-gtm-module-2.0.11.tgz"
-  integrity sha512-8gyj4TTxeP7eEyc2QKawEuQoAZdjKvMY4pgWfycGmqGByhs17fR+zEBs0JUDq4US/l+vbTl+6zvUIx27iDo/Vw==
-
 react-hotkeys-hook@^4.3.7:
   version "4.5.0"
   resolved "https://registry.npmjs.org/react-hotkeys-hook/-/react-hotkeys-hook-4.5.0.tgz"
