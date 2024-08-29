@@ -48,9 +48,9 @@ const pricingComponents = {
 
 const FreeTier = ({ data }) => {
   return (
+    <span className="animate-pop-in w-full">
     <div
       className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105 hover:bg-gradient-to-br from-transparent  to-cyan-100"
-      style={popInStyle}
     >
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
@@ -80,6 +80,7 @@ const FreeTier = ({ data }) => {
         </div>
       </div>
     </div>
+    </span>
   )
 }
 
@@ -91,9 +92,9 @@ const PaidTier = ({ data }) => {
   };
 
   return (
+    <span className="animate-pop-in">
     <div
-      className="hover:bg-gradient-to-br from-transparent via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
-      style={popInStyle}
+      className="hover:scale-105 hover:bg-gradient-to-br from-transparent via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden"
     >
       {data.isStarred && (
         <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
@@ -204,6 +205,7 @@ const PaidTier = ({ data }) => {
         }
       `}</style>
     </div>
+    </span>
   );
 };
 
@@ -213,7 +215,6 @@ export function PricingBlock({ data }) {
       <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
         <h1
           className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
-          style={popInStyle}
         >
           {data.headline}
         </h1>
@@ -232,19 +233,6 @@ export function PricingBlock({ data }) {
             ))}
         </div>
       </div>
-      
-      <style jsx global>{`
-        @keyframes popIn {
-           0% {
-            opacity: 0;
-            transform: scale(0.75);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
 
       <style jsx>{`
         .responsive-grid {
@@ -268,8 +256,4 @@ export function PricingBlock({ data }) {
       `}</style>
     </div>
   )
-}
-
-const popInStyle = {
-  animation: 'popIn 0.5s ease-out forwards',
 }
