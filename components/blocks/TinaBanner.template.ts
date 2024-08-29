@@ -1,8 +1,8 @@
 import { Template } from 'tinacms'
 
-export const imageRowTemplate: Template = {
-    label: 'Image Row',
-    name: 'imageRow',
+export const tinaBannerTemplate: Template = {
+    label: 'Tina Banner',
+    name: 'tinaBanner',
     fields: [
         {name: 'backdrop', label: 'Backdrop', type: 'image'},
         { name: 'leftFig', label: 'Left Figure', type: 'image' },
