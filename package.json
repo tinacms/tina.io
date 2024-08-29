@@ -109,7 +109,6 @@
     "jest": "^25.1.0",
     "next-sitemap": "^2.1.6",
     "prettier": "^2.7.1",
-    "react-svg-loader": "^3.0.3",
     "tailwindcss": "^3.2.1",
     "ts-jest": "^25.2.0",
     "tslint": "^5.18.0",
