@@ -5,6 +5,21 @@
   },
   "blocks": [
     {
+      "headline": "TinaCMS is the only CMS whereyou dont need a db",
+      "text": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
+      "buttons": [
+        {
+          "label": "Contact Us!",
+          "icon": true,
+          "variant": "default",
+          "size": "medium",
+          "url": "/",
+          "_template": "actions"
+        }
+      ],
+      "_template": "hero"
+    },
+    {
       "headline": "I love tinaCMS!",
       "text": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
       "_template": "hero"
