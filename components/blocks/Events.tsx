@@ -107,11 +107,11 @@ const Card = ({ cardItem, onHover }) => {
         <div className="flex items-center text-md">
           <p className="mr-2">{displayDate()}</p>
           {isLiveEvent ? (
-            <span className="bg-teal-100 px-2 rounded text-sm text-teal-500 shadow-lg opacity-60">LIVE</span>
+            <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">LIVE</span>
           ) : isPastEvent ? (
-            <span className="bg-slate-200 px-2 rounded text-sm text-gray-500 shadow-lg opacity-60">DONE</span>
+            <span className="bg-slate-200 px-2 rounded text-sm text-gray-700 shadow-lg opacity-60">DONE</span>
           ) : (
-            <span className="bg-teal-100 px-2 rounded text-sm text-teal-500 shadow-lg opacity-60">
+            <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
               {daysUntilEvent} DAY{daysUntilEvent > 1 ? 'S' : ''} TO GO
             </span>
           )}
