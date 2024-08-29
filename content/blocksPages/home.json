@@ -486,7 +486,7 @@
       "features": [
         {
           "headline": "Merge With Confidence",
-          "text": "Tina Cloud Enterprise customers can review, approve, and manage content  on different branches",
+          "text": "TinaCloud Enterprise customers can review, approve, and manage content  on different branches",
           "buttons": [
             {
               "label": "Editorial Workflow",
@@ -526,7 +526,7 @@
         },
         {
           "headline": "Open-Source",
-          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on Tina Cloud.",
+          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on TinaCloud.",
           "url": "https://github.com/tinacms/tinacms"
         },
         {
@@ -536,7 +536,7 @@
         },
         {
           "headline": "3rd-party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud.",
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud.",
           "url": "/docs/reference/media/overview/"
         },
         {
