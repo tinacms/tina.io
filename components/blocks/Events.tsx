@@ -84,7 +84,7 @@ const Card = ({ cardItem, onHover }) => {
 
   return (
     <div
-      className="relative p-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
+      className="relative px-4 pt-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
       onMouseEnter={() => onHover(cardItem.index)}
       onMouseLeave={() => onHover(null)}
     >
@@ -107,11 +107,11 @@ const Card = ({ cardItem, onHover }) => {
         <div className="flex items-center text-md">
           <p className="mr-2">{displayDate()}</p>
           {isLiveEvent ? (
-            <span className="bg-teal-100 px-2 rounded-lg text-teal-500 shadow-lg">LIVE</span>
+            <span className="bg-teal-100 px-2 rounded text-sm text-teal-500 shadow-lg opacity-60">LIVE</span>
           ) : isPastEvent ? (
-            <span className="bg-gray-200 px-2 rounded-lg text-gray-500 shadow-lg">DONE</span>
+            <span className="bg-slate-200 px-2 rounded text-sm text-gray-500 shadow-lg opacity-60">DONE</span>
           ) : (
-            <span className="bg-teal-100 px-2 rounded-lg text-teal-500 shadow-lg">
+            <span className="bg-teal-100 px-2 rounded text-sm text-teal-500 shadow-lg opacity-60">
               {daysUntilEvent} DAY{daysUntilEvent > 1 ? 'S' : ''} TO GO
             </span>
           )}
@@ -120,7 +120,7 @@ const Card = ({ cardItem, onHover }) => {
         <Link href={cardItem.link || '#'}>
           <p className="font-tuner pt-1 pr-4 text-md bg-gradient-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
             Read more
-            <FaChevronRight className="text-md text-blue-700 ml-1" />
+            <FaChevronRight className="text-md text-blue-700 ml-1 mb-1" />
           </p>
         </Link>
       </div>
