@@ -99,31 +99,31 @@
       "items": [
         {
           "headline": "2024: Acquired by SSW",
-          "content": "SSW loved using Tina so much that they reached out to help and **[SSW ended up acquiring TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)**, bringing greater enterprise resources, support, and expertise. \n\nVersion 2 was released, with big updates including improved content indexing and better performance. Additionally, the team launched the TinaGPT chatbot in June, integrating AI-driven assistance into the platform.\n"
+          "content": "SSW loved using Tina so much that they reached out to help and **[SSW ended up acquiring TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)**, bringing greater enterprise resources, support, and expertise. \n\n**Version 2** was released, with big updates including improved content indexing and better performance. Additionally, the team launched the TinaGPT chatbot in June, integrating AI-driven assistance into the platform.\n"
         },
         {
           "headline": "2023: 10,000 stars on GitHub ⭐  ",
-          "content": "Tina reached some exciting milestones, with 1,000 members in our Discord support forum and 10,000 GitHub stargazers, thanks to the amazing Tina community 🥰 \n\nNew features were added, like block-level control, schema-based content models, and enhanced UI customization, allowing for more sophisticated content structuring. \n"
+          "content": "Tina reached some exciting milestones: **[now fully open-source](<https://tina.io/blog/Tinacms-is-now-fully-open-source/ >)**, Tina reached 1,000 members in our Discord support forum and 10,000 GitHub stargazers, thanks to the amazing Tina community 🥰 \n\nTinaCloud added enterprise features like [Single Sign On and an Editorial Workflow](https://tina.io/blog/Introducing-Editorial-Workflow-Features-for-your-Team).\n"
         },
         {
           "headline": "2022: Improved Developer Experience",
-          "content": "The team streamlined developer workflows, adding robust documentation to simplify setup and integration.\n\nTina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
+          "content": "**[Version 1.0 is live](https://tina.io/blog/tina-1-0-announcement/)**! The team streamlined developer workflows, adding robust documentation to simplify setup and integration.\n\nTina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
         },
         {
           "headline": "2021: Introduction of TinaCloud",
-          "content": "TinaCMS introduced TinaCloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting.\n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
+          "content": "**[TinaCMS introduced TinaCloud](https://tina.io/blog/2021-a-year-in-review/)**, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting.\n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
         },
         {
           "headline": "2020: Expansion beyond Gatsby  ",
-          "content": "TinaCMS expanded to work with other static site generators like Next.js, Hugo and Jekyll, increasing its reach and versatility. \n"
+          "content": "TinaCMS expanded to work with other static site generators like Next.js, Hugo and Jekyll, increasing its reach and versatility. Media Manager is introduced and **[Inline Editing is revamped](https://tina.io/blog/inline-editing-project/)**.\n"
         },
         {
           "headline": "2019: TinaCMS was born!",
-          "content": "Initially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed.\n\nIt aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
+          "content": "**[Announcing TinaCMS 🥳 ](https://tina.io/blog/announcing-tinacms/)**\n\nInitially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed.\n\nIt aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
         },
         {
           "headline": "2016: Forestry.io was created  ",
-          "content": "This was a revolutionary Headless CMS as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content.\n\nThe CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
+          "content": "This was a **[revolutionary Headless CMS](https://tina.io/forestry/)** as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content.\n\nThe CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
         }
       ],
       "options": {
