@@ -7,9 +7,19 @@
     {
       "features": [
         {
-          "headline": "A CMS With Version Control Built-in",
+          "headline": "A CMS With Version Control Bbvn",
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "buttons": [
+            {
+              "label": "Secondary Action",
+              "icon": false,
+              "size": "medium",
+              "_template": "modalButton"
+            },
+            {
+              "label": "npx create-tina-app@latest",
+              "_template": "codeButton"
+            },
             {
               "label": "Try the editor now",
               "icon": true,
@@ -17,10 +27,6 @@
               "size": "small",
               "url": "https://quick-edit-demo.vercel.app/admin#/~",
               "_template": "actions"
-            },
-            {
-              "label": "npx create-tina-app@latest",
-              "_template": "codeButton"
             }
           ],
           "media": [
