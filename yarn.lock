@@ -3967,11 +3967,6 @@
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.4.tgz"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react-gtm-module@^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/@types/react-gtm-module/-/react-gtm-module-2.0.1.tgz"
-  integrity sha512-T/DN9gAbCYk5wJ1nxf4pSwmXz4d1iVjM++OoG+mwMfz9STMAotGjSb65gJHOS5bPvl6vLSsJnuC+y/43OQrltg==
-
 "@types/react-instantsearch-core@*":
   version "6.26.3"
   resolved "https://registry.npmjs.org/@types/react-instantsearch-core/-/react-instantsearch-core-6.26.3.tgz"
@@ -13270,9 +13265,9 @@ prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.2.4, pr
     prosemirror-view "^1.27.0"
 
 prosemirror-tables@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.npmjs.org/prosemirror-tables/-/prosemirror-tables-1.4.0.tgz"
-  integrity sha512-fxryZZkQG12fSCNuZDrYx6Xvo2rLYZTbKLRd8rglOPgNJGMKIS8uvTt6gGC38m7UCu/ENnXIP9pEz5uDaPc+cA==
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/prosemirror-tables/-/prosemirror-tables-1.5.0.tgz"
+  integrity sha512-VMx4zlYWm7aBlZ5xtfJHpqa3Xgu3b7srV54fXYnXgsAcIGRqKSrhiK3f89omzzgaAgAtDOV4ImXnLKhVfheVNQ==
   dependencies:
     prosemirror-keymap "^1.1.2"
     prosemirror-model "^1.8.1"

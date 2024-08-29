@@ -104,7 +104,6 @@
     "@types/jest": "^25.1.2",
     "@types/node": "^13.1.4",
     "@types/react": "^16.9.17",
-    "@types/react-gtm-module": "^2.0.0",
     "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^5.1.21",
     "babel-plugin-styled-components": "^1.8.0",
