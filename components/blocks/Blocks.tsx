@@ -22,8 +22,8 @@ import { CompareBoxBlock } from './CompareBox';
 import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
-import { ImageRowComponent } from './ImageRow';
-import { IconBannerComponent } from './IconBanner';
+import { TinaBanner } from './TinaBanner';
+import { HighlightsSection } from './HighlightsSection';
 import { SpacerComponent } from './Spacer';
 
 export const Blocks = ({
@@ -85,10 +85,10 @@ export const Blocks = ({
         return <QuoteBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksTextMediaColumnComponent':
         return <TextAndMediaColumnsComponent key={`block-${index}`} data={block} />;
-      case 'PageBlocksImageRow':
-        return <ImageRowComponent key={`block-${index}`} data={block} />;
-      case 'PageBlocksIconBanner':
-        return <IconBannerComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksTinaBanner':
+        return <TinaBanner key={`block-${index}`} data={block} />;
+      case 'PageBlocksHighlightsSection':
+        return <HighlightsSection key={`block-${index}`} data={block} />;
       case 'PageBlocksSpacer':
         return <SpacerComponent key={`block-${index}`} data={block} />;
       default:

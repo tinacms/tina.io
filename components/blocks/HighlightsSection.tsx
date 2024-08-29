@@ -48,16 +48,16 @@ const icons = {
     FaHandPointer
 }
 
-const IconBannerComponent = ({ data }) => {
-    const { iconColumn } = data || {}
+const HighlightsSection = ({ data }) => {
+    const { highlightColumn } = data || {}
 
     return (
         <div className="h-fit lg:py-16 md:py-8 lg:my-8 bg-gradient-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-screen">
             <div className="md:flex justify-center lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0">
-                {Array.isArray(iconColumn) && iconColumn.map((item, index) => {
+                {Array.isArray(highlightColumn) && highlightColumn.map((item, index) => {
                     return <div className="text-start grid grid-cols-1 my-16 md:my-0" key={`iconColumn-${index}`}>
                         <h4 className="font-tuner text-2xl md:text-3xl mb-4 text-black">{item.heading}</h4>
-                        {Array.isArray(item.iconList) && item.iconList.map((iconItem, iconIndex) => 
+                        {Array.isArray(item.highlights) && item.highlights.map((iconItem, iconIndex) => 
                         {
                             const Icon = icons[iconItem.icon];
                             return <div className="flex mb-4" key={`iconColumns-${index}-${iconIndex}`}>
@@ -75,4 +75,4 @@ const IconBannerComponent = ({ data }) => {
     )
 }
 
-export { IconBannerComponent }
+export { HighlightsSection }

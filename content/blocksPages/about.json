@@ -1,6 +1,7 @@
 {
   "seo": {
-    "title": "About",
+    "title": "About TinaCMS | The Git and Markdown CMS",
+    "hasCustomSuffix": true,
     "description": "The context of TinaCMS and intro to the product."
   },
   "blocks": [
@@ -18,7 +19,7 @@
       "_template": "hero"
     },
     {
-      "leftVideo": false,
+      "isVideoOnLeft": false,
       "body": "###### Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
       "mediaColumnItem": [
         {
@@ -29,10 +30,10 @@
       "_template": "textMediaColumnComponent"
     },
     {
-      "iconColumn": [
+      "highlightColumn": [
         {
           "heading": "Built for Creators",
-          "iconList": [
+          "highlights": [
             {
               "name": "Real-time Visual Editing",
               "icon": "FaClock"
@@ -57,7 +58,7 @@
         },
         {
           "heading": "Loved by Devs",
-          "iconList": [
+          "highlights": [
             {
               "name": "GitHub Integration",
               "icon": "FaGithub"
@@ -81,10 +82,10 @@
           ]
         }
       ],
-      "_template": "iconBanner"
+      "_template": "highlightsSection"
     },
     {
-      "leftVideo": true,
+      "isVideoOnLeft": true,
       "body": "###### Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
       "mediaColumnItem": [
         {
@@ -107,11 +108,11 @@
         },
         {
           "headline": "2022: Improved Developer Experience",
-          "content": "The team streamlined developer workflows, adding robust documentation to simplify setup and integration. \n\nTina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
+          "content": "The team streamlined developer workflows, adding robust documentation to simplify setup and integration.\n\nTina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
         },
         {
           "headline": "2021: Introduction of TinaCloud",
-          "content": "TinaCMS introduced Tina Cloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting. \n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
+          "content": "TinaCMS introduced TinaCloud, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting.\n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
         },
         {
           "headline": "2020: Expansion beyond Gatsby  ",
@@ -119,11 +120,11 @@
         },
         {
           "headline": "2019: TinaCMS was born!",
-          "content": "Initially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed. \n\nIt aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
+          "content": "Initially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed.\n\nIt aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
         },
         {
           "headline": "2016: Forestry.io was created  ",
-          "content": "This was a revolutionary Headless CMS as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content. \n\nThe CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
+          "content": "This was a revolutionary Headless CMS as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content.\n\nThe CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
         }
       ],
       "options": {
@@ -140,7 +141,7 @@
       "rightScreen": "https://res.cloudinary.com/forestry-demo/image/upload/v1724133924/tina-brand-assets/poster-and-about-page-assets/npx-command_cbez1b.svg",
       "centerFig": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132795/tina-brand-assets/poster-and-about-page-assets/street-lamp_kfw1ch.svg",
       "llama": "https://res.cloudinary.com/forestry-demo/image/upload/v1724132785/tina-brand-assets/poster-and-about-page-assets/llama_e1bcn5.svg",
-      "_template": "imageRow"
+      "_template": "tinaBanner"
     }
   ]
 }

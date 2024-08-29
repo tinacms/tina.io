@@ -13,7 +13,7 @@
             "icon": false,
             "variant": "orangeWithBorder",
             "size": "medium",
-            "url": "/",
+            "url": "https://app.tina.io/register?origin=https://app.tina.io",
             "_template": "actions"
           }
         ]
@@ -91,7 +91,7 @@
           ],
           "buttons": [
             {
-              "label": "‏‏‎ ‎‏‏‎ ‎Start Free Plan‏‏‎ ‎‏‏‎ ‎",
+              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
