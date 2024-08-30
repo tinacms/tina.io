@@ -100,11 +100,6 @@
           "title": "FAQ",
           "slug": "content/docs/introduction/faq.mdx",
           "_template": "item"
-        },
-        {
-          "title": "Example Item",
-          "slug": "content/docs/cli-overview.mdx",
-          "_template": "item"
         }
       ]
     },
