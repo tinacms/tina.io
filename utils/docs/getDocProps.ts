@@ -23,7 +23,8 @@ const stripReferenceDownToSlug = (
       if (obj._template === "items") {
         array[index].items = stripReferenceDownToSlug(obj.items);
       } else {
-        array[index].slug = obj.slug.replace(/^content\/|\.mdx$/g, '/')
+        //Handles the docs homepage case, as the only docs page with a unique (i.e. no) slug, otherwise reformat
+        array[index].slug = obj.slug === "content/docs/index.mdx" ? "/docs" : obj.slug.replace(/^content\/|\.mdx$/g, '/')
       }
     }
   })
