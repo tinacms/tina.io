@@ -11,19 +11,19 @@ For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
 ## Where can I get help or share an idea for TinaCMS or TinaCloud?
 
-* Check out our communities at [https://tina.io/community/](https://tina.io/community/)
+- Check out our communities at [https://tina.io/community/](https://tina.io/community/)
 
 ## What is Tina's tech stack?
 
 ### TinaCloud
 
-* Content querying + indexing - **Node**
-* Cloud provider - **AWS**
-* Identity management - **Go**
+- Content querying + indexing - **Node**
+- Cloud provider - **AWS**
+- Identity management - **Go**
 
 ### TinaCMS
 
-* CMS - **React 18**
+- CMS - **React 18**
 
 ## What features are unavailable in self-hosted Tina compared to TinaCloud?
 
@@ -51,11 +51,22 @@ are not functional in a self-hosted Tina setup.
 
 The self-hosted backend does not currently have endpoints to support search functionality.
 
-## How do you enable co-author on Git commits?
+## Enabling co-author on Git commits
 
-By default when using TinaCloud, the author on Git commits is the TinaCloud GitHub [app](https://github.com/apps/tina-cloud-app). It is possible to [co-author](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git commits in order to attribute the commit to an additional user. This can be enabled per-user in the TinaCloud account [settings](https://app.tina.io/account/settings). By default, the name and email of the co-author is configured according to your TinaCloud account, but they can be set to any valid name and email address. Once configured, click the "Enable co-authoring" toggle and the "Save Settings" button.
+By default when using TinaCloud, the author on Git commits is the [Tina Cloud GitHub app](https://github.com/apps/tina-cloud-app). Some users prefer to know who made the change.
 
-> **Note:** The co-author email is publicly viewable on GitHub. If you want to hide your email, GitHub provides an anonymous email address for each user. You can find your anonymous email address in the GitHub email [settings](https://github.com/settings/emails). This email address can then be configured in TinaCloud as the co-author.
+For this use case, it is possible to [co-author](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git commits in order to attribute the commit to an additional user. This can be enabled per-user in the Tina Cloud account settings.
+
+By default, the name and email of the co-author is configured according to your Tina Cloud account, but they can be set to any valid name and email address.
+
+Follow these steps to set it up:
+
+1. Go to your [Tina Cloud account settings](https://app.tina.io/account/settings)
+2. Fill out the git co-author name and email
+3. Click `Enable co-authoring`
+4. Click Save
+
+> **Note:** The co-author email is publicly viewable on GitHub. If you want to hide your email, GitHub provides an anonymous email address for each user. You can find your anonymous email address in the [GitHub email settings](https://github.com/settings/emails). This email address can then be configured in Tina Cloud as the co-author.
 
 ## Why do I need a database when using markdown?
 
@@ -69,15 +80,7 @@ When developers are developing locally, it's often convenient to load/save conte
 
 When in local-mode, you **will not** need to login to enter edit-mode.
 
-<div class="short-code-warning">
-  <div>
-    <p>Note: Local-mode is meant for developing locally, and will not work when your site is hosted on production. When in local-mode, Tina tries to hit `http://localhost:4001`, which isn't available at runtime on your production site (and neither is the underlying filesystem content).</p>
-  </div>
-
-  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32 464h448L256 48 32 464zm248-64h-48v-48h48v48zm0-80h-48v-96h48v96z" />
-  </svg>
-</div>
+<WarningCallout body="Note: Local-mode is meant for developing locally, and will not work when your site is hosted on production. When in local-mode, Tina tries to hit `http://localhost:4001`, which isn't available at runtime on your production site (and neither is the underlying filesystem content)." />
 
 ### Prod-Mode
 
@@ -111,9 +114,9 @@ When a user logs in from your site, we will pop open a login window. When login 
 
 The most common reasons for this issue are:
 
-* The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the TinaCloud Dashboard.
-* The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the TinaCloud dashboard.
-* The user attempting to login to TinaCloud does not have access to edit this site. Ensure that this user is authorized on the TinaCloud dashboard.
+- The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the TinaCloud Dashboard.
+- The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the TinaCloud dashboard.
+- The user attempting to login to TinaCloud does not have access to edit this site. Ensure that this user is authorized on the TinaCloud dashboard.
 
 > Make sure to include `https` in the Site URL eg: [https://forestry.io](https://forestry.io) or if you are testing locally, it might be something like `http://localhost:3000`
 
@@ -135,12 +138,12 @@ When you run `tinacms dev` locally, Tina will generate a development admin/index
 
 TinaCloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
-* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
-  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
-* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
-  * The referenced branch should be created and should contain the `tina` folder.
-* The apiURL prop is misconfigured on the TinaCMS component.
-  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch.
+- The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
+  - If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
+- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
+  - The referenced branch should be created and should contain the `tina` folder.
+- The apiURL prop is misconfigured on the TinaCMS component.
+  - Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch.
 
 ### How do I resolve `The local GraphQL schema doesn't match the remote GraphQL schema.` errors?
 
@@ -178,9 +181,9 @@ Generally this happens when there is branch protection on your main branch and T
 
 To fix this issue, either:
 
-* Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
+- Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
   Ensure that the TinaCloud app is allowed to bypass the rule requiring branch protection
-* Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
+- Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
 
 ### How do I resolve `Invalid or undefined branch` errors?
 
@@ -196,7 +199,7 @@ Everything in the `tina` directory (except the `__generated__` folder) needs to 
 
 ### How do I resolve `API URL is misformatted` errors?
 
-The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
+The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL _should_ be formatted.
 
 ## Trying to access local GraphQL server when it's not running or in prod.
 

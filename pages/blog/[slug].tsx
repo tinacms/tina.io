@@ -25,6 +25,7 @@ import {
   TinaMarkdownContent,
 } from 'tinacms/dist/rich-text'
 import { Prism } from '../../components/styles/Prism'
+import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { getDocId } from 'utils/docs/getDocIds'
 import { FaPlus, FaMinus } from 'react-icons/fa'
@@ -35,6 +36,7 @@ export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
   Youtube: { embedSrc: string;}
   CreateAppCta: { ctaText: string; cliText: string }
+  GraphQLCodeBlock: { query: string, response: string }
   Callout: {
     title: string
     description: string
@@ -50,6 +52,7 @@ export const components: Components<{
   Button: { link: string; label: string }
   ImageAndText: { docText: string; image: string }
   Summary: { heading: string; text: string }
+
 }> = {
   ImageAndText: (props) => {
     return (
@@ -242,6 +245,12 @@ export const components: Components<{
         theme="nightOwl"
       />
     )
+  },
+  GraphQLCodeBlock: ({ query, response }) => {
+    return <GraphQLQueryResponseTabs 
+      query={query} 
+      response={response}
+    />
   },
   CustomFieldComponentDemo: () => (
     <iframe

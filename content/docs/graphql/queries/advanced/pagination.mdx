@@ -1,7 +1,7 @@
 ---
 id: /docs/graphql/queries/advanced/pagination
-
 title: Paginating query results
+last_edited: '2024-08-15T02:38:59.396Z'
 ---
 
 Collection queries implement cursor based pagination. The client specifies a result limit parameter (using `first` or `last`) and a corresponding cursor parameter (using `after` or `before`) which is a pointer to the last item on the previous page of results.
@@ -31,9 +31,41 @@ To page through query results in the forward direction, the `first` and `after` 
 
 Here we will query our `post` collection with `postConnection`, limiting the page size to `1` and starting at the second item:
 
-<Iframe
-  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22date%22%2C%20first%3A%201%2C%20after%3A%20%22cG9zdCNkYXRlIzE2NTUyNzY0MDAwMDAjY29udGVudC9wb3N0cy92b3RlRm9yUGVkcm8uanNvbg%3D%3D%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20pageInfo%20%7B%0A%20%20%20%20%20%20hasNextPage%0A%20%20%20%20%20%20endCursor%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
-  height={400}
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;date&#x22;,#first:#1,#after:#&#x22;cG9zdCNkYXRlIzE2NTUyNzY0MDAwMDAjY29udGVudC9wb3N0cy92b3RlRm9yUGVkcm8uanNvbg==&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########date
+  ######}
+  ####}
+  ####pageInfo#{
+  ######hasNextPage
+  ######endCursor
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######],
+  ######&#x22;pageInfo&#x22;:#{
+  ########&#x22;hasNextPage&#x22;:#true,
+  ########&#x22;endCursor&#x22;:#&#x22;cG9zdCNkYXRlIzE2NTc4Njg0MDAwMDAjY29udGVudC9wb3N0cy9hbm90aGVyUG9zdC5qc29u&#x22;
+  ######}
+  ####}
+  ##}
+  }"
 />
 
 ## Reverse pagination
@@ -44,7 +76,39 @@ To page through query results in the reverse direction, the `last` and `before` 
 
 Here we will query our `post` collection with `postConnection`, limiting the page size to `1` and starting at the first item:
 
-<Iframe
-  iframeSrc="/api/graphiql/?query=%7B%0A%20%20postConnection(sort%3A%20%22date%22%2C%20last%3A%201%2C%20before%3A%20%22cG9zdCNkYXRlIzE2NTc4Njg0MDAwMDAjY29udGVudC9wb3N0cy9hbm90aGVyUG9zdC5qc29u%22)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20date%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20pageInfo%20%7B%0A%20%20%20%20%20%20hasPreviousPage%0A%20%20%20%20%20%20endCursor%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&#x22; "
-  height={400}
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;date&#x22;,#last:#1,#before:#&#x22;cG9zdCNkYXRlIzE2NTc4Njg0MDAwMDAjY29udGVudC9wb3N0cy9hbm90aGVyUG9zdC5qc29u&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########date
+  ######}
+  ####}
+  ####pageInfo#{
+  ######hasPreviousPage
+  ######endCursor
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######],
+  ######&#x22;pageInfo&#x22;:#{
+  ########&#x22;hasPreviousPage&#x22;:#false,
+  ########&#x22;endCursor&#x22;:#&#x22;cG9zdCNkYXRlIzE2NTUyNzY0MDAwMDAjY29udGVudC9wb3N0cy92b3RlRm9yUGVkcm8uanNvbg==&#x22;
+  ######}
+  ####}
+  ##}
+  }"
 />
