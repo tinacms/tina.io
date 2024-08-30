@@ -5,11 +5,11 @@ export const itemTemplate: Template = {
     name: 'item',
     ui: {
         itemProps: (item) => {
-            return { label: '🔗 ' + (item?.name ?? "Unnamed Menu Item") };
+            return { label: '🔗 ' + (item?.title ?? "Unnamed Menu Item") };
         },
     },
     fields: [
-        { name: 'name', label: 'Name', type: 'string' },
-        { name: 'page', label: 'Page', type: 'reference', collections: ['doc'] }
+        { name: 'title', label: 'Name', type: 'string' },
+        { name: 'slug', label: 'Page', type: 'reference', collections: ['doc'] }
     ]
 }

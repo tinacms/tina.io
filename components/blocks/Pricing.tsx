@@ -188,7 +188,6 @@ const PaidTier = ({ data }) => {
   )
 }
 export function PricingBlock({ data }) {
-  console.log(data.intro)
   return (
     <div className="p-6">
       <style>{style}</style>

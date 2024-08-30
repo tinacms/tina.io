@@ -3,10 +3,10 @@ import { itemTemplate } from "./toc-item.template"
 
 const uiAndLabelling: any = {
     label: 'Submenu',
-    name: 'submenu',
+    name: 'items',
     ui: {
         itemProps: (item) => {
-            return { label: '🗂️ ' + (item?.name ?? "Unnamed Menu Group") };
+            return { label: '🗂️ ' + (item?.title ?? "Unnamed Menu Group") };
         },
     },
 }
@@ -14,23 +14,23 @@ const uiAndLabelling: any = {
 const thirdLevelSubmenu: Template = {
     ...uiAndLabelling,
     fields: [
-        { name: 'name', label: 'Name', type: 'string' },
-        { name: 'submenuItems', label: 'Submenu Items', type: 'object', list: true, templates: [itemTemplate] }
+        { name: 'title', label: 'Name', type: 'string' },
+        { name: 'items', label: 'Submenu Items', type: 'object', list: true, templates: [itemTemplate] }
     ]
 }
 
 const secondLevelSubmenu: Template = {
     ...uiAndLabelling,
     fields: [
-        { name: 'name', label: 'Name', type: 'string' },
-        { name: 'submenuItems', label: 'Submenu Items', type: 'object', list: true, templates: [thirdLevelSubmenu, itemTemplate] }
+        { name: 'title', label: 'Name', type: 'string' },
+        { name: 'items', label: 'Submenu Items', type: 'object', list: true, templates: [thirdLevelSubmenu, itemTemplate] }
     ]
 }
 
 export const submenuTemplate: Template = {
     ...uiAndLabelling,
     fields: [
-        { name: 'name', label: 'Name', type: 'string' },
-        { name: 'submenuItems', label: 'Submenu Items', type: 'object', list: true, templates: [secondLevelSubmenu, itemTemplate] }
+        { name: 'title', label: 'Name', type: 'string' },
+        { name: 'items', label: 'Submenu Items', type: 'object', list: true, templates: [secondLevelSubmenu, itemTemplate] }
     ]
 }

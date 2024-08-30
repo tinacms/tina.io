@@ -653,13 +653,13 @@ export const schema = defineSchema({
           list: true,
           ui: {
             itemProps: (item) => {
-              return { label: '🗂️ ' + (item?.name ?? "Unnamed Menu Group") };
+              return { label: '🗂️ ' + (item?.title ?? "Unnamed Menu Group") };
             },
           },
           fields: [
-            {name: 'name', label: "Name", type: 'string'},
+            {name: 'title', label: "Name", type: 'string'},
             {
-              name: 'itemOrSubmenuGroup',
+              name: 'items',
               label: 'Page or Submenu',
               type: 'object',
               list: true,
