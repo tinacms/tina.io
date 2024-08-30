@@ -38,8 +38,8 @@ TinaCMS handles a few things differently that will cause you to have to make som
 
 Here is a list of the changes that will need to be made to your site:
 
-* You can only have alphanumeric characters or underscores in your field names, templates names, and collection names (**This includes `-`**). You will likely have to update your template names in your content and code. See [this doc](/docs/forestry/common-errors/#migrating-fields-with-non-alphanumeric-characters) for more details.
-* If you are using the "blocks" field see [this doc](/docs/forestry/common-errors/#migrating-blocks) for how to migrate your blocks.
+- You can only have alphanumeric characters or underscores in your field names, templates names, and collection names (**This includes `-`**). You will likely have to update your template names in your content and code. See [this doc](/docs/forestry/common-errors/#migrating-fields-with-non-alphanumeric-characters) for more details.
+- If you are using the "blocks" field see [this doc](/docs/forestry/common-errors/#migrating-blocks) for how to migrate your blocks.
 
 ## Starting TinaCMS
 
@@ -107,14 +107,14 @@ Next we'll take you from editing with TinaCMS locally to editing in production w
 
 Push your repo up to git, along with its new Tina configuration.
 
-### Step 2) Set up a Tina Cloud project
+### Step 2) Set up a TinaCloud project
 
-In production, we'll want to make sure only authorized users can access your Tina admin, and make changes to your content. You can set up a [Tina Cloud project](https://app.tina.io/) to handle this.
+In production, we'll want to make sure only authorized users can access your Tina admin, and make changes to your content. You can set up a [TinaCloud project](https://app.tina.io/) to handle this.
 Once your project is created, you'll also need to generate a read-only-token.
 
-See our [Tina Cloud docs](https://tina.io/docs/tina-cloud/) for help using Tina Cloud.
+See our [TinaCloud docs](https://tina.io/docs/tina-cloud/) for help using TinaCloud.
 
-### Step 3) Connect the Tina Cloud config to your site
+### Step 3) Connect the TinaCloud config to your site
 
 Locally, in your tina/config.js file, set the following config properties:
 
