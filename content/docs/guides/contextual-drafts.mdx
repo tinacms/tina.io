@@ -31,7 +31,7 @@ const handler = async (req, res) => {
     return res.redirect(req.query.slug)
   }
 
-  // Check tina cloud token
+  // Check TinaCloud token
   const isAuthorizedRes = await isUserAuthorized({
     token: `Bearer ${req.query.token}`,
     clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
@@ -48,7 +48,7 @@ const handler = async (req, res) => {
 export default handler
 ```
 
-This handler verifies (With Tina Cloud) that the token is valid and then redirects to the document we want to edit.
+This handler verifies (With TinaCloud) that the token is valid and then redirects to the document we want to edit.
 
 Next, create a file called `pages/api/preview/exit.{ts,js}` this will handle the request to exit preview-mode. This file should look like this:
 
@@ -115,7 +115,7 @@ Depending on your use case you can also safely use any value for `fallback`.
 
 First we will create a util function that will either return all the documents or just the production documents depending on if we are in preview-mode.
 
-*`util/getPosts.{ts,js}`*
+_`util/getPosts.{ts,js}`_
 
 ```ts
 import { client } from '../<PathToTina>/tina/__generated__/client'
@@ -157,7 +157,7 @@ export const getStaticProps = async ({ preview = false }) => {
 }
 ```
 
-#### Slug pages (*optional*)
+#### Slug pages (_optional_)
 
 On pages that use SSR or "incremental static regeneration" (ISR), your `getStaticProps` function will be called on every request. This means that we need to return a 404 when the document is a draft and we are not in preview-mode.
 
