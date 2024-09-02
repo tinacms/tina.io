@@ -79,6 +79,12 @@ export const heroTemplate: TinaTemplate = {
       type: 'string',
     },
     {
+      name: 'smallerMobileBodyText',
+      description: 'Default text size on mobile is xl',
+      label: 'Mobile Text Size (off = xl, on = lg)',
+      type: 'boolean',
+    },
+    {
       label: 'Buttons',
       list: true,
       name: 'buttons',

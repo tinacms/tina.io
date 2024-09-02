@@ -43,7 +43,7 @@ With your site running, you should be able to access it at [`http://localhost:30
 
 The home page of the starter should look like this:
 
-![Tina Cloud Starter](https://res.cloudinary.com/forestry-demo/image/upload/v1653936476/blog-media/a-b-testing/starter-homepage.png)
+![TinaCloud Starter](https://res.cloudinary.com/forestry-demo/image/upload/v1653936476/blog-media/a-b-testing/starter-homepage.png)
 
 This page is already setup nicely for an A/B test, its page layout (`[slug].tsx`) renders dynamic pages by accepting a variable `slug`.
 
@@ -100,7 +100,7 @@ import { getBucket } from '../utils/getBucket'
 export function middleware(req: NextRequest) {
   // find the experiment that matches the request's url
   const matchingExperiment = abTestDB.tests.find(
-    test => test.href == req.nextUrl.pathname
+    (test) => test.href == req.nextUrl.pathname
   )
 
   if (!matchingExperiment) {
@@ -147,12 +147,12 @@ export const getBucket = (matchingABTest: any, bucketCookie?: string) => {
     bucketCookie ||
     getAssignedBucketId([
       matchingABTest.testId,
-      ...matchingABTest.variants.map(t => t.testId),
+      ...matchingABTest.variants.map((t) => t.testId),
     ])
 
   // check if our bucket matches a variant
   const matchingVariant = matchingABTest.variants.find(
-    t => t.testId == bucketId
+    (t) => t.testId == bucketId
   )
 
   if (matchingVariant) {

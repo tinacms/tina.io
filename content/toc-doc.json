@@ -196,7 +196,7 @@
         "title": "Overview"
       },
       {
-        "title": "Tina Cloud",
+        "title": "TinaCloud",
         "items": [
           {
             "slug": "/docs/tina-cloud/overview/",
@@ -278,7 +278,7 @@
                 "slug": "/docs/self-hosted/manual-setup/"
               },
               {
-                "title": "Migrating From Tina Cloud",
+                "title": "Migrating From TinaCloud",
                 "slug": "/docs/self-hosted/migrating-from-tina-cloud"
               }
             ]
@@ -696,7 +696,7 @@
                 "slug": "/docs/reference/self-hosted/auth-provider/authjs/"
               },
               {
-                "title": "Tina Cloud",
+                "title": "TinaCloud",
                 "slug": "/docs/reference/self-hosted/auth-provider/tina-cloud/"
               },
               {
