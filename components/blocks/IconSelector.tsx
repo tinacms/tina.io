@@ -81,6 +81,7 @@ const IconSelector = ({ input }) => {
                 <IconComponent
                   color={selectedIcon === key ? 'blue' : 'black'}
                   size={16}
+                  className="mr-2"
                 />
                 <span className="text-xs">{trimmedKey}</span>
               </div>
