@@ -7,6 +7,7 @@
   "roadmapUrl": "https://tina.io/roadmap/",
   "licenseUrl": "https://github.com/tinacms/tinacms/blob/master/LICENSE",
   "keywords": "nextjs, react, cms, next, tina, markdown, git, open-source, headless",
+  "docsHomepage": "/docs/index",
   "social": {
     "twitterHandle": "@tinacms",
     "twitter": "https://twitter.com/tinacms",

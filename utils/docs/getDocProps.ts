@@ -1,4 +1,5 @@
 import client from "tina/__generated__/client";
+import data from '../../content/siteConfig.json'
 
 const query = `
 query {
@@ -24,7 +25,7 @@ const stripReferenceDownToSlug = (
         array[index].items = stripReferenceDownToSlug(obj.items);
       } else {
         //Handles the docs homepage case, as the only docs page with a unique (i.e. no) slug, otherwise reformat
-        array[index].slug = obj.slug === "content/docs/index.mdx" ? "/docs" : obj.slug.replace(/^content\/|\.mdx$/g, '/')
+        array[index].slug = `content${data.docsHomepage}.mdx` ? '/docs' : obj.slug.replace(/^content\/|\.mdx$/g, '/')
       }
     }
   })
