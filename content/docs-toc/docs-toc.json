@@ -4,26 +4,26 @@
       "title": "Introduction",
       "items": [
         {
-          "slug": "content/docs/index.mdx",
           "title": "Overview",
+          "slug": "content/docs/index.mdx",
           "_template": "item"
         },
         {
-          "slug": "content/docs/product-tour.mdx",
           "title": "Introduction To TinaCMS",
+          "slug": "content/docs/product-tour.mdx",
           "_template": "item"
         },
         {
           "title": "Getting Started",
           "items": [
             {
-              "slug": "content/docs/setup-overview.mdx",
               "title": "Overview",
+              "slug": "content/docs/setup-overview.mdx",
               "_template": "item"
             },
             {
-              "slug": "content/docs/introduction/using-starter.mdx",
               "title": "Using a Starter",
+              "slug": "content/docs/introduction/using-starter.mdx",
               "_template": "item"
             },
             {
@@ -51,38 +51,38 @@
                   "_template": "items"
                 },
                 {
-                  "slug": "content/docs/frameworks/astro.mdx",
                   "title": "Astro",
+                  "slug": "content/docs/frameworks/astro.mdx",
                   "_template": "item"
                 },
                 {
-                  "slug": "content/docs/frameworks/hugo.mdx",
                   "title": "Hugo",
+                  "slug": "content/docs/frameworks/hugo.mdx",
                   "_template": "item"
                 },
                 {
-                  "slug": "content/docs/frameworks/gatsby.mdx",
                   "title": "Gatsby",
+                  "slug": "content/docs/frameworks/gatsby.mdx",
                   "_template": "item"
                 },
                 {
-                  "slug": "content/docs/frameworks/jekyll.mdx",
                   "title": "Jekyll",
+                  "slug": "content/docs/frameworks/jekyll.mdx",
                   "_template": "item"
                 },
                 {
-                  "slug": "content/docs/frameworks/remix.mdx",
                   "title": "Remix",
+                  "slug": "content/docs/frameworks/remix.mdx",
                   "_template": "item"
                 },
                 {
-                  "slug": "content/docs/frameworks/11ty.mdx",
                   "title": "11ty",
+                  "slug": "content/docs/frameworks/11ty.mdx",
                   "_template": "item"
                 },
                 {
-                  "slug": "content/docs/frameworks/other.mdx",
                   "title": "Other",
+                  "slug": "content/docs/frameworks/other.mdx",
                   "_template": "item"
                 }
               ],
@@ -92,13 +92,13 @@
           "_template": "items"
         },
         {
-          "slug": "content/docs/using-tina-editor.mdx",
           "title": "Using the Tina Editor",
+          "slug": "content/docs/using-tina-editor.mdx",
           "_template": "item"
         },
         {
-          "slug": "content/docs/introduction/faq.mdx",
           "title": "FAQ",
+          "slug": "content/docs/introduction/faq.mdx",
           "_template": "item"
         }
       ]
