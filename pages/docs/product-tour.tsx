@@ -21,8 +21,8 @@ export const getStaticProps: GetStaticProps = async function (props) {
   const new_results = await client.queries.doc({
     relativePath: `product-tour.mdx`,
   })
-  const oldNavDocs = await getDocsNav()
-  return { props: { new: { new_results }, oldNavDocs } }
+  const docsToc = await getDocsNav()
+  return { props: { new: { new_results }, docsToc } }
 }
 
 export default function Page(props) {
