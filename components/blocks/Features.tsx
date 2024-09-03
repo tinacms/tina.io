@@ -1,23 +1,22 @@
-import { CodeButton } from './CodeButton'
-import { Container } from './Container'
-import { Prism } from '../styles/Prism'
-import { tinaField } from 'tinacms/dist/react'
-import DocsRichText from '../styles/DocsRichText'
-import styled from 'styled-components'
-import playImage from '../../public/img/playButton.png'
-import { Actions } from './ActionsButton'
-import { ModalB } from './ModalButton'
-import RenderButton from 'utils/renderButtonArrayHelper'
-import Image from 'next/image'
-import { Actions } from './Actions';
+import { CodeButton } from './CodeButton';
+import { Container } from './Container';
+import { Prism } from '../styles/Prism';
+import { tinaField } from 'tinacms/dist/react';
+import DocsRichText from '../styles/DocsRichText';
+import styled from 'styled-components';
+import playImage from '../../public/img/playButton.png';
+import { Actions } from './ActionsButton';
+import { ModalB } from './ModalButton';
+import RenderButton from 'utils/renderButtonArrayHelper';
+import Image from 'next/image';
 import PlayIcon from './play-button.svg';
 
 export function FeatureBlock({ data, index }) {
-  const isReversed = data.isReversed
-  const isBackgroundEnabled = data.imageBackground
-  const isVideo = data.media && data.media[0] && data.media[0].src
+  const isReversed = data.isReversed;
+  const isBackgroundEnabled = data.imageBackground;
+  const isVideo = data.media && data.media[0] && data.media[0].src;
 
-  const isOrNeeded = data.buttons && data.buttons.length >= 2
+  const isOrNeeded = data.buttons && data.buttons.length >= 2;
 
   const renderButtonsWithOr = (buttons) => {
     return buttons.reduce((acc, button, index) => {
@@ -26,12 +25,12 @@ export function FeatureBlock({ data, index }) {
           <span key={`or-${index}`} className="or-text font-tuner">
             or
           </span>
-        )
+        );
       }
-      acc.push(<RenderButton key={index} button={button} index={index} />)
-      return acc
-    }, [])
-  }
+      acc.push(<RenderButton key={index} button={button} index={index} />);
+      return acc;
+    }, []);
+  };
 
   return (
     <>
@@ -75,33 +74,40 @@ export function FeatureBlock({ data, index }) {
           >
             {data.media && data.media[0].image && (
               <>
-          <Image
-            src={data.media[0].image}
-            alt={data.headline}
-            className={`w-full h-auto rounded-lg ${isBackgroundEnabled ? 'shadow-panel' : ''} overflow-hidden bg-transparent`}
-            width={1200}
-            height={1200}
-          />
-
+                <Image
+                  src={data.media[0].image}
+                  alt={data.headline}
+                  className={`w-full h-auto rounded-lg ${
+                    isBackgroundEnabled ? 'shadow-panel' : ''
+                  } overflow-hidden bg-transparent`}
+                  width={1200}
+                  height={1200}
+                />
               </>
             )}
             {data.media && data.media[0].src && (
               <>
-                <a
-                  href="https://youtube.com/tinacms"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute w-20 h-20 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:left-[-40px] lg:top-1/3 lg:-translate-y-1/2 lg:transform-none z-10"
-                  id="play-button-overlay"
-                >
-                  <PlayIcon className="w-full h-full opacity-90 hover:opacity-70" />
-                </a>
-                <FeatureVideo
-                  className="w-full h-auto pb-4"
-                  src={data.media[0].src}
-                />
+                <div className="relative w-full h-auto pb-4 group">
+                  <a
+                    href="https://youtube.com/tinacms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="play-button-overlay"
+                    className="relative block"
+                  >
+                    <FeatureVideo
+                      className="w-full h-auto rounded-lg"
+                      src={data.media[0].src}
+                    />
+                    <div className="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
+                    </div>
+                  </a>
+                </div>
               </>
             )}
+
             {data.media && data.media[0].code && (
               <div className="flex flex-col justify-start items-start">
                 {data.media[0].file && (
@@ -209,7 +215,7 @@ export function FeatureBlock({ data, index }) {
         }
       `}</style>
     </>
-  )
+  );
 }
 
 export function FeaturesBlock({ data, index }) {
@@ -230,12 +236,12 @@ export function FeaturesBlock({ data, index }) {
                   data={featureData}
                   index={featureIndex}
                 />
-              )
+              );
             })}
         </div>
       </Container>
     </section>
-  )
+  );
 }
 
 export const FeatureVideo = ({ src, className = '' }) => {
@@ -257,9 +263,9 @@ export const FeatureVideo = ({ src, className = '' }) => {
         type="video/mp4"
       />
     </video>
-  )
-}
+  );
+};
 
 const CodeWrapper = styled.div`
   ${DocsRichText}
-`
+`;
