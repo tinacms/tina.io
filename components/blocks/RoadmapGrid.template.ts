@@ -1,5 +1,5 @@
 import type { TinaTemplate } from '@tinacms/cli'
-import { actionsTemplate } from './Actions.template'
+import { actionsButtonTemplate } from './ActionsButton.template'
 
 export const roadmapGridTemplate: TinaTemplate = {
   label: 'Roadmap Grid',
@@ -29,7 +29,7 @@ export const roadmapGridTemplate: TinaTemplate = {
           type: 'rich-text',
         },
         // @ts-ignore
-        actionsTemplate as any,
+        actionsButtonTemplate as any,
       ],
     },
     {

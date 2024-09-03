@@ -7,6 +7,7 @@ import { DynamicLink } from '../../components/ui'
 import docsLinks from '../../content/docs-navigation.json'
 import { BiChevronRight } from 'react-icons/bi'
 import AnimateHeight from 'react-animate-height'
+import data from '../../content/siteConfig.json'
 
 interface NavTitleProps {
   level: number
@@ -54,12 +55,12 @@ const NavTitle = ({
       : headerLevelClasses[headerLevel][selectedClass]
 
   return (
-    <a
+    <div
       className={`group flex items-center gap-1 transition duration-150 ease-out cursor-pointer hover:opacity-100 leading-tight pb-0.5 pl-4 ${classes}`}
       {...props}
     >
       {children}
-    </a>
+    </div>
   )
 }
 
@@ -88,12 +89,17 @@ const NavLevel = ({
 }) => {
   const navLevelElem = React.useRef(null)
   const router = useRouter()
+  const path = router.asPath
+  const slug = categoryData.slug
   const [expanded, setExpanded] = React.useState(
-    matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
-      hasNestedSlug(categoryData.items, router.asPath) ||
+    matchActualTarget(slug || categoryData.href, path) ||
+      hasNestedSlug(categoryData.items, path) ||
       level === 0
   )
-  const selected = router.asPath == categoryData.slug
+
+  const selected = path == slug || (slug == '/docs' && path == "/docs/")
+  console.log(categoryData.items)
+  console.log(router.asPath)
   const childSelected = hasNestedSlug(categoryData.items, router.asPath)
 
   React.useEffect(() => {
@@ -247,7 +253,7 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
           docsLinks.map(({ id, href, label }) => {
             return (
               <DynamicLink key={id + href} href={href} passHref>
-                <a key={id}>{label}</a>
+                <div key={id}>{label}</div>
               </DynamicLink>
             )
           })}

@@ -43,7 +43,7 @@ export const logoGridTemplate: TinaTemplate = {
             },
           },
         },
-        { name: 'logo', label: 'Logo Link', type: 'string' },
+        { name: 'logo', label: 'Logo Image', type: 'image' },
         { name: 'size', label: 'Size', type: 'number' },
       ],
     },

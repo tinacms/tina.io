@@ -1,65 +1,49 @@
-import { getJsonFile } from '../getJsonPreviewProps'
-import {
-  getMarkdownPreviewProps,
-  getMarkdownFile,
-} from '../getMarkdownPreviewProps'
-import { NotFoundError } from 'utils/error/NotFoundError'
+import client from "tina/__generated__/client";
+import data from '../../content/siteConfig.json'
 
-export async function getDocsNav(preview: boolean, previewData: any) {
-  return getJsonFile('content/toc-doc.json', preview, previewData)
+const query = `
+query {
+    docsTableOfContents(relativePath: "docs-toc.json") {
+    	_values
+  }
+}
+`;
+
+export async function getDocsNav(preview?: boolean, previewData?: any) {
+  const docTocData = await client.request({
+    query, variables: { relativePath: 'docs-toc.json' }
+  }, {})
+  return formatTableofContentsData(docTocData, preview)
 }
 
-export async function getDocProps({ preview, previewData }: any, slug: string) {
-  const currentDoc = (
-    await getMarkdownPreviewProps(
-      `content/docs/${slug}.md`,
-      preview,
-      previewData
-    )
-  ).props
+const stripReferenceDownToSlug = (
+  tableOfContentsSubset: any
+) => {
+  tableOfContentsSubset.forEach((obj, index, array) => {
+    if (obj._template) {
+      if (obj._template === "items") {
+        array[index].items = stripReferenceDownToSlug(obj.items);
+      } else {
+        //Handles the docs homepage case, as the only docs page with a unique (i.e. no) slug, otherwise reformat
+        array[index].slug = array[index].slug == `content${data.docsHomepage}.mdx` ? '/docs' : obj.slug.replace(/^content\/|\.mdx$/g, '/')
+      }
+    }
+  })
+  return tableOfContentsSubset
+}
 
-  const docsNav = await getDocsNav(preview, previewData)
-
-  if (!currentDoc || currentDoc.error || !docsNav) {
-    throw new NotFoundError('Document not found')
-  }
+export const formatTableofContentsData = (
+  tableOfContentsData: any,
+  preview: boolean
+) => {
+  const exposedTOCData = tableOfContentsData.data.docsTableOfContents._values.supermenuGroup;
+  exposedTOCData.forEach((obj, index, array) => array[index].items = stripReferenceDownToSlug(obj.items))
 
   return {
-    props: {
-      ...currentDoc,
-      docsNav: docsNav.data,
-      nextPage: await getPageRef(
-        currentDoc.file.data.frontmatter.next,
-        preview,
-        previewData
-      ),
-      prevPage: await getPageRef(
-        currentDoc.file.data.frontmatter.prev,
-        preview,
-        previewData
-      ),
-    },
+    data: exposedTOCData,
+    sha: '',
+    fileRelativePath: 'content/toc-doc.json',
+    preview: !!preview,
   }
 }
 
-export async function getPageRef(
-  slug: string = null,
-  preview: boolean,
-  previewData: any
-) {
-  if (!slug) {
-    return {
-      slug: null,
-      title: null,
-    }
-  }
-  const prevDoc = await getMarkdownFile(
-    `content${slug}.md`,
-    preview,
-    previewData
-  )
-
-  const { title } = prevDoc.data.frontmatter
-
-  return { slug, title }
-}

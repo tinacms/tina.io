@@ -1,0 +1,34 @@
+---
+id: /docs/reference/self-hosted/database-adapter/mongodb
+
+title: MongoDB Database Adapter
+---
+
+The MongoDB database adapter allows you to store your data in a [MongoDB](https://www.mongodb.com/) database. This adapter uses the [MongoDB Node.js Driver](https://www.npmjs.com/package/mongodb), so it will work on any MongoDB database.
+
+> Looking for the code? Check out the [GitHub repository](https://github.com/tinacms/mongodb-level).
+
+To get started you will need to add the following environment variables to your project:
+
+```env
+MONGODB_URI=***
+```
+
+## Create the database adapter
+
+```ts
+import { MongodbLevel } from 'mongodb-level'
+//...
+
+export default isLocal
+  ? createLocalDatabase()
+  : createDatabase({
+      // ...
+      databaseAdapter: new MongodbLevel<string, Record<string, any>>({
+        // If you are not using branches you could pass a static collection name. ie: "tinacms"
+        collectionName: `tinacms-${branchName}`,
+        dbName: 'tinacms',
+        mongoUri: process.env.MONGODB_URI as string,
+      }),
+    })
+```

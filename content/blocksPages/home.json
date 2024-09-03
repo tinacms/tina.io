@@ -9,20 +9,18 @@
         {
           "headline": "A CMS With Version Control Built-in",
           "text": "Tina is a fully open-source headless CMS that supports Git",
-          "actions": [
+          "buttons": [
             {
               "label": "Try the editor now",
-              "icon": false,
+              "icon": true,
               "variant": "blue",
               "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~"
+              "url": "https://quick-edit-demo.vercel.app/admin#/~",
+              "_template": "actions"
             },
             {
               "label": "npx create-tina-app@latest",
-              "icon": false,
-              "variant": "command",
-              "size": "small",
-              "url": ""
+              "_template": "codeButton"
             }
           ],
           "media": [
@@ -37,6 +35,7 @@
     },
     {
       "title": "Trusted by",
+      "link": "https://ndcconferences.com",
       "items": [
         {
           "name": "Bunny Net",
@@ -87,6 +86,12 @@
           "size": 150
         },
         {
+          "name": "NDC Conferences",
+          "link": "https://ndcconferences.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1725370732/NDCLogo_rwty5v.png",
+          "size": 220
+        },
+        {
           "name": "SSW",
           "link": "https://tina.io/showcase#ssw",
           "logo": "/svg/logos/ssw-logo-charcoal.svg",
@@ -126,17 +131,63 @@
       "_template": "logoGrid"
     },
     {
+      "title": "Where's Tina?",
+      "cardItems": [
+        {
+          "headline": "NDC Porto",
+          "startDate": "2024-10-13T13:00:00.000Z",
+          "endDate": "2024-10-17T13:00:00.000Z",
+          "location": "Porto, Portugal",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
+          "link": "https://ndcporto.com/",
+          "markerLAT": 8,
+          "markerLONG": 41
+        },
+        {
+          "headline": "CPH Dev Fest",
+          "startDate": "2024-08-25T14:00:00.000Z",
+          "endDate": "2024-08-29T14:00:00.000Z",
+          "location": "Copenhagen, Denmark",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215863/704853_s2w9sg.jpg",
+          "link": "https://cphdevfest.com/",
+          "markerLAT": -8,
+          "markerLONG": 59
+        },
+        {
+          "headline": "NDC Oslo",
+          "startDate": "2024-05-18T14:00:00.000Z",
+          "endDate": "2024-05-22T14:00:00.000Z",
+          "location": "Oslo, Norway",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215929/Norway_Oslo_Houses_Marinas_Bay_569380_1920x1080_ocqvvo.jpg",
+          "link": "https://ndcoslo.com/",
+          "markerLAT": -1,
+          "markerLONG": 59
+        },
+        {
+          "headline": "/serverless/DAYS ANZ",
+          "startDate": "2024-05-20T14:00:00.000Z",
+          "location": "Sydney, Australia",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215959/716104_jwhkyu.jpg",
+          "link": "https://anz.serverlessdays.io/sydney/",
+          "markerLAT": 207,
+          "markerLONG": 35
+        }
+      ],
+      "_template": "events"
+    },
+    {
       "features": [
         {
           "headline": "Own Your Content",
           "text": "Don't lock your content in a 3rd-party service.  Tina writes to files in your repository (MDX, Markdown, JSON, etc)",
-          "actions": [
+          "buttons": [
             {
               "label": "Learn More",
               "icon": false,
               "variant": "white",
-              "size": "small",
-              "url": "https://tina.io/docs/product-tour/"
+              "size": "medium",
+              "url": "/docs/product-tour/",
+              "_template": "actions"
             }
           ],
           "media": [
@@ -166,13 +217,14 @@
         {
           "headline": "Configure with Code",
           "text": "Tina is code-first and fully typed. Define your CMS in the Tina config file in your repository",
-          "actions": [
+          "buttons": [
             {
-              "label": "Read The Docs",
+              "label": "Read the Docs",
               "icon": false,
               "variant": "white",
               "size": "small",
-              "url": "docs/schema/"
+              "url": "/docs/schema",
+              "_template": "actions"
             }
           ],
           "media": [
@@ -189,17 +241,176 @@
       "_template": "features"
     },
     {
+      "criteriaItems": [
+        {
+          "criteria": "Open Source Front-end"
+        },
+        {
+          "criteria": "Content API"
+        },
+        {
+          "criteria": "Git-based Content Management "
+        },
+        {
+          "criteria": "GitHub Contributions"
+        },
+        {
+          "criteria": "Markdown Support",
+          "description": ""
+        },
+        {
+          "criteria": "Visual Editing Capabilities "
+        },
+        {
+          "criteria": "Local Development Workflow "
+        },
+        {
+          "criteria": "Free Option"
+        },
+        {
+          "criteria": "Self-hosted Option"
+        }
+      ],
+      "companies": [
+        {
+          "headline": "TinaCMS",
+          "logoColour": "/svg/logos/tina.svg",
+          "logoWhite": "/svg/logos/tina-white.svg",
+          "active": true,
+          "isHidden": true,
+          "backgroundColor": "#EC4815",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "Prepr CMS",
+          "logoColour": "/svg/logos/Prepr-clr.svg",
+          "logoWhite": "/svg/logos/Prepr-wht.svg",
+          "backgroundColor": "#5237E6",
+          "criteria2": true
+        },
+        {
+          "headline": "Umbraco",
+          "logoColour": "/svg/logos/Umbraco-clr.svg",
+          "logoWhite": "/svg/logos/Umbraco-wht.svg",
+          "backgroundColor": "#3544B1",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": false,
+          "criteria4": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "Decap CMS",
+          "logoColour": "/svg/logos/Decap-clr.svg",
+          "logoWhite": "/svg/logos/Decap-wht.svg",
+          "backgroundColor": "#FF0080",
+          "criteria1": true,
+          "criteria4": true,
+          "criteria5": true,
+          "criteria8": true
+        },
+        {
+          "headline": "Adobe (AEM)",
+          "logoColour": "/svg/logos/AEM-clr.svg",
+          "logoWhite": "/svg/logos/AEM-wht.svg",
+          "backgroundColor": "#EB1000",
+          "criteria2": true,
+          "criteria6": true
+        },
+        {
+          "headline": "Contentstack",
+          "logoColour": "/svg/logos/Contentstack-clr.svg",
+          "logoWhite": "/svg/logos/Contentstack-wht.svg",
+          "backgroundColor": "#6610F2",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": false,
+          "criteria7": false
+        },
+        {
+          "headline": "Contentful",
+          "logoColour": "/svg/logos/Contentful-clr.svg",
+          "logoWhite": "/svg/logos/Contentful-wht.svg",
+          "backgroundColor": "#007AFF",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria8": true
+        },
+        {
+          "headline": "Storyblok",
+          "logoColour": "/svg/logos/Storyblok-clr.svg",
+          "logoWhite": "/svg/logos/Storyblok-wht.svg",
+          "backgroundColor": "#2DB47D",
+          "criteria2": true,
+          "criteria6": true,
+          "criteria8": true
+        },
+        {
+          "headline": "Sanity",
+          "logoColour": "/svg/logos/Sanity-clr.svg",
+          "logoWhite": "/svg/logos/Sanity-wht.svg",
+          "backgroundColor": "#EF4434",
+          "criteria1": true,
+          "criteria3": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "Payload",
+          "logoColour": "/svg/logos/Payload-clr.svg",
+          "logoWhite": "/svg/logos/Payload-wht.svg",
+          "backgroundColor": "#007FAE",
+          "criteria1": true,
+          "criteria2": true,
+          "criteria3": false,
+          "criteria4": false,
+          "criteria5": false,
+          "criteria6": true,
+          "criteria7": true,
+          "criteria8": true,
+          "criteria9": true
+        },
+        {
+          "headline": "prismic.io",
+          "logoColour": "/svg/logos/Prismic-clr.svg",
+          "logoWhite": "/svg/logos/Prismic-wht.svg",
+          "backgroundColor": "#8E44EC",
+          "criteria2": true,
+          "criteria5": true,
+          "criteria6": true,
+          "criteria8": true
+        }
+      ],
+      "_template": "CompareBox"
+    },
+    {
       "features": [
         {
           "headline": "Talk to a Tina Expert",
           "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
-          "actions": [
+          "buttons": [
             {
               "label": "Schedule Call",
               "icon": true,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://meetings-eu1.hubspot.com/scott15?uuid=2f12f1a3-8b6a-4472-bfb5-2f3f930a1b19"
+              "color": "blue",
+              "size": "small",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
             }
           ],
           "media": [
@@ -217,7 +428,7 @@
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693503685/tina-io/new-homepage/unity-logo.png",
       "_template": "quote"
     },
     {
@@ -281,15 +492,16 @@
     {
       "features": [
         {
-          "headline": "Merge With Confidence",
-          "text": "Tina Cloud Enterprise customers can review, approve, and manage content  on different branches",
-          "actions": [
+          "headline": "Hide the complexities of GitHub",
+          "text": "Merge with confidence - with the Editorial Workflow feature, users can review, approve and manage content on different branches without dropping into GitHub or another IDE",
+          "buttons": [
             {
               "label": "Editorial Workflow",
               "icon": false,
               "variant": "blue",
               "size": "small",
-              "url": "https://tina.io/editorial-workflow"
+              "url": "/editorial-workflow",
+              "_template": "actions"
             }
           ],
           "media": [
@@ -321,7 +533,7 @@
         },
         {
           "headline": "Open-Source",
-          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on Tina Cloud.",
+          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on TinaCloud.",
           "url": "https://github.com/tinacms/tinacms"
         },
         {
@@ -331,7 +543,7 @@
         },
         {
           "headline": "3rd-party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud.",
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud.",
           "url": "/docs/reference/media/overview/"
         },
         {

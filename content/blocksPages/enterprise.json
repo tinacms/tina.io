@@ -1,26 +1,32 @@
 {
+  "seo": {
+    "title": "Enterprise",
+    "description": ""
+  },
   "blocks": [
     {
       "headline": "Tina for Enterprise",
       "text": "Reduce costs. Increase security & performance.",
-      "actions": [
+      "margin": "",
+      "spacing": "gap-10",
+      "buttons": [
         {
           "label": "Request 1-Pager",
           "icon": false,
           "variant": "white",
-          "size": "small",
-          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hello, I'd like more information about the TinaCMS Enterprise Solution."
+          "size": "medium",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hello, I'd like more information about the TinaCMS Enterprise Solution.",
+          "_template": "actions"
         },
         {
           "label": "Schedule a Demo",
           "icon": false,
-          "variant": "blue",
-          "size": "small",
-          "url": "https://meetings-eu1.hubspot.com/scott15"
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
-      "margin": "",
-      "spacing": "gap-10",
       "_template": "hero"
     },
     {
@@ -157,20 +163,17 @@
     {
       "headline": "Get a Demo",
       "text": "Discuss your project and get a demo from a TinaCMS team member",
-      "actions": [
+      "buttons": [
         {
-          "label": "Schedule Demo",
+          "label": "Get a Demo",
           "icon": false,
-          "variant": "blue",
-          "size": "large",
-          "url": "https://meetings-eu1.hubspot.com/scott15"
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
       "_template": "hero"
     }
-  ],
-  "seo": {
-    "title": "Enterprise",
-    "description": ""
-  }
+  ]
 }

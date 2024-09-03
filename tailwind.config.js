@@ -62,6 +62,7 @@ module.exports = {
       8: '8px',
     },
     fontSize: {
+      xxs: ['10px', { lineHeight: '1.2' }],
       xs: ['13px', { lineHeight: '1.33' }],
       sm: ['14px', { lineHeight: '1.43' }],
       base: ['16px', { lineHeight: '1.5' }],
@@ -101,9 +102,20 @@ module.exports = {
           '0%': { transform: 'translate3d(0,-100%,0)' },
           '100%': { transform: 'translate3d(0,0,0)' },
         },
+        popIn: {
+          '0%': {
+            opacity: 0,
+            transform: 'scale(0.75)'
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'scale(1)'
+          }
+        }
       },
       animation: {
         'slide-in': 'slideIn 200ms ease-out 1',
+        'pop-in': 'popIn 0.5s ease-out forwards'
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',

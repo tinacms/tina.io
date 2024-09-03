@@ -5,7 +5,7 @@ var path = require('path')
 
 export async function fetchBlogs() {
   const directory = path.resolve('./content/blog')
-  const files = await fg(directory + '/**/*.md')
+  const files = await fg(directory + '/**/*.mdx')
 
   return files.map(fileName => {
     const fullPath = path.resolve(directory, fileName)

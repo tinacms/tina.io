@@ -23,7 +23,7 @@ const footerNav = [
       },
       {
         link: 'https://app.tina.io',
-        label: 'Tina Cloud',
+        label: 'TinaCloud',
       },
       {
         link: '/docs',
@@ -34,8 +34,8 @@ const footerNav = [
         label: 'How Tina Works',
       },
       {
-        link: '/press',
-        label: 'Press',
+        label: 'Roadmap',
+        link: '/roadmap',
       },
     ],
   },
@@ -51,12 +51,30 @@ const footerNav = [
         link: '/examples',
       },
       {
-        label: 'Roadmap',
-        link: '/roadmap',
-      },
-      {
         label: 'Support',
         link: '/docs/support',
+      },
+      {
+        link: '/media',
+        label: 'Media',
+      },
+    ],
+  },
+  {
+    label: '',
+    items: [
+      {
+        label: 'Whats New',
+        children: [
+          {
+            link: '/whats-new/tinacms',
+            label: 'TinaCMS',
+          },
+          {
+            link: '/whats-new/tinacloud',
+            label: 'TinaCloud',
+          },
+        ],
       },
       {
         label: 'Use Cases',
@@ -158,10 +176,6 @@ const footerNav = [
           },
         ],
       },
-      // {
-      //   link: '/',
-      //   label: 'Releases',
-      // },
     ],
   },
 ] as const
@@ -208,9 +222,9 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
         {item.children.map((subItem) => (
           <div>
             <DynamicLink href={subItem.link} passHref>
-              <a className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
+              <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
-              </a>
+              </div>
             </DynamicLink>
           </div>
         ))}
@@ -224,9 +238,9 @@ export const LinkItem = ({ item }) => {
 
   return (
     <DynamicLink href={link} passHref>
-      <a className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
+      <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
         {label}
-      </a>
+      </div>
     </DynamicLink>
   )
 }
@@ -251,7 +265,7 @@ export const Footer = ({}) => {
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
-        <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {footerNav.map((item) => {
             const { label, items } = item
             return (
@@ -300,7 +314,7 @@ export const Footer = ({}) => {
       </div>
 
       {/* Bottom */}
-      <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-12 gap-6 ">
+      <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-18 gap-6">
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {footerLinks.map((item) => {
@@ -322,10 +336,12 @@ export const Footer = ({}) => {
 
 const FooterLink = ({ link, label }) => {
   return (
-    <Link legacyBehavior href={link} passHref>
-      <a className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap">
-        {label}
-      </a>
+    <Link
+      href={link}
+      className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap"
+      passHref
+    >
+      {label}
     </Link>
   )
 }

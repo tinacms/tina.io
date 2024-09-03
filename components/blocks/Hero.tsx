@@ -1,27 +1,33 @@
-import { Actions } from './Actions'
+import RenderButton from 'utils/renderButtonArrayHelper'
+import { Actions } from './ActionsButton'
 import { Container } from './Container'
 import { tinaField } from 'tinacms/dist/react'
+import Image from 'next/image'
 
 export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
-      className={`relative overflow-visible z-10 text-center ${data.margin ? data.margin : 'px-8 py-12 lg:py-16'
-        }`}
+      className={`relative overflow-visible z-10 text-center ${
+        data.margin ? data.margin : 'px-8 py-12 lg:py-16'
+      }`}
     >
       <Container width="narrow" center>
         <HeroFeature item={data} spacing={data.spacing}>
           {data.media && data.media[0] && (
             <div
-              className={`mt-6 min-w-0 w-full ${(data.media[0].image || data.media[0].src) &&
+              className={`mt-6 min-w-0 w-full ${
+                (data.media[0].image || data.media[0].src) &&
                 'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
-                }`}
+              }`}
             >
               {data.media && data.media[0].image && (
-                <img
+                <Image
                   src={data.media[0].image}
                   alt={data.headline}
                   className="w-full h-auto"
+                  width={1200}
+                  height={1200}
                 />
               )}
               {data.media && data.media[0].src && (
@@ -39,9 +45,22 @@ export const HeroFeature = ({ item, spacing, children }) => {
   return (
     <>
       <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
-        {item.headline && <h2 className="heading" data-tina-field={tinaField(item, 'headline')}>{item.headline}</h2>}
-        {item.text && <p className="text-xl" data-tina-field={tinaField(item, 'text')}>{item.text}</p>}
-        {item.actions && <Actions items={item.actions} align="center" />}
+        {item.headline && (
+          <h2 className="heading" data-tina-field={tinaField(item, 'headline')}>
+            {item.headline}
+          </h2>
+        )}
+        {item.text && (
+          <p className={item.mobileTextSize ? "text-lg lg:text-xl" : "text-xl"} data-tina-field={tinaField(item, 'text')}>
+            {item.text}
+          </p>
+        )}
+        <div className="flex justify-center items-center gap-10">
+          {item.buttons &&
+            item.buttons.map((button, index) => (
+              <RenderButton key={index} button={button} index={index} />
+            ))}
+        </div>
         {children}
       </div>
       <style jsx>{`

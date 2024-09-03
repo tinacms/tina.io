@@ -26,7 +26,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
             const slug = post._sys.filename
             return (
               <DynamicLink key={slug} href={`/blog/${slug}`} passHref>
-                <a className="group flex-1 flex flex-col gap-6 items-start min-w-[24rem]">
+                <div className="group flex-1 flex flex-col gap-6 items-start min-w-[24rem]">
                   <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                     {post.title}
                   </h3>
@@ -41,7 +41,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                     </BlogMeta>
                     {getExcerpt(post.body, 200)}
                   </RichTextWrapper>
-                </a>
+                </div>
               </DynamicLink>
             )
           })}

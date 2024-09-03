@@ -146,7 +146,7 @@ const AllIndicesResults = connectStateResults(
         {!hasResults && (
           <NoResultsLabel>
             No results found for '{state.query}'. Check the &nbsp;
-            <a href="https://community.tinacms.org" target="_blank">
+            <a href="https://tina.io/community" target="_blank">
               Forum
             </a>
             &nbsp; or &nbsp;

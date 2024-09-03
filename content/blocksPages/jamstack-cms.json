@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Jamstack CMS",
+    "description": "Supercharge your Jamstack projects with TinaCMS. Enjoy a flexible, file-based headless CMS and liberate your site from monolithic systems."
+  },
   "blocks": [
     {
       "headline": "TinaCMS: The perfect CMS for the JamStack",
@@ -45,20 +49,17 @@
     {
       "headline": "Ready to revolutionize your Jamstack development?",
       "text": "Get started with TinaCMS now.",
-      "actions": [
+      "buttons": [
         {
           "label": "Learn More",
           "icon": false,
           "variant": "blue",
           "size": "medium",
-          "url": "https://tina.io/docs/setup-overview/"
+          "url": "/docs/setup-overview/",
+          "_template": "actions"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "Jamstack CMS",
-    "description": "Supercharge your Jamstack projects with TinaCMS. Enjoy a flexible, file-based headless CMS and liberate your site from monolithic systems."
-  }
+  ]
 }

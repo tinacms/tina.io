@@ -1,0 +1,263 @@
+---
+title: The "reference" field
+last_edited: '2024-08-27T08:00:17.162Z'
+---
+
+## `reference`
+
+The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
+
+Once defined, the values of the *referenced* document become available to the parent.
+
+> Note: `reference` with `list: true` is not currently supported. See the "Temporary work around" section of [issue #2056](https://github.com/tinacms/tinacms/issues/2056) for a suggested approach to achieve a similar result
+
+## Object Definition
+
+```ts
+type ReferenceField = {
+  label: string
+  name: string
+  type: 'reference'
+  /** The `name` of another collection **/
+  collections: string[]
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  ui?: {
+    label?: string
+    description?: string
+    component?: FC<any> | string | null
+    parse?: (value: string, name: string, field: F) => any
+    format?: (value: string, name: string, field: F) => any
+    validate?(
+      value: string,
+      allValues: any,
+      meta: any,
+      field: UIField<F, Shape>
+    ): string | undefined | void
+  }
+}
+```
+
+## Example
+
+Given the following schema:
+
+```ts
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: 'Post',
+        name: 'post',
+        path: 'posts',
+        fields: [
+          {
+            label: 'Author',
+            name: 'author',
+            type: 'reference',
+            collections: ['author'],
+          },
+        ],
+      },
+      {
+        label: 'Author',
+        name: 'author',
+        path: 'authors',
+        fields: [
+          {
+            label: 'Name',
+            name: 'name',
+            type: 'string',
+          },
+          {
+            label: 'Avatar',
+            name: 'avatar',
+            type: 'string',
+          },
+        ],
+      },
+    ],
+  },
+})
+```
+
+The `post` collection has a `reference` field to the `author` collection.
+
+When editing in Tina, the user will be able to choose a document in the `author` collection for the value of `author`.
+
+When querying for a `post` document, the `author` key in the response will contain the values of the *referenced* `author` document:
+
+```graphql
+{
+  post(relativePath: "myBlogPost.md") {
+    title
+    author {
+      ... on Author {
+        name
+        avatar
+      }
+    }
+  }
+}
+```
+
+### Basic Dropdown
+
+```javascript
+{
+  type: 'reference',
+  name: 'author',
+  label: 'Author'
+  collections: ['author']
+}
+```
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1724058959/reference_field/reference_field_example_tszsxd.png)
+
+**Figure:** File name will be displayed in the reference field selector.
+
+### Search reference
+
+You can search your reference with reference selector.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1724066194/reference_field/search_reference_p5w3ce.png)
+
+> Note: This search functionality only works based on the file path of the document.
+
+```ts
+{
+      label: 'Authors',
+      name: 'author',
+      path: 'content/author',
+      format: 'md',
+      fields: [
+        {
+          type: 'string',
+          label: 'Name',
+          name: 'name',
+          required: true,
+        },
+      ],
+    }
+```
+
+### Customizing Reference Selector with optionComponent
+
+The default reference selector displays the file path, there are cases where you may want to customize what is displayed in the dropdown to provide a better user experience. For example, showing the author's name instead of the file name can make the selection process more intuitive.
+
+Below are some examples on how to customize the  reference select using `ui.optionComponent`. 
+
+Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
+
+The below example shows a page collection with an author collection as it's reference field. The `reference field` has been extract into a module.
+
+```ts
+    {
+      label: 'Page Content',
+      name: 'page',
+      path: 'content/page',
+      format: 'mdx',
+      fields: [
+        referenceField,
+      ],
+    },
+```
+
+```ts
+{
+      label: 'Authors',
+      name: 'author',
+      path: 'content/author',
+      format: 'md',
+      fields: [
+        {
+          type: 'string',
+          label: 'Name',
+          name: 'name',
+          required: true,
+        },
+        {
+          type: 'string',
+          label: 'description',
+          name: 'description',
+          required: true,
+        },
+      ],
+    },
+```
+
+```ts
+const referenceField = {
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    optionComponent: (props: CollectionProps, _internalSys: InternalSys) => {
+      switch (props._collection) {
+        case COLLECTIONS.AUTHOR:
+          return (
+            <AuthorCollectionCustomReference
+              name={props.name}
+              description={props.description}
+            />
+          )
+
+        case COLLECTIONS.POST:
+          return <PostCollectionCustomReference title={props.title} />
+
+        default:
+          return _internalSys.path
+      }
+    },
+  },
+  collections: ['author', 'post'],
+}
+```
+
+The Author collection and Post collection are used as a reference for the Page collection. The `optionComponent`  function allows you to create a custom reference display by providing two parameters: `props` and `_internalSys`.
+
+* `props` represents the fields from the reference collection (In this case, the fields from the Author collection, which are `name` and `description`).
+* `_internalSys` contains various useful information for you to use in the custom component such as the `file name` and `path`.
+* `AuthorCollectionCustomReference` and `PostCollectionCustomReference` are the custom components that display in the reference select dropdown (see the image below for a visual of the custom reference UI).
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1724068658/reference_field/custom-reference-field-ui_ojtrlx.png)
+
+> Tips: You can do console log(props) or console log(\_internalSys) in the optionComponent to find out all the provided properties used in your custom component.
+
+### Type Safe custom reference field
+
+The recommended implementation for custom reference selection with type safety.
+
+```ts
+// You should define the types for the fields in the author collection for type safety
+export interface AuthorProps {
+  name: string
+  description: string
+  _collection: 'author'
+}
+
+// You should define the types for the fields in the post collection for type safety
+export interface PostProps {
+  title: string
+  excerpt: string
+  _collection: 'post'
+}
+
+// You should define the list of collection used in the reference for type safety
+export enum COLLECTIONS {
+  AUTHOR = 'author',
+  POST = 'post',
+}
+
+// InternalSys is from tinacms where it gives a lot of useful information for user to customize their custom component
+export interface InternalSys {
+  filename: string
+  path: string
+}
+
+export type CollectionProps = AuthorProps | PostProps
+```
+
+You can enforce type safety in your custom reference selection, reducing the likelihood of errors and ensuring consistency across your application.
+
+Using the `AuthorProps` interface (you can named it how you like) as an example, the name and description fields are predefined in the Author collection schema and will be passed to the `optionComponent` function. The `_collection` field is provided by the system to represent the specific collection (author in this case).

@@ -1,0 +1,41 @@
+---
+id: /docs/extending-tina/validation/
+title: Validation
+next: content/docs/extending-tina/custom-field-components.mdx
+previous: content/docs/extending-tina/overview.mdx
+---
+
+Tina allows client-side validation using a validation function. This function returns a `string` error message if the value is **invalid** or `null` if the field is **valid**.
+
+To include other field values of the form in the validation, a data argument can be used.
+
+## Example
+
+### Validate the length of a \`string\` field
+
+```javascript
+{
+  label: "Title",
+  name: "title",
+  type: "string",
+  ui: {
+    validate: (value, data)=>{
+      const lengthOfTitle = value?.length || 0
+      const lengthOfDescription = data?.description?.length || 0
+      if(lengthOfTitle >= lengthOfDescription){
+        return 'The description must be longer than the title'
+      }
+    }
+  }
+}
+```
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1722216591/invalid1_fbnwh1.png)
+
+The following schema types support the use of `validate`:
+
+* [string](/docs/reference/types/string/)
+* [datetime](/docs/reference/types/datetime/)
+* [boolean](/docs/reference/types/boolean/)
+* [image](/docs/reference/types/image/)
+* [number](/docs/reference/types/number/)

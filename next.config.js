@@ -67,8 +67,23 @@ const config = {
         permanent: true,
       },
       {
-        source: '/tina-cloud/connecting-site/',
-        destination: '/tina-cloud/overview',
+        source: '/docs/tina-cloud/connecting-site/',
+        destination: '/docs/tina-cloud/overview',
+        permanent: true,
+      },
+      {
+        source: "/docs/errors/faq",
+        destination: "/docs/introduction/faq/#common-tinacloud-errors",
+        permanent: true,
+      },
+      {
+        source: "/faq",
+        destination: "/docs/introduction/faq",
+        permanent: true,
+      },
+      {
+        source: "/docs/tina-cloud/faq",
+        destination: "/docs/introduction/faq",
         permanent: true,
       },
     ]

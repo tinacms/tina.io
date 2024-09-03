@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
@@ -48,14 +49,6 @@ export default class MyDocument extends Document {
           <noscript>
             <iframe
               src={`https://www.googletagmanager.com/ns.html?id=${process.env.SSW_GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-          <noscript>
-            <iframe 
-              src={`https://www.googletagmanager.com/ns.html?id=${process.env.GTM_ID}`}
               height="0"
               width="0"
               style={{ display: 'none', visibility: 'hidden' }}

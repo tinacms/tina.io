@@ -30,7 +30,7 @@ export const showcaseTemplate: TinaTemplate = {
           name: 'media',
           label: 'Media',
           type: 'object',
-          fields: [{ name: 'src', label: 'Image Source', type: 'string' }],
+          fields: [{ name: 'src', label: 'Image Source', type: 'image' }],
         },
       ],
     },

@@ -1,0 +1,85 @@
+---
+title: The "image" field
+last_edited: '2022-06-15T15:51:56.737Z'
+---
+
+# `image`
+
+```ts
+type ImageField = {
+  label: string
+  name: string
+  type: 'image'
+  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  ui?: {
+    label?: string
+    description?: string
+    component?: FC<any> | string | null
+    parse?: (value: string, name: string, field: F) => any
+    format?: (value: string, name: string, field: F) => any
+    validate?(
+      value: string,
+      allValues: any,
+      meta: any,
+      field: UIField<F, Shape>
+    ): string | undefined | void
+  }
+}
+```
+
+## Example
+
+```ts
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: 'Blog Posts',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'image',
+            label: 'Hero image',
+            name: 'imgSrc',
+          },
+          // ... other fields
+        ],
+      },
+    ],
+  },
+})
+// ...
+```
+
+Please see [the media docs](/docs/reference/media/overview/) for how to set up media in your site.
+
+## Customizing an image formatting
+
+If you need to customize how an image is formatted in a field, you can use the `format` & `parse` options.
+
+```js
+//tina/config.ts
+
+// fields
+// ...
+{
+  type: "image",
+  name: "heroImg",
+  label: "Hero Image",
+  ui: {
+    format(value) {
+      //add leading slash to value if it doesnt exist
+      return value.startsWith("/") ? value : `/${value}`;
+    },
+    parse(value) {
+      //remove leading slash if it exists
+      return value.startsWith("/") ? value.slice(1) : value;
+    },
+  }
+}
+```
+
+You can read more about `format` & `parse` [here](/docs/extending-tina/format-and-parse/).

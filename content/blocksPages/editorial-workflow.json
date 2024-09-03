@@ -1,21 +1,26 @@
 {
+  "seo": {
+    "title": "Editorial Workflow with TinaCMS",
+    "description": "Efficiently manage and review your team's content changes through an integrated Git workflow. "
+  },
   "blocks": [
     {
       "headline": "Editorial Workflow",
       "text": "Review, approve, and manage content changes with version control",
-      "actions": [
-        {
-          "label": "Schedule a Demo",
-          "icon": true,
-          "variant": "blue",
-          "size": "small",
-          "url": "https://meetings-eu1.hubspot.com/scott15"
-        }
-      ],
       "media": [
         {
           "src": "v1689260393/blog-media/editorial-workflow/create-branch",
           "_template": "video"
+        }
+      ],
+      "buttons": [
+        {
+          "label": "Schedule a Demo",
+          "icon": true,
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
       "_template": "hero"
@@ -68,20 +73,17 @@
     {
       "headline": "Get a demo",
       "text": "Tina's editorial workflow is only available on the Business and Enterprise plans. Contact us for a demo. ",
-      "actions": [
+      "buttons": [
         {
-          "label": "Get a demo",
+          "label": "Get a Demo",
           "icon": true,
-          "variant": "blue",
+          "color": "blue",
           "size": "medium",
-          "url": "https://meetings-eu1.hubspot.com/scott15"
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
       "_template": "flying"
     }
-  ],
-  "seo": {
-    "title": "Editorial Workflow with TinaCMS",
-    "description": "Efficiently manage and review your team's content changes through an integrated Git workflow. "
-  }
+  ]
 }
