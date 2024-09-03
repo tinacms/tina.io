@@ -4,9 +4,9 @@ next: content/docs/tina-cloud/dashboard/users.mdx
 previous: content/docs/tina-cloud/dashboard/projects.mdx
 ---
 
-**Projects** connect Tina Cloud with a GitHub repository. A project is the **link between your site and your site's editors**, allowing users that you have authorized to access and modify the site's content.
+**Projects** connect TinaCloud with a GitHub repository. A project is the **link between your site and your site's editors**, allowing users that you have authorized to access and modify the site's content.
 
-> If it is your first time accessing the Tina Cloud dashboard, you will be given two options for setting up your first project. You can fork our [pre-built Next.js starter](https://github.com/tinacms/tina-cloud-starter), which gets you up and running with Tina quickly and easily. Alternatively, you can connect to an existing GitHub repository.
+> If it is your first time accessing the TinaCloud dashboard, you will be given two options for setting up your first project. You can fork our [pre-built Next.js starter](https://github.com/tinacms/tina-cloud-starter), which gets you up and running with Tina quickly and easily. Alternatively, you can connect to an existing GitHub repository.
 
 ## Setup
 
@@ -14,7 +14,7 @@ previous: content/docs/tina-cloud/dashboard/projects.mdx
 
 When setting up a project, the first step will be to authenticate with GitHub. A popup window will ask for permission to give Tina.io access to your GitHub repositories.
 
-This authorization will allow Tina Cloud to push and pull content to and from the GitHub repository associated with your site.
+This authorization will allow TinaCloud to push and pull content to and from the GitHub repository associated with your site.
 
 ### 2. Choosing the GitHub repository
 
@@ -38,7 +38,7 @@ If you are developing locally, this value might be something like:
 
 `http://localhost:3000`.
 
-If Tina Cloud is configured on your production site, this value might be something like:
+If TinaCloud is configured on your production site, this value might be something like:
 
 `https://<YOUR-SITE-NAME.com>`
 
@@ -58,7 +58,7 @@ Once your project is created, you will see it listed on your [Projects](https://
 
 ### Overview
 
-A project's Overview page gives you an important value: your project's unique **Client ID**. This value is used by Tina Cloud to connect to your site's repository. You will need to use this value when setting up your site to use Tina.
+A project's Overview page gives you an important value: your project's unique **Client ID**. This value is used by TinaCloud to connect to your site's repository. You will need to use this value when setting up your site to use Tina.
 
 ### Configuration
 
@@ -70,7 +70,7 @@ From the project configuration screen, click the "Change Repository" button. You
 
 #### Advanced Settings
 
-The Advanced Settings button is located in the Configuration tab of your project in Tina Cloud.
+The Advanced Settings button is located in the Configuration tab of your project in TinaCloud.
 
 ##### Path To Tina
 
@@ -83,8 +83,8 @@ update the project.
 
 ##### Refresh Webhooks
 
-In rare circumstances, the GitHub Webhook connecting your repository to Tina Cloud may be disrupted. If the webhook does
-not execute, Tina Cloud may become out of sync with your GitHub repository. Click the "Refresh Webhooks" button to restore them.
+In rare circumstances, the GitHub Webhook connecting your repository to TinaCloud may be disrupted. If the webhook does
+not execute, TinaCloud may become out of sync with your GitHub repository. Click the "Refresh Webhooks" button to restore them.
 
 ##### Export Branch
 
@@ -93,7 +93,7 @@ particular point in time. First select the branch where the changes are located 
 name is auto-generated from this selection, but can also be edited as desired as long as it doesn't conflict with an
 existing branch name. Next, select the point in time from which you want to push the changes, either
 'Last Successful Push' or a custom date in the past. Once these selections are made, click the 'Export Branch' button. After
-a few minutes, the new branch will be available in your GitHub repository with any changes in Tina Cloud. A pull request
+a few minutes, the new branch will be available in your GitHub repository with any changes in TinaCloud. A pull request
 can then be created to merge the changes to your desired branch.
 
 ##### Branch "Reindex"
@@ -103,23 +103,23 @@ been successfully pushed to GitHub using the Export Branch feature.
 
 ### API tokens
 
-There are two types of tokens associated with projects in Tina Cloud: Content (Read-only) and Search.
+There are two types of tokens associated with projects in TinaCloud: Content (Read-only) and Search.
 
 - Content tokens provide read-only access to your project's content.
-- Search tokens provide write access to the Tina Cloud search API.
+- Search tokens provide write access to the TinaCloud search API.
 
-<WarningCallout body="Warning: API tokens should be considered sensitive and not be committed to your project repository. Content tokens allow clients read-only access to your repository content. Search tokens allow clients to update the Tina Cloud hosted search index for your site. Please use environment variables for these in your Tina configuration." />
+<WarningCallout body="Warning: API tokens should be considered sensitive and not be committed to your project repository. Content tokens allow clients read-only access to your repository content. Search tokens allow clients to update the TinaCloud hosted search index for your site. Please use environment variables for these in your Tina configuration." />
 
 #### Generate tokens from the dashboard
 
 By default, a new project will automatically generate both types of tokens with access to all branch types. If the project does not need to restrict access to specific branches, these tokens should be sufficient.
 
-If additional tokens are needed, they can be generated by navigating to [Tina Cloud](https://app.tina.io), clicking on the project you wish to add a token to, and clicking on the "Tokens" tab:
-![Tina cloud token tab](https://res.cloudinary.com/forestry-demo/image/upload/v1686248278/tina-io/docs/tina-cloud/api_tokens_list_v1_mmjpsp.png)
+If additional tokens are needed, they can be generated by navigating to [TinaCloud](https://app.tina.io), clicking on the project you wish to add a token to, and clicking on the "Tokens" tab:
+![TinaCloud token tab](https://res.cloudinary.com/forestry-demo/image/upload/v1686248278/tina-io/docs/tina-cloud/api_tokens_list_v1_mmjpsp.png)
 
 Next, click "New Token" and fill out fields. The "Type" field selects the type of token being created. "Name" is used for identifying the token. "Git Branches" is the list of branches (separated by commas) that the token has access to.
 
-![Creating a new token in Tina Cloud](https://res.cloudinary.com/forestry-demo/image/upload/v1686248661/tina-io/docs/tina-cloud/new_api_token_v1_lq1rfy.png)
+![Creating a new token in TinaCloud](https://res.cloudinary.com/forestry-demo/image/upload/v1686248661/tina-io/docs/tina-cloud/new_api_token_v1_lq1rfy.png)
 
 These tokens will be used later when we connect the site's frontend to our project.
 

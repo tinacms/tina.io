@@ -23,7 +23,7 @@ const footerNav = [
       },
       {
         link: 'https://app.tina.io',
-        label: 'Tina Cloud',
+        label: 'TinaCloud',
       },
       {
         link: '/docs',
