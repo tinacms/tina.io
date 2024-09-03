@@ -42,10 +42,10 @@ You need to setup S3 Bucket and IAM user correctly.
 
 ### 1. The IAM user should have at least the following permissions for your bucket.
 
-* `s3:ListBucket`
-* `s3:PutObject`
-* `s3:PutObjectAcl`
-* `s3:DeleteObject`
+- `s3:ListBucket`
+- `s3:PutObject`
+- `s3:PutObjectAcl`
+- `s3:DeleteObject`
 
 ### 2. The S3 bucket should have ACLs enabled.
 
@@ -126,7 +126,7 @@ Call `createMediaHandler` to set up routes and connect your instance of the Medi
 
 Import `isAuthorized` from [`@tinacms/auth`](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth).
 
-The `authorized` key will make it so only authorized users within Tina Cloud can upload and make media edits.
+The `authorized` key will make it so only authorized users within TinaCloud can upload and make media edits.
 
 ```ts
 // pages/api/s3/[...media].ts

@@ -2,19 +2,18 @@ import { Template } from 'tinacms'
 import { wrapFieldsWithMeta } from 'tinacms';
 import IconSelector from './IconSelector';
 
-export const iconBannerTemplate: Template = {
-    label: 'Icon Ribbon Component',
-    name: 'iconBanner',
+export const highlightsSectionTemplate: Template = {
+    label: 'Highlights Section',
+    name: 'highlightsSection',
     fields: [
         { 
-            name: 'iconColumn', 
-            label: 'Icon Column', 
+            name: 'highlightColumn', 
+            label: 'Highlight Column', 
             type: 'object', 
             list: true, 
             ui: {
                 max: 3,
                 itemProps: (item) => {
-                    // Field values are accessed by item?.<Field name>
                     return { label: item?.heading };
                 },
             },
@@ -25,8 +24,8 @@ export const iconBannerTemplate: Template = {
                     type: 'string'
                 },
                 {
-                    name: 'iconList',
-                    label: 'Icons',
+                    name: 'highlights',
+                    label: 'Highlights',
                     type: 'object',
                     list: true,
                     fields: [
@@ -47,7 +46,6 @@ export const iconBannerTemplate: Template = {
                     ],
                     ui: {
                         itemProps: (item) => {
-                            // Field values are accessed by item?.<Field name>
                             return { label: item?.name };
                         },
                     }
