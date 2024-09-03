@@ -492,8 +492,8 @@
     {
       "features": [
         {
-          "headline": "Merge With Confidence",
-          "text": "TinaCloud Enterprise customers can review, approve, and manage content  on different branches",
+          "headline": "Hide the complexities of GitHub",
+          "text": "Merge with confidence - with the Editorial Workflow feature, users can review, approve and manage content on different branches without dropping into GitHub or another IDE",
           "buttons": [
             {
               "label": "Editorial Workflow",
