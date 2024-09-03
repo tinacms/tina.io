@@ -11,7 +11,7 @@ interface TocProps {
 const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
   return tocItems
     .map((item) => {
-      const anchor = item.text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]+/g, '')
+      const anchor = item.text.toLowerCase().replace(/[\s-]+/g, '-').replace(/[^a-z0-9-]+/g, '')
       const prefix = item.type === 'h3' ? '  ' : ''
       return `${prefix}- [${item.text}](#${anchor})`
     })
