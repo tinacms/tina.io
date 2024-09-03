@@ -67,6 +67,12 @@
           "size": 150
         },
         {
+          "name": "NDC Conferences",
+          "link": "https://ndcconferences.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1725370732/NDCLogo_rwty5v.png",
+          "size": 16
+        },
+        {
           "name": "Smashing Magazine",
           "link": "https://tina.io/showcase#smashing-magazine",
           "logo": "/svg/logos/smashing.svg",
