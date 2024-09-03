@@ -722,7 +722,7 @@ export const schema = defineSchema({
     },
     {
       name: 'docsTableOfContents',
-      label: 'Docs Table of Contents',
+      label: 'Docs - Table of Contents',
       path: 'content/docs-toc',
       format: 'json',
       fields: [
