@@ -34,6 +34,8 @@ import { eventsTemplate } from '../components/blocks/Events.template'
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+import { submenuTemplate } from '../components/toc/toc-submenu.template'
+import { itemTemplate } from '../components/toc/toc-item.template'
 import { textAndMediaColumnsComponentTemplate } from '../components/blocks/TextAndMediaColumns.template'
 import { tinaBannerTemplate } from '../components/blocks/TinaBanner.template'
 import { highlightsSectionTemplate } from '../components/blocks/HighlightsSection.template'
@@ -716,7 +718,39 @@ export const schema = defineSchema({
       label: 'Whats new - TinaCloud',
       path: 'content/whats-new-tinacloud',
       format: 'mdx',
-      fields: WhatsNewFields,
+      fields: WhatsNewFields ,
+    },
+    {
+      name: 'docsTableOfContents',
+      label: 'Docs - Table of Contents',
+      path: 'content/docs-toc',
+      format: 'json',
+      fields: [
+        {
+          name: 'supermenuGroup',
+          label: 'Supermenu Group',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: '🗂️ ' + (item?.title ?? "Unnamed Menu Group") };
+            },
+          },
+          fields: [
+            {name: 'title', label: "Name", type: 'string'},
+            {
+              name: 'items',
+              label: 'Page or Submenu',
+              type: 'object',
+              list: true,
+              templates: [
+                submenuTemplate as Template,
+                itemTemplate as Template
+              ]
+            }
+          ]
+        },
+      ]
     },
   ],
 })

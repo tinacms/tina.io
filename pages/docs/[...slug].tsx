@@ -69,6 +69,8 @@ function _DocTemplate(props) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
+
+
   return (
     <>
       <NextSeo
@@ -81,10 +83,10 @@ function _DocTemplate(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.oldNavDocs.data}>
+      <DocsLayout navItems={props.navDocData.data}>
         <DocsGrid>
           <DocGridHeader>
-            <Breadcrumbs navItems={props.oldNavDocs.data} />
+            <Breadcrumbs navItems={props.navDocData.data} />
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
@@ -115,15 +117,14 @@ export const getStaticProps: GetStaticProps = async function (props) {
   const slug = slugs.join('/')
 
   try {
-    const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
-    const tinaDocsNavigation = await client.queries.getAllDocs()
-    //TOOD: get rid of line 121. https://github.com/tinacms/tina.io/issues/1982
-    const oldNavDocs = await getDocsNav()
+    const [results, navDocData] = await Promise.all([
+      client.queries.doc({ relativePath: `${slug}.mdx` }),
+      getDocsNav() 
+    ])
     return {
       props: {
         new: { results },
-        allDocs: { tinaDocsNavigation },
-        oldNavDocs,
+        navDocData,
       },
     }
   } catch (e) {
