@@ -138,8 +138,9 @@
         },
         {
           "headline": "CPH Dev Fest",
-          "startDate": "2024-08-25T14:00:00.000Z",
+          "startDate": "2024-08-26T06:00:00.000Z",
           "endDate": "2024-08-29T14:00:00.000Z",
+          "timezone": -5,
           "location": "Copenhagen, Denmark",
           "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215863/704853_s2w9sg.jpg",
           "link": "https://cphdevfest.com/",
