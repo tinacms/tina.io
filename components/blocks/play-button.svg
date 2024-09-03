@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 5400 4088">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+        stroke: #ec4815;
+        stroke-miterlimit: 10;
+        stroke-width: 5px;
+      }
+      .cls-2 {
+        fill: #ffffff;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="922.2" y1="1017.2" x2="4479.8" y2="3071.2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ec4815"/>
+      <stop offset=".4" stop-color="#e94515"/>
+      <stop offset=".6" stop-color="#e23d15"/>
+      <stop offset=".8" stop-color="#d52f17"/>
+      <stop offset=".9" stop-color="#c31c19"/>
+      <stop offset="1" stop-color="#bc141a"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-1" d="M4668.5,1441.5c-182-735.2-814.1-794.1-1460.7-810.6-366.2-9.2-732.7-9.1-1098.9,2.4-316,13.7-645.5,29.7-926.5,183.2-394.4,213.1-494.6,654.1-508.5,1071.8-6.9,181.4-2.9,367.3,18.9,546.5v.2c70.7,595.3,376.1,901,969,983.1,200.1,28.6,403.9,35.4,606,40.7,378.1,8,756.5,7.8,1134.4-9.5,601.3-26.5,1113.7-157.7,1269.2-811.7,45.9-191,57.7-401.5,57.8-600.7-.9-198.8-12.9-402.6-60.7-595.2ZM2299.2,2650.2v-1212.6c352.5,203.1,697.2,401.6,1052.9,606.4-356.2,205.1-700.5,403.3-1052.9,606.2Z"/>
+  <!-- Add a white-filled triangle in the middle -->
+  <polygon class="cls-2" points="2299.2,2650.2 2299.2,1437.6 3352.1,2044 2299.2,2650.2"/>
+</svg>
