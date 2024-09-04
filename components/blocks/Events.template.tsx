@@ -55,7 +55,6 @@ export const eventsTemplate: Template = {
           description:
             'Enter date in the timezone of the event.',
           ui: {
-            utc: true,
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
           }, 
         },
@@ -77,7 +76,6 @@ export const eventsTemplate: Template = {
           description:
             'Note this field is not mandatory. Leave blank if no end time specified (or only 1 day event).',
           ui: {
-            utc: true,
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
           }, 
         },
