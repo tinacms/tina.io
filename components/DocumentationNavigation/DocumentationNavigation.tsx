@@ -20,7 +20,6 @@ export interface DocsNavProps {
 export function DocumentationNavigation({ navItems }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
   const router = useRouter()
-
   return (
     <>
       <MobileNavToggle

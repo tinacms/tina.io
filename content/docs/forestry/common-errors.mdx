@@ -1,6 +1,7 @@
 ---
+id: /docs/forestry/common-errors/
 title: Common Errors when Migrating
-id: '/docs/forestry/common-errors/'
+last_edited: '2024-08-30T06:09:45.267Z'
 ---
 
 Here is a list of the the common things that someone may run into when migrating from Forestry to TinaCMS.
@@ -111,9 +112,9 @@ In forestry you could have a block field that had a template that was not define
 
 This can happen for many reasons. Some common reasons are because the data you are trying to fetch is
 
-- not in the correct format
-- missing a required field
-- is missing the `_template` key.
+* not in the correct format
+* missing a required field
+* is missing the `_template` key.
   If you look at the error message in the terminal you should see the exact error that is causing the issue.
 
 For example, if you are missing `_template` you will see an error like this
@@ -132,7 +133,7 @@ _template: my_template
 ---
 ```
 
-..where "my_template" is the name of the template in the collection to which the file belongs.
+..where "my\_template" is the name of the template in the collection to which the file belongs.
 
 ## Error `YAMLException: duplicated mapping key`
 
@@ -155,7 +156,7 @@ date: 2021-01-02
 ---
 ```
 
-## Info: Match ${match} was transformed to ${newMatch}
+## Info: Match was transformed to newMatch
 
 The match property works a bit differently in TinaCMS than it does in Forestry. In Forestry, the match property is a glob pattern that includes the file extension. In TinaCMS, the match property is a glob pattern that does not include the file extension.
 

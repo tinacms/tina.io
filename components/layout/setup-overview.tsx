@@ -66,7 +66,7 @@ const OverviewTemplate = (props) => {
           // images: [openGraphImage(frontmatter.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.oldNavDocs.data}>
+      <DocsLayout navItems={props.navDocData.data}>
         <div className="wrapper">
           <div className="intro">
             <h1>Getting Started With Tina</h1>

@@ -21,8 +21,8 @@ export const getStaticProps: GetStaticProps = async function (props) {
   const new_results = await client.queries.doc({
     relativePath: `product-tour.mdx`,
   })
-  const oldNavDocs = await getDocsNav()
-  return { props: { new: { new_results }, oldNavDocs } }
+  const docsToc = await getDocsNav()
+  return { props: { new: { new_results }, docsToc } }
 }
 
 export default function Page(props) {
@@ -144,10 +144,10 @@ export default function Page(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.oldNavDocs.data}>
+      <DocsLayout navItems={props.docsToc.data}>
         <DocContainer>
           <DocGridHeader>
-            <Breadcrumbs navItems={props.oldNavDocs.data} />
+            <Breadcrumbs navItems={props.docsToc.data} />
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridContent ref={contentRef}>
