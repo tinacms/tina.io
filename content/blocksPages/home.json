@@ -179,7 +179,7 @@
       "features": [
         {
           "headline": "Own Your Content",
-          "text": "Don't lock your content in a 3rd-party service.  Tina writes to files in your repository (MDX, Markdown, JSON, etc)",
+          "text": "Don't restrict your content to a third-party service. Tina saves your files directly in your repository using formats like MDX, Markdown and more.",
           "buttons": [
             {
               "label": "Learn More",
