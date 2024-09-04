@@ -35,6 +35,7 @@
     },
     {
       "title": "Trusted by",
+      "link": "https://ndcconferences.com",
       "items": [
         {
           "name": "Bunny Net",
@@ -83,6 +84,12 @@
           "link": "https://tina.io/showcase#paradise-helicopters",
           "logo": "/svg/logos/paradisehelicopters.svg",
           "size": 150
+        },
+        {
+          "name": "NDC Conferences",
+          "link": "https://ndcconferences.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1725370732/NDCLogo_rwty5v.png",
+          "size": 220
         },
         {
           "name": "SSW",
@@ -488,7 +495,7 @@
       "features": [
         {
           "headline": "Merge With Confidence",
-          "text": "TinaCloud Enterprise customers can review, approve, and manage content  on different branches",
+          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
           "buttons": [
             {
               "label": "Editorial Workflow",

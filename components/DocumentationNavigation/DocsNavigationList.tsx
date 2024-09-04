@@ -7,6 +7,7 @@ import { DynamicLink } from '../../components/ui'
 import docsLinks from '../../content/docs-navigation.json'
 import { BiChevronRight } from 'react-icons/bi'
 import AnimateHeight from 'react-animate-height'
+import data from '../../content/siteConfig.json'
 
 interface NavTitleProps {
   level: number
@@ -88,12 +89,17 @@ const NavLevel = ({
 }) => {
   const navLevelElem = React.useRef(null)
   const router = useRouter()
+  const path = router.asPath
+  const slug = categoryData.slug
   const [expanded, setExpanded] = React.useState(
-    matchActualTarget(categoryData.slug || categoryData.href, router.asPath) ||
-      hasNestedSlug(categoryData.items, router.asPath) ||
+    matchActualTarget(slug || categoryData.href, path) ||
+      hasNestedSlug(categoryData.items, path) ||
       level === 0
   )
-  const selected = router.asPath == categoryData.slug
+
+  const selected = path == slug || (slug == '/docs' && path == "/docs/")
+  console.log(categoryData.items)
+  console.log(router.asPath)
   const childSelected = hasNestedSlug(categoryData.items, router.asPath)
 
   React.useEffect(() => {
