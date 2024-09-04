@@ -14,7 +14,7 @@ import styled from 'styled-components'
 import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { components } from 'pages/blog/[slug]'
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export const getStaticProps: GetStaticProps = async function (props) {
@@ -154,7 +154,7 @@ export default function Page(props) {
             <hr />
             <SplitContent>
               <div id="main-content-container">
-                <TinaMarkdown content={doc_data.body} components={components} />
+                <TinaMarkdown content={doc_data.body} components={docAndBlogComponents} />
               </div>
               <div id="sticky-img-container">
                 <div className="img-container">
