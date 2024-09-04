@@ -16,6 +16,30 @@
   },
   "redirects": [
     {
+      "source": "/docs/tinacms-context",
+      "destination": "/docs/contextual-editing/overview"
+    },
+    {
+      "source": "/tinasaurus",
+      "destination": "/blog/tinasaurus-docusaurus-starter/"
+    },
+    {
+      "source": "/docs/tina-cloud/connecting-site/",
+      "destination": "/docs/tina-cloud/overview"
+    },
+    {
+      "source": "/docs/errors/faq",
+      "destination": "/docs/introduction/faq/#common-tinacloud-errors"
+    },
+    {
+      "source": "/faq",
+      "destination": "/docs/introduction/faq"
+    },
+    {
+      "source": "/docs/tina-cloud/faq",
+      "destination": "/docs/introduction/faq"
+    },
+    {
       "source": "/cloud/",
       "destination": "/"
     },
