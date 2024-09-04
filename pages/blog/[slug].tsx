@@ -31,6 +31,7 @@ import { getDocId } from 'utils/docs/getDocIds'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useState } from 'react'
 import Image from 'next/image'
+import { FiLink } from "react-icons/fi";
 
 export const components: Components<{
   Iframe: { iframeSrc: string; height: string }
@@ -78,7 +79,7 @@ export const components: Components<{
       setOpenTab(!openTab)
     }
 
-    console.log('props found', props.text)
+    
 
     return (
       <div>
@@ -295,7 +296,17 @@ function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any
   const id = getDocId(children.props.content.map(content => content.text).join(''))
 
-  return <HeadingTag id={id}>{children}</HeadingTag>
+  const currentUrl = typeof window !== 'undefined' ? window.location.pathname : '';
+  const linkHref = `${currentUrl}#${id}`;
+
+  return (
+    <HeadingTag id={id} className="relative cursor-pointer">
+      <a href={linkHref} className="no-underline flex items-center group">
+        {children}
+        <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+      </a>
+    </HeadingTag>
+  );
 }
 
 function BlogTemplate({ file, siteConfig, ...props }) {
@@ -392,8 +403,6 @@ export const getStaticProps: GetStaticProps = async function ({
 
   const vars = { relativePath: `${slug}.mdx` }
   const res = await client.queries.getExpandedPostDocument(vars)
-
-  console.log(res);
 
   return {
     props: {
