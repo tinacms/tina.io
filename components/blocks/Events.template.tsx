@@ -1,12 +1,31 @@
 import type { Template } from 'tinacms'
-import { NumberField, wrapFieldsWithMeta } from 'tinacms'
-import React from 'react'
 
-const convertAndFormat = (value, prefix) => {
-  return { value: prefix + value, label: `GMT ${prefix}${Math.floor(value)}:${value % 1 ? "3" : "0"}0` }
+const formatTimezoneOption = (value, prefix = "+") => {
+  return { value: value, label: `GMT ${prefix}${Math.floor(value)}:${value % 1 ? "3" : "0"}0` }
 }
-const positiveTimezoneList = Array.from(Array(29).keys()).map(value => convertAndFormat(value / 2, '+')).reverse()
-const negativeTimezoneList = Array.from(Array(24).keys()).map(value => convertAndFormat((value / 2) + 0.5, '-'))
+
+const positiveTimezoneList = Array.from(Array(29).keys()).map(value => formatTimezoneOption(value / 2)).reverse()
+const negativeTimezoneList = Array.from(Array(24).keys()).map(value => 
+  {
+  const tempOption = formatTimezoneOption((value / 2) + 0.5, '-')
+    return {value: tempOption.value * -1, label: tempOption.label}
+  })
+
+const timeFormat = Intl.DateTimeFormat('en-US', {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC"
+});
+
+const timezoneValidation = (value, data) => {
+  if (value > 23 || value < 0) {
+    return "The time should be between 0 (00:00) and 23 (23:00)"
+  }
+  if (value && value % 1 != 0) {
+    return "Only whole numbers should be used."
+  }
+}
 
 export const eventsTemplate: Template = {
   label: 'Events',
@@ -34,21 +53,43 @@ export const eventsTemplate: Template = {
           label: 'Start Date', 
           type: 'datetime', 
           description:
-            'Enter date & time in the timezone of the event.',
+            'Enter date in the timezone of the event.',
           ui: {
-            component: 'date',
-            timeFormat: true,
-            utc: true
+            utc: true,
+            format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
           }, 
+        },
+        {
+          name: 'startTime',
+          label: 'Start Time (24 hour time)',
+          type: 'number',
+          description:
+            'Optional hours field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm',
+          ui: {
+            step: 1,
+            validate: timezoneValidation
+          },
         },
         {
           name: 'endDate',
           label: 'End Date',
           type: 'datetime',
           description:
-            'Note this field is not mandatory. Leave blank if no end date specified (or only 1 day event).',
+            'Note this field is not mandatory. Leave blank if no end time specified (or only 1 day event).',
           ui: {
-            timeFormat: true,
+            utc: true,
+            format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
+          }, 
+        },
+        {
+          name: 'endTime',
+          label: 'End Time (24 hour time)',
+          type: 'number',
+          description:
+            'Optional field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm.',
+          ui: {
+            step: 1,
+            validate: timezoneValidation
           },
         },
         {
