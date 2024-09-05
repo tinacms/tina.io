@@ -66,7 +66,6 @@ export const eventsTemplate: Template = {
           description:
             'Optional hours field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm',
           ui: {
-            step: 1,
             validate: timezoneValidation
           },
         },
@@ -88,7 +87,6 @@ export const eventsTemplate: Template = {
           description:
             'Optional field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm.',
           ui: {
-            step: 1,
             validate: timezoneValidation
           },
         },
