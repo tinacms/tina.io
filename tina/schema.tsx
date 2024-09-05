@@ -22,6 +22,7 @@ import { examplesCollection } from './collectionsSchema/examples'
 import { meetingLinksCollection } from './collectionsSchema/meetingLinks'
 import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS'
 import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud'
+import { navigationBarCollection } from './collectionsSchema/navigationBar'
 
 
 export const schema = defineSchema({
@@ -33,6 +34,7 @@ export const schema = defineSchema({
     meetingLinksCollection as Collection,
     whatsNewTinaCMSCollection as Collection,
     whatsNewTinaCloudCollection as Collection,
+    navigationBarCollection as Collection,
     {
       name: 'docsTableOfContents',
       label: 'Docs - Table of Contents',

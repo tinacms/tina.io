@@ -1,5 +1,3 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx']
-
 export const actionsButtonTemplate = {
   label: 'Actions',
   name: 'actions',
