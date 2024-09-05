@@ -52,6 +52,7 @@ export function Navbar({}) {
     <>
       <div ref={navRef} className={`relative w-full`}>
         <div className="flex min-[1135px]:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
+        {/* Start of sm and md view*/}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
               open ? 'translate-x-0' : 'translate-x-full'
@@ -119,6 +120,7 @@ export function Navbar({}) {
               ))}
             </ul>
           </div>
+          {/* Start of large (desktop +) view*/}
           <div
             className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${
               open
