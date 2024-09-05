@@ -226,8 +226,8 @@ export function Navbar({}) {
                         </ul>
                       </div>
                     ) : item.href ? (
-                      <Link href={item.href} className="py-2">
-                        {item.label}
+                      <Link href={item.href} className="py-2 w-max">
+                        {item.label} 
                       </Link>
                     ) : null}
                   </li>
