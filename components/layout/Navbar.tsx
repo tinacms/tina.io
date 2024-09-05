@@ -46,7 +46,6 @@ export function Navbar({}) {
   const closeEmailModal = () => setIsEmailModalOpen(false);
   const closeDemoModal = () => setIsDemoModalOpen(false);
 
-  // Ensure `data.navItem` is an array
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
 
   return (
@@ -103,12 +102,7 @@ export function Navbar({}) {
                               <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                                 {subItem.label}
                                 {subItem.href.startsWith('https://') && (
-                                  <>
-                                    {console.log(
-                                      `External link detected: ${subItem.href}`
-                                    )}
                                     <BiLinkExternal className="text-blue-200 group-hover:text-blue-400 inline" />
-                                  </>
                                 )}
                               </span>
                             </Link>
@@ -117,7 +111,6 @@ export function Navbar({}) {
                       </ul>
                     </div>
                   ) : (
-                    // Regular link without the external icon
                     <Link href={item.href} className="py-2">
                       {item.label}
                     </Link>
