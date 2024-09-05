@@ -4,6 +4,7 @@ import data from '../../content/navigationBar/master.json';
 import { Button } from '../../components/ui/Button';
 import {
   BiChevronRight,
+  BiChevronDown,
   BiMenu,
   BiLinkExternal,
 } from 'react-icons/bi';
@@ -15,6 +16,13 @@ import { Modal } from 'react-responsive-modal';
 import { EmailForm } from '../modals/EmailForm';
 import 'react-responsive-modal/styles.css';
 import { DemoForm } from 'components/modals/BookDemo';
+
+
+const iconMapping = {
+  MdEmail: MdEmail,
+  FaCalendarDay: FaCalendarDay,
+  
+};
 
 export function Navbar({}) {
   const [open, setOpen] = useState(false);
@@ -95,6 +103,11 @@ export function Navbar({}) {
                       size={getValidSize(item.size)}
                       onClick={() => openModal(item.modal)}
                     >
+                      {item.icon && iconMapping[item.icon] && (
+                        <span className="mr-2">
+                          {React.createElement(iconMapping[item.icon], { className: "w-5 h-5" })}
+                        </span>
+                      )}
                       {item.label}
                     </Button>
                   </li>
@@ -165,6 +178,11 @@ export function Navbar({}) {
                       size={getValidSize(item.size)}
                       onClick={() => openModal(item.modal)}
                     >
+                      {item.icon && iconMapping[item.icon] && (
+                        <span className="mr-2">
+                          {React.createElement(iconMapping[item.icon], { className: "w-5 h-5" })}
+                        </span>
+                      )}
                       {item.label}
                     </Button>
                   </li>
