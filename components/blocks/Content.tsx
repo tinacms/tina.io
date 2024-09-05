@@ -2,17 +2,9 @@ import React from 'react'
 import { DocsTextWrapper } from '../layout/DocsTextWrapper'
 import { Wrapper } from '../layout/Wrapper'
 import { Section } from '../layout/Section'
-import { Actions } from './ActionsButton'
-import { SocialBlock } from './Social'
-import { NewsletterBlock } from './Newsletter'
+import { contentComponents } from 'components/tinaMarkdownComponents/contentComponents'
 
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-
-export const contentComponents = {
-  actions: Actions,
-  social: SocialBlock,
-  newsletter: NewsletterBlock,
-}
 
 export function ContentBlock({ data, index }) {
   return (
