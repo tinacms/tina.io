@@ -46,6 +46,7 @@ export const eventsTemplate: Template = {
           label: item.headline,
         }),
       },
+      // @ts-ignore: type error as utc, options and step fields aren't formally recognised but valid as per docs
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         {
@@ -66,6 +67,7 @@ export const eventsTemplate: Template = {
           description:
             'Optional hours field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm',
           ui: {
+            step: 1,
             validate: timezoneValidation
           },
         },
@@ -87,6 +89,7 @@ export const eventsTemplate: Template = {
           description:
             'Optional field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm.',
           ui: {
+            step: 1,
             validate: timezoneValidation
           },
         },
@@ -98,11 +101,11 @@ export const eventsTemplate: Template = {
             'Please select the timezone the event is being held in. GMT and UTC are analagous.',
           ui: {
             parse: (value) => Number(value),
-            // component: 'select',
-            // options: [
-            //   ...positiveTimezoneList,
-            //   ...negativeTimezoneList
-            // ]
+            component: 'select',
+            options: [
+              ...positiveTimezoneList,
+              ...negativeTimezoneList
+            ]
           }
         },
         { name: 'location', label: 'Location', type: 'string' },
