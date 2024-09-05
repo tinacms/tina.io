@@ -1,7 +1,7 @@
 import React from 'react'
 import { VideoGridComponent } from './MediaComponent'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { textAndMediaColumnsComponentTemplate } from './TextAndMediaColumns.template'
+import { textAndMediaColumnsComponent } from 'components/tinaMarkdownComponents/textAndMediaColumnsComponents'
 
 const TextAndMediaColumnsComponent = ({ data }) => {
     const { mediaColumnItem, body, isVideoOnLeft } = data || {}
@@ -18,7 +18,7 @@ const TextAndMediaColumnsComponent = ({ data }) => {
                     {VideoGridComponent({ data: { mediaItem: mediaColumnItem, typenames } })}
                 </div>
                 <div className={`lg:col-span-3 py-12 lg:py-0 mx-12 md:mx-16 text-center lg:text-start lg:mx-30 my-auto relative row-start-1 ${isVideoOnLeft ? "lg:col-start-5" : "lg:col-start-1"}`}>
-                    {body && <TinaMarkdown content={body} components={textAndMediaColumnsComponentTemplate}/>}
+                    {body && <TinaMarkdown content={body} components={textAndMediaColumnsComponent}/>}
                     
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import { Components } from "tinacms/dist/rich-text";
 
-export const components: Components<{}> = {
+export const textAndMediaColumnsComponent: Components<{}> = {
   p: (props) => (
     <>
       {props.children.props.content.map((content) => (
