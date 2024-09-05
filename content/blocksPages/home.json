@@ -136,8 +136,10 @@
         {
           "headline": "NDC Porto",
           "startDate": "2024-10-14T00:00:00.000Z",
+          "startTime": 9,
           "endDate": "2024-10-18T00:00:00.000Z",
-          "timezone": 10,
+          "endTime": 19,
+          "timezone": 1,
           "location": "Porto, Portugal",
           "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
           "link": "https://ndcporto.com/",
