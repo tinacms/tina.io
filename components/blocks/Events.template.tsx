@@ -55,6 +55,7 @@ export const eventsTemplate: Template = {
           description:
             'Enter date in the timezone of the event.',
           ui: {
+            // utc: true,
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
           }, 
         },
@@ -65,7 +66,7 @@ export const eventsTemplate: Template = {
           description:
             'Optional hours field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm',
           ui: {
-            step: 1,
+            // step: 1,
             validate: timezoneValidation
           },
         },
@@ -76,6 +77,7 @@ export const eventsTemplate: Template = {
           description:
             'Note this field is not mandatory. Leave blank if no end time specified (or only 1 day event).',
           ui: {
+            // utc: true,
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
           }, 
         },
@@ -86,7 +88,7 @@ export const eventsTemplate: Template = {
           description:
             'Optional field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm.',
           ui: {
-            step: 1,
+            // step: 1,
             validate: timezoneValidation
           },
         },
@@ -98,11 +100,11 @@ export const eventsTemplate: Template = {
             'Please select the timezone the event is being held in. GMT and UTC are analagous.',
           ui: {
             parse: (value) => Number(value),
-            component: 'select',
-            options: [
-              ...positiveTimezoneList,
-              ...negativeTimezoneList
-            ]
+            // component: 'select',
+            // options: [
+            //   ...positiveTimezoneList,
+            //   ...negativeTimezoneList
+            // ]
           }
         },
         { name: 'location', label: 'Location', type: 'string' },
