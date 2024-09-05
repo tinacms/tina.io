@@ -1,7 +1,7 @@
 import React from 'react'
 import { Wrapper } from '../layout/Wrapper'
 import { Section } from '../layout/Section'
-import { contentComponents } from './Content'
+import { contentComponents } from 'components/tinaMarkdownComponents/contentComponents'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 import { DocsTextWrapper } from '../layout/DocsTextWrapper'

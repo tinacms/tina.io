@@ -16,7 +16,7 @@ import SetupOverview from '../../components/layout/setup-overview'
 import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { components } from 'pages/blog/[slug]'
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import getTableOfContents from 'utils/docs/getTableOfContents'
 import ToC from 'components/toc/index'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
@@ -94,7 +94,7 @@ function _DocTemplate(props) {
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
-            <TinaMarkdown content={doc_data.body} components={components} />
+            <TinaMarkdown content={doc_data.body} components={docAndBlogComponents} />
             <LastEdited date={doc_data.last_edited} />
             <DocsPagination prevPage={previousPage} nextPage={nextPage} />
           </DocGridContent>

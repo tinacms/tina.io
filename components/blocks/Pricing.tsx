@@ -21,6 +21,7 @@ import { SlLock } from 'react-icons/sl'
 import { FaStar } from 'react-icons/fa'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { useState } from 'react'
+import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents'
 
 const icons = {
   FaClock,
@@ -39,11 +40,6 @@ const icons = {
   HiOutlineSparkles,
   TbPlugConnected,
   SlLock,
-}
-
-const pricingComponents = {
-  p: (props) => <p className="text-xl" {...props} />,
-  strong: (props) => <strong className="font-bold text-xl" {...props} />,
 }
 
 const FreeTier = ({ data }) => {
