@@ -25,6 +25,14 @@
         {
           "label": "Examples",
           "href": "/examples"
+        },
+        {
+          "label": "Whats New - TinaCMS",
+          "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "Whats New - TinaCloud",
+          "href": "/whats-new/tinacloud"
         }
       ],
       "_template": "groupOfStringItems"
@@ -42,7 +50,7 @@
         },
         {
           "label": "Support",
-          "href": "/support"
+          "href": "/docs/support"
         },
         {
           "label": "Awesome TinaCMS",

@@ -52,7 +52,7 @@ export function Navbar({}) {
     <>
       <div ref={navRef} className={`relative w-full`}>
         <div className="flex min-[1135px]:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
-        {/* Start of sm and md view*/}
+          {/* Start of sm and md view*/}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
               open ? 'translate-x-0' : 'translate-x-full'
@@ -81,43 +81,30 @@ export function Navbar({}) {
                   </h1>
                 </Link>
               </li>
-              {navItems.map((item, index) => (
-                <li key={index} className={`group ${navLinkClasses}`}>
-                  {item.items ? (
-                    <div className="relative group">
-                      <span className="py-2 flex items-center cursor-pointer">
-                        {item.label}
-                        <BiChevronRight
-                          className={`ml-1 text-blue-200 group-hover:text-blue-400 transition-transform duration-200 group-hover:rotate-90`}
-                        />
-                      </span>
-                      <ul
-                        className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
-                      >
-                        {item.items.map((subItem, subIndex) => (
-                          <li
-                            key={subIndex}
-                            className="py-2 px-2 flex items-center"
-                          >
-                            <Link href={subItem.href}>
-                              <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
-                                {subItem.label}
-                                {subItem.href.startsWith('https://') && (
-                                    <BiLinkExternal className="text-blue-200 group-hover:text-blue-400 inline" />
-                                )}
-                              </span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
+              {navItems.map((item, index) =>
+                item.items ? (
+                  item.items.map((subItem, subIndex) => (
+                    <li
+                      key={`${index}-${subIndex}`}
+                      className={`group ${navLinkClasses} py-2`}>
+                      <Link href={subItem.href}>
+                        <span className="">
+                          {subItem.label}
+                          {subItem.href.startsWith('https://') && (
+                            <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
+                          )}
+                        </span>
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <li key={index} className={`group ${navLinkClasses}`}>
                     <Link href={item.href} className="py-2">
                       {item.label}
                     </Link>
-                  )}
-                </li>
-              ))}
+                  </li>
+                )
+              )}
             </ul>
           </div>
           {/* Start of large (desktop +) view*/}
