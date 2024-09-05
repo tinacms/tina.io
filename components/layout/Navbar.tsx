@@ -2,7 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import data from '../../content/navigationBar/master.json';
 import { Button } from '../../components/ui/Button';
-import { BiChevronRight, BiChevronDown, BiMenu, BiLinkExternal } from 'react-icons/bi';
+import {
+  BiChevronRight,
+  BiChevronDown,
+  BiMenu,
+  BiLinkExternal,
+} from 'react-icons/bi';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import { IoMdClose } from 'react-icons/io';
 import { FaCalendarDay } from 'react-icons/fa';
@@ -79,7 +84,6 @@ export function Navbar({}) {
               {navItems.map((item, index) => (
                 <li key={index} className={`group ${navLinkClasses}`}>
                   {item.items ? (
-                    // If item has sub-items, render a dropdown menu
                     <div className="relative group">
                       <span className="py-2 flex items-center cursor-pointer">
                         {item.label}
@@ -88,13 +92,24 @@ export function Navbar({}) {
                         />
                       </span>
                       <ul
-                        className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 hidden group-hover:block transition-opacity duration-200 ease-in-out`}
+                        className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
                       >
                         {item.items.map((subItem, subIndex) => (
-                          <li key={subIndex} className="py-2 px-2 flex items-center">
+                          <li
+                            key={subIndex}
+                            className="py-2 px-2 flex items-center"
+                          >
                             <Link href={subItem.href}>
                               <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                                 {subItem.label}
+                                {subItem.href.startsWith('https://') && (
+                                  <>
+                                    {console.log(
+                                      `External link detected: ${subItem.href}`
+                                    )}
+                                    <BiLinkExternal className="text-blue-200 group-hover:text-blue-400 inline" />
+                                  </>
+                                )}
                               </span>
                             </Link>
                           </li>
@@ -102,14 +117,9 @@ export function Navbar({}) {
                       </ul>
                     </div>
                   ) : (
-                    // Regular link
-                    <Link href={item.href} className="py-2" onClick={toggleMenu}>
+                    // Regular link without the external icon
+                    <Link href={item.href} className="py-2">
                       {item.label}
-                      {/* {item.external && (
-                        <BiLinkExternal
-                          className={`text-blue-200 group-hover:text-blue-400 inline`}
-                        />
-                      )} */}
                     </Link>
                   )}
                 </li>
@@ -118,7 +128,9 @@ export function Navbar({}) {
           </div>
           <div
             className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${
-              open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+              open
+                ? 'opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none'
             }`}
             onClick={toggleMenu}
           ></div>
@@ -147,7 +159,9 @@ export function Navbar({}) {
         >
           <Link href={'/'}>
             <h1 className="flex items-center">
-              <TinaIconSvg className={`${stuck ? 'w-8' : 'w-10'} h-auto fill-orange-500`} />
+              <TinaIconSvg
+                className={`${stuck ? 'w-8' : 'w-10'} h-auto fill-orange-500`}
+              />
             </h1>
           </Link>
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1135px]:items-center gap-2 min-[1135px]:gap-x-12">
@@ -163,13 +177,19 @@ export function Navbar({}) {
                         />
                       </span>
                       <ul
-                        className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 hidden group-hover:block transition-opacity duration-200 ease-in-out`}
+                        className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
                       >
                         {item.items.map((subItem, subIndex) => (
-                          <li key={subIndex} className="py-2 px-2 flex items-center">
+                          <li
+                            key={subIndex}
+                            className="py-2 px-2 flex items-center"
+                          >
                             <Link href={subItem.href}>
                               <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                                 {subItem.label}
+                                {subItem.href.startsWith('https://') && (
+                                  <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
+                                )}
                               </span>
                             </Link>
                           </li>
@@ -179,11 +199,6 @@ export function Navbar({}) {
                   ) : (
                     <Link href={item.href} className="py-2">
                       {item.label}
-                      {/* {item.external && (
-                        <BiLinkExternal
-                          className={`text-blue-200 group-hover:text-blue-400 inline`}
-                        />
-                      )} */}
                     </Link>
                   )}
                 </li>
