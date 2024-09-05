@@ -17,11 +17,9 @@ import { EmailForm } from '../modals/EmailForm';
 import 'react-responsive-modal/styles.css';
 import { DemoForm } from 'components/modals/BookDemo';
 
-
 const iconMapping = {
   MdEmail: MdEmail,
   FaCalendarDay: FaCalendarDay,
-  
 };
 
 export function Navbar({}) {
@@ -96,22 +94,7 @@ export function Navbar({}) {
                 </Link>
               </li>
               {navItems.map((item, index) =>
-                item._template === 'modalButton' ? (
-                  <li key={index} className={`group ${navLinkClasses} py-2`}>
-                    <Button
-                      color={getValidColor(item.color)}
-                      size={getValidSize(item.size)}
-                      onClick={() => openModal(item.modal)}
-                    >
-                      {item.icon && iconMapping[item.icon] && (
-                        <span className="mr-2">
-                          {React.createElement(iconMapping[item.icon], { className: "w-5 h-5" })}
-                        </span>
-                      )}
-                      {item.label}
-                    </Button>
-                  </li>
-                ) : item.items ? (
+                 item.items ? (
                   item.items.map((subItem, subIndex) =>
                     subItem.href ? (
                       <li
@@ -139,7 +122,7 @@ export function Navbar({}) {
               )}
             </ul>
           </div>
-          {/* Start of large (desktop +) view*/}
+
           <div
             className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${
               open
@@ -153,7 +136,29 @@ export function Navbar({}) {
               <TinaIconSvg className={`w-10 h-auto fill-orange-500`} />
             </h1>
           </Link>
+          <div className="flex space-x-2 gap-2">
+            {navItems
+              .filter((item) => item._template === 'modalButton')
+              .map((item, index) => (
+                <Button
+                  key={index}
+                  color={getValidColor(item.color)}
+                  size={getValidSize(item.size)}
+                  onClick={() => openModal(item.modal)}
+                >
+                  {item.icon && iconMapping[item.icon] && (
+                    <span className="mr-2">
+                      {React.createElement(iconMapping[item.icon], {
+                        className: 'w-5 h-5',
+                      })}
+                    </span>
+                  )}
+                  {item.label}
+                </Button>
+              ))}
+          </div>
         </div>
+        {/* Start of large (desktop +) view*/}
         <div
           className={`absolute ${
             stuck
@@ -180,7 +185,9 @@ export function Navbar({}) {
                     >
                       {item.icon && iconMapping[item.icon] && (
                         <span className="mr-2">
-                          {React.createElement(iconMapping[item.icon], { className: "w-5 h-5" })}
+                          {React.createElement(iconMapping[item.icon], {
+                            className: 'w-5 h-5',
+                          })}
                         </span>
                       )}
                       {item.label}
