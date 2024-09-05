@@ -4,7 +4,6 @@ import data from '../../content/navigationBar/master.json';
 import { Button } from '../../components/ui/Button';
 import {
   BiChevronRight,
-  BiChevronDown,
   BiMenu,
   BiLinkExternal,
 } from 'react-icons/bi';
@@ -45,7 +44,6 @@ export function Navbar({}) {
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
 
-  // Helper function to ensure color and size are valid
   const getValidColor = (color) => {
     const validColors = ['white', 'blue', 'orange', 'seafoam', 'ghost'];
     return validColors.includes(color) ? color : 'white';
@@ -215,8 +213,7 @@ export function Navbar({}) {
         </div>
       </div>
 
-      {/* Dynamic modal rendering */}
-      <Modal open={modalType === 'DemoForm'} onClose={closeModal} center>
+      <Modal open={modalType === 'BookDemo'} onClose={closeModal} center>
         <DemoForm />
       </Modal>
 

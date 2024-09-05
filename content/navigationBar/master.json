@@ -81,14 +81,16 @@
       "label": "Subscribe",
       "color": "white",
       "size": "medium",
-      "modal": "EmailForm.tsx",
+      "modal": "EmailForm",
+      "icon": "MdEmail",
       "_template": "modalButton"
     },
     {
       "label": "Book a demo",
       "color": "orange",
       "size": "medium",
-      "modal": "BookDemo.tsx",
+      "modal": "BookDemo",
+      "icon": "FaCalendarDay",
       "_template": "modalButton"
     }
   ]

@@ -1,4 +1,5 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
+const modals = ['BookDemo', 'EmailForm'];
+const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
 export const navigationBarCollection = {
   label: 'Navigation Bar',
@@ -124,6 +125,7 @@ export const navigationBarCollection = {
               ],
             },
             { name: 'modal', label: 'Modal', type: 'string', options: modals },
+            { name: 'icon', label: 'Icon', type: 'string', options: iconOptions, description: 'If you want a new icon added please ask a developer :)'},
           ],
         },
       ],
