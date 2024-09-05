@@ -2,6 +2,12 @@
   "navigationBar": "Master",
   "navItem": [
     {
+      "label": "Secondary Action",
+      "icon": false,
+      "size": "medium",
+      "_template": "modalButton"
+    },
+    {
       "label": "Docs",
       "href": "/docs",
       "_template": "stringItem"
