@@ -100,7 +100,6 @@ export const navigationBarCollection = {
           },
           fields: [
             { name: 'label', label: 'Label', type: 'string' },
-            { name: 'icon', label: 'Icon', type: 'boolean' },
             {
               name: 'color',
               label: 'Color',

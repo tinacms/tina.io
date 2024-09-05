@@ -20,8 +20,7 @@ import { DemoForm } from 'components/modals/BookDemo';
 export function Navbar({}) {
   const [open, setOpen] = useState(false);
   const [stuck, setStuck] = useState(false);
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null);
   const navRef = useRef(null);
 
   const navLinkClasses =
@@ -41,12 +40,21 @@ export function Navbar({}) {
   }, []);
 
   const toggleMenu = () => setOpen((prev) => !prev);
-  const openEmailModal = () => setIsEmailModalOpen(true);
-  const openDemoModal = () => setIsDemoModalOpen(true);
-  const closeEmailModal = () => setIsEmailModalOpen(false);
-  const closeDemoModal = () => setIsDemoModalOpen(false);
+  const openModal = (modal) => setModalType(modal);
+  const closeModal = () => setModalType(null);
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+
+  // Helper function to ensure color and size are valid
+  const getValidColor = (color) => {
+    const validColors = ['white', 'blue', 'orange', 'seafoam', 'ghost'];
+    return validColors.includes(color) ? color : 'white';
+  };
+
+  const getValidSize = (size) => {
+    const validSizes = ['small', 'medium', 'large'];
+    return validSizes.includes(size) ? size : 'medium';
+  };
 
   return (
     <>
@@ -82,28 +90,41 @@ export function Navbar({}) {
                 </Link>
               </li>
               {navItems.map((item, index) =>
-                item.items ? (
-                  item.items.map((subItem, subIndex) => (
-                    <li
-                      key={`${index}-${subIndex}`}
-                      className={`group ${navLinkClasses} py-2`}>
-                      <Link href={subItem.href}>
-                        <span className="">
-                          {subItem.label}
-                          {subItem.href.startsWith('https://') && (
-                            <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
-                          )}
-                        </span>
-                      </Link>
-                    </li>
-                  ))
-                ) : (
+                item._template === 'modalButton' ? (
+                  <li key={index} className={`group ${navLinkClasses} py-2`}>
+                    <Button
+                      color={getValidColor(item.color)}
+                      size={getValidSize(item.size)}
+                      onClick={() => openModal(item.modal)}
+                    >
+                      {item.label}
+                    </Button>
+                  </li>
+                ) : item.items ? (
+                  item.items.map((subItem, subIndex) =>
+                    subItem.href ? (
+                      <li
+                        key={`${index}-${subIndex}`}
+                        className={`group ${navLinkClasses} py-2`}
+                      >
+                        <Link href={subItem.href}>
+                          <span className="">
+                            {subItem.label}
+                            {subItem.href.startsWith('https://') && (
+                              <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
+                            )}
+                          </span>
+                        </Link>
+                      </li>
+                    ) : null
+                  )
+                ) : item.href ? (
                   <li key={index} className={`group ${navLinkClasses}`}>
                     <Link href={item.href} className="py-2">
                       {item.label}
                     </Link>
                   </li>
-                )
+                ) : null
               )}
             </ul>
           </div>
@@ -121,16 +142,6 @@ export function Navbar({}) {
               <TinaIconSvg className={`w-10 h-auto fill-orange-500`} />
             </h1>
           </Link>
-          <div className="w-full flex justify-end items-center gap-4">
-            <Button color="white" size="small" onClick={openEmailModal}>
-              <MdEmail className="mr-2" />
-              Subscribe
-            </Button>
-            <Button color="orange" size="small" onClick={openDemoModal}>
-              <FaCalendarDay className="mr-2" />
-              Book a Demo
-            </Button>
-          </div>
         </div>
         <div
           className={`absolute ${
@@ -148,65 +159,68 @@ export function Navbar({}) {
           </Link>
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1135px]:items-center gap-2 min-[1135px]:gap-x-12">
             <ul className="flex gap-6 min-[1135px]:gap-8 min-[1135px]:gap-12 relative z-20">
-              {navItems.map((item, index) => (
-                <li key={index} className={`group ${navLinkClasses}`}>
-                  {item.items ? (
-                    <div className="relative group">
-                      <span className="flex items-center cursor-pointer">
-                        {item.label}
-                        <BiChevronRight
-                          className={`ml-1 text-blue-200 group-hover:text-blue-400 transition-transform duration-200 group-hover:rotate-90`}
-                        />
-                      </span>
-                      <ul
-                        className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
-                      >
-                        {item.items.map((subItem, subIndex) => (
-                          <li
-                            key={subIndex}
-                            className="py-2 px-2 flex items-center"
-                          >
-                            <Link href={subItem.href}>
-                              <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
-                                {subItem.label}
-                                {subItem.href.startsWith('https://') && (
-                                  <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
-                                )}
-                              </span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <Link href={item.href} className="py-2">
+              {navItems.map((item, index) =>
+                item._template === 'modalButton' ? (
+                  <li key={index} className={`group ${navLinkClasses} py-2`}>
+                    <Button
+                      color={getValidColor(item.color)}
+                      size={getValidSize(item.size)}
+                      onClick={() => openModal(item.modal)}
+                    >
                       {item.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
+                    </Button>
+                  </li>
+                ) : (
+                  <li key={index} className={`group ${navLinkClasses}`}>
+                    {item.items ? (
+                      <div className="relative group">
+                        <span className="flex items-center cursor-pointer">
+                          {item.label}
+                          <BiChevronRight
+                            className={`ml-1 text-blue-200 group-hover:text-blue-400 transition-transform duration-200 group-hover:rotate-90`}
+                          />
+                        </span>
+                        <ul
+                          className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
+                        >
+                          {item.items.map((subItem, subIndex) =>
+                            subItem.href ? (
+                              <li
+                                key={subIndex}
+                                className="py-2 px-2 flex items-center"
+                              >
+                                <Link href={subItem.href}>
+                                  <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
+                                    {subItem.label}
+                                    {subItem.href.startsWith('https://') && (
+                                      <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
+                                    )}
+                                  </span>
+                                </Link>
+                              </li>
+                            ) : null
+                          )}
+                        </ul>
+                      </div>
+                    ) : item.href ? (
+                      <Link href={item.href} className="py-2">
+                        {item.label}
+                      </Link>
+                    ) : null}
+                  </li>
+                )
+              )}
             </ul>
-            <div className="flex items-center gap-6 min-[1135px]:gap-10">
-              <div className="w-full flex justify-start items-center gap-4">
-                <Button color="white" size="small" onClick={openEmailModal}>
-                  <MdEmail className="mr-2" />
-                  Subscribe
-                </Button>
-                <Button color="orange" size="small" onClick={openDemoModal}>
-                  <FaCalendarDay className="mr-2" />
-                  Book a Demo
-                </Button>
-              </div>
-            </div>
           </nav>
         </div>
       </div>
 
-      <Modal open={isDemoModalOpen} onClose={closeDemoModal} center>
+      {/* Dynamic modal rendering */}
+      <Modal open={modalType === 'DemoForm'} onClose={closeModal} center>
         <DemoForm />
       </Modal>
 
-      <Modal open={isEmailModalOpen} onClose={closeEmailModal} center>
+      <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
         <EmailForm isFooter={false} />
       </Modal>
     </>

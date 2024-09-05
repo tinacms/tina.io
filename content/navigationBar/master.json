@@ -2,12 +2,6 @@
   "navigationBar": "Master",
   "navItem": [
     {
-      "label": "Secondary Action",
-      "icon": false,
-      "size": "medium",
-      "_template": "modalButton"
-    },
-    {
       "label": "Docs",
       "href": "/docs",
       "_template": "stringItem"
@@ -82,6 +76,20 @@
       "label": "My TinaCloud",
       "href": "https://app.tina.io/signin",
       "_template": "stringItem"
+    },
+    {
+      "label": "Subscribe",
+      "color": "white",
+      "size": "medium",
+      "modal": "EmailForm.tsx",
+      "_template": "modalButton"
+    },
+    {
+      "label": "Book a demo",
+      "color": "orange",
+      "size": "medium",
+      "modal": "BookDemo.tsx",
+      "_template": "modalButton"
     }
   ]
 }
