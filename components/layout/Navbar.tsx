@@ -25,6 +25,8 @@ enum ValidColors {
   Ghost = 'ghost',
 }
 
+const modalButtonString = 'modalButton';
+
 const iconMapping = {
   MdEmail: MdEmail,
   FaCalendarDay: FaCalendarDay,
@@ -136,7 +138,7 @@ export function Navbar({}) {
           </Link>
           <div className="flex space-x-2 gap-2 cursor-pointer">
             {navItems
-              .filter((item) => item._template === 'modalButton')
+              .filter((item) => item._template === modalButtonString)
               .map((item, index) => (
                 <Button
                   key={index}
@@ -172,7 +174,7 @@ export function Navbar({}) {
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1135px]:items-center gap-2 min-[1135px]:gap-x-12">
             <ul className="flex gap-6 min-[1135px]:gap-8 min-[1135px]:gap-12 relative z-20">
               {navItems.map((item, index) =>
-                item._template === 'modalButton' ? (
+                item._template === modalButtonString ? (
                   <li key={index} className={`group ${navLinkClasses} py-2`}>
                     <Button
                       color={item.color as ValidColors}
