@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost'
+  color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost' | 'ghostBlue'
   size?: 'large' | 'small' | 'medium'
   className?: string
   href?: string
@@ -30,6 +30,7 @@ const colorClasses = {
     ' text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50',
   ghost: 'text-orange-500 hover:text-orange-400',
   orangeWithBorder: 'text-orange-500 hover:text-orange-400 border border-orange-500 bg-white',
+  ghostBlue: 'text-blue-800 hover:text-blue-800',
 }
 
 const sizeClasses = {

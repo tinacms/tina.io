@@ -1,22 +1,6 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx']
+const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
 
-export const actionsButtonTemplate = {
-  label: 'Actions',
-  name: 'actions',
-  type: 'object',
-  list: true,
-  ui: {
-    itemProps: (item) => {
-      return { label: item?.label }
-    },
-    defaultItem: {
-      variant: 'default',
-      label: 'Secondary Action',
-      icon: false,
-      size: 'medium',
-      url: '/',
-    },
-  },
+export const actionsButtonTemplateFields = {
   fields: [
     { name: 'label', label: 'Label', type: 'string' },
     { name: 'icon', label: 'Icon', type: 'boolean' },
@@ -31,6 +15,7 @@ export const actionsButtonTemplate = {
         { value: 'white', label: 'White' },
         { value: 'ghost', label: 'Ghost' },
         { value: 'orangeWithBorder', label: 'Orange with Border' },
+        { value: 'ghostBlue', label: 'Ghost (but blue)' },
       ],
     },
     {
@@ -45,4 +30,24 @@ export const actionsButtonTemplate = {
     },
     { name: 'url', label: 'URL', type: 'string' },
   ],
-}
+};
+
+export const actionsButtonTemplate = {
+  label: 'Actions',
+  name: 'actions',
+  type: 'object',
+  list: true,
+  ui: {
+    itemProps: (item) => {
+      return { label: item?.label };
+    },
+    defaultItem: {
+      variant: 'default',
+      label: 'Secondary Action',
+      icon: false,
+      size: 'medium',
+      url: '/',
+    },
+  },
+  fields: actionsButtonTemplateFields.fields
+};
