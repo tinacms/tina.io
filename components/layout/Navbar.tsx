@@ -17,7 +17,6 @@ import { EmailForm } from '../modals/EmailForm';
 import 'react-responsive-modal/styles.css';
 import { DemoForm } from 'components/modals/BookDemo';
 
-
 enum ValidColors {
   White = 'white',
   Blue = 'blue',
@@ -25,8 +24,6 @@ enum ValidColors {
   Seafoam = 'seafoam',
   Ghost = 'ghost',
 }
-
-
 
 const iconMapping = {
   MdEmail: MdEmail,
@@ -143,15 +140,13 @@ export function Navbar({}) {
               .map((item, index) => (
                 <Button
                   key={index}
-                  color={item.color as ValidColors} 
+                  color={item.color as ValidColors}
                   size="small"
                   onClick={() => openModal(item.modal)}
                 >
                   {item.icon && iconMapping[item.icon] && (
                     <span className="mr-2">
-                      {React.createElement(iconMapping[item.icon], {
-                        className: 'w-5 h-5',
-                      })}
+                      {iconMapping[item.icon]({ className: 'w-5 h-5' })}
                     </span>
                   )}
                   {item.label}
@@ -180,17 +175,16 @@ export function Navbar({}) {
                 item._template === 'modalButton' ? (
                   <li key={index} className={`group ${navLinkClasses} py-2`}>
                     <Button
-                      color={item.color as ValidColors} 
+                      color={item.color as ValidColors}
                       size="small"
                       onClick={() => openModal(item.modal)}
                     >
-                      {item.icon && iconMapping[item.icon] && (
-                        <span className="mr-2">
-                          {React.createElement(iconMapping[item.icon], {
-                            className: 'w-5 h-5',
-                          })}
-                        </span>
-                      )}
+{item.icon && iconMapping[item.icon] && (
+  <span className="mr-2">
+    {iconMapping[item.icon]({ className: 'w-5 h-5' })}
+  </span>
+)}
+
                       {item.label}
                     </Button>
                   </li>
