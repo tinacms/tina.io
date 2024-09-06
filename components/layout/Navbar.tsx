@@ -143,7 +143,7 @@ export function Navbar({}) {
                 <Button
                   key={index}
                   color={getValidColor(item.color)}
-                  size={getValidSize(item.size)}
+                  size='small'
                   onClick={() => openModal(item.modal)}
                 >
                   {item.icon && iconMapping[item.icon] && (
@@ -180,7 +180,7 @@ export function Navbar({}) {
                   <li key={index} className={`group ${navLinkClasses} py-2`}>
                     <Button
                       color={getValidColor(item.color)}
-                      size={getValidSize(item.size)}
+                      size='small'
                       onClick={() => openModal(item.modal)}
                     >
                       {item.icon && iconMapping[item.icon] && (
