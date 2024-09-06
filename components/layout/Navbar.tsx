@@ -88,13 +88,13 @@ export function Navbar({}) {
             <ul className="flex flex-col py-4 px-6 relative z-20">
               <li className="pb-4 pt-2">
                 <Link href={'/'} onClick={toggleMenu}>
-                  <h1 className="flex items-center">
-                    <TinaIconSvg className={`w-7 h-auto fill-orange-500`} />
-                  </h1>
+                  <TinaIconSvg
+                    className={`flex items-center w-7 h-auto fill-orange-500`}
+                  />
                 </Link>
               </li>
               {navItems.map((item, index) =>
-                 item.items ? (
+                item.items ? (
                   item.items.map((subItem, subIndex) =>
                     subItem.href ? (
                       <li
@@ -132,11 +132,11 @@ export function Navbar({}) {
             onClick={toggleMenu}
           ></div>
           <Link href={'/'}>
-            <h1 className="flex items-center">
-              <TinaIconSvg className={`w-10 h-auto fill-orange-500`} />
-            </h1>
+            <TinaIconSvg
+              className={`flex items-center w-7 h-auto fill-orange-500`}
+            />
           </Link>
-          <div className="flex space-x-2 gap-2">
+          <div className="flex space-x-2 gap-2 cursor-pointer">
             {navItems
               .filter((item) => item._template === 'modalButton')
               .map((item, index) => (
@@ -167,11 +167,11 @@ export function Navbar({}) {
           } z-40 w-full min-[1135px]:px-10 hidden min-[1135px]:flex items-center justify-between gap-6`}
         >
           <Link href={'/'}>
-            <h1 className="flex items-center">
-              <TinaIconSvg
-                className={`${stuck ? 'w-8' : 'w-10'} h-auto fill-orange-500`}
-              />
-            </h1>
+            <TinaIconSvg
+              className={`${
+                stuck ? 'w-8' : 'w-10'
+              } flex items-center h-auto fill-orange-500`}
+            />
           </Link>
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1135px]:items-center gap-2 min-[1135px]:gap-x-12">
             <ul className="flex gap-6 min-[1135px]:gap-8 min-[1135px]:gap-12 relative z-20">
@@ -227,7 +227,7 @@ export function Navbar({}) {
                       </div>
                     ) : item.href ? (
                       <Link href={item.href} className="py-2 w-max">
-                        {item.label} 
+                        {item.label}
                       </Link>
                     ) : null}
                   </li>
