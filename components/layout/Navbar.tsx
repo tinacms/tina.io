@@ -17,6 +17,17 @@ import { EmailForm } from '../modals/EmailForm';
 import 'react-responsive-modal/styles.css';
 import { DemoForm } from 'components/modals/BookDemo';
 
+
+enum ValidColors {
+  White = 'white',
+  Blue = 'blue',
+  Orange = 'orange',
+  Seafoam = 'seafoam',
+  Ghost = 'ghost',
+}
+
+
+
 const iconMapping = {
   MdEmail: MdEmail,
   FaCalendarDay: FaCalendarDay,
@@ -50,16 +61,6 @@ export function Navbar({}) {
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
 
-  const getValidColor = (color) => {
-    const validColors = ['white', 'blue', 'orange', 'seafoam', 'ghost'];
-    return validColors.includes(color) ? color : 'white';
-  };
-
-  const getValidSize = (size) => {
-    const validSizes = ['small', 'medium', 'large'];
-    return validSizes.includes(size) ? size : 'medium';
-  };
-
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>
@@ -87,7 +88,7 @@ export function Navbar({}) {
             </button>
             <ul className="flex flex-col py-4 px-6 relative z-20">
               <li className="pb-4 pt-2">
-                <Link href={'/'} onClick={toggleMenu}>
+                <Link href={'/'}>
                   <TinaIconSvg
                     className={`flex items-center w-7 h-auto fill-orange-500`}
                   />
@@ -142,8 +143,8 @@ export function Navbar({}) {
               .map((item, index) => (
                 <Button
                   key={index}
-                  color={getValidColor(item.color)}
-                  size='small'
+                  color={item.color as ValidColors} 
+                  size="small"
                   onClick={() => openModal(item.modal)}
                 >
                   {item.icon && iconMapping[item.icon] && (
@@ -158,7 +159,7 @@ export function Navbar({}) {
               ))}
           </div>
         </div>
-        {/* Start of large (desktop +) view*/}
+        {/* Start of large (desktop +) view */}
         <div
           className={`absolute ${
             stuck
@@ -179,8 +180,8 @@ export function Navbar({}) {
                 item._template === 'modalButton' ? (
                   <li key={index} className={`group ${navLinkClasses} py-2`}>
                     <Button
-                      color={getValidColor(item.color)}
-                      size='small'
+                      color={item.color as ValidColors} 
+                      size="small"
                       onClick={() => openModal(item.modal)}
                     >
                       {item.icon && iconMapping[item.icon] && (
