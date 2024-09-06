@@ -126,16 +126,6 @@
       "permanent": true
     },
     {
-      "source": "/docs/cms/styles/",
-      "destination": "/docs/advanced/customizing-ui/",
-      "permanent": true
-    },
-    {
-      "source": "/docs/ui/styles/",
-      "destination": "/docs/advanced/customizing-ui/",
-      "permanent": true
-    },
-    {
       "source": "/docs/cms/events/",
       "destination": "/docs/events",
       "permanent": true
@@ -718,11 +708,6 @@
     {
       "source": "/docs/advanced/customizing-forms/",
       "destination": "/docs/extending-tina/customizing-forms/",
-      "permanent": true
-    },
-    {
-      "source": "/docs/advanced/customizing-ui/",
-      "destination": "/docs/extending-tina/customizing-ui/",
       "permanent": true
     },
     {
