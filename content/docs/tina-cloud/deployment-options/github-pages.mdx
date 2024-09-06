@@ -92,24 +92,20 @@ Check to make sure that the build command is running and not failing
 
 ### Common Issue: The root URL is giving a 404
 
-This can happen for a number of reasons but here is the most common reason and fix:
-
-#### 1. Missing Entry File for GitHub Pages
-
-When using GitHub Pages, the service requires an entry file at the root of the source folder on the designated source branch. If this file is missing, GitHub Pages will display a 404 error page.
+This is usually due to a missing entrypoint file for GitHub Pages.
 
 To fix this, you'll need to create a file named `index.tsx` in the `./pages` directory. Your `index.tsx` should look something like this:
 
-```javascript
-import Filename, { getStaticProps as FilenameStaticProps } from './[filename]'
+```ts
+import Filename, { getStaticProps as FilenameStaticProps } from './[filename]';
 
-const Index = Filename
+const Index = Filename;
 
 export const getStaticProps = async ({ params }) => {
-  return FilenameStaticProps({ params: { filename: 'home' } })
+  return FilenameStaticProps({ params: { filename: 'home' } });
 }
 
-export default Index
+export default Index;
 ```
 
 ## Environment variables
