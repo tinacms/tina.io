@@ -21,7 +21,7 @@
       "permanent": true
     },
     {
-      "source": "/tinasaurus",
+      "source": "/tinasaurus/",
       "destination": "/blog/tinasaurus-docusaurus-starter/",
       "permanent": true
     },
@@ -31,17 +31,17 @@
       "permanent": true
     },
     {
-      "source": "/docs/errors/faq",
+      "source": "/docs/errors/faq/",
       "destination": "/docs/introduction/faq/#common-tinacloud-errors",
       "permanent": true
     },
     {
-      "source": "/faq",
+      "source": "/faq/",
       "destination": "/docs/introduction/faq",
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/faq",
+      "source": "/docs/tina-cloud/faq/",
       "destination": "/docs/introduction/faq",
       "permanent": true
     },
@@ -66,67 +66,67 @@
       "permanent": true
     },
     {
-      "source": "/blog/first",
+      "source": "/blog/first/",
       "destination": "/blog/announcing-tinacms",
       "permanent": true
     },
     {
-      "source": "/blog/introducing-tina-grande-%F0%9F%8E%89",
+      "source": "/blog/introducing-tina-grande-%F0%9F%8E%89/",
       "destination": "/blog/introducing-tina-grande",
       "permanent": true
     },
     {
-      "source": "/jamstack-conf",
+      "source": "/jamstack-conf/",
       "destination": "/teams",
       "permanent": true
     },
     {
-      "source": "/smashing-conf",
+      "source": "/smashing-conf/",
       "destination": "/teams",
       "permanent": true
     },
     {
-      "source": "/docs/concepts/sidebar",
+      "source": "/docs/concepts/sidebar/",
       "destination": "/docs/cms",
       "permanent": true
     },
     {
-      "source": "/docs/concepts/forms",
+      "source": "/docs/concepts/forms/",
       "destination": "/docs/forms",
       "permanent": true
     },
     {
-      "source": "/docs/plugins/forms",
+      "source": "/docs/plugins/forms/",
       "destination": "/docs/forms",
       "permanent": true
     },
     {
-      "source": "/docs/concepts/fields",
+      "source": "/docs/concepts/fields/",
       "destination": "/docs/fields",
       "permanent": true
     },
     {
-      "source": "/docs/cms/apis",
+      "source": "/docs/cms/apis/",
       "destination": "/docs/apis",
       "permanent": true
     },
     {
-      "source": "/docs/ui",
+      "source": "/docs/ui/",
       "destination": "/docs/sidebar-toolbar",
       "permanent": true
     },
     {
-      "source": "/docs/cms/ui",
+      "source": "/docs/cms/ui/",
       "destination": "/docs/sidebar-toolbar",
       "permanent": true
     },
     {
-      "source": "/docs/cms/alerts",
+      "source": "/docs/cms/alerts/",
       "destination": "/docs/ui/alerts",
       "permanent": true
     },
     {
-      "source": "/docs/cms/styles",
+      "source": "/docs/cms/styles/",
       "destination": "/docs/advanced/customizing-ui/",
       "permanent": true
     },
@@ -136,17 +136,17 @@
       "permanent": true
     },
     {
-      "source": "/docs/cms/events",
+      "source": "/docs/cms/events/",
       "destination": "/docs/events",
       "permanent": true
     },
     {
-      "source": "/docs/cms/plugins",
+      "source": "/docs/cms/plugins/",
       "destination": "/docs/plugins",
       "permanent": true
     },
     {
-      "source": "/docs/plugins/fields",
+      "source": "/docs/plugins/fields/",
       "destination": "/docs/fields",
       "permanent": true
     },
@@ -156,12 +156,12 @@
       "permanent": true
     },
     {
-      "source": "/docs/concepts/backends",
+      "source": "/docs/concepts/backends/",
       "destination": "/docs/cms#apis",
       "permanent": true
     },
     {
-      "source": "/docs/concepts/plugins",
+      "source": "/docs/concepts/plugins/",
       "destination": "/docs/cms#plugins",
       "permanent": true
     },
@@ -206,7 +206,7 @@
       "permanent": true
     },
     {
-      "source": "/guides/nextjs/github-open-authoring/(.*)",
+      "source": "/guides/nextjs/github-open-authoring/(.*)/",
       "destination": "/guides/nextjs/github/$1",
       "permanent": true
     },
@@ -261,12 +261,12 @@
       "permanent": true
     },
     {
-      "source": "/teams",
+      "source": "/teams/",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/enterprise",
+      "source": "/enterprise/",
       "destination": "/",
       "permanent": true
     },
@@ -291,152 +291,152 @@
       "permanent": true
     },
     {
-      "source": "/docs/gatsby/json",
+      "source": "/docs/gatsby/json/",
       "destination": "/guides/gatsby/git/create-json-form",
       "permanent": true
     },
     {
-      "source": "/docs/git",
+      "source": "/docs/git/",
       "destination": "/guides/git/create-new-files",
       "permanent": true
     },
     {
-      "source": "/docs/gatsby/configure-git-plugin",
+      "source": "/docs/gatsby/configure-git-plugin/",
       "destination": "/guides/gatsby/git/installation",
       "permanent": true
     },
     {
-      "source": "/docs/gatsby/custom-field",
+      "source": "/docs/gatsby/custom-field/",
       "destination": "/docs/plugins#adding-plugins-in-gatsby",
       "permanent": true
     },
     {
-      "source": "/blog/2020-03-09-release-notes",
+      "source": "/blog/2020-03-09-release-notes/",
       "destination": "/docs/releases/2020-03-09",
       "permanent": true
     },
     {
-      "source": "/blog/2020-03-16-release-notes",
+      "source": "/blog/2020-03-16-release-notes/",
       "destination": "/docs/releases/2020-03-16",
       "permanent": true
     },
     {
-      "source": "/blog/2020-03-23-release-notes",
+      "source": "/blog/2020-03-23-release-notes/",
       "destination": "/docs/releases/2020-03-23",
       "permanent": true
     },
     {
-      "source": "/blog/2020-03-30-release-notes",
+      "source": "/blog/2020-03-30-release-notes/",
       "destination": "/docs/releases/2020-03-30",
       "permanent": true
     },
     {
-      "source": "/blog/2020-04-06-release-notes",
+      "source": "/blog/2020-04-06-release-notes/",
       "destination": "/docs/releases/2020-04-06",
       "permanent": true
     },
     {
-      "source": "/blog/2020-04-27-release-notes",
+      "source": "/blog/2020-04-27-release-notes/",
       "destination": "/docs/releases/2020-04-27",
       "permanent": true
     },
     {
-      "source": "/blog/2020-05-04-release-notes",
+      "source": "/blog/2020-05-04-release-notes/",
       "destination": "/docs/releases/2020-05-04",
       "permanent": true
     },
     {
-      "source": "/blog/2020-05-11-release-notes",
+      "source": "/blog/2020-05-11-release-notes/",
       "destination": "/docs/releases/2020-05-11",
       "permanent": true
     },
     {
-      "source": "/blog/2020-05-19-release-notes",
+      "source": "/blog/2020-05-19-release-notes/",
       "destination": "/docs/releases/2020-05-19",
       "permanent": true
     },
     {
-      "source": "/blog/2020-05-25-release-notes",
+      "source": "/blog/2020-05-25-release-notes/",
       "destination": "/docs/releases/2020-05-25",
       "permanent": true
     },
     {
-      "source": "/blog/2020-06-07-release-notes",
+      "source": "/blog/2020-06-07-release-notes/",
       "destination": "/docs/releases/2020-07-07",
       "permanent": true
     },
     {
-      "source": "/blog/2020-06-08-release-notes",
+      "source": "/blog/2020-06-08-release-notes/",
       "destination": "/docs/releases/2020-06-08",
       "permanent": true
     },
     {
-      "source": "/blog/2020-06-15-release-notes",
+      "source": "/blog/2020-06-15-release-notes/",
       "destination": "/docs/releases/2020-06-15",
       "permanent": true
     },
     {
-      "source": "/blog/2020-06-23-release-notes",
+      "source": "/blog/2020-06-23-release-notes/",
       "destination": "/docs/releases/2020-06-23",
       "permanent": true
     },
     {
-      "source": "/blog/2020-06-29-release-notes",
+      "source": "/blog/2020-06-29-release-notes/",
       "destination": "/docs/releases/2020-06-29",
       "permanent": true
     },
     {
-      "source": "/blog/2020-07-27-release-notes",
+      "source": "/blog/2020-07-27-release-notes/",
       "destination": "/docs/releases/2020-07-27",
       "permanent": true
     },
     {
-      "source": "/docs/nextjs/next-tinacms-github",
+      "source": "/docs/nextjs/next-tinacms-github/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
     {
-      "source": "/docs/nextjs/next-tinacms-json",
+      "source": "/docs/nextjs/next-tinacms-json/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
     {
-      "source": "/docs/nextjs/next-tinacms-markdown",
+      "source": "/docs/nextjs/next-tinacms-markdown/",
       "destination": "/docs/editing/markdown/",
       "permanent": true
     },
     {
-      "source": "/beta-docs",
+      "source": "/beta-docs/",
       "destination": "/docs",
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/beta-faq",
+      "source": "/docs/tina-cloud/beta-faq/",
       "destination": "/docs/tina-cloud/alpha-faq",
       "permanent": true
     },
     {
-      "source": "/guides/tina-cloud/getting-started/(.*)",
+      "source": "/guides/tina-cloud/getting-started/(.*)/",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1",
       "permanent": true
     },
     {
-      "source": "/guides/tina-cloud/existing-site/(.*)",
+      "source": "/guides/tina-cloud/existing-site/(.*)/",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1",
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/client",
+      "source": "/docs/tina-cloud/client/",
       "destination": "/docs/tinacms-context/",
       "permanent": true
     },
     {
-      "source": "/guides/nextjs/github/(.*)",
+      "source": "/guides/nextjs/github/(.*)/",
       "destination": "/guides/experimental/github/$1",
       "permanent": true
     },
     {
-      "source": "/guides/nextjs/tina-with-strapi/(.*)",
+      "source": "/guides/nextjs/tina-with-strapi/(.*)/",
       "destination": "/guides/experimental/tina-with-strapi/$1",
       "permanent": true
     },
@@ -446,12 +446,12 @@
       "permanent": true
     },
     {
-      "source": "/guides/nextjs/adding-tina/(.*)",
+      "source": "/guides/nextjs/adding-tina/(.*)/",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
       "permanent": true
     },
     {
-      "source": "/packages/(.*)",
+      "source": "/packages/(.*)/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
@@ -616,12 +616,12 @@
       "permanent": true
     },
     {
-      "source": "/docs/plugins(.*)",
+      "source": "/docs/plugins(.*)/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
     {
-      "source": "/docs/ui/(.*)",
+      "source": "/docs/ui/(.*)/",
       "destination": "/docs/advanced/extending-tina/",
       "permanent": true
     },
@@ -631,32 +631,32 @@
       "permanent": true
     },
     {
-      "source": "/docs/integrations(.*)",
+      "source": "/docs/integrations(.*)/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
     {
-      "source": "/guides/experimental(.*)",
+      "source": "/guides/experimental(.*)/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
     {
-      "source": "/guides/gatsby(.*)",
+      "source": "/guides/gatsby(.*)/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
     {
-      "source": "/guides/general(.*)",
+      "source": "/guides/general(.*)/",
       "destination": "/guides/",
       "permanent": true
     },
     {
-      "source": "/guides/nextjs(.*)",
+      "source": "/guides/nextjs(.*)/",
       "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
       "permanent": true
     },
     {
-      "source": "/guides/tina-cloud(.*)",
+      "source": "/guides/tina-cloud(.*)/",
       "destination": "/guides/",
       "permanent": true
     },
@@ -691,7 +691,7 @@
       "permanent": true
     },
     {
-      "source": "/docs/releases(.*)",
+      "source": "/docs/releases(.*)/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
@@ -751,19 +751,20 @@
       "permanent": true
     },
     {
-      "source": "/docs/editing/active-field-indicator",
+      "source": "/docs/editing/active-field-indicator/",
       "destination": "/docs/contextual-editing/react/#click-to-edit-experimental",
       "permanent": true
     },
     {
-      "source": "/guides/tinacms/nextjs-internationalization/guide",
+      "source": "/guides/tinacms/nextjs-internationalization/guide/",
       "destination": "/guides/tinacms/adding-internationalization-to-tina/guide",
       "permanent": true
     },
     {
-      "source": "/faq",
+      "source": "/faq/",
       "destination": "/docs/introduction/faq",
       "permanent": true
     }
   ]
 }
+
