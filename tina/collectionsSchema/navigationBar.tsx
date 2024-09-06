@@ -6,12 +6,19 @@ export const navigationBarCollection = {
   name: 'navigationBar',
   path: 'content/navigationBar',
   format: 'json',
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+    }
+  },
   fields: [
     {
       name: 'navigationBar',
       label: 'Navigation Bar',
       type: 'string',
     },
+    
     {
       name: 'navItem',
       label: 'Navigation Item',
