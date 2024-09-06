@@ -146,9 +146,9 @@ export function Navbar({}) {
                   size="small"
                   onClick={() => openModal(item.modal)}
                 >
-                  {item.icon && iconMapping[item.icon] && (
+                  {item.icon2 && iconMapping[item.icon2] && (
                     <span className="mr-2">
-                      {iconMapping[item.icon]({ className: 'w-5 h-5' })}
+                      {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
                     </span>
                   )}
                   {item.label}
@@ -181,9 +181,9 @@ export function Navbar({}) {
                       size="small"
                       onClick={() => openModal(item.modal)}
                     >
-{item.icon && iconMapping[item.icon] && (
+{item.icon2 && iconMapping[item.icon2] && (
   <span className="mr-2">
-    {iconMapping[item.icon]({ className: 'w-5 h-5' })}
+    {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
   </span>
 )}
 

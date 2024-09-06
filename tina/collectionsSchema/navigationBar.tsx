@@ -1,6 +1,8 @@
 const modals = ['BookDemo', 'EmailForm'];
 const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
+import { modalButtonTemplateFields } from '../../components/blocks/ModalButton.template';
+
 export const navigationBarCollection = {
   label: 'Navigation Bar',
   name: 'navigationBar',
@@ -10,7 +12,7 @@ export const navigationBarCollection = {
     allowedActions: {
       create: false,
       delete: false,
-    }
+    },
   },
   fields: [
     {
@@ -18,7 +20,6 @@ export const navigationBarCollection = {
       label: 'Navigation Bar',
       type: 'string',
     },
-    
     {
       name: 'navItem',
       label: 'Navigation Item',
@@ -87,14 +88,10 @@ export const navigationBarCollection = {
             },
           ],
         },
-        //Note we are duplicating the ModalButton template from /components/blocks/ModalButton.template.ts but this is
-        //because this file is generated before hand and i still want to keep the ModalButton coupled into the components dir too
-
         {
           label: 'Modal Button',
           name: 'modalButton',
           type: 'object',
-          list: true,
           ui: {
             itemProps: (item) => {
               return { label: '🚨' + item?.label };
@@ -107,32 +104,15 @@ export const navigationBarCollection = {
             },
           },
           fields: [
-            { name: 'label', label: 'Label', type: 'string' },
+            ...modalButtonTemplateFields, 
             {
-              name: 'color',
-              label: 'Color',
+              name: 'icon2',
+              label: 'Icon',
               type: 'string',
-              options: [
-                { value: 'default', label: 'Seafoam' },
-                { value: 'blue', label: 'Blue' },
-                { value: 'orange', label: 'Orange' },
-                { value: 'white', label: 'White' },
-                { value: 'ghost', label: 'Ghost' },
-                { value: 'command', label: 'Command' },
-              ],
+              options: iconOptions,
+              description:
+                'If you want a new icon added please ask a developer :)',
             },
-            {
-              name: 'size',
-              label: 'Size',
-              type: 'string',
-              options: [
-                { value: 'small', label: 'Small' },
-                { value: 'medium', label: 'Medium' },
-                { value: 'large', label: 'Large' },
-              ],
-            },
-            { name: 'modal', label: 'Modal', type: 'string', options: modals },
-            { name: 'icon', label: 'Icon', type: 'string', options: iconOptions, description: 'If you want a new icon added please ask a developer :)'},
           ],
         },
       ],

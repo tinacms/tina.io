@@ -82,7 +82,7 @@
       "color": "white",
       "size": "medium",
       "modal": "EmailForm",
-      "icon": "MdEmail",
+      "icon2": "MdEmail",
       "_template": "modalButton"
     },
     {
@@ -90,7 +90,7 @@
       "color": "orange",
       "size": "medium",
       "modal": "BookDemo",
-      "icon": "FaCalendarDay",
+      "icon2": "FaCalendarDay",
       "_template": "modalButton"
     }
   ]
