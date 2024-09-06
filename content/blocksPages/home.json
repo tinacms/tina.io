@@ -133,67 +133,103 @@
     {
       "features": [
         {
-          "headline": "Own Your Content",
-          "text": "Don't lock your content in a 3rd-party service.  Tina writes to files in your repository (MDX, Markdown, JSON, etc)",
-          "buttons": [
-            {
-              "label": "Learn More",
-              "icon": false,
-              "variant": "white",
-              "size": "medium",
-              "url": "/docs/product-tour/",
-              "_template": "actions"
-            }
-          ],
-          "media": [
-            {
-              "file": "about.mdx",
-              "code": "---\ntitle: Collaborate With Your Team\n---\n\nOnline tools help drive your business forward.\nReach new audiences and collaborate with your\nteam – **All in the cloud.**\n\n<Button\ntext=\"Get Started\"\nlink=\"/get-started\"\n/>",
-              "language": "markdown",
-              "scale": 1,
-              "_template": "code"
-            }
-          ]
+          "headline": "Visual Editing",
+          "text": "See content changes in real-time as you edit",
+          "icon2": "FaClock",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://quick-edit-demo.vercel.app/admin#/"
+          }
         },
         {
-          "headline": "An API for your Content",
-          "text": "Easily fetch your file-based content using Tina's Data Layer",
-          "media": [
-            {
-              "file": "query.gql",
-              "code": "query {\n  post(relativePath: \"about.mdx\") {\n    title\n  }\n}",
-              "language": "javascript",
-              "scale": 1,
-              "_template": "code"
-            }
-          ],
-          "isReversed": true
+          "headline": "Open Source",
+          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
+          "icon2": "FaUnlock",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://github.com/tinacms/tinacms"
+          }
         },
         {
-          "headline": "Configure with Code",
-          "text": "Tina is code-first and fully typed. Define your CMS in the Tina config file in your repository",
-          "buttons": [
-            {
-              "label": "Read the Docs",
-              "icon": false,
-              "variant": "white",
-              "size": "small",
-              "url": "/docs/schema",
-              "_template": "actions"
-            }
-          ],
-          "media": [
-            {
-              "file": "config.tsx",
-              "code": "const tinaConfig = defineConfig({\n  schema: {\n    collections: [\n      {\n        name: 'doc',\n        label: 'Docs',\n        path: 'content/docs',\n        fields: [\n          {\n            name: 'title',\n            label: 'Title',\n            type: 'string',\n          },\n          {\n            type: 'rich-text',\n            name: 'body',\n            label: 'Body',\n            isBody: true,\n          },\n        ],\n      },\n    ],\n  },\n  // ...\n})\n",
-              "language": "javascript",
-              "scale": 0.8,
-              "_template": "code"
-            }
-          ]
+          "headline": "Develop Locally",
+          "text": "Easily set up and run Tina locally to talk to your local filesystem",
+          "icon2": "FaCodeBranch",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": ""
+          }
+        },
+        {
+          "headline": "3rd Party Media",
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud",
+          "icon2": "FaCloudDownloadAlt",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/reference/media/overview"
+          }
+        },
+        {
+          "headline": "Control your Components",
+          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
+          "icon2": "FaPuzzlePiece",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "docs/editing/blocks"
+          }
+        },
+        {
+          "headline": "Markdown at Scale",
+          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
+          "icon2": "FaMarkdown",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "docs/editing/overview"
+          }
+        },
+        {
+          "headline": "Git Integration",
+          "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub",
+          "icon2": "FaGithub",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editorial-workflow"
+          }
+        },
+        {
+          "headline": "Easy Documentation",
+          "text": "Tina’s docs run on TinaCMS – check it out!",
+          "icon2": "FaFileAlt",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs"
+          }
         }
       ],
-      "_template": "features"
+      "_template": "carouselFeature"
     },
     {
       "criteriaItems": [
