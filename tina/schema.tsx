@@ -30,10 +30,16 @@ import { roadmapGridTemplate } from '../components/blocks/RoadmapGrid.template'
 import { recentPostsTemplate } from '../components/blocks/RecentPosts.template'
 import { testimonialsTemplate } from '../components/blocks/Testimonials.template'
 import { quoteTemplate } from '../components/blocks/Quote.template'
-import { verticalCardsTemplate } from '../components/blocks/VerticalCards.template'
+import { eventsTemplate } from '../components/blocks/Events.template'
 import { compareBoxTemplate } from '../components/blocks/CompareBox.template'
 import { bookingTemplate } from '../components/blocks/Booking.template'
 import { mediaComponentTemplate } from '../components/blocks/MediaComponent.template'
+import { submenuTemplate } from '../components/toc/toc-submenu.template'
+import { itemTemplate } from '../components/toc/toc-item.template'
+import { textAndMediaColumnsComponentTemplate } from '../components/blocks/TextAndMediaColumns.template'
+import { tinaBannerTemplate } from '../components/blocks/TinaBanner.template'
+import { highlightsSectionTemplate } from '../components/blocks/HighlightsSection.template'
+import { spacerTemplate } from '../components/blocks/Spacer.template'
 
 const WhatsNewFields: TinaField[] = [
   { name: 'versionNumber', label: 'Version Number', type: 'string' },
@@ -77,6 +83,16 @@ export const schema = defineSchema({
                 "' | Tina' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.",
             },
             {
+              type: 'boolean',
+              label: 'Has Custom Title Suffix?',
+              name: 'hasCustomSuffix',
+              ui: {
+                component: "toggle",
+              },
+              description:
+                "Set to true to remove the appended suffix ' | Tina'.",
+            },
+            {
               type: 'string',
               label: ' Description',
               name: 'description',
@@ -110,10 +126,14 @@ export const schema = defineSchema({
             recentPostsTemplate as Template,
             testimonialsTemplate as Template,
             quoteTemplate as Template,
-            verticalCardsTemplate as Template,
+            eventsTemplate as Template,
             compareBoxTemplate as Template,
             bookingTemplate as Template,
             mediaComponentTemplate as Template,
+            textAndMediaColumnsComponentTemplate as Template,
+            tinaBannerTemplate as Template,
+            highlightsSectionTemplate as Template,
+            spacerTemplate as Template
           ],
         },
       ],
@@ -127,7 +147,7 @@ export const schema = defineSchema({
         beforeSubmit: async ({ values, cms, form }) => {
           return {
             ...values,
-            last_edited: new Date().toISOString()
+            last_edited: new Date().toISOString(),
           }
         },
       },
@@ -187,11 +207,11 @@ export const schema = defineSchema({
                   description:
                     'Paste GraphQL query here. "#" are auto-inserted as spacing placeholders and should not be used.',
                   ui: {
-                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */ 
+                    /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                     component: 'textarea',
                     format: (val?: string) => val && val.replaceAll('#', ' '),
                     parse: (val?: string) => val && val.replaceAll(' ', '#'),
-                  }
+                  },
                 },
                 {
                   type: 'string',
@@ -204,7 +224,7 @@ export const schema = defineSchema({
                     component: 'textarea',
                     format: (val?: string) => val && val.replaceAll('#', ' '),
                     parse: (val?: string) => val && val.replaceAll(' ', '#'),
-                  }
+                  },
                 },
               ],
             },
@@ -394,15 +414,13 @@ export const schema = defineSchema({
                   type: 'rich-text',
                   name: 'request',
                   label: 'Request',
-                  description:
-                    'Paste GraphQL request code here.',
+                  description: 'Paste GraphQL request code here.',
                 },
                 {
                   type: 'rich-text',
                   name: 'response',
                   label: 'Response',
-                  description:
-                    'Paste GraphQL response data here.',
+                  description: 'Paste GraphQL response data here.',
                 },
               ],
             },
@@ -700,7 +718,39 @@ export const schema = defineSchema({
       label: 'Whats new - TinaCloud',
       path: 'content/whats-new-tinacloud',
       format: 'mdx',
-      fields: WhatsNewFields,
+      fields: WhatsNewFields ,
+    },
+    {
+      name: 'docsTableOfContents',
+      label: 'Docs - Table of Contents',
+      path: 'content/docs-toc',
+      format: 'json',
+      fields: [
+        {
+          name: 'supermenuGroup',
+          label: 'Supermenu Group',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: '🗂️ ' + (item?.title ?? "Unnamed Menu Group") };
+            },
+          },
+          fields: [
+            {name: 'title', label: "Name", type: 'string'},
+            {
+              name: 'items',
+              label: 'Page or Submenu',
+              type: 'object',
+              list: true,
+              templates: [
+                submenuTemplate as Template,
+                itemTemplate as Template
+              ]
+            }
+          ]
+        },
+      ]
     },
   ],
 })

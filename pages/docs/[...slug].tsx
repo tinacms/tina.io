@@ -16,7 +16,7 @@ import SetupOverview from '../../components/layout/setup-overview'
 import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { components } from 'pages/blog/[slug]'
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import getTableOfContents from 'utils/docs/getTableOfContents'
 import ToC from 'components/toc/index'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
@@ -69,6 +69,8 @@ function _DocTemplate(props) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
+
+
   return (
     <>
       <NextSeo
@@ -81,10 +83,10 @@ function _DocTemplate(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.oldNavDocs.data}>
+      <DocsLayout navItems={props.navDocData.data}>
         <DocsGrid>
           <DocGridHeader>
-            <Breadcrumbs navItems={props.oldNavDocs.data} />
+            <Breadcrumbs navItems={props.navDocData.data} />
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridToc>
@@ -92,7 +94,7 @@ function _DocTemplate(props) {
           </DocGridToc>
           <DocGridContent ref={contentRef}>
             <hr />
-            <TinaMarkdown content={doc_data.body} components={components} />
+            <TinaMarkdown content={doc_data.body} components={docAndBlogComponents} />
             <LastEdited date={doc_data.last_edited} />
             <DocsPagination prevPage={previousPage} nextPage={nextPage} />
           </DocGridContent>
@@ -115,15 +117,14 @@ export const getStaticProps: GetStaticProps = async function (props) {
   const slug = slugs.join('/')
 
   try {
-    const results = await client.queries.doc({ relativePath: `${slug}.mdx` })
-    const tinaDocsNavigation = await client.queries.getAllDocs()
-    //TOOD: get rid of line 121. https://github.com/tinacms/tina.io/issues/1982
-    const oldNavDocs = await getDocsNav()
+    const [results, navDocData] = await Promise.all([
+      client.queries.doc({ relativePath: `${slug}.mdx` }),
+      getDocsNav() 
+    ])
     return {
       props: {
         new: { results },
-        allDocs: { tinaDocsNavigation },
-        oldNavDocs,
+        navDocData,
       },
     }
   } catch (e) {

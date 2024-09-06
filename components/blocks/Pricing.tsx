@@ -21,6 +21,7 @@ import { SlLock } from 'react-icons/sl'
 import { FaStar } from 'react-icons/fa'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { useState } from 'react'
+import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents'
 
 const icons = {
   FaClock,
@@ -41,16 +42,11 @@ const icons = {
   SlLock,
 }
 
-const pricingComponents = {
-  p: (props) => <p className="text-xl" {...props} />,
-  strong: (props) => <strong className="font-bold text-xl" {...props} />,
-}
-
 const FreeTier = ({ data }) => {
   return (
+    <span className="animate-pop-in w-full">
     <div
-      className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-105"
-      style={popInStyle}
+        className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.03] hover:bg-gradient-to-br from-transparent via-cyan-50/40 to-cyan-100"
     >
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
@@ -80,6 +76,7 @@ const FreeTier = ({ data }) => {
         </div>
       </div>
     </div>
+    </span>
   )
 }
 
@@ -91,9 +88,9 @@ const PaidTier = ({ data }) => {
   };
 
   return (
+    <span className="animate-pop-in">
     <div
-      className="hover:bg-gradient-to-br from-transparent via-teal-50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent hover:scale-105 overflow-hidden"
-      style={popInStyle}
+      className="hover:scale-[1.03] hover:bg-gradient-to-br from-transparent via-cyan-50/50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden"
     >
       {data.isStarred && (
         <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
@@ -145,12 +142,12 @@ const PaidTier = ({ data }) => {
                   const Icon = icons[item.icon];
                   return (
                     <div key={index} className="flex flex-col items-start mt-2">
-                      <div className="flex items-center">
+                      <div className="flex items-center text-lg">
                         {Icon && <Icon className="mr-2" />}
                         <span>{item.name}</span>
                       </div>
                       {item.description && (
-                        <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        <div className="my-1 ml-5 text-md text-gray-600/70">
                           {item.description}
                         </div>
                       )}
@@ -160,7 +157,6 @@ const PaidTier = ({ data }) => {
             </div>
           )}
         </div>
-
         <div className="non-accordion-content">
           <p className="font-semibold">Includes:</p>
           <div className="pl-2">
@@ -205,6 +201,7 @@ const PaidTier = ({ data }) => {
         }
       `}</style>
     </div>
+    </span>
   );
 };
 
@@ -214,12 +211,11 @@ export function PricingBlock({ data }) {
       <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
         <h1
           className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
-          style={popInStyle}
         >
           {data.headline}
         </h1>
         <div className="py-2 max-w-4xl mx-auto flex justify-center">
-          {/* <FreeTier data={data} /> */}
+          <FreeTier data={data} />
         </div>
         <div className="pt-10 px-4 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
@@ -233,7 +229,7 @@ export function PricingBlock({ data }) {
             ))}
         </div>
       </div>
-      
+
       <style jsx>{`
         .responsive-grid {
           display: grid;
@@ -257,22 +253,3 @@ export function PricingBlock({ data }) {
     </div>
   )
 }
-
-
-
-const popInStyle = {
-  animation: 'popIn 0.5s ease-out forwards',
-}
-
-const style = `
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.75);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-`

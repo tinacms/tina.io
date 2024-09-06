@@ -10,6 +10,7 @@ export const BlocksPage = ({ data, recentPosts }) => {
         <NextSeo
           title={data.seo.title}
           description={data.seo.description}
+          titleTemplate={data.seo.hasCustomSuffix ? '%s' : '%s | Tina'}
           openGraph={{
             title: data.seo.title,
             description: data.seo.description,

@@ -17,10 +17,14 @@ import { RecentPostsBlock } from './RecentPosts';
 import { RoadmapGridBlock } from './RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase';
 import { TestimonialsBlock } from './Testimonials';
-import { VerticalCardsBlock } from './VerticalCards';
+import { VerticalCardsBlock } from './Events';
 import { CompareBoxBlock } from './CompareBox';
 import { BookingBlock } from './Booking';
 import { MediaComponent } from './MediaComponent';
+import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
+import { TinaBanner } from './TinaBanner';
+import { HighlightsSection } from './HighlightsSection';
+import { SpacerComponent } from './Spacer';
 
 export const Blocks = ({
   blocks,
@@ -40,7 +44,7 @@ export const Blocks = ({
         return <CompareBoxBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksFlying':
         return <FlyingBlock key={`block-${index}`} data={block} index={index} />;
-      case 'PageBlocksVerticalCards':
+      case 'PageBlocksEvents':
         return <VerticalCardsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksMediaComponent':
         return <MediaComponent key={`block-${index}`} data={block} />;
@@ -79,6 +83,14 @@ export const Blocks = ({
         return <TestimonialsBlock key={`block-${index}`} data={block} index={index} />;
       case 'PageBlocksQuote':
         return <QuoteBlock key={`block-${index}`} data={block} index={index} />;
+      case 'PageBlocksTextMediaColumnComponent':
+        return <TextAndMediaColumnsComponent key={`block-${index}`} data={block} />;
+      case 'PageBlocksTinaBanner':
+        return <TinaBanner key={`block-${index}`} data={block} />;
+      case 'PageBlocksHighlightsSection':
+        return <HighlightsSection key={`block-${index}`} data={block} />;
+      case 'PageBlocksSpacer':
+        return <SpacerComponent key={`block-${index}`} data={block} />;
       default:
         return null;
     }

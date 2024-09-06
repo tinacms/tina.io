@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { FaYoutube } from 'react-icons/fa'
 
-const MediaComponent = ({ data }) => {
-  const { headline, mediaItem } = data || {}
+const VideoGridComponent = ({ data }) => {
+  const {mediaItem, typenames, mobileMaxHeight} = data || {}
 
   const [isPlayingArray, setIsPlayingArray] = useState(
     Array.isArray(mediaItem) ? mediaItem.map(() => false) : []
@@ -22,8 +22,7 @@ const MediaComponent = ({ data }) => {
       'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]'
 
     if (
-      media.__typename ===
-      'PageBlocksMediaComponentMediaItemCloudinaryMediaComponent'
+      media.__typename === typenames.cloudinary
     ) {
       if (media.media && media.media.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
         return (
@@ -50,7 +49,7 @@ const MediaComponent = ({ data }) => {
                 src={media.media}
                 controls
                 autoPlay
-                className="object-cover rounded-lg"
+                className="object-cover rounded-lg *:"
                 style={{ width: '100%', height: '100%' }}
               />
             ) : (
@@ -80,7 +79,7 @@ const MediaComponent = ({ data }) => {
         )
       }
     } else if (
-      media.__typename === 'PageBlocksMediaComponentMediaItemYoutubeMedia'
+      media.__typename === typenames.youtube
     ) {
       return (
         <div className={`overflow-hidden rounded-lg shadow-2xl ${sizeClasses}`}>
@@ -99,24 +98,43 @@ const MediaComponent = ({ data }) => {
     return null
   }
 
+  const renderMediaList = (mediaList) => {
+    return <>
+      {
+        Array.isArray(mediaList) &&
+        mediaItem.map((item, index) => (
+          <div
+            key={index}
+            className="relative flex justify-center items-center"
+          >
+            {renderMedia(item, index)}
+          </div>
+        ))
+      }
+    </>
+  }
+
+  return renderMediaList(mediaItem)
+}
+
+const MediaComponent = ({ data }) => {
+  const { headline, mediaItem } = data || {}
+
+  const typenames = {
+    cloudinary: 'PageBlocksMediaComponentMediaItemCloudinaryMediaComponent',
+    youtube: 'PageBlocksMediaComponentMediaItemYoutubeMedia'
+  }
+
   return (
     <div className="media-component md:px-8 xl:px-8 lg:px-8 px-3 max-w-screen-xl mx-auto pb-4 pt-8">
       <h2 className="text-center font-tuner text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent pb-10">
         {headline}
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {Array.isArray(mediaItem) &&
-          mediaItem.map((item, index) => (
-            <div
-              key={index}
-              className="relative flex justify-center items-center"
-            >
-              {renderMedia(item, index)}
-            </div>
-          ))}
+        {VideoGridComponent({ data: { mediaItem, typenames } })}
       </div>
     </div>
   )
 }
 
-export { MediaComponent }
+export { MediaComponent, VideoGridComponent }

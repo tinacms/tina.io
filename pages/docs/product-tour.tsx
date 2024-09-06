@@ -14,15 +14,15 @@ import styled from 'styled-components'
 import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { components } from 'pages/blog/[slug]'
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
 
 export const getStaticProps: GetStaticProps = async function (props) {
   const new_results = await client.queries.doc({
     relativePath: `product-tour.mdx`,
   })
-  const oldNavDocs = await getDocsNav()
-  return { props: { new: { new_results }, oldNavDocs } }
+  const docsToc = await getDocsNav()
+  return { props: { new: { new_results }, docsToc } }
 }
 
 export default function Page(props) {
@@ -144,17 +144,17 @@ export default function Page(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.oldNavDocs.data}>
+      <DocsLayout navItems={props.docsToc.data}>
         <DocContainer>
           <DocGridHeader>
-            <Breadcrumbs navItems={props.oldNavDocs.data} />
+            <Breadcrumbs navItems={props.docsToc.data} />
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
           <DocGridContent ref={contentRef}>
             <hr />
             <SplitContent>
               <div id="main-content-container">
-                <TinaMarkdown content={doc_data.body} components={components} />
+                <TinaMarkdown content={doc_data.body} components={docAndBlogComponents} />
               </div>
               <div id="sticky-img-container">
                 <div className="img-container">
