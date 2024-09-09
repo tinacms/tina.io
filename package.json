@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
-    "@next/bundle-analyzer": "^10.0.0",
+    "@next/bundle-analyzer": "^14.2.8",
     "@react-three/drei": "^9.107.0",
     "@react-three/fiber": "^8.16.8",
     "@tailwindcss/aspect-ratio": "^0.4.2",
