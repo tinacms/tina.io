@@ -95,7 +95,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "@tinacms/cli": "^1.6.1",
+    "@tinacms/cli": "1.6.2",
     "@types/cookie": "^0.3.3",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.1.4",
