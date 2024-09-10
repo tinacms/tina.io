@@ -1,9 +1,6 @@
 import { Layout } from 'components/layout'
 import client from 'tina/__generated__/client'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { FaPlus, FaMinus } from 'react-icons/fa'
-import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents'
 

@@ -24,6 +24,7 @@ import { CgCrown } from 'react-icons/cg';
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { TbPlugConnected } from 'react-icons/tb';
 import { SlLock } from 'react-icons/sl';
+import { ImCross } from 'react-icons/im';
 
 const icons = {
   FaClock,
@@ -81,11 +82,20 @@ const IconSelector = ({ input }) => {
             <>
               Hide icons <FaAngleUp className="m-1" />
             </>
-          )}{' '}
+          )}
         </span>
       </button>
       {!isMinimized && (
         <div className="grid grid-cols-2 gap-2">
+          <div
+            onClick={() => handleIconChange('')}  
+            className={`${TinaButtonClasses} flex items-center cursor-pointer p-2 ${
+              selectedIcon === '' ? 'bg-blue-200' : 'bg-white'
+            }`}
+          >
+            <ImCross className="mr-2" />{' '}
+            <span className="text-xs">No Icon</span>
+          </div>
           {iconKeys.map((key) => {
             const IconComponent = icons[key];
             const trimmedKey = key.slice(2);
