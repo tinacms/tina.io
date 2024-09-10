@@ -23,7 +23,7 @@ function Page404() {
           <InfoLayout>
             <InfoContent>
               <InfoText>
-                <HeroTitle>Sorry, Friend.</HeroTitle>
+                <HeroTitle narrow={false}>Sorry, Friend.</HeroTitle>
                 <hr />
                 <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
                   We couldn't find what you were looking for.
