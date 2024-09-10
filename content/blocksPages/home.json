@@ -136,6 +136,7 @@
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit",
           "icon2": "FaClock",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1692109000/demos/visual-editing-30s.mp4",
           "button": {
             "label": "READ MORE",
             "icon": true,
