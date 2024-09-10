@@ -38,8 +38,8 @@ const Card = ({ cardItem, onHover }) => {
 
   const startDateUTC = new Date(Date.parse(cardItem.startDate))
   startDateUTC.setUTCMinutes(startDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + ((cardItem.startTime) * 60))
-  const endDateUTC = new Date(Date.parse(cardItem.endDate))
-  endDateUTC.setUTCMinutes(endDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + ((cardItem.endTime) * 60))
+  const endDateUTC = new Date(Date.parse(cardItem.endDate ?? cardItem.startDate))
+  endDateUTC.setUTCMinutes(endDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + (24 * 60))
   const hoursUntilEvent = Math.ceil((startDateUTC.getTime() - (new Date()).getTime()) / 36e5)
   const hoursUntilEventEnd = Math.ceil((endDateUTC.getTime() - (new Date()).getTime()) / 36e5)
 

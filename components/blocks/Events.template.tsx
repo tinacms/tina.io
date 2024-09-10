@@ -46,7 +46,8 @@ export const eventsTemplate: Template = {
           label: item.headline,
         }),
       },
-      // @ts-ignore: type error as utc, options and step fields aren't formally recognised but valid as per docs
+      // https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
+      // @ts-ignore: type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         {
@@ -62,10 +63,10 @@ export const eventsTemplate: Template = {
         },
         {
           name: 'startTime',
-          label: 'Start Time (24 hour time)',
+          label: 'Start Time',
           type: 'number',
           description:
-            'Optional hours field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm',
+            'Hours field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm',
           ui: {
             step: 1,
             validate: timezoneValidation
@@ -76,22 +77,11 @@ export const eventsTemplate: Template = {
           label: 'End Date',
           type: 'datetime',
           description:
-            'Note this field is not mandatory. Leave blank if no end time specified (or only 1 day event).',
+            'Note this field is not mandatory. Leave blank if no end time specified (or only 1 day event). End time calculated as midnight.',
           ui: {
             utc: true,
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
           }, 
-        },
-        {
-          name: 'endTime',
-          label: 'End Time (24 hour time)',
-          type: 'number',
-          description:
-            'Optional field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm.',
-          ui: {
-            step: 1,
-            validate: timezoneValidation
-          },
         },
         {
           name: 'timezone',
