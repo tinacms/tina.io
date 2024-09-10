@@ -159,7 +159,9 @@
         {
           "headline": "NDC Oslo",
           "startDate": "2024-05-19T00:00:00.000Z",
+          "startTime": 9,
           "endDate": "2024-05-23T00:00:00.000Z",
+          "timezone": 2,
           "location": "Oslo, Norway",
           "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215929/Norway_Oslo_Houses_Marinas_Bay_569380_1920x1080_ocqvvo.jpg",
           "link": "https://ndcoslo.com/",
