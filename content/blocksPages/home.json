@@ -138,7 +138,6 @@
           "startDate": "2024-10-14T00:00:00.000Z",
           "startTime": 9,
           "endDate": "2024-10-18T00:00:00.000Z",
-          "endTime": 19,
           "timezone": 1,
           "location": "Porto, Portugal",
           "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
@@ -170,6 +169,7 @@
         {
           "headline": "/serverless/DAYS ANZ",
           "startDate": "2024-05-21T00:00:00.000Z",
+          "timezone": 10,
           "location": "Sydney, Australia",
           "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215959/716104_jwhkyu.jpg",
           "link": "https://anz.serverlessdays.io/sydney/",
