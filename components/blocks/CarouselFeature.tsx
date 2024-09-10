@@ -184,14 +184,12 @@ export function CarouselFeatureBlock({ data, index }) {
 
   const renderMedia = (index) => {
     if (index === null) return null;
-
+  
     const item = data?.items?.[index];
     if (!item || !item.videoSrc) return null;
-
-    const cloudinaryBaseUrl =
-      'https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_584/e_accelerate:-20/';
-    const fullVideoUrl = `${cloudinaryBaseUrl}${item.videoSrc}`;
-
+  
+    const fullVideoUrl = item.videoSrc;
+  
     return (
       <video
         key={index}
@@ -199,14 +197,14 @@ export function CarouselFeatureBlock({ data, index }) {
         muted
         loop
         className="w-full h-auto mt-6 lg:mt-0"
-        poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${item.videoSrc}.jpg`}
       >
-        <source src={`${fullVideoUrl}.webm`} type="video/webm" />
-        <source src={`${fullVideoUrl}.mp4`} type="video/mp4" />
+        <source src={fullVideoUrl} type="video/webm" />
+        <source src={fullVideoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     );
   };
+  
 
   return (
     <section
