@@ -219,9 +219,9 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
         {item.label}
       </summary>
       <div className="p-4">
-        {item.children.map((subItem) => (
+        {item.children.map((subItem, index) => (
           <div>
-            <DynamicLink href={subItem.link} passHref>
+            <DynamicLink href={`${subItem.link}-${index}`} passHref>
               <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
               </div>
@@ -266,21 +266,21 @@ export const Footer = ({}) => {
           <TinaIcon color="white" />
         </div>
         <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {footerNav.map((item) => {
+          {footerNav.map((item, outerIndex) => {
             const { label, items } = item
             return (
               <div
-                key={label}
+                key={`${label}-${outerIndex}`}
                 className="flex flex-col items-stretch justify-start gap-2"
               >
                 <p className="uppercase text-orange-100 font-bold -mt-1">
                   {label}
                 </p>
-                {items.map((item) => {
+                {items.map((item, innerIndex) => {
                   return item.children ? (
-                    <LinkGroup key={item.label} item={item} />
+                    <LinkGroup key={`${item.label}-${outerIndex}-${innerIndex}`} item={item} />
                   ) : (
-                    <LinkItem key={item.label} item={item} />
+                      <LinkItem key={`${item.label}-${outerIndex}-${innerIndex}`} item={item} />
                   )
                 })}
               </div>
@@ -317,9 +317,9 @@ export const Footer = ({}) => {
       <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-18 gap-6">
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {footerLinks.map((item) => {
+            {footerLinks.map((item, index) => {
               const { link, label } = item
-              return <FooterLink key={label} link={link} label={label} />
+              return <FooterLink key={`${label}-bottom-${index}`} link={link} label={label} />
             })}
           </div>
           <div>
