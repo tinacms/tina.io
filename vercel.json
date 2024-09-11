@@ -626,10 +626,10 @@
       "permanent": true
     },
     {
-      "source": "/guides/$1",
-      "destination": "/docs/guides/$1",
+      "source": "/guides",
+      "destination": "/docs/guides",
       "permanent": true
-    },
+    },    
     {
       "source": "/guides/gatsby(.*)/",
       "destination": "/docs/legacy-redirect",
