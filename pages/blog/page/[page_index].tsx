@@ -16,8 +16,7 @@ import { DynamicLink, BlogPagination } from 'components/ui';
 import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps';
 const Index = (props) => {
   const { currentPage, numPages } = props;
-
-  console.log('props', props);
+  
   return (
     <Layout>
       <NextSeo

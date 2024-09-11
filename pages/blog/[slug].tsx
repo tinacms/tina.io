@@ -29,7 +29,6 @@ function BlogTemplate({ file, siteConfig, ...props }) {
     data: props.data,
     variables: props.vars,
   })
-  console.log('data', data.post.coAuthors) 
 
   const { body, excerpt, prev, next, ...frontmatter } = data.post
 
