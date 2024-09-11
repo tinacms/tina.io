@@ -51,11 +51,6 @@
       "permanent": true
     },
     {
-      "source": "/blog/tina-v-0.69.0/",
-      "destination": "/blog/tina-v-0.68.14",
-      "permanent": true
-    },
-    {
       "source": "/docs/extending-tina/customizing-forms/",
       "destination": "/docs/extending-tina/overview/",
       "permanent": true
@@ -77,12 +72,12 @@
     },
     {
       "source": "/jamstack-conf/",
-      "destination": "/teams",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/smashing-conf/",
-      "destination": "/teams",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -628,6 +623,11 @@
     {
       "source": "/guides/experimental(.*)/",
       "destination": "/docs/legacy-redirect",
+      "permanent": true
+    },
+    {
+      "source": "/guides/$1",
+      "destination": "/docs/guides/$1",
       "permanent": true
     },
     {
