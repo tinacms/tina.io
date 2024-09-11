@@ -1,25 +1,26 @@
-import React, { useState } from 'react'
-import { Overlay } from '../ui/Overlay'
-import { DocsLeftSidebar } from './DocsLeftSidebar'
-import { DocsNavigationList } from './DocsNavigationList'
-import { NavToggle } from '../ui/NavToggle'
-import styled from 'styled-components'
-import { DocsHeaderNav } from './DocsHeaderNav'
-import { TinaIcon } from '../../components/logo/TinaIcon'
-import { useRouter } from 'next/router'
-import { FallbackPlaceholder } from '../../components/fallback-placeholder'
-import Search from '../search'
-import { HitsWrapper } from '../../components/search/styles'
-import { searchIndices } from '../../components/search/indices'
-import { VersionSelect } from './VersionSelect'
+import React, { useState } from 'react';
+import { Overlay } from '../ui/Overlay';
+import { DocsLeftSidebar } from './DocsLeftSidebar';
+import { DocsNavigationList } from './DocsNavigationList';
+import { NavToggle } from '../ui/NavToggle';
+import styled from 'styled-components';
+import { DocsHeaderNav } from './DocsHeaderNav';
+import { TinaIcon } from '../../components/logo/TinaIcon';
+import { useRouter } from 'next/router';
+import { FallbackPlaceholder } from '../../components/fallback-placeholder';
+import Search from '../search';
+import { HitsWrapper } from '../../components/search/styles';
+import { searchIndices } from '../../components/search/indices';
+import { VersionSelect } from './VersionSelect';
+import { Navbar } from 'components/layout/Navbar';
 
 export interface DocsNavProps {
-  navItems: any
+  navItems: any;
 }
 
 export function DocumentationNavigation({ navItems }: DocsNavProps) {
-  const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false)
-  const router = useRouter()
+  const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
+  const router = useRouter();
   return (
     <>
       <MobileNavToggle
@@ -46,9 +47,11 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(false)}
       />
-      <DocsHeaderNav />
+      <div className='mb-20'>
+        <Navbar sticky={false}/>
+      </div>
     </>
-  )
+  );
 }
 
 const MobileNavToggle = styled(NavToggle)`
@@ -64,14 +67,14 @@ const MobileNavToggle = styled(NavToggle)`
   @media (min-width: 840px) {
     display: none;
   }
-`
+`;
 
 const DocsSidebarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-`
+`;
 
 const DocsSidebarHeaderWrapper = styled.div`
   flex: 0 0 auto;
@@ -95,4 +98,4 @@ const DocsSidebarHeaderWrapper = styled.div`
   @media (min-width: 1600px) {
     padding: 1rem 1.75rem 1.5rem 1.75rem;
   }
-`
+`;

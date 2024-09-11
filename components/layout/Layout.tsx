@@ -21,7 +21,7 @@ export const Layout = ({ children, color }: LayoutProps) => {
           }}
         />
         <div className="lg:pb-14">
-          <Navbar />
+          <Navbar sticky={true}/>
         </div>
         <div className="flex flex-col flex-1">{children}</div>
         <Footer />
