@@ -354,6 +354,33 @@
       "_template": "CompareBox"
     },
     {
+      "features": [
+        {
+          "headline": "Talk to a Tina Expert",
+          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": true,
+              "color": "blue",
+              "size": "small",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/TinaExpert.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "title": "Where's Tina?",
       "cardItems": [
         {
@@ -403,33 +430,6 @@
         }
       ],
       "_template": "events"
-    },
-    {
-      "features": [
-        {
-          "headline": "Talk to a Tina Expert",
-          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
-          "buttons": [
-            {
-              "label": "Schedule Call",
-              "icon": true,
-              "color": "blue",
-              "size": "small",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            }
-          ],
-          "media": [
-            {
-              "image": "/img/TinaExpert.png",
-              "_template": "image"
-            }
-          ],
-          "isReversed": true,
-          "imageBackground": false
-        }
-      ],
-      "_template": "features"
     },
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
