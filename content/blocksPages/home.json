@@ -134,11 +134,14 @@
       "title": "Where's Tina?",
       "cardItems": [
         {
+          "headline": "NDC Adelaide"
+        },
+        {
           "headline": "NDC Porto",
-          "startDate": "2024-10-14T00:00:00.000Z",
-          "startTime": 9,
+          "startDate": "2024-09-11T00:00:00.000Z",
+          "startTime": 13,
           "endDate": "2024-10-18T00:00:00.000Z",
-          "timezone": 1,
+          "timezone": 10,
           "location": "Porto, Portugal",
           "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
           "link": "https://ndcporto.com/",
