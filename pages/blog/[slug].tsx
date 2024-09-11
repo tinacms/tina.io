@@ -83,7 +83,7 @@ function BlogTemplate({ file, siteConfig, ...props }) {
               <MetaWrap>
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
                 <MetaBit>
-                  <span>By</span> <strong>{frontmatter.author}</strong>
+                  <span>By</span> <strong>{frontmatter.author},</strong>
                 </MetaBit>
                 <MetaBit>
                 <span>{data.post.coAuthors.join(', ')}</span>
