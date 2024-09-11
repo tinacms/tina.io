@@ -624,12 +624,7 @@
       "source": "/guides/experimental(.*)/",
       "destination": "/docs/legacy-redirect",
       "permanent": true
-    },
-    {
-      "source": "/guides/",
-      "destination": "/docs/guides/",
-      "permanent": true
-    },    
+    },   
     {
       "source": "/guides/gatsby(.*)/",
       "destination": "/docs/legacy-redirect",
@@ -748,6 +743,11 @@
     {
       "source": "/faq/",
       "destination": "/docs/introduction/faq",
+      "permanent": true
+    },
+    {
+      "source": "/guides/",
+      "destination": "/docs/guides/",
       "permanent": true
     }
   ]
