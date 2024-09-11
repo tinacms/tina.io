@@ -30,9 +30,9 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
       <DocsLeftSidebar open={mobileNavIsOpen}>
         <DocsSidebarHeaderWrapper>
           <DocsSidebarHeader>
-            <TinaIcon link="/docs" className="hidden md:block" color="orange">
-              Docs
-            </TinaIcon>
+            <div className='text-2xl leading-tight mt-2.5 ml-2 font-tuner text-orange-500'>
+              Tina Docs
+            </div>
             <VersionSelect />
           </DocsSidebarHeader>
           <Search collapse expanded={true} indices={searchIndices} />
