@@ -1,4 +1,6 @@
 import type { Template } from 'tinacms'
+import { NumberField, NumberFieldPlugin, NumberInput, TextField, wrapFieldsWithMeta } from 'tinacms'
+import React from 'react'
 
 const formatTimezoneOption = (value, prefix = "+") => {
   return { value: value, label: `GMT ${prefix}${Math.floor(value)}:${value % 1 ? "3" : "0"}0` }
@@ -31,7 +33,7 @@ export const eventsTemplate: Template = {
   label: 'Events',
   name: 'events',
   ui: {
-    previewSrc: '',
+    previewSrc: '/img/blocks/events.png',
   },
   fields: [
     { name: 'title', label: 'Title', type: 'string' },
@@ -82,6 +84,25 @@ export const eventsTemplate: Template = {
             utc: true,
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
           }, 
+        },
+        {
+          //Note the below is just a UI aspect for clarity on how a new event can be specified
+          name: 'endTime',
+          label: 'End Time',
+          type: 'string',
+          description:
+            'This is locked to midnight on the end date of the event.',
+          ui: {
+            format: (value) => "11:59pm",
+            component: (props) => {
+              return <div className="mb-4 relative">
+                <div className="z-50 absolute cursor-not-allowed w-full h-full top-0 left-0"/>
+                <div className="opacity-50">
+                  {TextField(props)}
+                </div>
+              </div>
+            }
+          },
         },
         {
           name: 'timezone',
