@@ -29,6 +29,7 @@ function BlogTemplate({ file, siteConfig, ...props }) {
     data: props.data,
     variables: props.vars,
   })
+  console.log('data', data.post.coAuthors) 
 
   const { body, excerpt, prev, next, ...frontmatter } = data.post
 
@@ -83,6 +84,9 @@ function BlogTemplate({ file, siteConfig, ...props }) {
                 <MetaBit>{formatDate(frontmatter.date)}</MetaBit>
                 <MetaBit>
                   <span>By</span> <strong>{frontmatter.author}</strong>
+                </MetaBit>
+                <MetaBit>
+                <span>{data.post.coAuthors.join(', ')}</span>
                 </MetaBit>
               </MetaWrap>
             </BlogMeta>
