@@ -31,7 +31,7 @@ export const navigationBarCollection = {
           label: 'String Item',
           ui: {
             itemProps: (item) => {
-              return { label: '📄' + item?.label };
+              return { label: '🔗 ' + item?.label };
             },
           },
           fields: [
@@ -54,7 +54,7 @@ export const navigationBarCollection = {
           type: 'object',
           ui: {
             itemProps: (item) => {
-              return { label: '📕' + item?.label };
+              return { label: '🗂️ ' + item?.label };
             },
           },
           fields: [
@@ -94,7 +94,7 @@ export const navigationBarCollection = {
           type: 'object',
           ui: {
             itemProps: (item) => {
-              return { label: '🚨' + item?.label };
+              return { label: '🍌 ' + item?.label };
             },
             defaultItem: {
               variant: 'default',
