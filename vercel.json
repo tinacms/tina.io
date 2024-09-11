@@ -626,7 +626,7 @@
       "permanent": true
     },
     {
-      "source": "/guides",
+      "source": "/guides/",
       "destination": "/docs/guides",
       "permanent": true
     },    
