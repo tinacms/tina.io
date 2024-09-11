@@ -13,6 +13,7 @@ query getExpandedPostDocument($relativePath: String!) {
     date
     last_edited
     author
+    coAuthors
     prev {
       ... on Post {
         id
