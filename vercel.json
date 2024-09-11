@@ -142,12 +142,12 @@
     },
     {
       "source": "/docs/concepts/backends/",
-      "destination": "/docs/cms#apis",
+      "destination": "/docs/cms",
       "permanent": true
     },
     {
       "source": "/docs/concepts/plugins/",
-      "destination": "/docs/cms#plugins",
+      "destination": "/docs/cms",
       "permanent": true
     },
     {
