@@ -1,0 +1,97 @@
+{
+  "navigationBar": "Master",
+  "navItem": [
+    {
+      "label": "Docs",
+      "href": "/docs",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Cloud Pricing",
+      "href": "/pricing",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Resources",
+      "items": [
+        {
+          "label": "About TinaCMS",
+          "href": "/about"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        },
+        {
+          "label": "Examples",
+          "href": "/examples"
+        },
+        {
+          "label": "Whats New - TinaCMS",
+          "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "Whats New - TinaCloud",
+          "href": "/whats-new/tinacloud"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "Community",
+      "items": [
+        {
+          "label": "Showcase",
+          "href": "/showcase"
+        },
+        {
+          "label": "Roadmap",
+          "href": "/roadmap"
+        },
+        {
+          "label": "Support",
+          "href": "/docs/support"
+        },
+        {
+          "label": "Awesome TinaCMS",
+          "href": "https://github.com/tinacms/awesome-tinacms"
+        },
+        {
+          "label": "Discord",
+          "href": "https://discord.com/invite/zumN63Ybpf"
+        },
+        {
+          "label": "Forum",
+          "href": "https://github.com/tinacms/tinacms/discussions"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "Enterprise",
+      "href": "/enterprise",
+      "_template": "stringItem"
+    },
+    {
+      "label": "My TinaCloud",
+      "href": "https://app.tina.io/signin",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Subscribe",
+      "color": "white",
+      "size": "medium",
+      "modal": "EmailForm",
+      "icon2": "MdEmail",
+      "_template": "modalButton"
+    },
+    {
+      "label": "Book a demo",
+      "color": "orange",
+      "size": "medium",
+      "modal": "BookDemo",
+      "icon2": "FaCalendarDay",
+      "_template": "modalButton"
+    }
+  ]
+}
