@@ -22,10 +22,13 @@ const Card = ({ cardItem, onHover }) => {
   }
 
   const dateFormat = (start, end?): string => {
+    //Gets the start date in the event time, which is "UTC" from how it's stored
     const startDay = `${new Date(start).getUTCDate() + getOrdinalSuffix(new Date(start).getUTCDate())}`
     const startMonth = format(new Date(start), 'MMM')
+    //Gets the end date in the event time, which is "UTC" from how it's stored
     const endDateAndHyphen = end ? ` - ${new Date(end).getUTCDate() + getOrdinalSuffix(new Date(end).getUTCDate())}` : ''
     const endMonth = end ? format(new Date(end), 'MMM') : ''
+    //Formats the dates into a single string
     return `${startDay} ${startMonth == endMonth ? '' : startMonth}${endDateAndHyphen} ${endMonth ?? startMonth}`
   }
 
@@ -36,14 +39,18 @@ const Card = ({ cardItem, onHover }) => {
     return ''
   }
 
+  //Gets the accurate start date-time in UTC, by applying the offset and event start time. 
+  //Note that getting UTC minutes is actually getting the time in the event timezone, based on how the values are being stored.
   const startDateUTC = new Date(Date.parse(cardItem.startDate))
   startDateUTC.setUTCMinutes(startDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + ((cardItem.startTime) * 60))
+  //Gets the provided end date at midnight in UTC, or for one day events the start date is re-used.
   const endDateUTC = new Date(Date.parse(cardItem.endDate ?? cardItem.startDate))
   endDateUTC.setUTCMinutes(endDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + (24 * 60))
+  //Calculate the hours until the event/event end by subtracting start and end dates (in UTC) against the current local time (in UTC).
   const hoursUntilEvent = Math.ceil((startDateUTC.getTime() - (new Date()).getTime()) / 36e5)
   const hoursUntilEventEnd = Math.ceil((endDateUTC.getTime() - (new Date()).getTime()) / 36e5)
 
-  const isPastEvent = hoursUntilEvent < 0
+  const isLiveOrPastEvent = hoursUntilEvent < 0
   const isLiveEvent =
     hoursUntilEvent <= 0 &&
     hoursUntilEventEnd > 0
@@ -74,7 +81,7 @@ const Card = ({ cardItem, onHover }) => {
           <p className="mr-2">{displayDate()}</p>
           {isLiveEvent ? (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">LIVE</span>
-          ) : isPastEvent ? (
+          ) : isLiveOrPastEvent ? (
             <span className="bg-slate-200 px-2 rounded text-sm text-gray-700 shadow-lg opacity-60">DONE</span>
           ) : (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
