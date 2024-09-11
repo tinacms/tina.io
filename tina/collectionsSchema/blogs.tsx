@@ -44,6 +44,12 @@ export const blogsCollection = {
       label: 'Author',
     },
     {
+      type: 'string',
+      name: 'coAuthors',
+      label: 'Co-Authors',
+      list: true,
+    },
+    {
       type: 'reference',
       name: 'prev',
       label: 'Previous Post',
