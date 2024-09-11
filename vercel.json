@@ -192,7 +192,7 @@
     },
     {
       "source": "/guides/nextjs/github-open-authoring/(.*)/",
-      "destination": "/guides/nextjs/github/$1",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
@@ -402,12 +402,12 @@
     },
     {
       "source": "/guides/tina-cloud/getting-started/(.*)/",
-      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
       "source": "/guides/tina-cloud/existing-site/(.*)/",
-      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/$1",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
@@ -417,12 +417,12 @@
     },
     {
       "source": "/guides/nextjs/github/(.*)/",
-      "destination": "/guides/experimental/github/$1",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
       "source": "/guides/nextjs/tina-with-strapi/(.*)/",
-      "destination": "/guides/experimental/tina-with-strapi/$1",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
@@ -432,7 +432,7 @@
     },
     {
       "source": "/guides/nextjs/adding-tina/(.*)/",
-      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
@@ -561,7 +561,7 @@
       "permanent": true
     },
     {
-      "source": "/docs/reference/toolkit/fields/custom-fields",
+      "source": "/docs/reference/toolkit/fields/custom-fields/",
       "destination": "/docs/advanced/configuring-field-plugin/",
       "permanent": true
     },
@@ -627,7 +627,7 @@
     },
     {
       "source": "/guides/",
-      "destination": "/docs/guides",
+      "destination": "/docs/guides/",
       "permanent": true
     },    
     {
@@ -637,17 +637,17 @@
     },
     {
       "source": "/guides/general(.*)/",
-      "destination": "/guides/",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
       "source": "/guides/nextjs(.*)/",
-      "destination": "/guides/tina-cloud/add-tinacms-to-existing-site/overview/",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
       "source": "/guides/tina-cloud(.*)/",
-      "destination": "/guides/",
+      "destination": "/docs/guides/",
       "permanent": true
     },
     {
@@ -727,7 +727,7 @@
     },
     {
       "source": "/guides/tinacms/gatsby-data-fetching/guide/",
-      "destination": "/guides/tinacms/gatsby-data-fetching/",
+      "destination": "/docs/integration/frameworks/",
       "permanent": true
     },
     {
@@ -742,7 +742,7 @@
     },
     {
       "source": "/guides/tinacms/nextjs-internationalization/guide/",
-      "destination": "/guides/tinacms/adding-internationalization-to-tina/guide",
+      "destination": "/docs/guides/nextjs-internationalization/",
       "permanent": true
     },
     {
