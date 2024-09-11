@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import styled, { css } from 'styled-components'
 import RightArrowSvg from '../../public/svg/right-arrow.svg'
+import { getDocId } from 'utils/docs/getDocIds'
 
 interface TocProps {
   tocItems: Array<{ type: string; text: string }>
@@ -11,7 +12,7 @@ interface TocProps {
 const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
   return tocItems
     .map((item) => {
-      const anchor = item.text.toLowerCase().replace(/[\s-]+/g, '-').replace(/[^a-z0-9-]+/g, '')
+      const anchor = getDocId(item.text)
       const prefix = item.type === 'h3' ? '  ' : ''
       return `${prefix}- [${item.text}](#${anchor})`
     })
