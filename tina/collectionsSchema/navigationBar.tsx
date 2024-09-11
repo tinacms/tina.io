@@ -16,11 +16,6 @@ export const navigationBarCollection = {
   },
   fields: [
     {
-      name: 'navigationBar',
-      label: 'Navigation Bar',
-      type: 'string',
-    },
-    {
       name: 'navItem',
       label: 'Navigation Item',
       list: true,

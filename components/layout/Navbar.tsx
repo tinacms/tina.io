@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import data from '../../content/navigationBar/master.json';
+import data from '../../content/navigationBar/navMenu.json';
 import { Button } from '../../components/ui/Button';
 import {
   BiChevronRight,
