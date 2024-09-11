@@ -68,7 +68,7 @@ export const eventsTemplate: Template = {
           label: 'Start Time',
           type: 'number',
           description:
-            'Enter start time in the timezone of the event.',
+            "Enter start time in the timezone of the event. (e.g. if the event starts at 9:00am, enter '9')",
           ui: {
             step: 1,
             validate: timezoneValidation
