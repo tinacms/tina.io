@@ -68,7 +68,7 @@ export const eventsTemplate: Template = {
           label: 'Start Time',
           type: 'number',
           description:
-            'Hours field for more accurate "Live"/"Done" chips on the event card. 24 hours time, ex. 14 = 2:00pm',
+            'Enter start time in the timezone of the event.',
           ui: {
             step: 1,
             validate: timezoneValidation
@@ -79,7 +79,7 @@ export const eventsTemplate: Template = {
           label: 'End Date',
           type: 'datetime',
           description:
-            'Note this field is not mandatory. Leave blank if no end time specified (or only 1 day event). End time calculated as midnight.',
+            'Note this field is not mandatory. Leave blank for a 1 day event. Enter date in the timezone of the event.',
           ui: {
             utc: true,
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
