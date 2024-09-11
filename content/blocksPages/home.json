@@ -134,6 +134,9 @@
       "title": "Where's Tina?",
       "cardItems": [
         {
+          "headline": "NDC Adelaide"
+        },
+        {
           "headline": "NDC Porto",
           "startDate": "2024-09-11T00:00:00.000Z",
           "startTime": 13,
