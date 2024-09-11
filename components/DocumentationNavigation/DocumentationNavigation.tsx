@@ -47,9 +47,6 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(false)}
       />
-      <div className='mb-20'>
-        <Navbar sticky={false}/>
-      </div>
     </>
   );
 }
@@ -57,7 +54,6 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
 const MobileNavToggle = styled(NavToggle)`
   position: fixed;
   background: var(--color-light);
-  border: 1px solid var(--color-light-dark);
   margin-top: 1rem;
   padding: 0 0 0 1rem;
   border-radius: 0 2rem 2rem 0;
@@ -78,11 +74,9 @@ const DocsSidebarHeader = styled.div`
 
 const DocsSidebarHeaderWrapper = styled.div`
   flex: 0 0 auto;
-  background-color: white;
-  background: linear-gradient(to bottom, white, var(--color-grey-1));
+  background-color: transparent;
   z-index: 500;
   padding: 1rem 1rem 1.25rem 1rem;
-  border-bottom: 1px solid var(--color-grey-2);
   position: relative;
 
   ${HitsWrapper} {

@@ -7,6 +7,7 @@ import { Footer } from './Footer';
 import { DocsTextWrapper } from './DocsTextWrapper';
 import { Overlay } from '../ui';
 import { Navbar } from './Navbar';
+import { Layout } from './Layout';
 
 interface DocsLayoutProps {
   navItems: any;
@@ -18,15 +19,17 @@ export const DocsLayout = React.memo(({ children, navItems }: DocsLayoutProps) =
   return (
     <>
       <DefaultSeo openGraph={{ url: 'https://tina.io' + router.asPath }} />
-      <DocsLayoutGrid>
+      <Layout sticky={false}>
+        <DocsLayoutGrid>
         <DocumentationNavigation navItems={navItems} />
         <DocsMain>
           <DocsTextWrapper>{children}</DocsTextWrapper>
         </DocsMain>
         <DocsFooterWrapper>
-          <Footer />
         </DocsFooterWrapper>
       </DocsLayoutGrid>
+      </Layout>
+      
     </>
   );
 });
@@ -60,6 +63,7 @@ const DocsLayoutGrid = styled.div`
 const DocsMain = styled.div`
   grid-area: main;
   place-self: stretch;
+  margin-left: 30px;
 `;
 
 const DocsFooterWrapper = styled.div`

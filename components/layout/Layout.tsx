@@ -7,9 +7,10 @@ import { Navbar } from './Navbar'
 interface LayoutProps {
   children: any | any[]
   color?: 'white' | 'secondary' | 'seafoam'
+  sticky? : boolean
 }
 
-export const Layout = ({ children, color }: LayoutProps) => {
+export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
   const router = useRouter()
 
   return (
@@ -20,8 +21,8 @@ export const Layout = ({ children, color }: LayoutProps) => {
             url: 'https://tina.io' + router.asPath,
           }}
         />
-        <div className="lg:pb-14">
-          <Navbar sticky={true}/>
+        <div className="lg:pb-20">
+          <Navbar sticky={sticky}/>
         </div>
         <div className="flex flex-col flex-1">{children}</div>
         <Footer />

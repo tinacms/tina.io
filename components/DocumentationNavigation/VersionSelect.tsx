@@ -74,7 +74,6 @@ const SelectWrapper = styled.div`
     align-items: center;
     transition: filter 250ms ease;
     border-radius: 100px;
-    box-shadow: 3px 3px 4px var(--color-grey-2), -4px -4px 6px white;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;

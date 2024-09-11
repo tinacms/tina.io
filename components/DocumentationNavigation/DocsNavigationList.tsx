@@ -1,20 +1,20 @@
-import React, { createContext } from 'react'
-import styled, { css } from 'styled-components'
-import { DocsNavProps } from './DocumentationNavigation'
-import { useRouter } from 'next/router'
-import { matchActualTarget } from 'utils'
-import { DynamicLink } from '../../components/ui'
-import docsLinks from '../../content/docs-navigation.json'
-import { BiChevronRight } from 'react-icons/bi'
-import AnimateHeight from 'react-animate-height'
-import data from '../../content/siteConfig.json'
+import React, { createContext } from 'react';
+import styled, { css } from 'styled-components';
+import { DocsNavProps } from './DocumentationNavigation';
+import { useRouter } from 'next/router';
+import { matchActualTarget } from 'utils';
+import { DynamicLink } from '../../components/ui';
+import docsLinks from '../../content/docs-navigation.json';
+import { BiChevronRight } from 'react-icons/bi';
+import AnimateHeight from 'react-animate-height';
+import data from '../../content/siteConfig.json';
 
 interface NavTitleProps {
-  level: number
-  selected: boolean
-  childSelected?: boolean
-  children: React.ReactNode | React.ReactNode[]
-  onClick?: () => void
+  level: number;
+  selected: boolean;
+  childSelected?: boolean;
+  children: React.ReactNode | React.ReactNode[];
+  onClick?: () => void;
 }
 
 const NavTitle = ({
@@ -41,18 +41,18 @@ const NavTitle = ({
       selected: 'text-[15px] font-sans pt-0.5 font-bold text-blue-500',
       childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
-  }
+  };
 
-  const headerLevel = level > 3 ? 3 : level
+  const headerLevel = level > 3 ? 3 : level;
   const selectedClass = selected
     ? 'selected'
     : childSelected
     ? 'childSelected'
-    : 'default'
+    : 'default';
   const classes =
     level < 1
       ? headerLevelClasses[headerLevel]
-      : headerLevelClasses[headerLevel][selectedClass]
+      : headerLevelClasses[headerLevel][selectedClass];
 
   return (
     <div
@@ -61,46 +61,46 @@ const NavTitle = ({
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
 const hasNestedSlug = (navItems = [], slug) => {
   for (let item of navItems) {
     if (matchActualTarget(item.slug || item.href, slug)) {
-      return true
+      return true;
     }
     if (item.items) {
       if (hasNestedSlug(item.items, slug)) {
-        return true
+        return true;
       }
     }
   }
-  return false
-}
+  return false;
+};
 
 const NavLevel = ({
   navListElem,
   categoryData,
   level = 0,
 }: {
-  navListElem?: any
-  categoryData: any
-  level?: number
+  navListElem?: any;
+  categoryData: any;
+  level?: number;
 }) => {
-  const navLevelElem = React.useRef(null)
-  const router = useRouter()
-  const path = router.asPath
-  const slug = categoryData.slug
+  const navLevelElem = React.useRef(null);
+  const router = useRouter();
+  const path = router.asPath;
+  const slug = categoryData.slug;
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
       hasNestedSlug(categoryData.items, path) ||
       level === 0
-  )
+  );
 
-  const selected = path == slug || (slug == '/docs' && path == "/docs/")
-  console.log(categoryData.items)
-  console.log(router.asPath)
-  const childSelected = hasNestedSlug(categoryData.items, router.asPath)
+  const selected = path == slug || (slug == '/docs' && path == '/docs/');
+  console.log(categoryData.items);
+  console.log(router.asPath);
+  const childSelected = hasNestedSlug(categoryData.items, router.asPath);
 
   React.useEffect(() => {
     if (
@@ -109,22 +109,22 @@ const NavLevel = ({
       navListElem.current &&
       selected
     ) {
-      const scrollOffset = navListElem.current.scrollTop
-      const navListOffset = navListElem.current.getBoundingClientRect().top
-      const navListHeight = navListElem.current.offsetHeight
-      const navItemOffset = navLevelElem.current.getBoundingClientRect().top
+      const scrollOffset = navListElem.current.scrollTop;
+      const navListOffset = navListElem.current.getBoundingClientRect().top;
+      const navListHeight = navListElem.current.offsetHeight;
+      const navItemOffset = navLevelElem.current.getBoundingClientRect().top;
       const elementOutOfView =
-        navItemOffset - navListOffset > navListHeight + scrollOffset
+        navItemOffset - navListOffset > navListHeight + scrollOffset;
 
       if (elementOutOfView) {
         navLevelElem.current.scrollIntoView({
           behavior: 'auto',
           block: 'center',
           inline: 'nearest',
-        })
+        });
       }
     }
-  }, [navLevelElem.current, navListElem, selected])
+  }, [navLevelElem.current, navListElem, selected]);
 
   return (
     <>
@@ -132,7 +132,7 @@ const NavLevel = ({
         {categoryData.slug ? (
           <DynamicLink href={categoryData.slug} passHref>
             <NavTitle level={level} selected={selected && !childSelected}>
-              <span className="bg-white pr-2 -mr-2">{categoryData.title}</span>
+              <span className="pr-2 -mr-2">{categoryData.title}</span>
             </NavTitle>
           </DynamicLink>
         ) : (
@@ -141,10 +141,10 @@ const NavLevel = ({
             selected={selected && !childSelected}
             childSelected={childSelected}
             onClick={() => {
-              setExpanded(!expanded)
+              setExpanded(!expanded);
             }}
           >
-            <span className="bg-white pr-2 -mr-2">{categoryData.title}</span>
+            <span className=" pr-2 -mr-2">{categoryData.title}</span>
             {categoryData.items && !selected && (
               <BiChevronRight
                 className={`${
@@ -185,11 +185,11 @@ const NavLevel = ({
         </AnimateHeight>
       )}
     </>
-  )
-}
+  );
+};
 
 interface NavLevelChildContainerProps {
-  level: number
+  level: number;
 }
 
 const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
@@ -206,7 +206,7 @@ const NavLevelChildContainer = styled.div<NavLevelChildContainerProps>`
       padding-top: 0.25rem;
       padding-bottom: 0.125rem;
     `}
-`
+`;
 
 const NavLabelContainer = styled.div<{ status: string }>`
   position: relative;
@@ -240,11 +240,11 @@ const NavLabelContainer = styled.div<{ status: string }>`
         align-self: center;
       }
     `}
-`
+`;
 
 export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
-  const router = useRouter()
-  const navListElem = React.useRef(null)
+  const router = useRouter();
+  const navListElem = React.useRef(null);
 
   return (
     <>
@@ -255,7 +255,7 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
               <DynamicLink key={id + href} href={href} passHref>
                 <div key={id}>{label}</div>
               </DynamicLink>
-            )
+            );
           })}
       </MobileMainNav>
       <DocsNavigationContainer ref={navListElem}>
@@ -271,8 +271,8 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
         ))}
       </DocsNavigationContainer>
     </>
-  )
-}
+  );
+};
 
 const MobileMainNav = styled.div`
   padding: 0.5rem 0;
@@ -303,7 +303,7 @@ const MobileMainNav = styled.div`
   @media (min-width: 1200px) {
     display: none;
   }
-`
+`;
 
 const DocsNavigationContainer = styled.div`
   overflow-y: auto;
@@ -311,14 +311,27 @@ const DocsNavigationContainer = styled.div`
   padding: 0.5rem 0 1.5rem 0;
   margin-right: -1px;
 
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
   @media (min-width: 1600px) {
     padding: 1rem 1rem 2rem 1rem;
   }
-`
+`;
 
 const AnchorIcon = styled.span`
   display: inline-block;
   position: relative;
   transform: translate3d(0, 0, 0);
   transition: all 150ms ease-out;
-`
+`;
