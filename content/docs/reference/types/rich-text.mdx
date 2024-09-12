@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-09-12T06:34:32.301Z'
+last_edited: '2024-09-12T06:36:13.892Z'
 next: ''
 previous: ''
 ---
@@ -126,40 +126,7 @@ export default function MyPage(props) {
 }
 ```
 
-## Caveats
-
-Since markdown and MDX are traditionally handled through some sort of build
-step, Tina's approach adds some constraints to make things work as expected.
-[Read more](/docs/editing/markdown/) about Tina's approach to handling markdown
-and MDX.
-
-### All content must be *serializable*
-
-When we say serializable, we mean that they must not be JavaScript expressions that would need to be executed at any point.
-
-* No support for `import`/`export`
-* No support for JavaScript expressions (eg. `const a = 2`, `console.log("Hello")`)
-
-For example:
-
-```md
-## Today is {new Date().toLocaleString()}
-```
-
-This expression will be ignored, instead register a "Date" `template`:
-
-```md
-## Today is <Date />
-```
-
-Then you can create a `Date` component which returns `new Date().toLocaleString()` under the hood.
-
-### All JSX must be registered as a `template`
-
-In the above example, if you failed to add the `Cta` *template* in your schema definition, the JSX element
-will be treated as html
-
-## Handling markdown
+## Markdown Handling
 
 Since markdown is an open-format Tina does its best to handle the most common syntax's, but in some scenarios Tina will ignore or automatically alter content:
 
@@ -213,6 +180,39 @@ Will be transformed to:
 ```
 * My blockquote
 ```
+
+## Caveats
+
+Since markdown and MDX are traditionally handled through some sort of build
+step, Tina's approach adds some constraints to make things work as expected.
+[Read more](/docs/editing/markdown/) about Tina's approach to handling markdown
+and MDX.
+
+### All content must be *serializable*
+
+When we say serializable, we mean that they must not be JavaScript expressions that would need to be executed at any point.
+
+* No support for `import`/`export`
+* No support for JavaScript expressions (eg. `const a = 2`, `console.log("Hello")`)
+
+For example:
+
+```md
+## Today is {new Date().toLocaleString()}
+```
+
+This expression will be ignored, instead register a "Date" `template`:
+
+```md
+## Today is <Date />
+```
+
+Then you can create a `Date` component which returns `new Date().toLocaleString()` under the hood.
+
+### All JSX must be registered as a `template`
+
+In the above example, if you failed to add the `Cta` *template* in your schema definition, the JSX element
+will be treated as html
 
 ## Markdown tables
 
