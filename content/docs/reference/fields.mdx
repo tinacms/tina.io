@@ -1,6 +1,5 @@
 ---
 id: fields
-
 title: Fields
 last_edited: '2022-06-15T15:51:56.737Z'
 next: content/docs/reference/templates.mdx
@@ -17,15 +16,15 @@ Although some fields have more properties here is a list of common ones that are
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`         | The name of the field                                                                                                                                                                                                                                                                                                                                                 |
 | `type`         | The [type of the field](/docs/reference/types/) to be used                                                                                                                                                                                                                                                                                                            |
-| `label`        | A human friendly label that will be displayed to the user (_optional_, defaults to `name`)                                                                                                                                                                                                                                                                            |
-| `required`     | If `true`, the collection cannot be saved without this field present (_optional_, defaults to `false`)                                                                                                                                                                                                                                                                |
-| `isTitle`      | Denote a field as the title of a collection. [See below for more details](#istitle) (_optional_, defaults to `false`)                                                                                                                                                                                                                                                 |
-| `isBody`       | If `true` this field will be used as the body of the document. [See below for more details](#isbody) (_optional_, defaults to `false`)                                                                                                                                                                                                                                |
+| `label`        | A human friendly label that will be displayed to the user (*optional*, defaults to `name`)                                                                                                                                                                                                                                                                            |
+| `required`     | If `true`, the collection cannot be saved without this field present (*optional*, defaults to `false`)                                                                                                                                                                                                                                                                |
+| `isTitle`      | Denote a field as the title of a collection. [See below for more details](#istitle) (*optional*, defaults to `false`)                                                                                                                                                                                                                                                 |
+| `isBody`       | If `true` this field will be used as the body of the document. [See below for more details](#isbody) (*optional*, defaults to `false`)                                                                                                                                                                                                                                |
 | `nameOverride` | An optional property to allow exporting a field with a special character, that wouldn't be supported by the `name` property. E.g: `{ name: 'custom_id', nameOverride: 'id' }` or `{ name: 'my_field', nameOverride: 'my-field' }`. When a document is written/read to/from GitHub, the nameOverride will be used as the frontmatter field key, instead of the `name`. |
-| `ui`           | Used to extend the user interface of the field and the field behavior. See [extending tina section](/docs/extending-tina/overview/#customizing-fields) for more information (_optional_)                                                                                                                                                                              |
-| `ui.list`      | This can be used to make any field into a list of that type (_optional_)                                                                                                                                                                                                                                                                                              |
-| `ui.min`       | If `{ list: true }` can provide a minimum amount of items (_optional_)                                                                                                                                                                                                                                                                                                |
-| `ui.max`       | If `{ list: true }` can provide a maximum amount of items (_optional_)                                                                                                                                                                                                                                                                                                |
+| `ui`           | Used to extend the user interface of the field and the field behavior. See [extending tina section](/docs/extending-tina/overview/#customizing-fields) for more information (*optional*)                                                                                                                                                                              |
+| `ui.list`      | This can be used to make any field into a list of that type (*optional*)                                                                                                                                                                                                                                                                                              |
+| `ui.min`       | If `{ list: true }` can provide a minimum amount of items (*optional*)                                                                                                                                                                                                                                                                                                |
+| `ui.max`       | If `{ list: true }` can provide a maximum amount of items (*optional*)                                                                                                                                                                                                                                                                                                |
 | `ui.component` | Used for [custom field components](/docs/extending-tina/custom-field-components)                                                                                                                                                                                                                                                                                      |
 | `ui.validate`  | Used for [custom field validation](/docs/extending-tina/validation/)                                                                                                                                                                                                                                                                                                  |
 
@@ -35,9 +34,9 @@ Although some fields have more properties here is a list of common ones that are
 
 Make sure the following is true when using `isTitle`
 
-- It is a top-level field (it is defined in `collections.fields` or `collections.templates.fields`)
-- It is only used once per collection
-- `required` is set to true
+* It is a top-level field (it is defined in `collections.fields` or `collections.templates.fields`)
+* It is only used once per collection
+* `required` is set to true
 
 ### Example of `isTitle`
 
@@ -97,3 +96,13 @@ export default defineConfig({
   },
 })
 ```
+
+## `ui.min` and `ui.max`
+
+`ui.max` only takes effect on `object` field types with `list: true` specified. It also isn't compatible with `object` field types using `templates`. It disables the add button in the editor once a certain number of elements have been added.
+
+`ui.min` can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
+
+* [String Field Type](https://tina.io/docs/reference/types/string/)
+* [Object Field Type](/docs/reference/types/object/)
+* [Image Field Type](/docs/reference/types/image/)
