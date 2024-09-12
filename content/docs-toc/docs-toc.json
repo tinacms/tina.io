@@ -584,11 +584,6 @@
                   "_template": "item"
                 },
                 {
-                  "title": "rich-text",
-                  "slug": "content/docs/reference/types/rich-text.mdx",
-                  "_template": "item"
-                },
-                {
                   "title": "Markdown",
                   "items": [
                     {
