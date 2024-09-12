@@ -587,13 +587,18 @@
                   "title": "Markdown",
                   "items": [
                     {
+                      "title": "rich-text",
+                      "slug": "content/docs/reference/types/rich-text.mdx",
+                      "_template": "item"
+                    },
+                    {
                       "title": "Markdown Tables",
                       "slug": "content/docs/reference/rich-text-usage/markdown-tables.mdx",
                       "_template": "item"
                     },
                     {
-                      "title": "rich-text",
-                      "slug": "content/docs/reference/types/rich-text.mdx",
+                      "title": "Markdown Shortcode",
+                      "slug": "content/docs/reference/rich-text-usage/markdown-shortcode.mdx",
                       "_template": "item"
                     }
                   ],
