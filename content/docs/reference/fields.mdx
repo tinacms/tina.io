@@ -1,7 +1,7 @@
 ---
 id: fields
 title: Fields
-last_edited: '2024-09-12T05:54:05.221Z'
+last_edited: '2024-09-12T05:55:41.615Z'
 next: content/docs/reference/templates.mdx
 previous: content/docs/reference/collections.mdx
 ---
@@ -99,7 +99,7 @@ export default defineConfig({
 
 ## `ui.min` and `ui.max`
 
-`ui.max` only takes effect on `object` field types with `list: true` specified. It also isn't compatible with `object` field types using `templates`. It disables the add button in the editor once a certain number of elements have been added.
+`ui.max` only takes effect on `object` field types with `list: true` specified. It also isn't compatible with `object` field types using `templates`. It disables the add button in the editor once at least the given number of elements have been added.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1726119767/tina-io/docs/Screenshot_2024-09-12_at_3.42.29_pm_odmdvs.png)
 
@@ -122,7 +122,7 @@ export default defineConfig({
 
 `ui.min` checks if there are a certain number of elements (or less), and if so disables the delete button (i.e. the garbage can icon next to each list element). 
 
-It can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
+The minimum can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
 
 * [String Field Type](https://tina.io/docs/reference/types/string/)
 * [Object Field Type](/docs/reference/types/object/)
