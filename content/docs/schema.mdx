@@ -1,7 +1,7 @@
 ---
 id: /docs/schema/
 title: Content Modeling with TinaCMS
-last_edited: '2024-09-12T00:28:09.755Z'
+last_edited: '2024-09-12T00:32:01.630Z'
 next: content/docs/features/data-fetching.mdx
 previous: ''
 ---
@@ -65,10 +65,11 @@ Once we've defined a collection, we can edit its fields through the Tina UI, or 
 
 ## "List" fields
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1726101065/Screenshot_2024-09-12_at_10.29.41_am_p0muts.png)
+
 Specifying `list: true` on *almost any* field type will turn that field into an array of items:
 
 ```js
-// ...
 fields: [
   {
     label: 'Tags',
@@ -79,7 +80,7 @@ fields: [
 ]
 ```
 
-[See Example](https://tina-gql-playground.vercel.app/string-list)
+[Live Example...](https://tina-gql-playground.vercel.app/string-list)
 
 ### Caveats
 
