@@ -1,6 +1,6 @@
 ---
 title: The "reference" field
-last_edited: '2024-09-12T00:48:14.741Z'
+last_edited: '2024-09-12T01:43:58.248Z'
 next: ''
 previous: ''
 ---
@@ -11,7 +11,7 @@ The `reference` field allows a "parent" document to connect to another document 
 
 Once defined, the values of the *referenced* document become available to the parent.
 
-> Note: `reference` with `list: true` is not currently supported. Object type lists can be used [as a wrapper](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) where a reference list is needed.
+> Note: `reference` with `list: true` is not currently supported. Object type lists can be used [as a wrapper](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) around `reference` field types to create a list of references.
 
 ## Object Definition
 
@@ -20,9 +20,9 @@ type ReferenceField = {
   label: string
   name: string
   type: 'reference'
-  /** The `name` of another collection **/
+  // The `name` of another collection
   collections: string[]
-  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
     label?: string
     description?: string
