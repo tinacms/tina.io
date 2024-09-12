@@ -1,6 +1,6 @@
 ---
 title: The "object" field
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2024-09-12T00:45:30.388Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
@@ -106,6 +106,29 @@ Tina will generate the appropriate component depending on the configuration prov
 ```
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381170/Screenshot_2024-07-31_at_9.12.43_AM_gahppr.png)
+
+### Using list object as a wrapper for other types
+
+Number, boolean, datetime and rich-text field types can be used in this way to add list options to the TinaCMS editor.
+
+Reference field types can be used in this way to create a list of references.
+
+```javascript
+{
+  label: "Author List",
+  name: "authorList",
+  type: "object",
+  list: true,      
+  fields: [
+    {
+      label: 'Author',
+      name: 'author',
+      type: 'reference',
+      collections: ['author'],
+    },
+  ]
+}
+```
 
 ### Using templates instead of fields
 
