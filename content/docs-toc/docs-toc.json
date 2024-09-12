@@ -544,10 +544,6 @@
               "title": "Field Types",
               "items": [
                 {
-                  "title": "Markdown",
-                  "_template": "items"
-                },
-                {
                   "title": "Overview",
                   "slug": "content/docs/reference/types.mdx",
                   "_template": "item"
@@ -591,6 +587,17 @@
                   "title": "rich-text",
                   "slug": "content/docs/reference/types/rich-text.mdx",
                   "_template": "item"
+                },
+                {
+                  "title": "Markdown",
+                  "items": [
+                    {
+                      "title": "rich-text",
+                      "slug": "content/docs/reference/types/rich-text.mdx",
+                      "_template": "item"
+                    }
+                  ],
+                  "_template": "items"
                 }
               ],
               "_template": "items"
