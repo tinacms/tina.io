@@ -21,66 +21,39 @@ const Card = ({ cardItem, onHover }) => {
     }
   }
 
-  const calculateDaysUntilEvent = (date) => {
-    const eventDate = new Date(date)
-    const currentDate = new Date()
-    eventDate.setHours(0, 0, 0, 0)
-    currentDate.setHours(0, 0, 0, 0)
-
-    const timeDifference = eventDate.getTime() - currentDate.getTime()
-    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24))
-    return daysDifference
-  }
-
-  const isDateInRange = (startDate, endDate) => {
-    const start = new Date(startDate)
-    const end = new Date(endDate)
-    const current = new Date()
-    start.setHours(0, 0, 0, 0)
-    end.setHours(0, 0, 0, 0)
-    current.setHours(0, 0, 0, 0)
-
-    return current >= start && current <= end
-  }
-
-  const formatStartDate = (date) => {
-    const d = new Date(date)
-    return `${d.getDate()}${getOrdinalSuffix(d.getDate())} ${format(d, 'MMM')}`
-  }
-
-  const formatDateRange = (start, end) => {
-    const startDate = new Date(start)
-    const endDate = new Date(end)
-    if (startDate.getMonth() === endDate.getMonth()) {
-      return `${startDate.getDate()}${getOrdinalSuffix(
-        startDate.getDate()
-      )} - ${endDate.getDate()}${getOrdinalSuffix(endDate.getDate())} ${format(
-        endDate,
-        'MMM'
-      )}`
-    }
-    return `${startDate.getDate()}${getOrdinalSuffix(
-      startDate.getDate()
-    )} ${format(startDate, 'MMM')} - ${endDate.getDate()}${getOrdinalSuffix(
-      endDate.getDate()
-    )} ${format(endDate, 'MMM')}`
+  const dateFormat = (start, end?): string => {
+    //Gets the start date in the event time, which is "UTC" from how it's stored
+    const startDay = `${new Date(start).getUTCDate() + getOrdinalSuffix(new Date(start).getUTCDate())}`
+    const startMonth = format(new Date(start), 'MMM')
+    //Gets the end date in the event time, which is "UTC" from how it's stored
+    const endDateAndHyphen = end ? ` - ${new Date(end).getUTCDate() + getOrdinalSuffix(new Date(end).getUTCDate())}` : ''
+    const endMonth = end ? format(new Date(end), 'MMM') : ''
+    //Formats the dates into a single string
+    return `${startDay} ${startMonth == endMonth ? '' : startMonth}${endDateAndHyphen} ${endMonth ?? startMonth}`
   }
 
   const displayDate = () => {
-    if (cardItem.startDate && cardItem.endDate) {
-      return formatDateRange(cardItem.startDate, cardItem.endDate)
-    } else if (cardItem.startDate) {
-      return formatStartDate(cardItem.startDate)
+    if (cardItem.startDate) {
+      return dateFormat(cardItem.startDate, cardItem.endDate)
     }
     return ''
   }
 
-  const daysUntilEvent = calculateDaysUntilEvent(cardItem.startDate)
-  const isPastEvent = daysUntilEvent < 0
+  //Gets the accurate start date-time in UTC, by applying the offset and event start time. 
+  //Note that getting UTC minutes is actually getting the time in the event timezone, based on how the values are being stored.
+  const startDateUTC = new Date(Date.parse(cardItem.startDate))
+  startDateUTC.setUTCMinutes(startDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + ((cardItem.startTime) * 60))
+  //Gets the provided end date at midnight in UTC, or for one day events the start date is re-used.
+  const endDateUTC = new Date(Date.parse(cardItem.endDate ?? cardItem.startDate))
+  endDateUTC.setUTCMinutes(endDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + (24 * 60))
+  //Calculate the hours until the event/event end by subtracting start and end dates (in UTC) against the current local time (in UTC).
+  const hoursUntilEvent = Math.ceil((startDateUTC.getTime() - (new Date()).getTime()) / 36e5)
+  const hoursUntilEventEnd = Math.ceil((endDateUTC.getTime() - (new Date()).getTime()) / 36e5)
+
+  const isLiveOrPastEvent = hoursUntilEvent < 0
   const isLiveEvent =
-    cardItem.startDate &&
-    cardItem.endDate &&
-    isDateInRange(cardItem.startDate, cardItem.endDate)
+    hoursUntilEvent <= 0 &&
+    hoursUntilEventEnd > 0
 
   return (
     <div
@@ -108,11 +81,16 @@ const Card = ({ cardItem, onHover }) => {
           <p className="mr-2">{displayDate()}</p>
           {isLiveEvent ? (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">LIVE</span>
-          ) : isPastEvent ? (
+          ) : isLiveOrPastEvent ? (
             <span className="bg-slate-200 px-2 rounded text-sm text-gray-700 shadow-lg opacity-60">DONE</span>
           ) : (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
-              {daysUntilEvent} DAY{daysUntilEvent > 1 ? 'S' : ''} TO GO
+                  {
+                  hoursUntilEvent >= 24 ? 
+                    `${Math.floor(hoursUntilEvent / 24)} DAY${hoursUntilEvent >= 48 ? 'S' : ''} TO GO` 
+                  : 
+                    `${hoursUntilEvent} HOUR${hoursUntilEvent > 1 ? 'S' : ''} TO GO` 
+                  }
             </span>
           )}
         </div>
