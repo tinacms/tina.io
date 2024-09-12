@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-09-12T06:31:48.373Z'
+last_edited: '2024-09-12T06:34:32.301Z'
 next: ''
 previous: ''
 ---
@@ -38,7 +38,7 @@ configuration provided.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381461/Screenshot_2024-07-31_at_9.17.27_AM_hu7wj1.png)
 
-### Toolbar Override
+### Toolbar override
 
 Change what you want to display and the order it is displayed in the editor
 
@@ -54,7 +54,7 @@ Change what you want to display and the order it is displayed in the editor
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381590/Screenshot_2024-07-31_at_9.19.47_AM_dukos7.png)
 
-### Custom custom templates
+### Custom templates
 
 ```ts
 {
@@ -78,7 +78,7 @@ Change what you want to display and the order it is displayed in the editor
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381505/Screenshot_2024-07-31_at_9.18.10_AM_p93fjv.png)
 
-Given a markdown file like this:
+In markdown, this would look like...
 
 ```md
 ## Hello, world!
@@ -87,10 +87,6 @@ This is some text
 
 <Cta heading="Welcome" />
 ```
-
-Results in the following response from the content API:
-
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20body%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
 
 ## Using `TinaMarkdown`
 
@@ -130,8 +126,6 @@ export default function MyPage(props) {
 }
 ```
 
-***
-
 ## Caveats
 
 Since markdown and MDX are traditionally handled through some sort of build
@@ -164,8 +158,6 @@ Then you can create a `Date` component which returns `new Date().toLocaleString(
 
 In the above example, if you failed to add the `Cta` *template* in your schema definition, the JSX element
 will be treated as html
-
-***
 
 ## Handling markdown
 
