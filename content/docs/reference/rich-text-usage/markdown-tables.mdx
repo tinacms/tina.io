@@ -1,6 +1,6 @@
 ---
 title: Markdown Tables
-last_edited: '2024-09-12T06:50:38.070Z'
+last_edited: '2024-09-12T06:53:37.997Z'
 next: ''
 previous: ''
 ---
@@ -27,18 +27,19 @@ import { tinaTableTemplate } from 'tinacms'
 Render it with the `table` component in `<TinaMarkdown>`. Note that the table cell's `value` is a rich-text element so should be rendered with a nested `<TinaMarkdown>` component:
 
 ```tsx
-
 const MyTable = props => <table>
-  {props.tableRows.map((tableRow) => (
-    <tr>
-      {tableRow.tableCells.map((tableCell) => (
-        <td>
-          <TinaMarkdown content={tableCell.value} />
-        </td>
-      ))}
-    </tr>
-  ))}
-</table>
+    {props.tableRows?.map((tableRow, i) => (
+      <tbody key={i}>
+        <tr>
+          {tableRow.tableCells?.map((tableCell, j) => (
+            <td key={j}>
+              <TinaMarkdown content={tableCell.value} />
+            </td>
+          ))}
+        </tr>
+      </tbody>
+    ))}
+  </table>
 
-<TinaMarkdown components={{ table: (props) => <MyTable {...props} /> }} />
+<TinaMarkdown content={data.page._body} components={{ table: (props) => <MyTable {...props} /> }} />
 ```
