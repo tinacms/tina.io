@@ -1,7 +1,7 @@
 ---
 id: fields
 title: Fields
-last_edited: '2022-06-15T15:51:56.737Z'
+last_edited: '2024-09-12T05:46:43.912Z'
 next: content/docs/reference/templates.mdx
 previous: content/docs/reference/collections.mdx
 ---
@@ -101,8 +101,41 @@ export default defineConfig({
 
 `ui.max` only takes effect on `object` field types with `list: true` specified. It also isn't compatible with `object` field types using `templates`. It disables the add button in the editor once a certain number of elements have been added.
 
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1726119767/tina-io/docs/Screenshot_2024-09-12_at_3.42.29_pm_odmdvs.png)
+
+```javascript
+{
+  type: "object",
+  label: "Object List",
+  name: "objectList",
+  list: true,
+  ui: {
+    max: 3,
+  },
+  fields: [
+    {
+     //...
+    },
+  ]
+}
+```
+
 `ui.min` can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
 
 * [String Field Type](https://tina.io/docs/reference/types/string/)
 * [Object Field Type](/docs/reference/types/object/)
 * [Image Field Type](/docs/reference/types/image/)
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1726119937/tina-io/docs/Screenshot_2024-09-12_at_3.45.11_pm_newuzo.png)
+
+```javascript
+{
+  type: "string",
+  label: "Author",
+  name: "author",
+  list: true,
+  ui: {
+    min: 3,
+  }
+}
+```
