@@ -1,7 +1,7 @@
 ---
 id: fields
 title: Fields
-last_edited: '2024-09-12T05:46:43.912Z'
+last_edited: '2024-09-12T05:54:05.221Z'
 next: content/docs/reference/templates.mdx
 previous: content/docs/reference/collections.mdx
 ---
@@ -120,19 +120,21 @@ export default defineConfig({
 }
 ```
 
-`ui.min` can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
+`ui.min` checks if there are a certain number of elements (or less), and if so disables the delete button (i.e. the garbage can icon next to each list element). 
+
+It can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
 
 * [String Field Type](https://tina.io/docs/reference/types/string/)
 * [Object Field Type](/docs/reference/types/object/)
 * [Image Field Type](/docs/reference/types/image/)
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1726119937/tina-io/docs/Screenshot_2024-09-12_at_3.45.11_pm_newuzo.png)
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1726120291/tina-io/docs/Screenshot_2024-09-12_at_3.50.44_pm_dikc3n.png)
 
 ```javascript
 {
   type: "string",
-  label: "Author",
-  name: "author",
+  label: "Llamas",
+  name: "llamas",
   list: true,
   ui: {
     min: 3,
