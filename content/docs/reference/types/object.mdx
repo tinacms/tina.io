@@ -1,6 +1,6 @@
 ---
 title: The "object" field
-last_edited: '2024-09-12T00:45:30.388Z'
+last_edited: '2024-09-12T01:46:49.912Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
@@ -13,19 +13,18 @@ type ObjectField = {
   name: string
   type: 'object'
   list?: boolean
-  /** `fields OR `templates` may be provided, not both **/
+  // `fields` OR `templates` may be provided, not both
   fields?: Field[]
   templates?: Template[]
   /** Customize the default "_template" key that gets set
      in a document to identify a block-type.
      Only applicable when list: true **/
   templatesKey?: string
-  list?: boolean
-  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
-     /** Weather or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental **/
+     // Whether or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental
     visualSelector?: boolean,
-    // Note: defaultItem can only can be used when {list: true}
+    // defaultItem can only can be used when {list: true}
     defaultItem?: Record<string, any> | () => Record<string, any>,
     itemProps?(
       item: Record<string, any>
