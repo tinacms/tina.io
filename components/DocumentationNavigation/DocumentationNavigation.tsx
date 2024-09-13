@@ -60,7 +60,7 @@ const MobileNavToggle = styled(NavToggle)<{ open: boolean }>`
   padding: 0 0 0 1rem;
   border-radius: 0 2rem 2rem 0;
   width: 3.25rem;
-  z-index: 1300;
+  z-index: 49;
   transition: left 0.3s ease, right 0.3s ease;
 
   @media (min-width: 840px) {
