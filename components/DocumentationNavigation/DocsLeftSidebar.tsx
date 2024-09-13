@@ -6,14 +6,14 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
 
   padding: 10px;
   position: fixed;
-  z-index: 250;
+  z-index: 49;
   left: 0; 
   top: 0;
   width: 80%;
   min-width: 16rem;
   max-width: 24rem;
   height: 100%; 
-  z-index: 1250;
+  z-index: 49;
   transform: translate3d(-100%, 0, 0);
   transition: all 140ms ease-in;
   display: flex;
