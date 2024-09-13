@@ -42,7 +42,7 @@ export const VersionSelect = () => {
         aria-label="Version"
       >
         {selectedVersion.label}
-        <FaChevronDown/>
+        <FaChevronDown className='pl-1'/>
       </button>
 
       
