@@ -120,7 +120,7 @@ export default defineConfig({
 }
 ```
 
-`ui.min` checks if there are a certain number of elements (or less), and if so disables the delete button (i.e. the garbage can icon next to each list element).
+`ui.min` will ensure that once the specified minimum number of items is added (ex: 3 in the example), users will not be able to remove items if there are only the minimum number of items. 
 
 It can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
 
