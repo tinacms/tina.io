@@ -51,19 +51,23 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
   );
 }
 
-const MobileNavToggle = styled(NavToggle)`
+const MobileNavToggle = styled(NavToggle)<{ open: boolean }>`
   position: fixed;
+  top: 20px;
+  left: ${props => (props.open ? 'auto' : '0px')}; 
+  right: ${props => (props.open ? '75px' : 'auto')};
   background: var(--color-light);
-  margin-top: 1rem;
   padding: 0 0 0 1rem;
   border-radius: 0 2rem 2rem 0;
   width: 3.25rem;
   z-index: 1300;
+  transition: left 0.3s ease, right 0.3s ease;
 
   @media (min-width: 840px) {
     display: none;
   }
 `;
+
 
 const DocsSidebarHeader = styled.div`
   display: flex;
