@@ -22,10 +22,10 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   overflow: visible;
   
   border-radius: 0.75rem; 
-  box-shadow: 0 30px 40px -10px rgba(0, 0, 0, 0.2), 
-              0 -5px 30px -10px rgba(0, 0, 0, 0.1), 
-              0 15px 20px -5px rgba(0, 0, 0, 0.1), 
-              0 -5px 20px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.05), 
+              0 -5px 30px -5px rgba(0, 0, 0, 0.05), 
+              0 15px 20px -5px rgba(0, 0, 0, 0.05), 
+              0 -5px 20px -5px rgba(0, 0, 0, 0.05);
 
   > ul {
     flex: 1 1 auto;
