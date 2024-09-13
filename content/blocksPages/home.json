@@ -131,51 +131,6 @@
       "_template": "logoGrid"
     },
     {
-      "title": "Where's Tina?",
-      "cardItems": [
-        {
-          "headline": "NDC Porto",
-          "startDate": "2024-10-13T13:00:00.000Z",
-          "endDate": "2024-10-17T13:00:00.000Z",
-          "location": "Porto, Portugal",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
-          "link": "https://ndcporto.com/",
-          "markerLAT": 8,
-          "markerLONG": 41
-        },
-        {
-          "headline": "CPH Dev Fest",
-          "startDate": "2024-08-25T14:00:00.000Z",
-          "endDate": "2024-08-29T14:00:00.000Z",
-          "location": "Copenhagen, Denmark",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215863/704853_s2w9sg.jpg",
-          "link": "https://cphdevfest.com/",
-          "markerLAT": -8,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC Oslo",
-          "startDate": "2024-05-18T14:00:00.000Z",
-          "endDate": "2024-05-22T14:00:00.000Z",
-          "location": "Oslo, Norway",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215929/Norway_Oslo_Houses_Marinas_Bay_569380_1920x1080_ocqvvo.jpg",
-          "link": "https://ndcoslo.com/",
-          "markerLAT": -1,
-          "markerLONG": 59
-        },
-        {
-          "headline": "/serverless/DAYS ANZ",
-          "startDate": "2024-05-20T14:00:00.000Z",
-          "location": "Sydney, Australia",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215959/716104_jwhkyu.jpg",
-          "link": "https://anz.serverlessdays.io/sydney/",
-          "markerLAT": 207,
-          "markerLONG": 35
-        }
-      ],
-      "_template": "events"
-    },
-    {
       "features": [
         {
           "headline": "Own Your Content",
@@ -424,6 +379,57 @@
         }
       ],
       "_template": "features"
+    },
+    {
+      "title": "Where's Tina?",
+      "cardItems": [
+        {
+          "headline": "NDC Porto",
+          "startDate": "2024-10-14T00:00:00.000Z",
+          "startTime": 9,
+          "endDate": "2024-10-18T00:00:00.000Z",
+          "timezone": 1,
+          "location": "Porto, Portugal",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
+          "link": "https://ndcporto.com/",
+          "markerLAT": 8,
+          "markerLONG": 41
+        },
+        {
+          "headline": "CPH Dev Fest",
+          "startDate": "2024-08-26T00:00:00.000Z",
+          "endDate": "2024-08-30T00:00:00.000Z",
+          "timezone": 2,
+          "location": "Copenhagen, Denmark",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215863/704853_s2w9sg.jpg",
+          "link": "https://cphdevfest.com/",
+          "markerLAT": -8,
+          "markerLONG": 59
+        },
+        {
+          "headline": "NDC Oslo",
+          "startDate": "2024-05-19T00:00:00.000Z",
+          "startTime": 9,
+          "endDate": "2024-05-23T00:00:00.000Z",
+          "timezone": 2,
+          "location": "Oslo, Norway",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215929/Norway_Oslo_Houses_Marinas_Bay_569380_1920x1080_ocqvvo.jpg",
+          "link": "https://ndcoslo.com/",
+          "markerLAT": -1,
+          "markerLONG": 59
+        },
+        {
+          "headline": "/serverless/DAYS ANZ",
+          "startDate": "2024-05-21T00:00:00.000Z",
+          "timezone": 10,
+          "location": "Sydney, Australia",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215959/716104_jwhkyu.jpg",
+          "link": "https://anz.serverlessdays.io/sydney/",
+          "markerLAT": 207,
+          "markerLONG": 35
+        }
+      ],
+      "_template": "events"
     },
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
