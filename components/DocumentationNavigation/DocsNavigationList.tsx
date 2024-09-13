@@ -248,16 +248,6 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
 
   return (
     <>
-      <MobileMainNav>
-        {docsLinks &&
-          docsLinks.map(({ id, href, label }) => {
-            return (
-              <DynamicLink key={id + href} href={href} passHref>
-                <div key={id}>{label}</div>
-              </DynamicLink>
-            );
-          })}
-      </MobileMainNav>
       <DocsNavigationContainer ref={navListElem}>
         {navItems.map((categoryData) => (
           <NavLevel
