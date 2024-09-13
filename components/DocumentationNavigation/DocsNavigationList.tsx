@@ -264,36 +264,6 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   );
 };
 
-const MobileMainNav = styled.div`
-  padding: 0.5rem 0;
-  background: var(--color-grey-1);
-  border-bottom: 1px solid var(--color-light-dark);
-
-  a {
-    display: block;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.375rem 1rem 0.375rem 1rem;
-    color: var(--color-orange);
-    margin: 0;
-    font-family: var(--font-tuner);
-    font-style: normal;
-    opacity: 1;
-    transition: transform 180ms ease-out;
-    line-height: 1;
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      transform: translate3d(-1px, -2px, 0);
-    }
-  }
-
-  @media (min-width: 1200px) {
-    display: none;
-  }
-`;
 
 const DocsNavigationContainer = styled.div`
   overflow-y: auto;
