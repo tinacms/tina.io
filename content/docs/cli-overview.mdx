@@ -63,12 +63,13 @@ This command compiles and validates the schema and generates the client and type
 
 This command takes all the common [options](#common-options) as well as a few others:
 
-| Argument                 | Description                                                                                                                    |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `--tina-graphql-version` | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)                           |
-| `--local`                | Will start the local Graphql server and generate the local client. This is useful for static builds but will not work with SSR |
-| `--skip-cloud-checks`    | Skip the TinaCloud checks (dangerous and not recommended)                                                                      |
-| `--skip-search-indexing` | Skip the search indexing                                                                                                       |
+| Argument                  | Description                                                                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `--tina-graphql-version`  | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)                           |
+| `--local`                 | Will start the local Graphql server and generate the local client. This is useful for static builds but will not work with SSR |
+| `--skip-cloud-checks`     | Skip the TinaCloud checks (dangerous and not recommended)                                                                      |
+| `--skip-search-indexing`  | Skip the search indexing                                                                                                       |
+| `--no-client-build-cache` | Disables automatic caching of queries by local client                                                                          |
 
 #### Examples:
 
@@ -92,11 +93,11 @@ tinacms build --local -c "next build"
 
 This will
 
-- Start the local graphql server
-- Generate the local TinaCMS client that will query the local file system
-- Produce local image paths
-- build production SPA
-- run Next build
+* Start the local graphql server
+* Generate the local TinaCMS client that will query the local file system
+* Produce local image paths
+* build production SPA
+* run Next build
 
 ### "npx @tinacms/cli\@latest init"
 
@@ -108,10 +109,10 @@ npx @tinacms/cli init
 
 This will:
 
-- Install all required dependencies for Tina.
-- Define a basic content schema in the `tina` directory.
-- Create example content in the demo directory.
-- Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
+* Install all required dependencies for Tina.
+* Define a basic content schema in the `tina` directory.
+* Create example content in the demo directory.
+* Edit the `package.json` to have the `dev`, `build`, and `start` scripts run the tina GraphQL API.
 
 #### Options
 
@@ -123,8 +124,8 @@ This will:
 
 The `audit` command is used for checking for errors in your in your files. It currently does two things.
 
-- Checks to see if the files have the correct extension
-- Submits each file as a Graphql mutation and checks for Graphql errors
+* Checks to see if the files have the correct extension
+* Submits each file as a Graphql mutation and checks for Graphql errors
 
 By default the mutation will not change the content of the files.
 

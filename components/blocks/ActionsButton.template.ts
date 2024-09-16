@@ -1,6 +1,20 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
-
-export const actionsButtonTemplateFields = {
+export const actionsButtonTemplate = {
+  label: 'Actions',
+  name: 'actions',
+  type: 'object',
+  list: true,
+  ui: {
+    itemProps: (item) => {
+      return { label: item?.label }
+    },
+    defaultItem: {
+      variant: 'default',
+      label: 'Secondary Action',
+      icon: false,
+      size: 'medium',
+      url: '/',
+    },
+  },
   fields: [
     { name: 'label', label: 'Label', type: 'string' },
     { name: 'icon', label: 'Icon', type: 'boolean' },

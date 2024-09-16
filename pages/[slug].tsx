@@ -17,7 +17,6 @@ const Page = props => {
   return <BlocksPage data={data} recentPosts={tinaData.data.recentPosts} />
 }
 
-// Data Fetching
 export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,

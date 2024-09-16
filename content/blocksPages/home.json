@@ -131,53 +131,7 @@
       "_template": "logoGrid"
     },
     {
-      "title": "Where's Tina?",
-      "cardItems": [
-        {
-          "headline": "NDC Porto",
-          "startDate": "2024-10-13T13:00:00.000Z",
-          "endDate": "2024-10-17T13:00:00.000Z",
-          "location": "Porto, Portugal",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
-          "link": "https://ndcporto.com/",
-          "markerLAT": 8,
-          "markerLONG": 41
-        },
-        {
-          "headline": "CPH Dev Fest",
-          "startDate": "2024-08-25T14:00:00.000Z",
-          "endDate": "2024-08-29T14:00:00.000Z",
-          "location": "Copenhagen, Denmark",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215863/704853_s2w9sg.jpg",
-          "link": "https://cphdevfest.com/",
-          "markerLAT": -8,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC Oslo",
-          "startDate": "2024-05-18T14:00:00.000Z",
-          "endDate": "2024-05-22T14:00:00.000Z",
-          "location": "Oslo, Norway",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215929/Norway_Oslo_Houses_Marinas_Bay_569380_1920x1080_ocqvvo.jpg",
-          "link": "https://ndcoslo.com/",
-          "markerLAT": -1,
-          "markerLONG": 59
-        },
-        {
-          "headline": "/serverless/DAYS ANZ",
-          "startDate": "2024-05-20T14:00:00.000Z",
-          "location": "Sydney, Australia",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215959/716104_jwhkyu.jpg",
-          "link": "https://anz.serverlessdays.io/sydney/",
-          "markerLAT": 207,
-          "markerLONG": 35
-        }
-      ],
-      "_template": "events"
-    },
-    {
-      "blockHeadline": "Why Tina?",
-      "items": [
+      "features": [
         {
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit",
@@ -464,6 +418,57 @@
       "_template": "features"
     },
     {
+      "title": "Where's Tina?",
+      "cardItems": [
+        {
+          "headline": "NDC Porto",
+          "startDate": "2024-10-14T00:00:00.000Z",
+          "startTime": 9,
+          "endDate": "2024-10-18T00:00:00.000Z",
+          "timezone": 1,
+          "location": "Porto, Portugal",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
+          "link": "https://ndcporto.com/",
+          "markerLAT": 8,
+          "markerLONG": 41
+        },
+        {
+          "headline": "CPH Dev Fest",
+          "startDate": "2024-08-26T00:00:00.000Z",
+          "endDate": "2024-08-30T00:00:00.000Z",
+          "timezone": 2,
+          "location": "Copenhagen, Denmark",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215863/704853_s2w9sg.jpg",
+          "link": "https://cphdevfest.com/",
+          "markerLAT": -8,
+          "markerLONG": 59
+        },
+        {
+          "headline": "NDC Oslo",
+          "startDate": "2024-05-19T00:00:00.000Z",
+          "startTime": 9,
+          "endDate": "2024-05-23T00:00:00.000Z",
+          "timezone": 2,
+          "location": "Oslo, Norway",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215929/Norway_Oslo_Houses_Marinas_Bay_569380_1920x1080_ocqvvo.jpg",
+          "link": "https://ndcoslo.com/",
+          "markerLAT": -1,
+          "markerLONG": 59
+        },
+        {
+          "headline": "/serverless/DAYS ANZ",
+          "startDate": "2024-05-21T00:00:00.000Z",
+          "timezone": 10,
+          "location": "Sydney, Australia",
+          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215959/716104_jwhkyu.jpg",
+          "link": "https://anz.serverlessdays.io/sydney/",
+          "markerLAT": 207,
+          "markerLONG": 35
+        }
+      ],
+      "_template": "events"
+    },
+    {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
       "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693503685/tina-io/new-homepage/unity-logo.png",
@@ -526,6 +531,86 @@
         }
       ],
       "_template": "testimonials"
+    },
+    {
+      "features": [
+        {
+          "headline": "Avoid Mistakes with Editorial Workflow",
+          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
+          "buttons": [
+            {
+              "label": "Editorial Workflow",
+              "icon": false,
+              "variant": "blue",
+              "size": "small",
+              "url": "/editorial-workflow",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "src": "v1689260393/blog-media/editorial-workflow/create-branch",
+              "_template": "video"
+            }
+          ]
+        },
+        {
+          "headline": "Unbeatable UX",
+          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
+          "media": [
+            {
+              "src": "tina-io/new-homepage/homepage-demo-2",
+              "_template": "video"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "items": [
+        {
+          "headline": "Visual Editing",
+          "text": "See content changes in real-time as you edit. ",
+          "url": "https://quick-edit-demo.vercel.app/admin#/"
+        },
+        {
+          "headline": "Open-Source",
+          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on TinaCloud.",
+          "url": "https://github.com/tinacms/tinacms"
+        },
+        {
+          "headline": "Develop Locally",
+          "text": "Easily set up and run Tina locally to talk to your local filesystem.",
+          "url": "/"
+        },
+        {
+          "headline": "3rd-party Media",
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud.",
+          "url": "/docs/reference/media/overview/"
+        },
+        {
+          "headline": "Control your Components",
+          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want.",
+          "url": "/docs/editing/blocks/"
+        },
+        {
+          "headline": "Markdown at Scale ",
+          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content.",
+          "url": "/docs/editing/overview/"
+        },
+        {
+          "headline": "Git Integration",
+          "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub.",
+          "url": "/editorial-workflow/"
+        },
+        {
+          "headline": "Easy Documentation",
+          "text": "Tina’s docs run on TinaCMS – check it out!",
+          "url": "/docs/"
+        }
+      ],
+      "_template": "featureGrid"
     },
     {
       "title": "Recent Posts",
