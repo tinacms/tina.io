@@ -29,6 +29,8 @@
     "graphql": "^15.5.1"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.8",
+    "@heroicons/react": "^2.1.5",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^14.2.8",
     "@react-three/drei": "^9.107.0",
@@ -45,6 +47,7 @@
     "autoprefixer": "^10.4.20",
     "axios": "^0.21.2",
     "btoa": "^1.2.1",
+    "date-fns": "^4.0.0",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
     "fast-glob": "^3.1.1",
