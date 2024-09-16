@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { Overlay } from '../ui/Overlay';
 import { DocsLeftSidebar } from './DocsLeftSidebar';
 import { DocsNavigationList } from './DocsNavigationList';
-import { NavToggle } from '../ui/NavToggle';
 import styled from 'styled-components';
-import { DocsHeaderNav } from './DocsHeaderNav';
-import { TinaIcon } from '../../components/logo/TinaIcon';
 import { useRouter } from 'next/router';
 import { FallbackPlaceholder } from '../../components/fallback-placeholder';
 import Search from '../search';
 import { HitsWrapper } from '../../components/search/styles';
 import { searchIndices } from '../../components/search/indices';
 import { VersionSelect } from './VersionSelect';
-import { Navbar } from 'components/layout/Navbar';
+import { BiMenu } from 'react-icons/bi';
+import { IoMdClose } from 'react-icons/io';
 
 export interface DocsNavProps {
   navItems: any;
@@ -23,26 +21,38 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
   const router = useRouter();
   return (
     <>
-      <MobileNavToggle
-        open={mobileNavIsOpen}
-        onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
-      />
+      
+      {!mobileNavIsOpen && (
+        <MobileNavToggle
+          open={mobileNavIsOpen}  
+          onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
+        />
+      )}
+      
       <DocsLeftSidebar open={mobileNavIsOpen}>
         <DocsSidebarHeaderWrapper>
           <DocsSidebarHeader>
-            <div className='text-2xl leading-tight mt-2.5 ml-2 font-tuner text-orange-500'>
+            <div className="text-2xl leading-tight mt-2.5 ml-2 font-tuner text-orange-500">
               Tina Docs
             </div>
             <VersionSelect />
           </DocsSidebarHeader>
+
+         
+          <CloseButton mobileNavIsOpen={mobileNavIsOpen} onClick={() => setMobileNavIsOpen(false)}>
+            <IoMdClose className="icon close-icon text-orange-500 hover:text-orange-400" />
+          </CloseButton>
+
           <Search collapse expanded={true} indices={searchIndices} />
         </DocsSidebarHeaderWrapper>
+
         {router.isFallback ? (
           <FallbackPlaceholder />
         ) : (
           <DocsNavigationList navItems={navItems} />
         )}
       </DocsLeftSidebar>
+
       <Overlay
         open={mobileNavIsOpen}
         onClick={() => setMobileNavIsOpen(false)}
@@ -51,23 +61,69 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
   );
 }
 
-const MobileNavToggle = styled(NavToggle)<{ open: boolean }>`
+
+const MobileNavToggle = ({ open, onClick }: { open: boolean, onClick: () => void }) => {
+  return (
+    <ToggleWrapper open={open} onClick={onClick}>
+      <BiMenu className="icon menu-icon text-orange-500 hover:text-orange-400 mt-[8px] mb-[6px] mr-[7px]" />
+    </ToggleWrapper>
+  );
+};
+
+
+const CloseButton = styled.button<{ mobileNavIsOpen: boolean }>`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  .icon {
+    font-size: 1.75rem;
+    transition: transform 0.3s ease;
+  }
+
+  .close-icon {
+    transform: rotate(0deg);
+  }
+
+  @media (min-width: 840px) {
+    display: none;
+  }
+
+  display: ${(props) => (props.mobileNavIsOpen ? 'block' : 'none')};
+`;
+
+const ToggleWrapper = styled.button<{ open: boolean }>`
   position: fixed;
   top: 20px;
-  left: ${props => (props.open ? 'auto' : '0px')}; 
-  right: ${props => (props.open ? '75px' : 'auto')};
+  left: ${(props) => (props.open ? 'auto' : '0px')};
+  right: 20px;
   background: var(--color-light);
   padding: 0 0 0 1rem;
   border-radius: 0 2rem 2rem 0;
   width: 3.25rem;
   z-index: 49;
   transition: left 0.3s ease, right 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-icon {
+    transform: rotate(0deg);
+  }
 
   @media (min-width: 840px) {
     display: none;
   }
 `;
-
 
 const DocsSidebarHeader = styled.div`
   display: flex;
