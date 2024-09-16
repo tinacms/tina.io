@@ -10,6 +10,16 @@ yarn install
 yarn dev
 ```
 
+## Vision
+Make a wesbite to communicate the awesomeness of TinaCMS
+
+## Tech Stack
+NextJS
+TinaCMS
+GitHub
+Markdown
+
+
 ### Testing Local TinaCMS Changes
 
 If you have the **tinacms** repository cloned locally you can use it when running **tina.io**:
