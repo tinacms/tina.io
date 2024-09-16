@@ -33,7 +33,7 @@ const Tinacms = ({ items }) => {
           {items.map((item) => (
             <div
               key={item.id}
-              className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105"
+              className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105 bg-gradient-to-br from-white/25 via-white/50 to-white/75"
             >
               <h2 className="text-2xl bg-gradient-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent text-blue-700 font-semibold">
                 Version {item.versionNumber}
