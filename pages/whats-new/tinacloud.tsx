@@ -2,6 +2,8 @@ import { Layout } from 'components/layout'
 import client from 'tina/__generated__/client'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents'
+import Link from 'next/link'
+import { FaGithub, FaNewspaper } from 'react-icons/fa'
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
@@ -50,6 +52,14 @@ const Tinacloud = ({ items }) => {
               </div>
             ))
           )}
+        </div>
+        <div className="font-tuner text-lg text-center text-blue-700">
+          <Link
+            href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"
+            className="flex items-center justify-center"
+          >
+            See Newsletters <FaNewspaper className='ml-2' />
+          </Link>
         </div>
       </div>
     </Layout>

@@ -3,7 +3,7 @@ import client from 'tina/__generated__/client';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import Link from 'next/link';
 import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaNewspaper } from 'react-icons/fa';
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
@@ -54,6 +54,12 @@ const Tinacms = ({ items }) => {
             className="flex items-center justify-center"
           >
             See more on GitHub <FaGithub className="ml-2" />
+          </Link>
+          <Link
+            href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"
+            className="flex items-center justify-center"
+          >
+            See Newsletters <FaNewspaper className='ml-2' />
           </Link>
         </div>
       </div>
