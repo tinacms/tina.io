@@ -14,27 +14,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: yarn install, build, and test
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - name: pnpm install, build, and test
         run: |
-          yarn install
-          yarn build
-          yarn lint
-          yarn test
+          pnpm i
+          pnpm build
+          pnpm lint
+          pnpm test
         env:
           CI: true
-      - name: yarn export
+      - name: pnpm export
         run: |
-          yarn export
+          pnpm export
         env:
           CI: true
       - name: 📉 Check HTML
