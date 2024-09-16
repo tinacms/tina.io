@@ -10,9 +10,10 @@ interface DynamicLinkProps extends ExtraProps {
 
 export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
   return (
-    <Link href={href} {...props} legacyBehavior>
-      <a className="cursor-pointer">{children}</a>
+    <Link href={href} {...props} className="cursor-pointer">
+      {children}
     </Link>
   );
 };
+
 
