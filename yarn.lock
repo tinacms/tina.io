@@ -2202,10 +2202,10 @@
   dependencies:
     "@types/pg" "8.6.6"
 
-"@next/bundle-analyzer@^14.2.8":
-  version "14.2.9"
-  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-14.2.9.tgz#a4f68bf975c5d81c9421eb3becd41832ef9200d0"
-  integrity sha512-r+h5vdrx3+tZoMysJmDsfy3OXPqwuTTiQYytCPl5qfngHqeusV3im8Bjbmm4ZsOsIcqh/BQrChO8u7wFXavHKA==
+"@next/bundle-analyzer@^14.2.11":
+  version "14.2.11"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-14.2.11.tgz#503751572d768bbe9aa1a013d25f585b6c2f5780"
+  integrity sha512-wFPjuXVlLkheng8BTG/K8UN8lRg93E5ZdE9gSmxpRP0XwC58w1B8wITXWeTD/Js4ObxyhxhiCrZzt2X+QJrrMw==
   dependencies:
     webpack-bundle-analyzer "4.10.1"
 
