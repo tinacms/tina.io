@@ -1,59 +1,79 @@
-import React, { useState, Suspense, useRef, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { format } from 'date-fns'
-import { FaCheck, FaChevronRight } from 'react-icons/fa'
+import { format } from 'date-fns';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { FaCheck, FaChevronRight } from 'react-icons/fa';
 
-const LazyGlobe = React.lazy(() => import('../ui/Globe'))
+const LazyGlobe = React.lazy(() => import('../ui/Globe'));
 
 const Card = ({ cardItem, onHover }) => {
   const getOrdinalSuffix = (day) => {
-    if (day > 3 && day < 21) return 'th'
+    if (day > 3 && day < 21) return 'th';
     switch (day % 10) {
       case 1:
-        return 'st'
+        return 'st';
       case 2:
-        return 'nd'
+        return 'nd';
       case 3:
-        return 'rd'
+        return 'rd';
       default:
-        return 'th'
+        return 'th';
     }
-  }
+  };
 
   const dateFormat = (start, end?): string => {
     //Gets the start date in the event time, which is "UTC" from how it's stored
-    const startDay = `${new Date(start).getUTCDate() + getOrdinalSuffix(new Date(start).getUTCDate())}`
-    const startMonth = format(new Date(start), 'MMM')
+    const startDay = `${
+      new Date(start).getUTCDate() +
+      getOrdinalSuffix(new Date(start).getUTCDate())
+    }`;
+    const startMonth = format(new Date(start), 'MMM');
     //Gets the end date in the event time, which is "UTC" from how it's stored
-    const endDateAndHyphen = end ? ` - ${new Date(end).getUTCDate() + getOrdinalSuffix(new Date(end).getUTCDate())}` : ''
-    const endMonth = end ? format(new Date(end), 'MMM') : ''
+    const endDateAndHyphen = end
+      ? ` - ${
+          new Date(end).getUTCDate() +
+          getOrdinalSuffix(new Date(end).getUTCDate())
+        }`
+      : '';
+    const endMonth = end ? format(new Date(end), 'MMM') : '';
     //Formats the dates into a single string
-    return `${startDay} ${startMonth == endMonth ? '' : startMonth}${endDateAndHyphen} ${endMonth ?? startMonth}`
-  }
+    return `${startDay} ${
+      startMonth == endMonth ? '' : startMonth
+    }${endDateAndHyphen} ${endMonth ?? startMonth}`;
+  };
 
   const displayDate = () => {
     if (cardItem.startDate) {
-      return dateFormat(cardItem.startDate, cardItem.endDate)
+      return dateFormat(cardItem.startDate, cardItem.endDate);
     }
-    return ''
-  }
+    return '';
+  };
 
-  //Gets the accurate start date-time in UTC, by applying the offset and event start time. 
+  //Gets the accurate start date-time in UTC, by applying the offset and event start time.
   //Note that getting UTC minutes is actually getting the time in the event timezone, based on how the values are being stored.
-  const startDateUTC = new Date(Date.parse(cardItem.startDate))
-  startDateUTC.setUTCMinutes(startDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + ((cardItem.startTime) * 60))
+  const startDateUTC = new Date(Date.parse(cardItem.startDate));
+  startDateUTC.setUTCMinutes(
+    startDateUTC.getUTCMinutes() +
+      cardItem.timezone * -60 +
+      cardItem.startTime * 60
+  );
   //Gets the provided end date at midnight in UTC, or for one day events the start date is re-used.
-  const endDateUTC = new Date(Date.parse(cardItem.endDate ?? cardItem.startDate))
-  endDateUTC.setUTCMinutes(endDateUTC.getUTCMinutes() + (cardItem.timezone * -60) + (24 * 60))
+  const endDateUTC = new Date(
+    Date.parse(cardItem.endDate ?? cardItem.startDate)
+  );
+  endDateUTC.setUTCMinutes(
+    endDateUTC.getUTCMinutes() + cardItem.timezone * -60 + 24 * 60
+  );
   //Calculate the hours until the event/event end by subtracting start and end dates (in UTC) against the current local time (in UTC).
-  const hoursUntilEvent = Math.ceil((startDateUTC.getTime() - (new Date()).getTime()) / 36e5)
-  const hoursUntilEventEnd = Math.ceil((endDateUTC.getTime() - (new Date()).getTime()) / 36e5)
+  const hoursUntilEvent = Math.ceil(
+    (startDateUTC.getTime() - new Date().getTime()) / 36e5
+  );
+  const hoursUntilEventEnd = Math.ceil(
+    (endDateUTC.getTime() - new Date().getTime()) / 36e5
+  );
 
-  const isLiveOrPastEvent = hoursUntilEvent < 0
-  const isLiveEvent =
-    hoursUntilEvent <= 0 &&
-    hoursUntilEventEnd > 0
+  const isLiveOrPastEvent = hoursUntilEvent < 0;
+  const isLiveEvent = hoursUntilEvent <= 0 && hoursUntilEventEnd > 0;
 
   return (
     <div
@@ -80,17 +100,22 @@ const Card = ({ cardItem, onHover }) => {
         <div className="flex items-center text-md">
           <p className="mr-2">{displayDate()}</p>
           {isLiveEvent ? (
-            <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">LIVE</span>
+            <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
+              LIVE
+            </span>
           ) : isLiveOrPastEvent ? (
-            <span className="bg-slate-200 px-2 rounded text-sm text-gray-700 shadow-lg opacity-60">DONE</span>
+            <span className="bg-slate-200 px-2 rounded text-sm text-gray-700 shadow-lg opacity-60">
+              DONE
+            </span>
           ) : (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
-                  {
-                  hoursUntilEvent >= 24 ? 
-                    `${Math.floor(hoursUntilEvent / 24)} DAY${hoursUntilEvent >= 48 ? 'S' : ''} TO GO` 
-                  : 
-                    `${hoursUntilEvent} HOUR${hoursUntilEvent > 1 ? 'S' : ''} TO GO` 
-                  }
+              {hoursUntilEvent >= 24
+                ? `${Math.floor(hoursUntilEvent / 24)} DAY${
+                    hoursUntilEvent >= 48 ? 'S' : ''
+                  } TO GO`
+                : `${hoursUntilEvent} HOUR${
+                    hoursUntilEvent > 1 ? 'S' : ''
+                  } TO GO`}
             </span>
           )}
         </div>
@@ -104,38 +129,38 @@ const Card = ({ cardItem, onHover }) => {
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
-  )
-}
+  );
+};
 
 const EventsBlock = ({ data, index }) => {
-  const [activeGlobeId, setActiveGlobeId] = useState(null)
-  const [isGlobeVisible, setIsGlobeVisible] = useState(false)
-  const globeContainerRef = useRef(null)
+  const [activeGlobeId, setActiveGlobeId] = useState(null);
+  const [isGlobeVisible, setIsGlobeVisible] = useState(false);
+  const globeContainerRef = useRef(null);
 
-  if (!data || !data.cardItems) return null
+  if (!data || !data.cardItems) return null;
 
   data.cardItems.forEach((cardItem, idx) => {
-    cardItem.index = idx
-  })
+    cardItem.index = idx;
+  });
 
   useEffect(() => {
     //TODO: We are not sure why but without this the lazy loading gets hydration errors
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setIsGlobeVisible(true)
-          observer.disconnect()
+          setIsGlobeVisible(true);
+          observer.disconnect();
         }
       },
       { threshold: 0.1 }
-    )
+    );
 
     if (globeContainerRef.current) {
-      observer.observe(globeContainerRef.current)
+      observer.observe(globeContainerRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
@@ -171,7 +196,7 @@ const EventsBlock = ({ data, index }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { EventsBlock as VerticalCardsBlock }
+export { EventsBlock as VerticalCardsBlock };
