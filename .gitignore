@@ -53,4 +53,4 @@ scripts/content-auditor/auditor-found-files.txt
 scripts/content-auditor/auditor-responses.md
 scripts/content-auditor/content-auditor-prompt.txt
 
-.yarn/*
+.yarn/cache 
