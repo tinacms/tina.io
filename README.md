@@ -14,10 +14,10 @@ yarn dev
 Make a wesbite to communicate the awesomeness of TinaCMS
 
 ## Tech Stack
-NextJS
-TinaCMS
-GitHub
-Markdown
+- NextJS
+- TinaCMS
+- GitHub
+- Markdown
 
 
 ### Testing Local TinaCMS Changes
