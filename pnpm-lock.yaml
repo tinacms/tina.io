@@ -152,6 +152,9 @@ importers:
       react-infinite-logo-slider:
         specifier: ^1.0.13
         version: 1.0.13
+      react-instantsearch-core:
+        specifier: '^6.39.1 '
+        version: 6.40.4(algoliasearch@4.24.0)(react@18.3.1)
       react-instantsearch-dom:
         specifier: ^6.3.0
         version: 6.40.4(algoliasearch@4.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -12802,7 +12805,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       collect-v8-coverage: 1.0.2
 
-  '@jest/test-sequencer@25.5.4':
+  '@jest/test-sequencer@25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3)':
     dependencies:
       '@jest/test-result': 25.5.0
       graceful-fs: 4.2.11
@@ -12810,7 +12813,10 @@ snapshots:
       jest-runner: 25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       jest-runtime: 25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3)
     transitivePeerDependencies:
+      - bufferutil
+      - canvas
       - supports-color
+      - utf-8-validate
 
   '@jest/transform@25.5.1':
     dependencies:
@@ -19498,7 +19504,7 @@ snapshots:
   jest-config@25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3):
     dependencies:
       '@babel/core': 7.25.2
-      '@jest/test-sequencer': 25.5.4
+      '@jest/test-sequencer': 25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       '@jest/types': 25.5.0
       babel-jest: 25.5.1(@babel/core@7.25.2)
       chalk: 3.0.0

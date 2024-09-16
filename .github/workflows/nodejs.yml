@@ -24,12 +24,14 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-      - name: pnpm install, build, and test
-        run: |
-          pnpm i
-          pnpm build
-          pnpm lint
-          pnpm test
+      - name: pnpm install
+        run: pnpm i
+      - name: pnpm build
+        run: pnpm build
+      - name: pnpm lint
+        run: pnpm lint
+      - name: pnpm test
+        run: pnpm test
         env:
           CI: true
       - name: pnpm export
