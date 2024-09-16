@@ -54,3 +54,4 @@ scripts/content-auditor/auditor-responses.md
 scripts/content-auditor/content-auditor-prompt.txt
 
 .yarn/cache 
+.yarn/install-state.gz
