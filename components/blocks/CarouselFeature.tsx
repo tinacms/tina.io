@@ -57,6 +57,8 @@ const CarouselItem = ({
 }) => {
   const { headline, text, button, icon2, videoSrc } = data || {};
 
+  console.log(data);
+
   const IconComponent = icons[icon2] || null;
 
   const commonStyles = 'transition duration-500 hover:scale-105 hover:z-20';
@@ -68,7 +70,7 @@ const CarouselItem = ({
     <div
       className={`${
         isHovered && !isSmallOrMediumScreen
-          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)] pl-4 pr-8 md:py-9 md:pr-11 lg:py-12 lg:pr-14 rounded-2xl'
+          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-4 pr-8 md:py-9 md:pr-11 lg:py-12 lg:pr-14 rounded-2xl'
           : nonHoveredStyles
       } ${commonStyles}`}
       onMouseEnter={!isSmallOrMediumScreen ? onMouseEnter : null}
@@ -118,6 +120,7 @@ const CarouselItem = ({
 };
 
 export function CarouselFeatureBlock({ data, index }) {
+  console.log('data in featureBlock', data);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -183,20 +186,35 @@ export function CarouselFeatureBlock({ data, index }) {
   };
 
   const renderMedia = (index) => {
+    console.log('render media for, ', index);
     if (index === null) return null;
-  
+
     const item = data?.items?.[index];
     if (!item || !item.videoSrc) return null;
-  
+
     const fullVideoUrl = item.videoSrc;
-  
+    const fileExtension = fullVideoUrl.split('.').pop();
+
+    console.log('fullVideoUrl', fullVideoUrl);
+
+    if (fileExtension === 'gif') {
+      return (
+        <img
+          key={index}
+          src={fullVideoUrl}
+          alt={`Media item ${index}`}
+          className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
+        />
+      );
+    }
+
     return (
       <video
         key={index}
         autoPlay
         muted
         loop
-        className="w-full h-auto mt-6 lg:mt-0"
+        className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
       >
         <source src={fullVideoUrl} type="video/webm" />
         <source src={fullVideoUrl} type="video/mp4" />
@@ -204,7 +222,6 @@ export function CarouselFeatureBlock({ data, index }) {
       </video>
     );
   };
-  
 
   return (
     <section
@@ -236,12 +253,7 @@ export function CarouselFeatureBlock({ data, index }) {
                 </div>
               ))}
           </div>
-          <div className="hidden lg:block flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible bg-gray-200 mt-10 lg:mt-0">
-            <h2
-              className={`text-center pl-9 font-tuner inline-block text-4xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-red-600/80 via-red-800/80 to-red-1000 bg-clip-text text-transparent text-balance mt-20 lg:mt-10`}
-            >
-              Media
-            </h2>
+          <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 lg:mt-0 justify-center items-center">
             {renderMedia(hoveredIndex)}
           </div>
         </div>

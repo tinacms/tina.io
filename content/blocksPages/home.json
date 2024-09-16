@@ -131,12 +131,12 @@
       "_template": "logoGrid"
     },
     {
-      "features": [
+      "blockHeadline": "Key Features",
+      "items": [
         {
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit",
           "icon2": "FaClock",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1692109000/demos/visual-editing-30s.mp4",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -149,6 +149,7 @@
           "headline": "Open Source",
           "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
           "icon2": "FaUnlock",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464412/tina.io-gifs/2024-09-13-key-features-open-source_lofuna.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -165,13 +166,12 @@
             "label": "READ MORE",
             "icon": true,
             "variant": "ghostBlue",
-            "size": "medium",
-            "url": ""
+            "size": "medium"
           }
         },
         {
           "headline": "3rd Party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use Tina Cloud",
+          "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
           "button": {
             "label": "READ MORE",
@@ -185,30 +185,32 @@
           "headline": "Control your Components",
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
           "icon2": "FaPuzzlePiece",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464332/tina.io-gifs/2024-09-13-key-features-control-components_jomxbs.gif",
           "button": {
             "label": "READ MORE",
-            "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
-            "url": "docs/editing/blocks"
+            "url": "/docs/editing/blocks"
           }
         },
         {
           "headline": "Markdown at Scale",
           "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
           "icon2": "FaMarkdown",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464405/tina.io-gifs/2024-09-13-key-features-markdown_pojlmt.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
-            "url": "docs/editing/overview"
+            "url": "/docs/editing/overview"
           }
         },
         {
           "headline": "Git Integration",
-          "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub",
+          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
           "icon2": "FaGithub",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464386/tina.io-gifs/2024-09-13-key-features-github-integration_mocrbt.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -219,8 +221,9 @@
         },
         {
           "headline": "Easy Documentation",
-          "text": "Tina’s docs run on TinaCMS – check it out!",
+          "text": "Tina's docs run on TinaCMS - check it out!",
           "icon2": "FaFileAlt",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464361/tina.io-gifs/2024-09-13-key-features-docs_shvgnn.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -512,7 +515,7 @@
           "name": "Peter Rusin",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
           "date": "2023-09-05T03:00:00.000Z",
-          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
+          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
           "link": "https://rusin.work"
         },
         {

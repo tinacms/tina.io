@@ -2,7 +2,6 @@ import { wrapFieldsWithMeta, type Template, type TinaField } from 'tinacms';
 import IconSelector from './IconSelector';
 import { actionsButtonTemplateFields } from './ActionsButton.template';
 
-
 export const carouselFeatureTemplate: Template = {
   label: 'Carousel Feature',
   name: 'carouselFeature',
@@ -11,13 +10,13 @@ export const carouselFeatureTemplate: Template = {
   },
   fields: [
     {
-        name: 'blockHeadline',
-        label: 'Block Headline',
-        type: 'string',
+      name: 'blockHeadline',
+      label: 'Block Headline',
+      type: 'string',
     },
     {
       name: 'items',
-      label: 'Carousel Feature Items',
+      label: 'Carousel Feature',
       type: 'object',
       list: true,
       ui: {
@@ -50,11 +49,11 @@ export const carouselFeatureTemplate: Template = {
           type: 'image',
         },
         {
-            name: 'button',
-            label: 'Button',
-            type: 'object',
-            fields: [ ...actionsButtonTemplateFields.fields]
-        }
+          name: 'button',
+          label: 'Button',
+          type: 'object',
+          fields: [...actionsButtonTemplateFields.fields],
+        },
       ] as TinaField[],
     },
   ],
