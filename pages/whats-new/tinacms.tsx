@@ -1,25 +1,26 @@
-import { Layout } from 'components/layout'
-import client from 'tina/__generated__/client'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import Link from 'next/link'
-import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents'
+import { Layout } from 'components/layout';
+import client from 'tina/__generated__/client';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import Link from 'next/link';
+import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
+import { FaGithub } from 'react-icons/fa';
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
     await client.queries.WhatsNewTinaCMSConnection({
       last: 10,
       sort: 'dateReleased',
-    })
+    });
 
   const items =
     connectionData?.WhatsNewTinaCMSConnection?.edges.map((edge) => edge.node) ||
-    []
+    [];
   return {
     props: {
       items,
     },
-  }
-}
+  };
+};
 
 const Tinacms = ({ items }) => {
   return (
@@ -48,14 +49,16 @@ const Tinacms = ({ items }) => {
           ))}
         </div>
         <div className="font-tuner text-lg text-center text-blue-700">
-          <Link href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md">
-            {' '}
-            See More{' '}
+          <Link
+            href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md"
+            className="flex items-center justify-center"
+          >
+            See more on GitHub <FaGithub className="ml-2" />
           </Link>
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Tinacms
+export default Tinacms;
