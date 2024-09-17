@@ -32,7 +32,7 @@ const iconMapping = {
   FaCalendarDay: FaCalendarDay,
 };
 
-export function Navbar({}) {
+export function Navbar({ sticky = true }) {
   const [open, setOpen] = useState(false);
   const [stuck, setStuck] = useState(false);
   const [modalType, setModalType] = useState(null);
@@ -42,17 +42,19 @@ export function Navbar({}) {
     'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
 
   const handleScroll = () => {
-    if (navRef.current) {
+    if (sticky && navRef.current) {
       setStuck(window.scrollY > 50);
     }
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    if (sticky) {
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [sticky]);
 
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
@@ -64,7 +66,7 @@ export function Navbar({}) {
     <>
       <div ref={navRef} className={`relative w-full`}>
         <div className="flex min-[1135px]:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
-          {/* Start of sm and md view*/}
+          {/* Start of sm and md view */}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
               open ? 'translate-x-0' : 'translate-x-full'
@@ -159,7 +161,7 @@ export function Navbar({}) {
         {/* Start of large (desktop +) view */}
         <div
           className={`absolute ${
-            stuck
+            stuck && sticky
               ? `min-[1135px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
           } z-40 w-full min-[1135px]:px-10 hidden min-[1135px]:flex items-center justify-between gap-6`}
@@ -167,7 +169,7 @@ export function Navbar({}) {
           <Link href={'/'}>
             <TinaIconSvg
               className={`${
-                stuck ? 'w-8' : 'w-10'
+                stuck && sticky ? 'w-8' : 'w-10'
               } flex items-center h-auto fill-orange-500`}
             />
           </Link>
@@ -181,11 +183,11 @@ export function Navbar({}) {
                       size="small"
                       onClick={() => openModal(item.modal)}
                     >
-{item.icon2 && iconMapping[item.icon2] && (
-  <span className="mr-2">
-    {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-  </span>
-)}
+                      {item.icon2 && iconMapping[item.icon2] && (
+                        <span className="mr-2">
+                          {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
+                        </span>
+                      )}
 
                       {item.label}
                     </Button>

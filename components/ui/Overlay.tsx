@@ -9,7 +9,6 @@ export const Overlay = styled.div<Overlay>`
   pointer-events: none;
   display: block;
   position: fixed;
-  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
@@ -17,7 +16,7 @@ export const Overlay = styled.div<Overlay>`
   background-color: var(--color-secondary);
   transition: all 180ms ease-out;
   opacity: 0;
-  z-index: 1200;
+  z-index: 48;
 
   ${props =>
     props.open &&
