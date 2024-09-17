@@ -51,13 +51,13 @@ const Tinacms = ({ items }) => {
         <div className="font-tuner text-lg text-center text-blue-700">
           <Link
             href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md"
-            className="flex items-center justify-center"
+            className="flex items-center justify-center hover:text-blue-800"
           >
             See more on GitHub <FaGithub className="ml-2" />
           </Link>
           <Link
             href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"
-            className="flex items-center justify-center"
+            className="flex items-center justify-center hover:text-blue-800"
           >
             See Newsletters <FaNewspaper className='ml-2' />
           </Link>
