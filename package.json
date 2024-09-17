@@ -84,7 +84,7 @@
     "react-slick": "^0.30.2",
     "react-tinacms-editor": "^0.53.26",
     "rehype-raw": "^6.1.1",
-    "remark": "^15.0.1",
+    "remark": "^13.0.0",
     "remark-directive": "^2.0.1",
     "remark-directive-rehype": "^0.4.2",
     "remark-gfm": "^3.0.1",
