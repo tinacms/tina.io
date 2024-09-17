@@ -61,7 +61,7 @@ const CarouselItem = ({
 
   const IconComponent = icons[icon2] || null;
 
-  const commonStyles = 'transition duration-500 hover:scale-105 hover:z-20';
+  const commonStyles = 'transition-all delay-100 duration-500 hover:scale-105 hover:z-20';
   const nonHoveredStyles = 'pl-4';
 
   const actionsArray = button ? [button] : [];
