@@ -1,0 +1,57 @@
+---
+title: Markdown Tables
+last_edited: '2024-09-17T23:31:54.281Z'
+next: ''
+previous: ''
+---
+
+## Usage
+
+<WarningCallout
+  body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat or through one of our community channels. 
+
+  For further development work on Markdown Tables, engage with the related [GitHub issue](https://github.com/tinacms/tinacms/discussions/4793) or [contribute](https://github.com/tinacms/tinacms)."
+/>
+
+Tables are supported through a custom template which is exported from `tinacms`. To use it, import it and provide it as a `template` for your `rich-text` field:
+
+```ts
+import { tinaTableTemplate } from 'tinacms'
+
+{
+  type: 'rich-text',
+  label: 'Body',
+  name: '_body',
+  templates: [
+    tinaTableTemplate,
+  ]
+}
+```
+
+Render it with the `table` component in `<TinaMarkdown>`. Note that the table cell's `value` is a rich-text element so should be rendered with a nested `<TinaMarkdown>` component:
+
+```tsx
+const MyTable = props => <table>
+    {props.tableRows?.map((tableRow, i) => (
+      <tbody key={i}>
+        <tr>
+          {tableRow.tableCells?.map((tableCell, j) => (
+            <td key={j}>
+              <TinaMarkdown content={tableCell.value} />
+            </td>
+          ))}
+        </tr>
+      </tbody>
+    ))}
+  </table>
+
+<TinaMarkdown content={data.page._body} components={{ table: (props) => <MyTable {...props} /> }} />
+```
+
+## Showcase
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1726549733/tina-io/docs/2024-09-13_15-59-11_1_y2elbn.gif)
+
+## Known Issues
+
+The table can only be saved if added with cell data immediately after creation, before leaving the CMS subwindow. This issue only occurs on initial creation of the table.
