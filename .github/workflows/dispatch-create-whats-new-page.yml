@@ -1,0 +1,58 @@
+name: Create What's New Page for TinaCMS or TinaCloud
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'The project to create the Whats New page for.'
+        required: true
+      versionNumber:
+        description: 'The version of the project to create the Whats New page for.'
+        required: true
+      dateReleased:
+        description: 'The date the version was released.'
+        required: true
+      releaseNotes:
+        description: 'The release notes for the version.'
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-whats-new-page:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create What's New Page
+        run: |
+          ./scripts/create-release-notes.sh
+        env:
+          PROJECT_NAME: ${{ github.event.inputs.project }}
+          VERSION_NUMBER: ${{ github.event.inputs.versionNumber }}
+          DATE_RELEASED: ${{ github.event.inputs.dateReleased }}
+          RELEASE_NOTES: ${{ github.event.inputs.releaseNotes }}
+
+      - name: Create Pull Request
+        id: create-pull-request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: Release Notes - Add ${{ github.event.inputs.project }} ${{ github.event.inputs.versionNumber }}
+          title: Release Notes - Add ${{ github.event.inputs.project }} ${{ github.event.inputs.versionNumber }}
+          body: |
+            This PR adds the release notes for ${{ github.event.inputs.project }} ${{ github.event.inputs.versionNumber }}.
+
+            This was created automatically by a GitHub Action - `.github/workflows/dispatch-create-whats-new-page.yml`
+          branch: releaseNotes/${{ github.event.inputs.project }}-${{ github.event.inputs.versionNumber }}
+          # We only expect changes to these folders
+          add-paths: |
+            content/*
+
+      - name: Enable Auto-Merge
+        if: ${{ steps.create-pull-request.outputs.pull-request-number }}
+        run: gh pr merge -s --auto ${{ steps.create-pull-request.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

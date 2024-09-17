@@ -1,0 +1,18 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.formatOnSave": true,
+  // Runs Prettier, then ESLint
+  "editor.codeActionsOnSave": ["source.fixAll.eslint", "source.sortImports"],
+  "editor.formatOnPaste": false,
+  "editor.tabSize": 2,
+  "search.exclude": {
+    "**/.pnp.*": true
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
