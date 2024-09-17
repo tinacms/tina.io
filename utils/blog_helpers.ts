@@ -1,3 +1,5 @@
+import { remark } from 'remark';
+
 export function orderPosts(posts) {
   function sortByDate(a, b) {
     const dateA = new Date(a.data.date).getTime()
@@ -13,7 +15,6 @@ const preStrip = content => {
 }
 
 export async function stripMarkdown(content): Promise<string> {
-  const remark = require('remark')
   const strip = require('strip-markdown')
   const preprocessedContent = preStrip(content)
   return new Promise((resolve, reject) => {
