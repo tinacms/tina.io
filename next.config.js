@@ -44,50 +44,6 @@ const config = {
       },
     ]
   },
-  async redirects() {
-    return [
-      {
-        source: '/docs/editing/quick-editing',
-        destination: '/docs/contextual-editing/react',
-        permanent: true,
-      },
-      {
-        source: '/docs/editing/click-to-edit',
-        destination: '/docs/contextual-editing/react',
-        permanent: true,
-      },
-      {
-        source: '/docs/tinacms-context',
-        destination: '/docs/contextual-editing/overview',
-        permanent: true,
-      },
-      {
-        source: '/tinasaurus',
-        destination: '/blog/tinasaurus-docusaurus-starter/',
-        permanent: true,
-      },
-      {
-        source: '/docs/tina-cloud/connecting-site/',
-        destination: '/docs/tina-cloud/overview',
-        permanent: true,
-      },
-      {
-        source: "/docs/errors/faq",
-        destination: "/docs/introduction/faq/#common-tinacloud-errors",
-        permanent: true,
-      },
-      {
-        source: "/faq",
-        destination: "/docs/introduction/faq",
-        permanent: true,
-      },
-      {
-        source: "/docs/tina-cloud/faq",
-        destination: "/docs/introduction/faq",
-        permanent: true,
-      },
-    ]
-  },
   env: {
     MAILCHIMP_ADDRESS: process.env.MAILCHIMP_ADDRESS || dummyMailchimpEndpoint,
     HUBSPOT_TEAMS_FORM_ID: process.env.HUBSPOT_TEAMS_FORM_ID,
