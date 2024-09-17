@@ -1,6 +1,6 @@
 ---
 title: Markdown Shortcode
-last_edited: '2024-09-12T06:38:21.457Z'
+last_edited: '2024-09-17T05:26:02.548Z'
 next: ''
 previous: ''
 ---
@@ -20,40 +20,33 @@ The following snippet would throw an error while parsing since Tina doesn't know
 But you can tell Tina how to handle it with a `template`:
 
 ```ts
-{
-  collections: [
-    {
-      // ...
-      fields: [
-        {
-          type: 'rich-text',
-          name: 'body',
-          templates: [
-            {
-              name: 'WarningCallout',
-              label: 'WarningCallout',
-              match: {
-                start: '{{',
-                end: '}}',
-              },
-              fields: [
-                {
-                  name: 'content',
-                  label: 'Content',
-                  type: 'string',
-                  required: true,
-                  ui: {
-                    component: 'textarea',
-                  },
-                },
-              ],
-            },
-          ],
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'WarningCallout',
+        label: 'WarningCallout',
+        match: {
+          start: '{{',
+          end: '}}',
         },
-      ],
-    },
-  ]
-}
+        fields: [
+          {
+            name: 'content',
+            label: 'Content',
+            type: 'string',
+            required: true,
+            ui: {
+              component: 'textarea',
+            },
+          },
+        ],
+      },
+    ],
+  },
+]
 ```
 
 ### Raw strings in shortcodes
@@ -61,7 +54,7 @@ But you can tell Tina how to handle it with a `template`:
 Certain frameworks support shortcodes with Raw string values:
 
 ```
-{{<  myshortcode "This is some raw text" >}}
+{{  myshortcode "This is some raw text" }}
 ```
 
 This is supported in Tina with the special `_value` field.
@@ -93,7 +86,7 @@ fields: [
 ]
 ```
 
-### Nesting content in a shortcode.
+### Nesting content in a shortcode
 
 Shortcodes can provide a `children` field, which allows content to be nested within a shortcode.
 
@@ -110,7 +103,7 @@ Your field template definition would look something like:
   name: "pull_quote2",
   label: "pull_quote2",
   match: {
-    name: "pull-quote",
+    name: "shortcode",
     start: "{{%",
     end: "%}}"
   },
@@ -125,12 +118,12 @@ Your field template definition would look something like:
 
 > Note: the children type currently needs to be of type: \`rich-text\`.
 
-### Using shortcode names with dashes.
+### Using shortcode names with dashes
 
 Sometimes your shortcode will contain characters that aren't supported in Tina's content modelling
 
 ```md
-{{% my-shortcode %}}
+{{ my-shortcode }}
 ```
 
 You can supply a `name` on the `match` object to handle this.
@@ -165,3 +158,13 @@ The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/bl
 ### Default values
 
 If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
+
+### Shortcode in the CMS
+
+The shortcode appears in the CMS as any other custom markdown embed. To inspect the shortcode in the CMS, use the raw markdown option in the editor.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1726549409/tina-io/docs/2024-09-17_15-01-58_lqfbf9.png)
+
+## Known Issues
+
+Please see the related [GitHub discussion](https://github.com/tinacms/tinacms/discussions/4794) to suggest improvements to this feature.
