@@ -9,19 +9,19 @@
   },
   "scripts": {
     "dev": "tinacms dev  --noTelemetry  -c \"next dev\"",
-    "build": "yarn create-rss && tinacms build && next build",
+    "build": "pnpm create-rss && tinacms build && next build",
     "export": "tinacms build && EXPORT_MODE=static,UNOPTIMIZED_IMAGES=true next build",
     "prestart": "tinacms build  && npm run export",
     "static-start": "serve out",
     "start": "next start",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
-    "lint": "yarn type-check && tslint 'src/**/*.{ts,tsx}' -p tsconfig.json",
+    "lint": "pnpm type-check && tslint 'src/**/*.{ts,tsx}' -p tsconfig.json",
     "test": "jest --passWithNoTests",
     "test-watch": "jest  --passWithNoTests --watch",
     "type-check": "tsc",
     "create-indices": "tsc --project ./indices/tsconfig.json --outDir ./indices/out && node ./indices/out/indices/createIndices.js",
     "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
-    "deploy": "yarn build && yarn export",
+    "deploy": "pnpm build && pnpm export",
     "postbuild": "next-sitemap",
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
   },
@@ -29,6 +29,8 @@
     "graphql": "^15.5.1"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.8",
+    "@heroicons/react": "^2.1.5",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^14.2.8",
     "@react-three/drei": "^9.107.0",
@@ -45,6 +47,7 @@
     "autoprefixer": "^10.4.20",
     "axios": "^0.21.2",
     "btoa": "^1.2.1",
+    "date-fns": "^4.0.0",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
     "fast-glob": "^3.1.1",
@@ -73,6 +76,7 @@
     "react-github-btn": "^1.4.0",
     "react-icons": "^4.2.0",
     "react-infinite-logo-slider": "^1.0.13",
+    "react-instantsearch-core": "^6.39.1 ",
     "react-instantsearch-dom": "^6.3.0",
     "react-intersection-observer": "^9.4.0",
     "react-markdown": "^8.0.3",
@@ -112,5 +116,5 @@
     "tslint-react": "^4.0.0",
     "typescript": "^4.5.5"
   },
-  "packageManager": "yarn@1.22.5"
+  "packageManager": "pnpm@9.6.0"
 }
