@@ -29,7 +29,7 @@ jobs:
 
       - name: Create What's New Page
         run: |
-          ./scripts/create-whats-new-page.sh
+          ./scripts/create-release-notes.sh
         env:
           PROJECT_NAME: ${{ github.event.inputs.project }}
           VERSION_NUMBER: ${{ github.event.inputs.versionNumber }}
@@ -46,7 +46,7 @@ jobs:
             This PR adds the release notes for ${{ github.event.inputs.project }} ${{ github.event.inputs.versionNumber }}.
 
             This was created automatically by a GitHub Action - `.github/workflows/dispatch-create-whats-new-page.yml`
-          branch: releaseNotes/${{ github.event.inputs.project }}-${{ github.event.inputs.releaseNotes }}
+          branch: releaseNotes/${{ github.event.inputs.project }}-${{ github.event.inputs.versionNumber }}
           # We only expect changes to these folders
           add-paths: |
             content/*
