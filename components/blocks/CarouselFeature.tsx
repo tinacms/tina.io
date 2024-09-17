@@ -106,16 +106,18 @@ const CarouselItem = ({
             </h3>
           )}
         </div>
-        {
-          textDisplayCondition && 
-          <p className={`md:pl-12 md:ml-4 text-lg font-medium slide-up`}>{text}</p>  
-        }
-        {
-          buttonDisplayCondition && 
-          <div className={`md:pl-11 slide-up`}>
-            <Actions items={actionsArray} />
-          </div>
-        }
+        <div className={`transition-all duration-500 delay-200 ${textDisplayCondition ? "scale-y-100 opacity-100" : "scale-y-75 opacity-0"}`}>
+          {
+            textDisplayCondition && 
+            <p className={`md:pl-12 md:ml-4 text-lg font-medium slide-up`}>{text}</p>  
+          }
+          {
+            buttonDisplayCondition && 
+            <div className={`md:pl-11 slide-up`}>
+              <Actions items={actionsArray} />
+            </div>
+          }
+        </div>
       </div>
     </div>
   );
