@@ -1,6 +1,11 @@
 ---
 title: Upgrading from Alpha to Beta
+last_edited: '2024-09-17T05:31:51.681Z'
+next: ''
+previous: ''
 ---
+
+<WarningCallout body="Tina is currently in full release. While the content of this page may still be useful, we recommend using later versions of Tina – [latest changes](https://tina.io/whats-new/tinacms/)." />
 
 ## Beta Changes
 
@@ -9,7 +14,7 @@ under the hood. One of the biggest of these changes is how we handle user accoun
 
 Previously when you created a TinaCloud account you were creating an **organization** that you accessed at `https://OrgName.tina.io`. We thought that giving each organization its own unique subdomain and pool of users would be neat, but after spending some time in that paradigm it turned out to be a lot of added complexity that didn't add much value.
 
-With the release of the beta we're moving user accounts to the forefront. Whenever you create a TinaCloud account you'll always access it at https://app.tina.io. This means that even
+With the release of the beta we're moving user accounts to the forefront. Whenever you create a TinaCloud account you'll always access it at [https://app.tina.io](https://app.tina.io). This means that even
 if you are part of multiple organizations, you'll only have a single Tina account.
 
 > Tools for creating/managing organizations within TinaCloud accounts are coming. For now we create a default organization, which you'll still be able to invite users to.
@@ -20,9 +25,9 @@ Since we're changing how user accounts work within TinaCloud, existing alpha use
 
 ### Recreate your TinaCloud Account
 
-- Head to https://app.tina.io and sign up for a new account.
-- Log in to your newly created account [recreate any existing **Apps**](/docs/tina-cloud/dashboard/#apps).
-- Invite any users to your newly created account.
+* Head to [https://app.tina.io](https://app.tina.io) and sign up for a new account.
+* Log in to your newly created account [recreate any existing projects](/docs/tina-cloud/dashboard/projects/).
+* Invite any users to your newly created account.
 
 ### Update your TinaCloud site
 
@@ -32,21 +37,19 @@ Since we're changing how user accounts work within TinaCloud, existing alpha use
 yarn remove tina-graphql-gateway-cli tina-graphql-gateway
 ```
 
-2. Add the new Tina dependencies.
+1. Add the new Tina dependencies.
 
 ```
 yarn add tinacms @tinacms/auth
 yarn add -D @tinacms/cli
 ```
 
-3. Change any existing import from `tina-graphql-gateway` to `tinacms`.
+1. Change any existing import from `tina-graphql-gateway` to `tinacms`.
+2. Update `package.json`. Replace `yarn tina-gql` calls with `yarn tinacms`.
+3. Update your site's environment variables.
 
-4. Update `package.json`. Replace `yarn tina-gql` calls with `yarn tinacms`.
-
-5. Update your site's environment variables.
-
-- Delete `NEXT_PUBLIC_ORGANIZATION_NAME`
-- Change `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID found in your new TinaCloud Account.
+* Delete `NEXT_PUBLIC_ORGANIZATION_NAME`
+* Change `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID found in your new TinaCloud Account.
 
 That's it! With any luck you should be able to keep working on your Tina enabled site the same as before. We're not expecting to have to repeat this process when we make it to our first full release.
 
