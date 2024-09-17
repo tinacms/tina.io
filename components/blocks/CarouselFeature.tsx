@@ -57,14 +57,16 @@ const CarouselItem = ({
 }) => {
   const { headline, text, button, icon2, videoSrc } = data || {};
 
-  console.log(data);
-
   const IconComponent = icons[icon2] || null;
 
-  const commonStyles = 'transition-all delay-100 duration-500 hover:scale-105 hover:z-20';
+  const commonStyles = 'transition-all delay-[50] duration-500 hover:scale-105 hover:z-20';
   const nonHoveredStyles = 'pl-4';
 
   const actionsArray = button ? [button] : [];
+
+  const textDisplayCondition = ((!isSmallOrMediumScreen && isHovered && text) || (isSmallOrMediumScreen && text));
+
+  const buttonDisplayCondition = ((!isSmallOrMediumScreen && isHovered && button) || (isSmallOrMediumScreen && button));
 
   return (
     <div
@@ -88,7 +90,7 @@ const CarouselItem = ({
           {IconComponent && (
             <IconComponent
               className={`text-xl md:text-3xl ${
-                isHovered && !isSmallOrMediumScreen ? 'text-orange-500/90' : ''
+                isHovered && !isSmallOrMediumScreen ? 'text-orange-500/90' : 'text-black'
               }`}
             />
           )}
@@ -97,23 +99,23 @@ const CarouselItem = ({
               className={`text-xl md:text-3xl font-tuner leading-tight pl-8 ${
                 isHovered && !isSmallOrMediumScreen
                   ? 'text-transparent bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text'
-                  : ''
+                  : 'text-black'
               }`}
             >
               {headline}
             </h3>
           )}
         </div>
-        {((!isSmallOrMediumScreen && isHovered && text) ||
-          (isSmallOrMediumScreen && text)) && (
-          <p className="md:pl-12 md:ml-4 text-lg font-medium">{text}</p>
-        )}
-        {((!isSmallOrMediumScreen && isHovered && button) ||
-          (isSmallOrMediumScreen && button)) && (
-          <div className="md:pl-11">
+        {
+          textDisplayCondition && 
+          <p className={`md:pl-12 md:ml-4 text-lg font-medium slide-up`}>{text}</p>  
+        }
+        {
+          buttonDisplayCondition && 
+          <div className={`md:pl-11 slide-up`}>
             <Actions items={actionsArray} />
           </div>
-        )}
+        }
       </div>
     </div>
   );
