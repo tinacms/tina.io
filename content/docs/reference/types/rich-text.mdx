@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-09-12T01:50:44.844Z'
+last_edited: '2024-09-17T04:35:32.776Z'
 next: ''
 previous: ''
 ---
@@ -90,7 +90,49 @@ This is some text
 
 Results in the following response from the content API:
 
-<Iframe iframeSrc="/api/graphiql/?query=%7B%0A%20%20post(relativePath%3A%20%22voteForPedro.json%22)%20%7B%0A%20%20%20%20body%0A%20%20%7D%0A%7D%0A&#x22; " height={400} />
+<GraphQLCodeBlock
+  query="{
+  ##post(relativePath:#&#x22;voteForPedro.json&#x22;)#{
+  ####body
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;body&#x22;:#{
+  ########&#x22;type&#x22;:#&#x22;root&#x22;,
+  ########&#x22;children&#x22;:#[
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;h2&#x22;,
+  ############&#x22;children&#x22;:#[
+  ##############{
+  ################&#x22;type&#x22;:#&#x22;text&#x22;,
+  ################&#x22;text&#x22;:#&#x22;Hello,#world!&#x22;
+  ##############}
+  ############]
+  ##########},
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;p&#x22;,
+  ############&#x22;children&#x22;:#[
+  ##############{
+  ################&#x22;type&#x22;:#&#x22;text&#x22;,
+  ################&#x22;text&#x22;:#&#x22;This#is#some#text&#x22;
+  ##############}
+  ############]
+  ##########},
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;mdxJsxFlowElement&#x22;,
+  ############&#x22;name&#x22;:#&#x22;Cta&#x22;,
+  ############&#x22;props&#x22;:#{
+  ##############&#x22;heading&#x22;:#&#x22;Welcome&#x22;
+  ############}
+  ##########}
+  ########]
+  ######}
+  ####}
+  ##}
+  }"
+/>
 
 ## Using `TinaMarkdown`
 
