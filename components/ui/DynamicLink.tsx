@@ -10,12 +10,10 @@ interface DynamicLinkProps extends ExtraProps {
 
 export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
   return (
-    // Because {children} contains <a> tags we need to wrap it in a div to pass className attributes in. If we inserted into the <Link> it doesnt get passed in. 
-    <div className="cursor-pointer">
-      {/* Work around for using legacyBehavior so that anchors in HTML in MDX files do not cause legacy errors */}
-      <Link href={href} {...props} legacyBehavior>
-        {children}
-      </Link>
-    </div>
+    <Link href={href} {...props} className="cursor-pointer">
+      {children}
+    </Link>
   );
 };
+
+
