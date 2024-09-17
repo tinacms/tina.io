@@ -1,7 +1,7 @@
 ---
 id: /docs/schema/
 title: Content Modeling with TinaCMS
-last_edited: '2024-09-12T00:35:50.171Z'
+last_edited: '2024-09-17T04:55:51.594Z'
 next: content/docs/features/data-fetching.mdx
 previous: ''
 ---
@@ -84,7 +84,7 @@ fields: [
 
 ### Caveats
 
-Certain field types cannot be set as a list, or may not have a specific list UI when changed through the content editor. To create lists of these fields, they can be wrapped in an object field type that has been been marked with `list: true`.
+Certain field types cannot be set as a list, or may not have a specific list UI when changed through the content editor. To create lists of these fields, they can [be wrapped](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) in an object field type that has been been marked with `list: true`.
 
 Types that cannot be marked as a list:
 
@@ -93,7 +93,7 @@ Types that cannot be marked as a list:
 A list of these types can be set, but they appear as a singular field in the content editor:
 
 * [Number Field Type](/docs/reference/types/number/)
-*  [Datetime Field Type](/docs/reference/types/datetime/)
+* [Datetime Field Type](/docs/reference/types/datetime/)
 * [Boolean Field Type](/docs/reference/types/boolean/)
 * [Rich-Text Field Type](/docs/reference/types/rich-text/)
 
