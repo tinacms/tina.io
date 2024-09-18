@@ -281,9 +281,9 @@ export const docAndBlogComponents: Components<{
   
     return (
       <HeadingTag id={id} className="relative cursor-pointer">
-        <a href={linkHref} className="no-underline flex items-center group">
+        <a href={linkHref} className="no-underline group">
           {children}
-          <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+          <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex mb-2" />
         </a>
       </HeadingTag>
     );
