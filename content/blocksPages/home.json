@@ -199,17 +199,19 @@
       "criteriaItems": [
         {
           "criteria": "Open Source Front-end",
-          "description": ""
+          "description": "A CMS which is transparent, extendable and community driven"
         },
         {
-          "criteria": "Content API"
+          "criteria": "Content API",
+          "description": "Query your data, wherever, whenever"
         },
         {
           "criteria": "Git-based Content Management ",
-          "description": "Edit your content, commit changes to GitHub, and create pull requests - all directly from within your TinaCMS editor"
+          "description": "Get all the benefits of the GitHub editing workflow directly from your site - Pull requests, branching, version control"
         },
         {
-          "criteria": "GitHub Contributions"
+          "criteria": "GitHub Contributions",
+          "description": "Editors get GitHub contributions when they make changes"
         },
         {
           "criteria": "Markdown Support",
@@ -217,7 +219,7 @@
         },
         {
           "criteria": "Visual Editing Capabilities ",
-          "description": "See changes contextually in real time as you edit. No need for numerous tabs!"
+          "description": "See your changes on your site as you make them"
         },
         {
           "criteria": "Local Development Workflow ",
@@ -225,11 +227,11 @@
         },
         {
           "criteria": "Free Option",
-          "description": "Tina supports a free forever tier"
+          "description": "An option to use the CMS for free, forever"
         },
         {
           "criteria": "Self-hosted Option",
-          "description": "With TinaCMS you have the option to self-host or host with TinaCloud"
+          "description": "Option to self-host"
         }
       ],
       "companies": [
