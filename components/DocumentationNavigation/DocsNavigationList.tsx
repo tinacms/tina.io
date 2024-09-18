@@ -97,7 +97,7 @@ const NavLevel = ({
       level === 0
   );
 
-  const selected = path == slug || (slug == '/docs' && path == "/docs/")
+  const selected = path.split("#")[0] == slug || (slug == '/docs' && path == "/docs/")
   const childSelected = hasNestedSlug(categoryData.items, router.asPath)
 
 
