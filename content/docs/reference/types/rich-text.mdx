@@ -1,11 +1,11 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-09-12T06:52:10.838Z'
+last_edited: '2024-09-18T01:54:13.946Z'
 next: ''
 previous: ''
 ---
 
-# `rich-text`
+## `rich-text` Type
 
 Tina's `rich-text` field leverages MDX so you can embed your own structured blocks. To render
 a `rich-text` field with React we recommend the `<TinaMarkdown>` component from `tinacms`. See [usage](/docs/editing/markdown/#rendering-content-with-tinamarkdown)
@@ -88,7 +88,54 @@ This is some text
 <Cta heading="Welcome" />
 ```
 
-## Using `TinaMarkdown`
+Results in the following response from the content API:
+
+<GraphQLCodeBlock
+  query="{
+  ##post(relativePath:#&#x22;voteForPedro.json&#x22;)#{
+  ####body
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;body&#x22;:#{
+  ########&#x22;type&#x22;:#&#x22;root&#x22;,
+  ########&#x22;children&#x22;:#[
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;h2&#x22;,
+  ############&#x22;children&#x22;:#[
+  ##############{
+  ################&#x22;type&#x22;:#&#x22;text&#x22;,
+  ################&#x22;text&#x22;:#&#x22;Hello,#world!&#x22;
+  ##############}
+  ############]
+  ##########},
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;p&#x22;,
+  ############&#x22;children&#x22;:#[
+  ##############{
+  ################&#x22;type&#x22;:#&#x22;text&#x22;,
+  ################&#x22;text&#x22;:#&#x22;This#is#some#text&#x22;
+  ##############}
+  ############]
+  ##########},
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;mdxJsxFlowElement&#x22;,
+  ############&#x22;name&#x22;:#&#x22;Cta&#x22;,
+  ############&#x22;props&#x22;:#{
+  ##############&#x22;heading&#x22;:#&#x22;Welcome&#x22;
+  ############}
+  ##########}
+  ########]
+  ######}
+  ####}
+  ##}
+  }"
+  preselectResponse={true}
+/>
+
+## Using `TinaMarkdown`
 
 The `<TinaMarkdown>` component allows you to control how each element
 is rendered. You *must* provide a component for each template registered
@@ -213,3 +260,13 @@ Then you can create a `Date` component which returns `new Date().toLocaleString(
 
 In the above example, if you failed to add the `Cta` *template* in your schema definition, the JSX element
 will be treated as html
+
+## Other notes
+
+### Full Spec
+
+The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "TinaCMS MDX Spec")
+
+### Default values
+
+If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
