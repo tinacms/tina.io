@@ -1,16 +1,16 @@
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
+import Image from 'next/image';
 import { useState } from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import {
-    TinaMarkdown,
-    Components,
-  } from 'tinacms/dist/rich-text'
+  Components,
+  TinaMarkdown,
+} from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { WarningCallout } from 'utils/shortcodes';
-import { Prism } from '../styles/Prism'
-import Image from 'next/image';
+import { Prism } from '../styles/Prism';
 
 export const docAndBlogComponents: Components<{
     Iframe: { iframeSrc: string; height: string }
@@ -280,9 +280,9 @@ export const docAndBlogComponents: Components<{
   
     return (
       <HeadingTag id={id} className="relative cursor-pointer">
-        <a href={linkHref} className="no-underline flex items-center group">
+        <a href={linkHref} className="no-underline group">
           {children}
-          <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+          <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex mb-2" />
         </a>
       </HeadingTag>
     );
