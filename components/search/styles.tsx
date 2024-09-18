@@ -193,7 +193,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     }
   }
   a {
-    color: var(--color-orange);
+    color: black;
   }
 `;
 
