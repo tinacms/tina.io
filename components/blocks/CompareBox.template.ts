@@ -17,7 +17,7 @@ export const compareBoxTemplate: TinaTemplate = {
       },
       fields: [
         { name: 'criteria', label: 'Criteria', type: 'string' },
-        { name: 'description', label: 'Description', ui: { component: 'textarea' }, type: 'string', description: 'The text inside the description will NOT be displayed anywhere, this is just to elaborate on the criteria itself for our own users.' },
+        { name: 'description', label: 'Hover Description', ui: { component: 'textarea' }, type: 'string', description: 'This is the text that will show up on hovering over the criteria.' },
       ],
     },
     {

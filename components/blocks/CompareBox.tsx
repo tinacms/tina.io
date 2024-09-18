@@ -1,27 +1,28 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { FaCircle } from 'react-icons/fa'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import css from 'styled-jsx/css'
-import Image from 'next/image'
+import React, { useState, useEffect, useRef } from 'react';
+import { FaCircle } from 'react-icons/fa';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import css from 'styled-jsx/css';
+import Image from 'next/image';
+import { tinaField } from 'tinacms/dist/react';
 
 function hexToRgba(hex, alpha) {
-  let r = parseInt(hex.slice(1, 3), 16)
-  let g = parseInt(hex.slice(3, 5), 16)
-  let b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+  let r = parseInt(hex.slice(1, 3), 16);
+  let g = parseInt(hex.slice(3, 5), 16);
+  let b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 const commonHeightStyle = {
   height: '50px',
   marginBottom: '8px',
   lineHeight: '16px',
-}
+};
 
 const CompanyItem = ({ company, onClick }) => {
   if (company.isHidden) {
-    return null
+    return null;
   }
 
   return (
@@ -48,27 +49,42 @@ const CompanyItem = ({ company, onClick }) => {
         <div className="lg:text-xl md:text-sm text-xs">{company.headline}</div>
       </span>
     </div>
-  )
-}
+  );
+};
 
 const CriteriaCard = ({ criteriaItems }) => {
+  const [hoveredItem, setHoveredItem] = useState(null);
+
   return (
-    <div className="criteria-card rounded-lg">
-      {/* This empty div acts as a spacer to offset the start point of the criteria list. */}
+    <div className="criteria-card rounded-lg relative">
       <div key={0} className="py-3 flex" style={commonHeightStyle} />
       {criteriaItems.map((item, idx) => (
-        <div key={idx} className="py-3 flex" style={commonHeightStyle}>
-          <h3 className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs">
+        <div
+          key={idx}
+          className="py-3 flex relative"
+          style={commonHeightStyle}
+          onMouseEnter={() => setHoveredItem(idx)}
+          onMouseLeave={() => setHoveredItem(null)}
+        >
+          <h3
+            data-tina-field={tinaField(item, 'criteria')}
+            className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs hover:text-orange-600"
+          >
             {item.criteria}
           </h3>
+          {hoveredItem === idx && (
+            <div className="hidden text-black font-semibold lg:block absolute top-0 right-full mr-4 mt-2 bg-gradient-to-br from-teal-100/60 to-cyan-100/60 text-sm p-2 rounded shadow-lg z-10 w-[300px] break-words">
+              {item.description}
+            </div>
+          )}
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const CompanyCard = ({ company }) => {
-  const baseColor = company.backgroundColor || '#000000'
+  const baseColor = company.backgroundColor || '#000000';
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
       <div
@@ -123,19 +139,19 @@ const CompanyCard = ({ company }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 interface CompareBoxBlockProps {
-  data: any
-  index: number
+  data: any;
+  index: number;
 }
 
 export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
-  const [companies, setCompanies] = useState([])
-  const [userInteracted, setUserInteracted] = useState(false)
-  const [maxActive, setMaxActive] = useState(4)
-  const sliderRef = useRef(null)
+  const [companies, setCompanies] = useState([]);
+  const [userInteracted, setUserInteracted] = useState(false);
+  const [maxActive, setMaxActive] = useState(4);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     if (data && data.companies) {
@@ -144,83 +160,83 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
           ...company,
           isHidden: company.headline === 'TinaCMS',
           active: idx === 0 ? true : company.active,
-        }
+        };
         data.criteriaItems.forEach((criteria, idx) => {
           updatedCompany[`criteria${idx + 1}`] =
-            updatedCompany[`criteria${idx + 1}`] || false
-        })
-        return updatedCompany
-      })
-      setCompanies(updatedCompanies)
+            updatedCompany[`criteria${idx + 1}`] || false;
+        });
+        return updatedCompany;
+      });
+      setCompanies(updatedCompanies);
     }
-  }, [data])
+  }, [data]);
 
   useEffect(() => {
-    if (userInteracted) return
+    if (userInteracted) return;
 
-    let currentIndex = 1
+    let currentIndex = 1;
     const interval = setInterval(() => {
       setCompanies((prevCompanies) => {
         const newCompanies = prevCompanies.map((company, idx) => ({
           ...company,
           active: idx === 0 ? true : idx === currentIndex,
-        }))
+        }));
         if (sliderRef.current) {
-          sliderRef.current.slickGoTo(currentIndex - 1)
+          sliderRef.current.slickGoTo(currentIndex - 1);
         }
-        currentIndex = (currentIndex + 1) % prevCompanies.length
-        if (currentIndex === 0) currentIndex = 1
-        return newCompanies
-      })
-    }, 3000)
+        currentIndex = (currentIndex + 1) % prevCompanies.length;
+        if (currentIndex === 0) currentIndex = 1;
+        return newCompanies;
+      });
+    }, 3000);
 
-    return () => clearInterval(interval)
-  }, [userInteracted])
+    return () => clearInterval(interval);
+  }, [userInteracted]);
 
   useEffect(() => {
     const updateMaxActive = () => {
-      const width = window.innerWidth
+      const width = window.innerWidth;
       if (width < 600) {
-        setMaxActive(2)
+        setMaxActive(2);
       } else if (width < 1024) {
-        setMaxActive(3)
+        setMaxActive(3);
       } else {
-        setMaxActive(4)
+        setMaxActive(4);
       }
-    }
+    };
 
-    updateMaxActive()
-    window.addEventListener('resize', updateMaxActive)
+    updateMaxActive();
+    window.addEventListener('resize', updateMaxActive);
 
-    return () => window.removeEventListener('resize', updateMaxActive)
-  }, [])
+    return () => window.removeEventListener('resize', updateMaxActive);
+  }, []);
 
   const toggleActive = (companyIdx) => {
-    setUserInteracted(true)
+    setUserInteracted(true);
 
     setCompanies((prevCompanies) => {
-      const activeCompanies = prevCompanies.filter((company) => company.active)
-      const activeCompaniesCount = activeCompanies.length
-      const company = prevCompanies[companyIdx]
+      const activeCompanies = prevCompanies.filter((company) => company.active);
+      const activeCompaniesCount = activeCompanies.length;
+      const company = prevCompanies[companyIdx];
 
       if (company.isHidden) {
-        return prevCompanies
+        return prevCompanies;
       }
 
       if (!company.active && activeCompaniesCount >= maxActive) {
         const firstActiveIdx = prevCompanies.findIndex(
           (comp) => comp.active && !comp.isHidden && comp.headline !== 'TinaCMS'
-        )
+        );
         if (firstActiveIdx !== -1) {
-          prevCompanies[firstActiveIdx].active = false
+          prevCompanies[firstActiveIdx].active = false;
         }
       }
 
       return prevCompanies.map((company, idx) =>
         idx === companyIdx ? { ...company, active: !company.active } : company
-      )
-    })
-  }
+      );
+    });
+  };
 
   const settings = {
     dots: false,
@@ -267,7 +283,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
         },
       },
     ],
-  }
+  };
 
   return (
     <div className="md:px-10 lg:px-10 rounded-lg">
@@ -338,12 +354,12 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
         `}</style>
       </div>
     </div>
-  )
+  );
 }
 
 const styles = css`
   .criteria-card {
-    width: 300px; /* Increase width as needed */
+    width: 300px;
   }
 
   .company-card {
@@ -358,6 +374,6 @@ const styles = css`
       transform: translateY(0);
     }
   }
-`
+`;
 
-export default CompareBoxBlock
+export default CompareBoxBlock;
