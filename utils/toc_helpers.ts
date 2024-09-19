@@ -29,23 +29,38 @@ export function createTocListener(
   setActiveIds: (activeIds: string[]) => void
 ): () => void {
   let tick = false
-  const BASE_OFFSET = 16
   const THROTTLE_INTERVAL = 100
   const headings = createHeadings(contentRef)
+  // console.log(`scroll height ${contentRef.current.scrollHeight}`)
+  // console.log(`client height ${contentRef.current.clientHeight}`)
+  // console.log(`window height ${window.innerHeight}`)
+  const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPos = window.scrollY;
+
+  const relativePositionHeadingMap = headings.map((heading) => {
+    return {
+      ...heading,
+      relativePagePosition: (heading.offset / contentRef.current.scrollHeight),
+    }
+  });
+
+  const BASE_OFFSET = contentRef.current.scrollHeight - contentRef.current.clientHeight
 
   const throttledScroll = () => {
     const scrollPos = window.scrollY
     const newActiveIds = []
-    const activeHeadingCandidates = headings.filter((heading) => {
-      return heading.offset - scrollPos < BASE_OFFSET
+    const relativeScrollPosition = scrollPos / maxScrollY
+    const activeHeadingCandidates = relativePositionHeadingMap.filter((heading) => {
+      return relativeScrollPosition >= heading.relativePagePosition
     })
+
 
     const activeHeading =
       activeHeadingCandidates.length > 0
         ? activeHeadingCandidates.reduce((prev, current) =>
             prev.offset > current.offset ? prev : current
           )
-        : {}
+        : headings[0] ?? {}
     newActiveIds.push(activeHeading.id)
 
     if (activeHeading.level != 'H2') {
