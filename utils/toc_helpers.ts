@@ -31,29 +31,28 @@ export function createTocListener(
   let tick = false
   const THROTTLE_INTERVAL = 100
   const headings = createHeadings(contentRef)
-  // console.log(`scroll height ${contentRef.current.scrollHeight}`)
-  // console.log(`client height ${contentRef.current.clientHeight}`)
-  // console.log(`window height ${window.innerHeight}`)
+  //Find the maximum pixel value from vertical scroll
   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPos = window.scrollY;
 
   const relativePositionHeadingMap = headings.map((heading) => {
     return {
       ...heading,
+      //Find the relative position of the heading in the page content.
       relativePagePosition: (heading.offset / contentRef.current.scrollHeight),
     }
   });
 
-  const BASE_OFFSET = contentRef.current.scrollHeight - contentRef.current.clientHeight
-
   const throttledScroll = () => {
+    //Find the current vertical scroll pixel value
     const scrollPos = window.scrollY
     const newActiveIds = []
+    //Find the relative position on the page based on the scroll.
     const relativeScrollPosition = scrollPos / maxScrollY
+    //Find the headings that are above the current scroll position
+    //This is adjusted to account for differences between min/max scroll values and content height
     const activeHeadingCandidates = relativePositionHeadingMap.filter((heading) => {
       return relativeScrollPosition >= heading.relativePagePosition
     })
-
 
     const activeHeading =
       activeHeadingCandidates.length > 0
@@ -75,9 +74,9 @@ export function createTocListener(
           ? activeHeadingParentCandidates.reduce((prev, current) =>
               prev.offset > current.offset ? prev : current
             )
-          : {}
+          : null
 
-      if (activeHeadingParent.id) {
+      if (activeHeadingParent?.id) {
         newActiveIds.push(activeHeadingParent.id)
       }
     }
