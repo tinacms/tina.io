@@ -141,6 +141,69 @@ You can search your reference with reference selector.
     }
 ```
 
+### Filter reference
+
+If you have a long list of reference item, you can filter them in the schema before build time using `ui.collectionFilter`
+
+> Senario: You have a list of author in different location, and you only want the reference select in your post collection to show the desired location.
+
+```typescript
+const referenceField = {
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: 'Australia'
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
+**Figure: **Show author at location `Australia`
+
+```typescript
+const referenceField = {
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: ['Australia','United States']
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
+**Figure: **Show author at location `Australia` and `United State`
+
+```typescript
+const referenceField = {
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: ['Australia','United States']
+      },
+    post: {
+        status: 'published',
+      },
+    },
+  },
+  collections: ['author', 'post'],
+}
+```
+
+**Figure: **Multiple filter for multiple referenced collection
+
 ### Customizing Reference Selector with optionComponent
 
 The default reference selector displays the file path, there are cases where you may want to customize what is displayed in the dropdown to provide a better user experience. For example, showing the author's name instead of the file name can make the selection process more intuitive.
