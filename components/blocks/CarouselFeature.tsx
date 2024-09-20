@@ -227,7 +227,7 @@ export function CarouselFeatureBlock({ data, index }) {
   return (
     <section
       key={'feature-grid-' + index}
-      className={'relative z-0 py-20 lg:py-28'}
+      className={'relative z-0 py-20 lg:py-28 lg:h-[1100px]'}
       style={{ overflow: 'visible' }}
     >
       <Container width="wide">
