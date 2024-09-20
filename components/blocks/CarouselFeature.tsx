@@ -96,7 +96,7 @@ const CarouselItem = ({
             )}
           </div>
           <div
-            className={`transition-all duration-500 delay-200 ${
+            className={`transition-all duration-250 ${
               textDisplayCondition
                 ? 'scale-y-100 opacity-100'
                 : 'scale-y-75 opacity-0'
