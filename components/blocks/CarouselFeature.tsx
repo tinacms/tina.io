@@ -127,7 +127,6 @@ export function CarouselFeatureBlock({ data, index }) {
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   // Automatically cycle through items on large screens, while disabling auto-cycle on smaller screens.
-
   useEffect(() => {
     const mediaQueryLarge = window.matchMedia('(min-width: 1024px)');
     const mediaQuerySmallOrMedium = window.matchMedia('(max-width: 1023px)');
