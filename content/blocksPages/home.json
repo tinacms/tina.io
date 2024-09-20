@@ -191,6 +191,7 @@
           "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464332/tina.io-gifs/2024-09-13-key-features-control-components_jomxbs.gif",
           "button": {
             "label": "READ MORE",
+            "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
             "url": "/docs/editing/blocks"
@@ -219,7 +220,7 @@
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
-            "url": "/docs/editorial-workflow"
+            "url": "/docs/drafts/editorial-workflow/"
           }
         },
         {
