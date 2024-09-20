@@ -1,6 +1,6 @@
-import React from 'react'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
+import React from 'react'
 import { Footer } from './Footer'
 import { Navbar } from './Navbar'
 

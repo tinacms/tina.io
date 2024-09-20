@@ -1,26 +1,26 @@
 ---
 title: The "reference" field
-last_edited: '2024-08-27T08:00:17.162Z'
+last_edited: '2024-09-12T01:50:26.823Z'
+next: ''
+previous: ''
 ---
 
-## `reference`
+## `reference` Type
 
 The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
 
 Once defined, the values of the *referenced* document become available to the parent.
 
-> Note: `reference` with `list: true` is not currently supported. See the "Temporary work around" section of [issue #2056](https://github.com/tinacms/tinacms/issues/2056) for a suggested approach to achieve a similar result
-
-## Object Definition
+> Note: `reference` with `list: true` is not currently supported. Object type lists can be used [as a wrapper](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) around `reference` field types to create a list of references.
 
 ```ts
 type ReferenceField = {
   label: string
   name: string
   type: 'reference'
-  /** The `name` of another collection **/
+  // The `name` of another collection
   collections: string[]
-  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
     label?: string
     description?: string
@@ -145,7 +145,7 @@ You can search your reference with reference selector.
 
 The default reference selector displays the file path, there are cases where you may want to customize what is displayed in the dropdown to provide a better user experience. For example, showing the author's name instead of the file name can make the selection process more intuitive.
 
-Below are some examples on how to customize the  reference select using `ui.optionComponent`. 
+Below are some examples on how to customize the  reference select using `ui.optionComponent`.
 
 Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
 
