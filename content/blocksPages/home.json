@@ -137,6 +137,7 @@
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit",
           "icon2": "FaClock",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788860/tina.io-gifs/Key_Features_Visual_Editing_v2a_drv7zt.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -162,6 +163,7 @@
           "headline": "Develop Locally",
           "text": "Easily set up and run Tina locally to talk to your local filesystem",
           "icon2": "FaCodeBranch",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788950/tina.io-gifs/Key_Features_Local_kutskd.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -173,6 +175,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788955/tina.io-gifs/Key_Features_3rd_Party_Media_bkkuou.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
