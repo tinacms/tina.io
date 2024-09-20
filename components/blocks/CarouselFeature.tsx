@@ -59,7 +59,7 @@ const CarouselItem = ({
     <div
       className={`${
         isHovered && !isSmallOrMediumScreen
-          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-4 pr-8 md:py-9 md:pr-11 lg:py-12 lg:pr-14 rounded-2xl'
+          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-5 lg:pt-8 lg:pr-14 rounded-2xl'
           : nonHoveredStyles
       } ${commonStyles}`}
       onMouseEnter={!isSmallOrMediumScreen ? onMouseEnter : null}
@@ -73,7 +73,7 @@ const CarouselItem = ({
         <div className="block lg:hidden pb-5">
           {renderMedia && renderMedia(index)}
         </div>
-        <div className="flex items-center mb-2">
+        <div className="flex items-center mb-2 pl-1">
           {IconComponent && (
             <IconComponent
               className={`text-xl md:text-3xl ${
@@ -85,7 +85,7 @@ const CarouselItem = ({
           )}
           {headline && (
             <h3
-              className={`text-xl md:text-3xl font-tuner leading-tight pl-8 ${
+              className={`text-xl md:text-3xl font-tuner leading-tight pl-4 ${
                 isHovered && !isSmallOrMediumScreen
                   ? 'text-transparent bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text'
                   : 'text-black'
@@ -103,12 +103,12 @@ const CarouselItem = ({
           }`}
         >
           {textDisplayCondition && (
-            <p className={`md:pl-12 md:ml-4 text-lg font-medium slide-up`}>
+            <p className={`md:pl-12 lg:pl-9 md:ml-4 text-lg font-medium slide-up`}>
               {text}
             </p>
           )}
           {buttonDisplayCondition && (
-            <div className={`md:pl-11 slide-up`}>
+            <div className={`md:pl-11 lg:pl-7 slide-up`}>
               <Actions items={actionsArray} />
             </div>
           )}
