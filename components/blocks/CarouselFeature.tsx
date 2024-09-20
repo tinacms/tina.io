@@ -27,7 +27,6 @@ import { SlLock } from 'react-icons/sl';
 import { FaStar } from 'react-icons/fa';
 import { icons } from '../ui/IconPickerIcons';
 
-
 const CarouselItem = ({
   data,
   index,
@@ -42,14 +41,19 @@ const CarouselItem = ({
 
   const IconComponent = icons[icon2] || null;
 
-  const commonStyles = 'transition-all delay-[50] duration-500 hover:scale-105 hover:z-20';
+  const commonStyles =
+    'transition-all delay-[50] duration-500 hover:scale-105 hover:z-20';
   const nonHoveredStyles = 'pl-4';
 
   const actionsArray = button ? [button] : [];
 
-  const textDisplayCondition = ((!isSmallOrMediumScreen && isHovered && text) || (isSmallOrMediumScreen && text));
+  const textDisplayCondition =
+    (!isSmallOrMediumScreen && isHovered && text) ||
+    (isSmallOrMediumScreen && text);
 
-  const buttonDisplayCondition = ((!isSmallOrMediumScreen && isHovered && button) || (isSmallOrMediumScreen && button));
+  const buttonDisplayCondition =
+    (!isSmallOrMediumScreen && isHovered && button) ||
+    (isSmallOrMediumScreen && button);
 
   return (
     <div
@@ -73,7 +77,9 @@ const CarouselItem = ({
           {IconComponent && (
             <IconComponent
               className={`text-xl md:text-3xl ${
-                isHovered && !isSmallOrMediumScreen ? 'text-orange-500/90' : 'text-black'
+                isHovered && !isSmallOrMediumScreen
+                  ? 'text-orange-500/90'
+                  : 'text-black'
               }`}
             />
           )}
@@ -89,17 +95,23 @@ const CarouselItem = ({
             </h3>
           )}
         </div>
-        <div className={`transition-all duration-500 delay-200 ${textDisplayCondition ? "scale-y-100 opacity-100" : "scale-y-75 opacity-0"}`}>
-          {
-            textDisplayCondition && 
-            <p className={`md:pl-12 md:ml-4 text-lg font-medium slide-up`}>{text}</p>  
-          }
-          {
-            buttonDisplayCondition && 
+        <div
+          className={`transition-all duration-500 delay-200 ${
+            textDisplayCondition
+              ? 'scale-y-100 opacity-100'
+              : 'scale-y-75 opacity-0'
+          }`}
+        >
+          {textDisplayCondition && (
+            <p className={`md:pl-12 md:ml-4 text-lg font-medium slide-up`}>
+              {text}
+            </p>
+          )}
+          {buttonDisplayCondition && (
             <div className={`md:pl-11 slide-up`}>
               <Actions items={actionsArray} />
             </div>
-          }
+          )}
         </div>
       </div>
     </div>
@@ -112,6 +124,9 @@ export function CarouselFeatureBlock({ data, index }) {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
   const intervalRef = useRef(null);
+
+  // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
+  // Automatically cycle through items on large screens, while disabling auto-cycle on smaller screens.
 
   useEffect(() => {
     const mediaQueryLarge = window.matchMedia('(min-width: 1024px)');
