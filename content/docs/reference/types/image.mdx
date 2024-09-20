@@ -1,16 +1,19 @@
 ---
 title: The "image" field
-last_edited: '2022-06-15T15:51:56.737Z'
+last_edited: '2024-09-12T01:51:04.538Z'
+next: ''
+previous: ''
 ---
 
-# `image`
+## `image` Type
 
 ```ts
 type ImageField = {
   label: string
   name: string
   type: 'image'
-  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  list?: boolean
+  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
     label?: string
     description?: string

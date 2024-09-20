@@ -1,0 +1,166 @@
+---
+title: Markdown Shortcode
+last_edited: '2024-09-17T23:33:12.783Z'
+next: ''
+previous: ''
+---
+
+## Custom shortcode syntax
+
+<WarningCallout body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our community channels or via the related [GitHub discussion](https://github.com/tinacms/tinacms/discussions/4794)." />
+
+If you have some custom shortcode logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
+
+The following snippet would throw an error while parsing since Tina doesn't know what to do with `{{}}`:
+
+```markdown
+{{ WarningCallout content="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our [community channels](/community/)!" }}
+```
+
+But you can tell Tina how to handle it with a `template`:
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'WarningCallout',
+        label: 'WarningCallout',
+        match: {
+          start: '{{',
+          end: '}}',
+        },
+        fields: [
+          {
+            name: 'content',
+            label: 'Content',
+            type: 'string',
+            required: true,
+            ui: {
+              component: 'textarea',
+            },
+          },
+        ],
+      },
+    ],
+  },
+]
+```
+
+### Raw strings in shortcodes
+
+Certain frameworks support shortcodes with Raw string values:
+
+```
+{{  myshortcode "This is some raw text" }}
+```
+
+This is supported in Tina with the special `_value` field.
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'myshortcode',
+        label: 'myshortcode',
+        match: {
+          start: '{{',
+          end: '}}',
+        },
+        fields: [
+          {
+            name: '_value',
+            label: 'value',
+            type: 'string',
+            required: true,
+          },
+        ],
+      },
+    ],
+  },
+]
+```
+
+### Nesting content in a shortcode
+
+Shortcodes can provide a `children` field, which allows content to be nested within a shortcode.
+
+```md
+{{% shortcode %}}
+What up!
+{{% /shortcode %}}
+```
+
+Your field template definition would look something like:
+
+```javascript
+{
+  name: "pull_quote2",
+  label: "pull_quote2",
+  match: {
+    name: "shortcode",
+    start: "{{%",
+    end: "%}}"
+  },
+  fields: [
+    {
+      name: "children",
+      type: "rich-text"
+    }
+  ]
+}
+```
+
+> Note: the children type currently needs to be of type: \`rich-text\`.
+
+### Using shortcode names with dashes
+
+Sometimes your shortcode will contain characters that aren't supported in Tina's content modelling
+
+```md
+{{ my-shortcode }}
+```
+
+You can supply a `name` on the `match` object to handle this.
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'myshortcode',
+        label: 'myshortcode',
+        match: {
+          start: '{{',
+          end: '}}',
+          name: 'my-shortcode',
+        },
+        // ...
+      },
+    ],
+  },
+]
+```
+
+## Other notes
+
+### Full Spec
+
+The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "TinaCMS MDX Spec")
+
+### Default values
+
+If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
+
+### Shortcode in the CMS
+
+The shortcode appears in the CMS as any other custom markdown embed. To inspect the shortcode in the CMS, use the raw markdown option in the editor.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1726549409/tina-io/docs/2024-09-17_15-01-58_lqfbf9.png)

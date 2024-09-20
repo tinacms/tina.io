@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Prism } from '../styles/Prism'
+import { Prism } from '../styles/Prism';
 
 export const GraphQLQueryResponseTabs = ({ ...props }) => {
 
-    const [isQuery, setIsQuery] = useState(true);
+    const [isQuery, setIsQuery] = useState(!props.preselectResponse);
 
     const buttonStyling = "flex justify-center relative leading-tight text-white mx-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-tuner whitespace-nowrap px-2"
     const activeButtonStyling = " hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px hover:text-gray-50 opacity-50 hover:opacity-100"

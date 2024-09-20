@@ -1,11 +1,11 @@
 ---
 title: The "object" field
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2024-09-12T01:50:34.111Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
 
-# `object`
+## `object` Type
 
 ```ts
 type ObjectField = {
@@ -13,19 +13,18 @@ type ObjectField = {
   name: string
   type: 'object'
   list?: boolean
-  /** `fields OR `templates` may be provided, not both **/
+  // `fields` OR `templates` may be provided, not both
   fields?: Field[]
   templates?: Template[]
   /** Customize the default "_template" key that gets set
      in a document to identify a block-type.
      Only applicable when list: true **/
   templatesKey?: string
-  list?: boolean
-  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
-     /** Weather or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental **/
+     // Whether or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental
     visualSelector?: boolean,
-    // Note: defaultItem can only can be used when {list: true}
+    // defaultItem can only can be used when {list: true}
     defaultItem?: Record<string, any> | () => Record<string, any>,
     itemProps?(
       item: Record<string, any>
@@ -106,6 +105,29 @@ Tina will generate the appropriate component depending on the configuration prov
 ```
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381170/Screenshot_2024-07-31_at_9.12.43_AM_gahppr.png)
+
+### Using list object as a wrapper for other types
+
+Number, boolean, datetime and rich-text field types can be used in this way to add list options to the TinaCMS editor.
+
+Reference field types can be used in this way to create a list of references.
+
+```javascript
+{
+  label: "Author List",
+  name: "authorList",
+  type: "object",
+  list: true,      
+  fields: [
+    {
+      label: 'Author',
+      name: 'author',
+      type: 'reference',
+      collections: ['author'],
+    },
+  ]
+}
+```
 
 ### Using templates instead of fields
 

@@ -1,25 +1,26 @@
-import { Layout } from 'components/layout'
-import client from 'tina/__generated__/client'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import Link from 'next/link'
-import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents'
+import { Layout } from 'components/layout';
+import client from 'tina/__generated__/client';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import Link from 'next/link';
+import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
+import { FaGithub, FaNewspaper } from 'react-icons/fa';
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
     await client.queries.WhatsNewTinaCMSConnection({
       last: 10,
       sort: 'dateReleased',
-    })
+    });
 
   const items =
     connectionData?.WhatsNewTinaCMSConnection?.edges.map((edge) => edge.node) ||
-    []
+    [];
   return {
     props: {
       items,
     },
-  }
-}
+  };
+};
 
 const Tinacms = ({ items }) => {
   return (
@@ -32,7 +33,7 @@ const Tinacms = ({ items }) => {
           {items.map((item) => (
             <div
               key={item.id}
-              className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105"
+              className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105 bg-gradient-to-br from-white/25 via-white/50 to-white/75"
             >
               <h2 className="text-2xl bg-gradient-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent text-blue-700 font-semibold">
                 Version {item.versionNumber}
@@ -48,14 +49,22 @@ const Tinacms = ({ items }) => {
           ))}
         </div>
         <div className="font-tuner text-lg text-center text-blue-700">
-          <Link href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md">
-            {' '}
-            See More{' '}
+          <Link
+            href="https://github.com/tinacms/tinacms/blob/main/packages/tinacms/CHANGELOG.md"
+            className="flex items-center justify-center hover:text-blue-800"
+          >
+            See more on GitHub <FaGithub className="ml-2" />
+          </Link>
+          <Link
+            href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"
+            className="flex items-center justify-center hover:text-blue-800"
+          >
+            See Newsletters <FaNewspaper className='ml-2' />
           </Link>
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Tinacms
+export default Tinacms;
