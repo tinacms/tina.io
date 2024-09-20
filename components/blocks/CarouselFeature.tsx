@@ -25,25 +25,8 @@ import { HiOutlineSparkles } from 'react-icons/hi2';
 import { TbPlugConnected } from 'react-icons/tb';
 import { SlLock } from 'react-icons/sl';
 import { FaStar } from 'react-icons/fa';
+import { icons } from '../ui/IconPickerIcons';
 
-const icons = {
-  FaClock,
-  FaUnlock,
-  FaCodeBranch,
-  FaCloudDownloadAlt,
-  FaPuzzlePiece,
-  FaMarkdown,
-  FaGithub,
-  FaFileAlt,
-  AiOutlineUser,
-  BiBadge,
-  BiSupport,
-  AiOutlineUsergroupAdd,
-  CgCrown,
-  HiOutlineSparkles,
-  TbPlugConnected,
-  SlLock,
-};
 
 const CarouselItem = ({
   data,
