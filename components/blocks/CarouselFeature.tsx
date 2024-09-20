@@ -149,7 +149,6 @@ export function CarouselFeatureBlock({ data, index }) {
 
   useEffect(() => {
     if (!isPaused && isLargeScreen && data?.items?.length > 0) {
-      setHoveredIndex(0); 
       intervalRef.current = setInterval(() => {
         setHoveredIndex((prevIndex) => {
           if (prevIndex === null || prevIndex >= data.items.length - 1) {
