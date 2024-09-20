@@ -56,65 +56,67 @@ const CarouselItem = ({
     (isSmallOrMediumScreen && button);
 
   return (
-    <div
-      className={`${
-        isHovered && !isSmallOrMediumScreen
-          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-5 lg:pt-8 lg:pr-14 rounded-2xl'
-          : nonHoveredStyles
-      } ${commonStyles}`}
-      onMouseEnter={!isSmallOrMediumScreen ? onMouseEnter : null}
-      onMouseLeave={!isSmallOrMediumScreen ? onMouseLeave : null}
-      style={{ textDecoration: 'none', overflow: 'visible' }}
-    >
       <div
-        data-tina-field={tinaField(data, 'headline')}
-        className="flex flex-col"
+        className={`${
+          isHovered && !isSmallOrMediumScreen
+            ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
+            : nonHoveredStyles
+        } ${commonStyles}`}
+        onMouseEnter={!isSmallOrMediumScreen ? onMouseEnter : null}
+        onMouseLeave={!isSmallOrMediumScreen ? onMouseLeave : null}
+        style={{ textDecoration: 'none', overflow: 'visible' }}
       >
-        <div className="block lg:hidden pb-5">
-          {renderMedia && renderMedia(index)}
-        </div>
-        <div className="flex items-center mb-2 pl-1">
-          {IconComponent && (
-            <IconComponent
-              className={`text-xl md:text-3xl ${
-                isHovered && !isSmallOrMediumScreen
-                  ? 'text-orange-500/90'
-                  : 'text-black'
-              }`}
-            />
-          )}
-          {headline && (
-            <h3
-              className={`text-xl md:text-3xl font-tuner leading-tight pl-4 ${
-                isHovered && !isSmallOrMediumScreen
-                  ? 'text-transparent bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text'
-                  : 'text-black'
-              }`}
-            >
-              {headline}
-            </h3>
-          )}
-        </div>
         <div
-          className={`transition-all duration-500 delay-200 ${
-            textDisplayCondition
-              ? 'scale-y-100 opacity-100'
-              : 'scale-y-75 opacity-0'
-          }`}
+          data-tina-field={tinaField(data, 'headline')}
+          className="flex flex-col"
         >
-          {textDisplayCondition && (
-            <p className={`md:pl-12 lg:pl-9 md:ml-4 text-lg font-medium slide-up`}>
-              {text}
-            </p>
-          )}
-          {buttonDisplayCondition && (
-            <div className={`md:pl-11 lg:pl-7 slide-up`}>
-              <Actions items={actionsArray} />
-            </div>
-          )}
+          <div className="block lg:hidden pb-5">
+            {renderMedia && renderMedia(index)}
+          </div>
+          <div className="flex items-center mb-2 pl-1">
+            {IconComponent && (
+              <IconComponent
+                className={`text-xl  ${
+                  isHovered && !isSmallOrMediumScreen
+                    ? 'text-orange-500/90 md:text-3xl pb-1'
+                    : 'text-black md:text-2xl pb-1'
+                }`}
+              />
+            )}
+            {headline && (
+              <h3
+                className={` md:text-3xl font-tuner leading-tight pl-4 ${
+                  isHovered && !isSmallOrMediumScreen
+                    ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text'
+                    : 'text-black lg:text-xl'
+                }`}
+              >
+                {headline}
+              </h3>
+            )}
+          </div>
+          <div
+            className={`transition-all duration-500 delay-200 ${
+              textDisplayCondition
+                ? 'scale-y-100 opacity-100'
+                : 'scale-y-75 opacity-0'
+            }`}
+          >
+            {textDisplayCondition && (
+              <p
+                className={`md:pl-12 lg:pl-9 md:ml-4 text-lg font-medium slide-up`}
+              >
+                {text}
+              </p>
+            )}
+            {buttonDisplayCondition && (
+              <div className={`md:pl-11 lg:pl-7 slide-up`}>
+                <Actions items={actionsArray} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
@@ -148,7 +150,7 @@ export function CarouselFeatureBlock({ data, index }) {
             }
             return prevIndex + 1;
           });
-        }, 3000);
+        }, 6000);
       }
     };
 
@@ -170,7 +172,7 @@ export function CarouselFeatureBlock({ data, index }) {
           }
           return prevIndex + 1;
         });
-      }, 3000);
+      }, 6000);
     }
     return () => clearInterval(intervalRef.current);
   }, [isPaused, isLargeScreen, data?.items?.length]);
@@ -196,12 +198,14 @@ export function CarouselFeatureBlock({ data, index }) {
 
     if (fileExtension === 'gif') {
       return (
-        <img
-          key={index}
-          src={fullVideoUrl}
-          alt={`Media item ${index}`}
-          className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
-        />
+        <div className="flex justify-center items-center">
+          <img
+            key={index}
+            src={fullVideoUrl}
+            alt={`Media item ${index}`}
+            className="w-full h-auto mt-10 lg:mt-0 rounded-xl shadow-lg"
+          />
+        </div>
       );
     }
 
@@ -227,7 +231,7 @@ export function CarouselFeatureBlock({ data, index }) {
       style={{ overflow: 'visible' }}
     >
       <Container width="wide">
-        <div className="flex flex-col lg:flex-row gap-6 w-full rounded-xl overflow-visible">
+        <div className="flex flex-col lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20">
           <div className="flex flex-col order-2 lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible">
             <h1
               className={`pl-3 font-tuner inline-block text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-3`}
@@ -250,7 +254,7 @@ export function CarouselFeatureBlock({ data, index }) {
                 </div>
               ))}
           </div>
-          <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 lg:mt-0 justify-center items-center">
+          <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 pt-24 lg:mt-0 justify-center items-center">
             {renderMedia(hoveredIndex)}
           </div>
         </div>
