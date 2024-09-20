@@ -168,7 +168,8 @@
             "label": "READ MORE",
             "icon": true,
             "variant": "ghostBlue",
-            "size": "medium"
+            "size": "medium",
+            "url": "/docs/setup-overview/"
           }
         },
         {
