@@ -37,7 +37,7 @@ export function createTocListener(
   const relativePositionHeadingMap = headings.map((heading) => {
     return {
       ...heading,
-      //Find the relative position of the heading in the page content.
+      //Find the relative position of the heading based on the page content.
       relativePagePosition: (heading.offset / contentRef.current.scrollHeight),
     }
   });

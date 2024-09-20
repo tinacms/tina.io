@@ -1,4 +1,4 @@
-//TODO – check if this is still needed
+//TODO – this is no longer needed, https://github.com/tinacms/tina.io/issues/2215
 import Airtable from 'airtable'
 
 interface FeedbackRecord {

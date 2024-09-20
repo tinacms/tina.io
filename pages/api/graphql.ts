@@ -1,4 +1,4 @@
-//TODO – check if this is still needed, the graphiql playgrounds have already been replaced
+//TODO – check if this is still needed, the graphiql playgrounds have already been replaced, see https://github.com/tinacms/tina.io/issues/2001
 import * as datalayerPackage from '@tinacms/datalayer-old'
 import * as gqlPackage from '@tinacms/graphql-old'
 
