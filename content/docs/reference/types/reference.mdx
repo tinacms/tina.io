@@ -1,6 +1,6 @@
 ---
 title: The "reference" field
-last_edited: '2024-09-20T05:34:11.844Z'
+last_edited: '2024-09-20T07:19:50.080Z'
 next: ''
 previous: ''
 ---
@@ -143,7 +143,9 @@ You can search your reference with reference selector.
 
 ### Filter reference
 
-If you have a long list of reference items, you can filter them in the schema using the `ui.collectionFilter` field.
+If you have a long list of reference items, you can filter them in the schema using the `ui.collectionFilter` field with any property you defined in the referenced collection.
+
+> Note: Current `collectionFilter`only support property of type string.
 
 > Senario: You have a list of author in different location, and you only want the reference select in your post collection to show the desired location.
 
@@ -182,6 +184,7 @@ const referenceField = {
 ```
 
 Reference fields on multiple collections can be filtered by the values in either collection.
+
 ```typescript
 const referenceField = {
   label: 'Author & Post',
