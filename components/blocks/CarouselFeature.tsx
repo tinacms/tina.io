@@ -124,7 +124,6 @@ const CarouselItem = ({
 };
 
 export function CarouselFeatureBlock({ data, index }) {
-  console.log('data in featureBlock', data);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -190,7 +189,6 @@ export function CarouselFeatureBlock({ data, index }) {
   };
 
   const renderMedia = (index) => {
-    console.log('render media for, ', index);
     if (index === null) return null;
 
     const item = data?.items?.[index];
@@ -198,8 +196,6 @@ export function CarouselFeatureBlock({ data, index }) {
 
     const fullVideoUrl = item.videoSrc;
     const fileExtension = fullVideoUrl.split('.').pop();
-
-    console.log('fullVideoUrl', fullVideoUrl);
 
     if (fileExtension === 'gif') {
       return (
