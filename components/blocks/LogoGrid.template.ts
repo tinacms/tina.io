@@ -34,14 +34,7 @@ export const logoGridTemplate: TinaTemplate = {
           name: 'link',
           label: 'Link',
           type: 'string',
-          ui: {
-            validate: (val) => {
-              // make sure value is https url
-              if (!val?.startsWith('https://')) {
-                return 'Must be a valid https url'
-              }
-            },
-          },
+          description: 'The URL to link to when the logo is clicked. Should be either (1) an internal link (e.g. /showcase#unity) or (2) an external link (e.g. https://ndcconferences.com/).',
         },
         { name: 'logo', label: 'Logo Image', type: 'image' },
         { name: 'size', label: 'Size', type: 'number' },
