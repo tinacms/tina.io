@@ -6,25 +6,6 @@ import GradGlow from '../../public/svg/grad-glow.svg';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { Actions } from './ActionsButton';
-import {
-  FaClock,
-  FaUnlock,
-  FaCodeBranch,
-  FaCloudDownloadAlt,
-  FaPuzzlePiece,
-  FaMarkdown,
-  FaGithub,
-  FaFileAlt,
-} from 'react-icons/fa';
-import { AiOutlineUser } from 'react-icons/ai';
-import { BiBadge } from 'react-icons/bi';
-import { BiSupport } from 'react-icons/bi';
-import { AiOutlineUsergroupAdd } from 'react-icons/ai';
-import { CgCrown } from 'react-icons/cg';
-import { HiOutlineSparkles } from 'react-icons/hi2';
-import { TbPlugConnected } from 'react-icons/tb';
-import { SlLock } from 'react-icons/sl';
-import { FaStar } from 'react-icons/fa';
 import { icons } from '../ui/IconPickerIcons';
 
 const CarouselItem = ({
@@ -32,8 +13,7 @@ const CarouselItem = ({
   index,
   id,
   isHovered,
-  onMouseEnter,
-  onMouseLeave,
+  onClick,
   isSmallOrMediumScreen,
   renderMedia,
 }) => {
@@ -62,8 +42,7 @@ const CarouselItem = ({
             ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
             : nonHoveredStyles
         } ${commonStyles}`}
-        onMouseEnter={!isSmallOrMediumScreen ? onMouseEnter : null}
-        onMouseLeave={!isSmallOrMediumScreen ? onMouseLeave : null}
+        onClick={() => onClick(index)}
         style={{ textDecoration: 'none', overflow: 'visible' }}
       >
         <div
@@ -85,7 +64,7 @@ const CarouselItem = ({
             )}
             {headline && (
               <h3
-                className={` md:text-3xl font-tuner leading-tight pl-4 ${
+                className={` md:text-3xl text-2xl font-tuner leading-tight pl-4 ${
                   isHovered && !isSmallOrMediumScreen
                     ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text'
                     : 'text-black lg:text-xl'
@@ -104,13 +83,13 @@ const CarouselItem = ({
           >
             {textDisplayCondition && (
               <p
-                className={`md:pl-12 lg:pl-9 md:ml-4 text-lg font-medium slide-up`}
+                className={`md:pl-12 lg:pl-9 text-lg font-medium slide-up`}
               >
                 {text}
               </p>
             )}
             {buttonDisplayCondition && (
-              <div className={`md:pl-11 lg:pl-7 slide-up`}>
+              <div className={`md:pl-6 lg:pl-7 slide-up`}>
                 <Actions items={actionsArray} />
               </div>
             )}
@@ -121,14 +100,14 @@ const CarouselItem = ({
 };
 
 export function CarouselFeatureBlock({ data, index }) {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
+  const [isUserInteracted, setIsUserInteracted] = useState(false);
   const intervalRef = useRef(null);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
-  // Automatically cycle through items on large screens, while disabling auto-cycle on smaller screens.a
   useEffect(() => {
     const mediaQueryLarge = window.matchMedia('(min-width: 1024px)');
     const mediaQuerySmallOrMedium = window.matchMedia('(max-width: 1023px)');
@@ -142,15 +121,8 @@ export function CarouselFeatureBlock({ data, index }) {
       if (!e.matches) {
         clearInterval(intervalRef.current);
         setHoveredIndex(null);
-      } else if (mediaQueryLarge.matches) {
-        intervalRef.current = setInterval(() => {
-          setHoveredIndex((prevIndex) => {
-            if (prevIndex === null || prevIndex === data?.items?.length - 1) {
-              return 0;
-            }
-            return prevIndex + 1;
-          });
-        }, 6000);
+      } else if (mediaQueryLarge.matches && !isUserInteracted) {
+        startAutoTicking();
       }
     };
 
@@ -161,30 +133,30 @@ export function CarouselFeatureBlock({ data, index }) {
       mediaQueryLarge.removeEventListener('change', handleMediaChange);
       mediaQuerySmallOrMedium.removeEventListener('change', handleMediaChange);
     };
-  }, [data?.items?.length]);
+  }, [data?.items?.length, isUserInteracted]);
 
-  useEffect(() => {
-    if (!isPaused && isLargeScreen && data?.items?.length > 0) {
-      intervalRef.current = setInterval(() => {
-        setHoveredIndex((prevIndex) => {
-          if (prevIndex === null || prevIndex >= data.items.length - 1) {
-            return 0;
-          }
-          return prevIndex + 1;
-        });
-      }, 6000);
-    }
-    return () => clearInterval(intervalRef.current);
-  }, [isPaused, isLargeScreen, data?.items?.length]);
-
-  const handleMouseEnter = (index) => {
-    setIsPaused(true);
-    setHoveredIndex(index);
-    clearInterval(intervalRef.current);
+  const startAutoTicking = () => {
+    intervalRef.current = setInterval(() => {
+      setHoveredIndex((prevIndex) => {
+        if (prevIndex === null || prevIndex >= data.items.length - 1) {
+          return 0;
+        }
+        return prevIndex + 1;
+      });
+    }, 6000);
   };
 
-  const handleMouseLeave = () => {
-    setIsPaused(false);
+  useEffect(() => {
+    if (!isPaused && isLargeScreen && data?.items?.length > 0 && !isUserInteracted) {
+      startAutoTicking();
+    }
+    return () => clearInterval(intervalRef.current);
+  }, [isPaused, isLargeScreen, data?.items?.length, isUserInteracted]);
+
+  const handleItemClick = (index) => {
+    setHoveredIndex(index);
+    setIsUserInteracted(true);
+    clearInterval(intervalRef.current);
   };
 
   const renderMedia = (index) => {
@@ -246,8 +218,7 @@ export function CarouselFeatureBlock({ data, index }) {
                     index={index}
                     id={sanitizeLabel(item.headline)}
                     isHovered={hoveredIndex === index}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
+                    onClick={handleItemClick}
                     isSmallOrMediumScreen={isSmallOrMediumScreen}
                     renderMedia={renderMedia}
                   />
