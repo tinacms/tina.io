@@ -73,7 +73,7 @@ const CriteriaCard = ({ criteriaItems }) => {
             {item.criteria}
           </h3>
           {hoveredItem === idx && (
-            <div className="hidden text-black font-semibold lg:block absolute top-0 right-full mr-4 mt-2 bg-gradient-to-br from-teal-100/60 to-cyan-100/60 text-sm p-2 rounded shadow-lg z-10 xl:w-[300px] w-[150px] break-words">
+            <div className="hidden text-black lg:block absolute top-0 right-full mr-4 mt-2 bg-gradient-to-br from-teal-100/60 to-cyan-100/60 text-sm p-2 rounded shadow-lg z-10 xl:w-[300px] w-[150px] break-words">
               {item.description}
             </div>
           )}
