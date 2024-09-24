@@ -64,9 +64,9 @@ const CarouselItem = ({
             )}
             {headline && (
               <h3
-                className={` md:text-3xl text-2xl font-tuner leading-tight pl-4 ${
+                className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-4 ${
                   isHovered && !isSmallOrMediumScreen
-                    ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text'
+                    ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
                     : 'text-black lg:text-xl'
                 }`}
               >
