@@ -1,3 +1,4 @@
+//TODO summing another review comment, I reckon this file can go
 import matter from 'gray-matter'
 const fg = require('fast-glob')
 var fs = require('fs')

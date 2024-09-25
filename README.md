@@ -47,6 +47,28 @@ This will spin up the react/Next project locally, running on [localhost:3000](ht
 
 ## 🏗️ Project Structure
 
+📂 Components
+
+📂 Content
+
+📂 Data-api
+
+📂 Indices
+
+📂 Pages
+
+📂 Public
+
+📂 RSS
+
+📂 Scripts
+
+📂 Styles
+
+📂 Tina
+
+📂 Util
+
 <br>
 
 ## 📜 Contribution Expectations

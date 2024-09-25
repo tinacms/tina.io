@@ -1,7 +1,8 @@
+//TODO – summoning a comment from Brady/Josh, can this be removed?
 import React from 'react'
+import data from '../../content/docs-navigation.json'
 import { LinkButton } from '../ui'
 import { DynamicLink } from '../ui/DynamicLink'
-import data from '../../content/docs-navigation.json'
 
 export const DocsHeaderNav = () => {
   return (
