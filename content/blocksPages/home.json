@@ -131,69 +131,114 @@
       "_template": "logoGrid"
     },
     {
-      "features": [
+      "blockHeadline": "Key Features",
+      "items": [
         {
-          "headline": "Own Your Content",
-          "text": "Don't lock your content in a 3rd-party service.  Tina writes to files in your repository (MDX, Markdown, JSON, etc)",
-          "buttons": [
-            {
-              "label": "Learn More",
-              "icon": false,
-              "variant": "white",
-              "size": "medium",
-              "url": "/docs/product-tour/",
-              "_template": "actions"
-            }
-          ],
-          "media": [
-            {
-              "file": "about.mdx",
-              "code": "---\ntitle: Collaborate With Your Team\n---\n\nOnline tools help drive your business forward.\nReach new audiences and collaborate with your\nteam – **All in the cloud.**\n\n<Button\ntext=\"Get Started\"\nlink=\"/get-started\"\n/>",
-              "language": "markdown",
-              "scale": 1,
-              "_template": "code"
-            }
-          ]
+          "headline": "Visual Editing",
+          "text": "See content changes in real-time as you edit",
+          "icon2": "FaClock",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788860/tina.io-gifs/Key_Features_Visual_Editing_v2a_drv7zt.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://quick-edit-demo.vercel.app/admin#/"
+          }
         },
         {
-          "headline": "An API for your Content",
-          "text": "Easily fetch your file-based content using Tina's Data Layer",
-          "media": [
-            {
-              "file": "query.gql",
-              "code": "query {\n  post(relativePath: \"about.mdx\") {\n    title\n  }\n}",
-              "language": "javascript",
-              "scale": 1,
-              "_template": "code"
-            }
-          ],
-          "isReversed": true
+          "headline": "Open Source",
+          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
+          "icon2": "FaUnlock",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464412/tina.io-gifs/2024-09-13-key-features-open-source_lofuna.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://github.com/tinacms/tinacms"
+          }
         },
         {
-          "headline": "Configure with Code",
-          "text": "Tina is code-first and fully typed. Define your CMS in the Tina config file in your repository",
-          "buttons": [
-            {
-              "label": "Read the Docs",
-              "icon": false,
-              "variant": "white",
-              "size": "small",
-              "url": "/docs/schema",
-              "_template": "actions"
-            }
-          ],
-          "media": [
-            {
-              "file": "config.tsx",
-              "code": "const tinaConfig = defineConfig({\n  schema: {\n    collections: [\n      {\n        name: 'doc',\n        label: 'Docs',\n        path: 'content/docs',\n        fields: [\n          {\n            name: 'title',\n            label: 'Title',\n            type: 'string',\n          },\n          {\n            type: 'rich-text',\n            name: 'body',\n            label: 'Body',\n            isBody: true,\n          },\n        ],\n      },\n    ],\n  },\n  // ...\n})\n",
-              "language": "javascript",
-              "scale": 0.8,
-              "_template": "code"
-            }
-          ]
+          "headline": "Develop Locally",
+          "text": "Easily set up and run Tina locally to talk to your local filesystem",
+          "icon2": "FaCodeBranch",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788950/tina.io-gifs/Key_Features_Local_kutskd.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/setup-overview/"
+          }
+        },
+        {
+          "headline": "3rd Party Media",
+          "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
+          "icon2": "FaCloudDownloadAlt",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788955/tina.io-gifs/Key_Features_3rd_Party_Media_bkkuou.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/reference/media/overview"
+          }
+        },
+        {
+          "headline": "Control your Components",
+          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
+          "icon2": "FaPuzzlePiece",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464332/tina.io-gifs/2024-09-13-key-features-control-components_jomxbs.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/blocks"
+          }
+        },
+        {
+          "headline": "Markdown at Scale",
+          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
+          "icon2": "FaMarkdown",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464405/tina.io-gifs/2024-09-13-key-features-markdown_pojlmt.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/overview"
+          }
+        },
+        {
+          "headline": "Git Integration",
+          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
+          "icon2": "FaGithub",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464386/tina.io-gifs/2024-09-13-key-features-github-integration_mocrbt.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/drafts/editorial-workflow/"
+          }
+        },
+        {
+          "headline": "Easy Documentation",
+          "text": "Tina's docs run on TinaCMS - check it out!",
+          "icon2": "FaFileAlt",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726797113/tina.io-gifs/Key_Features_Docs_v2_sh565e.gif",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs"
+          }
         }
       ],
-      "_template": "features"
+      "_template": "carouselFeature"
     },
     {
       "criteriaItems": [
@@ -475,7 +520,7 @@
           "name": "Peter Rusin",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
           "date": "2023-09-05T03:00:00.000Z",
-          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
+          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
           "link": "https://rusin.work"
         },
         {
@@ -529,51 +574,6 @@
         }
       ],
       "_template": "features"
-    },
-    {
-      "items": [
-        {
-          "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit. ",
-          "url": "https://quick-edit-demo.vercel.app/admin#/"
-        },
-        {
-          "headline": "Open-Source",
-          "text": "Tina is licensed under Apache 2.0. \nIt can be self-hosted or hosted on TinaCloud.",
-          "url": "https://github.com/tinacms/tinacms"
-        },
-        {
-          "headline": "Develop Locally",
-          "text": "Easily set up and run Tina locally to talk to your local filesystem.",
-          "url": "/"
-        },
-        {
-          "headline": "3rd-party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud.",
-          "url": "/docs/reference/media/overview/"
-        },
-        {
-          "headline": "Control your Components",
-          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want.",
-          "url": "/docs/editing/blocks/"
-        },
-        {
-          "headline": "Markdown at Scale ",
-          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content.",
-          "url": "/docs/editing/overview/"
-        },
-        {
-          "headline": "Git Integration",
-          "text": "Users can edit, save changes, and request approval from within the UI – while devs see the branches, commits, and pull requests in GitHub.",
-          "url": "/editorial-workflow/"
-        },
-        {
-          "headline": "Easy Documentation",
-          "text": "Tina’s docs run on TinaCMS – check it out!",
-          "url": "/docs/"
-        }
-      ],
-      "_template": "featureGrid"
     },
     {
       "title": "Recent Posts",

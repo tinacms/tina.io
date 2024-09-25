@@ -27,12 +27,13 @@ export const Actions = ({ items, align = 'left' }) => {
             {
               const externalUrlPattern = /^((http|https|ftp):\/\/)/
               const external = externalUrlPattern.test(url)
+              const link = url || '#'
               return (
                 <LinkButton
                   key={label}
                   id={sanitizeLabel(label)}
                   size={item.size ? item.size : 'medium'}
-                  link={url}
+                  link={link}
                   target={external ? '_blank' : '_self'}
                   color={variant}
                   data-tina-field={tinaField(item, 'label')}
