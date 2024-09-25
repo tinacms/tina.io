@@ -40,7 +40,6 @@
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "@vercel/postgres": "^0.5.1",
-    "airtable": "^0.9.0",
     "algoliasearch": "^4.0.0",
     "autoprefixer": "^10.4.20",
     "axios": "^0.21.2",
