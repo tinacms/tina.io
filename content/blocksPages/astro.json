@@ -10,15 +10,6 @@
       "_template": "hero"
     },
     {
-      "mediaColumnItem": [
-        {
-          "embedUrl": "https://www.youtube.com/embed/5Opvp6z1uSc?si=WMrhNb3hMWvAHpQd",
-          "_template": "youtubeMedia"
-        }
-      ],
-      "_template": "textMediaColumnComponent"
-    },
-    {
       "items": [
         {
           "headline": "Markdown Support",
