@@ -57,3 +57,10 @@ This should give you an idea of how it all fits into the project.
 Additionally, the Tina [docs](https://tina.io/docs/) contains the usage details for development with Tina.
 
 <br>
+
+## Additional Documentation
+
+- [Definition of Done (work requirements)](/_docs/Definition-of-Done.md)
+- [Definition of Ready (PBI requrements)](/_docs/Definition-of-Ready.md)
+- [Contribution Guidelines](CONTRIBUTING.md)
+
