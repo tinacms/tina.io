@@ -1,5 +1,3 @@
-//TODO summoning yet another comment can this go?
-
 import { readFile } from './readFile'
 
 const fg = require('fast-glob')
