@@ -4,7 +4,7 @@ An issue in this repository can be closed (considered done) for...
 
 ### Code + Content Changes
 
-1. Code compiles and change makes sense for the issue. All issue tasks have been ticked.
+1. Code compiles and the change aligns with the issue description. All tasks related to the issue have been completed.
 1. When the latest commit has been manually tested against a preview deployment.
 1. The code has been reviewed and approved by a project maintainer.
 
