@@ -7,6 +7,14 @@ previous: content/docs/reference/types/reference.mdx
 
 ## `object` Type
 
+The `object` field is a dynamic field type that can be used to manage repeated data structures, group related data and/or give users the option to choose between a set of templates.
+
+Ultimately there are 3 options to choose from with this type:
+
+* with list set to false, the fields array can be used to wrap some data – this appears in the editor as a nested page of data.
+* with list set to true, the fields array can to set some set of fields – this appears in the editor as above, but with the list selector.
+* with list set to false, the fields array can be used to wrap some data – this appears as above, but adding more to the list gives you the option to choose betwen templates.
+
 ```ts
 type ObjectField = {
   label: string
