@@ -1,13 +1,15 @@
 ---
 title: The "object" field
-last_edited: '2024-09-26T06:17:32.863Z'
+last_edited: '2024-09-26T06:48:42.467Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
 
 ## `object` Type
 
-The `object` field is a dynamic field type that can be used to manage repeated data structures, group related data and/or give users the option to choose between a set of templates.
+The `object` field is a dynamic field type creates a nested page in the CMS with the data it contains.
+
+This can be used to manage repeated data structures, group related data in the CMS and/or give users the option to choose between a set of templates.
 
 ```ts
 type ObjectField = {
@@ -41,11 +43,11 @@ type ObjectField = {
 
 Ultimately there are 3 ways to configure this type...
 
-* with `list` set to `false`, the `fields` array can be used to wrap some data – this appears in the editor as a nested page.
+* with `list` set to `false`, the `fields` array can be used to wrap some data – this appears in the editor as a nested page. Such as grouping options together, as in the gif below.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1727331124/tina-io/docs/Sep-26-2024_16-05-37_d2ol8w.gif)
 
-* with `list` set to `true`, the `fields` array can to set some set of fields – this appears in the editor as above, but grouped as a list.
+* with `list` set to `true`, the `fields` array contains the data structure to be repeated – this appears in the editor as above, but grouped as a list. Complex lists can be created, such as lists with multiple fields in each item.
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1727331115/tina-io/docs/Sep-26-2024_16-03-00_f3ogev.gif)
 
@@ -126,9 +128,7 @@ Tina will generate the appropriate component depending on the configuration prov
 
 ### Using list object as a wrapper for other types
 
-Number, boolean, datetime and rich-text field types can be used in this way to add list options to the TinaCMS editor.
-
-Reference field types can be used in this way to create a list of references.
+Number, boolean, datetime, reference and rich-text field types can be used in the fields of an object to create a list of those types that can be managed in the CMS.
 
 ```javascript
 {
