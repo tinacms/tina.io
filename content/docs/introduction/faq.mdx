@@ -220,3 +220,15 @@ If you are working locally, make sure your GraphQL server is running. See [here]
 ## Document doesn't exist
 
 Double check you aren't trying to access a document that doesn't exist.
+
+## Vercel Deployment Issues
+
+### Common issues when deploying starter templates 
+
+#### Popup blocker prevents Vercel from installing their GitHub app
+
+After choosing which starter template to deploy, and being redirected to Vercel - a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened. ".
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1727309107/docs/vercel-popup-blocked_ogt6fr.png)
+
+To fix, check your browser's address bar for blocked popups, allow them, and retry.
