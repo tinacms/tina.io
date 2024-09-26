@@ -6,7 +6,7 @@ An issue in this repository can be closed (considered done) for...
 
 1. Code compiles and change makes sense for the issue. All issue tasks have been ticked.
 1. When the latest commit has been manually tested against a preview deployment.
-1. When the code has been reviewed by a project maintainer.
+1. The code has been reviewed and approved by a project maintainer.
 
 1. Code has been deployed to production.
 1. Any bugs or technical debt that arise from the issue have been logged in a PBI that links to this code change.
