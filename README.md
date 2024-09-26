@@ -19,6 +19,8 @@ Static web application built with...
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
+for Node versions, check [this](https://tina.io/docs/setup-overview/) docs page.
+
 - and of course... [TinaCMS](https://github.com/tinacms/tinacms)! 🦙
 
 Hosting and deployment...
