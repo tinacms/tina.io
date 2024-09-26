@@ -1,4 +1,3 @@
-//TODO – summoning a comment from Brady/Josh, can this be removed?
 import React from 'react'
 import data from '../../content/docs-navigation.json'
 import { LinkButton } from '../ui'
