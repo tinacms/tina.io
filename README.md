@@ -48,27 +48,6 @@ This will spin up the react/Next project locally, running on [localhost:3000](ht
 
 <br>
 
-## 📜 Contribution Expectations
-
-We welcome contributions to improve the Tina.io experience!
-
-1. **Fork the Repo**: Work on your own fork to avoid conflicts.
-1. **Branching**: Use `feature/your-feature-name` or `bugfix/your-bugfix-name` for changes.
-1. **Using TinaCMS**: For content changes (e.g., docs), use visual editing with TinaCMS locally (e.g., http://localhost:3000/admin).
-1. **Commits**: Write clear, descriptive messages. Break large changes into multiple commits.
-1. **Code Quality**:
-   - Use Tailwind over inline CSS or styled components.
-   - Follow DRY principles and refactor reusable code.
-   - Comment on calculations or workarounds, and open issues for any technical debt.
-1. **Pull Requests**:
-   - Reference related issues and include screenshots for UI changes.
-   - If no issue exists, create one and link it.
-   - Commit the generated `tina-lock.json` file, and rerun the project locally after merging to update it.
-1. **Review Process**:
-   - Due to Vercel deployment issues, maintainers will recreate your changes on a new branch to test before approval.
-
-Cheers! 🦙
-
 ## Not Familiar with Tina?
 
 We've put together a simple explanation of the project directory – in [_docs/Directory-Structure](_docs/Directory-Structure.md).
