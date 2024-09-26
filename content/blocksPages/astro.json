@@ -10,7 +10,7 @@
       "_template": "hero"
     },
     {
-      "body": "Astro is a flexible yet performant framework. It maximises server-side rendering and ships minimal JS to create \"smaller websites\".\n\nAstro is great for content-heavy sites, marrying nicely with the content management capabilities of TnaCMS.\n\nCheck out this community video by Leabs, that details how to set-up this pairing.\n",
+      "body": "Astro is a flexible yet performant framework. It maximises server-side rendering and ships minimal JS to create \"smaller websites\".\n\nAstro is great for content-heavy sites, marrying nicely with the content management capabilities of TinaCMS.\n\nCheck out this community video by Leabs, that details how to set-up this pairing.\n",
       "mediaColumnItem": [
         {
           "embedUrl": "https://www.youtube.com/embed/5Opvp6z1uSc?si=WMrhNb3hMWvAHpQd",
