@@ -11,6 +11,7 @@ An issue in this repository can be closed (considered done) for...
 1. Code has been deployed to production.
 1. Any bugs or technical debt that arise from the issue have been logged in a PBI that links to this code change.
 1. Issue had been closed with a closing comment added describing solution or linking changed pages.
+1. All relevant automated tests have been executed and passed.
 
 
 ### Other Tasks
