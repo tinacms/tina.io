@@ -10,7 +10,7 @@
       "_template": "hero"
     },
     {
-      "body": "Astro is great for content-heavy sites, marrying nicely with the content management capabilities of TinaCMS.\n\nCheck out this community video by Steven, going into detail on how to set this pairing up.\n",
+      "body": "Astro is great for content-heavy sites, marrying nicely with the content management capabilities of TinaCMS.\n\nInterested in seeing how you can maximize your Astro site with TinaCMS? Check out this video from Steven, showing how you can wire it up\n",
       "mediaColumnItem": [
         {
           "embedUrl": "https://www.youtube.com/embed/5Opvp6z1uSc?si=WMrhNb3hMWvAHpQd",
