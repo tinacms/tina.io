@@ -71,6 +71,10 @@ const OverviewTemplate = (props) => {
           <div className="intro">
             <h1>Getting Started With Tina</h1>
             <hr />
+            <blockquote>
+              TinaCMS supports the latest LTS version of Node. We currently 
+              support v18, v20, and v22 of Node.
+            </blockquote>
             <p className="intro-text">
               Tina is a Git-backed headless content management system that
               enables developers and content creators to collaborate seamlessly.

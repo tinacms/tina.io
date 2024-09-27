@@ -1,6 +1,8 @@
 ---
 title: FAQ
 last_edited: '2024-07-31T14:00:00.000Z'
+next: ''
+previous: ''
 ---
 
 ## What is TinaCloud?
@@ -11,19 +13,23 @@ For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
 ## Where can I get help or share an idea for TinaCMS or TinaCloud?
 
-- Check out our communities at [https://tina.io/community/](https://tina.io/community/)
+* Check out our communities at [https://tina.io/community/](https://tina.io/community/)
+
+## What versions of Node are supported?
+
+TinaCMS supports the latest LTS version of Node. We currently support v18, v20, and v22 of Node.
 
 ## What is Tina's tech stack?
 
 ### TinaCloud
 
-- Content querying + indexing - **Node**
-- Cloud provider - **AWS**
-- Identity management - **Go**
+* Content querying + indexing - **Node**
+* Cloud provider - **AWS**
+* Identity management - **Go**
 
 ### TinaCMS
 
-- CMS - **React 18**
+* CMS - **React 18**
 
 ## What features are unavailable in self-hosted Tina compared to TinaCloud?
 
@@ -114,9 +120,9 @@ When a user logs in from your site, we will pop open a login window. When login 
 
 The most common reasons for this issue are:
 
-- The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the TinaCloud Dashboard.
-- The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the TinaCloud dashboard.
-- The user attempting to login to TinaCloud does not have access to edit this site. Ensure that this user is authorized on the TinaCloud dashboard.
+* The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the TinaCloud Dashboard.
+* The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the TinaCloud dashboard.
+* The user attempting to login to TinaCloud does not have access to edit this site. Ensure that this user is authorized on the TinaCloud dashboard.
 
 > Make sure to include `https` in the Site URL eg: [https://forestry.io](https://forestry.io) or if you are testing locally, it might be something like `http://localhost:3000`
 
@@ -138,12 +144,12 @@ When you run `tinacms dev` locally, Tina will generate a development admin/index
 
 TinaCloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
-- The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
-  - If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
-- Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
-  - The referenced branch should be created and should contain the `tina` folder.
-- The apiURL prop is misconfigured on the TinaCMS component.
-  - Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch.
+* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
+  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
+* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
+  * The referenced branch should be created and should contain the `tina` folder.
+* The apiURL prop is misconfigured on the TinaCMS component.
+  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch.
 
 ### How do I resolve `The local GraphQL schema doesn't match the remote GraphQL schema.` errors?
 
@@ -181,9 +187,9 @@ Generally this happens when there is branch protection on your main branch and T
 
 To fix this issue, either:
 
-- Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
+* Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
   Ensure that the TinaCloud app is allowed to bypass the rule requiring branch protection
-- Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
+* Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
 
 ### How do I resolve `Invalid or undefined branch` errors?
 
@@ -199,7 +205,7 @@ Everything in the `tina` directory (except the `__generated__` folder) needs to 
 
 ### How do I resolve `API URL is misformatted` errors?
 
-The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL _should_ be formatted.
+The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
 
 ## Trying to access local GraphQL server when it's not running or in prod.
 
@@ -214,3 +220,15 @@ If you are working locally, make sure your GraphQL server is running. See [here]
 ## Document doesn't exist
 
 Double check you aren't trying to access a document that doesn't exist.
+
+## Vercel Deployment Issues
+
+### Common issues when deploying starter templates 
+
+#### Popup blocker prevents Vercel from installing their GitHub app
+
+After choosing which starter template to deploy, and being redirected to Vercel - a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened. ".
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1727309107/docs/vercel-popup-blocked_ogt6fr.png)
+
+To fix, check your browser's address bar for blocked popups, allow them, and retry.
