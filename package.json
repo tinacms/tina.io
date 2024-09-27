@@ -37,6 +37,8 @@
     "@react-three/fiber": "^8.16.8",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.0.6",
+    "@tinacms/datalayer-old": "npm:@tinacms/datalayer@0.2.3",
+    "@tinacms/graphql-old": "npm:@tinacms/graphql@0.60.0",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "@vercel/postgres": "^0.5.1",
