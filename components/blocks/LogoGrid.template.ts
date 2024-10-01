@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms';
 
-export const logoGridTemplate: TinaTemplate = {
+export const logoGridTemplate: Template = {
   label: 'Logo Grid',
   name: 'logoGrid',
   ui: {
@@ -34,11 +34,12 @@ export const logoGridTemplate: TinaTemplate = {
           name: 'link',
           label: 'Link',
           type: 'string',
-          description: 'The URL to link to when the logo is clicked. Should be either (1) an internal link (e.g. /showcase#unity) or (2) an external link (e.g. https://ndcconferences.com/).',
+          description:
+            'The URL to link to when the logo is clicked. Should be either (1) an internal link (e.g. /showcase#unity) or (2) an external link (e.g. https://ndcconferences.com/).',
         },
         { name: 'logo', label: 'Logo Image', type: 'image' },
         { name: 'size', label: 'Size', type: 'number' },
       ],
     },
   ],
-}
+};

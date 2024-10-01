@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import type { TinaTemplate } from '@tinacms/cli';
-import { Container } from './Container';
-import GradGlow from '../../public/svg/grad-glow.svg';
+import React, { useEffect, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
-import { Actions } from './ActionsButton';
+import GradGlow from '../../public/svg/grad-glow.svg';
 import { icons } from '../ui/IconPickerIcons';
+import { Actions } from './ActionsButton';
+import { Container } from './Container';
 
 const CarouselItem = ({
   data,
@@ -36,66 +34,64 @@ const CarouselItem = ({
     (isSmallOrMediumScreen && button);
 
   return (
+    <div
+      className={`${
+        isHovered && !isSmallOrMediumScreen
+          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
+          : nonHoveredStyles
+      } ${commonStyles}`}
+      onClick={() => onClick(index)}
+      style={{ textDecoration: 'none', overflow: 'visible' }}
+    >
       <div
-        className={`${
-          isHovered && !isSmallOrMediumScreen
-            ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
-            : nonHoveredStyles
-        } ${commonStyles}`}
-        onClick={() => onClick(index)}
-        style={{ textDecoration: 'none', overflow: 'visible' }}
+        data-tina-field={tinaField(data, 'headline')}
+        className="flex flex-col"
       >
+        <div className="block lg:hidden pb-5">
+          {renderMedia && renderMedia(index)}
+        </div>
+        <div className="flex items-center mb-2 pl-1">
+          {IconComponent && (
+            <IconComponent
+              className={`text-xl  ${
+                isHovered && !isSmallOrMediumScreen
+                  ? 'text-orange-500/90 md:text-3xl pb-1'
+                  : 'text-black md:text-2xl pb-1'
+              }`}
+            />
+          )}
+          {headline && (
+            <h3
+              className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-4 ${
+                isHovered && !isSmallOrMediumScreen
+                  ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
+                  : 'text-black lg:text-xl'
+              }`}
+            >
+              {headline}
+            </h3>
+          )}
+        </div>
         <div
-          data-tina-field={tinaField(data, 'headline')}
-          className="flex flex-col"
+          className={`transition-all duration-250 ${
+            textDisplayCondition
+              ? 'scale-y-100 opacity-100'
+              : 'scale-y-75 opacity-0'
+          }`}
         >
-          <div className="block lg:hidden pb-5">
-            {renderMedia && renderMedia(index)}
-          </div>
-          <div className="flex items-center mb-2 pl-1">
-            {IconComponent && (
-              <IconComponent
-                className={`text-xl  ${
-                  isHovered && !isSmallOrMediumScreen
-                    ? 'text-orange-500/90 md:text-3xl pb-1'
-                    : 'text-black md:text-2xl pb-1'
-                }`}
-              />
-            )}
-            {headline && (
-              <h3
-                className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-4 ${
-                  isHovered && !isSmallOrMediumScreen
-                    ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
-                    : 'text-black lg:text-xl'
-                }`}
-              >
-                {headline}
-              </h3>
-            )}
-          </div>
-          <div
-            className={`transition-all duration-250 ${
-              textDisplayCondition
-                ? 'scale-y-100 opacity-100'
-                : 'scale-y-75 opacity-0'
-            }`}
-          >
-            {textDisplayCondition && (
-              <p
-                className={`md:pl-12 lg:pl-9 text-lg font-medium slide-up`}
-              >
-                {text}
-              </p>
-            )}
-            {buttonDisplayCondition && (
-              <div className={`md:pl-6 lg:pl-7 slide-up`}>
-                <Actions items={actionsArray} />
-              </div>
-            )}
-          </div>
+          {textDisplayCondition && (
+            <p className={`md:pl-12 lg:pl-9 text-lg font-medium slide-up`}>
+              {text}
+            </p>
+          )}
+          {buttonDisplayCondition && (
+            <div className={`md:pl-6 lg:pl-7 slide-up`}>
+              <Actions items={actionsArray} />
+            </div>
+          )}
         </div>
       </div>
+    </div>
   );
 };
 
@@ -147,7 +143,12 @@ export function CarouselFeatureBlock({ data, index }) {
   };
 
   useEffect(() => {
-    if (!isPaused && isLargeScreen && data?.items?.length > 0 && !isUserInteracted) {
+    if (
+      !isPaused &&
+      isLargeScreen &&
+      data?.items?.length > 0 &&
+      !isUserInteracted
+    ) {
       startAutoTicking();
     }
     return () => clearInterval(intervalRef.current);

@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms';
 
-export const storyTemplate: TinaTemplate = {
+export const storyTemplate: Template = {
   label: 'Story',
   name: 'story',
   fields: [
@@ -10,4 +10,4 @@ export const storyTemplate: TinaTemplate = {
       type: 'string',
     },
   ],
-}
+};
