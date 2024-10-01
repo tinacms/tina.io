@@ -1,7 +1,7 @@
-import type { TinaTemplate } from '@tinacms/cli'
-import { actionsButtonTemplate } from './ActionsButton.template'
+import type { Template } from 'tinacms';
+import { actionsButtonTemplate } from './ActionsButton.template';
 
-export const roadmapGridTemplate: TinaTemplate = {
+export const roadmapGridTemplate: Template = {
   label: 'Roadmap Grid',
   name: 'roadmapGrid',
   ui: {
@@ -42,4 +42,4 @@ export const roadmapGridTemplate: TinaTemplate = {
       ],
     },
   ],
-}
+};

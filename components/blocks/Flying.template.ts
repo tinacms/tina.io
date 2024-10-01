@@ -1,9 +1,9 @@
-import type { Template, TinaTemplate } from 'tinacms'
-import { actionsButtonTemplate } from './ActionsButton.template'
-import { modalButtonTemplate } from './ModalButton.template'
-import { codeButtonTemplate } from './CodeButton.template'
+import type { Template } from 'tinacms';
+import { actionsButtonTemplate } from './ActionsButton.template';
+import { codeButtonTemplate } from './CodeButton.template';
+import { modalButtonTemplate } from './ModalButton.template';
 
-export const flyingTemplate: TinaTemplate = {
+export const flyingTemplate: Template = {
   name: 'flying',
   label: 'Flying',
   ui: {
@@ -32,4 +32,4 @@ export const flyingTemplate: TinaTemplate = {
       ],
     },
   ],
-}
+};
