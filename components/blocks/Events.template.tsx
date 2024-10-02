@@ -13,11 +13,13 @@ type offset = { value: any; label: string; };
 //then associate relevant cities to them via the moment-timezone library.
 
 
-// @ts-ignore: the below is used for showing offset hours and the linter is not recognising the roundingMode property that exists on the docs
-const offsetFormat = new Intl.NumberFormat("en-US", {
+const offsetFormat = new Intl.NumberFormat("en-US", 
+  // @ts-ignore: the below is used for showing offset hours and the linter is not recognising the roundingMode property that exists on the docs
+  {
   maximumFractionDigits: 0,
   roundingMode: "trunc"
-})
+}
+)
 
 const dateFormat = Intl.DateTimeFormat('en-US', {
   year: "numeric",
