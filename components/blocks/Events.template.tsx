@@ -14,9 +14,9 @@ type offset = { value: any; label: string; };
 
 
 const offsetFormat = new Intl.NumberFormat("en-US", 
-  // @ts-ignore: the below is used for showing offset hours and the linter is not recognising the roundingMode property that exists on the docs
   {
   maximumFractionDigits: 0,
+  // @ts-ignore: the below is used for showing offset hours and the linter is not recognising the roundingMode property that exists on the docs
   roundingMode: "trunc"
 }
 )
