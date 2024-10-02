@@ -87,7 +87,7 @@ export const eventsTemplate: Template = {
           label: 'Start Time',
           type: 'string',
           description:
-            "Enter start time in the timezone of the event. (e.g. if the event starts at 9:00am, enter '9')",
+            "Enter start time in the timezone of the event. E.g. '9:00 AM' if the event starts at 9 in the location it's being held.",
           ui: {
             format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value))),
             component: wrapFieldsWithMeta(({ field, input, meta }) => {
