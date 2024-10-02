@@ -51,13 +51,15 @@ const Card = ({ cardItem, onHover }) => {
   };
 
   let startTimeDate = new Date(cardItem.startTime);
+  //This is to debug an issue with interaction between react-datetime (time picker) and tina.
+  //The date is locally stored as a number (timestamp), even when the saved value in /content is the expected (i.e. a string).
+  //This is to handle the local case until the user refreshes.
   if (startTimeDate.toString() === 'Invalid Date') {
     startTimeDate = new Date(+cardItem.startTime)
   }
-  console.log(cardItem.startTime);
-  console.log(startTimeDate);
+
   const startTime = startTimeDate.getUTCHours() + (startTimeDate.getUTCMinutes() / 60);
-  console.log(startTime);
+
   //Gets the accurate start date-time in UTC, by applying the offset and event start time.
   //Note that getting UTC minutes is actually getting the time in the event timezone, based on how the values are being stored.
   const startDateUTC = new Date(Date.parse(cardItem.startDate));
