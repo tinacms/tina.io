@@ -12,15 +12,6 @@ type offset = { value: any; label: string; };
 //Basically the gist of most of this processing is to create the list of possible GMT offsets...
 //then associate relevant cities to them via the moment-timezone library.
 
-
-const offsetFormat = new Intl.NumberFormat("en-US", 
-  {
-  maximumFractionDigits: 0,
-  // @ts-ignore: the below is used for showing offset hours and the linter is not recognising the roundingMode property that exists on the docs
-  roundingMode: "trunc"
-}
-)
-
 const dateFormat = Intl.DateTimeFormat('en-US', {
   year: "numeric",
   month: "short",
@@ -48,7 +39,7 @@ const addCitiesAndPrefix = (offsets: number[], prefix = "+"): offset[] => {
   //Concat the city names to the offset array
   return offsets.map((offset) => {
     const cities = cityTimezoneMap.get(offset);
-    const displayOffset = offsetFormat.format(offset);
+    const displayOffset = Math.trunc(offset);
     return {
       value: offset,
       label: `GMT ${offset > 0 ? "+" : ""}${displayOffset}:${offset % 1 ? "3" : "0"}0` + (`${cities ? `, ${cities}` : ''}`)
