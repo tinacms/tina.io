@@ -1,0 +1,20 @@
+[
+  { "ianaName": "America/New_York", "city": "New York" },
+  { "ianaName": "America/Los_Angeles", "city": "Los Angeles" },
+  { "ianaName": "America/Chicago", "city": "Chicago" },
+  { "ianaName": "Europe/London", "city": "London" },
+  { "ianaName": "Asia/Tokyo", "city": "Tokyo" },
+  { "ianaName": "Australia/Sydney", "city": "Sydney" },
+  { "ianaName": "Asia/Kolkata", "city": "Kolkata" },
+  { "ianaName": "Africa/Johannesburg", "city": "Johannesburg" },
+  { "ianaName": "Pacific/Auckland", "city": "Auckland" },
+  { "ianaName": "America/Toronto", "city": "Toronto" },
+  { "ianaName": "America/Mexico_city", "city": "Mexico city" },
+  { "ianaName": "Europe/Paris", "city": "Paris" },
+  { "ianaName": "Europe/Moscow", "city": "Moscow" },
+  { "ianaName": "Asia/Singapore", "city": "Singapore" },
+  { "ianaName": "Asia/Hong_Kong", "city": "Hong Kong" },
+  { "ianaName": "Asia/Dubai", "city": "Dubai" },
+  { "ianaName": "America/Sao_Paulo", "city": "Sao Paulo" },
+  { "ianaName": "America/Argentina/Buenos_Aires", "city": "Buenos Aires" }
+]
