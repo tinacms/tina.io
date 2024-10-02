@@ -11,6 +11,9 @@ type offset = { value: any; label: string; };
 
 //Basically the gist of most of this processing is to create the list of possible GMT offsets...
 //then associate relevant cities to them via the moment-timezone library.
+
+
+// @ts-ignore: the below is used for showing offset hours and the linter is not recognising the roundingMode property that exists on the docs
 const offsetFormat = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
   roundingMode: "trunc"
