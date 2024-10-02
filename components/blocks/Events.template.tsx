@@ -1,34 +1,57 @@
-import type { Template } from 'tinacms'
-import { NumberField, NumberFieldPlugin, NumberInput, TextField, wrapFieldsWithMeta } from 'tinacms'
-import React from 'react'
+import moment from "moment-timezone";
+import React, { useEffect, useState } from 'react';
+import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
+import type { Template } from 'tinacms';
+import { TextField, wrapFieldsWithMeta } from 'tinacms';
+import majorTimezones from './EventsTimezones.json';
 
-const formatTimezoneOption = (value, prefix = "+") => {
-  return { value: value, label: `GMT ${prefix}${Math.floor(value)}:${value % 1 ? "3" : "0"}0` }
-}
+type offset = { value: any; label: string; };
 
-const positiveTimezoneList = Array.from(Array(29).keys()).map(value => formatTimezoneOption(value / 2)).reverse()
-const negativeTimezoneList = Array.from(Array(24).keys()).map(value => 
-  {
-  const tempOption = formatTimezoneOption((value / 2) + 0.5, '-')
-    return {value: tempOption.value * -1, label: tempOption.label}
-  })
 
-const timeFormat = Intl.DateTimeFormat('en-US', {
+//Basically the gist of most of this processing is to create the list of possible GMT offsets...
+//then associate relevant cities to them via the moment-timezone library.
+const offsetFormat = new Intl.NumberFormat("en-US", {
+  maximumFractionDigits: 0,
+  roundingMode: "trunc"
+})
+
+const dateFormat = Intl.DateTimeFormat('en-US', {
   year: "numeric",
   month: "short",
   day: "numeric",
   timeZone: "UTC"
 });
 
-const timezoneValidation = (value, data) => {
-  if (value > 23 || value < 0) {
-    return "The time should be between 0 (00:00) and 23 (23:00)"
-  }
-  if (value && value % 1 != 0) {
-    return "Only whole numbers should be used."
-  }
+const timeFormat = Intl.DateTimeFormat('en-US', {
+  hour: "numeric",
+  minute: "numeric",
+  timeZone: "UTC"
+});
+
+const positiveTimezoneList = Array.from(Array(29).keys()).map(value => value / 2).reverse();
+const negativeTimezoneList = Array.from(Array(24).keys()).map(value => ((value / 2) + 0.5 ) * -1);
+
+const addCitiesAndPrefix = (offsets: number[], prefix = "+"): offset[] => {
+  const cityTimezoneMap = new Map();
+  //Get the timezones of major cities
+  majorTimezones.forEach(
+    (cityOffset) => {
+      const zone = moment.tz(cityOffset.ianaName).utcOffset() / 60
+      return cityTimezoneMap.set(zone, cityTimezoneMap.get(zone) ? `${cityTimezoneMap.get(zone)}, ${cityOffset.city}` : cityOffset.city)
+    });
+  //Concat the city names to the offset array
+  return offsets.map((offset) => {
+    const cities = cityTimezoneMap.get(offset);
+    const displayOffset = offsetFormat.format(offset);
+    return {
+      value: offset,
+      label: `GMT ${offset > 0 ? "+" : ""}${displayOffset}:${offset % 1 ? "3" : "0"}0` + (`${cities ? `, ${cities}` : ''}`)
+    }
+  })
 }
 
+//Events schema
 export const eventsTemplate: Template = {
   label: 'Events',
   name: 'events',
@@ -60,18 +83,23 @@ export const eventsTemplate: Template = {
             'Enter date in the timezone of the event.',
           ui: {
             utc: true,
-            format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
+            format: (value, name, field) => value && dateFormat.format(new Date(Date.parse(value)))
           }, 
         },
         {
           name: 'startTime',
           label: 'Start Time',
-          type: 'number',
+          type: 'string',
           description:
             "Enter start time in the timezone of the event. (e.g. if the event starts at 9:00am, enter '9')",
           ui: {
-            step: 1,
-            validate: timezoneValidation
+            format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value))),
+            component: wrapFieldsWithMeta(({ field, input, meta }) => {
+              return <div>
+                <Datetime dateFormat={false} {...input} utc={true}></Datetime>
+                </div>
+
+            })
           },
         },
         {
@@ -82,7 +110,7 @@ export const eventsTemplate: Template = {
             'Note this field is not mandatory. Leave blank for a 1 day event. Enter date in the timezone of the event.',
           ui: {
             utc: true,
-            format: (value, name, field) => value && timeFormat.format(new Date(Date.parse(value)))
+            format: (value, name, field) => value && dateFormat.format(new Date(Date.parse(value)))
           }, 
         },
         {
@@ -93,7 +121,7 @@ export const eventsTemplate: Template = {
           description:
             'This is locked to midnight on the end date of the event.',
           ui: {
-            format: (value) => "11:59pm",
+            format: (value) => "11:59 PM",
             component: (props) => {
               return <div className="mb-4 relative">
                 <div className="z-50 absolute cursor-not-allowed w-full h-full top-0 left-0"/>
@@ -114,8 +142,8 @@ export const eventsTemplate: Template = {
             parse: (value) => Number(value),
             component: 'select',
             options: [
-              ...positiveTimezoneList,
-              ...negativeTimezoneList
+              ...addCitiesAndPrefix(positiveTimezoneList),
+              ...addCitiesAndPrefix(negativeTimezoneList, "")
             ]
           }
         },

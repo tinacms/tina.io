@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaCheck, FaChevronRight } from 'react-icons/fa';
+import { start } from 'repl';
 
 const LazyGlobe = React.lazy(() => import('../ui/Globe'));
 
@@ -49,13 +50,21 @@ const Card = ({ cardItem, onHover }) => {
     return '';
   };
 
+  let startTimeDate = new Date(cardItem.startTime);
+  if (startTimeDate.toString() === 'Invalid Date') {
+    startTimeDate = new Date(+cardItem.startTime)
+  }
+  console.log(cardItem.startTime);
+  console.log(startTimeDate);
+  const startTime = startTimeDate.getUTCHours() + (startTimeDate.getUTCMinutes() / 60);
+  console.log(startTime);
   //Gets the accurate start date-time in UTC, by applying the offset and event start time.
   //Note that getting UTC minutes is actually getting the time in the event timezone, based on how the values are being stored.
   const startDateUTC = new Date(Date.parse(cardItem.startDate));
   startDateUTC.setUTCMinutes(
     startDateUTC.getUTCMinutes() +
       cardItem.timezone * -60 +
-      cardItem.startTime * 60
+      startTime * 60
   );
   //Gets the provided end date at midnight in UTC, or for one day events the start date is re-used.
   const endDateUTC = new Date(
