@@ -28,7 +28,9 @@
               "src": "tina-io/new-homepage/homepage-demo-2",
               "_template": "video"
             }
-          ]
+          ],
+          "isReversed": false,
+          "imageBackground": false
         }
       ],
       "_template": "features"
@@ -431,7 +433,7 @@
         {
           "headline": "NDC Porto",
           "startDate": "2024-10-14T00:00:00.000Z",
-          "startTime": 9,
+          "startTime": "2024-10-02T09:00:00.000Z",
           "endDate": "2024-10-18T00:00:00.000Z",
           "timezone": 1,
           "location": "Porto, Portugal",
@@ -443,6 +445,7 @@
         {
           "headline": "CPH Dev Fest",
           "startDate": "2024-08-26T00:00:00.000Z",
+          "startTime": "2024-10-01T13:00:00.000Z",
           "endDate": "2024-08-30T00:00:00.000Z",
           "timezone": 2,
           "location": "Copenhagen, Denmark",
@@ -454,7 +457,7 @@
         {
           "headline": "NDC Oslo",
           "startDate": "2024-05-19T00:00:00.000Z",
-          "startTime": 9,
+          "startTime": "2024-10-14T09:00:00.000Z",
           "endDate": "2024-05-23T00:00:00.000Z",
           "timezone": 2,
           "location": "Oslo, Norway",
