@@ -1,6 +1,6 @@
 ---
 title: The "reference" field
-last_edited: '2024-10-03T00:46:00.053Z'
+last_edited: '2024-10-03T05:10:48.908Z'
 next: ''
 previous: ''
 ---
@@ -201,6 +201,59 @@ const referenceField = {
     },
   },
   collections: ['author', 'post'],
+}
+```
+
+The `collectionFilter` also support function input, when you need it for dynamic rendering. The input function will trigger during run time.
+
+```typescript
+// Dynamic reference list - You can define as a function here if you need dynamic list but need to make sure the return type match the schema
+
+const getLocation = () => {
+  const url = new URL('https://bob-northwind-sydney.com')
+  const hostname = url.hostname
+  return hostname
+};
+
+const referenceField = {
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: () => {
+      const location = getLocation();
+      return {
+        author : {
+          location : location
+        }
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
+> Note : If you pass as function, the functions need to be passed as executables, not references. The below example will not works.
+
+```typescript
+const referenceField = {
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: () => {
+      return {
+        author : {
+          location : () => {
+            const url = new URL('https://bob-northwind-sydney.com')
+            const hostname = url.hostname
+            return hostname
+          };
+        }
+      }
+    },
+  },
+  collections: ['author'],
 }
 ```
 
