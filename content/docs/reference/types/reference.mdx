@@ -145,7 +145,7 @@ You can search your reference with reference selector.
 
 If you have a long list of reference items, you can filter them in the schema using the `ui.collectionFilter` field with any property you defined in the referenced collection.
 
-> Note: Current `collectionFilter`only support property of type string and **case sensitive.** ( e.g. Using the example below, If you enter `australia` it will not work)).
+<WarningCallout body="The current `collectionFilter`only supports properties of type string and is also **case sensitive** ( e.g. Using the example below, if you enter `australia`, it will not filter authors by `Australia`)." />
 
 > Senario: You have a list of author in different location, and you only want the reference select in your post collection to show the desired location.
 
