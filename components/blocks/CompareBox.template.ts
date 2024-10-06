@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms';
+import type { Template } from 'tinacms';
 
-export const compareBoxTemplate: TinaTemplate = {
+export const compareBoxTemplate: Template = {
   label: 'Compare Box',
   name: 'CompareBox',
   fields: [
@@ -17,7 +17,14 @@ export const compareBoxTemplate: TinaTemplate = {
       },
       fields: [
         { name: 'criteria', label: 'Criteria', type: 'string' },
-        { name: 'description', label: 'Description', ui: { component: 'textarea' }, type: 'string', description: 'The text inside the description will NOT be displayed anywhere, this is just to elaborate on the criteria itself for our own users.' },
+        {
+          name: 'description',
+          label: 'Description',
+          ui: { component: 'textarea' },
+          type: 'string',
+          description:
+            'The text inside the description will NOT be displayed anywhere, this is just to elaborate on the criteria itself for our own users.',
+        },
       ],
     },
     {
@@ -35,9 +42,26 @@ export const compareBoxTemplate: TinaTemplate = {
         { name: 'headline', label: 'Headline', type: 'string' },
         { name: 'logoColour', label: 'Logo Link (Colour)', type: 'string' },
         { name: 'logoWhite', label: 'Logo Link (White)', type: 'string' },
-        { name: 'active', label: 'Active', type: 'boolean', description: 'Toggle to highlight which company is BY DEFAULT active' },
-        { name: 'isHidden', label: 'Hidden', type: 'boolean', description: 'Toggle will hide the company item from the list of clickable companies - it will also ensure it cannot be turned off.' },
-        { name: 'backgroundColor', label: 'Background Color', type: 'string', ui: { component: 'color' }, description: 'Choose a background color for the company' },
+        {
+          name: 'active',
+          label: 'Active',
+          type: 'boolean',
+          description: 'Toggle to highlight which company is BY DEFAULT active',
+        },
+        {
+          name: 'isHidden',
+          label: 'Hidden',
+          type: 'boolean',
+          description:
+            'Toggle will hide the company item from the list of clickable companies - it will also ensure it cannot be turned off.',
+        },
+        {
+          name: 'backgroundColor',
+          label: 'Background Color',
+          type: 'string',
+          ui: { component: 'color' },
+          description: 'Choose a background color for the company',
+        },
         { name: 'criteria1', label: 'Criteria 1', type: 'boolean' },
         { name: 'criteria2', label: 'Criteria 2', type: 'boolean' },
         { name: 'criteria3', label: 'Criteria 3', type: 'boolean' },
