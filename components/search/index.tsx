@@ -1,11 +1,11 @@
-import React, { useState, useEffect, createRef } from 'react'
+import React, { useState, useEffect, createRef } from 'react';
 import {
   InstantSearch,
   Index,
   Hits,
   connectStateResults,
-} from 'react-instantsearch-dom'
-import algoliasearch from 'algoliasearch/lite'
+} from 'react-instantsearch-dom';
+import algoliasearch from 'algoliasearch/lite';
 import {
   Root,
   PoweredBy,
@@ -13,19 +13,19 @@ import {
   HitsResults,
   IndexContainer,
   NoResultsLabel,
-} from './styles'
-import Input from './input'
-import { hitComponents } from './hitComps'
-import { Dismissible, Props as DismissibleProps } from 'react-dismissible'
+} from './styles';
+import Input from './input';
+import { hitComponents } from './hitComps';
+import { Dismissible, Props as DismissibleProps } from 'react-dismissible';
 
-const DEFAULT_ALGOLIA_APP_ID = '80HKRA52OJ'
-const DEFAULT_ALGOLIA_SEARCH_KEY = 'f13c10ad814c92b85f380deadc2db2dc'
+const DEFAULT_ALGOLIA_APP_ID = '80HKRA52OJ';
+const DEFAULT_ALGOLIA_SEARCH_KEY = 'f13c10ad814c92b85f380deadc2db2dc';
 
 const IndexResults = connectStateResults(
   ({ searchResults: res, children }: any) => {
-    return res && res.nbHits > 0 ? children : null
+    return res && res.nbHits > 0 ? children : null;
   }
-)
+);
 
 const IndexStats = connectStateResults(({ searchResults: res }) => {
   return (
@@ -34,40 +34,40 @@ const IndexStats = connectStateResults(({ searchResults: res }) => {
         res.nbHits > 0 &&
         `${res.nbHits} result${res.nbHits > 1 ? `s` : ``}`}
     </>
-  )
-})
+  );
+});
 
 const useClickOutside = (ref: any, handler: any, events?: any) => {
-  if (!events) events = [`mousedown`, `touchstart`]
+  if (!events) events = [`mousedown`, `touchstart`];
   const detectClickOutside = (event: any) =>
-    ref.current && !ref.current.contains(event.target) && handler()
+    ref.current && !ref.current.contains(event.target) && handler();
   useEffect(() => {
     for (const event of events)
-      document.addEventListener(event, detectClickOutside)
+      document.addEventListener(event, detectClickOutside);
     return () => {
       for (const event of events)
-        document.removeEventListener(event, detectClickOutside)
-    }
-  })
-}
+        document.removeEventListener(event, detectClickOutside);
+    };
+  });
+};
 
 const ClientSideDismissible = (props: DismissibleProps & { children: any }) => {
   if (typeof window !== 'undefined') {
-    return <Dismissible {...props}>{props.children}</Dismissible>
+    return <Dismissible {...props}>{props.children}</Dismissible>;
   }
-  return props.children
-}
+  return props.children;
+};
 
 export default function Search({ indices, collapse, expanded = false }: any) {
-  const ref = createRef()
-  const [query, setQuery] = useState(``)
-  const [focus, setFocus] = useState(false)
+  const ref = createRef();
+  const [query, setQuery] = useState(``);
+  const [focus, setFocus] = useState(false);
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID || DEFAULT_ALGOLIA_APP_ID, //dummy search index if none exist
     (process.env.GATSBY_ALGOLIA_SEARCH_KEY ||
       DEFAULT_ALGOLIA_SEARCH_KEY) as string
-  )
-  useClickOutside(ref, () => setFocus(false))
+  );
+  useClickOutside(ref, () => setFocus(false));
 
   return (
     // @ts-ignore
@@ -87,7 +87,7 @@ export default function Search({ indices, collapse, expanded = false }: any) {
           click // call onDismiss if clicking outside of this
           escape // call onDismiss if the user presses escape
           onDismiss={() => {
-            setFocus(false)
+            setFocus(false);
           }}
         >
           {query?.length > 0 && (
@@ -100,9 +100,9 @@ export default function Search({ indices, collapse, expanded = false }: any) {
                     title,
                     hitComp,
                   }: {
-                    name: string
-                    title: string
-                    hitComp: any
+                    name: string;
+                    title: string;
+                    hitComp: any;
                   }) => (
                     <Index key={name} indexName={name}>
                       <IndexResults>
@@ -113,6 +113,7 @@ export default function Search({ indices, collapse, expanded = false }: any) {
                           </header>
                           {/*
                     // @ts-ignore */}
+
                           <Hits
                             hitComponent={hitComponents[hitComp](() =>
                               setFocus(false)
@@ -130,7 +131,7 @@ export default function Search({ indices, collapse, expanded = false }: any) {
         </ClientSideDismissible>
       )}
     </InstantSearch>
-  )
+  );
 }
 
 const AllIndicesResults = connectStateResults(
@@ -139,7 +140,7 @@ const AllIndicesResults = connectStateResults(
       allSearchResults &&
       Object.values(allSearchResults).some(
         (results: any) => results && results.nbHits > 0
-      )
+      );
     return (
       <>
         {children}
@@ -157,6 +158,6 @@ const AllIndicesResults = connectStateResults(
           </NoResultsLabel>
         )}
       </>
-    )
+    );
   }
-)
+);
