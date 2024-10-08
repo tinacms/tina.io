@@ -73,7 +73,7 @@ const OverviewTemplate = (props) => {
             <hr />
             <blockquote>
               TinaCMS supports the latest LTS version of Node. We currently 
-              support v18, v20, and v22 of Node.
+              support v18, v20, and v22 of Node with NPM, PNPM, and Yarn.
             </blockquote>
             <p className="intro-text">
               Tina is a Git-backed headless content management system that
