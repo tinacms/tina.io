@@ -1,45 +1,45 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import Router from 'next/router'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Router from 'next/router';
 
-import { DynamicLink } from './DynamicLink'
+import { DynamicLink } from './DynamicLink';
 
 export const BlogPagination = styled(
   ({ currentPage, numPages, ...styleProps }) => {
-    const isFirst = currentPage === 1
-    const isLast = currentPage === numPages
-    const prevPage = `/blog/page/${currentPage - 1}`
-    const nextPage = `/blog/page/${currentPage + 1}`
-    const [selectValue, setSelectValue] = useState(currentPage)
+    const isFirst = currentPage === 1;
+    const isLast = currentPage === numPages;
+    const prevPage = `/blog/page/${currentPage - 1}`;
+    const nextPage = `/blog/page/${currentPage + 1}`;
+    const [selectValue, setSelectValue] = useState(currentPage);
 
     function handleSelectChange(e) {
-      e.preventDefault()
-      const pageNumber = e.target.value
-      setSelectValue(pageNumber)
-      return Router.push(`/blog/page/${pageNumber}`)
+      e.preventDefault();
+      const pageNumber = e.target.value;
+      setSelectValue(pageNumber);
+      return Router.push(`/blog/page/${pageNumber}`);
     }
 
     return (
       <div {...styleProps}>
         <PaginationLinks>
           {!isFirst && (
-            <DynamicLink href={prevPage} passHref>
-              <a
+            <DynamicLink href={prevPage}>
+              <span
                 onClick={() => setSelectValue(selectValue - 1)}
                 className="font-tuner"
               >
                 <span className="font-sans font-bold">←</span> Newer
-              </a>
+              </span>
             </DynamicLink>
           )}
           {!isLast && (
-            <DynamicLink href={nextPage} passHref>
-              <a
+            <DynamicLink href={nextPage}>
+              <span
                 onClick={() => setSelectValue(selectValue + 1)}
                 className="font-tuner"
               >
                 Older <span className="font-sans font-bold">→</span>
-              </a>
+              </span>
             </DynamicLink>
           )}
         </PaginationLinks>
@@ -66,7 +66,7 @@ export const BlogPagination = styled(
           <span className="text-gray-700">of</span> {numPages}
         </div>
       </div>
-    )
+    );
   }
 )`
   display: flex;
@@ -112,11 +112,11 @@ export const BlogPagination = styled(
     padding: 0.5rem;
     margin: -0.5rem 1rem -0.5rem -0.5rem;
   }
-`
+`;
 
 const SelectWrapper = styled.div`
   display: inline-block;
   position: relative;
-`
+`;
 
-const PaginationLinks = styled.div``
+const PaginationLinks = styled.div``;
