@@ -4,7 +4,7 @@
       "headline": "Plans & Pricing",
       "freeTier": {
         "name": "Free",
-        "description": "Includes **2 users, 2 roles**, and **community support.**\n",
+        "description": "Includes 2 users, 2 roles, and community support.\n",
         "price": "$0",
         "interval": "Forever",
         "buttons": [
@@ -18,12 +18,13 @@
           }
         ]
       },
-      "intro": "Need to scale? No Probllama! Tina offers a per-project pricing model that grows with your needs.\n\nAll prices in USD\n",
+      "intro": "Need to scale? No Probllama! Tina offers a **per-project** pricing model that grows with your needs.\n\nGo yearly and get 2 months free! All prices in **USD**\n",
       "plans": [
         {
           "name": "Team",
           "description": "For growing teams\n",
           "price": "$29",
+          "annualPrice": "$24",
           "interval": "/ month",
           "cardItem": [
             {
@@ -60,6 +61,7 @@
           "name": "Team Plus",
           "description": "For bigger teams\n",
           "price": "$49",
+          "annualPrice": "$41",
           "interval": "/ month",
           "cardItem": [
             {
@@ -104,6 +106,7 @@
           "name": "Business",
           "description": "For premium support\n",
           "price": "$299",
+          "annualPrice": "$249",
           "interval": "/ month",
           "cardItem": [
             {
@@ -153,6 +156,7 @@
           "name": "Enterprise",
           "description": "For custom needs\n",
           "price": "Custom",
+          "annualPrice": "Custom",
           "interval": "",
           "cardItem": [
             {
