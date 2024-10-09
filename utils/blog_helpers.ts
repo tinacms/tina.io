@@ -12,19 +12,43 @@ const preStrip = content => {
   return content.replace(detectShortcodes, '')
 }
 
-export async function stripMarkdown(content): Promise<string> {
-  const remark = require('remark')
-  const strip = require('strip-markdown')
-  const preprocessedContent = preStrip(content)
-  return new Promise((resolve, reject) => {
-    remark()
-      .use(strip)
-      .process(preprocessedContent, (err, processedContent) => {
-        if (err) reject(err)
-        resolve(String(processedContent))
-      })
-  })
+export function stripMarkdown(content: string): string {
+  content = content.replace(/\{\{(.*?)\}\}/gm, '');
+
+  try {
+    content = content.replace(/<[^>]*>/g, ''); // Remove all elements that look like <tags>
+    content = content.replace(/^([\s\t]*)([\*\-\+]|\d+\.)\s+/gm, ''); // Strip out bullet points or numbered lists
+
+    content = content
+      .replace(/~~/g, '')
+      .replace(/`{3}.*\n([\s\S]*?)\n`{3}/g, '$1')
+      .replace(/~{3}.*\n/g, '');
+
+    content = content
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+      .replace(/!\[([^\]]*)\]\([^\)]+\)/g, '$1')
+      .replace(/#{1,6}\s*(.*)/g, '$1')
+      .replace(/>\s*(.*)/g, '$1')
+      .replace(/(\*\*|__)(.*?)\1/g, '$2')
+      .replace(/(\*|_)(.*?)\1/g, '$2')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/^(\n)?\s{0,}#{1,6}\s*( (.+))? +#+$|^(\n)?\s{0,}#{1,6}\s*( (.+))?$/gm, '$1$3$4$6')
+      .replace(/~(.*?)~/g, '$1');
+
+    content = content.replace(/<[^>]*>/g, '');
+
+    // Trim any extra whitespace
+    content = content.trim();
+
+  } catch (e) {
+    console.error("Error during markdown stripping: %s", e);
+    return content;
+  }
+
+  return content;
 }
+
+
 
 function removeEndingPunctuation(content: string): string {
   return content.replace(/[^A-Za-z0-9]$/, '')
@@ -50,14 +74,14 @@ export async function formatExcerpt(
   length = 200,
   ellipsis = '&hellip;'
 ) {
-  const plain = await (await stripMarkdown(content)).replace(whitespace, ' ')
-  const plainTextExcerpt = truncateAtWordBoundary(plain, length)
+  const plain = stripMarkdown(content).replace(whitespace, ' ');
+  const plainTextExcerpt = truncateAtWordBoundary(plain, length);
 
   if (plain.length > plainTextExcerpt.length) {
-    return removeEndingPunctuation(plainTextExcerpt) + ellipsis
+    return removeEndingPunctuation(plainTextExcerpt) + ellipsis;
   }
 
-  return plainTextExcerpt
+  return plainTextExcerpt;
 }
 
 export function formatDate(fullDate) {
