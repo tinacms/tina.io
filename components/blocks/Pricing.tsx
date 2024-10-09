@@ -1,5 +1,5 @@
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import RenderButton from 'utils/renderButtonArrayHelper';
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import RenderButton from 'utils/renderButtonArrayHelper'
 import {
   FaClock,
   FaUnlock,
@@ -9,18 +9,19 @@ import {
   FaMarkdown,
   FaGithub,
   FaFileAlt,
-  FaChevronDown,
-  FaChevronUp,
-  FaStar,
-} from 'react-icons/fa';
-import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
-import { BiBadge, BiSupport } from 'react-icons/bi';
-import { CgCrown } from 'react-icons/cg';
-import { HiOutlineSparkles } from 'react-icons/hi2';
-import { TbPlugConnected } from 'react-icons/tb';
-import { SlLock } from 'react-icons/sl';
-import { useState } from 'react';
-import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents';
+} from 'react-icons/fa'
+import { AiOutlineUser } from 'react-icons/ai'
+import { BiBadge } from 'react-icons/bi'
+import { BiSupport } from 'react-icons/bi'
+import { AiOutlineUsergroupAdd } from 'react-icons/ai'
+import { CgCrown } from 'react-icons/cg'
+import { HiOutlineSparkles } from 'react-icons/hi2'
+import { TbPlugConnected } from 'react-icons/tb'
+import { SlLock } from 'react-icons/sl'
+import { FaStar } from 'react-icons/fa'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { useState } from 'react'
+import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents'
 
 const icons = {
   FaClock,
@@ -39,11 +40,14 @@ const icons = {
   HiOutlineSparkles,
   TbPlugConnected,
   SlLock,
-};
+}
 
-const FreeTier = ({ data }) => (
-  <span className="animate-pop-in w-full">
-    <div className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.03] hover:bg-gradient-to-br from-transparent via-cyan-50/40 to-cyan-100">
+const FreeTier = ({ data }) => {
+  return (
+    <span className="animate-pop-in w-full">
+    <div
+        className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.03] hover:bg-gradient-to-br from-transparent via-cyan-50/40 to-cyan-100"
+    >
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
           <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
@@ -72,102 +76,78 @@ const FreeTier = ({ data }) => (
         </div>
       </div>
     </div>
-  </span>
-);
+    </span>
+  )
+}
 
-const PaidTier = ({ data, isMonthly }) => {
+const PaidTier = ({ data }) => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
 
-  const toggleAccordion = () => setAccordionOpen(!isAccordionOpen);
+  const toggleAccordion = () => {
+    setAccordionOpen(!isAccordionOpen);
+  };
 
   return (
     <span className="animate-pop-in">
-      <div className="hover:scale-[1.03] hover:bg-gradient-to-br from-transparent via-cyan-50/50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden">
-        {data.isStarred && (
-          <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
-            <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
-            <FaStar className="text-lg text-white absolute -translate-x-5 translate-y-5" />
-          </div>
-        )}
-        <h2
-          className={`font-tuner text-3xl bg-gradient-to-br bg-clip-text text-transparent ${
-            data.isStarred
-              ? 'from-orange-400 via-orange-600 to-orange-800'
-              : 'from-blue-600 via-blue-800 to-blue-1000'
-          }`}
-        >
-          {data.name}
-        </h2>
-        <TinaMarkdown
-          content={data.description}
-          components={pricingComponents}
-        />
-        <div className="pt-10">
-          <span className="text-3xl font-tuner bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-            {isMonthly ? data.price : data.annualPrice}
+    <div
+      className="hover:scale-[1.03] hover:bg-gradient-to-br from-transparent via-cyan-50/50 to-cyan-100 relative p-10 rounded-xl shadow-2xl transform transition-transform duration-300 border border-transparent overflow-hidden"
+    >
+      {data.isStarred && (
+        <div className="absolute top-0 right-0 flex justify-center items-center w-24 h-24 transform translate-x-12 -translate-y-12">
+          <div className="w-24 h-24 bg-orange-400 transform rotate-45"></div>
+          <FaStar className="text-lg text-white absolute -translate-x-5 translate-y-5" />
+        </div>
+      )}
+      <h2
+        className={`font-tuner text-3xl bg-gradient-to-br bg-clip-text text-transparent ${
+          data.isStarred
+            ? 'from-orange-400 via-orange-600 to-orange-800'
+            : 'from-blue-600 via-blue-800 to-blue-1000'
+        }`}
+      >
+        {data.name}
+      </h2>
+      <TinaMarkdown content={data.description} components={pricingComponents} />
+      <div className="pt-10">
+        <span className="text-3xl font-tuner bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+          {data.price}
+        </span>{' '}
+        {data.interval && (
+          <span className="pl-2 text-lg bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+            {data.interval}
           </span>
-          {data.interval && (
-            <span className="pl-2 text-lg bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-               {data.interval}
+        )}
+      </div>
+      <div className="pt-6 flex">
+        {data.buttons &&
+          data.buttons.map((button, index) => (
+            <RenderButton key={index} button={button} index={index} />
+          ))}
+      </div>
+      <div className="pt-6">
+        <div className="accordion-content">
+          <div
+            className="flex justify-between items-center font-semibold cursor-pointer"
+            onClick={toggleAccordion}
+          >
+            <p className="flex text-xl items-center">Includes:</p>
+            <span className="ml-2">
+              {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
             </span>
-          )}
-        </div>
-        <div className="pt-6 flex">
-          {data.buttons &&
-            data.buttons.map((button, index) => (
-              <RenderButton key={index} button={button} index={index} />
-            ))}
-        </div>
-        <div className="pt-6">
-          <div className="accordion-content">
-            <div
-              className="flex justify-between items-center font-semibold cursor-pointer"
-              onClick={toggleAccordion}
-            >
-              <p className="flex text-xl items-center">Includes:</p>
-              <span className="ml-2">
-                {isAccordionOpen ? <FaChevronUp /> : <FaChevronDown />}
-              </span>
-            </div>
-            {isAccordionOpen && (
-              <div className="pl-2">
-                {data.cardItem &&
-                  data.cardItem.map((item, index) => {
-                    const Icon = icons[item.icon];
-                    return (
-                      <div
-                        key={index}
-                        className="flex flex-col items-start mt-2"
-                      >
-                        <div className="flex items-center text-lg">
-                          {Icon && <Icon className="mr-2" />}
-                          <span>{item.name}</span>
-                        </div>
-                        {item.description && (
-                          <div className="my-1 ml-5 text-md text-gray-600/70">
-                            {item.description}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-              </div>
-            )}
           </div>
-          <div className="non-accordion-content">
-            <p className="font-semibold">Includes:</p>
+          {isAccordionOpen && (
             <div className="pl-2">
               {data.cardItem &&
                 data.cardItem.map((item, index) => {
                   const Icon = icons[item.icon];
                   return (
                     <div key={index} className="flex flex-col items-start mt-2">
-                      <div className="flex items-center">
+                      <div className="flex items-center text-lg">
                         {Icon && <Icon className="mr-2" />}
                         <span>{item.name}</span>
                       </div>
                       {item.description && (
-                        <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        <div className="my-1 ml-5 text-md text-gray-600/70">
                           {item.description}
                         </div>
                       )}
@@ -175,87 +155,81 @@ const PaidTier = ({ data, isMonthly }) => {
                   );
                 })}
             </div>
+          )}
+        </div>
+        <div className="non-accordion-content">
+          <p className="font-semibold">Includes:</p>
+          <div className="pl-2">
+            {data.cardItem &&
+              data.cardItem.map((item, index) => {
+                const Icon = icons[item.icon];
+                return (
+                  <div key={index} className="flex flex-col items-start mt-2">
+                    <div className="flex items-center">
+                      {Icon && <Icon className="mr-2" />}
+                      <span>{item.name}</span>
+                    </div>
+                    {item.description && (
+                      <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        {item.description}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
           </div>
         </div>
-
-        <style jsx>{`
-          @media (min-width: 0px) and (max-width: 1250px) {
-            .accordion-content {
-              display: block;
-            }
-            .non-accordion-content {
-              display: none;
-            }
-          }
-
-          @media (min-width: 1250px) {
-            .accordion-content {
-              display: none;
-            }
-            .non-accordion-content {
-              display: block;
-            }
-          }
-        `}</style>
       </div>
+
+      <style jsx>{`
+        @media (min-width: 0px) and (max-width: 1250px) {
+          .accordion-content {
+            display: block;
+          }
+          .non-accordion-content {
+            display: none;
+          }
+        }
+
+        @media (min-width: 1250px) {
+          .accordion-content {
+            display: none;
+          }
+          .non-accordion-content {
+            display: block;
+          }
+        }
+      `}</style>
+    </div>
     </span>
   );
 };
 
 export function PricingBlock({ data }) {
-  const [isMonthly, setIsMonthly] = useState(true);
-
   return (
     <div className="p-6">
       <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
-        <h1 className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+        <h1
+          className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent"
+        >
           {data.headline}
         </h1>
-        
-        <div className="pt-2 max-w-4xl mx-auto flex justify-center">
+        <div className="py-2 max-w-4xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
         <div className="pt-10 px-4 pb-6 text-center">
           <TinaMarkdown content={data.intro} components={pricingComponents} />
         </div>
-        <div className="flex justify-center pb-6">
-          <div className="bg-gradient-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-2xl rounded-full gap-16 relative w-max">
-            <div
-              className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-blue-300 via-blue-400 to-blue-500 rounded-full transition-transform duration-500 ease-in-out ${
-                isMonthly
-                  ? 'transform translate-x-0'
-                  : 'transform translate-x-full'
-              }`}
-            ></div>
-            <div className="relative flex z-10">
-              <button
-                className={`px-10 py-2 w-1/2 z-20 transition-colors duration-500 ${
-                  isMonthly ? 'text-white' : 'text-black'
-                }`}
-                onClick={() => setIsMonthly(true)}
-              >
-                Monthly
-              </button>
-              <button
-                className={`px-10 py-2 w-1/2 z-20 transition-colors duration-500 ${
-                  !isMonthly ? 'text-white' : 'text-black'
-                }`}
-                onClick={() => setIsMonthly(false)}
-              >
-                Yearly
-              </button>
-            </div>
-          </div>
-        </div>
         <div className="responsive-grid">
           {data.plans &&
             data.plans.map((plan, index) => (
               <div key={index} className="flex flex-col">
-                <PaidTier data={plan} isMonthly={isMonthly} />
+                <PaidTier data={plan} />
               </div>
             ))}
         </div>
       </div>
+
       <style jsx>{`
         .responsive-grid {
           display: grid;
@@ -277,6 +251,5 @@ export function PricingBlock({ data }) {
         }
       `}</style>
     </div>
-  );
+  )
 }
-
