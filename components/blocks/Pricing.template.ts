@@ -23,13 +23,8 @@ export const cardTemplate: Template = {
     },
     {
       name: 'price',
-      label: 'Monthly Price',
+      label: 'Price',
       type: 'string',
-    },
-    {
-      name: 'annualPrice',
-      label: 'Annual Price',
-      type: 'string'
     },
     {
       name: 'interval',
