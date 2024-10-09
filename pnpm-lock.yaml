@@ -179,6 +179,9 @@ importers:
       remark-gfm:
         specifier: ^3.0.1
         version: 3.0.1
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
       serve:
         specifier: ^14.2.3
         version: 14.2.3
@@ -186,7 +189,7 @@ importers:
         specifier: ^1.8.1
         version: 1.8.1(jquery@3.7.1)
       strip-markdown:
-        specifier: ^3.1.1
+        specifier: ^3.1.2
         version: 3.1.2
       styled-components:
         specifier: ^6.1.13
@@ -200,6 +203,9 @@ importers:
       tinacms:
         specifier: 2.2.3
         version: 2.2.3(@types/react@16.14.60)(abstract-level@1.0.4)(encoding@0.1.13)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.2)(@types/react@16.14.60)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@6.0.3))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(sucrase@3.35.0)(typescript@4.9.5)
+      unified:
+        specifier: ^11.0.5
+        version: 11.0.5
       webpack:
         specifier: ^5.94.0
         version: 5.94.0
