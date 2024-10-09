@@ -7,11 +7,6 @@ export function orderPosts(posts) {
   return posts.slice().sort(sortByDate)
 }
 
-const detectShortcodes = /\{\{(.*?)\}\}/gm
-const preStrip = content => {
-  return content.replace(detectShortcodes, '')
-}
-
 export function stripMarkdown(content: string): string {
   content = content.replace(/\{\{(.*?)\}\}/gm, '');
 
