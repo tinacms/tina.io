@@ -8,31 +8,58 @@ export function orderPosts(posts) {
 }
 
 export function stripMarkdown(content: string): string {
+  // Remove Handlebars-like template placeholders {{...}}
   content = content.replace(/\{\{(.*?)\}\}/gm, '');
 
   try {
-    content = content.replace(/<[^>]*>/g, ''); // Remove all elements that look like <tags>
-    content = content.replace(/^([\s\t]*)([\*\-\+]|\d+\.)\s+/gm, ''); // Strip out bullet points or numbered lists
+    // Remove HTML tags like <div>, <p>, etc.
+    content = content.replace(/<[^>]*>/g, ''); 
+
+    // Remove markdown bullet points (-, *, +) or numbered lists (1., 2., etc.)
+    content = content.replace(/^([\s\t]*)([\*\-\+]|\d+\.)\s+/gm, '');
 
     content = content
+      // Remove strikethrough markers (~~)
       .replace(/~~/g, '')
+
+      // Remove fenced code blocks ```...``` but keep the content inside
       .replace(/`{3}.*\n([\s\S]*?)\n`{3}/g, '$1')
+
+      // Remove tilde code blocks ~~~...~~~ and their content
       .replace(/~{3}.*\n/g, '');
 
     content = content
+      // Convert markdown links [text](url) to just text
       .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+
+      // Convert markdown image syntax ![alt](url) to just alt text
       .replace(/!\[([^\]]*)\]\([^\)]+\)/g, '$1')
+
+      // Strip out headers, leaving the header text (e.g., # Header)
       .replace(/#{1,6}\s*(.*)/g, '$1')
+
+      // Remove blockquotes (>) and leave the quoted text
       .replace(/>\s*(.*)/g, '$1')
+
+      // Remove bold formatting (**text** or __text__) and keep the text
       .replace(/(\*\*|__)(.*?)\1/g, '$2')
+
+      // Remove italic formatting (*text* or _text_) and keep the text
       .replace(/(\*|_)(.*?)\1/g, '$2')
+
+      // Remove inline code backticks and keep the code (e.g., `code`)
       .replace(/`([^`]+)`/g, '$1')
+
+      // Handle cases of headings with multiple trailing hashes (e.g., ## Header ##)
       .replace(/^(\n)?\s{0,}#{1,6}\s*( (.+))? +#+$|^(\n)?\s{0,}#{1,6}\s*( (.+))?$/gm, '$1$3$4$6')
+
+      // Remove single tildes used for custom emphasis (~text~)
       .replace(/~(.*?)~/g, '$1');
 
+    // Remove any remaining HTML tags (again, for safety)
     content = content.replace(/<[^>]*>/g, '');
 
-    // Trim any extra whitespace
+    // Trim any extra whitespace from the final string
     content = content.trim();
 
   } catch (e) {
@@ -42,6 +69,7 @@ export function stripMarkdown(content: string): string {
 
   return content;
 }
+
 
 
 
