@@ -7,24 +7,71 @@ export function orderPosts(posts) {
   return posts.slice().sort(sortByDate)
 }
 
-const detectShortcodes = /\{\{(.*?)\}\}/gm
-const preStrip = content => {
-  return content.replace(detectShortcodes, '')
+export function stripMarkdown(content: string): string {
+  // Remove Handlebars-like template placeholders {{...}}
+  content = content.replace(/\{\{(.*?)\}\}/gm, '');
+
+  try {
+    // Remove HTML tags like <div>, <p>, etc.
+    content = content.replace(/<[^>]*>/g, ''); 
+
+    // Remove markdown bullet points (-, *, +) or numbered lists (1., 2., etc.)
+    content = content.replace(/^([\s\t]*)([\*\-\+]|\d+\.)\s+/gm, '');
+
+    content = content
+      // Remove strikethrough markers (~~)
+      .replace(/~~/g, '')
+
+      // Remove fenced code blocks ```...``` but keep the content inside
+      .replace(/`{3}.*\n([\s\S]*?)\n`{3}/g, '$1')
+
+      // Remove tilde code blocks ~~~...~~~ and their content
+      .replace(/~{3}.*\n/g, '');
+
+    content = content
+      // Convert markdown links [text](url) to just text
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+
+      // Convert markdown image syntax ![alt](url) to just alt text
+      .replace(/!\[([^\]]*)\]\([^\)]+\)/g, '$1')
+
+      // Strip out headers, leaving the header text (e.g., # Header)
+      .replace(/#{1,6}\s*(.*)/g, '$1')
+
+      // Remove blockquotes (>) and leave the quoted text
+      .replace(/>\s*(.*)/g, '$1')
+
+      // Remove bold formatting (**text** or __text__) and keep the text
+      .replace(/(\*\*|__)(.*?)\1/g, '$2')
+
+      // Remove italic formatting (*text* or _text_) and keep the text
+      .replace(/(\*|_)(.*?)\1/g, '$2')
+
+      // Remove inline code backticks and keep the code (e.g., `code`)
+      .replace(/`([^`]+)`/g, '$1')
+
+      // Handle cases of headings with multiple trailing hashes (e.g., ## Header ##)
+      .replace(/^(\n)?\s{0,}#{1,6}\s*( (.+))? +#+$|^(\n)?\s{0,}#{1,6}\s*( (.+))?$/gm, '$1$3$4$6')
+
+      // Remove single tildes used for custom emphasis (~text~)
+      .replace(/~(.*?)~/g, '$1');
+
+    // Remove any remaining HTML tags (again, for safety)
+    content = content.replace(/<[^>]*>/g, '');
+
+    // Trim any extra whitespace from the final string
+    content = content.trim();
+
+  } catch (e) {
+    console.error("Error during markdown stripping: %s", e);
+    return content;
+  }
+
+  return content;
 }
 
-export async function stripMarkdown(content): Promise<string> {
-  const remark = require('remark')
-  const strip = require('strip-markdown')
-  const preprocessedContent = preStrip(content)
-  return new Promise((resolve, reject) => {
-    remark()
-      .use(strip)
-      .process(preprocessedContent, (err, processedContent) => {
-        if (err) reject(err)
-        resolve(String(processedContent))
-      })
-  })
-}
+
+
 
 function removeEndingPunctuation(content: string): string {
   return content.replace(/[^A-Za-z0-9]$/, '')
@@ -50,14 +97,14 @@ export async function formatExcerpt(
   length = 200,
   ellipsis = '&hellip;'
 ) {
-  const plain = await (await stripMarkdown(content)).replace(whitespace, ' ')
-  const plainTextExcerpt = truncateAtWordBoundary(plain, length)
+  const plain = stripMarkdown(content).replace(whitespace, ' ');
+  const plainTextExcerpt = truncateAtWordBoundary(plain, length);
 
   if (plain.length > plainTextExcerpt.length) {
-    return removeEndingPunctuation(plainTextExcerpt) + ellipsis
+    return removeEndingPunctuation(plainTextExcerpt) + ellipsis;
   }
 
-  return plainTextExcerpt
+  return plainTextExcerpt;
 }
 
 export function formatDate(fullDate) {

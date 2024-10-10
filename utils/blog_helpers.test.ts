@@ -2,16 +2,27 @@ import { isRelevantPost, stripMarkdown } from './blog_helpers'
 
 describe('stripMarkdown', () => {
   describe('with shortcodes', () => {
-    const testDocument =
-      'Hello, {{ WarningCallout text="TinaCloud is too cool for you" }}World!\n'
-    const expected = 'Hello, World!\n'
+    const testDocument = 'Hello, {{ WarningCallout text="TinaCloud is too cool for you" }}World!\n';
+    const expected = 'Hello, World!\n';
 
     it('should remove shortcode markup', async () => {
-      const stripped = await stripMarkdown(testDocument)
-      expect(stripped).toEqual(expected)
-    })
-  })
-})
+      const stripped = await stripMarkdown(testDocument);
+      expect(stripped.trim()).toEqual(expected.trim());
+    });
+  });
+});
+
+
+describe('stripMDX', () => {
+  const testDocument = '<Youtube embedSrc="https://www.youtube.com/embed/RcR284ieUj0"/> TinaCMS has some exciting news for our herd!\n'
+  const expected = 'TinaCMS has some exciting news for our herd!\n'
+
+  it('should remove MDX markup', () => {
+    const stripped = stripMarkdown(testDocument);
+    expect(stripped).toEqual(expected.trim());
+  });
+});
+
 
 describe('isRelevantPost', () => {
   it('returns false for old post', async () => {
