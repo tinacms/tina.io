@@ -96,30 +96,29 @@ Images are uploaded using S3 pre-signed URLs. This requires the bucket to have a
 
 ```json
 [
-    {
-        "AllowedHeaders": [
-            "Authorization",
-            "Content-Range",
-            "Accept",
-            "Content-Type",
-            "Origin",
-            "Range"
-        ],
-        "AllowedMethods": [
-            "PUT"
-        ],
-        "AllowedOrigins": [
-            "*"
-        ],
-        "ExposeHeaders": [
-            "Content-Range",
-            "Content-Length",
-            "ETag"
-        ],
-        "MaxAgeSeconds": 3000
-    }
+  {
+    "AllowedHeaders": [
+      "Authorization",
+      "Content-Range",
+      "Accept",
+      "Content-Type",
+      "Origin",
+      "Range"
+    ],
+    "AllowedMethods": [
+      "PUT"
+    ],
+    "AllowedOrigins": [
+      "*"
+    ],
+    "ExposeHeaders": [
+      "Content-Range",
+      "Content-Length",
+      "ETag"
+    ],
+    "MaxAgeSeconds": 3000
+  }
 ]
-```
 
 ## Register the Media Store
 
