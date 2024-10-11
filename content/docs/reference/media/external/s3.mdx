@@ -90,6 +90,37 @@ i.e. You can disable `block public access settings` and set up the bucket policy
 }
 ```
 
+### 4. You should ensure the CORS configuration is set up correctly.
+
+Images are uploaded using S3 pre-signed URLs. This requires the bucket to have a CORS configuration that allows the origin of the request to access the bucket.
+
+```json
+[
+    {
+        "AllowedHeaders": [
+            "Authorization",
+            "Content-Range",
+            "Accept",
+            "Content-Type",
+            "Origin",
+            "Range"
+        ],
+        "AllowedMethods": [
+            "PUT"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": [
+            "Content-Range",
+            "Content-Length",
+            "ETag"
+        ],
+        "MaxAgeSeconds": 3000
+    }
+]
+```
+
 ## Register the Media Store
 
 You can register the S3 Media store via the `loadCustomStore` prop.
