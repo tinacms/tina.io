@@ -29,6 +29,7 @@ import { TinaBanner } from './TinaBanner';
 import { HighlightsSection } from './HighlightsSection';
 import { SpacerComponent } from './Spacer';
 import { CarouselFeatureBlock } from './CarouselFeature';
+import RecipeBlock from './Recipe';
 
 export const Blocks = ({
   blocks,
@@ -82,6 +83,10 @@ export const Blocks = ({
         return (
           <ColumnsBlock key={`block-${index}`} data={block} index={index} />
         );
+      case 'PageBlocksRecipeBlock':
+        return (
+          <RecipeBlock data={block} index={index} />
+        )
       case 'PageBlocksShowcase':
         return (
           <ShowcaseItemsBlock
