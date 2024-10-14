@@ -5,6 +5,38 @@
   },
   "blocks": [
     {
+      "title": "Publish all Docs in Category",
+      "description": "Update each doc in a specific category as published ",
+      "codeblock": "```javascript\nconst sdk = require('api')('https://docs.readme.com/developers/openapi/62056dee230e07007218be15');\nsdk.auth('PROJECT_API_KEY');\n\nasync function publishDocs() {\n\n  const categories = await sdk\n    .getCategories({ perPage: \"10\", page: \"1\" })\n    .then(res => res.data)\n    .catch(err => console.log(err));\n\n  const docs = await sdk\n    .getCategoryDocs({ slug: categories[0].slug })\n    .then(res => res.data)\n    .catch(err => console.log(err));\n\n  docs.forEach(async (doc) => {\n    await sdk.updateDoc({ hidden: false }, { slug: doc.slug });\n  });\n}\n\npublishDocs()\n```\n",
+      "instruction": [
+        {
+          "header": "Install the api module from NPM",
+          "itemDescription": "You can install the api module by running npm install api.",
+          "codeLineStart": 1,
+          "codeLineEnd": 5
+        },
+        {
+          "header": "Get the category to mark docs as published",
+          "itemDescription": "You need the category containing the docs to mark them as published. Here, we'll use the first category",
+          "codeLineStart": 10,
+          "codeLineEnd": 12
+        },
+        {
+          "header": "Get all docs in the category",
+          "itemDescription": "Using the category slug we got from the previous category, we can fetch all of the docs that belong to the category",
+          "codeLineStart": 7,
+          "codeLineEnd": 8
+        },
+        {
+          "header": "Iterate over each doc to mark as published",
+          "itemDescription": "We can iterate over each doc returned in the previous call, and update each one to be published.",
+          "codeLineStart": 19,
+          "codeLineEnd": 21
+        }
+      ],
+      "_template": "recipeBlock"
+    },
+    {
       "features": [
         {
           "headline": "A CMS With Version Control Built-in",
