@@ -242,7 +242,7 @@ export function PricingBlock({ data }) {
                 }`}
                 onClick={() => setIsMonthly(false)}
               >
-                Yearly
+                Annually
               </button>
             </div>
           </div>
