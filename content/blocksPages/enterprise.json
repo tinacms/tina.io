@@ -31,36 +31,97 @@
     },
     {
       "title": "Trusted by",
+      "link": "https://ndcconferences.com",
       "items": [
         {
+          "name": "Bunny Net",
+          "link": "/showcase#bunny-net",
+          "logo": "/svg/logos/bunnynet.svg",
+          "size": 220
+        },
+        {
           "name": "Unity",
-          "link": "https://unity.com",
-          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/w_600,q_auto/v1693531489/tina-io/new-homepage/unity-logo-white.png",
-          "size": 250
+          "link": "/showcase#unity",
+          "logo": "/svg/logos/unity.svg",
+          "size": 220
         },
         {
           "name": "Protocol Labs",
-          "link": "https://protocol.ai/",
+          "link": "/showcase#protocol-labs",
           "logo": "/svg/logos/protocollabs.svg",
           "size": 90
         },
         {
           "name": "City of London",
-          "link": "https://www.cityoflondon.gov.uk/",
-          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1694021728/tina-io/new-homepage/city-of-london.svg",
-          "size": 75
+          "link": "/showcase#city-of-london",
+          "logo": "/svg/logos/cityoflondon.svg",
+          "size": 120
         },
         {
           "name": "Devolver Digital",
-          "link": "https://www.devolverdigital.com/",
+          "link": "/showcase#devolver-digital",
           "logo": "/svg/logos/devolverdigital.svg",
-          "size": 180
+          "size": 150
         },
         {
           "name": "Smashing Magazine",
-          "link": "https://www.smashingmagazine.com/",
+          "link": "/showcase#smashing-magazine",
           "logo": "/svg/logos/smashing.svg",
+          "size": 90
+        },
+        {
+          "name": "Supernova",
+          "link": "/showcase#supernova",
+          "logo": "/svg/logos/supernova.svg",
+          "size": 240
+        },
+        {
+          "name": "Paradise Helicopters",
+          "link": "/showcase#paradise-helicopters",
+          "logo": "/svg/logos/paradisehelicopters.svg",
+          "size": 150
+        },
+        {
+          "name": "NDC Conferences",
+          "link": "https://ndcconferences.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1725370732/NDCLogo_rwty5v.png",
+          "size": 220
+        },
+        {
+          "name": "SSW",
+          "link": "/showcase#ssw",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size": 150
+        },
+        {
+          "name": "Comedia",
+          "link": "/showcase#comedia",
+          "logo": "/svg/logos/comedia.svg",
           "size": 110
+        },
+        {
+          "name": "RRE Ventures",
+          "link": "/showcase#rre-ventures",
+          "logo": "/svg/logos/rreventures.svg",
+          "size": 220
+        },
+        {
+          "name": "Shadow Lion",
+          "link": "/showcase#shadow-lion",
+          "logo": "/svg/logos/shadowlion.svg",
+          "size": 220
+        },
+        {
+          "name": "Roev",
+          "link": "/showcase#roev",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
+          "name": "Locality Bank",
+          "link": "/showcase#locality-bank",
+          "logo": "/svg/logos/localitybank.svg",
+          "size": 200
         }
       ],
       "_template": "logoGrid"
@@ -106,7 +167,7 @@
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693531489/tina-io/new-homepage/unity-logo-white.png",
+      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1721004852/img/svg/unity_oajatu.svg",
       "_template": "quote"
     },
     {

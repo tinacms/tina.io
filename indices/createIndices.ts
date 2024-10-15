@@ -104,13 +104,6 @@ const createIndices = async () => {
     'Tina-Blogs-Next',
     (await Promise.all(blogs.map(mapContentToIndex))).flat()
   )
-
-  const guides = await fetchGuides()
-  await saveIndex(
-    client,
-    'Tina-Guides-Next',
-    (await Promise.all(guides.map(mapContentToIndex))).flat()
-  )
 }
 
 createIndices()
