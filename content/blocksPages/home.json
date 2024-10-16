@@ -215,7 +215,7 @@
           "headline": "Git Integration",
           "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
           "icon2": "FaGithub",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464386/tina.io-gifs/2024-09-13-key-features-github-integration_mocrbt.gif",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060160/tinaio-webm/2024-09-13-key-features-github-integration_pcyz2i.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
