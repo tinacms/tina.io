@@ -435,7 +435,7 @@
           "endDate": "2024-10-18T00:00:00.000Z",
           "timezone": 1,
           "location": "Porto, Portugal",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215794/e95ddece6811979e4a83e932c4116680_nslaox.jpg",
+          "image": "/img/wheres-tina/ndc-porto.jpg",
           "link": "https://ndcporto.com/",
           "markerLAT": 8,
           "markerLONG": 41
@@ -446,7 +446,7 @@
           "endDate": "2024-08-30T00:00:00.000Z",
           "timezone": 2,
           "location": "Copenhagen, Denmark",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215863/704853_s2w9sg.jpg",
+          "image": "/img/wheres-tina/cph-dev-fest.jpg",
           "link": "https://cphdevfest.com/",
           "markerLAT": -8,
           "markerLONG": 59
@@ -458,7 +458,7 @@
           "endDate": "2024-05-23T00:00:00.000Z",
           "timezone": 2,
           "location": "Oslo, Norway",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215929/Norway_Oslo_Houses_Marinas_Bay_569380_1920x1080_ocqvvo.jpg",
+          "image": "/img/wheres-tina/ndc-oslo.jpg",
           "link": "https://ndcoslo.com/",
           "markerLAT": -1,
           "markerLONG": 59
@@ -468,7 +468,7 @@
           "startDate": "2024-05-21T00:00:00.000Z",
           "timezone": 10,
           "location": "Sydney, Australia",
-          "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1724215959/716104_jwhkyu.jpg",
+          "image": "/img/wheres-tina/serverless-days-anz.jpg",
           "link": "https://anz.serverlessdays.io/sydney/",
           "markerLAT": 207,
           "markerLONG": 35
