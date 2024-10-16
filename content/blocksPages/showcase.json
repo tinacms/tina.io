@@ -128,7 +128,7 @@
           "text": "[Microgen](https://microgen.site/) is an open-source site builder developed by [Protocol Labs](https://protocol.ai/) and [Bustout](https://bustout.com/). Find it on [GitHub here](https://github.com/pathfindertools/microgen).\n",
           "url": "https://microgen.site/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/microgen.png"
+            "src": "/img/tina-showcase/microgen.png"
           }
         },
         {
