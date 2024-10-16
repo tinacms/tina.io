@@ -120,7 +120,7 @@
           "text": "An information site for the CCMC, a group within NASA that enables, supports, and performs space science research.",
           "url": "https://ccmc.gsfc.nasa.gov/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651711033/tina-showcase/CCMC.png"
+            "src": "/img/tina-showcase/CCMC.png"
           }
         },
         {
