@@ -5,242 +5,6 @@
   },
   "blocks": [
     {
-      "features": [
-        {
-          "headline": "A CMS With Version Control Built-in",
-          "text": "Tina is a fully open-source headless CMS that supports Git",
-          "buttons": [
-            {
-              "label": "Try the editor now",
-              "icon": true,
-              "variant": "blue",
-              "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~",
-              "_template": "actions"
-            },
-            {
-              "label": "npx create-tina-app@latest",
-              "_template": "codeButton"
-            }
-          ],
-          "media": [
-            {
-              "src": "tina-io/new-homepage/homepage-demo-2",
-              "_template": "video"
-            }
-          ]
-        }
-      ],
-      "_template": "features"
-    },
-    {
-      "title": "Trusted by",
-      "link": "https://ndcconferences.com",
-      "items": [
-        {
-          "name": "Bunny Net",
-          "link": "/showcase#bunny-net",
-          "logo": "/svg/logos/bunnynet.svg",
-          "size": 220
-        },
-        {
-          "name": "Unity",
-          "link": "/showcase#unity",
-          "logo": "/svg/logos/unity.svg",
-          "size": 220
-        },
-        {
-          "name": "Protocol Labs",
-          "link": "/showcase#protocol-labs",
-          "logo": "/svg/logos/protocollabs.svg",
-          "size": 90
-        },
-        {
-          "name": "City of London",
-          "link": "/showcase#city-of-london",
-          "logo": "/svg/logos/cityoflondon.svg",
-          "size": 120
-        },
-        {
-          "name": "Devolver Digital",
-          "link": "/showcase#devolver-digital",
-          "logo": "/svg/logos/devolverdigital.svg",
-          "size": 150
-        },
-        {
-          "name": "Smashing Magazine",
-          "link": "/showcase#smashing-magazine",
-          "logo": "/svg/logos/smashing.svg",
-          "size": 90
-        },
-        {
-          "name": "Supernova",
-          "link": "/showcase#supernova",
-          "logo": "/svg/logos/supernova.svg",
-          "size": 240
-        },
-        {
-          "name": "Paradise Helicopters",
-          "link": "/showcase#paradise-helicopters",
-          "logo": "/svg/logos/paradisehelicopters.svg",
-          "size": 150
-        },
-        {
-          "name": "NDC Conferences",
-          "link": "https://ndcconferences.com",
-          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1725370732/NDCLogo_rwty5v.png",
-          "size": 220
-        },
-        {
-          "name": "SSW",
-          "link": "/showcase#ssw",
-          "logo": "/svg/logos/ssw-logo-charcoal.svg",
-          "size": 150
-        },
-        {
-          "name": "Comedia",
-          "link": "/showcase#comedia",
-          "logo": "/svg/logos/comedia.svg",
-          "size": 110
-        },
-        {
-          "name": "RRE Ventures",
-          "link": "/showcase#rre-ventures",
-          "logo": "/svg/logos/rreventures.svg",
-          "size": 220
-        },
-        {
-          "name": "Shadow Lion",
-          "link": "/showcase#shadow-lion",
-          "logo": "/svg/logos/shadowlion.svg",
-          "size": 220
-        },
-        {
-          "name": "Roev",
-          "link": "/showcase#roev",
-          "logo": "/svg/logos/roe.svg",
-          "size": 200
-        },
-        {
-          "name": "Locality Bank",
-          "link": "/showcase#locality-bank",
-          "logo": "/svg/logos/localitybank.svg",
-          "size": 200
-        }
-      ],
-      "_template": "logoGrid"
-    },
-    {
-      "blockHeadline": "Key Features",
-      "items": [
-        {
-          "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit",
-          "icon2": "FaClock",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060174/tinaio-webm/2024-09-13-key-features-visual-editing-v3_pwfxyo.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://quick-edit-demo.vercel.app/admin#/"
-          }
-        },
-        {
-          "headline": "Open Source",
-          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
-          "icon2": "FaUnlock",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060169/tinaio-webm/2024-09-13-key-features-open-source_f57aej.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://github.com/tinacms/tinacms"
-          }
-        },
-        {
-          "headline": "Develop Locally",
-          "text": "Easily set up and run Tina locally to talk to your local filesystem",
-          "icon2": "FaCodeBranch",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060183/tinaio-webm/2024-09-19-key-features-local_xxqx30.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/setup-overview/"
-          }
-        },
-        {
-          "headline": "3rd Party Media",
-          "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
-          "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060179/tinaio-webm/2024-09-19-key-features-3rd-party-media_wyjzwm.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/reference/media/overview"
-          }
-        },
-        {
-          "headline": "Control your Components",
-          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
-          "icon2": "FaPuzzlePiece",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060150/tinaio-webm/2024-09-13-key-features-control-components_fnakly.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/editing/blocks"
-          }
-        },
-        {
-          "headline": "Markdown at Scale",
-          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
-          "icon2": "FaMarkdown",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060165/tinaio-webm/2024-09-13-key-features-markdown_dhrwjy.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/editing/overview"
-          }
-        },
-        {
-          "headline": "Git Integration",
-          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
-          "icon2": "FaGithub",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060160/tinaio-webm/2024-09-13-key-features-github-integration_pcyz2i.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/drafts/editorial-workflow/"
-          }
-        },
-        {
-          "headline": "Easy Documentation",
-          "text": "Tina's docs run on TinaCMS - check it out!",
-          "icon2": "FaFileAlt",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060155/tinaio-webm/2024-09-13-key-features-docs_v2zbci.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs"
-          }
-        }
-      ],
-      "_template": "carouselFeature"
-    },
-    {
       "criteriaItems": [
         {
           "criteria": "Open Source Front-end"
@@ -399,6 +163,103 @@
       "_template": "CompareBox"
     },
     {
+      "title": "Trusted by",
+      "link": "https://ndcconferences.com",
+      "items": [
+        {
+          "name": "Bunny Net",
+          "link": "/showcase#bunny-net",
+          "logo": "/svg/logos/bunnynet.svg",
+          "size": 220
+        },
+        {
+          "name": "Unity",
+          "link": "/showcase#unity",
+          "logo": "/svg/logos/unity.svg",
+          "size": 220
+        },
+        {
+          "name": "Protocol Labs",
+          "link": "/showcase#protocol-labs",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 90
+        },
+        {
+          "name": "City of London",
+          "link": "/showcase#city-of-london",
+          "logo": "/svg/logos/cityoflondon.svg",
+          "size": 120
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "/showcase#devolver-digital",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 150
+        },
+        {
+          "name": "Smashing Magazine",
+          "link": "/showcase#smashing-magazine",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 90
+        },
+        {
+          "name": "Supernova",
+          "link": "/showcase#supernova",
+          "logo": "/svg/logos/supernova.svg",
+          "size": 240
+        },
+        {
+          "name": "Paradise Helicopters",
+          "link": "/showcase#paradise-helicopters",
+          "logo": "/svg/logos/paradisehelicopters.svg",
+          "size": 150
+        },
+        {
+          "name": "NDC Conferences",
+          "link": "https://ndcconferences.com",
+          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1725370732/NDCLogo_rwty5v.png",
+          "size": 220
+        },
+        {
+          "name": "SSW",
+          "link": "/showcase#ssw",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size": 150
+        },
+        {
+          "name": "Comedia",
+          "link": "/showcase#comedia",
+          "logo": "/svg/logos/comedia.svg",
+          "size": 110
+        },
+        {
+          "name": "RRE Ventures",
+          "link": "/showcase#rre-ventures",
+          "logo": "/svg/logos/rreventures.svg",
+          "size": 220
+        },
+        {
+          "name": "Shadow Lion",
+          "link": "/showcase#shadow-lion",
+          "logo": "/svg/logos/shadowlion.svg",
+          "size": 220
+        },
+        {
+          "name": "Roev",
+          "link": "/showcase#roev",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
+          "name": "Locality Bank",
+          "link": "/showcase#locality-bank",
+          "logo": "/svg/logos/localitybank.svg",
+          "size": 200
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
       "features": [
         {
           "headline": "Talk to a Tina Expert",
@@ -421,6 +282,145 @@
           ],
           "isReversed": true,
           "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "blockHeadline": "Key Features",
+      "items": [
+        {
+          "headline": "Visual Editing",
+          "text": "See content changes in real-time as you edit",
+          "icon2": "FaClock",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060174/tinaio-webm/2024-09-13-key-features-visual-editing-v3_pwfxyo.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://quick-edit-demo.vercel.app/admin#/"
+          }
+        },
+        {
+          "headline": "Open Source",
+          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
+          "icon2": "FaUnlock",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060169/tinaio-webm/2024-09-13-key-features-open-source_f57aej.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://github.com/tinacms/tinacms"
+          }
+        },
+        {
+          "headline": "Develop Locally",
+          "text": "Easily set up and run Tina locally to talk to your local filesystem",
+          "icon2": "FaCodeBranch",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060183/tinaio-webm/2024-09-19-key-features-local_xxqx30.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/setup-overview/"
+          }
+        },
+        {
+          "headline": "3rd Party Media",
+          "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
+          "icon2": "FaCloudDownloadAlt",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060179/tinaio-webm/2024-09-19-key-features-3rd-party-media_wyjzwm.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/reference/media/overview"
+          }
+        },
+        {
+          "headline": "Control your Components",
+          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
+          "icon2": "FaPuzzlePiece",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060150/tinaio-webm/2024-09-13-key-features-control-components_fnakly.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/blocks"
+          }
+        },
+        {
+          "headline": "Markdown at Scale",
+          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
+          "icon2": "FaMarkdown",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060165/tinaio-webm/2024-09-13-key-features-markdown_dhrwjy.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/overview"
+          }
+        },
+        {
+          "headline": "Git Integration",
+          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
+          "icon2": "FaGithub",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060160/tinaio-webm/2024-09-13-key-features-github-integration_pcyz2i.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/drafts/editorial-workflow/"
+          }
+        },
+        {
+          "headline": "Easy Documentation",
+          "text": "Tina's docs run on TinaCMS - check it out!",
+          "icon2": "FaFileAlt",
+          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060155/tinaio-webm/2024-09-13-key-features-docs_v2zbci.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs"
+          }
+        }
+      ],
+      "_template": "carouselFeature"
+    },
+    {
+      "features": [
+        {
+          "headline": "A CMS With Version Control Built-in",
+          "text": "Tina is a fully open-source headless CMS that supports Git",
+          "buttons": [
+            {
+              "label": "Try the editor now",
+              "icon": true,
+              "variant": "blue",
+              "size": "small",
+              "url": "https://quick-edit-demo.vercel.app/admin#/~",
+              "_template": "actions"
+            },
+            {
+              "label": "npx create-tina-app@latest",
+              "_template": "codeButton"
+            }
+          ],
+          "media": [
+            {
+              "src": "tina-io/new-homepage/homepage-demo-2",
+              "_template": "video"
+            }
+          ]
         }
       ],
       "_template": "features"
