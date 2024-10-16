@@ -133,13 +133,13 @@
       "_template": "roadmapGrid"
     },
     {
-      "backdrop": "/img/brand-assets/creator.svg",
-      "leftFig": "/img/brand-assets/poster-and-about-page-assets/creator.svg",
-      "rightFig": "/img/brand-assets/poster-and-about-page-assets/developer.svg",
-      "leftScreen": "/img/brand-assets/poster-and-about-page-assets/visual-editor.svg",
-      "rightScreen": "/img/brand-assets/poster-and-about-page-assets/npx-command.svg",
-      "centerFig": "/img/brand-assets/poster-and-about-page-assets/street-lamp.svg",
-      "llama": "/img/brand-assets/poster-and-about-page-assets/llama_e1bcn5.svg",
+      "backdrop": "/img/brand-assets/grass.svg",
+      "leftFig": "/img/brand-assets/creator.svg",
+      "rightFig": "/img/brand-assets/developer.svg",
+      "leftScreen": "/img/brand-assets/visual-editor.svg",
+      "rightScreen": "/img/brand-assets/npx-command.svg",
+      "centerFig": "/img/brand-assets/street-lamp.svg",
+      "llama": "/img/brand-assets/llama.svg",
       "_template": "tinaBanner"
     }
   ]
