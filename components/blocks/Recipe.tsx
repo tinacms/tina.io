@@ -7,6 +7,19 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
 import 'prismjs/plugins/line-highlight/prism-line-highlight';
 
+// Custom CSS to override line highlight color
+const customHighlightCSS = `
+  pre[class*="language-"] > code[class*="language-"] {
+    position: relative;
+  }
+
+  pre[class*="language-"] .line-highlight {
+background: rgba(255, 127, 80, 0.2); 
+box-shadow: inset 5px 0 0 0 rgba(255, 127, 80, 0.5);
+    z-index: 0;
+  }
+`;
+
 interface RecipeBlockProps {
   data: {
     title?: string;
@@ -30,6 +43,14 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
 
   useEffect(() => {
     console.log(`Highlighting lines: ${highlightLines}`);
+    // Inject the custom CSS into the document head
+    const style = document.createElement('style');
+    style.textContent = customHighlightCSS;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style); // Clean up on unmount
+    };
   }, [highlightLines]);
 
   const handleInstructionClick = (index: number, codeLineStart?: number, codeLineEnd?: number) => {
@@ -38,7 +59,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
   };
 
   return (
-    <div className="recipe-block-container">
+    <div className="recipe-block-container mt-20">
       <div className="title-description">
         <h2 className="font-bold text-3xl">{title || 'Default Title'}</h2>
         <p className="font-semibold text-2xl">{description || 'Default Description'}</p>
