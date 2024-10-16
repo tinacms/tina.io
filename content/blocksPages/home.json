@@ -137,7 +137,7 @@
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit",
           "icon2": "FaClock",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788860/tina.io-gifs/Key_Features_Visual_Editing_v2a_drv7zt.gif",
+          "videoSrc": "/gif/key-features/visual-editing.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -150,7 +150,7 @@
           "headline": "Open Source",
           "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
           "icon2": "FaUnlock",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464412/tina.io-gifs/2024-09-13-key-features-open-source_lofuna.gif",
+          "videoSrc": "/gif/key-features/open-source.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -163,7 +163,7 @@
           "headline": "Develop Locally",
           "text": "Easily set up and run Tina locally to talk to your local filesystem",
           "icon2": "FaCodeBranch",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788950/tina.io-gifs/Key_Features_Local_kutskd.gif",
+          "videoSrc": "/gif/key-features/local.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -176,7 +176,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726788955/tina.io-gifs/Key_Features_3rd_Party_Media_bkkuou.gif",
+          "videoSrc": "/gif/key-features/3rd-party-media.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -189,7 +189,7 @@
           "headline": "Control your Components",
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
           "icon2": "FaPuzzlePiece",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464332/tina.io-gifs/2024-09-13-key-features-control-components_jomxbs.gif",
+          "videoSrc": "/gif/key-features/control-components.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -202,7 +202,7 @@
           "headline": "Markdown at Scale",
           "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
           "icon2": "FaMarkdown",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464405/tina.io-gifs/2024-09-13-key-features-markdown_pojlmt.gif",
+          "videoSrc": "/gif/key-features/markdown.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -215,7 +215,7 @@
           "headline": "Git Integration",
           "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
           "icon2": "FaGithub",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726464386/tina.io-gifs/2024-09-13-key-features-github-integration_mocrbt.gif",
+          "videoSrc": "/gif/key-features/github-integration.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -228,7 +228,7 @@
           "headline": "Easy Documentation",
           "text": "Tina's docs run on TinaCMS - check it out!",
           "icon2": "FaFileAlt",
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/image/upload/v1726797113/tina.io-gifs/Key_Features_Docs_v2_sh565e.gif",
+          "videoSrc": "/gif/key-features/easy-docs.gif",
           "button": {
             "label": "READ MORE",
             "icon": true,
