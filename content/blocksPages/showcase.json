@@ -112,7 +112,7 @@
           "text": "Hop on [bunny.net](https://bunny.net/) and speed up your web presence with the next-generation Content Delivery Service (CDN), Edge Storage, and Optimization Services at any scale.",
           "url": "https://bunny.net/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683568421/tina-showcase/bunny-net.png"
+            "src": "/img/tina-showcase/bunny-net.png"
           }
         },
         {
