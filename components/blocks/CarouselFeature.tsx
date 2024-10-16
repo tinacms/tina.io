@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
@@ -170,12 +171,16 @@ export function CarouselFeatureBlock({ data, index }) {
     const fileExtension = fullVideoUrl.split('.').pop();
 
     if (fileExtension === 'gif') {
+      // Width and height values *must* be provided to NextJS's Image component to build,
+      // but they will not determine the rendered size of the image in this case.
       return (
         <div className="flex justify-center items-center">
-          <img
+          <Image
             key={index}
             src={fullVideoUrl}
             alt={`Media item ${index}`}
+            width={1200}
+            height={800}
             className="w-full h-auto mt-10 lg:mt-0 rounded-xl shadow-lg"
           />
         </div>
