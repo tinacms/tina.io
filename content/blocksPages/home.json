@@ -47,13 +47,13 @@
           "name": "Unity",
           "link": "/showcase#unity",
           "logo": "/svg/logos/unity.svg",
-          "size": 220
+          "size": 200
         },
         {
           "name": "Protocol Labs",
-          "link": "/showcase#protocol-labs",
+          "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
-          "size": 90
+          "size": 80
         },
         {
           "name": "City of London",
@@ -93,7 +93,7 @@
         },
         {
           "name": "SSW",
-          "link": "/showcase#ssw",
+          "link": "https://ssw.com.au/",
           "logo": "/svg/logos/ssw-logo-charcoal.svg",
           "size": 150
         },
