@@ -20,8 +20,16 @@
           }
         },
         {
+          "headline": "Devolver Digital",
+          "text": "[Devolver](https://www.devolverdigital.com/) is a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
+          "url": "https://www.devolverdigital.com/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680282376/tina-showcase/devolver.png"
+          }
+        },
+        {
           "headline": "Unity ",
-          "text": "Unity, the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina because it provides a GUI for their Markdown content and because Tina's GraphQL API allows them to ingest docs content into other systems such as their AI chatbot. ",
+          "text": "[Unity](https://docs.unity.com/cloud/en-us), the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina because it provides a GUI for their Markdown content and because Tina's GraphQL API allows them to ingest docs content into other systems such as their AI chatbot. ",
           "url": "https://docs.unity.com/cloud/en-us",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700680405/tina-showcase/unity-documentation-tinacms.png"
@@ -36,19 +44,27 @@
           }
         },
         {
-          "headline": "Roev",
-          "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
-          "url": "https://www.roev.com/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680268314/tina-showcase/roev-.gif"
-          }
-        },
-        {
           "headline": "Shadow Lion",
           "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
           "url": "https://shadowlion.com/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678372708/tina-showcase/shadowlion3.gif"
+          }
+        },
+        {
+          "headline": "comedia",
+          "text": "[Comedia](http://www.comediadesign.com) is a digital product agency with offices in San Francisco and Vancouver. They craft product and experiences for clients large and small. Clients include Vodafone, Ericsson, NEC, and Postmates.",
+          "url": " http://www.comediadesign.com",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900/v1683032122/tina-showcase/comedia.gif"
+          }
+        },
+        {
+          "headline": "Roev",
+          "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
+          "url": "https://www.roev.com/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680268314/tina-showcase/roev-.gif"
           }
         },
         {
@@ -61,34 +77,10 @@
         },
         {
           "headline": "RRE Ventures",
-          "text": "RRE Ventures is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries. The site was designed and built by [Studio Freight](https://studiofreight.com/).",
+          "text": "[RRE Ventures](https://rre.com/) is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries. The site was designed and built by [Studio Freight](https://studiofreight.com/).",
           "url": "https://rre.com",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_600,g_face/v1700761210/tina-showcase/rre-ventures.gif"
-          }
-        },
-        {
-          "headline": "comedia",
-          "text": "[comedia](\nhttp://www.comediadesign.com) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC,  and Postmates.",
-          "url": " http://www.comediadesign.com",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900/v1683032122/tina-showcase/comedia.gif"
-          }
-        },
-        {
-          "headline": "Devolver Digital",
-          "text": "A marketing site for a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
-          "url": "https://www.devolverdigital.com/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680282376/tina-showcase/devolver.png"
-          }
-        },
-        {
-          "headline": "Useagility",
-          "text": "[Useagility](https://useagility.com) is a Missouri-based agency operating since 2012.  They shape high-impact technology improvement projects for world-class businesses. ",
-          "url": "https://useagility.com/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1679421309/tina-showcase/useagility.png"
           }
         },
         {
@@ -117,7 +109,7 @@
         },
         {
           "headline": "Community Coordinated Modeling Center",
-          "text": "An information site for the CCMC, a group within NASA that enables, supports, and performs space science research.",
+          "text": "An information site for the [CCMC](https://ccmc.gsfc.nasa.gov/), a group within NASA that enables, supports, and performs space science research.",
           "url": "https://ccmc.gsfc.nasa.gov/",
           "media": {
             "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651711033/tina-showcase/CCMC.png"
