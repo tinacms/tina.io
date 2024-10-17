@@ -527,7 +527,8 @@
           "name": "Sean Pearce",
           "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
           "date": "2023-03-30T03:00:00.000Z",
-          "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n"
+          "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n",
+          "link": "https://www.shaunpearce.ie/"
         },
         {
           "name": "rascode",
