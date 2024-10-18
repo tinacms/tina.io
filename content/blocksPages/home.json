@@ -5,6 +5,11 @@
   },
   "blocks": [
     {
+      "headline": "Next Gen Content Management",
+      "text": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
+      "_template": "hero"
+    },
+    {
       "features": [
         {
           "headline": "A CMS With Version Control Built-in",
@@ -137,9 +142,7 @@
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit",
           "icon2": "FaClock",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060174/tinaio-webm/2024-09-13-key-features-visual-editing-v3_pwfxyo.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -152,9 +155,7 @@
           "headline": "Open Source",
           "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
           "icon2": "FaUnlock",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060169/tinaio-webm/2024-09-13-key-features-open-source_f57aej.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -167,9 +168,7 @@
           "headline": "Develop Locally",
           "text": "Easily set up and run Tina locally to talk to your local filesystem",
           "icon2": "FaCodeBranch",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060183/tinaio-webm/2024-09-19-key-features-local_xxqx30.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -182,9 +181,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060179/tinaio-webm/2024-09-19-key-features-3rd-party-media_wyjzwm.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -197,9 +194,7 @@
           "headline": "Control your Components",
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
           "icon2": "FaPuzzlePiece",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060150/tinaio-webm/2024-09-13-key-features-control-components_fnakly.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -212,9 +207,7 @@
           "headline": "Markdown at Scale",
           "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
           "icon2": "FaMarkdown",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060165/tinaio-webm/2024-09-13-key-features-markdown_dhrwjy.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -227,9 +220,7 @@
           "headline": "Git Integration",
           "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
           "icon2": "FaGithub",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060160/tinaio-webm/2024-09-13-key-features-github-integration_pcyz2i.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -242,9 +233,7 @@
           "headline": "Easy Documentation",
           "text": "Tina's docs run on TinaCMS - check it out!",
           "icon2": "FaFileAlt",
-
           "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060155/tinaio-webm/2024-09-13-key-features-docs_v2zbci.webm",
-
           "button": {
             "label": "READ MORE",
             "icon": true,
