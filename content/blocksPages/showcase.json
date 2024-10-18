@@ -12,6 +12,14 @@
     {
       "items": [
         {
+          "headline": "NDC Conferences",
+          "text": "[NDC Conferences](https://ndcconferences.com/) hosts global software development events, blending large-scale conferences with specialized workshops. They leverage TinaCMS for their website content management, ensuring a seamless digital experience for their audience. \nThese conferences bring together tech professionals to learn, network, and share insights across international communities.",
+          "url": "https://ndcconferences.com/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/video/upload/v1729213847/ndc-sites_bumnz0.webm"
+          }
+        },
+        {
           "headline": "SSW",
           "text": "TinaCMS has been a game-changer for [SSW](https://www.ssw.com.au/). We love how it keeps our content management smooth and lets our developers and marketers work together without any roadblocks. It’s fast, flexible, and exactly what we needed.",
           "url": "https://www.ssw.com.au/",
