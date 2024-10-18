@@ -12,6 +12,14 @@
     {
       "items": [
         {
+          "headline": "SSW",
+          "text": "TinaCMS has been a game-changer for [SSW](https://www.ssw.com.au/). We love how it keeps our content management smooth and lets our developers and marketers work together without any roadblocks. It’s fast, flexible, and exactly what we needed.",
+          "url": "https://www.ssw.com.au/",
+          "media": {
+            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1729211871/ssw-website-screenshot_myojwk.jpg"
+          }
+        },
+        {
           "headline": "Smashing Magazine",
           "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
