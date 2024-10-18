@@ -84,7 +84,7 @@
         {
           "name": "NDC Conferences",
           "link": "https://ndcconferences.com",
-          "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1725370732/NDCLogo_rwty5v.png",
+          "logo": "/img/logos/NDCLogo.png",
           "size": 220
         },
         {
@@ -167,7 +167,7 @@
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1721004852/img/svg/unity_oajatu.svg",
+      "logo": "/svg/unity.svg",
       "_template": "quote"
     },
     {

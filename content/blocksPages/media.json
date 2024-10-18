@@ -34,7 +34,7 @@
           ],
           "media": [
             {
-              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1693577211/logo-black-on-background-min_j7zxie.png",
+              "image": "/img/brand-assets/logo-black-on-background-min.png",
               "_template": "image"
             }
           ],
@@ -55,7 +55,7 @@
           ],
           "media": [
             {
-              "image": "https://res.cloudinary.com/forestry-demo/image/upload/v1693578367/background-min_nhs6ao.png",
+              "image": "/img/brand-assets/background-min.png",
               "_template": "image"
             }
           ],
