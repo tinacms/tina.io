@@ -8,7 +8,7 @@ title: "📝 "
 <!-- **Tip:** Delete parts that are not relevant -->
 
 ### 💫 Describe the Issue With the Current Docs
-<!-- A clear and concise description of the current limitation(s) of the docs is -->
+<!-- A clear and concise description of what the current limitation(s) of the docs is -->
 
 ### 📝 Outline the Proposed Change
 <!-- Please provide an ordered summary on what should be changed -->
