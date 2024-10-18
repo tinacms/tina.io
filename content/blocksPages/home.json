@@ -451,7 +451,7 @@
           "endDate": "2024-10-18T00:00:00.000Z",
           "timezone": 1,
           "location": "Porto, Portugal",
-          "image": "/img/wheres-tina/ndc-porto.jpg",
+          "image": "/img/wheres-tina/ndc-porto-2024.jpg",
           "link": "https://ndcporto.com/",
           "markerLAT": 8,
           "markerLONG": 41
@@ -462,7 +462,7 @@
           "endDate": "2024-08-30T00:00:00.000Z",
           "timezone": 2,
           "location": "Copenhagen, Denmark",
-          "image": "/img/wheres-tina/cph-dev-fest.jpg",
+          "image": "/img/wheres-tina/cph-dev-fest-2024.jpg",
           "link": "https://cphdevfest.com/",
           "markerLAT": -8,
           "markerLONG": 59
@@ -474,7 +474,7 @@
           "endDate": "2024-05-23T00:00:00.000Z",
           "timezone": 2,
           "location": "Oslo, Norway",
-          "image": "/img/wheres-tina/ndc-oslo.jpg",
+          "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
           "link": "https://ndcoslo.com/",
           "markerLAT": -1,
           "markerLONG": 59
@@ -484,7 +484,7 @@
           "startDate": "2024-05-21T00:00:00.000Z",
           "timezone": 10,
           "location": "Sydney, Australia",
-          "image": "/img/wheres-tina/serverless-days-anz.jpg",
+          "image": "/img/wheres-tina/serverless-days-anz-2024.jpg",
           "link": "https://anz.serverlessdays.io/sydney/",
           "markerLAT": 207,
           "markerLONG": 35
