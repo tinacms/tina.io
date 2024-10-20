@@ -495,7 +495,7 @@
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693503685/tina-io/new-homepage/unity-logo.png",
+      "logo": "/img/logos/unity-logo.png",
       "_template": "quote"
     },
     {
@@ -503,7 +503,7 @@
         {
           "name": "Boko Colse",
           "username": "struhy_xd",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1696342922/testimonials/avatars/Boko-C%CC%8Colse_um356c.jpg",
+          "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
           "date": "2023-09-26T03:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
@@ -519,7 +519,7 @@
         {
           "name": "Billy Best",
           "username": "billybest5276",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
+          "avatar": "/img/avatars/billy-best_wbcpsb.jpg",
           "date": "2023-08-06T03:00:00.000Z",
           "testimonial": "Just found this and I think I am already in love.\n",
           "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
@@ -534,7 +534,7 @@
         },
         {
           "name": "Peter Rusin",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
+          "avatar": "/img/avatars/piotr-rusin_ne0l3j.jpg",
           "date": "2023-09-05T03:00:00.000Z",
           "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
           "link": "https://rusin.work"
