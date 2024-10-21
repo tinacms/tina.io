@@ -1,0 +1,171 @@
+---
+title: mermaid
+next: content/docs/reference/types/rich-text.mdx
+previous: content/docs/reference/rich-text-usage/markdown-tables.mdx
+---
+
+> ❕ TinaCMS now supports **MermaidJS** diagrams in version 2.3.0+
+
+### Video Guide
+
+**TODO: **
+
+**Figure: Showcase of Mermaid diagrams + TinaCMS**
+
+This video demonstrates how to create and edit Mermaid diagrams within the TinaCMS editor.
+
+### Mermaid Syntax
+
+Mermaid diagrams use a simple graph description language to create flowcharts, sequence diagrams, Gantt charts, and more. Below is a basic example of Mermaid syntax:
+
+````
+```mermaid
+graph TD;
+  A-->B;
+  A-->C;
+  B-->D;
+  C-->D;
+```
+````
+
+**Figure: Mermaid syntax**
+
+### Custom Configuration for Mermaid
+
+You can also pass configuration options directly inside your Mermaid code block to control how diagrams are rendered. For example, you can set the theme to light mode as shown below:
+
+````
+```mermaid
+--- 
+config: 
+  theme: light 
+---
+graph TD;
+  A-->B;
+  A-->C;
+  B-->D;
+  C-->D;
+```
+````
+
+**Figure: Adding a mermaid config**
+
+This configuration is respected by the TinaCMS renderer.
+
+### Toolbar Customization
+
+By default, the **Mermaid button** is accessible via the rich text toolbar. However, you can choose to hide or show this button using the `ToolbarOverride` option.
+
+For more details, see the [ToolbarOverride documentation](/docs/reference/types/rich-text/#toolbar-override).
+
+### Editing and Previewing Mermaid Diagrams
+
+Once a Mermaid diagram is inserted, you can switch between **Edit Mode** (for modifying the Mermaid code) and **Preview Mode** (to see the rendered diagram).
+
+* **Desktop**: Hover over the diagram to display the edit/preview controls.
+* **Mobile**: Click on the diagram to reveal the edit button, then toggle between modes.
+
+### Syntax Error Handling
+
+If there is a syntax error in your Mermaid code, a **red error box** will appear beneath the diagram. This box displays helpful information and errors reported by the Mermaid parser. Correct the syntax, and the diagram will update.
+
+Example of an error:
+
+Insert Image here
+
+**Figure: Syntax error in mermaid**
+
+### Deleting Mermaid Diagrams
+
+To delete a Mermaid diagram:
+
+* **Desktop**: Click on the diagram and press `Delete` on your keyboard.
+* **While Editing**: Press `Backspace` at the start of the code block.
+
+### Mermaid Package Versioning
+
+TinaCMS uses the **Mermaid NPM package** to render and parse the Mermaid syntax. Currently, we have locked the internal version to `v9.3.0` to ensure compatibility with CommonJS.
+
+However, when installing Mermaid in your own application, you are free to use any version of Mermaid or other compatible rendering packages.
+
+### Using Mermaid in Your Project with `<TinaMarkdown />`
+
+TinaCMS’s `<TinaMarkdown />` component includes a `mermaid` property, allowing you to render Mermaid diagrams in your project however you'd like.
+
+Here’s an example of how to use it:
+
+```javascript
+
+<TinaMarkdown content={content} components={{
+  mermaid({ value }) {
+    return <ComponentToRenderMermaid value={value} />;
+  }
+}} />
+
+```
+
+### Quick Setup for React Projects
+
+To quickly get started with MermaidJS in your React project, follow these steps:
+
+#### 1. Install the Mermaid Package
+
+First, install the Mermaid package using your package manager:
+
+```shell
+pnpm install mermaid
+```
+
+#### 2. Create a `MermaidElement` Component
+
+This component will render Mermaid diagrams in your application. Use the following code:
+
+```javascript
+import { useRef, useEffect } from 'react';
+import mermaid from 'mermaid';
+
+export default function MermaidElement({ value }) {
+  const mermaidRef = useRef(null);
+
+  useEffect(() => {
+    if (mermaidRef.current) {
+      mermaid.initialize({ startOnLoad: true });
+      mermaid.run();
+    }
+  }, []);
+
+  return (
+    <div contentEditable={false}>
+      <div ref={mermaidRef}>
+        <pre className="mermaid">{value}</pre>
+      </div>
+    </div>
+  );
+}
+
+```
+
+#### 3. Add the Mermaid Component to `<TinaMarkdown />`
+
+Integrate the `MermaidElement` into the `<TinaMarkdown />` component to handle Mermaid diagrams:
+
+```javascript
+<TinaMarkdown content={content} components={{
+  mermaid({ value }) {
+    return <MermaidElement value={value} />;
+  }
+}} />
+
+```
+
+#### 4. Done! 🎉
+
+Your React app will now be able to render Mermaid diagrams created in the TinaCMS editor.
+
+### Notes
+
+* **Error Handling**: Any errors in your Mermaid code will be shown automatically, allowing you to quickly identify and fix issues.
+* **Compatibility**: While we recommend using Mermaid, you are free to use any renderer in your project.
+* **Customization**: Use the `mermaid` property in `<TinaMarkdown />` to handle Mermaid diagrams however you need.
+
+For more details, check the [MermaidJS documentation](https://mermaid.js.org/config/usage.html).
