@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
@@ -16,7 +15,7 @@ const CarouselItem = ({
   isSmallOrMediumScreen,
   renderMedia,
 }) => {
-  const { headline, text, button, icon2, videoSrc } = data || {};
+  const { headline, text, button, icon2 } = data || {};
 
   const IconComponent = icons[icon2] || null;
 
@@ -102,9 +101,13 @@ export function CarouselFeatureBlock({ data, index }) {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
   const [isUserInteracted, setIsUserInteracted] = useState(false);
+  const [mediaUrls, setMediaUrls] = useState({}); 
   const intervalRef = useRef(null);
 
-  // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
+  
+  const mediaCache = useRef(new Map());
+
+  
   useEffect(() => {
     const mediaQueryLarge = window.matchMedia('(min-width: 1024px)');
     const mediaQuerySmallOrMedium = window.matchMedia('(max-width: 1023px)');
@@ -161,26 +164,44 @@ export function CarouselFeatureBlock({ data, index }) {
     clearInterval(intervalRef.current);
   };
 
+  const fetchMediaOnce = async (src) => {
+    if (!mediaCache.current.has(src)) {
+      const response = await fetch(src);
+      const blob = await response.blob();
+      mediaCache.current.set(src, URL.createObjectURL(blob));
+    }
+    return mediaCache.current.get(src);
+  };
+
+  useEffect(() => {
+    const prefetchMedia = async () => {
+      const newMediaUrls = {};
+      for (const item of data?.items || []) {
+        if (item.videoSrc) {
+          newMediaUrls[item.videoSrc] = await fetchMediaOnce(item.videoSrc);
+        }
+      }
+      setMediaUrls(newMediaUrls); 
+    };
+    prefetchMedia();
+  }, [data?.items]);
+
   const renderMedia = (index) => {
     if (index === null) return null;
 
     const item = data?.items?.[index];
     if (!item || !item.videoSrc) return null;
 
-    const fullVideoUrl = item.videoSrc;
-    const fileExtension = fullVideoUrl.split('.').pop();
+    const fullVideoUrl = mediaUrls[item.videoSrc]; 
+    const fileExtension = fullVideoUrl?.split('.').pop();
 
     if (fileExtension === 'gif') {
-      // Width and height values *must* be provided to NextJS's Image component to build,
-      // but they will not determine the rendered size of the image in this case.
       return (
         <div className="flex justify-center items-center">
-          <Image
+          <img
             key={index}
             src={fullVideoUrl}
             alt={`Media item ${index}`}
-            width={1200}
-            height={800}
             className="w-full h-auto mt-10 lg:mt-0 rounded-xl shadow-lg"
           />
         </div>
