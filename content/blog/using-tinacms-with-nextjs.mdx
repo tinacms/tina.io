@@ -221,7 +221,7 @@ Currently, the Next Blog Starter grabs content from the file system. But since T
 
 The `getStaticPaths` query is going to need to know where all of your markdown files are located, with your current schema you have the option to use `postConnection` which will provide a list of all posts in your `posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
-![Altair Doc example](/gif/altair_doc.gif)
+<WebmEmbed embedSrc="/img/docs/altair_doc.webm"/>
 
 So based upon the `postConnection` you will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 

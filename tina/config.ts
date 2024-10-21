@@ -15,11 +15,10 @@ const tinaConfig = defineConfig({
     },
   },
   media: {
-    //@ts-ignore
-    loadCustomStore: async () => {
-      const pack = await import('next-tinacms-cloudinary')
-      return pack.TinaCloudCloudinaryMediaStore
-    },
+    tina: {
+      publicFolder: 'public',
+      mediaRoot: '',
+    }
   },
 
   build: { outputFolder: 'admin', publicFolder: 'public' },

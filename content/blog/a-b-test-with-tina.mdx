@@ -43,14 +43,14 @@ With your site running, you should be able to access it at [`http://localhost:30
 
 The home page of the starter should look like this:
 
-![TinaCloud Starter](https://res.cloudinary.com/forestry-demo/image/upload/v1653936476/blog-media/a-b-testing/starter-homepage.png)
+![TinaCloud Starter](/img/blog/a-b-testing/starter-homepage.png)
 
 This page is already setup nicely for an A/B test, its page layout (`[slug].tsx`) renders dynamic pages by accepting a variable `slug`.
 
 Let's start by creating an alternate version of the homepage called `home-b`.
 You can do so in Tina [at http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
 
-![Tina Add document](https://res.cloudinary.com/forestry-demo/image/upload/v1653936344/blog-media/a-b-testing/add-document.png)
+![Tina Add document](/img/blog/a-b-testing/add-document.png)
 
 Once that's done, go to: `http://localhost:3000/home-b` to confirm that your new `/home-b` page has been created.
 
@@ -286,7 +286,7 @@ We also need to update our `RouteMappingPlugin` in `.tina/schema.ts` to ensure t
 
 Now, restart your dev server, and go to: [`http://localhost:3000/admin#/collections/abtest/index`](http://localhost:3000/admin#/collections/abtest/index). Your editors should be able to wire up their own A/B tests!
 
-![Tina Edit Variant](https://res.cloudinary.com/forestry-demo/image/upload/v1653939832/blog-media/a-b-testing/edit-test.png)
+![Tina Edit Variant](/img/blog/a-b-testing/edit-test.png)
 
 The process for editors to create new A/B tests would be as follows:
 
