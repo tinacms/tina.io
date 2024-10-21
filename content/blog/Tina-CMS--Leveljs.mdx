@@ -66,7 +66,7 @@ At this point, some readers might wonder how Tina handles schema migrations give
 
 The benefits of using Level.js in Tina go beyond just powering the Tina API. We recently added a search feature that allows the editor to perform full text searches to locate content.
 
-![](https://res.cloudinary.com/forestry-demo/video/upload/v1695236140/demos/search-demo.gif)
+<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/search-demo.webm"/>
 
 Originally, we planned on providing some integration with an existing solution like Algolia, but again we wanted to enable the simple local development experience while maintaining consistency between local development and hosted production sites. The solution presented itself in [Fergus McDowall’s](https://github.com/fergiemcdowall) [search-index](https://www.npmjs.com/package/search-index) library. This library provides an embeddable full-text search engine and is built on top of Level.js. Because it uses Level.js, it can be used with any database that has a Level.js store implementation. Using this library, Tina is able to provide full featured search both in local development and in the production hosted site with full feature parity.
 
