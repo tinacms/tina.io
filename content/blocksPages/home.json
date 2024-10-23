@@ -25,7 +25,7 @@
           ],
           "media": [
             {
-              "src": "tina-io/new-homepage/homepage-demo-2",
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
           ]
@@ -574,7 +574,7 @@
           ],
           "media": [
             {
-              "src": "v1689260393/blog-media/editorial-workflow/create-branch",
+              "src": "/video/create-branch.webm",
               "_template": "video"
             }
           ]
@@ -584,7 +584,7 @@
           "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
           "media": [
             {
-              "src": "tina-io/new-homepage/homepage-demo-2",
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
           ]
