@@ -25,6 +25,7 @@
           "description": "For growing teams\n",
           "price": "$29",
           "annualPrice": "$24",
+          "annualDescription": "$288 billed annually (save $60)",
           "interval": "/ month",
           "cardItem": [
             {
@@ -62,6 +63,7 @@
           "description": "For bigger teams\n",
           "price": "$49",
           "annualPrice": "$41",
+          "annualDescription": "$492 billed annually (save $96)",
           "interval": "/ month",
           "cardItem": [
             {
@@ -107,6 +109,7 @@
           "description": "For premium support\n",
           "price": "$299",
           "annualPrice": "$249",
+          "annualDescription": "$2,988 billed annually (save $600)",
           "interval": "/ month",
           "cardItem": [
             {

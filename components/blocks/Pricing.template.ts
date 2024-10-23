@@ -32,6 +32,11 @@ export const cardTemplate: Template = {
       type: 'string'
     },
     {
+      name: 'annualDescription',
+      label: 'Annual Description',
+      type: 'string'
+    },
+    {
       name: 'interval',
       label: 'Interval',
       type: 'string',

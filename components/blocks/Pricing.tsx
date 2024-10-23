@@ -108,11 +108,14 @@ const PaidTier = ({ data, isMonthly }) => {
           </span>
           {data.interval && (
             <span className="pl-2 text-lg bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-               {data.interval}
+              {data.interval}
             </span>
           )}
         </div>
-        <div className="pt-6 flex">
+        <div className="pt-1 text-stone-600 text-sm">
+          {!isMonthly ? data.annualDescription : ''}
+        </div>
+        <div className="pt-3 flex">
           {data.buttons &&
             data.buttons.map((button, index) => (
               <RenderButton key={index} button={button} index={index} />
@@ -211,42 +214,56 @@ export function PricingBlock({ data }) {
         <h1 className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
           {data.headline}
         </h1>
-        
+
         <div className="pt-2 max-w-4xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
-        <div className="pt-10 px-4 pb-6 text-center">
-          <TinaMarkdown content={data.intro} components={pricingComponents} />
-        </div>
-        <div className="flex justify-center pb-6">
-          <div className="bg-gradient-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-2xl rounded-full gap-16 relative w-max">
-            <div
-              className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-blue-300 via-blue-400 to-blue-500 rounded-full transition-transform duration-500 ease-in-out ${
-                isMonthly
-                  ? 'transform translate-x-0'
-                  : 'transform translate-x-full'
-              }`}
-            ></div>
-            <div className="relative flex z-10">
-              <button
-                className={`px-10 py-2 w-1/2 z-20 transition-colors duration-500 ${
-                  isMonthly ? 'text-white' : 'text-black'
+        <div className="flex justify-start py-10">
+          <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
+            <div className="bg-gradient-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
+              <div
+                className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 ease-in-out border-4 border-white  ${
+                  isMonthly
+                    ? 'transform translate-x-0'
+                    : 'transform translate-x-full'
                 }`}
-                onClick={() => setIsMonthly(true)}
-              >
-                Monthly
-              </button>
-              <button
-                className={`px-10 py-2 w-1/2 z-20 transition-colors duration-500 ${
-                  !isMonthly ? 'text-white' : 'text-black'
-                }`}
-                onClick={() => setIsMonthly(false)}
-              >
-                Annually
-              </button>
+              ></div>
+              <div className="relative flex z-10">
+                <button
+                  className={`px-10 py-3 w-1/2 z-20 transition-colors duration-500 ${
+                    isMonthly ? 'text-white' : 'text-blue-500'
+                  }`}
+                  onClick={() => setIsMonthly(true)}
+                >
+                  Monthly
+                </button>
+                <button
+                  className={`px-10 py-2 w-1/2 z-20 transition-colors duration-500 ${
+                    !isMonthly ? 'text-white' : 'text-blue-500'
+                  }`}
+                  onClick={() => setIsMonthly(false)}
+                >
+                  Annually
+                </button>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row md:items-center">
+              <div className="flex items-start md:items-center pt-4 md:pt-0 pl-1 md:pl-10">
+                All prices in <span className="font-bold ml-1">USD</span>.
+              </div>
+              {!isMonthly && (
+                <div
+                  className={`flex pl-1 items-center pt-4 md:pt-0 transition-opacity duration-500 ease-in-out text-black ${
+                    isMonthly ? 'opacity-0' : 'opacity-100'
+                  }`}
+                >
+                  Save from 16% with annual billing
+                </div>
+              )}
             </div>
           </div>
         </div>
+
         <div className="responsive-grid">
           {data.plans &&
             data.plans.map((plan, index) => (
@@ -279,4 +296,3 @@ export function PricingBlock({ data }) {
     </div>
   );
 }
-
