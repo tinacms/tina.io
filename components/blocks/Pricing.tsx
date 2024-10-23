@@ -215,7 +215,7 @@ export function PricingBlock({ data }) {
           {data.headline}
         </h1>
 
-        <div className="pt-2 max-w-4xl mx-auto flex justify-center">
+        <div className="pt-2 max-w-7xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
         <div className="flex justify-start py-10">
