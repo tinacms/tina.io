@@ -158,9 +158,10 @@ export default function Page(props) {
               </div>
               <div id="sticky-img-container">
                 <div className="img-container">
+                  {/* Im keeping this as a .gif rather than transferring to .webm as a .gif would require me to change from <img> to <video> which would break the rest of the active images */}
                   <img
                     ref={activeImg}
-                    src="https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif"
+                    src="/img/docs/your-blocks.gif"
                   />
                   <img ref={transitionImg} />
                 </div>

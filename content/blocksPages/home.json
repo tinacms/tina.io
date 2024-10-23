@@ -25,7 +25,7 @@
           ],
           "media": [
             {
-              "src": "tina-io/new-homepage/homepage-demo-2",
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
           ]
@@ -138,7 +138,7 @@
           "text": "See content changes in real-time as you edit",
           "icon2": "FaClock",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060174/tinaio-webm/2024-09-13-key-features-visual-editing-v3_pwfxyo.webm",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
 
           "button": {
             "label": "READ MORE",
@@ -153,7 +153,7 @@
           "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
           "icon2": "FaUnlock",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060169/tinaio-webm/2024-09-13-key-features-open-source_f57aej.webm",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
 
           "button": {
             "label": "READ MORE",
@@ -168,7 +168,7 @@
           "text": "Easily set up and run Tina locally to talk to your local filesystem",
           "icon2": "FaCodeBranch",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060183/tinaio-webm/2024-09-19-key-features-local_xxqx30.webm",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
 
           "button": {
             "label": "READ MORE",
@@ -183,7 +183,7 @@
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060179/tinaio-webm/2024-09-19-key-features-3rd-party-media_wyjzwm.webm",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
 
           "button": {
             "label": "READ MORE",
@@ -198,7 +198,7 @@
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
           "icon2": "FaPuzzlePiece",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060150/tinaio-webm/2024-09-13-key-features-control-components_fnakly.webm",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
 
           "button": {
             "label": "READ MORE",
@@ -213,7 +213,7 @@
           "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
           "icon2": "FaMarkdown",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060165/tinaio-webm/2024-09-13-key-features-markdown_dhrwjy.webm",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
 
           "button": {
             "label": "READ MORE",
@@ -228,7 +228,7 @@
           "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
           "icon2": "FaGithub",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060160/tinaio-webm/2024-09-13-key-features-github-integration_pcyz2i.webm",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
 
           "button": {
             "label": "READ MORE",
@@ -243,7 +243,7 @@
           "text": "Tina's docs run on TinaCMS - check it out!",
           "icon2": "FaFileAlt",
 
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060155/tinaio-webm/2024-09-13-key-features-docs_v2zbci.webm",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
 
           "button": {
             "label": "READ MORE",
@@ -495,7 +495,7 @@
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693503685/tina-io/new-homepage/unity-logo.png",
+      "logo": "/img/logos/unity-logo.png",
       "_template": "quote"
     },
     {
@@ -503,7 +503,7 @@
         {
           "name": "Boko Colse",
           "username": "struhy_xd",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1696342922/testimonials/avatars/Boko-C%CC%8Colse_um356c.jpg",
+          "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
           "date": "2023-09-26T03:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
@@ -511,7 +511,7 @@
         {
           "name": " Dave Keen",
           "username": "ccapndave",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
+          "avatar": "/img/avatars/ccapndave_ka7f5u.webp",
           "date": "2023-06-02T03:00:00.000Z",
           "testimonial": "It’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets. And compared to other CMSs, the admin is incredibly easy for editors to understand and use.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
@@ -519,7 +519,7 @@
         {
           "name": "Billy Best",
           "username": "billybest5276",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
+          "avatar": "/img/avatars/billy-best_wbcpsb.jpg",
           "date": "2023-08-06T03:00:00.000Z",
           "testimonial": "Just found this and I think I am already in love.\n",
           "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
@@ -527,21 +527,21 @@
         {
           "name": "Mravec",
           "username": "mravec",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354995/testimonials/avatars/mravec_tglyht.webp",
+          "avatar": "/img/avatars/mravec_tglyht.webp",
           "date": "2023-06-14T03:00:00.000Z",
           "testimonial": "Just tried out click-to-edit and it's really awesome. Super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
         },
         {
           "name": "Peter Rusin",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
+          "avatar": "/img/avatars/piotr-rusin_ne0l3j.jpg",
           "date": "2023-09-05T03:00:00.000Z",
           "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
           "link": "https://rusin.work"
         },
         {
           "name": "Sean Pearce",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
+          "avatar": "/img/avatars/sean_bnwhd9.png",
           "date": "2023-03-30T03:00:00.000Z",
           "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n",
           "link": "https://www.shaunpearce.ie/"
@@ -549,7 +549,7 @@
         {
           "name": "rascode",
           "username": "rascode11",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
+          "avatar": "/img/avatars/rascode11_elrciv.jpg",
           "date": "2022-12-06T04:00:00.000Z",
           "testimonial": "@tinacms is a dream come true.\n",
           "link": "https://twitter.com/rascode11/status/1600175861621088266"
@@ -574,7 +574,7 @@
           ],
           "media": [
             {
-              "src": "v1689260393/blog-media/editorial-workflow/create-branch",
+              "src": "/video/create-branch.webm",
               "_template": "video"
             }
           ]
@@ -584,7 +584,7 @@
           "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
           "media": [
             {
-              "src": "tina-io/new-homepage/homepage-demo-2",
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
           ]

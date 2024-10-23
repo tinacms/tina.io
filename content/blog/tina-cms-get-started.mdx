@@ -10,7 +10,7 @@ Until now, as a Tina user, you have enjoyed visual editing when interacting with
 
 In order to give the best experience to all users, Tina now offers two ways to edit content, visual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by Git. Here is a quick GIF of what it looks like implemented on a deployed website:
 
-![Example Gif of Tina CMS](https://res.cloudinary.com/forestry-demo/video/upload/c_scale,w_1174/v1646412458/blog-media/getting-started-tina-admin/example.gif)
+<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/example.webm"/>
 
 ### How to implement Tina?
 
@@ -57,17 +57,16 @@ Now that you have Tina setup you can launch your application using the following
 
 Now, if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin) you will see a new page. Go ahead and click the Edit with Tina button.
 
-![Login Example](https://res.cloudinary.com/forestry-demo/image/upload/v1646412107/blog-media/getting-started-tina-admin/login-example.webp)
-
+![](/img/blog/getting-started-tina-admin/login-example.webp)
 You will land on a page that looks like this:
 
-![Landing Example](https://res.cloudinary.com/forestry-demo/image/upload/v1646412108/blog-media/getting-started-tina-admin/landing-example.webp)
+![](/img/blog/getting-started-tina-admin/landing-example.webp)
 
 ### Edit the content
 
 If you select “Blog Posts” on the left of the screen it will show you all the available posts for editing, you might notice that Tina placed a blog post named “Hello World” for you to look at. Go ahead and click it, and you will see an editable form. Feel free to change the title or the body and hit the save button.
 
-![Example of editing with Tina](https://res.cloudinary.com/forestry-demo/image/upload/v1646412108/blog-media/getting-started-tina-admin/Editing%20example.jpg)
+![Example of editing with Tina](/img/blog/getting-started-tina-admin/editing-example.jpg)
 
 ### What exactly happened?
 
@@ -251,7 +250,7 @@ Second, there's a `string` field called `body` with `isBody` set to true. By set
 
 Now the new schema is ready, go ahead and restart your server using `yarn tina-dev` and navigate to [http://localhost:3000/admin](http://localhost:3000/admin). You will see that if you select the Blog Posts on the left side nav that you now have all three posts from Next.js.
 
-![3 blog posts](https://res.cloudinary.com/forestry-demo/image/upload/v1646412108/blog-media/getting-started-tina-admin/post-list-example.webp)
+![](/img/blog/getting-started-tina-admin/post-list-example.webp)
 
 If you choose the first post “dynamic routing” you will see all of the fields that we defined in our schema which match all the front matter. Go ahead and edit some fields like the title or the body and hit save. Now if you navigate to [http://localhost:3000/posts/dynamic-routing](http://localhost:3000/posts/dynamic-routing) you will see those changes!
 
