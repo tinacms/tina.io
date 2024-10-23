@@ -1,26 +1,26 @@
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import RenderButton from 'utils/renderButtonArrayHelper';
-import {
-  FaClock,
-  FaUnlock,
-  FaCodeBranch,
-  FaCloudDownloadAlt,
-  FaPuzzlePiece,
-  FaMarkdown,
-  FaGithub,
-  FaFileAlt,
-  FaChevronDown,
-  FaChevronUp,
-  FaStar,
-} from 'react-icons/fa';
+import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents';
+import { useState } from 'react';
 import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiBadge, BiSupport } from 'react-icons/bi';
 import { CgCrown } from 'react-icons/cg';
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaClock,
+  FaCloudDownloadAlt,
+  FaCodeBranch,
+  FaFileAlt,
+  FaGithub,
+  FaMarkdown,
+  FaPuzzlePiece,
+  FaStar,
+  FaUnlock,
+} from 'react-icons/fa';
 import { HiOutlineSparkles } from 'react-icons/hi2';
-import { TbPlugConnected } from 'react-icons/tb';
 import { SlLock } from 'react-icons/sl';
-import { useState } from 'react';
-import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents';
+import { TbPlugConnected } from 'react-icons/tb';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import RenderButton from 'utils/renderButtonArrayHelper';
 
 const icons = {
   FaClock,
@@ -218,7 +218,7 @@ export function PricingBlock({ data }) {
         <div className="pt-2 max-w-7xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
-        <div className="flex justify-start py-10">
+        <div className="flex justify-center md:justify-start py-10">
           <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
             <div className="bg-gradient-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
               <div
@@ -228,9 +228,9 @@ export function PricingBlock({ data }) {
                     : 'transform translate-x-full'
                 }`}
               ></div>
-              <div className="relative flex z-10">
+              <div className="relative leading-none flex z-10">
                 <button
-                  className={`px-10 py-3 w-1/2 z-20 transition-colors duration-500 ${
+                  className={`px-10 py-4 w-1/2 z-20 transition-colors  duration-500 ${
                     isMonthly ? 'text-white' : 'text-blue-500'
                   }`}
                   onClick={() => setIsMonthly(true)}
@@ -238,7 +238,7 @@ export function PricingBlock({ data }) {
                   Monthly
                 </button>
                 <button
-                  className={`px-10 py-2 w-1/2 z-20 transition-colors duration-500 ${
+                  className={`px-10 py-2 w-1/2 z-20 transition-colors  duration-500 ${
                     !isMonthly ? 'text-white' : 'text-blue-500'
                   }`}
                   onClick={() => setIsMonthly(false)}
@@ -247,13 +247,13 @@ export function PricingBlock({ data }) {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row md:items-center">
-              <div className="flex items-start md:items-center pt-4 md:pt-0 pl-1 md:pl-10">
+            <div className="flex flex-col md:flex-row md:items-center pt-4 pb-8">
+              <div className="flex items-start md:items-center md:pt-0 justify-center md:justify-start pl-1 md:pl-10">
                 All prices in <span className="font-bold ml-1">USD</span>.
               </div>
               {!isMonthly && (
                 <div
-                  className={`flex pl-1 items-center pt-4 md:pt-0 transition-opacity duration-500 ease-in-out text-black ${
+                  className={`flex items-center  pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black ${
                     isMonthly ? 'opacity-0' : 'opacity-100'
                   }`}
                 >
