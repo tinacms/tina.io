@@ -125,6 +125,18 @@ export const pricingTemplate: Template = {
       type: 'rich-text',
     },
     {
+      name: 'pillSwitchVisibileText',
+      label: 'Pill Switch Visible Text',
+      type: 'rich-text',
+      description: 'this is the text displayed regardless of the switch'
+    },
+    {
+      name: 'pillSwitchToggleText',
+      label: 'Pill Switch Toggle Text',
+      type: 'rich-text',
+      description: 'this is the text displayed depending on the toggle'
+    },
+    {
       name: 'plans',
       label: 'Pricing Plans',
       // @ts-ignore

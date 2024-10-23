@@ -1,3 +1,4 @@
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { pricingComponents } from 'components/tinaMarkdownComponents/pricingComponents';
 import { useState } from 'react';
 import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
@@ -205,7 +206,12 @@ const PaidTier = ({ data, isMonthly }) => {
   );
 };
 
-export function PillSwitch({ isMonthly, setIsMonthly }) {
+export function PillSwitch({
+  isMonthly,
+  setIsMonthly,
+  visibleText,
+  toggleText,
+}) {
   return (
     <div className="flex justify-center md:justify-start pt-10">
       <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
@@ -238,11 +244,11 @@ export function PillSwitch({ isMonthly, setIsMonthly }) {
         </div>
         <div className="flex flex-col md:flex-row md:items-center pt-4 pb-8">
           <div className="flex items-start md:items-center md:pt-0 justify-center md:justify-start pl-1 md:pl-10">
-            All prices in <span className="font-bold ml-1">USD</span>.
+           <TinaMarkdown components={docAndBlogComponents} content={visibleText}/>
           </div>
           {isMonthly && (
             <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black opacity-100">
-              Save from 16% with annual billing
+              <TinaMarkdown components={docAndBlogComponents} content={toggleText}/>
             </div>
           )}
         </div>
@@ -264,7 +270,12 @@ export function PricingBlock({ data }) {
         <div className="pt-2 max-w-7xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
-        <PillSwitch isMonthly={isMonthly} setIsMonthly={setIsMonthly} />
+        <PillSwitch
+          isMonthly={isMonthly}
+          setIsMonthly={setIsMonthly}
+          visibleText={data.pillSwitchVisibileText}
+          toggleText={data.pillSwitchToggleText}
+        />
         <div className="responsive-grid">
           {data.plans &&
             data.plans.map((plan, index) => (
