@@ -251,12 +251,8 @@ export function PricingBlock({ data }) {
               <div className="flex items-start md:items-center md:pt-0 justify-center md:justify-start pl-1 md:pl-10">
                 All prices in <span className="font-bold ml-1">USD</span>.
               </div>
-              {!isMonthly && (
-                <div
-                  className={`flex items-center  pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black ${
-                    isMonthly ? 'opacity-0' : 'opacity-100'
-                  }`}
-                >
+              {isMonthly && (
+                <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black opacity-100">
                   Save from 16% with annual billing
                 </div>
               )}
