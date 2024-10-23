@@ -205,6 +205,52 @@ const PaidTier = ({ data, isMonthly }) => {
   );
 };
 
+export function PillSwitch({ isMonthly, setIsMonthly }) {
+  return (
+    <div className="flex justify-center md:justify-start pt-10">
+      <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
+        <div className="bg-gradient-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
+          <div
+            className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 ease-in-out border-4 border-white  ${
+              isMonthly
+                ? 'transform translate-x-0'
+                : 'transform translate-x-full'
+            }`}
+          ></div>
+          <div className="relative leading-none flex z-10">
+            <button
+              className={`px-10 py-4 w-1/2 z-20 transition-colors  duration-500 ${
+                isMonthly ? 'text-white' : 'text-blue-500'
+              }`}
+              onClick={() => setIsMonthly(true)}
+            >
+              Monthly
+            </button>
+            <button
+              className={`px-10 py-2 w-1/2 z-20 transition-colors  duration-500 ${
+                !isMonthly ? 'text-white' : 'text-blue-500'
+              }`}
+              onClick={() => setIsMonthly(false)}
+            >
+              Annually
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row md:items-center pt-4 pb-8">
+          <div className="flex items-start md:items-center md:pt-0 justify-center md:justify-start pl-1 md:pl-10">
+            All prices in <span className="font-bold ml-1">USD</span>.
+          </div>
+          {isMonthly && (
+            <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black opacity-100">
+              Save from 16% with annual billing
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function PricingBlock({ data }) {
   const [isMonthly, setIsMonthly] = useState(true);
 
@@ -218,48 +264,7 @@ export function PricingBlock({ data }) {
         <div className="pt-2 max-w-7xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
-        <div className="flex justify-center md:justify-start pt-10">
-          <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
-            <div className="bg-gradient-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
-              <div
-                className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 ease-in-out border-4 border-white  ${
-                  isMonthly
-                    ? 'transform translate-x-0'
-                    : 'transform translate-x-full'
-                }`}
-              ></div>
-              <div className="relative leading-none flex z-10">
-                <button
-                  className={`px-10 py-4 w-1/2 z-20 transition-colors  duration-500 ${
-                    isMonthly ? 'text-white' : 'text-blue-500'
-                  }`}
-                  onClick={() => setIsMonthly(true)}
-                >
-                  Monthly
-                </button>
-                <button
-                  className={`px-10 py-2 w-1/2 z-20 transition-colors  duration-500 ${
-                    !isMonthly ? 'text-white' : 'text-blue-500'
-                  }`}
-                  onClick={() => setIsMonthly(false)}
-                >
-                  Annually
-                </button>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row md:items-center pt-4 pb-8">
-              <div className="flex items-start md:items-center md:pt-0 justify-center md:justify-start pl-1 md:pl-10">
-                All prices in <span className="font-bold ml-1">USD</span>.
-              </div>
-              {isMonthly && (
-                <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black opacity-100">
-                  Save from 16% with annual billing
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
+        <PillSwitch isMonthly={isMonthly} setIsMonthly={setIsMonthly} />
         <div className="responsive-grid">
           {data.plans &&
             data.plans.map((plan, index) => (
