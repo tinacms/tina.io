@@ -218,7 +218,7 @@ export function PricingBlock({ data }) {
         <div className="pt-2 max-w-7xl mx-auto flex justify-center">
           <FreeTier data={data} />
         </div>
-        <div className="flex justify-center md:justify-start py-10">
+        <div className="flex justify-center md:justify-start pt-10">
           <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
             <div className="bg-gradient-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
               <div
