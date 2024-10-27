@@ -66,9 +66,6 @@ export const TocDesktopHeader = styled.span`
   line-height: 1;
   margin-bottom: 1.125rem;
 
-  @media (min-width: 1200px) {
-    display: block;
-  }
 `
 
 export const TocWrapper = styled.div`
@@ -131,9 +128,6 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
         `
       : ``};
 
-  @media (min-width: 1200px) {
-    display: none;
-  }
 `
 
 export interface TocContentProps {
@@ -170,9 +164,6 @@ export const TocContent = styled.div<TocContentProps>`
         `
       : ``};
 
-  @media (min-width: 1200px) {
-    max-height: none;
-  }
 
   /* Top Level Styles */
 
