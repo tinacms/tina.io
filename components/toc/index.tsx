@@ -7,6 +7,8 @@ import { getDocId } from 'utils/docs/getDocIds';
 interface TocProps {
   tocItems: Array<{ type: string; text: string }>;
   activeIds: string[];
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
@@ -19,9 +21,7 @@ const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
     .join('\n');
 };
 
-const ToC = ({ tocItems, activeIds }: TocProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const ToC = ({ tocItems, activeIds, isOpen, setIsOpen }: TocProps) => {
   useEffect(() => {
     const close = () => setIsOpen(false);
     const allLinks = document.querySelectorAll('a');
@@ -33,7 +33,7 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
         allLinks.forEach((a) => a.removeEventListener('click', close));
       }
     };
-  }, []);
+  }, [setIsOpen]);
 
   if (!tocItems || tocItems.length === 0) {
     return null;
@@ -98,7 +98,6 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
 
   svg {
     position: ${(props) => (!props.isOpen ? 'absolute' : 'relative')};
-    right: ${(props) => (!props.isOpen ? '1rem' : 'auto')};
     width: 1.25rem;
     height: auto;
     transform: rotate(180deg);
@@ -108,6 +107,10 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
     border-radius: 0 15px 15px 0;
     transition: opacity 180ms ease-out, transform 180ms ease-out,
       right 180ms ease-out;
+
+    @media (min-width: 1200px) {
+      right: ${(props) => (!props.isOpen ? '1rem' : 'auto')};
+    }
   }
 
   :hover,
