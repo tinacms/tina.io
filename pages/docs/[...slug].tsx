@@ -89,6 +89,7 @@ function _DocTemplate(props) {
             <Breadcrumbs navItems={props.navDocData.data} />
             <DocsPageTitle>{doc_data.title}</DocsPageTitle>
           </DocGridHeader>
+          {/* its DocGridToC */}
           <DocGridToc>
             <ToC tocItems={TableOfContents} activeIds={activeIds} />
           </DocGridToc>
@@ -183,14 +184,15 @@ export const DocsGrid = styled.div`
     max-width: none;
     padding: 2rem 0rem 4rem 0rem;
     grid-template-areas:
-      '. header header .'
-      '. content toc .';
-    grid-auto-columns: minmax(0, auto) minmax(300px, 800px)
-      clamp(17.5rem, 10rem + 10vw, 21.25rem) minmax(0, auto);
-    grid-column-gap: 5rem;
+      'header header'
+      'content toc';
+    grid-template-columns: 5fr 2fr; 
+    grid-column-gap: 4rem;
     justify-content: left;
+    padding-left: 2rem;
   }
 `
+
 
 export const DocGridHeader = styled.div`
   grid-area: header;
