@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 import RightArrowSvg from '../../public/svg/right-arrow.svg';
@@ -22,6 +22,8 @@ const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
 };
 
 const ToC = ({ tocItems, activeIds, isOpen, setIsOpen }: TocProps) => {
+  const [isManualOpen, setIsManualOpen] = useState(false);
+
   useEffect(() => {
     const close = () => setIsOpen(false);
     const allLinks = document.querySelectorAll('a');
@@ -35,15 +37,34 @@ const ToC = ({ tocItems, activeIds, isOpen, setIsOpen }: TocProps) => {
     };
   }, [setIsOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isManualOpen && window.scrollY > 200) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [setIsOpen, isManualOpen]);
+
   if (!tocItems || tocItems.length === 0) {
     return null;
   }
 
   const tocMarkdown = generateMarkdown(tocItems);
 
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) setIsManualOpen(true);
+  };
+
   return (
     <TocWrapper>
-      <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+      <TocButton isOpen={isOpen} onClick={handleToggle}>
         <span>{isOpen ? 'Hide Table of Contents' : ''}</span>
         <RightArrowSvg />
       </TocButton>
@@ -97,19 +118,18 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
   }
 
   svg {
-    position: ${(props) => (!props.isOpen ? 'absolute' : 'relative')};
+    position: relative;
     width: 1.25rem;
     height: auto;
-    transform: rotate(180deg);
     fill: var(--color-grey);
-    transform-origin: 50% 50%;
+    transition: transform 400ms ease-out, right 400ms ease-out;
+    right: ${(props) => (props.isOpen ? '0' : '-1.5rem')};
+    transform: ${(props) => (props.isOpen ? 'rotate(90deg)' : 'rotate(180deg)')};
     background-color: orange;
     border-radius: 0 15px 15px 0;
-    transition: opacity 180ms ease-out, transform 180ms ease-out,
-      right 180ms ease-out;
 
     @media (min-width: 1200px) {
-      right: ${(props) => (!props.isOpen ? '1rem' : 'auto')};
+      right: ${(props) => (props.isOpen ? '0' : '-2.5rem')};
     }
   }
 
@@ -128,7 +148,6 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
       color: var(--color-orange);
 
       svg {
-        transform: rotate(90deg);
         opacity: 1;
       }
     `};
@@ -163,7 +182,7 @@ export const TocContent = styled.div<TocContentProps>`
   ${(props) =>
     props.isOpen
       ? css`
-          transition: all 750ms ease-in;
+          transition: all 400ms ease-in;
           max-height: 1500px;
         `
       : ``};
@@ -187,10 +206,8 @@ export const TocContent = styled.div<TocContentProps>`
 
   a {
     color: var(--color-secondary);
-    /* font-family: var(--font-tuner); */
   }
 
-  /* Hide underline except on hover or focus */
   a {
     :not(:focus) {
       :not(:hover) {
@@ -199,7 +216,6 @@ export const TocContent = styled.div<TocContentProps>`
     }
   }
 
-  /* Nested Styles */
   ul {
     ul {
       padding: 0.125rem 0 0.125rem 0.75rem;

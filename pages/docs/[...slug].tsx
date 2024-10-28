@@ -22,7 +22,7 @@ import ToC from 'components/toc/index';
 import { getSeoDescription } from 'utils/docs/getSeoDescription';
 
 export function DocTemplate(props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
     return <SetupOverview {...props} />;
