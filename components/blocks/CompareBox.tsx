@@ -70,9 +70,11 @@ const CriteriaCard = ({ criteriaItems }) => {
             className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
           >
             <span>{item.criteria}</span>
-            <div className="relative">
+            
+          </h3>
+          <div className="relative content-center ml-auto lg:ml-0">
               <IoMdInformationCircleOutline
-                className="ml-1 text-orange-500"
+                className="ml-1 text-orange-500 text-xl"
                 onMouseEnter={() => setHoveredItem(idx)}
                 onMouseLeave={() => setHoveredItem(null)}
               />
@@ -83,7 +85,6 @@ const CriteriaCard = ({ criteriaItems }) => {
                 </div>
               )}
             </div>
-          </h3>
         </div>
       ))}
     </div>
