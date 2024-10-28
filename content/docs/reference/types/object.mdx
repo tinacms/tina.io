@@ -1,11 +1,15 @@
 ---
 title: The "object" field
-last_edited: '2021-07-27T15:51:56.737Z'
+last_edited: '2024-09-26T06:54:19.563Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
 
-# `object`
+## `object` Type
+
+The `object` field is a dynamic field type that creates a nested page in the CMS with the data it contains.
+
+This can be used to create repeated data structures, group related data in the CMS and/or give users the option to choose between a set of templates.
 
 ```ts
 type ObjectField = {
@@ -13,19 +17,18 @@ type ObjectField = {
   name: string
   type: 'object'
   list?: boolean
-  /** `fields OR `templates` may be provided, not both **/
+  // `fields` OR `templates` may be provided, not both
   fields?: Field[]
   templates?: Template[]
   /** Customize the default "_template" key that gets set
      in a document to identify a block-type.
      Only applicable when list: true **/
   templatesKey?: string
-  list?: boolean
-  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
-     /** Weather or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental **/
+     // Whether or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental
     visualSelector?: boolean,
-    // Note: defaultItem can only can be used when {list: true}
+    // defaultItem can only can be used when {list: true}
     defaultItem?: Record<string, any> | () => Record<string, any>,
     itemProps?(
       item: Record<string, any>
@@ -35,6 +38,22 @@ type ObjectField = {
   }
 }
 ```
+
+## Usage
+
+Ultimately there are 3 ways to configure this type...
+
+* With `list` set to `false`, the `fields` array can be used to wrap some data – this appears in the editor as a nested page. This can be used to organise the CMS, such as grouping options together, as in the gif below.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1727331124/tina-io/docs/Sep-26-2024_16-05-37_d2ol8w.gif)
+
+* With `list` set to `true`, the `fields` array contains the data structure to be repeated – this appears in the editor as above, but grouped as a list.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1727331115/tina-io/docs/Sep-26-2024_16-03-00_f3ogev.gif)
+
+* With `list` set to `true`, and using `templates` as opposed to `fields` the user can select between associated templates – this appears as above, but pressing the `+`  gives you the option to choose between templates.
+
+![](https://res.cloudinary.com/forestry-demo/image/upload/v1727331134/tina-io/docs/Sep-26-2024_16-07-02_zv5uth.gif)
 
 ## Examples
 
@@ -106,6 +125,27 @@ Tina will generate the appropriate component depending on the configuration prov
 ```
 
 ![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381170/Screenshot_2024-07-31_at_9.12.43_AM_gahppr.png)
+
+### Using list object as a wrapper for other types
+
+Number, boolean, datetime, reference and rich-text field types can be used as the sole field of an object to create a list of one of those types.
+
+```javascript
+{
+  label: "Author List",
+  name: "authorList",
+  type: "object",
+  list: true,      
+  fields: [
+    {
+      label: 'Author',
+      name: 'author',
+      type: 'reference',
+      collections: ['author'],
+    },
+  ]
+}
+```
 
 ### Using templates instead of fields
 

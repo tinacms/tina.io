@@ -1,26 +1,26 @@
 ---
 title: The "reference" field
-last_edited: '2024-08-27T08:00:17.162Z'
+last_edited: '2024-10-03T05:10:48.908Z'
+next: ''
+previous: ''
 ---
 
-## `reference`
+## `reference` Type
 
 The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
 
 Once defined, the values of the *referenced* document become available to the parent.
 
-> Note: `reference` with `list: true` is not currently supported. See the "Temporary work around" section of [issue #2056](https://github.com/tinacms/tinacms/issues/2056) for a suggested approach to achieve a similar result
-
-## Object Definition
+> Note: `reference` with `list: true` is not currently supported. Object type lists can be used [as a wrapper](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) around `reference` field types to create a list of references.
 
 ```ts
 type ReferenceField = {
   label: string
   name: string
   type: 'reference'
-  /** The `name` of another collection **/
+  // The `name` of another collection
   collections: string[]
-  /** See https://tina.io/docs/extending-tina/overview/ for customizing the UI **/
+  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
     label?: string
     description?: string
@@ -141,11 +141,127 @@ You can search your reference with reference selector.
     }
 ```
 
+### Filter reference
+
+If you have a long list of reference items, you can filter them in the schema using the `ui.collectionFilter` field using a property from the referenced collection.
+
+<WarningCallout body="The current `collectionFilter`only supports properties of type string and is also **case sensitive** ( e.g. Using the example below, if you enter `australia`, it will not filter authors by `Australia`)." />
+
+> Scenario: You have a list of authors in different locations, and you only want the reference selected in your post collection to be authors from a specific location.
+
+```typescript
+const referenceField = {
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: 'Australia'
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
+It's also possible to filter references options based on a list of values.
+
+```typescript
+const referenceField = {
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: ['Australia','United States']
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
+Reference fields on multiple collections can be filtered by the values in either collection.
+
+```typescript
+const referenceField = {
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: ['Australia','United States']
+      },
+      post: {
+        status: 'published',
+      },
+    },
+  },
+  collections: ['author', 'post'],
+}
+```
+
+The `collectionFilter` also support function input, when you need it for dynamic rendering. The input function will trigger during run time.
+
+```typescript
+// Dynamic reference list - You can define as a function here if you need dynamic list but need to make sure the return type match the schema
+
+const getLocation = () => {
+  const url = new URL('https://bob-northwind-sydney.com')
+  const hostname = url.hostname
+  return hostname
+};
+
+const referenceField = {
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: () => {
+      const location = getLocation();
+      return {
+        author : {
+          location : location
+        }
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
+> Note : If you pass as function, the functions need to be passed as executables, not references. The below example will not works.
+
+```typescript
+const referenceField = {
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: () => {
+      return {
+        author : {
+          location : () => {
+            const url = new URL('https://bob-northwind-sydney.com')
+            const hostname = url.hostname
+            return hostname
+          };
+        }
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
 ### Customizing Reference Selector with optionComponent
 
 The default reference selector displays the file path, there are cases where you may want to customize what is displayed in the dropdown to provide a better user experience. For example, showing the author's name instead of the file name can make the selection process more intuitive.
 
-Below are some examples on how to customize the  reference select using `ui.optionComponent`. 
+Below are some examples on how to customize the  reference select using `ui.optionComponent`.
 
 Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
 

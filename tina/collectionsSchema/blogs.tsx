@@ -8,7 +8,6 @@ export const blogsCollection = {
       type: 'string',
       name: 'title',
       label: 'Title',
-      isTitle: true,
       required: true,
       list: false,
       ui: {

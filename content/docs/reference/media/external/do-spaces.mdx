@@ -51,7 +51,7 @@ export default defineConfig({
   media: {
     loadCustomStore: async () => {
       const pack = await import('next-tinacms-dos')
-      return pack.TinaCloudCloudinaryMediaStore
+      return pack.TinaCloudDOSMediaStore
     },
   },
 })
@@ -116,7 +116,7 @@ For Netlify use case, please read how to set up Netlify Functions [here](/docs/r
 
 ### Using a Custom URL
 
-If you're using a custom URL for your S3 bucket, you can pass in a `cdnUrl` value to `createMediaHandler`.
+If you're using a custom URL for your Digital Ocean Spaces bucket, you can pass in a `cdnUrl` value to `createMediaHandler`.
 
 ```ts
 export default createMediaHandler({

@@ -86,6 +86,12 @@ export const docsCollection = {
                 parse: (val?: string) => val && val.replaceAll(' ', '#'),
               },
             },
+            {
+              type: 'boolean',
+              name: 'preselectResponse',
+              label: 'Select Response by Default',
+              description: 'Select the response tab by default',
+            }
           ],
         },
         {

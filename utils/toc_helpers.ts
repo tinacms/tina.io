@@ -29,15 +29,29 @@ export function createTocListener(
   setActiveIds: (activeIds: string[]) => void
 ): () => void {
   let tick = false
-  const BASE_OFFSET = 16
   const THROTTLE_INTERVAL = 100
   const headings = createHeadings(contentRef)
+  //Find the maximum pixel value from vertical scroll
+  const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+
+  const relativePositionHeadingMap = headings.map((heading) => {
+    return {
+      ...heading,
+      //Find the relative position of the heading based on the page content.
+      relativePagePosition: (heading.offset / contentRef.current.scrollHeight),
+    }
+  });
 
   const throttledScroll = () => {
+    //Find the current vertical scroll pixel value
     const scrollPos = window.scrollY
     const newActiveIds = []
-    const activeHeadingCandidates = headings.filter((heading) => {
-      return heading.offset - scrollPos < BASE_OFFSET
+    //Find the relative position on the page based on the scroll.
+    const relativeScrollPosition = scrollPos / maxScrollY
+    //Find the headings that are above the current scroll position
+    //This is adjusted to account for differences between min/max scroll values and content height
+    const activeHeadingCandidates = relativePositionHeadingMap.filter((heading) => {
+      return relativeScrollPosition >= heading.relativePagePosition
     })
 
     const activeHeading =
@@ -45,7 +59,7 @@ export function createTocListener(
         ? activeHeadingCandidates.reduce((prev, current) =>
             prev.offset > current.offset ? prev : current
           )
-        : {}
+        : headings[0] ?? {}
     newActiveIds.push(activeHeading.id)
 
     if (activeHeading.level != 'H2') {
@@ -60,9 +74,9 @@ export function createTocListener(
           ? activeHeadingParentCandidates.reduce((prev, current) =>
               prev.offset > current.offset ? prev : current
             )
-          : {}
+          : null
 
-      if (activeHeadingParent.id) {
+      if (activeHeadingParent?.id) {
         newActiveIds.push(activeHeadingParent.id)
       }
     }

@@ -1,6 +1,6 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms';
 
-export const quoteTemplate: TinaTemplate = {
+export const quoteTemplate: Template = {
   label: 'Quote',
   name: 'quote',
   ui: {
@@ -10,19 +10,19 @@ export const quoteTemplate: TinaTemplate = {
     {
       label: 'Title',
       name: 'title2',
-      ui: { component: "textarea" },
+      ui: { component: 'textarea' },
       type: 'string',
     },
     {
       label: 'Sub Text',
       name: 'subtext',
-      ui: { component: "textarea" },
+      ui: { component: 'textarea' },
       type: 'string',
     },
     {
       label: 'logo',
       name: 'logo',
       type: 'image',
-    }
+    },
   ],
-}
+};

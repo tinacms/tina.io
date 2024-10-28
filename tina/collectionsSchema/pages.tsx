@@ -22,6 +22,7 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner.template'
 import { highlightsSectionTemplate } from '../../components/blocks/HighlightsSection.template'
 import { spacerTemplate } from '../../components/blocks/Spacer.template'
+import {carouselFeatureTemplate} from '../../components/blocks/CarouselFeature.template'
 
 export const pagesCollection = {
     label: 'Pages',
@@ -100,7 +101,8 @@ export const pagesCollection = {
           textAndMediaColumnsComponentTemplate as Template,
           tinaBannerTemplate as Template,
           highlightsSectionTemplate as Template,
-          spacerTemplate as Template
+          spacerTemplate as Template,
+          carouselFeatureTemplate as Template
         ],
       },
     ],
