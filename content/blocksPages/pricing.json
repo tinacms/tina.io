@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Plans and Pricing",
+    "description": "TinaCMS offers flexible pricing options for developers and teams, designed to support a seamless editing experience. Discover the right plan for your project, whether you're just starting out or scaling up."
+  },
   "blocks": [
     {
       "headline": "Plans & Pricing",
