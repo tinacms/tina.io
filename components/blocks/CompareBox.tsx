@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import css from 'styled-jsx/css';
 import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
+import { IoMdInformationCircleOutline } from 'react-icons/io';
 
 function hexToRgba(hex, alpha) {
   let r = parseInt(hex.slice(1, 3), 16);
@@ -63,20 +64,26 @@ const CriteriaCard = ({ criteriaItems }) => {
           key={idx}
           className="py-3 flex relative"
           style={commonHeightStyle}
-          onMouseEnter={() => setHoveredItem(idx)}
-          onMouseLeave={() => setHoveredItem(null)}
         >
           <h3
             data-tina-field={tinaField(item, 'criteria')}
-            className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs hover:text-orange-600"
+            className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
           >
-            {item.criteria}
-          </h3>
-          {hoveredItem === idx && (
-            <div className="hidden text-black lg:block absolute top-0 right-full mr-4 mt-2 bg-gradient-to-br from-teal-100/60 to-cyan-100/60 text-sm p-2 rounded shadow-lg z-10 xl:w-[300px] w-[150px] break-words">
-              {item.description}
+            <span>{item.criteria}</span>
+            <div className="relative">
+              <IoMdInformationCircleOutline
+                className="ml-1 text-orange-500"
+                onMouseEnter={() => setHoveredItem(idx)}
+                onMouseLeave={() => setHoveredItem(null)}
+              />
+              {hoveredItem === idx && (
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-br from-teal-100 to-cyan-100 text-sm p-2 rounded-lg shadow-lg z-10 xl:w-[300px] w-[150px] break-words">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-teal-100"></div>
+                  {item.description}
+                </div>
+              )}
             </div>
-          )}
+          </h3>
         </div>
       ))}
     </div>
