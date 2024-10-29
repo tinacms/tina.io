@@ -38,10 +38,10 @@ npx @tinacms/cli@latest init
 
 After running the command above you'll receive a few propmts
 
-1. When prompted to select a framework select `“other”`
-2. Choose `“NPM”` as your package manager
-3. When asked if you'd like to use Typescript choose `“no”`
-4. Set the public assets location to `“public”`
+1. When prompted to select a framework select `other`
+2. Choose `NPM` as your package manager
+3. When asked if you'd like to use Typescript choose `no`
+4. Set the public assets location to `public`
 
 ## Setting up Gatsby for Tina
 
@@ -95,9 +95,9 @@ schema: {
 // ...
 ```
 
-We'll also need to change the location where images get uploaded to. Since `"public"` doesn't get tracked in Git.
+We'll also need to change the location where images get uploaded to. Since `public` doesn't get tracked in Git.
 
-> By moving our images to \`"static"\`, we're ensuring that they'll be tracked in git and bundled at run time.
+> By moving our images to `static`, we're ensuring that they'll be tracked in git and bundled at run time.
 
 ```diff
 export default defineConfig({
@@ -139,7 +139,7 @@ Now our project is set up to use TinaCMS. There's a problem though: our project 
 // ...
 ```
 
-Using the raw markdown from `body` we can generate a custom node that contains the markdown in a format that TinaCMS can read. 
+Using the raw markdown from `body` we can generate a custom node that contains the markdown in a format that TinaCMS can read.
 
 To do this, we'll import TinaCMS's markdown parser.
 Add this import to the top of `gatsby-node.js`.
