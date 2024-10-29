@@ -245,7 +245,7 @@
       "criteriaItems": [
         {
           "criteria": "Open Source Front-end",
-          "description": "A CMS which is transparent, extendable and community driven"
+          "description": "A CMS which is transparent, extensible and community driven"
         },
         {
           "criteria": "Content API",
