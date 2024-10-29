@@ -101,6 +101,11 @@ export const blogsCollection = {
               type: 'string',
               name: 'embedSrc',
               label: 'Embed SRC',
+            },
+            {
+              type: 'string',
+              name: 'width',
+              label: 'width',
             }
           ]
         },

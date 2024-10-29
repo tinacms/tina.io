@@ -24,7 +24,7 @@ export const docAndBlogComponents: Components<{
     url: string;
     buttonText: string;
   };
-  WebmEmbed: { embedSrc: string };
+  WebmEmbed: { embedSrc: string; width?: string };
   WarningCallout: { body: string };
   Codesandbox: { embedSrc: string; title: string };
   Diagram: { alt: string; src: string };
@@ -98,10 +98,10 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
-  WebmEmbed: ({ embedSrc }) => (
-    <div className="video-container">
+  WebmEmbed: ({ embedSrc, width = '100%' }) => (
+    <div className="video-container flex py-2 justify-center">
       <video
-        width="100%"
+        width={width}
         height="auto"
         src={embedSrc}
         autoPlay
@@ -114,7 +114,7 @@ export const docAndBlogComponents: Components<{
       </video>
     </div>
   ),
-  
+
   Youtube: ({ embedSrc }) => (
     <div className="youtube-container">
       <iframe
