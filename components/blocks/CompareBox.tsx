@@ -8,6 +8,8 @@ import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
+
+//Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
   let r = parseInt(hex.slice(1, 3), 16);
   let g = parseInt(hex.slice(3, 5), 16);
