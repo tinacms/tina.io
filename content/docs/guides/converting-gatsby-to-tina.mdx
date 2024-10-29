@@ -174,7 +174,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 There's still a few parameters we need to provide to `parseMDX` before it can do it's job.
 
-- The second argument is a copy of the field we defined in our config.js file.
+- The second argument is a copy of the field we defined in our `config.js` file.
 - The third is a callback function that the parser uses when coming across any image links. We'll use that callback function to update our image urls to point to the image directory we defined in our config file.
 
 ```diff
