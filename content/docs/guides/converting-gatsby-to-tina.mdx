@@ -267,7 +267,7 @@ We'll also need to update all of the lists to be the same format in `content/blo
 
 > You may need to update other elements on your own website. For a list of unsupported markdown elements for Tina see [our guide](https://tina.io/docs/reference/types/rich-text/?#unsupported-elements).
 
-```diff
+````diff
 - - Red
 + * Red
 
@@ -298,7 +298,7 @@ We'll also need to update all of the lists to be the same format in `content/blo
 
 
 
-\`\`\`markdown
+```markdown
 
 + * Red
 
@@ -325,8 +325,8 @@ We'll also need to update all of the lists to be the same format in `content/blo
 - - Blue
 +* Blue
 
-\`\`\`
 ```
+````
 
 Now we should be able to read and edit our existing pages in Tina. We'll add some css to fix the images in our articles since they aren't being handled by to fix the width of our images since they're no longer being processed by gatsby. Add the following to the top of src/style.css. This will resize any images in our blog.
 
