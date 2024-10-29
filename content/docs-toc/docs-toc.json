@@ -30,22 +30,6 @@
               "title": "Framework-Specific Guides",
               "items": [
                 {
-                  "title": "Gatsby",
-                  "items": [
-                    {
-                      "title": "Migrate existing Gatsby site to TinaCMS",
-                      "slug": "",
-                      "_template": "item"
-                    },
-                    {
-                      "title": "Gatsby",
-                      "slug": "content/docs/frameworks/gatsby.mdx",
-                      "_template": "item"
-                    }
-                  ],
-                  "_template": "items"
-                },
-                {
                   "title": "Next.js",
                   "items": [
                     {
@@ -78,8 +62,19 @@
                 },
                 {
                   "title": "Gatsby",
-                  "slug": "content/docs/frameworks/gatsby.mdx",
-                  "_template": "item"
+                  "items": [
+                    {
+                      "title": "Migrate existing Gatsby site to TinaCMS",
+                      "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
+                      "_template": "item"
+                    },
+                    {
+                      "title": "Gatsby",
+                      "slug": "content/docs/frameworks/gatsby.mdx",
+                      "_template": "item"
+                    }
+                  ],
+                  "_template": "items"
                 },
                 {
                   "title": "Jekyll",
