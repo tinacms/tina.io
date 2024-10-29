@@ -85,7 +85,9 @@ To save ourself some pain we can also change our startup command to make sure Ti
 
 ## Configuring our Schema
 
-Now we've added Tina to our project but it's not pointing at our existing markdown files **(Oh noes!)**. Let fix that. Open up `tina/config.ts` and change the path to point to our blog directory. We'll also need to update our schema since we'll be working with mdx files.
+Now we've added Tina to our project but it's not pointing at our existing markdown files. Let fix that. 
+
+Open up `tina/config.ts` and change the path to point to our blog directory. We'll also need to update our schema since we'll be working with mdx files.
 
 ```diff
 schema: {
@@ -228,7 +230,7 @@ export const pageQuery = graphql`
 `
 ```
 
-Now we're ready to parse the formatted markdown into our component. We'll also remove the `"children"` prop which normally contains the HTML from Gatsby's mdx parser.
+Now we're ready to parse the formatted markdown into our component. We'll also remove the `children` prop which normally contains the HTML from Gatsby's mdx parser.
 
 ```diff
 const BlogPostTemplate = ({
@@ -328,7 +330,11 @@ We'll also need to update all of the lists to be the same format in `content/blo
 ```
 ````
 
-Now we should be able to read and edit our existing pages in Tina. We'll add some css to fix the images in our articles since they aren't being handled by to fix the width of our images since they're no longer being processed by gatsby. Add the following to the top of `src/style.css`. This will resize any images in our blog.
+Now we should be able to read and edit our existing pages in Tina. 
+
+We'll add some css to fix the images in our articles since they aren't being handled by to fix the width of our images since they're no longer being processed by gatsby. 
+
+Add the following to the top of `src/style.css`. This will resize any images in our blog.
 
 ```diff
 + img {
@@ -340,7 +346,9 @@ Congratulations! You've set up a Gatsby MDX blog to use Tina. You can run `npm r
 
 ## (Optional) Adding React components
 
-You can create React components in Gatsby as well, but you'll need to do some additional configuration compared to other frameworks. First, we'll modify the schema for our blog posts, defining the new React component we're planning to add.
+You can create React components in Gatsby as well, but you'll need to do some additional configuration compared to other frameworks.
+
+  First, we'll modify the schema for our blog posts, defining the new React component we're planning to add.
 
 ```diff
 schema: {
@@ -431,7 +439,9 @@ Next, we'll define how the custom component will look in `blog-post.js`. We'll b
 + }
 ```
 
-Setting the body to the built-in `children` property in React allows us to use the children of our React component as a value. This has the added benefit of making our markdown easy to read. For example, check out the example below.
+Setting the body to the built-in `children` property in React allows us to use the children of our React component as a value. 
+
+This has the added benefit of making our markdown easy to read. For example, check out the example below.
 
 ```markdown
 <RichBlockQuote>
