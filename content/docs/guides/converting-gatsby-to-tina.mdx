@@ -1,6 +1,6 @@
 ---
 title: Converting an existing Gatsby project to TinaCMS
-last_edited: '2024-10-29T06:46:36.477Z'
+last_edited: '2024-10-29T22:54:47.993Z'
 next: content/docs/cli-overview.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -9,19 +9,19 @@ previous: content/docs/contextual-editing/overview.mdx
 
 ## Introduction
 
-In this tutorial, we'll guide you through converting an existing `gatsby-mdx` blog to use TinaCMS. We've provided a starter repo for you to follow along, which is a fork of the official [Gatsby md blog starter](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog).
+In this tutorial, we'll guide you through converting an existing `gatsby-mdx` blog to TinaCMS. We've provided a starter repo for you to follow along, which is a fork of the official [Gatsby MD blog starter](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog).
 
 ## Limitations
 
-There are a few limitations with the approach outlined in this guide.
+There are a few limitations to the approach outlined in this guide.
 
-- No visual editing support
-- Loss of Gatsby's image optimization
-- Gatsby uses GitHub Flavored Markdown, which TinaCMS does not fully support
+* No visual editing support
+* Loss of Gatsby's image optimization
+* Gatsby uses GitHub Flavored Markdown, which TinaCMS does not fully support
 
 ## Getting started
 
-First clone the our sample Gatsby project. Then you'll want to navigate into the blog's directory.
+First, clone our sample Gatsby project. Then you'll want to navigate into the blog's directory.
 
 ```powershell
 git clone https://github.com/tinacms/gatsby-mdx-example-blog
@@ -30,13 +30,13 @@ cd gatsby-mdx-example-blog
 
 ## Adding Tina
 
-Awesome! You're all set up and ready start adding TinaCMS. You can initialize it using the command below.
+Awesome! You're set up and ready to start adding TinaCMS. You can initialize it using the command below.
 
 ```powershell
 npx @tinacms/cli@latest init
 ```
 
-After running the command above you'll receive a few propmts
+After running the command above you'll receive a few prompts
 
 1. When prompted to select a framework select `other`
 2. Choose `NPM` as your package manager
@@ -79,7 +79,7 @@ To make sure Tina runs when the app is in development mode, update the startup c
 
 ## Configuring our Schema
 
-Now we've added Tina to our project but it's not pointing at our existing markdown files. Let fix that.
+Now we've added Tina to our project but it's not pointing at our existing markdown files. Let's fix that.
 
 Open up `tina/config.ts` and change the path to point to our blog directory. We'll also need to update our schema since we'll be working with mdx files.
 
@@ -95,7 +95,7 @@ schema: {
 // ...
 ```
 
-We'll also need to change the location where images get uploaded to. Since `public` doesn't get tracked in Git.
+We'll also need to change the location where images get uploaded. Since `public` doesn't get tracked in Git.
 
 > By moving our images to `static`, we're ensuring that they'll be tracked in git and bundled at run time.
 
@@ -127,7 +127,7 @@ export default defineConfig({
 
 ## Setting up TinaMarkdown
 
-Now our project is set up to use TinaCMS. There's a problem though: our project is still using Gatsby's mdx parser instead of TinaCMS's. We'll need to do a bit of tweaking to get it working. First we'll edit the graphql query inside of `gatsby-node.js` so that it returns the raw markdown.
+Now our project is set up to use TinaCMS. There's a problem though: our project is still using Gatsby's mdx parser instead of TinaCMS's. We'll need to do some tweaking to get it working. First, we'll edit the graphql query inside of `gatsby-node.js` so that it returns raw markdown.
 
 ```diff
   const result = await graphql(`
@@ -139,8 +139,11 @@ Now our project is set up to use TinaCMS. There's a problem though: our project 
 // ...
 ```
 
-Using the raw markdown from `body` we can generate a custom node that contains the markdown in a format that TinaCMS can read.
+Using the raw markdown from `body` we can generate an [Abstract Syntax Tree (AST)](https://tina.io/docs/editing/markdown/#rendering-content-with-tinamarkdown) that we can use with TinaMarkdown
 
+> Tina converts raw markdown into Abstract Syntax Trees containing the HTML needed to structure the page at build time.
+
+\
 To do this, we'll import TinaCMS's markdown parser.
 Add this import to the top of `gatsby-node.js`.
 
@@ -148,9 +151,7 @@ Add this import to the top of `gatsby-node.js`.
 + const { parseMDX } = require("@tinacms/dist")
 ```
 
-Inside `onCreateNode`, create a new node with an [Abstract Syntax Tree (AST)](https://tina.io/docs/editing/markdown/#rendering-content-with-tinamarkdown) compatible with TinaMarkdown. Then we'll serialize it a string for easy retrieval in your page query.
-
-> Tina converts raw markdown into Abstract Syntax Trees containing the HTML needed to structure the page at build time.
+Inside `onCreateNode`, we'll parse out the markdown and serialize the result as a string that can be returned from our page query.
 
 ```diff
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -173,8 +174,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 There's still a few parameters we need to provide to `parseMDX` before it can do it's job.
 
-- The second argument is a copy of the field we defined in our `config.js` file.
-- The third is a callback function that the parser uses when coming across any image links. We'll use that callback function to update our image urls to point to the image directory we defined in our config file.
+* The second argument is a copy of the field we defined in our `config.js` file.
+* The third is a callback function that the parser uses when coming across any image links. We'll use that callback function to update our image URLs to point to the image directory we defined in our config file.
 
 ```diff
 + const imageCallback = url => {
@@ -255,7 +256,7 @@ const BlogPostTemplate = ({
 }
 ```
 
-Unfortunately, we'll need to move images to our media directory to have them appear on our pages. In this case there's only one image
+Unfortunately, we'll need to move images to our media directory to have them appear on our pages. In this case, there's only one image
 
 ```powershell
 cp ./content/blog/hello-world/salty_egg.jpg static/images/salty_egg.jpg
@@ -328,7 +329,7 @@ We'll also need to update all of the lists to be the same format in `content/blo
 
 Now we should be able to read and edit our existing pages in Tina.
 
-We'll add some css to fix the images in our articles since they aren't being handled by to fix the width of our images since they're no longer being processed by gatsby.
+We'll add some CSS to fix the images in our articles since they aren't being handled by to fix the width of our images since they're no longer being processed by Gatsby.
 
 Add the following to the top of `src/style.css`. This will resize any images in our blog.
 
@@ -447,7 +448,7 @@ Go check out the starter template on [tina.io](https://tina.io/docs/introduction
 </RichBlockQuote>
 ```
 
-The last thing you'll need to do is pass our component list into the `components` prop of our `TinaMarkdown` component.
+The last thing you'll need to do is pass our component list to the `components` prop of our `TinaMarkdown` component.
 
 ```diff
   return (
