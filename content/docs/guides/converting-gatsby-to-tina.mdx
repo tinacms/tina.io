@@ -148,7 +148,7 @@ Add this import to the top of `gatsby-node.js`.
 + const { parseMDX } = require("@tinacms/dist")
 ```
 
-Then inside of `onCreateNode` we'll create a new node containing an [Abstract Syntax Tree](https://tina.io/docs/editing/markdown/#rendering-content-with-tinamarkdown) we can pass into our TinaMarkdown component. We'll also need to serialize the result as a string so that we can return it as a single value from our page query.
+Inside `onCreateNode`, create a new node with an [Abstract Syntax Tree (AST)](https://tina.io/docs/editing/markdown/#rendering-content-with-tinamarkdown) compatible with TinaMarkdown. Then we'll serialize it a string for easy retrieval in your page query.
 
 > Tina converts raw markdown into Abstract Syntax Trees containing the HTML needed to structure the page at build time.
 
