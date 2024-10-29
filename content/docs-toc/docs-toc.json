@@ -30,6 +30,17 @@
               "title": "Framework-Specific Guides",
               "items": [
                 {
+                  "title": "Gatsby",
+                  "items": [
+                    {
+                      "title": "Gatsby",
+                      "slug": "content/docs/frameworks/gatsby.mdx",
+                      "_template": "item"
+                    }
+                  ],
+                  "_template": "items"
+                },
+                {
                   "title": "Next.js",
                   "items": [
                     {
