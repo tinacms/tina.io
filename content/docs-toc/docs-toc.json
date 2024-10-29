@@ -64,7 +64,7 @@
                   "title": "Gatsby",
                   "items": [
                     {
-                      "title": "Migrate existing Gatsby site to TinaCMS",
+                      "title": "Migrating an existing Gatsby blog to TinaCMS",
                       "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
                       "_template": "item"
                     },
