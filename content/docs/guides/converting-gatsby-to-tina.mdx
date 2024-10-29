@@ -85,7 +85,7 @@ To save ourself some pain we can also change our startup command to make sure Ti
 
 ## Configuring our Schema
 
-Now we've added Tina to our project but it's not pointing at our existing markdown files **(Oh noes!)**. Let fix that. Open up `tina/config.ts` and change the path to point to our blog directory.
+Now we've added Tina to our project but it's not pointing at our existing markdown files **(Oh noes!)**. Let fix that. Open up `tina/config.ts` and change the path to point to our blog directory. We'll also need to update our schema since we'll be working with mdx files.
 
 ```diff
 schema: {
@@ -93,6 +93,7 @@ schema: {
     {
       name: "post",
       label: "Posts",
++     format: "mdx",
 -     path: "content/posts"
 +     path: content/blog"
 // ...
