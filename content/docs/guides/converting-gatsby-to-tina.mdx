@@ -1,6 +1,6 @@
 ---
 title: Converting an existing Gatsby project to TinaCMS
-last_edited: '2024-10-29T22:54:47.993Z'
+last_edited: '2024-10-29T22:57:00.758Z'
 next: content/docs/cli-overview.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -127,7 +127,7 @@ export default defineConfig({
 
 ## Setting up TinaMarkdown
 
-Now our project is set up to use TinaCMS. There's a problem though: our project is still using Gatsby's mdx parser instead of TinaCMS's. We'll need to do some tweaking to get it working. First, we'll edit the graphql query inside of `gatsby-node.js` so that it returns raw markdown.
+With the project set up to use TinaCMS, we still need to switch from Gatsby’s MDX parser to TinaCMS’s. Begin by modifying the GraphQL query in gatsby-node.js to return raw markdown:
 
 ```diff
   const result = await graphql(`
