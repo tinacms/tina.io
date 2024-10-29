@@ -127,7 +127,7 @@ export default defineConfig({
 
 ## Setting up TinaMarkdown
 
-Now our project is set up to use TinaCMS. There's a problem though: our project is still using Gatsby's mdx parser instead of TinaCMS's. We'll need to to a bit of tweaking to get it working. First we'll edit the graphql query inside of `gatsby-node.js` so that it returns the raw markdown.
+Now our project is set up to use TinaCMS. There's a problem though: our project is still using Gatsby's mdx parser instead of TinaCMS's. We'll need to do a bit of tweaking to get it working. First we'll edit the graphql query inside of `gatsby-node.js` so that it returns the raw markdown.
 
 ```diff
   const result = await graphql(`
