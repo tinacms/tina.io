@@ -62,19 +62,8 @@
                 },
                 {
                   "title": "Gatsby",
-                  "items": [
-                    {
-                      "title": "Gatsby",
-                      "slug": "content/docs/frameworks/gatsby.mdx",
-                      "_template": "item"
-                    },
-                    {
-                      "title": "Migrating an existing Gatsby blog to TinaCMS",
-                      "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
-                      "_template": "item"
-                    }
-                  ],
-                  "_template": "items"
+                  "slug": "content/docs/frameworks/gatsby.mdx",
+                  "_template": "item"
                 },
                 {
                   "title": "Jekyll",
@@ -397,6 +386,17 @@
         {
           "title": "Framework Guides",
           "items": [
+            {
+              "title": "Gatsby",
+              "items": [
+                {
+                  "title": "Migrating an existing Gatsby blog to TinaCMS",
+                  "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
             {
               "title": "Overview",
               "slug": "content/docs/integration/frameworks.mdx",
