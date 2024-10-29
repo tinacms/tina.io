@@ -21,13 +21,7 @@ There are a few limitations with the approach outlined in this guide.
 
 ## Getting started
 
-First you'll want to make sure you have the correct version of node installed. We'll be using the node version specified in the repo's `.nvmrc` file, v20.12.0. You can run the code below to make sure you have the correct version installed.
-
-```powershell
-node --version
-```
-
-Once you've made sure you have the right version of node installed, clone the project. Then navigate into the blog's directory.
+First clone the our sample Gatsby project. Then you'll want to navigate into the blog's directory.
 
 ```powershell
 git clone https://github.com/tinacms/gatsby-mdx-example-blog
@@ -85,7 +79,7 @@ To save ourself some pain we can also change our startup command to make sure Ti
 
 ## Configuring our Schema
 
-Now we've added Tina to our project but it's not pointing at our existing markdown files. Let fix that. 
+Now we've added Tina to our project but it's not pointing at our existing markdown files. Let fix that.
 
 Open up `tina/config.ts` and change the path to point to our blog directory. We'll also need to update our schema since we'll be working with mdx files.
 
@@ -330,9 +324,9 @@ We'll also need to update all of the lists to be the same format in `content/blo
 ```
 ````
 
-Now we should be able to read and edit our existing pages in Tina. 
+Now we should be able to read and edit our existing pages in Tina.
 
-We'll add some css to fix the images in our articles since they aren't being handled by to fix the width of our images since they're no longer being processed by gatsby. 
+We'll add some css to fix the images in our articles since they aren't being handled by to fix the width of our images since they're no longer being processed by gatsby.
 
 Add the following to the top of `src/style.css`. This will resize any images in our blog.
 
@@ -348,7 +342,7 @@ Congratulations! You've set up a Gatsby MDX blog to use Tina. You can run `npm r
 
 You can create React components in Gatsby as well, but you'll need to do some additional configuration compared to other frameworks.
 
-  First, we'll modify the schema for our blog posts, defining the new React component we're planning to add.
+First, we'll modify the schema for our blog posts, defining the new React component we're planning to add.
 
 ```diff
 schema: {
@@ -439,7 +433,7 @@ Next, we'll define how the custom component will look in `blog-post.js`. We'll b
 + }
 ```
 
-Setting the body to the built-in `children` property in React allows us to use the children of our React component as a value. 
+Setting the body to the built-in `children` property in React allows us to use the children of our React component as a value.
 
 This has the added benefit of making our markdown easy to read. For example, check out the example below.
 
