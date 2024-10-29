@@ -33,6 +33,11 @@
                   "title": "Gatsby",
                   "items": [
                     {
+                      "title": "Migrate existing Gatsby site to TinaCMS",
+                      "slug": "",
+                      "_template": "item"
+                    },
+                    {
                       "title": "Gatsby",
                       "slug": "content/docs/frameworks/gatsby.mdx",
                       "_template": "item"
