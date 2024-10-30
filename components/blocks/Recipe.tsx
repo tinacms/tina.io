@@ -1,5 +1,5 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Prism from 'prismjs';
 import 'prism-themes/themes/prism-night-owl.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
@@ -56,7 +56,6 @@ pre[class*="language-"] ::selection {
   background: white; 
   color: black; 
 }
-
 `;
 
 interface RecipeBlockProps {
@@ -82,6 +81,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     null
   );
 
+
   useEffect(() => {
     console.log(`Highlighting lines: ${highlightLines}`);
     // Inject the custom CSS into the document head
@@ -101,6 +101,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
   ) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
+
   };
 
   return (
@@ -112,11 +113,11 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
         </p>
       </div>
       <div className="content-wrapper flex px-10">
-      <div className="instructions w-1/3 rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-20 h-[calc(100vh)]">
-      {instruction?.map((inst, idx) => (
+        <div className="instructions w-1/3 rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-20 h-full">
+          {instruction?.map((inst, idx) => (
             <div
               key={idx}
-              className={`instruction-item  cursor-pointer p-4  border-gray-700 bg-gray-800 text-white 
+              className={`instruction-item cursor-pointer p-4 border-gray-700 bg-gray-800 text-white 
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''} `}
               onClick={() =>
                 handleInstructionClick(
