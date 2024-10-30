@@ -20,6 +20,13 @@
       "_template": "textMediaColumnComponent"
     },
     {
+      "options": {
+        "align": "center"
+      },
+      "content": "# Visual Editing with Astro\n",
+      "_template": "content"
+    },
+    {
       "items": [
         {
           "headline": "Markdown Support",
