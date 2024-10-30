@@ -387,6 +387,17 @@
           "title": "Framework Guides",
           "items": [
             {
+              "title": "Gatsby",
+              "items": [
+                {
+                  "title": "Migrating an existing Gatsby blog to TinaCMS",
+                  "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
               "title": "Overview",
               "slug": "content/docs/integration/frameworks.mdx",
               "_template": "item"

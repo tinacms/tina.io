@@ -244,32 +244,40 @@
     {
       "criteriaItems": [
         {
-          "criteria": "Open Source Front-end"
+          "criteria": "Open Source Front-end",
+          "description": "A CMS which is transparent, extensible and community driven"
         },
         {
-          "criteria": "Content API"
+          "criteria": "Content API",
+          "description": "Query your data, wherever, whenever"
         },
         {
-          "criteria": "Git-based Content Management "
+          "criteria": "Git-based Content Management ",
+          "description": "Get all the benefits of the GitHub editing workflow directly from your site - Pull requests, branching, version control"
         },
         {
-          "criteria": "GitHub Contributions"
+          "criteria": "GitHub Contributions",
+          "description": "Editors get GitHub contributions when they make changes"
         },
         {
           "criteria": "Markdown Support",
-          "description": ""
+          "description": "Store your content in a simple and lightweight format with Markdown"
         },
         {
-          "criteria": "Visual Editing Capabilities "
+          "criteria": "Visual Editing Capabilities ",
+          "description": "See your changes on your site as you make them"
         },
         {
-          "criteria": "Local Development Workflow "
+          "criteria": "Local Development Workflow ",
+          "description": "Develop your site locally within your favourite IDE"
         },
         {
-          "criteria": "Free Option"
+          "criteria": "Free Option",
+          "description": "An option to use the CMS for free, forever"
         },
         {
-          "criteria": "Self-hosted Option"
+          "criteria": "Self-hosted Option",
+          "description": "Option to self-host"
         }
       ],
       "companies": [
