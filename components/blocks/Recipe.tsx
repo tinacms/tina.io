@@ -112,8 +112,8 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
         </p>
       </div>
       <div className="content-wrapper flex px-10">
-        <div className="instructions w-1/3 rounded-tl-xl rounded-bl-xl overflow-hidden sticky top-4 flex flex-col">
-          {instruction?.map((inst, idx) => (
+      <div className="instructions w-1/3 rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-20 h-[calc(100vh)]">
+      {instruction?.map((inst, idx) => (
             <div
               key={idx}
               className={`instruction-item  cursor-pointer p-4  border-gray-700 bg-gray-800 text-white 
