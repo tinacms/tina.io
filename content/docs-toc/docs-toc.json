@@ -387,6 +387,11 @@
           "title": "Framework Guides",
           "items": [
             {
+              "title": "Overview",
+              "slug": "content/docs/integration/frameworks.mdx",
+              "_template": "item"
+            },
+            {
               "title": "Gatsby",
               "items": [
                 {
@@ -396,11 +401,6 @@
                 }
               ],
               "_template": "items"
-            },
-            {
-              "title": "Overview",
-              "slug": "content/docs/integration/frameworks.mdx",
-              "_template": "item"
             },
             {
               "title": "NextJS",
