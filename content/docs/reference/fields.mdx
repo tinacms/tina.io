@@ -17,6 +17,7 @@ Although some fields have more properties here is a list of common ones that are
 | `name`         | The name of the field                                                                                                                                                                                                                                                                                                                                                 |
 | `type`         | The [type of the field](/docs/reference/types/) to be used                                                                                                                                                                                                                                                                                                            |
 | `label`        | A human friendly label that will be displayed to the user (*optional*, defaults to `name`)                                                                                                                                                                                                                                                                            |
+| `description`  | A short description about the field that will be displayed to the user (*optional*, can include html formatting e.g. style attributes)                                                                                                                                                                                                                                |
 | `required`     | If `true`, the collection cannot be saved without this field present (*optional*, defaults to `false`)                                                                                                                                                                                                                                                                |
 | `isTitle`      | Denote a field as the title of a collection. [See below for more details](#istitle) (*optional*, defaults to `false`)                                                                                                                                                                                                                                                 |
 | `isBody`       | If `true` this field will be used as the body of the document. [See below for more details](#isbody) (*optional*, defaults to `false`)                                                                                                                                                                                                                                |
@@ -120,7 +121,7 @@ export default defineConfig({
 }
 ```
 
-`ui.min` will ensure that once the specified minimum number of items is added (ex: 3 in the example), users will not be able to remove items if there are only the minimum number of items. 
+`ui.min` will ensure that once the specified minimum number of items is added (ex: 3 in the example), users will not be able to remove items if there are only the minimum number of items.
 
 It can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
 
