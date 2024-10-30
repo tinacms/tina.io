@@ -30,7 +30,7 @@ export const examplesCollection = {
             ],
           },
           image:
-            'https://res.cloudinary.com/forestry-demo/image/upload/v1645712511/tina-io/docs/your-blocks.gif',
+            '/img/docs/your-blocks.webm',
           link: 'https://github.com/tinacms/tina-cloud-starter',
         },
         itemProps: (item) => {
