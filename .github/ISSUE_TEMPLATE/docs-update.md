@@ -22,7 +22,7 @@ title: "📝 "
 <!-- Add any other context here, this section is useful for adding context for other users to understand and refine the suggestion -->
 
 ### 📸 Screenshots 
-<!-- If applicable, add screenshots that are relevant to the feature or proposal -->
+<!-- If applicable, add screenshots that are relevant to the proposal -->
 
 <!-- Below the Cc, @ mention users who should be in the loop -->
 Cc: 
