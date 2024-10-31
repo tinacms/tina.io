@@ -1,0 +1,10 @@
+{
+  "blocks": [
+    {
+      "_template": "textMediaColumnComponent"
+    },
+    {
+      "_template": "textMediaColumnComponent"
+    }
+  ]
+}
