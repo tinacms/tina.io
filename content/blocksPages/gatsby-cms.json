@@ -1,9 +1,12 @@
 {
   "blocks": [
     {
-      "headline": "Next Gen Content Management",
-      "text": "Tina is an open-source, Git-backed CMS with the ability to add visual editing to your NextJS site",
+      "headline": "TinaCMS + Gatsby",
+      "text": "Utilise the Static Site Generation features of Gatsby with the flexibility of TinaCMS.",
       "_template": "hero"
+    },
+    {
+      "_template": "textMediaColumnComponent"
     }
   ]
 }
