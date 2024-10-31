@@ -23,14 +23,6 @@ const customHighlightCSS = `
     padding: 0.5rem;
   }
 
-  //Change color of line highlight
-  pre[class*="language-"] .line-highlight {
-  background: rgba(71, 85, 105, 0.3); 
-  box-shadow: inset 5px 0 0 0 rgba(71, 85, 105, 1);
-    z-index: 0;
-  }
-
-  // Change colour of row numbers 
 .line-numbers-rows > span:before {
     content: counter(linenumber);
     color: #9FFCEF; 
@@ -39,9 +31,13 @@ const customHighlightCSS = `
     text-align: right;
 }
 
-  // Change colour of line between numbers and code 
+.line-highlight {
+  background: rgba(71, 85, 105, 0.25);
+  border: 1px solid rgba(71, 85, 105, 1);
+}
+
   .line-numbers .line-numbers-rows {
-  border-right: 1px solid #6B7280
+  border-right: 1px solid #6B7280;
   }
 
   /* Remove top padding on code */
@@ -81,7 +77,6 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     null
   );
 
-
   useEffect(() => {
     console.log(`Highlighting lines: ${highlightLines}`);
     // Inject the custom CSS into the document head
@@ -101,19 +96,21 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
   ) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
-
   };
 
   return (
     <div className="recipe-block-container mt-20">
-      <div className="title-description">
-        <h2 className="font-bold text-3xl">{title || 'Default Title'}</h2>
-        <p className="font-semibold text-2xl">
+      <div className="title-description px-10">
+        <h2 className="font-tuner text-orange-500 text-2xl">
+          {title || 'Default Title'}
+        </h2>
+        <p className=" font-light py-2 text-base">
           {description || 'Default Description'}
         </p>
       </div>
       <div className="content-wrapper flex px-10">
-        <div className="instructions w-1/3 rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-20 h-full">
+        <div className="instructions w-1/3 max-h-screen rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-24 h-full"
+             style={{ height: '100%' }}>
           {instruction?.map((inst, idx) => (
             <div
               key={idx}
@@ -145,7 +142,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
           )) || <p>No instructions available.</p>}
         </div>
 
-        <div className="codeblock bg-gray-900 w-2/3 rounded-tr-xl rounded-br-xl">
+        <div className="codeblock bg-gray-900 w-2/3 max-h-50vh overflow-auto rounded-tr-xl rounded-br-xl">
           {codeblock ? (
             <TinaMarkdown
               key={highlightLines}

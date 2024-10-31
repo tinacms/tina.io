@@ -192,6 +192,9 @@ module.exports = {
       zIndex: {
         '-1': '-1',
       },
+      maxHeight: {
+        '50vh': '50vh',
+      },
     },
   },
   future: {
