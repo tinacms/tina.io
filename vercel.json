@@ -250,11 +250,7 @@
       "destination": "/",
       "permanent": true
     },
-    {
-      "source": "/enterprise/",
-      "destination": "/",
-      "permanent": true
-    },
+
     {
       "source": "/docs/gatsby/quickstart/",
       "destination": "/guides/gatsby/adding-tina/project-setup",
