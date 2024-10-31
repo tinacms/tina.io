@@ -7,8 +7,8 @@ import Image from 'next/image'
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1
   const id = data.headline 
-  ? data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-') 
-  : 'showcase-' + index;
+    ? data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-') 
+    : 'showcase-' + index;
 
   return (
     <>
@@ -32,15 +32,28 @@ export function ShowcaseBlock({ data, index }) {
           {data.actions && <Actions items={data.actions} />}
         </div>
         {data.media && data.media.src && (
-          <div className={`featureImage`}>
+          <div className="featureImage">
             <a href={data.url} target="_blank">
-              <Image
-                className="showcaseImage"
-                src={data.media.src}
-                alt={data.headline}
-                width={1120}
-                height={800}
-              />
+              {data.media.src.endsWith('.webm') ? (
+                <video
+                  className="showcaseVideo"
+                  src={data.media.src}
+                  autoPlay
+                  muted
+                  loop
+                  width={1120}
+                  height={800}
+                  
+                />
+              ) : (
+                <Image
+                  className="showcaseImage"
+                  src={data.media.src}
+                  alt={data.headline}
+                  width={1120}
+                  height={800}
+                />
+              )}
             </a>
           </div>
         )}
@@ -97,14 +110,16 @@ export function ShowcaseBlock({ data, index }) {
           border-radius: 0.5rem;
           transition: 0.5s ease;
           backface-visibility: hidden;
-          :global(img) {
+          :global(img),
+          :global(video) {
             display: block;
             width: 100%;
             height: auto;
             margin: 0;
           }
         }
-        .featureImage:hover .showcaseImage {
+        .featureImage:hover .showcaseImage,
+        .featureImage:hover .showcaseVideo {
           opacity: 0.3;
           transition: 0.5s ease;
         }
@@ -123,6 +138,7 @@ export function ShowcaseBlock({ data, index }) {
     </>
   )
 }
+
 
 export function ShowcaseItemsBlock({ data, index }) {
   return (

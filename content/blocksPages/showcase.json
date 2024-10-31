@@ -16,7 +16,7 @@
           "text": "[NDC Conferences](https://ndcconferences.com/) hosts global software development events, blending large-scale conferences with specialized workshops. They leverage TinaCMS for their website content management, ensuring a seamless digital experience for their audience. \nThese conferences bring together tech professionals to learn, network, and share insights across international communities.",
           "url": "https://ndcconferences.com/",
           "media": {
-            "src": "https://mcusercontent.com/1fea337bee20e7270d025ea8a/images/0e147cea-d413-41e2-1296-6c6ef67ca35e.jpg"
+            "src": "/video/ndc-sites.webm"
           }
         },
         {
@@ -24,7 +24,7 @@
           "text": "TinaCMS has been a game-changer for [SSW](https://www.ssw.com.au/). We love how it keeps our content management smooth and lets our developers and marketers work together without any roadblocks. It’s fast, flexible, and exactly what we needed.",
           "url": "https://www.ssw.com.au/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1729211871/ssw-website-screenshot_myojwk.jpg"
+            "src": "/img/showcase/ssw-website-screenshot.jpg"
           }
         },
         {
@@ -60,7 +60,6 @@
           }
         },
         {
-
           "headline": "Roev",
           "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
           "url": "https://www.roev.com/",
@@ -69,7 +68,6 @@
           }
         },
         {
-
           "headline": "Shadow Lion",
           "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
           "url": "https://shadowlion.com/",
@@ -94,27 +92,11 @@
           }
         },
         {
-          "headline": "Roev",
-          "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
-          "url": "https://www.roev.com/",
+          "headline": "Comedia",
+          "text": "[Comedia](http://www.comediadesign.com/) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC, and Postmates.",
+          "url": "https://www.comediadesign.com/",
           "media": {
             "src": "/gif/comedia.gif"
-          }
-        },
-        {
-          "headline": "Redactive AI",
-          "text": "Redactive provides AI application developers secure & scalable pipelines to enable real time data retrieval from business data sources, based on an end user's request & level of access control.  Site by [CoMedia](https://www.comediadesign.com/).",
-          "url": "https://www.redactive.ai/",
-          "media": {
-            "src": "/img/tina-showcase/devolver.png"
-          }
-        },
-        {
-          "headline": "RRE Ventures",
-          "text": "[RRE Ventures](https://rre.com/) is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries. The site was designed and built by [Studio Freight](https://studiofreight.com/).",
-          "url": "https://rre.com",
-          "media": {
-            "src": "/img/tina-showcase/useagility.png"
           }
         },
         {
