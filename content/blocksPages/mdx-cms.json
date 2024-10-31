@@ -1,7 +1,12 @@
 {
+  "seo": {
+    "title": "Using Markdown & MDX with TinaCMS | Flexible Content Editing",
+    "hasCustomSuffix": true,
+    "description": "Learn how TinaCMS supports Markdown and MDX for dynamic, rich content editing. Discover features that simplify content management and empower your team with a seamless editing experience."
+  },
   "blocks": [
     {
-      "headline": "TinaCMS: The Best CMS For MDX.",
+      "headline": "TinaCMS: The Best CMS For MDX",
       "text": "Configure TinaCMS to work with your MDX files and create a tailored UI for your components.",
       "_template": "hero"
     },

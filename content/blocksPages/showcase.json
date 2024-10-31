@@ -32,7 +32,7 @@
           "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/video/upload/du_16,w_700,e_loop/v1695247872/tina-showcase/smashingmagazine-tinacms.gif"
+            "src": "/gif/smashingmagazine-tinacms.gif"
           }
         },
         {
@@ -48,7 +48,7 @@
           "text": "[Unity](https://docs.unity.com/cloud/en-us), the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina because it provides a GUI for their Markdown content and because Tina's GraphQL API allows them to ingest docs content into other systems such as their AI chatbot. ",
           "url": "https://docs.unity.com/cloud/en-us",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700680405/tina-showcase/unity-documentation-tinacms.png"
+            "src": "/img/tina-showcase/unity-documentation-tinacms.png"
           }
         },
         {
@@ -56,31 +56,25 @@
           "text": "[Locality](https://localitybank.com) is reinventing local business banking – pairing the best of personal relationships with comprehensive financing experience and innovative technology to help South Florida businesses flourish. ",
           "url": "https://localitybank.com",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683740576/tina-showcase/locality-bank.png"
+            "src": "/img/tina-showcase/locality-bank.png"
           }
         },
         {
-          "headline": "Shadow Lion",
-          "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
-          "url": "https://shadowlion.com/",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678372708/tina-showcase/shadowlion3.gif"
-          }
-        },
-        {
-          "headline": "comedia",
-          "text": "[Comedia](http://www.comediadesign.com) is a digital product agency with offices in San Francisco and Vancouver. They craft product and experiences for clients large and small. Clients include Vodafone, Ericsson, NEC, and Postmates.",
-          "url": " http://www.comediadesign.com",
-          "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900/v1683032122/tina-showcase/comedia.gif"
-          }
-        },
-        {
+
           "headline": "Roev",
           "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
           "url": "https://www.roev.com/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680268314/tina-showcase/roev-.gif"
+            "src": "/gif/roev.gif"
+          }
+        },
+        {
+
+          "headline": "Shadow Lion",
+          "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
+          "url": "https://shadowlion.com/",
+          "media": {
+            "src": "/gif/shadowlion3.gif"
           }
         },
         {
@@ -88,7 +82,31 @@
           "text": "Redactive provides AI application developers secure & scalable pipelines to enable real time data retrieval from business data sources, based on an end user's request & level of access control.  Site by [CoMedia](https://www.comediadesign.com/).",
           "url": "https://www.redactive.ai/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1705693925/tina-showcase/redactive-ai.png"
+            "src": "/img/tina-showcase/redactive-ai.png"
+          }
+        },
+        {
+          "headline": "RRE Ventures",
+          "text": "RRE Ventures is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries. The site was designed and built by [Studio Freight](https://studiofreight.com/).",
+          "url": "https://rre.com",
+          "media": {
+            "src": "/gif/rre-ventures.gif"
+          }
+        },
+        {
+          "headline": "Roev",
+          "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
+          "url": "https://www.roev.com/",
+          "media": {
+            "src": "/gif/comedia.gif"
+          }
+        },
+        {
+          "headline": "Redactive AI",
+          "text": "Redactive provides AI application developers secure & scalable pipelines to enable real time data retrieval from business data sources, based on an end user's request & level of access control.  Site by [CoMedia](https://www.comediadesign.com/).",
+          "url": "https://www.redactive.ai/",
+          "media": {
+            "src": "/img/tina-showcase/devolver.png"
           }
         },
         {
@@ -96,7 +114,7 @@
           "text": "[RRE Ventures](https://rre.com/) is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries. The site was designed and built by [Studio Freight](https://studiofreight.com/).",
           "url": "https://rre.com",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_600,g_face/v1700761210/tina-showcase/rre-ventures.gif"
+            "src": "/img/tina-showcase/useagility.png"
           }
         },
         {
@@ -104,7 +122,7 @@
           "text": "A marketing site for Hawaii's largest locally owned and operated helicopter company. Built by [Murmur Creative](https://murmurcreative.com/) in Portland, Oregon. ",
           "url": "https://paradisecopters.com/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_900,g_face/v1653398867/tina-showcase/paradise-helicopters.png"
+            "src": "/img/tina-showcase/paradise-helicopters.png"
           }
         },
         {
@@ -112,7 +130,7 @@
           "text": "Supernova is 150+ exited founders backing top startups with advisory, operational, and investment support.  The site was developed by [Zeon studio](https://zeon.studio/). ",
           "url": "https://1supernova.com/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800,g_face/v1700681406/tina-showcase/supernova.png"
+            "src": "/img/tina-showcase/supernova.png"
           }
         },
         {
@@ -120,7 +138,7 @@
           "text": "Hop on [bunny.net](https://bunny.net/) and speed up your web presence with the next-generation Content Delivery Service (CDN), Edge Storage, and Optimization Services at any scale.",
           "url": "https://bunny.net/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_800/v1683568421/tina-showcase/bunny-net.png"
+            "src": "/img/tina-showcase/bunny-net.png"
           }
         },
         {
@@ -128,7 +146,7 @@
           "text": "An information site for the [CCMC](https://ccmc.gsfc.nasa.gov/), a group within NASA that enables, supports, and performs space science research.",
           "url": "https://ccmc.gsfc.nasa.gov/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651711033/tina-showcase/CCMC.png"
+            "src": "/img/tina-showcase/CCMC.png"
           }
         },
         {
@@ -136,7 +154,7 @@
           "text": "[Microgen](https://microgen.site/) is an open-source site builder developed by [Protocol Labs](https://protocol.ai/) and [Bustout](https://bustout.com/). Find it on [GitHub here](https://github.com/pathfindertools/microgen).\n",
           "url": "https://microgen.site/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_1000,g_face/v1651703972/tina-showcase/microgen.png"
+            "src": "/img/tina-showcase/microgen.png"
           }
         },
         {
@@ -144,7 +162,7 @@
           "text": "[ManyHands](https://wearemanyhands.com) is an event  for product people.  The event (and website) is by [Lighthouse](https://wearelighthouse.com), a specialist UX and UI design agency based in London.",
           "url": "https://wearemanyhands.com",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/v1678369877/tina-showcase/wearemanyhands.png"
+            "src": "/img/tina-showcase/wearemanyhands.png"
           }
         }
       ],
