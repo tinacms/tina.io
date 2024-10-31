@@ -21,9 +21,11 @@
     },
     {
       "options": {
-        "align": "center"
+        "narrow": true,
+        "color": "white",
+        "align": "left"
       },
-      "content": "# Visual Editing with Astro\n",
+      "content": "# Visual Editing + Astro\n\nVisual editing in Astro is still experimental. Visual editing is officially supported in Next.js... and we are looking to expand support to other frameworks in the near future.\n\nThe Tina community has got a head start on us – check out [this Repo](https://github.com/klrfl/simple-blog-with-tina) from Efraim running Astro with TinaCMS that runs with Visual Editing.\n",
       "_template": "content"
     },
     {
