@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
-import App from 'next/app'
-import Head from 'next/head'
-import { DefaultSeo } from 'next-seo'
-import data from '../content/siteConfig.json'
 import { GlobalStyle } from 'components/styles/GlobalStyle'
 import 'components/styles/fontImports.css'
+import Cookies from 'js-cookie'
+import { DefaultSeo } from 'next-seo'
+import App from 'next/app'
+import Head from 'next/head'
 import path from 'path'
-import '../styles/tailwind.css'
+import React, { useEffect } from 'react'
 import { useEditState } from 'tinacms/dist/react'
 import { CloudBanner } from '../components/layout/CloudBanner'
-import ChatBaseBot from '../components/ui/TinaChatBot'
 import ConsentBanner from '../components/ui/ConsentBanner'
-import Cookies from 'js-cookie'
+import ChatBaseBot from '../components/ui/TinaChatBot'
+import data from '../content/siteConfig.json'
+import '../styles/tailwind.css'
 
 path.resolve('./content/')
 
@@ -21,6 +21,14 @@ const MainLayout = ({ Component, pageProps }) => {
     if (consentGiven) {
       const consentState = JSON.parse(consentGiven)
     }
+    (function(h:any,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:5190939,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
   }, [])
 
   return (
