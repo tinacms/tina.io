@@ -144,19 +144,19 @@ export const RecipeBlock = ({ data }) => {
                 )
               }
             >
-              <h3 className="font-tuner">{`${idx + 1}. ${
+              <h5 className="font-tuner">{`${idx + 1}. ${
                 inst.header || 'Default Header'
-              }`}</h3>
+              }`}</h5>
               <div
                 className={`overflow-auto transition-all duration-500 ease-in-out ${
                   clickedInstruction === idx
-                    ? 'max-h-40 opacity-100'
+                    ? 'max-h-full opacity-100'
                     : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="mt-2">
+                <span className="mt-2">
                   {inst.itemDescription || 'Default Item Description'}
-                </p>
+                </span>
               </div>
             </div>
           )) || <p>No instructions available.</p>}

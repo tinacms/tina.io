@@ -48,8 +48,7 @@ export const docAndBlogComponents: Components<{
 }> = {
   RecipeBlock: (props) => {
     return (
-      <div>
-        RECIPE BLOCK SHUD BE HERE
+      <div className='text-white'>
         <RecipeBlock data={props} />
       </div>
     );

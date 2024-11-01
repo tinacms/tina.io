@@ -1,7 +1,7 @@
 ---
 id: introduction
 title: Tina Docs
-last_edited: '2024-11-01T03:28:37.930Z'
+last_edited: '2024-11-01T04:32:08.511Z'
 next: content/docs/product-tour.mdx
 previous: ''
 ---
@@ -11,98 +11,45 @@ previous: ''
   description="Use your json formatted files to create pages with TinaCMS"
   codeblock={<>
     ```javascript
-    import { client } from '../tina/__generated__/client'
-    import { GetStaticProps, GetStaticPaths } from 'next'
-    import { fileToUrl } from 'utils/urls'
-    import { useTina } from 'tinacms/dist/react'
-    import { BlocksPage } from 'components/blocks/BlocksPage'
-    
-    const fg = require('fast-glob')
-    
-    const Page = props => {
-    const tinaData = useTina({
-    query: props.query,
-    data: props.data,
-    variables: props.vars,
-    })
-    const data = tinaData.data.page
-    
-    return <BlocksPage data={data} recentPosts={tinaData.data.recentPosts} />
-    }
-    
-    export const getStaticProps: GetStaticProps = async function ({
-    preview,
-    previewData,
-    ...ctx
-    }) {
-    const slug = ctx.params?.slug || 'home'
-    const vars = { relativePath: slug + '.json' }
-    
-    const res = await client.queries.pageWithRecentPosts({ relativePath: slug + '.json' })
-    
-    return {
-    props: {
-    query: res.query,
-    data: res.data,
-    vars,
-    },
-    }
-    }
-    
-    export const getStaticPaths: GetStaticPaths = async function () {
-    const pages = await fg(`./content/blocksPages/*.json`)
-    const paths = pages.map(file => {
-    const slug = fileToUrl(file, 'blocksPages')
-    return { params: { slug } }
-    })
-    return {
-    paths: paths,
-    fallback: false,
-    }
-    }
-    
-    export default Page
+    Here is alot of code \
+    banana
     
     ```
   </>}
   instruction={[
     {
       header: "Relevant Imports",
-      itemDescription:
-        "This introductory step is just importing a series of Tina related methods, like useTina and client. As well as relevant helper methods.",
+      itemDescription: "This introductory step is just importing a series of Tina related methods, like useTina and client. As well as relevant helper methods.",
       codeLineStart: 1,
       codeLineEnd: 5
     },
     {
       header: "Data Fetching",
-      itemDescription:
-        "Using the Next.js method for fetching data at build time. Specifically using the Tina generated `client.queries` function to grab the relevant gql query. Returning it in a format the useTina hook can read.",
+      itemDescription: "Using the Next.js method for fetching data at build time. Specifically using the Tina generated `client.queries` function to grab the relevant gql query. Returning it in a format the useTina hook can read.",
       codeLineStart: 28,
       codeLineEnd: 37
     },
     {
       header: "Static Path Defining",
-      itemDescription:
-        "Grabs all the .json files and maps each corresponding slug (based on file name) to serve as the URL parameter of each page.",
+      itemDescription: "Grabs all the .json files and maps each corresponding slug (based on file name) to serve as the URL parameter of each page.",
       codeLineStart: 40,
       codeLineEnd: 44
     },
     {
       header: "Populate useTina Hook",
-      itemDescription:
-        "Our custom useTina hook is used to fetch and manage the TinaCMS data for live and contextual editing.",
+      itemDescription: "Our custom useTina hook is used to fetch and manage the TinaCMS data for live and contextual editing.",
       codeLineStart: 10,
       codeLineEnd: 15
     },
     {
       header: "Rendering <BlocksPage />",
-      itemDescription:
-        "Another component used to actually render the data based on the structure type that the data comes in from.",
+      itemDescription: "Another component used to actually render the data based on the structure type that the data comes in from",
       codeLineStart: 17,
       codeLineEnd: 18
     }
   ]}
 />
+
 
 ## Introduction
 
