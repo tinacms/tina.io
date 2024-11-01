@@ -9,50 +9,6 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
 import 'prismjs/plugins/line-highlight/prism-line-highlight';
 import { MdOutlineContentCopy } from 'react-icons/md';
 
-const customHighlightCSS = `
-  :not(pre) > code[class*="language-"],
-  pre[class*="language-"] {
-    color: white;
-    background: #111827; 
-  }
-    
-  pre[class*="language-"] > code[class*="language-"] {
-    position: relative;
-  }
-
-  pre[class*="language-"]{
-    padding: 0.5rem;
-  }
-
-  .line-numbers-rows > span:before {
-    content: counter(linenumber);
-    color: #9FFCEF; 
-    display: block;
-    padding-right: 0.8em;
-    text-align: right;
-  }
-
-  .line-highlight {
-    background: rgba(71, 85, 105, 0.25);
-    border: 1px solid rgba(71, 85, 105, 1);
-  }
-
-  .line-numbers .line-numbers-rows {
-    border-right: 1px solid #6B7280;
-  }
-
-  pre[class*="language-"] {
-    padding: 1em;
-    margin: 0 0 0.5em 0; 
-    overflow: auto;
-  }
-
-  pre[class*="language-"] ::selection {
-    background: white; 
-    color: black; 
-  }
-`;
-
 export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, instruction } = data;
 
@@ -62,7 +18,8 @@ export const RecipeBlock = ({ data }) => {
   );
   const [LHSheight, setLHSheight] = useState<string | null>(null);
   const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
-  const [isBottomOfInstructions, setIsBottomOfInstructions] = useState<boolean>(false);
+  const [isBottomOfInstructions, setIsBottomOfInstructions] =
+    useState<boolean>(false);
 
   const codeblockRef = useRef<HTMLDivElement>(null);
   const instructionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -84,7 +41,7 @@ export const RecipeBlock = ({ data }) => {
 
   const checkIfBottom = (event: React.UIEvent<HTMLDivElement>) => {
     const { scrollHeight, scrollTop, clientHeight } = event.currentTarget;
-    //Checking if we are at the bottom <10> is just an arbitrary buffer threshold 
+    //Checking if we are at the bottom <10> is just an arbitrary buffer threshold
     setIsBottomOfInstructions(scrollHeight - scrollTop <= clientHeight + 10);
   };
 
@@ -114,7 +71,14 @@ export const RecipeBlock = ({ data }) => {
   };
 
   const handleDownArrowClick = () => {
-
+    const lastInstruction =
+      instructionRefs.current[instructionRefs.current.length - 1];
+    if (lastInstruction) {
+      lastInstruction.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+    }
   };
 
   const smAndMbHeight = LHSheight ? `${Number(LHSheight) / 2}px` : null;
@@ -129,16 +93,18 @@ export const RecipeBlock = ({ data }) => {
           {description || 'Default Description'}
         </p>
       </div>
-      
-      <FaChevronCircleDown 
-        onClick={handleDownArrowClick} 
-        className={`absolute top-72 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-white cursor-pointer shadow-md z-10 lg:hidden ${isBottomOfInstructions ? 'hidden' : ''}`} 
+
+      <FaChevronCircleDown
+        onClick={handleDownArrowClick}
+        className={`absolute top-72 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-white cursor-pointer shadow-md z-10 lg:hidden ${
+          isBottomOfInstructions ? 'hidden' : ''
+        }`}
       />
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
           className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl overflow-auto flex flex-col"
-          onScroll={checkIfBottom} 
+          onScroll={checkIfBottom}
           style={{
             height:
               typeof window !== 'undefined' && window.innerWidth >= 1024
@@ -229,12 +195,14 @@ export const CodeToolbar = ({
     <div className="flex items-center ml-4 space-x-4 relative overflow-visible">
       <button
         onClick={onCopy}
-        className={`flex items-center px-2 py-1 bg-gray-800  rounded-md text-sm transition-colors duration-200 space-x-1 relative ${tooltipVisible ? 'text-white bg-gray-700 rounded-md ml-1' : 'hover:bg-gray-700 text-white'}`}
+        className={`flex items-center px-2 py-1 bg-gray-800  rounded-md text-sm transition-colors duration-200 space-x-1 relative ${
+          tooltipVisible
+            ? 'text-white bg-gray-700 rounded-md ml-1'
+            : 'hover:bg-gray-700 text-white'
+        }`}
       >
-        {!tooltipVisible && 
-        <MdOutlineContentCopy className="w-4 h-4" />}
+        {!tooltipVisible && <MdOutlineContentCopy className="w-4 h-4" />}
         <span>{!tooltipVisible ? 'Copy' : 'Copied!'}</span>
-        
       </button>
     </div>
   </div>
@@ -303,3 +271,47 @@ const CodeBlockWithHighlightLines = ({
     </div>
   );
 };
+
+const customHighlightCSS = `
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    color: white;
+    background: #111827; 
+  }
+    
+  pre[class*="language-"] > code[class*="language-"] {
+    position: relative;
+  }
+
+  pre[class*="language-"]{
+    padding: 0.5rem;
+  }
+
+  .line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #9FFCEF; 
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+  }
+
+  .line-highlight {
+    background: rgba(71, 85, 105, 0.25);
+    border: 1px solid rgba(71, 85, 105, 1);
+  }
+
+  .line-numbers .line-numbers-rows {
+    border-right: 1px solid #6B7280;
+  }
+
+  pre[class*="language-"] {
+    padding: 1em;
+    margin: 0 0 0.5em 0; 
+    overflow: auto;
+  }
+
+  pre[class*="language-"] ::selection {
+    background: white; 
+    color: black; 
+  }
+`;
