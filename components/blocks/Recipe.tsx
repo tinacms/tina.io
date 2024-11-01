@@ -73,6 +73,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
   const [clickedInstruction, setClickedInstruction] = useState<number | null>(
     null
   );
+  const [LHSheight, setLHSheight] = useState<string | null>(null);
 
   const rhsRef = useRef<HTMLDivElement>(null);
 
@@ -86,10 +87,12 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     };
   }, [highlightLines]);
 
+  useEffect(() => {
+    setLHSheight(`${rhsRef.current.offsetHeight}`);
+  });
 
   useEffect(() => {
-    const handleScroll = () => {
-    };
+    const handleScroll = () => {};
 
     rhsRef.current?.addEventListener('scroll', handleScroll);
 
@@ -102,7 +105,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     index: number,
     codeLineStart?: number,
     codeLineEnd?: number
-) => {
+  ) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
 
@@ -110,11 +113,10 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     if (rhsRef.current) {
       rhsRef.current.scrollTo({
         top: 24 * codeLineStart - 20,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
-};
-
+  };
 
   return (
     <div className="recipe-block-container mt-20">
@@ -128,8 +130,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
       </div>
       <div className="content-wrapper flex px-10 items-stretch">
         <div
-          
-          className="instructions bg-gray-800 w-1/3 h-full max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-24"
+          className={`instructions bg-gray-800 w-1/3 h-[${LHSheight}px] max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-24`}
         >
           {instruction?.map((inst, idx) => (
             <div
