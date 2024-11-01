@@ -51,25 +51,11 @@ pre[class*="language-"] ::selection {
 }
 `;
 
-interface RecipeBlockProps {
-  data: {
-    title?: string;
-    description?: string;
-    codeblock?: any;
-    instruction?: {
-      header?: string;
-      itemDescription?: string;
-      codeLineStart?: number;
-      codeLineEnd?: number;
-    }[];
-  };
-  index?: number;
-}
 
 export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, instruction } = data;
 
-  const [highlightLines, setHighlightLines] = useState('7-10');
+  const [highlightLines, setHighlightLines] = useState('');
   const [clickedInstruction, setClickedInstruction] = useState<number | null>(
     null
   );
@@ -78,6 +64,17 @@ export const RecipeBlock = ({ data }) => {
 
   const rhsRef = useRef<HTMLDivElement>(null);
   const instructionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    
+    const style = document.createElement('style');
+    style.textContent = customHighlightCSS;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, [highlightLines]);
 
   useEffect(() => {
     setLHSheight(`${rhsRef.current?.offsetHeight}`);
@@ -151,7 +148,7 @@ export const RecipeBlock = ({ data }) => {
                 inst.header || 'Default Header'
               }`}</h3>
               <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                className={`overflow-auto transition-all duration-500 ease-in-out ${
                   clickedInstruction === idx
                     ? 'max-h-40 opacity-100'
                     : 'max-h-0 opacity-0'
@@ -213,7 +210,7 @@ export const CodeToolbar = ({
   onCopy: () => void;
   tooltipVisible: boolean;
 }) => (
-  <div className="code-toolbar bg-gray-800 text-white px-4 py-2 rounded-t-xl text-sm font-semibold flex justify-between items-center">
+  <div className="code-toolbar bg-gray-800 text-white px-4 py-2 rounded-t-xl text-sm font-semibold flex justify-between items-center z-10">
     <span className="font-tuner">{lang || 'Unknown'}</span>
     <div className="flex items-center ml-4 space-x-4 relative">
       <button
@@ -223,11 +220,11 @@ export const CodeToolbar = ({
         <MdOutlineContentCopy className="w-4 h-4" />
         <span>Copy</span>
         {tooltipVisible && (
-          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-black text-xs px-2 py-1 rounded-md">
-            Copied!
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
-          </div>
-        )}
+  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-black text-xs px-2 py-1 rounded-md z-50">
+    Copied!
+    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
+  </div>
+)}
       </button>
     </div>
   </div>
