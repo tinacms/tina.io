@@ -7,7 +7,6 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
 import 'prismjs/plugins/line-highlight/prism-line-highlight';
 
-// Custom CSS to override line highlight color
 const customHighlightCSS = `
   :not(pre) > code[class*="language-"],
   pre[class*="language-"] {
@@ -40,14 +39,12 @@ const customHighlightCSS = `
   border-right: 1px solid #6B7280;
   }
 
-  /* Remove top padding on code */
   pre[class*="language-"] {
     padding: 1em;
     margin: 0 0 0.5em 0; 
     overflow: auto;
 }
 
-/* Sets the background of selected text to white */
 pre[class*="language-"] ::selection {
   background: white; 
   color: black; 
@@ -77,9 +74,11 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     null
   );
 
+  const lhsRef = useRef<HTMLDivElement>(null);
+  const rhsRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     console.log(`Highlighting lines: ${highlightLines}`);
-    // Inject the custom CSS into the document head
     const style = document.createElement('style');
     style.textContent = customHighlightCSS;
     document.head.appendChild(style);
@@ -88,6 +87,21 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
       document.head.removeChild(style);
     };
   }, [highlightLines]);
+
+  useEffect(() => {
+    const setMatchingHeight = () => {
+      if (lhsRef.current && rhsRef.current) {
+        lhsRef.current.style.height = `${rhsRef.current.clientHeight}px`;
+      }
+    };
+
+    setMatchingHeight();
+    window.addEventListener('resize', setMatchingHeight);
+
+    return () => {
+      window.removeEventListener('resize', setMatchingHeight);
+    };
+  }, []);
 
   const handleInstructionClick = (
     index: number,
@@ -104,17 +118,19 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
         <h2 className="font-tuner text-orange-500 text-2xl">
           {title || 'Default Title'}
         </h2>
-        <p className=" font-light py-2 text-base">
+        <p className="font-light py-2 text-base">
           {description || 'Default Description'}
         </p>
       </div>
-      <div className="content-wrapper flex px-10">
-        <div className="instructions w-1/3 max-h-screen rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-24 h-full"
-             style={{ height: '100%' }}>
+      <div className="content-wrapper flex px-10 items-stretch">
+        <div
+          ref={lhsRef}
+          className="instructions bg-gray-800 w-1/3 h-full max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-24"
+        >
           {instruction?.map((inst, idx) => (
             <div
               key={idx}
-              className={`instruction-item cursor-pointer p-4 border-gray-700 bg-gray-800 text-white 
+              className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''} `}
               onClick={() =>
                 handleInstructionClick(
@@ -142,20 +158,25 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
           )) || <p>No instructions available.</p>}
         </div>
 
-        <div className="codeblock bg-gray-900 w-2/3 max-h-50vh overflow-auto rounded-tr-xl rounded-br-xl">
+        <div
+          ref={rhsRef}
+          className="codeblock bg-gray-900 w-2/3 max-h-50vh overflow-auto rounded-tr-xl rounded-br-xl"
+        >
           {codeblock ? (
-            <TinaMarkdown
-              key={highlightLines}
-              content={codeblock}
-              components={{
-                code_block: (props) => (
-                  <CodeBlockWithHighlightLines
-                    {...props}
-                    highlightLines={highlightLines}
-                  />
-                ),
-              }}
-            />
+            <div>
+              <TinaMarkdown
+                key={highlightLines}
+                content={codeblock}
+                components={{
+                  code_block: (props) => (
+                    <CodeBlockWithHighlightLines
+                      {...props}
+                      highlightLines={highlightLines}
+                    />
+                  ),
+                }}
+              />
+            </div>
           ) : (
             <p>No code block available.</p>
           )}
@@ -178,12 +199,10 @@ import { MdOutlineContentCopy } from 'react-icons/md';
 
 const CodeToolbar = ({
   lang,
-
   onCopy,
   tooltipVisible,
 }: {
   lang?: string;
-
   onCopy: () => void;
   tooltipVisible: boolean;
 }) => (
@@ -214,7 +233,7 @@ const CodeBlockWithHighlightLines = ({
   highlightLines,
 }: CodeBlockProps) => {
   const [isMounted, setIsMounted] = useState(false);
-  const [tooltipVisible, setTooltipVisible] = useState(false); // Tooltip visibility state
+  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -235,9 +254,8 @@ const CodeBlockWithHighlightLines = ({
     const codeToCopy = typeof children === 'string' ? children : value;
     navigator.clipboard.writeText(codeToCopy).then(
       () => {
-        // Show tooltip on successful copy
         setTooltipVisible(true);
-        setTimeout(() => setTooltipVisible(false), 1500); // Hide tooltip after 1.5 seconds
+        setTimeout(() => setTooltipVisible(false), 1500);
       },
       (err) => {
         console.error('Failed to copy code:', err);
@@ -252,8 +270,6 @@ const CodeBlockWithHighlightLines = ({
         onCopy={copyToClipboard}
         tooltipVisible={tooltipVisible}
       />
-
-      {/* Code block with conditional wrapping styles */}
       <pre
         className="line-numbers"
         data-line={highlightLines}
