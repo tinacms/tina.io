@@ -66,7 +66,7 @@ interface RecipeBlockProps {
   index?: number;
 }
 
-export const RecipeBlock = ({ data }: RecipeBlockProps) => {
+export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, instruction } = data;
 
   const [highlightLines, setHighlightLines] = useState('7-10');
@@ -74,32 +74,15 @@ export const RecipeBlock = ({ data }: RecipeBlockProps) => {
     null
   );
   const [LHSheight, setLHSheight] = useState<string | null>(null);
+  const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
 
   const rhsRef = useRef<HTMLDivElement>(null);
+  const instructionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = customHighlightCSS;
-    document.head.appendChild(style);
-
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, [highlightLines]);
-
-  useEffect(() => {
-    setLHSheight(`${rhsRef.current.offsetHeight}`);
+    setLHSheight(`${rhsRef.current?.offsetHeight}`);
+    setCodeBlockWidth(`${rhsRef.current?.offsetWidth}`);
   });
-
-  useEffect(() => {
-    const handleScroll = () => {};
-
-    rhsRef.current?.addEventListener('scroll', handleScroll);
-
-    return () => {
-      rhsRef.current?.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   const handleInstructionClick = (
     index: number,
@@ -109,14 +92,25 @@ export const RecipeBlock = ({ data }: RecipeBlockProps) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
 
-    //24px per line, 20 is an arbitrary number to handle the fact that some lines of code take up two lines (or 48px)
+    // Scroll RHS codeblock view
     if (rhsRef.current) {
       rhsRef.current.scrollTo({
         top: 24 * codeLineStart - 20,
         behavior: 'smooth',
       });
     }
+
+    // Scroll to the clicked instruction in mobile view
+    if (window.innerWidth < 1024 && instructionRefs.current[index]) {
+      // 1024px as threshold for md
+      instructionRefs.current[index].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
   };
+
+  const smAndMbHeight = LHSheight ? `${Number(LHSheight) / 2}px` : null;
 
   return (
     <div className="recipe-block-container mt-20">
@@ -128,13 +122,21 @@ export const RecipeBlock = ({ data }: RecipeBlockProps) => {
           {description || 'Default Description'}
         </p>
       </div>
-      <div className="content-wrapper flex px-10 items-stretch">
+      <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className={`instructions bg-gray-800 w-1/3 h-[${LHSheight}px] max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-24`}
+          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl overflow-auto flex flex-col"
+          style={{
+            //I have this inline styling because i couldnt get the height conditions working with tailwind lg: and md: etc
+            height: 
+              typeof window !== 'undefined' && window.innerWidth >= 1024
+                ? `${LHSheight}px`
+                : `${smAndMbHeight}`,
+          }}
         >
           {instruction?.map((inst, idx) => (
             <div
               key={idx}
+              ref={(el) => (instructionRefs.current[idx] = el)}
               className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''} `}
               onClick={() =>
@@ -165,7 +167,7 @@ export const RecipeBlock = ({ data }: RecipeBlockProps) => {
 
         <div
           ref={rhsRef}
-          className="codeblock bg-gray-900 w-2/3 max-h-50vh overflow-auto rounded-tr-xl rounded-br-xl"
+          className="codeblock bg-gray-900 lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl "
         >
           {codeblock ? (
             <div>
