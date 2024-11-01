@@ -41,7 +41,6 @@ export const RecipeBlock = ({ data }) => {
 
   const checkIfBottom = (event: React.UIEvent<HTMLDivElement>) => {
     const { scrollHeight, scrollTop, clientHeight } = event.currentTarget;
-    //Checking if we are at the bottom <10> is just an arbitrary buffer threshold
     setIsBottomOfInstructions(scrollHeight - scrollTop <= clientHeight + 10);
   };
 
@@ -53,7 +52,6 @@ export const RecipeBlock = ({ data }) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
 
-    // Scroll RHS codeblock view
     if (codeblockRef.current) {
       codeblockRef.current.scrollTo({
         top: 24 * codeLineStart - 20,
@@ -61,7 +59,6 @@ export const RecipeBlock = ({ data }) => {
       });
     }
 
-    // Scroll to the clicked instruction in mobile view
     if (window.innerWidth < 1024 && instructionRefs.current[index]) {
       instructionRefs.current[index].scrollIntoView({
         behavior: 'smooth',
@@ -94,13 +91,6 @@ export const RecipeBlock = ({ data }) => {
         </p>
       </div>
 
-      <FaChevronCircleDown
-        onClick={handleDownArrowClick}
-        className={`absolute top-72 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-white cursor-pointer shadow-md z-10 lg:hidden ${
-          isBottomOfInstructions ? 'hidden' : ''
-        }`}
-      />
-
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
           className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl overflow-auto flex flex-col"
@@ -112,6 +102,12 @@ export const RecipeBlock = ({ data }) => {
                 : `${smAndMbHeight}`,
           }}
         >
+          <FaChevronCircleDown
+            onClick={handleDownArrowClick}
+            className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 text-3xl text-red-600 cursor-pointer shadow-md z-50 lg:hidden ${
+              isBottomOfInstructions ? 'hidden' : ''
+            }`}
+          />
           {instruction?.map((inst, idx) => (
             <div
               key={idx}
