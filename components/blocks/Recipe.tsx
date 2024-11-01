@@ -78,7 +78,6 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
   const rhsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(`Highlighting lines: ${highlightLines}`);
     const style = document.createElement('style');
     style.textContent = customHighlightCSS;
     document.head.appendChild(style);
@@ -103,14 +102,34 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+    };
+
+    rhsRef.current?.addEventListener('scroll', handleScroll);
+
+    return () => {
+      rhsRef.current?.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const handleInstructionClick = (
     index: number,
     codeLineStart?: number,
     codeLineEnd?: number
-  ) => {
+) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
-  };
+
+    //24px per line, 20 is an arbitrary number to handle the fact that some lines of code take up two lines (or 48px)
+    if (rhsRef.current) {
+      rhsRef.current.scrollTo({
+        top: 24 * codeLineStart - 20,
+        behavior: 'smooth'
+      });
+    }
+};
+
 
   return (
     <div className="recipe-block-container mt-20">
