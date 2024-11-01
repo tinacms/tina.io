@@ -146,7 +146,7 @@ export const RecipeBlock = ({ data }) => {
 
         <div
           ref={codeblockRef}
-          className="codeblock bg-gray-900 lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl "
+          className="codeblock bg-gray-800 lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl "
         >
           {codeblock ? (
             <div>
