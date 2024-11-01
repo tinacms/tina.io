@@ -210,7 +210,7 @@ export const CodeToolbar = ({
   onCopy: () => void;
   tooltipVisible: boolean;
 }) => (
-  <div className={`code-toolbar bg-gray-800 text-white px-4 py-2 rounded-t-xl text-sm font-semibold flex justify-between items-center `}>
+  <div className={`code-toolbar bg-gray-800 text-white px-4 py-2 lg:rounded-t-xl text-sm font-semibold flex justify-between items-center`}>
     <span className="font-tuner">{lang || 'Unknown'}</span>
     <div className="flex items-center ml-4 space-x-4 relative overflow-visible">
       <button
@@ -266,25 +266,28 @@ const CodeBlockWithHighlightLines = ({
 
   return (
     <div className="codeblock-container">
-      <CodeToolbar
-        lang={lang}
-        onCopy={copyToClipboard}
-        tooltipVisible={tooltipVisible}
-      />
-      <pre
-        className="line-numbers"
-        data-line={highlightLines}
-        style={{
-          overflowX: 'hidden',
-          maxWidth: '100%',
-          whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word',
-        }}
-      >
-        <code className={`language-${lang || 'jsx'}`}>
-          {typeof children === 'string' || children ? children : value}
-        </code>
-      </pre>
-    </div>
+  <div className="sticky top-0 z-50">
+    <CodeToolbar
+      lang={lang}
+      onCopy={copyToClipboard}
+      tooltipVisible={tooltipVisible}
+    />
+  </div>
+  <pre
+    className="line-numbers"
+    data-line={highlightLines}
+    style={{
+      overflowX: 'hidden',
+      maxWidth: '100%',
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-word',
+    }}
+  >
+    <code className={`language-${lang || 'jsx'}`}>
+      {typeof children === 'string' || children ? children : value}
+    </code>
+  </pre>
+</div>
+
   );
 };
