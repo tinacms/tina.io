@@ -63,10 +63,10 @@ interface RecipeBlockProps {
       codeLineEnd?: number;
     }[];
   };
-  index: number;
+  index?: number;
 }
 
-const RecipeBlock = ({ data }: RecipeBlockProps) => {
+export const RecipeBlock = ({ data }: RecipeBlockProps) => {
   const { title, description, codeblock, instruction } = data;
 
   const [highlightLines, setHighlightLines] = useState('7-10');
@@ -202,7 +202,7 @@ interface CodeBlockProps {
 
 import { MdOutlineContentCopy } from 'react-icons/md';
 
-const CodeToolbar = ({
+export const CodeToolbar = ({
   lang,
   onCopy,
   tooltipVisible,
