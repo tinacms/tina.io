@@ -25,6 +25,7 @@ export const compareBoxTemplate: Template = {
           description:
             'The text inside the description will NOT be displayed anywhere, this is just to elaborate on the criteria itself for our own users.',
         },
+
       ],
     },
     {

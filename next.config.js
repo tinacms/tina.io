@@ -34,6 +34,11 @@ const config = {
         port: '',
         pathname: '/forestry-demo/**',
       },
+      {
+        protocol: "https",
+        hostname: "assets.tina.io",
+        port: "",
+      },
     ],
   },
   async rewrites() {
@@ -81,7 +86,6 @@ const config = {
       },
     ]
   },
-  trailingSlash: true,
   exportPathMap: async function () {
     return {}
   },
