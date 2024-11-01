@@ -36,7 +36,7 @@
     },
     {
       "title": "Trusted by",
-      "link": "https://ndcconferences.com",
+      "link": "",
       "items": [
         {
           "name": "Bunny Net",
@@ -48,17 +48,17 @@
           "name": "Unity",
           "link": "/showcase#unity",
           "logo": "/svg/logos/unity.svg",
-          "size": 220
+          "size": 200
         },
         {
           "name": "Protocol Labs",
-          "link": "/showcase#protocol-labs",
+          "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
-          "size": 90
+          "size": 80
         },
         {
           "name": "City of London",
-          "link": "/showcase#city-of-london",
+          "link": "https://www.cityoflondon.gov.uk/",
           "logo": "/svg/logos/cityoflondon.svg",
           "size": 120
         },
@@ -88,7 +88,7 @@
         },
         {
           "name": "NDC Conferences",
-          "link": "https://ndcconferences.com",
+          "link": "/showcase#ndc-conferences",
           "logo": "/img/logos/NDCLogo.png",
           "size": 220
         },

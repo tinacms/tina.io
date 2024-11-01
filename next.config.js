@@ -86,7 +86,6 @@ const config = {
       },
     ]
   },
-  trailingSlash: true,
   exportPathMap: async function () {
     return {}
   },
