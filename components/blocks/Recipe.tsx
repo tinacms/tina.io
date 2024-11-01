@@ -74,7 +74,6 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     null
   );
 
-  const lhsRef = useRef<HTMLDivElement>(null);
   const rhsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -87,20 +86,6 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
     };
   }, [highlightLines]);
 
-  useEffect(() => {
-    const setMatchingHeight = () => {
-      if (lhsRef.current && rhsRef.current) {
-        lhsRef.current.style.height = `${rhsRef.current.clientHeight}px`;
-      }
-    };
-
-    setMatchingHeight();
-    window.addEventListener('resize', setMatchingHeight);
-
-    return () => {
-      window.removeEventListener('resize', setMatchingHeight);
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -143,7 +128,7 @@ const RecipeBlock = ({ data }: RecipeBlockProps) => {
       </div>
       <div className="content-wrapper flex px-10 items-stretch">
         <div
-          ref={lhsRef}
+          
           className="instructions bg-gray-800 w-1/3 h-full max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-bl-xl overflow-hidden flex flex-col sticky top-24"
         >
           {instruction?.map((inst, idx) => (
