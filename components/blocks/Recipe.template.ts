@@ -22,6 +22,11 @@ export const RecipeBlock = {
       label: 'Instruction',
       type: 'object',
       list: true,
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.header }
+        },
+      },
       fields: [
         {
           name: 'header',
@@ -37,11 +42,13 @@ export const RecipeBlock = {
           name: 'codeLineStart',
           label: 'Code Line Start',
           type: 'number',
+          description: 'Please note that if you enter negative values, it will highlight from 0 to your end number'
         },
         {
           name: 'codeLineEnd',
           label: 'Code Line End',
-          type: 'number'
+          type: 'number',
+          description: 'Please note that highlighting will not work if your end number is > than your start number'
         }
       ],
     },
