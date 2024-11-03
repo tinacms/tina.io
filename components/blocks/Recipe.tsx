@@ -101,17 +101,15 @@ export const RecipeBlock = ({ data }) => {
                 : `${smAndMbHeight}`,
           }}
         >
-          <div
-            className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 pointer-events-none ${
-              isBottomOfInstructions ? 'hidden' : ''
-            }`}
-          ></div>
-          <FaChevronCircleDown
-            onClick={handleDownArrowClick}
-            className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md ${
-              isBottomOfInstructions ? 'hidden' : ''
-            }`}
-          />
+          <div className={`${isBottomOfInstructions ? 'hidden' : ''}`}>
+            <div
+              className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 pointer-events-none `}
+            ></div>
+            <FaChevronCircleDown
+              onClick={handleDownArrowClick}
+              className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md`}
+            />
+          </div>
 
           <div className="overflow-auto" onScroll={checkIfBottom}>
             {instruction?.map((inst, idx) => (
