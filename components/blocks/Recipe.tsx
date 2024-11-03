@@ -93,8 +93,7 @@ export const RecipeBlock = ({ data }) => {
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl overflow-auto flex flex-col"
-          onScroll={checkIfBottom}
+          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
           style={{
             height:
               typeof window !== 'undefined' && window.innerWidth >= 1024
@@ -102,42 +101,50 @@ export const RecipeBlock = ({ data }) => {
                 : `${smAndMbHeight}`,
           }}
         >
+          <div
+            className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 pointer-events-none ${
+              isBottomOfInstructions ? 'hidden' : ''
+            }`}
+          ></div>
           <FaChevronCircleDown
             onClick={handleDownArrowClick}
-            className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 text-3xl text-red-600 cursor-pointer shadow-md z-50 lg:hidden ${
+            className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md ${
               isBottomOfInstructions ? 'hidden' : ''
             }`}
           />
-          {instruction?.map((inst, idx) => (
-            <div
-              key={idx}
-              ref={(el) => (instructionRefs.current[idx] = el)}
-              className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
-                ${clickedInstruction === idx ? 'bg-slate-600' : ''} `}
-              onClick={() =>
-                handleInstructionClick(
-                  idx,
-                  inst.codeLineStart,
-                  inst.codeLineEnd
-                )
-              }
-            >
-              <h5 className="font-tuner">{`${idx + 1}. ${
-                inst.header || 'Default Header'
-              }`}</h5>
+
+          <div className="overflow-auto" onScroll={checkIfBottom}>
+            {instruction?.map((inst, idx) => (
               <div
-                className={`overflow-auto transition-all duration-500 ease-in-out ${
-                  clickedInstruction === idx
-                    ? 'max-h-full opacity-100'
-                    : 'max-h-0 opacity-0'
-                }`}
+                key={idx}
+                ref={(el) => (instructionRefs.current[idx] = el)}
+                className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
+                ${clickedInstruction === idx ? 'bg-slate-600' : ''} `}
+                onClick={() =>
+                  handleInstructionClick(
+                    idx,
+                    inst.codeLineStart,
+                    inst.codeLineEnd
+                  )
+                }
               >
-                <span className="mt-2">
-                  {inst.itemDescription || 'Default Item Description'}
-                </span>
+                <h5 className="font-tuner">{`${idx + 1}. ${
+                  inst.header || 'Default Header'
+                }`}</h5>
+                <div
+                  className={`overflow-auto transition-all duration-500 ease-in-out ${
+                    clickedInstruction === idx
+                      ? 'max-h-full opacity-100'
+                      : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <span className="mt-2">
+                    {inst.itemDescription || 'Default Item Description'}
+                  </span>
+                </div>
               </div>
-            </div>
-          )) || <p>No instructions available.</p>}
+            )) || <p>No instructions available.</p>}
+          </div>
         </div>
 
         <div
