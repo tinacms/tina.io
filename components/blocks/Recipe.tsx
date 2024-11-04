@@ -301,7 +301,6 @@ const customHighlightCSS = `
 
   .line-highlight {
     background: rgba(71, 85, 105, 0.25);
-    border: 1px solid rgba(71, 85, 105, 1);
   }
 
   .line-numbers .line-numbers-rows {
