@@ -248,7 +248,7 @@ const CodeBlockWithHighlightLines = ({
 
   return (
     <div className="codeblock-container">
-      <div className="sticky top-0 z-50">
+      <div className="sticky top-0 z-30">
         <CodeToolbar
           lang={lang}
           onCopy={copyToClipboard}
