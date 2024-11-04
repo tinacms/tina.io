@@ -1,13 +1,13 @@
-import { FaChevronCircleDown } from 'react-icons/fa';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import React, { useEffect, useState, useRef } from 'react';
-import Prism from 'prismjs';
 import 'prism-themes/themes/prism-night-owl.css';
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
+import Prism from 'prismjs';
 import 'prismjs/plugins/line-highlight/prism-line-highlight';
+import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
+import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+import React, { useEffect, useRef, useState } from 'react';
+import { FaChevronCircleDown } from 'react-icons/fa';
 import { MdOutlineContentCopy } from 'react-icons/md';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, instruction } = data;
@@ -93,7 +93,7 @@ export const RecipeBlock = ({ data }) => {
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
+          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-br-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
           style={{
             height:
               typeof window !== 'undefined' && window.innerWidth >= 1024
@@ -103,7 +103,7 @@ export const RecipeBlock = ({ data }) => {
         >
           <div className={`${isBottomOfInstructions ? 'hidden' : ''}`}>
             <div
-              className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 pointer-events-none `}
+              className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 lg:rounded-bl-xl pointer-events-none `}
             ></div>
             <FaChevronCircleDown
               onClick={handleDownArrowClick}
@@ -111,7 +111,10 @@ export const RecipeBlock = ({ data }) => {
             />
           </div>
 
-          <div className="overflow-auto" onScroll={checkIfBottom}>
+          <div
+            className="overflow-auto rounded-tl-xl rounded-bl-xl rounded-tr-xl lg:rounded-tr-none"
+            onScroll={checkIfBottom}
+          >
             {instruction?.map((inst, idx) => (
               <div
                 key={idx}
