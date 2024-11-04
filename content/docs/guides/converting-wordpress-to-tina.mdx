@@ -1,18 +1,18 @@
 ---
 title: Converting WordPress to Tina
-last_edited: '2024-11-01T06:49:00.208Z'
+last_edited: '2024-11-04T01:27:15.982Z'
 next: ''
 previous: ''
 ---
 
 ## Introduction
 
-This guide is a walkthrough using a **WordPress to Markdown converter**, which is recommended for most use cases.
+This guide is a walkthrough using a **WordPress to Markdown converter**, which is recommended for most use cases where you want to migrate your content from WordPress to Tina.
 
 Other conversion options that are not covered in this guide include:
 
-* Rest API to JSON - best for extracting the pure html for pages or posts
-* Using the WPGraphQL plugin - best for cases where you want to extract specific pages or posts
+* Using the WordPress Rest API - best for extracting the pure html for page or post content in JSON format
+* Using the WPGraphQL plugin - best for cases where you want to query and extract specific data and content
 
 ## Prerequisites
 
@@ -21,44 +21,110 @@ Other conversion options that are not covered in this guide include:
 
 ## Getting Started
 
-1. Export your Wordpress content by going to [https://wordpress.com/export/](https://wordpress.com/export/) and select **Export All**
+### Converting WordPress to Markdown
+
+1\. Export your Wordpress content by going to [https://wordpress.com/export/](https://wordpress.com/export/) and select **Export All**
 
 Note: Name it export.xml to make it easier for you in the next step
 
-Begin by [exporting your WordPress content](https://wordpress.com/export) and **Export All**, save it as export.xml.
-
-Next, we'll be using [wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to convert your WordPress content into Markdown.
-
-From the directory that you saved export.xml, run:
+2\. In the folder where **export.xml** is, run:
 
 ```powershell
 npx wordpress-export-to-markdown --post-folders=false --include-other-types=true
 ```
 
-Use the defaults for the other prompts, this will group our posts together and also include pages in the output.
+3\. When prompted, make sure the filename matches the filename you used, and use the default values for the other prompts.
 
-## Migrating your content
+This uses [wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to convert your WordPress content into Markdown, and groups posts and pages as output.
 
-Now you have your pages and posts in Markdown format, we'll have to make some small changes to work with Tina.
-
-### Migrating images
-
-In the output folder where your posts are, drag the image folder to your Tina app's `public/uploads` folder.
-
-You can also set up alternative hosting.
-
-### Migrating Posts
-
-Drag all the Markdown files to your Tina app's `content/posts` folder, now your posts have been migrated to Tina!
-
-*(Optional) -* If you want to take advantage of what MDX files offer, you can convert them easily:
+4\. Navigate to your output's posts folder `output/post`, and run:
 
 ```powershell
 ren * *.mdx
 ```
 
-### Migrating Pages
+Which will convert your files from Markdown to MDX.
+
+### Import data to TinaCMS
+
+#### Migrating images
+
+1\. In the output folder, drag the image folders `output/post/images` and `output/page/images` to your Tina app's `public/uploads` folder.
+
+Note 1: You can rename the folder before dragging to prevent duplicate image names being replaced
+
+Note 2: You can also set up alternative hosting.
+
+#### Migrating Posts
+
+1\. Drag all the MDX files in `output/post` to your Tina app's `content/posts` folder, now your posts have been migrated to Tina!
+
+#### Migrating Pages
 
 <WarningCallout body="If you are having trouble with this step, feel free to contact a developer for assistance in the chat, or through one of our community channels." />
 
-This step is more complicated, feel free to [contact a developer](https://tina.io/docs/support) for assistance.
+1\. Create a new folder in your Tina app's `content` folder named `wp-pages`.
+
+2\. Create a new file in your Tina app's `tina/collection` folder named `wp-page.ts` and use the template below, you can change this later to fit your page's schemas better.
+
+```javascript
+import type { Collection } from "tinacms";
+
+const WpPage: Collection = {
+  label: "Migrated WordPress Pages",
+  name: "wppage",
+  path: "content/wp-pages",
+  format: "md",
+  fields: [
+    {
+      type: "string",
+      label: "Title",
+      name: "title",
+      isTitle: true,
+      required: true,
+    },
+    {
+      type: "rich-text",
+      label: "Body",
+      name: "_body",
+      isBody: true,
+    },
+  ],
+};
+
+export default WpPage;
+
+```
+
+3\. Import your created WpPage to the [schema](https://tina.io/docs/reference/schema) in tina/config.tsx
+
+```javascript
+
+import WpPage from "./collection/wp-page";
+...
+
+schema: {
+  collections: [Page, Post, ..., WpPage],
+},
+```
+
+### View and Edit your migrated content
+
+1. At the root of your Tina app, run:
+
+```powershell
+npm run dev
+```
+
+2\. Go to localhost:3000/admin
+
+3\. Go to the Migrated WordPress Pages and Blog Posts collections, then to the Media Manager.
+
+3. View and edit your migrated posts, pages and images!
+
+## Next Steps
+
+* Adding a coverImage field to your post schema to read the image
+* Update the image links in the Markdown and MDX files to match how Tina uses them, uploads/image.png
+* Making changes to the themes and any missing features from the exporter
+* Take advantage of [npm packages](https://www.npmjs.com/) to replace WordPress plugins functionalities
