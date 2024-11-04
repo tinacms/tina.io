@@ -1,6 +1,6 @@
 ---
 title: Migrating WordPress Content
-last_edited: '2024-11-04T03:21:23.950Z'
+last_edited: '2024-11-04T04:31:04.917Z'
 next: ''
 previous: ''
 ---
@@ -27,17 +27,31 @@ Other conversion options that are not covered in this guide include:
 
 > 💡 **Note:** Name it **export.xml **to make it easier for you in the next step
 
-2\. In the folder where **export.xml** is, run:
+Use [wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to convert your WordPress content into Markdown. 
+
+2. In the folder where you've saved your exported file **export.xml**, run:
 
 ```powershell
 npx wordpress-export-to-markdown --post-folders=false --include-other-types=true
 ```
 
-3\. When prompted, make sure the filename matches the filename you used, and use the default values for the other prompts.
+3\. When prompted, make sure the filename is correct, and use the default values for the other prompts.
 
-> This uses [wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to convert your WordPress content into Markdown, and groups posts and pages as output.
+This creates an `output` folder that groups your posts and pages into separate folders.
 
-4\. Navigate to your output's posts folder `output/post`, and run:
+### Import data to TinaCMS
+
+#### Migrating images to TinaCloud
+
+1\. In the output folder, drag the image folders `output/post/images` and `output/page/images` to your Tina app's `public/uploads` folder.
+
+> 💡 **Note 1:** You can rename the folder before dragging to prevent duplicate image names being replaced
+
+> 💡 **Note 2:** You can also set up alternative hosting with your preferred media manager.
+
+#### Migrating Posts
+
+1\. Navigate to your output's posts folder `output/post`, and run:
 
 ```powershell
 ren * *.mdx
@@ -45,19 +59,7 @@ ren * *.mdx
 
 Which will convert your files from Markdown to MDX.
 
-### Import data to TinaCMS
-
-#### Migrating images
-
-1\. In the output folder, drag the image folders `output/post/images` and `output/page/images` to your Tina app's `public/uploads` folder.
-
-> 💡 **Note 1:** You can rename the folder before dragging to prevent duplicate image names being replaced
-
-> 💡 **Note 2:** You can also set up alternative hosting.
-
-#### Migrating Posts
-
-1\. Drag all the MDX files in `output/post` to your Tina app's `content/posts` folder, now your posts have been migrated to Tina!
+2. Drag all the MDX files in `output/post` to your Tina app's `content/posts` folder, now your posts have been migrated to Tina!
 
 #### Migrating Pages
 
