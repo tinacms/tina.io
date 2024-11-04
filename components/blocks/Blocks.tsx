@@ -85,7 +85,7 @@ export const Blocks = ({
         );
       case 'PageBlocksRecipeBlock':
         return (
-          <RecipeBlock data={block} index={index} />
+          <RecipeBlock data={block}/>
         )
       case 'PageBlocksShowcase':
         return (
