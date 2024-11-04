@@ -73,7 +73,7 @@ export const RecipeBlock = ({ data }) => {
     if (lastInstruction) {
       lastInstruction.scrollIntoView({
         behavior: 'smooth',
-        block: 'end',
+        block: 'nearest',
       });
     }
   };
