@@ -180,20 +180,20 @@
       "sectionTitle": "Be Enterprise Ready",
       "items": [
         {
-          "headline": "Single Sign On",
-          "text": "Compatible with the most popular IdPs like Okta and support for both SAML and OIDC."
+          "headline": "Dedicated Support for Enterprise",
+          "text": "Both you and your developers can rest easy with a dedicated account manager and developer on your side. Our Enterprise Support offers personalized solutions and rapid response, ensuring seamless integration and support. \n"
         },
         {
-          "headline": "SOC 2 and GDPR",
-          "text": "Actively pursuing SOC 2 certification and GDPR compliance."
+          "headline": "Scalable Content Management",
+          "text": "Whether you're managing a single site or a global network, TinaCMS scales with you. Built on a high-performance foundation, it ensures smooth content delivery, empowering your growth."
         },
         {
-          "headline": "Uptime SLAs",
-          "text": "99.9% server uptime with swift communications if something impacts your sending integration."
+          "headline": "Collaborative Editing with Pull Request Workflow",
+          "text": "Empower your team with seamless collaboration and a structured Pull Request workflow. Users can submit content changes that initiate a Pull Request in GitHub, so team members can review, give feedback, and approve updates before they’re published, ensuring quality and collaboration.\n"
         },
         {
-          "headline": "Simplified Development & Maintenance",
-          "text": "Web teams become efficient when using modern frameworks and TinaCMS. "
+          "headline": "Flexibility Across Frameworks",
+          "text": "TinaCMS adapts to your tech stack with no compromises. Its flexible, high-performance capabilities support your framework, allowing you to scale with the tools you know and trust."
         }
       ],
       "_template": "featureGrid"
