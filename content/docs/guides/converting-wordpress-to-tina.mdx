@@ -1,6 +1,6 @@
 ---
-title: Converting WordPress to Tina
-last_edited: '2024-11-04T01:28:18.617Z'
+title: Migrating WordPress Content
+last_edited: '2024-11-04T03:21:23.950Z'
 next: ''
 previous: ''
 ---
@@ -25,7 +25,7 @@ Other conversion options that are not covered in this guide include:
 
 1\. Export your Wordpress content by going to [https://wordpress.com/export/](https://wordpress.com/export/) and select **Export All**
 
-Note: Name it export.xml to make it easier for you in the next step
+> 💡 **Note:** Name it **export.xml **to make it easier for you in the next step
 
 2\. In the folder where **export.xml** is, run:
 
@@ -35,7 +35,7 @@ npx wordpress-export-to-markdown --post-folders=false --include-other-types=true
 
 3\. When prompted, make sure the filename matches the filename you used, and use the default values for the other prompts.
 
-This uses [wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to convert your WordPress content into Markdown, and groups posts and pages as output.
+> This uses [wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to convert your WordPress content into Markdown, and groups posts and pages as output.
 
 4\. Navigate to your output's posts folder `output/post`, and run:
 
@@ -51,9 +51,9 @@ Which will convert your files from Markdown to MDX.
 
 1\. In the output folder, drag the image folders `output/post/images` and `output/page/images` to your Tina app's `public/uploads` folder.
 
-Note 1: You can rename the folder before dragging to prevent duplicate image names being replaced
+> 💡 **Note 1:** You can rename the folder before dragging to prevent duplicate image names being replaced
 
-Note 2: You can also set up alternative hosting.
+> 💡 **Note 2:** You can also set up alternative hosting.
 
 #### Migrating Posts
 
@@ -96,7 +96,7 @@ export default WpPage;
 
 ```
 
-3\. Import your created WpPage to the [schema](https://tina.io/docs/reference/schema) in tina/config.tsx
+3\. Import your created collection to the [schema](https://tina.io/docs/reference/schema) in tina/config.tsx
 
 ```javascript
 
@@ -110,17 +110,15 @@ schema: {
 
 ### View and Edit your migrated content
 
-1. At the root of your Tina app, run:
+1\. At the root of your Tina app, run:
 
 ```powershell
 npm run dev
 ```
 
-2\. Go to localhost:3000/admin
+2\. Go to `localhost:3000/admin`
 
-3\. Go to the Migrated WordPress Pages and Blog Posts collections, then to the Media Manager.
-
-4. View and edit your migrated posts, pages and images!
+3\. Go to the Migrated WordPress Pages and Blog Posts collections, then to the Media Manager. You can now view and edit your migrated posts, pages and images!
 
 ## Next Steps
 
