@@ -22,7 +22,6 @@ const CarouselItem = ({
 
   const commonStyles =
     'transition-all delay-[50] duration-500 hover:scale-105 hover:z-20';
-  
 
   const actionsArray = button ? [button] : [];
 
@@ -36,11 +35,8 @@ const CarouselItem = ({
 
   return (
     <div
-      className={`${
-        isHovered && !isSmallOrMediumScreen
-          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
-          : nonHoveredStyles
-      } ${commonStyles}`}
+      className={`
+           'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl ${commonStyles}`}
       onClick={() => onClick(index)}
       style={{ textDecoration: 'none', overflow: 'visible' }}
     >
@@ -81,7 +77,9 @@ const CarouselItem = ({
           }`}
         >
           {textDisplayCondition && (
-            <p className={`md:pl-12 lg:pl-13 pl-9 text-lg font-medium slide-up`}>
+            <p
+              className={`md:pl-12 lg:pl-13 pl-9 text-lg font-medium slide-up`}
+            >
               {text}
             </p>
           )}
