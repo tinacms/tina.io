@@ -22,7 +22,7 @@ const CarouselItem = ({
 
   const commonStyles =
     'transition-all delay-[50] duration-500 hover:scale-105 hover:z-20';
-  const nonHoveredStyles = '';
+  
 
   const actionsArray = button ? [button] : [];
 
