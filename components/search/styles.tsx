@@ -184,17 +184,23 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     cursor: pointer;
     text-decoration: underline rgba(0, 0, 0, 0.3);
     transition: all 185ms ease-out;
+    color: var(--color-orange);
 
     &:hover,
     &:focus {
       opacity: 1;
       color: var(--color-orange);
       text-decoration-color: var(--color-orange);
+      
     }
   }
-  a {
-    color: var(--color-orange);
-  }
+a {
+  color: var(--color-blue);
+}
+
+a:hover {
+  color: var(--color-orange);
+}
 `;
 
 

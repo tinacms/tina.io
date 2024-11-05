@@ -157,17 +157,6 @@ const NavLevel = ({
             )}
           </NavTitle>
         )}
-        {!childSelected && selected && level > 0 && (
-          <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"
-            style={{
-              background: "url('/svg/hr.svg')",
-              backgroundPosition: 'right',
-              backgroundSize: 'auto 100%',
-              backgroundRepeat: 'no-repeat',
-            }}
-          ></div>
-        )}
       </NavLabelContainer>
       {categoryData.items && (
         <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>

@@ -1,6 +1,6 @@
 ---
 title: FAQ
-last_edited: '2024-07-31T14:00:00.000Z'
+last_edited: '2024-10-09T00:48:59.795Z'
 next: ''
 previous: ''
 ---
@@ -17,7 +17,7 @@ For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
 ## What versions of Node are supported?
 
-TinaCMS supports the latest LTS version of Node. We currently support v18, v20, and v22 of Node.
+TinaCMS supports the latest LTS version of Node. We currently support v18, v20, and v22 of Node with NPM, PNPM, and Yarn.
 
 ## What is Tina's tech stack?
 
@@ -138,6 +138,14 @@ This error means that the TinaCMS admin HTML file failed to load the JavaScript 
 
 When you run `tinacms dev` locally, Tina will generate a development admin/index.html file, which loads its assets from localhost. For production, this file should be built in CI using `tinacms build`. If a developer manually removes the admin/index.html file from their `.gitignore`, they may run into this issue.
 
+### Your site is served on a different base path
+
+If your site is served at a sub-directory, ensure that your `build.basePath` is [configured appropriately](/docs/reference/config/#definition)
+
+<Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
+
+**Video: FAQ - Setting a base path for TinaCMS (3min)**
+
 ## Common TinaCloud Errors
 
 ### How do I resolve the `Unable to find record 'tina/__generated__/_graphql.json'` error?
@@ -181,7 +189,7 @@ Error: Unable to fetch, errors:
 
 <Youtube embedSrc=" https://www.youtube.com/embed/MTIJotdIG9E?si=8mcaNAqogQRwL678" />
 
-**Video: Bypassing GitHub branch protection with TinaCMS (3min)**
+**Video: FAQ - Bypassing GitHub branch protection with TinaCMS (3min)**
 
 Generally this happens when there is branch protection on your main branch and TinaCloud is unable to bypass it. Until July 2024, the TinaCloud GitHub app had admin rights to repositories which allowed it to bypass these rules for most repositories.
 
@@ -197,7 +205,7 @@ The current branch that Tina is using is invalid or undefined. Double check that
 
 You can view the branches that have been indexed by TinaCloud by visiting `https://app.tina.io/projects/<your-project-id>/configuration`.
 
-![Indexed Branches](https://res.cloudinary.com/forestry-demo/image/upload/v1673277689/tina-io/docs/tina-cloud/Screen_Shot_2023-01-09_at_11.20.46_AM.png)
+![Indexed Branches](/img/docs/tina-cloud/branch-status.png)
 
 ### How do I resolve `tina directory not pushed to git` errors?
 
@@ -223,12 +231,12 @@ Double check you aren't trying to access a document that doesn't exist.
 
 ## Vercel Deployment Issues
 
-### Common issues when deploying starter templates 
+### Common issues when deploying starter templates
 
 #### Popup blocker prevents Vercel from installing their GitHub app
 
 After choosing which starter template to deploy, and being redirected to Vercel - a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened. ".
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1727309107/docs/vercel-popup-blocked_ogt6fr.png)
+![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)
 
 To fix, check your browser's address bar for blocked popups, allow them, and retry.

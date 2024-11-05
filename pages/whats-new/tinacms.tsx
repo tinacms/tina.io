@@ -4,6 +4,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import Link from 'next/link';
 import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';
+import { NextSeo } from 'next-seo';
 
 export const getStaticProps = async () => {
   const { data: connectionData } =
@@ -25,7 +26,11 @@ export const getStaticProps = async () => {
 const Tinacms = ({ items }) => {
   return (
     <Layout>
-      <div className="p-6 py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
+      <NextSeo
+      title="Latest TinaCMS Updates & Patch Notes | What's New"
+      description="Discover the latest updates and new features in TinaCMS. Stay up-to-date with version releases and changelog information."
+      />
+      <div className="p-6 py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose md:mx-auto">
         <h1 className="text-center justify-center font-tuner text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
           What's new with TinaCMS
         </h1>

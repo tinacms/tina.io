@@ -45,5 +45,5 @@ export const modalButtonTemplate = {
       size: 'medium',
     },
   },
-  fields: modalButtonTemplateFields,
+  fields: modalButtonTemplateFields, 
 };

@@ -23,8 +23,18 @@ export const cardTemplate: Template = {
     },
     {
       name: 'price',
-      label: 'Price',
+      label: 'Monthly Price',
       type: 'string',
+    },
+    {
+      name: 'annualPrice',
+      label: 'Annual Price',
+      type: 'string'
+    },
+    {
+      name: 'annualDescription',
+      label: 'Annual Description',
+      type: 'string'
     },
     {
       name: 'interval',
@@ -113,6 +123,18 @@ export const pricingTemplate: Template = {
       name: 'intro',
       label: 'Intro Text',
       type: 'rich-text',
+    },
+    {
+      name: 'pillSwitchVisibileText',
+      label: 'Pill Switch Visible Text',
+      type: 'rich-text',
+      description: 'this is the text displayed regardless of the switch'
+    },
+    {
+      name: 'pillSwitchToggleText',
+      label: 'Pill Switch Toggle Text',
+      type: 'rich-text',
+      description: 'this is the text displayed depending on the toggle'
     },
     {
       name: 'plans',

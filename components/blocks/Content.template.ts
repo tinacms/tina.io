@@ -1,10 +1,10 @@
-import { TinaTemplate } from 'tinacms'
+import { Template } from 'tinacms';
 
-import { newsletterTemplate } from './Newsletter.template'
-import { actionsButtonTemplate } from './ActionsButton.template'
-import { socialTemplate } from './Social.template'
+import { actionsButtonTemplate } from './ActionsButton.template';
+import { newsletterTemplate } from './Newsletter.template';
+import { socialTemplate } from './Social.template';
 
-export const contentTemplate: TinaTemplate = {
+export const contentTemplate: Template = {
   label: 'Content',
   name: 'content',
   ui: {
@@ -74,4 +74,4 @@ export const contentTemplate: TinaTemplate = {
       ],
     },
   ],
-}
+};

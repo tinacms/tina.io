@@ -392,6 +392,17 @@
               "_template": "item"
             },
             {
+              "title": "Gatsby",
+              "items": [
+                {
+                  "title": "Migrating an existing Gatsby blog to TinaCMS",
+                  "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
               "title": "NextJS",
               "items": [
                 {

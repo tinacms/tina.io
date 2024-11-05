@@ -184,14 +184,14 @@ const Video = ({ src }) => {
         loop
         muted
         playsInline
-        poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0,q_70,h_410/${src}.jpg`}
+        poster={`${src}`}
       >
         <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.webm`}
+          src={`${src}`}
           type="video/webm"
         />
         <source
-          src={`https://res.cloudinary.com/forestry-demo/video/upload/q_90,h_410/${src}.mp4`}
+          src={`${src}`}
           type="video/mp4"
         />
       </video>

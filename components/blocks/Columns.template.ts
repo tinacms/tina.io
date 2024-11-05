@@ -1,9 +1,9 @@
-import type { TinaTemplate } from 'tinacms'
+import type { Template } from 'tinacms'
 import { actionsButtonTemplate } from './ActionsButton.template'
-import { socialTemplate } from './Social.template'
 import { newsletterTemplate } from './Newsletter.template'
+import { socialTemplate } from './Social.template'
 
-export const columnsTemplate: TinaTemplate = {
+export const columnsTemplate: Template = {
   label: 'Columns',
   name: 'columns',
   ui: {
