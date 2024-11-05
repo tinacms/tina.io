@@ -22,7 +22,7 @@ const CarouselItem = ({
 
   const commonStyles =
     'transition-all delay-[50] duration-500 hover:scale-105 hover:z-20';
-  const nonHoveredStyles = 'pl-4';
+  const nonHoveredStyles = '';
 
   const actionsArray = button ? [button] : [];
 
@@ -63,7 +63,7 @@ const CarouselItem = ({
           )}
           {headline && (
             <h3
-              className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-4 ${
+              className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-3 ${
                 isHovered && !isSmallOrMediumScreen
                   ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
                   : 'text-black lg:text-xl'
@@ -81,12 +81,12 @@ const CarouselItem = ({
           }`}
         >
           {textDisplayCondition && (
-            <p className={`md:pl-12 lg:pl-9 text-lg font-medium slide-up`}>
+            <p className={`md:pl-12 lg:pl-13 pl-9 text-lg font-medium slide-up`}>
               {text}
             </p>
           )}
           {buttonDisplayCondition && (
-            <div className={`md:pl-6 lg:pl-7 slide-up`}>
+            <div className={`md:pl-6 lg:pl-6 pl-3 slide-up flex justify-start`}>
               <Actions items={actionsArray} />
             </div>
           )}
