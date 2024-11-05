@@ -6,6 +6,10 @@ export const roadmapGridTemplate: Template = {
   name: 'roadmapGrid',
   ui: {
     previewSrc: '/img/blocks/roadmap.png',
+    itemProps: (item) => ({
+      label: item.headline,
+      key: item.id,
+    }),
   },
   fields: [
     { name: 'headline', label: 'Headline', type: 'string' },
