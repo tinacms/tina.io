@@ -1,0 +1,47 @@
+{
+  "blocks": [
+    {
+      "headline": "TinaCMS + Gatsby",
+      "text": "Utilise the Static Site Generation features of Gatsby with the flexibility of TinaCMS.",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "align": "left"
+      },
+      "content": "## Why We Like Gatsby\n\nGatsby is a JAMstack style static site generator – like Tina it's tied to React.\n\nIt's known for being well optimized for static data with pre-fetching, server side rendering and other features built-in.\n\nThis makes it a common pairing with Headless CMS tools such as Tina. 🦙\n\nIt also has a rich ecosystem of plug-ins available.\n\n## Gatsby + Tina\n\nTina works best with [NextJS](https://tina.io/nextjs-cms), but if you have an existing Gatsby project or want to take advantage of Gatsby's plug-in library, Tina might still be a good fit.\n\nWe have guides on [getting started with Gatsby](https://tina.io/docs/frameworks/gatsby), and also on configuring [an existing Gatsby project to work with Tina](https://tina.io/docs/guides/converting-gatsby-to-tina).\n\n## Visual Editing with Gatsby + TinaCMS\n\n\\<TODO – needs some concensus from Hugo + Gilles>\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Database Free",
+          "text": "Tina uses a \"Datalayer\" that makes content retrieval efficient (which can be self-hosted!). Behind that, the ultimate source of truth for your content is a familiar one – a GitHub repository that you have total control over."
+        },
+        {
+          "headline": "Customizable and Extendable",
+          "text": "TinaCMS allows you to create custom field widgets, add custom validation to fields, and create workflows outside of TinaCMS itself, leveraging Git-based content."
+        },
+        {
+          "headline": "Open Source Frontend",
+          "text": "TinaCMS's open-source frontend means greater flexibility and customization for your projects. Benefit from regular updates and a thriving community.",
+          "url": "/"
+        },
+        {
+          "headline": "Static Routing",
+          "text": "Whether you're serving your content statically or dynamically, you can configure a Gatsby + TinaCMS project to tailor to your needs."
+        },
+        {
+          "headline": "MDX Support",
+          "text": "With TinaCMS, you can register your MDX components and provide a UI for them.\n\nWe call this \"Block Based Editing\" – a similar approach to other mainline CMS tools."
+        },
+        {
+          "headline": "Visual Editing",
+          "text": "Experience the ease of TinaCMS's visual editing features, designed to make content management more intuitive and efficient."
+        }
+      ],
+      "_template": "featureGrid"
+    }
+  ]
+}

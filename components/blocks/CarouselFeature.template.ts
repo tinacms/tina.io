@@ -1,12 +1,12 @@
 import { wrapFieldsWithMeta, type Template, type TinaField } from 'tinacms';
-import IconSelector from './IconSelector';
 import { actionsButtonTemplateFields } from './ActionsButton.template';
+import IconSelector from './IconSelector';
 
 export const carouselFeatureTemplate: Template = {
   label: 'Carousel Feature',
   name: 'carouselFeature',
   ui: {
-    previewSrc: '/img/blocks/feature-grid.png',
+    previewSrc: '/img/blocks/vertical-carousel.png',
   },
   fields: [
     {
