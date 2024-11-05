@@ -43,7 +43,7 @@
         {
           "headline": "Expanding framework support",
           "status": "Under consideration",
-          "content": "",
+          "content": "TinaCMS primarily supports Next.js, and has limited support for other frameworks such as Astro, Hugo, Qwick, and Gatsby.\\\n\\\nShould we add full support for one of these frameworks or focus on making Next.js support even better?\n",
           "actions": [
             {
               "label": "Vote on the GitHub Discussion",
