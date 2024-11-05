@@ -5,6 +5,7 @@ consumes:
   - file: /packages/@tinacms/fields/src/ImageUpload/ImageUpload.tsx
     details: References the image field and upload config
 title: Image Field
+last_edited: '2024-11-05T05:31:20.520Z'
 next: ''
 previous: ''
 ---
@@ -18,15 +19,10 @@ The `image` field is used for content values that point to an image used on the 
 ## Definition
 
 ```typescript
-interface ImageConfig {
+interface ImageProps {
   component: 'image'
-  name: string
-  label?: string
-  description?: string
   clearable?: boolean
-  parse(media: Media): string
-  previewSrc(formValues: any)?: string
-  uploadDir(formValues: any)?: string
+  uploadDir?(formValues: any): string
 }
 ```
 
@@ -46,89 +42,3 @@ interface ImageConfig {
 ***
 
 > This interfaces only shows the keys unique to the image field. Visit the [Field Config](https://tina.io/docs/extending-tina/custom-field-components/#default-field-plugins) docs for a complete list of options.
-
-## Examples
-
-**Next.js**
-
-Below is an example of an `image` field defined in a Next.js project.
-
-```jsx
-const formOptions = {
-  fields: [
-    {
-      label: 'Hero Image',
-      name: 'frontmatter.hero_image',
-      component: 'image',
-      // Generate the frontmatter value based on the filename
-      parse: (media) => `/static/${media.filename}`,
-
-      // Decide the file upload directory for the post
-      uploadDir: () => '/public/static/',
-
-      // Generate the src attribute for the preview image.
-      previewSrc: (fullSrc) => fullSrc.replace('/public', ''),
-    },
-  ],
-  //...
-}
-```
-
-**Gatsby**
-
-Below is an example of how a `image` field could be defined in a Gatsby Remark form.
-
-```javascript
-const BlogPostForm = {
-  fields: [
-    {
-      label: 'Hero Image',
-      name: 'rawFrontmatter.hero.image',
-      component: 'image',
-      parse: (media) => {
-        if (!media) return ''
-        return `../images/${media.filename}`
-      },
-      uploadDir: () => `/content/images/`,
-      previewSrc: (src, path, formValues) => {
-        if (!formValues.frontmatter.hero || !formValues.frontmatter.hero.image)
-          return ''
-
-        return formValues.frontmatter.hero.image.childImageSharp.fluid.src
-      },
-    },
-    // ...
-  ],
-}
-```
-
-### Proper Image Paths in Gatsby
-
-In order for image paths to be properly sourced into GraphQL, it's best if a *relative path* to the image is saved to the content file's front matter. Constructing this relative path will depend on where the image is uploaded to as well as the location of the content file. The following example uses a co-location strategy, where a blog post is stored in `content/blog/$slug/index.md` and its images will be uploaded to `content/blog/$slug/$image.png`:
-
-```javascript
-import get from 'lodash.get'
-const path = require('path').posix
-
-const BlogPostForm = {
-  fields: [
-    {
-      name: 'rawFrontmatter.thumbnail',
-      label: 'Thumbnail',
-      component: 'image',
-      previewSrc: (src, path, formValues) => {
-        if (!formValues.frontmatter.thumbnail) return ''
-
-        return formValues.frontmatter.thumbnail.childImageSharp.fluid.src
-      },
-
-      // upload images to same directory as content file
-      uploadDir: (formValues) => path.dirname(formValues.fileRelativePath),
-
-      // image file is sibling of content file
-      parse: (filename) => `./${filename}`,
-    },
-    // ...
-  ],
-}
-```
