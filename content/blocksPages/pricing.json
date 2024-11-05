@@ -23,15 +23,15 @@
         ]
       },
       "intro": "Need to scale? No Probllama! Tina offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
-      "pillSwitchVisibileText": "All prices in **USD**.\n",
-      "pillSwitchToggleText": "Save from 16% with annual billing\n",
+      "pillSwitchVisibileText": "All prices are **per-project** and in **USD**.\n",
+      "pillSwitchToggleText": "Get **2 months free** with annual billing\n",
       "plans": [
         {
           "name": "Team",
           "description": "For growing teams\n",
           "price": "$29",
           "annualPrice": "$24",
-          "annualDescription": "$288 billed annually (save $60)",
+          "annualDescription": "$290 billed annually (save $58)",
           "interval": "/ month",
           "cardItem": [
             {
@@ -69,7 +69,7 @@
           "description": "For bigger teams\n",
           "price": "$49",
           "annualPrice": "$41",
-          "annualDescription": "$492 billed annually (save $96)",
+          "annualDescription": "$490 billed annually (save $98)",
           "interval": "/ month",
           "cardItem": [
             {
@@ -115,7 +115,7 @@
           "description": "For premium support\n",
           "price": "$299",
           "annualPrice": "$249",
-          "annualDescription": "$2,988 billed annually (save $600)",
+          "annualDescription": "$2,990 billed annually (save $598)",
           "interval": "/ month",
           "cardItem": [
             {
