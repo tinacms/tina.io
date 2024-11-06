@@ -17,13 +17,14 @@ export const RecipeBlock = ({ data }) => {
   const [clickedInstruction, setClickedInstruction] = useState<number | null>(
     null
   );
+  //LHSheight is the height used for the instructions block when the screen is >= 1024px 
   const [LHSheight, setLHSheight] = useState<string | null>(null);
   const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
   const [isBottomOfInstructions, setIsBottomOfInstructions] =
     useState<boolean>(false);
 
   const codeblockRef = useRef<HTMLDivElement>(null);
-  const instructionBlockRefs = useRef<HTMLDivElement>(null); //the entire container
+  const instructionBlockRefs = useRef<HTMLDivElement>(null); //the entire instructions container
   const instructionRefs = useRef<(HTMLDivElement | null)[]>([]); //list of individual objects in the instruction block
 
   useEffect(() => {
@@ -83,6 +84,7 @@ export const RecipeBlock = ({ data }) => {
     }
   };
 
+  //height used for the instructions container when the screen is < 1024px. Maintains 1:2 ratio of instruction to code
   const smAndMbHeight = LHSheight ? `${Number(LHSheight) / 2}px` : null;
 
   const calculateInstructionsHeight = () => {
@@ -91,7 +93,7 @@ export const RecipeBlock = ({ data }) => {
     }, 0);
   };
 
-  const checkifScrollable = () => {
+  const checkIfScrollable = () => {
     if (typeof window !== 'undefined' && window.innerWidth < 1024) {
       return (
         calculateInstructionsHeight() >= parseInt(smAndMbHeight || '0', 10) //this is necessary because the smAndMbHeight actually has a 'px' suffix, parseInt will remove it
@@ -131,7 +133,7 @@ export const RecipeBlock = ({ data }) => {
             <FaChevronCircleDown
               onClick={handleDownArrowClick}
               className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md
-                ${checkifScrollable() ? '' : 'hidden'}`}
+                ${checkIfScrollable() ? '' : 'hidden'}`}
             />
           </div>
 
