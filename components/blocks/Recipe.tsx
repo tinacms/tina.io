@@ -1,14 +1,9 @@
-import 'prism-themes/themes/prism-night-owl.css';
-import Prism from 'prismjs';
-import 'prismjs/plugins/line-highlight/prism-line-highlight';
-import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
-import { MdOutlineContentCopy } from 'react-icons/md';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { customHighlightCSS } from '../styles/RecipeCSS';
+import { CodeToolbar } from './RecipeCodeToolBar';
+import CodeBlockWithHighlightLines from './RecipeCodeBlockWithHighlight';
 
 export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, instruction } = data;
@@ -203,98 +198,3 @@ export const RecipeBlock = ({ data }) => {
 };
 
 export default RecipeBlock;
-
-interface CodeBlockProps {
-  value: any;
-  lang?: string;
-  children?: React.ReactNode;
-  highlightLines: string;
-}
-
-export const CodeToolbar = ({
-  lang,
-  onCopy,
-  tooltipVisible,
-}: {
-  lang?: string;
-  onCopy: () => void;
-  tooltipVisible: boolean;
-}) => (
-  <div className="code-toolbar bg-gray-800 text-white px-4 py-2 lg:rounded-t-xl text-sm font-semibold flex justify-between items-center">
-    <span className="font-tuner">{lang || 'Unknown'}</span>
-    <div className="flex items-center ml-4 space-x-4 relative overflow-visible">
-      <button
-        onClick={onCopy}
-        className={`flex items-center px-2 py-1 bg-gray-800  rounded-md text-sm transition-colors duration-200 space-x-1 relative ${
-          tooltipVisible
-            ? 'text-white bg-gray-700 rounded-md ml-1'
-            : 'hover:bg-gray-700 text-white'
-        }`}
-      >
-        {!tooltipVisible && <MdOutlineContentCopy className="w-4 h-4" />}
-        <span>{!tooltipVisible ? 'Copy' : 'Copied!'}</span>
-      </button>
-    </div>
-  </div>
-);
-
-const CodeBlockWithHighlightLines = ({
-  value,
-  lang,
-  children,
-  highlightLines,
-}: CodeBlockProps) => {
-  const [tooltipVisible, setTooltipVisible] = useState(false);
-  const preRef = useRef<HTMLPreElement>(null);
-
-  useEffect(() => {
-    Prism.highlightAll();
-  }, []);
-
-  useEffect(() => {
-    if (preRef.current) {
-      preRef.current.setAttribute('data-line', highlightLines);
-      Prism.highlightAllUnder(preRef.current); // Re-highlight within pre to stop continual re-render
-    }
-  }, [highlightLines]);
-
-  const copyToClipboard = () => {
-    const codeToCopy = typeof children === 'string' ? children : value;
-    navigator.clipboard.writeText(codeToCopy).then(
-      () => {
-        setTooltipVisible(true);
-        setTimeout(() => setTooltipVisible(false), 1500);
-      },
-      (err) => {
-        console.error('Failed to copy code:', err);
-      }
-    );
-  };
-
-  return (
-    <div className="codeblock-container">
-      <div className="sticky top-0 z-30">
-        <CodeToolbar
-          lang={lang}
-          onCopy={copyToClipboard}
-          tooltipVisible={tooltipVisible}
-        />
-      </div>
-      <pre
-        ref={preRef}
-        className="line-numbers"
-        data-line={''}
-        style={{
-          overflowX: 'hidden',
-          maxWidth: '100%',
-          whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word',
-        }}
-      >
-        <code className={`language-${lang || 'jsx'}`}>
-          {typeof children === 'string' || children ? children : value}
-        </code>
-      </pre>
-    </div>
-  );
-};
