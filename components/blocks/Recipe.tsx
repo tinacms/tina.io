@@ -23,7 +23,8 @@ export const RecipeBlock = ({ data }) => {
     useState<boolean>(false);
 
   const codeblockRef = useRef<HTMLDivElement>(null);
-  const instructionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const instructionBlockRefs = useRef<HTMLDivElement>(null); //the entire container
+  const instructionRefs = useRef<(HTMLDivElement | null)[]>([]); //list of individual objects in the instruction block
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -84,6 +85,23 @@ export const RecipeBlock = ({ data }) => {
 
   const smAndMbHeight = LHSheight ? `${Number(LHSheight) / 2}px` : null;
 
+  const calculateInstructionsHeight = () => {
+    return instructionRefs.current.reduce((total, ref) => {
+      return total + (ref?.offsetHeight || 0);
+    }, 0);
+  };
+
+  const checkifScrollable = () => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      return (
+        calculateInstructionsHeight() >= parseInt(smAndMbHeight || '0', 10) //this is necessary because the smAndMbHeight actually has a 'px' suffix, parseInt will remove it
+      );
+    } else {
+      return calculateInstructionsHeight() > parseInt(LHSheight || '0', 10);
+    }
+  };
+
+
   return (
     <div className="recipe-block-container mt-20 relative">
       <div className="title-description px-10">
@@ -97,7 +115,8 @@ export const RecipeBlock = ({ data }) => {
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-br-xl rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
+          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
+          ref={instructionBlockRefs}
           style={{
             height:
               typeof window !== 'undefined' && window.innerWidth >= 1024
@@ -111,7 +130,8 @@ export const RecipeBlock = ({ data }) => {
             ></div>
             <FaChevronCircleDown
               onClick={handleDownArrowClick}
-              className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md`}
+              className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md
+                ${checkifScrollable() ? '' : 'hidden'}`}
             />
           </div>
 
@@ -261,7 +281,7 @@ const CodeBlockWithHighlightLines = ({
       <pre
         ref={preRef}
         className="line-numbers"
-        data-line={''} 
+        data-line={''}
         style={{
           overflowX: 'hidden',
           maxWidth: '100%',
