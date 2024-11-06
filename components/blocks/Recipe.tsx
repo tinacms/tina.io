@@ -222,23 +222,19 @@ const CodeBlockWithHighlightLines = ({
   children,
   highlightLines,
 }: CodeBlockProps) => {
-  const [isMounted, setIsMounted] = useState(false);
   const [tooltipVisible, setTooltipVisible] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    if (isMounted) {
-      Prism.highlightAll();
-    }
-  }, [isMounted]);
+  const preRef = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
     Prism.highlightAll();
-  }, [highlightLines]);
+  }, []);
 
-  if (!isMounted) {
-    return null;
-  }
+  useEffect(() => {
+    if (preRef.current) {
+      preRef.current.setAttribute('data-line', highlightLines);
+      Prism.highlightAllUnder(preRef.current); // Re-highlight within pre to stop continual re-render
+    }
+  }, [highlightLines]);
 
   const copyToClipboard = () => {
     const codeToCopy = typeof children === 'string' ? children : value;
@@ -263,8 +259,9 @@ const CodeBlockWithHighlightLines = ({
         />
       </div>
       <pre
+        ref={preRef}
         className="line-numbers"
-        data-line={highlightLines}
+        data-line={''} 
         style={{
           overflowX: 'hidden',
           maxWidth: '100%',
