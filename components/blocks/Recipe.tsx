@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { customHighlightCSS } from '../styles/RecipeCSS';
-import { CodeToolbar } from './RecipeCodeToolBar';
-import CodeBlockWithHighlightLines from './RecipeCodeBlockWithHighlight';
+import { CodeToolbar } from '../ui/recipeComponent/RecipeCodeToolBar';
+import CodeBlockWithHighlightLines from '../ui/recipeComponent/RecipeCodeBlockWithHighlight';
 
 export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, instruction } = data;
