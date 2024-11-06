@@ -133,10 +133,10 @@ export const RecipeBlock = ({ data }) => {
                   inst.header || 'Default Header'
                 }`}</h5>
                 <div
-                  className={`overflow-auto transition-all duration-500 ease-in-out ${
+                  className={`overflow-auto transition-all ease-in-out ${
                     clickedInstruction === idx
-                      ? 'max-h-full opacity-100'
-                      : 'max-h-0 opacity-0'
+                      ? 'duration-500 max-h-full opacity-100'
+                      : 'duration-0 max-h-0 opacity-0'
                   }`}
                 >
                   <span className="mt-2">
