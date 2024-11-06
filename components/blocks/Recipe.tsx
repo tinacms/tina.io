@@ -52,9 +52,12 @@ export const RecipeBlock = ({ data }) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
 
+    const linePixelheight = 24;
+    const linePixelBuffer = 15;
+
     if (codeblockRef.current) {
       codeblockRef.current.scrollTo({
-        top: 24 * codeLineStart - 20,
+        top: linePixelheight * codeLineStart - linePixelBuffer,
         behavior: 'smooth',
       });
     }
