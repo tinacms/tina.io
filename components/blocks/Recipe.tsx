@@ -53,7 +53,7 @@ export const RecipeBlock = ({ data }) => {
     setClickedInstruction(index === clickedInstruction ? null : index);
 
     const linePixelheight = 24;
-    const linePixelBuffer = 15;
+    const linePixelBuffer = 15; // gives the moving logic some breathing room
 
     if (codeblockRef.current) {
       codeblockRef.current.scrollTo({
