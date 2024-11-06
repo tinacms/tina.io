@@ -1,6 +1,8 @@
 ---
 id: /docs/guides/internationalization
 title: Tina Guides
+next: ''
+previous: ''
 ---
 
 ## Internationalization with TinaCMS
@@ -59,9 +61,7 @@ const getStaticPaths = async({ locales }) {
 Using the locale, you can filter for document(s) based on the path
 
 ```jsx
-/**
- * /pages/post/[filename].tsx
- */
+// /pages/post/[filename].tsx
 
 // `locale` is provided alongside `params`
 const getStaticProps = async({ params, locale }) {
