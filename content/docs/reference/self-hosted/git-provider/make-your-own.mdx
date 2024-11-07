@@ -1,7 +1,8 @@
 ---
 id: /docs/reference/self-hosted/git-provider/make-your-own
-
 title: Custom Git Provider
+next: ''
+previous: ''
 ---
 
 Implement a Git Provider is easy. It is a class or object that implements the [`GitProvider`](#gitprovider-interface) interface.
@@ -129,7 +130,7 @@ export class MyGitHubProvider implements GitProvider {
 
 This can now be used as a prop to the `createDatabase` [function](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function).
 
-database.{ts,js}
+database.{ts,js}:
 
 ```ts
 import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
