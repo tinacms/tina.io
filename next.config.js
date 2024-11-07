@@ -1,5 +1,5 @@
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'); 
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const withSvgr = require('next-svgr');
 
 require('dotenv').config();
@@ -95,12 +95,7 @@ const config = {
 
     config.plugins.push(new MomentLocalesPlugin());
 
-    if(!options.isServer)
-    {
-      config.plugins.push(new MonacoWebpackPlugin())
-    }
-    
-    config.output.uniqueName = 'tinaDotIo'
+    config.plugins.push(new MonacoWebpackPlugin());
 
     return config;
   },
