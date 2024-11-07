@@ -1,4 +1,4 @@
-//ripped our from SSW's Website 😳
+//ripped out from SSW's Website 😳
 
 import React from "react";
 import { wrapFieldsWithMeta } from "tinacms";

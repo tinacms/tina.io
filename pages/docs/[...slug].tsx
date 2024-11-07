@@ -80,6 +80,11 @@ function _DocTemplate(props) {
         title={title}
         titleTemplate={'%s | TinaCMS Docs'}
         description={description}
+        openGraph={{
+          title: title,
+          description: description,
+          images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
+        }}
       />
       <DocsLayout navItems={props.navDocData.data}>
         <DocsGrid>
