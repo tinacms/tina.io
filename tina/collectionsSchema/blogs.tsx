@@ -94,6 +94,22 @@ export const blogsCollection = {
           ],
         },
         {
+          name: 'WebmEmbed',
+          label: 'Webm Embed',
+          fields: [
+            {
+              type: 'string',
+              name: 'embedSrc',
+              label: 'Embed SRC',
+            },
+            {
+              type: 'string',
+              name: 'width',
+              label: 'width',
+            }
+          ]
+        },
+        {
           name: 'GraphQLCodeBlock',
           label: 'GraphQL Code Block',
           fields: [
