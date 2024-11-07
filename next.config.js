@@ -25,7 +25,7 @@ const dummyMailchimpEndpoint =
 
 const config = {
   ...extraConfig,
-  outputFileTracing: False,
+  outputFileTracing: false,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
     remotePatterns: [
