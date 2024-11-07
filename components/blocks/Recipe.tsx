@@ -2,25 +2,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { customHighlightCSS } from '../styles/RecipeCSS';
-import { CodeToolbar } from '../ui/recipeComponent/RecipeCodeToolBar';
 import CodeBlockWithHighlightLines from '../ui/recipeComponent/RecipeCodeBlockWithHighlight';
 
 export const RecipeBlock = ({ data }) => {
-  const { title, description, codeblock, instruction } = data;
+  const { title, description, codeblock, code, instruction } = data;
 
   const [highlightLines, setHighlightLines] = useState('');
-  const [clickedInstruction, setClickedInstruction] = useState<number | null>(
-    null
-  );
-  //LHSheight is the height used for the instructions block when the screen is >= 1024px 
+  const [clickedInstruction, setClickedInstruction] = useState<number | null>(null);
+ //LHSheight is the height used for the instructions block when the screen is >= 1024px 
   const [LHSheight, setLHSheight] = useState<string | null>(null);
   const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
-  const [isBottomOfInstructions, setIsBottomOfInstructions] =
-    useState<boolean>(false);
+  const [isBottomOfInstructions, setIsBottomOfInstructions] = useState<boolean>(false);
 
   const codeblockRef = useRef<HTMLDivElement>(null);
-  const instructionBlockRefs = useRef<HTMLDivElement>(null); //the entire instructions container
-  const instructionRefs = useRef<(HTMLDivElement | null)[]>([]); //list of individual objects in the instruction block
+  const instructionBlockRefs = useRef<HTMLDivElement>(null);
+  const instructionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -42,16 +38,13 @@ export const RecipeBlock = ({ data }) => {
     setIsBottomOfInstructions(scrollHeight - scrollTop <= clientHeight + 10);
   };
 
-  const handleInstructionClick = (
-    index: number,
-    codeLineStart?: number,
-    codeLineEnd?: number
-  ) => {
+  const handleInstructionClick = (index: number, codeLineStart?: number, codeLineEnd?: number) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
 
     const linePixelheight = 24;
-    const linePixelBuffer = 15; // gives the moving logic some breathing room
+    // gives the moving logic some breathing room
+    const linePixelBuffer = 15;
 
     if (codeblockRef.current) {
       codeblockRef.current.scrollTo({
@@ -69,8 +62,7 @@ export const RecipeBlock = ({ data }) => {
   };
 
   const handleDownArrowClick = () => {
-    const lastInstruction =
-      instructionRefs.current[instructionRefs.current.length - 1];
+    const lastInstruction = instructionRefs.current[instructionRefs.current.length - 1];
     if (lastInstruction) {
       lastInstruction.scrollIntoView({
         behavior: 'smooth',
@@ -79,7 +71,7 @@ export const RecipeBlock = ({ data }) => {
     }
   };
 
-  //height used for the instructions container when the screen is < 1024px. Maintains 1:2 ratio of instruction to code
+ //height used for the instructions container when the screen is < 1024px. Maintains 1:2 ratio of instruction to code
   const smAndMbHeight = LHSheight ? `${Number(LHSheight) / 2}px` : null;
 
   const calculateInstructionsHeight = () => {
@@ -90,14 +82,11 @@ export const RecipeBlock = ({ data }) => {
 
   const checkIfScrollable = () => {
     if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      return (
-        calculateInstructionsHeight() >= parseInt(smAndMbHeight || '0', 10) //this is necessary because the smAndMbHeight actually has a 'px' suffix, parseInt will remove it
-      );
+      return calculateInstructionsHeight() >= parseInt(smAndMbHeight || '0', 10);
     } else {
       return calculateInstructionsHeight() > parseInt(LHSheight || '0', 10);
     }
   };
-
 
   return (
     <div className="recipe-block-container mt-20 relative">
@@ -122,9 +111,7 @@ export const RecipeBlock = ({ data }) => {
           }}
         >
           <div className={`${isBottomOfInstructions ? 'hidden' : ''}`}>
-            <div
-              className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 lg:rounded-bl-xl pointer-events-none `}
-            ></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 lg:rounded-bl-xl pointer-events-none"></div>
             <FaChevronCircleDown
               onClick={handleDownArrowClick}
               className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md
@@ -141,18 +128,12 @@ export const RecipeBlock = ({ data }) => {
                 key={idx}
                 ref={(el) => (instructionRefs.current[idx] = el)}
                 className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
-                ${clickedInstruction === idx ? 'bg-slate-600' : ''} `}
+                ${clickedInstruction === idx ? 'bg-slate-600' : ''}`}
                 onClick={() =>
-                  handleInstructionClick(
-                    idx,
-                    inst.codeLineStart,
-                    inst.codeLineEnd
-                  )
+                  handleInstructionClick(idx, inst.codeLineStart, inst.codeLineEnd)
                 }
               >
-                <h5 className="font-tuner">{`${idx + 1}. ${
-                  inst.header || 'Default Header'
-                }`}</h5>
+                <h5 className="font-tuner">{`${idx + 1}. ${inst.header || 'Default Header'}`}</h5>
                 <div
                   className={`overflow-auto transition-all ease-in-out ${
                     clickedInstruction === idx
@@ -173,21 +154,25 @@ export const RecipeBlock = ({ data }) => {
           ref={codeblockRef}
           className="codeblock bg-gray-800 lg:w-2/3 max-h-50vh overflow-auto lg:rounded-tr-xl rounded-bl-xl lg:rounded-bl-none rounded-br-xl "
         >
-          {codeblock ? (
-            <div>
-              <TinaMarkdown
-                key={highlightLines}
-                content={codeblock}
-                components={{
-                  code_block: (props) => (
-                    <CodeBlockWithHighlightLines
-                      {...props}
-                      highlightLines={highlightLines}
-                    />
-                  ),
-                }}
-              />
-            </div>
+          {code ? (
+            <CodeBlockWithHighlightLines
+              value={code} 
+              lang="javascript"
+              highlightLines={highlightLines}
+            />
+          ) : codeblock ? (
+            <TinaMarkdown
+              key={highlightLines}
+              content={codeblock}
+              components={{
+                code_block: (props) => (
+                  <CodeBlockWithHighlightLines
+                    {...props}
+                    highlightLines={highlightLines}
+                  />
+                ),
+              }}
+            />
           ) : (
             <p>No code block available.</p>
           )}

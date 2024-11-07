@@ -10,7 +10,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
 import { CodeToolbar } from './RecipeCodeToolBar';
 
 interface CodeBlockProps {
-  value: any;
+  value?: string; 
   lang?: string;
   children?: React.ReactNode;
   highlightLines: string;
@@ -18,7 +18,7 @@ interface CodeBlockProps {
 
 const CodeBlockWithHighlightLines = ({
   value,
-  lang,
+  lang = 'javascript',
   children,
   highlightLines,
 }: CodeBlockProps) => {
@@ -28,13 +28,12 @@ const CodeBlockWithHighlightLines = ({
   useEffect(() => {
     if (preRef.current) {
       preRef.current.setAttribute('data-line', highlightLines);
-      // Apply Prism syntax highlighting to all elements under preRef
       Prism.highlightAllUnder(preRef.current);
     }
-  }, [highlightLines]);
+  }, [highlightLines, value, children]);
 
   const copyToClipboard = () => {
-    const codeToCopy = typeof children === 'string' ? children : value;
+    const codeToCopy = typeof children === 'string' ? children : value || '';
     navigator.clipboard.writeText(codeToCopy).then(
       () => {
         setTooltipVisible(true);
@@ -58,7 +57,7 @@ const CodeBlockWithHighlightLines = ({
       <pre
         ref={preRef}
         className="line-numbers"
-        data-line={highlightLines} // Setting the lines to highlight
+        data-line={highlightLines}
         style={{
           overflowX: 'hidden',
           maxWidth: '100%',
@@ -66,8 +65,9 @@ const CodeBlockWithHighlightLines = ({
           wordBreak: 'break-word',
         }}
       >
-        <code className={`language-${lang || 'jsx'}`}>
-          {typeof children === 'string' || children ? children : value}
+        <code className={`language-${lang}`}>
+          
+          {value || children}
         </code>
       </pre>
     </div>
