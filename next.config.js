@@ -95,8 +95,12 @@ const config = {
 
     config.plugins.push(new MomentLocalesPlugin());
 
+    if(!options.isServer)
+    {
+      config.plugins.push(new MonacoWebpackPlugin())
+    }
     
-    config.plugins.push(new MonacoWebpackPlugin());
+    config.output.uniqueName = 'tinaDotIo'
 
     return config;
   },
