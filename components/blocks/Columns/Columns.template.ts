@@ -1,7 +1,7 @@
 import type { Template } from 'tinacms';
-import { actionsButtonTemplate } from './ActionButton/ActionsButton.template';
-import { newsletterTemplate } from './Newsletter.template';
-import { socialTemplate } from './Social.template';
+import { actionsButtonTemplate } from '.././ActionButton/ActionsButton.template';
+import { newsletterTemplate } from '.././NewsLetter/Newsletter.template';
+import { socialTemplate } from '.././Social/Social.template';
 
 export const columnsTemplate: Template = {
   label: 'Columns',
