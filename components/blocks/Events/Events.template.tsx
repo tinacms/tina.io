@@ -67,6 +67,8 @@ export const eventsTemplate: Template = {
           label: item.headline,
         }),
       },
+      //@ts-ignore https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
+      // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         {
