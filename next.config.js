@@ -1,30 +1,34 @@
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const withSvgr = require('next-svgr');
 
-const withSvgr = require('next-svgr')
+require('dotenv').config();
 
-require('dotenv').config()
-
-const isStatic = process.env.EXPORT_MODE === 'static'
+const isStatic = process.env.EXPORT_MODE === 'static';
 
 /**
  * @type {import('next').NextConfig}
  */
-let extraConfig = {}
+let extraConfig = {};
 
 if (isStatic) {
-  console.log('Exporting static site')
-  extraConfig.output = 'export'
+  console.log('Exporting static site');
+  extraConfig.output = 'export';
 }
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-})
+});
 
 const dummyMailchimpEndpoint =
-  'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1'
+  'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1';
+
+  //The 'outputFileTracing: false' is a work-around to use the Monaco editor with the error 'Multiple assets emit content to the same filename'
+  //This is a known issue in the community - see https://github.com/vercel/next.js/issues/31692 for more context
 
 const config = {
   ...extraConfig,
+  outputFileTracing: false,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
     remotePatterns: [
@@ -47,7 +51,7 @@ const config = {
         source: '/admin',
         destination: '/admin/index.html',
       },
-    ]
+    ];
   },
   env: {
     MAILCHIMP_ADDRESS: process.env.MAILCHIMP_ADDRESS || dummyMailchimpEndpoint,
@@ -71,12 +75,12 @@ const config = {
         key: 'Access-Control-Allow-Headers',
         value: 'Accept, Content-Length, Content-Type',
       },
-    ]
+    ];
     if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview') {
       headers.push({
         key: 'X-Robots-Tag',
         value: 'noindex',
-      })
+      });
     }
 
     return [
@@ -84,23 +88,25 @@ const config = {
         source: '/:path*',
         headers,
       },
-    ]
+    ];
   },
   exportPathMap: async function () {
-    return {}
+    return {};
   },
   webpack(config) {
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
-    })
+    });
 
-    config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' }
+    config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' };
 
-    config.plugins.push(new MomentLocalesPlugin())
+    config.plugins.push(new MomentLocalesPlugin());
 
-    return config
+    config.plugins.push(new MonacoWebpackPlugin());
+
+    return config;
   },
-}
+};
 
-module.exports = withBundleAnalyzer(withSvgr(config))
+module.exports = withBundleAnalyzer(withSvgr(config));

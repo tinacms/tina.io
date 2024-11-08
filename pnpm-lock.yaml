@@ -83,6 +83,9 @@ importers:
       jsonp:
         specifier: ^0.2.1
         version: 0.2.1
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       markdown-toc:
         specifier: ^1.2.0
         version: 1.2.0
@@ -92,6 +95,12 @@ importers:
       moment-locales-webpack-plugin:
         specifier: ^1.2.0
         version: 1.2.0(moment@2.30.1)(webpack@5.94.0)
+      monaco-editor:
+        specifier: ^0.52.0
+        version: 0.52.0
+      monaco-editor-webpack-plugin:
+        specifier: ^7.1.0
+        version: 7.1.0(monaco-editor@0.52.0)(webpack@5.94.0)
       moment-timezone:
         specifier: ^0.5.45
         version: 0.5.45
@@ -116,6 +125,9 @@ importers:
       prism-react-renderer:
         specifier: ^2.0.6
         version: 2.4.0(react@18.3.1)
+      prism-themes:
+        specifier: ^1.9.0
+        version: 1.9.0
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -1342,8 +1354,9 @@ packages:
     peerDependencies:
       graphql: ^15.5.1
 
-  '@graphql-codegen/plugin-helpers@5.0.4':
-    resolution: {integrity: sha512-MOIuHFNWUnFnqVmiXtrI+4UziMTYrcquljaI5f/T/Bc7oO7sXcfkAvgkNWEEi9xWreYwvuer3VHCuPI/lAFWbw==}
+  '@graphql-codegen/plugin-helpers@5.1.0':
+    resolution: {integrity: sha512-Y7cwEAkprbTKzVIe436TIw4w03jorsMruvCvu0HJkavaKMQbWY+lQ1RIuROgszDbxAyM35twB5/sUvYG5oW+yg==}
+    engines: {node: '>=16'}
     peerDependencies:
       graphql: ^15.5.1
 
@@ -7648,8 +7661,17 @@ packages:
   moment@2.30.1:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
 
+  monaco-editor-webpack-plugin@7.1.0:
+    resolution: {integrity: sha512-ZjnGINHN963JQkFqjjcBtn1XBtUATDZBMgNQhDQwd78w2ukRhFXAPNgWuacaQiDZsUr4h1rWv5Mv6eriKuOSzA==}
+    peerDependencies:
+      monaco-editor: '>= 0.31.0'
+      webpack: ^4.5.0 || 5.x
+
   monaco-editor@0.31.0:
     resolution: {integrity: sha512-H3QmysEwxxY8oxmFhIFcY9JkuwilUDa6txdAxb797cVr7XFZX27a3SDwcGJmTlV9iGPwdh132r3KKCS5aNL4Gg==}
+
+  monaco-editor@0.52.0:
+    resolution: {integrity: sha512-OeWhNpABLCeTqubfqLMXGsqf6OmPU6pHM85kF3dhy6kq5hnhuVS1p3VrEW/XhWHc71P2tHyS5JFySD8mgs1crw==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -8295,6 +8317,9 @@ packages:
     resolution: {integrity: sha512-327BsVCD/unU4CNLZTWVHyUHKnsqcvj2qbPlQ8MiBE2eq2rgctjigPA1Gp9HLF83kZ20zNN6jgizHJeEsyFYOw==}
     peerDependencies:
       react: '>=16.0.0'
+
+  prism-themes@1.9.0:
+    resolution: {integrity: sha512-tX2AYsehKDw1EORwBps+WhBFKc2kxfoFpQAjxBndbZKr4fRmMkv47XN0BghC/K1qwodB1otbe4oF23vUTFDokw==}
 
   prismjs@1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
@@ -11922,7 +11947,7 @@ snapshots:
       lodash: 4.17.21
       tslib: 2.4.1
 
-  '@graphql-codegen/plugin-helpers@5.0.4(graphql@15.9.0)':
+  '@graphql-codegen/plugin-helpers@5.1.0(graphql@15.9.0)':
     dependencies:
       '@graphql-tools/utils': 10.5.4(graphql@15.9.0)
       change-case-all: 1.0.15
@@ -11934,14 +11959,14 @@ snapshots:
 
   '@graphql-codegen/schema-ast@4.1.0(graphql@15.9.0)':
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.4(graphql@15.9.0)
+      '@graphql-codegen/plugin-helpers': 5.1.0(graphql@15.9.0)
       '@graphql-tools/utils': 10.5.4(graphql@15.9.0)
       graphql: 15.9.0
       tslib: 2.6.3
 
   '@graphql-codegen/typescript-operations@4.2.3(encoding@0.1.13)(graphql@15.9.0)':
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.4(graphql@15.9.0)
+      '@graphql-codegen/plugin-helpers': 5.1.0(graphql@15.9.0)
       '@graphql-codegen/typescript': 4.0.9(encoding@0.1.13)(graphql@15.9.0)
       '@graphql-codegen/visitor-plugin-common': 5.3.1(encoding@0.1.13)(graphql@15.9.0)
       auto-bind: 4.0.0
@@ -11953,7 +11978,7 @@ snapshots:
 
   '@graphql-codegen/typescript@4.0.9(encoding@0.1.13)(graphql@15.9.0)':
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.4(graphql@15.9.0)
+      '@graphql-codegen/plugin-helpers': 5.1.0(graphql@15.9.0)
       '@graphql-codegen/schema-ast': 4.1.0(graphql@15.9.0)
       '@graphql-codegen/visitor-plugin-common': 5.3.1(encoding@0.1.13)(graphql@15.9.0)
       auto-bind: 4.0.0
@@ -11965,7 +11990,7 @@ snapshots:
 
   '@graphql-codegen/visitor-plugin-common@4.1.2(encoding@0.1.13)(graphql@15.9.0)':
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.4(graphql@15.9.0)
+      '@graphql-codegen/plugin-helpers': 5.1.0(graphql@15.9.0)
       '@graphql-tools/optimize': 2.0.0(graphql@15.9.0)
       '@graphql-tools/relay-operation-optimizer': 7.0.1(encoding@0.1.13)(graphql@15.9.0)
       '@graphql-tools/utils': 10.5.4(graphql@15.9.0)
@@ -11982,7 +12007,7 @@ snapshots:
 
   '@graphql-codegen/visitor-plugin-common@5.3.1(encoding@0.1.13)(graphql@15.9.0)':
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.4(graphql@15.9.0)
+      '@graphql-codegen/plugin-helpers': 5.1.0(graphql@15.9.0)
       '@graphql-tools/optimize': 2.0.0(graphql@15.9.0)
       '@graphql-tools/relay-operation-optimizer': 7.0.1(encoding@0.1.13)(graphql@15.9.0)
       '@graphql-tools/utils': 10.5.4(graphql@15.9.0)
@@ -13845,7 +13870,7 @@ snapshots:
   '@tinacms/cli@1.6.3(@codemirror/language@6.0.0)(@types/node@22.5.5)(@types/react@16.14.60)(abstract-level@1.0.4)(encoding@0.1.13)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.2)(@types/react@16.14.60)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@6.0.3))(react@18.3.1)(rollup@3.29.4)(scheduler@0.24.0-canary-efb381bbf-20230505)(sucrase@3.35.0)(terser@5.32.0)':
     dependencies:
       '@graphql-codegen/core': 2.6.8(graphql@15.9.0)
-      '@graphql-codegen/plugin-helpers': 5.0.4(graphql@15.9.0)
+      '@graphql-codegen/plugin-helpers': 5.1.0(graphql@15.9.0)
       '@graphql-codegen/typescript': 4.0.9(encoding@0.1.13)(graphql@15.9.0)
       '@graphql-codegen/typescript-operations': 4.2.3(encoding@0.1.13)(graphql@15.9.0)
       '@graphql-codegen/visitor-plugin-common': 4.1.2(encoding@0.1.13)(graphql@15.9.0)
@@ -20487,7 +20512,15 @@ snapshots:
 
   moment@2.30.1: {}
 
+  monaco-editor-webpack-plugin@7.1.0(monaco-editor@0.52.0)(webpack@5.94.0):
+    dependencies:
+      loader-utils: 2.0.4
+      monaco-editor: 0.52.0
+      webpack: 5.94.0
+
   monaco-editor@0.31.0: {}
+
+  monaco-editor@0.52.0: {}
 
   mri@1.2.0: {}
 
@@ -21186,6 +21219,8 @@ snapshots:
       '@types/prismjs': 1.26.4
       clsx: 2.1.1
       react: 18.3.1
+
+  prism-themes@1.9.0: {}
 
   prismjs@1.29.0: {}
 
