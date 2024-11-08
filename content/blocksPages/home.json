@@ -6,44 +6,6 @@
   },
   "blocks": [
     {
-      "title": "Dynamic Routing with [slug].tsx",
-      "description": "Use your json formatted files to create pages with TinaCMS",
-      "code": "import { client } from '../tina/__generated__/client';\nimport { GetStaticProps, GetStaticPaths } from 'next';\nimport { fileToUrl } from 'utils/urls';\nimport { useTina } from 'tinacms/dist/react';\nimport { BlocksPage } from 'components/blocks/BlocksPage';\n\nconst fg = require('fast-glob');\n\nconst Page = props => {\n  const tinaData = useTina({\n    query: props.query,\n    data: props.data,\n    variables: props.vars,\n  })\n  const data = tinaData.data.page;\n\n  return <BlocksPage data={data} recentPosts={tinaData.data.recentPosts} />\n}\n\nexport const getStaticProps: GetStaticProps = async function ({\n  preview,\n  previewData,\n  ...ctx\n}) {\n  const slug = ctx.params?.slug || 'home'\n  const vars = { relativePath: slug + '.json' }\n\n  const res = await client.queries.pageWithRecentPosts({ relativePath: slug + '.json' })\n\n  return {\n    props: {\n      query: res.query,\n      data: res.data,\n      vars,\n    }, \n  }\n}\n\nexport const getStaticPaths: GetStaticPaths = async function () {\n  const pages = await fg(`./content/blocksPages/*.json`)\n  const paths = pages.map(file => {\n    const slug = fileToUrl(file, 'blocksPages')\n    return { params: { slug } }\n  })\n  return {\n    paths: paths,\n    fallback: false,\n  }\n}\n\nexport default Page\n",
-      "instruction": [
-        {
-          "header": "Relevant Imports",
-          "itemDescription": "This introductory step is just importing a series of Tina related methods, like useTina and client. Aswell as relevant helper methods.",
-          "codeLineStart": 1,
-          "codeLineEnd": 5
-        },
-        {
-          "header": "Data Fetching",
-          "itemDescription": "Using the Next.js method for fetching data at build time. Specifically using the Tina generated `client.queries` function to grab the relevant gql query. Returning it in a format the useTina hook can read.",
-          "codeLineStart": 28,
-          "codeLineEnd": 37
-        },
-        {
-          "header": "Static Path Defining",
-          "itemDescription": "Grabs all the .json files and maps each corresponding slug (based on file name) to serve as the URL parameter of each page.",
-          "codeLineStart": 40,
-          "codeLineEnd": 44
-        },
-        {
-          "header": "Populate useTina Hook",
-          "itemDescription": "Our custom useTina hook is used to fetch and manage the TinaCMS data for live and contextual editing.",
-          "codeLineStart": 10,
-          "codeLineEnd": 15
-        },
-        {
-          "header": "Rendering <BlocksPage />",
-          "itemDescription": "Another component used to actual render the data based on the structure type that the data comes in from",
-          "codeLineStart": 17,
-          "codeLineEnd": 18
-        }
-      ],
-      "_template": "recipeBlock"
-    },
-    {
       "features": [
         {
           "headline": "A CMS With Version Control Built-in",
