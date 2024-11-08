@@ -23,6 +23,8 @@ import { storyTemplate } from '../../components/blocks/Story/Story.template';
 import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testimonials.template';
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
+import { RecipeBlock } from '../../components/blocks/Recipe.template'
+
 
 export const pagesCollection = {
   label: 'Pages',
@@ -77,32 +79,33 @@ export const pagesCollection = {
       ui: {
         visualSelector: true,
       },
-      templates: [
-        heroTemplate as Template,
-        featuresTemplate as Template,
-        flyingTemplate as Template,
-        pricingTemplate as Template,
-        faqTemplate as Template,
-        contentTemplate as Template,
-        showcaseTemplate as Template,
-        columnsTemplate as Template,
-        storyTemplate as Template,
-        featureGridTemplate as Template,
-        logoGridTemplate as Template,
-        roadmapGridTemplate as Template,
-        recentPostsTemplate as Template,
-        testimonialsTemplate as Template,
-        quoteTemplate as Template,
-        eventsTemplate as Template,
-        compareBoxTemplate as Template,
-        bookingTemplate as Template,
-        mediaComponentTemplate as Template,
-        textAndMediaColumnsComponentTemplate as Template,
-        tinaBannerTemplate as Template,
-        highlightsSectionTemplate as Template,
-        spacerTemplate as Template,
-        carouselFeatureTemplate as Template,
-      ],
+        templates: [
+          heroTemplate as Template,
+          featuresTemplate as Template,
+          flyingTemplate as Template,
+          pricingTemplate as Template,
+          faqTemplate as Template,
+          contentTemplate as Template,
+          showcaseTemplate as Template,
+          columnsTemplate as Template,
+          storyTemplate as Template,
+          featureGridTemplate as Template,
+          logoGridTemplate as Template,
+          roadmapGridTemplate as Template,
+          recentPostsTemplate as Template,
+          testimonialsTemplate as Template,
+          quoteTemplate as Template,
+          eventsTemplate as Template,
+          compareBoxTemplate as Template,
+          bookingTemplate as Template,
+          mediaComponentTemplate as Template,
+          textAndMediaColumnsComponentTemplate as Template,
+          tinaBannerTemplate as Template,
+          highlightsSectionTemplate as Template,
+          spacerTemplate as Template,
+          carouselFeatureTemplate as Template,
+          RecipeBlock as Template,
+       ],      
     },
   ],
 };

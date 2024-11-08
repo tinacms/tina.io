@@ -15,6 +15,7 @@ import {
   QuoteBlock,
   StoryBlock,
 } from './';
+
 import { BookingBlock } from './Booking/Booking';
 import { ColumnsBlock } from './Columns/Columns';
 import { CompareBoxBlock } from './CompareBox/CompareBox';
@@ -29,6 +30,8 @@ import { SpacerComponent } from './Spacer/Spacer';
 import { TestimonialsBlock } from './Testimonial/Testimonials';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
+import RecipeBlock from './Recipe';
+
 
 export const Blocks = ({
   blocks,
@@ -82,6 +85,10 @@ export const Blocks = ({
         return (
           <ColumnsBlock key={`block-${index}`} data={block} index={index} />
         );
+      case 'PageBlocksRecipeBlock':
+        return (
+          <RecipeBlock data={block}/>
+        )
       case 'PageBlocksShowcase':
         return (
           <ShowcaseItemsBlock
