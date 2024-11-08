@@ -27,7 +27,7 @@ Other conversion options that are not covered in this guide include:
 
 1\. Export your Wordpress content by going to [https://wordpress.com/export/](https://wordpress.com/export/) and select **Export All**
 
-> 💡 **Note:** Name it **export.xml** to make it easier for you in the next step
+> Name it **export.xml** to make it easier for you in the next step
 
 Use [wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to convert your WordPress content into Markdown.
 
@@ -47,9 +47,9 @@ This creates an `output` folder that groups your posts and pages into separate f
 
 1\. In the output folder, drag the image folders `output/post/images` and `output/page/images` to your Tina app's `public/uploads` folder.
 
-> 💡 **Note 1:** You can rename the folder before dragging to prevent duplicate image names being replaced
+> You can rename the folder before dragging to prevent duplicate image names being replaced
 
-> 💡 **Note 2:** You can also set up alternative hosting with your preferred media manager.
+> You can also set up alternative hosting with your preferred media manager.
 
 #### Migrating Posts
 
@@ -71,7 +71,7 @@ Which will convert your files from Markdown to MDX.
 
 2\. Drag all the MDX files in `output/post` to your Tina app's `content/posts` folder, now your posts have been migrated to Tina!
 
-> 💡 **Note:** This only works because the format of WordPress posts matches the format that the Tina Starter uses.
+> This only works because the format of WordPress posts matches the format that the Tina Starter uses.
 
 #### Migrating Pages
 
@@ -185,7 +185,7 @@ fields: [
 
 3\. In `app/posts/[...filename]/client-page.tsx`, add the `coverImage` field so that it can be rendered with [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown).
 
-> 💡 **Hint**: You can copy or rename the `heroImg` code snippet and edit to fit your needs
+> You can also copy or rename the `heroImg` code snippet and edit to fit your needs
 
 ```javascript
 return (
