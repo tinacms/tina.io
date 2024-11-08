@@ -90,17 +90,18 @@ const NavLevel = ({
   const navLevelElem = React.useRef(null);
   const router = useRouter();
   const path = router.asPath;
-  const slug = categoryData.slug;
+  const slug = categoryData.slug?.replace(/\/$/, '');
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
       hasNestedSlug(categoryData.items, path) ||
       level === 0
   );
 
-  const selected = path.split("#")[0] == slug || (slug == '/docs' && path == "/docs/")
-  const childSelected = hasNestedSlug(categoryData.items, router.asPath)
 
+  const selected =
+    path.split('#')[0] == slug || (slug == '/docs' && path == '/docs/');
 
+  const childSelected = hasNestedSlug(categoryData.items, router.asPath);
   React.useEffect(() => {
     if (
       navListElem &&
@@ -124,7 +125,6 @@ const NavLevel = ({
       }
     }
   }, [navLevelElem.current, navListElem, selected]);
-
   return (
     <>
       <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
@@ -157,17 +157,26 @@ const NavLevel = ({
             )}
           </NavTitle>
         )}
+        
+        {!childSelected && selected && level > 0 && (
+          <div
+            className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"
+            
+          ></div>
+        )}
       </NavLabelContainer>
       {categoryData.items && (
         <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
           <NavLevelChildContainer level={level}>
             {(categoryData.items || []).map((item) => (
-              <NavLevel
-                key={item.slug ? item.slug + level : item.title + level}
-                navListElem={navListElem}
-                level={level + 1}
-                categoryData={item}
-              />
+              <div>
+                <NavLevel
+                  key={item.slug ? item.slug + level : item.title + level}
+                  navListElem={navListElem}
+                  level={level + 1}
+                  categoryData={item}
+                />
+              </div>
             ))}
           </NavLevelChildContainer>
         </AnimateHeight>
@@ -251,7 +260,6 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
     </>
   );
 };
-
 
 const DocsNavigationContainer = styled.div`
   overflow-y: auto;
