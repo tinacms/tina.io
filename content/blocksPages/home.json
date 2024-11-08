@@ -238,6 +238,10 @@
     {
       "criteriaItems": [
         {
+          "criteria": "Repo-based Media",
+          "description": "Assets can be stored in GitHub, alongside other content, while being managed by the CMS editor"
+        },
+        {
           "criteria": "Open Source Front-end",
           "description": "A CMS which is transparent, extensible and community driven"
         },
