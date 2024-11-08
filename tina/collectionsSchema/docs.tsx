@@ -1,3 +1,5 @@
+import  {RecipeBlock}  from "../../components/blocks/Recipe.template";
+import { Template } from "tinacms";
 export const docsCollection = {
   name: 'doc',
   label: 'Docs',
@@ -43,6 +45,7 @@ export const docsCollection = {
       label: 'Body',
       isBody: true,
       templates: [
+        RecipeBlock as Template,
         {
           name: 'Youtube',
           label: 'Youtube Embed',

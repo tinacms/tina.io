@@ -12,14 +12,6 @@
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "buttons": [
             {
-              "label": "Try the editor now",
-              "icon": true,
-              "variant": "blue",
-              "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~",
-              "_template": "actions"
-            },
-            {
               "label": "npx create-tina-app@latest",
               "_template": "codeButton"
             }
@@ -29,7 +21,9 @@
               "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
-          ]
+          ],
+          "isReversed": false,
+          "imageBackground": false
         }
       ],
       "_template": "features"
@@ -187,7 +181,7 @@
           }
         },
         {
-          "headline": "Control your Components",
+          "headline": "Build with Blocks",
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
           "icon2": "FaPuzzlePiece",
           "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
@@ -440,7 +434,7 @@
         {
           "headline": "NDC Porto",
           "startDate": "2024-10-14T00:00:00.000Z",
-          "startTime": 9,
+          "startTime": "2024-10-02T09:00:00.000Z",
           "endDate": "2024-10-18T00:00:00.000Z",
           "timezone": 1,
           "location": "Porto, Portugal",
@@ -452,6 +446,7 @@
         {
           "headline": "CPH Dev Fest",
           "startDate": "2024-08-26T00:00:00.000Z",
+          "startTime": "2024-10-01T13:00:00.000Z",
           "endDate": "2024-08-30T00:00:00.000Z",
           "timezone": 2,
           "location": "Copenhagen, Denmark",
@@ -463,7 +458,7 @@
         {
           "headline": "NDC Oslo",
           "startDate": "2024-05-19T00:00:00.000Z",
-          "startTime": 9,
+          "startTime": "2024-10-14T09:00:00.000Z",
           "endDate": "2024-05-23T00:00:00.000Z",
           "timezone": 2,
           "location": "Oslo, Norway",
