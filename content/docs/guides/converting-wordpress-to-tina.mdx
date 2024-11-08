@@ -1,6 +1,6 @@
 ---
 title: Migrating WordPress Content
-last_edited: '2024-11-07T23:25:28.799Z'
+last_edited: '2024-11-08T01:38:20.770Z'
 next: ''
 previous: ''
 ---
@@ -131,9 +131,86 @@ npm run dev
 
 3\. Go to the Migrated WordPress Pages and Blog Posts collections, then to the Media Manager. You can now view and edit your migrated posts, pages and images!
 
+You'll notice that your pages won't display your media properly, let's fix that!
+
+### Adding Post's Cover Image Example
+
+We can do this in two methods, unfortunately, they both will require some manual work.
+
+* Option 1 - Updating each post's hero image to the cover image - Recommended if the hero component fits your needs without much changing
+* Option 2 - Updating the schema to match the Markdown - Recommended for updating your schema to match what it used to look like
+
+#### Option 1: Manually update posts' image
+
+Using the [Tina editor](https://tina.io/docs/using-tina-editor), you can update the hero image of each post.
+
+#### Option 2: Update the schema to match the Markdown 
+
+Have a look at one of your posts' Markdown file, it may look something like this:
+
+```markdown
+---
+title: Your Post Title
+coverImage: picture_post_1.png
+---
+
+{{ Content }}
+```
+
+1. Update the `coverImage` field so that it can be fetched properly, by appending `/uploads/` in front of the image URL.
+
+```markdown
+---
+title: Your Post Title
+coverImage: /uploads/picture_post_1.png
+---
+
+{{ Content }}
+```
+
+2. In `tina/collection/post.ts`, add a new field with the name `coverImage`.
+
+```javascript
+fields: [
+  {
+    type: "image",
+    name: "coverImage",
+    label: "Cover Image",
+  },
+  // Your other fields
+]
+```
+
+3. In `app/posts/[...filename]/client-page.tsx`, add the `coverImage` field so that it can be rendered with [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown).
+
+> 💡 **Hint**: You can copy or rename the `heroImg` code snippet and edit to fit your needs
+
+```javascript
+return (
+  // .... Your title and author components
+  // Example coverImage rendering
+  {
+    post.coverImage && (
+      <div className="w-full">
+        <div data-tina-field={tinaField(post, "coverImage")}>
+          <Image
+            src={post.coverImage}
+            alt={post.title}
+            width={500}
+            height={500}
+            className="mx-auto"
+          />
+        </div>
+      </div>
+    )
+  }
+  // ... Your body component
+);
+```
+
+4\. Now when you view your posts, you'll see that your images will be displayed on the page!
+
 ## Next Steps
 
-* Adding a coverImage field to your post schema to read the image
-* Update the image links in the Markdown and MDX files to match how Tina uses them, uploads/image.png
 * Making changes to the themes and any missing features from the exporter
 * Take advantage of [npm packages](https://www.npmjs.com/) to replace WordPress plugins functionalities
