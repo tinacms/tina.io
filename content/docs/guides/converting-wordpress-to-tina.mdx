@@ -1,6 +1,6 @@
 ---
 title: Migrating WordPress Content
-last_edited: '2024-11-08T05:17:50.418Z'
+last_edited: '2024-11-08T05:20:16.628Z'
 next: ''
 previous: ''
 ---
@@ -173,7 +173,7 @@ coverImage: /uploads/picture_post_1.png
 
 2\. In `tina/collection/post.ts`, add a new field with the name `coverImage`.
 
-```javascript
+```typescript
 fields: [
   {
     type: 'image',
@@ -188,7 +188,7 @@ fields: [
 
 > You can also copy or rename the `heroImg` code snippet and edit to fit your needs
 
-```javascript
+```typescript
 return (
   // .... Your title and author components
   // Example coverImage rendering
