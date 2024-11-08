@@ -23,10 +23,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1';
 
+  //The 'outputFileTracing: false' is a work-around to use the Monaco editor with the error 'Multiple assets emit content to the same filename'
+  //This is a known issue in the community - see https://github.com/vercel/next.js/issues/31692 for more context
+
 const config = {
   ...extraConfig,
-  //The following line is a work-around to use the Monaco editor with the error 'Multiple assets emit content to the same filename'
-  //This is a known issue in the community - see https://github.com/vercel/next.js/issues/31692 for more context
   outputFileTracing: false,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
