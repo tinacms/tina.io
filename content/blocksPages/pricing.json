@@ -1,10 +1,14 @@
 {
+  "seo": {
+    "title": "Plans and Pricing",
+    "description": "TinaCMS offers flexible pricing options for developers and teams, designed to support a seamless editing experience. Discover the right plan for your project, whether you're just starting out or scaling up."
+  },
   "blocks": [
     {
       "headline": "Plans & Pricing",
       "freeTier": {
         "name": "Free",
-        "description": "Includes **2 users, 2 roles**, and **community support.**\n",
+        "description": "Includes 2 users, 2 roles, and community support.\n",
         "price": "$0",
         "interval": "Forever",
         "buttons": [
@@ -18,12 +22,16 @@
           }
         ]
       },
-      "intro": "Need to scale? No Probllama! Tina offers a per-project pricing model that grows with your needs.\n\nAll prices in USD\n",
+      "intro": "Need to scale? No Probllama! Tina offers a **per-project** pricing model that grows with your needs.\n\nSwitch to annual billing and save! All prices in **USD**\n",
+      "pillSwitchVisibileText": "All prices are **per-project** and in **USD**.\n",
+      "pillSwitchToggleText": "Get **2 months free** with annual billing\n",
       "plans": [
         {
           "name": "Team",
           "description": "For growing teams\n",
           "price": "$29",
+          "annualPrice": "$24",
+          "annualDescription": "$290 billed annually (save $58)",
           "interval": "/ month",
           "cardItem": [
             {
@@ -60,6 +68,8 @@
           "name": "Team Plus",
           "description": "For bigger teams\n",
           "price": "$49",
+          "annualPrice": "$41",
+          "annualDescription": "$490 billed annually (save $98)",
           "interval": "/ month",
           "cardItem": [
             {
@@ -104,6 +114,8 @@
           "name": "Business",
           "description": "For premium support\n",
           "price": "$299",
+          "annualPrice": "$249",
+          "annualDescription": "$2,990 billed annually (save $598)",
           "interval": "/ month",
           "cardItem": [
             {
@@ -116,7 +128,7 @@
               "icon": "BiBadge"
             },
             {
-              "name": "Premium Business Support",
+              "name": "Business Support",
               "icon": "BiSupport"
             },
             {
@@ -153,6 +165,7 @@
           "name": "Enterprise",
           "description": "For custom needs\n",
           "price": "Custom",
+          "annualPrice": "Custom",
           "interval": "",
           "cardItem": [
             {

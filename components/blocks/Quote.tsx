@@ -1,7 +1,7 @@
+import Image from 'next/image'
 import React from 'react'
 import { tinaField } from 'tinacms/dist/react'
 import { Container } from './Container'
-import Image from 'next/image'
 
 export const QuoteBlock = ({ data, index }) => {
   return (
@@ -11,7 +11,7 @@ export const QuoteBlock = ({ data, index }) => {
         <Container width="wide">
           <div className="flex flex-col items-center lg:justify-center gap-12 lg:gap-36 perspective lg:flex-row">
             <div className="lg:w-1/5 flex flex-col gap-6 lg:gap-8  max-w-sm">
-              <Image src={data.logo}
+              <Image src={data.logo ?? ""}
               alt={data.title2}
               height={600}
               width={600}

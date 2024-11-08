@@ -25,6 +25,7 @@ export const docAndBlogComponents: Components<{
     url: string;
     buttonText: string;
   };
+  WebmEmbed: { embedSrc: string; width?: string };
   WarningCallout: { body: string };
   Codesandbox: { embedSrc: string; title: string };
   Diagram: { alt: string; src: string };
@@ -57,10 +58,11 @@ export const docAndBlogComponents: Components<{
     return (
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-red">
+          {' '}
           <TinaMarkdown
             content={props.docText as any}
             components={docAndBlogComponents}
-          />
+          />{' '}
         </div>
         <div>
           <Image src={props?.image} alt="image" className="w-full" />
@@ -78,7 +80,7 @@ export const docAndBlogComponents: Components<{
 
     return (
       <div>
-        <hr />
+        <hr></hr>
         <button
           className="flex w-full items-start justify-between text-left text-gray-900"
           onClick={handleToggle}
@@ -97,7 +99,6 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
-
   h1: (props) => <FormatHeaders level={1} {...props} />,
   h2: (props) => <FormatHeaders level={2} {...props} />,
   h3: (props) => <FormatHeaders level={3} {...props} />,
@@ -108,9 +109,27 @@ export const docAndBlogComponents: Components<{
   ol: (props) => <ol className="list-decimal ml-5" {...props} />,
   li: (props) => <li className="mb-2" {...props} />,
 
-  Iframe: ({ iframeSrc, height }) => (
-    <div>
-      <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+  Iframe: ({ iframeSrc, height }) => {
+    return (
+      <div>
+        <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+      </div>
+    );
+  },
+  WebmEmbed: ({ embedSrc, width = '100%' }) => (
+    <div className="video-container flex py-2 justify-center">
+      <video
+        width={width}
+        height="auto"
+        src={embedSrc}
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={embedSrc} type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
     </div>
   ),
   Youtube: ({ embedSrc }) => (
@@ -121,7 +140,7 @@ export const docAndBlogComponents: Components<{
         src={embedSrc}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
+        allowFullScreen={true}
       ></iframe>
     </div>
   ),
@@ -177,7 +196,7 @@ export const docAndBlogComponents: Components<{
           <svg
             stroke="currentColor"
             fill="currentColor"
-            strokeWidth="0"
+            stroke-width="0"
             viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -243,13 +262,15 @@ export const docAndBlogComponents: Components<{
       />
     );
   },
-  GraphQLCodeBlock: ({ query, response, preselectResponse }) => (
-    <GraphQLQueryResponseTabs
-      query={query}
-      response={response}
-      preselectResponse={preselectResponse}
-    />
-  ),
+  GraphQLCodeBlock: ({ query, response, preselectResponse }) => {
+    return (
+      <GraphQLQueryResponseTabs
+        query={query}
+        response={response}
+        preselectResponse={preselectResponse}
+      />
+    );
+  },
   CustomFieldComponentDemo: () => (
     <iframe
       height="450"
@@ -258,8 +279,8 @@ export const docAndBlogComponents: Components<{
       title="CSS Filters + A Springer Spaniel"
       src="https://codepen.io/kendallstrautman/embed/WNbzLJZ?height=265&theme-id=default&default-tab=css,result"
       frameBorder="no"
-      allowTransparency
-      allowFullScreen
+      allowTransparency={true}
+      allowFullScreen={true}
     >
       See the Pen{' '}
       <a href="https://codepen.io/kendallstrautman/pen/WNbzLJZ">

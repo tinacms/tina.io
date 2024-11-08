@@ -184,6 +184,22 @@ export const docsCollection = {
           ],
         },
         {
+          name: 'WebmEmbed',
+          label: 'Webm Embed',
+          fields: [
+            {
+              type: 'string',
+              name: 'embedSrc',
+              label: 'Embed SRC',
+            },
+            {
+              type: 'string',
+              name: 'width',
+              label: 'width',
+            }
+          ]
+        },
+        {
           name: 'ImageAndText',
           label: 'Image and Text',
           fields: [

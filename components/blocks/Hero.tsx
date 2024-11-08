@@ -106,14 +106,14 @@ export const Video = ({ src, className }) => {
       loop
       muted
       playsInline
-      poster={`https://res.cloudinary.com/forestry-demo/video/upload/so_0/${src}.jpg`}
+      poster={`${src}`}
     >
       <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.webm`}
+        src={`${src}`}
         type="video/webm"
       />
       <source
-        src={`https://res.cloudinary.com/forestry-demo/video/upload/q_80,h_562/${src}.mp4`}
+        src={`${src}`}
         type="video/mp4"
       />
     </video>

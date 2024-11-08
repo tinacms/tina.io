@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-09-18T01:54:13.946Z'
+last_edited: '2024-10-17T05:02:36.352Z'
 next: ''
 previous: ''
 ---
@@ -36,7 +36,7 @@ configuration provided.
 }
 ```
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381461/Screenshot_2024-07-31_at_9.17.27_AM_hu7wj1.png)
+![](/img/docs/reference/rtf.png)
 
 ### Toolbar override
 
@@ -52,7 +52,7 @@ Change what you want to display and the order it is displayed in the editor
 }
 ```
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381590/Screenshot_2024-07-31_at_9.19.47_AM_dukos7.png)
+![](/img/docs/reference/blog-post.png)
 
 ### Custom templates
 
@@ -76,7 +76,7 @@ Change what you want to display and the order it is displayed in the editor
 }
 ```
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1722381505/Screenshot_2024-07-31_at_9.18.10_AM_p93fjv.png)
+![](/img/docs/reference/custom-template.png)
 
 In markdown, this would look like...
 
@@ -185,6 +185,17 @@ While most markdown features are supported out of the box, Tina will ignore elem
 * Footnotes
 * Code blocks via indentation (use ` ``` ` instead)
 * Strikethrough
+
+##### Table Cell Limitations
+
+Within table cells, support is limited to inline elements only. The following types are unsupported:
+
+* Code Block
+* Lists
+* Quote
+* Headings
+
+If you try to add these types into a table cell, they will be treated as a string.![](/img/docs/rich-text/cells-1.png)**❌ Figure: Bad example - A table with block elements treated as strings**![supported-table-cell-formats](/img/docs/rich-text/cells-2.png)**✅ Figure: Good example - A table with inline elements**
 
 ### Automatic transforms
 
