@@ -1,64 +1,10 @@
 ---
 id: introduction
 title: Tina Docs
-last_edited: '2024-11-03T23:58:26.050Z'
+last_edited: '2024-11-08T04:50:48.321Z'
 next: content/docs/product-tour.mdx
 previous: ''
 ---
-
-<RecipeBlock
-  title="Dynamic Routing with [slug].tsx"
-  description="Use your json formatted files to create pages with TinaCMS"
-  codeblock={<>
-    ```javascript
-    Here is alot of code
-    banana
-    {
-    <div>
-    Hey! some text you can follow
-    </div>
-    }
-    
-    ```
-  </>}
-  instruction={[
-    {
-      header: "Relevant Imports",
-      itemDescription:
-        "This introductory step is just importing a series of Tina related methods, like useTina and client. As well as relevant helper methods.",
-      codeLineStart: 1,
-      codeLineEnd: 5
-    },
-    {
-      header: "Data Fetching",
-      itemDescription:
-        "Using the Next.js method for fetching data at build time. Specifically using the Tina generated `client.queries` function to grab the relevant gql query. Returning it in a format the useTina hook can read.",
-      codeLineStart: 28,
-      codeLineEnd: 37
-    },
-    {
-      header: "Static Path Defining",
-      itemDescription:
-        "Grabs all the .json files and maps each corresponding slug (based on file name) to serve as the URL parameter of each page.",
-      codeLineStart: 40,
-      codeLineEnd: 44
-    },
-    {
-      header: "Populate useTina Hook",
-      itemDescription:
-        "Our custom useTina hook is used to fetch and manage the TinaCMS data for live and contextual editing.",
-      codeLineStart: 10,
-      codeLineEnd: 15
-    },
-    {
-      header: "Rendering <BlocksPage />",
-      itemDescription:
-        "Another component used to actually render the data based on the structure type that the data comes in from",
-      codeLineStart: 17,
-      codeLineEnd: 18
-    }
-  ]}
-/>
 
 ## Introduction
 

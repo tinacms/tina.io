@@ -35,7 +35,7 @@ export const docAndBlogComponents: Components<{
   Button: { link: string; label: string };
   ImageAndText: { docText: string; image: string };
   Summary: { heading: string; text: string };
-  RecipeBlock: {
+  recipeBlock: {
     title?: string;
     description?: string;
     codeblock?: any;
@@ -47,9 +47,10 @@ export const docAndBlogComponents: Components<{
     }[];
   };
 }> = {
-  RecipeBlock: (props) => {
+  recipeBlock: (props) => {
     return (
       <div className='text-white'>
+        TEST
         <RecipeBlock data={props} />
       </div>
     );
