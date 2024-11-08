@@ -1,6 +1,6 @@
 import { Template } from 'tinacms';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
-import { columnsTemplate } from '../../components/blocks/Columns.template';
+import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import { compareBoxTemplate } from '../../components/blocks/CompareBox/CompareBox.template';
 import { contentTemplate } from '../../components/blocks/Content/Content.template';
 import { eventsTemplate } from '../../components/blocks/Events/Events.template';
