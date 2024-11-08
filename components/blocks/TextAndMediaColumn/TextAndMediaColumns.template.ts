@@ -1,6 +1,6 @@
 import { Template } from 'tinacms';
-import { cloudinaryMediaComponent } from '../../sharedBlockFields/CloudinaryMedia.template';
-import { youtubeMediaTemplate } from '../../sharedBlockFields/YoutubeMediaTemplate';
+import { cloudinaryMediaComponent } from '../../sharedTemplates/CloudinaryMedia.template';
+import { youtubeMediaTemplate } from '../../sharedTemplates/YoutubeMediaTemplate';
 
 export const textAndMediaColumnsComponentTemplate: Template = {
   label: 'Text and Media Column Component',
