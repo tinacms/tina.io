@@ -1,6 +1,6 @@
 ---
 title: Converting an existing Gatsby project to TinaCMS
-last_edited: '2024-11-10T23:45:38.210Z'
+last_edited: '2024-11-10T23:59:53.780Z'
 next: content/docs/cli-overview.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -275,7 +275,7 @@ Congratulations! Your Gatsby MDX blog is now set up with Tina. Run `yarn develop
 
 ## (Recommended) Adding Visual editing
 
-<WarningCallout body="Warning - If you do decide to add visual editing you will need to swap out your gatsby-source plugins" />
+<WarningCallout body="Warning - If you do decide to add visual editing you will need to swap any custom MDX plugins you're using" />
 
 Up until now we've only set up TinaCMS as an editor for our markdown files. The display logic is still being handled by Gatsby's plugins.
 
@@ -303,13 +303,7 @@ export default defineConfig({
 
 ### Generating the pages
 
-Add the following import to the top of gatsby-node.ts
-
-```diff
-+ import client from "./tina/__generated__/client"
-```
-
-We'll also create new types for the response from Tina's GraphQL API and remove the existing ones.
+First, we'll new types for the response from Tina's GraphQL API and remove the existing ones.
 Modify the types in `src/types.ts` to reflect the new data we'll be getting back from Tina's API.
 
 ```diff
@@ -343,6 +337,8 @@ And we'll also want to import them at the top of our blog-post page.
 Then we'll add a helper to map the response from Tina's GraphQL API to a to a schema similar to the existing page data.
 
 ```diff
++ import { AllPostResponse, BlogPost } from "./src/types"
+
 + const mapResponse = (postResponse: AllPostResponse): BlogPost[] => {
 +  const mappedResponse = postResponse.data.postConnection.edges.map(edge => {
 +    const {
@@ -367,7 +363,7 @@ Next we'll update the createPages function to use Tina's GraphQL API to generate
 ```diff
 
 - import { AllPageData } from "./src/types"
-+ import { AllPostResponse, BlogPost } from "./src/types"
+import { AllPostResponse, BlogPost } from "./src/types"
 + import client from "./tina/__generated__/client"
 
 //...
@@ -568,9 +564,7 @@ export const pageQuery = graphql`
 `
 ```
 
-Remove the existing mdx query to prevent confusion
-
-Update the page using the useTina hook, this will give us visual editing
+Now that we've configured our page with a new data source we can use th useTina hook to implement visual editing.
 
 first update the page props for `BlogPostTemplate`. We'll add in our server fetched data and pull that in using the useTina hook
 
@@ -599,7 +593,7 @@ first update the page props for `BlogPostTemplate`. We'll add in our server fetc
 //...
 ```
 
-then we'll swap out all of the existing data with the data we get back from Tina. Note the additon of the tinaField property, which is used to add contextual editing for each of the fields.
+Then we'll swap out all of the existing data with the data we get back from Tina. Note the additon of the tinaField property, which is used to add contextual editing for each of the fields.
 
 ```diff
 + import {useTina } from 'tinacms/dist/react'
@@ -650,16 +644,14 @@ then we'll swap out all of the existing data with the data we get back from Tina
 +               {nextPageData.title} →
 ```
 
-There's one other step we'll do. Unfortunately, our date isn't being formatted using by the graphql query. to fix this we'll use a library to format our date.
+There's one other step we'll do. Unfortunately, our date isn't being formatted using by the graphql query. To fix this we'll use a library to format our date.
 
 ```bash
 yarn add dateformat
 ```
 
-Then we'll update the date inside of useEffect. The benefit of this approach is that we'll be able to see the date update in real time when we use the visal editor.
-
 Then we'll add a useEffect statement to update the date when it date changes. We're using useEffect here so that the date will be recomputed when we use the visual editor.
-We'll also swap out the value using useState.
+using `useState` will cause the date to update when our data source changes.
 
 ```diff
 
@@ -697,7 +689,7 @@ const BlogPostTemplate = ({ serverData, data: { site }, location }) => {
 
 ### Updating the home page
 
-We also need to update the pages on the home page because it was being populated using gatsby-mdx before. Add the following changes to `src/pages/index.tsx`
+We also need to update the pages on the home page because it was being populated using gatsby-mdx before. Add the following changes to `src/pages/index.tsx`.
 
 ```diff
 export const pageQuery = graphql`
@@ -812,7 +804,7 @@ similar to the home page we'll add
 }
 ```
 
-> Note: we don't need to use the useTina hook here because the home page is static
+> Note: we don't need to use the useTina hook here because the home page is static.
 
 We'll also format the date in this file. Note that we don't need to use useEffect here because the page is static.
 
@@ -865,9 +857,7 @@ folder in the breadcrumbs array to retrieve the correct path.
 
 ## (Optional) Adding React components
 
-You can create React components in Gatsby as well, but you'll need to do some additional configuration compared to other frameworks.
-
-First, we'll modify the schema for our blog posts, defining the new React component we're planning to add.
+You can create React components in Gatsby as well. First, we'll modify the schema for our blog posts, defining the new React component we're planning to add.
 
 ```diff
   schema: {
