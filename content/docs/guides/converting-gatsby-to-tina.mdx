@@ -691,7 +691,7 @@ const BlogPostTemplate = ({ serverData, data: { site }, location }) => {
 
 #### Updating the home page
 
-We also need to update the pages on the home page because it was being populated using gatsby-mdx before. Add the following changes to `src/pages/index.tsx`.
+We also need to update the homepage to reflect content changes, as it was previously populated using `gatsby-mdx`. Make the following updates to `src/pages/index.tsx`:
 
 ```diff
 export const pageQuery = graphql`
