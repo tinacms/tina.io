@@ -719,7 +719,7 @@ export const pageQuery = graphql`
 }
 ```
 
-On the home page we'll need to add a server side fetch to get the full list of articles using TinaCMS.
+On the homepage, we’ll need to implement a server-side fetch to retrieve the full list of articles through TinaCMS.
 
 ```diff
 + import client from "../../tina/__generated__/client"
