@@ -842,9 +842,7 @@ We'll also format the date in this file. Note that we don't need to use useEffec
 //...
 ```
 
-The final thing we'll need to do to add contextual editing is to configure the routing property of our collection. This will navigate us to the correct page
-when we open the file in TinaCMS' visual editor. Because we're storing each blog post in a single folder in `content` we can just use the first
-folder in the breadcrumbs array to retrieve the correct path.
+The final step for enabling contextual editing is to configure the `routing` property of our collection. This setting will ensure that we navigate to the correct page when opening a file in TinaCMS's visual editor. Since each blog post is stored in its own folder within the `content` directory, we can use the first folder in the breadcrumbs array to determine the correct path.
 
 ```diff
   schema: {
