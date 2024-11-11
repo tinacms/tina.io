@@ -1,6 +1,6 @@
 ---
 title: Converting an existing Gatsby project to TinaCMS
-last_edited: '2024-11-10T23:59:53.780Z'
+last_edited: '2024-11-11T00:11:13.437Z'
 next: content/docs/cli-overview.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -301,7 +301,7 @@ export default defineConfig({
 // ...
 ```
 
-### Generating the pages
+#### Generating the pages
 
 First, we'll new types for the response from Tina's GraphQL API and remove the existing ones.
 Modify the types in `src/types.ts` to reflect the new data we'll be getting back from Tina's API.
@@ -454,7 +454,7 @@ Using the response from Tina's GraphQL API we'll change the way that pages get g
 
 ### Updating the blog post page
 
-First we'll define our types inside of `src/types.ts`
+First we'll define our types inside of `src/types.ts`.
 
 ```diff
 
@@ -474,9 +474,9 @@ First we'll define our types inside of `src/types.ts`
 
 ```
 
-We'll use a static query to get the data for our blog post page template
+We'll use a static query to get the data for our blog post page template.
 
-Add a static query to get the data for the page using Tina
+Add a static query to get the data for the page using Tina.
 
 ```diff
 + import { Post } from "../../tina/__generated__/types"
@@ -521,7 +521,7 @@ Add a static query to get the data for the page using Tina
 + }
 ```
 
-We'll also update the page query to exclude the markdown from the query since we'll be using Tina to update the query instead
+We'll also update the page query to exclude the markdown from the query since we'll be using TinaCMS to populate the page instead.
 
 ```diff
 export const pageQuery = graphql`
@@ -687,7 +687,9 @@ const BlogPostTemplate = ({ serverData, data: { site }, location }) => {
 
 ```
 
-### Updating the home page
+![editing an article using the visual editor](</live preview date changes.gif> "Article date updating in real time")
+
+#### Updating the home page
 
 We also need to update the pages on the home page because it was being populated using gatsby-mdx before. Add the following changes to `src/pages/index.tsx`.
 
@@ -717,7 +719,7 @@ export const pageQuery = graphql`
 }
 ```
 
-similar to the home page we'll add
+On the home page we'll need to add a server side fetch to get the full list of articles using TinaCMS.
 
 ```diff
 + import client from "../../tina/__generated__/client"
