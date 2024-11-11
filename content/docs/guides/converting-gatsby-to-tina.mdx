@@ -96,11 +96,11 @@ Add the following:
 
 ## Configuring our Schema
 
-Now we've added Tina to our project but it's not pointing at our existing markdown files. Let's fix that.
+Now that Tina is added to our project, we need to link it to our existing markdown files.
 
-Open up `tina/config.ts` and change the path to point to our blog directory. We'll also need to update our schema since we'll work with mdx files.
-
-Next we'll need to change the location where images get uploaded. Since `public` doesn't get tracked in Git.
+1. Open `tina/config.ts` and update the path to point to the blog directory.
+2. Update the schema to work with `.mdx` files to ensure proper handling of markdown with JSX support.
+3. Modify the image upload location, as the `public` directory isn’t tracked by Git.
 
 > By moving our images to `static`, we're ensuring that they'll be tracked in git and bundled at run time.
 
