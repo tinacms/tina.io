@@ -1,50 +1,71 @@
-import { useState, useEffect } from 'react'
-import ReactMarkdown from 'react-markdown'
-import styled, { css } from 'styled-components'
-import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { getDocId } from 'utils/docs/getDocIds'
+import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import styled, { css } from 'styled-components';
+import RightArrowSvg from '../../public/svg/right-arrow.svg';
+import { getDocId } from 'utils/docs/getDocIds';
 
 interface TocProps {
-  tocItems: Array<{ type: string; text: string }>
-  activeIds: string[]
+  tocItems: Array<{ type: string; text: string }>;
+  activeIds: string[];
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
   return tocItems
     .map((item) => {
-      const anchor = getDocId(item.text)
-      const prefix = item.type === 'h3' ? '  ' : ''
-      return `${prefix}- [${item.text}](#${anchor})`
+      const anchor = getDocId(item.text);
+      const prefix = item.type === 'h3' ? '  ' : '';
+      return `${prefix}- [${item.text}](#${anchor})`;
     })
-    .join('\n')
-}
+    .join('\n');
+};
 
-const ToC = ({ tocItems, activeIds }: TocProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+const ToC = ({ tocItems, activeIds, isOpen, setIsOpen }: TocProps) => {
+  const [isManualOpen, setIsManualOpen] = useState(false);
 
   useEffect(() => {
-    const close = () => setIsOpen(false)
-    const allLinks = document.querySelectorAll('a')
+    const close = () => setIsOpen(false);
+    const allLinks = document.querySelectorAll('a');
     if (allLinks.length > 0) {
-      allLinks.forEach((a) => a.addEventListener('click', close))
+      allLinks.forEach((a) => a.addEventListener('click', close));
     }
     return () => {
       if (allLinks.length > 0) {
-        allLinks.forEach((a) => a.removeEventListener('click', close))
+        allLinks.forEach((a) => a.removeEventListener('click', close));
       }
-    }
-  }, [])
+    };
+  }, [setIsOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isManualOpen && window.scrollY > 200) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [setIsOpen, isManualOpen]);
 
   if (!tocItems || tocItems.length === 0) {
-    return null
+    return null;
   }
 
-  const tocMarkdown = generateMarkdown(tocItems)
+  const tocMarkdown = generateMarkdown(tocItems);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) setIsManualOpen(true);
+  };
 
   return (
     <TocWrapper>
-      <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-        <span>{isOpen ? 'Hide' : 'Show'} Table of Contents</span>
+      <TocButton isOpen={isOpen} onClick={handleToggle}>
+        <span>{isOpen ? 'Hide Table of Contents' : ''}</span>
         <RightArrowSvg />
       </TocButton>
       <TocContent activeIds={activeIds} isOpen={isOpen}>
@@ -52,10 +73,10 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
         <ReactMarkdown>{tocMarkdown}</ReactMarkdown>
       </TocContent>
     </TocWrapper>
-  )
-}
+  );
+};
 
-export default ToC
+export default ToC;
 
 export const TocDesktopHeader = styled.span`
   display: none;
@@ -65,11 +86,7 @@ export const TocDesktopHeader = styled.span`
   background: transparent;
   line-height: 1;
   margin-bottom: 1.125rem;
-
-  @media (min-width: 1200px) {
-    display: block;
-  }
-`
+`;
 
 export const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
@@ -79,7 +96,7 @@ export const TocWrapper = styled.div`
     position: sticky;
     top: 1.5rem;
   }
-`
+`;
 
 export const TocButton = styled.button<{ isOpen: boolean }>`
   display: block;
@@ -105,9 +122,15 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
     width: 1.25rem;
     height: auto;
     fill: var(--color-grey);
-    transform-origin: 50% 50%;
-    transition: opacity 180ms ease-out, transform 180ms ease-out;
-    opacity: 0.5;
+    transition: transform 400ms ease-out, right 400ms ease-out;
+    right: ${(props) => (props.isOpen ? '0' : '-1.5rem')};
+    transform: ${(props) => (props.isOpen ? 'rotate(90deg)' : 'rotate(180deg)')};
+    background-color: orange;
+    border-radius: 0 15px 15px 0;
+
+    @media (min-width: 1200px) {
+      right: ${(props) => (props.isOpen ? '0' : '-2.5rem')};
+    }
   }
 
   :hover,
@@ -120,25 +143,19 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
   }
 
   ${(props) =>
-    props.isOpen
-      ? css`
-          color: var(--color-orange);
+    props.isOpen &&
+    css`
+      color: var(--color-orange);
 
-          svg {
-            transform: rotate(90deg);
-            opacity: 1;
-          }
-        `
-      : ``};
-
-  @media (min-width: 1200px) {
-    display: none;
-  }
-`
+      svg {
+        opacity: 1;
+      }
+    `};
+`;
 
 export interface TocContentProps {
-  isOpen: boolean
-  activeIds: string[]
+  isOpen: boolean;
+  activeIds: string[];
 }
 
 export const TocContent = styled.div<TocContentProps>`
@@ -165,14 +182,10 @@ export const TocContent = styled.div<TocContentProps>`
   ${(props) =>
     props.isOpen
       ? css`
-          transition: all 750ms ease-in;
+          transition: all 400ms ease-in;
           max-height: 1500px;
         `
       : ``};
-
-  @media (min-width: 1200px) {
-    max-height: none;
-  }
 
   /* Top Level Styles */
 
@@ -193,10 +206,8 @@ export const TocContent = styled.div<TocContentProps>`
 
   a {
     color: var(--color-secondary);
-    /* font-family: var(--font-tuner); */
   }
 
-  /* Hide underline except on hover or focus */
   a {
     :not(:focus) {
       :not(:hover) {
@@ -205,7 +216,6 @@ export const TocContent = styled.div<TocContentProps>`
     }
   }
 
-  /* Nested Styles */
   ul {
     ul {
       padding: 0.125rem 0 0.125rem 0.75rem;
@@ -224,4 +234,4 @@ export const TocContent = styled.div<TocContentProps>`
       }
     }
   }
-`
+`;
