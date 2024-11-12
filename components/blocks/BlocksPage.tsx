@@ -1,6 +1,6 @@
 import { Layout } from '../layout'
 import { NextSeo } from 'next-seo'
-import { GlobalStyles } from './GlobalStyles'
+import { GlobalStyles } from '../styles/BlockStyles'
 import { Blocks } from './Blocks'
 
 export const BlocksPage = ({ data, recentPosts }) => {
