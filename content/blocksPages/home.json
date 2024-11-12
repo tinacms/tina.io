@@ -280,6 +280,10 @@
         {
           "criteria": "Self-hosted Option",
           "description": "Option to self-host"
+        },
+        {
+          "criteria": "Repo-based Media",
+          "description": "Store assets alongside your content in GitHub."
         }
       ],
       "companies": [
@@ -298,7 +302,8 @@
           "criteria6": true,
           "criteria7": true,
           "criteria8": true,
-          "criteria9": true
+          "criteria9": true,
+          "criteria10": true
         },
         {
           "headline": "Prepr CMS",
@@ -329,7 +334,8 @@
           "criteria1": true,
           "criteria4": true,
           "criteria5": true,
-          "criteria8": true
+          "criteria8": true,
+          "criteria10": true
         },
         {
           "headline": "Adobe (AEM)",

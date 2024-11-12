@@ -72,6 +72,7 @@ export const compareBoxTemplate: Template = {
         { name: 'criteria7', label: 'Criteria 7', type: 'boolean' },
         { name: 'criteria8', label: 'Criteria 8', type: 'boolean' },
         { name: 'criteria9', label: 'Criteria 9', type: 'boolean' },
+        { name: 'criteria10', label: 'Criteria 10', type: 'boolean' },
       ],
     },
   ],

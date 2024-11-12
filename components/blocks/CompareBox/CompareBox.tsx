@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaCircle } from 'react-icons/fa';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import css from 'styled-jsx/css';
 import Image from 'next/image';
-import { tinaField } from 'tinacms/dist/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import css from 'styled-jsx/css';
+import { tinaField } from 'tinacms/dist/react';
 
 
 //Function to use alpha values to create a background gradient with any input hex colour
@@ -118,7 +118,7 @@ const CompanyCard = ({ company }) => {
       </div>
 
       <div className="w-full">
-        {Array.from({ length: 9 }, (_, idx) => (
+        {Array.from({ length: 10 }, (_, idx) => (
           <div key={idx} className="flex flex-col items-center w-full">
             <div
               className="flex items-center justify-center w-full"
