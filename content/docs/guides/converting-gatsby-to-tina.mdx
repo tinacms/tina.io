@@ -193,7 +193,7 @@ You'll also need to move the existing images into the new folder we defined.
   cp content/blog/hello-world/salty_egg.jpg static/images/salty_egg.jpg
 ```
 
-### Reformatting your markdown
+## Reformatting your markdown
 
 As the hello world sample uses a list type that is unsupported by TinaCMS, we'll update the lists to the supported format manually.
 Make the following changes to `content/blog/hello-world/index.mdx`.
@@ -305,7 +305,7 @@ export default defineConfig({
 // ...
 ```
 
-#### Generating the pages
+### Generating the pages
 
 First, we'll new types for the response from Tina's GraphQL API and remove the existing ones.
 Modify the types in `src/types.ts` to reflect the new data we'll be getting back from Tina's API.
@@ -708,7 +708,7 @@ const BlogPostTemplate = ({ serverData, data: { site }, location }) => {
 
 ![editing an article's date using the visual editor](</live preview date changes.gif> 'Article date updating in real time')
 
-#### Updating the home page
+### Updating the home page
 
 We also need to update the homepage to reflect content changes, as it was previously populated using `gatsby-mdx`. Make the following updates to `src/pages/index.tsx`:
 
