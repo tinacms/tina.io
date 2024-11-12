@@ -1,26 +1,26 @@
 import { client } from '../../tina/__generated__/client'
 
+import {
+  DocsTextWrapper,
+  Hero,
+  Layout,
+} from 'components/layout'
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents'
+import { DocsPagination, LastEdited } from 'components/ui'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { NextSeo } from 'next-seo'
+import path from 'path'
 import * as React from 'react'
 import styled from 'styled-components'
-import { NextSeo } from 'next-seo'
-import { GetStaticProps, GetStaticPaths } from 'next'
-import { formatDate, isRelevantPost } from '../../utils'
-import {
-  Layout,
-  Hero,
-  DocsTextWrapper,
-} from 'components/layout'
-import { fileToUrl } from 'utils/urls'
-const fg = require('fast-glob')
-import { LastEdited, DocsPagination } from 'components/ui'
-import { openGraphImage } from 'utils/open-graph-image'
-import { WarningCallout } from '../../utils/shortcodes'
 import { useTina } from 'tinacms/dist/react'
-import path from 'path'
 import {
   TinaMarkdown
 } from 'tinacms/dist/rich-text'
-import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents'
+import { openGraphImage } from 'utils/open-graph-image'
+import { fileToUrl } from 'utils/urls'
+import { formatDate, isRelevantPost } from '../../utils'
+import { WarningCallout } from '../../utils/shortcodes'
+const fg = require('fast-glob')
 
 
 function BlogTemplate({ file, siteConfig, ...props }) {
@@ -58,9 +58,9 @@ function BlogTemplate({ file, siteConfig, ...props }) {
   return (
     <Layout>
       <NextSeo
-        title={frontmatter.title}
+        title={data.post.seo?.title || frontmatter.title}
         titleTemplate={'%s | ' + siteConfig.title + ' Blog'}
-        description={excerpt}
+        description={data.post.seo?.description || excerpt}
         openGraph={{
           title: frontmatter.title,
           description: excerpt,

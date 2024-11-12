@@ -1,7 +1,9 @@
 ---
 id: /docs/reference/self-hosted/auth-provider/overview
-
 title: Self-hosted Auth Provider Overview
+last_edited: '2024-11-07T04:15:54.388Z'
+next: ''
+previous: ''
 ---
 
 The term "Auth Provider" refers to the TinaCMS component that handles authentication and authorization of users when self-hosting.
@@ -12,10 +14,10 @@ you can also easily add support for any Auth.js [Login Provider](https://authjs.
 
 The auth provider is configured in two places when self-hosting:
 
-- The Tina Config
-- The Tina Backend
+* The Tina Config
+* The Tina Backend
 
-## 1. Tina Config (tina/config.{ts,tsx,js})
+## 1. Tina Config (tina/config.ts,tsx,js)
 
 This is done by providing an [Auth Provider](/docs/reference/self-hosted/auth-provider/bring-your-own#) to the `authProvider` option in `defineConfig`.
 
@@ -64,9 +66,9 @@ export default (req, res) => {
 
 ## Pre-Built Auth Providers
 
-- [Default (Auth.js)](/docs/reference/self-hosted/auth-provider/authjs)
-- [TinaCloud](/docs/reference/self-hosted/auth-provider/tina-cloud)
-- [Clerk](/docs/reference/self-hosted/auth-provider/clerk-auth)
+* [Default (Auth.js)](/docs/reference/self-hosted/auth-provider/authjs)
+* [TinaCloud](/docs/reference/self-hosted/auth-provider/tina-cloud)
+* [Clerk](/docs/reference/self-hosted/auth-provider/clerk-auth)
 
 ## Implementing an Auth Provider
 
