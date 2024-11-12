@@ -1,9 +1,14 @@
+import { seoInformation } from "./sharedFields/seoInformation";
+
 export const blogsCollection = {
   name: 'post',
   label: 'Blog Posts',
   path: 'content/blog',
   format: 'mdx',
   fields: [
+    {...seoInformation,
+      description: 'Meta Information – if not set, the meta description will be set to a standard default, and title to "Title | Tina Blogs" per the field below'
+    },
     {
       type: 'string',
       name: 'title',

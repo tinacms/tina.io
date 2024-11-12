@@ -1,25 +1,26 @@
+import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
+import { DocsLayout, MarkdownContent } from 'components/layout'
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents'
+import ToC from 'components/toc/index'
+import { DocsPagination, LastEdited, NavToggle } from 'components/ui'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { NextSeo } from 'next-seo'
+import Error from 'next/error'
+import { useRouter } from 'next/router'
+import { doc } from 'prettier'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { NextSeo } from 'next-seo'
-import { GetStaticProps, GetStaticPaths } from 'next'
-import { DocsLayout, MarkdownContent } from 'components/layout'
-import { NavToggle, DocsPagination, LastEdited } from 'components/ui'
-import { getDocsNav } from 'utils/docs/getDocProps'
-import { openGraphImage } from 'utils/open-graph-image'
-import Error from 'next/error'
-import { NotFoundError } from 'utils/error/NotFoundError'
-import { useRouter } from 'next/router'
-import * as ga from '../../utils/ga'
-import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
-import { useTocListener } from 'utils/toc_helpers'
-import SetupOverview from '../../components/layout/setup-overview'
 import client from 'tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
-import getTableOfContents from 'utils/docs/getTableOfContents'
-import ToC from 'components/toc/index'
+import { getDocsNav } from 'utils/docs/getDocProps'
 import { getSeoDescription } from 'utils/docs/getSeoDescription'
+import getTableOfContents from 'utils/docs/getTableOfContents'
+import { NotFoundError } from 'utils/error/NotFoundError'
+import { openGraphImage } from 'utils/open-graph-image'
+import { useTocListener } from 'utils/toc_helpers'
+import SetupOverview from '../../components/layout/setup-overview'
+import * as ga from '../../utils/ga'
 
 export function DocTemplate(props) {
   if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
@@ -29,6 +30,7 @@ export function DocTemplate(props) {
 }
 
 function _DocTemplate(props) {
+
   // fallback workaround
   if (props.notFound) {
     return <Error statusCode={404} />
@@ -51,7 +53,8 @@ function _DocTemplate(props) {
     title: doc_data.next?.title,
   }
   const TableOfContents = getTableOfContents(doc_data.body.children)
-  const description = getSeoDescription(doc_data.body)
+  const description = doc_data.seo?.description?.trim() || getSeoDescription(doc_data.body);
+  const title = doc_data.seo?.title || doc_data.title;
 
   const { activeIds, contentRef } = useTocListener(doc_data)
 
@@ -74,11 +77,11 @@ function _DocTemplate(props) {
   return (
     <>
       <NextSeo
-        title={doc_data.title}
+        title={title}
         titleTemplate={'%s | TinaCMS Docs'}
         description={description}
         openGraph={{
-          title: doc_data.title,
+          title: title,
           description: description,
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
