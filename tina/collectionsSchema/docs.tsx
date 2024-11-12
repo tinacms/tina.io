@@ -1,5 +1,7 @@
-import  {RecipeBlock}  from "../../components/blocks/Recipe.template";
 import { Template } from "tinacms";
+import { RecipeBlock } from "../../components/blocks/Recipe.template";
+import { seoInformation } from "./sharedFields/seoInformation";
+
 export const docsCollection = {
   name: 'doc',
   label: 'Docs',
@@ -14,6 +16,9 @@ export const docsCollection = {
     },
   },
   fields: [
+    {...seoInformation,
+      description: 'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below'
+    },
     {
       name: 'title',
       label: 'Title',
