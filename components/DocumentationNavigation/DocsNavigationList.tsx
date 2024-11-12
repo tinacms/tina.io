@@ -17,6 +17,7 @@ interface NavTitleProps {
   onClick?: () => void;
 }
 
+
 const NavTitle = ({
   children,
   level = 3,
