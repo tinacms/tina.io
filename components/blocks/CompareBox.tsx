@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaCircle } from 'react-icons/fa';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import css from 'styled-jsx/css';
 import Image from 'next/image';
-import { tinaField } from 'tinacms/dist/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import css from 'styled-jsx/css';
+import { tinaField } from 'tinacms/dist/react';
 
 
 //Function to use alpha values to create a background gradient with any input hex colour
@@ -61,7 +61,7 @@ const CriteriaCard = ({ criteriaItems }) => {
   return (
     <div className="criteria-card rounded-lg relative">
       <div key={0} className="py-3 flex" style={commonHeightStyle} />
-      {criteriaItems.map((item, idx) => (
+      {criteriaItems?.map((item, idx) => (
         <div key={idx} className="py-3 flex relative" style={commonHeightStyle}>
           <h3
             data-tina-field={tinaField(item, 'criteria')}

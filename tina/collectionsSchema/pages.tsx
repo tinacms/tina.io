@@ -1,8 +1,8 @@
-import { Template } from 'tinacms'
+import { Form, Template, TinaCMS } from 'tinacms'
 import { bookingTemplate } from '../../components/blocks/Booking.template'
 import { carouselFeatureTemplate } from '../../components/blocks/CarouselFeature.template'
 import { columnsTemplate } from '../../components/blocks/Columns.template'
-import { compareBoxTemplate } from '../../components/blocks/CompareBox.template'
+import { compareBoxTemplate, criteriaMapping } from '../../components/blocks/CompareBox.template'
 import { contentTemplate } from '../../components/blocks/Content.template'
 import { eventsTemplate } from '../../components/blocks/Events.template'
 import { faqTemplate } from '../../components/blocks/FAQ.template'
@@ -55,6 +55,17 @@ export const pagesCollection = {
         }
         return `/${document._sys.filename}`
       },
+      beforeSubmit: async ({ values, cms, form }: {
+        form: Form
+        cms: TinaCMS
+        values: Record<string, any>
+      }) => {
+        //Template based transformations (NOTE: this is the only way to pass data between parent/child form fields)
+        values = criteriaMapping(values);
+        return {
+          values,
+        }
+      }
     },
     fields: [
       extendedSeoInformation,
