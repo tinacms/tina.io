@@ -1,8 +1,8 @@
 {
   "seo": {
     "title": "TinaCMS – Headless CMS with GitHub & Markdown Support",
-    "hasCustomSuffix": true,
-    "description": "Combine the power of GitHub and Markdown with TinaCMS for seamless content management. Empower developers and creators to edit, preview, and manage static and dynamic sites effortlessly."
+    "description": "Combine the power of GitHub and Markdown with TinaCMS for seamless content management. Empower developers and creators to edit, preview, and manage static and dynamic sites effortlessly.",
+    "hasCustomSuffix": true
   },
   "blocks": [
     {
@@ -179,7 +179,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media-v2.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
