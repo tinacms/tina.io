@@ -15,8 +15,8 @@ In this tutorial, we'll guide you through converting an existing Gatsby MDX blog
 
 There are a few limitations to the approach outlined in this guide.
 
-* Loss of Gatsby's image optimization
-* Gatsby uses GitHub Flavored Markdown, which TinaCMS does not fully support
+- Loss of Gatsby's image optimization
+- Gatsby uses GitHub Flavored Markdown, which TinaCMS does not fully support
 
 ## Getting started
 
@@ -283,12 +283,12 @@ There are some pros and cons to using Gatsby's MDX plugin instead of Tina's.
 
 Pros:
 
-* You can use your existing markdown plugins
+- You can use your existing markdown plugins
 
 Cons:
 
-* You won't be able to use react components in your markdown files
-* You won't be get contextual editing when editing your markdown files
+- You won't be able to use react components in your markdown files
+- You won't be get contextual editing when editing your markdown files
 
 Generally, we recommend using Tina's GraphQL API to load your pages, which we'll do now.
 
@@ -687,7 +687,7 @@ const BlogPostTemplate = ({ serverData, data: { site }, location }) => {
 
 ```
 
-![editing an article's date using the visual editor](</live preview date changes.gif> "Article date updating in real time")
+![editing an article's date using the visual editor](</live preview date changes.gif> 'Article date updating in real time')
 
 #### Updating the home page
 
@@ -745,6 +745,8 @@ On the homepage, we’ll need to implement a server-side fetch to retrieve the f
 + }
 ```
 
+Then we'll add the server side data to the component.
+
 ```diff
 -  const BlogIndex = ({ data, location }) => {
 +  const BlogIndex = ({ data, location, serverData }) => {
@@ -755,6 +757,8 @@ On the homepage, we’ll need to implement a server-side fetch to retrieve the f
 //...
 
 ```
+
+Finally, we'll use the server side data to populate the page.
 
 ```diff
 + import formatDate from "dateformat"
