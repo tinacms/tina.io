@@ -130,6 +130,8 @@ export default defineConfig({
 // ...
 ```
 
+Next we'll add the existing frontmatter fields to our existing frontmatter fields to our schema.
+
 ```diff
 schema: {
     collections: [
@@ -193,6 +195,9 @@ You'll also need to move the existing images into the new folder we defined.
 ```
 
 ### Reformatting your markdown
+
+As the hello world sample uses a list type that is unsupported by TinaCMS, we'll update the lists to the supported format manually.
+Make the following changes to `content/blog/hello-world/index.mdx`.
 
 > Note: You may need to update other elements on your site. For unsupported markdown elements in Tina, refer to [our guide](https://tina.io/docs/reference/types/rich-text/?#unsupported-elements).
 
@@ -287,7 +292,7 @@ Pros:
 
 Cons:
 
-- You won't be able to use react components in your markdown files
+- You won't be able to use React components in your markdown files
 - You won't be get contextual editing when editing your markdown files
 
 Generally, we recommend using Tina's GraphQL API to load your pages, which we'll do now.
@@ -332,9 +337,8 @@ Modify the types in `src/types.ts` to reflect the new data we'll be getting back
 + export { AllPostResponse, BlogPost, PostResponse }
 ```
 
-And we'll also want to import them at the top of our blog-post page.
-
-Then we'll add a helper to map the response from Tina's GraphQL API to a to a schema similar to the existing page data.
+Using these types, we'll add a helper to map out the response from Tina's GraphQL API.
+This will give the page data a similar format to the response from the GraphQL queries we're replacing.
 
 ```diff
 + import { AllPostResponse, BlogPost } from "./src/types"
@@ -474,7 +478,7 @@ First we'll define our types inside of `src/types.ts`.
 
 ```
 
-We'll use a static query to get the data for our blog post page template.
+Next we'll use a static query to get the data for our blog post page template.
 
 Add a static query to get the data for the page using Tina.
 
@@ -521,7 +525,7 @@ Add a static query to get the data for the page using Tina.
 + }
 ```
 
-We'll also update the page query to exclude the markdown from the query since we'll be using TinaCMS to populate the page instead.
+We'll also update the page query to exclude the markdown from the query since, we'll be using TinaCMS to populate the page instead.
 
 ```diff
 export const pageQuery = graphql`
@@ -644,6 +648,22 @@ Then we'll swap out all of the existing data with the data we get back from Tina
 +               {nextPageData.title} →
 ```
 
+Don't forget to update the Head component with data from the server as well.
+
+```diff
+- export const Head = ({ data: { mdx: post } }) => {
++ export const Head = ({ serverData }) => {
+  return (
+    <Seo
+-      title={post.title}
++      title={serverData.data.post.title}
+-      description={post.description}
++      description={serverData.data.description}
+    />
+  )
+}
+```
+
 There's one other step we'll do. Unfortunately, our date isn't being formatted using by the graphql query. To fix this we'll use a library to format our date.
 
 ```bash
@@ -758,11 +778,10 @@ Then we'll add the server side data to the component.
 
 ```
 
-Finally, we'll use the server side data to populate the page.
+Finally, we'll use the server side data to populate the landing page. Make the following changes to `src/pages/index.tsx`.
 
 ```diff
-+ import formatDate from "dateformat"
-//...
+
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
 -          const title = post.frontmatter.title || post.fields.slug
@@ -796,25 +815,12 @@ Finally, we'll use the server side data to populate the page.
 //...
 ```
 
-```diff
-- export const Head = ({ data: { mdx: post } }) => {
-+ export const Head = ({ serverData }) => {
-  return (
-    <Seo
--      title={post.title}
-+      title={serverData.data.post.title}
--      description={post.description}
-+      description={serverData.data.description}
-    />
-  )
-}
-```
+We'll also format the date in this file.
 
 > Note: we don't need to use the `useTina` hook here because the homepage is static.
 
-We'll also format the date in this file. Note that we don't need to use `useEffect` here because the page is static.
-
 ```diff
++ import formatDate from "dateformat"
 //...
 <ol style={{ listStyle: `none` }}>
   {posts.map(post => {
@@ -846,7 +852,9 @@ We'll also format the date in this file. Note that we don't need to use `useEffe
 //...
 ```
 
-The final step for enabling contextual editing is to configure the `routing` property of our collection. This setting will ensure that we navigate to the correct page when opening a file in TinaCMS's visual editor. Since each blog post is stored in its own folder within the `content` directory, we can use the first folder in the breadcrumbs array to determine the correct path.
+The final step for enabling contextual editing is to configure the `routing` property of our collection.
+This setting will ensure that we navigate to the correct page when opening a file in TinaCMS's visual editor.
+Since each blog post is stored in its own folder within the `content` directory, we can use the first folder in the breadcrumbs array to determine the correct path.
 
 ```diff
   schema: {
