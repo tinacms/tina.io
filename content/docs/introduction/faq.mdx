@@ -1,6 +1,6 @@
 ---
 title: FAQ
-last_edited: '2024-10-09T00:48:59.795Z'
+last_edited: '2024-11-11T01:35:17.011Z'
 next: ''
 previous: ''
 ---
@@ -214,6 +214,14 @@ Everything in the `tina` directory (except the `__generated__` folder) needs to 
 ### How do I resolve `API URL is misformatted` errors?
 
 The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
+
+### How do I resolve `Invalid Site URL` errors?
+
+When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud site URLs. To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
+
+!['?origin=' URL parameter](/img/docs/introduction/origin-url-highlight.png)
+
+![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)
 
 ## Trying to access local GraphQL server when it's not running or in prod.
 

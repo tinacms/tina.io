@@ -16,6 +16,7 @@ import { mediaComponentTemplate } from '../../components/blocks/MediaComponent.t
 import { pricingTemplate } from '../../components/blocks/Pricing.template'
 import { quoteTemplate } from '../../components/blocks/Quote.template'
 import { recentPostsTemplate } from '../../components/blocks/RecentPosts.template'
+import { RecipeBlock } from '../../components/blocks/Recipe.template'
 import { roadmapGridTemplate } from '../../components/blocks/RoadmapGrid.template'
 import { showcaseTemplate } from '../../components/blocks/Showcase.template'
 import { spacerTemplate } from '../../components/blocks/Spacer.template'
@@ -89,7 +90,8 @@ export const pagesCollection = {
           tinaBannerTemplate as Template,
           highlightsSectionTemplate as Template,
           spacerTemplate as Template,
-          carouselFeatureTemplate as Template
+          carouselFeatureTemplate as Template,
+          RecipeBlock as Template,
         ],
       },
     ],

@@ -8,6 +8,7 @@ import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
+import RecipeBlock from 'components/blocks/Recipe';
 
 export const docAndBlogComponents: Components<{
   Iframe: { iframeSrc: string; height: string };
@@ -34,7 +35,26 @@ export const docAndBlogComponents: Components<{
   Button: { link: string; label: string };
   ImageAndText: { docText: string; image: string };
   Summary: { heading: string; text: string };
+  recipeBlock: {
+    title?: string;
+    description?: string;
+    codeblock?: any;
+    instruction?: {
+      header?: string;
+      itemDescription?: string;
+      codeLineStart?: number;
+      codeLineEnd?: number;
+    }[];
+  };
 }> = {
+  recipeBlock: (props) => {
+    return (
+      <div className='text-white'>
+        TEST
+        <RecipeBlock data={props} />
+      </div>
+    );
+  },
   ImageAndText: (props) => {
     return (
       <div className="grid grid-cols-2 gap-4">
@@ -80,7 +100,6 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
-
   h1: (props) => <FormatHeaders level={1} {...props} />,
   h2: (props) => <FormatHeaders level={2} {...props} />,
   h3: (props) => <FormatHeaders level={3} {...props} />,
@@ -114,7 +133,6 @@ export const docAndBlogComponents: Components<{
       </video>
     </div>
   ),
-
   Youtube: ({ embedSrc }) => (
     <div className="youtube-container">
       <iframe
