@@ -24,8 +24,24 @@ import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testim
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { RecipeBlock } from '../../components/blocks/Recipe.template'
+import { seoInformation } from './sharedFields/seoInformation'
 
-
+const extendedSeoInformation = {
+  ...seoInformation,
+  fields: [
+    ...seoInformation.fields,
+    {
+      type: 'boolean',
+      label: 'Has Custom Title Suffix?',
+      name: 'hasCustomSuffix',
+      ui: {
+        component: "toggle",
+      },
+      description:
+        "Set to true to remove the appended suffix ' | Tina'.",
+    },
+  ]
+}
 export const pagesCollection = {
   label: 'Pages',
   name: 'page',
@@ -38,36 +54,15 @@ export const pagesCollection = {
       }
       return `/${document._sys.filename}`;
     },
-  },
-  fields: [
-    {
-      type: 'object',
-      name: 'seo',
-      label: 'SEO Information',
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-          description:
-            "' | Tina' will be appended to the end of the value. If no title is provided, the default title in siteConfig.tsx is used.",
-        },
-        {
-          type: 'boolean',
-          label: 'Has Custom Title Suffix?',
-          name: 'hasCustomSuffix',
-          ui: {
-            component: 'toggle',
-          },
-          description: "Set to true to remove the appended suffix ' | Tina'.",
-        },
-        {
-          type: 'string',
-          label: ' Description',
-          name: 'description',
-          ui: {
-            component: 'textarea',
-          },
+    fields: [
+      extendedSeoInformation,
+      {
+        label: 'Page Sections',
+        name: 'blocks',
+        type: 'object',
+        list: true,
+        ui: {
+          visualSelector: true,
         },
       ],
     },
