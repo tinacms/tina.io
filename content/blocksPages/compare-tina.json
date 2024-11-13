@@ -1,6 +1,20 @@
 {
   "blocks": [
     {
+      "criteriaItems": [
+        {
+          "criteria": "Test",
+          "description": "Desc"
+        }
+      ],
+      "companies": [
+        {
+          "headline": "1",
+          "logoColour": "2",
+          "logoWhite": "3",
+          "criteria1": false
+        }
+      ],
       "_template": "CompareBox"
     },
     {
