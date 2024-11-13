@@ -16,7 +16,7 @@
               "icon": true,
               "variant": "blue",
               "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~",
+              "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
@@ -146,7 +146,7 @@
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
-            "url": "https://quick-edit-demo.vercel.app/admin#/"
+            "url": "https://demo.tina.io/admin#/"
           }
         },
         {
