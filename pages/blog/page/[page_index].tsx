@@ -1,21 +1,21 @@
-import React from 'react'
-import styled from 'styled-components'
-import { NextSeo } from 'next-seo'
-import { GetStaticProps, GetStaticPaths } from 'next'
-import { orderPosts, formatExcerpt, formatDate } from '../../../utils'
-import path from 'path'
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
+import path from 'path';
+import React from 'react';
+import styled from 'styled-components';
+import { formatDate, formatExcerpt, orderPosts } from '../../../utils';
 
 import {
-  Layout,
-  Wrapper,
   Hero,
+  Layout,
   MarkdownContent,
   RichTextWrapper,
-} from 'components/layout'
-import { DynamicLink, BlogPagination } from 'components/ui'
-import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps'
+  Wrapper,
+} from 'components/layout';
+import { BlogPagination, DynamicLink } from 'components/ui';
+import { getMarkdownPreviewProps } from 'utils/getMarkdownPreviewProps';
 const Index = (props) => {
-  const { currentPage, numPages } = props
+  const { currentPage, numPages } = props;
 
   return (
     <Layout>
@@ -54,31 +54,31 @@ const Index = (props) => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
 /*
  ** DATA FETCHING ---------------------------------
  */
 
-const POSTS_PER_PAGE = 8
+const POSTS_PER_PAGE = 8;
 
 export const getStaticPaths: GetStaticPaths = async function () {
-  const fg = require('fast-glob')
-  const contentDir = './content/blog/'
-  const posts = await fg(`${contentDir}**/*.mdx`)
+  const fg = require('fast-glob');
+  const contentDir = './content/blog/';
+  const posts = await fg(`${contentDir}**/*.mdx`);
 
-  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
 
-  var pages = []
+  var pages = [];
   for (var i = 1; i <= numPages; i++) {
     pages.push({
       params: { page_index: i.toString() },
-    })
+    });
   }
 
-  return { paths: pages, fallback: false }
-}
+  return { paths: pages, fallback: 'blocking' };
+};
 
 export const getStaticProps: GetStaticProps = async function ({
   preview,
@@ -86,40 +86,40 @@ export const getStaticProps: GetStaticProps = async function ({
   ...ctx
 }) {
   // @ts-ignore page_index should always be a single string
-  const page = parseInt((ctx.params && ctx.params.page_index) || '1')
+  const page = parseInt((ctx.params && ctx.params.page_index) || '1');
 
   try {
-    const files = await getLocalFiles('content/blog')
+    const files = await getLocalFiles('content/blog');
 
     const posts = await Promise.all(
       // TODO - potentially making a lot of requests here
       files.map(async (file) => {
         const post = (await getMarkdownPreviewProps(file, preview, previewData))
-          .props.file
+          .props.file;
 
         // create slug from filename
         const slug = file
           .replace(/^.*[\\\/]/, '')
           .split('.')
           .slice(0, -1)
-          .join('.')
+          .join('.');
 
-        const excerpt = await formatExcerpt(post.data.markdownBody)
+        const excerpt = await formatExcerpt(post.data.markdownBody);
 
         return {
           data: { ...post.data.frontmatter, slug },
           content: excerpt,
-        }
+        };
       })
-    )
+    );
 
     // for pagination and ordering
-    const numPages = Math.ceil(posts.length / POSTS_PER_PAGE)
-    const pageIndex = page - 1
+    const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+    const pageIndex = page - 1;
     const orderedPosts = orderPosts(posts).slice(
       pageIndex * POSTS_PER_PAGE,
       (pageIndex + 1) * POSTS_PER_PAGE
-    )
+    );
 
     return {
       props: {
@@ -128,26 +128,26 @@ export const getStaticProps: GetStaticProps = async function ({
         currentPage: page,
         preview: !!preview,
       },
-    }
+    };
   } catch (e) {
     return {
       props: {
         error: { ...e }, //workaround since we cant return error as JSON
       },
-    }
+    };
   }
-}
+};
 
-export default Index
+export default Index;
 
 const getLocalFiles = async (filePath: string) => {
   // grab all md files
-  const fg = require('fast-glob')
-  const glob = path.resolve(filePath, '*')
-  const files = await fg(glob)
+  const fg = require('fast-glob');
+  const glob = path.resolve(filePath, '*');
+  const files = await fg(glob);
 
-  return files
-}
+  return files;
+};
 
 /**
  *  STYLES -----------------------------------------------------
@@ -165,7 +165,7 @@ export const MetaBit = styled.p`
     opacity: 0.7;
     margin-right: 0.25rem;
   }
-`
+`;
 
 export const BlogMeta = styled.div`
   width: 100%;
@@ -179,4 +179,4 @@ export const BlogMeta = styled.div`
   @media (min-width: 550px) {
     flex-direction: row;
   }
-`
+`;

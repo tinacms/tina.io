@@ -152,7 +152,7 @@ export const getStaticPaths: GetStaticPaths = async function () {
   const contentDir = './content/docs/'
   const files = await fg(`${contentDir}**/*.mdx`)
   return {
-    fallback: false,
+    fallback: 'blocking',
     paths: files
       .filter(
         (file) =>
