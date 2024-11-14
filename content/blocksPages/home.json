@@ -246,6 +246,10 @@
     {
       "criteriaItems": [
         {
+          "criteria": "Free Option",
+          "description": "An option to use the CMS for free, forever"
+        },
+        {
           "criteria": "Indexing Data Layer"
         },
         {
@@ -281,10 +285,6 @@
           "description": "Develop your site locally within your favourite IDE"
         },
         {
-          "criteria": "Free Option",
-          "description": "An option to use the CMS for free, forever"
-        },
-        {
           "criteria": "Self-hosted Option",
           "description": "Option to self-host"
         }
@@ -298,6 +298,7 @@
           "isHidden": true,
           "backgroundColor": "#EC4815",
           "satisfiedCriteria": [
+            "true-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "true-Open Source Front-end",
@@ -307,7 +308,6 @@
             "true-Markdown Support",
             "false-Visual Editing Capabilities ",
             "true-Local Development Workflow ",
-            "true-Free Option",
             "true-Self-hosted Option"
           ]
         },
@@ -317,6 +317,7 @@
           "logoWhite": "/svg/logos/Prepr-wht.svg",
           "backgroundColor": "#5237E6",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -326,7 +327,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -336,6 +336,7 @@
           "logoWhite": "/svg/logos/Umbraco-wht.svg",
           "backgroundColor": "#3544B1",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -345,7 +346,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -355,6 +355,7 @@
           "logoWhite": "/svg/logos/Decap-wht.svg",
           "backgroundColor": "#FF0080",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -364,7 +365,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -374,6 +374,7 @@
           "logoWhite": "/svg/logos/AEM-wht.svg",
           "backgroundColor": "#EB1000",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -383,7 +384,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -393,6 +393,7 @@
           "logoWhite": "/svg/logos/Contentstack-wht.svg",
           "backgroundColor": "#6610F2",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -402,7 +403,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -412,6 +412,7 @@
           "logoWhite": "/svg/logos/Contentful-wht.svg",
           "backgroundColor": "#007AFF",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -421,7 +422,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -431,6 +431,7 @@
           "logoWhite": "/svg/logos/Storyblok-wht.svg",
           "backgroundColor": "#2DB47D",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -440,7 +441,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -450,6 +450,7 @@
           "logoWhite": "/svg/logos/Sanity-wht.svg",
           "backgroundColor": "#EF4434",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -459,7 +460,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -469,6 +469,7 @@
           "logoWhite": "/svg/logos/Payload-wht.svg",
           "backgroundColor": "#007FAE",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -478,7 +479,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         },
@@ -488,6 +488,7 @@
           "logoWhite": "/svg/logos/Prismic-wht.svg",
           "backgroundColor": "#8E44EC",
           "satisfiedCriteria": [
+            "false-Free Option",
             "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
@@ -497,7 +498,6 @@
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
-            "false-Free Option",
             "false-Self-hosted Option"
           ]
         }
