@@ -313,14 +313,14 @@
           "logoWhite": "/svg/logos/Prepr-wht.svg",
           "backgroundColor": "#5237E6",
           "satisfiedCriteria": [
-            "false-Free Option",
+            "true-Free Option",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
             "false-GitHub Contributions",
-            "false-Markdown Support",
-            "false-Visual Editing Capabilities ",
+            "true-Markdown Support",
+            "true-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Self-hosted Option"
           ]
