@@ -332,13 +332,13 @@
           "backgroundColor": "#3544B1",
           "satisfiedCriteria": [
             "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
+            "true-Open Source Front-end",
+            "false-Content API",
             "true-Git-based Content Management ",
             "false-GitHub Contributions",
             "false-Markdown Support",
-            "false-Visual Editing Capabilities ",
-            "false-Local Development Workflow ",
+            "true-Visual Editing Capabilities ",
+            "true-Local Development Workflow ",
             "false-Free Option",
             "false-Self-hosted Option"
           ]
