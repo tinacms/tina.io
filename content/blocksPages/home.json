@@ -369,11 +369,11 @@
           "satisfiedCriteria": [
             "false-Repo-based Media",
             "false-Open Source Front-end",
-            "false-Content API",
+            "true-Content API",
             "false-Git-based Content Management ",
             "false-GitHub Contributions",
             "false-Markdown Support",
-            "false-Visual Editing Capabilities ",
+            "true-Visual Editing Capabilities ",
             "false-Free Option",
             "false-Local Development Workflow ",
             "false-Self-hosted Option"
