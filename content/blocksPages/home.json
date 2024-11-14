@@ -250,9 +250,6 @@
           "description": "An option to use the CMS for free, forever"
         },
         {
-          "criteria": "Indexing Data Layer"
-        },
-        {
           "criteria": "Repo-based Media",
           "description": "Assets can be stored in GitHub, alongside other content, while being managed by the CMS editor"
         },
@@ -299,7 +296,6 @@
           "backgroundColor": "#EC4815",
           "satisfiedCriteria": [
             "true-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "true-Open Source Front-end",
             "true-Content API",
@@ -318,7 +314,6 @@
           "backgroundColor": "#5237E6",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -337,7 +332,6 @@
           "backgroundColor": "#3544B1",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "true-Content API",
@@ -356,7 +350,6 @@
           "backgroundColor": "#FF0080",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -375,7 +368,6 @@
           "backgroundColor": "#EB1000",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -394,7 +386,6 @@
           "backgroundColor": "#6610F2",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -413,7 +404,6 @@
           "backgroundColor": "#007AFF",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -432,7 +422,6 @@
           "backgroundColor": "#2DB47D",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -451,7 +440,6 @@
           "backgroundColor": "#EF4434",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -470,7 +458,6 @@
           "backgroundColor": "#007FAE",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -489,7 +476,6 @@
           "backgroundColor": "#8E44EC",
           "satisfiedCriteria": [
             "false-Free Option",
-            "false-Indexing Data Layer",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
