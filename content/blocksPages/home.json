@@ -16,7 +16,7 @@
               "icon": true,
               "variant": "blue",
               "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~",
+              "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
@@ -146,7 +146,7 @@
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
-            "url": "https://quick-edit-demo.vercel.app/admin#/"
+            "url": "https://demo.tina.io/admin#/"
           }
         },
         {
@@ -179,7 +179,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media-v2.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -244,118 +244,250 @@
       "_template": "carouselFeature"
     },
     {
-          "criteriaItems": [
-            {
-              "criteria": "Repo-based Media",
-              "description": "Assets can be stored in GitHub, alongside other content, while being managed by the CMS editor"
-            },
-            {
-              "criteria": "Open Source Front-end",
-              "description": "A CMS which is transparent, extensible and community driven"
-            },
-            {
-              "criteria": "Content API",
-              "description": "Query your data, wherever, whenever"
-            },
-            {
-              "criteria": "Git-based Content Management ",
-              "description": "Get all the benefits of the GitHub editing workflow directly from your site - Pull requests, branching, version control"
-            },
-            {
-              "criteria": "GitHub Contributions",
-              "description": "Editors get GitHub contributions when they make changes"
-            },
-            {
-              "criteria": "Markdown Support",
-              "description": "Store your content in a simple and lightweight format with Markdown"
-            },
-            {
-              "criteria": "Visual Editing Capabilities ",
-              "description": "See your changes on your site as you make them"
-            },
-            {
-              "criteria": "Local Development Workflow ",
-              "description": "Develop your site locally within your favourite IDE"
-            },
-            {
-              "criteria": "Free Option",
-              "description": "An option to use the CMS for free, forever"
-            },
-            {
-              "criteria": "Self-hosted Option",
-              "description": "Option to self-host"
-            }
-          ],
-          "companies": [
-            {
-              "headline": "TinaCMS",
-              "logoColour": "/svg/logos/tina.svg",
-              "logoWhite": "/svg/logos/tina-white.svg",
-              "active": true,
-              "isHidden": true,
-              "backgroundColor": "#EC4815"
-            },
-            {
-              "headline": "Prepr CMS",
-              "logoColour": "/svg/logos/Prepr-clr.svg",
-              "logoWhite": "/svg/logos/Prepr-wht.svg",
-              "backgroundColor": "#5237E6"
-            },
-            {
-              "headline": "Umbraco",
-              "logoColour": "/svg/logos/Umbraco-clr.svg",
-              "logoWhite": "/svg/logos/Umbraco-wht.svg",
-              "backgroundColor": "#3544B1"
-            },
-            {
-              "headline": "Decap CMS",
-              "logoColour": "/svg/logos/Decap-clr.svg",
-              "logoWhite": "/svg/logos/Decap-wht.svg",
-              "backgroundColor": "#FF0080"
-            },
-            {
-              "headline": "Adobe (AEM)",
-              "logoColour": "/svg/logos/AEM-clr.svg",
-              "logoWhite": "/svg/logos/AEM-wht.svg",
-              "backgroundColor": "#EB1000"
-            },
-            {
-              "headline": "Contentstack",
-              "logoColour": "/svg/logos/Contentstack-clr.svg",
-              "logoWhite": "/svg/logos/Contentstack-wht.svg",
-              "backgroundColor": "#6610F2"
-            },
-            {
-              "headline": "Contentful",
-              "logoColour": "/svg/logos/Contentful-clr.svg",
-              "logoWhite": "/svg/logos/Contentful-wht.svg",
-              "backgroundColor": "#007AFF"
-            },
-            {
-              "headline": "Storyblok",
-              "logoColour": "/svg/logos/Storyblok-clr.svg",
-              "logoWhite": "/svg/logos/Storyblok-wht.svg",
-              "backgroundColor": "#2DB47D"
-            },
-            {
-              "headline": "Sanity",
-              "logoColour": "/svg/logos/Sanity-clr.svg",
-              "logoWhite": "/svg/logos/Sanity-wht.svg",
-              "backgroundColor": "#EF4434"
-            },
-            {
-              "headline": "Payload",
-              "logoColour": "/svg/logos/Payload-clr.svg",
-              "logoWhite": "/svg/logos/Payload-wht.svg",
-              "backgroundColor": "#007FAE"
-            },
-            {
-              "headline": "prismic.io",
-              "logoColour": "/svg/logos/Prismic-clr.svg",
-              "logoWhite": "/svg/logos/Prismic-wht.svg",
-              "backgroundColor": "#8E44EC"
-            }
-          ],
+      "criteriaItems": [
+        {
+          "criteria": "Repo-based Media",
+          "description": "Assets can be stored in GitHub, alongside other content, while being managed by the CMS editor"
+        },
+        {
+          "criteria": "Open Source Front-end",
+          "description": "A CMS which is transparent, extensible and community driven"
+        },
+        {
+          "criteria": "Content API",
+          "description": "Query your data, wherever, whenever"
+        },
+        {
+          "criteria": "Git-based Content Management ",
+          "description": "Get all the benefits of the GitHub editing workflow directly from your site - Pull requests, branching, version control"
+        },
+        {
+          "criteria": "GitHub Contributions",
+          "description": "Editors get GitHub contributions when they make changes"
+        },
+        {
+          "criteria": "Markdown Support",
+          "description": "Store your content in a simple and lightweight format with Markdown"
+        },
+        {
+          "criteria": "Visual Editing Capabilities ",
+          "description": "See your changes on your site as you make them"
+        },
+        {
+          "criteria": "Local Development Workflow ",
+          "description": "Develop your site locally within your favourite IDE"
+        },
+        {
+          "criteria": "Free Option",
+          "description": "An option to use the CMS for free, forever"
+        },
+        {
+          "criteria": "Self-hosted Option",
+          "description": "Option to self-host"
+        }
+      ],
+      "companies": [
+        {
+          "headline": "TinaCMS",
+          "logoColour": "/svg/logos/tina.svg",
+          "logoWhite": "/svg/logos/tina-white.svg",
+          "active": true,
+          "isHidden": true,
+          "backgroundColor": "#EC4815",
+          "satisfiedCriteria": [
+            "true-Repo-based Media",
+            "true-Open Source Front-end",
+            "true-Content API",
+            "true-Git-based Content Management ",
+            "true-GitHub Contributions",
+            "true-Markdown Support",
+            "true-Visual Editing Capabilities ",
+            "true-Local Development Workflow ",
+            "true-Free Option",
+            "true-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Prepr CMS",
+          "logoColour": "/svg/logos/Prepr-clr.svg",
+          "logoWhite": "/svg/logos/Prepr-wht.svg",
+          "backgroundColor": "#5237E6",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Umbraco",
+          "logoColour": "/svg/logos/Umbraco-clr.svg",
+          "logoWhite": "/svg/logos/Umbraco-wht.svg",
+          "backgroundColor": "#3544B1",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Decap CMS",
+          "logoColour": "/svg/logos/Decap-clr.svg",
+          "logoWhite": "/svg/logos/Decap-wht.svg",
+          "backgroundColor": "#FF0080",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Adobe (AEM)",
+          "logoColour": "/svg/logos/AEM-clr.svg",
+          "logoWhite": "/svg/logos/AEM-wht.svg",
+          "backgroundColor": "#EB1000",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Contentstack",
+          "logoColour": "/svg/logos/Contentstack-clr.svg",
+          "logoWhite": "/svg/logos/Contentstack-wht.svg",
+          "backgroundColor": "#6610F2",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Contentful",
+          "logoColour": "/svg/logos/Contentful-clr.svg",
+          "logoWhite": "/svg/logos/Contentful-wht.svg",
+          "backgroundColor": "#007AFF",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Storyblok",
+          "logoColour": "/svg/logos/Storyblok-clr.svg",
+          "logoWhite": "/svg/logos/Storyblok-wht.svg",
+          "backgroundColor": "#2DB47D",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Sanity",
+          "logoColour": "/svg/logos/Sanity-clr.svg",
+          "logoWhite": "/svg/logos/Sanity-wht.svg",
+          "backgroundColor": "#EF4434",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "Payload",
+          "logoColour": "/svg/logos/Payload-clr.svg",
+          "logoWhite": "/svg/logos/Payload-wht.svg",
+          "backgroundColor": "#007FAE",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        },
+        {
+          "headline": "prismic.io",
+          "logoColour": "/svg/logos/Prismic-clr.svg",
+          "logoWhite": "/svg/logos/Prismic-wht.svg",
+          "backgroundColor": "#8E44EC",
+          "satisfiedCriteria": [
+            "false-Repo-based Media",
+            "false-Open Source Front-end",
+            "false-Content API",
+            "false-Git-based Content Management ",
+            "false-GitHub Contributions",
+            "false-Markdown Support",
+            "false-Visual Editing Capabilities ",
+            "false-Local Development Workflow ",
+            "false-Free Option",
+            "false-Self-hosted Option"
+          ]
+        }
+      ],
       "_template": "CompareBox"
     },
     {

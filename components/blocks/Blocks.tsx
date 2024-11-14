@@ -15,21 +15,23 @@ import {
   QuoteBlock,
   StoryBlock,
 } from './';
-import { BookingBlock } from './Booking';
-import { CarouselFeatureBlock } from './CarouselFeature';
-import { ColumnsBlock } from './Columns';
-import { CompareBoxBlock } from './CompareBox';
-import { VerticalCardsBlock } from './Events';
-import { HighlightsSection } from './HighlightsSection';
-import { MediaComponent } from './MediaComponent';
-import { RecentPostsBlock } from './RecentPosts';
+
+import { BookingBlock } from './Booking/Booking';
+import { ColumnsBlock } from './Columns/Columns';
+import { CompareBoxBlock } from './CompareBox/CompareBox';
+import { VerticalCardsBlock } from './Events/Events';
+import { CarouselFeatureBlock } from './FeatureCarousel/CarouselFeature';
+import { HighlightsSection } from './HighlightsSection/HighlightsSection';
+import { MediaComponent } from './Media/MediaComponent';
+import { RecentPostsBlock } from './RecentPosts/RecentPosts';
 import RecipeBlock from './Recipe';
-import { RoadmapGridBlock } from './RoadmapGrid';
-import { ShowcaseItemsBlock } from './Showcase';
-import { SpacerComponent } from './Spacer';
-import { TestimonialsBlock } from './Testimonials';
-import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
-import { TinaBanner } from './TinaBanner';
+import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
+import { ShowcaseItemsBlock } from './Showcase/Showcase';
+import { SpacerComponent } from './Spacer/Spacer';
+import { TestimonialsBlock } from './Testimonial/Testimonials';
+import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
+import { TinaBanner } from './TinaBanner/TinaBanner';
+
 
 export const Blocks = ({
   blocks,
