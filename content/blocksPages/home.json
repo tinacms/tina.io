@@ -284,9 +284,6 @@
         {
           "criteria": "Self-hosted Option",
           "description": "Option to self-host"
-        },
-        {
-          "criteria": "Some new item"
         }
       ],
       "companies": [
@@ -307,8 +304,7 @@
             "true-Visual Editing Capabilities ",
             "true-Local Development Workflow ",
             "true-Free Option",
-            "true-Self-hosted Option",
-            "false-Some new item"
+            "true-Self-hosted Option"
           ]
         },
         {
@@ -326,8 +322,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -345,8 +340,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "true-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -364,8 +358,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -383,8 +376,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -402,8 +394,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -421,8 +412,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -440,8 +430,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -459,8 +448,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -478,8 +466,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -497,8 +484,7 @@
             "false-Visual Editing Capabilities ",
             "false-Local Development Workflow ",
             "false-Free Option",
-            "false-Self-hosted Option",
-            "false-Some new item"
+            "false-Self-hosted Option"
           ]
         }
       ],
