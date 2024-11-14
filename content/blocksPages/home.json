@@ -274,16 +274,16 @@
           "description": "See your changes on your site as you make them"
         },
         {
+          "criteria": "Free Option",
+          "description": "An option to use the CMS for free, forever"
+        },
+        {
           "criteria": "Local Development Workflow ",
           "description": "Develop your site locally within your favourite IDE"
         },
         {
           "criteria": "Self-hosted Option",
           "description": "Option to self-host"
-        },
-        {
-          "criteria": "Free Option",
-          "description": "An option to use the CMS for free, forever"
         }
       ],
       "companies": [
@@ -302,9 +302,9 @@
             "true-GitHub Contributions",
             "true-Markdown Support",
             "true-Visual Editing Capabilities ",
+            "true-Free Option",
             "true-Local Development Workflow ",
-            "true-Self-hosted Option",
-            "true-Free Option"
+            "true-Self-hosted Option"
           ]
         },
         {
@@ -320,9 +320,9 @@
             "false-GitHub Contributions",
             "true-Markdown Support",
             "true-Visual Editing Capabilities ",
+            "true-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "true-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -338,9 +338,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -356,9 +356,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -374,9 +374,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -392,9 +392,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -410,9 +410,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -428,9 +428,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "true-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "true-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -446,9 +446,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -464,9 +464,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         },
         {
@@ -482,9 +482,9 @@
             "false-GitHub Contributions",
             "false-Markdown Support",
             "false-Visual Editing Capabilities ",
+            "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option",
-            "false-Free Option"
+            "false-Self-hosted Option"
           ]
         }
       ],
