@@ -1,35 +1,35 @@
+import React from 'react';
 import type {
   PageBlocks,
   PostConnection,
 } from '../../tina/__generated__/types';
-import React from 'react';
 import {
-  StoryBlock,
+  ContentBlock,
+  FaqBlock,
   FeatureGridBlock,
   FeaturesBlock,
   FlyingBlock,
   HeroBlock,
-  PricingBlock,
-  FaqBlock,
-  ContentBlock,
   LogoGridBlock,
+  PricingBlock,
   QuoteBlock,
+  StoryBlock,
 } from './';
+import { BookingBlock } from './Booking';
+import { CarouselFeatureBlock } from './CarouselFeature';
 import { ColumnsBlock } from './Columns';
+import { CompareBoxBlock } from './CompareBox';
+import { VerticalCardsBlock } from './Events';
+import { HighlightsSection } from './HighlightsSection';
+import { MediaComponent } from './MediaComponent';
 import { RecentPostsBlock } from './RecentPosts';
+import RecipeBlock from './Recipe';
 import { RoadmapGridBlock } from './RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase';
+import { SpacerComponent } from './Spacer';
 import { TestimonialsBlock } from './Testimonials';
-import { VerticalCardsBlock } from './Events';
-import { CompareBoxBlock } from './CompareBox';
-import { BookingBlock } from './Booking';
-import { MediaComponent } from './MediaComponent';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner';
-import { HighlightsSection } from './HighlightsSection';
-import { SpacerComponent } from './Spacer';
-import { CarouselFeatureBlock } from './CarouselFeature';
-import RecipeBlock from './Recipe';
 
 export const Blocks = ({
   blocks,
@@ -41,7 +41,7 @@ export const Blocks = ({
   if (!blocks) return null;
 
   return blocks.map((block, index) => {
-    console.log(block.__typename); // Debugging log
+    // console.log(block.__typename); // Debugging log
     switch (block.__typename) {
       case 'PageBlocksFeatures':
         return (

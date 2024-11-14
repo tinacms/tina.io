@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
+import { splitOneAndJoin } from './CompareBox.template';
 
 
 //Function to use alpha values to create a background gradient with any input hex colour
@@ -88,7 +89,9 @@ const CriteriaCard = ({ criteriaItems }) => {
   );
 };
 
-const CompanyCard = ({ company }) => {
+const CompanyCard = ({ company, criteria }) => {
+
+  const criterias = company.satisfiedCriteria.map((item) => splitOneAndJoin(item, "-"));
   const baseColor = company.backgroundColor || '#000000';
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
@@ -118,7 +121,10 @@ const CompanyCard = ({ company }) => {
       </div>
 
       <div className="w-full">
-        {Array.from({ length: 9 }, (_, idx) => (
+        {Array.from({ length: criteria?.length ?? 0 }, (_, idx) => {
+          const satisfied = criterias.find((item) => item[1] === criteria[idx].criteria);
+
+          return (
           <div key={idx} className="flex flex-col items-center w-full">
             <div
               className="flex items-center justify-center w-full"
@@ -129,7 +135,7 @@ const CompanyCard = ({ company }) => {
                   : 'transparent',
               }}
             >
-              {company[`criteria${idx + 1}`] && (
+              {satisfied?.[0] === "true" && (
                 <FaCircle
                   style={{ color: company.backgroundColor }}
                   className="xl:h-5 xl:w-5 lg:h-5 lg:w-5 md:h-4 md:w-4 h-4 w-4"
@@ -138,10 +144,10 @@ const CompanyCard = ({ company }) => {
             </div>
             <div
               className="w-full"
-              style={{ backgroundColor: 'transparent', height: '1px' }}
+              style={{ backgroundColor: 'transparent', height: '0px' }}
             ></div>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   );
@@ -335,7 +341,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             {companies
               .filter((company) => company.active)
               .map((company, idx) => (
-                <CompanyCard key={`company-card-${idx}`} company={company} />
+                <CompanyCard key={`company-card-${idx}`} company={company} criteria={data.criteriaItems} />
               ))}
           </div>
         </div>

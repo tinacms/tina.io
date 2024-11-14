@@ -1,28 +1,31 @@
-import { type Template } from "tinacms";
+import { set } from "date-fns";
+import { useEffect, useState } from "react";
+import { wrapFieldsWithMeta, type Template } from "tinacms";
 import { checkboxList } from '../../tina/customTinaFormFields/checkboxList';
+
+export const splitOneAndJoin = (item, separator) => {
+    const[first, ...rest] = item.split(separator)
+    return [first, rest.join(separator)]
+}
 
 export const criteriaMapping = (values) => {
   values.blocks.forEach((block, blockIndex) => {
     if (block._template === 'CompareBox') {
-    const criteriaItems = block.criteriaItems?.map((item) => {item.criteria});
-    block.companies?.forEach((item, index) => {
+    const criteriaItems = block.criteriaItems?.map((item) => item.criteria);
+    block.companies?.forEach((company, index) => {
       {
         // Add new criteria to the list of satisfied criteria
-        const oldCriteria = item.satifiedCriteria?.map((item) => {item.split("-")[1]});
+        const oldCriteria = company.satisfiedCriteria?.map((item) => splitOneAndJoin(item, "-")[1]) ?? [];
+        const updatedCriteriaSatisfaction = [];
         criteriaItems.forEach((item) => {
-          if (!oldCriteria.includes(item)) {
-            item.satifiedCriteria?.push(`false-${item}`);
+          if (oldCriteria.includes(item)) {
+            const satisfaction = company.satisfiedCriteria.find((criteria) => splitOneAndJoin(criteria, "-")[1] === item);
+            updatedCriteriaSatisfaction.push(satisfaction);
+          } else {
+            updatedCriteriaSatisfaction.push(`false-${item}`);
           }
         });
-        // Remove criteria that are no longer in the list of criteria
-        item.satifiedCriteria = item.satifiedCriteria?.flatMap((item) => {
-          const keyItem = item.split("-");
-          if (!criteriaItems.includes(keyItem[1])) {
-            return [];
-          }
-          return item;
-        });
-        values.blocks[blockIndex].companies[index].satifiedCriteria = item.satifiedCriteria;
+        values.blocks[blockIndex].companies[index].satisfiedCriteria = updatedCriteriaSatisfaction;
       }
     });
   };
@@ -97,23 +100,45 @@ export const compareBoxTemplate: Template = {
             description: 'Choose a background color for the company',
           },
           {
-            name: 'satifiedCriteria',
+            name: 'satisfiedCriteria',
             label: 'Satisfied Criteria',
             type: 'string',
             list: true,
             ui: {
-              component: (props) => {
-                console.log(`value _ ${props.input.value}`);
-                checkboxList(
-                  [],
-                  // props.input.value.map((item) => {
-                  //   return { criteria: item.split("-")[1], satisfied: item.split("-")[0] === 'true' };
-                  // }),
-                  (criteria, satisfied) => {
-                    return `${satisfied}-${criteria}`;
+              component: wrapFieldsWithMeta(({ input }) => {
+                
+                const [value, setValue] = useState(input.value);
+                const [valueFlag, setValueFlag] = useState(true);
+                const [valueMap, setValueMap] = useState([]);
+
+                useEffect(() => {
+                  if (valueFlag) {
+                    setValueFlag(false);
+                    return;
                   }
+                  if (input.value !== value) {
+                    setValue(input.value);
+                  }
+                }, [input.value]);
+
+                useEffect(() => {
+                  const mapping = value?.map((item: string) => {
+                    return { criteria: splitOneAndJoin(item, "-")[1], satisfied: splitOneAndJoin(item, "-")[0] === 'true' };
+                  });
+                  setValueMap(mapping);
+                }, [value]);
+
+                return checkboxList(
+                  (criteria: string, satisfied: boolean) => {
+                    const index = value.findIndex((item) => splitOneAndJoin(item, "-")[1] === criteria);
+                    value[index] = `${satisfied}-${criteria}`;
+                    setValue([...value]);
+                    input.onChange([...value]);
+                    setValueFlag(true);
+                  },
+                  valueMap
                 )
-              }
+              }),
             },
           }
         ],
