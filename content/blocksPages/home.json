@@ -349,14 +349,14 @@
           "logoWhite": "/svg/logos/Decap-wht.svg",
           "backgroundColor": "#FF0080",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
+            "true-Repo-based Media",
+            "true-Open Source Front-end",
             "false-Content API",
             "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "false-Markdown Support",
+            "true-GitHub Contributions",
+            "true-Markdown Support",
             "false-Visual Editing Capabilities ",
-            "false-Free Option",
+            "true-Free Option",
             "false-Local Development Workflow ",
             "false-Self-hosted Option"
           ]
