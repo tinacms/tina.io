@@ -102,6 +102,7 @@ export const compareBoxTemplate: Template = {
             name: 'satisfiedCriteria',
             label: 'Satisfied Criteria',
             type: 'string',
+            description: 'Labels are updated to match the criteria list on save. ⚠️ Please save your changes before and after editing this field. ⚠️',
             list: true,
             ui: {
               component: wrapFieldsWithMeta(({ input }) => {
