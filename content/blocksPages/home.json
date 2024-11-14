@@ -246,6 +246,9 @@
     {
       "criteriaItems": [
         {
+          "criteria": "Some new item"
+        },
+        {
           "criteria": "Repo-based Media",
           "description": "Assets can be stored in GitHub, alongside other content, while being managed by the CMS editor"
         },
@@ -295,6 +298,7 @@
           "isHidden": true,
           "backgroundColor": "#EC4815",
           "satisfiedCriteria": [
+            "false-Some new item",
             "true-Repo-based Media",
             "true-Open Source Front-end",
             "true-Content API",
@@ -313,6 +317,7 @@
           "logoWhite": "/svg/logos/Prepr-wht.svg",
           "backgroundColor": "#5237E6",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -331,6 +336,7 @@
           "logoWhite": "/svg/logos/Umbraco-wht.svg",
           "backgroundColor": "#3544B1",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -349,6 +355,7 @@
           "logoWhite": "/svg/logos/Decap-wht.svg",
           "backgroundColor": "#FF0080",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -367,6 +374,7 @@
           "logoWhite": "/svg/logos/AEM-wht.svg",
           "backgroundColor": "#EB1000",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -385,6 +393,7 @@
           "logoWhite": "/svg/logos/Contentstack-wht.svg",
           "backgroundColor": "#6610F2",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -403,6 +412,7 @@
           "logoWhite": "/svg/logos/Contentful-wht.svg",
           "backgroundColor": "#007AFF",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -421,6 +431,7 @@
           "logoWhite": "/svg/logos/Storyblok-wht.svg",
           "backgroundColor": "#2DB47D",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -439,6 +450,7 @@
           "logoWhite": "/svg/logos/Sanity-wht.svg",
           "backgroundColor": "#EF4434",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -457,6 +469,7 @@
           "logoWhite": "/svg/logos/Payload-wht.svg",
           "backgroundColor": "#007FAE",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
@@ -475,6 +488,7 @@
           "logoWhite": "/svg/logos/Prismic-wht.svg",
           "backgroundColor": "#8E44EC",
           "satisfiedCriteria": [
+            "false-Some new item",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
