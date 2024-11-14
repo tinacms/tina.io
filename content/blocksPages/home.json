@@ -316,7 +316,7 @@
             "false-Free Option",
             "false-Repo-based Media",
             "false-Open Source Front-end",
-            "false-Content API",
+            "true-Content API",
             "false-Git-based Content Management ",
             "false-GitHub Contributions",
             "false-Markdown Support",
@@ -421,7 +421,7 @@
           "logoWhite": "/svg/logos/Storyblok-wht.svg",
           "backgroundColor": "#2DB47D",
           "satisfiedCriteria": [
-            "false-Free Option",
+            "true-Free Option",
             "false-Repo-based Media",
             "false-Open Source Front-end",
             "false-Content API",
