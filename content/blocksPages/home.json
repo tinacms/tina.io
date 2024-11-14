@@ -458,15 +458,15 @@
           "backgroundColor": "#007FAE",
           "satisfiedCriteria": [
             "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "false-Content API",
+            "true-Open Source Front-end",
+            "true-Content API",
             "false-Git-based Content Management ",
             "false-GitHub Contributions",
             "false-Markdown Support",
-            "false-Visual Editing Capabilities ",
-            "false-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "true-Visual Editing Capabilities ",
+            "true-Free Option",
+            "true-Local Development Workflow ",
+            "true-Self-hosted Option"
           ]
         },
         {
