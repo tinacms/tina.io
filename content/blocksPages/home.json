@@ -12,7 +12,7 @@
           "text": "Tina is a fully open-source headless CMS that supports Git",
           "buttons": [
             {
-              "label": "Try the demo now",
+              "label": "Play with our demo",
               "icon": true,
               "variant": "blue",
               "size": "small",
