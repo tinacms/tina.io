@@ -503,6 +503,11 @@
     {
       "testimonials": [
         {
+          "name": "Some fake thing",
+          "username": "some fake thing",
+          "avatar": "/Sanity-clr-v2.svg"
+        },
+        {
           "name": "Boko Colse",
           "username": "struhy_xd",
           "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
