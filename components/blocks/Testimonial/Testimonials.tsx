@@ -26,7 +26,7 @@ const Testimonial = ({ data, ...props }) => {
       )}
       <div className="flex gap-4 items-center">
         {data.avatar && (
-          <div className="relative shrink-0 w-14 h-14 rounded-full shadow-[0_1px_3px_1px_rgba(66,_153,_225,0.3)] overflow-hidden">
+          <div className={`relative shrink-0 w-14 h-14 overflow-hidden ${data.imageBorder ? "rounded-full shadow-[0_1px_3px_1px_rgba(66,_153,_225,0.3)]" : "rounded-sm"} ${data.rhsImage ? "order-1 ml-auto" : ""}`}>
             <Image
               alt="Testimonial avatar"
               width={56}
@@ -70,8 +70,9 @@ export function TestimonialsBlock({ data, index }) {
     <>
       <h1
         className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20`}
+        data-tina-field={tinaField(data, 'title')}
       >
-        Loved by Developers
+        {data?.title || 'Loved by Developers'}
       </h1>
       <section
         key={index}
