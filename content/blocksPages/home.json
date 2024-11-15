@@ -501,26 +501,31 @@
       "_template": "quote"
     },
     {
+      "title": "Some text",
       "testimonials": [
         {
           "name": "Boko Colse",
           "username": "struhy_xd",
+          "imageBorder": true,
           "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
-          "date": "2023-09-26T03:00:00.000Z",
+          "date": "2024-11-19T13:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
         },
         {
           "name": " Dave Keen",
           "username": "ccapndave",
+          "rhsImage": false,
+          "imageBorder": true,
           "avatar": "/img/avatars/ccapndave_ka7f5u.webp",
-          "date": "2023-06-02T03:00:00.000Z",
+          "date": "2023-06-01T14:00:00.000Z",
           "testimonial": "It’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets. And compared to other CMSs, the admin is incredibly easy for editors to understand and use.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
         },
         {
           "name": "Billy Best",
           "username": "billybest5276",
+          "imageBorder": true,
           "avatar": "/img/avatars/billy-best_wbcpsb.jpg",
           "date": "2023-08-06T03:00:00.000Z",
           "testimonial": "Just found this and I think I am already in love.\n",
@@ -529,6 +534,7 @@
         {
           "name": "Mravec",
           "username": "mravec",
+          "imageBorder": true,
           "avatar": "/img/avatars/mravec_tglyht.webp",
           "date": "2023-06-14T03:00:00.000Z",
           "testimonial": "Just tried out click-to-edit and it's really awesome. Super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
@@ -536,6 +542,7 @@
         },
         {
           "name": "Peter Rusin",
+          "imageBorder": true,
           "avatar": "/img/avatars/piotr-rusin_ne0l3j.jpg",
           "date": "2023-09-05T03:00:00.000Z",
           "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
@@ -543,6 +550,7 @@
         },
         {
           "name": "Sean Pearce",
+          "imageBorder": true,
           "avatar": "/img/avatars/sean_bnwhd9.png",
           "date": "2023-03-30T03:00:00.000Z",
           "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n",
@@ -551,6 +559,7 @@
         {
           "name": "rascode",
           "username": "rascode11",
+          "imageBorder": true,
           "avatar": "/img/avatars/rascode11_elrciv.jpg",
           "date": "2022-12-06T04:00:00.000Z",
           "testimonial": "@tinacms is a dream come true.\n",

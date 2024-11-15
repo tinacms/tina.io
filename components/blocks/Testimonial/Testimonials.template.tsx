@@ -3,9 +3,12 @@ export const testimonialsTemplate = {
   name: 'testimonials',
   ui: {
     previewSrc: '/img/blocks/testimonials.png',
-    // defaultItem: {},
+    defaultItem: {
+      title: 'Loved by Devs',
+    },
   },
   fields: [
+    { name: 'title', label: 'Title', type: 'string' },
     {
       name: 'testimonials',
       label: 'Testimonials',
@@ -19,6 +22,8 @@ export const testimonialsTemplate = {
       fields: [
         { name: 'name', label: 'Name', type: 'string' },
         { name: 'username', label: 'Username', type: 'string' },
+        { name: 'rhsImage', label: 'Image on the right', type: 'boolean' },
+        { name: 'imageBorder', label: 'Circular Image Border', description: 'A la social media account profiles', type: 'boolean' },
         {
           name: 'avatar',
           label: 'Avatar',
@@ -30,6 +35,8 @@ export const testimonialsTemplate = {
           type: 'datetime',
           ui: {
             dateFormat: 'MMMM DD YYYY',
+            parse: (value) => value === "" ? null : value,
+
           },
         },
         {
