@@ -501,14 +501,14 @@
       "_template": "quote"
     },
     {
-      "title": "Some text",
+      "title": "",
       "testimonials": [
         {
           "name": "Boko Colse",
           "username": "struhy_xd",
           "imageBorder": true,
           "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
-          "date": "2024-11-19T13:00:00.000Z",
+          "date": "2023-09-26T14:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
         },
@@ -518,7 +518,7 @@
           "rhsImage": false,
           "imageBorder": true,
           "avatar": "/img/avatars/ccapndave_ka7f5u.webp",
-          "date": "2023-06-01T14:00:00.000Z",
+          "date": "2023-06-07T14:00:00.000Z",
           "testimonial": "It’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets. And compared to other CMSs, the admin is incredibly easy for editors to understand and use.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
         },

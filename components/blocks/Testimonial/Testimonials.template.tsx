@@ -35,7 +35,7 @@ export const testimonialsTemplate = {
           type: 'datetime',
           ui: {
             dateFormat: 'MMMM DD YYYY',
-            parse: (value) => value === "" ? null : value,
+            parse: (value) => value ? null : value,
 
           },
         },

@@ -52,7 +52,7 @@ const Testimonial = ({ data, ...props }) => {
               {data.username && data.date && (
                 <span className="mx-1.5 opacity-30">&ndash;</span>
               )}
-              {data.date?.length > 0 && (
+              {data.date && (
                 <span className="opacity-70 text-blue-600">
                   {formatDate(data.date)}
                 </span>
