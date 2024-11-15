@@ -34,9 +34,11 @@ export const testimonialsTemplate = {
           label: 'Date',
           type: 'datetime',
           ui: {
-            dateFormat: 'MMMM DD YYYY',
-            parse: (value) => value ? null : value,
+            parse: (value) => {
 
+              return value ? new Date(value).toISOString() : undefined;
+            }
+            
           },
         },
         {
