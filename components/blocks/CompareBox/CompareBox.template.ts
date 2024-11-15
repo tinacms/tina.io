@@ -2,20 +2,24 @@ import { useEffect, useState } from "react";
 import { wrapFieldsWithMeta, type Template } from "tinacms";
 import { checkboxList } from "../../../tina/customTinaFormFields/checkboxList";
 
+//This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
 export const splitOneAndJoin = (item, separator) => {
+  //"First" is the boolean value, "rest" is the criteria
     const[first, ...rest] = item.split(separator)
     return [first, rest.join(separator)]
 }
 
+//This should be called on save to update the satisfied criteria list for each company
 export const criteriaMapping = (values) => {
   values.blocks.forEach((block, blockIndex) => {
     if (block._template === 'CompareBox') {
     const criteriaItems = block.criteriaItems?.map((item) => item.criteria);
     block.companies?.forEach((company, index) => {
       {
-        // Add new criteria to the list of satisfied criteria
+        // Get current satisfied criteria list for the company
         const oldCriteria = company.satisfiedCriteria?.map((item) => splitOneAndJoin(item, "-")[1]) ?? [];
         const updatedCriteriaSatisfaction = [];
+        // Populate the satisfied criteria list to match the criteria list, adding new criteria if needed and re-using old criteria if possible
         criteriaItems.forEach((item) => {
           if (oldCriteria.includes(item)) {
             const satisfaction = company.satisfiedCriteria.find((criteria) => splitOneAndJoin(criteria, "-")[1] === item);
@@ -24,6 +28,7 @@ export const criteriaMapping = (values) => {
             updatedCriteriaSatisfaction.push(`false-${item}`);
           }
         });
+        // Rewrite the Tina form values with the updated satisfied criteria list before saving
         values.blocks[blockIndex].companies[index].satisfiedCriteria = updatedCriteriaSatisfaction;
       }
     });
@@ -58,7 +63,7 @@ export const compareBoxTemplate: Template = {
             ui: { component: 'textarea' },
             type: 'string',
             description:
-              'The text inside the description will NOT be displayed anywhere, this is just to elaborate on the criteria itself for our own users.',
+              'Displayed as a tooltip when users hover over the ⓘ.',
           },
 
         ],
