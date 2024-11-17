@@ -24,13 +24,13 @@ import { CarouselFeatureBlock } from './FeatureCarousel/CarouselFeature';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
 import { MediaComponent } from './Media/MediaComponent';
 import { RecentPostsBlock } from './RecentPosts/RecentPosts';
+import RecipeBlock from './Recipe';
 import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase/Showcase';
 import { SpacerComponent } from './Spacer/Spacer';
 import { TestimonialsBlock } from './Testimonial/Testimonials';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
-import RecipeBlock from './Recipe';
 
 
 export const Blocks = ({
@@ -43,7 +43,7 @@ export const Blocks = ({
   if (!blocks) return null;
 
   return blocks.map((block, index) => {
-    console.log(block.__typename); // Debugging log
+    // console.log(block.__typename); // Debugging log
     switch (block.__typename) {
       case 'PageBlocksFeatures':
         return (
