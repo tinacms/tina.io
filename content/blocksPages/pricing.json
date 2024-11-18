@@ -50,7 +50,8 @@
             {
               "name": "Up to 10 Users",
               "icon": "AiOutlineUsergroupAdd",
-              "description": "$9/additional seat"
+              "description": "$9/additional seat",
+              "annualDescription": "$90/additional seat per year"
             }
           ],
           "buttons": [
@@ -88,7 +89,8 @@
             {
               "name": "Up to 20 Users",
               "icon": "AiOutlineUsergroupAdd",
-              "description": "$15/additional seat"
+              "description": "$15/additional seat",
+              "annualDescription": "$150/additional seat per year"
             },
             {
               "name": "Editorial Workflow",
@@ -121,7 +123,8 @@
             {
               "name": "20 Users",
               "icon": "AiOutlineUser",
-              "description": ""
+              "description": "",
+              "annualDescription": ""
             },
             {
               "name": "3 Roles (Beta)",
@@ -134,7 +137,8 @@
             {
               "name": "No User Limit",
               "icon": "AiOutlineUsergroupAdd",
-              "description": "$18/additional seat"
+              "description": "$18/additional seat",
+              "annualDescription": "$180/additional seat per year"
             },
             {
               "name": "Editorial Workflow",
