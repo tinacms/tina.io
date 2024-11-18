@@ -73,6 +73,12 @@ export const cardTemplate: Template = {
           label: 'Description',
           type: 'string',
         },
+        {
+          name: 'annualDescription',
+          label: 'Annual Description',
+          type: 'string',
+          description: '⚠️ If this field is empty, it will show the normal description for both annual and monthly'
+        },
       ],
     },
     {
