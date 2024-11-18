@@ -85,9 +85,10 @@ const CloseButton = styled.button<{ mobileNavIsOpen: boolean }>`
     transition: transform 0.3s ease;
   }
 
-  .close-icon {
-    transform: rotate(0deg);
-  }
+.close-icon {
+    
+}
+
 
   @media (min-width: 840px) {
     display: none;
@@ -143,10 +144,6 @@ const DocsSidebarHeaderWrapper = styled.div`
     right: auto;
     left: 1.25rem;
     margin-top: -1.625rem;
-  }
-
-  @media (max-width: 839px) {
-    padding-left: 4.5rem;
   }
 
   @media (min-width: 1600px) {
