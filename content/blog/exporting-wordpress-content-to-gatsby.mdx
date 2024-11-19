@@ -1,11 +1,18 @@
 ---
+draft: false
+warningMessage: >-
+  **Update:** The examples in this post reference an outdated Gatsby
+  implementation. We recommend using [Next.js](/docs/setup-overview/) for a
+  solution with less friction.
+seo:
+  title: Exporting WordPress Content to Gatsby | TinaCMS Blog
+  description: >-
+    Learn how to export your WordPress content to Gatsby with TinaCMS,
+    streamlining the process of migrating to a faster, more flexible static site
+    setup.
 title: Export WordPress Content to Markdown and Gatsby
 date: '2020-01-13T00:00:00.000Z'
-draft: false
 author: Mitch MacKenzie
-#next: content/blog/custom-field-components.mdx
-#prev: content/blog/three-ways-to-edit-md.mdx
-warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
 ---
 
 Say hello to the [WordPress to Gatsby Markdown Exporter](https://github.com/tinacms/wp-gatsby-markdown-exporter)! It's a WordPress plugin to export posts, pages, and other content from WordPress to Markdown.
@@ -48,9 +55,9 @@ The plugin also provides a command to be run on the CLI using [WP-CLI](https://w
 
 To get our exported WordPress content in place:
 
-1.  Unzip the exported Markdown files into the "content/blog" directory of the starter.
-2.  Place the "uploads" directory from the WordPress export in the "content" directory of the starter.
-3.  Add the following under the plugins section of gatsby-config.js so that any images and uploads exported from WordPress can be found by Gatsby:
+1. Unzip the exported Markdown files into the "content/blog" directory of the starter.
+2. Place the "uploads" directory from the WordPress export in the "content" directory of the starter.
+3. Add the following under the plugins section of gatsby-config.js so that any images and uploads exported from WordPress can be found by Gatsby:
 
 ```
 {
@@ -76,12 +83,12 @@ Tina Grande uses an `authors` frontmatter field that expects a list of authors, 
 
 On the exporter form's "Change field name" we'll add:
 
-    author,authors
-    permalink,path
+author,authors
+permalink,path
 
 and on the form's "Convert fields to array" we'll add (the original name of the authors remapped field):
 
-    author
+author
 
 ![WP Gatsby Markdown Exporter config for Tina Grande](/img/blog/tina-grande-wp-export.png)
 

@@ -1,27 +1,39 @@
 ---
-title: Using TinaCMS on Gatsby Cloud
-date: '2020-01-03T12:00:00.000Z'
 draft: false
-author: James O'Halloran
 consumes:
   - file: /packages/@tinacms/api-git/src/server.ts
-    details: Explains configuring git-specific environment variables to manually set author and ssh-key
+    details: >-
+      Explains configuring git-specific environment variables to manually set
+      author and ssh-key
   - file: /packages/@tinacms/gatsby-tinacms-git/index.ts
-    details: Explains configuring git-specific environment variables to manually set author and ssh-key
-next: content/blog/three-ways-to-edit-md.mdx
+    details: >-
+      Explains configuring git-specific environment variables to manually set
+      author and ssh-key
+warningMessage: >-
+  **Update:** The examples in this post reference an outdated Gatsby
+  implementation. We recommend using [Next.js](/docs/setup-overview/) for a
+  solution with less friction.
+seo:
+  title: Using TinaCMS on Gatsby Cloud | TinaCMS Blog
+  description: >-
+    Learn how to integrate TinaCMS with Gatsby Cloud for a seamless, fast, and
+    scalable content management experience with Gatsby-powered websites.
+title: Using TinaCMS on Gatsby Cloud
+date: '2020-01-03T12:00:00.000Z'
+author: James O'Halloran
 prev: content/blog/editing-on-the-cloud.mdx
-warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
+next: content/blog/three-ways-to-edit-md.mdx
 ---
 
-We've [recently written](/blog/editing-on-the-cloud/ 'TinaCMS on the cloud') about how TinaCMS will work on the cloud. Gatsby Cloud offers a great way for editors to edit TinaCMS sites, without having to run a local development environment.
+We've [recently written](/blog/editing-on-the-cloud/ "TinaCMS on the cloud") about how TinaCMS will work on the cloud. Gatsby Cloud offers a great way for editors to edit TinaCMS sites, without having to run a local development environment.
 
-Since Gatsby Cloud is built from the ground up specifically for Gatsby sites, it takes advantage of _build-artifact caching_ & _parallelizing tasks_ to make things fast ⚡
+Since Gatsby Cloud is built from the ground up specifically for Gatsby sites, it takes advantage of *build-artifact caching* & *parallelizing tasks* to make things fast ⚡
 
 So, let's do this! 🕺
 
 ## Deploying a Preview on Gatsby Cloud 🚀
 
-Deploying a preview with Gatsby Cloud can be done in just a few clicks. Once we've [created an account](https://www.gatsbyjs.com/cloud/ 'Gatsby Cloud'), we can connect the site's repository and enter some build information (the site's root directory and environment variables).
+Deploying a preview with Gatsby Cloud can be done in just a few clicks. Once we've [created an account](https://www.gatsbyjs.com/cloud/ "Gatsby Cloud"), we can connect the site's repository and enter some build information (the site's root directory and environment variables).
 
 And tada! ✨ Our site's preview should be live! Any commits we make to the repo going forward will automatically trigger a rebuild of our Gatsby preview.
 
@@ -41,10 +53,10 @@ To set up for canary, run `yarn add gatsby-tinacms-git@canary` until this versio
 
 To get Tina working in Gatsby Cloud, we'll need to configure a few environment variables in our **Gatsby Cloud site settings**:
 
-    GIT_AUTHOR_EMAIL
-    GIT_AUTHOR_NAME
-    TINA_CEE
-    SSH_KEY
+GIT\_AUTHOR\_EMAIL
+GIT\_AUTHOR\_NAME
+TINA\_CEE
+SSH\_KEY
 
 ### `GIT_AUTHOR_NAME` & `GIT_AUTHOR_EMAIL` 🗣️
 
@@ -55,7 +67,7 @@ If you want the author to be based off of the logged-in user instead of a static
 
 ### `TINA_CEE`
 
-This needs to be set to ensure that Tina knows that it is being run in a _Cloud Editing Environment_. Set it to `true`.
+This needs to be set to ensure that Tina knows that it is being run in a *Cloud Editing Environment*. Set it to `true`.
 
 ### `SSH_KEY` 🔑
 
