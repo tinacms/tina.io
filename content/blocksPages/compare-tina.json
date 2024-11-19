@@ -44,7 +44,7 @@
         {
           "name": "Builder.io",
           "rhsImage": true,
-          "avatar": "",
+          "avatar": "/svg/logos/builderio-mono.svg",
           "testimonial": "TinaCMS vs\n",
           "link": "/tinacms-builder-comparison"
         },
