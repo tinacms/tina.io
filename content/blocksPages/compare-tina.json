@@ -1,1 +1,13 @@
-{}
+{
+  "seo": {
+    "title": "Compare TinaCMS - Find the Best Fit for Your Project | TinaCMS",
+    "description": "TinaCMS is the ideal alternative CMS for your project, offering flexibility, developer-friendly tools, and an intuitive content management experience.",
+    "hasCustomSuffix": true
+  },
+  "blocks": [
+    {
+      "title": "How does TinaCMS stack up?",
+      "_template": "testimonials"
+    }
+  ]
+}
