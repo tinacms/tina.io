@@ -40,7 +40,7 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
 
          
           <CloseButton mobileNavIsOpen={mobileNavIsOpen} onClick={() => setMobileNavIsOpen(false)}>
-            <IoMdClose className="icon close-icon text-orange-500 hover:text-orange-400" />
+            <IoMdClose className="icon text-orange-500 hover:text-orange-400" />
           </CloseButton>
 
           <Search collapse expanded={true} indices={searchIndices} />
@@ -84,11 +84,6 @@ const CloseButton = styled.button<{ mobileNavIsOpen: boolean }>`
     font-size: 1.75rem;
     transition: transform 0.3s ease;
   }
-
-.close-icon {
-    
-}
-
 
   @media (min-width: 840px) {
     display: none;
