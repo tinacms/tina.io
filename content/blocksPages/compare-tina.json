@@ -6,8 +6,9 @@
   },
   "blocks": [
     {
-      "title": "How does TinaCMS stack up?",
-      "_template": "testimonials"
+      "headline": "What Makes TinaCMS Different?",
+      "text": "Hint: It’s More Than Just the Llama ",
+      "_template": "hero"
     }
   ]
 }
