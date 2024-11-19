@@ -426,7 +426,8 @@
               "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
-          ]
+          ],
+          "isReversed": true
         }
       ],
       "_template": "features"
