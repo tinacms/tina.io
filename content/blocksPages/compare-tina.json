@@ -1,261 +1,62 @@
 {
-  "seo": {
-    "title": "Compare TinaCMS - Find the Best Fit for Your Project | TinaCMS",
-    "description": "TinaCMS is the ideal alternative CMS for your project, offering flexibility, developer-friendly tools, and an intuitive content management experience.",
-    "hasCustomSuffix": true
-  },
   "blocks": [
     {
       "headline": "What Makes TinaCMS Different?",
-      "text": "Hint: It’s More Than Just the Llama ",
+      "text": "Hint: It's more than just the Llama",
       "_template": "hero"
-    }
-  ]
-},
-{
-      "criteriaItems": [
-        {
-          "criteria": "Repo-based Media",
-          "description": "Assets can be stored in GitHub, alongside other content, while being managed by the CMS editor"
-        },
-        {
-          "criteria": "Open Source Front-end",
-          "description": "A CMS which is transparent, extensible and community driven"
-        },
-        {
-          "criteria": "Content API",
-          "description": "Query your data, wherever, whenever"
-        },
-        {
-          "criteria": "Git-based Content Management ",
-          "description": "Get all the benefits of the GitHub editing workflow directly from your site - Pull requests, branching, version control"
-        },
-        {
-          "criteria": "GitHub Contributions",
-          "description": "Editors get GitHub contributions when they make changes"
-        },
-        {
-          "criteria": "Markdown Support",
-          "description": "Store your content in a simple and lightweight format with Markdown"
-        },
-        {
-          "criteria": "Visual Editing Capabilities ",
-          "description": "See your changes on your site as you make them"
-        },
-        {
-          "criteria": "Free Option",
-          "description": "An option to use the CMS for free, forever"
-        },
-        {
-          "criteria": "Local Development Workflow ",
-          "description": "Develop your site locally within your favourite IDE"
-        },
-        {
-          "criteria": "Self-hosted Option",
-          "description": "Option to self-host"
-        }
-      ],
-      "companies": [
-        {
-          "headline": "TinaCMS",
-          "logoColour": "/svg/logos/tina.svg",
-          "logoWhite": "/svg/logos/tina-white.svg",
-          "active": true,
-          "isHidden": true,
-          "backgroundColor": "#EC4815",
-          "satisfiedCriteria": [
-            "true-Repo-based Media",
-            "true-Open Source Front-end",
-            "true-Content API",
-            "true-Git-based Content Management ",
-            "true-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Prepr CMS",
-          "logoColour": "/svg/logos/Prepr-clr.svg",
-          "logoWhite": "/svg/logos/Prepr-wht.svg",
-          "backgroundColor": "#5237E6",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Umbraco",
-          "logoColour": "/svg/logos/Umbraco-clr.svg",
-          "logoWhite": "/svg/logos/Umbraco-wht.svg",
-          "backgroundColor": "#3544B1",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "true-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "true-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Decap CMS",
-          "logoColour": "/svg/logos/Decap-clr.svg",
-          "logoWhite": "/svg/logos/Decap-wht.svg",
-          "backgroundColor": "#FF0080",
-          "satisfiedCriteria": [
-            "true-Repo-based Media",
-            "true-Open Source Front-end",
-            "false-Content API",
-            "false-Git-based Content Management ",
-            "true-GitHub Contributions",
-            "true-Markdown Support",
-            "false-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Adobe (AEM)",
-          "logoColour": "/svg/logos/AEM-clr.svg",
-          "logoWhite": "/svg/logos/AEM-wht.svg",
-          "backgroundColor": "#EB1000",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "false-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Contentstack",
-          "logoColour": "/svg/logos/Contentstack-clr.svg",
-          "logoWhite": "/svg/logos/Contentstack-wht.svg",
-          "backgroundColor": "#6610F2",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "false-Visual Editing Capabilities ",
-            "false-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Contentful",
-          "logoColour": "/svg/logos/Contentful-clr.svg",
-          "logoWhite": "/svg/logos/Contentful-wht.svg",
-          "backgroundColor": "#007AFF",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Storyblok",
-          "logoColour": "/svg/logos/Storyblok-clr.svg",
-          "logoWhite": "/svg/logos/Storyblok-wht.svg",
-          "backgroundColor": "#2DB47D",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Sanity",
-          "logoColour": "/svg/logos/Sanity-clr.svg",
-          "logoWhite": "/svg/logos/Sanity-wht.svg",
-          "backgroundColor": "#EF4434",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "true-Open Source Front-end",
-            "false-Content API",
-            "true-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "Payload",
-          "logoColour": "/svg/logos/Payload-clr.svg",
-          "logoWhite": "/svg/logos/Payload-wht.svg",
-          "backgroundColor": "#007FAE",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "true-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
-          ]
-        },
-        {
-          "headline": "prismic.io",
-          "logoColour": "/svg/logos/Prismic-clr.svg",
-          "logoWhite": "/svg/logos/Prismic-wht.svg",
-          "backgroundColor": "#8E44EC",
-          "satisfiedCriteria": [
-            "false-Repo-based Media",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
-          ]
-        }
-      ],
+    },
+    {
       "_template": "CompareBox"
     },
+    {
+      "title": "See How Tina Stacks Up",
+      "testimonials": [
+        {
+          "name": " Contentful",
+          "username": "",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Contentful-clr.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-contentful-comparison"
+        },
+        {
+          "name": "StoryBlok",
+          "username": "",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Storyblok-clr.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-storyblok-comparison"
+        },
+        {
+          "name": "Sanity",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Sanity-clr-v2.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/sanity-tina-comparison"
+        },
+        {
+          "name": "DecapCMS",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Decap-clr.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-netlifycms-comparison"
+        },
+        {
+          "name": "Builder.io",
+          "rhsImage": true,
+          "avatar": "",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-builder-comparison"
+        },
+        {
+          "name": "Strapi",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Strapi.monogram.logo.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-strapi-comparison"
+        }
+      ],
+      "_template": "testimonials"
+    }
+  ]
+}
