@@ -1,35 +1,37 @@
+import React from 'react';
 import type {
   PageBlocks,
   PostConnection,
 } from '../../tina/__generated__/types';
-import React from 'react';
 import {
-  StoryBlock,
+  ContentBlock,
+  FaqBlock,
   FeatureGridBlock,
   FeaturesBlock,
   FlyingBlock,
   HeroBlock,
-  PricingBlock,
-  FaqBlock,
-  ContentBlock,
   LogoGridBlock,
+  PricingBlock,
   QuoteBlock,
+  StoryBlock,
 } from './';
-import { ColumnsBlock } from './Columns';
-import { RecentPostsBlock } from './RecentPosts';
-import { RoadmapGridBlock } from './RoadmapGrid';
-import { ShowcaseItemsBlock } from './Showcase';
-import { TestimonialsBlock } from './Testimonials';
-import { VerticalCardsBlock } from './Events';
-import { CompareBoxBlock } from './CompareBox';
-import { BookingBlock } from './Booking';
-import { MediaComponent } from './MediaComponent';
-import { TextAndMediaColumnsComponent } from './TextAndMediaColumns';
-import { TinaBanner } from './TinaBanner';
-import { HighlightsSection } from './HighlightsSection';
-import { SpacerComponent } from './Spacer';
-import { CarouselFeatureBlock } from './CarouselFeature';
+
+import { BookingBlock } from './Booking/Booking';
+import { ColumnsBlock } from './Columns/Columns';
+import { CompareBoxBlock } from './CompareBox/CompareBox';
+import { VerticalCardsBlock } from './Events/Events';
+import { CarouselFeatureBlock } from './FeatureCarousel/CarouselFeature';
+import { HighlightsSection } from './HighlightsSection/HighlightsSection';
+import { MediaComponent } from './Media/MediaComponent';
+import { RecentPostsBlock } from './RecentPosts/RecentPosts';
 import RecipeBlock from './Recipe';
+import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
+import { ShowcaseItemsBlock } from './Showcase/Showcase';
+import { SpacerComponent } from './Spacer/Spacer';
+import { TestimonialsBlock } from './Testimonial/Testimonials';
+import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
+import { TinaBanner } from './TinaBanner/TinaBanner';
+
 
 export const Blocks = ({
   blocks,
@@ -41,7 +43,7 @@ export const Blocks = ({
   if (!blocks) return null;
 
   return blocks.map((block, index) => {
-    console.log(block.__typename); // Debugging log
+    // console.log(block.__typename); // Debugging log
     switch (block.__typename) {
       case 'PageBlocksFeatures':
         return (
