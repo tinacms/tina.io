@@ -7,8 +7,8 @@
     {
       "features": [
         {
-          "headline": "Tina for Enterprise",
-          "text": "Reduce Costs. Increase Security & Performance",
+          "headline": "The Headless CMS that Enterprises Trust.",
+          "text": "Reduce Costs. Increase Security & Performance.  (Levi: security, scalability)",
           "buttons": [
             {
               "label": "Schedule a Demo",
@@ -138,21 +138,6 @@
       "blockHeadline": "Enterprise Benefits",
       "items": [
         {
-          "headline": "Custom Users",
-          "text": "Lorem ipsum dolor sit amet consectetur",
-          "icon2": "FaClock"
-        },
-        {
-          "headline": "Custom Roles",
-          "text": "Lorem ipsum dolor sit amet",
-          "icon2": "FaUnlock"
-        },
-        {
-          "headline": "Training & Support",
-          "text": "Lorem ipsum dolor sit amet",
-          "icon2": "FaCodeBranch"
-        },
-        {
           "headline": "Custom Editorial Workflow",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaCloudDownloadAlt"
@@ -161,6 +146,21 @@
           "headline": "SSO",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaPuzzlePiece"
+        },
+        {
+          "headline": "Security",
+          "text": "Lorem ipsum dolor sit amet",
+          "icon2": "FaUnlock"
+        },
+        {
+          "headline": "Custom Users",
+          "text": "Lorem ipsum dolor sit amet consectetur",
+          "icon2": "FaClock"
+        },
+        {
+          "headline": "Training & Support",
+          "text": "Lorem ipsum dolor sit amet",
+          "icon2": "FaCodeBranch"
         },
         {
           "headline": "Reduced Costs",
