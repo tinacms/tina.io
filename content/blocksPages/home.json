@@ -274,6 +274,18 @@
       "title": "Where's Tina?",
       "cardItems": [
         {
+          "headline": "NDC London",
+          "startDate": "2025-01-27T00:00:00.000Z",
+          "startTime": "2024-11-20T09:00:00.000Z",
+          "endDate": "2025-01-31T00:00:00.000Z",
+          "timezone": 0,
+          "location": "London, England",
+          "image": "/Capture-2024-11-08-142839.png",
+          "link": "ndclondon.com",
+          "markerLAT": 8,
+          "markerLONG": 50
+        },
+        {
           "headline": "NDC Porto",
           "startDate": "2024-10-14T00:00:00.000Z",
           "startTime": "2024-10-02T09:00:00.000Z",
