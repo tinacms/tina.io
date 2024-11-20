@@ -273,6 +273,19 @@
     {
       "title": "Where's Tina?",
       "cardItems": [
+        {},
+        {},
+        {},
+        {
+          "headline": "Write the Docs - Melbourne",
+          "startDate": "2024-11-28T00:00:00.000Z",
+          "startTime": "2024-11-20T08:30:00.000Z",
+          "endDate": "2024-11-29T00:00:00.000Z",
+          "timezone": 11,
+          "location": "Melbourne, Australia",
+          "image": "/img/events/2024-11-21_10-33.jpg",
+          "link": "https://www.writethedocs.org/conf/australia/2024/"
+        },
         {
           "headline": "NDC Porto",
           "startDate": "2024-10-14T00:00:00.000Z",
