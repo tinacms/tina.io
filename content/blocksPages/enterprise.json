@@ -153,17 +153,12 @@
           "icon2": "FaUnlock"
         },
         {
-          "headline": "Custom Users",
-          "text": "Lorem ipsum dolor sit amet consectetur",
-          "icon2": "FaClock"
-        },
-        {
           "headline": "Training & Support",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaCodeBranch"
         },
         {
-          "headline": "Reduced Costs",
+          "headline": "Scalability",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaMarkdown"
         }
