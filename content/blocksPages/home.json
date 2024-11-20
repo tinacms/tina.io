@@ -273,7 +273,18 @@
     {
       "title": "Where's Tina?",
       "cardItems": [
-        {},
+        {
+          "headline": "NDC Melbourne",
+          "startDate": "2025-04-29T00:00:00.000Z",
+          "startTime": "2024-11-20T09:00:00.000Z",
+          "endDate": "2025-05-01T00:00:00.000Z",
+          "timezone": 11,
+          "location": "Melbourne, Australia",
+          "image": "/ndc-melb-2024-11-21_10-58-17.jpg",
+          "link": "https://ndcmelbourne.com/",
+          "markerLAT": -37.8256,
+          "markerLONG": 144.9541
+        },
         {},
         {},
         {
