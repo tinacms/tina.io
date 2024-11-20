@@ -4,7 +4,6 @@ import algoliasearch, { SearchClient, SearchIndex } from 'algoliasearch'
 
 import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs'
 import fetchSearchableDocs from '../data-api/fetchDocs'
-import fetchGuides from '../data-api/fetchGuides'
 import { stripMarkdown } from '../utils/blog_helpers'
 
 const mapContentToIndex = async ({
