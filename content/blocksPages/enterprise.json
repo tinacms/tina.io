@@ -143,6 +143,11 @@
           "icon2": "FaCloudDownloadAlt"
         },
         {
+          "headline": "Enterprise-level Support",
+          "text": "Lorem ipsum dolor sit amet",
+          "icon2": "FaCodeBranch"
+        },
+        {
           "headline": "SSO - Single Sign-on",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaPuzzlePiece"
@@ -156,11 +161,6 @@
           "headline": "Scalability",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaMarkdown"
-        },
-        {
-          "headline": "Support",
-          "text": "Lorem ipsum dolor sit amet",
-          "icon2": "FaCodeBranch"
         }
       ],
       "_template": "carouselFeature"
