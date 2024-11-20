@@ -10,7 +10,9 @@
         {
           "criteria": "Test"
         },
-        {}
+        {
+          "criteria": "test"
+        }
       ],
       "_template": "CompareBox"
     },
