@@ -51,6 +51,10 @@ const footerNav = [
         link: '/examples',
       },
       {
+        label: 'Compare Tina',
+        link: '/compare-tina',
+      },
+      {
         label: 'Support',
         link: '/docs/support',
       },
@@ -123,35 +127,6 @@ const footerNav = [
           {
             link: '/seo',
             label: 'SEO',
-          },
-        ],
-      },
-      {
-        label: 'Comparisons',
-        children: [
-          {
-            link: '/tinacms-storyblok-comparison',
-            label: 'TinaCMS vs Storyblok',
-          },
-          {
-            link: '/sanity-tina-comparison',
-            label: 'TinaCMS vs Sanity',
-          },
-          {
-            link: '/tinacms-netlifycms-comparison',
-            label: 'TinaCMS vs DecapCMS',
-          },
-          {
-            link: '/tinacms-contentful-comparison',
-            label: 'TinaCMS vs Contentful',
-          },
-          {
-            link: '/tinacms-builder-comparison',
-            label: 'TinaCMS vs Builder.io',
-          },
-          {
-            link: '/tinacms-strapi-comparison',
-            label: 'TinaCMS vs Strapi',
           },
         ],
       },

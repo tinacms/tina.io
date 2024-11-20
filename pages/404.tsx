@@ -33,7 +33,7 @@ function Page404() {
                 <DynamicLink href={'/docs'} passHref>
                   <Button>Documentation</Button>
                 </DynamicLink>
-                <DynamicLink href={'/guides'} passHref>
+                <DynamicLink href={'/docs/guides'} passHref>
                   <Button>Guides</Button>
                 </DynamicLink>
                 <DynamicLink href={'/'} passHref>
