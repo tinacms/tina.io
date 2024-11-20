@@ -36,13 +36,13 @@ const CompanyItem = ({ company, onClick }) => {
       }`}
       onClick={onClick}
     >
-      <Image
+      {company.logoColour && <Image
         src={company.logoColour}
-        alt={`${company.headline} logo`}
+        alt={`${company.headline || "Unknown"} logo`}
         className="lg:h-10 lg:w-10 md:h-8 md:w-8 h-6 w-6 "
         width={40}
         height={40}
-      />
+      />}
       <span
         className={`font-tuner  ${
           company.active
@@ -108,13 +108,13 @@ const CompanyCard = ({ company, criteria }) => {
           )} 100%)`,
         }}
       >
-        <Image
+        {company.logoWhite && <Image
           src={company.logoWhite}
-          alt={`${company.headline} logo`}
+          alt={`${company.headline ?? "Unknown"} logo`}
           className="xl:h-10 xl:w-10 lg:h-7 lg:w-7 md:h-7 md:w-7 h-8 w-8 pr-1 filter-transparent"
           width={40}
           height={40}
-        />
+        />}
         <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
           {company.headline}
         </h3>
@@ -165,22 +165,8 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    if (data && data.companies) {
-      const updatedCompanies = data.companies.map((company, idx) => {
-        const updatedCompany = {
-          ...company,
-          isHidden: company.headline === 'TinaCMS',
-          active: idx === 0 ? true : company.active,
-        };
-        data.criteriaItems.forEach((criteria, idx) => {
-          updatedCompany[`criteria${idx + 1}`] =
-            updatedCompany[`criteria${idx + 1}`] || false;
-        });
-        return updatedCompany;
-      });
-      setCompanies(updatedCompanies);
-    }
-  }, [data]);
+      setCompanies(data.companies);
+    }, [data]);
 
   useEffect(() => {
     if (userInteracted) return;
@@ -188,14 +174,14 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
     let currentIndex = 1;
     const interval = setInterval(() => {
       setCompanies((prevCompanies) => {
-        const newCompanies = prevCompanies.map((company, idx) => ({
+        const newCompanies = prevCompanies?.map((company, idx) => ({
           ...company,
           active: idx === 0 ? true : idx === currentIndex,
         }));
         if (sliderRef.current) {
           sliderRef.current.slickGoTo(currentIndex - 1);
         }
-        currentIndex = (currentIndex + 1) % prevCompanies.length;
+        currentIndex = (currentIndex + 1) % (prevCompanies?.length ?? 1);
         if (currentIndex === 0) currentIndex = 1;
         return newCompanies;
       });
@@ -311,7 +297,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             {...settings}
             className="pb-10 ml-4 mr-4 pl-4"
           >
-            {companies.map(
+            {companies?.map(
               (company, companyIdx) =>
                 !company.isHidden && (
                   <div key={`company-${companyIdx}`}>
@@ -330,7 +316,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             className="grid lg:gap-4 md:gap-2 gap-2"
             style={{
               gridTemplateColumns: `repeat(${
-                companies.filter((company) => company.active).length + 1
+                companies?.filter((company) => company.active).length + 1
               }, minmax(0, 1fr))`,
               maxWidth: '100%',
             }}
@@ -338,8 +324,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             <div className="col-span-1">
               <CriteriaCard criteriaItems={data.criteriaItems} />
             </div>
-            {companies
-              .filter((company) => company.active)
+            {companies?.filter((company) => company.active)
               .map((company, idx) => (
                 <CompanyCard key={`company-card-${idx}`} company={company} criteria={data.criteriaItems} />
               ))}
