@@ -6,6 +6,15 @@
   },
   "blocks": [
     {
+      "criteriaItems": [
+        {
+          "criteria": "Test"
+        },
+        {}
+      ],
+      "_template": "CompareBox"
+    },
+    {
       "features": [
         {
           "headline": "A CMS With Version Control Built",
