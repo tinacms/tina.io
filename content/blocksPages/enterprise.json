@@ -138,7 +138,7 @@
       "blockHeadline": "Enterprise Benefits",
       "items": [
         {
-          "headline": "Custom Editorial Workflow",
+          "headline": "PR Approval Workflow",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaCloudDownloadAlt"
         },
@@ -153,14 +153,14 @@
           "icon2": "FaUnlock"
         },
         {
-          "headline": "Training & Support",
-          "text": "Lorem ipsum dolor sit amet",
-          "icon2": "FaCodeBranch"
-        },
-        {
           "headline": "Scalability",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaMarkdown"
+        },
+        {
+          "headline": "Training & Support",
+          "text": "Lorem ipsum dolor sit amet",
+          "icon2": "FaCodeBranch"
         }
       ],
       "_template": "carouselFeature"
