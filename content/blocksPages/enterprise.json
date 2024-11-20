@@ -138,7 +138,7 @@
       "blockHeadline": "Enterprise Benefits",
       "items": [
         {
-          "headline": "PR Approval Workflow",
+          "headline": "Custom PR Approval Workflow",
           "text": "Lorem ipsum dolor sit amet",
           "icon2": "FaCloudDownloadAlt"
         },
