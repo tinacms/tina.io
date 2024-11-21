@@ -332,22 +332,13 @@
       "title": "",
       "testimonials": [
         {
-          "name": "Aaron Crowder",
-          "username": "CrowderSoup",
+          "name": "Cassidy",
+          "username": "cassidoo",
           "imageBorder": true,
-          "avatar": "/tTsoaH2o_400x400.jpg",
-          "date": "2024-09-27T14:00:00.000Z",
-          "testimonial": "Whoa, this works with Hugo (which I'm currently using). Definitely going to have to play with this over the weekend.\n",
-          "link": "https://x.com/CrowderSoup/status/1839722550232003048"
-        },
-        {
-          "name": "ffmad.xcp",
-          "username": "quentinbdb",
-          "imageBorder": true,
-          "avatar": "/Fr4NQFpf_400x400.jpg",
-          "date": "2024-10-19T13:00:00.000Z",
-          "testimonial": "Very happy to finally release the new website ! \n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on [@astrodotbuild](https://x.com/astrodotbuild) & [@tinacms](https://x.com/tinacms) for speed and collaboration! \n",
-          "link": "https://x.com/quentinbdb/status/1847795017416401229"
+          "avatar": "/1d5PR5ge_400x400.jpg",
+          "date": "2024-09-26T14:00:00.000Z",
+          "testimonial": "TinaCMS is what I use and I love it!\n",
+          "link": "https://x.com/cassidoo/status/1839650659735663054"
         },
         {
           "name": "MadeWithReactJS",
@@ -359,13 +350,22 @@
           "link": "https://x.com/madewith_react/status/1854188254716645700"
         },
         {
-          "name": "Smashing Magazine",
-          "username": "smashingmag",
+          "name": "ffmad.xcp",
+          "username": "quentinbdb",
           "imageBorder": true,
-          "avatar": "/mTxJyTGY_400x400.jpg",
-          "date": "2023-09-18T14:00:00.000Z",
-          "testimonial": "With the recent integration of [@tinacms](https://x.com/tinacms), SmashingMag enjoys the best of both worlds — the performance benefits of static assets and the writing experience that helps streamline the editing process.\n",
-          "link": "https://twitter.com/smashingmag/status/1703886402704842990"
+          "avatar": "/Fr4NQFpf_400x400.jpg",
+          "date": "2024-10-19T13:00:00.000Z",
+          "testimonial": "Very happy to finally release the new website ! \n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on [@astrodotbuild](https://x.com/astrodotbuild) & [@tinacms](https://x.com/tinacms) for speed and collaboration! \n",
+          "link": "https://x.com/quentinbdb/status/1847795017416401229"
+        },
+        {
+          "name": "Aaron Crowder",
+          "username": "CrowderSoup",
+          "imageBorder": true,
+          "avatar": "/tTsoaH2o_400x400.jpg",
+          "date": "2024-09-27T14:00:00.000Z",
+          "testimonial": "Whoa, this works with Hugo (which I'm currently using). Definitely going to have to play with this over the weekend.\n",
+          "link": "https://x.com/CrowderSoup/status/1839722550232003048"
         },
         {
           "name": "arzafran",
@@ -384,6 +384,15 @@
           "date": "2023-09-26T14:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
+        },
+        {
+          "name": "Smashing Magazine",
+          "username": "smashingmag",
+          "imageBorder": true,
+          "avatar": "/mTxJyTGY_400x400.jpg",
+          "date": "2023-09-18T14:00:00.000Z",
+          "testimonial": "With the recent integration of [@tinacms](https://x.com/tinacms), SmashingMag enjoys the best of both worlds — the performance benefits of static assets and the writing experience that helps streamline the editing process.\n",
+          "link": "https://twitter.com/smashingmag/status/1703886402704842990"
         },
         {
           "name": " Dave Keen",
