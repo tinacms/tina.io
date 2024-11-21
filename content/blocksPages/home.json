@@ -297,7 +297,18 @@
           "markerLAT": 7,
           "markerLONG": 52
         },
-        {},
+        {
+          "headline": "NDC Security",
+          "startDate": "2025-01-20T00:00:00.000Z",
+          "startTime": "2024-10-14T09:00:00.000Z",
+          "endDate": "2025-01-23T00:00:00.000Z",
+          "timezone": 1,
+          "location": "Oslo, Norway",
+          "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
+          "link": "https://ndc-security.com/",
+          "markerLAT": -1,
+          "markerLONG": 59
+        },
         {
           "headline": "Write the Docs - Melbourne",
           "startDate": "2024-11-28T00:00:00.000Z",
@@ -332,18 +343,6 @@
           "image": "/img/wheres-tina/cph-dev-fest-2024.jpg",
           "link": "https://cphdevfest.com/",
           "markerLAT": -8,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC Oslo",
-          "startDate": "2024-05-19T00:00:00.000Z",
-          "startTime": "2024-10-14T09:00:00.000Z",
-          "endDate": "2024-05-23T00:00:00.000Z",
-          "timezone": 2,
-          "location": "Oslo, Norway",
-          "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
-          "link": "https://ndcoslo.com/",
-          "markerLAT": -1,
           "markerLONG": 59
         }
       ],
