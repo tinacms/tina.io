@@ -25,6 +25,7 @@ import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testim
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { seoInformation } from './sharedFields/seoInformation';
+import { tableTemplate } from '../../components/blocks/Table/table.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
@@ -59,10 +60,12 @@ export const pagesCollection = {
         cms: TinaCMS
         values: Record<string, any>
       }) => {
+        
+        console.log('about to go into crtieriaMapping')
         //Template based transformations (NOTE: this is the only way to pass data between parent/child form fields)
-        const criteriaMappedValues = criteriaMapping(values);
+        const criteriaMappedValues = criteriaMapping(values );
         return {
-          ...criteriaMappedValues.values
+          ...criteriaMappedValues.values,
         }
       }
     },
@@ -94,6 +97,7 @@ export const pagesCollection = {
         quoteTemplate as Template,
         eventsTemplate as Template,
         compareBoxTemplate as Template,
+        tableTemplate as Template,
         bookingTemplate as Template,
         mediaComponentTemplate as Template,
         textAndMediaColumnsComponentTemplate as Template,

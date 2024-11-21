@@ -6,6 +6,43 @@
   },
   "blocks": [
     {
+      "columnItems": [
+        {
+          "columnHeader": "Isaacs Column="
+        },
+        {
+          "columnHeader": "Free Tier Colmn"
+        },
+        {
+          "columnHeader": "Business Tier Column"
+        },
+        {
+          "columnHeader": "Enterprise Tier Colubhjmn"
+        }
+      ],
+      "rowItems": [
+        {
+          "rowHeader": "Row 1",
+          "rowCells": [
+            "{\"columnHeader\":\"Isaacs Column=\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Free Tier Colmn\",\"cellValue\":\"\"}",
+            "{\"columnHeader\":\"Business Tier Column\",\"cellValue\":\"\"}",
+            "{\"columnHeader\":\"Enterprise Tier Colubhjmn\",\"cellValue\":\"\"}"
+          ]
+        },
+        {
+          "rowHeader": "Row 2",
+          "rowCells": [
+            "{\"columnHeader\":\"Isaacs Column=\",\"cellValue\":\"\"}",
+            "{\"columnHeader\":\"Free Tier Colmn\",\"cellValue\":\"\"}",
+            "{\"columnHeader\":\"Business Tier Column\",\"cellValue\":\"\"}",
+            "{\"columnHeader\":\"Enterprise Tier Colubhjmn\",\"cellValue\":\"\"}"
+          ]
+        }
+      ],
+      "_template": "table"
+    },
+    {
       "features": [
         {
           "headline": "A CMS With Version Control Built-in",
