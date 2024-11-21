@@ -332,6 +332,15 @@
       "title": "",
       "testimonials": [
         {
+          "name": "arzafran",
+          "username": "arzafran",
+          "imageBorder": true,
+          "avatar": "/XfCc9f0B_400x400.jpg",
+          "date": "2023-10-31T13:00:00.000Z",
+          "testimonial": "From complaining here, to merged PR in less than 24hs,\nincredible customer experience by [@tinacms](https://x.com/tinacms).\ntheir CEO jumped on a call, listened to all our issues and took notes, but not on imaginary paper, feels like fixes where WIP as we were describing them.\n",
+          "link": "https://twitter.com/arzafran/status/1719387497564708956"
+        },
+        {
           "name": "Boko Colse",
           "username": "struhy_xd",
           "imageBorder": true,
