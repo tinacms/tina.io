@@ -332,6 +332,15 @@
       "title": "",
       "testimonials": [
         {
+          "name": "Aaron Crowder",
+          "username": "CrowderSoup",
+          "imageBorder": true,
+          "avatar": "/tTsoaH2o_400x400.jpg",
+          "date": "2024-09-27T14:00:00.000Z",
+          "testimonial": "Whoa, this works with Hugo (which I'm currently using). Definitely going to have to play with this over the weekend.\n",
+          "link": "https://x.com/CrowderSoup/status/1839722550232003048"
+        },
+        {
           "name": "ffmad.xcp",
           "username": "quentinbdb",
           "imageBorder": true,
