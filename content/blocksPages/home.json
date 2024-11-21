@@ -285,7 +285,18 @@
           "markerLAT": -27.81015,
           "markerLONG": 220.9541
         },
-        {},
+        {
+          "headline": "NDC London",
+          "startDate": "2025-01-27T00:00:00.000Z",
+          "startTime": "2024-11-21T09:00:00.000Z",
+          "endDate": "2025-01-31T00:00:00.000Z",
+          "timezone": 0,
+          "location": "London, England",
+          "image": "/ndclondon.jpg",
+          "link": "https://ndclondon.com/",
+          "markerLAT": 50,
+          "markerLONG": 0
+        },
         {},
         {
           "headline": "Write the Docs - Melbourne",
@@ -334,16 +345,6 @@
           "link": "https://ndcoslo.com/",
           "markerLAT": -1,
           "markerLONG": 59
-        },
-        {
-          "headline": "/serverless/DAYS ANZ",
-          "startDate": "2024-05-21T00:00:00.000Z",
-          "timezone": 10,
-          "location": "Sydney, Australia",
-          "image": "/img/wheres-tina/serverless-days-anz-2024.jpg",
-          "link": "https://anz.serverlessdays.io/sydney/",
-          "markerLAT": 207,
-          "markerLONG": 35
         }
       ],
       "_template": "events"
