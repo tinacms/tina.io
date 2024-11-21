@@ -332,15 +332,6 @@
       "title": "",
       "testimonials": [
         {
-          "name": "Cassidy",
-          "username": "cassidoo",
-          "imageBorder": true,
-          "avatar": "/1d5PR5ge_400x400.jpg",
-          "date": "2024-09-26T14:00:00.000Z",
-          "testimonial": "TinaCMS is what I use and I love it!\n",
-          "link": "https://x.com/cassidoo/status/1839650659735663054"
-        },
-        {
           "name": "MadeWithReactJS",
           "username": "madewith_react",
           "imageBorder": true,
@@ -366,6 +357,15 @@
           "date": "2024-09-27T14:00:00.000Z",
           "testimonial": "Whoa, this works with Hugo (which I'm currently using). Definitely going to have to play with this over the weekend.\n",
           "link": "https://x.com/CrowderSoup/status/1839722550232003048"
+        },
+        {
+          "name": "Cassidy",
+          "username": "cassidoo",
+          "imageBorder": true,
+          "avatar": "/1d5PR5ge_400x400.jpg",
+          "date": "2024-09-26T14:00:00.000Z",
+          "testimonial": "TinaCMS is what I use and I love it!\n",
+          "link": "https://x.com/cassidoo/status/1839650659735663054"
         },
         {
           "name": "arzafran",
