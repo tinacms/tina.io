@@ -332,6 +332,15 @@
       "title": "",
       "testimonials": [
         {
+          "name": "Manu Coffin",
+          "username": "manucoffin",
+          "imageBorder": true,
+          "avatar": "/3D97Wrt5_400x400.jpg",
+          "date": "2024-08-18T14:00:00.000Z",
+          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try \n",
+          "link": "https://x.com/manucoffin/status/1825455891421802720"
+        },
+        {
           "name": "MadeWithReactJS",
           "username": "madewith_react",
           "imageBorder": true,
