@@ -36,21 +36,7 @@ export const tableTemplate: Template = {
       fields: [
         { name: 'columnHeader', label: 'Column Header', type: 'string' },
         { name: 'columnByLine', label: 'Column By-Line', type: 'string'},
-        {
-          label: 'Buttons',
-          name: 'buttons',
-          type: 'object',
-          list: true,
-          ui: {
-            visualSelector: true,
-            max: 1,
-          },
-          templates: [
-            actionsButtonTemplate as Template,
-            modalButtonTemplate as Template,
-            codeButtonTemplate as Template,
-          ],
-        },
+        { name: 'columnHeaderLink', label: 'Column Link', type: 'string'},
       ],
     },
     {

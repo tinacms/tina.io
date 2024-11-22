@@ -226,78 +226,28 @@
       "columnItems": [
         {
           "columnHeader": "Free",
-          "columnByLine": "$0 Forever",
-          "buttons": [
-            {
-              "label": "Start Free",
-              "icon": false,
-              "variant": "ghost",
-              "size": "medium",
-              "url": "/",
-              "_template": "actions"
-            }
-          ]
+          "columnByLine": "$0 Forever"
         },
         {
           "columnHeader": "Team",
-          "columnByLine": "$29/month",
-          "buttons": [
-            {
-              "label": "Start Team Plan",
-              "icon": false,
-              "variant": "ghost",
-              "size": "medium",
-              "url": "/",
-              "_template": "actions"
-            }
-          ]
+          "columnByLine": "$29/month"
         },
         {
           "columnHeader": "Team Plus",
-          "columnByLine": "$49/month",
-          "buttons": [
-            {
-              "label": "Start Team Plan",
-              "icon": false,
-              "variant": "ghost",
-              "size": "medium",
-              "url": "/",
-              "_template": "actions"
-            }
-          ]
+          "columnByLine": "$49/month"
         },
         {
           "columnHeader": "Business",
-          "columnByLine": "$299/month",
-          "buttons": [
-            {
-              "label": "Start Business Plan",
-              "icon": false,
-              "variant": "orangeWithBorder",
-              "size": "medium",
-              "url": "/",
-              "_template": "actions"
-            }
-          ]
+          "columnByLine": "$299/month"
         },
         {
           "columnHeader": "Enterprise",
-          "columnByLine": "Custom",
-          "buttons": [
-            {
-              "label": "Contact Sales",
-              "icon": false,
-              "variant": "orangeWithBorder",
-              "size": "medium",
-              "url": "/",
-              "_template": "actions"
-            }
-          ]
+          "columnByLine": "Custom"
         }
       ],
       "rowItems": [
         {
-          "rowHeader": "Cost/ monthly (USD)",
+          "rowHeader": "Cost/ month",
           "rowDescription": "Tis is a row description",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
@@ -308,7 +258,7 @@
           ]
         },
         {
-          "rowHeader": "Annual Discount",
+          "rowHeader": "Annual discount",
           "rowDescription": "another row",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"n/a\",\"isTicked\":true}",
