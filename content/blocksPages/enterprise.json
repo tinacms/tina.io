@@ -139,7 +139,7 @@
       "items": [
         {
           "headline": "Custom PR Approval Workflow",
-          "text": "Lorem ipsum dolor sit amet",
+          "text": "See all your changes as a live draft site and iterate on content until it's finalized. By integrating with Git-based workflows, it ensures version control and collaboration while maintaining flexibility for developers and editors alike.",
           "icon2": "FaCloudDownloadAlt"
         },
         {
