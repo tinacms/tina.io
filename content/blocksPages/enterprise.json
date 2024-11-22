@@ -140,7 +140,8 @@
         {
           "headline": "Custom PR Approval Workflow",
           "text": "See all your changes as a live draft site and iterate on content until it's finalized. By integrating with Git-based workflows, it ensures version control and collaboration while maintaining flexibility for developers and editors alike.",
-          "icon2": "FaCloudDownloadAlt"
+          "icon2": "FaCloudDownloadAlt",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm"
         },
         {
           "headline": "Enterprise-level Support",
