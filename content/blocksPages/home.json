@@ -8,7 +8,7 @@
     {
       "columnItems": [
         {
-          "columnHeader": "Isaacs Column="
+          "columnHeader": "Isaacs Column"
         },
         {
           "columnHeader": "Free Tier Colmn"
@@ -17,26 +17,26 @@
           "columnHeader": "Business Tier Column"
         },
         {
-          "columnHeader": "Enterprise Tier Colubhjmn"
+          "columnHeader": "Enterprise Tier Column"
         }
       ],
       "rowItems": [
         {
           "rowHeader": "Row 1",
           "rowCells": [
-            "{\"columnHeader\":\"Isaacs Column=\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Free Tier Colmn\",\"cellValue\":\"\"}",
-            "{\"columnHeader\":\"Business Tier Column\",\"cellValue\":\"\"}",
-            "{\"columnHeader\":\"Enterprise Tier Colubhjmn\",\"cellValue\":\"\"}"
+            "{\"columnHeader\":\"Isaacs Column\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Free Tier Colmn\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Business Tier Column\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise Tier Column\",\"cellValue\":\"\",\"isTicked\":true}"
           ]
         },
         {
           "rowHeader": "Row 2",
           "rowCells": [
-            "{\"columnHeader\":\"Isaacs Column=\",\"cellValue\":\"\"}",
+            "{\"columnHeader\":\"Isaacs Column\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Free Tier Colmn\",\"cellValue\":\"\"}",
             "{\"columnHeader\":\"Business Tier Column\",\"cellValue\":\"\"}",
-            "{\"columnHeader\":\"Enterprise Tier Colubhjmn\",\"cellValue\":\"\"}"
+            "{\"columnHeader\":\"Enterprise Tier Column\",\"cellValue\":\"\",\"isTicked\":false}"
           ]
         }
       ],

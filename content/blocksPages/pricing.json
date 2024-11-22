@@ -220,6 +220,216 @@
         }
       ],
       "_template": "pricing"
+    },
+    {
+      "tableHeader": "General",
+      "columnItems": [
+        {
+          "columnHeader": "Free",
+          "columnByLine": "$0 Forever",
+          "buttons": [
+            {
+              "label": "Start Free",
+              "icon": false,
+              "variant": "ghost",
+              "size": "medium",
+              "url": "/",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "columnHeader": "Team",
+          "columnByLine": "$29/month",
+          "buttons": [
+            {
+              "label": "Start Team Plan",
+              "icon": false,
+              "variant": "ghost",
+              "size": "medium",
+              "url": "/",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "columnHeader": "Team Plus",
+          "columnByLine": "$49/month",
+          "buttons": [
+            {
+              "label": "Start Team Plan",
+              "icon": false,
+              "variant": "ghost",
+              "size": "medium",
+              "url": "/",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "columnHeader": "Business",
+          "columnByLine": "$299/month",
+          "buttons": [
+            {
+              "label": "Start Business Plan",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "/",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "columnHeader": "Enterprise",
+          "columnByLine": "Custom",
+          "buttons": [
+            {
+              "label": "Contact Sales",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "/",
+              "_template": "actions"
+            }
+          ]
+        }
+      ],
+      "rowItems": [
+        {
+          "rowHeader": "Cost/ monthly (USD)",
+          "rowDescription": "Tis is a row description",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"$29\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$49\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"$299\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Annual Discount",
+          "rowDescription": "another row",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"n/a\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"2 months free\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"2 months free\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"2 months free\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Users",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"5\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"20\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Additional users",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"$9\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"$18\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "User Limit",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Roles",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"3\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Community Support",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "Premium Support",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "SSO",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "Editorial Workflow",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "API Requests/ month",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"3.6m\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "AI Assist",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"coming soon\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Comments",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        }
+      ],
+      "_template": "table"
     }
   ]
 }
