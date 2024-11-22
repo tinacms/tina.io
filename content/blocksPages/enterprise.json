@@ -161,7 +161,8 @@
         {
           "headline": "Scalability",
           "text": "Tina is designed for large-scale projects. Whether your site has hundreds or tens of thousands of pages, Tina ensures optimal performance.",
-          "icon2": "FaMarkdown"
+          "icon2": "FaMarkdown",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm"
         }
       ],
       "_template": "carouselFeature"
