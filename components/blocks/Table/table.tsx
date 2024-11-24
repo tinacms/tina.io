@@ -54,17 +54,20 @@ const TableBox = ({ data, index }) => {
   };
 
   return (
-    <div className="lg:mx-auto p-4">
+    <div className="lg:mx-auto p-4 relative">
       <div
-        className="overflow-x-scroll lg:overflow-x-hidden shadow-2xl lg:shadow-none snap-x"
+        className="overflow-x-scroll lg:overflow-x-hidden shadow-2xl rounded-2xl lg:shadow-none snap-x"
         ref={scrollContainerRef}
         onScroll={handleScroll}
       >
         <div className="min-w-[1200px] bg-[#EBF8FD] lg:bg-transparent p-6 rounded-3xl">
+          {/* Void column on the right */}
+          <div className="absolute top-4 bottom-4 right-4 w-[40px] bg-gradient-to-r from-transparent rounded-2xl via-[#EBF8FD]/30 to-[#EBF8FD] pointer-events-none lg:hidden"></div>
+
           {/* Sticky Table Header */}
-          <div className="sticky top-0 z-20 bg-[#EBF8FD]">
+          <div className=" bg-[#EBF8FD]">
             <TableHeader data={data.columnItems} />
-            <div className="pl-10 pb-2 text-gray-700 font-bold">
+            <div className="sticky top-0 z-20 pl-10 pb-2 text-gray-700 font-bold">
               {data.tableHeader}
             </div>
           </div>
@@ -76,7 +79,7 @@ const TableBox = ({ data, index }) => {
             {data.rowItems?.map((row, rowIndex) => (
               <div
                 key={rowIndex}
-                className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] border-b border-gray-300/50 px-6 hover:bg-cyan-400/5 snap-start"
+                className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] border-b border-gray-300/50 px-6 hover:bg-cyan-400/5 bg-[#EBF8FD] snap-start"
               >
                 <div className="bg-[#EBF8FD] flex items-center sticky left-0 z-10 snap-start">
                   <div className="px-4 py-2 whitespace-nowrap font-medium">
@@ -102,7 +105,7 @@ const TableBox = ({ data, index }) => {
                 {/* 175px = 150px (min col size) + left padding */}
                 <div className="sticky left-[175px] z-10">
                   {scrollData && scrollData.scrollLeft > 80 && (
-                    <div className="w-[30px] h-full bg-gradient-to-r from-[#EBF8FD] via bg-[#EBF8FD]/30 to-transparent"></div>
+                    <div className="w-[30px] h-full bg-gradient-to-r from-[#EBF8FD] via-[#EBF8FD]/30 to-transparent"></div>
                   )}
                 </div>
 
