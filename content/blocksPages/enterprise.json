@@ -150,7 +150,7 @@
         },
         {
           "headline": "SSO - Single Sign-on",
-          "text": "Lorem ipsum dolor sit amet",
+          "text": "Integrate enterprise authentication with your existing infrastructure, supporting SAML 2.0 and OAuth 2.0. Streamline user management with providers like Okta, Azure AD, and Google Workspace.",
           "icon2": "FaPuzzlePiece"
         },
         {
