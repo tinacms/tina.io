@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { wrapFieldsWithMeta, type Template } from 'tinacms';
 import { checkboxList } from '../../../tina/customTinaFormFields/checkboxList';
-import { Blocks } from '../Blocks';
-import { cp } from 'fs';
+
 
 //This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
 export const splitOneAndJoin = (item, separator) => {
