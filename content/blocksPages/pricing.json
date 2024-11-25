@@ -313,7 +313,7 @@
         },
         {
           "rowHeader": "Community Support",
-          "rowDescription": "Join our Discord forums for active community support, use TinaDocs for comprehensive guides",
+          "rowDescription": "",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",

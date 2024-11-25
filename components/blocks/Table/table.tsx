@@ -90,7 +90,7 @@ const TableBox = ({ data, index }) => {
                         onMouseEnter={() => handleMouseEnter(rowIndex)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <IoMdInformationCircleOutline className="text-orange-500 text-xl" />
+                        <IoMdInformationCircleOutline className="text-orange-500 text-xl z-20" />
                         {infoIconHoverIndex === rowIndex && (
                           <div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words whitespace-normal text-center bg-white">
                             <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
