@@ -95,15 +95,15 @@ importers:
       moment-locales-webpack-plugin:
         specifier: ^1.2.0
         version: 1.2.0(moment@2.30.1)(webpack@5.94.0)
+      moment-timezone:
+        specifier: ^0.5.45
+        version: 0.5.45
       monaco-editor:
         specifier: ^0.52.0
         version: 0.52.0
       monaco-editor-webpack-plugin:
         specifier: ^7.1.0
         version: 7.1.0(monaco-editor@0.52.0)(webpack@5.94.0)
-      moment-timezone:
-        specifier: ^0.5.45
-        version: 0.5.45
       next:
         specifier: ^14.0.3
         version: 14.2.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -116,9 +116,6 @@ importers:
       next-tinacms-cloudinary:
         specifier: ^7.0.0
         version: 7.1.0(tinacms@2.2.3(@types/react@16.14.60)(abstract-level@1.0.4)(encoding@0.1.13)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.2)(@types/react@16.14.60)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@6.0.3))(react@18.3.1)(scheduler@0.24.0-canary-efb381bbf-20230505)(sucrase@3.35.0)(typescript@4.9.5))
-      node-sass:
-        specifier: ^9.0.0
-        version: 9.0.0
       postcss:
         specifier: ^8.4.18
         version: 8.4.47
@@ -5426,6 +5423,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
