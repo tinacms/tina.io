@@ -4,12 +4,21 @@ import { FiCheck } from 'react-icons/fi';
 import { FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
-const TableHeader = ({ data }) => {
+const TableHeader = ({ data, scrollData }) => {
   return (
-    <div className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] px-6">
-      <div className=""></div>
-      <div></div>
-      {data.map((headerItem, index) => (
+    <div className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] px-6 bg-[#EBF8FD]">
+      {/* Sticky Header Column */}
+      <div className="sticky top-0 left-0 z-10 bg-[#EBF8FD] pl-4 pb-2 text-gray-700 font-bold">
+        {data.tableHeader}
+      </div>
+      {/* Sticky void column */}
+      <div className="sticky left-[175px] z-10">
+        {scrollData && scrollData.scrollLeft > 80 && (
+          <div className="w-[30px] h-full bg-gradient-to-r from-[#EBF8FD] via-[#EBF8FD]/30 to-transparent"></div>
+        )}
+      </div>
+      {/* Remaining Columns Titles */}
+      {data.columnItems.map((headerItem, index) => (
         <div key={index}>
           <div className="text-center font-bold text-gray-700 underline decoration-dotted">
             <Link href={`${headerItem.columnHeaderLink}`}>
@@ -66,10 +75,7 @@ const TableBox = ({ data, index }) => {
 
           {/* Sticky Table Header */}
           <div className=" bg-[#EBF8FD]">
-            <TableHeader data={data.columnItems} />
-            <div className="sticky top-0 pl-10 pb-2 text-gray-700 font-bold">
-              {data.tableHeader}
-            </div>
+            <TableHeader data={data} scrollData={scrollData} />
           </div>
           {/* Table Rows */}
           <div
@@ -102,7 +108,6 @@ const TableBox = ({ data, index }) => {
                   </div>
                 </div>
                 {/* Sticky void column */}
-                {/* 175px = 150px (min col size) + left padding */}
                 <div className="sticky left-[175px] z-10">
                   {scrollData && scrollData.scrollLeft > 80 && (
                     <div className="w-[30px] h-full bg-gradient-to-r from-[#EBF8FD] via-[#EBF8FD]/30 to-transparent"></div>
