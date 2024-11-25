@@ -67,7 +67,7 @@ const TableBox = ({ data, index }) => {
           {/* Sticky Table Header */}
           <div className=" bg-[#EBF8FD]">
             <TableHeader data={data.columnItems} />
-            <div className="sticky top-0 z-20 pl-10 pb-2 text-gray-700 font-bold">
+            <div className="sticky top-0 pl-10 pb-2 text-gray-700 font-bold">
               {data.tableHeader}
             </div>
           </div>
@@ -81,7 +81,7 @@ const TableBox = ({ data, index }) => {
                 key={rowIndex}
                 className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] border-b border-gray-300/50 px-6 hover:bg-cyan-400/5 bg-[#EBF8FD] snap-start"
               >
-                <div className="bg-[#EBF8FD] flex items-center sticky left-0 z-10 snap-start">
+                <div className=" flex bg-[#EBF8FD] items-center sticky left-0 snap-start">
                   <div className="px-4 py-2 whitespace-nowrap font-medium">
                     {row.rowHeader}
                     {row.rowDescription && (
@@ -92,7 +92,7 @@ const TableBox = ({ data, index }) => {
                       >
                         <IoMdInformationCircleOutline className="ml-1 text-orange-500 text-xl" />
                         {infoIconHoverIndex === rowIndex && (
-                          <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words">
+                          <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words bg-white">
                             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white"></div>
                             {row.rowDescription}
                           </div>
