@@ -89,6 +89,7 @@
     "remark-directive": "^2.0.1",
     "remark-directive-rehype": "^0.4.2",
     "remark-gfm": "^3.0.1",
+    "sass": "^1.81.0",
     "serve": "^14.2.3",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.13",
