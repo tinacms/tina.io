@@ -56,7 +56,7 @@
           ],
           "buttons": [
             {
-              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
+              "label": "Start Team Plan",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
@@ -103,7 +103,7 @@
           ],
           "buttons": [
             {
-              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
+              "label": "Start Team Plan",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
@@ -209,7 +209,7 @@
           ],
           "buttons": [
             {
-              "label": "‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎Contact Sales‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎",
+              "label": "Contact Sales",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
