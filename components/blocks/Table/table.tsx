@@ -79,21 +79,21 @@ const TableBox = ({ data, index }) => {
             {data.rowItems?.map((row, rowIndex) => (
               <div
                 key={rowIndex}
-                className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] border-b border-gray-300/50 px-6 hover:bg-cyan-400/5 bg-[#EBF8FD] snap-start"
+                className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] h-[50px] border-b border-gray-300/50 px-6 hover:bg-cyan-400/5 bg-[#EBF8FD] snap-start"
               >
-                <div className=" flex bg-[#EBF8FD] items-center sticky left-0 snap-start">
-                  <div className="px-4 py-2 whitespace-nowrap font-medium">
+                <div className="flex bg-[#EBF8FD] items-center sticky left-0 snap-start ">
+                  <div className="px-4 py-2 whitespace-nowrap font-medium flex items-center">
                     {row.rowHeader}
                     {row.rowDescription && (
                       <div
-                        className="relative"
+                        className="relative ml-1 flex items-center"
                         onMouseEnter={() => handleMouseEnter(rowIndex)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <IoMdInformationCircleOutline className="ml-1 text-orange-500 text-xl" />
+                        <IoMdInformationCircleOutline className="text-orange-500 text-xl" />
                         {infoIconHoverIndex === rowIndex && (
-                          <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words bg-white">
-                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white"></div>
+                          <div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-2 text-sm p-2 rounded-lg shadow-lg w-[300px] break-words whitespace-normal text-center bg-white">
+                            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
                             {row.rowDescription}
                           </div>
                         )}
