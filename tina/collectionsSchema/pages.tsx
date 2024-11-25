@@ -96,7 +96,7 @@ export const pagesCollection = {
         quoteTemplate as Template,
         eventsTemplate as Template,
         compareBoxTemplate as Template,
-        tableTemplate as Template,
+        // tableTemplate as Template,
         bookingTemplate as Template,
         mediaComponentTemplate as Template,
         textAndMediaColumnsComponentTemplate as Template,
