@@ -6,7 +6,7 @@ import { IoMdInformationCircleOutline } from 'react-icons/io';
 
 const TableHeader = ({ data, scrollData }) => {
   return (
-    <div className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] px-6 bg-[#EBF8FD]">
+    <div className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-[#EBF8FD]">
       {/* Sticky Header Column */}
       <div className="sticky top-0 left-0 z-10 bg-[#EBF8FD] pl-4 pb-2 text-gray-700 font-bold">
         {data.tableHeader}
