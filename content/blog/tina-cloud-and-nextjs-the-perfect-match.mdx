@@ -1,4 +1,9 @@
 ---
+seo:
+  title: 'Tina Cloud and Next.js: The Perfect Match | TinaCMS Blog'
+  description: >-
+    Discover how Tina Cloud integrates with Next.js to provide a powerful
+    solution for building dynamic websites with flexible content management.
 title: 'TinaCloud and Next.js: the perfect match'
 date: '2021-05-13T14:34:20+02:00'
 last_edited: '2021-05-13T14:33:22.066Z'
@@ -15,14 +20,14 @@ Let’s see how Next.js makes a Tina developers' job easier.
 
 ## Next.js: More Than a Static Site Generator
 
-Next.js is a popular, open-source meta-framework and is quickly becoming[ the standard for new React projects](https://www.npmtrends.com/next-vs-gatsby). Its hybrid nature means that it can be used for both static site generation (SSG) _and_ server-side rendering (SSR).
+Next.js is a popular, open-source meta-framework and is quickly becoming[ the standard for new React projects](https://www.npmtrends.com/next-vs-gatsby). Its hybrid nature means that it can be used for both static site generation (SSG) *and* server-side rendering (SSR).
 
 Next.js offers a very convenient way to do [static site generation](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) with the  `getStaticProps` function: your content is fetched at build time and the output is a good old static HTML file.
  With Next.js static mode, the React code is rendered on a server and then served as HTML. This static HTML file won't change until the next build.
 
 During the build step, we have access to the file system, so we can source our content from Markdown and JSON files, or through a headless CMS like **TinaCloud**. We only source content at build time and not every time someone visits the site, that’s what makes static sites so fast.
 
-Another powerful feature from Next.s is [server-side rendering](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (SSR): this time the React component is rendered on the server and then sent to the client. This is roughly the same process as static site generation but it happens _every time the page is requested_. SSR is useful when you have dynamic content that changes often.  For example, the stock count on an e-commerce product page or user-specific data.
+Another powerful feature from Next.s is [server-side rendering](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (SSR): this time the React component is rendered on the server and then sent to the client. This is roughly the same process as static site generation but it happens *every time the page is requested*. SSR is useful when you have dynamic content that changes often.  For example, the stock count on an e-commerce product page or user-specific data.
 
 With [TinaCloud](/cloud/), our headless API that talks to GitHub handles the authentication for you, editable content is fetched from GitHub directly from the browser. That’s the approach we take in the [TinaCloud Starter](https://github.com/tinacms/tina-cloud-starter). This doesn't mean you are limited to only using `getStaticProps` or you're unable to use SSR, just means that we handle the complex authentication for you with TinaCloud.
 
@@ -34,7 +39,7 @@ Next.js allows you to serve a static blazing-fast™ website while fetching and 
 
 > Gatsby, another popular choice for React static site generators, was also in our minds but we ultimately decided it wasn't a good fit as [**it’s using a build time plugin to parse and transform the Markdown files**.](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem) This means the development server has to be running or the site has to be rebuilt to preview the site — not the user experience we aim at for real-time editing. Gatsby is very opinionated about how files are fetched and forces you to use its [GraphQL data layer](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem#using-gatsby-source-filesystem). We could opt out of this but this would cause friction for existing Gatsby users. We decided it would be better to go for a less opinionated and more flexible approach, à la Next.js.
 
-![Real-time editing with TinaCMS and TinaCloud](/img/blog/edit_demo.gif 'Real-time editing with TinaCMS and TinaCloud')
+![Real-time editing with TinaCMS and TinaCloud](/img/blog/edit_demo.gif "Real-time editing with TinaCMS and TinaCloud")
 
 [TinaCloud](/cloud/) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](/blog/using-graphql-with-the-filesystem/)
 

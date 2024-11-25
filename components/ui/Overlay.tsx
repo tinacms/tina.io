@@ -16,7 +16,7 @@ export const Overlay = styled.div<Overlay>`
   background-color: var(--color-secondary);
   transition: all 180ms ease-out;
   opacity: 0;
-  z-index: 48;
+  z-index: 37;
 
   ${props =>
     props.open &&

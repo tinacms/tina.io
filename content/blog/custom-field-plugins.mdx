@@ -1,7 +1,4 @@
 ---
-title: Creating Field Plugins
-date: '2020-02-17T07:00:00.000Z'
-author: Kendall Strautman
 draft: false
 consumes:
   - file: /packages/next-tinacms-json/src/use-local-json-form.ts
@@ -10,15 +7,23 @@ consumes:
     details: Example shows useLocalJsonForm in use
   - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
     details: Depends on the FieldPlugin interface
-next: content/blog/gatsby-tina-101.mdx
+seo:
+  title: Custom Field Plugins | TinaCMS Blog
+  description: >-
+    Explore how to create and use custom field plugins in TinaCMS to extend
+    functionality and tailor the editing experience to your project’s needs.
+title: Creating Field Plugins
+date: '2020-02-17T07:00:00.000Z'
+author: Kendall Strautman
 prev: content/blog/custom-field-components.mdx
+next: content/blog/gatsby-tina-101.mdx
 ---
 
-In the [previous post](https://tinacms.org/blog/custom-field-components), we learned how to create a custom field component and register it to the sidebar. With that baseline, let's go full circle on the topic of custom fields in TinaCMS. In this short but sweet post 🧁, we’ll cover how to _turn a field component into a field plugin._
+In the [previous post](https://tinacms.org/blog/custom-field-components), we learned how to create a custom field component and register it to the sidebar. With that baseline, let's go full circle on the topic of custom fields in TinaCMS. In this short but sweet post 🧁, we’ll cover how to *turn a field component into a field plugin.*
 
 ## Field Plugin vs. Field Component
 
-Plugins **extend functionality in the CMS**; field plugins allow us to create and register custom fields. _There are a few reasons why you may want to create a field plugin._ With a custom field, you can completely control the editing experience and functionality. If the primary fields provided by Tina don't fit your use case, **you can fill the gaps**.
+Plugins **extend functionality in the CMS**; field plugins allow us to create and register custom fields. *There are a few reasons why you may want to create a field plugin.* With a custom field, you can completely control the editing experience and functionality. If the primary fields provided by Tina don't fit your use case, **you can fill the gaps**.
 
 A field component is just one piece of a field plugin ([more on this later](https://tinacms.org/blog/custom-field-plugins#field-plugin-interface)). A custom field component can achieve the same functionality as a plugin. But if you plan on reusing the custom field on different forms, it is recommended to take the extra steps to make a plugin 🔌.
 
@@ -32,7 +37,7 @@ To follow along, you should have a custom field component set-up with a Tina for
 
 There are **two steps to adding a field plugin to the CMS**. First, we'll define the field component object and register it with the CMS. Next, we'll use the field plugin in a form definition so we can edit content in the sidebar with our fancy custom field plugin.
 
-> Want to see a _working example_? Check out the [Authors Field Plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) from the Tina Grande Starter.
+> Want to see a *working example*? Check out the [Authors Field Plugin](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js) from the Tina Grande Starter.
 
 ### 1. Add the Field Plugin to the CMS
 
@@ -82,9 +87,9 @@ export default class Site extends App {
 }
 ```
 
-You’ll want to import the custom field component and then register the plugin with the CMS directly. Notice how we import the `RangeInput` component created in the [previous post](https://tinacms.org/blog/custom-field-components). This is the custom _field component_ that we're now attaching to a _field plugin_.
+You’ll want to import the custom field component and then register the plugin with the CMS directly. Notice how we import the `RangeInput` component created in the [previous post](https://tinacms.org/blog/custom-field-components). This is the custom *field component* that we're now attaching to a *field plugin*.
 
-> If you’re working with Gatsby, this [looks slightly different](/guides/gatsby/custom-email-field/register-field). _Hint_: you’ll head to the **gatsby-browser.js** file to access the CMS instance.
+> If you’re working with Gatsby, this [looks slightly different](/guides/gatsby/custom-email-field/register-field). *Hint*: you’ll head to the **gatsby-browser.js** file to access the CMS instance.
 
 #### Field Plugin Interface
 
@@ -108,7 +113,7 @@ interface FieldPlugin {
 
 At a minimum, field plugins **require a name and a component.** The `name` is used to reference the custom field in form definitions ([more on this later](https://tinacms.org/blog/custom-field-plugins#2-use-the-custom-field-in-a-form)). The `Component` is what is actually rendered in the sidebar.
 
-You can see that there are additional configuration functions and options. _Note that the properties with a question mark are optional._ These options are incredibly useful for creating fields that require [validation](https://tinacms.org/docs/plugins/fields/custom-fields#validate-optional), parsing, or formatting.
+You can see that there are additional configuration functions and options. *Note that the properties with a question mark are optional.* These options are incredibly useful for creating fields that require [validation](https://tinacms.org/docs/plugins/fields/custom-fields#validate-optional), parsing, or formatting.
 
 > To see a more **complex example**, checkout the documentation on creating an [email field](/guides/gatsby/custom-email-field/register-field).
 
@@ -148,8 +153,8 @@ Index.getInitialProps = async function() {
 }
 ```
 
-**That's it!** With the plugin defined and registered with the CMS, you can reuse this field _ad infinitum_. In my opinion, creating a field plugin helps maintain a consistent interface for defining forms. This way, the custom field works _behind the scenes_ as if it were a native Tina field, which is pretty slick.
+**That's it!** With the plugin defined and registered with the CMS, you can reuse this field *ad infinitum*. In my opinion, creating a field plugin helps maintain a consistent interface for defining forms. This way, the custom field works *behind the scenes* as if it were a native Tina field, which is pretty slick.
 
 ## Short and sweet, as promised 🍰
 
-This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to _dive into the documentation_ on [fields](https://tinacms.org/docs/plugins/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to share your groovy custom fields with us [@tinacms](https://twitter.com/tinacms) 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!
+This post, combined with the former, should give you all the building blocks to start making your own field plugins. Feel free to *dive into the documentation* on [fields](https://tinacms.org/docs/plugins/fields/custom-fields/) or [plugins](https://tinacms.org/docs/cms#plugins). Make sure to share your groovy custom fields with us [@tinacms](https://twitter.com/tinacms) 🖖. Or, if you feel there is a fundamental field missing from Tina, [open up a PR](https://github.com/tinacms/tinacms/) to contribute your custom field!

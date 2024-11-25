@@ -1,7 +1,8 @@
 {
   "seo": {
-    "title": "The Markdown CMS",
-    "description": "TinaCMS is an open-source headless CMS for editing websites with Markdown. Integrates with GitHub and many front-end web frameworks."
+    "title": "TinaCMS – Headless CMS with GitHub & Markdown Support",
+    "description": "Combine the power of GitHub and Markdown with TinaCMS for seamless content management. Empower developers and creators to edit, preview, and manage static and dynamic sites effortlessly.",
+    "hasCustomSuffix": true
   },
   "blocks": [
     {
@@ -15,7 +16,7 @@
               "icon": true,
               "variant": "blue",
               "size": "small",
-              "url": "https://quick-edit-demo.vercel.app/admin#/~",
+              "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
@@ -25,17 +26,19 @@
           ],
           "media": [
             {
-              "src": "tina-io/new-homepage/homepage-demo-2",
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
-          ]
+          ],
+          "isReversed": false,
+          "imageBackground": false
         }
       ],
       "_template": "features"
     },
     {
-      "title": "Trusted by",
-      "link": "https://ndcconferences.com",
+      "title": "",
+      "link": "",
       "items": [
         {
           "name": "Bunny Net",
@@ -47,17 +50,17 @@
           "name": "Unity",
           "link": "/showcase#unity",
           "logo": "/svg/logos/unity.svg",
-          "size": 220
+          "size": 200
         },
         {
           "name": "Protocol Labs",
-          "link": "/showcase#protocol-labs",
+          "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
-          "size": 90
+          "size": 80
         },
         {
           "name": "City of London",
-          "link": "/showcase#city-of-london",
+          "link": "https://www.cityoflondon.gov.uk/",
           "logo": "/svg/logos/cityoflondon.svg",
           "size": 120
         },
@@ -87,7 +90,7 @@
         },
         {
           "name": "NDC Conferences",
-          "link": "https://ndcconferences.com",
+          "link": "/showcase#ndc-conferences",
           "logo": "/img/logos/NDCLogo.png",
           "size": 220
         },
@@ -137,24 +140,20 @@
           "headline": "Visual Editing",
           "text": "See content changes in real-time as you edit",
           "icon2": "FaClock",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060174/tinaio-webm/2024-09-13-key-features-visual-editing-v3_pwfxyo.webm",
-
+          "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
-            "url": "https://quick-edit-demo.vercel.app/admin#/"
+            "url": "https://demo.tina.io/admin#/"
           }
         },
         {
           "headline": "Open Source",
           "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
           "icon2": "FaUnlock",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060169/tinaio-webm/2024-09-13-key-features-open-source_f57aej.webm",
-
+          "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -167,9 +166,7 @@
           "headline": "Develop Locally",
           "text": "Easily set up and run Tina locally to talk to your local filesystem",
           "icon2": "FaCodeBranch",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060183/tinaio-webm/2024-09-19-key-features-local_xxqx30.webm",
-
+          "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -182,9 +179,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060179/tinaio-webm/2024-09-19-key-features-3rd-party-media_wyjzwm.webm",
-
+          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media-v2.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -194,12 +189,10 @@
           }
         },
         {
-          "headline": "Control your Components",
+          "headline": "Build with Blocks",
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
           "icon2": "FaPuzzlePiece",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060150/tinaio-webm/2024-09-13-key-features-control-components_fnakly.webm",
-
+          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -212,9 +205,7 @@
           "headline": "Markdown at Scale",
           "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
           "icon2": "FaMarkdown",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060165/tinaio-webm/2024-09-13-key-features-markdown_dhrwjy.webm",
-
+          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -227,9 +218,7 @@
           "headline": "Git Integration",
           "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
           "icon2": "FaGithub",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060160/tinaio-webm/2024-09-13-key-features-github-integration_pcyz2i.webm",
-
+          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -242,9 +231,7 @@
           "headline": "Easy Documentation",
           "text": "Tina's docs run on TinaCMS - check it out!",
           "icon2": "FaFileAlt",
-
-          "videoSrc": "https://res.cloudinary.com/forestry-demo/video/upload/v1729060155/tinaio-webm/2024-09-13-key-features-docs_v2zbci.webm",
-
+          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -255,164 +242,6 @@
         }
       ],
       "_template": "carouselFeature"
-    },
-    {
-      "criteriaItems": [
-        {
-          "criteria": "Open Source Front-end"
-        },
-        {
-          "criteria": "Content API"
-        },
-        {
-          "criteria": "Git-based Content Management "
-        },
-        {
-          "criteria": "GitHub Contributions"
-        },
-        {
-          "criteria": "Markdown Support",
-          "description": ""
-        },
-        {
-          "criteria": "Visual Editing Capabilities "
-        },
-        {
-          "criteria": "Local Development Workflow "
-        },
-        {
-          "criteria": "Free Option"
-        },
-        {
-          "criteria": "Self-hosted Option"
-        }
-      ],
-      "companies": [
-        {
-          "headline": "TinaCMS",
-          "logoColour": "/svg/logos/tina.svg",
-          "logoWhite": "/svg/logos/tina-white.svg",
-          "active": true,
-          "isHidden": true,
-          "backgroundColor": "#EC4815",
-          "criteria1": true,
-          "criteria2": true,
-          "criteria3": true,
-          "criteria4": true,
-          "criteria5": true,
-          "criteria6": true,
-          "criteria7": true,
-          "criteria8": true,
-          "criteria9": true
-        },
-        {
-          "headline": "Prepr CMS",
-          "logoColour": "/svg/logos/Prepr-clr.svg",
-          "logoWhite": "/svg/logos/Prepr-wht.svg",
-          "backgroundColor": "#5237E6",
-          "criteria2": true
-        },
-        {
-          "headline": "Umbraco",
-          "logoColour": "/svg/logos/Umbraco-clr.svg",
-          "logoWhite": "/svg/logos/Umbraco-wht.svg",
-          "backgroundColor": "#3544B1",
-          "criteria1": true,
-          "criteria2": true,
-          "criteria3": false,
-          "criteria4": true,
-          "criteria6": true,
-          "criteria7": true,
-          "criteria8": true,
-          "criteria9": true
-        },
-        {
-          "headline": "Decap CMS",
-          "logoColour": "/svg/logos/Decap-clr.svg",
-          "logoWhite": "/svg/logos/Decap-wht.svg",
-          "backgroundColor": "#FF0080",
-          "criteria1": true,
-          "criteria4": true,
-          "criteria5": true,
-          "criteria8": true
-        },
-        {
-          "headline": "Adobe (AEM)",
-          "logoColour": "/svg/logos/AEM-clr.svg",
-          "logoWhite": "/svg/logos/AEM-wht.svg",
-          "backgroundColor": "#EB1000",
-          "criteria2": true,
-          "criteria6": true
-        },
-        {
-          "headline": "Contentstack",
-          "logoColour": "/svg/logos/Contentstack-clr.svg",
-          "logoWhite": "/svg/logos/Contentstack-wht.svg",
-          "backgroundColor": "#6610F2",
-          "criteria2": true,
-          "criteria5": true,
-          "criteria6": false,
-          "criteria7": false
-        },
-        {
-          "headline": "Contentful",
-          "logoColour": "/svg/logos/Contentful-clr.svg",
-          "logoWhite": "/svg/logos/Contentful-wht.svg",
-          "backgroundColor": "#007AFF",
-          "criteria2": true,
-          "criteria5": true,
-          "criteria6": true,
-          "criteria8": true
-        },
-        {
-          "headline": "Storyblok",
-          "logoColour": "/svg/logos/Storyblok-clr.svg",
-          "logoWhite": "/svg/logos/Storyblok-wht.svg",
-          "backgroundColor": "#2DB47D",
-          "criteria2": true,
-          "criteria6": true,
-          "criteria8": true
-        },
-        {
-          "headline": "Sanity",
-          "logoColour": "/svg/logos/Sanity-clr.svg",
-          "logoWhite": "/svg/logos/Sanity-wht.svg",
-          "backgroundColor": "#EF4434",
-          "criteria1": true,
-          "criteria3": true,
-          "criteria5": true,
-          "criteria6": true,
-          "criteria7": true,
-          "criteria8": true,
-          "criteria9": true
-        },
-        {
-          "headline": "Payload",
-          "logoColour": "/svg/logos/Payload-clr.svg",
-          "logoWhite": "/svg/logos/Payload-wht.svg",
-          "backgroundColor": "#007FAE",
-          "criteria1": true,
-          "criteria2": true,
-          "criteria3": false,
-          "criteria4": false,
-          "criteria5": false,
-          "criteria6": true,
-          "criteria7": true,
-          "criteria8": true,
-          "criteria9": true
-        },
-        {
-          "headline": "prismic.io",
-          "logoColour": "/svg/logos/Prismic-clr.svg",
-          "logoWhite": "/svg/logos/Prismic-wht.svg",
-          "backgroundColor": "#8E44EC",
-          "criteria2": true,
-          "criteria5": true,
-          "criteria6": true,
-          "criteria8": true
-        }
-      ],
-      "_template": "CompareBox"
     },
     {
       "features": [
@@ -445,49 +274,52 @@
       "title": "Where's Tina?",
       "cardItems": [
         {
-          "headline": "NDC Porto",
-          "startDate": "2024-10-14T00:00:00.000Z",
-          "startTime": 9,
-          "endDate": "2024-10-18T00:00:00.000Z",
+          "headline": "Write the Docs - Melbourne",
+          "startDate": "2024-11-28T00:00:00.000Z",
+          "startTime": "2024-11-20T08:30:00.000Z",
+          "endDate": "2024-11-29T00:00:00.000Z",
+          "timezone": 11,
+          "location": "Melbourne, Australia",
+          "image": "/img/events/2024-11-21_10-33.jpg",
+          "link": "https://www.writethedocs.org/conf/australia/2024/",
+          "markerLAT": -26.81015,
+          "markerLONG": 225.96399
+        },
+        {
+          "headline": "NDC Security",
+          "startDate": "2025-01-20T00:00:00.000Z",
+          "startTime": "2024-10-14T09:00:00.000Z",
+          "endDate": "2025-01-23T00:00:00.000Z",
           "timezone": 1,
-          "location": "Porto, Portugal",
-          "image": "/img/wheres-tina/ndc-porto-2024.jpg",
-          "link": "https://ndcporto.com/",
-          "markerLAT": 8,
-          "markerLONG": 41
-        },
-        {
-          "headline": "CPH Dev Fest",
-          "startDate": "2024-08-26T00:00:00.000Z",
-          "endDate": "2024-08-30T00:00:00.000Z",
-          "timezone": 2,
-          "location": "Copenhagen, Denmark",
-          "image": "/img/wheres-tina/cph-dev-fest-2024.jpg",
-          "link": "https://cphdevfest.com/",
-          "markerLAT": -8,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC Oslo",
-          "startDate": "2024-05-19T00:00:00.000Z",
-          "startTime": 9,
-          "endDate": "2024-05-23T00:00:00.000Z",
-          "timezone": 2,
           "location": "Oslo, Norway",
           "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
-          "link": "https://ndcoslo.com/",
+          "link": "https://ndc-security.com/",
           "markerLAT": -1,
           "markerLONG": 59
         },
         {
-          "headline": "/serverless/DAYS ANZ",
-          "startDate": "2024-05-21T00:00:00.000Z",
-          "timezone": 10,
-          "location": "Sydney, Australia",
-          "image": "/img/wheres-tina/serverless-days-anz-2024.jpg",
-          "link": "https://anz.serverlessdays.io/sydney/",
-          "markerLAT": 207,
-          "markerLONG": 35
+          "headline": "NDC London",
+          "startDate": "2025-01-27T00:00:00.000Z",
+          "startTime": "2024-11-21T09:00:00.000Z",
+          "endDate": "2025-01-31T00:00:00.000Z",
+          "timezone": 0,
+          "location": "London, England",
+          "image": "/ndclondon.jpg",
+          "link": "https://ndclondon.com/",
+          "markerLAT": 7,
+          "markerLONG": 52
+        },
+        {
+          "headline": "NDC Melbourne",
+          "startDate": "2025-04-29T00:00:00.000Z",
+          "startTime": "2024-11-20T09:00:00.000Z",
+          "endDate": "2025-05-01T00:00:00.000Z",
+          "timezone": 11,
+          "location": "Melbourne, Australia",
+          "image": "/ndc-melb-2024-11-21_10-58-17.jpg",
+          "link": "https://ndcmelbourne.com/",
+          "markerLAT": -27.81015,
+          "markerLONG": 220.9541
         }
       ],
       "_template": "events"
@@ -495,31 +327,36 @@
     {
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "https://res.cloudinary.com/forestry-demo/image/upload/v1693503685/tina-io/new-homepage/unity-logo.png",
+      "logo": "/img/logos/unity-logo.png",
       "_template": "quote"
     },
     {
+      "title": "",
       "testimonials": [
         {
           "name": "Boko Colse",
           "username": "struhy_xd",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1696342922/testimonials/avatars/Boko-C%CC%8Colse_um356c.jpg",
-          "date": "2023-09-26T03:00:00.000Z",
+          "imageBorder": true,
+          "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
+          "date": "2023-09-26T14:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
         },
         {
           "name": " Dave Keen",
           "username": "ccapndave",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689355588/testimonials/avatars/ccapndave_ka7f5u.webp",
-          "date": "2023-06-02T03:00:00.000Z",
+          "rhsImage": false,
+          "imageBorder": true,
+          "avatar": "/img/avatars/ccapndave_ka7f5u.webp",
+          "date": "2023-06-07T14:00:00.000Z",
           "testimonial": "It’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets. And compared to other CMSs, the admin is incredibly easy for editors to understand and use.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
         },
         {
           "name": "Billy Best",
           "username": "billybest5276",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1691504396/testimonials/avatars/billy-best_wbcpsb.jpg",
+          "imageBorder": true,
+          "avatar": "/img/avatars/billy-best_wbcpsb.jpg",
           "date": "2023-08-06T03:00:00.000Z",
           "testimonial": "Just found this and I think I am already in love.\n",
           "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
@@ -527,21 +364,24 @@
         {
           "name": "Mravec",
           "username": "mravec",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354995/testimonials/avatars/mravec_tglyht.webp",
+          "imageBorder": true,
+          "avatar": "/img/avatars/mravec_tglyht.webp",
           "date": "2023-06-14T03:00:00.000Z",
           "testimonial": "Just tried out click-to-edit and it's really awesome. Super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
           "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
         },
         {
           "name": "Peter Rusin",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/v1693942535/testimonials/avatars/piotr-rusin_ne0l3j.jpg",
+          "imageBorder": true,
+          "avatar": "/img/avatars/piotr-rusin_ne0l3j.jpg",
           "date": "2023-09-05T03:00:00.000Z",
           "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
           "link": "https://rusin.work"
         },
         {
           "name": "Sean Pearce",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689356500/testimonials/avatars/sean_bnwhd9.png",
+          "imageBorder": true,
+          "avatar": "/img/avatars/sean_bnwhd9.png",
           "date": "2023-03-30T03:00:00.000Z",
           "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n",
           "link": "https://www.shaunpearce.ie/"
@@ -549,7 +389,8 @@
         {
           "name": "rascode",
           "username": "rascode11",
-          "avatar": "https://res.cloudinary.com/forestry-demo/image/upload/c_scale,w_56/v1689354758/testimonials/avatars/rascode11_elrciv.jpg",
+          "imageBorder": true,
+          "avatar": "/img/avatars/rascode11_elrciv.jpg",
           "date": "2022-12-06T04:00:00.000Z",
           "testimonial": "@tinacms is a dream come true.\n",
           "link": "https://twitter.com/rascode11/status/1600175861621088266"
@@ -574,7 +415,7 @@
           ],
           "media": [
             {
-              "src": "v1689260393/blog-media/editorial-workflow/create-branch",
+              "src": "/video/create-branch.webm",
               "_template": "video"
             }
           ]
@@ -584,10 +425,11 @@
           "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
           "media": [
             {
-              "src": "tina-io/new-homepage/homepage-demo-2",
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
               "_template": "video"
             }
-          ]
+          ],
+          "isReversed": true
         }
       ],
       "_template": "features"

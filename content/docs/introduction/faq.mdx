@@ -1,6 +1,6 @@
 ---
 title: FAQ
-last_edited: '2024-10-09T00:48:59.795Z'
+last_edited: '2024-11-11T01:35:17.011Z'
 next: ''
 previous: ''
 ---
@@ -205,7 +205,7 @@ The current branch that Tina is using is invalid or undefined. Double check that
 
 You can view the branches that have been indexed by TinaCloud by visiting `https://app.tina.io/projects/<your-project-id>/configuration`.
 
-![Indexed Branches](https://res.cloudinary.com/forestry-demo/image/upload/v1673277689/tina-io/docs/tina-cloud/Screen_Shot_2023-01-09_at_11.20.46_AM.png)
+![Indexed Branches](/img/docs/tina-cloud/branch-status.png)
 
 ### How do I resolve `tina directory not pushed to git` errors?
 
@@ -214,6 +214,14 @@ Everything in the `tina` directory (except the `__generated__` folder) needs to 
 ### How do I resolve `API URL is misformatted` errors?
 
 The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
+
+### How do I resolve `Invalid Site URL` errors?
+
+When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud site URLs. To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
+
+!['?origin=' URL parameter](/img/docs/introduction/origin-url-highlight.png)
+
+![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)
 
 ## Trying to access local GraphQL server when it's not running or in prod.
 
@@ -237,6 +245,6 @@ Double check you aren't trying to access a document that doesn't exist.
 
 After choosing which starter template to deploy, and being redirected to Vercel - a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened. ".
 
-![](https://res.cloudinary.com/forestry-demo/image/upload/v1727309107/docs/vercel-popup-blocked_ogt6fr.png)
+![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)
 
 To fix, check your browser's address bar for blocked popups, allow them, and retry.

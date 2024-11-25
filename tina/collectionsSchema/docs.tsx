@@ -1,3 +1,7 @@
+import { Template } from "tinacms";
+import { RecipeBlock } from "../../components/blocks/Recipe.template";
+import { seoInformation } from "./sharedFields/seoInformation";
+
 export const docsCollection = {
   name: 'doc',
   label: 'Docs',
@@ -12,6 +16,9 @@ export const docsCollection = {
     },
   },
   fields: [
+    {...seoInformation,
+      description: 'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below'
+    },
     {
       name: 'title',
       label: 'Title',
@@ -43,6 +50,7 @@ export const docsCollection = {
       label: 'Body',
       isBody: true,
       templates: [
+        RecipeBlock as Template,
         {
           name: 'Youtube',
           label: 'Youtube Embed',
@@ -132,6 +140,22 @@ export const docsCollection = {
               description: 'Full URL with no file extension',
             },
           ],
+        },
+        {
+          name: 'WebmEmbed',
+          label: 'Webm Embed',
+          fields: [
+            {
+              type: 'string',
+              name: 'embedSrc',
+              label: 'Embed SRC',
+            },
+            {
+              type: 'string',
+              name: 'width',
+              label: 'width',
+            }
+          ]
         },
         {
           name: 'ImageAndText',

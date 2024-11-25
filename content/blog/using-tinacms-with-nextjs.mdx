@@ -1,9 +1,14 @@
 ---
+draft: false
+seo:
+  title: Using TinaCMS with Next.js | TinaCMS Blog
+  description: >-
+    Learn how to integrate TinaCMS with Next.js for a powerful, flexible content
+    management solution, enabling fast and dynamic web development.
 title: Using TinaCMS with Next.js
 date: '2019-12-02T07:00:00.000Z'
 last_edited: '2022-02-18T07:00:00.000Z'
 author: Kendall Strautman & James Perkins
-draft: false
 ---
 
 ## Tina + Next: Part II
@@ -48,11 +53,11 @@ $ do you want us to override your _app.js? Yes
 
 The `npx @tinacms/cli@latest init` command does a few things in your Next.js application:
 
-- Install all required dependencies for Tina
-- Define a basic schema that is easily extendable, in the .tina directory
-- Wrap your next.js application with Tina so that any page can be easily edited.
-- Create example content in the demo directory.
-- Edit the package.json to add scripts to launch tina (dev, build, start)
+* Install all required dependencies for Tina
+* Define a basic schema that is easily extendable, in the .tina directory
+* Wrap your next.js application with Tina so that any page can be easily edited.
+* Create example content in the demo directory.
+* Edit the package.json to add scripts to launch tina (dev, build, start)
 
 ### A quick test
 
@@ -64,14 +69,14 @@ yarn dev
 
 Once you have launched the application you have a couple of new URLS:
 
-- `http://localhost:3000/demo/blog/HelloWorld`
-- `http://localhost:4001/altair/`
+* `http://localhost:3000/demo/blog/HelloWorld`
+* `http://localhost:4001/altair/`
 
-The first URL brings you to a demo of TinaCMS, it will show you the power of Tina and also give you some informational links to check out. If you navigate to http://localhost:3000/demo/blog/HelloWorld, you won't be able to edit right away. First, you need to enter edit mode. To enter edit mode, navigate to http://localhost:3000/admin, select login. Then navigate back to http://localhost:3000/demo/blog/HelloWorld. Selecting the pencil in the top left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
+The first URL brings you to a demo of TinaCMS, it will show you the power of Tina and also give you some informational links to check out. If you navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld), you won't be able to edit right away. First, you need to enter edit mode. To enter edit mode, navigate to [http://localhost:3000/admin](http://localhost:3000/admin), select login. Then navigate back to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld). Selecting the pencil in the top left allows you to edit the title and the body of the page right in the frontend. When you hit save, that will save your changes to the Markdown file.
 
 > Want to see your changes? Open up the file located at `/content/posts/HelloWorld.md` and the changes you've made will be there! This works by using our Content API which will go into greater depth during this guide.
 
-The second URL http://localhost:4001/altair/ will launch a graphQL client that will allow you to interact and create queries which will be in this guide.
+The second URL [http://localhost:4001/altair/](http://localhost:4001/altair/) will launch a graphQL client that will allow you to interact and create queries which will be in this guide.
 
 ## Defining the shape of our content
 
@@ -81,11 +86,11 @@ Before you look at your current project, let's discuss how the content is shaped
 
 ### Collections
 
-The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. In our guide we are going to have a `posts` collection but you also could have an `author` and `pages` collections, for example.
+The top-level key in the schema is an array of *collections*, a `collection` informs the API about *where* to save content. In our guide we are going to have a `posts` collection but you also could have an `author` and `pages` collections, for example.
 
 ### Fields
 
-Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files, these fields should map to your _frontmatter_ , and we also use this to create the UI elements for editing.
+Fields instruct the Content API of the type expected for example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files, these fields should map to your *frontmatter* , and we also use this to create the UI elements for editing.
 
 ```json
 fields: [
@@ -105,7 +110,7 @@ fields: [
 
 ### References
 
-This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". A great example of using a reference is _author_ as each post would have an author and you could have multiple authors, but you need to reference a particular author to the post.
+This is an important concept, when you *reference* another collection, you're effectively saying: "this document *belongs to* that document". A great example of using a reference is *author* as each post would have an author and you could have multiple authors, but you need to reference a particular author to the post.
 
 ```json
 {
@@ -209,7 +214,7 @@ export default defineSchema({
 
 There are a couple of things you might notice. First, you have a `type` called `datetime`, this works by providing a date picker for you to use, and will format the date and time.
 
-Second, there's a `string` field called `body` with `isBody` set to true. By setting `isBody` to true you're stating that this field is responsible for the main _body_ of the markdown file. There can only be one field with the `isBody: true` property.
+Second, there's a `string` field called `body` with `isBody` set to true. By setting `isBody` to true you're stating that this field is responsible for the main *body* of the markdown file. There can only be one field with the `isBody: true` property.
 
 ### Next steps
 
@@ -219,9 +224,9 @@ Currently, the Next Blog Starter grabs content from the file system. But since T
 
 ## Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of your markdown files are located, with your current schema you have the option to use `postConnection` which will provide a list of all posts in your `posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
+The `getStaticPaths` query is going to need to know where all of your markdown files are located, with your current schema you have the option to use `postConnection` which will provide a list of all posts in your `posts` folder. Make sure your local server is running and navigate to [http://localhost:4001/altair](http://localhost:4001/altair) and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
-![Altair Doc example](/gif/altair_doc.gif)
+<WebmEmbed embedSrc="/img/docs/altair_doc.webm" />
 
 So based upon the `postConnection` you will want to query the `sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
@@ -349,10 +354,10 @@ The `getStaticProps` query is going to deliver all the content to the blog, whic
 
 You need to query the following items from your content api:
 
-- author
-- date
-- hero_image
-- title
+* author
+* date
+* hero\_image
+* title
 
 ### Creating your Query
 
@@ -368,7 +373,7 @@ query BlogPostQuery($relativePath: String!) {
 
 > If you haven't used graphql before, you will notice a strange `$relativePath` followed by `String!`. This is a variable and the String! means that it must be a string and is required.
 
-You can now fill in the relevant fields you need to query. Inside the data object add in the fields author , date , hero_image, title. You also want to retrieve the body of your blog posts, so you can add new content. You should have a query that looks like the following:
+You can now fill in the relevant fields you need to query. Inside the data object add in the fields author , date , hero\_image, title. You also want to retrieve the body of your blog posts, so you can add new content. You should have a query that looks like the following:
 
 ```graphql
 query BlogPostQuery($relativePath: String!) {
@@ -597,10 +602,10 @@ You know that you will want to be part of this creative, innovative, supportive 
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-- To get help with issues
-- Find the latest Tina news and sneak previews
-- Share your project with Tina community, and talk about your experience
-- Chat about the Jamstack
+* To get help with issues
+* Find the latest Tina news and sneak previews
+* Share your project with Tina community, and talk about your experience
+* Chat about the Jamstack
 
 ### Tina Twitter
 

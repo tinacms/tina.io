@@ -72,7 +72,8 @@ export const VersionSelect = () => {
 };
 
 const SelectWrapper = styled.div`
-  display: block;
+  display: flex;
+  justify-content: flex-end
   flex-grow: 1;
   position: relative;
 
@@ -81,14 +82,14 @@ const SelectWrapper = styled.div`
     flex-grow: 0;
   }
 
-  .dropdown-button {
+.dropdown-button {
     font-size: 0.875rem;
+    margin-right: 2.5rem;
     padding: 0.375rem 0.75rem;
     background-color: white;
     border: 1px solid var(--color-grey-1);
     color: var(--color-grey-7);
     display: flex;
-    width: 100%;
     align-items: center;
     border-radius: 100px;
     transition: filter 250ms ease;
@@ -100,7 +101,8 @@ const SelectWrapper = styled.div`
     background-position: right 0.7em top 50%;
     background-size: 0.65em auto;
     cursor: pointer;
-  }
+}
+
 `;
 
 const DropdownList = styled.ul`
@@ -109,7 +111,7 @@ const DropdownList = styled.ul`
   background-color: white;
   border: 1px solid var(--color-grey-1);
   border-radius: 0.375rem;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   padding: 0.5rem 0;
   z-index: 10;
 

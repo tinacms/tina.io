@@ -1,4 +1,9 @@
 ---
+seo:
+  title: A/B Testing with Next.js Middleware | TinaCMS Blog
+  description: >-
+    Discover how to set up A/B tests in TinaCMS, enabling data-driven decisions
+    by comparing content variations to optimize user engagement & performance
 title: A/B testing with Next.js Middleware and TinaCMS
 date: '2022-05-30T14:00:00.000Z'
 author: James Perkins & James O'Halloran
@@ -43,14 +48,14 @@ With your site running, you should be able to access it at [`http://localhost:30
 
 The home page of the starter should look like this:
 
-![TinaCloud Starter](https://res.cloudinary.com/forestry-demo/image/upload/v1653936476/blog-media/a-b-testing/starter-homepage.png)
+![TinaCloud Starter](/img/blog/a-b-testing/starter-homepage.png)
 
 This page is already setup nicely for an A/B test, its page layout (`[slug].tsx`) renders dynamic pages by accepting a variable `slug`.
 
 Let's start by creating an alternate version of the homepage called `home-b`.
 You can do so in Tina [at http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
 
-![Tina Add document](https://res.cloudinary.com/forestry-demo/image/upload/v1653936344/blog-media/a-b-testing/add-document.png)
+![Tina Add document](/img/blog/a-b-testing/add-document.png)
 
 Once that's done, go to: `http://localhost:3000/home-b` to confirm that your new `/home-b` page has been created.
 
@@ -131,9 +136,9 @@ export function middleware(req: NextRequest) {
 
 There's a little bit going on in the above snippet, but basically:
 
-- We check if there's an active experiment for our request's URL
-- If there is, we call `getBucket` to see which version of the page we should deliver
-- We update the user's cookies so that they consistently get delivered the same page for their given bucket.
+* We check if there's an active experiment for our request's URL
+* If there is, we call `getBucket` to see which version of the page we should deliver
+* We update the user's cookies so that they consistently get delivered the same page for their given bucket.
 
 You'll notice that the above code references a `getBucket` function. We will need to create that, which will conditionally put us in a bucket for each page's A/B test.
 
@@ -192,8 +197,8 @@ function cryptoRandom() {
 
 The above code snippet does the following:
 
-- Checks if we're already in a bucket, and if not, it calls `getAssignedBucketId` to randomly put us in a bucket.
-- Returns the matching A/B test info for our given bucket.
+* Checks if we're already in a bucket, and if not, it calls `getAssignedBucketId` to randomly put us in a bucket.
+* Returns the matching A/B test info for our given bucket.
 
 That should be all for our middleware! Now, you should be able to visit the homepage at [http://localhost:3000](http://localhost:3000), and you will have a 50-50 chance of being served the contents of `home.md`, or `home-b.md`. You can reset your bucket by clearing your browser's cookies.
 
@@ -286,12 +291,12 @@ We also need to update our `RouteMappingPlugin` in `.tina/schema.ts` to ensure t
 
 Now, restart your dev server, and go to: [`http://localhost:3000/admin#/collections/abtest/index`](http://localhost:3000/admin#/collections/abtest/index). Your editors should be able to wire up their own A/B tests!
 
-![Tina Edit Variant](https://res.cloudinary.com/forestry-demo/image/upload/v1653939832/blog-media/a-b-testing/edit-test.png)
+![Tina Edit Variant](/img/blog/a-b-testing/edit-test.png)
 
 The process for editors to create new A/B tests would be as follows:
 
-- Editor creates a new page in the CMS
-- Editor wires up the page as a page-variant in the "A/B Tests" collection
+* Editor creates a new page in the CMS
+* Editor wires up the page as a page-variant in the "A/B Tests" collection
 
 And that's it! We hope this empowers your team to start testing out different page variants to start optimizing your content!
 
@@ -305,10 +310,10 @@ You can subscribe by following this link and entering your email: [https://tina.
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) full of Jamstack lovers and Tina enthusiasts. When you join, you will find a place:
 
-- To get help with issues
-- Find the latest Tina news and sneak previews
-- Share your project with the Tina community, and talk about your experience
-- Chat about the Jamstack
+* To get help with issues
+* Find the latest Tina news and sneak previews
+* Share your project with the Tina community, and talk about your experience
+* Chat about the Jamstack
 
 ### Tina Twitter
 

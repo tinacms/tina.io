@@ -1,4 +1,9 @@
 ---
+seo:
+  title: From CMS to Contextual Visual Editing | TinaCMS Blog
+  description: >-
+    Discover how TinaCMS transitions from traditional CMS to contextual editing,
+    enabling real-time content updates directly within your live site.
 title: From CMS To Visual Editing
 date: '2022-03-16T07:00:00.000Z'
 author: James Perkins
@@ -6,7 +11,7 @@ author: James Perkins
 
 Tina allows you as a developer to create an amazing editing experience. By default the editing experience is a more traditional CMS, where you login to a specific URL and you edit your content without being able to see the content till after you finish your changes. But, if you are looking for a more transparent real-time editing experience, Tina has a superpower, called Visual Editing. Just as it sounds, you get instant feedback on the page as well as being able to preview the changes before publishing live to your site.
 
-![Example of Tina Context editing](https://res.cloudinary.com/forestry-demo/video/upload/q_100/v1647436971/blog-media/cms-to-contextual/TinaSuper.gif)
+<WebmEmbed embedSrc="/img/blog/from-cms-to-contextual/TinaSuper.webm" />
 
 ## Getting our project started
 
@@ -56,21 +61,19 @@ Before we add visual editing, go ahead and launch the application using `yarn ti
 
 Now if you navigate to [http://localhost:3000/admin](http://localhost:3000/admin) you will be presented with a screen to login, if you login you will land on the CMS dashboard. Selecting a collection on the left will bring you to a screen with all the current files in that space. Then selecting a file will allow you to edit it as you see fit.
 
-![Tina CMS Example](https://res.cloudinary.com/forestry-demo/video/upload/c_scale,w_1174/v1646412458/blog-media/getting-started-tina-admin/example.gif)
+<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/example.webm" />
 
 ## Adding Visual Editing.
 
 Now you have an understanding of both how the CMS works, and how the code behind is laid out we can start working on adding visual editing to our project. What do we need to do to make visual editing work?
 
 1. Update `getStaticPaths` and `getStaticProps` to use Tina’s graphql layer
-
 2. Update the page to use `useTina` and power the project props
-
 3. Update the TinaCMS configuration
 
 ### Creating the getStaticPaths query
 
-The `getStaticPaths` query is going to need to know where all of our markdown files are located. With our current schema you have the option to use `postConnection`, which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to http://localhost:4001/altair and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
+The `getStaticPaths` query is going to need to know where all of our markdown files are located. With our current schema you have the option to use `postConnection`, which will provide a list of all posts in our `_posts` folder. Make sure your local server is running and navigate to [http://localhost:4001/altair](http://localhost:4001/altair) and select the Docs button. The Docs button gives you the ability to see all the queries possible and the variables returned:
 
 So based upon the `postConnection` we will want to query the `_sys` which is the filesystem and retrieve the `filename`, which will return all the filenames without the extension.
 
@@ -145,7 +148,7 @@ Inside of the `getStaticPaths` function we can construct our request to our cont
 
 `staticRequest({ query: '...', // our query }),`
 
-“_What does_ `staticRequest` do?”
+“*What does* `staticRequest` do?”
 
 It’s just a helper function which supplies a query to your locally-running GraphQL server, which is started on port `4001`. You can just as easily use `fetch` or an http client of your choice.
 
@@ -188,13 +191,13 @@ The `getStaticProps` query is going to deliver all the content to the blog, whic
 
 We need to query the following things from our content api:
 
-- Title
-- Excerpt
-- Date
-- Cover Image
-- OG Image data
-- Author Data
-- Body content
+* Title
+* Excerpt
+* Date
+* Cover Image
+* OG Image data
+* Author Data
+* Body content
 
 **Creating our Query**
 
@@ -409,8 +412,8 @@ Now all we need to do is update our post body content from `data.post.body` to `
 
 Now that you have visual editing here are a few things you can explore with Tina
 
-- [Media management through Cloudinary](https://tina.io/docs/reference/media/external/cloudinary/)
-- [Route Mapping (connect the CMS to visual editing](https://tina.io/docs/tinacms-context/#the-routemappingplugin)
+* [Media management through Cloudinary](https://tina.io/docs/reference/media/external/cloudinary/)
+* [Route Mapping (connect the CMS to visual editing](https://tina.io/docs/tinacms-context/#the-routemappingplugin)
 
 ## How to keep up to date with Tina?
 
@@ -422,10 +425,10 @@ You can subscribe by following this link and entering your email: [https://tina.
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-- To get help with issues
-- Find the latest Tina news and sneak previews
-- Share your project with Tina community, and talk about your experience
-- Chat about the Jamstack
+* To get help with issues
+* Find the latest Tina news and sneak previews
+* Share your project with Tina community, and talk about your experience
+* Chat about the Jamstack
 
 ### Tina Twitter
 
