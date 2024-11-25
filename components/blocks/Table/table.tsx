@@ -53,12 +53,6 @@ const TableBox = ({ data, index }) => {
     if (scrollContainer) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
       setScrollData({ scrollLeft, clientWidth, scrollWidth });
-      console.log(scrollLeft);
-      if (scrollLeft === 0) {
-        console.log('at the start', scrollLeft);
-      } else if (scrollLeft + clientWidth >= scrollWidth) {
-        console.log('at the end');
-      }
     }
   };
 

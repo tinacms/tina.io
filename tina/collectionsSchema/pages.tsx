@@ -61,7 +61,6 @@ export const pagesCollection = {
         values: Record<string, any>
       }) => {
         
-        console.log('about to go into crtieriaMapping')
         //Template based transformations (NOTE: this is the only way to pass data between parent/child form fields)
         const criteriaMappedValues = criteriaMapping(values );
         return {

@@ -12,9 +12,6 @@ export const codeBlockComponents = {
       
       Prism.highlightAll();
     }, []);
-
-    console.log('this is what I found', highlightLines); 
-
     return (
       <pre className="line-numbers" data-line={highlightLines || ''}> 
         <code className={`language-${lang || 'jsx'}`}>

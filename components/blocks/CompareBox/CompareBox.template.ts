@@ -13,7 +13,6 @@ export const splitOneAndJoin = (item, separator) => {
 
 //This should be called on save to update the satisfied criteria list for each company
 export const criteriaMapping = (values) => {
-  console.log('criteriaMapping has begun');
   values.blocks.forEach((block, blockIndex) => {
     if (block._template === 'CompareBox') {
       const criteriaItems = block.criteriaItems?.map((item) => item.criteria);
@@ -47,7 +46,7 @@ export const criteriaMapping = (values) => {
 
       block.rowItems?.forEach((row, index) => {
         const oldRowCells = row.rowCells ?? [];
-        console.log('for row', row, 'the oldRowCells are', oldRowCells);
+        
 
         const updatedRowCells = columnItems.map((item) => {
           const existingCell = oldRowCells.find((cell) => {
@@ -66,11 +65,6 @@ export const criteriaMapping = (values) => {
         });
 
         values.blocks[blockIndex].rowItems[index].rowCells = updatedRowCells;
-        console.log(
-          'Updated row cells for row',
-          row.rowHeader,
-          updatedRowCells
-        );
       });
     }
   });
