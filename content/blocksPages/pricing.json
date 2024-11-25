@@ -247,8 +247,8 @@
       ],
       "rowItems": [
         {
-          "rowHeader": "Cost/ month",
-          "rowDescription": "Tis is a row description",
+          "rowHeader": "Cost/ mo.",
+          "rowDescription": "",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$29\",\"isTicked\":false}",
@@ -259,7 +259,7 @@
         },
         {
           "rowHeader": "Annual discount",
-          "rowDescription": "another row",
+          "rowDescription": "",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"n/a\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"2 months free\",\"isTicked\":false}",
@@ -270,6 +270,7 @@
         },
         {
           "rowHeader": "Users",
+          "rowDescription": "How many users are included in each plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
@@ -280,6 +281,7 @@
         },
         {
           "rowHeader": "Additional users",
+          "rowDescription": "Get more users on your plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$9\",\"isTicked\":false}",
@@ -290,6 +292,7 @@
         },
         {
           "rowHeader": "User Limit",
+          "rowDescription": "Maximum number of users on a plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
@@ -310,6 +313,7 @@
         },
         {
           "rowHeader": "Community Support",
+          "rowDescription": "Join our Discord forums for active community support, use TinaDocs for comprehensive guides",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
@@ -330,6 +334,7 @@
         },
         {
           "rowHeader": "SSO",
+          "rowDescription": "Single Sign-On available for Enterprise Plans",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
@@ -349,7 +354,8 @@
           ]
         },
         {
-          "rowHeader": "API Requests/ month",
+          "rowHeader": "API Requests/ mo.",
+          "rowDescription": "Based on GitHub limitations",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
@@ -370,6 +376,7 @@
         },
         {
           "rowHeader": "Comments",
+          "rowDescription": "Can add comments to content and suggest changes",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
