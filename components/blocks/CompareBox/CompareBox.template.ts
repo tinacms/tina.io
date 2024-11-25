@@ -41,7 +41,6 @@ export const criteriaMapping = (values) => {
         }
       });
     }
-    //TOOD: Refactor https://github.com/tinacms/tina.io/issues/2510
     if (block._template === 'table') {
       const columnItems = block.columnItems?.map((item) => item.columnHeader);
 
