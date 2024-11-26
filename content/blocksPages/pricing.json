@@ -333,7 +333,8 @@
         },
         {
           "columnHeader": "Team Plus",
-          "columnByLine": "$49/month"
+          "columnByLine": "$49/month",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
           "columnHeader": "Business",
