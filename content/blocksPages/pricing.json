@@ -404,7 +404,7 @@
         },
         {
           "rowHeader": "Community Support",
-          "rowDescription": "",
+          "rowDescription": "Active online Discord community forums and comprehensive documentation on tina.io/docs",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
