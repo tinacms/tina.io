@@ -18,7 +18,7 @@ const TableHeader = ({ data, scrollData }) => {
         )}
       </div>
       {/* Remaining Columns Titles */}
-      {data.columnItems.map((headerItem, index) => (
+      {data.columnItems?.map((headerItem, index) => (
         <div key={index}>
           <div className="text-center font-bold text-gray-700 underline decoration-dotted">
             <Link href={`${headerItem.columnHeaderLink}`}>
