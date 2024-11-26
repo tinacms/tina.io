@@ -343,7 +343,8 @@
         },
         {
           "columnHeader": "Enterprise",
-          "columnByLine": "Custom"
+          "columnByLine": "Custom",
+          "columnHeaderLink": "mailto:info@tina.io"
         }
       ],
       "rowItems": [
