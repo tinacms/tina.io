@@ -540,16 +540,7 @@
             {
               "name": "MDX",
               "icon": "FaMarkdown"
-            },
-            {
-              "name": "Visual Editing",
-              "icon": "HiOutlineSparkles"
-            },
-            {},
-            {},
-            {},
-            {},
-            {}
+            }
           ]
         },
         {
@@ -560,7 +551,8 @@
               "icon": "FaHandPointer"
             },
             {
-              "name": "fg"
+              "name": "Local Development Workflow",
+              "icon": "FaDesktop"
             },
             {
               "name": "fg"
