@@ -547,6 +547,10 @@
           "heading": "",
           "highlights": [
             {
+              "name": "Detailed Support Documentation",
+              "icon": "BiSupport"
+            },
+            {
               "name": "Visual Editing",
               "icon": "FaHandPointer"
             },
