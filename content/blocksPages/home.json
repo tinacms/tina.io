@@ -334,6 +334,69 @@
       "title": "",
       "testimonials": [
         {
+          "name": "Joao Aguiam",
+          "username": "joaoaguiam",
+          "imageBorder": true,
+          "avatar": "/VWJCXiOO_400x400.jpg",
+          "date": "2024-04-22T14:00:00.000Z",
+          "testimonial": "I have used TinaCMS, it’s fantastic. It creates a headless CMS directly in your code. Your content goes to git, it just creates a UI to edit it.\n",
+          "link": "https://x.com/joaoaguiam/status/1782486550304936152"
+        },
+        {
+          "name": "MadeWithReactJS",
+          "username": "madewith_react",
+          "imageBorder": true,
+          "avatar": "/wfxl9SVF_400x400.jpg",
+          "date": "2024-11-06T13:00:00.000Z",
+          "testimonial": "Add real-time content editing to your React websites with TinaCMS, an open-source toolkit to create visual editing experiences\n",
+          "link": "https://x.com/madewith_react/status/1854188254716645700"
+        },
+        {
+          "name": "ffmad.xcp",
+          "username": "quentinbdb",
+          "imageBorder": true,
+          "avatar": "/Fr4NQFpf_400x400.jpg",
+          "date": "2024-10-19T13:00:00.000Z",
+          "testimonial": "Very happy to finally release the new website ! \n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration! \n",
+          "link": "https://x.com/quentinbdb/status/1847795017416401229"
+        },
+        {
+          "name": "Aaron Crowder",
+          "username": "CrowderSoup",
+          "imageBorder": true,
+          "avatar": "/tTsoaH2o_400x400.jpg",
+          "date": "2024-09-27T14:00:00.000Z",
+          "testimonial": "Whoa, this works with Hugo (which I'm currently using). Definitely going to have to play with this over the weekend.\n",
+          "link": "https://x.com/CrowderSoup/status/1839722550232003048"
+        },
+        {
+          "name": "Cassidy",
+          "username": "cassidoo",
+          "imageBorder": true,
+          "avatar": "/1d5PR5ge_400x400.jpg",
+          "date": "2024-09-26T14:00:00.000Z",
+          "testimonial": "TinaCMS is what I use and I love it!\n",
+          "link": "https://x.com/cassidoo/status/1839650659735663054"
+        },
+        {
+          "name": "Manu Coffin",
+          "username": "manucoffin",
+          "imageBorder": true,
+          "avatar": "/3D97Wrt5_400x400.jpg",
+          "date": "2024-08-18T14:00:00.000Z",
+          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try \n",
+          "link": "https://x.com/manucoffin/status/1825455891421802720"
+        },
+        {
+          "name": "Arzafran",
+          "username": "arzafran",
+          "imageBorder": true,
+          "avatar": "/XfCc9f0B_400x400.jpg",
+          "date": "2023-10-31T13:00:00.000Z",
+          "testimonial": "From complaining here, to merged PR in less than 24hs,\nincredible customer experience by TinaCMS.\nTheir CEO jumped on a call, listened to all our issues and took notes, but not on imaginary paper, feels like fixes where WIP as we were describing them.\n",
+          "link": "https://twitter.com/arzafran/status/1719387497564708956"
+        },
+        {
           "name": "Boko Colse",
           "username": "struhy_xd",
           "imageBorder": true,
@@ -341,6 +404,15 @@
           "date": "2023-09-26T14:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
+        },
+        {
+          "name": "Smashing Magazine",
+          "username": "smashingmag",
+          "imageBorder": true,
+          "avatar": "/mTxJyTGY_400x400.jpg",
+          "date": "2023-09-18T14:00:00.000Z",
+          "testimonial": "With the recent integration of TinaCMS, SmashingMag enjoys the best of both worlds — the performance benefits of static assets and the writing experience that helps streamline the editing process.\n",
+          "link": "https://twitter.com/smashingmag/status/1703886402704842990"
         },
         {
           "name": " Dave Keen",
