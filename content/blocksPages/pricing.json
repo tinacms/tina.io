@@ -562,7 +562,10 @@
               "name": "Self-Hosted Option",
               "icon": "CgCrown"
             },
-            {},
+            {
+              "name": "Ideal for Long-Form Content",
+              "icon": "CgCrown"
+            },
             {}
           ]
         }
