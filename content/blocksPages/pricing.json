@@ -528,9 +528,18 @@
               "name": "GitHub Contributions",
               "icon": "FaGithub"
             },
-            {},
-            {},
-            {},
+            {
+              "name": "MarkDown Support",
+              "icon": "FaMarkdown"
+            },
+            {
+              "name": "MDX",
+              "icon": "FaMarkdown"
+            },
+            {
+              "name": "Visual Editing",
+              "icon": "HiOutlineSparkles"
+            },
             {},
             {},
             {},
