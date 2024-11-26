@@ -14,7 +14,7 @@ const TableHeader = ({ data, scrollData }) => {
       {/* Sticky void column */}
       <div className="sticky left-[175px] z-10">
         {scrollData && scrollData.scrollLeft > 80 && (
-          <div className="w-[30px] h-full bg-gradient-to-r from-[#EBF8FD] via-[#EBF8FD]/30 to-transparent"></div>
+          <div className="w-[30px] h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
         )}
       </div>
       {/* Remaining Columns Titles */}
@@ -64,9 +64,9 @@ const TableBox = ({ data, index }) => {
           ref={scrollContainerRef}
           onScroll={handleScroll}
         >
-          <div className="min-w-[1200px] bg-[#EBF8FD] lg:bg-transparent p-6 rounded-3xl">
+          <div className="min-w-[1200px] bg-slate-50 p-6 rounded-3xl">
             {/* Void column on the right */}
-            <div className="absolute top-4 bottom-4 right-4 w-[40px] bg-gradient-to-r from-transparent  via-[#EBF8FD]/30 to-[#EBF8FD] rounded-2xl pointer-events-none lg:hidden"></div>
+            <div className="absolute top-0 bottom-4 right-0 w-[40px] bg-gradient-to-r from-transparent  via-slate-50/80 to-slate-50 rounded-2xl pointer-events-none lg:hidden"></div>
 
             {/* Sticky Table Header */}
             <div className=" bg-slate-50 pb-4">
@@ -105,7 +105,7 @@ const TableBox = ({ data, index }) => {
                   {/* Sticky void column */}
                   <div className="sticky left-[175px] z-10">
                     {scrollData && scrollData.scrollLeft > 80 && (
-                      <div className="w-[30px] h-full bg-gradient-to-r from-[#EBF8FD] via-[#EBF8FD]/30 to-transparent"></div>
+                      <div className="w-[30px] h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
                     )}
                   </div>
 
