@@ -493,11 +493,11 @@
         {
           "rowHeader": "Asset Size cap",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"100 MiB\",\"isTicked\":false}"
           ]
         }
       ],
