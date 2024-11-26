@@ -504,6 +504,20 @@
       "_template": "table"
     },
     {
+      "options": {
+        "narrow": true,
+        "color": "",
+        "align": "center"
+      },
+      "content": "## Features Included for ALL TinaCMS Plans\n",
+      "_template": "content"
+    },
+    {
+      "headline": "Features Included for ALL TinaCMS Plans",
+      "text": "",
+      "_template": "hero"
+    },
+    {
       "highlightColumn": [
         {
           "heading": "Features Included for ALL TinaCMS Plans",
@@ -545,6 +559,20 @@
             {},
             {},
             {}
+          ]
+        },
+        {
+          "heading": "fghdfghdfgh",
+          "highlights": [
+            {
+              "name": "hd"
+            },
+            {
+              "name": "fg"
+            },
+            {
+              "name": "fg"
+            }
           ]
         }
       ],
