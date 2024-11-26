@@ -511,7 +511,22 @@
             {
               "name": "Open-Source Front-end",
               "icon": "FaUnlock"
-            }
+            },
+            {
+              "name": "API",
+              "icon": "TbPlugConnected"
+            },
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
           ]
         }
       ],
