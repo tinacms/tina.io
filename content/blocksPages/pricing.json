@@ -360,7 +360,7 @@
           ]
         },
         {
-          "rowHeader": "Users",
+          "rowHeader": "Included Users",
           "rowDescription": "How many users are included in each plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
