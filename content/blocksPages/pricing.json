@@ -323,7 +323,8 @@
       "columnItems": [
         {
           "columnHeader": "Free",
-          "columnByLine": "$0 Forever"
+          "columnByLine": "$0 Forever",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
           "columnHeader": "Team",
