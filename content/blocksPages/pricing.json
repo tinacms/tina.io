@@ -375,10 +375,10 @@
           "rowDescription": "Get more users on your plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"$9\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"$18\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"$9/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"$18/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom/user\",\"isTicked\":false}"
           ]
         },
         {
