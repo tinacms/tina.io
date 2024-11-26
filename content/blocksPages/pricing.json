@@ -349,6 +349,16 @@
       ],
       "rowItems": [
         {
+          "rowHeader": "Monthly Billing",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+          ]
+        },
+        {
           "rowHeader": "Annual Billing",
           "rowDescription": "Pay annually and get 2 months free!",
           "rowCells": [
@@ -360,7 +370,7 @@
           ]
         },
         {
-          "rowHeader": "Users",
+          "rowHeader": "Included Users",
           "rowDescription": "How many users are included in each plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
@@ -375,21 +385,21 @@
           "rowDescription": "Get more users on your plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"$9\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"$18\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"$9/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"$18/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom/user\",\"isTicked\":false}"
           ]
         },
         {
           "rowHeader": "User Limit",
           "rowDescription": "Maximum number of users on a plan",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"10\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"20\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"unlimited\",\"isTicked\":false}"
           ]
         },
         {
@@ -419,8 +429,8 @@
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Business Support\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Enterprise Support\",\"isTicked\":false}"
           ]
         },
         {
