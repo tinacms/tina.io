@@ -78,7 +78,7 @@ export function LogoGridBlock({ data, index }) {
             duration={40}
             pauseOnHover={true}
             blurBorders={false}
-            blurBoderColor={'#fff'}
+            blurBorderColor={'#fff'}
             className="justify-center"
           >
             {data.items.map((item, index) => (
