@@ -385,11 +385,11 @@
           "rowHeader": "User Limit",
           "rowDescription": "Maximum number of users on a plan",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"10\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"20\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"unlimited\",\"isTicked\":false}"
           ]
         },
         {
