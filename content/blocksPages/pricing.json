@@ -459,6 +459,7 @@
         },
         {
           "rowHeader": "Projects",
+          "rowDescription": "All Tina plans are per-project",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"1\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"1\",\"isTicked\":false}",
