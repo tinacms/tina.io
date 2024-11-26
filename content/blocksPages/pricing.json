@@ -447,21 +447,11 @@
           ]
         },
         {
-          "rowHeader": "API Requests/ mo.",
-          "rowDescription": "Based on GitHub limitations",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"3.6m\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"3.6m\",\"isTicked\":false}"
-          ]
-        },
-        {
           "rowHeader": "AI Assist",
+          "rowDescription": "Check the Tina Roadmap for more details",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
             "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"coming soon\",\"isTicked\":false}"
