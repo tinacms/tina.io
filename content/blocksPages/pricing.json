@@ -566,7 +566,10 @@
               "name": "Ideal for Long-Form Content",
               "icon": "CgCrown"
             },
-            {}
+            {
+              "name": "Community Support",
+              "icon": "AiOutlineUsergroupAdd"
+            }
           ]
         }
       ],
