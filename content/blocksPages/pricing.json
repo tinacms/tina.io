@@ -456,17 +456,6 @@
             "{\"columnHeader\":\"Business\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
             "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"coming soon\",\"isTicked\":false}"
           ]
-        },
-        {
-          "rowHeader": "Comments",
-          "rowDescription": "Can add comments to content and suggest changes",
-          "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
-          ]
         }
       ],
       "_template": "table"
