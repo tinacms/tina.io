@@ -467,6 +467,17 @@
             "{\"columnHeader\":\"Business\",\"cellValue\":\"1\",\"isTicked\":false}",
             "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"1\",\"isTicked\":false}"
           ]
+        },
+        {
+          "rowHeader": "Repositories",
+          "rowDescription": "Tina projects can be set up with multiple repositories if needed.",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+          ]
         }
       ],
       "_template": "table"
