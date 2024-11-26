@@ -516,7 +516,10 @@
               "name": "API",
               "icon": "TbPlugConnected"
             },
-            {},
+            {
+              "name": "Headless CMS",
+              "icon": "HiOutlineSparkles"
+            },
             {},
             {},
             {},
