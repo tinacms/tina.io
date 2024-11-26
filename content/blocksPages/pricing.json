@@ -504,15 +504,6 @@
       "_template": "table"
     },
     {
-      "options": {
-        "narrow": true,
-        "color": "",
-        "align": "center"
-      },
-      "content": "## Features Included for ALL TinaCMS Plans\n",
-      "_template": "content"
-    },
-    {
       "headline": "Features Included for ALL TinaCMS Plans",
       "text": "",
       "_template": "hero"
@@ -520,7 +511,7 @@
     {
       "highlightColumn": [
         {
-          "heading": "Features Included for ALL TinaCMS Plans",
+          "heading": "",
           "highlights": [
             {
               "name": "Open-Source Front-end",
@@ -562,10 +553,11 @@
           ]
         },
         {
-          "heading": "fghdfghdfgh",
+          "heading": "",
           "highlights": [
             {
-              "name": "hd"
+              "name": "Visual Editing",
+              "icon": "FaHandPointer"
             },
             {
               "name": "fg"
