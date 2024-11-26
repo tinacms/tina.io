@@ -72,8 +72,7 @@ const OverviewTemplate = (props) => {
             <h1>Getting Started With Tina</h1>
             <hr />
             <blockquote>
-              TinaCMS requires Node version 18 or higher, including all LTS
-              releases, and supports NPM, PNPM, and Yarn.
+              TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.
             </blockquote>
             <p className="intro-text">
               Tina is a Git-backed headless content management system that
