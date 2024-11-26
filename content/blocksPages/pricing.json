@@ -524,7 +524,10 @@
               "name": "Git Support",
               "icon": "FaGithub"
             },
-            {},
+            {
+              "name": "GitHub Contributions",
+              "icon": "FaGithub"
+            },
             {},
             {},
             {},
