@@ -456,6 +456,16 @@
             "{\"columnHeader\":\"Business\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
             "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"coming soon\",\"isTicked\":false}"
           ]
+        },
+        {
+          "rowHeader": "Projects",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+          ]
         }
       ],
       "_template": "table"
