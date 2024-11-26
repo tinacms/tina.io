@@ -531,7 +531,7 @@
             },
             {
               "name": "GitHub Contributions",
-              "icon": "FaGithub"
+              "icon": "FaCodeBranch"
             },
             {
               "name": "MarkDown Support",
