@@ -1,6 +1,6 @@
 ---
 title: The "object" field
-last_edited: '2024-09-26T06:54:19.563Z'
+last_edited: '2024-11-26T03:04:32.457Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
@@ -53,7 +53,7 @@ Ultimately there are 3 ways to configure this type...
 
   <WebmEmbed embedSrc="/img/docs/reference/text-and-media-component.webm" width="50%" />
 
-> Scenario: We have a component on our site that needs to hold an array of other field types, so we define it as a type object. Some of the field types within this parent object are also objects themselves. 
+> Scenario: We have a component on our site that needs to hold an array of other field types, so we define it as a type object. Some of the field types within this parent object are also objects themselves.
 
 <recipeBlock
   title="Scenario Recipe"
@@ -62,34 +62,34 @@ Ultimately there are 3 ways to configure this type...
 
   export const FeatureTemplate: Template = { 
       label: 'Feature Block',
-      name: 'featureBlock',
-      fields: [
-          {
-              name: 'features',
-              label: 'Features',
-              type: 'object',
-              list: true,
-              ui: {
-                  itemProps(item) => {
-                      return { 
-                          label: item?.headline
-                      };
-                  },
-              },
-              fields: [
-                  { name: 'headline', label: 'Headline', type: 'string'},
-                  {
-                      name: 'description', 
-                      label: 'Description', 
-                      type: 'string', 
-                      ui: { component: 'textarea'}
-                  },
-                  {
-                      
-                  }
-              ]
-          }
-      ]
+  name: 'featureBlock',
+  fields: [
+  {
+  name: 'features',
+  label: 'Features',
+  type: 'object',
+  list: true,
+  ui: {
+  itemProps(item) => {
+  return { 
+  label: item?.headline
+  };
+  },
+  },
+  fields: [
+  { name: 'headline', label: 'Headline', type: 'string'},
+  {
+  name: 'description', 
+  label: 'Description', 
+  type: 'string', 
+  ui: { component: 'textarea'}
+  },
+  {
+
+  }
+  ]
+  }
+  ]
   }"
 />
 
