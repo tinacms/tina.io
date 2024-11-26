@@ -378,7 +378,7 @@
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$9/user\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15/user\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"$18/user\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom/user\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
           ]
         },
         {
