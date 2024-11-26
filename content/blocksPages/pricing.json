@@ -557,7 +557,13 @@
             {
               "name": "No Vendor Lock-in",
               "icon": "FaLockOpen"
-            }
+            },
+            {
+              "name": "Self-Hosted Option",
+              "icon": "CgCrown"
+            },
+            {},
+            {}
           ]
         }
       ],
