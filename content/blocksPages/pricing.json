@@ -483,11 +483,11 @@
           "rowHeader": "Documents",
           "rowDescription": "Number of documents or content items",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"unlimited\",\"isTicked\":false}"
           ]
         }
       ],
