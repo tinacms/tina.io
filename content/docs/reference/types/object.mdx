@@ -1,6 +1,6 @@
 ---
 title: The "object" field
-last_edited: '2024-11-26T03:20:01.500Z'
+last_edited: '2024-11-26T03:31:02.464Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
@@ -99,6 +99,36 @@ export const featuresTemplate: Template = {
     },
   ],
 };
+```
+
+### Code-Block Breakdown
+
+* We originally have a list of feature item objects, each of these objects store an array \[Headline, description, buttons]
+* Each feature item in the list has a dynamic label so that we can differentiate between each feature item in our editor (lines 12-14) 
+* We then have some reusable objects which are stored as a list within our buttons element of the featureBlock array
+* Because each of our unique 3 button templates also stores an array of variables themself, we use the type: object
+
+An example of what this object array would look like is
+
+```javascript
+{
+  'headline': 'Feature Item 1',
+  'description': 'All stuff Tina!',
+    'buttons': [
+      {
+        label: 'Button A',
+        href: '/docs',
+      },
+      {
+        label: 'Button B',
+        href: '/blog'
+      }
+  ]
+},
+{
+  'headline': 'Feature Item 2',
+  'description': 'This feature has no buttons'
+}
 ```
 
 ## More Examples
