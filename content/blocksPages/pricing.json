@@ -419,8 +419,8 @@
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Business Support\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Enterprise Support\",\"isTicked\":false}"
           ]
         },
         {
