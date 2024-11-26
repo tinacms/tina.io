@@ -502,6 +502,20 @@
         }
       ],
       "_template": "table"
+    },
+    {
+      "highlightColumn": [
+        {
+          "heading": "Features Included for ALL TinaCMS Plans",
+          "highlights": [
+            {
+              "name": "Open-Source Front-end",
+              "icon": "FaUnlock"
+            }
+          ]
+        }
+      ],
+      "_template": "highlightsSection"
     }
   ]
 }
