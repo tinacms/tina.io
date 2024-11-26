@@ -352,7 +352,7 @@
           "rowHeader": "Annual Billing",
           "rowDescription": "Save over 16% - pay annually and get 2 months free!",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"-\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$490/year\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"$2,990/year\",\"isTicked\":false}",
