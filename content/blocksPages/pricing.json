@@ -350,8 +350,9 @@
       "rowItems": [
         {
           "rowHeader": "Monthly Billing",
+          "rowDescription": "Monthly plan with no lock-in contract",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"-\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
