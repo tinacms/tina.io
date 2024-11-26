@@ -36,8 +36,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(tailwindcss@3.4.15)
       '@tinacms/auth':
-        specifier: 1.0.6
-        version: 1.0.6(encoding@0.1.13)
+        specifier: 1.0.9
+        version: 1.0.9(encoding@0.1.13)
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.42.0
         version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.15.0(jiti@2.4.0))(typescript@4.9.5))(eslint@9.15.0(jiti@2.4.0))(typescript@4.9.5)
@@ -2613,8 +2613,8 @@ packages:
   '@tinacms/app@2.1.12':
     resolution: {integrity: sha512-npLatwjj9gAdTpYniXME2hEu4Z3y13a5wvLyIkdQv8nIGme5aiLy+G5HanycbG/E6J8+Z3g1dE9iwSA7rrqPag==}
 
-  '@tinacms/auth@1.0.6':
-    resolution: {integrity: sha512-1GcSkQo8MgZNt+b/TVZx06YhvyJ6nhCvRCDD/EGzBRDOoAqTFiw5g6zrf+acjRkSEUyt9moTtxBotW+DHLNVyw==}
+  '@tinacms/auth@1.0.9':
+    resolution: {integrity: sha512-0ACF/sDqGE91B0qeMAVJuMCckPcDec8teG8ziRHKIjfRD006NEMB1yM0feXxHXpSOCV92vs+s5+KDwynTJKhaA==}
 
   '@tinacms/cli@1.6.12':
     resolution: {integrity: sha512-Jhb3em1LaMZg0pvcb+09NM8sCMDFJhSNK3IdaJV9XMHNTf5zxVty0DalCcmAfeiVHS7i5kfb1bZ+fJKmDR0HMw==}
@@ -12584,7 +12584,7 @@ snapshots:
       - supports-color
       - yup
 
-  '@tinacms/auth@1.0.6(encoding@0.1.13)':
+  '@tinacms/auth@1.0.9(encoding@0.1.13)':
     dependencies:
       fetch-ponyfill: 7.1.0(encoding@0.1.13)
     transitivePeerDependencies:
