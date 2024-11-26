@@ -415,6 +415,7 @@
         },
         {
           "rowHeader": "Premium Support",
+          "rowDescription": "Support options and custom support plans are available",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
