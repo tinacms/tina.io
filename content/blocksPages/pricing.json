@@ -555,7 +555,8 @@
               "icon": "FaDesktop"
             },
             {
-              "name": "fg"
+              "name": "No Vendor Lock-in",
+              "icon": "FaLockOpen"
             }
           ]
         }
