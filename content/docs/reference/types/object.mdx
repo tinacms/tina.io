@@ -46,16 +46,54 @@ Ultimately there are 3 ways to configure this type...
 * With `list` set to `false`, the `fields` array can be used to wrap some data – this appears in the editor as a nested page. This can be used to organise the CMS, such as grouping options together, as in the gif below.
 
   <WebmEmbed embedSrc="/img/docs/reference/rodmap-grid.webm" width="50%" />
-
 * With `list` set to `true`, the `fields` array contains the data structure to be repeated – this appears in the editor as above, but grouped as a list.
 
   <WebmEmbed embedSrc="/img/docs/reference/roadmap-items.webm" width="50%" />
-
 * With `list` set to `true`, and using `templates` as opposed to `fields` the user can select between associated templates – this appears as above, but pressing the `+`  gives you the option to choose between templates.
 
   <WebmEmbed embedSrc="/img/docs/reference/text-and-media-component.webm" width="50%" />
 
-## Examples
+> Scenario: We have a component on our site that needs to hold an array of other field types, so we define it as a type object. Some of the field types within this parent object are also objects themselves. 
+
+<recipeBlock
+  title="Scenario Recipe"
+  description="The solution to the scenario described above. "
+  code="import type { Template } from 'tinacms';
+
+  export const FeatureTemplate: Template = { 
+      label: 'Feature Block',
+      name: 'featureBlock',
+      fields: [
+          {
+              name: 'features',
+              label: 'Features',
+              type: 'object',
+              list: true,
+              ui: {
+                  itemProps(item) => {
+                      return { 
+                          label: item?.headline
+                      };
+                  },
+              },
+              fields: [
+                  { name: 'headline', label: 'Headline', type: 'string'},
+                  {
+                      name: 'description', 
+                      label: 'Description', 
+                      type: 'string', 
+                      ui: { component: 'textarea'}
+                  },
+                  {
+                      
+                  }
+              ]
+          }
+      ]
+  }"
+/>
+
+## More Examples
 
 Tina will generate the appropriate component depending on the configuration provided.
 
