@@ -79,7 +79,6 @@ export function LogoGridBlock({ data, index }) {
             pauseOnHover={true}
             blurBorders={false}
             blurBorderColor={'#fff'}
-            className="justify-center"
           >
             {data.items.map((item, index) => (
               <Slider.Slide key={index} className="flex justify-center">
