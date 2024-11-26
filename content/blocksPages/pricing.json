@@ -349,13 +349,13 @@
       ],
       "rowItems": [
         {
-          "rowHeader": "Annual discount",
-          "rowDescription": "",
+          "rowHeader": "Annual Billing",
+          "rowDescription": "Pay annually and get 2 months free!",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"n/a\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"2 months free\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"2 months free\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"2 months free\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$490/year\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"$2,990/year\",\"isTicked\":false}",
             "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
           ]
         },
