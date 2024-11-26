@@ -56,7 +56,7 @@
           ],
           "buttons": [
             {
-              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
+              "label": "Start Team Plan",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
@@ -103,7 +103,7 @@
           ],
           "buttons": [
             {
-              "label": "‏‏‎ ‎‏‏‎ ‎Start Team Plan‏‏‎ ‎‏‏‎ ‎",
+              "label": "Start Team Plan",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
@@ -209,7 +209,7 @@
           ],
           "buttons": [
             {
-              "label": "‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎Contact Sales‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎",
+              "label": "Contact Sales",
               "icon": false,
               "variant": "orangeWithBorder",
               "size": "medium",
@@ -222,7 +222,7 @@
       "_template": "pricing"
     },
     {
-      "title": "The Trusted Partner for Digital Industry Leaders",
+      "title": "",
       "link": "",
       "items": [
         {
@@ -317,6 +317,267 @@
         }
       ],
       "_template": "logoGrid"
+    },
+    {
+      "tableHeader": "Plan Comparison",
+      "columnItems": [
+        {
+          "columnHeader": "Free",
+          "columnByLine": "$0 Forever",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "columnHeader": "Team",
+          "columnByLine": "$29/month",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "columnHeader": "Team Plus",
+          "columnByLine": "$49/month",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "columnHeader": "Business",
+          "columnByLine": "$299/month",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "columnHeader": "Enterprise",
+          "columnByLine": "Custom",
+          "columnHeaderLink": "mailto:info@tina.io"
+        }
+      ],
+      "rowItems": [
+        {
+          "rowHeader": "Annual Billing",
+          "rowDescription": "Save over 16% - pay annually and get 2 months free!",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$490/year\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"$2,990/year\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Included Users",
+          "rowDescription": "Default number of users that are included in each plan",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"5\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"20\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Additional users",
+          "rowDescription": "Get more users on your plan",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"$9/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"$18/user\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "User Limit",
+          "rowDescription": "Maximum number of users on a plan",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"10\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"20\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"unlimited\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Roles",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"3\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Community Support",
+          "rowDescription": "Active online Discord community forums and comprehensive documentation on tina.io/docs",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "Premium Support",
+          "rowDescription": "Support options and custom support plans are available",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Business Support\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Enterprise Support\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "SSO",
+          "rowDescription": "Single Sign-On available for Enterprise Plans",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "Editorial Workflow",
+          "rowDescription": "Users can submit content changes that initiate a Pull Request in GitHub, so team members can review, give feedback, and approve updates before they’re published, ensuring quality and collaboration. ",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "AI Assist",
+          "rowDescription": "Check the Tina Roadmap for more details",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"coming soon\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Projects",
+          "rowDescription": "All Tina plans are per-project",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"1\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Repositories",
+          "rowDescription": "Tina projects can be set up with multiple repositories if needed.",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "Documents",
+          "rowDescription": "Number of documents or content items",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"unlimited\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "Asset Size cap",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"100 MiB\",\"isTicked\":false}"
+          ]
+        }
+      ],
+      "_template": "table"
+    },
+    {
+      "title": "Features Included for ALL TinaCMS Plans",
+      "color": "seafoam",
+      "_template": "faq"
+    },
+    {
+      "highlightColumn": [
+        {
+          "heading": "",
+          "highlights": [
+            {
+              "name": "Open-Source Front-end",
+              "icon": "FaUnlock"
+            },
+            {
+              "name": "API",
+              "icon": "TbPlugConnected"
+            },
+            {
+              "name": "Headless CMS",
+              "icon": "HiOutlineSparkles"
+            },
+            {
+              "name": "Git Support",
+              "icon": "FaGithub"
+            },
+            {
+              "name": "GitHub Contributions",
+              "icon": "FaCodeBranch"
+            },
+            {
+              "name": "MarkDown Support",
+              "icon": "FaMarkdown"
+            },
+            {
+              "name": "MDX",
+              "icon": "FaMarkdown"
+            }
+          ]
+        },
+        {
+          "heading": "",
+          "highlights": [
+            {
+              "name": "Detailed Support Documentation",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "Visual Editing",
+              "icon": "FaHandPointer"
+            },
+            {
+              "name": "Local Development Workflow",
+              "icon": "FaDesktop"
+            },
+            {
+              "name": "No Vendor Lock-in",
+              "icon": "FaLockOpen"
+            },
+            {
+              "name": "Self-Hosted Option",
+              "icon": "AiOutlineUser"
+            },
+            {
+              "name": "Ideal for Long-Form Content",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "Community Support",
+              "icon": "AiOutlineUsergroupAdd"
+            }
+          ]
+        }
+      ],
+      "_template": "highlightsSection"
     }
   ]
 }
