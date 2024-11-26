@@ -37,7 +37,7 @@
       "_template": "features"
     },
     {
-      "title": "Trusted by",
+      "title": "",
       "link": "",
       "items": [
         {
@@ -274,50 +274,52 @@
       "title": "Where's Tina?",
       "cardItems": [
         {
-          "headline": "NDC Porto",
-          "startDate": "2024-10-14T00:00:00.000Z",
-          "startTime": "2024-10-02T09:00:00.000Z",
-          "endDate": "2024-10-18T00:00:00.000Z",
-          "timezone": 1,
-          "location": "Porto, Portugal",
-          "image": "/img/wheres-tina/ndc-porto-2024.jpg",
-          "link": "https://ndcporto.com/",
-          "markerLAT": 8,
-          "markerLONG": 41
+          "headline": "Write the Docs - Melbourne",
+          "startDate": "2024-11-28T00:00:00.000Z",
+          "startTime": "2024-11-20T08:30:00.000Z",
+          "endDate": "2024-11-29T00:00:00.000Z",
+          "timezone": 11,
+          "location": "Melbourne, Australia",
+          "image": "/img/events/2024-11-21_10-33.jpg",
+          "link": "https://www.writethedocs.org/conf/australia/2024/",
+          "markerLAT": -26.81015,
+          "markerLONG": 225.96399
         },
         {
-          "headline": "CPH Dev Fest",
-          "startDate": "2024-08-26T00:00:00.000Z",
-          "startTime": "2024-10-01T13:00:00.000Z",
-          "endDate": "2024-08-30T00:00:00.000Z",
-          "timezone": 2,
-          "location": "Copenhagen, Denmark",
-          "image": "/img/wheres-tina/cph-dev-fest-2024.jpg",
-          "link": "https://cphdevfest.com/",
-          "markerLAT": -8,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC Oslo",
-          "startDate": "2024-05-19T00:00:00.000Z",
+          "headline": "NDC Security",
+          "startDate": "2025-01-20T00:00:00.000Z",
           "startTime": "2024-10-14T09:00:00.000Z",
-          "endDate": "2024-05-23T00:00:00.000Z",
-          "timezone": 2,
+          "endDate": "2025-01-23T00:00:00.000Z",
+          "timezone": 1,
           "location": "Oslo, Norway",
           "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
-          "link": "https://ndcoslo.com/",
+          "link": "https://ndc-security.com/",
           "markerLAT": -1,
           "markerLONG": 59
         },
         {
-          "headline": "/serverless/DAYS ANZ",
-          "startDate": "2024-05-21T00:00:00.000Z",
-          "timezone": 10,
-          "location": "Sydney, Australia",
-          "image": "/img/wheres-tina/serverless-days-anz-2024.jpg",
-          "link": "https://anz.serverlessdays.io/sydney/",
-          "markerLAT": 207,
-          "markerLONG": 35
+          "headline": "NDC London",
+          "startDate": "2025-01-27T00:00:00.000Z",
+          "startTime": "2024-11-21T09:00:00.000Z",
+          "endDate": "2025-01-31T00:00:00.000Z",
+          "timezone": 0,
+          "location": "London, England",
+          "image": "/ndclondon.jpg",
+          "link": "https://ndclondon.com/",
+          "markerLAT": 7,
+          "markerLONG": 52
+        },
+        {
+          "headline": "NDC Melbourne",
+          "startDate": "2025-04-29T00:00:00.000Z",
+          "startTime": "2024-11-20T09:00:00.000Z",
+          "endDate": "2025-05-01T00:00:00.000Z",
+          "timezone": 11,
+          "location": "Melbourne, Australia",
+          "image": "/ndc-melb-2024-11-21_10-58-17.jpg",
+          "link": "https://ndcmelbourne.com/",
+          "markerLAT": -27.81015,
+          "markerLONG": 220.9541
         }
       ],
       "_template": "events"

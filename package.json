@@ -35,6 +35,7 @@
     "@next/bundle-analyzer": "^14.2.11",
     "@react-three/drei": "^9.107.0",
     "@react-three/fiber": "^8.16.8",
+    "@styled-jsx/plugin-sass": "^4.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.0.6",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
@@ -93,7 +94,6 @@
     "serve": "^14.2.3",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.13",
-    "styled-jsx-plugin-sass": "^1.0.0",
     "three": "^0.165.0",
     "tinacms": "2.2.3",
     "webpack": "^5.94.0"
