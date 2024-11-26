@@ -520,7 +520,10 @@
               "name": "Headless CMS",
               "icon": "HiOutlineSparkles"
             },
-            {},
+            {
+              "name": "Git Support",
+              "icon": "FaGithub"
+            },
             {},
             {},
             {},
