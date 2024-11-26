@@ -6,6 +6,7 @@ import * as debounce from 'lodash/debounce'
 import { IconWrapper, Input, SearchContainer } from './styles'
 import { SearchIcon } from './SearchIcon'
 import crypto from 'crypto'
+import router from 'next/router'
 
 /* Copied from SearchBoxProvided in react-instantsearch-dom */
 interface SearchBoxProps {
@@ -39,6 +40,16 @@ export default connectSearchBox(
       debouncedSearch(e)
     }
 
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        const searchTerm = e.target.value;
+        if (searchTerm.trim())
+        {
+          router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+        }
+      }
+    }
+
     return (
       <SearchContainer expanded={expanded}>
         <Input
@@ -46,6 +57,7 @@ export default connectSearchBox(
           placeholder="Search"
           aria-label="Search"
           onChange={onChange}
+          onKeyDown={handleKeyDown}
           expanded={expanded}
           {...rest}
         />
