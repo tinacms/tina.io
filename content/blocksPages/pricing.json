@@ -437,6 +437,7 @@
         },
         {
           "rowHeader": "Editorial Workflow",
+          "rowDescription": "Users can submit content changes that initiate a Pull Request in GitHub, so team members can review, give feedback, and approve updates before they’re published, ensuring quality and collaboration. ",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
