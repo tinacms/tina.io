@@ -349,6 +349,16 @@
       ],
       "rowItems": [
         {
+          "rowHeader": "Monthly Billing",
+          "rowCells": [
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":false}"
+          ]
+        },
+        {
           "rowHeader": "Annual Billing",
           "rowDescription": "Pay annually and get 2 months free!",
           "rowCells": [
