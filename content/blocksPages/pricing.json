@@ -404,7 +404,7 @@
         },
         {
           "rowHeader": "Community Support",
-          "rowDescription": "",
+          "rowDescription": "Active community on the TinaCMS Discord forum",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":true}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":true}",
