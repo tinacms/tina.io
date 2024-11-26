@@ -356,6 +356,47 @@
       ]
     },
     {
+      "title": "Media",
+      "items": [
+        {
+          "title": "Overview",
+          "slug": "content/docs/reference/media/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Repo-based Media",
+          "slug": "content/docs/reference/media/repo-based.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "External Media Providers",
+          "items": [
+            {
+              "title": "Setting up Authentication",
+              "slug": "content/docs/reference/media/external/authentication.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Digital Ocean Spaces",
+              "slug": "content/docs/reference/media/external/do-spaces.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Cloudinary",
+              "slug": "content/docs/reference/media/external/cloudinary.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "AWS S3 Bucket",
+              "slug": "content/docs/reference/media/external/s3.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        }
+      ]
+    },
+    {
       "title": "Drafts",
       "items": [
         {
@@ -444,6 +485,11 @@
         {
           "title": "Internationalization",
           "slug": "content/docs/guides/internationalization.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Migrating From WordPress",
+          "slug": "content/docs/guides/converting-wordpress-to-tina.mdx",
           "_template": "item"
         },
         {
@@ -630,48 +676,6 @@
           "title": "The TinaCMS CLI",
           "slug": "content/docs/cli-overview.mdx",
           "_template": "item"
-        },
-        {
-          "title": "Media",
-          "items": [
-            {
-              "title": "Overview",
-              "slug": "content/docs/reference/media/overview.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Repo-based Media",
-              "slug": "content/docs/reference/media/repo-based.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "External Media Providers",
-              "items": [
-                {
-                  "title": "Setting up Authentication",
-                  "slug": "content/docs/reference/media/external/authentication.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "Cloudinary",
-                  "slug": "content/docs/reference/media/external/cloudinary.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "Digital Ocean Spaces",
-                  "slug": "content/docs/reference/media/external/do-spaces.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "AWS S3 Bucket",
-                  "slug": "content/docs/reference/media/external/s3.mdx",
-                  "_template": "item"
-                }
-              ],
-              "_template": "items"
-            }
-          ],
-          "_template": "items"
         },
         {
           "title": "Search",

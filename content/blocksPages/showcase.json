@@ -24,7 +24,7 @@
           "text": "TinaCMS has been a game-changer for [SSW](https://www.ssw.com.au/). We love how it keeps our content management smooth and lets our developers and marketers work together without any roadblocks. It’s fast, flexible, and exactly what we needed.",
           "url": "https://www.ssw.com.au/",
           "media": {
-            "src": "/img/showcase/ssw-website-screenshot.jpg"
+            "src": "/img/tina-showcase/ssw-website-screenshot.jpg"
           }
         },
         {
@@ -40,7 +40,7 @@
           "text": "[Devolver](https://www.devolverdigital.com/) is a boutique game label that works with independent developers from all over the world to produce and promote some of the most original, eccentric, and beloved games of the past decade.",
           "url": "https://www.devolverdigital.com/",
           "media": {
-            "src": "https://res.cloudinary.com/forestry-demo/image/upload/c_thumb,w_700/v1680282376/tina-showcase/devolver.png"
+            "src": "/img/tina-showcase/devolver.png"
           }
         },
         {

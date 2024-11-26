@@ -1,7 +1,4 @@
 ---
-title: Gatsby + Tina 101
-date: '2020-02-25T07:00:00.000Z'
-author: Madelyn Eriksen
 draft: false
 consumes:
   - file: /packages/gatsby-tinacms-remark/src/remark-creator-plugin.ts
@@ -10,18 +7,29 @@ consumes:
     details: Shows how to use inlineRemarkForm HOC
   - file: /packages/@tinacms/fields/src/Wysiwyg/Wysiwyg.tsx
     details: TinaField uses Wysiwyg component for inline editing
-next: content/blog/introducing-visual-open-authoring.mdx
+warningMessage: >-
+  **Update:** The examples in this post reference an outdated Gatsby
+  implementation. We recommend using [Next.js](/docs/setup-overview/) for a
+  solution with less friction.
+seo:
+  title: Gatsby + Tina 101 | TinaCMS Blog
+  description: >-
+    Learn the basics of integrating Gatsby with TinaCMS in this guide and start
+    building fast, dynamic websites with a powerful content management setup.
+title: Gatsby + Tina 101
+date: '2020-02-25T07:00:00.000Z'
+author: Madelyn Eriksen
 prev: content/blog/custom-field-plugins.mdx
-warningMessage: '**Update:** The examples in this post reference an outdated Gatsby implementation. We recommend using [Next.js](/docs/setup-overview/) for a solution with less friction.'
+next: content/blog/introducing-visual-open-authoring.mdx
 ---
 
 Static site generators like [Gatsby](https://www.gatsbyjs.org/) are a massive win for developers. They provide us with automated deployments, faster development cycles, and reduced security burden.
 
 Despite the technical gains, **static sites can have a hampered content editing story.** Those comfortable with Git and Markdown might edit files directly. But content authors need a better solution for editing.
 
-[TinaCMS](https://tinacms.org/docs/getting-started/introduction) is an _extensible_ toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a smooth experience for content authors.
+[TinaCMS](https://tinacms.org/docs/getting-started/introduction) is an *extensible* toolkit that can help meet these needs. Tina allows developers to use formats we love, like Markdown and JSON, while providing a smooth experience for content authors.
 
-To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, _Tyra_](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to _use this as a reference for adding TinaCMS to an existing Gatsby site!_
+To understand better how Tina works, I decided to add it to an existing site, my [Gatsby starter, *Tyra*](https://github.com/madelyneriksen/gatsby-starter-tyra/). What follows is a walkthrough of my process. Feel free to *use this as a reference for adding TinaCMS to an existing Gatsby site!*
 
 > **In a rush?** Check out the code [on GitHub](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)
 
@@ -43,7 +51,7 @@ npm i --save gatsby-plugin-tinacms gatsby-tinacms-git gatsby-tinacms-remark styl
 yarn add gatsby-plugin-tinacms gatsby-tinacms-git gatsby-tinacms-remark styled-components
 ```
 
-This command adds the Gatsby plugins for Tina itself, to interface Git with Tina, and to support markdown files (via Remark). Since _Tyra_ already had the `gatsby-transformer-remark` plugin and all related dependencies installed, I only needed to install plugins specific to TinaCMS.
+This command adds the Gatsby plugins for Tina itself, to interface Git with Tina, and to support markdown files (via Remark). Since *Tyra* already had the `gatsby-transformer-remark` plugin and all related dependencies installed, I only needed to install plugins specific to TinaCMS.
 
 If you're starting from scratch, you'll need to install Gatsby plugins for loading Markdown files. The [Gatsby docs](https://www.gatsbyjs.org/docs/adding-markdown-pages/) have a great guide on using Markdown in Gatsby!
 
@@ -73,13 +81,13 @@ module.exports = {
 }
 ```
 
-_Tyra_ uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](/guides/gatsby/git/create-json-form). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
+*Tyra* uses Markdown for content, but TinaCMS also supports JSON files via [gatsby-tinacms-json](/guides/gatsby/git/create-json-form). I find that JSON is great for page content and [blocks](https://tinacms.org/blog/what-are-blocks/). But for simple blog posts, Markdown works great.
 
-Since the content _Tyra_ is Git-based, all edits need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
+Since the content *Tyra* is Git-based, all edits need to be committed back into the repository. `gatsby-tinacms-git` tracks content changes and handles the creation of new commits with content. By default, changes are pushed to a remote branch, but the plugin is configurable.
 
 ## Tina-Powered Editing
 
-In the _Tyra Starter_, the functional `Post` template creates all blog posts. `Post` renders Markdown content, SEO-focused metadata, and the hero image for each post.
+In the *Tyra Starter*, the functional `Post` template creates all blog posts. `Post` renders Markdown content, SEO-focused metadata, and the hero image for each post.
 
 To enable editing, we can wrap the `Post` component in a Higher-Order Component provided by Tina — `inlineRemarkForm`.
 
@@ -220,7 +228,7 @@ module.exports = {
 
 Right now our sidebar forms for editing are 'okay,' but there's room for improvement. It would be a lot nicer if the form fields weren't labeled with things like `rawFrontmatter.title`. Our content authors would likely not appreciate labels like that!
 
-There are also fields _Tyra_ uses that should be "private" and not available to edit in the sidebar. For example, the `type` frontmatter value to identify posts.
+There are also fields *Tyra* uses that should be "private" and not available to edit in the sidebar. For example, the `type` frontmatter value to identify posts.
 
 We can configure the sidebar form by passing in a `FormConfig` object to Tina. [Customizing forms with Tina](/guides/gatsby/git/customize-form) is straightforward. We need to define a JavaScript object to declare the desired form fields for Tina to render.
 
@@ -301,7 +309,7 @@ export default inlineRemarkForm(Post, FormConfig)
 
 In the `FormConfig`, we're using `text`, `markdown`, `date`, and even `image` fields to make the post authoring experience nicer. Tina has [a bunch](https://tinacms.org/docs/plugins/fields/) of built-in fields, and even allows you to [add your own](https://tinacms.org/docs/plugins/fields/custom-fields).
 
-The `image` field can be tricky to configure. For the _post image_, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from the uploaded image.
+The `image` field can be tricky to configure. For the *post image*, we need Tina to handle image uploads, as well as update previews. To configure uploads, you declare the upload directory and parse out a preview thumbnail from the uploaded image.
 
 ```javascript
 {
@@ -321,7 +329,7 @@ The `image` field can be tricky to configure. For the _post image_, we need Tina
 }
 ```
 
-Putting all that together, our sidebar looks a _lot_ more inviting and easier to work with.
+Putting all that together, our sidebar looks a *lot* more inviting and easier to work with.
 
 ![We have a sidebar that's nice!](/img/blog/gatsby-tina-101/madalyn_blog_2.png)
 
@@ -474,7 +482,7 @@ Before adding the inline editor, we had a `div` that renders internal HTML. To c
 
 Since it's wrapping Markdown body, we assign the `name` prop the value `rawMarkdownBody`. To render the WYSIWYG editor, we pass in the `Wysiwyg` component from `@tinacms/fields` as a property. **Tina renders this component when "edit mode" is active.**
 
-Of course, we also have to import the relevant Tina components to be able to _use_ them:
+Of course, we also have to import the relevant Tina components to be able to *use* them:
 
 ```javascript
 import { Wysiwyg } from '@tinacms/fields'
@@ -491,7 +499,7 @@ To finish of our editing experience, all we really need is the ability to add ne
 
 Tina has a type of plugin to create content, aptly named [content creator plugins](/docs/plugins/content-creators). Content creators are like factories that create file objects, except they are "plugged in" to your React site.
 
-Let's make a _content creator plugin_ to author new blog posts. We'll add it in a new directory called "plugins" — `src/blog/plugins/postCreator.js`:
+Let's make a *content creator plugin* to author new blog posts. We'll add it in a new directory called "plugins" — `src/blog/plugins/postCreator.js`:
 
 ```javascript
 // src/blog/plugins/postCreator.js
@@ -574,7 +582,7 @@ What you need in each post will be different for every site. This is the best pa
 
 ### Adding the Plugin to the Site
 
-I wanted content authors to be able to add new posts to the site from anywhere. With this in mind, I added the _content creator_ plugin to the root layout component.
+I wanted content authors to be able to add new posts to the site from anywhere. With this in mind, I added the *content creator* plugin to the root layout component.
 
 The `withPlugin` Higher-Order Component allows you to register new plugins to Tina with ease:
 
@@ -607,7 +615,7 @@ const Layout = props => (
 export default withPlugin(Layout, CreatePostPlugin)
 ```
 
-`withPlugin` is another Higher-Order Component — it **adds a plugin to the sidebar when the component it wraps is being rendered**. Since `Layout` is at the root of every page in _Tyra_, content authors can add posts from anywhere in the site!
+`withPlugin` is another Higher-Order Component — it **adds a plugin to the sidebar when the component it wraps is being rendered**. Since `Layout` is at the root of every page in *Tyra*, content authors can add posts from anywhere in the site!
 
 Now we can use our new plugin in the sidebar! Hitting the "plus" icon in the sidebar will provide an option to create a new blog post. If we click that, our plugin's form pops up in a modal.
 
@@ -619,11 +627,11 @@ That's all it takes to create a basic blog CMS with Tina! 🎉 We've allowed con
 
 This only scratches the surface of what you can build using Tina. If you want to go further, there's several more advanced features you can use to expand your Gatsby site!
 
-- Creating [custom form fields](https://tinacms.org/docs/plugins/fields/custom-fields) for new data types,
-- Or adding [block-level editing](https://tinacms.org/docs/plugins/fields/blocks) to allow for completely custom pages!
+* Creating [custom form fields](https://tinacms.org/docs/plugins/fields/custom-fields) for new data types,
+* Or adding [block-level editing](https://tinacms.org/docs/plugins/fields/blocks) to allow for completely custom pages!
 
 The Tina project is also [active on GitHub](https://github.com/tinacms/tinacms), with a [guide to contribution](https://tinacms.org/docs/contributing/guidelines) if you want to hack on the code!
 
----
+***
 
 Thanks for reading! I had a bunch of fun working with TinaCMS and Gatsby for this project. If you have any questions or want to point out something I missed, please feel free to [shoot me an email](https://madelyneriksen.com/contact). Tell me what's on your mind!

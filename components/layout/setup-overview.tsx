@@ -1,33 +1,33 @@
-import React from 'react'
-import { NextSeo } from 'next-seo'
-import { DocsLayout } from '../../components/layout'
-import { useRouter } from 'next/router'
-import * as ga from '../../utils/ga'
-import { Actions } from '../blocks/ActionsButton'
+import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { DocsLayout } from '../../components/layout';
+import * as ga from '../../utils/ga';
+import { Actions } from '../blocks/ActionButton/ActionsButton';
 
 const pageData = {
   title: 'Getting Started',
   excerpt: 'Whatever',
-}
+};
 
 const OverviewTemplate = (props) => {
-  const router = useRouter()
-  const isBrowser = typeof window !== `undefined`
+  const router = useRouter();
+  const isBrowser = typeof window !== `undefined`;
 
   React.useEffect(() => {
     const handleRouteChange = (url) => {
-      ga.pageview(url)
-    }
+      ga.pageview(url);
+    };
     //When the component is mounted, subscribe to router changes
     //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange);
 
     // If the component is unmounted, unsubscribe
     // from the event with the `off` method
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   const cards = [
     {
@@ -52,7 +52,7 @@ const OverviewTemplate = (props) => {
       description: 'Migrate an existing Forestry site to TinaCMS',
       link: 'https://tina.io/docs/forestry/overview/',
     },
-  ]
+  ];
 
   return (
     <>
@@ -72,8 +72,7 @@ const OverviewTemplate = (props) => {
             <h1>Getting Started With Tina</h1>
             <hr />
             <blockquote>
-              TinaCMS supports the latest LTS version of Node. We currently 
-              support v18, v20, and v22 of Node with NPM, PNPM, and Yarn.
+              TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.
             </blockquote>
             <p className="intro-text">
               Tina is a Git-backed headless content management system that
@@ -182,7 +181,7 @@ const OverviewTemplate = (props) => {
         `}</style>
       </DocsLayout>
     </>
-  )
-}
+  );
+};
 
-export default OverviewTemplate
+export default OverviewTemplate;
