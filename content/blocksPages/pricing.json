@@ -504,9 +504,9 @@
       "_template": "table"
     },
     {
-      "headline": "Features Included for ALL TinaCMS Plans",
-      "text": "",
-      "_template": "hero"
+      "title": "Features Included for ALL TinaCMS Plans",
+      "color": "seafoam",
+      "_template": "faq"
     },
     {
       "highlightColumn": [
