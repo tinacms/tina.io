@@ -170,7 +170,7 @@ const SearchBody = ({ results, activeItem }: { results: any; activeItem: string 
             <h2 className="text-xl font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {item.title}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-sm font-light break-words">
+            <p className="text-gray-600 group-hover:text-gray-800 text-sm font-light line-clamp-3 break-words">
               {item.excerpt}
             </p>
           </Link>
