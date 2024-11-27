@@ -92,14 +92,17 @@ const SearchHeader = ({ query }: { query: string }) => {
 const SearchSlider = ({ query }: { query: string }) => {
   const [activeTab, setActiveTab] = useState('DOCS');
   const [algoliaSearchResults, setAlgoliaSearchResults] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchResults = async () => {
+      setIsLoading(true);
       if (query) {
         const results = await fetchAlgoliaSearchResults(query);
         setAlgoliaSearchResults(results);
         console.log('Search Results:', algoliaSearchResults?.docs);
       }
+      setIsLoading(false);
     };
 
     fetchResults();
@@ -154,6 +157,7 @@ const SearchSlider = ({ query }: { query: string }) => {
             Results
           </div>
         </div>
+        {isLoading && <div className='pt-10 text-2xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner'>Loading...</div>}
         <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
       </div>
     </div>
