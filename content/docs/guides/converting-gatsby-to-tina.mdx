@@ -1,6 +1,6 @@
 ---
 title: Converting an existing Gatsby project to TinaCMS
-last_edited: '2024-10-29T23:49:16.294Z'
+last_edited: '2024-11-11T00:11:37.036Z'
 next: content/docs/cli-overview.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -15,7 +15,6 @@ In this tutorial, we'll guide you through converting an existing Gatsby MDX blog
 
 There are a few limitations to the approach outlined in this guide.
 
-- No visual editing support
 - Loss of Gatsby's image optimization
 - Gatsby uses GitHub Flavored Markdown, which TinaCMS does not fully support
 
@@ -39,8 +38,8 @@ npx @tinacms/cli@latest init
 After running the command above you'll receive a few prompts
 
 1. When prompted to select a framework select `other`
-2. Choose `NPM` as your package manager
-3. When asked if you'd like to use Typescript choose `no`
+2. Choose `yarn` as your package manager
+3. When asked if you'd like to use Typescript choose `yes`
 4. Set the public assets location to `public`
 
 ## Setting up Gatsby for Tina
@@ -53,13 +52,17 @@ export default defineConfig({
 // ...
 ```
 
-Next, add these lines in `gatsby-node.js`
+Next, we'll set up the URL for the visual editor using Express.
 
 ```diff
-+ const express = require("express");
-+ exports.onCreateDevServer = ({ app }) => {
++ import express from "express";
+//...
++ const onCreateDevServer: GatsbyNode["onCreateDevServer"]  = ({ app }) => {
 +   app.use("/admin", express.static("public/admin"));
 + };
+//...
+- export { createPages, createSchemaCustomization, onCreateNode }
++ export { createPages, createSchemaCustomization, onCreateNode, onCreateDevServer }
 ```
 
 To make sure Tina runs when the app is in development mode, update the startup command in `package.json` as follows:
@@ -77,25 +80,24 @@ To make sure Tina runs when the app is in development mode, update the startup c
   }
 ```
 
-## Configuring our Schema
+To fix any bugs related to conflicting GraphQL versions inside of node modules we'll also force Gatsby to use the same version as TinaCMS in package.json.
 
-Now we've added Tina to our project but it's not pointing at our existing markdown files. Let's fix that.
-
-Open up `tina/config.ts` and change the path to point to our blog directory. We'll also need to update our schema since we'll be working with mdx files.
+Add the following:
 
 ```diff
-schema: {
-  collections: [
-    {
-      name: "post",
-      label: "Posts",
-+     format: "mdx",
--     path: "content/posts"
-+     path: content/blog"
-// ...
+{
+  //...
++  "resolutions": {
++    "graphql": "^15.8.0",
++    "**/graphql": "^15.8.0"
++ }
+}
 ```
 
-We'll also need to change the location where images get uploaded. Since `public` doesn't get tracked in Git.
+## Configuring our Schema
+
+First we'll configure where our images get stored and update the schema so that we're ready to work with markdown files.
+Open `tina/config.ts` and make the following changes.
 
 > By moving our images to `static`, we're ensuring that they'll be tracked in git and bundled at run time.
 
@@ -116,8 +118,8 @@ export default defineConfig({
   },
   media: {
     tina: {
--     mediaRoot: "",
-+     mediaRoot: "images",
+-      mediaRoot: "",
++      mediaRoot: "images"
 -     publicFolder: "public",
 +     publicFolder: "static",
 
@@ -125,146 +127,76 @@ export default defineConfig({
 // ...
 ```
 
-## Setting up TinaMarkdown
-
-With the project set up to use TinaCMS, we still need to switch from Gatsby’s MDX parser to TinaCMS’s. Begin by modifying the GraphQL query in gatsby-node.js to return raw markdown:
-
-```diff
-  const result = await graphql(`
-    {
-      allMdx(sort: { frontmatter: { date: ASC } }, limit: 1000) {
-        nodes {
-          Id
-+         body
-// ...
-```
-
-Using the raw markdown from `body` we can generate an [Abstract Syntax Tree (AST)](https://tina.io/docs/editing/markdown/#rendering-content-with-tinamarkdown) that we can use with TinaMarkdown.
-
-> Tina converts raw markdown into Abstract Syntax Trees containing the HTML needed to structure the page at build time.
-
-\
-To do this, we'll import TinaCMS's markdown parser.
-Add this import to the top of `gatsby-node.js`.
+Next we'll add the existing frontmatter fields to our schema.
+We'll also change the `path` to point to our existing blogs
 
 ```diff
-+ const { parseMDX } = require("@tinacms/dist")
-```
-
-Inside `onCreateNode`, we'll parse out the markdown and serialize the result as a string that can be returned from our page query.
-
-```diff
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-+   createNodeField({
-+     name: `tinaMarkdown`,
-+     node,
-+     value: JSON.stringify(parseMDX(node.body)),
-+   })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
-}
-```
-
-There's still a few parameters we need to provide to `parseMDX` before it can do it's job.
-
-- The second argument is a copy of the field we defined in our `config.js` file
-- The third is a callback function that the parser uses when coming across any image links. We'll use that callback function to update our image URLs to point to the image directory we defined in our config file
-
-```diff
-+ const imageCallback = url => {
-+   return url.replace(/^\./, "/images")
-+ }
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `tinaMarkdown`,
-      node,
-      value: JSON.stringify(
-        parseMDX(
-          node.body,
+schema: {
+    collections: [
+      {
+        ui: {
+          router: ({ document }) => {
+            return document._sys.breadcrumbs[0]
+          },
+        },
+        name: "post",
+        label: "Posts",
+        format: "mdx",
+-       path: "content/posts",
++       path: "content/blog",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
 +          {
-+           type: "rich-text",
-+           name: "body",
-+           label: "Body",
-+           isBody: true,
-+           },
-+           imageCallback
-        )
-      ),
-    })
-// ...
++            type: "datetime",
++            name: "date",
++            label: "Date",
++          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
++          {
++            type: "string",
++            name: "description",
++            label: "Description",
++          },
+
+        ],
+
 ```
 
-Now that we've defined our new custom node we should be ready to use it in our graphql query. Open `src/templates/blog-post.js` and add our custom node to the page query.
+## Updating your images
 
-```
-export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    mdx(id: { eq: $id }) {
-      id
-+     fields {
-+       tinaMarkdown
-+     }
-// ...
-`
-```
+You'll need to reupload your images to match our new media directory.
 
-Now we're ready to parse the formatted markdown into our component. We'll also remove the `children` prop which normally contains the HTML from Gatsby's mdx parser.
+TinaCMS does not currently support relative image directories (e.g. those used for the original blog). You can either port your images by re-uploading them or changing the url to match our media folder.
+
+For example the new image in `content/blog/hello-world/index.mdx` will look like this.
 
 ```diff
-const BlogPostTemplate = ({
-  data: { previous, next, site, mdx: post },
-  location,
-- children,
-}) => {
-  const siteTitle = site.siteMetadata?.title || `Title`
-+ const tinaMarkdownContent = JSON.parse(post.fields.tinaMarkdown)
-  return (
-    <Layout location={location} title={siteTitle}>
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-        </header>
--         {children}
-+         <TinaMarkdown content={tinaMarkdownContent} />
-        <hr />
-  // ...
-  )
-}
+- ![Chinese duck egg](./salty_egg.jpg)
++ ![Chinese duck egg](/images/salty_egg.jpg)
 ```
 
-## Migrating Content
+You'll also need to move the existing images into the new folder we defined.
 
-Unfortunately, we'll need to move images to our media directory to have them appear on our site. In this case, there's only one image.
-
-```powershell
-cp ./content/blog/hello-world/salty_egg.jpg static/images/salty_egg.jpg
+```bash
+  mkdir static/images/
+  cp content/blog/hello-world/salty_egg.jpg static/images/salty_egg.jpg
 ```
 
-We'll also need to update all of the lists to be the same format in `content/blog/hello-world/index.md`
+## Reformatting your markdown
+
+As the hello world sample uses a list type that is unsupported by TinaCMS, we'll update the lists to the supported format manually.
+Make the following changes to `content/blog/hello-world/index.mdx`.
 
 > Note: You may need to update other elements on your site. For unsupported markdown elements in Tina, refer to [our guide](https://tina.io/docs/reference/types/rich-text/?#unsupported-elements).
 
@@ -343,22 +275,614 @@ Add the following to the top of `src/style.css`. This will resize any images in 
 + }
 ```
 
-Congratulations! Your Gatsby MDX blog is now set up with Tina. Run `npm run develop` to test it out.
+Congratulations! Your Gatsby MDX blog is now set up with Tina. Run `yarn develop` to test it out.
+
+## (Recommended) Adding Visual editing
+
+<WarningCallout body="Warning - If you do decide to add visual editing you will need to swap any custom MDX plugins you're using" />
+
+Up until now we've only set up TinaCMS as an editor for our markdown files. The display logic is still being handled by Gatsby's plugins.
+
+There are some pros and cons to using Gatsby's MDX plugin instead of Tina's.
+
+Pros:
+
+- You can use your existing markdown plugins
+
+Cons:
+
+- You won't be able to use React components in your markdown files
+- You won't be get contextual editing when editing your markdown files
+
+Generally, we recommend using Tina's GraphQL API to load your pages, which we'll do now.
+
+Because we'll be using Tina's graphql client for this approach we no longer need to skip it.
+In fact we'll need it to retrieve the GraphQL queries required for visual editing.
+
+```diff
+export default defineConfig({
+-  client: { skip: true },
+// ...
+```
+
+### Generating the pages
+
+First, we'll new types for the response from Tina's GraphQL API and remove the existing ones.
+Modify the types in `src/types.ts` to reflect the new data we'll be getting back from Tina's API.
+
+```diff
+- type PageData = {
+-   id: string
+-   internal: {
+-     contentFilePath: string
+-   }
+-   fields: {
+-     slug: string
+-   }
+- }
+-
+- export { AllPageData, PageData }
+
++ import client from "../tina/__generated__/client"
++ import { Post } from "../tina/__generated__/types"
++
++ type PostResponse = Awaited<ReturnType<typeof client.queries.post>>
++ type AllPostResponse = Awaited<ReturnType<typeof client.queries.postConnection>>
++ type BlogPost = Partial<Post> & {
++   slug: string
++   relativePath: string
++ }
++
++ export { AllPostResponse, BlogPost, PostResponse }
+```
+
+Using these types, we'll add a helper to map out the response from Tina's GraphQL API.
+This will give the page data a similar format to the response from the GraphQL queries we're replacing.
+
+```diff
++ import { AllPostResponse, BlogPost } from "./src/types"
+
++ const mapResponse = (postResponse: AllPostResponse): BlogPost[] => {
++  const mappedResponse = postResponse.data.postConnection.edges.map(edge => {
++    const {
++      title,
++      body,
++      _sys: { breadcrumbs, relativePath },
++    } = edge.node
++    return {
++      relativePath,
++      title,
++      body,
++      slug: breadcrumbs[0],
++    }
++  })
++  return mappedResponse
++ }
+
+```
+
+Next we'll update the `createPages` function to use Tina's GraphQL API to generate the pages and remove the existing call.
+
+```diff
+
+- import { AllPageData } from "./src/types"
+import { AllPostResponse, BlogPost } from "./src/types"
++ import client from "./tina/__generated__/client"
+
+//...
+
+
+export const createPages: GatsbyNode["createPages"] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
+  const { createPage } = actions
+
+  const result = await client.queries.postConnection()
+  const posts: BlogPost[] = mapResponse(result)
+
+
++  const result = await client.queries.postConnection()
++  const posts: BlogPost[] = mapResponse(result)
+
++ // Get all markdown blog posts sorted by date
+
+- const result = await graphql<mdxResponse>(`
+
+-   {
+-     allMdx(sort: { frontmatter: { date: ASC } }, limit: 1000) {
+-       nodes {
+-         id
+-         internal {
+-           contentFilePath
+-         }
+-         fields {
+-           slug
+-         }
+-       }
+-     }
+-   }
+- `)
+
+- if (result.errors) {
+-   reporter.panicOnBuild(
+-     `There was an error loading your blog posts`,
+-     result.errors
+-   )
+-   return
+- }
+- const posts = result!.data!.allMdx.nodes
+```
+
+Using the response from Tina's GraphQL API we'll change the way that pages get generated
+
+```diff
+
+- if (posts.length > 0) {
+-   posts.forEach((post, index) => {
+-     const previousPostId = index === 0 ? null : posts[index - 1].id
+-     const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+
+-     createPage({
+-       path: post.fields.slug,
+-       component: `${blogPost}?__contentFilePath=${post.internal.contentFilePath}`,
+-       context: {
+-         id: post.id,
+-         previousPostId,
+-         nextPostId,
+-       },
+-     })
+-   })
+- }
++  posts.map((post, index) => {
++    if (posts.length > 0) {
++      const previousPostPath =
++        index === 0 ? null : posts[index - 1].relativePath
++      const nextPostPath =
++        index === posts.length - 1 ? null : posts[index + 1].id
++      createPage({
++        path: post.slug,
++        component: blogPost,
++        context: {
++          relativePath: post.relativePath,
++          previousPostPath,
++          nextPostPath,
++        },
++      })
++    }
++  })
+
+```
+
+### Updating the blog post page
+
+First we'll define our types inside of `src/types.ts`.
+
+```diff
+
++ type BlogPostPageProps = {
++   pageContext: BlogPostPageContext
++ }
++
++ type BlogPostPageContext = {
++   relativePath: string
++   previousPostPath: string
++   nextPostPath: string
++ }
+
+- export { AllPostResponse, BlogPost, PostResponse }
++ export { AllPostResponse, BlogPost, PostResponse, BlogPostPageContext, BlogPostPageProps }
+
+
+```
+
+Next we'll use a static query to get the data for our blog post page template.
+
+Add a static query to get the data for the page using Tina.
+
+```diff
++ import { Post } from "../../tina/__generated__/types"
++ import { BlogPostPageProps, PostResponse } from "../types"
+
+//...
+
++ const mapToPostLinkData = (
++   response: PostResponse
++ ): Partial<Post> & { slug: string; title: string } => {
++   return {
++     title: response.data.post.title,
++     slug: response.data.post._sys.breadcrumbs[0],
++   }
++ }
+
++ const getPostLinkData = async (path: string) => {
++   if (!path) return null
++   const post = await client.queries.post({
++     relativePath: path,
++   })
++   return mapToPostLinkData(post)
++ }
+
++ export async function getServerData({ pageContext }: BlogPostPageProps) {
++   const { relativePath, nextPostPath, previousPostPath } = pageContext
++   const { data, query, variables }: PostResponse = await client.queries.post({
++     relativePath: relativePath,
++   })
++   const nextPageData = await getPostLinkData(nextPostPath)
++   const previousPageData = await getPostLinkData(previousPostPath)
++
++   return {
++     props: {
++       query,
++       data,
++       variables,
++       nextPageData,
++       previousPageData,
++     },
++   }
++ }
+```
+
+We'll also update the page query to exclude the markdown from the query since, we'll be using TinaCMS to populate the page instead.
+
+```diff
+export const pageQuery = graphql`
+-  query BlogPostBySlug(
+-    $id: String!
+-    $previousPostId: String
+-    $nextPostId: String
+-  ) {
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+-    mdx(id: { eq: $id }) {
+-      id
+-      frontmatter {
+-        title
+-        date(formatString: "MMMM DD, YYYY")
+-        description
+-      }
+-    }
+-    previous: mdx(id: { eq: $previousPostId }) {
+-      fields {
+-        slug
+-      }
+-      frontmatter {
+-        title
+-      }
+-    }
+-    next: mdx(id: { eq: $nextPostId }) {
+-      fields {
+-        slug
+-      }
+      frontmatter {
+        title
+      }
+    }
+  }
+`
+```
+
+Now that we've configured our page with a new data source we can use the `useTina` hook to implement visual editing.
+
+First update the page props for `BlogPostTemplate`. We'll add in our server fetched data and pull that in using the `useTina` hook
+
+```diff
+
++ import { useTina } from 'tinacms/dist/react'
+//...
+
+- const BlogPostTemplate = ({
+- data: { previous, next, site, mdx: post },
+-  location,
+-  children,
+-}) => {
++ const BlogPostTemplate = ({
++   serverData,
++  data: { site },
++  location
++  }) => {
+
++ const { query, variables, nextPageData, previousPageData } = serverData
++ const { data: tinaData } = useTina({
++   data: serverData.data,
++   query,
++   variables,
++ })
+//...
+```
+
+Then we'll swap out all of the existing data with the data we get back from Tina. Note the addition of the `tinaField` property, which is used to add contextual editing for each of the fields.
+
+```diff
++ import {useTina } from 'tinacms/dist/react'
++ import { TinaMarkdown } from "tinacms/dist/rich-text";
+
+
+//...
+<header>
+-  <h1 itemProp="headline">{post.frontmatter.title}</h1>-
+-  </p>{post.frontmatter.date}<<p>
++  <h1 data-tina-field={tinaField(tinaData.post, 'title')} itemProp="headline">{tinaData.post.title}</h1>
++  <p data-tina-field={tinaField(tinaData.post, 'date')}>{tinaData.date}</p>
+</header>
+- {children}
++ <main data-tina-field={tinaField(tinaData.post, "body")}>
++   <TinaMarkdown content={tinaData.post.body} />
++ </main>
+<hr />
+<footer>
+  <Bio />
+</footer>
+</article>
+<nav className="blog-post-nav">
+<ul
+  style={{
+    display: `flex`,
+    flexWrap: `wrap`,
+    justifyContent: `space-between`,
+    listStyle: `none`,
+    padding: 0,}}>
+  <li>
+-  {previous && (
+-    <Link to={previous.fields.slug} rel="prev">
+-      ← {previous.frontmatter.title}
++  {previousPageData && (
++    <Link to={previousPageData.slug} rel="prev">
++      ← {previousPageData.title}
+        </Link>
+      )}
+    </li>
+    <li>
+
+- {next && (
+-   <Link to={next.fields.slug} rel="next">
+-                {next.frontmatter.title} →
++ {nextPageData && (
++   <Link to={nextPageData.slug} rel="next">
++               {nextPageData.title} →
+```
+
+Don't forget to update the Head component with data from the server as well.
+
+```diff
+- export const Head = ({ data: { mdx: post } }) => {
++ export const Head = ({ serverData }) => {
+  return (
+    <Seo
+-      title={post.title}
++      title={serverData.data.post.title}
+-      description={post.description}
++      description={serverData.data.description}
+    />
+  )
+}
+```
+
+There's one other step we'll do. Unfortunately, our date isn't being formatted using by the graphql query. To fix this we'll use a library to format our date.
+
+```bash
+yarn add dateformat
+```
+
+Then we'll add a `useEffect` to update the date when the date changes. We're using `useEffect` here so that the date will be recomputed when we use the visual editor.
+Using `useState` will cause the date to update when our data source changes.
+
+```diff
+
++ import dateFormat from "dateformat"
+//...
+const BlogPostTemplate = ({ serverData, data: { site }, location }) => {
+  const { query, variables, nextPageData, previousPageData } = serverData
+  const { data: tinaData } = useTina({
+    data: serverData.data,
+    query,
+    variables,
+  })
+  const siteTitle = site.siteMetadata?.title || `Title`
++  const [formattedDate, setFormattedDate] = React.useState(
++    dateFormat(tinaData.post.date, "mmmm dd, yyyy")
++  )
++  React.useEffect(() => {
++    setFormattedDate(dateFormat(tinaData.post.date, "mmmm dd, yyyy"))
++  }, [tinaData.post.date])
+  return (
+    <Layout location={location} title={siteTitle}>
+      <article
+        className="blog-post"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
+        <header>
+         <h1 data-tina-field={tinaField(tinaData.post, "title")} itemProp="headline">{tinaData.post.title}</h1>
+-          <p data-tina-field={tinaField(tinaData.post, "date")}>{post.frontmatter.date}</p>
++          <p data-tina-field={tinaField(tinaData.post, "date")}>{formattedDate}</p>
+
+//...
+
+```
+
+![editing an article's date using the visual editor](</live preview date changes.gif> 'Article date updating in real time')
+
+### Updating the home page
+
+We also need to update the homepage to reflect content changes, as it was previously populated using `gatsby-mdx`. Make the following updates to `src/pages/index.tsx`:
+
+```diff
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+- allMdx(sort: { frontmatter: { date: DESC } }) {
+-       nodes {
+-         fields {
+-           slug
+-         }
+-         frontmatter {
+-           date(formatString: "MMMM DD, YYYY")
+-            title
+-            description
+-          }
+-        }
+-      }
+   }
+`
+}
+```
+
+On the homepage, we’ll need to implement a server-side fetch to retrieve the full list of articles through TinaCMS.
+
+```diff
++ import client from "../../tina/__generated__/client"
+
+//...
+
++ export async function getServerData() {
++   const posts = await client.queries.postConnection()
++   return {
++     props: {
++       posts: posts.data.postConnection.edges.map(edge => {
++         const {
++           title,
++           body,
++           date,
++           _sys: { breadcrumbs },
++           description,
++         } = edge.node
++         return { title, body, date, slug: breadcrumbs[0], description }
++       }),
++     },
++   }
++ }
+```
+
+Then we'll add the server side data to the component.
+
+```diff
+-  const BlogIndex = ({ data, location }) => {
++  const BlogIndex = ({ data, location, serverData }) => {
+  const siteTitle = data.site.siteMetadata?.title || `Title`
+-  const posts = data.allMdx.posts
++  const posts = serverData.posts
+
+//...
+
+```
+
+Finally, we'll use the server side data to populate the landing page. Make the following changes to `src/pages/index.tsx`.
+
+```diff
+
+      <ol style={{ listStyle: `none` }}>
+        {posts.map(post => {
+-          const title = post.frontmatter.title || post.fields.slug
++          const title = post.title || post.slug
+
+          return (
+-            <li key={post.fields.slug}>
++            <li key={post.slug}>
+              <article
+                className="post-list-item"
+                itemScope
+                itemType="http://schema.org/Article"
+              >
+                <header>
+                  <h2>
+-                    <Link to={post.fields.slug} itemProp="url">
++                    <Link to={post.slug} itemProp="url">
+                      <span itemProp="headline">{title}</span>
+                    </Link>
+                  </h2>
+-                  <small>{post.frontmatter.date}</small>
++                  <small>{post.date}</small>
+                </header>
+                <section>
+                  <p
+                    dangerouslySetInnerHTML={{
+-                      __html: post.frontmatter.description,
++                      __html: post.description,
+                    }}
+                    itemProp="description"/>
+//...
+```
+
+We'll also format the date in this file.
+
+> Note: we don't need to use the `useTina` hook here because the homepage is static.
+
+```diff
++ import formatDate from "dateformat"
+//...
+<ol style={{ listStyle: `none` }}>
+  {posts.map(post => {
++    const formattedDate = formatDate(post.date, "mmmm mm, yyyy")
+    const title = post.title || post.slug
+
+    return (
+      <li key={post.slug}>
+        <article
+          className="post-list-item"
+          itemScope
+          itemType="http://schema.org/Article"
+        >
+          <header>
+            <h2>
+              <Link to={post.slug} itemProp="url">
+                <span itemProp="headline">{title}</span>
+              </Link>
+            </h2>
+-            <small>{post.date}</small>
++            <small>{formattedDate}</small>
+          </header>
+          <section>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: post.description,
+              }}
+              itemProp="description"
+//...
+```
+
+The final step for enabling contextual editing is to configure the `routing` property of our collection.
+This setting will ensure that we navigate to the correct page when opening a file in TinaCMS's visual editor.
+Since each blog post is stored in its own folder within the `content` directory, we can use the first folder in the breadcrumbs array to determine the correct path.
+
+```diff
+  schema: {
+    collections: [
+      {
++        ui: {
++          router: ({ document }) => {
++            return document._sys.breadcrumbs[0]
++          },
++        },
+```
 
 ## (Optional) Adding React components
 
-You can create React components in Gatsby as well, but you'll need to do some additional configuration compared to other frameworks.
-
-First, we'll modify the schema for our blog posts, defining the new React component we're planning to add.
+You can also add custom React components in Gatsby. First, update the schema for your blog posts to define the new React component you plan to add.
 
 ```diff
-schema: {
+  schema: {
     collections: [
       {
-        name: "posts",
+        ui: {
+          router: ({ document }) => {
+            return document._sys.breadcrumbs[0]
+          },
+        },
+        name: "post",
         label: "Posts",
-        path: "content/blog",
         format: "mdx",
+        path: "content/blog",
         fields: [
           {
             type: "string",
@@ -368,23 +892,28 @@ schema: {
             required: true,
           },
           {
+            type: "datetime",
+            name: "date",
+            label: "Date",
+          },
+          {
             type: "rich-text",
             name: "body",
             label: "Body",
             isBody: true,
-+            templates: [
-+              {
-+                name: "RichBlockQuote",
-+                label: "Rich Block Quote",
-+                fields: [
-+                  {
-+                    name: "children",
-+                    label: "Body",
-+                    type: "rich-text",
-+                  },
-+                ],
-+              },
-+            ],
++           templates: [
++           {
++             name: "RichBlockQuote",
++             label: "Rich Block Quote",
++             fields: [
++               {
++                 name: "children",
++                 label: "Body",
++                 type: "rich-text",
++               },
++             ],
++           },
++         ],
           },
         ],
       },
@@ -392,41 +921,7 @@ schema: {
   },
 ```
 
-Then we'll provide the new schema information to our MDX parser function, ensuring that it knows what to do when it encounters our custom element.
-
-```diff
-createNodeField({
-    name: `tinaMarkdown`,
-    node,
-    value: JSON.stringify(
-      parseMDX(
-        node.body,
-        {
-          type: "rich-text",
-          name: "body",
-          label: "Body",
-          isBody: true,
-+          templates: [
-+            {
-+              name: "RichBlockQuote",
-+              label: "Rich Block Quote",
-+              fields: [
-+                {
-+                  name: "children",
-+                  label: "Body",
-+                  type: "rich-text",
-+                },
-+              ],
-+            },
-+          ],
-        },
-        imageCallback
-      )
-    ),
-  })
-```
-
-Next, we'll define how the custom component will look in `blog-post.js`. We'll be parsing the child of the component into our TinaMarkdown renderer to give us rich text editing capabilities.
+Next, we'll define how the custom component will look in `blog-post.tsx`. We'll be parsing the child of the component into our `TinaMarkdown` renderer to give us rich text editing capabilities.
 
 ```diff
 + const components = {
@@ -455,7 +950,7 @@ Go check out the starter template on [tina.io](https://tina.io/docs/introduction
 The last thing you'll need to do is pass our component list to the `components` prop of our `TinaMarkdown` component.
 
 ```diff
-  return (
+return (
     <Layout location={location} title={siteTitle}>
       <article
         className="blog-post"
@@ -463,13 +958,17 @@ The last thing you'll need to do is pass our component list to the `components` 
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1
+            data-tina-field={tinaField(tinaData.post, "title")}
+            itemProp="headline"
+          >
+            {tinaData.post.title}
+          </h1>
+          <p data-tina-field={tinaField(tinaData.post, "date")}>
+            {formattedDate}
+          </p>
         </header>
-
--        <TinaMarkdown content={tinaMarkdownContent} />
+        <main data-tina-field={tinaField(tinaData.post, "body")}>
+          <TinaMarkdown content={tinaMarkdownContent} />
 +        <TinaMarkdown content={tinaMarkdownContent} components={components} />
-      // ...
 ```
-
-You're all done! You should be able to add our new component to your articles now.

@@ -1,14 +1,21 @@
 ---
+seo:
+  title: Tina CMS & Level.js | TinaCMS Blog
+  description: >-
+    Learn how TinaCMS integrates with Level.js to improve your content
+    management, providing devs with powerful tools for scalable and efficient
+    solutions
 title: TinaCMS & Level.js
 date: '2023-10-17T04:00:00.000Z'
 last_edited: '2023-10-17T04:00:00.000Z'
 author: Kelly Davis
 prev: content/blog/Supercharge-Your-Markdown-Blog-with-AI.mdx
+next: ''
 ---
 
 TinaCMS is an open-source, Git-backed headless content management system (CMS) with a unique approach to content storage and retrieval. In this article, we are going to dive into its architecture and discover how Level.js strikes the perfect balance between simplicity and functionality needed by Tina.
 
-<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/homepage-demo-2b_lmoaj8.webm"/>
+<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/homepage-demo-2b_lmoaj8.webm" />
 
 # The Challenge of Building a CMS on Git
 
@@ -66,7 +73,7 @@ At this point, some readers might wonder how Tina handles schema migrations give
 
 The benefits of using Level.js in Tina go beyond just powering the Tina API. We recently added a search feature that allows the editor to perform full text searches to locate content.
 
-<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/search-demo.webm"/>
+<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/search-demo.webm" />
 
 Originally, we planned on providing some integration with an existing solution like Algolia, but again we wanted to enable the simple local development experience while maintaining consistency between local development and hosted production sites. The solution presented itself in [Fergus McDowall’s](https://github.com/fergiemcdowall) [search-index](https://www.npmjs.com/package/search-index) library. This library provides an embeddable full-text search engine and is built on top of Level.js. Because it uses Level.js, it can be used with any database that has a Level.js store implementation. Using this library, Tina is able to provide full featured search both in local development and in the production hosted site with full feature parity.
 

@@ -1,4 +1,9 @@
 ---
+seo:
+  title: 'Read-Only Tokens: Access Content Anytime | TinaCMS Blog'
+  description: >-
+    Learn how to use read-only tokens in TinaCMS to securely access and display
+    content anytime, even without full editing permissions.
 title: Read-only tokens - Query Requests anytime
 date: '2022-04-05T07:00:00.000Z'
 author: James Perkins
@@ -11,9 +16,9 @@ Read-only tokens allow you to query data from your project at any point in your 
 
 Below are some use cases for Read-only tokens
 
-- Server Side Rendering
-- Client Side fetching
-- Runtime server logic
+* Server Side Rendering
+* Client Side fetching
+* Runtime server logic
 
 ## How to use Read-only tokens?
 
@@ -144,14 +149,14 @@ Up until now most Tina users use `fallback: blocking` for creating new pages wit
 
 This comes with issues:
 
-1.  You no longer have fallback pages by default (404 pages), any navigation will be served even if it’s a blank page.
-2.  You need a way to handle when there is data, no data or no page.
+1. You no longer have fallback pages by default (404 pages), any navigation will be served even if it’s a blank page.
+2. You need a way to handle when there is data, no data or no page.
 
 With Read-only tokens this has a lot less developer friction and a better user experience, we can break the getStaticsProps code into three paths.
 
-1.  Data is returned (this is the code you’ve had before)
-2.  Data is not returned, so fetch it using read-only tokens. If it’s there, return it.
-3.  Data is not returned, data is not returned using read-only tokens, so return a fallback page.
+1. Data is returned (this is the code you’ve had before)
+2. Data is not returned, so fetch it using read-only tokens. If it’s there, return it.
+3. Data is not returned, data is not returned using read-only tokens, so return a fallback page.
 
 ```javascript
 import { staticRequest } from 'tinacms'
@@ -220,9 +225,9 @@ export const getStaticProps = async (ctx) => {
 
 The code above does a lot of different things, so let us break it down into the sections stated previously:
 
-1.  The original request which produces data, will return data, query and variables.
-2.  If there is no data returned, we set the error flag to true. If the error flag is true, we attempt to use read-only tokens to retrieve your data and return it to be displayed to the user, or to the content editor.
-3.  If there is no data returned and the read-only token returns no data, we return `notFound: true` (this is a special flag for Next.js). This flag will return your 404 error page as well as `404` in the status code.
+1. The original request which produces data, will return data, query and variables.
+2. If there is no data returned, we set the error flag to true. If the error flag is true, we attempt to use read-only tokens to retrieve your data and return it to be displayed to the user, or to the content editor.
+3. If there is no data returned and the read-only token returns no data, we return `notFound: true` (this is a special flag for Next.js). This flag will return your 404 error page as well as `404` in the status code.
 
 ## How to keep up to date with Tina?
 
@@ -234,10 +239,10 @@ You can subscribe by following this link and entering your email: [https://tina.
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-- To get help with issues
-- Find the latest Tina news and sneak previews
-- Share your project with Tina community, and talk about your experience
-- Chat about the Jamstack
+* To get help with issues
+* Find the latest Tina news and sneak previews
+* Share your project with Tina community, and talk about your experience
+* Chat about the Jamstack
 
 ### Tina Twitter
 

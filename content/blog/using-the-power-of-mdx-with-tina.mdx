@@ -1,8 +1,13 @@
 ---
+seo:
+  title: Using the Power of MDX with Tina | TinaCMS Blog
+  description: >-
+    Learn how to leverage MDX in TinaCMS for combining Markdown with React
+    components, enabling more dynamic and customizable content management.
 title: Using the power of MDX with Tina
 date: '2021-12-09T12:09:32-04:00'
-author: James Perkins
 last_edited: '2021-12-09T12:09:32-04:00'
+author: James Perkins
 ---
 
 # Using the power of MDX with Tina
@@ -29,7 +34,7 @@ npx @tinacms/cli@latest init
 When you are asked if you want to replace your `_app.js` file, select Y as we want our init command to take care of adding the Tina specific code.
 Step 3: Test Tina
 
-Run `yarn dev` from the project directory and navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld) , you can then enter edit mode by navigating to http://localhost:3000/admin
+Run `yarn dev` from the project directory and navigate to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld) , you can then enter edit mode by navigating to [http://localhost:3000/admin](http://localhost:3000/admin)
 
 ## Using Tina rich editor
 
@@ -65,7 +70,7 @@ to
 
 We will fill in the `templates` section with all of our components later, we are just replacing the `textArea` with our Rich Text editor which allows us to use markdown and MDX components.
 
-### Updating our [filename].js
+### Updating our \[filename].js
 
 Firstly, we need to remove all the code we no longer need. Let us go ahead and remove all the code in the tag including the tags itself:
 
@@ -119,7 +124,7 @@ Then on line 234 we can replace the div that held the parsed markdown with our T
 + <TinaMarkdown content={content} />
 ```
 
-Go ahead and run `yarn dev` and navigate back to http://localhost:3000/demo/blog/HelloWorld you'll notice that the editing experience has changed, with the ability to insert markdown and a new button called "Embed".
+Go ahead and run `yarn dev` and navigate back to [http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld) you'll notice that the editing experience has changed, with the ability to insert markdown and a new button called "Embed".
 
 ![Tina Markdown Example](/img/blog/using-the-power-of-mdx-with-tina/Tina-markdown-demo.png)
 

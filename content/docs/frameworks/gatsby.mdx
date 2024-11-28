@@ -10,6 +10,8 @@ previous: content/docs/frameworks/hugo.mdx
 
 TinaCMS can be added to your Gatsby site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
 
+> You can reference our [Tina Gatsby Starter](https://github.com/tinacms/tina-gatsby-starter) for an example.
+
 ## Getting Started
 
 From within your site's directory, run:
@@ -32,22 +34,26 @@ For Gatsby sites, you may run into the following error:
 > "Duplicate "graphql" modules cannot be used at the same time since different versions may have different capabilities and behavior."
 ```
 
-To work around this, add the following lines to your **tina/config.ts** file.
+To work around this, add the following lines to your **package.json** file.
 
 ```diff
-export default defineConfig({
-+  client: { skip: true },
-// ...
++  "resolutions": {
++    "graphql": "^15.8.0",
++    "**/graphql": "^15.8.0"
++  },
 ```
+That way you can force the graphql version to be the one Tina needs.
 
-### Allowing static /admin/index.html file in dev-mode
+> To be sure which version you need, you can run `npm list graphql` in your project folder
 
-Depending on your Gatsby version, you may need to add the following code to your **gatsby-node.js** file, so that the Tina admin is accessible in dev-mode.
+### Allowing static `/admin/index.html` file in dev-mode
+
+To make Tina admin accessible in dev-mode, you will need to add the following code to your **gatsby-node.ts** file.
 
 ```diff
-+ const express = require("express");
++ import express, { Express } from "express";
 
-+ exports.onCreateDevServer = ({ app }) => {
++ exports.onCreateDevServer = ({ app }: { app: Express }) => {
 +   app.use("/admin", express.static("public/admin"));
 + };
 ```

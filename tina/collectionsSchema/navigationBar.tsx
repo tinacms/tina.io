@@ -1,7 +1,7 @@
 const modals = ['BookDemo', 'EmailForm'];
 const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
-import { modalButtonTemplateFields } from '../../components/blocks/ModalButton.template';
+import { modalButtonTemplateFields } from '../../components/blocks/ModalButton/ModalButton.template';
 
 export const navigationBarCollection = {
   label: 'Navigation Bar',
@@ -99,7 +99,7 @@ export const navigationBarCollection = {
             },
           },
           fields: [
-            ...modalButtonTemplateFields, 
+            ...modalButtonTemplateFields,
             {
               name: 'icon2',
               label: 'Icon',
