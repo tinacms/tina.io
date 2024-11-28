@@ -37,7 +37,7 @@ const Testimonial = ({ data, ...props }) => {
                 }`}
               src={data.avatar}
             />
-            <div className="block absolute w-full h-full top-0 left-0 rounded-full shadow-[inset_0_0_0_1px_rgba(66,_153,_225,_0.2)]"></div>
+            <div className="block absolute w-full h-full top-0 left-0 rounded-full"></div>
           </div>
         )}
         <div className="flex flex-col">

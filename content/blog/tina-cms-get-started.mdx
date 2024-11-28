@@ -1,4 +1,9 @@
 ---
+seo:
+  title: Get Started with TinaCMS | TinaCMS Blog
+  description: >-
+    A beginner’s guide to getting started with TinaCMS, covering installation,
+    basic configuration, and tips for managing your site’s content effectively.
 title: Tina CMS - Get started
 date: '2022-03-04T08:00:00-04:00'
 author: James Perkins
@@ -10,7 +15,7 @@ Until now, as a Tina user, you have enjoyed visual editing when interacting with
 
 In order to give the best experience to all users, Tina now offers two ways to edit content, visual editing and a more traditional looking CMS. Except with our traditional CMS, we are still powered by Markdown, JSON, or MDX and backed by Git. Here is a quick GIF of what it looks like implemented on a deployed website:
 
-<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/example.webm"/>
+<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/example.webm" />
 
 ### How to implement Tina?
 
@@ -80,11 +85,11 @@ Now you have seen Tina editing in action, let’s make the Next.js starter conte
 
 ### Collections
 
-The top-level key in the schema is an array of _collections_, a `collection` informs the API about _where_ to save content. In our guide there will be a `posts` collection but you also could have `author` and `pages` collections, for example.
+The top-level key in the schema is an array of *collections*, a `collection` informs the API about *where* to save content. In our guide there will be a `posts` collection but you also could have `author` and `pages` collections, for example.
 
 ### Fields
 
-The "fields" property instructs the Content API of the type of content expected. For example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files. These fields should map to your _frontmatter_ and we also use this to create the UI elements for editing.
+The "fields" property instructs the Content API of the type of content expected. For example, `text`, as well as the queryable name and the name to display to your content team. Fields are an array of objects that are a child of collections. We use this to retrieve the content from the Markdown or JSON files. These fields should map to your *frontmatter* and we also use this to create the UI elements for editing.
 
 ```ts
 fields: [
@@ -105,7 +110,7 @@ fields: [
 
 ### References
 
-We also have `reference` fields. This is an important concept, when you _reference_ another collection, you're effectively saying: "this document _belongs to_ that document". A great example of using a reference is _author_, as each post would have an author and you could have multiple authors, but you need to reference a particular author to the post.
+We also have `reference` fields. This is an important concept, when you *reference* another collection, you're effectively saying: "this document *belongs to* that document". A great example of using a reference is *author*, as each post would have an author and you could have multiple authors, but you need to reference a particular author to the post.
 
 ```ts
 {
@@ -244,7 +249,7 @@ export default defineSchema({
 
 There are a couple of things you might notice. First, there is a `type` called `object`, this works as a way to group fields together. On the UI which you will see in the future, it allows you to click into and edit each individual field.
 
-Second, there's a `string` field called `body` with `isBody` set to true. By setting `isBody` to true we're stating that this field is responsible for the main _body_ of the Markdown file. There can only be one field with the `isBody: true` property.
+Second, there's a `string` field called `body` with `isBody` set to true. By setting `isBody` to true we're stating that this field is responsible for the main *body* of the Markdown file. There can only be one field with the `isBody: true` property.
 
 ## One final test
 
@@ -266,10 +271,10 @@ You know that you will want to be part of this creative, innovative, supportive 
 
 Tina has a community [Discord](https://discord.com/invite/zumN63Ybpf) that is full of Jamstack lovers and Tina enthusiasts. When you join you will find a place:
 
-- To get help with issues
-- Find the latest Tina news and sneak previews
-- Share your project with Tina community, and talk about your experience
-- Chat about the Jamstack
+* To get help with issues
+* Find the latest Tina news and sneak previews
+* Share your project with Tina community, and talk about your experience
+* Chat about the Jamstack
 
 ### Tina Twitter
 
