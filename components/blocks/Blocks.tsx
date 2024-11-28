@@ -31,7 +31,7 @@ import { SpacerComponent } from './Spacer/Spacer';
 import { TestimonialsBlock } from './Testimonial/Testimonials';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
-
+import TableBox from './Table/table';
 
 export const Blocks = ({
   blocks,
@@ -65,6 +65,8 @@ export const Blocks = ({
             index={index}
           />
         );
+      case 'PageBlocksTable':
+        return <TableBox data={block} index={index} />;
       case 'PageBlocksMediaComponent':
         return <MediaComponent key={`block-${index}`} data={block} />;
       case 'PageBlocksBooking':
@@ -86,9 +88,7 @@ export const Blocks = ({
           <ColumnsBlock key={`block-${index}`} data={block} index={index} />
         );
       case 'PageBlocksRecipeBlock':
-        return (
-          <RecipeBlock data={block}/>
-        )
+        return <RecipeBlock data={block} />;
       case 'PageBlocksShowcase':
         return (
           <ShowcaseItemsBlock
