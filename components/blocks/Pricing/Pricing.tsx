@@ -113,8 +113,8 @@ const PaidTier = ({ data, isMonthly }) => {
             </span>
           )}
         </div>
-        <div className="pt-1 text-stone-600 text-sm">
-          {!isMonthly ? data.annualDescription : ''}
+        <div className={`py-1 text-stone-600 text-sm ${isMonthly ? 'text-transparent' : ''} `}>
+          {data.annualDescription}
         </div>
         <div className="pt-3 flex">
           {data.buttons &&
