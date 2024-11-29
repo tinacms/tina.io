@@ -257,6 +257,7 @@ const SearchHeader = ({ query }: { query: string }) => {
       <div className="flex text-end gap-6 items-center">
         {/* Filter Button */}
         <div className="relative">
+          {/* TODO: Implement Feature and Sort buttons - https://github.com/tinacms/tina.io/issues/2550 */}
           {/* <button
             className="flex items-center gap-1 text-sm"
             onClick={toggleFilterDropdown}
@@ -282,7 +283,7 @@ const SearchHeader = ({ query }: { query: string }) => {
         </div>
 
         {/* Sort Button */}
-        <div className="relative">
+        {/* <div className="relative">
           <button
             className="flex items-center gap-1 text-sm"
             onClick={toggleSortDropdown}
@@ -305,7 +306,7 @@ const SearchHeader = ({ query }: { query: string }) => {
               ))}
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
