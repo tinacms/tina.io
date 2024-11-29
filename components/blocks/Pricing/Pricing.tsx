@@ -113,8 +113,12 @@ const PaidTier = ({ data, isMonthly }) => {
             </span>
           )}
         </div>
-        <div className="pt-1 text-stone-600 text-sm">
-          {!isMonthly ? data.annualDescription : ''}
+        <div
+          className={`py-1 text-stone-600 text-sm transition-all duration-500 ${
+            isMonthly ? 'animate-fadeOut opacity-0' : 'animate-fadeIn opacity-100'
+          } ${!data.annualDescription ? 'mt-5' : ''}`}
+        >
+          {data.annualDescription } {' '}
         </div>
         <div className="pt-3 flex">
           {data.buttons &&
@@ -149,7 +153,9 @@ const PaidTier = ({ data, isMonthly }) => {
                         </div>
                         {item.description && (
                           <div className="my-1 ml-5 text-md text-gray-600/70">
-                            {!isMonthly ? (item.annualDescription ?? item.description) : item.description }
+                            {!isMonthly
+                              ? item.annualDescription ?? item.description
+                              : item.description}
                           </div>
                         )}
                       </div>
@@ -172,7 +178,9 @@ const PaidTier = ({ data, isMonthly }) => {
                       </div>
                       {item.description && (
                         <div className="my-1 ml-5 text-sm text-gray-600/70">
-                          {!isMonthly ? (item.annualDescription ?? item.description) : item.description }
+                          {!isMonthly
+                            ? item.annualDescription ?? item.description
+                            : item.description}
                         </div>
                       )}
                     </div>
@@ -244,11 +252,17 @@ export function PillSwitch({
         </div>
         <div className="flex flex-col md:flex-row md:items-center pt-4 pb-8">
           <div className="flex items-start md:items-center md:pt-0 justify-center md:justify-start pl-1 md:pl-10">
-           <TinaMarkdown components={docAndBlogComponents} content={visibleText}/>
+            <TinaMarkdown
+              components={docAndBlogComponents}
+              content={visibleText}
+            />
           </div>
           {isMonthly && (
             <div className="flex items-center pl-1 md:pt-0 transition-opacity justify-center duration-500 ease-in-out text-black opacity-100">
-              <TinaMarkdown components={docAndBlogComponents} content={toggleText}/>
+              <TinaMarkdown
+                components={docAndBlogComponents}
+                content={toggleText}
+              />
             </div>
           )}
         </div>
