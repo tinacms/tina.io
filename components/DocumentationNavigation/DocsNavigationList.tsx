@@ -248,7 +248,7 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   return (
     <>
       <DocsNavigationContainer ref={navListElem}>
-        {navItems.map((categoryData) => (
+        {navItems?.map((categoryData) => (
           <NavLevel
             key={
               'mobile-' +

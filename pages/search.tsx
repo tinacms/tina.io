@@ -2,13 +2,235 @@ import { GetStaticProps } from 'next';
 import client from 'tina/__generated__/client';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import { Layout } from 'components/layout';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 
 import { MdSort } from 'react-icons/md';
-import { MdFilterAlt } from 'react-icons/md';
 import { useEffect, useRef, useState } from 'react';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
 import Link from 'next/link';
+import { HiMagnifyingGlass } from 'react-icons/hi2';
+import { DocsNavigationList } from 'components/DocumentationNavigation/DocsNavigationList';
+import { formatTableofContentsData, getDocsNav } from 'utils/docs/getDocProps';
+import { VersionSelect } from 'components/DocumentationNavigation/VersionSelect';
+
+const SearchResultsOverflowBody = ({
+  results,
+  activeItem,
+  query,
+  numberOfResults,
+  isLoading,
+}: {
+  results: any;
+  activeItem: string;
+  query: string;
+  numberOfResults: number;
+  isLoading: boolean;
+}) => {
+  const bodyItem = activeItem === 'DOCS' ? results?.docs : results?.blogs;
+  return (
+    <div className="mt-2 py-2 overflow-x-scroll max-h-[45vh]">
+      {bodyItem?.results.slice(0, 10).map((item: any) => (
+        <div key={item.objectID} className="py-2 px-4 border-b group">
+          <Link href={`/${activeItem.toLowerCase()}/${item.slug}`}>
+            <h2 className="text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
+              {item.title}
+            </h2>
+            <p className="text-gray-600 group-hover:text-gray-800 text-xxs font-light line-clamp-3 break-words">
+              {item.excerpt}
+            </p>
+          </Link>
+        </div>
+      ))}
+      <div>
+        {numberOfResults > 0 ? (
+          <Link
+            className="underline decoration-dotted"
+            href={`/search?query=${encodeURIComponent(query)}`}
+          >
+            <div className="pt-4 px-4 text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent hover:from-orange-300 hover:via-orange-400 hover:to-orange-600">
+              See All {numberOfResults} Results
+            </div>
+          </Link>
+        ) : (
+          !isLoading && (
+            <div className="pt-4 px-4 text-md font-inter font-semibold text-gray-500">
+              No Llamas Found...
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
+
+const SearchResultsOverflowSlider = ({ query }) => {
+  console.log('you passed me', query);
+  const [activeTab, setActiveTab] = useState('DOCS');
+  const [algoliaSearchResults, setAlgoliaSearchResults] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      setIsLoading(true);
+      setAlgoliaSearchResults(null);
+      if (query) {
+        const results = await fetchAlgoliaSearchResults(query);
+        setAlgoliaSearchResults(results);
+      }
+      setIsLoading(false);
+    };
+
+    fetchResults();
+  }, [query]);
+
+  console.log('Mini Search Results:', algoliaSearchResults);
+
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const activeTabIndex = activeTab === 'DOCS' ? 0 : 1;
+  const activeTabElement = tabRefs.current[activeTabIndex];
+  const left = activeTabElement?.offsetLeft || 0;
+  const width = (activeTabElement?.offsetWidth || 0) + 30;
+  const numberOfResults =
+    algoliaSearchResults?.docs?.count + algoliaSearchResults?.blogs?.count;
+
+  return (
+    <div className="pt-2 w-full border-b">
+      <div className="max-w-screen-xl mx-auto pb-2">
+        <div className="flex justify-between items-center">
+          {/* Navigation Buttons */}
+          <nav className="relative flex gap-16 px-4">
+            <button
+              ref={(el) => (tabRefs.current[0] = el)}
+              className={`font-inter font-semibold text-lg ${
+                activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
+              }`}
+              onClick={() => setActiveTab('DOCS')}
+            >
+              DOCS ({algoliaSearchResults?.docs?.count})
+            </button>
+            <button
+              ref={(el) => (tabRefs.current[1] = el)}
+              className={`font-inter font-semibold text-lg ${
+                activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
+              }`}
+              onClick={() => setActiveTab('BLOG')}
+            >
+              BLOGS ({algoliaSearchResults?.blogs?.count})
+            </button>
+
+            {/* Blue moving underline */}
+            <div
+              className="absolute -bottom-2 h-0.5 bg-blue-800 transition-all duration-300 ease-in-out"
+              style={{
+                left: `${left}px`,
+                width: `${width}px`,
+                transform: 'translateX(-15px)', //To make sure the blue line is in the middle of the component we minus 1/2 of the width of the blue line
+              }}
+            />
+          </nav>
+        </div>
+        {isLoading && (
+          <div className="pt-4 px-4 text-md bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
+            Gathering all the Llamas...
+          </div>
+        )}
+        <div className="overflow-x-scroll">
+          <SearchResultsOverflowBody
+            results={algoliaSearchResults}
+            activeItem={activeTab}
+            numberOfResults={numberOfResults}
+            query={query}
+            isLoading={isLoading}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SearchResultsOverflow = ({ query }) => {
+  return (
+    <div className="absolute pt-2 left-0 right-0 mx-7 mt-2 bg-white z-20 shadow-2xl rounded-md">
+      <SearchResultsOverflowSlider query={query} />
+    </div>
+  );
+};
+
+const LeftHandSideHeader = ({}) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userHasTyped, setUserHasTyped] = useState(false);
+  const router = useRouter();
+
+  const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    if (value.trim()) {
+      setUserHasTyped(true);
+      fetchSearchResults(value);
+    } else {
+      setUserHasTyped(false);
+      setSearchResults(null);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchTerm.trim()) {
+      router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
+  const fetchSearchResults = async (query: string) => {
+    setIsLoading(true);
+    try {
+      const results = await fetchAlgoliaSearchResults(query);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  console.log('Search Results:', searchResults);
+
+  return (
+    <div className="p-4 pt-10">
+      <div className="flex justify-between">
+        <h1 className="text-3xl pb-4 font-tuner bg-gradient-to-br pl-4 from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent">
+          Tina Docs
+        </h1>
+        <div className="mr-3">
+          <VersionSelect />
+        </div>
+      </div>
+      <div className="relative mx-3">
+        <input
+          type="text"
+          className="w-full p-2 pl-6 rounded-full border border-gray-300/20"
+          placeholder="Search"
+          onKeyDown={handleKeyDown}
+          onChange={handleKeyChange}
+        />
+        <HiMagnifyingGlass className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl" />
+      </div>
+      {userHasTyped && <SearchResultsOverflow query={searchTerm} />}
+    </div>
+  );
+};
+
+const LeftHandSideParentContainer = ({ tableOfContents }) => {
+  return (
+    <div className="rounded-2xl shadow-xl w-full bg-white/50 ">
+      <LeftHandSideHeader />
+      <div className="overflow-y-scroll max-h-[62vh] pl-4 2xl:pl-0 ">
+        <DocsNavigationList navItems={tableOfContents} />
+      </div>
+    </div>
+  );
+};
 
 const SearchHeader = ({ query }: { query: string }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -28,7 +250,7 @@ const SearchHeader = ({ query }: { query: string }) => {
   };
 
   return (
-    <div className="flex justify-between relative">
+    <div className="flex justify-between relative pt-4">
       <div className="font-tuner text-3xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
         Results for "{query}"
       </div>
@@ -97,10 +319,10 @@ const SearchSlider = ({ query }: { query: string }) => {
   useEffect(() => {
     const fetchResults = async () => {
       setIsLoading(true);
+      setAlgoliaSearchResults(null);
       if (query) {
         const results = await fetchAlgoliaSearchResults(query);
         setAlgoliaSearchResults(results);
-        console.log('Search Results:', algoliaSearchResults?.docs);
       }
       setIsLoading(false);
     };
@@ -113,6 +335,9 @@ const SearchSlider = ({ query }: { query: string }) => {
   const activeTabElement = tabRefs.current[activeTabIndex];
   const left = activeTabElement?.offsetLeft || 0;
   const width = (activeTabElement?.offsetWidth || 0) + 30;
+
+  const numberOfResults =
+    (algoliaSearchResults?.docs?.count + algoliaSearchResults?.blogs?.count) || 0;
 
   return (
     <div className="pt-6 w-full border-b">
@@ -152,19 +377,29 @@ const SearchSlider = ({ query }: { query: string }) => {
 
           {/* Search Results Count */}
           <div className="ml-auto text-end text-lg font-inter text-blue-800">
-            {algoliaSearchResults?.docs?.count +
-              algoliaSearchResults?.blogs?.count}{' '}
+            {numberOfResults}{' '}
             Results
           </div>
         </div>
-        {isLoading && <div className='pt-10 text-2xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner'>Loading your Llama...</div>}
+        {isLoading && (
+          <div className="pt-10 text-2xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
+            Gathering all the Llamas...
+          </div>
+        )}
         <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
+        {(numberOfResults == 0 && isLoading==false) && <div className='font-inter font-semibold text-gray-500 text-xl'>No Results Found...</div>}
       </div>
     </div>
   );
 };
 
-const SearchBody = ({ results, activeItem }: { results: any; activeItem: string }) => {
+const SearchBody = ({
+  results,
+  activeItem,
+}: {
+  results: any;
+  activeItem: string;
+}) => {
   const bodyItem = activeItem === 'DOCS' ? results?.docs : results?.blogs;
   return (
     <div className="py-10">
@@ -184,16 +419,25 @@ const SearchBody = ({ results, activeItem }: { results: any; activeItem: string 
   );
 };
 
-
-const DocsPage = ({ TableOfContents }: { TableOfContents: any }) => {
+const DocsPage = ({
+  tableOfContents,
+  formatted,
+}: {
+  tableOfContents: any;
+  formatted: any;
+}) => {
   const router = useRouter();
   const searchQuery = router.query.query as string;
 
+  console.log(formatted);
+
   return (
     <Layout>
-      <div className="relative my-16">
-        <div className="lg:px-16 w-full grid grid-cols-[1fr_3fr] gap-24">
-          <div className="bg-red-500/10"></div>
+      <div className="relative my-16 flex justify-center items-center">
+        <div className="lg:px-16 w-full max-w-[2000px] grid grid-cols-[1fr_3fr] gap-16">
+          <div className="sticky top-40 h-[calc(100vh)]">
+            <LeftHandSideParentContainer tableOfContents={formatted.data} />
+          </div>
           <div className="">
             <SearchHeader query={searchQuery} />
             <SearchSlider query={searchQuery} />
@@ -211,18 +455,35 @@ export const getStaticProps: GetStaticProps = async function () {
     const slug = 'index';
     const results = await client.queries.doc({ relativePath: `${slug}.mdx` });
     const doc_data = results.data.doc;
-    const TableOfContents = getTableOfContents(doc_data.body.children);
+    const query = `
+      query {
+          docsTableOfContents(relativePath: "docs-toc.json") {
+            _values
+        }
+      }
+      `;
+    const tableOfContents = getTableOfContents(doc_data.body.children);
+    const docTocData = await client.request(
+      {
+        query,
+        variables: { relativePath: 'docs-toc.json' },
+      },
+      {}
+    );
+    const formatted = formatTableofContentsData(docTocData, null);
 
     return {
       props: {
-        TableOfContents,
+        tableOfContents,
+        formatted,
       },
     };
   } catch (e) {
-    console.error('Error fetching Table of Contents:', e);
+    console.error('Error fetching Table of Contents or Docs Navigation:', e);
     return {
       props: {
-        TableOfContents: null,
+        tableOfContents: null,
+        docsNavigation: null,
       },
     };
   }
