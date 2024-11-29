@@ -28,14 +28,14 @@ const SearchResultsOverflowBody = ({
 }) => {
   const bodyItem = activeItem === 'DOCS' ? results?.docs : results?.blogs;
   return (
-    <div className="mt-2 py-2 overflow-x-scroll max-h-[45vh]">
+    <div className="mt-2 py-2  max-h-[45vh]">
       {bodyItem?.results.slice(0, 10).map((item: any) => (
         <div key={item.objectID} className="py-2 px-4 border-b group">
           <Link href={`/${activeItem.toLowerCase()}/${item.slug}`}>
             <h2 className="text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {item.title}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-xxs font-light line-clamp-3 break-words">
+            <p className="text-gray-600 group-hover:text-gray-800 text-xs font-light line-clamp-3 break-words">
               {item.excerpt}
             </p>
           </Link>
@@ -44,10 +44,10 @@ const SearchResultsOverflowBody = ({
       <div>
         {numberOfResults > 0 ? (
           <Link
-            className="underline decoration-dotted"
+            className="underline"
             href={`/search?query=${encodeURIComponent(query)}`}
           >
-            <div className="pt-4 px-4 text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent hover:from-orange-300 hover:via-orange-400 hover:to-orange-600">
+            <div className="pt-2 pb-2 px-4 text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent hover:from-orange-300 hover:via-orange-400 hover:to-orange-600">
               See All {numberOfResults} Results
             </div>
           </Link>
@@ -134,7 +134,7 @@ const SearchResultsOverflowSlider = ({ query }) => {
             Gathering all the Llamas...
           </div>
         )}
-        <div className="overflow-x-scroll">
+        <div className="overflow-x-hidden">
           <SearchResultsOverflowBody
             results={algoliaSearchResults}
             activeItem={activeTab}
@@ -225,7 +225,7 @@ const LeftHandSideParentContainer = ({ tableOfContents }) => {
   return (
     <div className="rounded-2xl shadow-xl w-full bg-white/50 ">
       <LeftHandSideHeader />
-      <div className="overflow-y-scroll max-h-[62vh] pl-4 2xl:pl-0 ">
+      <div className="overflow-y-scroll overflow-x-hidden max-h-[62vh] 2xl:max-h-[75vh] pl-4 2xl:pl-0 ">
         <DocsNavigationList navItems={tableOfContents} />
       </div>
     </div>
@@ -340,7 +340,7 @@ const SearchSlider = ({ query }: { query: string }) => {
     (algoliaSearchResults?.docs?.count + algoliaSearchResults?.blogs?.count) || 0;
 
   return (
-    <div className="pt-6 w-full border-b">
+    <div className="pt-6 w-full">
       <div className="max-w-screen-xl mx-auto pb-2">
         <div className="flex justify-between items-center">
           {/* Navigation Buttons */}
@@ -386,8 +386,8 @@ const SearchSlider = ({ query }: { query: string }) => {
             Gathering all the Llamas...
           </div>
         )}
-        <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
-        {(numberOfResults == 0 && isLoading==false) && <div className='font-inter font-semibold text-gray-500 text-xl'>No Results Found...</div>}
+          <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
+        {(numberOfResults == 0 && isLoading==false) && <div className='font-inter font-semibold text-gray-500 text-xl'>No Results Found...</div>}  
       </div>
     </div>
   );
@@ -435,7 +435,7 @@ const DocsPage = ({
     <Layout>
       <div className="relative my-16 flex justify-center items-center">
         <div className="lg:px-16 w-full max-w-[2000px] lg:grid grid-cols-[1fr_3fr] gap-16">
-          <div className="hidden lg:block sticky top-40 h-[calc(100vh)]">
+          <div className="hidden lg:block sticky top-32 h-[calc(100vh)]">
             <LeftHandSideParentContainer tableOfContents={formatted.data} />
           </div>
           <div className="mx-16 lg:mx-0">
