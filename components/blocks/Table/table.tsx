@@ -105,7 +105,7 @@ const TableBox = ({ data, index }) => {
                   {/* Sticky void column */}
                   <div className="sticky left-[179px] z-10">
                     {scrollData && scrollData.scrollLeft > 80 && (
-                      <div className="w-[30px] h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
+                      <div className="w-[30px] h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent group-hover:from-sky-50 group-hover:via-sky-50/80"></div>
                     )}
                   </div>
 
