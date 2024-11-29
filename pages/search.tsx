@@ -83,7 +83,7 @@ const SearchResultsOverflowSlider = ({ query }) => {
     fetchResults();
   }, [query]);
 
-  console.log('Mini Search Results:', algoliaSearchResults);
+  
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const activeTabIndex = activeTab === 'DOCS' ? 0 : 1;
@@ -194,7 +194,7 @@ const LeftHandSideHeader = ({}) => {
     }
   };
 
-  console.log('Search Results:', searchResults);
+  
 
   return (
     <div className="p-4 pt-10">
@@ -270,7 +270,7 @@ const SearchHeader = ({ query }: { query: string }) => {
                   key={option}
                   className="py-2 text-left cursor-pointer font-light"
                   onClick={() => {
-                    console.log(`Selected: ${option}`);
+                    
                     setIsFilterOpen(false);
                   }}
                 >
@@ -296,7 +296,7 @@ const SearchHeader = ({ query }: { query: string }) => {
                   key={option}
                   className="py-2 cursor-pointer font-light text-left"
                   onClick={() => {
-                    console.log(`Selected: ${option}`);
+                    
                     setIsSortOpen(false);
                   }}
                 >
@@ -429,7 +429,7 @@ const DocsPage = ({
   const router = useRouter();
   const searchQuery = router.query.query as string;
 
-  console.log(formatted);
+  
 
   return (
     <Layout>
