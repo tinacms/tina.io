@@ -434,11 +434,11 @@ const DocsPage = ({
   return (
     <Layout>
       <div className="relative my-16 flex justify-center items-center">
-        <div className="lg:px-16 w-full max-w-[2000px] grid grid-cols-[1fr_3fr] gap-16">
-          <div className="sticky top-40 h-[calc(100vh)]">
+        <div className="lg:px-16 w-full max-w-[2000px] lg:grid grid-cols-[1fr_3fr] gap-16">
+          <div className="hidden lg:block sticky top-40 h-[calc(100vh)]">
             <LeftHandSideParentContainer tableOfContents={formatted.data} />
           </div>
-          <div className="">
+          <div className="mx-16 lg:mx-0">
             <SearchHeader query={searchQuery} />
             <SearchSlider query={searchQuery} />
           </div>
