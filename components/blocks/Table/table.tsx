@@ -83,7 +83,7 @@ const TableBox = ({ data, index }) => {
                   className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-cyan-400/5 bg-slate-50 snap-start group"
                 >
                   <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-transparent">
-                    <div className="px-4 py-2 whitespace-nowrap font-medium flex items-center">
+                    <div className="pl-2 py-2 whitespace-nowrap font-medium flex items-center">
                       {row.rowHeader}
                       {row.rowDescription && (
                         <div
