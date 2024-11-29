@@ -20,9 +20,9 @@ const TableHeader = ({ data, scrollData }) => {
       {/* Remaining Columns Titles */}
       {data.columnItems?.map((headerItem, index) => (
         <div key={index}>
-          <div className="text-center font-bold text-gray-700 underline decoration-dotted">
+          <div className={`text-center font-bold ${headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'}  underline decoration-dotted`}>
             <Link href={`${headerItem.columnHeaderLink}`}>
-              {headerItem.columnHeader}
+              {headerItem.columnHeader} {headerItem.isReccomended ? '⭐️' : ''}
             </Link>
           </div>
           <div className="text-center font-light text-xs text-slate-400">
@@ -80,9 +80,9 @@ const TableBox = ({ data, index }) => {
               {data.rowItems?.map((row, rowIndex) => (
                 <div
                   key={rowIndex}
-                  className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-cyan-400/5 bg-slate-50 snap-start group"
+                  className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
                 >
-                  <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-transparent">
+                  <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
                     <div className="pl-2 py-2 whitespace-nowrap font-medium flex items-center">
                       {row.rowHeader}
                       {row.rowDescription && (
@@ -103,7 +103,7 @@ const TableBox = ({ data, index }) => {
                     </div>
                   </div>
                   {/* Sticky void column */}
-                  <div className="sticky left-[175px] z-10">
+                  <div className="sticky left-[179px] z-10">
                     {scrollData && scrollData.scrollLeft > 80 && (
                       <div className="w-[30px] h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
                     )}

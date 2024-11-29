@@ -34,6 +34,7 @@ export const tableTemplate: Template = {
         }),
       },
       fields: [
+        { name: 'isReccomended', label: 'Is Reccomended?', type: 'boolean' },
         { name: 'columnHeader', label: 'Column Header', type: 'string' },
         { name: 'columnByLine', label: 'Column By-Line', type: 'string'},
         { name: 'columnHeaderLink', label: 'Column Link', type: 'string'},

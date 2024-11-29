@@ -337,6 +337,7 @@
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
+          "isReccomended": true,
           "columnHeader": "Business",
           "columnByLine": "$299/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
