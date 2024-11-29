@@ -134,7 +134,7 @@ const SearchResultsOverflowSlider = ({ query }) => {
             Gathering all the Llamas...
           </div>
         )}
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden mt-2">
           <SearchResultsOverflowBody
             results={algoliaSearchResults}
             activeItem={activeTab}
