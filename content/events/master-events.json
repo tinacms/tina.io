@@ -1,5 +1,5 @@
 {
-  "title": "Events",
+  "title": "Where's Tina?",
   "cardItems": [
     {
       "headline": "Write the Docs - Melbourne",
@@ -11,8 +11,7 @@
       "image": "/img/events/2024-11-21_10-33.jpg",
       "link": "https://www.writethedocs.org/conf/australia/2024/",
       "markerLAT": -26.81015,
-      "markerLONG": 225.96399,
-      "index": 0
+      "markerLONG": 225.96399
     },
     {
       "headline": "NDC Security",
