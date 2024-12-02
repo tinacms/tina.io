@@ -7,7 +7,7 @@ import eventsData from '../../../content/events/master-events.json';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
-const Card = ({ cardItem, onHover }) => {
+export const Card = ({ cardItem, onHover }) => {
   const getOrdinalSuffix = (day) => {
     if (day > 3 && day < 21) return 'th';
     switch (day % 10) {
@@ -85,6 +85,7 @@ const Card = ({ cardItem, onHover }) => {
   const isLiveOrPastEvent = hoursUntilEvent < 0;
   const isLiveEvent = hoursUntilEvent <= 0 && hoursUntilEventEnd > 0;
 
+  const endYear = new Date(cardItem.endDate);
   return (
     <div
       className="relative px-4 pt-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
@@ -108,7 +109,9 @@ const Card = ({ cardItem, onHover }) => {
           {cardItem.headline}
         </h3>
         <div className="flex items-center text-md">
-          <p className="mr-2">{displayDate()}</p>
+          <p className="mr-2">
+            {displayDate()} {endYear.getFullYear()}
+          </p>
           {isLiveEvent ? (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
               LIVE
@@ -163,6 +166,24 @@ const EventsBlock = () => {
     return () => observer.disconnect();
   }, []);
 
+  const now = new Date();
+
+  // Filter and sort the events
+  const filteredEvents = eventsData.cardItems
+    .filter((event) => {
+      const startDate = new Date(event.startDate);
+      const endDate = new Date(event.endDate ?? event.startDate);
+      return (
+        startDate >= now || // Upcoming events
+        (startDate <= now && endDate >= now) // Currently ongoing events
+      );
+    })
+    .sort(
+      (a, b) =>
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    ) // Sort by start date
+    .slice(0, 3); // Take only the first 3 events
+
   return (
     <div className="md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
       <h1 className="pl-3 font-tuner text-3xl lg:text-5xl bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-left mt-10 pb-12">
@@ -174,14 +195,25 @@ const EventsBlock = () => {
           ref={globeContainerRef}
         >
           {isGlobeVisible && (
-            <Suspense fallback={<div className="font-tuner text-2xl">Loading Globe...</div>}>
-              <LazyGlobe activeGlobeId={activeGlobeId} cardItems={eventsData.cardItems} />
+            <Suspense
+              fallback={
+                <div className="font-tuner text-2xl">Loading Globe...</div>
+              }
+            >
+              <LazyGlobe
+                activeGlobeId={activeGlobeId}
+                cardItems={filteredEvents}
+              />
             </Suspense>
           )}
         </div>
-        <div className="flex flex-col w-full lg:w-1/2">
-          {eventsData.cardItems.map((cardItem, index) => (
-            <Card key={index} cardItem={{ ...cardItem, index }} onHover={setActiveGlobeId} />
+        <div className="flex flex-col w-full lg:w-1/2 justify-center">
+          {filteredEvents.map((cardItem, index) => (
+            <Card
+              key={index}
+              cardItem={{ ...cardItem, index }}
+              onHover={setActiveGlobeId}
+            />
           ))}
         </div>
       </div>

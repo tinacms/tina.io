@@ -72,6 +72,7 @@ export const eventsCollection: Template = {
   },
   fields: [
     { name: 'title', label: 'Title', type: 'string' },
+    { name: 'byLine', label: 'ByLine', type: 'string', ui: { component: 'textarea' } },
     {
       name: 'cardItems',
       label: 'Card Items',

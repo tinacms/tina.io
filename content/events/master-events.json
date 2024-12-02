@@ -1,6 +1,31 @@
 {
   "title": "Where's Tina?",
+  "byLine": "Tina's hitting the road, and you don't want to miss out. Check out our stops and see TinaCMS in action!",
   "cardItems": [
+    {
+      "headline": "Copenhagen Dev Fest",
+      "startDate": "2024-08-26T00:00:00.000Z",
+      "startTime": "8:00 PM0",
+      "endDate": "2024-08-30T00:00:00.000Z",
+      "timezone": 1,
+      "location": "Copenhagen, Denmark",
+      "image": "/events/Copenhagen-event.webp",
+      "link": "https://cphdevfest.com/",
+      "markerLAT": 0,
+      "markerLONG": 0
+    },
+    {
+      "headline": "NDC Porto",
+      "startDate": "2024-10-14T00:00:00.000Z",
+      "startTime": "2024-12-02T09:00:00.000Z",
+      "endDate": "2024-10-18T00:00:00.000Z",
+      "timezone": 0,
+      "location": "Porto, Portugal",
+      "image": "/img/ndc-porto.png",
+      "link": "https://ndcporto.com/",
+      "markerLAT": 0,
+      "markerLONG": 0
+    },
     {
       "headline": "Write the Docs - Melbourne",
       "startDate": "2024-11-28T00:00:00.000Z",
