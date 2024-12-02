@@ -7,7 +7,7 @@ import { Card } from 'components/blocks/Events/Events';
 
 const EventsPageHeader = ({ title, byline }) => {
   return (
-    <div className="text-center mx-auto">
+    <div className="text-center mx-auto py-2">
       <h1 className="pt-20 pb-5 text-4xl font-tuner bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
         {title}
       </h1>
