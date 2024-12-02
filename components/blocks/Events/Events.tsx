@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import eventsData from '../../../content/events/master-events.json';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
@@ -141,19 +142,12 @@ const Card = ({ cardItem, onHover }) => {
   );
 };
 
-const EventsBlock = ({ data, index }) => {
+const EventsBlock = () => {
   const [activeGlobeId, setActiveGlobeId] = useState(null);
   const [isGlobeVisible, setIsGlobeVisible] = useState(false);
   const globeContainerRef = useRef(null);
 
-  if (!data || !data.cardItems) return null;
-
-  data.cardItems.forEach((cardItem, idx) => {
-    cardItem.index = idx;
-  });
-
   useEffect(() => {
-    //TODO: We are not sure why but without this the lazy loading gets hydration errors
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -164,43 +158,30 @@ const EventsBlock = ({ data, index }) => {
       { threshold: 0.1 }
     );
 
-    if (globeContainerRef.current) {
-      observer.observe(globeContainerRef.current);
-    }
+    if (globeContainerRef.current) observer.observe(globeContainerRef.current);
 
     return () => observer.disconnect();
   }, []);
 
   return (
     <div className="md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
-      <h1 className="pl-3 font-tuner flex items-center justify-center text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-12">
-        {data.title}
+      <h1 className="pl-3 font-tuner text-3xl lg:text-5xl bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-left mt-10 pb-12">
+        {eventsData.title}
       </h1>
       <div className="flex flex-col lg:flex-row lg:gap-4">
         <div
-          className="w-full hidden md:flex lg:w-1/2 flex justify-center items-center rounded-lg"
+          className="w-full hidden md:flex lg:w-1/2 justify-center items-center rounded-lg"
           ref={globeContainerRef}
         >
           {isGlobeVisible && (
-            <Suspense
-              fallback={
-                <div className="font-tuner text-2xl">Loading Globe...</div>
-              }
-            >
-              <LazyGlobe
-                activeGlobeId={activeGlobeId}
-                cardItems={data.cardItems}
-              />
+            <Suspense fallback={<div className="font-tuner text-2xl">Loading Globe...</div>}>
+              <LazyGlobe activeGlobeId={activeGlobeId} cardItems={eventsData.cardItems} />
             </Suspense>
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2">
-          {data.cardItems.map((cardItem, idx) => (
-            <Card
-              key={`${index}-${idx}`}
-              cardItem={cardItem}
-              onHover={setActiveGlobeId}
-            />
+          {eventsData.cardItems.map((cardItem, index) => (
+            <Card key={index} cardItem={{ ...cardItem, index }} onHover={setActiveGlobeId} />
           ))}
         </div>
       </div>
