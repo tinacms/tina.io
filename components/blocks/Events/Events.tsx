@@ -187,9 +187,6 @@ const EventsBlock = () => {
 
   return (
     <div className="md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
-      <h1 className="pl-3 font-tuner text-3xl lg:text-5xl bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-left mt-10 pb-12">
-        {eventsData.title}
-      </h1>
       <div className="flex flex-col lg:flex-row lg:gap-4">
         <div
           className="w-full hidden md:flex lg:w-1/2 justify-center items-center rounded-lg"
@@ -209,6 +206,9 @@ const EventsBlock = () => {
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-center">
+          <h1 className="pl-3 font-tuner text-2xl lg:text-5xl bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-left mt-10 pb-12">
+            {eventsData.title}
+          </h1>
           {filteredEvents.map((cardItem, index) => (
             <Card
               key={index}
@@ -218,7 +218,7 @@ const EventsBlock = () => {
           ))}
           <Link
             href="/events"
-            className="pt-10 mb-10 font-bold flex items-center justify-center gap-2"
+            className="pt-10 mb-10 font-bold flex items-center justify-end gap-2"
           >
             <span className="bg-gradient-to-br text-md from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
               SEE ALL EVENTS
