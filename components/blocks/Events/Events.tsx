@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import eventsData from '../../../content/events/master-events.json';
+import { FaArrowRight } from 'react-icons/fa';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
@@ -215,7 +216,14 @@ const EventsBlock = () => {
               onHover={setActiveGlobeId}
             />
           ))}
-          <Link href="/events" className='pt-10 font-bold bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent text-center'> See all events
+          <Link
+            href="/events"
+            className="pt-10 font-bold flex items-center justify-center gap-2"
+          >
+            <span className="bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+              SEE ALL EVENTS
+            </span>
+            <FaArrowRight className="text-blue-800" />
           </Link>
         </div>
       </div>
