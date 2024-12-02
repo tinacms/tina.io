@@ -12,7 +12,7 @@ const EventsPageHeader = ({ title, byline }) => {
         {title}
       </h1>
       <div>
-        <p className="text-gray-800 w-1/2 mx-auto break-words">{byline}</p>
+        <p className="text-gray-800 w-2/3 mx-auto break-words">{byline}</p>
       </div>
     </div>
   );
