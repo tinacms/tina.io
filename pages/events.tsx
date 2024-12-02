@@ -80,7 +80,7 @@ const EventsPage = (props: { query: string; data: any; vars: any }) => {
 
   return (
     <Layout>
-      <div className="mx-auto">
+      <div className="mx-auto mb-40">
         <EventsPageHeader title={eventsData.title} byline={eventsData.byLine} />
         <div className="px-10 pt-10">
           <div className="pb-5 font-bold bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent text-center">
