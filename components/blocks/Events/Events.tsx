@@ -218,7 +218,7 @@ const EventsBlock = () => {
           ))}
           <Link
             href="/events"
-            className="pt-10 font-bold flex items-center justify-center gap-2"
+            className="pt-10 mb-10 font-bold flex items-center justify-center gap-2"
           >
             <span className="bg-gradient-to-br text-md from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
               SEE ALL EVENTS
