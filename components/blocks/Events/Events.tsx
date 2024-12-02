@@ -215,6 +215,8 @@ const EventsBlock = () => {
               onHover={setActiveGlobeId}
             />
           ))}
+          <Link href="/events" className='pt-10 font-bold bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent text-center'> See all events
+          </Link>
         </div>
       </div>
     </div>
