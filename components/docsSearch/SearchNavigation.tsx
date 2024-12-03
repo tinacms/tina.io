@@ -153,9 +153,11 @@ export const LeftHandSideHeader = ({}) => {
   const [searchResults, setSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [userHasTyped, setUserHasTyped] = useState(false);
+  const [searchOverFlowOpen, setSearchOverflowOpen] = useState(false);
   const router = useRouter();
 
   const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchOverflowOpen(true);
     const value = e.target.value;
     setSearchTerm(value);
 
@@ -171,6 +173,7 @@ export const LeftHandSideHeader = ({}) => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchTerm.trim()) {
       router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+      setSearchOverflowOpen(false);
     }
   };
 
@@ -205,10 +208,11 @@ export const LeftHandSideHeader = ({}) => {
           placeholder="Search"
           onKeyDown={handleKeyDown}
           onChange={handleKeyChange}
+          onFocus={() => setSearchOverflowOpen(true)}
         />
         <HiMagnifyingGlass className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl" />
       </div>
-      {userHasTyped && <SearchResultsOverflow query={searchTerm} />}
+      {userHasTyped && searchOverFlowOpen && <SearchResultsOverflow query={searchTerm} />}
     </div>
   );
 };
