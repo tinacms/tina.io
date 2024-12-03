@@ -123,7 +123,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
         </div>
         {isLoading && (
           <div className="pt-4 px-4 text-md bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
-            Gathering all the Llamas...
+            Mustering all the Llamas...
           </div>
         )}
         <div className="overflow-x-hidden mt-2">
