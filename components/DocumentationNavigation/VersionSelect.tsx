@@ -84,7 +84,6 @@ const SelectWrapper = styled.div`
 
 .dropdown-button {
     font-size: 0.875rem;
-    margin-right: 2.5rem;
     padding: 0.375rem 0.75rem;
     background-color: white;
     border: 1px solid var(--color-grey-1);
@@ -111,7 +110,6 @@ const DropdownList = styled.ul`
   background-color: white;
   border: 1px solid var(--color-grey-1);
   border-radius: 0.375rem;
-  margin-top: 2rem;
   padding: 0.5rem 0;
   z-index: 10;
 
