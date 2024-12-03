@@ -57,7 +57,6 @@ export const SearchResultsOverflowBody = ({
 };
 
 export const SearchResultsOverflowTabs = ({ query }) => {
-  console.log('you passed me', query);
   const [activeTab, setActiveTab] = useState('DOCS');
   const [algoliaSearchResults, setAlgoliaSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
