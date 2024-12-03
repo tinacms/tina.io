@@ -1,10 +1,10 @@
-import { DocsNavigationList } from "components/DocumentationNavigation/DocsNavigationList";
-import { VersionSelect } from "components/DocumentationNavigation/VersionSelect";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState, useEffect, useRef } from "react";
-import { HiMagnifyingGlass } from "react-icons/hi2";
-import { fetchAlgoliaSearchResults } from "utils/new-search";
+import { DocsNavigationList } from 'components/DocumentationNavigation/DocsNavigationList';
+import { VersionSelect } from 'components/DocumentationNavigation/VersionSelect';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState, useEffect, useRef } from 'react';
+import { HiMagnifyingGlass } from 'react-icons/hi2';
+import { fetchAlgoliaSearchResults } from 'utils/new-search';
 
 export const SearchResultsOverflowBody = ({
   results,
@@ -74,8 +74,6 @@ export const SearchResultsOverflowTabs = ({ query }) => {
 
     fetchResults();
   }, [query]);
-
-  
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const activeTabIndex = activeTab === 'DOCS' ? 0 : 1;
@@ -189,8 +187,6 @@ export const LeftHandSideHeader = ({}) => {
     }
   };
 
-  
-
   return (
     <div className="p-4 pt-10">
       <div className="flex justify-between">
@@ -210,9 +206,19 @@ export const LeftHandSideHeader = ({}) => {
           onChange={handleKeyChange}
           onFocus={() => setSearchOverflowOpen(true)}
         />
-        <HiMagnifyingGlass className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl" />
+        <HiMagnifyingGlass
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl cursor-pointer"
+          onClick={() => {
+            if (searchTerm.trim()) {
+              router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+              setSearchOverflowOpen(false);
+            }
+          }}
+        />{' '}
       </div>
-      {userHasTyped && searchOverFlowOpen && <SearchResultsOverflow query={searchTerm} />}
+      {userHasTyped && searchOverFlowOpen && (
+        <SearchResultsOverflow query={searchTerm} />
+      )}
     </div>
   );
 };
