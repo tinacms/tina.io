@@ -49,8 +49,7 @@ export const docAndBlogComponents: Components<{
 }> = {
   recipeBlock: (props) => {
     return (
-      <div className='text-white'>
-        TEST
+      <div className="text-white">
         <RecipeBlock data={props} />
       </div>
     );
@@ -109,6 +108,16 @@ export const docAndBlogComponents: Components<{
   ul: (props) => <ul className="list-disc ml-5" {...props} />,
   ol: (props) => <ol className="list-decimal ml-5" {...props} />,
   li: (props) => <li className="mb-2" {...props} />,
+  a: (props) => {
+    return (
+      <a
+        href={props.url}
+        {...props}
+        className="underline opacity-80 transition-all duration-[185ms] ease-out hover:text-orange-500"
+      />
+      //Ripped the styling from styles/RichText.tsx " a:not([class]) "
+    );
+  },
 
   Iframe: ({ iframeSrc, height }) => {
     return (

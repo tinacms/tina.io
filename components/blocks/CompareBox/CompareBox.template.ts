@@ -111,8 +111,8 @@ export const compareBoxTemplate: Template = {
       },
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
-        { name: 'logoColour', label: 'Logo Link (Colour)', type: 'string' },
-        { name: 'logoWhite', label: 'Logo Link (White)', type: 'string' },
+        { name: 'logoColour', label: 'Logo Link (Colour)', type: 'image' },
+        { name: 'logoWhite', label: 'Logo Link (White)', type: 'image' },
         {
           name: 'active',
           label: 'Active',

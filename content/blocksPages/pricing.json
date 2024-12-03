@@ -337,6 +337,7 @@
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
         },
         {
+          "isReccomended": true,
           "columnHeader": "Business",
           "columnByLine": "$299/month",
           "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
@@ -356,7 +357,7 @@
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$290/year\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$490/year\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"$2,990/year\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
           ]
         },
         {
@@ -367,18 +368,18 @@
             "{\"columnHeader\":\"Team\",\"cellValue\":\"3\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"5\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"20\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
           ]
         },
         {
-          "rowHeader": "Additional users",
+          "rowHeader": "Additional Users",
           "rowDescription": "Get more users on your plan",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"$9/user\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"$15/user\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"$18/user\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
           ]
         },
         {
@@ -388,8 +389,8 @@
             "{\"columnHeader\":\"Free\",\"cellValue\":\"2\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"10\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"20\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"unlimited\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
           ]
         },
         {
@@ -399,7 +400,7 @@
             "{\"columnHeader\":\"Team\",\"cellValue\":\"2\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"2\",\"isTicked\":false}",
             "{\"columnHeader\":\"Business\",\"cellValue\":\"3\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"custom\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Custom\",\"isTicked\":false}"
           ]
         },
         {
@@ -452,9 +453,9 @@
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"coming soon\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"coming soon\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}"
           ]
         },
         {
@@ -483,21 +484,21 @@
           "rowHeader": "Documents",
           "rowDescription": "Number of documents or content items",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"unlimited\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"unlimited\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Unlimited\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Unlimited\",\"isTicked\":false}"
           ]
         },
         {
           "rowHeader": "Asset Size cap",
           "rowCells": [
-            "{\"columnHeader\":\"Free\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"100 MiB\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"100 MiB\",\"isTicked\":false}"
+            "{\"columnHeader\":\"Free\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"100 MB\",\"isTicked\":false}"
           ]
         }
       ],

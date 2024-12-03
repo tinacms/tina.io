@@ -94,6 +94,7 @@
     "serve": "^14.2.4",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.13",
+    "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
     "tinacms": "2.5.0",
     "webpack": "^5.96.1"
