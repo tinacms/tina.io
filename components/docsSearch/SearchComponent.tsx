@@ -154,7 +154,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
         </div>
         {isLoading && (
           <div className="pt-10 text-2xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
-            Gathering all the Llamas...
+            Mustering all the Llamas...
           </div>
         )}
           <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
