@@ -144,7 +144,8 @@ export default function Page(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.docsToc.data}>
+      <div className='ml-4'>
+        <DocsLayout navItems={props.docsToc.data}>
         <DocContainer>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsToc.data} />
@@ -153,6 +154,7 @@ export default function Page(props) {
           <DocGridContent ref={contentRef}>
             <hr />
             <SplitContent>
+            
               <div id="main-content-container">
                 <TinaMarkdown content={doc_data.body} components={docAndBlogComponents} />
               </div>
@@ -174,6 +176,8 @@ export default function Page(props) {
           </DocGridContent>
         </DocContainer>
       </DocsLayout>
+      </div>
+      
     </>
   )
 }
