@@ -1,78 +1,89 @@
-import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
-import { DocsLayout, MarkdownContent } from 'components/layout'
-import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents'
-import ToC from 'components/toc/index'
-import { DocsPagination, LastEdited, NavToggle } from 'components/ui'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { NextSeo } from 'next-seo'
-import Error from 'next/error'
-import { useRouter } from 'next/router'
-import { doc } from 'prettier'
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import client from 'tina/__generated__/client'
-import { useTina } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { getDocsNav } from 'utils/docs/getDocProps'
-import { getSeoDescription } from 'utils/docs/getSeoDescription'
-import getTableOfContents from 'utils/docs/getTableOfContents'
-import { NotFoundError } from 'utils/error/NotFoundError'
-import { openGraphImage } from 'utils/open-graph-image'
-import { useTocListener } from 'utils/toc_helpers'
-import SetupOverview from '../../components/layout/setup-overview'
-import * as ga from '../../utils/ga'
+import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs';
+import MainDocsBodyHeader from 'components/docsMain/docsMainBody';
+import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
+import { DocsLayout, Layout, MarkdownContent } from 'components/layout';
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
+import ToC from 'components/toc/index';
+import { DocsPagination, LastEdited, NavToggle } from 'components/ui';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
+import Error from 'next/error';
+import { useRouter } from 'next/router';
+import { doc } from 'prettier';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import client from 'tina/__generated__/client';
+import { useTina } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { getDocsNav } from 'utils/docs/getDocProps';
+import { getSeoDescription } from 'utils/docs/getSeoDescription';
+import getTableOfContents from 'utils/docs/getTableOfContents';
+import { NotFoundError } from 'utils/error/NotFoundError';
+import { openGraphImage } from 'utils/open-graph-image';
+import { useTocListener } from 'utils/toc_helpers';
+import SetupOverview from '../../components/layout/setup-overview';
+import * as ga from '../../utils/ga';
+import { format } from 'path';
 
 export function DocTemplate(props) {
   if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
-    return <SetupOverview {...props} />
+    return <SetupOverview {...props} />;
   }
-  return <_DocTemplate {...props} />
+  return <_DocTemplate {...props} />;
 }
 
 function _DocTemplate(props) {
-
   // fallback workaround
   if (props.notFound) {
-    return <Error statusCode={404} />
+    return <Error statusCode={404} />;
   }
 
   const { data } = useTina({
     query: props.new?.results.query,
     data: props.new?.results.data,
     variables: props.new?.results.variables,
-  })
+  });
 
-  const router = useRouter()
-  const doc_data = data.doc
+  const router = useRouter();
+
+  const doc_data = data.doc;
   const previousPage = {
     slug: doc_data.previous?.id.slice(7, -4),
     title: doc_data.previous?.title,
-  }
+  };
   const nextPage = {
     slug: doc_data.next?.id.slice(7, -4),
     title: doc_data.next?.title,
-  }
-  const TableOfContents = getTableOfContents(doc_data.body.children)
-  const description = doc_data.seo?.description?.trim() || getSeoDescription(doc_data.body);
+  };
+  const TableOfContents = getTableOfContents(doc_data.body.children);
+  const description =
+    doc_data.seo?.description?.trim() || getSeoDescription(doc_data.body);
   const title = doc_data.seo?.title || doc_data.title;
+  const { activeIds, contentRef } = useTocListener(doc_data);
+  const lastEdited = props.new.results.data.doc.last_edited;
+  const date = new Date(lastEdited);
+  const formattedDate = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
-  const { activeIds, contentRef } = useTocListener(doc_data)
+  console.log(previousPage);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      ga.pageview(url)
-    }
+      ga.pageview(url);
+    };
     //When the component is mounted, subscribe to router changes
     //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange);
 
     // If the component is unmounted, unsubscribe
     // from the event with the `off` method
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
-
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <>
@@ -86,71 +97,87 @@ function _DocTemplate(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <DocsLayout navItems={props.navDocData.data}>
-        <DocsGrid>
-          <DocGridHeader>
-            <Breadcrumbs navItems={props.navDocData.data} />
-            <DocsPageTitle>{doc_data.title}</DocsPageTitle>
-          </DocGridHeader>
-          <DocGridToc>
-            <ToC tocItems={TableOfContents} activeIds={activeIds} />
-          </DocGridToc>
-          <DocGridContent ref={contentRef}>
-            <hr />
-            <TinaMarkdown content={doc_data.body} components={docAndBlogComponents} />
-            <LastEdited date={doc_data.last_edited} />
-            <DocsPagination prevPage={previousPage} nextPage={nextPage} />
-          </DocGridContent>
-        </DocsGrid>
-      </DocsLayout>
+      <Layout>
+        <div className="relative my-16 flex justify-center items-center">
+          <div className="lg:px-16 w-full max-w-[2000px] lg:grid grid-cols-[1.25fr_3fr_0.75fr]">
+            {/* LEFT COLUMN */}
+            <div className="hidden lg:block sticky top-32 h-[calc(100vh)]">
+              <LeftHandSideParentContainer
+                tableOfContents={props.navDocData.data}
+              />
+            </div>
+            {/* MIDDLE COLUMN */}
+            <div className="mx-10">
+              <MainDocsBodyHeader data={props} doc_data={doc_data.body} />
+              <div
+                ref={contentRef}
+                className="max-w-full overflow-hidden break-words"
+              >
+                <TinaMarkdown
+                  content={doc_data.body}
+                  components={docAndBlogComponents}
+                />
+                <span className="text-slate-500 text-md">
+                  Last Edited: {formattedDate}
+                </span>
+                <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+              </div>
+            </div>
+            {/* RIGHT COLUMN */}
+            <div>
+              <ToC tocItems={TableOfContents} activeIds={activeIds} />
+            </div>
+          </div>
+        </div>
+      </Layout>
     </>
-  )
+  );
 }
 
-export default DocTemplate
+export default DocTemplate;
 
 /*
  * DATA FETCHING ------------------------------------------------------
  */
 
 export const getStaticProps: GetStaticProps = async function (props) {
-  let { slug: slugs } = props.params
+  let { slug: slugs } = props.params;
 
   // @ts-ignore This should maybe always be a string[]?
-  const slug = slugs.join('/')
+  const slug = slugs.join('/');
 
   try {
     const [results, navDocData] = await Promise.all([
       client.queries.doc({ relativePath: `${slug}.mdx` }),
-      getDocsNav() 
-    ])
+      getDocsNav(),
+    ]);
     return {
       props: {
         new: { results },
         navDocData,
       },
-    }
+    };
   } catch (e) {
     if (e) {
       return {
         props: {
           error: { ...e }, //workaround since we cant return error as JSON
         },
-      }
+      };
     } else if (e instanceof NotFoundError) {
       return {
         props: {
           notFound: true,
         },
-      }
+      };
     }
   }
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async function () {
-  const fg = require('fast-glob')
-  const contentDir = './content/docs/'
-  const files = await fg(`${contentDir}**/*.mdx`)
+  const fg = require('fast-glob');
+  const contentDir = './content/docs/';
+  const files = await fg(`${contentDir}**/*.mdx`);
   return {
     fallback: false,
     paths: files
@@ -159,11 +186,11 @@ export const getStaticPaths: GetStaticPaths = async function () {
           !file.endsWith('index.mdx') && !file.endsWith('product-tour.mdx')
       )
       .map((file) => {
-        const path = file.substring(contentDir.length, file.length - 4)
-        return { params: { slug: path.split('/') } }
+        const path = file.substring(contentDir.length, file.length - 4);
+        return { params: { slug: path.split('/') } };
       }),
-  }
-}
+  };
+};
 
 /*
  * STYLES --------------------------------------------------------------
@@ -193,12 +220,12 @@ export const DocsGrid = styled.div`
     grid-column-gap: 5rem;
     justify-content: left;
   }
-`
+`;
 
 export const DocGridHeader = styled.div`
   grid-area: header;
   width: 100%;
-`
+`;
 
 export const DocGridToc = styled.div`
   grid-area: toc;
@@ -207,16 +234,16 @@ export const DocGridToc = styled.div`
   @media (min-width: 1200px) {
     padding-top: 4.5rem;
   }
-`
+`;
 
 interface ContentProps {
-  ref: any
+  ref: any;
 }
 
 export const DocGridContent = styled.div<ContentProps>`
   grid-area: content;
   width: 100%;
-`
+`;
 
 export const DocsPageTitle = styled.h1`
   font-size: 2rem;
@@ -232,7 +259,7 @@ export const DocsPageTitle = styled.h1`
   @media (max-width: 1199px) {
     margin: 0 0 1.25rem 0 !important;
   }
-`
+`;
 
 export const DocsNavToggle = styled(NavToggle)`
   position: fixed;
@@ -243,4 +270,4 @@ export const DocsNavToggle = styled(NavToggle)`
   @media (min-width: 999px) {
     display: none;
   }
-`
+`;
