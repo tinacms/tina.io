@@ -57,7 +57,7 @@
       "endDate": "2025-01-31T00:00:00.000Z",
       "timezone": 0,
       "location": "London, England",
-      "image": "/ndclondon.jpg",
+      "image": "/img/wheres-tina/ndc-londomn.jpeg",
       "link": "https://ndclondon.com/",
       "markerLAT": 7,
       "markerLONG": 52
@@ -69,7 +69,7 @@
       "endDate": "2025-05-01T00:00:00.000Z",
       "timezone": 11,
       "location": "Melbourne, Australia",
-      "image": "/ndc-melb-2024-11-21_10-58-17.jpg",
+      "image": "/img/wheres-tina/ndc-melbs.jpg",
       "link": "https://ndcmelbourne.com/",
       "markerLAT": -27.81015,
       "markerLONG": 220.9541
