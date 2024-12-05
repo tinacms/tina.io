@@ -1,11 +1,11 @@
-import { LeftHandSideHeader } from 'components/docsSearch/SearchNavigation';
+import { DocsSearchBarHeader } from 'components/docsSearch/SearchNavigation';
 import { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import DirectoryOverflowButton from './directoryOverflowButton';
 
 export const MobileVersionSelect = () => {
   const versions = [
-    ['v.Latest', 'https://tina.io'],
+    ['v.Latest', ''],
     [
       'v.0.68.13',
       'https://tinacms-site-next-i08bcbicy-tinacms.vercel.app/docs/',
@@ -62,7 +62,7 @@ export const MobileVersionSelect = () => {
 const DocsMobileHeader = (data) => {
   return (
     <div className="relative pb-20">
-      <LeftHandSideHeader
+      <DocsSearchBarHeader
         paddingGlobal="pb-6"
         headerColour="orange"
         headerPadding=""

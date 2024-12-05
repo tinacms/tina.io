@@ -286,6 +286,7 @@ export const docAndBlogComponents: Components<{
         value={children || value || ''}
         lang={lang || 'jsx'}
         theme="nightOwl"
+
         
       />
       </div>

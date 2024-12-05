@@ -144,7 +144,7 @@ export default function Page(props) {
           images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
         }}
       />
-      <div className='ml-4'>
+
         <DocsLayout navItems={props.docsToc.data}>
         <DocContainer>
           <DocGridHeader>
@@ -176,7 +176,7 @@ export default function Page(props) {
           </DocGridContent>
         </DocContainer>
       </DocsLayout>
-      </div>
+
       
     </>
   )
