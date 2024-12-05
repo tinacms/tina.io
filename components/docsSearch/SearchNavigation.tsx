@@ -193,7 +193,7 @@ export const LeftHandSideHeader = ({paddingGlobal, headerColour, headerPadding})
     <div className={`${paddingGlobal} pt-10`}>
       <div className="flex justify-between">
         <h1 className={`text-4xl pb-4 font-tuner bg-gradient-to-br ${headerStyling} ${headerPadding}  bg-clip-text text-transparent`}>
-          Tina Docs
+          Docs
         </h1>
         <div className="mr-3">
           <MobileVersionSelect/>

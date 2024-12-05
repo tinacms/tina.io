@@ -134,7 +134,7 @@ function _DocTemplate(props) {
               />
             </div>
             {/* MIDDLE COLUMN */} 
-            <div className="mx-10 max-w-full overflow-hidden break-words">
+            <div className="mx-8 max-w-full overflow-hidden break-words px-2">
               <MainDocsBodyHeader data={props} screenSizing={isScreenSmallerThan840}/>
               {isScreenSmallerThan1200 && <TocOverflowButton tocData={TableOfContents}/>}
               <div
