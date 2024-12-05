@@ -10,7 +10,7 @@ import { NextSeo } from 'next-seo';
 import Error from 'next/error';
 import { useRouter } from 'next/router';
 import { doc } from 'prettier';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import client from 'tina/__generated__/client';
 import { useTina } from 'tinacms/dist/react';
@@ -24,6 +24,7 @@ import { useTocListener } from 'utils/toc_helpers';
 import SetupOverview from '../../components/layout/setup-overview';
 import * as ga from '../../utils/ga';
 import { format } from 'path';
+import TocOverflowButton from 'components/docsMain/tocOverflowButton';
 
 export function DocTemplate(props) {
   if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
@@ -31,6 +32,26 @@ export function DocTemplate(props) {
   }
   return <_DocTemplate {...props} />;
 }
+
+function screenResizer(){
+  const [isScreenSmallerThan1200, setIsScreenSmallerThan1200] = useState(false);
+  const [isScreenSmallerThan840, setIsScreenSmallerThan840] = useState(false);
+
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setIsScreenSmallerThan1200(window.innerWidth < 1200);
+      setIsScreenSmallerThan840(window.innerWidth < 840);
+    };
+
+    updateScreenSize();
+
+    window.addEventListener('resize', updateScreenSize);
+
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+
+  return {isScreenSmallerThan1200, isScreenSmallerThan840};
+};
 
 function _DocTemplate(props) {
   // fallback workaround
@@ -68,7 +89,17 @@ function _DocTemplate(props) {
     day: 'numeric',
   });
 
-  console.log(previousPage);
+  const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
+  const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
+  const gridClass = isScreenSmallerThan840
+  ? 'grid-cols-1'
+  : isScreenSmallerThan1200
+  ? 'grid-cols-[1.25fr_3fr]'
+  : 'grid-cols-[1.25fr_3fr_0.75fr]';
+
+  console.log((isScreenSmallerThan1200 && !isScreenSmallerThan840))
+
+
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -99,19 +130,20 @@ function _DocTemplate(props) {
       />
       <Layout>
         <div className="relative my-16 flex justify-center items-center">
-          <div className="lg:px-16 w-full max-w-[2000px] lg:grid grid-cols-[1.25fr_3fr_0.75fr]">
+          <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
             {/* LEFT COLUMN */}
-            <div className="hidden lg:block sticky top-32 h-[calc(100vh)]">
+            <div className={`block sticky top-32 h-[calc(100vh)] ${isScreenSmallerThan840 ? 'hidden' : 'block'}`}>
               <LeftHandSideParentContainer
                 tableOfContents={props.navDocData.data}
               />
             </div>
-            {/* MIDDLE COLUMN */}
-            <div className="mx-10">
-              <MainDocsBodyHeader data={props} doc_data={doc_data.body} />
+            {/* MIDDLE COLUMN */} 
+            <div className="mx-10 max-w-full overflow-hidden break-words">
+              <MainDocsBodyHeader data={props} screenSizing={isScreenSmallerThan840}/>
+              {isScreenSmallerThan1200 && <TocOverflowButton tocData={TableOfContents}/>}
               <div
                 ref={contentRef}
-                className="max-w-full overflow-hidden break-words"
+                
               >
                 <TinaMarkdown
                   content={doc_data.body}
@@ -124,7 +156,7 @@ function _DocTemplate(props) {
               </div>
             </div>
             {/* RIGHT COLUMN */}
-            <div>
+            <div className={`${isScreenSmallerThan1200 ? 'hidden' : 'block'}`}>
               <ToC tocItems={TableOfContents} activeIds={activeIds} />
             </div>
           </div>

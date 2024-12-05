@@ -9,7 +9,7 @@ interface TocProps {
   activeIds: string[];
 }
 
-const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
+export const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
   return tocItems
     .map((item) => {
       const anchor = getDocId(item.text);

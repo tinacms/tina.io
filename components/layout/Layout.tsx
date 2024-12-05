@@ -21,7 +21,7 @@ export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
             url: 'https://tina.io' + router.asPath,
           }}
         />
-        <div className="lg:pb-20">
+        <div className="pb-0 lg:pb-20">
           <Navbar sticky={sticky}/>
         </div>
         <div className="flex flex-col flex-1">{children}</div>
