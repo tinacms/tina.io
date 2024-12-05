@@ -159,10 +159,9 @@ export const docAndBlogComponents: Components<{
     </div>
   ),
   Youtube: ({ embedSrc }) => (
-    <div className="youtube-container flex justify-center my-6">
+    <div className="youtube-container my-6 w-full relative" style={{ paddingBottom: '56.25%' }}>
       <iframe
-        width="560"
-        height="315"
+        className="absolute top-0 left-0 w-full h-full"
         src={embedSrc}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -170,6 +169,7 @@ export const docAndBlogComponents: Components<{
       ></iframe>
     </div>
   ),
+  
   CreateAppCta: ({ ctaText, cliText }) => (
     <>
       <a
