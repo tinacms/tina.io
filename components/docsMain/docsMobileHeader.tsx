@@ -1,16 +1,28 @@
 import { LeftHandSideHeader } from 'components/docsSearch/SearchNavigation';
 import { useState } from 'react';
-import {  FaChevronRight } from 'react-icons/fa';
+import { FaChevronRight } from 'react-icons/fa';
 import DirectoryOverflowButton from './directoryOverflowButton';
 
 export const MobileVersionSelect = () => {
-  const versions = ['v.Latest', 'v.0.68.13', 'v.0.67.3', 'v.Pre-Beta'];
-  const [versionSelected, setVersionSelected] = useState(versions[0]);
+  const versions = [
+    ['v.Latest', 'https://tina.io'],
+    [
+      'v.0.68.13',
+      'https://tinacms-site-next-i08bcbicy-tinacms.vercel.app/docs/',
+    ],
+    ['v.0.67.3', 'https://tinacms-site-next-pu1t2v9y4-tinacms.vercel.app/'],
+    ['v.Pre-Beta', 'https://pre-beta.tina.io/'],
+  ];
+  const [versionSelected, setVersionSelected] = useState(versions[0][0]);
   const [isOverflowOpen, setIsOverflowOpen] = useState(false);
 
   const handleVersionClick = (version) => {
-    setVersionSelected(version); 
-    setIsOverflowOpen(false); 
+    setVersionSelected(version[0]);
+    setIsOverflowOpen(false);
+
+    if (version[0] !== 'v.Latest') {
+      window.location.href = version[1];
+    }
   };
 
   return (
@@ -38,7 +50,7 @@ export const MobileVersionSelect = () => {
               className="px-4 py-2 hover:bg-stone-100 cursor-pointer text-stone-600"
               onClick={() => handleVersionClick(version)}
             >
-              {version}
+              {version[0]}
             </div>
           ))}
         </div>
@@ -48,11 +60,16 @@ export const MobileVersionSelect = () => {
 };
 
 const DocsMobileHeader = (data) => {
-  
   return (
-    <div className='relative pb-20'>
-      <LeftHandSideHeader paddingGlobal='pb-6' headerColour='orange' headerPadding='' searchMargin='' searchBarPadding='py-3'/>
-      <DirectoryOverflowButton tocData={data.data.data.navDocData.data}/>
+    <div className="relative pb-20">
+      <LeftHandSideHeader
+        paddingGlobal="pb-6"
+        headerColour="orange"
+        headerPadding=""
+        searchMargin=""
+        searchBarPadding="py-3"
+      />
+      <DirectoryOverflowButton tocData={data.data.data.navDocData.data} />
     </div>
   );
 };
