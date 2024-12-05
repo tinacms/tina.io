@@ -23,7 +23,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
           >
             <span className="text-sm uppercase opacity-50 pl-10">Previous</span>
             <h5
-              className="text-xl leading-[1.3] m-0 pl transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center"
+              className="text-base md:text-xl eading-[1.3] m-0 pl transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center"
             >
               <RightArrowSvg className="w-8 h-8 fill-gray-400 transition-all ease-out duration-150 rotate-180 group-hover:fill-orange-500 mr-2" />
               {prevPage.title}
@@ -39,7 +39,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
           >
             <span className="text-sm uppercase opacity-50 pr-10">Next</span>
             <h5
-              className="text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end"
+              className="text-base md:text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end"
             >
               {nextPage.title}
               <RightArrowSvg className="w-8 h-8 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 ml-2" />

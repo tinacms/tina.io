@@ -92,7 +92,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
           <nav className="relative flex gap-16 px-4">
             <button
               ref={(el) => (tabRefs.current[0] = el)}
-              className={`font-inter font-semibold text-lg ${
+              className={`font-inter font-semibold text-sm ${
                 activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
               }`}
               onClick={() => setActiveTab('DOCS')}
@@ -101,7 +101,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
             </button>
             <button
               ref={(el) => (tabRefs.current[1] = el)}
-              className={`font-inter font-semibold text-lg ${
+              className={`font-inter font-semibold text-sm ${
                 activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
               }`}
               onClick={() => setActiveTab('BLOG')}

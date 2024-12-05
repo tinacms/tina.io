@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { getDocId } from 'utils/docs/getDocIds';
-
 
 const TocOverflow = ({ tocData }) => {
   return (
@@ -10,10 +9,9 @@ const TocOverflow = ({ tocData }) => {
       {tocData.tocData.map((item, index) => {
         const textIndentation =
           item.type === 'h3' ? 'ml-4' : item.type === 'h4' ? 'ml-8' : '';
-        
 
         const linkHref = `#${item.text.replace(/\s+/g, '-').toLowerCase()}`;
-        
+
         return (
           <Link
             key={index}
@@ -30,9 +28,23 @@ const TocOverflow = ({ tocData }) => {
 
 const TocOverflowButton = (tocData) => {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsTableOfContentsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="py-6 w-full">
+    <div className="py-6 w-full" ref={containerRef}>
       <div
         className="py-2 px-4 border-slate-400 bg-gradient-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
         onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
