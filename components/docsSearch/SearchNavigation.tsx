@@ -147,7 +147,7 @@ export const SearchResultsOverflow = ({ query }) => {
   );
 };
 
-export const LeftHandSideHeader = ({paddingGlobal, headerColour, headerPadding}) => {
+export const LeftHandSideHeader = ({paddingGlobal, headerColour, headerPadding, searchMargin, searchBarPadding}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -199,10 +199,10 @@ export const LeftHandSideHeader = ({paddingGlobal, headerColour, headerPadding})
           <MobileVersionSelect/>
         </div>
       </div>
-      <div className="relative mx-3">
+      <div className={`relative ${searchMargin}`}>
         <input
           type="text"
-          className="w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg"
+          className={`w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg ${searchBarPadding}`}
           placeholder="Search"
           onKeyDown={handleKeyDown}
           onChange={handleKeyChange}
@@ -228,7 +228,7 @@ export const LeftHandSideHeader = ({paddingGlobal, headerColour, headerPadding})
 export const LeftHandSideParentContainer = ({ tableOfContents }) => {
   return (
     <div className="rounded-2xl shadow-xl w-full bg-white/50 ">
-      <LeftHandSideHeader paddingGlobal='p-4' headerColour='blue' headerPadding='pl-4'/>
+      <LeftHandSideHeader paddingGlobal='p-4' headerColour='blue' headerPadding='pl-4' searchMargin='mx-3' searchBarPadding=''/>
       <div className="overflow-y-scroll overflow-x-hidden max-h-[62vh] 2xl:max-h-[75vh] pl-4 2xl:pl-0 ">
         <DocsNavigationList navItems={tableOfContents} />
       </div>

@@ -18,12 +18,12 @@ const DirectoryOverflowButton = (tocData) => {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
 
   return (
-    <div className="pb-6 w-full px-3">
+    <div className="pb-6 w-full">
       <div
         className="py-2 px-4 border-slate-400 bg-gradient-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
         onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
       >
-        <span className="flex items-center space-x-2">
+        <span className="flex items-center space-x-2 py-1">
           <MdMenu size={20} className="text-orange-500" />
           <span className="text-slate-600">Topics</span>
         </span>

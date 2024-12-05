@@ -51,7 +51,7 @@ const DocsMobileHeader = (data) => {
   
   return (
     <div className='relative pb-20'>
-      <LeftHandSideHeader paddingGlobal='pb-6' headerColour='orange' headerPadding=''/>
+      <LeftHandSideHeader paddingGlobal='pb-6' headerColour='orange' headerPadding='' searchMargin='' searchBarPadding='py-3'/>
       <DirectoryOverflowButton tocData={data.data.data.navDocData.data}/>
     </div>
   );

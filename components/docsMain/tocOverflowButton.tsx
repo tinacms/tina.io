@@ -37,7 +37,7 @@ const TocOverflowButton = (tocData) => {
       >
         <span className="flex items-center space-x-2">
           <MdMenu size={20} className="text-orange-500" />
-          <span className="text-slate-600">Table of Contents</span>
+          <span className="text-slate-600 py-1">Table of Contents</span>
         </span>
       </div>
       {isTableOfContentsOpen && (
