@@ -1,10 +1,7 @@
 import { DocsNavigationList } from 'components/DocumentationNavigation/DocsNavigationList';
-import ToC, { generateMarkdown } from 'components/toc';
-import Link from 'next/link';
 import { useState } from 'react';
 import { MdMenu } from 'react-icons/md';
-import ReactMarkdown from 'react-markdown';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
+
 
 const DirectoryOverflow = ({ tocData }) => {
   return (

@@ -125,7 +125,7 @@ function _DocTemplate(props) {
         }}
       />
       <Layout>
-        <div className="relative my-16 flex justify-center items-center">
+        <div className="relative my-6 lg:my-16 flex justify-center items-center">
           <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
             {/* LEFT COLUMN */}
             <div className={`block sticky top-32 h-[calc(100vh)] ${isScreenSmallerThan840 ? 'hidden' : 'block'}`}>
