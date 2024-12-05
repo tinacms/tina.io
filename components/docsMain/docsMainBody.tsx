@@ -2,7 +2,6 @@ import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs';
 import DocsMobileHeader from './docsMobileHeader';
 
 const MainDocsBodyHeader = (docData) => {
-  console.log('props', docData.screenSizing);
   const DocumentTitle = docData.data.new.results.data.doc.title;
 
   return (

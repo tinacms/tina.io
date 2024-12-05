@@ -17,8 +17,6 @@ const DirectoryOverflow = ({ tocData }) => {
 const DirectoryOverflowButton = (tocData) => {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
 
-  console.log(tocData);
-
   return (
     <div className="pb-6 w-full px-3">
       <div

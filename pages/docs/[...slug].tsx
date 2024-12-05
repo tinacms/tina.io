@@ -97,10 +97,6 @@ function _DocTemplate(props) {
   ? 'grid-cols-[1.25fr_3fr]'
   : 'grid-cols-[1.25fr_3fr_0.75fr]';
 
-  console.log((isScreenSmallerThan1200 && !isScreenSmallerThan840))
-
-
-
   useEffect(() => {
     const handleRouteChange = (url) => {
       ga.pageview(url);
