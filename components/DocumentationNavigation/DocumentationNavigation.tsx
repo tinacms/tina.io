@@ -11,6 +11,7 @@ import { searchIndices } from '../../components/search/indices';
 import { VersionSelect } from './VersionSelect';
 import { BiMenu } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
+import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
 
 export interface DocsNavProps {
   navItems: any;
@@ -28,30 +29,6 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
           onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
         />
       )}
-      
-      <DocsLeftSidebar open={mobileNavIsOpen}>
-        <DocsSidebarHeaderWrapper>
-          <DocsSidebarHeader>
-            <div className="text-2xl leading-tight mt-2.5 ml-2 font-tuner text-orange-500">
-              Tina Docs
-            </div>
-            <VersionSelect />
-          </DocsSidebarHeader>
-
-         
-          <CloseButton mobileNavIsOpen={mobileNavIsOpen} onClick={() => setMobileNavIsOpen(false)}>
-            <IoMdClose className="icon text-orange-500 hover:text-orange-400" />
-          </CloseButton>
-
-          <Search collapse expanded={true} indices={searchIndices} />
-        </DocsSidebarHeaderWrapper>
-
-        {router.isFallback ? (
-          <FallbackPlaceholder />
-        ) : (
-          <DocsNavigationList navItems={navItems} />
-        )}
-      </DocsLeftSidebar>
 
       <Overlay
         open={mobileNavIsOpen}

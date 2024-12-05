@@ -70,6 +70,12 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
+  code: (props) => (
+    <code
+      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white rounded"
+      {...props}
+    />
+  ),
 
   Summary: (props) => {
     const [openTab, setOpenTab] = useState(false);
@@ -105,9 +111,9 @@ export const docAndBlogComponents: Components<{
   h4: (props) => <FormatHeaders level={5} {...props} />,
   h5: (props) => <FormatHeaders level={5} {...props} />,
   h6: (props) => <FormatHeaders level={6} {...props} />,
-  ul: (props) => <ul className="list-disc ml-5" {...props} />,
+  ul: (props) => <ul className="list-disc my-6 ml-5" {...props} />,
   ol: (props) => <ol className="list-decimal ml-5" {...props} />,
-  li: (props) => <li className="mb-2" {...props} />,
+  li: (props) => <li className="mb-2 ml-10" {...props} />,
   a: (props) => {
     return (
       <a
@@ -118,6 +124,16 @@ export const docAndBlogComponents: Components<{
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
   },
+  //@ts-ignore it doesnt recognside blockquote but wont render block_quote and wil render blockquote....???
+  blockquote: (props) => (
+    <blockquote
+      style={{
+        backgroundColor: 'var(--color-seafoam)',
+      }}
+      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4"
+      {...props}
+    />
+  ),
 
   Iframe: ({ iframeSrc, height }) => {
     return (
@@ -143,10 +159,9 @@ export const docAndBlogComponents: Components<{
     </div>
   ),
   Youtube: ({ embedSrc }) => (
-    <div className="youtube-container">
+    <div className="youtube-container my-6 w-full relative" style={{ paddingBottom: '56.25%' }}>
       <iframe
-        width="560"
-        height="315"
+        className="absolute top-0 left-0 w-full h-full"
         src={embedSrc}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -154,6 +169,7 @@ export const docAndBlogComponents: Components<{
       ></iframe>
     </div>
   ),
+  
   CreateAppCta: ({ ctaText, cliText }) => (
     <>
       <a
@@ -265,11 +281,15 @@ export const docAndBlogComponents: Components<{
   // @ts-ignore TODO: fix this in TinaCMS
   code_block: ({ value, lang, children }) => {
     return (
-      <Prism
+      <div className='py-3 word-break white-space overflow-x-hidden'>
+        <Prism
         value={children || value || ''}
         lang={lang || 'jsx'}
         theme="nightOwl"
+
+        
       />
+      </div>
     );
   },
   GraphQLCodeBlock: ({ query, response, preselectResponse }) => {
@@ -330,9 +350,23 @@ function FormatHeaders({ children, level }) {
     typeof window !== 'undefined' ? window.location.pathname : '';
   const linkHref = `${currentUrl}#${id}`;
 
+  const styles = {
+    1: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl mt-4 mb-4',
+    2: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl mt-4 mb-3',
+    3: 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-2 mb-2',
+    4: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2 mb-2',
+    5: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2 mb-1',
+    6: 'text-gray-500 text-base font-normal mt-2 mb-1',
+  };
+
   return (
-    <HeadingTag id={id} className="relative cursor-pointer">
-      <a href={linkHref} className="no-underline group">
+    <HeadingTag id={id} className={`${styles[level]} relative cursor-pointer`}>
+      <a
+        href={linkHref}
+        className="no-underline group"
+        onClick={() => navigator.clipboard.writeText(`tina.io${linkHref}`)}
+      >
+        {' '}
         {children}
         <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex mb-2" />
       </a>

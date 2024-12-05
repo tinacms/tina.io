@@ -1,7 +1,7 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import styled from 'styled-components'
-import { matchActualTarget } from 'utils'
+import React from 'react';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import { matchActualTarget } from 'utils';
 
 export const ChevronRightIcon = ({ ...props }) => (
   <svg
@@ -14,10 +14,10 @@ export const ChevronRightIcon = ({ ...props }) => (
   >
     <path d="M11 24.792L12.2654 26L21.4773 17.2061C22.1747 16.5403 22.1737 15.4588 21.4773 14.7939L12.2654 6L11 7.208L20.2099 16L11 24.792Z" />
   </svg>
-)
+);
 
 export interface DocsNavProps {
-  navItems: any
+  navItems: any;
 }
 
 const getNestedBreadcrumbs = (
@@ -27,38 +27,38 @@ const getNestedBreadcrumbs = (
 ) => {
   for (const listItem of listItems || []) {
     if (matchActualTarget(pagePath, listItem.slug || listItem.href)) {
-      breadcrumbs.push(listItem)
-      return [listItem]
+      breadcrumbs.push(listItem);
+      return [listItem];
     }
     const nestedBreadcrumbs = getNestedBreadcrumbs(
       listItem.items,
       pagePath,
       breadcrumbs
-    )
+    );
     if (nestedBreadcrumbs.length) {
-      return [listItem, ...nestedBreadcrumbs]
+      return [listItem, ...nestedBreadcrumbs];
     }
   }
-  return []
-}
+  return [];
+};
 
 export function Breadcrumbs({ navItems }: DocsNavProps) {
-  const router = useRouter()
-  const breadcrumbs = getNestedBreadcrumbs(navItems, router.asPath) || []
+  const router = useRouter();
+  const breadcrumbs = getNestedBreadcrumbs(navItems, router.asPath) || [];
   return (
     <>
       <BreadcrumbList>
         {breadcrumbs.map((breadcrumb, i) => (
           <li key={breadcrumb.slug}>
             {i != 0 && <ChevronRightIcon />}
-            <a href={breadcrumb.slug}>
+            <a className="hover:text-orange-500" href={breadcrumb.slug}>
               {breadcrumb.title || breadcrumb.category}
             </a>
           </li>
         ))}
       </BreadcrumbList>
     </>
-  )
+  );
 }
 
 const BreadcrumbList = styled.ul`
@@ -107,4 +107,4 @@ const BreadcrumbList = styled.ul`
       opacity: 1 !important;
     }
   }
-`
+`;
