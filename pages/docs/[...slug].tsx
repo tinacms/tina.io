@@ -152,7 +152,7 @@ function _DocTemplate(props) {
               </div>
             </div>
             {/* RIGHT COLUMN */}
-            <div className={`${isScreenSmallerThan1200 ? 'hidden' : 'block'}`}>
+            <div className={`pt-28 ${isScreenSmallerThan1200 ? 'hidden' : 'block'}`}>
               <ToC tocItems={TableOfContents} activeIds={activeIds} />
             </div>
           </div>

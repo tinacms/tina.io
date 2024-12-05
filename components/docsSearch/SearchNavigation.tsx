@@ -147,7 +147,7 @@ export const SearchResultsOverflow = ({ query }) => {
   );
 };
 
-export const LeftHandSideHeader = ({paddingGlobal, headerColour}) => {
+export const LeftHandSideHeader = ({paddingGlobal, headerColour, headerPadding}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -192,7 +192,7 @@ export const LeftHandSideHeader = ({paddingGlobal, headerColour}) => {
   return (
     <div className={`${paddingGlobal} pt-10`}>
       <div className="flex justify-between">
-        <h1 className={`text-4xl pb-4 font-tuner bg-gradient-to-br ${headerStyling}  bg-clip-text text-transparent`}>
+        <h1 className={`text-4xl pb-4 font-tuner bg-gradient-to-br ${headerStyling} ${headerPadding}  bg-clip-text text-transparent`}>
           Tina Docs
         </h1>
         <div className="mr-3">
@@ -228,7 +228,7 @@ export const LeftHandSideHeader = ({paddingGlobal, headerColour}) => {
 export const LeftHandSideParentContainer = ({ tableOfContents }) => {
   return (
     <div className="rounded-2xl shadow-xl w-full bg-white/50 ">
-      <LeftHandSideHeader paddingGlobal='p-4' headerColour='blue'/>
+      <LeftHandSideHeader paddingGlobal='p-4' headerColour='blue' headerPadding='pl-4'/>
       <div className="overflow-y-scroll overflow-x-hidden max-h-[62vh] 2xl:max-h-[75vh] pl-4 2xl:pl-0 ">
         <DocsNavigationList navItems={tableOfContents} />
       </div>
