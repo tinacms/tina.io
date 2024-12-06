@@ -58,13 +58,7 @@ export const Blocks = ({
           <FlyingBlock key={`block-${index}`} data={block} index={index} />
         );
       case 'PageBlocksEvents':
-        return (
-          <VerticalCardsBlock
-            key={`block-${index}`}
-            data={block}
-            index={index}
-          />
-        );
+        return <VerticalCardsBlock key={`block-${index}`} />;
       case 'PageBlocksTable':
         return <TableBox data={block} index={index} />;
       case 'PageBlocksMediaComponent':
