@@ -179,7 +179,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media-v2.webm",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -357,7 +357,7 @@
           "imageBorder": true,
           "avatar": "/Fr4NQFpf_400x400.jpg",
           "date": "2024-10-19T13:00:00.000Z",
-          "testimonial": "Very happy to finally release the new website ! \n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration! \n",
+          "testimonial": "Very happy to finally release the new website !\n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration!\n",
           "link": "https://x.com/quentinbdb/status/1847795017416401229"
         },
         {
@@ -384,7 +384,7 @@
           "imageBorder": true,
           "avatar": "/3D97Wrt5_400x400.jpg",
           "date": "2024-08-18T14:00:00.000Z",
-          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try \n",
+          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try\n",
           "link": "https://x.com/manucoffin/status/1825455891421802720"
         },
         {
