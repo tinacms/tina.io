@@ -134,194 +134,6 @@
       "_template": "logoGrid"
     },
     {
-      "blockHeadline": "Key Features",
-      "items": [
-        {
-          "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit",
-          "icon2": "FaClock",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://demo.tina.io/admin#/"
-          }
-        },
-        {
-          "headline": "Open Source",
-          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
-          "icon2": "FaUnlock",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://github.com/tinacms/tinacms"
-          }
-        },
-        {
-          "headline": "Develop Locally",
-          "text": "Easily set up and run Tina locally to talk to your local filesystem",
-          "icon2": "FaCodeBranch",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/setup-overview/"
-          }
-        },
-        {
-          "headline": "3rd Party Media",
-          "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
-          "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media-v2.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/reference/media/overview"
-          }
-        },
-        {
-          "headline": "Build with Blocks",
-          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
-          "icon2": "FaPuzzlePiece",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/editing/blocks"
-          }
-        },
-        {
-          "headline": "Markdown at Scale",
-          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
-          "icon2": "FaMarkdown",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/editing/overview"
-          }
-        },
-        {
-          "headline": "Git Integration",
-          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
-          "icon2": "FaGithub",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/drafts/editorial-workflow/"
-          }
-        },
-        {
-          "headline": "Easy Documentation",
-          "text": "Tina's docs run on TinaCMS - check it out!",
-          "icon2": "FaFileAlt",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs"
-          }
-        }
-      ],
-      "_template": "carouselFeature"
-    },
-    {
-      "features": [
-        {
-          "headline": "Talk to a Tina Expert",
-          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
-          "buttons": [
-            {
-              "label": "Schedule Call",
-              "icon": true,
-              "color": "blue",
-              "size": "small",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            }
-          ],
-          "media": [
-            {
-              "image": "/img/TinaExpert.png",
-              "_template": "image"
-            }
-          ],
-          "isReversed": true,
-          "imageBackground": false
-        }
-      ],
-      "_template": "features"
-    },
-    {
-      "title": "Where's Tina?",
-      "cardItems": [
-        {
-          "headline": "Write the Docs - Melbourne",
-          "startDate": "2024-11-28T00:00:00.000Z",
-          "startTime": "2024-11-20T08:30:00.000Z",
-          "endDate": "2024-11-29T00:00:00.000Z",
-          "timezone": 11,
-          "location": "Melbourne, Australia",
-          "image": "/img/events/2024-11-21_10-33.jpg",
-          "link": "https://www.writethedocs.org/conf/australia/2024/",
-          "markerLAT": -26.81015,
-          "markerLONG": 225.96399
-        },
-        {
-          "headline": "NDC Security",
-          "startDate": "2025-01-20T00:00:00.000Z",
-          "startTime": "2024-10-14T09:00:00.000Z",
-          "endDate": "2025-01-23T00:00:00.000Z",
-          "timezone": 1,
-          "location": "Oslo, Norway",
-          "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
-          "link": "https://ndc-security.com/",
-          "markerLAT": -1,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC London",
-          "startDate": "2025-01-27T00:00:00.000Z",
-          "startTime": "2024-11-21T09:00:00.000Z",
-          "endDate": "2025-01-31T00:00:00.000Z",
-          "timezone": 0,
-          "location": "London, England",
-          "image": "/ndclondon.jpg",
-          "link": "https://ndclondon.com/",
-          "markerLAT": 7,
-          "markerLONG": 52
-        },
-        {
-          "headline": "NDC Melbourne",
-          "startDate": "2025-04-29T00:00:00.000Z",
-          "startTime": "2024-11-20T09:00:00.000Z",
-          "endDate": "2025-05-01T00:00:00.000Z",
-          "timezone": 11,
-          "location": "Melbourne, Australia",
-          "image": "/ndc-melb-2024-11-21_10-58-17.jpg",
-          "link": "https://ndcmelbourne.com/",
-          "markerLAT": -27.81015,
-          "markerLONG": 220.9541
-        }
-      ],
       "_template": "events"
     },
     {
@@ -357,7 +169,7 @@
           "imageBorder": true,
           "avatar": "/Fr4NQFpf_400x400.jpg",
           "date": "2024-10-19T13:00:00.000Z",
-          "testimonial": "Very happy to finally release the new website ! \n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration! \n",
+          "testimonial": "Very happy to finally release the new website !\n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration!\n",
           "link": "https://x.com/quentinbdb/status/1847795017416401229"
         },
         {
@@ -384,7 +196,7 @@
           "imageBorder": true,
           "avatar": "/3D97Wrt5_400x400.jpg",
           "date": "2024-08-18T14:00:00.000Z",
-          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try \n",
+          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try\n",
           "link": "https://x.com/manucoffin/status/1825455891421802720"
         },
         {
