@@ -244,84 +244,6 @@
       "_template": "carouselFeature"
     },
     {
-      "features": [
-        {
-          "headline": "Talk to a Tina Expert",
-          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
-          "buttons": [
-            {
-              "label": "Schedule Call",
-              "icon": true,
-              "color": "blue",
-              "size": "small",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            }
-          ],
-          "media": [
-            {
-              "image": "/img/TinaExpert.png",
-              "_template": "image"
-            }
-          ],
-          "isReversed": true,
-          "imageBackground": false
-        }
-      ],
-      "_template": "features"
-    },
-    {
-      "title": "Where's Tina?",
-      "cardItems": [
-        {
-          "headline": "Write the Docs - Melbourne",
-          "startDate": "2024-11-28T00:00:00.000Z",
-          "startTime": "2024-11-20T08:30:00.000Z",
-          "endDate": "2024-11-29T00:00:00.000Z",
-          "timezone": 11,
-          "location": "Melbourne, Australia",
-          "image": "/img/events/2024-11-21_10-33.jpg",
-          "link": "https://www.writethedocs.org/conf/australia/2024/",
-          "markerLAT": -26.81015,
-          "markerLONG": 225.96399
-        },
-        {
-          "headline": "NDC Security",
-          "startDate": "2025-01-20T00:00:00.000Z",
-          "startTime": "2024-10-14T09:00:00.000Z",
-          "endDate": "2025-01-23T00:00:00.000Z",
-          "timezone": 1,
-          "location": "Oslo, Norway",
-          "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
-          "link": "https://ndc-security.com/",
-          "markerLAT": -1,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC London",
-          "startDate": "2025-01-27T00:00:00.000Z",
-          "startTime": "2024-11-21T09:00:00.000Z",
-          "endDate": "2025-01-31T00:00:00.000Z",
-          "timezone": 0,
-          "location": "London, England",
-          "image": "/ndclondon.jpg",
-          "link": "https://ndclondon.com/",
-          "markerLAT": 7,
-          "markerLONG": 52
-        },
-        {
-          "headline": "NDC Melbourne",
-          "startDate": "2025-04-29T00:00:00.000Z",
-          "startTime": "2024-11-20T09:00:00.000Z",
-          "endDate": "2025-05-01T00:00:00.000Z",
-          "timezone": 11,
-          "location": "Melbourne, Australia",
-          "image": "/ndc-melb-2024-11-21_10-58-17.jpg",
-          "link": "https://ndcmelbourne.com/",
-          "markerLAT": -27.81015,
-          "markerLONG": 220.9541
-        }
-      ],
       "_template": "events"
     },
     {
@@ -357,7 +279,7 @@
           "imageBorder": true,
           "avatar": "/Fr4NQFpf_400x400.jpg",
           "date": "2024-10-19T13:00:00.000Z",
-          "testimonial": "Very happy to finally release the new website ! \n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration! \n",
+          "testimonial": "Very happy to finally release the new website !\n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration!\n",
           "link": "https://x.com/quentinbdb/status/1847795017416401229"
         },
         {
@@ -384,7 +306,7 @@
           "imageBorder": true,
           "avatar": "/3D97Wrt5_400x400.jpg",
           "date": "2024-08-18T14:00:00.000Z",
-          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try \n",
+          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try\n",
           "link": "https://x.com/manucoffin/status/1825455891421802720"
         },
         {
@@ -469,42 +391,6 @@
         }
       ],
       "_template": "testimonials"
-    },
-    {
-      "features": [
-        {
-          "headline": "Avoid Mistakes with Editorial Workflow",
-          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
-          "buttons": [
-            {
-              "label": "Editorial Workflow",
-              "icon": false,
-              "variant": "blue",
-              "size": "small",
-              "url": "/editorial-workflow",
-              "_template": "actions"
-            }
-          ],
-          "media": [
-            {
-              "src": "/video/create-branch.webm",
-              "_template": "video"
-            }
-          ]
-        },
-        {
-          "headline": "Unbeatable UX",
-          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
-          "media": [
-            {
-              "src": "/img/docs/introduction/homepage-demo-2.webm",
-              "_template": "video"
-            }
-          ],
-          "isReversed": true
-        }
-      ],
-      "_template": "features"
     },
     {
       "title": "Recent Posts",
