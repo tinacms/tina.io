@@ -179,7 +179,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media-v2.webm",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -271,57 +271,6 @@
       "_template": "features"
     },
     {
-      "title": "Where's Tina?",
-      "cardItems": [
-        {
-          "headline": "Write the Docs - Melbourne",
-          "startDate": "2024-11-28T00:00:00.000Z",
-          "startTime": "2024-11-20T08:30:00.000Z",
-          "endDate": "2024-11-29T00:00:00.000Z",
-          "timezone": 11,
-          "location": "Melbourne, Australia",
-          "image": "/img/events/2024-11-21_10-33.jpg",
-          "link": "https://www.writethedocs.org/conf/australia/2024/",
-          "markerLAT": -26.81015,
-          "markerLONG": 225.96399
-        },
-        {
-          "headline": "NDC Security",
-          "startDate": "2025-01-20T00:00:00.000Z",
-          "startTime": "2024-10-14T09:00:00.000Z",
-          "endDate": "2025-01-23T00:00:00.000Z",
-          "timezone": 1,
-          "location": "Oslo, Norway",
-          "image": "/img/wheres-tina/ndc-oslo-2024.jpg",
-          "link": "https://ndc-security.com/",
-          "markerLAT": -1,
-          "markerLONG": 59
-        },
-        {
-          "headline": "NDC London",
-          "startDate": "2025-01-27T00:00:00.000Z",
-          "startTime": "2024-11-21T09:00:00.000Z",
-          "endDate": "2025-01-31T00:00:00.000Z",
-          "timezone": 0,
-          "location": "London, England",
-          "image": "/ndclondon.jpg",
-          "link": "https://ndclondon.com/",
-          "markerLAT": 7,
-          "markerLONG": 52
-        },
-        {
-          "headline": "NDC Melbourne",
-          "startDate": "2025-04-29T00:00:00.000Z",
-          "startTime": "2024-11-20T09:00:00.000Z",
-          "endDate": "2025-05-01T00:00:00.000Z",
-          "timezone": 11,
-          "location": "Melbourne, Australia",
-          "image": "/ndc-melb-2024-11-21_10-58-17.jpg",
-          "link": "https://ndcmelbourne.com/",
-          "markerLAT": -27.81015,
-          "markerLONG": 220.9541
-        }
-      ],
       "_template": "events"
     },
     {
@@ -357,7 +306,7 @@
           "imageBorder": true,
           "avatar": "/Fr4NQFpf_400x400.jpg",
           "date": "2024-10-19T13:00:00.000Z",
-          "testimonial": "Very happy to finally release the new website ! \n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration! \n",
+          "testimonial": "Very happy to finally release the new website !\n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration!\n",
           "link": "https://x.com/quentinbdb/status/1847795017416401229"
         },
         {
@@ -384,7 +333,7 @@
           "imageBorder": true,
           "avatar": "/3D97Wrt5_400x400.jpg",
           "date": "2024-08-18T14:00:00.000Z",
-          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try \n",
+          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try\n",
           "link": "https://x.com/manucoffin/status/1825455891421802720"
         },
         {
