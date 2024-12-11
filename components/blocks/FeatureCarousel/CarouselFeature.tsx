@@ -193,6 +193,7 @@ export function CarouselFeatureBlock({ data, index }) {
         key={index}
         autoPlay
         muted
+        playsInline
         loop
         className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
       >
