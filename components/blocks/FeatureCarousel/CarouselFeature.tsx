@@ -188,25 +188,29 @@ export function CarouselFeatureBlock({ data, index }) {
       );
     }
 
-    return (
-      <video
-        key={index}
-        autoPlay
-        muted
-        playsInline
-        loop
-        preload="metadata"
-        className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
-      >
-        {fullVideoUrl.endsWith('.webm') && (
-          <source src={fullVideoUrl} type="video/webm" />
-        )}
-        {fullVideoUrl.endsWith('.mp4') && (
-          <source src={fullVideoUrl} type="video/mp4" />
-        )}
-        Your browser does not support the video tag.
-      </video>
-    );
+    if (fileExtension === 'mp4' || fileExtension === 'webm') {
+      return (
+        <video
+          key={index}
+          autoPlay
+          muted
+          playsInline
+          loop
+          preload="metadata"
+          className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
+        >
+          {fileExtension === 'webm' && (
+            <source src={fullVideoUrl} type="video/webm" />
+          )}
+          {fileExtension === 'mp4' && (
+            <source src={fullVideoUrl} type="video/mp4" />
+          )}
+          There was an issue displaying the video.
+        </video>
+      );
+    }
+
+    throw new Error(`Unsupported video format: ${fileExtension}`);
   };
 
   return (
