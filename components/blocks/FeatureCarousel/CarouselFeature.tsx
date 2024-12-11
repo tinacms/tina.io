@@ -195,10 +195,15 @@ export function CarouselFeatureBlock({ data, index }) {
         muted
         playsInline
         loop
+        preload="metadata"
         className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
       >
-        <source src={fullVideoUrl} type="video/webm" />
-        <source src={fullVideoUrl} type="video/mp4" />
+        {fullVideoUrl.endsWith('.webm') && (
+          <source src={fullVideoUrl} type="video/webm" />
+        )}
+        {fullVideoUrl.endsWith('.mp4') && (
+          <source src={fullVideoUrl} type="video/mp4" />
+        )}
         Your browser does not support the video tag.
       </video>
     );
