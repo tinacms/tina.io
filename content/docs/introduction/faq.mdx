@@ -1,6 +1,6 @@
 ---
 title: FAQ
-last_edited: '2024-11-11T01:35:17.011Z'
+last_edited: '2024-12-12T01:27:37.666Z'
 next: ''
 previous: ''
 ---
@@ -168,11 +168,12 @@ If you are getting this error when access the TinaCMS interface, it can be cause
 
 ### How do I resolve errors caused by unindexed branches?
 
-If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, try the following.\_createMdxContent
+If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, or see no branches indexed at all, try the following:
 
-1. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process.
-2. Verify that the branch exists in the GitHub repository.
-3. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
+1. Verify that a configuration file exists at `tina/config.ts` on the default branch.
+2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process.
+3. Verify that the branch exists in the GitHub repository.
+4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
 
 ### How do I resolve `There was a problem saving your document` errors?
 
