@@ -9,7 +9,10 @@ import {
   SearchHeader,
   SearchTabs,
 } from 'components/docsSearch/SearchComponent';
-import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
+import {
+  DocsSearchBarHeader,
+  LeftHandSideParentContainer,
+} from 'components/docsSearch/SearchNavigation';
 
 const DocsSearchPage = ({
   tableOfContents,
@@ -29,6 +32,16 @@ const DocsSearchPage = ({
             <LeftHandSideParentContainer tableOfContents={formatted.data} />
           </div>
           <div className="mx-16 lg:mx-0">
+            <div className='block lg:hidden'>
+              <DocsSearchBarHeader
+                paddingGlobal={undefined}
+                headerColour="orange"
+                headerPadding=''
+                searchMargin='mb-6'
+                searchBarPadding=''
+              />
+            </div>
+
             <SearchHeader query={searchQuery} />
             <SearchTabs query={searchQuery} />
           </div>

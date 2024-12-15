@@ -1,8 +1,9 @@
 import { DocsNavigationList } from 'components/DocumentationNavigation/DocsNavigationList';
 import { VersionSelect } from 'components/DocumentationNavigation/VersionSelect';
+import { MobileVersionSelect } from 'components/docsMain/docsMobileHeader';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
 
@@ -91,7 +92,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
           <nav className="relative flex gap-16 px-4">
             <button
               ref={(el) => (tabRefs.current[0] = el)}
-              className={`font-inter font-semibold text-lg ${
+              className={`font-inter font-semibold text-sm ${
                 activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
               }`}
               onClick={() => setActiveTab('DOCS')}
@@ -100,7 +101,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
             </button>
             <button
               ref={(el) => (tabRefs.current[1] = el)}
-              className={`font-inter font-semibold text-lg ${
+              className={`font-inter font-semibold text-sm ${
                 activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
               }`}
               onClick={() => setActiveTab('BLOG')}
@@ -146,13 +147,23 @@ export const SearchResultsOverflow = ({ query }) => {
   );
 };
 
-export const LeftHandSideHeader = ({}) => {
+export const DocsSearchBarHeader = ({
+  paddingGlobal,
+  headerColour,
+  headerPadding,
+  searchMargin,
+  searchBarPadding,
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [userHasTyped, setUserHasTyped] = useState(false);
   const [searchOverFlowOpen, setSearchOverflowOpen] = useState(false);
   const router = useRouter();
+  const headerStyling =
+    headerColour.toLowerCase() === 'blue'
+      ? 'from-blue-600/80 via-blue-800/80 to-blue-1000'
+      : 'from-orange-400 via-orange-500 to-orange-600';
 
   const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchOverflowOpen(true);
@@ -188,19 +199,21 @@ export const LeftHandSideHeader = ({}) => {
   };
 
   return (
-    <div className="p-4 pt-10">
+    <div className={`${paddingGlobal} pt-10`}>
       <div className="flex justify-between">
-        <h1 className="text-3xl pb-4 font-tuner bg-gradient-to-br pl-4 from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent">
-          Tina Docs
+        <h1
+          className={`text-4xl pb-4 font-tuner bg-gradient-to-br ${headerStyling} ${headerPadding}  bg-clip-text text-transparent`}
+        >
+          Docs
         </h1>
         <div className="mr-3">
-          <VersionSelect />
+          <MobileVersionSelect />
         </div>
       </div>
-      <div className="relative mx-3">
+      <div className={`relative ${searchMargin}`}>
         <input
           type="text"
-          className="w-full p-2 pl-6 rounded-full border border-gray-300/20"
+          className={`w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg ${searchBarPadding}`}
           placeholder="Search"
           onKeyDown={handleKeyDown}
           onChange={handleKeyChange}
@@ -226,7 +239,13 @@ export const LeftHandSideHeader = ({}) => {
 export const LeftHandSideParentContainer = ({ tableOfContents }) => {
   return (
     <div className="rounded-2xl shadow-xl w-full bg-white/50 ">
-      <LeftHandSideHeader />
+      <DocsSearchBarHeader
+        paddingGlobal="p-4"
+        headerColour="blue"
+        headerPadding="pl-4"
+        searchMargin="mx-3"
+        searchBarPadding=""
+      />
       <div className="overflow-y-scroll overflow-x-hidden max-h-[62vh] 2xl:max-h-[75vh] pl-4 2xl:pl-0 ">
         <DocsNavigationList navItems={tableOfContents} />
       </div>
