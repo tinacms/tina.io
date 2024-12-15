@@ -37,7 +37,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
             className="col-start-2 block p-4 text-right relative transition-all group border border-gray-100 cursor-pointer"
             style={{ backgroundColor: '#FAFAFA' }}
           >
-            <span className="text-sm uppercase opacity-50 pr-10">Next</span>
+            <span className="text-sm uppercase opacity-50 md:pr-10 pr-6">Next</span>
             <h5
               className="text-base md:text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end"
             >

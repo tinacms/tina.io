@@ -63,7 +63,7 @@ const DocsMobileHeader = (data) => {
   return (
     <div className="relative pb-20">
       <DocsSearchBarHeader
-        paddingGlobal="pb-6"
+        paddingGlobal="pb-4"
         headerColour="orange"
         headerPadding=""
         searchMargin=""
