@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Compare TinaCMS: The Best CMS for Modern Development",
+    "description": "See how TinaCMS excels with inline editing, Git-powered workflows, and headless capabilities for developers and editors."
+  },
   "blocks": [
     {
       "headline": "What Makes TinaCMS Different?",
