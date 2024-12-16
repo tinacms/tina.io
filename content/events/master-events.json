@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "SEO Title",
+    "description": "Description"
+  },
   "title": "Where's Tina?",
   "byLine": "Tina's hitting the road, and you don't want to miss out. Check out our stops and see TinaCMS in action!",
   "cardItems": [

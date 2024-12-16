@@ -71,8 +71,33 @@ export const eventsCollection: Template = {
     },
   },
   fields: [
+    {
+      name: 'seo',
+      label: 'SEO Information',
+      type: 'object',
+      fields: [
+        {
+          type: 'string',
+          label: 'title',
+          name: 'title',
+          description: 'Recommended limit 0f 70 characters',
+        },
+        {
+          type: 'string',
+          label: 'Description',
+          description: 'Recommended limit of 150 characters',
+          name: 'description',
+          ui: { component: 'textarea' },
+        },
+      ],
+    },
     { name: 'title', label: 'Title', type: 'string' },
-    { name: 'byLine', label: 'ByLine', type: 'string', ui: { component: 'textarea' } },
+    {
+      name: 'byLine',
+      label: 'ByLine',
+      type: 'string',
+      ui: { component: 'textarea' },
+    },
     {
       name: 'cardItems',
       label: 'Card Items',
