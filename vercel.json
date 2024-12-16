@@ -747,7 +747,7 @@
       "permanent": true
     },
     {
-      "source":"/guides/next-js/internationalization",
+      "source":"/guides/next-js/internationalization/",
       "destination": "/docs/guides/nextjs-internationalization",
       "permanent": true
     }
