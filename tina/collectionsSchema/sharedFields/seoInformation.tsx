@@ -8,7 +8,7 @@ export const seoInformation = {
   fields: [
     {
       type: "string",
-      label: "Title",
+      label: "Meta - Title",
       description: "Recommended limit of 70 characters",
       name: "title",
       ui: {
@@ -22,7 +22,7 @@ export const seoInformation = {
     },
     {
       type: "string",
-      label: "Description",
+      label: "Meta - Description",
       description: "Recommended limit of 150 characters",
       name: "description",
       component: "textarea",
