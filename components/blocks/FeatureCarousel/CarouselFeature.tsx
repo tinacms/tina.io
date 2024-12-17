@@ -169,7 +169,7 @@ export function CarouselFeatureBlock({ data, index }) {
 
   useEffect(() => {
     setIsTouchScreen(checkTouchScreen());
-  });
+  }, []);
 
   useEffect(() => {
     if (
@@ -193,11 +193,9 @@ export function CarouselFeatureBlock({ data, index }) {
     if (index === null) return null;
 
     const item = data?.items?.[index];
-    if (!item || !item.videoSrc) return null;
+    if (!item || !item.videoSrc || !item.mobileVideoSrc) return null;
 
-    const fullVideoUrl = isTouchScreen
-      ? item.mobileVideoSrc ?? item.videoSrc
-      : item.videoSrc;
+    const fullVideoUrl = isTouchScreen ? item.mobileVideoSrc : item.videoSrc;
     const fileExtension = fullVideoUrl.split('.').pop();
 
     if (fileExtension === 'gif') {
