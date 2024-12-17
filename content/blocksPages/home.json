@@ -179,7 +179,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
+          "videoSrc": "/video/key-features-reupload/3rdpartymedia.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -192,7 +192,7 @@
           "headline": "Build with Blocks",
           "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
           "icon2": "FaPuzzlePiece",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
+          "videoSrc": "/video/key-features-reupload/blocks.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -205,7 +205,7 @@
           "headline": "Markdown at Scale",
           "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
           "icon2": "FaMarkdown",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
+          "videoSrc": "/video/key-features-reupload/markdown.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -218,7 +218,7 @@
           "headline": "Git Integration",
           "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
           "icon2": "FaGithub",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
+          "videoSrc": "/video/key-features-reupload/github.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -231,7 +231,7 @@
           "headline": "Easy Documentation",
           "text": "Tina's docs run on TinaCMS - check it out!",
           "icon2": "FaFileAlt",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
+          "videoSrc": "/video/key-features-reupload/docs.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
