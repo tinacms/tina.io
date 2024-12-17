@@ -47,6 +47,15 @@ export const carouselFeatureTemplate: Template = {
           name: 'videoSrc',
           label: 'Video Source',
           type: 'image',
+          description:
+            'Video source for desktop devices, we recommend using a webm file for better performance.',
+        },
+        {
+          name: 'mobileVideoSrc',
+          label: 'Mobile Video Source',
+          type: 'image',
+          description:
+            'Video source for mobile devices, we recommend using a gif to avoid errors on certain iOS devices.',
         },
         {
           name: 'button',
