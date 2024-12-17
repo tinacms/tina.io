@@ -5,6 +5,7 @@ import 'react-datetime/css/react-datetime.css';
 import type { Template } from 'tinacms';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
 import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';
+import { seoInformation } from './sharedFields/seoInformation';
 
 type offset = { value: any; label: string };
 
@@ -58,7 +59,7 @@ const addCitiesAndPrefix = (offsets: number[], prefix = '+'): offset[] => {
 };
 
 //Events schema
-export const eventsCollection: Template = {
+export const eventsCollection = {
   label: 'Events',
   name: 'events',
   path: 'content/events',
@@ -71,25 +72,8 @@ export const eventsCollection: Template = {
     },
   },
   fields: [
-    {
-      name: 'seo',
-      label: 'SEO Information',
-      type: 'object',
-      fields: [
-        {
-          type: 'string',
-          label: 'title',
-          name: 'title',
-          description: 'Recommended limit 0f 70 characters',
-        },
-        {
-          type: 'string',
-          label: 'Description',
-          description: 'Recommended limit of 150 characters',
-          name: 'description',
-          ui: { component: 'textarea' },
-        },
-      ],
+    {...seoInformation,
+      description: 'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below'
     },
     { name: 'title', label: 'Title', type: 'string' },
     {
