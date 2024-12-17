@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next';
 import { useTina } from 'tinacms/dist/react';
 import { client } from '../tina/__generated__/client';
 import { Card } from 'components/blocks/Events/Events';
+import { DefaultSeo } from 'next-seo';
 
 const EventsPageHeader = ({ title, byline }) => {
   return (
@@ -24,6 +25,8 @@ const EventsPage = (props: { query: string; data: any; vars: any }) => {
     data: props.data,
     variables: props.vars,
   });
+
+  const seoData = tinaData.data.eventsConnection.edges[0].node.seo
 
   const events = tinaData.data.eventsConnection?.edges.map(
     (edge: any) => edge.node
@@ -79,7 +82,27 @@ const EventsPage = (props: { query: string; data: any; vars: any }) => {
   }, [visibleCards]);
 
   return (
+    
     <Layout>
+      <DefaultSeo
+        title={seoData.title}
+        titleTemplate={'%s | ' + seoData.description}
+        description={seoData.description}
+        openGraph={{
+          type: 'website',
+          locale: 'en_CA',
+          url: 'data.siteUrl',
+          site_name: 'https://tina.io/events',
+          images: [
+            {
+              url: 'https://tina.io/img/tina-og.png',
+              width: 1200,
+              height: 628,
+              alt: `Tina - The Markdown CMS`,
+            },
+          ],
+        }}
+      />
       <div className="mx-auto mb-40">
         <EventsPageHeader title={eventsData.title} byline={eventsData.byLine} />
         <div className="px-10 pt-10">

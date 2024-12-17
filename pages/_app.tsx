@@ -1,35 +1,52 @@
-import { GlobalStyle } from 'components/styles/GlobalStyle'
-import 'components/styles/fontImports.css'
-import Cookies from 'js-cookie'
-import { DefaultSeo } from 'next-seo'
-import App from 'next/app'
-import Head from 'next/head'
-import path from 'path'
-import React, { useEffect } from 'react'
-import { useEditState } from 'tinacms/dist/react'
-import { CloudBanner } from '../components/layout/CloudBanner'
-import ConsentBanner from '../components/ui/ConsentBanner'
-import ChatBaseBot from '../components/ui/TinaChatBot'
-import data from '../content/siteConfig.json'
-import '../styles/tailwind.css'
+import { GlobalStyle } from 'components/styles/GlobalStyle';
+import 'components/styles/fontImports.css';
+import Cookies from 'js-cookie';
+import { DefaultSeo } from 'next-seo';
+import App from 'next/app';
+import Head from 'next/head';
+import path from 'path';
+import React, { useEffect } from 'react';
+import { useEditState } from 'tinacms/dist/react';
+import { CloudBanner } from '../components/layout/CloudBanner';
+import ConsentBanner from '../components/ui/ConsentBanner';
+import ChatBaseBot from '../components/ui/TinaChatBot';
+import data from '../content/siteConfig.json';
+import '../styles/tailwind.css';
 
-path.resolve('./content/')
+path.resolve('./content/');
 
 const MainLayout = ({ Component, pageProps }) => {
   useEffect(() => {
-    const consentGiven = Cookies.get('consentGiven')
+    const consentGiven = Cookies.get('consentGiven');
     if (consentGiven) {
-      const consentState = JSON.parse(consentGiven)
+      const consentState = JSON.parse(consentGiven);
     }
-    (function(h:any,o,t,j,a,r){
-      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-      h._hjSettings={hjid:5190939,hjsv:6};
-      a=o.getElementsByTagName('head')[0];
-      r=o.createElement('script');r.async=1;
-      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    (function (h: any, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          (h.hj.q = h.hj.q || []).push(arguments);
+        };
+      h._hjSettings = { hjid: 5190939, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script');
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
       a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-  }, [])
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    (function (c, l, a, r, i, t, y) {
+      c[a] =
+        c[a] ||
+        function () {
+          (c[a].q = c[a].q || []).push(arguments);
+        };
+      t = l.createElement(r);
+      t.async = 1;
+      t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', 'pepjushhm5');
+  }, []);
 
   return (
     <>
@@ -74,24 +91,24 @@ const MainLayout = ({ Component, pageProps }) => {
       <Component {...pageProps} />
       <ChatBaseBot />
     </>
-  )
-}
+  );
+};
 
 const AdminLink = () => {
-  const { edit } = useEditState()
-  const [showAdminLink, setShowAdminLink] = React.useState(false)
+  const { edit } = useEditState();
+  const [showAdminLink, setShowAdminLink] = React.useState(false);
 
   useEffect(() => {
     setShowAdminLink(
       !edit &&
         JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
           ?.access_token
-    )
-  }, [edit])
+    );
+  }, [edit]);
 
   const handleDismiss = () => {
-    setShowAdminLink(false)
-  }
+    setShowAdminLink(false);
+  };
 
   return (
     <>
@@ -109,15 +126,15 @@ const AdminLink = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 // TODO: Probably should use hooks here
 class Site extends App {
   render() {
-    const { Component, pageProps } = this.props
-    return <MainLayout Component={Component} pageProps={pageProps} />
+    const { Component, pageProps } = this.props;
+    return <MainLayout Component={Component} pageProps={pageProps} />;
   }
 }
 
-export default Site
+export default Site;
