@@ -20,7 +20,8 @@ const Index = (props) => {
   return (
     <Layout>
       <NextSeo
-        title="Blog"
+        title="TinaCMS Blog"
+        description='Stay updated with the TinaCMS blog. Get tips, guides, and the latest news on content management and development.'
         openGraph={{
           title: 'Blog',
         }}
