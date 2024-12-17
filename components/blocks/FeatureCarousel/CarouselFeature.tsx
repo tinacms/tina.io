@@ -7,6 +7,7 @@ import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
+//From the MDN docs - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#mobile_device_detection
 const checkTouchScreen = () => {
   let hasTouchScreen = false;
   if ('maxTouchPoints' in navigator) {
