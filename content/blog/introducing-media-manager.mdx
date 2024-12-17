@@ -94,7 +94,7 @@ Another change for both fields is that the `uploadDir` function is [now optional
 
 For the inline image field, we added a new `alt` attribute. This attribute is helpful when using `InlineImage` without the render props pattern so that you can set the alternative text directly on the image element rendered by `InlineImage`.
 
-Another improvement is the ability to [extend styles](/docs/ui/inline-editing/#extending-inline-field-styles) on the inline image. The inline image field adds a few elements to the DOM, which could throw off styles for some layouts. Styles can now be set directly via `className` or through [styled-components](https://styled-components.com/docs/basics#extending-styles).
+Another improvement is the ability to [extend styles](/docs/contextual-editing/overview) on the inline image. The inline image field adds a few elements to the DOM, which could throw off styles for some layouts. Styles can now be set directly via `className` or through [styled-components](https://styled-components.com/docs/basics#extending-styles).
 
 ```tsx
 /**
@@ -138,7 +138,7 @@ The breaking changes are mostly related to both inline and regular image field c
 
 The `previewSrc` function provides a URL for the image source when the CMS is enabled. This function is implemented by the [media store default](https://github.com/tinacms/tinacms/pull/1386) or can be overridden on a field-by-field basis.
 
-We unified the `previewSrc` interface between [`MediaStore`](https://tina.io/docs/reference/media/overview/), [`InlineImage`](/docs/ui/inline-editing/inline-image/), and the regular [image field](/docs/plugins/fields/images).
+We unified the `previewSrc` interface between [`MediaStore`](https://tina.io/docs/reference/media/overview/), [`InlineImage`](/docs/contextual-editing/overview), and the regular [image field](/docs/plugins/fields/images).
 
 The breaking change is that the additional arguments are now passed to `previewSrc`. We made this change because we found ourselves often returning the field value when configuring this function in image fields. Instead of having to wade through all of the form values when providing a `previewSrc`, the first argument alone should be adequate for most use-cases.
 
