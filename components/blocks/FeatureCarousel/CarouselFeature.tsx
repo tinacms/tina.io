@@ -7,9 +7,8 @@ import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
-//From the MDN docs - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#mobile_device_detection
 const checkTouchScreen = () => {
-  //@ts-ignore - navigator is a global object
+  //@ts-ignore - this is a non-standard property set by iOS devices only.
   return typeof navigator.standalone === 'boolean';
 };
 
@@ -110,7 +109,6 @@ export default function CarouselFeatureBlock({ data, index }) {
   const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
   const [isUserInteracted, setIsUserInteracted] = useState(false);
   const intervalRef = useRef(null);
-  // const [isTouchScreen, setIsTouchScreen] = useState(false);
   const isTouchScreen = useMemo(() => checkTouchScreen(), []);
   const [isShowingAll, setIsShowingAll] = useState(false);
 
@@ -164,10 +162,6 @@ export default function CarouselFeatureBlock({ data, index }) {
     }
     return () => clearInterval(intervalRef.current);
   }, [isPaused, isLargeScreen, data?.items?.length, isUserInteracted]);
-
-  // useEffect(() => {
-  //   setIsTouchScreen(checkTouchScreen());
-  // }, []);
 
   const handleItemClick = (index) => {
     setHoveredIndex(index);
