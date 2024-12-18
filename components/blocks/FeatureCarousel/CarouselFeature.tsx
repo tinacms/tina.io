@@ -9,13 +9,8 @@ import { Container } from '../Container';
 
 //From the MDN docs - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#mobile_device_detection
 const checkTouchScreen = () => {
-  let hasTouchScreen = false;
-  // Only as a last resort, fall back to user agent sniffing
-  const UA: string = (navigator as Navigator).userAgent;
-  hasTouchScreen =
-    /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
-    /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
-  return hasTouchScreen;
+  //@ts-ignore - navigator is a global object
+  return typeof navigator.standalone === 'boolean';
 };
 
 const CarouselItem = ({
@@ -115,7 +110,12 @@ export function CarouselFeatureBlock({ data, index }) {
   const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
   const [isUserInteracted, setIsUserInteracted] = useState(false);
   const intervalRef = useRef(null);
-  const [isTouchScreen, setIsTouchScreen] = useState(false);
+  // const [isTouchScreen, setIsTouchScreen] = useState(false);
+  let isTouchScreen = true;
+
+  useEffect(() => {
+    isTouchScreen = checkTouchScreen();
+  }, []);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
@@ -157,11 +157,6 @@ export function CarouselFeatureBlock({ data, index }) {
   };
 
   useEffect(() => {
-    setIsTouchScreen(checkTouchScreen());
-    console.log('isTouchScreen', isTouchScreen);
-  }, []);
-
-  useEffect(() => {
     if (
       !isPaused &&
       isLargeScreen &&
@@ -172,6 +167,10 @@ export function CarouselFeatureBlock({ data, index }) {
     }
     return () => clearInterval(intervalRef.current);
   }, [isPaused, isLargeScreen, data?.items?.length, isUserInteracted]);
+
+  // useEffect(() => {
+  //   setIsTouchScreen(checkTouchScreen());
+  // }, []);
 
   const handleItemClick = (index) => {
     setHoveredIndex(index);
@@ -186,24 +185,25 @@ export function CarouselFeatureBlock({ data, index }) {
     if (!item || !item.videoSrc) return null;
 
     const fullVideoUrl = item.videoSrc;
+    if (isTouchScreen) {
+      return;
+    }
     const fileExtension = fullVideoUrl.split('.').pop();
 
     if (fileExtension === 'gif') {
       // Width and height values *must* be provided to NextJS's Image component to build,
       // but they will not determine the rendered size of the image in this case.
       return (
-        !isTouchScreen && (
-          <div className="flex justify-center items-center">
-            <Image
-              key={index}
-              src={fullVideoUrl}
-              alt={`Media item ${index}`}
-              width={1200}
-              height={800}
-              className="w-full h-auto mt-10 lg:mt-0 rounded-xl shadow-lg"
-            />
-          </div>
-        )
+        <div className="flex justify-center items-center">
+          <Image
+            key={index}
+            src={fullVideoUrl}
+            alt={`Media item ${index}`}
+            width={1200}
+            height={800}
+            className="w-full h-auto mt-10 lg:mt-0 rounded-xl shadow-lg"
+          />
+        </div>
       );
     }
 
