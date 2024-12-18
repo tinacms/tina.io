@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import GradGlow from '../../../public/svg/grad-glow.svg';
@@ -103,7 +103,7 @@ const CarouselItem = ({
   );
 };
 
-export function CarouselFeatureBlock({ data, index }) {
+export default function CarouselFeatureBlock({ data, index }) {
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -111,11 +111,7 @@ export function CarouselFeatureBlock({ data, index }) {
   const [isUserInteracted, setIsUserInteracted] = useState(false);
   const intervalRef = useRef(null);
   // const [isTouchScreen, setIsTouchScreen] = useState(false);
-  let isTouchScreen = true;
-
-  useEffect(() => {
-    isTouchScreen = checkTouchScreen();
-  }, []);
+  const isTouchScreen = useMemo(() => checkTouchScreen(), []);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
