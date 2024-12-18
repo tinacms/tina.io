@@ -1,5 +1,3 @@
-'use client';
-
 import 'components/styles/fontImports.css';
 import 'styles/tailwind.css';
 import { DefaultSeo } from 'next-seo';
