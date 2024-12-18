@@ -156,8 +156,8 @@ module.exports = {
           700: '#0D5DBD',
           800: '#144696',
           900: '#1D2C6C',
-          950: '#241748', 
-          1000: '#241748',
+          950: '#241748', // Newly added. Mirrors the value of 1000.
+          1000: '#241748', // Deprecated: This color will be removed in future designs.
         },
         orange: {
           50: '#FFF8F3',
