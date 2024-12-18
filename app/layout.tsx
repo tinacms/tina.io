@@ -1,28 +1,20 @@
-import { GlobalStyle } from 'components/styles/GlobalStyle';
+'use client';
+
 import 'components/styles/fontImports.css';
 import 'styles/tailwind.css';
 import { DefaultSeo } from 'next-seo';
 import React, { useEffect } from 'react';
 import { useEditState } from 'tinacms/dist/react';
-import Cookies from 'js-cookie';
 import data from '../content/siteConfig.json';
 import ConsentBanner from '../components/ui/ConsentBanner';
-import ChatBaseBot from '../components/ui/TinaChatBot';
 import { CloudBanner } from '../components/layout/CloudBanner';
+import dynamic from 'next/dynamic';
+import ConsentManager from 'components/ConsentManager';
 
-export const metadata = {
-  title: `${data.seoDefaultTitle} | ${data.title}`,
-  description: data.description,
-  icons: {
-    icon: '/favicon/favicon.ico',
-  },
-};
+
+const ChatBaseBot = dynamic(() => import('../components/ui/TinaChatBot'), {ssr: false});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    const consentGiven = Cookies.get('consentGiven');
-    if (consentGiven) JSON.parse(consentGiven);
-  }, []);
 
   return (
     <html lang="en">
@@ -52,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <GlobalStyle />
+        <ConsentManager />
         <DefaultSeo
           title={data.seoDefaultTitle}
           titleTemplate={'%s | ' + data.title}
