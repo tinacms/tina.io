@@ -10,22 +10,11 @@ import { Container } from '../Container';
 //From the MDN docs - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#mobile_device_detection
 const checkTouchScreen = () => {
   let hasTouchScreen = false;
-  if ('maxTouchPoints' in navigator) {
-    hasTouchScreen = navigator.maxTouchPoints > 0;
-  } else {
-    const mQ = matchMedia?.('(pointer:coarse)');
-    if (mQ?.media === '(pointer:coarse)') {
-      hasTouchScreen = !!mQ.matches;
-    } else if ('orientation' in window) {
-      hasTouchScreen = true; // deprecated, but good fallback
-    } else {
-      // Only as a last resort, fall back to user agent sniffing
-      const UA: string = (navigator as Navigator).userAgent;
-      hasTouchScreen =
-        /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
-        /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
-    }
-  }
+  // Only as a last resort, fall back to user agent sniffing
+  const UA: string = (navigator as Navigator).userAgent;
+  hasTouchScreen =
+    /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+    /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
   return hasTouchScreen;
 };
 
@@ -169,6 +158,7 @@ export function CarouselFeatureBlock({ data, index }) {
 
   useEffect(() => {
     setIsTouchScreen(checkTouchScreen());
+    console.log('isTouchScreen', isTouchScreen);
   }, []);
 
   useEffect(() => {
@@ -193,9 +183,9 @@ export function CarouselFeatureBlock({ data, index }) {
     if (index === null) return null;
 
     const item = data?.items?.[index];
-    if (!item || !item.videoSrc || !item.mobileVideoSrc) return null;
+    if (!item || !item.videoSrc) return null;
 
-    const fullVideoUrl = isTouchScreen ? item.mobileVideoSrc : item.videoSrc;
+    const fullVideoUrl = item.videoSrc;
     const fileExtension = fullVideoUrl.split('.').pop();
 
     if (fileExtension === 'gif') {
