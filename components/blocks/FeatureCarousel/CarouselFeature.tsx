@@ -112,6 +112,7 @@ export default function CarouselFeatureBlock({ data, index }) {
   const intervalRef = useRef(null);
   // const [isTouchScreen, setIsTouchScreen] = useState(false);
   const isTouchScreen = useMemo(() => checkTouchScreen(), []);
+  const [isShowingAll, setIsShowingAll] = useState(false);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
@@ -244,20 +245,34 @@ export default function CarouselFeatureBlock({ data, index }) {
             >
               {data.blockHeadline}
             </h1>
-            {data?.items?.length > 0 &&
-              data.items.map((item, index) => (
-                <div key={Object.values(item).join('')} className="pt-4">
-                  <CarouselItem
-                    data={item}
-                    index={index}
-                    id={sanitizeLabel(item.headline)}
-                    isHovered={hoveredIndex === index}
-                    onClick={handleItemClick}
-                    isSmallOrMediumScreen={isSmallOrMediumScreen}
-                    renderMedia={renderMedia}
-                  />
-                </div>
-              ))}
+            <div
+              className={`${
+                isTouchScreen && !isShowingAll ? 'h-96' : ''
+              } overflow-hidden`}
+            >
+              {data?.items?.length > 0 &&
+                data.items.map((item, index) => (
+                  <div key={Object.values(item).join('')} className="pt-4">
+                    <CarouselItem
+                      data={item}
+                      index={index}
+                      id={sanitizeLabel(item.headline)}
+                      isHovered={hoveredIndex === index}
+                      onClick={handleItemClick}
+                      isSmallOrMediumScreen={isSmallOrMediumScreen}
+                      renderMedia={renderMedia}
+                    />
+                  </div>
+                ))}
+            </div>
+            {!isShowingAll && isTouchScreen ? (
+              <button
+                className="text-blue-500 text-lg font-tuner cursor-pointer"
+                onClick={() => setIsShowingAll(true)}
+              >
+                See all
+              </button>
+            ) : null}
           </div>
           <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 pt-24 lg:mt-0 justify-center items-center">
             {renderMedia(hoveredIndex)}
