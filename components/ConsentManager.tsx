@@ -9,7 +9,7 @@ const ConsentManager = () => {
     if (consentGiven) JSON.parse(consentGiven);
   }, []);
 
-  return null; // No UI; it just handles the cookies logic.
+  return null;
 };
 
 export default ConsentManager;

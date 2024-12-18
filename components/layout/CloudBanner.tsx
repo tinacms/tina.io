@@ -1,10 +1,9 @@
-import React from 'react'
-import Link from 'next/link'
-import { IconRight } from '../blocks'
-import { Button, ButtonGroup } from '../../components/ui'
-import GitHubButton from 'react-github-btn'
-import { EmailForm } from '../modals/EmailForm'
-export function CloudBanner() {
+'use client';
+
+import React from 'react';
+import GitHubButton from 'react-github-btn';
+
+const CloudBanner = () => {
   return (
     <>
       <div className="banner">
@@ -141,5 +140,7 @@ export function CloudBanner() {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
+
+export default CloudBanner;
