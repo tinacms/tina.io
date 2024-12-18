@@ -28,6 +28,9 @@ const dummyMailchimpEndpoint =
 
 const config = {
   ...extraConfig,
+  experimental: {
+    appDir: true,
+  },
   // experimental: {
   //   forceSwcTransforms: true,
   // },
