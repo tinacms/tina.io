@@ -7,6 +7,28 @@ import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
+//From the MDN docs - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#mobile_device_detection
+const checkTouchScreen = () => {
+  let hasTouchScreen = false;
+  if ('maxTouchPoints' in navigator) {
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+  } else {
+    const mQ = matchMedia?.('(pointer:coarse)');
+    if (mQ?.media === '(pointer:coarse)') {
+      hasTouchScreen = !!mQ.matches;
+    } else if ('orientation' in window) {
+      hasTouchScreen = true; // deprecated, but good fallback
+    } else {
+      // Only as a last resort, fall back to user agent sniffing
+      const UA: string = (navigator as Navigator).userAgent;
+      hasTouchScreen =
+        /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+        /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
+    }
+  }
+  return hasTouchScreen;
+};
+
 const CarouselItem = ({
   data,
   index,
@@ -104,6 +126,7 @@ export function CarouselFeatureBlock({ data, index }) {
   const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
   const [isUserInteracted, setIsUserInteracted] = useState(false);
   const intervalRef = useRef(null);
+  const [isTouchScreen, setIsTouchScreen] = useState(false);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
@@ -145,6 +168,10 @@ export function CarouselFeatureBlock({ data, index }) {
   };
 
   useEffect(() => {
+    setIsTouchScreen(checkTouchScreen());
+  }, []);
+
+  useEffect(() => {
     if (
       !isPaused &&
       isLargeScreen &&
@@ -166,47 +193,51 @@ export function CarouselFeatureBlock({ data, index }) {
     if (index === null) return null;
 
     const item = data?.items?.[index];
-    if (!item || !item.videoSrc) return null;
+    if (!item || !item.videoSrc || !item.mobileVideoSrc) return null;
 
-    const fullVideoUrl = item.videoSrc;
+    const fullVideoUrl = isTouchScreen ? item.mobileVideoSrc : item.videoSrc;
     const fileExtension = fullVideoUrl.split('.').pop();
 
     if (fileExtension === 'gif') {
       // Width and height values *must* be provided to NextJS's Image component to build,
       // but they will not determine the rendered size of the image in this case.
       return (
-        <div className="flex justify-center items-center">
-          <Image
-            key={index}
-            src={fullVideoUrl}
-            alt={`Media item ${index}`}
-            width={1200}
-            height={800}
-            className="w-full h-auto mt-10 lg:mt-0 rounded-xl shadow-lg"
-          />
-        </div>
+        !isTouchScreen && (
+          <div className="flex justify-center items-center">
+            <Image
+              key={index}
+              src={fullVideoUrl}
+              alt={`Media item ${index}`}
+              width={1200}
+              height={800}
+              className="w-full h-auto mt-10 lg:mt-0 rounded-xl shadow-lg"
+            />
+          </div>
+        )
       );
     }
 
     if (fileExtension === 'mp4' || fileExtension === 'webm') {
       return (
-        <video
-          key={index}
-          autoPlay
-          muted
-          playsInline
-          loop
-          preload="metadata"
-          className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
-        >
-          {fileExtension === 'webm' && (
-            <source src={fullVideoUrl} type="video/webm" />
-          )}
-          {fileExtension === 'mp4' && (
-            <source src={fullVideoUrl} type="video/mp4" />
-          )}
-          There was an issue displaying the video.
-        </video>
+        !isTouchScreen && (
+          <video
+            key={index}
+            autoPlay
+            muted
+            playsInline
+            loop
+            preload="metadata"
+            className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
+          >
+            {fileExtension === 'webm' && (
+              <source src={fullVideoUrl} type="video/webm" />
+            )}
+            {fileExtension === 'mp4' && (
+              <source src={fullVideoUrl} type="video/mp4" />
+            )}
+            There was an issue displaying the video.
+          </video>
+        )
       );
     }
 
