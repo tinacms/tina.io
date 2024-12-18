@@ -8,8 +8,24 @@ import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
 const checkTouchScreen = () => {
-  //@ts-ignore - this is a non-standard property set by iOS devices only.
-  return typeof navigator.standalone === 'boolean';
+  let hasTouchScreen = false;
+  if ('maxTouchPoints' in navigator) {
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+  } else {
+    const mQ = matchMedia?.('(pointer:coarse)');
+    if (mQ?.media === '(pointer:coarse)') {
+      hasTouchScreen = !!mQ.matches;
+    } else if ('orientation' in window) {
+      hasTouchScreen = true; // deprecated, but good fallback
+    } else {
+      // Only as a last resort, fall back to user agent sniffing
+      const UA: string = (navigator as Navigator).userAgent;
+      hasTouchScreen =
+        /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+        /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
+    }
+  }
+  return hasTouchScreen;
 };
 
 const CarouselItem = ({
@@ -234,31 +250,28 @@ export default function CarouselFeatureBlock({ data, index }) {
       <Container width="wide">
         <div className="flex flex-col lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20">
           <div className="flex flex-col order-2 lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible">
-            <h1
-              className={`pl-3 font-tuner inline-block text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-3`}
-            >
+            <h2 className="lg:m-0 pl-3 font-tuner inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10">
               {data.blockHeadline}
-            </h1>
-            <div
-              className={`${
-                isTouchScreen && !isShowingAll ? 'h-96' : ''
-              } overflow-hidden`}
-            >
-              {data?.items?.length > 0 &&
-                data.items.map((item, index) => (
-                  <div key={Object.values(item).join('')} className="pt-4">
-                    <CarouselItem
-                      data={item}
-                      index={index}
-                      id={sanitizeLabel(item.headline)}
-                      isHovered={hoveredIndex === index}
-                      onClick={handleItemClick}
-                      isSmallOrMediumScreen={isSmallOrMediumScreen}
-                      renderMedia={renderMedia}
-                    />
-                  </div>
-                ))}
-            </div>
+            </h2>
+            {data?.items?.length > 0 &&
+              data.items.map(
+                (item, index) =>
+                  ([0, 1].includes(index) ||
+                    isShowingAll ||
+                    !isTouchScreen) && (
+                    <div key={Object.values(item).join('')} className="pt-4">
+                      <CarouselItem
+                        data={item}
+                        index={index}
+                        id={sanitizeLabel(item.headline)}
+                        isHovered={hoveredIndex === index}
+                        onClick={handleItemClick}
+                        isSmallOrMediumScreen={isSmallOrMediumScreen}
+                        renderMedia={renderMedia}
+                      />
+                    </div>
+                  )
+              )}
             {!isShowingAll && isTouchScreen ? (
               <button
                 className="text-blue-500 text-lg font-tuner cursor-pointer"

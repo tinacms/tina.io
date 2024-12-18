@@ -2,9 +2,8 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
+import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
 import eventsData from '../../../content/events/master-events.json';
-import { FaArrowRight } from 'react-icons/fa';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
@@ -206,9 +205,9 @@ const EventsBlock = () => {
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-center">
-          <h1 className="pl-3 font-tuner text-2xl lg:text-5xl bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-left mt-10 pb-12">
+          <h2 className="pb-6 pl-3 font-tuner inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
             {eventsData.title}
-          </h1>
+          </h2>
           {filteredEvents.map((cardItem, index) => (
             <Card
               key={index}
