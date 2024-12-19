@@ -29,13 +29,15 @@ import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase/Showcase';
 import { SpacerComponent } from './Spacer/Spacer';
 import TableBox from './Table/table';
-import { TestimonialsBlock } from './Testimonial/Testimonials';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
   { ssr: false }
 );
+const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
+  ssr: false,
+});
 
 export const Blocks = ({
   blocks,

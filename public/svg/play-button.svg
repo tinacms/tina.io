@@ -9,7 +9,8 @@
         stroke-width: 5px;
       }
       .cls-2 {
-        fill: #ffffff;
+        fill: white;
+        opacity: 0.9;
       }
     </style>
     <linearGradient id="linear-gradient" x1="922.2" y1="1017.2" x2="4479.8" y2="3071.2" gradientUnits="userSpaceOnUse">

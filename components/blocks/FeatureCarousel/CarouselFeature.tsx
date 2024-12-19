@@ -256,7 +256,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             {data?.items?.length > 0 &&
               data.items.map(
                 (item, index) =>
-                  ([0, 1].includes(index) ||
+                  (([0, 1].includes(index) ||
                     isShowingAll ||
                     !isTouchScreen) && (
                     <div key={Object.values(item).join('')} className="pt-4">
@@ -270,7 +270,27 @@ export default function CarouselFeatureBlock({ data, index }) {
                         renderMedia={renderMedia}
                       />
                     </div>
-                  )
+                  )) ||
+                  ([2].includes(index) && !isShowingAll && (
+                    <div
+                      className="relative w-full h-full"
+                      style={{
+                        maskImage: 'linear-gradient(black, transparent 80%)',
+                      }}
+                    >
+                      <div key={Object.values(item).join('')} className="pt-4">
+                        <CarouselItem
+                          data={item}
+                          index={index}
+                          id={sanitizeLabel(item.headline)}
+                          isHovered={hoveredIndex === index}
+                          onClick={handleItemClick}
+                          isSmallOrMediumScreen={isSmallOrMediumScreen}
+                          renderMedia={renderMedia}
+                        />
+                      </div>
+                    </div>
+                  ))
               )}
             {!isShowingAll && isTouchScreen ? (
               <button
