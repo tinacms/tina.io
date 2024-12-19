@@ -141,6 +141,14 @@ export default function TestimonialsBlock({ data, index }) {
           See all
         </button>
       ) : null}
+      {isShowingAll && isTouchScreen ? (
+        <button
+          className="text-blue-500 text-lg font-tuner cursor-pointer"
+          onClick={() => setIsShowingAll(false)}
+        >
+          Hide
+        </button>
+      ) : null}
     </>
   );
 }

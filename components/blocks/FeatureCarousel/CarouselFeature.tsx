@@ -300,6 +300,14 @@ export default function CarouselFeatureBlock({ data, index }) {
                 See all
               </button>
             ) : null}
+            {isShowingAll && isTouchScreen ? (
+              <button
+                className="text-blue-500 text-lg font-tuner cursor-pointer"
+                onClick={() => setIsShowingAll(false)}
+              >
+                Hide
+              </button>
+            ) : null}
           </div>
           <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 pt-24 lg:mt-0 justify-center items-center">
             {renderMedia(hoveredIndex)}
