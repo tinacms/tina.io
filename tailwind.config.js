@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   theme: {
@@ -105,17 +105,17 @@ module.exports = {
         popIn: {
           '0%': {
             opacity: 0,
-            transform: 'scale(0.75)'
+            transform: 'scale(0.75)',
           },
           '100%': {
             opacity: 1,
-            transform: 'scale(1)'
-          }
-        }
+            transform: 'scale(1)',
+          },
+        },
       },
       animation: {
         'slide-in': 'slideIn 200ms ease-out 1',
-        'pop-in': 'popIn 0.5s ease-out forwards'
+        'pop-in': 'popIn 0.5s ease-out forwards',
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
@@ -208,4 +208,4 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
-}
+};
