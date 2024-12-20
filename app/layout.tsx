@@ -4,6 +4,7 @@ import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner
 import ConsentBanner from 'components/AppRouterMigrationComponents/ConsentBanner';
 import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
 import dynamic from 'next/dynamic';
+import data from '../content/siteConfig.json';
 import '../styles/tailwind.css';
 
 const TinaChatBot = dynamic(
@@ -12,6 +13,30 @@ const TinaChatBot = dynamic(
     ssr: false,
   }
 );
+
+export const metadata = {
+  title: data.seoDefaultTitle,
+  descripton: data.description,
+  openGraph: {
+    title: data.seoDefaultTitle,
+    description: data.description,
+    url: data.siteUrl,
+    images: [
+      {
+        url: 'https://tina.io/img/tina-og.png',
+        width: 1200,
+        height: 628,
+        alt: 'Tina - The Markdown CMS',
+      },
+    ],
+  },
+  twitter:{
+    title: data.seoDefaultTitle,
+    description: data.description,
+    card: 'summary_large_image',
+    site: data.social.twitterHandle,
+  },
+}
 
 export default async function RootLayout({
   children,
