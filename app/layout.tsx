@@ -1,14 +1,17 @@
-import dynamic from 'next/dynamic';
 import { GoogleTagManager } from '@next/third-parties/google';
-import ConsentBanner from 'components/scripts/ConsentBanner';
-import { CloudBanner } from 'components/scripts/CloudBanner';
-import AdminLink from 'components/scripts/AdminLink';
+import AdminLink from 'components/AppRouterMigrationComponents/AdminLink';
+import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner';
+import ConsentBanner from 'components/AppRouterMigrationComponents/ConsentBanner';
+import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
+import dynamic from 'next/dynamic';
 import '../styles/tailwind.css';
-import { SiteLayout } from 'components/scripts/SiteLayout';
 
-const TinaChatBot = dynamic(() => import('../components/scripts/TinaChatBot'), {
-  ssr: false,
-});
+const TinaChatBot = dynamic(
+  () => import('../components/AppRouterMigrationComponents/TinaChatBot'),
+  {
+    ssr: false,
+  }
+);
 
 export default async function RootLayout({
   children,

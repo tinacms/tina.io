@@ -1,15 +1,15 @@
 'use client';
 
-import React from 'react'
-import XIconSvg from '../../public/svg/x-icon.svg'
-import GithubIconSvg from '../../public/svg/github-icon.svg'
-import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg'
-import YoutubeIconSvg from '../../public/svg/youtube-icon.svg'
-import { TinaIcon } from '../../components/logo'
-import Link from 'next/link'
-import { DynamicLink } from '../../components/ui'
-import { BsDiscord } from 'react-icons/bs'
-import '../../styles/tailwind.css'
+import Link from 'next/link';
+import React from 'react';
+import { BsDiscord } from 'react-icons/bs';
+import GithubIconSvg from '../../public/svg/github-icon.svg';
+import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg';
+import XIconSvg from '../../public/svg/x-icon.svg';
+import YoutubeIconSvg from '../../public/svg/youtube-icon.svg';
+import '../../styles/tailwind.css';
+import { TinaIcon } from '../logo';
+import { DynamicLink } from '../ui';
 
 const footerNav = [
   {
@@ -155,7 +155,7 @@ const footerNav = [
       },
     ],
   },
-] as const
+] as const;
 
 const footerLinks = [
   {
@@ -182,10 +182,10 @@ const footerLinks = [
     link: '/docs/support',
     label: 'Support',
   },
-]
+];
 
 const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   return (
     <details
@@ -207,11 +207,11 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
         ))}
       </div>
     </details>
-  )
-}
+  );
+};
 
 export const LinkItem = ({ item }) => {
-  const { id, link, label } = item
+  const { id, link, label } = item;
 
   return (
     <DynamicLink href={link} passHref>
@@ -219,8 +219,8 @@ export const LinkItem = ({ item }) => {
         {label}
       </div>
     </DynamicLink>
-  )
-}
+  );
+};
 
 const SocialLink = ({ link, children }) => {
   return (
@@ -231,8 +231,8 @@ const SocialLink = ({ link, children }) => {
     >
       {children}
     </a>
-  )
-}
+  );
+};
 
 export const AppFooter = ({}) => {
   return (
@@ -244,7 +244,7 @@ export const AppFooter = ({}) => {
         </div>
         <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {footerNav.map((item) => {
-            const { label, items } = item
+            const { label, items } = item;
             return (
               <div
                 key={label}
@@ -258,10 +258,10 @@ export const AppFooter = ({}) => {
                     <LinkGroup key={item.label} item={item} />
                   ) : (
                     <LinkItem key={item.label} item={item} />
-                  )
+                  );
                 })}
               </div>
-            )
+            );
           })}
           <div className="flex flex-col lg:items-center font-tuner">
             <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm font-tuner">
@@ -295,8 +295,8 @@ export const AppFooter = ({}) => {
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {footerLinks.map((item) => {
-              const { link, label } = item
-              return <FooterLink key={label} link={link} label={label} />
+              const { link, label } = item;
+              return <FooterLink key={label} link={link} label={label} />;
             })}
           </div>
           <div>
@@ -308,8 +308,8 @@ export const AppFooter = ({}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const FooterLink = ({ link, label }) => {
   return (
@@ -320,5 +320,5 @@ const FooterLink = ({ link, label }) => {
     >
       {label}
     </Link>
-  )
-}
+  );
+};

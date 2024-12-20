@@ -9,11 +9,11 @@ import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import { Button } from '../../components/ui/Button';
 import data from '../../content/navigationBar/navMenu.json';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
-import { EmailForm } from '../modals/EmailForm';
 import '../../styles/tailwind.css';
+import { EmailForm } from '../modals/EmailForm';
+import { Button } from '../ui/Button';
 
 enum ValidColors {
   White = 'white',
