@@ -26,8 +26,6 @@
     ],
     "strictNullChecks": true,
     "ignoreDeprecations": "5.0",
-    "suppressExcessPropertyErrors": true, // Suppress excess property checks
-    "suppressImplicitAnyIndexErrors": true // Suppress 'never[]' issues (temporary)
   },
   "exclude": [
     "node_modules"
