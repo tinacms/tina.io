@@ -66,7 +66,7 @@ const NavTitle = ({
   );
 };
 
-const hasNestedSlug = (navItems = [], slug) => {
+const hasNestedSlug = (navItems: any[], slug) => {
   for (let item of navItems) {
     if (matchActualTarget(item.slug || item.href, slug)) {
       return true;
