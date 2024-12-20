@@ -24,6 +24,7 @@
         "name": "next"
       }
     ],
+    "strictNullChecks": false
   },
   "exclude": [
     "node_modules"
