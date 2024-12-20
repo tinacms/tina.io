@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
@@ -98,12 +98,14 @@ const Testimonial = ({ data, ...props }) => {
 export default function TestimonialsBlock({ data, index }) {
   const isTouchScreen = useMemo(() => checkTouchScreen(), []);
   const [isShowingAll, setIsShowingAll] = useState(false);
+  const titleRef = useRef(null);
 
   return (
     <>
       <h1
         className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20`}
         data-tina-field={tinaField(data, 'title')}
+        ref={titleRef}
       >
         {data?.title || 'Loved by Developers'}
       </h1>
@@ -144,7 +146,10 @@ export default function TestimonialsBlock({ data, index }) {
       {isShowingAll && isTouchScreen ? (
         <button
           className="text-blue-500 text-lg font-tuner cursor-pointer"
-          onClick={() => setIsShowingAll(false)}
+          onClick={() => {
+            setIsShowingAll(false);
+            titleRef.current.scrollIntoView({ behavior: 'smooth' });
+          }}
         >
           Hide
         </button>
