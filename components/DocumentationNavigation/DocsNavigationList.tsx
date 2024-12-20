@@ -66,7 +66,7 @@ const NavTitle = ({
   );
 };
 
-const hasNestedSlug = (navItems: any[], slug) => {
+const hasNestedSlug = (navItems = [], slug) => {
   for (let item of navItems) {
     if (matchActualTarget(item.slug || item.href, slug)) {
       return true;
@@ -89,7 +89,7 @@ const NavLevel = ({
   categoryData: any;
   level?: number;
 }) => {
-  const navLevelElem = React.useRef<HTMLDivElement | null>(null);
+  const navLevelElem = React.useRef(null);
   const router = useRouter();
   const path = router.asPath;
   const slug = categoryData.slug?.replace(/\/$/, '');
