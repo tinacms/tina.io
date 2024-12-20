@@ -308,8 +308,10 @@ export default function CarouselFeatureBlock({ data, index }) {
               <button
                 className="text-blue-500 text-lg font-tuner cursor-pointer"
                 onClick={() => {
+                  setTimeout(() => {
+                    setIsShowingAll(false);
+                  }, 700);
                   titleRef.current.scrollIntoView({ behavior: 'smooth' });
-                  setIsShowingAll(false);
                 }}
               >
                 Hide

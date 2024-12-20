@@ -148,7 +148,9 @@ export default function TestimonialsBlock({ data, index }) {
           className="text-blue-500 text-lg font-tuner cursor-pointer"
           onClick={() => {
             titleRef.current.scrollIntoView({ behavior: 'smooth' });
-            setIsShowingAll(false);
+            setTimeout(() => {
+              setIsShowingAll(false);
+            }, 700);
           }}
         >
           Hide
