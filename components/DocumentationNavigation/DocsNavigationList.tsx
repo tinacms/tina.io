@@ -89,7 +89,7 @@ const NavLevel = ({
   categoryData: any;
   level?: number;
 }) => {
-  const navLevelElem = React.useRef(null);
+  const navLevelElem = React.useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const path = router.asPath;
   const slug = categoryData.slug?.replace(/\/$/, '');
