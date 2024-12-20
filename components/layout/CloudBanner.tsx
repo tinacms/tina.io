@@ -1,9 +1,6 @@
 import React from 'react'
-import Link from 'next/link'
-import { IconRight } from '../blocks'
-import { Button, ButtonGroup } from '../../components/ui'
 import GitHubButton from 'react-github-btn'
-import { EmailForm } from '../modals/EmailForm'
+
 export function CloudBanner() {
   return (
     <>
