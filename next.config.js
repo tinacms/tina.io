@@ -95,9 +95,6 @@ const config = {
       },
     ];
   },
-  exportPathMap: async function () {
-    return {};
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.md$/,
