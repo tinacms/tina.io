@@ -6,8 +6,7 @@ export async function generateMetadata() {
   const { data } = await fetchEvents(vars);
   const nodesData = data.eventsConnection.edges.map((edge: any) => edge.node)
   const eventsSEOData = nodesData[0].seo
-  console.log(eventsSEOData);
-
+  
   return {
     title: eventsSEOData.title,
     description: eventsSEOData.description,
