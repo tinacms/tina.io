@@ -199,6 +199,10 @@ const SplitContent = styled.div`
     font-size: 1.2rem;
   }
 
+  #main-content-container p {
+    color: black;
+  }
+
   > * {
     flex: 1;
     margin: 0 10px;
