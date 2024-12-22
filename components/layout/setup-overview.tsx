@@ -4,6 +4,7 @@ import React from 'react';
 import { DocsLayout } from '../../components/layout';
 import * as ga from '../../utils/ga';
 import { Actions } from '../blocks/ActionButton/ActionsButton';
+import { DocsPagination } from 'components/ui';
 
 const pageData = {
   title: 'Getting Started',
@@ -54,6 +55,9 @@ const OverviewTemplate = (props) => {
     },
   ];
 
+  const nextPage = { slug: '/introduction/using-starter', title: 'Getting Started with a Starter'}
+  const prevPage = { slug: '/product-tour', title: 'Intorudction to TinaCMS'}
+
   return (
     <>
       <NextSeo
@@ -99,6 +103,12 @@ const OverviewTemplate = (props) => {
                 />
               </a>
             ))}
+          </div>
+          <div className='pt-6'>
+            <DocsPagination
+              prevPage={prevPage}
+              nextPage={nextPage}
+            />
           </div>
         </div>
         <style jsx>{`
