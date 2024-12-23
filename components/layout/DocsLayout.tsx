@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
 import { DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import { Footer } from './Footer';
-import { DocsTextWrapper } from './DocsTextWrapper';
+import React from 'react';
+import styled from 'styled-components';
 import { Overlay } from '../ui';
-import { Navbar } from './Navbar';
+import { DocsTextWrapper } from './DocsTextWrapper';
+import { Footer } from './Footer';
 import { Layout } from './Layout';
-import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
+import { Navbar } from './Navbar';
 
 interface DocsLayoutProps {
   navItems: any;
@@ -28,8 +28,7 @@ export const DocsLayout = React.memo(
             <DocsMain>
               <DocsTextWrapper>{children}</DocsTextWrapper>
             </DocsMain>
-            <DocsFooterWrapper>
-            </DocsFooterWrapper>
+            <DocsFooterWrapper></DocsFooterWrapper>
           </DocsLayoutGrid>
         </Layout>
       </>
@@ -38,6 +37,7 @@ export const DocsLayout = React.memo(
 );
 
 const DocsLayoutGrid = styled.div`
+  padding-bottom: 2rem;
   display: grid;
   min-height: 100vh; /* Ensure grid stretches to viewport height */
   grid-template-columns: min(33vw, 20rem) minmax(0, 1fr);
@@ -77,5 +77,5 @@ const DocsFooterWrapper = styled.div`
   grid-area: footer;
   z-index: 1;
   position: relative;
-  margin-top: auto; 
+  margin-top: auto;
 `;
