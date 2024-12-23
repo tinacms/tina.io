@@ -7,6 +7,30 @@ import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
 
+//Helper function for highlighting algolia search hits
+const highlightText = (text: string) => {
+  const regex = /<em>(.*?)<\/em>/g;
+  const segments = [];
+  let lastIndex = 0;
+
+  let match;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      segments.push(text.substring(lastIndex, match.index));
+    }
+    segments.push(
+      <span key={match.index} className="bg-yellow-200 text-black font-bold">
+        {match[1]}
+      </span>
+    );
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    segments.push(text.substring(lastIndex));
+  }
+  return segments;
+};
+
 export const SearchResultsOverflowBody = ({
   results,
   activeItem,
@@ -21,16 +45,17 @@ export const SearchResultsOverflowBody = ({
   isLoading: boolean;
 }) => {
   const bodyItem = activeItem === 'DOCS' ? results?.docs : results?.blogs;
+
   return (
-    <div className="mt-2 py-2  max-h-[45vh]">
+    <div className="mt-2 py-2 max-h-[45vh]">
       {bodyItem?.results.slice(0, 10).map((item: any) => (
         <div key={item.objectID} className="py-2 px-4 border-b group">
           <Link href={`/${activeItem.toLowerCase()}/${item.slug}`}>
             <h2 className="text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
-              {item.title}
+              {highlightText(item._highlightResult.title.value)}
             </h2>
             <p className="text-gray-600 group-hover:text-gray-800 text-xs font-light line-clamp-3 break-words">
-              {item.excerpt}
+              {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>
         </div>
@@ -56,6 +81,7 @@ export const SearchResultsOverflowBody = ({
     </div>
   );
 };
+
 
 export const SearchResultsOverflowTabs = ({ query }) => {
   const [activeTab, setActiveTab] = useState('DOCS');
@@ -227,7 +253,7 @@ export const DocsSearchBarHeader = ({
               setSearchOverflowOpen(false);
             }
           }}
-        />{' '}
+        />
       </div>
       {userHasTyped && searchOverFlowOpen && (
         <SearchResultsOverflow query={searchTerm} />
