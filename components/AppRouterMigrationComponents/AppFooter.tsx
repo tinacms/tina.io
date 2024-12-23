@@ -11,6 +11,7 @@ import '../../styles/tailwind.css';
 import { TinaIcon } from '../logo';
 import { DynamicLink } from '../ui';
 
+//TODO: Implement TinaCMS collection - https://github.com/tinacms/tina.io/issues/2656
 const footerNav = [
   {
     label: 'Product',

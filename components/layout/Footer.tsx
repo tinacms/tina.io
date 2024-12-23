@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { DynamicLink } from '../../components/ui'
 import { BsDiscord } from 'react-icons/bs'
 
+//TODO: Implement TinaCMS collection - https://github.com/tinacms/tina.io/issues/2656
 const footerNav = [
   {
     label: 'Product',
