@@ -19,7 +19,7 @@ const highlightText = (text: string) => {
       segments.push(text.substring(lastIndex, match.index));
     }
     segments.push(
-      <span key={match.index} className="bg-yellow-200 text-black font-bold">
+      <span key={match.index} className="bg-orange-200 text-black font-bold">
         {match[1]}
       </span>
     );
