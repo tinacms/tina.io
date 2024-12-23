@@ -1,3 +1,4 @@
+import './global.css'
 import { GoogleTagManager } from '@next/third-parties/google';
 import AdminLink from 'components/AppRouterMigrationComponents/AdminLink';
 import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner';

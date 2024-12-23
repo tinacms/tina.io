@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   theme: {
@@ -156,8 +156,7 @@ module.exports = {
           700: '#0D5DBD',
           800: '#144696',
           900: '#1D2C6C',
-          950: '#241748', // Newly added. Mirrors the value of 1000.
-          1000: '#241748', // Deprecated: This color will be removed in future designs.
+          950: '#241748',
         },
         orange: {
           50: '#FFF8F3',
@@ -208,9 +207,12 @@ module.exports = {
     require('tailwindcss-animated'),
   ],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './app/**/*.{js,ts,jsx,tsx}',
-    './app/\*\*/\*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',       // Legacy Pages Router
+    './components/**/*.{js,ts,jsx,tsx}', // All reusable components
+    './app/**/*.{js,ts,jsx,tsx}',        // App Router files
+    './app/**/**/*.{js,ts,jsx,tsx}',     // Nested components in app/
   ],
-}
+  safelist: [
+    'font-tuner',
+  ],
+};
