@@ -33,8 +33,7 @@ export function CloudBanner() {
           >
             GitHub
           </a>
-        </span>
-        {/* @ts-ignore */}
+        </span>        
         <GitHubButton
           href="https://github.com/tinacms/tinacms"
           data-size="medium"
