@@ -2,11 +2,10 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import PlayIcon from '../../../public/svg/play-button.svg';
 import DocsRichText from '../../styles/DocsRichText';
 import { Prism } from '../../styles/Prism';
-import PlayIcon from '../../../public/svg/play-button.svg'
 import { Container } from '../Container';
-
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
@@ -96,7 +95,7 @@ export function FeatureBlock({ data, index }) {
                       className="w-full h-auto rounded-lg"
                       src={data.media[0].src}
                     />
-                    <div className="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+                    <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
                     </div>
