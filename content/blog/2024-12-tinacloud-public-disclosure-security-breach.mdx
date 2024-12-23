@@ -1,0 +1,140 @@
+---
+title: 'TinaCloud: Public Disclosure of Security Breach'
+date: '2024-12-23T13:00:00.000Z'
+author: Matt Wicks
+prev: content/blog/referential-integrity.mdx
+next: ''
+---
+
+## Overview of the Incident
+
+On 15th December 2024, TinaCMS identified unauthorized activity involving compromised AWS access keys. These keys were exploited to send unauthorized emails (targeting the general French community, not Tina customers specifically) using our Amazon Simple Email Service (SES) infrastructure.
+
+Figure: the emails sent were in French
+
+As an automated measure, the impacted key was revoked. Afterwards, our rapid response team confirmed the extent of the incident using CloudTrail logs, investigated root cause, and took steps (described below) to secure our systems.
+
+Outbound email functionality, including user invitations, was impacted. This has since been resolved.
+
+We apologize for this and we are confident that it won’t happen again.
+
+## Incident Details
+
+Time of Detection: 15th December 2024, 07:05 UTC
+
+Type of Incident: Unauthorized use of AWS access keys
+
+Services Impacted:
+
+· Amazon SES (email sending)
+
+· User invitation workflows relying on outbound email
+
+Nature of Access:
+
+· AWS access keys with root permissions were compromised and misused
+
+Verification:
+
+· CloudTrail logs were used to confirm which systems and services were accessed during the incident
+
+## Root Cause Analysis
+
+The unauthorized access was traced to a vulnerability in our CI/CD pipeline. During the build process, a step in the GitHub Actions workflow inadvertently wrote the GitHub Actions Runner’s environment variables, including sensitive AWS access keys, to a JavaScript file.
+
+The JavaScript file containing the keys was subsequently deployed and served publicly as part of TinaCloud, allowing attackers to obtain the access keys directly from the front-end code.
+
+## Impact Assessment
+
+Customer Data:
+
+✅ Based off CloudTrail logs, there was no evidence of unauthorized access to customer data.
+This includes content databases, end user login information, access to application secrets.
+
+Affected Systems:
+
+⚠️ Amazon SES for email-sending functionality
+
+User Impact:
+
+❌ Temporary suspension of email services impacted workflows, including user invitations
+
+## Actions Taken
+
+1\. ✅ Done - Revoked all access keys
+All compromised and legacy AWS access keys were revoked immediately
+
+
+
+2\. ✅ Done - Verification of access:
+CloudTrail logs were reviewed to identify and confirm systems accessed by the unauthorized actor
+
+
+
+3\. ✅ Done - Confirmed security controls:
+MFA (Multi-Factor Authentication) is enabled on all user accounts that have console access
+Revoked access to all unnecessary users
+
+
+
+4\. ✅ Done - Suspension of email sending:
+Outbound email services were temporarily suspended whilst we were ascertaining root cause and AWS’s review.
+Services have now been restored.
+
+
+
+5\. ✅ Done - CI/CD AWS access
+Authentication for the GitHub Actions has been upgraded from long lived Access Keys to OIDC
+
+
+
+6\. ✅ Done - Build process
+The build process was reviewed, and the handling of environment variables was updated.
+The use of process.env was replaced with import.meta, following best practices outlined in [Vite’s documentation](https://vite.dev/config/shared-options.html#define), to prevent sensitive data from being exposed in build artifacts.
+
+
+
+7\. ✅ Done - Repository secrets audit
+A thorough audit of all GitHub repositories is being conducted to identify any other sensitive information that may have been inadvertently exposed in past builds or commits
+
+
+
+8\. \[TODO] Hardened IAM policies
+IAM policies tied to CI/CD systems have been reviewed and updated to ensure adherence to least privilege principles, removing unnecessary permissions, especially those with root or administrative access
+
+
+
+9\. \[TODO] IP allow listing for AWS access
+AWS IAM role usage has been restricted to trusted IP ranges, particularly for CI/CD systems and other sensitive operations
+
+
+
+10\. \[TODO] Continuous monitoring and alerts
+Continuous monitoring tools like Amazon GuardDuty, AWS CloudTrail Insights, and AWS Security Hub will be implemented to detect and alert on suspicious activity, such as new access key creation or unusual IP access
+
+
+
+11\. \[TODO] Automated security scans
+Automated tools will be integrated into the CI/CD pipeline to proactively detect secrets or vulnerabilities during code builds
+
+
+
+## Advice to Tina Customers
+
+1\. Report suspicious emails: If you received unauthorized or suspicious emails from TinaCMS, please report them to security\@tina.io
+
+2\. Verify email origin: Ensure any emails claiming to be from TinaCMS are legitimate
+
+3\. Stay updated: Follow our official communication channels for real-time updates
+
+## Contact Information
+
+For questions, concerns, or further information, please contact:
+
+· Email: security\@tina.io
+
+· Website: [https://tina.io/security](https://tina.io/security)
+
+TinaCMS remains committed to protecting our systems and maintaining transparency.
+
+🦙 The Tina herd
