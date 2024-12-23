@@ -3,6 +3,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useEditState } from 'tinacms/dist/react';
+import { RxCross1 } from "react-icons/rx";
 
 
 const AdminLink = () => {
@@ -32,7 +33,7 @@ const AdminLink = () => {
             Edit This Page
           </a>
           <button onClick={handleDismiss} className="ml-2 text-sm">
-            xx
+            <RxCross1/>
           </button>
         </div>
       )}

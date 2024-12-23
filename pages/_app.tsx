@@ -12,6 +12,7 @@ import ConsentBanner from '../components/ui/ConsentBanner';
 import ChatBaseBot from '../components/ui/TinaChatBot';
 import data from '../content/siteConfig.json';
 import '../styles/tailwind.css';
+import { RxCross1 } from 'react-icons/rx';
 
 path.resolve('./content/');
 
@@ -121,7 +122,7 @@ const AdminLink = () => {
             Edit This Page
           </a>
           <button onClick={handleDismiss} className="ml-2 text-sm">
-            xx
+            <RxCross1 />
           </button>
         </div>
       )}
