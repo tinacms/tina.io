@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { fetchAlgoliaSearchResults } from "utils/new-search";
+import { highlightText } from "./SearchNavigation";
 
 export const SearchHeader = ({ query }: { query: string }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -164,6 +165,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
   );
 };
 
+
 export const SearchBody = ({
   results,
   activeItem,
@@ -172,16 +174,17 @@ export const SearchBody = ({
   activeItem: string;
 }) => {
   const bodyItem = activeItem === 'DOCS' ? results?.docs : results?.blogs;
+
   return (
     <div className="py-10">
       {bodyItem?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
           <Link href={`/${activeItem.toLowerCase()}/${item.slug}`}>
             <h2 className="text-xl font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
-              {item.title}
+              {highlightText(item._highlightResult.title.value)}
             </h2>
             <p className="text-gray-600 group-hover:text-gray-800 text-sm font-light line-clamp-3 break-words">
-              {item.excerpt}
+              {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>
         </div>

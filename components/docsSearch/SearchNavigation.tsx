@@ -8,7 +8,7 @@ import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
 
 //Helper function for highlighting algolia search hits
-const highlightText = (text: string) => {
+export const highlightText = (text: string) => {
   const regex = /<em>(.*?)<\/em>/g;
   const segments = [];
   let lastIndex = 0;
