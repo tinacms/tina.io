@@ -1,137 +1,137 @@
-import { getDocsNav } from 'utils/docs/getDocProps'
-import { GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
-import { useTocListener } from 'utils/toc_helpers'
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
-import * as ga from '../../utils/ga'
-import { NextSeo } from 'next-seo'
-import { openGraphImage } from 'utils/open-graph-image'
-import { DocsLayout, MarkdownContent } from 'components/layout'
-import { DocGridContent, DocGridHeader, DocsPageTitle } from './[...slug]'
-import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs'
-import { DocsPagination, LastEdited } from 'components/ui'
-import styled from 'styled-components'
-import client from 'tina/__generated__/client'
-import { useTina } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents'
-import { getSeoDescription } from 'utils/docs/getSeoDescription'
+import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs';
+import { DocsLayout, MarkdownContent } from 'components/layout';
+import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
+import { DocsPagination, LastEdited } from 'components/ui';
+import { GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import styled from 'styled-components';
+import client from 'tina/__generated__/client';
+import { useTina } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { getDocsNav } from 'utils/docs/getDocProps';
+import { getSeoDescription } from 'utils/docs/getSeoDescription';
+import { openGraphImage } from 'utils/open-graph-image';
+import { useTocListener } from 'utils/toc_helpers';
+import * as ga from '../../utils/ga';
+import { DocGridContent, DocGridHeader, DocsPageTitle } from './[...slug]';
 
 export const getStaticProps: GetStaticProps = async function (props) {
   const new_results = await client.queries.doc({
     relativePath: `product-tour.mdx`,
-  })
-  const docsToc = await getDocsNav()
-  return { props: { new: { new_results }, docsToc } }
-}
+  });
+  const docsToc = await getDocsNav();
+  return { props: { new: { new_results }, docsToc } };
+};
 
 export default function Page(props) {
-  const router = useRouter()
+  const router = useRouter();
   const { data } = useTina({
     query: props.new?.new_results.query,
     data: props.new?.new_results.data,
     variables: props.new?.new_results.variables,
-  })
+  });
 
-  const doc_data = data.doc
+  const doc_data = data.doc;
   const previousPage = {
     slug: doc_data.previous?.id.slice(7, -4),
     title: doc_data.previous?.title,
-  }
+  };
   const nextPage = {
     slug: doc_data.next?.id.slice(7, -4),
     title: doc_data.next?.title,
-  }
-  const description = getSeoDescription(doc_data.body)
+  };
+  const description = getSeoDescription(doc_data.body);
 
-  const { activeIds: _activeIds, contentRef } = useTocListener(doc_data)
-  const activeIds = _activeIds.filter((id) => !!id)
-  const activeImg = useRef(null)
-  const transitionImg = useRef(null)
+  const { activeIds: _activeIds, contentRef } = useTocListener(doc_data);
+  const activeIds = _activeIds.filter((id) => !!id);
+  const activeImg = useRef(null);
+  const transitionImg = useRef(null);
 
   useEffect(() => {
-    let imgTransitionTimeout: NodeJS.Timeout
-    if (typeof window === 'undefined') return
+    let imgTransitionTimeout: NodeJS.Timeout;
+    if (typeof window === 'undefined') return;
     if (!activeIds.length) {
-      return
+      return;
     }
 
     const heading = document.querySelector(
       `h2#${activeIds[0]}, h3#${activeIds[0]}, h4#${activeIds[0]}`
-    )
-    let imageSrc = null
+    );
+    let imageSrc = null;
 
     if (heading) {
-      let sibling = heading.nextElementSibling
+      let sibling = heading.nextElementSibling;
 
       while (sibling) {
-        const image = sibling.querySelector('img')
+        const image = sibling.querySelector('img');
         if (image) {
-          imageSrc = image.src
-          break
+          imageSrc = image.src;
+          break;
         }
-        sibling = sibling.nextElementSibling
+        sibling = sibling.nextElementSibling;
       }
     }
 
     // limit activeIds to 1
-    const deepestActiveIds = activeIds.slice(0, 1)
+    const deepestActiveIds = activeIds.slice(0, 1);
     document.querySelectorAll('.focused').forEach((el) => {
       if (deepestActiveIds.indexOf(el.id) === -1) {
-        el.classList.remove('focused')
+        el.classList.remove('focused');
       }
-    })
+    });
 
     deepestActiveIds.forEach((id) => {
-      const el = document.querySelector(`#${id}`)
+      const el = document.querySelector(`#${id}`);
       if (el) {
-        el.classList.add('focused')
+        el.classList.add('focused');
       }
-    })
+    });
 
-    if (activeImg.current.src === imageSrc) return
+    if (activeImg.current.src === imageSrc) return;
 
     if (!activeImg.current.src) {
-      activeImg.current.src = imageSrc
+      activeImg.current.src = imageSrc;
     } else {
-      transitionImg.current.src = imageSrc
-      transitionImg.current.style.opacity = '1'
-      activeImg.current.style.opacity = '0'
+      transitionImg.current.src = imageSrc;
+      transitionImg.current.style.opacity = '1';
+      activeImg.current.style.opacity = '0';
 
       imgTransitionTimeout = setTimeout(function () {
-        activeImg.current.src = imageSrc
-        transitionImg.current.style.opacity = '0'
-        activeImg.current.style.opacity = '1'
-      }, 350)
+        activeImg.current.src = imageSrc;
+        transitionImg.current.style.opacity = '0';
+        activeImg.current.style.opacity = '1';
+      }, 350);
     }
 
     return () => {
       if (imgTransitionTimeout) {
         if (activeImg?.current && transitionImg?.current) {
-          activeImg.current.src = imageSrc
-          transitionImg.current.style.opacity = '0'
-          activeImg.current.style.opacity = '1'
+          activeImg.current.src = imageSrc;
+          transitionImg.current.style.opacity = '0';
+          activeImg.current.style.opacity = '1';
         }
 
-        clearTimeout(imgTransitionTimeout)
+        clearTimeout(imgTransitionTimeout);
       }
-    }
-  }, [activeIds, transitionImg, activeImg])
+    };
+  }, [activeIds, transitionImg, activeImg]);
 
   React.useEffect(() => {
     const handleRouteChange = (url) => {
-      ga.pageview(url)
-    }
+      ga.pageview(url);
+    };
     //When the component is mounted, subscribe to router changes
     //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange);
 
     // If the component is unmounted, unsubscribe
     // from the event with the `off` method
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
   return (
     <>
       <NextSeo
@@ -145,7 +145,7 @@ export default function Page(props) {
         }}
       />
 
-        <DocsLayout navItems={props.docsToc.data}>
+      <DocsLayout navItems={props.docsToc.data}>
         <DocContainer>
           <DocGridHeader>
             <Breadcrumbs navItems={props.docsToc.data} />
@@ -154,32 +154,29 @@ export default function Page(props) {
           <DocGridContent ref={contentRef}>
             <hr />
             <SplitContent>
-            
               <div id="main-content-container">
-                <TinaMarkdown content={doc_data.body} components={docAndBlogComponents} />
+                <TinaMarkdown
+                  content={doc_data.body}
+                  components={docAndBlogComponents}
+                />
               </div>
               <div id="sticky-img-container">
                 <div className="img-container">
                   {/* Im keeping this as a .gif rather than transferring to .webm as a .gif would require me to change from <img> to <video> which would break the rest of the active images */}
-                  <img
-                    ref={activeImg}
-                    src="/img/docs/your-blocks.gif"
-                  />
+                  <img ref={activeImg} src="/img/docs/your-blocks.gif" />
                   <img ref={transitionImg} />
                 </div>
               </div>
             </SplitContent>
             <LastEdited date={doc_data.last_edited} />
-            <div className="w-1/2">
-              <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+            <div className="w-full">
+              <DocsPagination prevPage={null} nextPage={nextPage} />
             </div>
           </DocGridContent>
         </DocContainer>
       </DocsLayout>
-
-      
     </>
-  )
+  );
 }
 
 export const DocContainer = styled.div`
@@ -188,9 +185,9 @@ export const DocContainer = styled.div`
   position: relative;
   padding: 1rem 2rem 3rem 2rem;
   margin: 0 auto;
-`
+`;
 
-const MAX_SPLIT_IMG_WIDTH = 768
+const MAX_SPLIT_IMG_WIDTH = 768;
 const SplitContent = styled.div`
   display: flex;
   position: relative;
@@ -286,4 +283,4 @@ const SplitContent = styled.div`
   .img-container {
     position: relative;
   }
-`
+`;
