@@ -22,14 +22,14 @@ export const criteriaMapping = (values) => {
             company.satisfiedCriteria?.map(
               (item) => splitOneAndJoin(item, '-')[1]
             ) ?? [];
-          const updatedCriteriaSatisfaction = [];
+          const updatedCriteriaSatisfaction: string[] = [];
           // Populate the satisfied criteria list to match the criteria list, adding new criteria if needed and re-using old criteria if possible
           criteriaItems.forEach((item) => {
             if (oldCriteria.includes(item)) {
-              const satisfaction = company.satisfiedCriteria.find(
+              const satisfaction: string | undefined = company.satisfiedCriteria.find(
                 (criteria) => splitOneAndJoin(criteria, '-')[1] === item
               );
-              updatedCriteriaSatisfaction.push(satisfaction);
+              updatedCriteriaSatisfaction.push(satisfaction || '');
             } else {
               updatedCriteriaSatisfaction.push(`false-${item}`);
             }
