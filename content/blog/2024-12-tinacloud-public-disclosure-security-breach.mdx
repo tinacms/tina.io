@@ -62,7 +62,7 @@ This includes content databases, end user login information, access to applicati
 
 ## Actions Taken
 
-1. ✅ Done - Revoked all access keys
+1. ✅ Done - Revoked all access keys:
    All compromised and legacy AWS access keys were revoked immediately
 2. ✅ Done - Verification of access:
    CloudTrail logs were reviewed to identify and confirm systems accessed by the unauthorized actor
@@ -72,20 +72,20 @@ This includes content databases, end user login information, access to applicati
 4. ✅ Done - Suspension of email sending:
    Outbound email services were temporarily suspended whilst we were ascertaining root cause and AWS’s review.
    Services have now been restored.
-5. ✅ Done - CI/CD AWS access
+5. ✅ Done - CI/CD AWS access:
    Authentication for the GitHub Actions has been upgraded from long lived Access Keys to OIDC
-6. ✅ Done - Build process
+6. ✅ Done - Build process:
    The build process was reviewed, and the handling of environment variables was updated.
    The use of process.env was replaced with import.meta, following best practices outlined in [Vite’s documentation](https://vite.dev/config/shared-options.html#define), to prevent sensitive data from being exposed in build artifacts.
-7. ✅ Done - Repository secrets audit
+7. ✅ Done - Repository secrets audit:
    A thorough audit of all GitHub repositories is being conducted to identify any other sensitive information that may have been inadvertently exposed in past builds or commits
-8. \[TODO] Hardened IAM policies
+8. \[TODO] Hardened IAM policies:
    IAM policies tied to CI/CD systems have been reviewed and updated to ensure adherence to least privilege principles, removing unnecessary permissions, especially those with root or administrative access
-9. \[TODO] IP allow listing for AWS access
+9. \[TODO] IP allow listing for AWS access:
    AWS IAM role usage has been restricted to trusted IP ranges, particularly for CI/CD systems and other sensitive operations
-10. \[TODO] Continuous monitoring and alerts
+10. \[TODO] Continuous monitoring and alerts:
     Continuous monitoring tools like Amazon GuardDuty, AWS CloudTrail Insights, and AWS Security Hub will be implemented to detect and alert on suspicious activity, such as new access key creation or unusual IP access
-11. \[TODO] Automated security scans
+11. \[TODO] Automated security scans:
     Automated tools will be integrated into the CI/CD pipeline to proactively detect secrets or vulnerabilities during code builds
 
 ## Advice to Tina Customers
