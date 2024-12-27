@@ -1,4 +1,6 @@
+import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useState } from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
@@ -8,7 +10,12 @@ import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
-import RecipeBlock from 'components/blocks/Recipe';
+const ScrollBasedShowcase = dynamic(
+  () => import('./templateComponents/scrollBasedShowcase'),
+  {
+    ssr: false,
+  }
+);
 
 export const docAndBlogComponents: Components<{
   Iframe: { iframeSrc: string; height: string };
@@ -46,7 +53,18 @@ export const docAndBlogComponents: Components<{
       codeLineEnd?: number;
     }[];
   };
+  scrollBasedShowcase: {
+    showcaseItems: {
+      image: string;
+      title: string;
+      useAsSubsection: boolean;
+      content: string;
+    }[];
+  };
 }> = {
+  scrollBasedShowcase: (props) => {
+    return <ScrollBasedShowcase showcaseItems={props.showcaseItems} />;
+  },
   recipeBlock: (props) => {
     return (
       <div className="text-white">
@@ -159,7 +177,10 @@ export const docAndBlogComponents: Components<{
     </div>
   ),
   Youtube: ({ embedSrc }) => (
-    <div className="youtube-container my-6 w-full relative" style={{ paddingBottom: '56.25%' }}>
+    <div
+      className="youtube-container my-6 w-full relative"
+      style={{ paddingBottom: '56.25%' }}
+    >
       <iframe
         className="absolute top-0 left-0 w-full h-full"
         src={embedSrc}
@@ -169,7 +190,7 @@ export const docAndBlogComponents: Components<{
       ></iframe>
     </div>
   ),
-  
+
   CreateAppCta: ({ ctaText, cliText }) => (
     <>
       <a
@@ -281,14 +302,12 @@ export const docAndBlogComponents: Components<{
   // @ts-ignore TODO: fix this in TinaCMS
   code_block: ({ value, lang, children }) => {
     return (
-      <div className='py-3 word-break white-space overflow-x-hidden'>
+      <div className="py-3 word-break white-space overflow-x-hidden">
         <Prism
-        value={children || value || ''}
-        lang={lang || 'jsx'}
-        theme="nightOwl"
-
-        
-      />
+          value={children || value || ''}
+          lang={lang || 'jsx'}
+          theme="nightOwl"
+        />
       </div>
     );
   },
@@ -343,7 +362,7 @@ export const docAndBlogComponents: Components<{
 function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any;
   const id = getDocId(
-    children.props.content.map((content) => content.text).join('')
+    children.props?.content.map((content) => content.text).join('') ?? children
   );
 
   const currentUrl =
