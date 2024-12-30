@@ -60,6 +60,37 @@ Query on post and author.
   }"
 />
 
+Query post on author.
+
+<GraphQLCodeBlock
+  query="{
+  ##author(relativePath:#&#x22;napolean.json&#x22;)#{
+  ####name
+  ####post#{
+  ######edges#{
+  ########node#{
+  ##########title
+  ########}
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;author&#x22;:#{
+  ######&#x22;name&#x22;:#&#x22;Napolean&#x22;,
+  ######&#x22;post&#x22;:#{
+  ########&#x22;edges&#x22;:#[
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;title&#x22;:#&#x22;Vote for Pedro&#x22;,
+  ##########}
+  ########]
+  ######}
+  ####}
+  ##}
+  }"
+/>
+
 ## Common fields
 
 In a collection, there are a few fields that are common to all documents. These are: `id`, `_values` and `_sys`. The `id` field is a unique identifier for the document. The `_values` field is used internally in edit mode and is not for external use. The `_sys` field contains meta information about the document.
@@ -75,7 +106,7 @@ The `_sys` field is an object with the following fields:
 * `template`: The template of the document (or the name of the collection if not using `templates`)
 * `collection`: Information about the collection
 
-### Example with a nester folder
+### Example with a nested folder
 
 <GraphQLCodeBlock
   query="{
@@ -113,7 +144,7 @@ The `_sys` field is an object with the following fields:
   }"
 />
 
-### Example without a nester folder
+### Example without a nested folder
 
 <GraphQLCodeBlock
   query="{
