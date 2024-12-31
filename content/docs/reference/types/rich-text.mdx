@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-12-02T06:05:59.753Z'
+last_edited: '2024-12-31T02:27:57.931Z'
 next: ''
 previous: ''
 ---
@@ -155,6 +155,17 @@ Results in the following response from the content API:
   }"
   preselectResponse={true}
 />
+
+### Line Breaks
+
+To insert a line break into an empty line in TinaCMS Rich Text:
+
+* Press Shift + Enter to create the line break
+* If the line break is not followed by a line with text, it will render as a \ in the final output.\
+  This can be fixed by deleting and re-creating the line\
+  Ensure that the line break precedes text content to avoid this issue
+
+Note: This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
 
 ### Using Table
 
