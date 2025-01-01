@@ -140,12 +140,18 @@ function _DocTemplate(props) {
               />
             </div>
             {/* MIDDLE COLUMN */}
-            <div className="mx-8 max-w-full overflow-hidden break-words px-2">
+            <div
+              className={`mx-8 max-w-full overflow-hidden break-words px-2 ${
+                doc_data.tocIsHidden && !isScreenSmallerThan1200
+                  ? 'col-span-2'
+                  : ''
+              }`}
+            >
               <MainDocsBodyHeader
                 data={props}
                 screenSizing={isScreenSmallerThan840}
               />
-              {isScreenSmallerThan1200 && (
+              {isScreenSmallerThan1200 && !doc_data.tocIsHidden && (
                 <TocOverflowButton tocData={TableOfContents} />
               )}
               <div ref={contentRef}>
@@ -160,13 +166,15 @@ function _DocTemplate(props) {
               </div>
             </div>
             {/* RIGHT COLUMN */}
-            <div
-              className={`pt-28 ${
-                isScreenSmallerThan1200 ? 'hidden' : 'block'
-              }`}
-            >
-              <ToC tocItems={TableOfContents} activeIds={activeIds} />
-            </div>
+            {doc_data.tocIsHidden ? null : (
+              <div
+                className={`pt-28 ${
+                  isScreenSmallerThan1200 ? 'hidden' : 'block'
+                }`}
+              >
+                <ToC tocItems={TableOfContents} activeIds={activeIds} />
+              </div>
+            )}
           </div>
         </div>
       </Layout>

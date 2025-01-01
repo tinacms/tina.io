@@ -1,3 +1,4 @@
+import { act } from '@react-three/fiber';
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -29,33 +30,58 @@ function createListener(
 ): () => void {
   let tick = false;
   const THROTTLE_INTERVAL = 100;
+  //Find maximum relative scroll position
+  const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+
+  const maxScrollYRelative =
+    (maxScrollY - componentRef.current.offsetTop) /
+    componentRef.current.scrollHeight;
 
   const relativePositionHeadingMap = headings.map((heading) => {
+    const relativePosition =
+      1 -
+      (componentRef.current.scrollHeight - heading.offset) /
+        componentRef.current.scrollHeight;
+
     return {
       ...heading,
       //Find the relative position of the heading based on the page content.
       relativePagePosition:
-        1 -
-        (componentRef.current.scrollHeight - heading.offset) /
-          componentRef.current.scrollHeight,
+        maxScrollYRelative > 1
+          ? relativePosition
+          : relativePosition * maxScrollYRelative,
     };
   });
 
   const throttledScroll = () => {
     //Find the current vertical scroll pixel value
-    const scrollPos = window.scrollY - componentRef.current.offsetTop;
+    const scrollPos =
+      window.scrollY - componentRef.current.offsetTop + window.innerHeight / 6;
     const newActiveIds = [];
     //Find the relative position on the page based on the scroll.
     const relativeScrollPosition =
-      scrollPos /
-      (componentRef.current.scrollHeight - componentRef.current.offsetTop);
+      scrollPos / componentRef.current.scrollHeight;
+
     //Find the headings that are above the current scroll position
     //This is adjusted to account for differences between min/max scroll values and content height
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
       (heading) => {
+        console.log(
+          'heading.relativePagePosition',
+          heading.relativePagePosition
+        );
         return relativeScrollPosition >= heading.relativePagePosition;
       }
     );
+
+    console.log('maxScrollYRelative', maxScrollYRelative);
+    console.log('maxScrollY', maxScrollY);
+
+    console.log('scrollPos', scrollPos);
+    console.log('window', window.innerHeight);
+    console.log('relativeScrollPosition', relativeScrollPosition);
+
+    console.log(headings);
 
     const activeHeading =
       activeHeadingCandidates.length > 0
@@ -131,18 +157,23 @@ export default function ScrollBasedShowcase(data) {
       tempHeadings.push(headingData);
     });
     setHeadings(tempHeadings);
+  }, [data.showcaseItems]);
 
+  useEffect(() => {
     const updateOffsets = () => {
-      const updatedHeadings = headings.map((heading, index) => ({
-        ...heading,
-        offset: headingRefs.current[index]?.offsetTop ?? 0,
-      }));
+      const updatedHeadings = headings.map((heading, index) => {
+        return {
+          ...heading,
+          offset: headingRefs.current[index]?.offsetTop ?? 0,
+        };
+      });
+
       setHeadings(updatedHeadings);
     };
 
     window.addEventListener('resize', updateOffsets);
     return () => window.removeEventListener('resize', updateOffsets);
-  }, [data.showcaseItems]);
+  }, [headings]);
 
   React.useEffect(() => {
     if (typeof window === `undefined`) {
@@ -161,49 +192,19 @@ export default function ScrollBasedShowcase(data) {
   }, [headings, windowSize, componentRef]);
 
   useEffect(() => {
-    let imgTransitionTimeout: NodeJS.Timeout;
     if (typeof window === 'undefined') return;
     if (!activeIds.length) {
-      console.log('no active ids');
       return;
     }
 
     const heading = headings.find((heading) => heading.id === activeIds[0]);
-    console.log('heading', heading);
 
     setImageSrc(heading?.src);
-
-    if (activeImg.current.src === imageSrc) return;
-
-    if (!activeImg.current.src) {
-      activeImg.current.src = imageSrc;
-    } else {
-      transitionImg.current.src = imageSrc;
-      transitionImg.current.style.opacity = '1';
-      activeImg.current.style.opacity = '0';
-
-      imgTransitionTimeout = setTimeout(function () {
-        activeImg.current.src = imageSrc;
-        transitionImg.current.style.opacity = '0';
-        activeImg.current.style.opacity = '1';
-      }, 350);
-    }
-
-    return () => {
-      if (imgTransitionTimeout) {
-        if (activeImg?.current && transitionImg?.current) {
-          activeImg.current.src = imageSrc;
-          transitionImg.current.style.opacity = '0';
-          activeImg.current.style.opacity = '1';
-        }
-
-        clearTimeout(imgTransitionTimeout);
-      }
-    };
-  }, [activeIds, transitionImg, activeImg]);
+    activeImg.current.src = heading?.src;
+  }, [activeIds, activeImg]);
 
   return (
-    <div ref={componentRef}>
+    <DocContainer ref={componentRef}>
       <SplitContent>
         <div id="main-content-container">
           {data.showcaseItems?.map((item, index) => {
@@ -250,22 +251,43 @@ export default function ScrollBasedShowcase(data) {
             );
           })}
         </div>
-        <div id="sticky-img-container">
-          <div className="img-container">
-            {/* Im keeping this as a .gif rather than transferring to .webm as a .gif would require me to change from <img> to <video> which would break the rest of the active images */}
-            <img ref={activeImg} src="/img/docs/your-blocks.gif" />
-            <img ref={transitionImg} />
-          </div>
+        <div className="img-container">
+          {/* Im keeping this as a .gif rather than transferring to .webm as a .gif would require me to change from <img> to <video> which would break the rest of the active images */}
+          <img
+            className="transition-img"
+            ref={activeImg}
+            src="/img/docs/your-blocks.gif"
+            style={{
+              bottom:
+                Math.max(
+                  componentRef.current?.scrollHeight -
+                    headings.filter((heading) =>
+                      activeIds.includes(heading.id)
+                    )[activeIds.length - 1]?.offset -
+                    activeImg.current?.scrollHeight,
+                  0
+                ) + 'px',
+            }}
+          />
         </div>
       </SplitContent>
-    </div>
+    </DocContainer>
   );
 }
+
+export const DocContainer = styled.div`
+  display: block;
+  width: 100%;
+  position: relative;
+  padding: 1rem 2rem 3rem 2rem;
+  margin: 5rem auto;
+`;
 
 const MAX_SPLIT_IMG_WIDTH = 768;
 const SplitContent = styled.div`
   display: flex;
   position: relative;
+  min-height: 100vh;
 
   h3 {
     font-size: 1.2rem;
@@ -284,15 +306,35 @@ const SplitContent = styled.div`
       margin-top: 4.5rem !important;
     }
 
+    .showcase-head-wrapper {
+      margin-top: 2rem;
+    }
+
     ul {
       list-style: none;
       padding-left: 1rem;
       border-left: 4px solid var(--color-light-dark);
 
       color: var(--color-light-dark);
+      transition: color 0.5s ease-in-out;
       * {
         color: var(--color-light-dark);
+        
       }
+    }
+
+    p {
+      transition: color 0.1s ease-in-out;
+    }
+
+    a {
+      transition: all 0.5s ease-in-out;
+      pointer-events: none;
+    }
+
+    h2, h3 {
+      background-clip: unset;
+      background-image: none;
     }
 
     .showcase-heading {
@@ -305,7 +347,7 @@ const SplitContent = styled.div`
 
       div.focused a,
       div.focused a {
-        color: var(--color-orange) !important;      
+        color: var(--color-orange) !important; 
       }
 
       div.focused > p,
@@ -325,33 +367,28 @@ const SplitContent = styled.div`
   }
 
   @media (max-width: ${MAX_SPLIT_IMG_WIDTH}px) {
-    #sticky-img-container {
+    .img-container {
       display: none;
     }
 
     #main-content-container img {
       display: initial;
+      margin: 2rem 0
     }
   }
 
-  #sticky-img-container {
-    position: sticky;
-    top: 10px;
-    width: 100%;
-    height: fit-content;
-
-    img {
-      max-width: 100%;
-      max-height: calc(100vh - 100px);
+    .transition-img {
       position: absolute;
-      left: 50%;
-      transform: translate(-50%, 0%);
-      top: 0;
-      transition: opacity 0.35s ease-in-out;
+      right: 0;
+      width: 50%;
+      transition: all 1s ease-in-out;
+      border-radius: 10px;
     }
   }
 
   .img-container {
     position: relative;
+    width: 100%;
+    flex: 1;
   }
 `;

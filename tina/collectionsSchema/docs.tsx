@@ -36,6 +36,13 @@ export const docsCollection = {
       },
     },
     {
+      type: 'boolean',
+      name: 'tocIsHidden',
+      label: 'Hide Table of Contents',
+      description:
+        'Hide the Table of Contents on this page and expand the content window.',
+    },
+    {
       name: 'next',
       label: 'Next page',
       type: 'reference',
