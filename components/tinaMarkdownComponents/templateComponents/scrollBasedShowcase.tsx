@@ -66,22 +66,9 @@ function createListener(
     //This is adjusted to account for differences between min/max scroll values and content height
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
       (heading) => {
-        console.log(
-          'heading.relativePagePosition',
-          heading.relativePagePosition
-        );
         return relativeScrollPosition >= heading.relativePagePosition;
       }
     );
-
-    console.log('maxScrollYRelative', maxScrollYRelative);
-    console.log('maxScrollY', maxScrollY);
-
-    console.log('scrollPos', scrollPos);
-    console.log('window', window.innerHeight);
-    console.log('relativeScrollPosition', relativeScrollPosition);
-
-    console.log(headings);
 
     const activeHeading =
       activeHeadingCandidates.length > 0
@@ -109,7 +96,6 @@ function createListener(
         newActiveIds.push(activeHeadingParent.id);
       }
     }
-    console.log('newActiveIds', newActiveIds);
     setActiveIds(newActiveIds);
   };
 
@@ -177,7 +163,6 @@ export default function ScrollBasedShowcase(data) {
 
   React.useEffect(() => {
     if (typeof window === `undefined`) {
-      console.log('no window');
       return;
     }
 
