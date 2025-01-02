@@ -54,6 +54,9 @@ function createListener(
   });
 
   const throttledScroll = () => {
+    if (!componentRef.current) {
+      return;
+    }
     //Find the current vertical scroll pixel value
     const scrollPos =
       window.scrollY - componentRef.current.offsetTop + window.innerHeight / 6;
