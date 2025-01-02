@@ -1,6 +1,3 @@
-import { wrapFieldsWithMeta } from 'tinacms';
-import React, { useEffect, useRef, useState } from 'react';
-import debounce from 'lodash/debounce';
 import MonacoCodeEditor from './MonacoCodeEditor';
 
 export const RecipeBlock = {
@@ -22,8 +19,8 @@ export const RecipeBlock = {
       name: 'code',
       label: 'Code',
       ui: {
-        component: MonacoCodeEditor
-      }
+        component: MonacoCodeEditor,
+      },
     },
     {
       name: 'instruction',
@@ -50,13 +47,15 @@ export const RecipeBlock = {
           name: 'codeLineStart',
           label: 'Code Line Start',
           type: 'number',
-          description: 'Enter negative values to highlight from 0 to your end number',
+          description:
+            'Enter negative values to highlight from 0 to your end number',
         },
         {
           name: 'codeLineEnd',
           label: 'Code Line End',
           type: 'number',
-          description: 'Highlighting will not work if end number is greater than start number',
+          description:
+            'Highlighting will not work if end number is greater than start number',
         },
       ],
     },

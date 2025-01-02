@@ -1,11 +1,13 @@
+import Link from 'next/link';
 import { BiArrowBack } from 'react-icons/bi';
 import 'react-responsive-modal/styles.css';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
-import { LinkButton } from '../../ui';
+import { FlushButton, LinkButton } from '../../ui';
 
-export const Actions = ({ items, align = 'left' }) => {
+export const Actions = ({ items, align = 'left', flush = false }) => {
   const isList = true;
+  const ActionButton = flush ? FlushButton : LinkButton;
 
   return (
     <>
@@ -28,7 +30,7 @@ export const Actions = ({ items, align = 'left' }) => {
               const external = externalUrlPattern.test(url);
               const link = url || '#';
               return (
-                <LinkButton
+                <ActionButton
                   key={label}
                   id={sanitizeLabel(label)}
                   size={item.size ? item.size : 'medium'}
@@ -41,7 +43,7 @@ export const Actions = ({ items, align = 'left' }) => {
                   {icon && (
                     <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
                   )}
-                </LinkButton>
+                </ActionButton>
               );
             }
           })}
