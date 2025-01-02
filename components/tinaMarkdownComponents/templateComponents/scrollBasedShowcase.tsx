@@ -1,4 +1,3 @@
-import { act } from '@react-three/fiber';
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -124,9 +123,6 @@ export default function ScrollBasedShowcase(data) {
   const [headings, setHeadings] = React.useState<Item[]>([]);
   const componentRef = useRef(null);
   const activeImg = useRef(null);
-  const transitionImg = useRef(null);
-
-  const [imageSrc, setImageSrc] = React.useState(null);
 
   const headingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
@@ -187,9 +183,16 @@ export default function ScrollBasedShowcase(data) {
 
     const heading = headings.find((heading) => heading.id === activeIds[0]);
 
-    setImageSrc(heading?.src);
     activeImg.current.src = heading?.src;
   }, [activeIds, activeImg]);
+
+  console.log(
+    componentRef.current?.scrollHeight -
+      headings.filter((heading) => activeIds.includes(heading.id))[
+        activeIds.length - 1
+      ]?.offset -
+      activeImg.current?.scrollHeight
+  );
 
   return (
     <DocContainer ref={componentRef}>
@@ -244,16 +247,19 @@ export default function ScrollBasedShowcase(data) {
           <img
             className="transition-img"
             ref={activeImg}
-            src="/img/docs/your-blocks.gif"
+            src=""
             style={{
               bottom:
-                Math.max(
-                  componentRef.current?.scrollHeight -
-                    headings.filter((heading) =>
-                      activeIds.includes(heading.id)
-                    )[activeIds.length - 1]?.offset -
-                    activeImg.current?.scrollHeight,
-                  0
+                Math.min(
+                  Math.max(
+                    componentRef.current?.scrollHeight -
+                      headings.filter((heading) =>
+                        activeIds.includes(heading.id)
+                      )[activeIds.length - 1]?.offset -
+                      activeImg.current?.scrollHeight,
+                    0
+                  ),
+                  headings[headings.length - 1]?.offset
                 ) + 'px',
             }}
           />
