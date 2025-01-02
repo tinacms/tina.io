@@ -8,11 +8,14 @@ export const RecipeBlock = ({ data }) => {
   const { title, description, codeblock, code, instruction } = data;
 
   const [highlightLines, setHighlightLines] = useState('');
-  const [clickedInstruction, setClickedInstruction] = useState<number | null>(null);
- //LHSheight is the height used for the instructions block when the screen is >= 1024px 
+  const [clickedInstruction, setClickedInstruction] = useState<number | null>(
+    null
+  );
+  //LHSheight is the height used for the instructions block when the screen is >= 1024px
   const [LHSheight, setLHSheight] = useState<string | null>(null);
   const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
-  const [isBottomOfInstructions, setIsBottomOfInstructions] = useState<boolean>(false);
+  const [isBottomOfInstructions, setIsBottomOfInstructions] =
+    useState<boolean>(false);
 
   const codeblockRef = useRef<HTMLDivElement>(null);
   const instructionBlockRefs = useRef<HTMLDivElement>(null);
@@ -38,7 +41,11 @@ export const RecipeBlock = ({ data }) => {
     setIsBottomOfInstructions(scrollHeight - scrollTop <= clientHeight + 10);
   };
 
-  const handleInstructionClick = (index: number, codeLineStart?: number, codeLineEnd?: number) => {
+  const handleInstructionClick = (
+    index: number,
+    codeLineStart?: number,
+    codeLineEnd?: number
+  ) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
 
@@ -62,7 +69,8 @@ export const RecipeBlock = ({ data }) => {
   };
 
   const handleDownArrowClick = () => {
-    const lastInstruction = instructionRefs.current[instructionRefs.current.length - 1];
+    const lastInstruction =
+      instructionRefs.current[instructionRefs.current.length - 1];
     if (lastInstruction) {
       lastInstruction.scrollIntoView({
         behavior: 'smooth',
@@ -71,7 +79,7 @@ export const RecipeBlock = ({ data }) => {
     }
   };
 
- //height used for the instructions container when the screen is < 1024px. Maintains 1:2 ratio of instruction to code
+  //height used for the instructions container when the screen is < 1024px. Maintains 1:2 ratio of instruction to code
   const smAndMbHeight = LHSheight ? `${Number(LHSheight) / 2}px` : null;
 
   const calculateInstructionsHeight = () => {
@@ -82,7 +90,9 @@ export const RecipeBlock = ({ data }) => {
 
   const checkIfScrollable = () => {
     if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      return calculateInstructionsHeight() >= parseInt(smAndMbHeight || '0', 10);
+      return (
+        calculateInstructionsHeight() >= parseInt(smAndMbHeight || '0', 10)
+      );
     } else {
       return calculateInstructionsHeight() > parseInt(LHSheight || '0', 10);
     }
@@ -130,10 +140,16 @@ export const RecipeBlock = ({ data }) => {
                 className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''}`}
                 onClick={() =>
-                  handleInstructionClick(idx, inst.codeLineStart, inst.codeLineEnd)
+                  handleInstructionClick(
+                    idx,
+                    inst.codeLineStart,
+                    inst.codeLineEnd
+                  )
                 }
               >
-                <h5 className="font-tuner">{`${idx + 1}. ${inst.header || 'Default Header'}`}</h5>
+                <h5 className="font-tuner">{`${idx + 1}. ${
+                  inst.header || 'Default Header'
+                }`}</h5>
                 <div
                   className={`overflow-auto transition-all ease-in-out ${
                     clickedInstruction === idx
@@ -156,7 +172,7 @@ export const RecipeBlock = ({ data }) => {
         >
           {code ? (
             <CodeBlockWithHighlightLines
-              value={code} 
+              value={code}
               lang="javascript"
               highlightLines={highlightLines}
             />

@@ -1,5 +1,6 @@
 import { Breadcrumbs } from 'components/DocumentationNavigation/Breadcrumbs';
 import MainDocsBodyHeader from 'components/docsMain/docsMainBody';
+import TocOverflowButton from 'components/docsMain/tocOverflowButton';
 import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
 import { DocsLayout, Layout, MarkdownContent } from 'components/layout';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
@@ -9,6 +10,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import Error from 'next/error';
 import { useRouter } from 'next/router';
+import { format } from 'path';
 import { doc } from 'prettier';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -21,19 +23,13 @@ import getTableOfContents from 'utils/docs/getTableOfContents';
 import { NotFoundError } from 'utils/error/NotFoundError';
 import { openGraphImage } from 'utils/open-graph-image';
 import { useTocListener } from 'utils/toc_helpers';
-import SetupOverview from '../../components/layout/setup-overview';
 import * as ga from '../../utils/ga';
-import { format } from 'path';
-import TocOverflowButton from 'components/docsMain/tocOverflowButton';
 
 export function DocTemplate(props) {
-  if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
-    return <SetupOverview {...props} />;
-  }
   return <_DocTemplate {...props} />;
 }
 
-function screenResizer(){
+function screenResizer() {
   const [isScreenSmallerThan1200, setIsScreenSmallerThan1200] = useState(false);
   const [isScreenSmallerThan840, setIsScreenSmallerThan840] = useState(false);
 
@@ -50,8 +46,8 @@ function screenResizer(){
     return () => window.removeEventListener('resize', updateScreenSize);
   }, []);
 
-  return {isScreenSmallerThan1200, isScreenSmallerThan840};
-};
+  return { isScreenSmallerThan1200, isScreenSmallerThan840 };
+}
 
 function _DocTemplate(props) {
   // fallback workaround
@@ -92,10 +88,10 @@ function _DocTemplate(props) {
   const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
   const gridClass = isScreenSmallerThan840
-  ? 'grid-cols-1'
-  : isScreenSmallerThan1200
-  ? 'grid-cols-[1.25fr_3fr]'
-  : 'grid-cols-[1.25fr_3fr_0.75fr]';
+    ? 'grid-cols-1'
+    : isScreenSmallerThan1200
+    ? 'grid-cols-[1.25fr_3fr]'
+    : 'grid-cols-[1.25fr_3fr_0.75fr]';
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -126,21 +122,29 @@ function _DocTemplate(props) {
       />
       <Layout>
         <div className="relative my-6 lg:my-16 flex justify-center items-center">
-          <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
+          <div
+            className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}
+          >
             {/* LEFT COLUMN */}
-            <div className={`block sticky top-32 h-[calc(100vh)] ${isScreenSmallerThan840 ? 'hidden' : 'block'}`}>
+            <div
+              className={`block sticky top-32 h-[calc(100vh)] ${
+                isScreenSmallerThan840 ? 'hidden' : 'block'
+              }`}
+            >
               <LeftHandSideParentContainer
                 tableOfContents={props.navDocData.data}
               />
             </div>
-            {/* MIDDLE COLUMN */} 
+            {/* MIDDLE COLUMN */}
             <div className="mx-8 max-w-full overflow-hidden break-words px-2">
-              <MainDocsBodyHeader data={props} screenSizing={isScreenSmallerThan840}/>
-              {isScreenSmallerThan1200 && <TocOverflowButton tocData={TableOfContents}/>}
-              <div
-                ref={contentRef}
-                
-              >
+              <MainDocsBodyHeader
+                data={props}
+                screenSizing={isScreenSmallerThan840}
+              />
+              {isScreenSmallerThan1200 && (
+                <TocOverflowButton tocData={TableOfContents} />
+              )}
+              <div ref={contentRef}>
                 <TinaMarkdown
                   content={doc_data.body}
                   components={docAndBlogComponents}
@@ -152,7 +156,11 @@ function _DocTemplate(props) {
               </div>
             </div>
             {/* RIGHT COLUMN */}
-            <div className={`pt-28 ${isScreenSmallerThan1200 ? 'hidden' : 'block'}`}>
+            <div
+              className={`pt-28 ${
+                isScreenSmallerThan1200 ? 'hidden' : 'block'
+              }`}
+            >
               <ToC tocItems={TableOfContents} activeIds={activeIds} />
             </div>
           </div>
