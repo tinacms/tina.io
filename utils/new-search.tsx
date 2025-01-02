@@ -5,7 +5,8 @@ const DEFAULT_ALGOLIA_SEARCH_KEY = 'f13c10ad814c92b85f380deadc2db2dc';
 
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID || DEFAULT_ALGOLIA_APP_ID,
-  (process.env.GATSBY_ALGOLIA_SEARCH_KEY || DEFAULT_ALGOLIA_SEARCH_KEY) as string
+  (process.env.GATSBY_ALGOLIA_SEARCH_KEY ||
+    DEFAULT_ALGOLIA_SEARCH_KEY) as string
 );
 
 interface SearchResults {
@@ -13,15 +14,21 @@ interface SearchResults {
   blogs: { results: any[]; count: number };
 }
 
-export const fetchAlgoliaSearchResults = async (query: string): Promise<SearchResults> => {
+export const fetchAlgoliaSearchResults = async (
+  query: string
+): Promise<SearchResults> => {
   try {
-    
     const [docsResults, blogsResults] = await Promise.all([
-      searchClient.initIndex('Tina-Docs-Next').search(query, { hitsPerPage: 50 }),
-      searchClient.initIndex('Tina-Blogs-Next').search(query, { hitsPerPage: 50 }),
+      searchClient
+        .initIndex('Tina-Docs-Next')
+        .search(query, { hitsPerPage: 50, attributesToHighlight: ['title', 'excerpt']
+      }),
+      searchClient
+        .initIndex('Tina-Blogs-Next')
+        .search(query, { hitsPerPage: 50 , attributesToHighlight: ['title', 'excerpt']
+      }),
     ]);
 
-    
     return {
       docs: { results: docsResults.hits, count: docsResults.nbHits },
       blogs: { results: blogsResults.hits, count: blogsResults.nbHits },
