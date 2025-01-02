@@ -1,3 +1,4 @@
+import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import dynamic from 'next/dynamic';
@@ -61,9 +62,20 @@ export const docAndBlogComponents: Components<{
       content: string;
     }[];
   };
+  cardGrid: {
+    cards: {
+      title: string;
+      description: string;
+      link: string;
+      linkText: string;
+    }[];
+  };
 }> = {
   scrollBasedShowcase: (props) => {
     return <ScrollBasedShowcase showcaseItems={props.showcaseItems} />;
+  },
+  cardGrid: (props) => {
+    return <CardGrid props={props} />;
   },
   recipeBlock: (props) => {
     return (
@@ -148,7 +160,7 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-seafoam)',
       }}
-      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4"
+      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2"
       {...props}
     />
   ),

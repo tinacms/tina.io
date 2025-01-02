@@ -1,4 +1,5 @@
 import { Template } from 'tinacms';
+import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
 import { seoInformation } from './sharedFields/seoInformation';
@@ -61,6 +62,7 @@ export const docsCollection = {
       isBody: true,
       templates: [
         ScrollBasedShowcase as Template,
+        CardGridSchema,
         RecipeBlock as Template,
         {
           name: 'Youtube',

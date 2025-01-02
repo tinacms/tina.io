@@ -23,13 +23,9 @@ import getTableOfContents from 'utils/docs/getTableOfContents';
 import { NotFoundError } from 'utils/error/NotFoundError';
 import { openGraphImage } from 'utils/open-graph-image';
 import { useTocListener } from 'utils/toc_helpers';
-import SetupOverview from '../../components/layout/setup-overview';
 import * as ga from '../../utils/ga';
 
 export function DocTemplate(props) {
-  if (props.new.results.data.doc._sys.filename.includes('setup-overview')) {
-    return <SetupOverview {...props} />;
-  }
   return <_DocTemplate {...props} />;
 }
 
