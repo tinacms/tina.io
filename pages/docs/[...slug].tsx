@@ -112,12 +112,12 @@ function _DocTemplate(props) {
     <>
       <NextSeo
         title={title}
-        titleTemplate={'%s | TinaCMS Docs'}
+        titleTemplate={'%s | TinaCMS Docs 🦙'}
         description={description}
         openGraph={{
           title: title,
           description: description,
-          images: [openGraphImage(doc_data.title, '| TinaCMS Docs')],
+          images: [openGraphImage(doc_data.title, '| TinaCMS Docs 🦙')],
         }}
       />
       <Layout>
