@@ -78,12 +78,14 @@ function _DocTemplate(props) {
   const title = doc_data.seo?.title || doc_data.title;
   const { activeIds, contentRef } = useTocListener(doc_data);
   const lastEdited = props.new.results.data.doc.last_edited;
-  const date = new Date(lastEdited);
-  const formattedDate = date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const date = lastEdited === null ? null : new Date(lastEdited);
+  const formattedDate = date
+    ? date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : '';
 
   const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
@@ -155,9 +157,14 @@ function _DocTemplate(props) {
                   content={doc_data.body}
                   components={docAndBlogComponents}
                 />
-                <span className="text-slate-500 text-md">
-                  Last Edited: {formattedDate}
-                </span>
+
+                {formattedDate && (
+                  <span className="text-slate-500 text-md">
+                    {' '}
+                    Last Edited: {formattedDate}
+                  </span>
+                )}
+
                 <DocsPagination prevPage={previousPage} nextPage={nextPage} />
               </div>
             </div>
