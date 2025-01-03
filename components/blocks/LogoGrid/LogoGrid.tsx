@@ -1,6 +1,10 @@
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 import React from 'react';
-import Slider from 'react-infinite-logo-slider';
+import dynamic from 'next/dynamic';
+
+const Slider = dynamic(() => import('react-slick'), { ssr: false });
 
 const Logo = ({ data, windowWidth = 1000 }) => {
   if (!data) return null;
@@ -15,20 +19,22 @@ const Logo = ({ data, windowWidth = 1000 }) => {
       href={link}
       title={name}
       target="_blank"
-      className="flex items-center justify-center transition duration-150 hover:brightness-0 cursor-pointer"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center w-full h-full transition duration-150 hover:brightness-90 cursor-pointer"
       style={{
         width: data.size ? data.size * scaleFactor : 200 * scaleFactor,
-        display: 'flex',
-        padding: '0 8px',
+        height: 200 * scaleFactor,
       }}
     >
-      <Image
-        src={logoSrc}
-        className="block w-full h-auto m-0"
-        alt={name}
-        width={150}
-        height={150}
-      />
+      <div className="flex items-center justify-center w-full h-full">
+        <Image
+          src={logoSrc}
+          alt={name}
+          width={150}
+          height={150}
+          
+        />
+      </div>
     </a>
   );
 };
@@ -62,32 +68,47 @@ export function LogoGridBlock({ data, index }) {
 
   if (!data || !data.items) return null;
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2500,
+    autoplaySpeed: 2500,
+    cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
+  };
+
   return (
-    <>
-      <section
-        key={'feature-grid-' + index}
-        className="relative z-10 pt-10 lg:pb-20 lg:pt-16 w-full"
-        style={{ overflow: 'hidden' }}
-      >
-        <div className="flex flex-col items-center w-full justify-center">
-          <h1 className="pl-3 font-tuner inline w-fit m-auto text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
-            {data.title || 'Trusted By'}
-          </h1>
-          <Slider
-            width="250px"
-            duration={40}
-            pauseOnHover={true}
-            blurBorders={false}
-            blurBorderColor={'#fff'}
-          >
+    <section
+      key={`feature-grid-${index}`}
+      className="relative z-10 pt-10 lg:pb-20 lg:pt-16 w-full overflow-hidden"
+    >
+      <div className="flex flex-col items-center w-full justify-center">
+        <h1 className="pl-3 font-tuner inline w-fit m-auto text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
+          {data.title || 'Trusted By'}
+        </h1>
+        <div className="w-full pt-10">
+          <Slider {...settings}>
             {data.items.map((item, index) => (
-              <Slider.Slide key={index}>
+              <div
+                key={index}
+                className="flex items-center justify-center h-40 px-4"
+              >
                 <Logo data={item} windowWidth={windowSize.width} />
-              </Slider.Slide>
+              </div>
             ))}
           </Slider>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
