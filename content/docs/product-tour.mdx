@@ -1,104 +1,129 @@
 ---
 id: /docs/product-tour/
-
 title: Introduction to TinaCMS
-last_edited: '2022-01-17T15:51:56.737Z'
+last_edited: '2024-12-27T06:43:45.464Z'
+tocIsHidden: true
 next: content/docs/setup-overview.mdx
+previous: ''
 ---
 
 Here we give a quick **2 minute overview of TinaCMS**, and how it fits into your website.
 
 > If you're instead just looking to quickly get started, jump to our [Getting Started Guide](/docs/setup-overview/).
 
-## Introduction
-
-TinaCMS is an open-source Content Management System (CMS) that seamlessly integrates with your Markdown workflow.
-
-### Your Website
-
-- With TinaCMS, The developer hosts the site where they like, using whichever framework they choose.
-
-![Website-png](/img/docs/product-tour/headless_cms1.png)
-
-### Headless CMS
-
-- TinaCMS is "Headless", meaning it's decoupled from your website. TinaCMS provides a queryable content API that your website's code consumes.
-
-![Headless-png](/img/docs/product-tour/headless_cms2.png)
-
-## The CMS Backend
-
-- The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.
-
-![Queryable-db-png](/img/docs/product-tour/queryable_database.png)
-
-### Git-backed Content
-
-- All your content gets backed by git into JSON/Markdown/MDX files
-
-![Git-backed-png](/img/docs/product-tour/git-backed.png)
-
-### TinaCloud
-
-- Out of the box, we provide an easy-to-use hosted version of the backend, called TinaCloud.
-
-![Tina-cloud-png](/img/docs/product-tour/tina-cloud.png)
-
-### Self-hosted Backend
-
-- For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.
-
-![self-hosted-backend-png](/img/docs/product-tour/self-host-backend.png)
-
-## The CMS Frontend
-
-- TinaCMS provides an intuitive CMS interface for your editors. For sites using React, TinaCMS supports "Visual Editing" to allow content editors to see real-time changes.
-
-
-### /admin route
-
-- Users interact with the CMS by navigating to the `/admin` page on your site.
-
-![admin-route](/img/docs/product-tour/admin.png)
-
-### Saving
-
-- When users make a change in the CMS, a commit is made back to your Git repository.
-
-![saving-png](/img/docs/product-tour/git-save.png)
-
-## Integrating TinaCMS into a site
-
-TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina packages, and add some boilerplate
-
-![cli-init-png](/img/docs/product-tour/cli-init.png)
-
-### Running TinaCMS Locally
-
-- You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API. This gives developers an ultra-fast feedback loop.
-
-![local-tina](/img/docs/product-tour/local-workflow.png)
-
-### Content Modelling
-
-- Content in TinaCMS is modelled using a `tina/config.ts` file in your project. Through this, you can define "collections" that model various content types on your site.
-
-![content-modeling-png](/img/docs/product-tour/content-modelling.png)
-
-### Data-fetching
-
-- TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.
-
-![graphql-qeury-5-png](/img/docs/product-tour/graphql-query_5.png)
-
-### Client
-
-- Moreover, we also generate a user-friendly client that simplifies the process of querying your content.
-
-![client-png](/img/docs/product-tour/client.png)
-
-### Type-safety
-
-- TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.
-
-![type-safety-png](/img/docs/product-tour/client-typesafe.png)
+<scrollBasedShowcase
+  showcaseItems={[
+    {
+      title: "Introduction",
+      image: "/img/placeholder.png",
+      content:
+        "TinaCMS is an open-source Content Management System (CMS) that seamlessly integrates with your Markdown workflow.\n",
+      useAsSubsection: false
+    },
+    {
+      title: "Your Website",
+      image: "/img/docs/product-tour/headless_cms1.png",
+      content:
+        "With TinaCMS, The developer hosts the site where they like, using whichever framework they choose.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Headless CMS",
+      image: "/img/docs/product-tour/headless_cms2.png",
+      content:
+        "TinaCMS is \"Headless\", meaning it's decoupled from your website. TinaCMS provides a queryable content API that your website's code consumes.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "The CMS Backend",
+      image: "/img/docs/product-tour/queryable_database.png",
+      content:
+        "The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.\n",
+      useAsSubsection: false
+    },
+    {
+      title: "Git-Backed Content",
+      image: "/img/docs/product-tour/git-backed.png",
+      content:
+        "All your content gets backed by git into JSON/Markdown/MDX files.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "TinaCloud",
+      image: "/img/docs/product-tour/tina-cloud.png",
+      content:
+        "Out of the box, we provide an easy-to-use hosted version of the backend, called TinaCloud.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Self-Hosted Backend",
+      image: "/img/docs/product-tour/self-host-backend.png",
+      content:
+        "For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "The CMS Frontend",
+      image: "/img/docs/your-blocks.gif",
+      content:
+        'TinaCMS provides an intuitive CMS interface for your editors. For sites using React, TinaCMS supports "Visual Editing" to allow content editors to see real-time changes.\n',
+      useAsSubsection: false
+    },
+    {
+      title: "/admin Route",
+      image: "/img/docs/product-tour/admin.png",
+      content:
+        "Users interact with the CMS by navigating to the `/admin` page on your site.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Saving",
+      image: "/img/docs/product-tour/git-save.png",
+      content:
+        "When users make a change in the CMS, a commit is made back to your Git repository.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Integrating TinaCMS into a site",
+      image: "/img/docs/product-tour/cli-init.png",
+      content:
+        "TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina packages, and add some boilerplate.\n",
+      useAsSubsection: false
+    },
+    {
+      title: "Running TinaCMS Locally",
+      image: "/img/docs/product-tour/local-workflow.png",
+      content:
+        "You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API. This gives developers an ultra-fast feedback loop.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Content Modelling",
+      image: "/img/docs/product-tour/content-modelling.png",
+      content:
+        'Content in TinaCMS is modelled using a \\`tina/config.ts\\` file in your project. Through this, you can define "collections" that model various content types on your site.\n',
+      useAsSubsection: true
+    },
+    {
+      title: "Data-Fetching",
+      image: "/img/docs/product-tour/graphql-query_5.png",
+      content:
+        "TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Client",
+      image: "/img/docs/product-tour/client.png",
+      content:
+        "Moreover, we also generate a user-friendly client that simplifies the process of querying your content.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Type-Safety",
+      image: "/img/docs/product-tour/client-typesafe.png",
+      content:
+        "TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.\n",
+      useAsSubsection: true
+    }
+  ]}
+/>
