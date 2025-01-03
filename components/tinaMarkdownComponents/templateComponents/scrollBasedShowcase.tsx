@@ -209,7 +209,7 @@ export default function ScrollBasedShowcase(data) {
                 {item.useAsSubsection ? (
                   <div
                     id={`${item.title}-${index}`}
-                    className="showcase-heading"
+                    className="showcase-heading pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <docAndBlogComponents.h3>
@@ -219,7 +219,7 @@ export default function ScrollBasedShowcase(data) {
                 ) : (
                   <div
                     id={`${item.title}-${index}`}
-                    className="showcase-heading"
+                    className="showcase-heading pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <docAndBlogComponents.h2>
@@ -247,19 +247,17 @@ export default function ScrollBasedShowcase(data) {
           <img
             className="transition-img"
             ref={activeImg}
-            src=""
+            src={headings[0]?.src ?? ''}
             style={{
+              opacity: activeIds.length ? 1 : 0,
               bottom:
-                Math.min(
-                  Math.max(
-                    componentRef.current?.scrollHeight -
-                      headings.filter((heading) =>
-                        activeIds.includes(heading.id)
-                      )[activeIds.length - 1]?.offset -
-                      activeImg.current?.scrollHeight,
-                    0
-                  ),
-                  headings[headings.length - 1]?.offset
+                Math.max(
+                  componentRef.current?.scrollHeight -
+                    headings.filter((heading) =>
+                      activeIds.includes(heading.id)
+                    )[activeIds.length - 1]?.offset -
+                    activeImg.current?.scrollHeight,
+                  0
                 ) + 'px',
             }}
           />
