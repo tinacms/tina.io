@@ -1,10 +1,28 @@
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
-import React from 'react';
-import dynamic from 'next/dynamic';
+import React, { useState, useEffect, useRef } from 'react';
+import { Slider } from './CustomSlider';
 
-const Slider = dynamic(() => import('react-slick'), { ssr: false });
+function useWindowSize() {
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    function handleResize() {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
+}
 
 const Logo = ({ data, windowWidth = 1000 }) => {
   if (!data) return null;
@@ -27,65 +45,20 @@ const Logo = ({ data, windowWidth = 1000 }) => {
       }}
     >
       <div className="flex items-center justify-center w-full h-full">
-        <Image
-          src={logoSrc}
-          alt={name}
-          width={150}
-          height={150}
-          
-        />
+        <Image src={logoSrc} alt={name} width={150} height={150} />
       </div>
     </a>
   );
 };
 
-function getWindowSize() {
-  if (typeof window === 'undefined') {
-    return { width: 1000, height: 800 };
-  }
-  const { innerWidth, innerHeight } = window;
-  return { width: innerWidth, height: innerHeight };
-}
-
 export function LogoGridBlock({ data, index }) {
-  const [windowSize, setWindowSize] = React.useState(getWindowSize());
+  const windowSize = useWindowSize();
+  const slidesToShow = windowSize.width > 1024 ? 5 : 3;
 
-  React.useEffect(() => {
-    setWindowSize(getWindowSize());
-
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
-
-    if (typeof window === 'undefined') return;
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+  console.log('LogoGridBlock: windowSize =>', windowSize);
+  console.log('LogoGridBlock: slidesToShow =>', slidesToShow);
 
   if (!data || !data.items) return null;
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2500,
-    autoplaySpeed: 2500,
-    cssEase: 'linear',
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-    ],
-  };
 
   return (
     <section
@@ -97,16 +70,15 @@ export function LogoGridBlock({ data, index }) {
           {data.title || 'Trusted By'}
         </h1>
         <div className="w-full pt-10">
-          <Slider {...settings}>
-            {data.items.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center h-40 px-4"
-              >
+          <Slider
+            speed={2}
+            slidesToShow={slidesToShow}
+            items={data.items.map((item, idx) => (
+              <div key={idx} className="flex items-center justify-center h-40">
                 <Logo data={item} windowWidth={windowSize.width} />
               </div>
             ))}
-          </Slider>
+          />
         </div>
       </div>
     </section>
