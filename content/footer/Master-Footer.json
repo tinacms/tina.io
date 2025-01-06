@@ -156,26 +156,31 @@
       {
         "label": "GitHub",
         "href": "https://github.com/tinacms/tinacms",
+        "image": "/github-mark-white.svg",
         "_template": "socialLink"
       },
       {
         "label": "Twitter",
         "href": "https://twitter.com/tinacms",
+        "image": "/logo.svg",
         "_template": "socialLink"
       },
       {
         "label": "Discord",
         "href": "https://discord.com/invite/zumN63Ybpf",
+        "image": "/icon_clyde_white_RGB.svg",
         "_template": "socialLink"
       },
       {
         "label": "YouTube",
         "href": "https://www.youtube.com/@TinaCMS",
+        "image": "/svg/youtube-icon.svg",
         "_template": "socialLink"
       },
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/company/tinacms",
+        "image": "/svg/linkedin-icon.svg",
         "_template": "socialLink"
       }
     ]
