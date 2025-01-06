@@ -55,9 +55,6 @@ export function LogoGridBlock({ data, index }) {
   const windowSize = useWindowSize();
   const slidesToShow = windowSize.width > 1024 ? 5 : 3;
 
-  console.log('LogoGridBlock: windowSize =>', windowSize);
-  console.log('LogoGridBlock: slidesToShow =>', slidesToShow);
-
   if (!data || !data.items) return null;
 
   return (
