@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import Slider from 'react-infinite-logo-slider';
+
 
 const Logo = ({ data, windowWidth = 1000 }) => {
   if (!data) return null;
@@ -73,7 +73,7 @@ export function LogoGridBlock({ data, index }) {
           <h1 className="pl-3 font-tuner inline w-fit m-auto text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
             {data.title || 'Trusted By'}
           </h1>
-          <Slider
+          {/* <Slider
             width="250px"
             duration={40}
             pauseOnHover={true}
@@ -85,7 +85,7 @@ export function LogoGridBlock({ data, index }) {
                 <Logo data={item} windowWidth={windowSize.width} />
               </Slider.Slide>
             ))}
-          </Slider>
+          </Slider> */}
         </div>
       </section>
     </>
