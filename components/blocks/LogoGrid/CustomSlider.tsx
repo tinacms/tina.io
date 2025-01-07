@@ -5,7 +5,7 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
 
   const [isPaused, setIsPaused] = useState(false);
 
-  console.log('Slider: slidesToShow =>', slidesToShow);
+  
 
   // Current scroll position in pixels (negative means moving left).
   const scrollPosition = useRef(0);
@@ -17,7 +17,7 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
 
     const measureId = requestAnimationFrame(() => {
       const totalWidth = sliderRef.current.scrollWidth;
-      console.log('Slider: totalWidth =>', totalWidth);
+      
       setOneSetWidth(totalWidth / 2);
     });
 
