@@ -1,6 +1,6 @@
 ---
 title: FAQ
-last_edited: '2025-01-02T22:42:49.761Z'
+last_edited: '2025-01-07T23:28:52.036Z'
 next: ''
 previous: ''
 ---
@@ -166,9 +166,9 @@ TinaCloud's GraphQL API returns this error when it cannot find a file in your Gi
 If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud.
 To resolve it:
 
-1. Ensure that your schema (generated from tina/config.ts) does not include any varying information, such as timestamps or random text.
+1. Ensure that your schema (generated from `tina/config.ts`) does not include any varying information, such as timestamps or random text.
 2. Ensure that you have the latest versions of `@tinacms/cli` and `tinacms` in your project.
-3. Run the dev command locally. 
+3. Run the dev command locally.
 4. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
 
 If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of `tinacms` and `@tinacms/cli` on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
