@@ -18,6 +18,10 @@ const TinaChatBot = dynamic(
 export const metadata = {
   title: data.seoDefaultTitle,
   descripton: data.description,
+  icons:
+  {
+    icon: '/favicon/favicon.ico',
+  },
   openGraph: {
     title: data.seoDefaultTitle,
     description: data.description,
