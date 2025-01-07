@@ -60,7 +60,7 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div ref={sliderRef} className="flex whitespace-nowrap">
+      <div ref={sliderRef} className="flex whitespace-nowrap subpixel-antialiased backface-hidden">
         {items.map((item, i) => (
           <div
             key={i}
