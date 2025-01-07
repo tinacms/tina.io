@@ -1,28 +1,8 @@
 import Image from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
 import { Slider } from './CustomSlider';
+import { useWindowSize } from 'components/hooks/UseWindowSize';
 
-function useWindowSize() {
-  const [size, setSize] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    function handleResize() {
-      setSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return size;
-}
 
 const Logo = ({ data, windowWidth = 1000 }) => {
   if (!data) return null;
