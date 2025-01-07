@@ -77,6 +77,12 @@
           "size": 90
         },
         {
+          "name": "Roev",
+          "link": "/showcase#roev",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
           "name": "Supernova",
           "link": "/showcase#supernova",
           "logo": "/svg/logos/supernova.svg",
@@ -117,12 +123,6 @@
           "link": "/showcase#shadow-lion",
           "logo": "/svg/logos/shadowlion.svg",
           "size": 220
-        },
-        {
-          "name": "Roev",
-          "link": "/showcase#roev",
-          "logo": "/svg/logos/roe.svg",
-          "size": 200
         },
         {
           "name": "Locality Bank",
