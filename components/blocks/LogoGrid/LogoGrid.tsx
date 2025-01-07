@@ -4,6 +4,7 @@ import { Slider } from './CustomSlider';
 import { useWindowSize } from 'components/hooks/UseWindowSize';
 
 
+
 const Logo = ({ data, windowWidth = 1000 }) => {
   if (!data) return null;
 
@@ -38,6 +39,7 @@ export function LogoGridBlock({ data, index }) {
   if (!data || !data.items) return null;
 
   return (
+
     <section
       key={`feature-grid-${index}`}
       className="relative z-10 pt-10 lg:pb-20 lg:pt-16 w-full overflow-hidden"
@@ -52,6 +54,7 @@ export function LogoGridBlock({ data, index }) {
             slidesToShow={slidesToShow}
             items={data.items.map((item, idx) => (
               <div key={idx} className="flex items-center justify-center h-40">
+
                 <Logo data={item} windowWidth={windowSize.width} />
               </div>
             ))}
