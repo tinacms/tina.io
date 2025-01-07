@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Slider } from './CustomSlider';
 import { useWindowSize } from 'components/hooks/UseWindowSize';
@@ -40,6 +41,7 @@ export function LogoGridBlock({ data, index }) {
 
   return (
 
+
     <section
       key={`feature-grid-${index}`}
       className="relative z-10 pt-10 lg:pb-20 lg:pt-16 w-full overflow-hidden"
@@ -58,6 +60,7 @@ export function LogoGridBlock({ data, index }) {
                 <Logo data={item} windowWidth={windowSize.width} />
               </div>
             ))}
+
           />
         </div>
       </div>
