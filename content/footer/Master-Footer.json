@@ -180,7 +180,7 @@
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/company/tinacms",
-        "image": "/svg/linkedin-icon.svg",
+        "image": "/LinkedIn_icon-white.svg",
         "_template": "socialLink"
       }
     ]
