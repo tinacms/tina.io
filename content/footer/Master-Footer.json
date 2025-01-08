@@ -174,13 +174,13 @@
       {
         "label": "YouTube",
         "href": "https://www.youtube.com/@TinaCMS",
-        "image": "/svg/youtube-icon.svg",
+        "image": "/youtube-logo-white1.svg",
         "_template": "socialLink"
       },
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/company/tinacms",
-        "image": "/svg/linkedin-icon.svg",
+        "image": "/LinkedIn_icon-white1.svg",
         "_template": "socialLink"
       }
     ]
