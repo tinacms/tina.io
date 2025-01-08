@@ -32,7 +32,10 @@ const TocOverflowButton = (tocData) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setIsTableOfContentsOpen(false);
       }
     };
@@ -44,19 +47,23 @@ const TocOverflowButton = (tocData) => {
   }, []);
 
   return (
-    <div className="py-6 w-full" ref={containerRef}>
-      <div
-        className="py-2 px-4 border-slate-400 bg-gradient-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
-        onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
-      >
-        <span className="flex items-center space-x-2">
-          <MdMenu size={20} className="text-orange-500" />
-          <span className="text-slate-600 py-1">Table of Contents</span>
-        </span>
-      </div>
-      {isTableOfContentsOpen && (
-        <div className="w-full relative">
-          <TocOverflow tocData={tocData} />
+    <div>
+      {tocData.tocData.length !== 0 && (
+        <div className="py-6 w-full" ref={containerRef}>
+          <div
+            className="py-2 px-4 border-slate-400 bg-gradient-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
+            onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
+          >
+            <span className="flex items-center space-x-2">
+              <MdMenu size={20} className="text-orange-500" />
+              <span className="text-slate-600 py-1">Table of Contents</span>
+            </span>
+          </div>
+          {isTableOfContentsOpen && (
+            <div className="w-full relative">
+              <TocOverflow tocData={tocData} />
+            </div>
+          )}
         </div>
       )}
     </div>
