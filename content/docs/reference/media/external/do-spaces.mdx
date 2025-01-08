@@ -1,5 +1,7 @@
 ---
 title: Using Media with Digital Ocean Spaces
+next: ''
+previous: ''
 ---
 
 Manage **Digital Ocean Spaces media assets** in TinaCMS.
@@ -22,9 +24,7 @@ npm install next-tinacms-dos
 
 ## Connect with Digital Ocean Spaces
 
-You need some credentials provided by Digital Ocean Spaces to set this up properly. If you do not already have an account, you can [register here](https://cloud.digitalocean.com/registrations/new) .
-
-Add the following variables to an `.env` file.
+You need some credentials provided by Digital Ocean Spaces to set this up properly. If you do not already have an account, you can [register here](https://cloud.digitalocean.com/registrations/new) . Add the following variables to an `.env` file.
 
 ```env
 SPACES_ENDPOINT=<Your Digital Ocean Spaces Endpoint: ex. https://fra1.digitaloceanspaces.com> (Does not include the space name)
@@ -65,7 +65,7 @@ Tina's "external media provider" support requires a light backend media handler,
 
 ### Next.js Example
 
-Set up a new API route in the `pages` directory of your Next.js app, e.g. `pages/api/dos/[...media].ts`.
+Set up a new API r2oute in the `pages` directory of your Next.js app, e.g. `pages/api/dos/[...media].ts`.
 Then add a new catch all API route for media.
 
 Call `createMediaHandler` to set up routes and connect your instance of the Media Store to your Digital Ocean Spaces.
