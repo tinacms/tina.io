@@ -38,8 +38,7 @@ export default async function TinaCMSPage() {
 
   const { data, query } = await fetchWhatsNewData(vars);
 
-  console.log(data);
-  // return <div> banana</div>
+
   return <WhatsNewTinaCMSPageLayout data={data} />;
 }
 

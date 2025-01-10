@@ -186,14 +186,6 @@ export default function ScrollBasedShowcase(data) {
     activeImg.current.src = heading?.src;
   }, [activeIds, activeImg]);
 
-  console.log(
-    componentRef.current?.scrollHeight -
-      headings.filter((heading) => activeIds.includes(heading.id))[
-        activeIds.length - 1
-      ]?.offset -
-      activeImg.current?.scrollHeight
-  );
-
   return (
     <DocContainer ref={componentRef}>
       <SplitContent>
@@ -212,9 +204,9 @@ export default function ScrollBasedShowcase(data) {
                     className="showcase-heading pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
-                    <docAndBlogComponents.h3>
+                    <div className='className="text-xl font-medium text-transparent bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text mt-2 mb-2">'>
                       {item.title}
-                    </docAndBlogComponents.h3>
+                    </div>
                   </div>
                 ) : (
                   <div
@@ -222,9 +214,9 @@ export default function ScrollBasedShowcase(data) {
                     className="showcase-heading pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
-                    <docAndBlogComponents.h2>
+                    <div className="text-3xl font-bold text-transparent bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text mt-4 mb-3">
                       {item.title}
-                    </docAndBlogComponents.h2>
+                    </div>
                   </div>
                 )}
                 <ul>
@@ -329,13 +321,7 @@ const SplitContent = styled.div`
       background-image: none;
     }
 
-    .showcase-heading {
-      color: var(--color-light-dark);
-
-      &:not(.focused) * {
-        color: var(--color-light-dark);
-      }
-    }
+    
 
       div.focused a,
       div.focused a {
