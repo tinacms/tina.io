@@ -1,35 +1,38 @@
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { docAndBlogComponents } from '../docAndBlogComponents';
 
+/** Minimal inline docAndBlogComponents for headings only */
+const docAndBlogComponents = {
+  h2: (props: any) => <h2 {...props} />,
+  h3: (props: any) => <h3 {...props} />,
+};
+
+/** UseWindowSize Hook */
 function useWindowSize() {
   if (typeof window !== 'undefined') {
     return { width: 1200, height: 800 };
   }
+  const [windowSize, setWindowSize] = useState<{ width: number; height: number }>();
 
-  const [windowSize, setWindowSize] = React.useState<{
-    width: number;
-    height: number;
-  }>();
-
-  React.useEffect(() => {
-    window.addEventListener('resize', () => {
+  useEffect(() => {
+    const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return windowSize;
 }
 
+/** Throttled scroll listener */
 function createListener(
   componentRef: React.RefObject<HTMLDivElement>,
   headings: Item[],
   setActiveIds: (activeIds: string[]) => void
-): () => void {
+) {
   let tick = false;
   const THROTTLE_INTERVAL = 100;
-  //Find maximum relative scroll position
   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
 
   const maxScrollYRelative =
@@ -44,7 +47,6 @@ function createListener(
 
     return {
       ...heading,
-      //Find the relative position of the heading based on the page content.
       relativePagePosition:
         maxScrollYRelative > 1
           ? relativePosition
@@ -53,23 +55,14 @@ function createListener(
   });
 
   const throttledScroll = () => {
-    if (!componentRef.current) {
-      return;
-    }
-    //Find the current vertical scroll pixel value
+    if (!componentRef.current) return;
     const scrollPos =
       window.scrollY - componentRef.current.offsetTop + window.innerHeight / 6;
-    const newActiveIds = [];
-    //Find the relative position on the page based on the scroll.
-    const relativeScrollPosition =
-      scrollPos / componentRef.current.scrollHeight;
+    const newActiveIds: string[] = [];
+    const relativeScrollPosition = scrollPos / componentRef.current.scrollHeight;
 
-    //Find the headings that are above the current scroll position
-    //This is adjusted to account for differences between min/max scroll values and content height
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
-      (heading) => {
-        return relativeScrollPosition >= heading.relativePagePosition;
-      }
+      (heading) => relativeScrollPosition >= heading.relativePagePosition
     );
 
     const activeHeading =
@@ -78,14 +71,13 @@ function createListener(
             prev.offset > current.offset ? prev : current
           )
         : headings[0] ?? {};
+
     newActiveIds.push(activeHeading.id);
 
-    if (activeHeading.level != 'H2') {
+    if (activeHeading.level !== 'H2') {
       const activeHeadingParentCandidates =
         activeHeadingCandidates.length > 0
-          ? activeHeadingCandidates.filter((heading) => {
-              return heading.level == 'H2';
-            })
+          ? activeHeadingCandidates.filter((h) => h.level === 'H2')
           : [];
       const activeHeadingParent =
         activeHeadingParentCandidates.length > 0
@@ -101,9 +93,9 @@ function createListener(
     setActiveIds(newActiveIds);
   };
 
-  return function onScroll(): void {
+  return function onScroll() {
     if (!tick) {
-      setTimeout(function () {
+      setTimeout(() => {
         throttledScroll();
         tick = false;
       }, THROTTLE_INTERVAL);
@@ -119,19 +111,26 @@ interface Item {
   src?: string;
 }
 
-export default function ScrollBasedShowcase(data) {
-  const [headings, setHeadings] = React.useState<Item[]>([]);
-  const componentRef = useRef(null);
-  const activeImg = useRef(null);
-
+/** Main Component */
+export default function ScrollBasedShowcase(data: {
+  showcaseItems: {
+    title: string;
+    image: string;
+    content: any;
+    useAsSubsection?: boolean;
+  }[];
+}) {
+  const [headings, setHeadings] = useState<Item[]>([]);
+  const componentRef = useRef<HTMLDivElement>(null);
+  const activeImg = useRef<HTMLImageElement>(null);
   const headingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
-
-  const [activeIds, setActiveIds] = React.useState([]);
+  const [activeIds, setActiveIds] = useState<string[]>([]);
 
   const windowSize = useWindowSize();
 
+  /** Build headings array on mount */
   useEffect(() => {
-    const tempHeadings = [];
+    const tempHeadings: Item[] = [];
     data.showcaseItems?.forEach((item, index) => {
       const headingData: Item = {
         id: `${item.title}-${index}`,
@@ -144,229 +143,122 @@ export default function ScrollBasedShowcase(data) {
     setHeadings(tempHeadings);
   }, [data.showcaseItems]);
 
+  /** Update heading offsets on resize */
   useEffect(() => {
     const updateOffsets = () => {
-      const updatedHeadings = headings.map((heading, index) => {
-        return {
-          ...heading,
-          offset: headingRefs.current[index]?.offsetTop ?? 0,
-        };
-      });
-
+      const updatedHeadings = headings.map((heading, index) => ({
+        ...heading,
+        offset: headingRefs.current[index]?.offsetTop ?? 0,
+      }));
       setHeadings(updatedHeadings);
     };
-
     window.addEventListener('resize', updateOffsets);
     return () => window.removeEventListener('resize', updateOffsets);
   }, [headings]);
 
-  React.useEffect(() => {
-    if (typeof window === `undefined`) {
-      return;
-    }
-
-    const activeTocListener = createListener(
-      componentRef,
-      headings,
-      setActiveIds
-    );
-    window.addEventListener('scroll', activeTocListener);
-
-    return () => window.removeEventListener('scroll', activeTocListener);
-  }, [headings, windowSize, componentRef]);
-
+  /** Throttled scroll event */
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (!activeIds.length) {
-      return;
+    const activeTocListener = createListener(componentRef, headings, setActiveIds);
+    window.addEventListener('scroll', activeTocListener);
+    return () => window.removeEventListener('scroll', activeTocListener);
+  }, [headings, windowSize]);
+
+  /** Update active image when activeIds change */
+  useEffect(() => {
+    if (!activeIds.length) return;
+    const heading = headings.find((h) => h.id === activeIds[0]);
+    if (activeImg.current) {
+      activeImg.current.src = heading?.src || '';
     }
+  }, [activeIds, headings]);
 
-    const heading = headings.find((heading) => heading.id === activeIds[0]);
-
-    activeImg.current.src = heading?.src;
-  }, [activeIds, activeImg]);
+  console.log(
+    componentRef.current?.scrollHeight -
+      headings.filter((h) => activeIds.includes(h.id))[activeIds.length - 1]?.offset -
+      activeImg.current?.scrollHeight
+  );
 
   return (
-    <DocContainer ref={componentRef}>
-      <SplitContent>
-        <div id="main-content-container">
+    <div
+      ref={componentRef}
+      // doc-container replacements:
+      className="block relative w-full px-8 pt-4 pb-12 my-20 mx-auto"
+    >
+      <div className="flex relative min-h-screen">
+        <div id="main-content-container" className="flex-1 m-2 p-2 box-border">
           {data.showcaseItems?.map((item, index) => {
+            const itemId = `${item.title}-${index}`;
+            const isFocused = activeIds.includes(itemId);
+
             return (
               <div
                 key={`showcase-item-${index}`}
-                className={`showcase-head-wrapper ${
-                  activeIds.includes(`${item.title}-${index}`) ? 'focused' : ''
-                }`}
+                // If active => full opacity + orange border + text color
+                // If not => half opacity + gray border
+                className={`mt-0 md:mt-8 transition-all duration-300 ease-in-out
+                  ${isFocused
+                    ? 'opacity-100  text-gray-900'
+                    : 'opacity-15  border-gray-300 text-gray-800'
+                  }
+                `}
               >
                 {item.useAsSubsection ? (
                   <div
-                    id={`${item.title}-${index}`}
-                    className="showcase-heading pointer-events-none"
+                    id={itemId}
+                    className="pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
-                    <div className='className="text-xl font-medium text-transparent bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text mt-2 mb-2">'>
-                      {item.title}
-                    </div>
+                    <div className={`bg-gradient-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${isFocused ? 'from-orange-400 via-orange-500 to-orange-600' : 'from-gray-800 to-gray-700' } !important`}>{item.title}</div>
                   </div>
                 ) : (
                   <div
-                    id={`${item.title}-${index}`}
-                    className="showcase-heading pointer-events-none"
+                    id={itemId}
+                    className="pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
-                    <div className="text-3xl font-bold text-transparent bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text mt-4 mb-3">
-                      {item.title}
-                    </div>
+                    <h2 className={`bg-gradient-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${isFocused ? 'from-orange-400 via-orange-500 to-orange-600' : 'from-gray-800 to-gray-700' }`}>{item.title}</h2>
                   </div>
                 )}
-                <ul>
+
+                <ul className={`list-none pl-4 transition-colors duration-500 ease-in-out border-l-4 ${isFocused ? 'border-orange-400' : 'border-gray-800' }`}>
                   <li>
-                    <TinaMarkdown
-                      content={item.content}
-                      components={docAndBlogComponents}
-                    />
+                    <TinaMarkdown content={item.content} components={docAndBlogComponents} />
                   </li>
                 </ul>
-                <div>
-                  <img src={item.image} />
-                </div>
+
+                {/* This image is only shown on mobile (md:hidden).
+                    On larger screens, the separate container is used. */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="block md:hidden my-8"
+                />
               </div>
             );
           })}
         </div>
-        <div className="img-container">
-          {/* Im keeping this as a .gif rather than transferring to .webm as a .gif would require me to change from <img> to <video> which would break the rest of the active images */}
+
+        {/* This image container is only displayed on md+ */}
+        <div className="relative w-full flex-1 hidden md:block">
           <img
-            className="transition-img"
             ref={activeImg}
-            src={headings[0]?.src ?? ''}
+            src={headings[0]?.src || ''}
+            alt=""
+            className="absolute right-0 w-100 transition-all duration-1000 ease-in-out rounded-lg"
             style={{
               opacity: activeIds.length ? 1 : 0,
-              bottom:
-                Math.max(
-                  componentRef.current?.scrollHeight -
-                    headings.filter((heading) =>
-                      activeIds.includes(heading.id)
-                    )[activeIds.length - 1]?.offset -
-                    activeImg.current?.scrollHeight,
-                  0
-                ) + 'px',
+              bottom: Math.max(
+                componentRef.current?.scrollHeight -
+                  headings.filter((h) => activeIds.includes(h.id))[activeIds.length - 1]
+                    ?.offset -
+                  activeImg.current?.scrollHeight,
+                0
+              ),
             }}
           />
         </div>
-      </SplitContent>
-    </DocContainer>
+      </div>
+    </div>
   );
 }
-
-export const DocContainer = styled.div`
-  display: block;
-  width: 100%;
-  position: relative;
-  padding: 1rem 2rem 3rem 2rem;
-  margin: 5rem auto;
-`;
-
-const MAX_SPLIT_IMG_WIDTH = 768;
-const SplitContent = styled.div`
-  display: flex;
-  position: relative;
-  min-height: 100vh;
-
-  h3 {
-    font-size: 1.2rem;
-  }
-
-  > * {
-    flex: 1;
-    margin: 0 10px;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  @media (min-width: ${MAX_SPLIT_IMG_WIDTH + 1}px) {
-    #main-content-container > h3:not(:first-child),
-    #main-content-container > h2:not(:first-child) {
-      margin-top: 4.5rem !important;
-    }
-
-    .showcase-head-wrapper {
-      margin-top: 2rem;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 1rem;
-      border-left: 4px solid var(--color-light-dark);
-
-      color: var(--color-light-dark);
-      transition: color 0.5s ease-in-out;
-      * {
-        color: var(--color-light-dark);
-        
-      }
-    }
-
-    p {
-      transition: color 0.1s ease-in-out;
-    }
-
-    a {
-      transition: all 0.5s ease-in-out;
-      pointer-events: none;
-    }
-
-    h2, h3 {
-      background-clip: unset;
-      background-image: none;
-    }
-
-    
-
-      div.focused a,
-      div.focused a {
-        color: var(--color-orange) !important; 
-      }
-
-      div.focused > p,
-      div.focused > ul {
-        border-left: 4px solid var(--color-orange);
-
-        color: var(--color-primary);
-        * {
-          color: var(--color-primary);
-        }
-      }
-    }
-  }
-
-  #main-content-container img {
-    display: none;
-  }
-
-  @media (max-width: ${MAX_SPLIT_IMG_WIDTH}px) {
-    .img-container {
-      display: none;
-    }
-
-    #main-content-container img {
-      display: initial;
-      margin: 2rem 0
-    }
-  }
-
-    .transition-img {
-      position: absolute;
-      right: 0;
-      width: 50%;
-      transition: all 1s ease-in-out;
-      border-radius: 10px;
-    }
-  }
-
-  .img-container {
-    position: relative;
-    width: 100%;
-    flex: 1;
-  }
-`;
