@@ -52,7 +52,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
             </div>
           )}
         </div>
-
+        {/* TODO: Implement Feature and Sort buttons - https://github.com/tinacms/tina.io/issues/2550 */}
         {/* Sort Button */}
         {/* <div className="relative">
           <button
