@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Overlay } from '../ui/Overlay';
+import { Overlay } from '../../../ui/Overlay';
 import { DocsLeftSidebar } from './DocsLeftSidebar';
 import { DocsNavigationList } from './DocsNavigationList';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { FallbackPlaceholder } from '../../components/fallback-placeholder';
-import Search from '../search';
-import { HitsWrapper } from '../../components/search/styles';
-import { searchIndices } from '../../components/search/indices';
+import { FallbackPlaceholder } from '../../../../components/fallback-placeholder';
+import Search from '../../../search';
+import { HitsWrapper } from '../../../../components/search/styles';
+import { searchIndices } from '../../../../components/search/indices';
 import { VersionSelect } from './VersionSelect';
 import { BiMenu } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
