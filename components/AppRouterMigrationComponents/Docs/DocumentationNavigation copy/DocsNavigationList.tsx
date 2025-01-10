@@ -1,13 +1,13 @@
 import React, { createContext } from 'react';
 import styled, { css } from 'styled-components';
-import { DocsNavProps } from './DocumentationNavigation';
+import { DocsNavProps } from 'components/DocumentationNavigation';
 import { useRouter } from 'next/router';
 import { matchActualTarget } from 'utils';
-import { DynamicLink } from '../../components/ui';
-import docsLinks from '../../content/docs-navigation.json';
+import { DynamicLink } from '../../../../components/ui';
+import docsLinks from '../../../../content/docs-navigation.json';
 import { BiChevronRight } from 'react-icons/bi';
 import AnimateHeight from 'react-animate-height';
-import data from '../../content/siteConfig.json';
+import data from '../../../../content/siteConfig.json';
 
 interface NavTitleProps {
   level: number;

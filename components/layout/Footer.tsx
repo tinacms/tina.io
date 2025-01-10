@@ -88,9 +88,6 @@ const SocialLink = ({ link, children }) => {
 };
 
 export const Footer = () => {
-  useEffect(() => {
-    console.log(FooterData); 
-  }, []);
 
   return (
     <div>

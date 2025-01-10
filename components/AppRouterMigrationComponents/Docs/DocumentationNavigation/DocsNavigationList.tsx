@@ -1,13 +1,15 @@
+'use client';
+
 import React, { createContext } from 'react';
 import styled, { css } from 'styled-components';
 import { DocsNavProps } from './DocumentationNavigation';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { matchActualTarget } from 'utils';
-import { DynamicLink } from '../../components/ui';
-import docsLinks from '../../content/docs-navigation.json';
+import { DynamicLink } from 'components/ui';
+import docsLinks from '../../../../content/docs-navigation.json';
 import { BiChevronRight } from 'react-icons/bi';
 import AnimateHeight from 'react-animate-height';
-import data from '../../content/siteConfig.json';
+import data from '../../../../content/siteConfig.json';
 
 interface NavTitleProps {
   level: number;
@@ -16,8 +18,6 @@ interface NavTitleProps {
   children: React.ReactNode | React.ReactNode[];
   onClick?: () => void;
 }
-
-
 
 const NavTitle = ({
   children,
@@ -90,8 +90,8 @@ const NavLevel = ({
   level?: number;
 }) => {
   const navLevelElem = React.useRef(null);
-  const router = useRouter();
-  const path = router.asPath;
+  const pathname = usePathname(); // Replace useRouter with usePathname
+  const path = pathname || ''; // Get current path
   const slug = categoryData.slug?.replace(/\/$/, '');
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
@@ -99,11 +99,11 @@ const NavLevel = ({
       level === 0
   );
 
-
   const selected =
-    path.split('#')[0] == slug || (slug == '/docs' && path == '/docs/');
+    path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
 
-  const childSelected = hasNestedSlug(categoryData.items, router.asPath);
+  const childSelected = hasNestedSlug(categoryData.items, path);
+
   React.useEffect(() => {
     if (
       navListElem &&
@@ -127,6 +127,7 @@ const NavLevel = ({
       }
     }
   }, [navLevelElem.current, navListElem, selected]);
+
   return (
     <>
       <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
@@ -159,21 +160,13 @@ const NavLevel = ({
             )}
           </NavTitle>
         )}
-        
-        {!childSelected && selected && level > 0 && (
-          <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"
-            
-          ></div>
-        )}
       </NavLabelContainer>
       {categoryData.items && (
         <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
           <NavLevelChildContainer level={level}>
             {(categoryData.items || []).map((item) => (
-              <div>
+              <div key={item.slug ? item.slug + level : item.title + level}>
                 <NavLevel
-                  key={item.slug ? item.slug + level : item.title + level}
                   navListElem={navListElem}
                   level={level + 1}
                   categoryData={item}
@@ -245,20 +238,18 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   const navListElem = React.useRef(null);
 
   return (
-    <>
-      <DocsNavigationContainer ref={navListElem}>
-        {navItems?.map((categoryData) => (
-          <NavLevel
-            key={
-              'mobile-' +
-              (categoryData.slug ? categoryData.slug : categoryData.title)
-            }
-            navListElem={navListElem}
-            categoryData={categoryData}
-          />
-        ))}
-      </DocsNavigationContainer>
-    </>
+    <DocsNavigationContainer ref={navListElem}>
+      {navItems?.map((categoryData) => (
+        <NavLevel
+          key={
+            'mobile-' +
+            (categoryData.slug ? categoryData.slug : categoryData.title)
+          }
+          navListElem={navListElem}
+          categoryData={categoryData}
+        />
+      ))}
+    </DocsNavigationContainer>
   );
 };
 
