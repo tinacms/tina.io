@@ -1,4 +1,4 @@
-import { DocsNavigationList } from 'components/DocumentationNavigation/DocsNavigationList';
+import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 import { useState, useEffect, useRef } from 'react';
 import { MdMenu } from 'react-icons/md';
 

@@ -4,11 +4,11 @@ import { Breadcrumbs } from '../DocumentationNavigation/Breadcrumbs';
 import DocsMobileHeader from './docsMobileHeader';
 
 const MainDocsBodyHeader = ({ DocumentTitle, NavigationDocsItems, allData, screenResizing }) => {
+  
   return (
     <div>
-      {/* Uncomment these lines if needed */}
       {screenResizing && (
-        <DocsMobileHeader data={allData}></DocsMobileHeader>
+        <DocsMobileHeader data={NavigationDocsItems}></DocsMobileHeader>
       )}
 
       <Breadcrumbs navItems={NavigationDocsItems} />
