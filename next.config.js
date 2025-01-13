@@ -82,11 +82,11 @@ const config = {
       },
       {
         key: 'X-Frame-Options',
-        value: 'DENY',
+        value: 'SAMEORIGIN',
       },
       {
         key: 'Content-Security-Policy',
-        value: "frame-ancestors 'none'",
+        value: "frame-ancestors 'self'",
       },
     ];
     if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview') {
