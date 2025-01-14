@@ -30,7 +30,7 @@ export async function generateMetadata({
   const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
   return {
-    title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs 🦙`,
+    title: `${data.doc.seo?.title || data.doc.title}  |  🦙 TinaCMS Docs`,
     description: data.doc.seo?.description || '',
     openGraph: {
       title: data.doc.title,
