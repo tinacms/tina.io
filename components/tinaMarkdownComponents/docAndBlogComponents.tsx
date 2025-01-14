@@ -1,6 +1,7 @@
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useState } from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
@@ -10,6 +11,12 @@ import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
+const ScrollBasedShowcase = dynamic(
+  () => import('./templateComponents/scrollBasedShowcase'),
+  {
+    ssr: false,
+  }
+);
 
 export const docAndBlogComponents: Components<{
   Iframe: { iframeSrc: string; height: string };
@@ -47,6 +54,14 @@ export const docAndBlogComponents: Components<{
       codeLineEnd?: number;
     }[];
   };
+  scrollBasedShowcase: {
+    showcaseItems: {
+      image: string;
+      title: string;
+      useAsSubsection: boolean;
+      content: string;
+    }[];
+  };
   cardGrid: {
     cards: {
       title: string;
@@ -56,6 +71,9 @@ export const docAndBlogComponents: Components<{
     }[];
   };
 }> = {
+  scrollBasedShowcase: (props) => {
+    return <ScrollBasedShowcase showcaseItems={props.showcaseItems} />;
+  },
   cardGrid: (props) => {
     return <CardGrid props={props} />;
   },
@@ -356,7 +374,7 @@ export const docAndBlogComponents: Components<{
 function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any;
   const id = getDocId(
-    children.props.content.map((content) => content.text).join('')
+    children.props?.content.map((content) => content.text).join('') ?? children
   );
 
   const currentUrl =
@@ -366,7 +384,7 @@ function FormatHeaders({ children, level }) {
   const styles = {
     1: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl mt-4 mb-4',
     2: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl mt-4 mb-3',
-    3: 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-2 mb-2',
+    3: 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 !important',
     4: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2 mb-2',
     5: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2 mb-1',
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',

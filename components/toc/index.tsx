@@ -41,6 +41,7 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
 
   const tocMarkdown = generateMarkdown(tocItems);
 
+
   return (
     <TocWrapper>
       <TocButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>

@@ -1,6 +1,7 @@
 import { Template } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
+import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
 import { seoInformation } from './sharedFields/seoInformation';
 
 export const docsCollection = {
@@ -36,6 +37,13 @@ export const docsCollection = {
       },
     },
     {
+      type: 'boolean',
+      name: 'tocIsHidden',
+      label: 'Hide Table of Contents',
+      description:
+        'Hide the Table of Contents on this page and expand the content window.',
+    },
+    {
       name: 'next',
       label: 'Next page',
       type: 'reference',
@@ -53,6 +61,7 @@ export const docsCollection = {
       label: 'Body',
       isBody: true,
       templates: [
+        ScrollBasedShowcase as Template,
         CardGridSchema,
         RecipeBlock as Template,
         {

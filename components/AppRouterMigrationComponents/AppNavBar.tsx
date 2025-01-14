@@ -10,6 +10,7 @@ import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import data from '../../content/navigationBar/navMenu.json';
+import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
 import { EmailForm } from '../modals/EmailForm';
@@ -63,7 +64,7 @@ export function AppNavBar({ sticky = true }) {
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>
-        <div className="flex min-[1135px]:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
+        <div className="flex min-[1300px]:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           {/* Start of sm and md view */}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
@@ -88,8 +89,8 @@ export function AppNavBar({ sticky = true }) {
             <ul className="flex flex-col py-4 px-6 relative z-20">
               <li className="pb-4 pt-2">
                 <Link href={'/'}>
-                  <TinaIconSvg
-                    className={`flex items-center w-7 h-auto fill-orange-500`}
+                  <TinaLogoSvg
+                    className={`flex items-center w-36 h-auto fill-orange-500`}
                   />
                 </Link>
               </li>
@@ -133,7 +134,7 @@ export function AppNavBar({ sticky = true }) {
           ></div>
           <Link href={'/'}>
             <TinaIconSvg
-              className={`flex items-center w-7 h-auto fill-orange-500`}
+              className={`flex items-center w-9 h-auto fill-orange-500`}
             />
           </Link>
           <div className="flex space-x-2 gap-2 cursor-pointer">
@@ -160,19 +161,17 @@ export function AppNavBar({ sticky = true }) {
         <div
           className={`absolute ${
             stuck && sticky
-              ? `min-[1135px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
+              ? `min-[1300px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full min-[1135px]:px-10 hidden min-[1135px]:flex items-center justify-between gap-6`}
+          } z-40 w-full min-[1300px]:px-10 hidden min-[1300px]:flex items-center justify-between gap-6`}
         >
           <Link href={'/'}>
-            <TinaIconSvg
-              className={`${
-                stuck && sticky ? 'w-8' : 'w-10'
-              } flex items-center h-auto fill-orange-500`}
+            <TinaLogoSvg
+              className={`w-40 flex items-center h-auto fill-orange-500 mb-4`}
             />
           </Link>
-          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1135px]:items-center gap-2 min-[1135px]:gap-x-12">
-            <ul className="flex gap-6 min-[1135px]:gap-8 min-[1135px]:gap-12 relative z-20">
+          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1300px]:items-center gap-2 min-[1300px]:gap-x-12">
+            <ul className="flex gap-6 min-[1300px]:gap-8 min-[1300px]:gap-12 relative z-20">
               {navItems.map((item, index) =>
                 item._template === modalButtonString ? (
                   <li key={index} className={`group ${navLinkClasses} py-2`}>

@@ -1,160 +1,14 @@
-import React from 'react'
-import TwitterIconSvg from '../../public/svg/twitter-icon.svg'
-import XIconSvg from '../../public/svg/x-icon.svg'
-import GithubIconSvg from '../../public/svg/github-icon.svg'
-import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg'
-import YoutubeIconSvg from '../../public/svg/youtube-icon.svg'
-import { TinaIcon } from '../../components/logo'
-import Link from 'next/link'
-import { DynamicLink } from '../../components/ui'
-import { BsDiscord } from 'react-icons/bs'
-
-//TODO: Implement TinaCMS collection - https://github.com/tinacms/tina.io/issues/2656
-const footerNav = [
-  {
-    label: 'Product',
-    items: [
-      // {
-      //   link: '/demo/',
-      //   label: 'Demo',
-      // },
-      {
-        link: '/showcase',
-        label: 'Showcase',
-      },
-      {
-        link: 'https://app.tina.io',
-        label: 'TinaCloud',
-      },
-      {
-        link: '/docs',
-        label: 'Introduction',
-      },
-      {
-        link: '/docs/product-tour',
-        label: 'How Tina Works',
-      },
-      {
-        label: 'Roadmap',
-        link: '/roadmap',
-      },
-    ],
-  },
-  {
-    label: 'Resources',
-    items: [
-      {
-        label: 'Blog',
-        link: '/blog',
-      },
-      {
-        label: 'Examples',
-        link: '/examples',
-      },
-      {
-        label: 'Compare Tina',
-        link: '/compare-tina',
-      },
-      {
-        label: 'Support',
-        link: '/docs/support',
-      },
-      {
-        link: '/media',
-        label: 'Media',
-      },
-    ],
-  },
-  {
-    label: '',
-    items: [
-      {
-        label: 'Whats New',
-        children: [
-          {
-            link: '/whats-new/tinacms',
-            label: 'TinaCMS',
-          },
-          {
-            link: '/whats-new/tinacloud',
-            label: 'TinaCloud',
-          },
-        ],
-      },
-      {
-        label: 'Use Cases',
-        children: [
-          {
-            link: '/agencies',
-            label: 'Agencies',
-          },
-          {
-            link: '/documentation',
-            label: 'Documentation',
-          },
-          {
-            link: '/cms-for-teams',
-            label: 'Teams',
-          },
-          {
-            link: '/jamstack-cms',
-            label: 'Jamstack CMS',
-          },
-        ],
-      },
-      {
-        label: 'Benefits',
-        children: [
-          {
-            link: '/mdx-cms',
-            label: 'MDX',
-          },
-          {
-            link: '/markdown-cms',
-            label: 'Markdown',
-          },
-          {
-            link: '/git-cms',
-            label: 'Git',
-          },
-          {
-            link: '/editorial-workflow',
-            label: 'Editorial Workflow',
-          },
-          {
-            link: '/flexible-cms',
-            label: 'Customization',
-          },
-          {
-            link: '/seo',
-            label: 'SEO',
-          },
-        ],
-      },
-      {
-        label: 'Integrations',
-        children: [
-          {
-            link: '/astro',
-            label: 'Astro',
-          },
-          {
-            link: '/hugo-cms',
-            label: 'Hugo',
-          },
-          {
-            link: '/nextjs-cms',
-            label: 'NextJS',
-          },
-          {
-            link: '/jekyll-cms',
-            label: 'Jekyll',
-          },
-        ],
-      },
-    ],
-  },
-] as const
+import React, { useEffect } from 'react';
+import TwitterIconSvg from '../../public/svg/twitter-icon.svg';
+import XIconSvg from '../../public/svg/x-icon.svg';
+import GithubIconSvg from '../../public/svg/github-icon.svg';
+import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg';
+import YoutubeIconSvg from '../../public/svg/youtube-icon.svg';
+import { TinaIcon } from '../../components/logo';
+import Link from 'next/link';
+import { DynamicLink } from '../../components/ui';
+import { BsDiscord } from 'react-icons/bs';
+import FooterData from '../../content/footer/Master-Footer.json';
 
 const footerLinks = [
   {
@@ -181,22 +35,22 @@ const footerLinks = [
     link: '/docs/support',
     label: 'Support',
   },
-]
+];
 
-const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
-  const [open, setOpen] = React.useState(false)
+const LinkGroup = ({ item }: { item: { children: any[]; label: string } }) => {
+  const [open, setOpen] = React.useState(false);
 
   return (
     <details
-      className="inline-block drop-shadow-sm relative opacity-90 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out "
+      className="inline-block drop-shadow-sm relative opacity-90 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out"
       onClick={() => setOpen(!open)}
     >
       <summary className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
         {item.label}
       </summary>
       <div className="p-4">
-        {item.children.map((subItem) => (
-          <div>
+        {item.children.map((subItem, index) => (
+          <div key={index}>
             <DynamicLink href={subItem.link} passHref>
               <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
@@ -206,11 +60,11 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
         ))}
       </div>
     </details>
-  )
-}
+  );
+};
 
 export const LinkItem = ({ item }) => {
-  const { id, link, label } = item
+  const { link, label } = item;
 
   return (
     <DynamicLink href={link} passHref>
@@ -218,8 +72,8 @@ export const LinkItem = ({ item }) => {
         {label}
       </div>
     </DynamicLink>
-  )
-}
+  );
+};
 
 const SocialLink = ({ link, children }) => {
   return (
@@ -230,10 +84,11 @@ const SocialLink = ({ link, children }) => {
     >
       {children}
     </a>
-  )
-}
+  );
+};
 
-export const Footer = ({}) => {
+export const Footer = () => {
+
   return (
     <div>
       {/* Top */}
@@ -242,48 +97,47 @@ export const Footer = ({}) => {
           <TinaIcon color="white" />
         </div>
         <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {footerNav.map((item) => {
-            const { label, items } = item
+          {[FooterData.Column1, FooterData.Column2, FooterData.Column3].map((column, columnIndex) => {
+            const hasHeader = 'header' in column;
             return (
               <div
-                key={label}
+                key={columnIndex}
                 className="flex flex-col items-stretch justify-start gap-2"
               >
-                <p className="uppercase text-orange-100 font-bold -mt-1">
-                  {label}
-                </p>
-                {items.map((item) => {
-                  return item.children ? (
-                    <LinkGroup key={item.label} item={item} />
+                {hasHeader && (
+                  <p className="uppercase text-orange-100 font-bold -mt-1">
+                    {column.header}
+                  </p>
+                )}
+                {column.footerItem.map((item, idx) => {
+                  return item.items ? (
+                    <LinkGroup key={`column-${columnIndex}-group-${idx}`} item={{
+                      label: item.label,
+                      children: item.items.map(subItem => ({
+                        label: subItem.label,
+                        link: subItem.href,
+                      })),
+                    }} />
                   ) : (
-                    <LinkItem key={item.label} item={item} />
-                  )
+                    <LinkItem key={`column-${columnIndex}-item-${idx}`} item={{
+                      label: item.label,
+                      link: item.href,
+                    }} />
+                  );
                 })}
               </div>
-            )
+            );
           })}
           <div className="flex flex-col lg:items-center">
             <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm">
-              <SocialLink link="https://github.com/tinacms/tinacms">
-                <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                GitHub
-              </SocialLink>
-              <SocialLink link="https://twitter.com/tinacms">
-                <XIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                Twitter
-              </SocialLink>
-              <SocialLink link="https://discord.com/invite/zumN63Ybpf">
-                <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
-                Discord
-              </SocialLink>
-              <SocialLink link="https://www.youtube.com/@TinaCMS">
-                <YoutubeIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                YouTube
-              </SocialLink>
-              <SocialLink link="https://www.linkedin.com/company/tinacms">
-                <LinkedInIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                LinkedIn
-              </SocialLink>
+              {FooterData.Column4.footerItem.map((socialItem, idx) => (
+                <SocialLink key={`social-${idx}`} link={socialItem.href}>
+                  {socialItem.image ? (
+                    <img src={socialItem.image} alt={socialItem.label} className="w-7 h-auto" />
+                  ) : null}
+                  {socialItem.label}
+                </SocialLink>
+              ))}
             </div>
           </div>
         </div>
@@ -293,9 +147,9 @@ export const Footer = ({}) => {
       <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-18 gap-6">
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {footerLinks.map((item) => {
-              const { link, label } = item
-              return <FooterLink key={label} link={link} label={label} />
+            {footerLinks.map((item, idx) => {
+              const { link, label } = item;
+              return <FooterLink key={`${label}-${idx}`} link={link} label={label} />;
             })}
           </div>
           <div>
@@ -307,8 +161,8 @@ export const Footer = ({}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const FooterLink = ({ link, label }) => {
   return (
@@ -319,5 +173,5 @@ const FooterLink = ({ link, label }) => {
     >
       {label}
     </Link>
-  )
-}
+  );
+};

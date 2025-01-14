@@ -302,6 +302,11 @@
               "title": "API Versioning",
               "slug": "content/docs/tina-cloud/api-versioning.mdx",
               "_template": "item"
+            },
+            {
+              "title": "Git Co-Authoring",
+              "slug": "content/docs/tina-cloud/git-co-authoring.mdx",
+              "_template": "item"
             }
           ],
           "_template": "items"

@@ -3,7 +3,6 @@ import DocsMobileHeader from './docsMobileHeader';
 
 const MainDocsBodyHeader = (docData) => {
   const DocumentTitle = docData.data.new.results.data.doc.title;
-
   return (
     <div>
       {docData.screenSizing && (

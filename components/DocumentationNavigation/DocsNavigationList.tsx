@@ -242,7 +242,6 @@ const NavLabelContainer = styled.div<{ status: string }>`
 `;
 
 export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
-  const router = useRouter();
   const navListElem = React.useRef(null);
 
   return (
