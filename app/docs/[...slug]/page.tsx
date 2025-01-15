@@ -1,3 +1,4 @@
+import { TinaClient } from 'app/tina-client';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { glob } from 'fast-glob';
 import { NextSeo } from 'next-seo';
@@ -6,7 +7,6 @@ import client from 'tina/__generated__/client';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocsNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
-import { TinaClient } from 'app/tina-client';
 import DocsClient from './DocsPagesClient';
 
 export async function generateStaticParams() {
@@ -30,7 +30,7 @@ export async function generateMetadata({
   const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
   return {
-    title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
+    title: `${data.doc.seo?.title || data.doc.title}  |  🦙 TinaCMS Docs`,
     description: data.doc.seo?.description || '',
     openGraph: {
       title: data.doc.title,
