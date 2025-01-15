@@ -1,12 +1,13 @@
 import { RichTextWrapper } from 'components/layout/RichTextWrapper';
 import { DynamicLink } from 'components/ui';
-import { BlogMeta, MetaBit } from 'pages/blog/page/[page_index]';
 import { formatDate } from 'utils/blog_helpers';
 import { getExcerpt } from 'utils/getExcerpt';
 import { Container } from '../Container';
+import { styled } from 'styled-components';
 
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   return (
+
     <section
       key={'recent-posts-' + index}
       className={'bg-white relative z-10 py-20 lg:py-28'}
@@ -49,3 +50,37 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
     </section>
   );
 };
+
+/*
+ ** STYLES ---------------------------------------------------------
+ */
+
+ const BlogMeta = styled.div`
+ width: 100%;
+ justify-content: center;
+ align-items: center;
+ display: flex;
+ flex-direction: row;
+ margin-bottom: 3rem;
+ margin-top: -0.5rem;
+ text-align: center;
+ @media (min-width: 550px) {
+   flex-direction: row;
+ }
+`
+
+const MetaWrap = styled.span`
+ opacity: 0.8;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+`
+
+const MetaBit = styled.p`
+ display: flex;
+ margin: 0 !important;
+ span {
+   opacity: 0.7;
+   margin-right: 0.25rem;
+ }
+`

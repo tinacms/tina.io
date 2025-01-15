@@ -9,6 +9,7 @@ import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBl
 import { DocsPagination } from 'components/ui';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
+import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 
 export default function DocsClient(props) {
   
@@ -32,17 +33,12 @@ export default function DocsClient(props) {
     title: DocumentationData?.next?.title,
   };
 
+  console.log(previousPage, nextPage);
+
   
 
   const lastEdited = DocumentationData?.last_edited;
-  const date = lastEdited === null ? null : new Date(lastEdited);
-  const formattedDate = date
-    ? date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    : '';
+  const formattedDate = formatDate(lastEdited);
   const gridClass = isScreenSmallerThan840
     ? 'grid-cols-1'
     : isScreenSmallerThan1200

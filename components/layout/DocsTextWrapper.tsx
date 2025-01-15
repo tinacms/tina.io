@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import DocsRichText from '../styles/DocsRichText'
+import DocsRichText from 'components/styles/DocsRichText'
 import { useRouter } from 'next/router'
 import { FallbackPlaceholder } from '../../components/fallback-placeholder'
 

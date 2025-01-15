@@ -27,7 +27,7 @@ export async function generateMetadata({
   params: { slug: string[] };
 }) {
   const slug = params.slug.join('/');
-  const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
+
 
   return {
     title: `${data.doc.seo?.title || data.doc.title}  |  🦙 TinaCMS Docs`,
@@ -69,6 +69,7 @@ export default async function DocPage({
       />
     );
   } catch (error) {
-    notFound();
+    console.error('Found an error catching data:', error);
+    return notFound();
   }
 }
