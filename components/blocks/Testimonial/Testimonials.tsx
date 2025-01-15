@@ -72,7 +72,7 @@ const TestimonialCard = ({ ...data }) => {
         </div>
         <blockquote className="mt-2 text-sm">
           {data.testimonial && (
-            <div className="text-base lg:text-md line-clamp-5">
+            <div className="text-base lg:text-md line-clamp-3">
               <TinaMarkdown
                 // components={contentComponents}
                 content={data.testimonial}
