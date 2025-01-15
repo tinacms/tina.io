@@ -29,9 +29,9 @@ For a typical headless CMS, the solution to this problem is to incorporate a dat
 
 It’s self-evident, then, that Tina’s content API cannot rely solely on the Git file system. Some kind of hybrid solution incorporating both a database for scalable query capabilities and Git for storage and version control is needed. In our search for the right database solution for Tina, we had three constraints that guided us:
 
-* When developing locally or self-hosting, developers should be able to use whichever database they prefer
-* It should be easy to get up and running
-* Behavior should be absolutely consistent between local development and production environments
+- When developing locally or self-hosting, developers should be able to use whichever database they prefer
+- It should be easy to get up and running
+- Behavior should be absolutely consistent between local development and production environments
 
 # Discovering Level.js
 
@@ -87,3 +87,5 @@ LevelDB emerged from the necessity for an embedded database capable of supportin
 2. \[2] See [chrome://credits/]()
 3. \[3] Somewhat ironically, Mozilla Firefox is still using SQLite for its implementation of IndexedDB.
 4. \[4] In older versions of Level.js, this feature was provided by a [module](https://github.com/dominictarr/level-sublevel), but has since been incorporated into the core library.
+
+LevelDB was created by [Sanjay Ghemawat](https://research.google/people/sanjayghemawat/?&type=google) and [Jeff Dean](https://research.google/people/jeff/) at Google.

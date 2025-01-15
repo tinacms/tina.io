@@ -16,7 +16,7 @@ next: content/blog/using-tinacms-with-nextjs.mdx
 
 > This post has been updated to use Next.js 14 and its latest features.
 
-*Want to skip to using Tina with Next.js? [checkout our quickstart](https://tina.io/docs/setup-overview/ "TinaCMS Quickstart")*
+_Want to skip to using Tina with Next.js? [checkout our quickstart](https://tina.io/docs/setup-overview/ 'TinaCMS Quickstart')_
 
 Next.js is a framework built on top of React for developing web applications. In detail, **Next.js has become one of the most popular choices when it comes to web development** thanks to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing logic.
 
@@ -46,7 +46,7 @@ npm run dev
 
 After cloning the project and starting the [Next.js dev server](https://nextjs.org/docs/api-reference/cli#development), navigate to `http://localhost:3000/` in your browser and you should be able to see the following page:
 
-![The starter project in action](/img/blog/simple-markdown-blog-nextjs/empty-tina-blog.png "The starter project in action")
+![The starter project in action](/img/blog/simple-markdown-blog-nextjs/empty-tina-blog.png 'The starter project in action')
 
 As you can see, the blog app is pretty simple at the moment. Let's now dig into the structure of this starter project to **learn how to turn this app into a real Markdown-based blog**.
 
@@ -70,7 +70,7 @@ Now, let's look at the `pages/index.js` file:
 ```javascript
 // pages/index.js
 
-const Index = props => {
+const Index = (props) => {
   return (
     <Layout
       pathname="/"
@@ -81,20 +81,20 @@ const Index = props => {
         <BlogList />
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 
 export async function getStaticProps() {
-  const configData = await import(`../data/config.json`)
+  const configData = await import(`../data/config.json`);
 
   return {
     props: {
       title: configData.title,
       description: configData.description,
     },
-  }
+  };
 }
 ```
 
@@ -107,17 +107,17 @@ This is what `BlogList` looks like:
 ```javascript
 // components/BlogList.js
 
-import styles from "../styles/BlogList.module.css"
+import styles from '../styles/BlogList.module.css';
 
 const BlogList = ({ allBlogs }) => {
   return (
     <div className={styles.bloglist__container}>
       <h3>List of all blog posts will go here</h3>
     </div>
-  )
-}
+  );
+};
 
-export default BlogList
+export default BlogList;
 ```
 
 As you can see, it accepts a `allBlogs` prop value. This should **contain the list of all blog posts to show on the home page of the blog**. You'll learn how to populate this prop later in this tutorial.
@@ -129,15 +129,13 @@ As you can see, it accepts a `allBlogs` prop value. This should **contain the li
 ```javascript
 // components/Layout.js
 
-import Header from "./Header"
-import Meta from "./Meta"
-import styles from "../styles/Layout.module.css"
+import Header from './Header';
+import Meta from './Meta';
+import styles from '../styles/Layout.module.css';
 
 export default function Layout(props) {
   return (
-    <section
-      className={styles.layout}
-    >
+    <section className={styles.layout}>
       <Meta
         siteTitle={props.siteTitle}
         siteDescription={props.siteDescription}
@@ -145,7 +143,7 @@ export default function Layout(props) {
       <Header siteTitle={props.siteTitle} />
       <div className={styles.content}>{props.children}</div>
     </section>
-  )
+  );
 }
 ```
 
@@ -158,7 +156,7 @@ Note that `Layout` contains also the following Meta component:
 ```javascript
 // components/Meta.js
 
-import Head from "next/head"
+import Head from 'next/head';
 
 export default function Meta(props) {
   return (
@@ -168,7 +166,7 @@ export default function Meta(props) {
       <title>{props.siteTitle}</title>
       <meta name="Description" content={props.description}></meta>
     </Head>
-  )
+  );
 }
 ```
 
@@ -181,8 +179,8 @@ The global style of the blog app is handled in the `globals.css` you can find in
 ```javascript
 // pages/_app.js
 
-import "../styles/globals.css"
-import { Work_Sans } from "next/font/google"
+import '../styles/globals.css';
+import { Work_Sans } from 'next/font/google';
 
 // importing the Work Sans font with
 // the Next.js 13 Font Optimization Feature
@@ -190,15 +188,17 @@ const workSans = Work_Sans({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
-})
+});
 
 function MyApp({ Component, pageProps }) {
-  return <main className={workSans.className}>
-    <Component {...pageProps} />
-  </main>
+  return (
+    <main className={workSans.className}>
+      <Component {...pageProps} />
+    </main>
+  );
 }
 
-export default MyApp
+export default MyApp;
 ```
 
 ## Add the Posts Directory to the Project
@@ -216,8 +216,8 @@ Here's an example of filler content for `/posts/my-post.md` with commonly used f
 ```markdown
 ---
 title: A trip to Iceland
-author: "Watson & Crick "
-date: "2019-07-10T16:04:44.000Z"
+author: 'Watson & Crick '
+date: '2019-07-10T16:04:44.000Z'
 hero_image: /norris-niman-iceland.jpg
 ---
 
@@ -238,9 +238,9 @@ npm add raw-loader gray-matter react-markdown
 
 Specifically:
 
-* **[Raw Loader](https://github.com/webpack-contrib/raw-loader)** will process your Markdown files.
-* **[Gray Matter](https://github.com/jonschlinkert/gray-matter)** will parse your YAML frontmatter values.
-* **[React Markdown](https://github.com/rexxars/react-markdown)** will parse and render the body of your Markdown files.
+- **[Raw Loader](https://github.com/webpack-contrib/raw-loader)** will process your Markdown files.
+- **[Gray Matter](https://github.com/jonschlinkert/gray-matter)** will parse your YAML frontmatter values.
+- **[React Markdown](https://github.com/rexxars/react-markdown)** will parse and render the body of your Markdown files.
 
 ### Add a `next.config.js` File to Configure Next.js
 
@@ -256,10 +256,10 @@ module.exports = {
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
-    })
-    return config
+    });
+    return config;
   },
-}
+};
 ```
 
 Webpack is now able to deal with Markdown files. You now need to **configure Next.js to create a web page for each Markdown blog post file**. Let's learn how.
@@ -295,16 +295,16 @@ With dynamic routing, you can **make use of the `slug` parameter**. Specifically
 ```javascript
 // pages/blog/[slug].js
 
-import Image from "next/image"
-import matter from "gray-matter"
-import ReactMarkdown from "react-markdown"
-import styles from "../../styles/Blog.module.css"
-import glob from "glob"
-import Layout from "../../components/Layout"
+import Image from 'next/image';
+import matter from 'gray-matter';
+import ReactMarkdown from 'react-markdown';
+import styles from '../../styles/Blog.module.css';
+import glob from 'glob';
+import Layout from '../../components/Layout';
 
 function reformatDate(fullDate) {
-  const date = new Date(fullDate)
-  return date.toDateString().slice(4)
+  const date = new Date(fullDate);
+  return date.toDateString().slice(4);
 }
 
 export default function BlogTemplate({ frontmatter, markdownBody, siteTitle }) {
@@ -326,22 +326,24 @@ export default function BlogTemplate({ frontmatter, markdownBody, siteTitle }) {
         <div className={styles.blog__body}>
           <ReactMarkdown>{markdownBody}</ReactMarkdown>
         </div>
-        <h2 className={styles.blog__footer}>Written By: {frontmatter.author}</h2>
+        <h2 className={styles.blog__footer}>
+          Written By: {frontmatter.author}
+        </h2>
       </article>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps(context) {
   // extracting the slug from the context
-  const { slug } = context.params
+  const { slug } = context.params;
 
-  const config = await import(`../../data/config.json`)
+  const config = await import(`../../data/config.json`);
 
   // retrieving the Markdown file associated to the slug
   // and reading its data
-  const content = await import(`../../posts/${slug}.md`)
-  const data = matter(content.default)
+  const content = await import(`../../posts/${slug}.md`);
+  const data = matter(content.default);
 
   return {
     props: {
@@ -349,29 +351,27 @@ export async function getStaticProps(context) {
       frontmatter: data.data,
       markdownBody: data.content,
     },
-  }
+  };
 }
 
 export async function getStaticPaths() {
   // getting all .md files from the posts directory
-  const blogs = glob.sync(`posts/**/*.md`)
+  const blogs = glob.sync(`posts/**/*.md`);
 
   // converting the file names to their slugs
-  const blogSlugs = blogs.map(file =>
-    file
-      .split('/')[1]
-      .replace(/ /g, '-')
-      .slice(0, -3)
-      .trim()
-  )
+  const blogSlugs = blogs.map((file) =>
+    file.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
+  );
 
   // creating a path for each of the `slug` parameter
-  const paths = blogSlugs.map(slug => { return { params: { slug: slug } } })
+  const paths = blogSlugs.map((slug) => {
+    return { params: { slug: slug } };
+  });
 
   return {
     paths,
     fallback: false,
-  }
+  };
 }
 ```
 
@@ -389,8 +389,8 @@ At this point, you should be more familiar with `getStaticProps()`. But the **[`
 
 In the return object from `getStaticPaths()`, the following two keys are required:
 
-* **[`paths`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths)**: Contains an array of object having a params field with the required dynamic param. For example, `{ params : { slug: "julius-caesar"} }`.
-* **[`fallback`](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required)**: Allows you to control the Next.js behavior when a path isn't returned from `getStaticPaths()`. Set it to false to make Next.js return a 404 page for unknown paths.
+- **[`paths`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths)**: Contains an array of object having a params field with the required dynamic param. For example, `{ params : { slug: "julius-caesar"} }`.
+- **[`fallback`](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required)**: Allows you to control the Next.js behavior when a path isn't returned from `getStaticPaths()`. Set it to false to make Next.js return a 404 page for unknown paths.
 
 > Before the release of Next.js 9.3, this path generation for static export could be handled via [`exportPathMap`](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
 
@@ -411,11 +411,11 @@ Implement `pages/index.js` as follows:
 ```javascript
 // pages/index.js
 
-import matter from "gray-matter"
-import Layout from "../components/Layout"
-import BlogList from "../components/BlogList"
+import matter from 'gray-matter';
+import Layout from '../components/Layout';
+import BlogList from '../components/BlogList';
 
-const Index = props => {
+const Index = (props) => {
   return (
     <Layout
       pathname="/"
@@ -426,20 +426,20 @@ const Index = props => {
         <BlogList allBlogs={props.allBlogs} />
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 
 export async function getStaticProps() {
   // getting the website config
-  const siteConfig = await import(`../data/config.json`)
+  const siteConfig = await import(`../data/config.json`);
 
-  const webpackContext = require.context("../posts", true, /\.md$/)
+  const webpackContext = require.context('../posts', true, /\.md$/);
   // the list of file names contained
   // inside the "posts" directory
-  const keys = webpackContext.keys()
-  const values = keys.map(webpackContext)
+  const keys = webpackContext.keys();
+  const values = keys.map(webpackContext);
 
   // getting the post data from the files contained
   // in the "posts" folder
@@ -447,25 +447,25 @@ export async function getStaticProps() {
     // dynamically creating the post slug
     // from file name
     const slug = key
-      .replace(/^.*[\\\/]/, "")
-      .split(".")
+      .replace(/^.*[\\\/]/, '')
+      .split('.')
       .slice(0, -1)
-      .join(".")
+      .join('.');
 
     // getting the .md file value associated
     // with the current file name
-    const value = values[index]
+    const value = values[index];
 
     // parsing the YAML metadata and markdown body
     // contained in the .md file
-    const document = matter(value.default)
+    const document = matter(value.default);
 
     return {
       frontmatter: document.data,
       markdownBody: document.content,
       slug,
-    }
-  })
+    };
+  });
 
   return {
     props: {
@@ -473,30 +473,26 @@ export async function getStaticProps() {
       title: siteConfig.default.title,
       description: siteConfig.default.description,
     },
-  }
+  };
 }
 ```
 
 The `getStaticProps()` function here may be slightly complex to look at, but let's take it one step at a time. The logic here is based on the [`require.context()`](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This **allows you to create your own Webpack context** based on three parameters:
 
-* The directory to match within.
-* A boolean flag to include or exclude subdirectories.
-* A regular expression to match files against.
+- The directory to match within.
+- A boolean flag to include or exclude subdirectories.
+- A regular expression to match files against.
 
 You can define a Webpack context with `require.context()` with the following syntax:
 
 ```javascript
-require.context(
-  directory,
-  (useSubdirectories = true),
-  (regExp = /^\.\/.*$/),
-)
+require.context(directory, (useSubdirectories = true), (regExp = /^\.\/.*$/));
 ```
 
 Note that the parameters in round brackets are optional. For example, this is how you can call the `require.context()` function:
 
 ```javascript
-require.context("../posts", true, /\\.md$/)
+require.context('../posts', true, /\\.md$/);
 ```
 
 Thanks to a Webpack context, you can pick out all the files matching a regular expression from a particular directory. This allows you to **generate the slug string from each file name, read its content, parse it with the frontmatter library, and pass the manipulated data to Index as props**.
@@ -506,28 +502,31 @@ Then, the blog data is passed as a prop to the `BlogList` component. In the `Blo
 This is what `BlogList` looks like:
 
 ```javascript
-import Link from "next/link"
-import ReactMarkdown from "react-markdown"
-import styles from "../styles/BlogList.module.css"
-import Image from "next/image"
+import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import styles from '../styles/BlogList.module.css';
+import Image from 'next/image';
 
 function truncateSummary(content) {
-  return content.slice(0, 200).trimEnd()
+  return content.slice(0, 200).trimEnd();
 }
 
 function reformatDate(fullDate) {
-  const date = new Date(fullDate)
-  return date.toDateString().slice(4)
+  const date = new Date(fullDate);
+  return date.toDateString().slice(4);
 }
 
 const BlogList = ({ allBlogs }) => {
   return (
     <ul>
-      {allBlogs && allBlogs.length >= 1 &&
-        allBlogs.map(post => (
+      {allBlogs &&
+        allBlogs.length >= 1 &&
+        allBlogs.map((post) => (
           <li key={post.slug}>
+            <Link
+              href={{ pathname: `/blog/${post.slug}` }}
+              className={styles.blog__link}
             <Link href={{ pathname: `/blog/${post.slug}` }} className={styles.blog__link}>
-              <div className={styles.hero_image}>
                 <Image
                   width={384}
                   height={288}
@@ -538,22 +537,23 @@ const BlogList = ({ allBlogs }) => {
               <div className={styles.blog__info}>
                 <h2>{post.frontmatter.title}</h2>
                 <h3>{reformatDate(post.frontmatter.date)}</h3>
+                <ReactMarkdown disallowedElements={['a']}>
                 <ReactMarkdown disallowedElements={["a"]}>{truncateSummary(post.markdownBody)}</ReactMarkdown>
-              </div>
             </Link>
           </li>
         ))}
     </ul>
+  );
   )
 }
-
 export default BlogList
-```
 
 If your development server is running, you should now be able to navigate your Next.js Markdown blog app at `http://localhost:3000`. Otherwise, launch the app with:
 
 ```
+
 npm run dev
+
 ```
 
 Note that **you may have to relaunch the homepage of the blog to see the blog posts**.
@@ -565,15 +565,19 @@ If you'd like to take a look at the final result, feel free to **check out the [
 Clone it with the command below:
 
 ```
+
 git clone https://github.com/tinalabs/brevifolia-next-2023
+
 ```
 
 Enter the project folder, and launch the following command to install the dependencies and launch the Markdown-based Next.js blog app:
 
 ```
+
 cd brevifolia-next-2023
 npm install
 npm run dev
+
 ```
 
 Visit [`http://localhost:3000`](http://localhost:3000) in your browser and you now should be seeing the Markdown-based blog application in action.
@@ -589,3 +593,8 @@ After setting up your Markdown-based blog site, you'll most likely need a CMS ([
 You know that you want to be part of this creative, innovative, supportive community of developers (and even some editors and designers) who are experimenting and implementing Tina daily.
 
 Check out Tina's community at [https://tina.io/community/](https://tina.io/community/)
+
+For more information about serving static files in Next.js, check out the [static file serving documentation](https://nextjs.org/docs/app/building-your-application/optimizing/static-assets).
+
+For more information about static exports in Next.js, check out the [static exports documentation](https://nextjs.org/docs/app/building-your-application/deploying/static-exports).
+```
