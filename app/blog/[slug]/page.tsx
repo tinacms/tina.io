@@ -15,16 +15,10 @@ export async function generateMetadata({
     ({ data } = await client.queries.getExpandedPostDocument(vars));
   } catch (error) {
     console.error("Error generating metadata:", error);
-    return {
-      title: "Not Found",
-      description: "Post not found",
-    };
+    return notFound();
   }
   if (!data?.post) {
-    return {
-      title: "Not Found",
-      description: "Post not found",
-    };
+    return notFound();
   }
 
   return {

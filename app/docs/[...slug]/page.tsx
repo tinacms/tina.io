@@ -27,16 +27,22 @@ export async function generateMetadata({
   params: { slug: string[] };
 }) {
   const slug = params.slug.join('/');
-  const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
-  return {
-    title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
-    description: data.doc.seo?.description || '',
-    openGraph: {
-      title: data.doc.title,
-      description: data.doc.seo?.description,
-    },
-  };
+  try {
+    const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
+
+    return {
+      title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
+      description: data.doc.seo?.description || '',
+      openGraph: {
+        title: data.doc.title,
+        description: data.doc.seo?.description,
+      },
+    };
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return notFound(); 
+  }
 }
 
 export default async function DocPage({
@@ -69,6 +75,7 @@ export default async function DocPage({
       />
     );
   } catch (error) {
-    notFound();
+    console.error('Found an error catching data:', error);
+    return notFound();
   }
 }
