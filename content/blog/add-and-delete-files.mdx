@@ -79,7 +79,7 @@ The example below shows how to create an instance of a `RemarkCreatorPlugin`. Th
  ** 1. import RemarkCreatorPlugin to
  **    construct a `content-creator` plugin.
  */
-import { RemarkCreatorPlugin } from 'gatsby-tinacms-remark'
+import { RemarkCreatorPlugin } from 'gatsby-tinacms-remark';
 
 /*
  ** 2. instantiate RemarkCreatorPlugin with
@@ -96,8 +96,8 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
    ** FILENAME: A function whose return value
    ** should be the path to the new file.
    */
-  filename: form => {
-    return form.filename
+  filename: (form) => {
+    return form.filename;
   },
 
   /*
@@ -114,7 +114,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
         'The full path to the new markdown file, relative to the repository root.',
     },
   ],
-})
+});
 ```
 
 ### Formatting the path to the new file
@@ -124,13 +124,13 @@ There are many ways you could set up the return value for the `filename`. A help
 ```javascript
 const CreatePostPlugin = new RemarkCreatorPlugin({
   //...
-  filename: form => {
+  filename: (form) => {
     // 'form' holds the data inputted by the 'create-form'
-    const slug = form.title.replace(/\s+/, '-').toLowerCase()
+    const slug = form.title.replace(/\s+/, '-').toLowerCase();
 
-    return `content/blog/${slug}.md`
+    return `content/blog/${slug}.md`;
   },
-})
+});
 ```
 
 Notice how data submitted by the `create-form` is being used. When a new file is created, you can have the editor enter a title, and then all the **`create-form` data is passed to the `filename` function**.
@@ -230,7 +230,7 @@ const CreatePostPlugin = new RemarkCreatorPlugin({
 
 Notice the use of a `required` property on the `title` field. Use this to ensure you get all the required data necessary for creating the new file.
 
-Learn about the default [fields](https://tinacms.org/docs/plugins/fields).
+Learn more about [forms in TinaCMS](/docs/reference/forms).
 
 ## 4. Configure Defaults
 
@@ -296,7 +296,7 @@ Below is an example blog template with the `delete-action` added:
 
 ```javascript
 // 1. Import `DeleteAction`
-import { remarkForm, DeleteAction } from 'gatsby-tinacms-remark'
+import { remarkForm, DeleteAction } from 'gatsby-tinacms-remark';
 
 function BlogTemplate(props) {
   return (
@@ -304,7 +304,7 @@ function BlogTemplate(props) {
       <h1>{props.markdownRemark.frontmatter.title}</h1>
       <p>{props.markdownRemark.frontmatter.description}</p>
     </>
-  )
+  );
 }
 
 // 2. Add the `DeleteAction` to the form
@@ -324,9 +324,9 @@ let BlogFormOptions = {
       component: 'textarea',
     },
   ],
-}
+};
 
-export default remarkForm(BlogTemplate, BlogForm)
+export default remarkForm(BlogTemplate, BlogForm);
 ```
 
 You can import the `DeleteAction` from `gatsby-tinacms-remark` or `gatsby-tinacms-json`, depending on your filetype. Then on your form options definition, add the action and that’s it!

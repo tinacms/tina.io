@@ -31,19 +31,19 @@ export default defineConfig({
   token: '***',
   clientId: '***',
   branch: 'main',
-})
+});
 ```
 
-When working locally, the client is built with the local url ([http://localhost:4001/graphql](http://localhost:4001/graphql)). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query TinaCloud.
+When working locally, the client is built with the local url (`http://localhost:4001/graphql`). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query TinaCloud.
 
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
 ```js
-import { client } from '../[pathToTina]/tina/__generated__/client'
+import { client } from '../[pathToTina]/tina/__generated__/client';
 
-const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' })
+const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' });
 
-console.log(myPost.data.title)
+console.log(myPost.data.title);
 ```
 
 The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on _your_ defined schema, (where you have a "post" collection defined).
@@ -51,10 +51,10 @@ The above `client.queries.post` query is not built-in to Tina's API. This is an 
 On a page that displays a list of posts, you can fetch the posts like so:
 
 ```js
-const postsResponse = await client.queries.postConnection()
+const postsResponse = await client.queries.postConnection();
 const posts = postsResponse.data.postConnection.edges.map((post) => {
-  return { slug: post.node._sys.filename }
-})
+  return { slug: post.node._sys.filename };
+});
 // This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
 ```
 
