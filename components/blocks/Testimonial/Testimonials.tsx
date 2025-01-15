@@ -31,10 +31,10 @@ const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';
 
   return (
-    <Elem>
+    <Elem href={data.link} data-tina-field={tinaField(data, 'name')}>
       <figure
         className={cn(
-          'relative w-64 h-48 cursor-pointer overflow-hidden rounded-xl border p-4',
+          'relative w-96 h-48 cursor-pointer overflow-hidden rounded-xl border p-4',
           // light styles
           'border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]',
           // dark styles
@@ -44,18 +44,30 @@ const TestimonialCard = ({ ...data }) => {
         <div className="flex flex-row items-center gap-2">
           <img
             className="rounded-full"
-            width="32"
-            height="32"
-            alt=""
+            alt="Testimonial avatar"
+            width={48}
+            height={48}
             src={data.avatar}
           />
           <div className="flex flex-col">
-            <figcaption className="text-sm font-medium dark:text-white">
-              {data.name}
-            </figcaption>
-            <p className="text-xs font-medium dark:text-white/40">
-              {data.username}
-            </p>
+            {data.name && (
+              <h4 className="text-lg lg:text-xl font-tuner text-blue-800 font-medium">
+                {data.name}
+              </h4>
+            )}
+            {(data.username || data.date) && (
+              <p className="text-base font-medium text-blue-700">
+                {data.username && <>@{data.username}</>}
+                {data.username && data.date && (
+                  <span className="mx-1.5 opacity-30">&ndash;</span>
+                )}
+                {data.date && (
+                  <span className="opacity-70 text-blue-600">
+                    {formatDate(data.date)}
+                  </span>
+                )}
+              </p>
+            )}
           </div>
         </div>
         <blockquote className="mt-2 text-sm">
@@ -91,14 +103,14 @@ export default function TestimonialsBlock({ data, index }) {
       </h1>
 
       <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
-        <Marquee pauseOnHover className="[--duration:20s]">
+        <Marquee pauseOnHover className="[--duration:40s]">
           {firstRow.map((review, index) => (
             <div key={index} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s]">
+        <Marquee reverse pauseOnHover className="[--duration:40s]">
           {secondRow.map((review, index) => (
             <div key={index} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
