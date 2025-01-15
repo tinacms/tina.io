@@ -37,13 +37,19 @@ const footerLinks = [
   },
 ];
 
-const LinkGroup = ({ item }: { item: { children: any[]; label: string } }) => {
-  const [open, setOpen] = React.useState(false);
-
+const LinkGroup = ({ item, isOpen, onClick }: { 
+  item: { children: any[]; label: string }; 
+  isOpen: boolean; 
+  onClick: () => void; 
+}) => {
   return (
     <details
-      className="inline-block drop-shadow-sm relative opacity-90 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out"
-      onClick={() => setOpen(!open)}
+      className={`inline-block drop-shadow-sm relative opacity-90 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out ${isOpen ? 'open' : ''}`}
+      open={isOpen}
+      onClick={(e) => {
+        e.preventDefault(); 
+        onClick();
+      }}
     >
       <summary className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
         {item.label}
@@ -88,6 +94,14 @@ const SocialLink = ({ link, children }) => {
 };
 
 export const Footer = () => {
+  const [openGroups, setOpenGroups] = React.useState<{ [columnIndex: number]: number | null }>({});
+
+  const handleGroupClick = (columnIndex: number, groupIndex: number) => {
+    setOpenGroups((prev) => ({
+      ...prev,
+      [columnIndex]: prev[columnIndex] === groupIndex ? null : groupIndex,
+    }));
+  };
 
   return (
     <div>
@@ -111,23 +125,32 @@ export const Footer = () => {
                 )}
                 {column.footerItem.map((item, idx) => {
                   return item.items ? (
-                    <LinkGroup key={`column-${columnIndex}-group-${idx}`} item={{
-                      label: item.label,
-                      children: item.items.map(subItem => ({
-                        label: subItem.label,
-                        link: subItem.href,
-                      })),
-                    }} />
+                    <LinkGroup
+                      key={`column-${columnIndex}-group-${idx}`}
+                      item={{
+                        label: item.label,
+                        children: item.items.map((subItem) => ({
+                          label: subItem.label,
+                          link: subItem.href,
+                        })),
+                      }}
+                      isOpen={openGroups[columnIndex] === idx}
+                      onClick={() => handleGroupClick(columnIndex, idx)}
+                    />
                   ) : (
-                    <LinkItem key={`column-${columnIndex}-item-${idx}`} item={{
-                      label: item.label,
-                      link: item.href,
-                    }} />
+                    <LinkItem
+                      key={`column-${columnIndex}-item-${idx}`}
+                      item={{
+                        label: item.label,
+                        link: item.href,
+                      }}
+                    />
                   );
                 })}
               </div>
             );
           })}
+          {/* Social links column */}
           <div className="flex flex-col lg:items-center">
             <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm">
               {FooterData.Column4.footerItem.map((socialItem, idx) => (
