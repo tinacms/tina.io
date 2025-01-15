@@ -359,6 +359,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}', // All reusable components
     './app/**/*.{js,ts,jsx,tsx}', // App Router files
     './app/**/**/*.{js,ts,jsx,tsx}', // Nested components in app/
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   safelist: ['font-tuner'],
 };
