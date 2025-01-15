@@ -34,7 +34,7 @@ const TestimonialCard = ({ ...data }) => {
     <Elem>
       <figure
         className={cn(
-          'relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4',
+          'relative w-80 h-48 cursor-pointer overflow-hidden rounded-xl border p-4',
           // light styles
           'border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]',
           // dark styles
@@ -91,14 +91,14 @@ export default function TestimonialsBlock({ data, index }) {
       </h1>
 
       <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
-        <Marquee pauseOnHover className="[--duration:20s]">
+        <Marquee pauseOnHover className="[--duration:30s]">
           {firstRow.map((review, index) => (
             <div key={index} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s]">
+        <Marquee reverse pauseOnHover className="[--duration:30s]">
           {secondRow.map((review, index) => (
             <div key={index} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
