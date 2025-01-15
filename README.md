@@ -48,6 +48,8 @@ pnpm dev
 ```
 This will spin up the react/Next project locally, running on [localhost:3000](http://localhost:3000) (react app) and [localhost:4001](http://localhost:4001/graphql) (playground for testing graphql against the Tina datalayer).
 
+Note: if you get an error that say's something like "end of JSON input" – try running the command again.
+
 <br>
 
 ## Not Familiar with Tina?
