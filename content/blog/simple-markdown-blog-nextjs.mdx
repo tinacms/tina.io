@@ -9,6 +9,7 @@ title: How To Create a Markdown Blog With Next.js
 date: '2023-01-11T04:00:00.000Z'
 last_edited: '2024-06-03T14:30:00.000Z'
 author: Antonello Zanini
+prev: ''
 next: content/blog/using-tinacms-with-nextjs.mdx
 ---
 
@@ -16,7 +17,7 @@ next: content/blog/using-tinacms-with-nextjs.mdx
 
 > This post has been updated to use Next.js 14 and its latest features.
 
-_Want to skip to using Tina with Next.js? [checkout our quickstart](https://tina.io/docs/setup-overview/ 'TinaCMS Quickstart')_
+*Want to skip to using Tina with Next.js? [checkout our quickstart](https://tina.io/docs/setup-overview/ "TinaCMS Quickstart")*
 
 Next.js is a framework built on top of React for developing web applications. In detail, **Next.js has become one of the most popular choices when it comes to web development** thanks to its bootstrapped React environment (similar to `create-react-app`) and its simple, file-based routing logic.
 
@@ -46,7 +47,7 @@ npm run dev
 
 After cloning the project and starting the [Next.js dev server](https://nextjs.org/docs/api-reference/cli#development), navigate to `http://localhost:3000/` in your browser and you should be able to see the following page:
 
-![The starter project in action](/img/blog/simple-markdown-blog-nextjs/empty-tina-blog.png 'The starter project in action')
+![The starter project in action](/img/blog/simple-markdown-blog-nextjs/empty-tina-blog.png "The starter project in action")
 
 As you can see, the blog app is pretty simple at the moment. Let's now dig into the structure of this starter project to **learn how to turn this app into a real Markdown-based blog**.
 
@@ -226,7 +227,7 @@ Brain is the seed of intelligence something incredible is waiting to be known.
 
 If you aren't familiar with this concept, **a frontmatter is a way to store metadata in Markdown files**. Typically, **frontmatter metadata is stored in [YAML](https://en.wikipedia.org/wiki/YAML) format** in a block wrapped by three dashes placed at the beginning of a Markdown file.
 
-Also, **place the images referenced in the `.md` files in the public directory**. In Next.js, you can access any file inside public from the base URL `/`. Learn more about [static file serving in Next.js](https://nextjs.org/docs/basic-features/static-file-serving).
+Also, **place the images referenced in the `.md` files in the public directory**. In Next.js, you can access any file inside public from the base URL `/`.
 
 ## Processing Markdown Files in Next.js
 
@@ -238,9 +239,9 @@ npm add raw-loader gray-matter react-markdown
 
 Specifically:
 
-- **[Raw Loader](https://github.com/webpack-contrib/raw-loader)** will process your Markdown files.
-- **[Gray Matter](https://github.com/jonschlinkert/gray-matter)** will parse your YAML frontmatter values.
-- **[React Markdown](https://github.com/rexxars/react-markdown)** will parse and render the body of your Markdown files.
+* **[Raw Loader](https://github.com/webpack-contrib/raw-loader)** will process your Markdown files.
+* **[Gray Matter](https://github.com/jonschlinkert/gray-matter)** will parse your YAML frontmatter values.
+* **[React Markdown](https://github.com/rexxars/react-markdown)** will parse and render the body of your Markdown files.
 
 ### Add a `next.config.js` File to Configure Next.js
 
@@ -389,10 +390,10 @@ At this point, you should be more familiar with `getStaticProps()`. But the **[`
 
 In the return object from `getStaticPaths()`, the following two keys are required:
 
-- **[`paths`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths)**: Contains an array of object having a params field with the required dynamic param. For example, `{ params : { slug: "julius-caesar"} }`.
-- **[`fallback`](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required)**: Allows you to control the Next.js behavior when a path isn't returned from `getStaticPaths()`. Set it to false to make Next.js return a 404 page for unknown paths.
+* **[`paths`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths)**: Contains an array of object having a params field with the required dynamic param. For example, `{ params : { slug: "julius-caesar"} }`.
+* **[`fallback`](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required)**: Allows you to control the Next.js behavior when a path isn't returned from `getStaticPaths()`. Set it to false to make Next.js return a 404 page for unknown paths.
 
-> Before the release of Next.js 9.3, this path generation for static export could be handled via [`exportPathMap`](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap).
+> Before the release of Next.js 9.3, this path generation for static export could be handled via the exportPathMap.
 
 Now, navigate to [`http://localhost:3000/blog/my-post`](http://localhost:3000/blog/my-post). This is what the BlogTemplate component looks like:
 
@@ -479,9 +480,9 @@ export async function getStaticProps() {
 
 The `getStaticProps()` function here may be slightly complex to look at, but let's take it one step at a time. The logic here is based on the [`require.context()`](https://webpack.js.org/guides/dependency-management/#requirecontext) function provided by Webpack. This **allows you to create your own Webpack context** based on three parameters:
 
-- The directory to match within.
-- A boolean flag to include or exclude subdirectories.
-- A regular expression to match files against.
+* The directory to match within.
+* A boolean flag to include or exclude subdirectories.
+* A regular expression to match files against.
 
 You can define a Webpack context with `require.context()` with the following syntax:
 
@@ -566,7 +567,7 @@ Clone it with the command below:
 
 ```
 
-git clone https://github.com/tinalabs/brevifolia-next-2023
+git clone [https://github.com/tinalabs/brevifolia-next-2023](https://github.com/tinalabs/brevifolia-next-2023)
 
 ```
 
