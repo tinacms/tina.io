@@ -8,7 +8,7 @@ Found a bug? Create a PBI and we'll look into it.
 
 ## 🧿 Vision
 
-Make a wesbite to communicate the awesomeness of TinaCMS.
+Make a website to communicate the awesomeness of TinaCMS.
 
 ## 🛠️ Tech Stack
 
