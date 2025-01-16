@@ -1,3 +1,5 @@
+'use client';
+
 import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
 import { DefaultSeo } from 'next-seo';
 import { usePathname, useRouter } from 'next/navigation';
