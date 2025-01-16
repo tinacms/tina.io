@@ -92,6 +92,7 @@
     "remark-gfm": "^3.0.1",
     "sass": "^1.81.0",
     "serve": "^14.2.4",
+    "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.13",
     "tailwindcss-animated": "^1.1.2",
