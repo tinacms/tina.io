@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { useTina } from 'tinacms/dist/react';
+import React from 'react';
 
 export type UseTinaProps = {
   query: string;

@@ -1,16 +1,18 @@
-'use client';
-
-import { Section, Wrapper } from 'components/layout';
 import React from 'react';
 import styled from 'styled-components';
-import InfoContent, { InfoImage } from './not-found-client';
+import { Wrapper, Section } from 'components/layout';
 
-export const metadata = {
-  title: '404',
-  description: '404',
-};
+import InfoContent from './not-found-client';
+import { InfoImage } from './not-found-client';
 
-export default function Page404() {
+function generateMetaData(){
+  return {
+    title: '404',
+    description: '404',
+  }
+}
+
+function Page404() {
   return (
     <div>
       <Section>
@@ -24,6 +26,12 @@ export default function Page404() {
     </div>
   );
 }
+
+export default Page404;
+
+/*
+ ** STYLES ------------------------------------------------------
+ */
 
 const InfoLayout = styled.div`
   display: grid;
