@@ -27,16 +27,21 @@ export async function generateMetadata({
   params: { slug: string[] };
 }) {
   const slug = params.slug.join('/');
+  try {
+    const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
-
-  return {
-    title: `${data.doc.seo?.title || data.doc.title}  |  🦙 TinaCMS Docs`,
-    description: data.doc.seo?.description || '',
-    openGraph: {
-      title: data.doc.title,
-      description: data.doc.seo?.description,
-    },
-  };
+    return {
+      title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
+      description: data.doc.seo?.description || '',
+      openGraph: {
+        title: data.doc.title,
+        description: data.doc.seo?.description,
+      },
+    };
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return notFound();
+  }
 }
 
 export default async function DocPage({
