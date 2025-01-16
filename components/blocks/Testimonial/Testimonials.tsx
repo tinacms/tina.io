@@ -51,9 +51,17 @@ const TestimonialCard = ({ ...data }) => {
             </div>
           )}
         </blockquote>
-        <div className="flex items-center gap-3">
+        <div
+          className={cn(
+            'flex items-center gap-3',
+            data.rhsImage ? 'flex-row-reverse justify-between' : 'flex-row'
+          )}
+        >
           <img
-            className="w-12 h-12 rounded-full border border-gray-300"
+            className={cn(
+              'w-12 h-12 border border-gray-300',
+              data.imageBorder ? 'rounded-full' : 'rounded-sm'
+            )}
             alt="Testimonial avatar"
             width={48}
             height={48}
