@@ -1,61 +1,45 @@
 'use client';
 
-import React from 'react';
-import { Button, ButtonGroup } from 'components/ui';
+import { Button } from 'components/ui';
 import { DynamicLink } from 'components/ui/DynamicLink';
 import Image from 'next/image';
-import { styled } from 'styled-components';
+import React from 'react';
 
-function InfoContent() {
+export default function NotFoundClient() {
   return (
-    <div className="grid-area content">
-      <div className="mb-7">
-        <h2 className="font-tuner text-6xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500">
-          Sorry, Friend.
-        </h2>
-        <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
-        <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
-          We couldn't find what you were looking for.
-        </p>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+      <div className="flex flex-col justify-center">
+        <div className="mb-7">
+          <h2 className="font-tuner text-6xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500">
+            Sorry, Friend.
+          </h2>
+          <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+            We couldn't find what you were looking for.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <DynamicLink href="/docs" passHref>
+            <Button>Documentation</Button>
+          </DynamicLink>
+          <DynamicLink href="/docs/guides" passHref>
+            <Button>Guides</Button>
+          </DynamicLink>
+          <DynamicLink href="/" passHref>
+            <Button>Home</Button>
+          </DynamicLink>
+        </div>
       </div>
-      <ButtonGroup>
-        <DynamicLink href={'/docs'} passHref>
-          <Button>Documentation</Button>
-        </DynamicLink>
-        <DynamicLink href={'/docs/guides'} passHref>
-          <Button>Guides</Button>
-        </DynamicLink>
-        <DynamicLink href={'/'} passHref>
-          <Button>Home</Button>
-        </DynamicLink>
-      </ButtonGroup>
+      <div className="max-w-[65vw] mx-auto md:max-w-none">
+        <div className="relative aspect-square rounded-3xl overflow-hidden">
+          <Image
+            src="/img/rico-replacement.jpg"
+            alt="404 Llama"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </div>
     </div>
   );
 }
-
-export default InfoContent;
-
-
-export const InfoImage = styled(({ src, ...styleProps }) => {
-  return (
-    <div {...styleProps}>
-      <Image src={src} alt="404 Llama" width={600} height={600} />
-    </div>
-  );
-})`
-  display: block;
-  grid-area: image;
-  max-width: 65vw;
-  margin: 0 auto;
-  border-radius: 2rem;
-  overflow: hidden;
-  max-height: 25rem;
-
-  img {
-    display: block;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;

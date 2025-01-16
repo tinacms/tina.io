@@ -4,20 +4,25 @@ import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/doc
 import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
 import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
+import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
+import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { screenResizer } from 'components/hooks/ScreenResizer';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
-import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 
-export default function DocsClient(props) {
-  
-  const { PageTableOfContents, NavigationDocsData } = props.props;
-  const DocumentationData = props.tinaProps.data.doc;
-  
+export default function DocsClient({ props, tinaProps }) {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
+
+  const { PageTableOfContents, NavigationDocsData } = props;
+  const DocumentationData = data.doc;
+
   const allData = [DocumentationData, PageTableOfContents, NavigationDocsData];
-
 
   const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
@@ -33,10 +38,6 @@ export default function DocsClient(props) {
     title: DocumentationData?.next?.title,
   };
 
-  console.log(previousPage, nextPage);
-
-  
-
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
   const gridClass = isScreenSmallerThan840
@@ -45,9 +46,7 @@ export default function DocsClient(props) {
     ? 'grid-cols-[1.25fr_3fr]'
     : 'grid-cols-[1.25fr_3fr_0.75fr]';
 
-  
-
-  return ( 
+  return (
     <div className="relative my-6 lg:my-16 flex justify-center items-start">
       <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
         {/* LEFT COLUMN */}

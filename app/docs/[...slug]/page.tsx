@@ -60,18 +60,19 @@ export default async function DocPage({
     const docData = results.data.doc;
     const PageTableOfContents = getTableOfContents(docData.body.children);
 
+    const props = {
+      query: results.query,
+      variables: results.variables,
+      data: results.data,
+      PageTableOfContents,
+      DocumentationData: docData,
+      NavigationDocsData: navDocData,
+    };
+
     return (
-      <TinaClient
-        Component={DocsClient}
-        props={{
-          query: results.query,
-          variables: results.variables,
-          data: results.data,
-          PageTableOfContents,
-          DocumentationData: docData,
-          NavigationDocsData: navDocData,
-        }}
-      />
+      <div>
+        <DocsClient tinaProps={{ data: results.data }} props={props} />
+      </div>
     );
   } catch (error) {
     console.error('Found an error catching data:', error);
