@@ -11,34 +11,33 @@ export async function generateStaticParams() {
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const vars = { relativePath: `${slug}.mdx` };
 
-  let data;
   try {
-    ({ data } = await client.queries.getExpandedPostDocument(vars));
+    const { data } = await client.queries.getExpandedPostDocument(vars);
+
+    if (!data?.post) {
+      console.warn(`No metadata found for slug: ${slug}`);
+      return notFound();
+    }
+
+    return {
+      title: `${data.post.title} | TinaCMS Blog`,
+      openGraph: {
+        title: data.post.title,
+      },
+    };
   } catch (error) {
     console.error('Error generating metadata:', error);
-    return notFound();
+    return {
+      title: 'Blog Post | TinaCMS',
+      description: 'Read our latest blog post.',
+    };
   }
-  if (!data?.post) {
-    return notFound();
-  }
-
-  return {
-    title: `${data.post.title} | TinaCMS Blog`,
-    description: data.post.excerpt ?? data.post.title,
-    openGraph: {
-      title: data.post.title,
-      description: data.post.excerpt ?? data.post.title,
-    },
-  };
 }
+
 
 export default async function BlogPage({
   params,
@@ -48,16 +47,17 @@ export default async function BlogPage({
   const slug = params.slug;
   const vars = { relativePath: `${slug}.mdx` };
 
-  let res;
   try {
-    res = await client.queries.getExpandedPostDocument(vars);
-  } catch (error) {
-    console.error('Error fetching post:', error);
-    return notFound();
-  }
-  if (!res?.data?.post) {
-    return notFound();
-  }
+    const res = await client.queries.getExpandedPostDocument(vars);
 
-  return <BlogPageClient {...res} />;
+    if (!res?.data?.post) {
+      console.warn(`Post not found for slug: ${slug}`);
+      return notFound();
+    }
+
+    return <BlogPageClient {...res} />;
+  } catch (error) {
+    console.error(`Error fetching post for slug: ${slug}`, error);
+    return notFound();
+  }
 }
