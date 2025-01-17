@@ -8,7 +8,6 @@ import DocsClient from './DocsPagesClient';
 export async function generateStaticParams() {
   const contentDir = './content/docs/';
   const files = await glob(`${contentDir}**/*.mdx`);
-  console.log(files);
   return files
     .filter((file) => !file.endsWith('index.mdx'))
     .map((file) => {
