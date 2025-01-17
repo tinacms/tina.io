@@ -1,10 +1,6 @@
-import { TinaClient } from 'app/tina-client';
-import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { glob } from 'fast-glob';
-import { NextSeo } from 'next-seo';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocsNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import DocsClient from './DocsPagesClient';
@@ -12,7 +8,7 @@ import DocsClient from './DocsPagesClient';
 export async function generateStaticParams() {
   const contentDir = './content/docs/';
   const files = await glob(`${contentDir}**/*.mdx`);
-
+  console.log(files);
   return files
     .filter((file) => !file.endsWith('index.mdx'))
     .map((file) => {

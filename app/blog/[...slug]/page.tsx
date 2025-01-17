@@ -1,17 +1,24 @@
+import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import BlogPageClient from './BlogPageClient';
 
 export async function generateStaticParams() {
-  const postsResponse = await client.queries.postConnection();
-  return (
-    postsResponse.data.postConnection.edges?.map((post) => ({
-      slug: post?.node?._sys.filename,
-    })) || []
-  );
+  const contentDir = './content/blog/';
+  const files = await glob(`${contentDir}**/*.mdx`);
+  return files
+    .filter((file) => !file.endsWith('index.mdx'))
+    .map((file) => {
+      const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/blog/" and ".mdx"
+      return { slug: path.split('/') };
+    });
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const slug = params.slug;
   const vars = { relativePath: `${slug}.mdx` };
 
@@ -38,7 +45,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-
 export default async function BlogPage({
   params,
 }: {
@@ -46,7 +52,6 @@ export default async function BlogPage({
 }) {
   const slug = params.slug;
   const vars = { relativePath: `${slug}.mdx` };
-
   try {
     const res = await client.queries.getExpandedPostDocument(vars);
 
