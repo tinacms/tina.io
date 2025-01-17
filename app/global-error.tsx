@@ -1,3 +1,5 @@
+'use client';
+
 import NotFoundClient from './not-found-client';
 
 export const metadata = {
