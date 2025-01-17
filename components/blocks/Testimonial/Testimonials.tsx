@@ -1,31 +1,9 @@
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
-
-// const checkTouchScreen = () => {
-//   let hasTouchScreen = false;
-//   if ('maxTouchPoints' in navigator) {
-//     hasTouchScreen = navigator.maxTouchPoints > 0;
-//   } else {
-//     const mQ = matchMedia?.('(pointer:coarse)');
-//     if (mQ?.media === '(pointer:coarse)') {
-//       hasTouchScreen = !!mQ.matches;
-//     } else if ('orientation' in window) {
-//       hasTouchScreen = true; // deprecated, but good fallback
-//     } else {
-//       // Only as a last resort, fall back to user agent sniffing
-//       const UA: string = (navigator as Navigator).userAgent;
-//       hasTouchScreen =
-//         /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
-//         /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
-//     }
-//   }
-//   return hasTouchScreen;
-// };
 
 const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';
@@ -35,19 +13,15 @@ const TestimonialCard = ({ ...data }) => {
       <figure
         className={cn(
           'relative w-96 h-48 cursor-pointer overflow-hidden rounded-xl border p-4 flex flex-col justify-between',
-          // light styles
-          'border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]',
-          // dark styles
-          'dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]'
+          'shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)]',
+          'bg-gradient-to-b from-white to-white/30 hover:to-white/40',
+          'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out'
         )}
       >
         <blockquote className="text-sm text-gray-700 leading-relaxed">
           {data.testimonial && (
             <div className="text-base lg:text-md line-clamp-3">
-              <TinaMarkdown
-                // components={contentComponents}
-                content={data.testimonial}
-              />
+              <TinaMarkdown content={data.testimonial} />
             </div>
           )}
         </blockquote>
@@ -59,7 +33,7 @@ const TestimonialCard = ({ ...data }) => {
         >
           <img
             className={cn(
-              'w-12 h-12 border border-gray-300',
+              'w-12 h-12',
               data.imageBorder ? 'rounded-full' : 'rounded-sm'
             )}
             alt="Testimonial avatar"
@@ -90,7 +64,6 @@ const TestimonialCard = ({ ...data }) => {
 };
 
 export default function TestimonialsBlock({ data, index }) {
-  // const isTouchScreen = useMemo(() => checkTouchScreen(), []);
   const [isShowingAll, setIsShowingAll] = useState(false);
   const titleRef = useRef(null);
   const firstRow = data.testimonials.slice(0, data.testimonials.length / 2);
@@ -106,7 +79,7 @@ export default function TestimonialsBlock({ data, index }) {
         {data?.title || 'Loved by Developers'}
       </h1>
 
-      <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
+      <div className="mask-horizontal-fade relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
         <Marquee pauseOnHover className="[--duration:40s]">
           {firstRow.map((review, index) => (
             <div key={index} className="mr-4">
@@ -121,9 +94,27 @@ export default function TestimonialsBlock({ data, index }) {
             </div>
           ))}
         </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
       </div>
+      <style jsx>{`
+        .mask-horizontal-fade {
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+          );
+          mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+          );
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+        }
+      `}</style>
     </>
   );
 }
