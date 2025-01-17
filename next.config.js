@@ -29,7 +29,7 @@ const dummyMailchimpEndpoint =
 const config = {
   ...extraConfig,
   //BabelRc workaround whilst we have styledjsx - https://nextjs.org/docs/messages/swc-disabled
-  experimental: { forceSwcTransforms: true },
+  // experimental: { forceSwcTransforms: true },
   // experimental: {
   //   forceSwcTransforms: true,
   // },
