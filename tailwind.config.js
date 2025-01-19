@@ -207,6 +207,13 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
     require('tailwindcss-animated'),
+    function ({ addUtilities }) {
+      addUtilities({
+        '::-webkit-scrollbar-track': {
+          'background-color': 'transparent',
+        },
+      });
+    },
   ],
   content: [
     './pages/**/*.{js,ts,jsx,tsx}', // Legacy Pages Router

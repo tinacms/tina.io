@@ -1,15 +1,13 @@
 'use client';
 
-import React, { createContext } from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { DocsNavProps } from './DocumentationNavigation';
 import { usePathname } from 'next/navigation';
 import { matchActualTarget } from 'utils';
 import { DynamicLink } from 'components/ui';
-import docsLinks from '../../../../content/docs-navigation.json';
 import { BiChevronRight } from 'react-icons/bi';
 import AnimateHeight from 'react-animate-height';
-import data from '../../../../content/siteConfig.json';
 
 interface NavTitleProps {
   level: number;
@@ -84,14 +82,16 @@ const NavLevel = ({
   navListElem,
   categoryData,
   level = 0,
+  selectedRef,
 }: {
-  navListElem?: any;
+  navListElem?: React.RefObject<HTMLDivElement>;
   categoryData: any;
   level?: number;
+  selectedRef?: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
-  const navLevelElem = React.useRef(null);
-  const pathname = usePathname(); // Replace useRouter with usePathname
-  const path = pathname || ''; // Get current path
+  const navLevelElem = React.useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const path = pathname || '';
   const slug = categoryData.slug?.replace(/\/$/, '');
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
@@ -101,32 +101,13 @@ const NavLevel = ({
 
   const selected =
     path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
-
   const childSelected = hasNestedSlug(categoryData.items, path);
 
   React.useEffect(() => {
-    if (
-      navListElem &&
-      navLevelElem.current &&
-      navListElem.current &&
-      selected
-    ) {
-      const scrollOffset = navListElem.current.scrollTop;
-      const navListOffset = navListElem.current.getBoundingClientRect().top;
-      const navListHeight = navListElem.current.offsetHeight;
-      const navItemOffset = navLevelElem.current.getBoundingClientRect().top;
-      const elementOutOfView =
-        navItemOffset - navListOffset > navListHeight + scrollOffset;
-
-      if (elementOutOfView) {
-        navLevelElem.current.scrollIntoView({
-          behavior: 'auto',
-          block: 'center',
-          inline: 'nearest',
-        });
-      }
+    if (selected && navLevelElem.current && selectedRef) {
+      selectedRef.current = navLevelElem.current;
     }
-  }, [navLevelElem.current, navListElem, selected]);
+  }, [selected]);
 
   return (
     <>
@@ -146,7 +127,7 @@ const NavLevel = ({
               setExpanded(!expanded);
             }}
           >
-            <span className=" pr-2 -mr-2">{categoryData.title}</span>
+            <span className="pr-2 -mr-2">{categoryData.title}</span>
             {categoryData.items && !selected && (
               <BiChevronRight
                 className={`${
@@ -170,6 +151,7 @@ const NavLevel = ({
                   navListElem={navListElem}
                   level={level + 1}
                   categoryData={item}
+                  selectedRef={selectedRef}
                 />
               </div>
             ))}
@@ -235,10 +217,23 @@ const NavLabelContainer = styled.div<{ status: string }>`
 `;
 
 export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
-  const navListElem = React.useRef(null);
+  const navListElem = React.useRef<HTMLDivElement>(null);
+  const selectedItem = React.useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (selectedItem.current) {
+      selectedItem.current.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+      });
+    }
+  }, []);
 
   return (
-    <DocsNavigationContainer ref={navListElem}>
+    <div
+      ref={navListElem}
+      className="overflow-y-auto overflow-x-hidden pt-2 pb-6 -mr-[1px] ::-webkit-scrollbar-track"
+    >
       {navItems?.map((categoryData) => (
         <NavLevel
           key={
@@ -247,39 +242,9 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
           }
           navListElem={navListElem}
           categoryData={categoryData}
+          selectedRef={selectedItem}
         />
       ))}
-    </DocsNavigationContainer>
+    </div>
   );
 };
-
-const DocsNavigationContainer = styled.div`
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 0.5rem 0 1.5rem 0;
-  margin-right: -1px;
-
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-  }
-
-  @media (min-width: 1600px) {
-    padding: 1rem 1rem 2rem 1rem;
-  }
-`;
-
-const AnchorIcon = styled.span`
-  display: inline-block;
-  position: relative;
-  transform: translate3d(0, 0, 0);
-  transition: all 150ms ease-out;
-`;
