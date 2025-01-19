@@ -7,8 +7,8 @@ import React from 'react';
 
 export default function NotFoundClient() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-      <div className="flex flex-col justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24">
+      <div className="flex flex-col">
         <div className="mb-7">
           <h2 className="font-tuner text-6xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500">
             Sorry, Friend.
@@ -35,8 +35,9 @@ export default function NotFoundClient() {
           <Image
             src="/img/rico-replacement.jpg"
             alt="404 Llama"
-            fill
             className="object-cover"
+            width={242}
+            height={242}
           />
         </div>
       </div>
