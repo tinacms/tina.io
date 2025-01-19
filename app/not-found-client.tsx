@@ -36,8 +36,8 @@ export default function NotFoundClient() {
             src="/img/rico-replacement.jpg"
             alt="404 Llama"
             className="object-cover"
-            width={242}
-            height={242}
+            width={364}
+            height={364}
           />
         </div>
       </div>
