@@ -56,12 +56,6 @@ export default async function BlogPage({
   const vars = { relativePath: `${slug}.mdx` };
   try {
     const res = await client.queries.getExpandedPostDocument(vars);
-
-    if (!res?.data?.post) {
-      console.warn(`Post not found for slug: ${slug}`);
-      return notFound();
-    }
-
     return <BlogPageClient {...res} />;
   } catch (error) {
     console.error(`Error fetching post for slug: ${slug}`, error);
