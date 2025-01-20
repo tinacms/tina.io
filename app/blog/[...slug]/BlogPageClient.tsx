@@ -4,8 +4,10 @@ import { formatDate } from 'components/AppRouterMigrationComponents/utils/format
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { BlogPageClientProps } from './BlogType';
 
-export default function BlogPageClient(props: any) {
+export default function BlogPageClient(props: BlogPageClientProps) {
+  console.log(props);
   const blogPostData = props.data.post;
   const postedDate = formatDate(blogPostData?.date);
   const lastEditedDate = formatDate(blogPostData?.last_edited);
