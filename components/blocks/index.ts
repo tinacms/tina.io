@@ -1,6 +1,5 @@
 export * from './ActionButton/ActionsButton';
 export * from './Container';
-export * from './Divider';
 export * from './Features/Features';
 export * from './Flying/Flying';
 // export * from './GlobalStyles'
