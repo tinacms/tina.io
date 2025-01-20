@@ -121,6 +121,17 @@ export const featuresTemplate: Template = {
           ],
         },
         {
+          name: 'isFullScreen',
+          label: 'Should the feature blocks be set to a full screen?',
+          description: 'use this for large bold stand alone items',
+          type: 'boolean',
+          ui: {
+            component: 'toggle',
+            parse: (value) => !!value,
+            format: (value) => !!value,
+          },
+        },
+        {
           name: 'isReversed',
           label: 'Text on Right?',
           description:
