@@ -14,6 +14,23 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({params}){
+
+    const title = 'TinaCMS Blog';
+    const description = 'Stay updated with the TinaCMS blog. Get tips, guides and the latest news on content management and development';
+    const pageIndex = params.page_index;
+    const url = `https://tinacms.org/blog/page/${pageIndex}`;
+    return{
+      title: title,
+      description: description,
+      openGraph: {
+        title: title,
+        description: description,
+        url: url,
+      }
+    }
+}
+
 export default async function BlogPaginationPage({
   params,
 }: {
@@ -38,6 +55,9 @@ export default async function BlogPaginationPage({
     startIndex,
     startIndex + POSTS_PER_PAGE
   );
+
+  console.log('in blog page');
+  
 
   return (
     <>
