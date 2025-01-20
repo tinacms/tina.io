@@ -6,7 +6,7 @@ interface Post {
   id: string;
   title: string;
   date?: string; 
-  last_edited: string | null;
+  last_edited?: string | null;
   author: string;
   seo: Seo | null;
   prev: PostSummary | null;
