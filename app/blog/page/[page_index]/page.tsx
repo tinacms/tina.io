@@ -9,7 +9,6 @@ export async function generateStaticParams() {
   const contentDir = './content/blog/';
   const files = await glob(`${contentDir}**/*.mdx`);
   const numFiles = Math.ceil(files.length / POSTS_PER_PAGE);
-  console.log(Array.from(Array(numFiles).keys()).join().split(','));
   return Array.from(Array(numFiles).keys()).map((page) => ({
     page_index: (page + 1).toString(),
   }));
