@@ -66,7 +66,7 @@ export default async function DocPage({
 
     return (
       <div>
-        <DocsClient tinaProps={{ data: results.data }} props={props} />
+        <DocsClient props={props} />
       </div>
     );
   } catch (error) {
