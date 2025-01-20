@@ -27,6 +27,7 @@
           "media": [
             {
               "src": "/img/docs/introduction/homepage-demo-2.webm",
+              "link": "https://www.youtube.com/watch?v=zRkeKSZjlyw",
               "_template": "video"
             }
           ],

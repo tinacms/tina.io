@@ -79,6 +79,12 @@ export const featuresTemplate: Template = {
                     'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
                   type: 'string',
                 },
+                {
+                  name: 'link',
+                  label: 'Video Link',
+                  description: 'This is the link when the video is clicked.',
+                  type: 'string',
+                },
               ],
             },
             {
