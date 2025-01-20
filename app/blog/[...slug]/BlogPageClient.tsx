@@ -1,39 +1,50 @@
 'use client';
 
+import React from 'react';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { BlogPageClientProps } from './BlogType';
 
-export default function BlogPageClient(props: BlogPageClientProps) {
-  const blogPostData = props.data.post;
-  const postedDate = formatDate(blogPostData?.date);
-  const lastEditedDate = formatDate(blogPostData?.last_edited);
 
-  const previousPage = {
-    slug: blogPostData?.prev?.id.slice(7, -4),
-    title: blogPostData?.prev?.title,
-  };
-  const nextPage = {
-    slug: blogPostData?.next?.id.slice(7, -4),
-    title: blogPostData?.next?.title,
-  };
+const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
+  const blogPostData = data.post;
+
+  const postedDate = formatDate(blogPostData.date);
+  const lastEditedDate = blogPostData.last_edited
+    ? formatDate(blogPostData.last_edited)
+    : null;
+
+  const previousPage = blogPostData.prev
+    ? {
+        slug: blogPostData.prev.id.slice(7, -4),
+        title: blogPostData.prev.title,
+      }
+    : null;
+
+  const nextPage = blogPostData.next
+    ? {
+        slug: blogPostData.next.id.slice(7, -4),
+        title: blogPostData.next.title,
+      }
+    : null;
+
   return (
     <div>
-      <BlogPageTitle title={blogPostData?.title} />
+      <BlogPageTitle title={blogPostData.title} />
       <div className="p-6">
         <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
           <div className="flex flex-col items-center opacity-80 m-0">
-            {postedDate}
+            <span>{postedDate}</span>
             <div className="flex flex-row text-lg gap-1 pb-4">
               <span>By </span>
-              <strong>{blogPostData?.author}</strong>
+              <strong>{blogPostData.author}</strong>
             </div>
           </div>
           <div className="text-[#241748]">
             <TinaMarkdown
-              content={blogPostData?.body}
+              content={blogPostData.body}
               components={docAndBlogComponents}
             />
           </div>
@@ -48,7 +59,7 @@ export default function BlogPageClient(props: BlogPageClientProps) {
       </div>
     </div>
   );
-}
+};
 
 function BlogPageTitle({ title }: { title: string }) {
   const blogTitleStyling =
@@ -61,3 +72,5 @@ function BlogPageTitle({ title }: { title: string }) {
     </div>
   );
 }
+
+export default BlogPageClient;

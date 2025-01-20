@@ -1,19 +1,5 @@
 import { TinaMarkdownContent } from "tinacms/dist/rich-text";
 
-
-interface Post {
-  _sys: Sys;
-  id: string;
-  title: string;
-  date?: string; 
-  last_edited?: string | null;
-  author: string;
-  seo: Seo | null;
-  prev: PostSummary | null;
-  next: PostSummary | null;
-  body: TinaMarkdownContent; 
-}
-
 interface Sys {
   filename: string;
   basename: string;
@@ -33,8 +19,21 @@ interface PostSummary {
   title: string;
 }
 
+export interface BlogPost {
+  _sys: Sys;
+  id: string;
+  title: string;
+  date: string;
+  last_edited: string | null;
+  author: string;
+  seo: Seo | null;
+  prev: PostSummary | null;
+  next: PostSummary | null;
+  body: TinaMarkdownContent;
+}
+
 export interface BlogPageClientProps {
   data: {
-    post: Post;
+    post: BlogPost;
   };
 }

@@ -56,8 +56,6 @@ export default async function BlogPaginationPage({
     startIndex + POSTS_PER_PAGE
   );
 
-  console.log('in blog page');
-  
 
   return (
     <>
