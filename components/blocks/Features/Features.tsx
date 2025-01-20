@@ -32,7 +32,7 @@ export function FeatureBlock({ data, index }) {
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center tablet:lg:min-h-[70vh] perspective ${
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >

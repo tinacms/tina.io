@@ -3,11 +3,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   theme: {
-    screens: {
-      tablet: {
-        raw: '(max-height: 1600px)',
-      },
-    },
     spacing: {
       px: '1px',
       0: '0px',
