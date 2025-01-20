@@ -12,7 +12,7 @@ import { DocsPagination } from 'components/ui';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
-export default function DocsClient({ props, tinaProps }) {
+export default function DocsClient({ props }) {
   const { data } = useTina({
     query: props.query,
     variables: props.variables,
