@@ -74,8 +74,13 @@ export default async function BlogPage({
       title: fetchedPost.title,
       date: fetchedPost.date || '',
       last_edited: fetchedPost.last_edited ?? null,
-      author: fetchedPost.author || '',
-      seo: fetchedPost.seo ?? null,
+      author: fetchedPost.author || '', 
+      seo: fetchedPost.seo
+        ? {
+            title: fetchedPost.seo.title || 'Default SEO Title',
+            description: fetchedPost.seo.description || 'Default SEO Description',
+          }
+        : null,
       prev: fetchedPost.prev ?? null,
       next: fetchedPost.next ?? null,
       body: fetchedPost.body as TinaMarkdownContent, 
