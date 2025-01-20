@@ -50,7 +50,6 @@ export function useTocListener(data: any) {
 
   React.useEffect(() => {
     if (!contentRef.current) return;
-
     const tocListener = createTocListener(contentRef, setActiveIds);
     const handleScroll = () => tocListener(); // Define scroll handler
 
@@ -63,4 +62,16 @@ export function useTocListener(data: any) {
   }, [data]);
 
   return { contentRef, activeIds };
+}
+
+export function syncTocScroll(tocWrapperRef: React.RefObject<HTMLDivElement>) {
+  if (!tocWrapperRef.current) return;
+  const htmlScrollTop = document.documentElement.scrollTop;
+  const htmlScrollHeight = document.documentElement.scrollHeight;
+  const scrollPercent = htmlScrollTop / (htmlScrollHeight - htmlScrollTop);
+
+  const tocScrollHeight = tocWrapperRef.current.scrollHeight;
+  const tocClientHeight = tocWrapperRef.current.clientHeight;
+  tocWrapperRef.current.scrollTop =
+    scrollPercent * (tocScrollHeight - tocClientHeight);
 }
