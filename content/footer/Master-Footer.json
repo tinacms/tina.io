@@ -1,6 +1,5 @@
 {
   "Column1": {
-    "header": "The Product",
     "footerItem": [
       {
         "label": "Showcase",
@@ -30,7 +29,6 @@
     ]
   },
   "Column2": {
-    "header": "Resources",
     "footerItem": [
       {
         "label": "Blog",
