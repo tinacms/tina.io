@@ -85,7 +85,9 @@ export function FeatureBlock({ data, index }) {
               <>
                 <div className="relative w-full h-auto pb-4 group">
                   <a
-                    href="https://youtube.com/tinacms"
+                    href={
+                      data.media[0].link ?? 'https://www.youtube.com/@TinaCMS'
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     id="play-button-overlay"
