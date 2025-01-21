@@ -33,6 +33,9 @@ const config = {
   // experimental: {
   //   forceSwcTransforms: true,
   // },
+  compiler: {
+    styledComponents: true,
+  },
   outputFileTracing: false,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
