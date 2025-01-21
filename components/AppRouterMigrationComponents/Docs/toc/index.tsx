@@ -72,11 +72,11 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
                     <a
                       {...props}
                       className={`
-                        block py-1 px-2 rounded-md
+                        block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150
                         ${
                           isActive
-                            ? 'text-orange-500 font-medium no-underline hover:bg-gray-50/75 transition-colors duration-150'
-                            : 'text-gray-600 hover:text-orange-500 hover:bg-gray-50/75 transition-colors duration-150'
+                            ? 'text-orange-500 font-medium no-underline'
+                            : 'text-gray-600 hover:text-orange-500'
                         }`}
                     >
                       {children}
@@ -140,10 +140,10 @@ const TocDesktopHeader = styled.span`
 const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
   flex: 0 0 auto;
-  width: 300px; /* 固定宽度 */
-  word-wrap: break-word; /* 如果是长单词，打断换行 */
-  white-space: normal; /* 强制内容换行 */
-  overflow-wrap: break-word; /* 支持现代浏览器换行规则 */
+  width: 300px; /* fix width */
+  word-wrap: break-word; /* break the long word */
+  white-space: normal;
+  overflow-wrap: break-word; /* suppport Chrome */
 
   @media (min-width: 1200px) {
     position: sticky;
