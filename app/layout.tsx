@@ -7,6 +7,7 @@ import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
 import dynamic from 'next/dynamic';
 import data from '../content/siteConfig.json';
 import '../styles/tailwind.css';
+import GoogleBot from 'components/AppRouterMigrationComponents/GoogleBot';
 
 const TinaChatBot = dynamic(
   () => import('../components/AppRouterMigrationComponents/TinaChatBot'),
@@ -55,6 +56,7 @@ export default async function RootLayout({
         <AdminLink />
         <ConsentBanner />
         <TinaChatBot />
+        <GoogleBot/>
         <GoogleTagManager gtmId={process.env.SSW_GTM_ID || ''} />
         <SiteLayout>{children}</SiteLayout>
       </body>
