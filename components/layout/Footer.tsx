@@ -74,7 +74,7 @@ export const LinkItem = ({ item }) => {
 
   return (
     <DynamicLink href={link} passHref>
-      <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
+      <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
         {label}
       </div>
     </DynamicLink>
@@ -119,7 +119,7 @@ export const Footer = () => {
                 className="flex flex-col items-stretch justify-start gap-2"
               >
                 {hasHeader && (
-                  <p className="uppercase text-orange-100 font-bold -mt-1">
+                  <p className="uppercase text-orange-100 opacity-70 font-bold -mt-1">
                     {column.header}
                   </p>
                 )}
