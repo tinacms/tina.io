@@ -9,6 +9,7 @@ import { Container } from '../Container';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
+  const isFullScreen = data.isFullScreen;
   const isBackgroundEnabled = data.imageBackground;
   const isVideo = data.media && data.media[0] && data.media[0].src;
 
@@ -85,7 +86,9 @@ export function FeatureBlock({ data, index }) {
               <>
                 <div className="relative w-full h-auto pb-4 group">
                   <a
-                    href="https://youtube.com/tinacms"
+                    href={
+                      data.media[0].link ?? 'https://www.youtube.com/@TinaCMS'
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     id="play-button-overlay"
@@ -218,7 +221,7 @@ export function FeaturesBlock({ data, index }) {
   return (
     <section key={'features-' + index} className="w-full">
       <Container width="wide">
-        <div className="flex flex-col gap-16 w-full">
+        <div className="flex flex-col gap-32 lg:gap-48 w-full">
           {/* TODO: why is there a type error here */}
           {/* @ts-ignore */}
           {data.features &&
