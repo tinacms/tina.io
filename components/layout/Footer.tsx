@@ -44,7 +44,7 @@ const LinkGroup = ({ item, isOpen, onClick }: {
 }) => {
   return (
     <details
-      className={`inline-block drop-shadow-sm relative opacity-90 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out ${isOpen ? 'open' : ''}`}
+      className={`inline-block drop-shadow-sm relative opacity-90 text-white text-lg lg:text-xl font-tuner transition duration-150 ease-out ${isOpen ? 'open' : ''}`}
       open={isOpen}
       onClick={(e) => {
         e.preventDefault(); 
