@@ -29,11 +29,6 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
   const tocWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(tocWrapperRef.current);
-    const syncScrollHander = () => syncTocScroll(tocWrapperRef);
-    window.addEventListener('scroll', syncScrollHander);
-    syncScrollHander();
-
     const close = () => setIsOpen(false);
     const allLinks = document.querySelectorAll('a');
     allLinks.forEach((a) => a.addEventListener('click', close));
@@ -42,6 +37,26 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
       allLinks.forEach((a) => a.removeEventListener('click', close));
     };
   }, []);
+
+  useEffect(() => {
+    if (tocWrapperRef.current && activeIds.length > 0) {
+      const tocList = tocWrapperRef.current;
+
+      const lastActiveId = activeIds[activeIds.length - 1];
+      const activeLink = tocList.querySelector(`a[href="#${lastActiveId}"]`);
+
+      if (activeLink) {
+        const activeTop = (activeLink as HTMLElement).offsetTop;
+        const activeHeight = (activeLink as HTMLElement).offsetHeight;
+        const listHeight = tocList.clientHeight;
+
+        tocList.scrollTo({
+          top: activeTop - listHeight / 2 + activeHeight / 2,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [activeIds]);
 
   if (!tocItems || tocItems.length === 0) {
     return null;
