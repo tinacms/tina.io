@@ -32,7 +32,7 @@ export function FeatureBlock({ data, index }) {
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center perspective ${
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
@@ -216,10 +216,7 @@ export function FeatureBlock({ data, index }) {
 
 export function FeaturesBlock({ data, index }) {
   return (
-    <section
-      key={'features-' + index}
-      className={'py-12 lg:py-16 last:pb-20 last:lg:pb-32'}
-    >
+    <section key={'features-' + index} className="w-full">
       <Container width="wide">
         <div className="flex flex-col gap-16 w-full">
           {/* TODO: why is there a type error here */}

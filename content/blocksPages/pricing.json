@@ -5,6 +5,9 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "headline": "Plans & Pricing",
       "freeTier": {
         "name": "Free",

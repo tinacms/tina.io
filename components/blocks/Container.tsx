@@ -1,7 +1,31 @@
+interface WrapperProps {
+  children?: any;
+  data?: {
+    isFullscreen?: boolean;
+  };
+}
+
+//Generic wrapper for block components
+export const BlockWrapper = (props: WrapperProps) => {
+  const { children, data } = props;
+  return (
+    <div
+      className={
+        data?.isFullscreen
+          ? 'min-h-[70vh] py-36 flex items-center justify-center w-full'
+          : 'pt-12'
+      }
+    >
+      {children}
+    </div>
+  );
+};
+
+//Width Limit Container
 interface ContainerProps {
-  children?: any
-  width?: 'medium' | 'narrow' | 'wide'
-  center?: boolean
+  children?: any;
+  width?: 'medium' | 'narrow' | 'wide';
+  center?: boolean;
 }
 
 export const Container = ({
@@ -66,5 +90,5 @@ export const Container = ({
         }
       `}</style>
     </>
-  )
-}
+  );
+};

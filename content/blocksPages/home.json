@@ -6,6 +6,9 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
