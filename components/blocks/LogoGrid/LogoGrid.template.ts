@@ -1,7 +1,7 @@
 import type { Template } from 'tinacms';
 
 export const logoGridTemplate: Template = {
-  label: 'Logo Grid',
+  label: '<⭐> Logo Grid',
   name: 'logoGrid',
   ui: {
     previewSrc: '/img/blocks/logo-grid.png',

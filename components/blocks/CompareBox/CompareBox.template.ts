@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { wrapFieldsWithMeta, type Template } from 'tinacms';
 import { checkboxList } from '../../../tina/customTinaFormFields/checkboxList';
 
-
 //This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
 export const splitOneAndJoin = (item, separator) => {
   //"First" is the boolean value, "rest" is the criteria
@@ -26,9 +25,10 @@ export const criteriaMapping = (values) => {
           // Populate the satisfied criteria list to match the criteria list, adding new criteria if needed and re-using old criteria if possible
           criteriaItems.forEach((item) => {
             if (oldCriteria.includes(item)) {
-              const satisfaction: string | undefined = company.satisfiedCriteria.find(
-                (criteria) => splitOneAndJoin(criteria, '-')[1] === item
-              );
+              const satisfaction: string | undefined =
+                company.satisfiedCriteria.find(
+                  (criteria) => splitOneAndJoin(criteria, '-')[1] === item
+                );
               updatedCriteriaSatisfaction.push(satisfaction || '');
             } else {
               updatedCriteriaSatisfaction.push(`false-${item}`);
@@ -45,7 +45,6 @@ export const criteriaMapping = (values) => {
 
       block.rowItems?.forEach((row, index) => {
         const oldRowCells = row.rowCells ?? [];
-        
 
         const updatedRowCells = columnItems.map((item) => {
           const existingCell = oldRowCells.find((cell) => {
@@ -59,7 +58,11 @@ export const criteriaMapping = (values) => {
 
           return (
             existingCell ??
-            JSON.stringify({ columnHeader: item, cellValue: '', isTicked: false })
+            JSON.stringify({
+              columnHeader: item,
+              cellValue: '',
+              isTicked: false,
+            })
           );
         });
 
@@ -73,8 +76,61 @@ export const criteriaMapping = (values) => {
 };
 
 export const compareBoxTemplate: Template = {
-  label: 'Compare Box',
+  label: '<⭐> Compare Box',
   name: 'CompareBox',
+  ui: {
+    previewSrc: '/img/blocks/compare-box.png',
+    defaultItem: {
+      criteriaItems: [
+        {
+          criteria: 'Criteria 1',
+          description: 'Description 1',
+        },
+        {
+          criteria: 'Criteria 2',
+          description: 'Description 2',
+        },
+      ],
+      companies: [
+        {
+          headline: 'Company 1',
+          logoColour: '/logo-black.png',
+          logoWhite: '/logo.svg',
+          active: true,
+          isHidden: false,
+          backgroundColor: '#ffAAAA',
+          satisfiedCriteria: ['false-Criteria 1', 'false-Criteria 2'],
+        },
+        {
+          headline: 'Company 2',
+          logoColour: '/logo-black.png',
+          logoWhite: '/logo.svg',
+          active: false,
+          isHidden: false,
+          backgroundColor: '#ffffBB',
+          satisfiedCriteria: ['false-Criteria 1', 'false-Criteria 2'],
+        },
+        {
+          headline: 'Company 3',
+          logoColour: '/logo-black.png',
+          logoWhite: '/logo.svg',
+          active: false,
+          isHidden: false,
+          backgroundColor: '#212121',
+          satisfiedCriteria: ['true-Criteria 1', 'true-Criteria 2'],
+        },
+        {
+          headline: 'Company 4',
+          logoColour: '/logo-black.png',
+          logoWhite: '/logo.svg',
+          active: false,
+          isHidden: false,
+          backgroundColor: '#fff555',
+          satisfiedCriteria: ['false-Criteria 1', 'true-Criteria 2'],
+        },
+      ],
+    },
+  },
   fields: [
     {
       name: 'criteriaItems',

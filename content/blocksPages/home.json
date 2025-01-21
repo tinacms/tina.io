@@ -7,7 +7,7 @@
   "blocks": [
     {
       "blockSettings": {
-        "isFullscreen": true
+        "isFullscreen": false
       },
       "features": [
         {

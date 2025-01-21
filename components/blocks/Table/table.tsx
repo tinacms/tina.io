@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
 import Link from 'next/link';
-import { FiCheck } from 'react-icons/fi';
-import { FiMinus } from 'react-icons/fi';
+import React, { useRef, useState } from 'react';
+import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
 const TableHeader = ({ data, scrollData }) => {
@@ -20,7 +19,11 @@ const TableHeader = ({ data, scrollData }) => {
       {/* Remaining Columns Titles */}
       {data.columnItems?.map((headerItem, index) => (
         <div key={index}>
-          <div className={`text-center font-bold ${headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'}  underline decoration-dotted`}>
+          <div
+            className={`text-center font-bold ${
+              headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
+            }  underline decoration-dotted`}
+          >
             <Link href={`${headerItem.columnHeaderLink}`}>
               {headerItem.columnHeader} {headerItem.isReccomended ? '⭐️' : ''}
             </Link>
@@ -57,7 +60,7 @@ const TableBox = ({ data, index }) => {
   };
 
   return (
-    <div className="bg-slate-50">
+    <div className="bg-slate-50 rounded-t-lg w-full">
       <div className="lg:mx-auto relative max-w-screen-xl">
         <div
           className="overflow-x-scroll lg:overflow-x-hidden shadow-2xl rounded-2xl lg:shadow-none snap-x"

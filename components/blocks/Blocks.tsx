@@ -117,7 +117,10 @@ export const Blocks = ({
   return blocks.map((block, index) => {
     // console.log(block.__typename); // Debugging log
     return (
-      <BlockWrapper data={block.blockSettings}>
+      <BlockWrapper
+        data={block.blockSettings}
+        key={`${block.__typename}-${index}`}
+      >
         {blockByType(block, index, recentPosts)}
       </BlockWrapper>
     );

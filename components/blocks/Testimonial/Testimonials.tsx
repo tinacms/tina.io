@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
+import { Container } from '../Container';
 
 const checkTouchScreen = () => {
   let hasTouchScreen = false;
@@ -101,61 +102,63 @@ export default function TestimonialsBlock({ data, index }) {
   const titleRef = useRef(null);
 
   return (
-    <>
-      <h1
-        className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20`}
-        data-tina-field={tinaField(data, 'title')}
-        ref={titleRef}
-      >
-        {data?.title || 'Loved by Developers'}
-      </h1>
-      <section
-        key={index}
-        className={`relative px-8 py-12 lg:py-16 columns-md gap-6`}
-        style={{
-          columnFill: 'balance-all',
-        }}
-      >
-        {data.testimonials &&
-          data.testimonials.map((testimonial, index) => {
-            return (
-              (([0, 1].includes(index) || isShowingAll || !isTouchScreen) && (
-                <Testimonial data={testimonial} key={index} />
-              )) ||
-              ([2].includes(index) && !isShowingAll && (
-                <div
-                  className="relative w-full h-full"
-                  style={{
-                    maskImage: 'linear-gradient(black, transparent 80%)',
-                  }}
-                >
-                  <Testimonial data={testimonial} key={index} />
-                </div>
-              ))
-            );
-          })}
-      </section>
-      {!isShowingAll && isTouchScreen ? (
-        <button
-          className="text-blue-500 text-lg font-tuner cursor-pointer mb-8"
-          onClick={() => setIsShowingAll(true)}
+    <div className="w-full">
+      <Container width="wide">
+        <h1
+          className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20`}
+          data-tina-field={tinaField(data, 'title')}
+          ref={titleRef}
         >
-          See all
-        </button>
-      ) : null}
-      {isShowingAll && isTouchScreen ? (
-        <button
-          className="text-blue-500 text-lg font-tuner cursor-pointer"
-          onClick={() => {
-            titleRef.current.scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => {
-              setIsShowingAll(false);
-            }, 700);
+          {data?.title || 'Loved by Developers'}
+        </h1>
+        <section
+          key={index}
+          className={`relative py-12 lg:py-16 columns-sm gap-3`}
+          style={{
+            columnFill: 'balance-all',
           }}
         >
-          Hide
-        </button>
-      ) : null}
-    </>
+          {data.testimonials &&
+            data.testimonials.map((testimonial, index) => {
+              return (
+                (([0, 1].includes(index) || isShowingAll || !isTouchScreen) && (
+                  <Testimonial data={testimonial} key={index} />
+                )) ||
+                ([2].includes(index) && !isShowingAll && (
+                  <div
+                    className="relative w-full h-full"
+                    style={{
+                      maskImage: 'linear-gradient(black, transparent 80%)',
+                    }}
+                  >
+                    <Testimonial data={testimonial} key={index} />
+                  </div>
+                ))
+              );
+            })}
+        </section>
+        {!isShowingAll && isTouchScreen ? (
+          <button
+            className="text-blue-500 text-lg font-tuner cursor-pointer mb-8"
+            onClick={() => setIsShowingAll(true)}
+          >
+            See all
+          </button>
+        ) : null}
+        {isShowingAll && isTouchScreen ? (
+          <button
+            className="text-blue-500 text-lg font-tuner cursor-pointer"
+            onClick={() => {
+              titleRef.current.scrollIntoView({ behavior: 'smooth' });
+              setTimeout(() => {
+                setIsShowingAll(false);
+              }, 700);
+            }}
+          >
+            Hide
+          </button>
+        ) : null}
+      </Container>
+    </div>
   );
 }

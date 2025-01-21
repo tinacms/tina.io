@@ -57,7 +57,7 @@ const BookingBlock = ({ data, index }) => {
   if (!meetingPeople.length) return null;
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center w-full">
       <div className="lg:w-1/2 container mx-auto px-4">
         <div className="flex justify-center mb-6 step-indicator items-center">
           <div className="step flex flex-col items-center relative z-10">

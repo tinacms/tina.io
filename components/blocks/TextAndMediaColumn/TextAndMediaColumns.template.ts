@@ -5,6 +5,9 @@ import { youtubeMediaTemplate } from '../../sharedTemplates/YoutubeMediaTemplate
 export const textAndMediaColumnsComponentTemplate: Template = {
   label: 'Text and Media Column Component',
   name: 'textMediaColumnComponent',
+  ui: {
+    previewSrc: '/img/blocks/text-and-media-column.png',
+  },
   fields: [
     {
       name: 'isVideoOnLeft',

@@ -322,6 +322,9 @@
       "_template": "logoGrid"
     },
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
       "tableHeader": "Plan Comparison",
       "columnItems": [
         {
