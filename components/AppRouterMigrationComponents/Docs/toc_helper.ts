@@ -50,7 +50,6 @@ export function useTocListener(data: any) {
 
   React.useEffect(() => {
     if (!contentRef.current) return;
-
     const tocListener = createTocListener(contentRef, setActiveIds);
     const handleScroll = () => tocListener(); // Define scroll handler
 
