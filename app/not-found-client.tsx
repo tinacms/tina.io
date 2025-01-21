@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from 'components/ui';
-import { DynamicLink } from 'components/ui/DynamicLink';
+import { Button } from '../components/ui'
+import { DynamicLink } from '../components/ui/DynamicLink';
 import Image from 'next/image';
 import React from 'react';
 
