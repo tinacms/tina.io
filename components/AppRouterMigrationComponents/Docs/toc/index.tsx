@@ -3,9 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
-import RightArrowSvg from 'public/svg/right-arrow.svg';
 import { getDocId } from 'utils/docs/getDocIds';
-import { syncTocScroll } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
 
 interface TocProps {
   tocItems: Array<{ type: string; text: string }>;

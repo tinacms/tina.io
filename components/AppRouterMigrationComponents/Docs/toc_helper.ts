@@ -63,29 +63,3 @@ export function useTocListener(data: any) {
 
   return { contentRef, activeIds };
 }
-
-export function syncTocScroll(tocWrapperRef: React.RefObject<HTMLDivElement>) {
-  if (!tocWrapperRef.current) return;
-  const middleContentLength = document.documentElement.scrollHeight;
-  const sideBarLength = tocWrapperRef.current.scrollHeight;
-  const preLength = 100;
-  const postLength = 1100;
-
-  const middleContentPos = document.documentElement.scrollTop;
-
-  let newPosition = 0;
-  if (middleContentPos < preLength) {
-    newPosition = 0;
-  } else if (middleContentPos > middleContentLength - postLength) {
-    newPosition = sideBarLength;
-  } else {
-    newPosition =
-      (middleContentPos - preLength) *
-      (sideBarLength / (middleContentLength - preLength - postLength));
-  }
-
-  tocWrapperRef.current.scrollTo({
-    top: newPosition,
-    behavior: 'auto',
-  });
-}
