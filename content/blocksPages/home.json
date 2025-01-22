@@ -31,6 +31,7 @@
               "_template": "video"
             }
           ],
+          "isFullScreen": true,
           "isReversed": false,
           "imageBackground": false
         }

@@ -31,7 +31,6 @@ export default async function DocsPage() {
       />
     );
   } catch (error) {
-    
     notFound();
   }
 }
