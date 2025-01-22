@@ -204,7 +204,7 @@ const EventsBlock = () => {
             </Suspense>
           )}
         </div>
-        <div className="flex flex-col w-full lg:w-1/2 justify-center">
+        <div className="flex flex-col w-full lg:w-1/2 justify-start">
           <h2 className="pb-6 pl-3 font-tuner inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
             {eventsData.title}
           </h2>
@@ -217,7 +217,7 @@ const EventsBlock = () => {
           ))}
           <Link
             href="/events"
-            className="pt-10 mb-10 font-bold flex items-center justify-end gap-2"
+            className="pt-10 font-bold flex items-center justify-end gap-2"
           >
             <span className="bg-gradient-to-br text-md from-orange-400 via-orange-500 to-orange-600 hover:from-orange-500 hover:via-orange-700 hover:to-orange-800  bg-clip-text text-transparent">
               SEE ALL EVENTS

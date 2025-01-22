@@ -99,7 +99,7 @@ export const RecipeBlock = ({ data }) => {
   };
 
   return (
-    <div className="recipe-block-container mt-20 relative">
+    <div className="recipe-block-container relative w-full">
       <div className="title-description px-10">
         <h2 className="font-tuner text-orange-500 text-2xl">
           {title || 'Default Title'}

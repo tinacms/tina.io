@@ -2,7 +2,10 @@ import MonacoCodeEditor from './MonacoCodeEditor';
 
 export const RecipeBlock = {
   name: 'recipeBlock',
-  label: 'Recipe Block',
+  label: '<⭐> Recipe Block',
+  ui: {
+    previewSrc: '/img/blocks/recipe.png',
+  },
   fields: [
     {
       name: 'title',
