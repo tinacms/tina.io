@@ -1,5 +1,4 @@
 import client from 'tina/__generated__/client';
-
 import { glob } from 'fast-glob';
 import BlogIndexPageClient from './BlogIndexPageClient';
 
@@ -14,21 +13,21 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({params}){
-
-    const title = 'TinaCMS Blog';
-    const description = 'Stay updated with the TinaCMS blog. Get tips, guides and the latest news on content management and development';
-    const pageIndex = params.page_index;
-    const url = `https://tinacms.org/blog/page/${pageIndex}`;
-    return{
+export async function generateMetadata({ params }: { params: { page_index: string } }) {
+  const title = 'TinaCMS Blog';
+  const description =
+    'Stay updated with the TinaCMS blog. Get tips, guides and the latest news on content management and development';
+  const pageIndex = params.page_index;
+  const url = `https://tinacms.org/blog/page/${pageIndex}`;
+  return {
+    title: title,
+    description: description,
+    openGraph: {
       title: title,
       description: description,
-      openGraph: {
-        title: title,
-        description: description,
-        url: url,
-      }
-    }
+      url: url,
+    },
+  };
 }
 
 export default async function BlogPaginationPage({
@@ -42,20 +41,32 @@ export default async function BlogPaginationPage({
   const pageIndex = parseInt(params.page_index) || 1;
   const startIndex = (pageIndex - 1) * POSTS_PER_PAGE;
 
-  const postResponse = await client.queries.postConnection({
-    first: posts.length,
-    sort: 'date',
-  });
+  let postResponse = null;
+  try {
+    postResponse = await client.queries.postConnection({
+      first: posts.length,
+      sort: 'date',
+    });
+  } catch (err) {
+    console.error('Error fetching postConnection:', err);
+    return <div>Error loading blog posts. Please try again later.</div>;
+  }
 
-  const reversedPosts = postResponse?.data?.postConnection?.edges
-    ?.map((edge) => edge.node)
-    .reverse();
+  let reversedPosts = [];
+  try {
+    reversedPosts = postResponse?.data?.postConnection?.edges
+      ?.map((edge) => edge?.node)
+      ?.filter(Boolean)
+      ?.reverse();
+  } catch (err) {
+    console.error('Error processing posts:', err);
+    return <div>Error processing blog posts. Please try again later.</div>;
+  }
 
   const finalisedPostData = reversedPosts.slice(
     startIndex,
     startIndex + POSTS_PER_PAGE
   );
-
 
   return (
     <>
