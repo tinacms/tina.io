@@ -12,7 +12,7 @@ export const TinaIcon = ({
     <Link href={link} className={className}>
         <h1 className="flex items-center">
           <TinaIconSvg
-            className={`${children ? 'w-8' : 'w-10'} h-auto ${
+            className={`${children ? 'w-8' : 'w-20'} h-auto ${
               color === 'orange' ? 'fill-orange-500' : 'fill-white'
             }`}
           />

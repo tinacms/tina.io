@@ -1,6 +1,5 @@
 {
   "Column1": {
-    "header": "Product",
     "footerItem": [
       {
         "label": "Showcase",
@@ -9,7 +8,7 @@
       },
       {
         "label": "TinaCloud",
-        "href": "app.tina.io",
+        "href": "https://app.tina.io",
         "_template": "stringItem"
       },
       {
@@ -30,7 +29,6 @@
     ]
   },
   "Column2": {
-    "header": "Resources",
     "footerItem": [
       {
         "label": "Blog",
@@ -62,7 +60,7 @@
   "Column3": {
     "footerItem": [
       {
-        "label": "Whats New",
+        "label": "What's New",
         "items": [
           {
             "label": "TinaCMS",
