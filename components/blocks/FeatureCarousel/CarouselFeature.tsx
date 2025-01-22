@@ -6,6 +6,7 @@ import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
+import { CarouselFeatureMobile } from './CarouselFeature.mobile';
 
 const checkTouchScreen = () => {
   let hasTouchScreen = false;
@@ -156,6 +157,8 @@ export default function CarouselFeatureBlock({ data, index }) {
       mediaQuerySmallOrMedium.removeEventListener('change', handleMediaChange);
     };
   }, [data?.items?.length, isUserInteracted]);
+
+  return <CarouselFeatureMobile data={data} />;
 
   const startAutoTicking = () => {
     intervalRef.current = setInterval(() => {

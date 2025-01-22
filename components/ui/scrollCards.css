@@ -1,0 +1,52 @@
+.scroll-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0 5rem;
+  padding-bottom: 8rem;
+}
+
+.scroll-card {
+  width: 100%;
+  min-height: 10rem; /* Reduced height */
+  margin: 2rem; /* Reduced margin further */
+
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Active card */
+.scroll-card.active {
+  transform: translateZ(0) scale(1);
+  background-color: #ffffff;
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-card.active h3 {
+  background: linear-gradient(to bottom right, #fb923c, #f97316, #ea580c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Non-active cards */
+.scroll-card:not(.active) h3 {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: #000000;
+}
+
+/* All cards after the active one */
+.scroll-card:not(.active) {
+  transform: translateZ(-100px) scale(0.95);
+  z-index: 1;
+}
