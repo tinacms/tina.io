@@ -12,7 +12,6 @@ export async function generateStaticParams() {
   while (hasNextPage) {
     try {
       const postsResponse = await client.queries.postConnection({ after });
-
       const edges = postsResponse?.data?.postConnection?.edges || [];
       const pageInfo = postsResponse?.data?.postConnection?.pageInfo || {
         hasNextPage: false,
@@ -32,6 +31,7 @@ export async function generateStaticParams() {
       notFound();
     }
   }
+
   return allPosts;
 }
 
@@ -60,7 +60,7 @@ export async function generateMetadata({
       },
     };
   } catch (error) {
-    console.error('Error generating metadata:', error);
+    console.error(`Error generating metadata for slug: ${slugPath}`, error);
     return notFound();
   }
 }
@@ -105,6 +105,16 @@ export default async function BlogPage({
     return <BlogPageClient data={{ post }} />;
   } catch (error) {
     console.error(`Error fetching post for slug: ${slugPath}`, error);
-    return notFound();
+
+    // Return `notFound` for specific errors
+    if (
+      error.message.includes('Unable to fetch') ||
+      error.message.includes('Unable to find record')
+    ) {
+      return notFound();
+    }
+
+    // Re-throw unexpected errors to debug later
+    throw error;
   }
 }
