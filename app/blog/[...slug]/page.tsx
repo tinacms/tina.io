@@ -36,7 +36,11 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = true;
-export async function generateMetadata({ params }: { params: { slug: string[] } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string[] };
+}) {
   const slugPath = params.slug.join('/');
   const vars = { relativePath: `${slugPath}.mdx` };
 
@@ -60,7 +64,11 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
   }
 }
 
-export default async function BlogPage({ params }: { params: { slug: string[] } }) {
+export default async function BlogPage({
+  params,
+}: {
+  params: { slug: string[] };
+}) {
   const slugPath = params.slug.join('/');
   const vars = { relativePath: `${slugPath}.mdx` };
 
@@ -79,7 +87,10 @@ export default async function BlogPage({ params }: { params: { slug: string[] } 
     console.error(`Error fetching post for slug: ${slugPath}`, error);
 
     // Gracefully handle errors related to missing records
-    if (error.message.includes('Unable to fetch') || error.message.includes('Unable to find record')) {
+    if (
+      error.message.includes('Unable to fetch') ||
+      error.message.includes('Unable to find record')
+    ) {
       return notFound();
     }
 
@@ -87,4 +98,3 @@ export default async function BlogPage({ params }: { params: { slug: string[] } 
     throw error;
   }
 }
-
