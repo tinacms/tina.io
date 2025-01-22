@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   let after: string | null = null;
 
   while (hasNextPage) {
-    try{
+    try {
       const postsResponse = await client.queries.postConnection({ after });
 
       const edges = postsResponse?.data?.postConnection?.edges || [];
@@ -18,20 +18,19 @@ export async function generateStaticParams() {
         hasNextPage: false,
         endCursor: null,
       };
-  
+
       allPosts = allPosts.concat(
         edges.map((post) => ({
           slug: [post?.node?._sys?.filename],
         }))
       );
-  
+
       hasNextPage = pageInfo.hasNextPage;
       after = pageInfo.endCursor;
-    }catch(error){
-      console.error(error);
-      notFound()
+    } catch (error) {
+      console.error('Error during static params generation:', error);
+      notFound();
     }
-    
   }
   return allPosts;
 }
@@ -62,10 +61,7 @@ export async function generateMetadata({
     };
   } catch (error) {
     console.error('Error generating metadata:', error);
-    return {
-      title: 'Blog Post | TinaCMS',
-      description: 'Read our latest blog post.',
-    };
+    return notFound();
   }
 }
 
@@ -105,6 +101,7 @@ export default async function BlogPage({
       next: fetchedPost.next ?? null,
       body: fetchedPost.body as TinaMarkdownContent,
     };
+
     return <BlogPageClient data={{ post }} />;
   } catch (error) {
     console.error(`Error fetching post for slug: ${slugPath}`, error);
