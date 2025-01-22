@@ -10,22 +10,28 @@ export async function generateStaticParams() {
   let after: string | null = null;
 
   while (hasNextPage) {
-    const postsResponse = await client.queries.postConnection({ after });
+    try{
+      const postsResponse = await client.queries.postConnection({ after });
 
-    const edges = postsResponse?.data?.postConnection?.edges || [];
-    const pageInfo = postsResponse?.data?.postConnection?.pageInfo || {
-      hasNextPage: false,
-      endCursor: null,
-    };
-
-    allPosts = allPosts.concat(
-      edges.map((post) => ({
-        slug: [post?.node?._sys?.filename],
-      }))
-    );
-
-    hasNextPage = pageInfo.hasNextPage;
-    after = pageInfo.endCursor;
+      const edges = postsResponse?.data?.postConnection?.edges || [];
+      const pageInfo = postsResponse?.data?.postConnection?.pageInfo || {
+        hasNextPage: false,
+        endCursor: null,
+      };
+  
+      allPosts = allPosts.concat(
+        edges.map((post) => ({
+          slug: [post?.node?._sys?.filename],
+        }))
+      );
+  
+      hasNextPage = pageInfo.hasNextPage;
+      after = pageInfo.endCursor;
+    }catch(error){
+      console.error(error);
+      notFound()
+    }
+    
   }
   return allPosts;
 }

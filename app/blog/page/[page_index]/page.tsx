@@ -1,6 +1,7 @@
 import client from 'tina/__generated__/client';
 import { glob } from 'fast-glob';
 import BlogIndexPageClient from './BlogIndexPageClient';
+import { notFound } from 'next/navigation';
 
 const POSTS_PER_PAGE = 8;
 
@@ -49,7 +50,7 @@ export default async function BlogPaginationPage({
     });
   } catch (err) {
     console.error('Error fetching postConnection:', err);
-    return <div>Error loading blog posts. Please try again later.</div>;
+    notFound()
   }
 
   let reversedPosts = [];
@@ -60,7 +61,7 @@ export default async function BlogPaginationPage({
       ?.reverse();
   } catch (err) {
     console.error('Error processing posts:', err);
-    return <div>Error processing blog posts. Please try again later.</div>;
+    notFound()
   }
 
   const finalisedPostData = reversedPosts.slice(
