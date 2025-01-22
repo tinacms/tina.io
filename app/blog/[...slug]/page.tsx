@@ -36,12 +36,7 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = true;
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] };
-}) {
+export async function generateMetadata({ params }: { params: { slug: string[] } }) {
   const slugPath = params.slug.join('/');
   const vars = { relativePath: `${slugPath}.mdx` };
 
@@ -49,8 +44,8 @@ export async function generateMetadata({
     const { data } = await client.queries.getExpandedPostDocument(vars);
 
     if (!data?.post) {
-      console.warn(`No metadata found for slug: ${slugPath}`);
-      return notFound();
+      console.warn(`Metadata not found for slug: ${slugPath}`);
+      return notFound(); // Redirect to not-found.tsx
     }
 
     return {
@@ -61,15 +56,11 @@ export async function generateMetadata({
     };
   } catch (error) {
     console.error(`Error generating metadata for slug: ${slugPath}`, error);
-    return notFound();
+    return notFound(); // Handle gracefully
   }
 }
 
-export default async function BlogPage({
-  params,
-}: {
-  params: { slug: string[] };
-}) {
+export default async function BlogPage({ params }: { params: { slug: string[] } }) {
   const slugPath = params.slug.join('/');
   const vars = { relativePath: `${slugPath}.mdx` };
 
@@ -77,44 +68,23 @@ export default async function BlogPage({
     const res = await client.queries.getExpandedPostDocument(vars);
 
     if (!res.data?.post) {
-      console.warn(`No post found for slug: ${slugPath}`);
-      return notFound();
+      console.warn(`Post not found for slug: ${slugPath}`);
+      return notFound(); // Redirect to not-found.tsx
     }
 
-    const fetchedPost = res.data.post;
-
-    const post: BlogPost = {
-      _sys: fetchedPost._sys,
-      id: fetchedPost.id,
-      title: fetchedPost.title,
-      date: fetchedPost.date || '',
-      last_edited: fetchedPost.last_edited ?? null,
-      author: fetchedPost.author || '',
-      seo: fetchedPost.seo
-        ? {
-            title: fetchedPost.seo.title || 'Default SEO Title',
-            description:
-              fetchedPost.seo.description || 'Default SEO Description',
-          }
-        : null,
-      prev: fetchedPost.prev ?? null,
-      next: fetchedPost.next ?? null,
-      body: fetchedPost.body as TinaMarkdownContent,
-    };
+    const post = res.data.post;
 
     return <BlogPageClient data={{ post }} />;
   } catch (error) {
     console.error(`Error fetching post for slug: ${slugPath}`, error);
 
-    // Return `notFound` for specific errors
-    if (
-      error.message.includes('Unable to fetch') ||
-      error.message.includes('Unable to find record')
-    ) {
+    // Gracefully handle errors related to missing records
+    if (error.message.includes('Unable to fetch') || error.message.includes('Unable to find record')) {
       return notFound();
     }
 
-    // Re-throw unexpected errors to debug later
+    // Re-throw unexpected errors for debugging
     throw error;
   }
 }
+
