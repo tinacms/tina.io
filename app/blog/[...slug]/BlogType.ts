@@ -23,14 +23,14 @@ interface PostSummary {
 export interface BlogPost {
   _sys: Sys;
   id: string;
-  title: string;
+  title?: string;
   date?: string;
-  last_edited: string | null;
-  author: string;
-  seo: Seo | null;
-  prev: PostSummary | null;
-  next: PostSummary | null;
-  body: TinaMarkdownContent;
+  last_edited?: string | null;
+  author?: string;
+  seo?: Seo | null;
+  prev?: PostSummary | null;
+  next?: PostSummary | null;
+  body?: TinaMarkdownContent;
 }
 
 export interface BlogPageClientProps {
