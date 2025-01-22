@@ -5,17 +5,23 @@ import BlogPageClient from './BlogPageClient';
 export async function generateStaticParams() {
   let allPosts = [];
   let hasNextPage = true;
-  let after = null;
+  let after: string | null = null;
 
   while (hasNextPage) {
     const postsResponse = await client.queries.postConnection({ after });
-    const edges = postsResponse.data.postConnection.edges || [];
-    const pageInfo = postsResponse.data.postConnection.pageInfo || {};
+
+    const edges = postsResponse?.data?.postConnection?.edges || [];
+    const pageInfo = postsResponse?.data?.postConnection?.pageInfo || {
+      hasNextPage: false,
+      endCursor: null,
+    };
+
     allPosts = allPosts.concat(
       edges.map((post) => ({
-        slug: [post?.node?._sys.filename],
+        slug: [post?.node?._sys?.filename],
       }))
     );
+
     hasNextPage = pageInfo.hasNextPage;
     after = pageInfo.endCursor;
   }
