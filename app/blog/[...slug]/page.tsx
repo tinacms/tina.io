@@ -36,12 +36,7 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = true;
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] };
-}) {
+export async function generateMetadata({ params }: { params: { slug: string[] } }) {
   const slugPath = params.slug.join('/');
   const vars = { relativePath: `${slugPath}.mdx` };
 
@@ -49,8 +44,8 @@ export async function generateMetadata({
     const { data } = await client.queries.getExpandedPostDocument(vars);
 
     if (!data?.post) {
-      console.warn(`No metadata found for slug: ${slugPath}`);
-      return notFound();
+      console.warn(`Metadata not found for slug: ${slugPath}`);
+      return notFound(); // Redirect to not-found.tsx
     }
 
     return {
@@ -61,7 +56,7 @@ export async function generateMetadata({
     };
   } catch (error) {
     console.error(`Error generating metadata for slug: ${slugPath}`, error);
-    return notFound();
+    return notFound(); // Handle gracefully
   }
 }
 
