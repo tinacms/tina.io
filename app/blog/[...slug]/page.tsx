@@ -1,19 +1,33 @@
-import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import BlogPageClient from './BlogPageClient';
-import { TinaMarkdownContent } from "tinacms/dist/rich-text";
-import {  BlogPost } from './BlogType'; 
+import { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import { BlogPost } from './BlogType';
 
 export async function generateStaticParams() {
-  const contentDir = './content/blog/';
-  const files = await glob(`${contentDir}**/*.mdx`);
-  return files
-    .filter((file) => !file.endsWith('index.mdx'))
-    .map((file) => {
-      const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/blog/" and ".mdx"
-      return { slug: path.split('/') };
-    });
+  let allPosts = [];
+  let hasNextPage = true;
+  let after: string | null = null;
+
+  while (hasNextPage) {
+    const postsResponse = await client.queries.postConnection({ after });
+
+    const edges = postsResponse?.data?.postConnection?.edges || [];
+    const pageInfo = postsResponse?.data?.postConnection?.pageInfo || {
+      hasNextPage: false,
+      endCursor: null,
+    };
+
+    allPosts = allPosts.concat(
+      edges.map((post) => ({
+        slug: [post?.node?._sys?.filename],
+      }))
+    );
+
+    hasNextPage = pageInfo.hasNextPage;
+    after = pageInfo.endCursor;
+  }
+  return allPosts;
 }
 
 export const dynamicParams = true;
@@ -67,23 +81,23 @@ export default async function BlogPage({
 
     const fetchedPost = res.data.post;
 
-    
     const post: BlogPost = {
       _sys: fetchedPost._sys,
       id: fetchedPost.id,
       title: fetchedPost.title,
       date: fetchedPost.date || '',
       last_edited: fetchedPost.last_edited ?? null,
-      author: fetchedPost.author || '', 
+      author: fetchedPost.author || '',
       seo: fetchedPost.seo
         ? {
             title: fetchedPost.seo.title || 'Default SEO Title',
-            description: fetchedPost.seo.description || 'Default SEO Description',
+            description:
+              fetchedPost.seo.description || 'Default SEO Description',
           }
         : null,
       prev: fetchedPost.prev ?? null,
       next: fetchedPost.next ?? null,
-      body: fetchedPost.body as TinaMarkdownContent, 
+      body: fetchedPost.body as TinaMarkdownContent,
     };
     return <BlogPageClient data={{ post }} />;
   } catch (error) {
