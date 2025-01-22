@@ -24,7 +24,7 @@ export interface BlogPost {
   _sys: Sys;
   id: string;
   title: string;
-  date: string;
+  date?: string;
   last_edited: string | null;
   author: string;
   seo: Seo | null;
