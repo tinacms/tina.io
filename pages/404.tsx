@@ -1,4 +1,4 @@
-import NotFoundClient from './not-found-client.tsx';
+import NotFoundClient from './not-found-client';
 import Head from 'next/head';
 
 export default function NotFound() {
