@@ -1,11 +1,14 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Router from 'next/router';
 
 import { DynamicLink } from './DynamicLink';
 
 export const BlogPagination = styled(
   ({ currentPage, numPages, ...styleProps }) => {
+    const router = useRouter();
     const isFirst = currentPage === 1;
     const isLast = currentPage === numPages;
     const prevPage = `/blog/page/${currentPage - 1}`;
@@ -16,7 +19,7 @@ export const BlogPagination = styled(
       e.preventDefault();
       const pageNumber = e.target.value;
       setSelectValue(pageNumber);
-      return Router.push(`/blog/page/${pageNumber}`);
+      return router.push(`/blog/page/${pageNumber}`);
     }
 
     return (

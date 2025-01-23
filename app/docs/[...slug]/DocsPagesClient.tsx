@@ -4,15 +4,23 @@ import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/doc
 import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
 import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
+import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
+import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { screenResizer } from 'components/hooks/ScreenResizer';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
 
-export default function DocsClient(props) {
-  const { PageTableOfContents, NavigationDocsData } = props.props;
-  const DocumentationData = props.tinaProps.data.doc;
+export default function DocsClient({ props }) {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
+
+  const { PageTableOfContents, NavigationDocsData } = props;
+  const DocumentationData = data.doc;
 
   const allData = [DocumentationData, PageTableOfContents, NavigationDocsData];
 
@@ -31,14 +39,7 @@ export default function DocsClient(props) {
   };
 
   const lastEdited = DocumentationData?.last_edited;
-  const date = lastEdited === null ? null : new Date(lastEdited);
-  const formattedDate = date
-    ? date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    : '';
+  const formattedDate = formatDate(lastEdited);
   const gridClass = isScreenSmallerThan840
     ? 'grid-cols-1'
     : isScreenSmallerThan1200
