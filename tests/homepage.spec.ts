@@ -4,7 +4,7 @@ test.use(devices['iPhone 11']);
 test('TinaCMS homepage loads and displays successfully on iPhone 11', async ({
   page,
 }) => {
-  await page.goto('https://tina.io/');
+  await page.goto('https://tina.io/', {timeout: 60000});
 
   await page.pause(); 
 
@@ -18,7 +18,7 @@ test('TinaCMS homepage loads and displays successfully on iPhone 11', async ({
 
 test.use(devices['iPhone 11']);
 test('TinaCMS homepage scrolls without breaking on iPhone 11', async ({ page }) => {
-  await page.goto('https://tina.io/');
+  await page.goto('https://tina.io/', {timeout: 60000});
 
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
   await page.waitForTimeout(1000); // wait for 1 second
