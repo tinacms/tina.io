@@ -79,6 +79,12 @@ export const featuresTemplate: Template = {
                     'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
                   type: 'string',
                 },
+                {
+                  name: 'link',
+                  label: 'Video Link',
+                  description: 'This is the link when the video is clicked.',
+                  type: 'string',
+                },
               ],
             },
             {
@@ -119,6 +125,17 @@ export const featuresTemplate: Template = {
               ],
             },
           ],
+        },
+        {
+          name: 'isFullScreen',
+          label: 'Should the feature blocks be set to a full screen?',
+          description: 'use this for large bold stand alone items',
+          type: 'boolean',
+          ui: {
+            component: 'toggle',
+            parse: (value) => !!value,
+            format: (value) => !!value,
+          },
         },
         {
           name: 'isReversed',

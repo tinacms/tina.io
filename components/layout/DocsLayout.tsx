@@ -1,6 +1,8 @@
+'use client';
+
 import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
 import { DefaultSeo } from 'next-seo';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import styled from 'styled-components';
 import { Overlay } from '../ui';
@@ -17,9 +19,10 @@ interface DocsLayoutProps {
 export const DocsLayout = React.memo(
   ({ children, navItems }: DocsLayoutProps) => {
     const router = useRouter();
+    const pathname = usePathname();
     return (
       <>
-        <DefaultSeo openGraph={{ url: 'https://tina.io' + router.asPath }} />
+        <DefaultSeo openGraph={{ url: 'https://tina.io' + pathname }} />
         <Layout sticky={false}>
           <DocsLayoutGrid>
             <Sidebar>

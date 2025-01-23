@@ -1,24 +1,26 @@
-import { TinaClient } from 'app/tina-client';
-import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { glob } from 'fast-glob';
-import { NextSeo } from 'next-seo';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocsNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import DocsClient from './DocsPagesClient';
 
 export async function generateStaticParams() {
-  const contentDir = './content/docs/';
+  try{
+      const contentDir = './content/docs/';
   const files = await glob(`${contentDir}**/*.mdx`);
-
   return files
     .filter((file) => !file.endsWith('index.mdx'))
     .map((file) => {
       const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/docs/" and ".mdx"
       return { slug: path.split('/') };
     });
+  } catch(error)
+  {
+    console.error(error);
+    notFound()
+  }
+
 }
 
 export async function generateMetadata({
@@ -27,16 +29,21 @@ export async function generateMetadata({
   params: { slug: string[] };
 }) {
   const slug = params.slug.join('/');
-  const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
+  try {
+    const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
-  return {
-    title: `${data.doc.seo?.title || data.doc.title}  |  🦙 TinaCMS Docs`,
-    description: data.doc.seo?.description || '',
-    openGraph: {
-      title: data.doc.title,
-      description: data.doc.seo?.description,
-    },
-  };
+    return {
+      title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
+      description: data.doc.seo?.description || '',
+      openGraph: {
+        title: data.doc.title,
+        description: data.doc.seo?.description,
+      },
+    };
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return notFound();
+  }
 }
 
 export default async function DocPage({
@@ -55,20 +62,22 @@ export default async function DocPage({
     const docData = results.data.doc;
     const PageTableOfContents = getTableOfContents(docData.body.children);
 
+    const props = {
+      query: results.query,
+      variables: results.variables,
+      data: results.data,
+      PageTableOfContents,
+      DocumentationData: docData,
+      NavigationDocsData: navDocData,
+    };
+
     return (
-      <TinaClient
-        Component={DocsClient}
-        props={{
-          query: results.query,
-          variables: results.variables,
-          data: results.data,
-          PageTableOfContents,
-          DocumentationData: docData,
-          NavigationDocsData: navDocData,
-        }}
-      />
+      <div>
+        <DocsClient props={props} />
+      </div>
     );
   } catch (error) {
-    notFound();
+    console.error('Found an error catching data:', error);
+    return notFound();
   }
 }
