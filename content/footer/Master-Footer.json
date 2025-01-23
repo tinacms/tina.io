@@ -1,0 +1,186 @@
+{
+  "Column1": {
+    "footerItem": [
+      {
+        "label": "Showcase",
+        "href": "/showcase",
+        "_template": "stringItem"
+      },
+      {
+        "label": "TinaCloud",
+        "href": "https://app.tina.io",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Introduction",
+        "href": "/docs",
+        "_template": "stringItem"
+      },
+      {
+        "label": "How Tina Works",
+        "href": "/docs/product-tour",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Roadmap",
+        "href": "/roadmap ",
+        "_template": "stringItem"
+      }
+    ]
+  },
+  "Column2": {
+    "footerItem": [
+      {
+        "label": "Blog",
+        "href": "/blog",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Examples",
+        "href": "/examples",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Compare Tina",
+        "href": "/compare-tina",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Support",
+        "href": "/docs/support",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Media",
+        "href": "/media",
+        "_template": "stringItem"
+      }
+    ]
+  },
+  "Column3": {
+    "footerItem": [
+      {
+        "label": "What's New",
+        "items": [
+          {
+            "label": "TinaCMS",
+            "href": "/whats-new/tinacms"
+          },
+          {
+            "label": "TinaCloud",
+            "href": "/whats-new/tinacloud"
+          }
+        ],
+        "_template": "groupOfStringItems"
+      },
+      {
+        "label": "Use Cases",
+        "items": [
+          {
+            "label": "Agencies",
+            "href": "/agencies"
+          },
+          {
+            "label": "Documentation",
+            "href": "/documentation"
+          },
+          {
+            "label": "Teams",
+            "href": "/cms-for-teams"
+          },
+          {
+            "label": "Jamstack CMS",
+            "href": "/jamstack-cms"
+          }
+        ],
+        "_template": "groupOfStringItems"
+      },
+      {
+        "label": "Benefits",
+        "items": [
+          {
+            "label": "MDX",
+            "href": "/mdx-cms"
+          },
+          {
+            "label": "Markdown",
+            "href": "/markdown-cms"
+          },
+          {
+            "label": "Git",
+            "href": "/git-cms"
+          },
+          {
+            "label": "Editorial Workflow",
+            "href": "/editorial-workflow"
+          },
+          {
+            "label": "Customization",
+            "href": "/flexible-cms"
+          },
+          {
+            "label": "Seo",
+            "href": "/seo"
+          }
+        ],
+        "_template": "groupOfStringItems"
+      },
+      {
+        "label": "Integrations",
+        "items": [
+          {
+            "label": "Astro",
+            "href": "/astro"
+          },
+          {
+            "label": "Hugo",
+            "href": "/hugo-cms"
+          },
+          {
+            "label": "NextJS",
+            "href": "/nextjs-cms"
+          },
+          {
+            "label": "Jekyll",
+            "href": "/jekyll-cms"
+          }
+        ],
+        "_template": "groupOfStringItems"
+      }
+    ]
+  },
+  "Column4": {
+    "footerItem": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/tinacms/tinacms",
+        "image": "/github-mark-white.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Twitter",
+        "href": "https://twitter.com/tinacms",
+        "image": "/logo.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Discord",
+        "href": "https://discord.com/invite/zumN63Ybpf",
+        "image": "/icon_clyde_white_RGB.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "YouTube",
+        "href": "https://www.youtube.com/@TinaCMS",
+        "image": "/youtube-logo-white1.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/company/tinacms",
+        "image": "/LinkedIn_icon-white1.svg",
+        "_template": "socialLink"
+      }
+    ]
+  }
+}

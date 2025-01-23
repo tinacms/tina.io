@@ -1,13 +1,13 @@
 ---
 title: FAQ
-last_edited: '2024-11-11T01:35:17.011Z'
+last_edited: '2025-01-07T23:28:52.036Z'
 next: ''
 previous: ''
 ---
 
 ## What is TinaCloud?
 
-TinaCloud is a hosted [datalayer](/docs/reference/content-api/datalayer) for TinaCMS. TinaCloud is the easiest way to use TinaCMS in production. It provides a hosted GraphQL endpoint for your content, Git integration, user management, editorial workflow features and more. It also grants authorization for other users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub. TinaCMS can be [self-hosted](/docs/self-hosted/overview) or used independently of TinaCloud as well.
+TinaCloud is a hosted [datalayer](/docs/reference/content-api/data-layer) for TinaCMS. TinaCloud is the easiest way to use TinaCMS in production. It provides a hosted GraphQL endpoint for your content, Git integration, user management, editorial workflow features and more. It also grants authorization for other users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub. TinaCMS can be [self-hosted](/docs/self-hosted/overview) or used independently of TinaCloud as well.
 
 For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
@@ -17,7 +17,7 @@ For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
 ## What versions of Node are supported?
 
-TinaCMS supports the latest LTS version of Node. We currently support v18, v20, and v22 of Node with NPM, PNPM, and Yarn.
+TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.
 
 ## What is Tina's tech stack?
 
@@ -73,6 +73,8 @@ Follow these steps to set it up:
 4. Click Save
 
 > **Note:** The co-author email is publicly viewable on GitHub. If you want to hide your email, GitHub provides an anonymous email address for each user. You can find your anonymous email address in the [GitHub email settings](https://github.com/settings/emails). This email address can then be configured in TinaCloud as the co-author.
+
+Find out more about [Git Co-Authoring](/docs/tina-cloud/git-co-authoring)
 
 ## Why do I need a database when using markdown?
 
@@ -162,17 +164,24 @@ TinaCloud's GraphQL API returns this error when it cannot find a file in your Gi
 ### How do I resolve `The local GraphQL schema doesn't match the remote GraphQL schema.` errors?
 
 If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud.
-To resolve it, make sure you have latest versions of `@tinacms/cli` and `tinacms` in your project, and then run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
+To resolve it:
+
+1. Ensure that your schema (generated from `tina/config.ts`) does not include any varying information, such as timestamps or random text.
+2. Ensure that you have the latest versions of `@tinacms/cli` and `tinacms` in your project.
+3. Run the dev command locally.
+4. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
 
 If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of `tinacms` and `@tinacms/cli` on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
 
 ### How do I resolve errors caused by unindexed branches?
 
-If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, try the following.\_createMdxContent
+If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, or see no branches indexed at all, try the following:
 
-1. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process.
-2. Verify that the branch exists in the GitHub repository.
-3. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
+1. Verify that a configuration file exists at `tina/config.ts` on the default branch.
+2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process.
+3. Verify that the branch exists in the GitHub repository.
+4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
+5. Ensure that the Tina project is located in the root directory 
 
 ### How do I resolve `There was a problem saving your document` errors?
 
@@ -243,7 +252,7 @@ Double check you aren't trying to access a document that doesn't exist.
 
 #### Popup blocker prevents Vercel from installing their GitHub app
 
-After choosing which starter template to deploy, and being redirected to Vercel - a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened. ".
+After choosing which starter template to deploy and being redirected to Vercel, a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened.".
 
 ![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)
 

@@ -11,19 +11,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { defineSchema } from 'tinacms'
-import type { Collection, Template } from 'tinacms'
-import { submenuTemplate } from '../components/toc/toc-submenu.template'
-import { itemTemplate } from '../components/toc/toc-item.template'
-import { pagesCollection } from './collectionsSchema/pages'
-import { docsCollection } from './collectionsSchema/docs'
-import { blogsCollection } from './collectionsSchema/blogs'
-import { examplesCollection } from './collectionsSchema/examples'
-import { meetingLinksCollection } from './collectionsSchema/meetingLinks'
-import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS'
-import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud'
-import { navigationBarCollection } from './collectionsSchema/navigationBar'
-
+import type { Collection, Template } from 'tinacms';
+import { defineSchema } from 'tinacms';
+import { itemTemplate } from '../components/toc/toc-item.template';
+import { submenuTemplate } from '../components/toc/toc-submenu.template';
+import { blogsCollection } from './collectionsSchema/blogs';
+import { docsCollection } from './collectionsSchema/docs';
+import { eventsCollection } from './collectionsSchema/eventsSchema';
+import { examplesCollection } from './collectionsSchema/examples';
+import { meetingLinksCollection } from './collectionsSchema/meetingLinks';
+import { navigationBarCollection } from './collectionsSchema/navigationBar';
+import { pagesCollection } from './collectionsSchema/pages';
+import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
+import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud';
+import { footerCollection } from './collectionsSchema/footer';
 
 export const schema = defineSchema({
   collections: [
@@ -35,6 +36,8 @@ export const schema = defineSchema({
     whatsNewTinaCMSCollection as Collection,
     whatsNewTinaCloudCollection as Collection,
     navigationBarCollection as Collection,
+    eventsCollection as Collection,
+    footerCollection as Collection,
     {
       name: 'docsTableOfContents',
       label: 'Docs - Table of Contents',
@@ -48,11 +51,11 @@ export const schema = defineSchema({
           list: true,
           ui: {
             itemProps: (item) => {
-              return { label: '🗂️ ' + (item?.title ?? "Unnamed Menu Group") };
+              return { label: '🗂️ ' + (item?.title ?? 'Unnamed Menu Group') };
             },
           },
           fields: [
-            {name: 'title', label: "Name", type: 'string'},
+            { name: 'title', label: 'Name', type: 'string' },
             {
               name: 'items',
               label: 'Page or Submenu',
@@ -60,12 +63,12 @@ export const schema = defineSchema({
               list: true,
               templates: [
                 submenuTemplate as Template,
-                itemTemplate as Template
-              ]
-            }
-          ]
+                itemTemplate as Template,
+              ],
+            },
+          ],
         },
-      ]
+      ],
     },
   ],
-})
+});

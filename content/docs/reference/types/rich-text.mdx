@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-10-17T05:02:36.352Z'
+last_edited: '2024-12-31T02:27:57.931Z'
 next: ''
 previous: ''
 ---
@@ -53,6 +53,27 @@ Change what you want to display and the order it is displayed in the editor
 ```
 
 ![](/img/docs/reference/blog-post.png)
+
+Full list of `toolbarOverride` options:
+
+```javascript
+toolbarOverride: [
+  'heading',
+  'link',
+  'image',
+  'quote',
+  'ul',
+  'ol',
+  'bold',
+  'italic',
+  'code',
+  'codeBlock',
+  'mermaid',
+  'table',
+  'raw',
+  'embed',
+];
+```
 
 ### Custom templates
 
@@ -135,6 +156,23 @@ Results in the following response from the content API:
   preselectResponse={true}
 />
 
+### Line Breaks
+
+To insert a line break into an empty line in TinaCMS Rich Text:
+
+* Press Shift + Enter to create the line break
+* If the line break is not followed by a line with text, it will render as a \ in the final output.\
+  This can be fixed by deleting and re-creating the line\
+  Ensure that the line break precedes text content to avoid this issue
+
+Note: This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
+
+### Using Table
+
+Check out how to use Table in rich text editor
+
+<Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
+
 ## Using `TinaMarkdown`
 
 The `<TinaMarkdown>` component allows you to control how each element
@@ -195,7 +233,9 @@ Within table cells, support is limited to inline elements only. The following ty
 * Quote
 * Headings
 
-If you try to add these types into a table cell, they will be treated as a string.![](/img/docs/rich-text/cells-1.png)**❌ Figure: Bad example - A table with block elements treated as strings**![supported-table-cell-formats](/img/docs/rich-text/cells-2.png)**✅ Figure: Good example - A table with inline elements**
+If you try to add these types into a table cell, they will be treated as a string.![](/img/docs/rich-text/cells-1.png)**❌ Figure: Bad example - A table with block elements treated as strings**\
+\
+![supported-table-cell-formats](/img/docs/rich-text/cells-2.png)**✅ Figure: Good example - A table with inline elements**
 
 ### Automatic transforms
 
@@ -266,6 +306,24 @@ This expression will be ignored, instead register a "Date" `template`:
 ```
 
 Then you can create a `Date` component which returns `new Date().toLocaleString()` under the hood.
+
+### Links must start with a supported scheme
+
+When using hyperlinks in markdown within the markdown editor, ensure that the URLs begin with one of the following supported schemes:
+
+* http
+* https
+* mailto
+* tel
+* xref
+
+Any URLs not starting with these schemes will be ignored.
+
+```javascript
+e.g.
+❌ google.com
+✅ https://tina.io
+```
 
 ### All JSX must be registered as a `template`
 

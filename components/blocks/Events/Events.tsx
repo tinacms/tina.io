@@ -2,11 +2,12 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
+import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
+import eventsData from '../../../content/events/master-events.json';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
-const Card = ({ cardItem, onHover }) => {
+export const Card = ({ cardItem, onHover }) => {
   const getOrdinalSuffix = (day) => {
     if (day > 3 && day < 21) return 'th';
     switch (day % 10) {
@@ -84,6 +85,7 @@ const Card = ({ cardItem, onHover }) => {
   const isLiveOrPastEvent = hoursUntilEvent < 0;
   const isLiveEvent = hoursUntilEvent <= 0 && hoursUntilEventEnd > 0;
 
+  const endYear = new Date(cardItem.endDate);
   return (
     <div
       className="relative px-4 pt-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
@@ -107,7 +109,9 @@ const Card = ({ cardItem, onHover }) => {
           {cardItem.headline}
         </h3>
         <div className="flex items-center text-md">
-          <p className="mr-2">{displayDate()}</p>
+          <p className="mr-2">
+            {displayDate()} {endYear.getFullYear()}
+          </p>
           {isLiveEvent ? (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
               LIVE
@@ -141,19 +145,12 @@ const Card = ({ cardItem, onHover }) => {
   );
 };
 
-const EventsBlock = ({ data, index }) => {
+const EventsBlock = () => {
   const [activeGlobeId, setActiveGlobeId] = useState(null);
   const [isGlobeVisible, setIsGlobeVisible] = useState(false);
   const globeContainerRef = useRef(null);
 
-  if (!data || !data.cardItems) return null;
-
-  data.cardItems.forEach((cardItem, idx) => {
-    cardItem.index = idx;
-  });
-
   useEffect(() => {
-    //TODO: We are not sure why but without this the lazy loading gets hydration errors
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -164,21 +161,34 @@ const EventsBlock = ({ data, index }) => {
       { threshold: 0.1 }
     );
 
-    if (globeContainerRef.current) {
-      observer.observe(globeContainerRef.current);
-    }
+    if (globeContainerRef.current) observer.observe(globeContainerRef.current);
 
     return () => observer.disconnect();
   }, []);
 
+  const now = new Date();
+
+  // Filter and sort the events
+  const filteredEvents = eventsData.cardItems
+    .filter((event) => {
+      const startDate = new Date(event.startDate);
+      const endDate = new Date(event.endDate ?? event.startDate);
+      return (
+        startDate >= now || // Upcoming events
+        (startDate <= now && endDate >= now) // Currently ongoing events
+      );
+    })
+    .sort(
+      (a, b) =>
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    ) // Sort by start date
+    .slice(0, 3); // Take only the first 3 events
+
   return (
     <div className="md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
-      <h1 className="pl-3 font-tuner flex items-center justify-center text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-12">
-        {data.title}
-      </h1>
       <div className="flex flex-col lg:flex-row lg:gap-4">
         <div
-          className="w-full hidden md:flex lg:w-1/2 flex justify-center items-center rounded-lg"
+          className="w-full hidden md:flex lg:w-1/2 justify-center items-center rounded-lg"
           ref={globeContainerRef}
         >
           {isGlobeVisible && (
@@ -189,19 +199,31 @@ const EventsBlock = ({ data, index }) => {
             >
               <LazyGlobe
                 activeGlobeId={activeGlobeId}
-                cardItems={data.cardItems}
+                cardItems={filteredEvents}
               />
             </Suspense>
           )}
         </div>
-        <div className="flex flex-col w-full lg:w-1/2">
-          {data.cardItems.map((cardItem, idx) => (
+        <div className="flex flex-col w-full lg:w-1/2 justify-center">
+          <h2 className="pb-6 pl-3 font-tuner inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
+            {eventsData.title}
+          </h2>
+          {filteredEvents.map((cardItem, index) => (
             <Card
-              key={`${index}-${idx}`}
-              cardItem={cardItem}
+              key={index}
+              cardItem={{ ...cardItem, index }}
               onHover={setActiveGlobeId}
             />
           ))}
+          <Link
+            href="/events"
+            className="pt-10 mb-10 font-bold flex items-center justify-end gap-2"
+          >
+            <span className="bg-gradient-to-br text-md from-orange-400 via-orange-500 to-orange-600 hover:from-orange-500 hover:via-orange-700 hover:to-orange-800  bg-clip-text text-transparent">
+              SEE ALL EVENTS
+            </span>
+            <FaArrowRight className="text-orange-500" />
+          </Link>
         </div>
       </div>
     </div>

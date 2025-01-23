@@ -23,11 +23,19 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const dummyMailchimpEndpoint =
   'https://theDomainHere.us18.list-manage.com/subscribe/post?u=1512315231252&amp;id=0asd21t12e1';
 
-  //The 'outputFileTracing: false' is a work-around to use the Monaco editor with the error 'Multiple assets emit content to the same filename'
-  //This is a known issue in the community - see https://github.com/vercel/next.js/issues/31692 for more context
+//The 'outputFileTracing: false' is a work-around to use the Monaco editor with the error 'Multiple assets emit content to the same filename'
+//This is a known issue in the community - see https://github.com/vercel/next.js/issues/31692 for more context
 
 const config = {
   ...extraConfig,
+  //BabelRc workaround whilst we have styledjsx - https://nextjs.org/docs/messages/swc-disabled
+  experimental: { forceSwcTransforms: true },
+  // experimental: {
+  //   forceSwcTransforms: true,
+  // },
+  compiler: {
+    styledComponents: true,
+  },
   outputFileTracing: false,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
@@ -39,9 +47,9 @@ const config = {
         pathname: '/forestry-demo/**',
       },
       {
-        protocol: "https",
-        hostname: "assets.tina.io",
-        port: "",
+        protocol: 'https',
+        hostname: 'assets.tina.io',
+        port: '',
       },
     ],
   },
@@ -75,6 +83,14 @@ const config = {
         key: 'Access-Control-Allow-Headers',
         value: 'Accept, Content-Length, Content-Type',
       },
+      {
+        key: 'X-Frame-Options',
+        value: 'SAMEORIGIN',
+      },
+      {
+        key: 'Content-Security-Policy',
+        value: "frame-ancestors 'self'",
+      },
     ];
     if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview') {
       headers.push({
@@ -89,9 +105,6 @@ const config = {
         headers,
       },
     ];
-  },
-  exportPathMap: async function () {
-    return {};
   },
   webpack(config) {
     config.module.rules.push({

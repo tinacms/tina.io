@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import type {
   PageBlocks,
@@ -20,7 +21,6 @@ import { BookingBlock } from './Booking/Booking';
 import { ColumnsBlock } from './Columns/Columns';
 import { CompareBoxBlock } from './CompareBox/CompareBox';
 import { VerticalCardsBlock } from './Events/Events';
-import { CarouselFeatureBlock } from './FeatureCarousel/CarouselFeature';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
 import { MediaComponent } from './Media/MediaComponent';
 import { RecentPostsBlock } from './RecentPosts/RecentPosts';
@@ -28,10 +28,16 @@ import RecipeBlock from './Recipe';
 import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
 import { ShowcaseItemsBlock } from './Showcase/Showcase';
 import { SpacerComponent } from './Spacer/Spacer';
-import { TestimonialsBlock } from './Testimonial/Testimonials';
+import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
-
+const CarouselFeatureBlock = dynamic(
+  () => import('./FeatureCarousel/CarouselFeature'),
+  { ssr: false }
+);
+const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
+  ssr: false,
+});
 
 export const Blocks = ({
   blocks,
@@ -58,13 +64,9 @@ export const Blocks = ({
           <FlyingBlock key={`block-${index}`} data={block} index={index} />
         );
       case 'PageBlocksEvents':
-        return (
-          <VerticalCardsBlock
-            key={`block-${index}`}
-            data={block}
-            index={index}
-          />
-        );
+        return <VerticalCardsBlock key={`block-${index}`} />;
+      case 'PageBlocksTable':
+        return <TableBox data={block} index={index} />;
       case 'PageBlocksMediaComponent':
         return <MediaComponent key={`block-${index}`} data={block} />;
       case 'PageBlocksBooking':
@@ -86,9 +88,7 @@ export const Blocks = ({
           <ColumnsBlock key={`block-${index}`} data={block} index={index} />
         );
       case 'PageBlocksRecipeBlock':
-        return (
-          <RecipeBlock data={block}/>
-        )
+        return <RecipeBlock data={block} />;
       case 'PageBlocksShowcase':
         return (
           <ShowcaseItemsBlock

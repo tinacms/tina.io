@@ -1,16 +1,18 @@
-import styled from 'styled-components'
-import ReactMarkdown from 'react-markdown'
-import { IoMdWarning } from 'react-icons/io'
+import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import { IoMdWarning } from 'react-icons/io';
 
 export const WarningCallout = styled(({ text, ...styleProps }) => {
   return (
-    <div {...styleProps}>
-      <div>
-        <ReactMarkdown>{text}</ReactMarkdown>
+    <div className='py-2'>
+      <div {...styleProps}>
+        <div>
+          <ReactMarkdown>{text}</ReactMarkdown>
+        </div>
+        <IoMdWarning />
       </div>
-      <IoMdWarning />
     </div>
-  )
+  );
 })`
   position: relative;
   display: block;
@@ -43,4 +45,4 @@ export const WarningCallout = styled(({ text, ...styleProps }) => {
     height: auto;
     fill: var(--color-orange);
   }
-`
+`;

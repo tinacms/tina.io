@@ -46,6 +46,11 @@
       "permanent": true
     },
     {
+      "source": "/docs/tina-cloud/faq",
+      "destination": "/docs/introduction/faq",
+      "permanent": true
+    },
+    {
       "source": "/cloud/",
       "destination": "/",
       "permanent": true
@@ -131,13 +136,8 @@
       "permanent": true
     },
     {
-      "source": "/docs/plugins/fields/",
-      "destination": "/docs/fields",
-      "permanent": true
-    },
-    {
-      "source": "/docs/plugins/fields/",
-      "destination": "/docs/fields",
+      "source": "/docs/plugins/fields",
+      "destination": "/docs/reference/fields",
       "permanent": true
     },
     {
@@ -232,7 +232,7 @@
     },
     {
       "source": "/docs/nextjs/adding-backends/",
-      "destination": "/guides/nextjs/git/adding-backend",
+      "destination": "/docs/reference/self-hosted/tina-backend/nextjs",
       "permanent": true
     },
     {
@@ -253,17 +253,17 @@
 
     {
       "source": "/docs/gatsby/quickstart/",
-      "destination": "/guides/gatsby/adding-tina/project-setup",
+      "destination": "/docs/guides/converting-gatsby-to-tina",
       "permanent": true
     },
     {
       "source": "/docs/gatsby/manual-setup/",
-      "destination": "/guides/gatsby/adding-tina/project-setup",
+      "destination": "/docs/guides/converting-gatsby-to-tina",
       "permanent": true
     },
     {
       "source": "/docs/gatsby/markdown/",
-      "destination": "/guides/gatsby/git/installation",
+      "destination": "/docs/guides/converting-gatsby-to-tina",
       "permanent": true
     },
     {
@@ -273,22 +273,22 @@
     },
     {
       "source": "/docs/gatsby/json/",
-      "destination": "/guides/gatsby/git/create-json-form",
+      "destination": "/docs/guides/converting-gatsby-to-tina",
       "permanent": true
     },
     {
       "source": "/docs/git/",
-      "destination": "/guides/git/create-new-files",
+      "destination": "/docs/reference/self-hosted/git-provider/github",
       "permanent": true
     },
     {
       "source": "/docs/gatsby/configure-git-plugin/",
-      "destination": "/guides/gatsby/git/installation",
+      "destination": "/docs/guides/converting-gatsby-to-tina",
       "permanent": true
     },
     {
       "source": "/docs/gatsby/custom-field/",
-      "destination": "/docs/plugins#adding-plugins-in-gatsby",
+      "destination": "/docs/guides/converting-gatsby-to-tina",
       "permanent": true
     },
     {
@@ -562,7 +562,7 @@
       "permanent": true
     },
     {
-      "source": "/docs/plugins/content-creators/",
+      "source": "/docs/plugins/content-creators",
       "destination": "/docs/legacy-redirect",
       "permanent": true
     },
@@ -744,6 +744,11 @@
     {
       "source": "/guides/",
       "destination": "/docs/guides/",
+      "permanent": true
+    },
+    {
+      "source":"/guides/next-js/internationalization/",
+      "destination": "/docs/guides/nextjs-internationalization",
       "permanent": true
     }
   ]

@@ -1,11 +1,32 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
+
+const checkTouchScreen = () => {
+  let hasTouchScreen = false;
+  if ('maxTouchPoints' in navigator) {
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+  } else {
+    const mQ = matchMedia?.('(pointer:coarse)');
+    if (mQ?.media === '(pointer:coarse)') {
+      hasTouchScreen = !!mQ.matches;
+    } else if ('orientation' in window) {
+      hasTouchScreen = true; // deprecated, but good fallback
+    } else {
+      // Only as a last resort, fall back to user agent sniffing
+      const UA: string = (navigator as Navigator).userAgent;
+      hasTouchScreen =
+        /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+        /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
+    }
+  }
+  return hasTouchScreen;
+};
 
 const CarouselItem = ({
   data,
@@ -97,13 +118,16 @@ const CarouselItem = ({
   );
 };
 
-export function CarouselFeatureBlock({ data, index }) {
+export default function CarouselFeatureBlock({ data, index }) {
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
   const [isUserInteracted, setIsUserInteracted] = useState(false);
   const intervalRef = useRef(null);
+  const titleRef = useRef(null);
+  const isTouchScreen = useMemo(() => checkTouchScreen(), []);
+  const [isShowingAll, setIsShowingAll] = useState(false);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
@@ -169,6 +193,9 @@ export function CarouselFeatureBlock({ data, index }) {
     if (!item || !item.videoSrc) return null;
 
     const fullVideoUrl = item.videoSrc;
+    if (isTouchScreen) {
+      return;
+    }
     const fileExtension = fullVideoUrl.split('.').pop();
 
     if (fileExtension === 'gif') {
@@ -188,19 +215,31 @@ export function CarouselFeatureBlock({ data, index }) {
       );
     }
 
-    return (
-      <video
-        key={index}
-        autoPlay
-        muted
-        loop
-        className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
-      >
-        <source src={fullVideoUrl} type="video/webm" />
-        <source src={fullVideoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    );
+    if (fileExtension === 'mp4' || fileExtension === 'webm') {
+      return (
+        !isTouchScreen && (
+          <video
+            key={index}
+            autoPlay
+            muted
+            playsInline
+            loop
+            preload="metadata"
+            className="w-full h-auto mt-6 lg:mt-0 rounded-xl shadow-lg"
+          >
+            {fileExtension === 'webm' && (
+              <source src={fullVideoUrl} type="video/webm" />
+            )}
+            {fileExtension === 'mp4' && (
+              <source src={fullVideoUrl} type="video/mp4" />
+            )}
+            There was an issue displaying the video.
+          </video>
+        )
+      );
+    }
+
+    throw new Error(`Unsupported video format: ${fileExtension}`);
   };
 
   return (
@@ -212,25 +251,72 @@ export function CarouselFeatureBlock({ data, index }) {
       <Container width="wide">
         <div className="flex flex-col lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20">
           <div className="flex flex-col order-2 lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible">
-            <h1
-              className={`pl-3 font-tuner inline-block text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-left mt-10 pb-3`}
+            <h2
+              ref={titleRef}
+              className="lg:m-0 pl-3 font-tuner inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
             >
               {data.blockHeadline}
-            </h1>
+            </h2>
             {data?.items?.length > 0 &&
-              data.items.map((item, index) => (
-                <div key={Object.values(item).join('')} className="pt-4">
-                  <CarouselItem
-                    data={item}
-                    index={index}
-                    id={sanitizeLabel(item.headline)}
-                    isHovered={hoveredIndex === index}
-                    onClick={handleItemClick}
-                    isSmallOrMediumScreen={isSmallOrMediumScreen}
-                    renderMedia={renderMedia}
-                  />
-                </div>
-              ))}
+              data.items.map(
+                (item, index) =>
+                  (([0, 1].includes(index) ||
+                    isShowingAll ||
+                    !isTouchScreen) && (
+                    <div key={Object.values(item).join('')} className="pt-4">
+                      <CarouselItem
+                        data={item}
+                        index={index}
+                        id={sanitizeLabel(item.headline)}
+                        isHovered={hoveredIndex === index}
+                        onClick={handleItemClick}
+                        isSmallOrMediumScreen={isSmallOrMediumScreen}
+                        renderMedia={renderMedia}
+                      />
+                    </div>
+                  )) ||
+                  ([2].includes(index) && !isShowingAll && (
+                    <div
+                      className="relative w-full h-full"
+                      style={{
+                        maskImage: 'linear-gradient(black, transparent 80%)',
+                      }}
+                    >
+                      <div key={Object.values(item).join('')} className="pt-4">
+                        <CarouselItem
+                          data={item}
+                          index={index}
+                          id={sanitizeLabel(item.headline)}
+                          isHovered={hoveredIndex === index}
+                          onClick={handleItemClick}
+                          isSmallOrMediumScreen={isSmallOrMediumScreen}
+                          renderMedia={renderMedia}
+                        />
+                      </div>
+                    </div>
+                  ))
+              )}
+            {!isShowingAll && isTouchScreen ? (
+              <button
+                className="text-blue-500 text-lg font-tuner cursor-pointer"
+                onClick={() => setIsShowingAll(true)}
+              >
+                See all
+              </button>
+            ) : null}
+            {isShowingAll && isTouchScreen ? (
+              <button
+                className="text-blue-500 text-lg font-tuner cursor-pointer"
+                onClick={() => {
+                  setTimeout(() => {
+                    setIsShowingAll(false);
+                  }, 700);
+                  titleRef.current.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Hide
+              </button>
+            ) : null}
           </div>
           <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 pt-24 lg:mt-0 justify-center items-center">
             {renderMedia(hoveredIndex)}

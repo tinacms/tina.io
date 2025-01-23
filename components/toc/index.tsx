@@ -1,45 +1,46 @@
-import { useState, useEffect } from 'react'
-import ReactMarkdown from 'react-markdown'
-import styled, { css } from 'styled-components'
-import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { getDocId } from 'utils/docs/getDocIds'
+import { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import styled, { css } from 'styled-components';
+import RightArrowSvg from '../../public/svg/right-arrow.svg';
+import { getDocId } from 'utils/docs/getDocIds';
 
 interface TocProps {
-  tocItems: Array<{ type: string; text: string }>
-  activeIds: string[]
+  tocItems: Array<{ type: string; text: string }>;
+  activeIds: string[];
 }
 
-const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
+export const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
   return tocItems
     .map((item) => {
-      const anchor = getDocId(item.text)
-      const prefix = item.type === 'h3' ? '  ' : ''
-      return `${prefix}- [${item.text}](#${anchor})`
+      const anchor = getDocId(item.text);
+      const prefix = item.type === 'h3' ? '  ' : '';
+      return `${prefix}- [${item.text}](#${anchor})`;
     })
-    .join('\n')
-}
+    .join('\n');
+};
 
 const ToC = ({ tocItems, activeIds }: TocProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const close = () => setIsOpen(false)
-    const allLinks = document.querySelectorAll('a')
+    const close = () => setIsOpen(false);
+    const allLinks = document.querySelectorAll('a');
     if (allLinks.length > 0) {
-      allLinks.forEach((a) => a.addEventListener('click', close))
+      allLinks.forEach((a) => a.addEventListener('click', close));
     }
     return () => {
       if (allLinks.length > 0) {
-        allLinks.forEach((a) => a.removeEventListener('click', close))
+        allLinks.forEach((a) => a.removeEventListener('click', close));
       }
-    }
-  }, [])
+    };
+  }, []);
 
   if (!tocItems || tocItems.length === 0) {
-    return null
+    return null;
   }
 
-  const tocMarkdown = generateMarkdown(tocItems)
+  const tocMarkdown = generateMarkdown(tocItems);
+
 
   return (
     <TocWrapper>
@@ -49,13 +50,28 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
       </TocButton>
       <TocContent activeIds={activeIds} isOpen={isOpen}>
         <TocDesktopHeader>Table of Contents</TocDesktopHeader>
-        <ReactMarkdown>{tocMarkdown}</ReactMarkdown>
+        <ReactMarkdown
+          components={{
+            li: ({ children }) => (
+              <li className="hover:text-orange-500 transition-colors">
+                {children}
+              </li>
+            ),
+            a: ({ children, ...props }) => (
+              <a {...props} className="hover:text-orange-500 transition-colors">
+                {children}
+              </a>
+            ),
+          }}
+        >
+          {tocMarkdown}
+        </ReactMarkdown>
       </TocContent>
     </TocWrapper>
-  )
-}
+  );
+};
 
-export default ToC
+export default ToC;
 
 export const TocDesktopHeader = styled.span`
   display: none;
@@ -69,7 +85,7 @@ export const TocDesktopHeader = styled.span`
   @media (min-width: 1200px) {
     display: block;
   }
-`
+`;
 
 export const TocWrapper = styled.div`
   margin-bottom: -0.375rem;
@@ -77,9 +93,10 @@ export const TocWrapper = styled.div`
 
   @media (min-width: 1200px) {
     position: sticky;
-    top: 1.5rem;
+    top: 8rem;
+    // this now matches the sticky of the left hand toc too
   }
-`
+`;
 
 export const TocButton = styled.button<{ isOpen: boolean }>`
   display: block;
@@ -134,11 +151,11 @@ export const TocButton = styled.button<{ isOpen: boolean }>`
   @media (min-width: 1200px) {
     display: none;
   }
-`
+`;
 
 export interface TocContentProps {
-  isOpen: boolean
-  activeIds: string[]
+  isOpen: boolean;
+  activeIds: string[];
 }
 
 export const TocContent = styled.div<TocContentProps>`
@@ -193,15 +210,11 @@ export const TocContent = styled.div<TocContentProps>`
 
   a {
     color: var(--color-secondary);
-    /* font-family: var(--font-tuner); */
-  }
+    text-decoration: underline;
 
-  /* Hide underline except on hover or focus */
-  a {
-    :not(:focus) {
-      :not(:hover) {
-        text-decoration-color: transparent !important;
-      }
+    &:hover,
+    &:focus {
+      text-decoration: none;
     }
   }
 
@@ -224,4 +237,4 @@ export const TocContent = styled.div<TocContentProps>`
       }
     }
   }
-`
+`;
