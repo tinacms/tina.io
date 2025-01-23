@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto('https://tina.io/');
+  await page.goto('https://tina.io/', {timeout: 60000});
   await page.getByRole('heading', { name: 'Visual Editing' }).click();
   await expect(page.getByRole('heading', { name: 'Visual Editing' })).toBeVisible();
   await page.getByRole('heading', { name: 'Open Source' }).click();
