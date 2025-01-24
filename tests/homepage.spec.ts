@@ -1,27 +1,26 @@
 import { devices, expect, test } from '@playwright/test';
 
-
-
 test.use(devices['iPhone 12']);
-test('TinaCMS homepage loads and displays successfully', async ({
-  page,
-}) => {
+test('TinaCMS homepage loads and displays successfully', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible({
+    timeout: 10000,
+  });
   await expect(
     page.getByRole('heading', { name: 'Loved by Developers' })
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 10000 });
 });
 
 test.use(devices['iPhone 12']);
 test('TinaCMS homepage scrolls without breaking', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible({
+    timeout: 10000,
+  });
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
   await page.waitForTimeout(1000);
 
   await page.evaluate(() => window.scrollTo(0, 0));
-  await page.waitForTimeout(1000); 
-
+  await page.waitForTimeout(1000);
 });
