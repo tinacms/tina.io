@@ -158,8 +158,6 @@ export default function CarouselFeatureBlock({ data, index }) {
     };
   }, [data?.items?.length, isUserInteracted]);
 
-  return <CarouselFeatureMobile data={data} />;
-
   const startAutoTicking = () => {
     intervalRef.current = setInterval(() => {
       setHoveredIndex((prevIndex) => {
@@ -244,6 +242,10 @@ export default function CarouselFeatureBlock({ data, index }) {
 
     throw new Error(`Unsupported video format: ${fileExtension}`);
   };
+
+  if (isTouchScreen || isSmallOrMediumScreen) {
+    return <CarouselFeatureMobile data={data} />;
+  }
 
   return (
     <section
