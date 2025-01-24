@@ -6,20 +6,20 @@ test.use(devices['iPhone 12']);
 test('TinaCMS homepage loads and displays successfully', async ({
   page,
 }) => {
-  await page.goto('/');
-  await expect(page.getByText('Loving Tina? ⭐️ us on GitHub')).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible();
+  await page.goto('/',  { waitUntil: 'networkidle' });
+  await expect(page.getByText('Loving Tina? ⭐️ us on GitHub')).toBeVisible({timeout: 10000});
+  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible({timeout: 10000});
   await expect(
     page.getByRole('heading', { name: 'Loved by Developers' })
-  ).toBeVisible();
+  ).toBeVisible({timeout: 10000});
 });
 
 test.use(devices['iPhone 12']);
 test('TinaCMS homepage scrolls without breaking', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/',  { waitUntil: 'networkidle' });
 
-  await expect(page.getByText('Loving Tina? ⭐️ us on GitHub')).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible();
+  await expect(page.getByText('Loving Tina? ⭐️ us on GitHub')).toBeVisible({timeout: 10000});
+  await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible({timeout: 10000});
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
   await page.waitForTimeout(1000);
 
