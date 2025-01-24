@@ -1,13 +1,17 @@
+'use client';
+
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import { formatTableofContentsData } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import SearchPageClient from './search-client';
 
-export async function generateMetadata(){
-  return{
+export async function generateMetadata() {
+  return {
     title: 'Search Page | Tina',
-    description: 'Swiftly Search through the TinaCMS Docs and Blogs'};
+    description: 'Swiftly Search through the TinaCMS Docs and Blogs',
+  };
 }
 
 async function getSearchPageData() {
@@ -19,21 +23,18 @@ async function getSearchPageData() {
     const documentData = results.data.doc;
     tableOfContents = getTableOfContents(documentData.body.children);
   } catch (e) {
-    console.error(
-      'Error Fetching Docs Navigation Data: ',
-      e.message
-    );
+    console.error('Error Fetching Docs Navigation Data: ', e.message);
     notFound();
   }
 
   try {
     const query = `
-  query {
-      docsTableOfContents(relativePath: "docs-toc.json") {
-        _values
-    }
-  }
-  `;
+      query {
+        docsTableOfContents(relativePath: "docs-toc.json") {
+          _values
+        }
+      }
+    `;
     const docTocData = await client.request(
       {
         query,
@@ -56,7 +57,13 @@ async function getSearchPageData() {
 
 export default async function SearchPage() {
   const data = await getSearchPageData();
-  return <div>
-    <SearchPageClient {...data} />
-  </div>
+
+  
+  return (
+    <div>
+      <Suspense fallback={null}>
+        <SearchPageClient {...data} />
+      </Suspense>
+    </div>
+  );
 }
