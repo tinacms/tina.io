@@ -1,23 +1,20 @@
 'use client';
 
 import { Layout } from '../layout';
-import { NextSeo } from 'next-seo';
-import { GlobalStyles } from '../styles/BlockStyles';
 import { Blocks } from './Blocks';
+import { GlobalStyles } from '../styles/BlockStyles';
+import Head from 'next/head';
 
 export const BlocksPage = ({ data, recentPosts }) => {
   return (
     <>
       {data.seo && (
-        <NextSeo
-          title={data.seo.title}
-          description={data.seo.description}
-          titleTemplate={data.seo.hasCustomSuffix ? '%s' : '%s | Tina'}
-          openGraph={{
-            title: data.seo.title,
-            description: data.seo.description,
-          }}
-        />
+        <Head>
+          <title>{`${data.seo.title}${!data.seo.hasCustomSuffix ? ' | Tina' : ''}`}</title>
+          <meta name="description" content={data.seo.description} />
+          <meta property="og:title" content={data.seo.title} />
+          <meta property="og:description" content={data.seo.description} />
+        </Head>
       )}
       {/* TODO: why is there a type error here */}
       {/* @ts-ignore */}
