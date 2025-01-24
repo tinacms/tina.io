@@ -314,7 +314,7 @@ export const docAndBlogComponents: Components<{
   // @ts-ignore TODO: fix this in TinaCMS
   code_block: ({ value, lang, children }) => {
     return (
-      <div className="py-3 word-break white-space overflow-x-hidden">
+      <div className="py-3 word-break white-space overflow-x-hidden rounded-xl">
         <Prism
           value={children || value || ''}
           lang={lang || 'jsx'}
