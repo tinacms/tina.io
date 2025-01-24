@@ -7,12 +7,12 @@ import { formatTableofContentsData } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import SearchPageClient from './search-client';
 
-export async function generateMetadata() {
-  return {
-    title: 'Search Page | Tina',
-    description: 'Swiftly Search through the TinaCMS Docs and Blogs',
-  };
-}
+// export async function generateMetadata() {
+//   return {
+//     title: 'Search Page | Tina',
+//     description: 'Swiftly Search through the TinaCMS Docs and Blogs',
+//   };
+// }
 
 async function getSearchPageData() {
   const slug = 'index';
