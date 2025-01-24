@@ -6,7 +6,7 @@ test.use(devices['iPhone 12']);
 test('TinaCMS homepage loads and displays successfully', async ({
   page,
 }) => {
-  await page.goto('/', {waitUntil: 'load'});
+  await page.goto('/');
   await expect(page.getByText('Loving Tina? ⭐️ us on GitHub')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Docs' })).toBeVisible();
@@ -17,7 +17,7 @@ test('TinaCMS homepage loads and displays successfully', async ({
 
 test.use(devices['iPhone 12']);
 test('TinaCMS homepage scrolls without breaking', async ({ page }) => {
-  await page.goto('/', {waitUntil: 'load'});
+  await page.goto('/');
 
   await expect(page.getByText('Loving Tina? ⭐️ us on GitHub')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible();
