@@ -82,3 +82,7 @@
     @apply bg-background text-foreground;
  }
 }
+
+pre.prism-code.language-json {
+  border-radius: 0 !important;
+}
