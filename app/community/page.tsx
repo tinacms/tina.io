@@ -1,7 +1,7 @@
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps';
 import CommunityPageClient from './community-client';
 
-export async function generateMetadad(){
+export async function generateMetadata(){
   const data = await getCommunityPageData();
   const cleanData = data.props.file.data;
   return{
