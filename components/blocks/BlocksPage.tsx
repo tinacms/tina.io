@@ -1,7 +1,9 @@
-import { Layout } from '../layout'
-import { NextSeo } from 'next-seo'
-import { GlobalStyles } from '../styles/BlockStyles'
-import { Blocks } from './Blocks'
+'use client';
+
+import { Layout } from '../layout';
+import { NextSeo } from 'next-seo';
+import { GlobalStyles } from '../styles/BlockStyles';
+import { Blocks } from './Blocks';
 
 export const BlocksPage = ({ data, recentPosts }) => {
   return (
@@ -17,14 +19,12 @@ export const BlocksPage = ({ data, recentPosts }) => {
           }}
         />
       )}
-      <Layout>
-        {/* TODO: why is there a type error here */}
-        {/* @ts-ignore */}
-        <Blocks blocks={data.blocks} recentPosts={recentPosts} />
-      </Layout>
+      {/* TODO: why is there a type error here */}
+      {/* @ts-ignore */}
+      <Blocks blocks={data.blocks} recentPosts={recentPosts} />
       <style global jsx>
         {GlobalStyles}
       </style>
     </>
-  )
-}
+  );
+};
