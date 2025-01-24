@@ -1,6 +1,19 @@
 import { getJsonPreviewProps } from 'utils/getJsonPreviewProps';
 import CommunityPageClient from './community-client';
 
+export async function generateMetadad(){
+  const data = await getCommunityPageData();
+  const cleanData = data.props.file.data;
+  return{
+    title: cleanData.title,
+    description: cleanData.description,
+    openGraph: {
+      title: cleanData.title,
+      description: cleanData.description,
+    }
+  }
+}
+
 async function getCommunityPageData() {
   const previewProps = await getJsonPreviewProps(
     'content/pages/community.json'
@@ -11,6 +24,7 @@ async function getCommunityPageData() {
 export default async function CommunityPage() {
   const data = await getCommunityPageData();
   const cleanData = data.props.file.data;
+  console.log(cleanData)
 
   return (
     <>
