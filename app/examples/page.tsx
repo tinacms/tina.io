@@ -3,6 +3,13 @@ import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import { ExamplesPageClient } from './examples-client';
 
+export async function generateMetadata(){
+  return{
+    title: 'Examples | Tina',
+    description: 'Open-Source Examples of TinaCMS with your Favourite Frameworks'};
+}
+
+
 async function getExamplesPageData() {
   try {
     const examples = await client.queries.examples({
