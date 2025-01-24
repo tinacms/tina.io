@@ -1,16 +1,27 @@
 'use client';
 
-import { SearchHeader, SearchTabs } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchComponent';
+import {
+  SearchHeader,
+  SearchTabs,
+} from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchComponent';
 import {
   DocsSearchBarHeader,
   LeftHandSideParentContainer,
 } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
 import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function SearchPageClient({ props }) {
+  const [query, setQuery] = useState('');
+
   const searchParams = useSearchParams();
-  const query = searchParams.get('query');
-  console.log(props);
+
+  useEffect(() => {
+    const param = searchParams.get('query');
+    if (param) {
+      setQuery(param);
+    }
+  }, [searchParams]);
 
   return (
     <div className="relative my-16 flex justify-center items-center">
