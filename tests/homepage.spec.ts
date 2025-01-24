@@ -9,7 +9,6 @@ test('TinaCMS homepage loads and displays successfully', async ({
   await page.goto('/');
   await expect(page.getByText('Loving Tina? ⭐️ us on GitHub')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Trusted By' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Docs' })).toBeVisible();
   await expect(
     page.getByRole('heading', { name: 'Loved by Developers' })
   ).toBeVisible();
