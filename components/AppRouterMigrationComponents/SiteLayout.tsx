@@ -15,7 +15,7 @@ export const SiteLayout = ({ children, color, sticky = true }: LayoutProps) => {
           <AppNavBar sticky={sticky} />
         </div>
         {/* TODO: consult with betty - if we want to add global gutters we can do it here easily */}
-        <div className="flex flex-col flex-1 my-10">{children}</div>
+        <div className="flex flex-col flex-1">{children}</div>
         <AppFooter />
       </div>
     </>

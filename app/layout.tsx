@@ -16,8 +16,11 @@ const TinaChatBot = dynamic(
 );
 
 export const metadata = {
-  title: data.seoDefaultTitle,
-  descripton: data.description,
+  title: {
+    template: `%s | ${data.title}`,
+    default: data.seoDefaultTitle,
+  },
+  description: data.description,
   icons: {
     icon: '/favicon/favicon.ico',
   },
@@ -49,6 +52,10 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#E6FAF8" />
+        <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+      </head>
       <body>
         <meta name="googlebot" content="index,follow" />
         <meta name="robots" content="index,follow" />
