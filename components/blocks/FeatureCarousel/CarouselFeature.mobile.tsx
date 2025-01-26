@@ -10,12 +10,10 @@ function CarouselFeatureMobileItem(data) {
 
   const actionsArray = button ? [button] : [];
 
-  console.log(data);
-
   return (
     <div
       data-tina-field={tinaField(data, 'headline')}
-      className="flex flex-col px-4 py-4"
+      className="flex flex-col p-10"
     >
       <div className="flex items-center mb-2 px-1 text-left">
         {IconComponent && (

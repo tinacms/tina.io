@@ -1,145 +1,115 @@
+// thanks to oliver: https://www.youtube.com/@olivierlarose1
 'use client';
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
+import { ReactLenis } from 'lenis/react';
+import { ReactNode, useEffect, useRef } from 'react';
 
-import { Container } from 'components/blocks';
-import React, { useEffect, useRef, useState } from 'react';
+/**
+ * Computes the scaling factor based on scroll progress, index, and list length.
+ *
+ * @param scrollProgress - Current scroll progress (0 to 1).
+ * @param index - Index of the current item.
+ * @param length - Total number of items.
+ * @returns A scaling factor between 0 and 1.
+ */
+function computeOpacity(
+  scrollProgress: number,
+  index: number,
+  length: number
+): number {
+  // Calculate the current index based on scroll progress
+  const currentIndex = Math.min(
+    Math.floor(scrollProgress * length),
+    length - 1
+  );
 
-const ScrollCards = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const childRefs = useRef<HTMLDivElement[]>([]);
+  if (
+    index > currentIndex ||
+    (index >= currentIndex - 2 && index <= currentIndex)
+  ) {
+    // Maintain full opacity for current, up to 2 before, and after indices
+    return 1;
+  } else if (index < currentIndex - 2) {
+    // Rapidly decrease opacity for indices before up to 2 before current index
+    const distance = currentIndex - 2 - index;
+    // Adjust opacity decrement for a quicker drop
+    const opacity = 1 - distance * 0.5; // Increased decrement rate
+    return Math.max(0, Math.min(opacity, 1));
+  }
 
-  const handleScroll = () => {
-    const container = containerRef.current;
-    if (container && container.children.length > 0) {
-      const cards = Array.from(container.children) as HTMLElement[];
-      const windowHeight = window.innerHeight;
-      const centerY = window.scrollY + windowHeight / 2;
+  return 1;
+}
 
-      // Find the card closest to the center of the viewport
-      let closestCard = 0;
-      let minDistance = Infinity;
+export default function index(props): JSX.Element {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end end'],
+  });
+  return (
+    <ReactLenis root>
+      <main ref={container} className="min-h-screen my-24">
+        <section className="w-full">
+          {props.content?.map((item, i) => {
+            const targetScale = 1 - (props.content?.length - i) * 0.05;
+            return (
+              <Card
+                key={`p_${i}`}
+                i={i}
+                length={props.content?.length}
+                item={item}
+                progress={scrollYProgress}
+                range={[i * 0.15, Math.min(1, i * 0.15 + 0.5)]}
+                targetScale={targetScale}
+              />
+            );
+          })}
+        </section>
+      </main>
+    </ReactLenis>
+  );
+}
+interface CardProps {
+  i: number;
+  item: ReactNode;
+  length: number;
+  progress: MotionValue<number>;
+  range: [number, number];
+  targetScale: number;
+}
+export const Card: React.FC<CardProps> = ({
+  i,
+  item,
+  progress,
+  range,
+  targetScale,
+  length,
+}) => {
+  const container = useRef(null);
 
-      cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        const cardCenterY = rect.top + rect.height / 2;
-        const distance = Math.abs(cardCenterY - windowHeight / 2);
+  const scale = useTransform(progress, range, [1, targetScale]);
+  const opacity = useTransform(progress, (value) => {
+    return computeOpacity(value, i, length);
+  });
 
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCard = index;
-        }
-
-        if (index < activeIndex + 1 && cardCenterY - windowHeight / 2 < 0) {
-          childRefs.current[index].style.marginBottom = `max(-${
-            distance / 3
-          }px, -8rem)`;
-        } else {
-          childRefs.current[index].style.marginBottom = '0';
-        }
-      });
-
-      if (closestCard !== activeIndex) {
-        setActiveIndex(closestCard);
-      }
-    }
-  };
-
-  useEffect(() => {
-    const handleScrollThrottled = () => {
-      requestAnimationFrame(handleScroll);
-    };
-
-    window.addEventListener('scroll', handleScrollThrottled);
-    // Initial check
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScrollThrottled);
-  }, [activeIndex]);
+  useEffect(() => {}, [scale]);
 
   return (
-    <>
-      <div className="scroll-cards-container" ref={containerRef}>
-        {props.content?.map((child, index) => (
-          <div
-            ref={(el) => (childRefs.current[index] = el)}
-            key={index}
-            className="w-full"
-          >
-            <Container width="wide">
-              <div
-                key={`scroll-card-${index}`}
-                className={`scroll-card bg-gradient-to-br ${
-                  index % 2 == 0
-                    ? 'from-white via-slate-50 to-blue-50'
-                    : 'from-white via-slate-50 to-slate-100'
-                } ${index === activeIndex ? 'active' : ''}`}
-              >
-                {child}
-              </div>
-            </Container>
-          </div>
-        ))}
-      </div>
-      <style jsx>
-        {`
-          .scroll-cards-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            padding: 0 2rem;
-            padding-bottom: 8rem;
-          }
-
-          .scroll-card {
-            width: 100%;
-            min-height: 10rem; /* Reduced height */
-            margin: 2rem 0; /* Reduced margin further */
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            transform-style: preserve-3d;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          }
-
-          /* Active card */
-          .scroll-card.active {
-            transform: translateZ(0) scale(1);
-            z-index: 10;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-          }
-
-          .scroll-card.active h3 {
-            background: linear-gradient(
-              to bottom right,
-              #fb923c,
-              #f97316,
-              #ea580c
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-          }
-
-          /* Non-active cards */
-          .scroll-card:not(.active) h3 {
-            background: none;
-            -webkit-background-clip: initial;
-            background-clip: initial;
-            color: #000000;
-          }
-
-          /* All cards after the active one */
-          .scroll-card:not(.active) {
-            transform: translateZ(-100px) scale(0.95);
-            z-index: 1;
-          }
-        `}
-      </style>
-    </>
+    <div
+      ref={container}
+      className="py-16 h-[20vh] flex items-center justify-center sticky top-20"
+    >
+      <motion.div
+        style={{
+          backgroundColor: 'white',
+          scale,
+          opacity,
+          top: `calc(-5vh + ${i * 25}px)`,
+        }}
+        className={`flex flex-col relative -top-[25%] w-full max-w-42 mx-16 h-52 rounded-2xl origin-top shadow-lg overflow-hidden`}
+      >
+        {item}
+      </motion.div>
+    </div>
   );
 };
-
-export default ScrollCards;
