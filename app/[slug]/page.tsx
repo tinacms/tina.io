@@ -1,57 +1,69 @@
-import { BlocksPage } from 'components/blocks/BlocksPage';
-import { useTina } from 'tinacms/dist/react';
-import { fileToUrl } from 'utils/urls';
-import { client } from '../../tina/__generated__/client';
-import fg from 'fast-glob';
-import { Metadata } from 'next';
+import { client } from '../../tina/__generated__/client'
+import ClientPage from './client-page'
+import { fileToUrl } from 'utils/urls'
+import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const slug = params.slug || 'home';
-  const res = await client.queries.pageWithRecentPosts({
-    relativePath: `${slug}.json`,
-  });
+const fg = require('fast-glob')
 
-  const data = res.data.page;
-  
-  if (!data.seo) {
-    return {};
+interface PageProps {
+  params: {
+    slug?: string
   }
-
-  return {
-    title: data.seo.hasCustomSuffix ? data.seo.title : `${data.seo.title} | Tina`,
-    description: data.seo.description,
-    openGraph: {
-      title: data.seo.title,
-      description: data.seo.description,
-    },
-  };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const slug = params.slug || 'home';
-  const vars = { relativePath: `${slug}.json` };
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const slug = params?.slug || 'home'
+  
+  try {
+    const res = await client.queries.pageWithRecentPosts({ 
+      relativePath: slug + '.json' 
+    })
+    
+    const data = res.data.page
+    
+    if (!data.seo) {
+      return {}
+    }
 
-  const res = await client.queries.pageWithRecentPosts({
-    relativePath: vars.relativePath,
-  });
-
-  const tinaData = {
-    query: res.query,
-    data: res.data,
-    vars,
-  };
-
-  const data = tinaData.data.page;
-
-  return <BlocksPage data={data} recentPosts={tinaData.data.recentPosts} />;
+    return {
+      title: {
+        default: data.seo.title,
+        template: data.seo.hasCustomSuffix ? '%s' : '%s | Tina',
+      },
+      description: data.seo.description,
+      openGraph: {
+        title: data.seo.title,
+        description: data.seo.description,
+      },
+    }
+  } catch (error) {
+    return {}
+  }
 }
 
 export async function generateStaticParams() {
-  const pages = await fg(`./content/blocksPages/*.json`);
-  const paths = pages.map((file) => {
-    const slug = fileToUrl(file, 'blocksPages');
-    return { slug };
-  });
+  const pages = await fg(`./content/blocksPages/*.json`)
+  return pages.map(file => ({
+    slug: fileToUrl(file, 'blocksPages')
+  }))
+}
 
-  return paths;
+export default async function Page({ params }: PageProps) {
+  const slug = params?.slug || 'home'
+  const vars = { relativePath: slug + '.json' }
+
+  try {
+    const res = await client.queries.pageWithRecentPosts({ relativePath: slug + '.json' })
+    
+    return (
+      <ClientPage
+        query={res.query}
+        data={res.data}
+        variables={vars}
+      />
+    )
+  } catch (error) {
+    notFound()
+  }
 }
