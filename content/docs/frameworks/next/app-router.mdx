@@ -255,6 +255,29 @@ export default function Post(props: ClientPageProps) {
 }
 ```
 
+## FAQs
+
+
+### Newly Created Content Items Not Appearing on Page
+
+When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where newly created content items do not immediately appear on the corresponding page. This behavior is typically caused by the aggressive caching mechanisms employed by Next.js and the browser.
+
+#### How to Handle Caching During Local Development
+
+To ensure you see the most up-to-date content during local development, you can disable browser caching in your browser's Developer Tools:
+
+1. Open Developer Tools in your browser (e.g., Chrome, Firefox).
+2. Navigate to the Network tab.
+3. Check the option to Disable Cache (this setting is effective while Developer Tools is open).
+
+![Disable caching in DevTools](/img/docs/nextjs-faq/devtools-disabling-cache.png)
+
+#### Additional Resources
+
+For more detailed information about caching in Next.js, refer to the official Next.js documentation:
+[Next.js Caching Documentation](https://nextjs.org/docs/app/building-your-application/caching)
+
+
 ## Next Steps
 
 - [Check out the content modeling docs](/docs/schema/)
