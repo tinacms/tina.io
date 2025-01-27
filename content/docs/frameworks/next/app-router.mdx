@@ -1,6 +1,6 @@
 ---
 title: Next.js App Router
-last_edited: '2025-01-27T17:24:35.727Z'
+last_edited: '2025-01-27T17:25:35.432Z'
 next: content/docs/frameworks/next/pages-router.mdx
 previous: content/docs/frameworks/next/overview.mdx
 ---
@@ -260,9 +260,11 @@ export default function Post(props: ClientPageProps) {
 
 ### Newly Created Content Items Not Appearing on Page
 
-When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where newly created content items do not immediately appear on the corresponding page. This behavior is typically caused by the aggressive caching mechanisms employed by Next.js and the browser.
+When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where newly created content items do not immediately appear on the corresponding page. This behavior is typically caused by the aggressive caching mechanisms employed by Next.js and the browser.\
 
-To ensure you see the most up-to-date content during local development, you can disable browser caching in your browser's Developer Tools:
+
+To ensure you see the most up-to-date content during local development, you can disable browser caching in your browser's Developer Tools:\
+
 
 1. Open Developer Tools in your browser (e.g., Chrome, Firefox).
 2. Navigate to the Network tab.
@@ -270,6 +272,7 @@ To ensure you see the most up-to-date content during local development, you can 
 
 ![Disable caching in DevTools](/img/docs/frameworks/next/app-router/devtools-disabling-cache.png)
 
+\
 For more detailed information about caching in Next.js, refer to the official Next.js documentation:
 [Next.js Caching Documentation](https://nextjs.org/docs/app/building-your-application/caching)
 
