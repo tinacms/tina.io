@@ -59,14 +59,14 @@ After running the `tina init` command a few files were created to get you starte
 It looks like the following:
 
 ```ts
-import { defineConfig } from 'tinacms'
+import { defineConfig } from 'tinacms';
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
-  'main'
+  'main';
 
 export default defineConfig({
   branch,
@@ -110,7 +110,7 @@ export default defineConfig({
       },
     ],
   },
-})
+});
 ```
 
 **For a more detailed overview about the config see [Content Modeling with TinaCMS](/docs/extending-tina/overview/)**
@@ -153,11 +153,11 @@ Let's start by creating a `/posts` folder. The page here will list all our posts
 **File:** `app/posts/page.tsx`
 
 ```tsx
-import PostList from './client-page'
-import { client } from '../../tina/__generated__/client'
+import PostList from './client-page';
+import { client } from '../../tina/__generated__/client';
 
 export default async function Page() {
-  const { data } = await client.queries.postConnection()
+  const { data } = await client.queries.postConnection();
 
   return (
     <>
@@ -172,7 +172,7 @@ export default async function Page() {
         ))}
       </div>
     </>
-  )
+  );
 }
 ```
 
@@ -190,28 +190,28 @@ To make this work with TinaCMS Visual Editor we are going to break this across 2
 **File:** `app/posts/[...filename].tsx`
 
 ```tsx
-import Post from './client-page'
-import client from '../../../tina/__generated__/client'
+import Post from './client-page';
+import client from '../../../tina/__generated__/client';
 
 export async function generateStaticParams() {
-  const pages = await client.queries.postConnection()
+  const pages = await client.queries.postConnection();
   const paths = pages.data?.postConnection?.edges?.map((edge) => ({
     filename: edge?.node?._sys.breadcrumbs,
-  }))
+  }));
 
-  return paths || []
+  return paths || [];
 }
 
 export default async function PostPage({
   params,
 }: {
-  params: { filename: string[] }
+  params: { filename: string[] };
 }) {
   const data = await client.queries.post({
     relativePath: `${params.filename}.md`,
-  })
+  });
 
-  return <Post {...data}></Post>
+  return <Post {...data}></Post>;
 }
 ```
 
@@ -222,16 +222,16 @@ Now to make the Visual Editor work, we will create a new "client page":
 **File:** `app/posts/[...filename]/client-page.tsx`
 
 ```tsx
-'use client'
-import { useTina } from 'tinacms/dist/react'
-import { PostQuery } from '../../../tina/__generated__/types'
+'use client';
+import { useTina } from 'tinacms/dist/react';
+import { PostQuery } from '../../../tina/__generated__/types';
 
 interface ClientPageProps {
-  query: string
+  query: string;
   variables: {
-    relativePath: string
-  }
-  data: PostQuery
+    relativePath: string;
+  };
+  data: PostQuery;
 }
 
 export default function Post(props: ClientPageProps) {
@@ -240,7 +240,7 @@ export default function Post(props: ClientPageProps) {
     query: props.query,
     variables: props.variables,
     data: props.data,
-  })
+  });
   return (
     <code>
       <pre
@@ -251,9 +251,26 @@ export default function Post(props: ClientPageProps) {
         {JSON.stringify(data.post, null, 2)}
       </pre>
     </code>
-  )
+  );
 }
 ```
+
+## FAQs
+
+### Newly Created Content Items Not Appearing on Page
+
+When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where newly created content items do not immediately appear on the corresponding page. This behavior is typically caused by the aggressive caching mechanisms employed by Next.js and the browser.
+
+To ensure you see the most up-to-date content during local development, you can disable browser caching in your browser's Developer Tools:
+
+1. Open Developer Tools in your browser (e.g., Chrome, Firefox).
+2. Navigate to the Network tab.
+3. Check the option to Disable Cache (this setting is effective while Developer Tools is open).
+
+![Disable caching in DevTools](/img/docs/frameworks/next/app-router/devtools-disabling-cache.png)
+
+For more detailed information about caching in Next.js, refer to the official Next.js documentation:
+[Next.js Caching Documentation](https://nextjs.org/docs/app/building-your-application/caching)
 
 ## Next Steps
 
