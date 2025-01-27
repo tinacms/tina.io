@@ -1,5 +1,6 @@
 ---
 title: Next.js App Router
+last_edited: '2025-01-27T17:15:01.510Z'
 next: content/docs/frameworks/next/pages-router.mdx
 previous: content/docs/frameworks/next/overview.mdx
 ---
@@ -178,8 +179,8 @@ export default async function Page() {
 
 As you may have noticed this is a Server Rendered page. Depending on how this page is generated can mean Next will either,
 
-- **A. Build this as a Dynamic / Server Rendered page**
-- **B. Build this as a Static page.**
+* **A. Build this as a Dynamic / Server Rendered page**
+* **B. Build this as a Static page.**
 
 This is up to you on how you want this page to be rendered.
 
@@ -259,9 +260,11 @@ export default function Post(props: ClientPageProps) {
 
 ### Newly Created Content Items Not Appearing on Page
 
-When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where newly created content items do not immediately appear on the corresponding page. This behavior is typically caused by the aggressive caching mechanisms employed by Next.js and the browser.
+When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where newly created content items do not immediately appear on the corresponding page. This behavior is typically caused by the aggressive caching mechanisms employed by Next.js and the browser.\
 
-To ensure you see the most up-to-date content during local development, you can disable browser caching in your browser's Developer Tools:
+
+To ensure you see the most up-to-date content during local development, you can disable browser caching in your browser's Developer Tools:\
+
 
 1. Open Developer Tools in your browser (e.g., Chrome, Firefox).
 2. Navigate to the Network tab.
@@ -269,11 +272,12 @@ To ensure you see the most up-to-date content during local development, you can 
 
 ![Disable caching in DevTools](/img/docs/frameworks/next/app-router/devtools-disabling-cache.png)
 
+\
 For more detailed information about caching in Next.js, refer to the official Next.js documentation:
 [Next.js Caching Documentation](https://nextjs.org/docs/app/building-your-application/caching)
 
 ## Next Steps
 
-- [Check out the content modeling docs](/docs/schema/)
-- [Learn how to query your content](/docs/features/data-fetching/)
-- [Deploy Your Site](/docs/tina-cloud)
+* [Check out the content modeling docs](/docs/schema/)
+* [Learn how to query your content](/docs/features/data-fetching/)
+* [Deploy Your Site](/docs/tina-cloud)
