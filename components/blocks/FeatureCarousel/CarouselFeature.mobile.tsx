@@ -1,4 +1,4 @@
-import ScrollCards from 'components/ui/scrollCards';
+import ScrollCards from 'components/ui/scrollBasedComponents/scrollCards';
 import { tinaField } from 'tinacms/dist/react';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -30,14 +30,10 @@ function CarouselFeatureMobileItem(data) {
         )}
       </div>
       {text && (
-        <p
-          className={`md:pl-12 lg:pl-13 pl-9 lg:text-lg text-md font-medium slide-up`}
-        >
-          {text}
-        </p>
+        <p className={`lg:text-lg text-md font-medium slide-up`}>{text}</p>
       )}
       {button && (
-        <div className={`md:pl-6 lg:pl-6 pl-3 slide-up flex justify-start`}>
+        <div className={`slide-up flex justify-start`}>
           <Actions items={actionsArray} />
         </div>
       )}
@@ -54,5 +50,9 @@ export function CarouselFeatureMobile(props: CarouselFeatureMobileProps) {
   const items = data.items.map((item, index) => (
     <CarouselFeatureMobileItem data={item} key={`carousel-feature-${index}`} />
   ));
-  return items.length > 0 ? <ScrollCards content={items} /> : null;
+  return items.length > 0 ? (
+    <>
+      <ScrollCards content={items} title={data.blockHeadline} />
+    </>
+  ) : null;
 }

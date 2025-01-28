@@ -2,7 +2,7 @@
 'use client';
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import { ReactLenis } from 'lenis/react';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 /**
  * Computes the scaling factor based on scroll progress, index, and list length.
@@ -19,36 +19,50 @@ function computeOpacity(
 ): number {
   // Calculate the current index based on scroll progress
   const currentIndex = Math.min(
-    Math.floor(scrollProgress * length),
+    Math.floor(scrollProgress * (length - 1)),
     length - 1
   );
 
-  if (
-    index > currentIndex ||
-    (index >= currentIndex - 2 && index <= currentIndex)
-  ) {
-    // Maintain full opacity for current, up to 2 before, and after indices
+  if (currentIndex - 2 <= index) {
     return 1;
-  } else if (index < currentIndex - 2) {
-    // Rapidly decrease opacity for indices before up to 2 before current index
-    const distance = currentIndex - 2 - index;
-    // Adjust opacity decrement for a quicker drop
-    const opacity = 1 - distance * 0.5; // Increased decrement rate
-    return Math.max(0, Math.min(opacity, 1));
   }
 
-  return 1;
+  if (currentIndex - 3 > index) {
+    return 0;
+  }
+
+  return 0.5;
 }
 
 export default function index(props): JSX.Element {
   const container = useRef(null);
+  const [endPoint, setEndPoint] = useState(0);
+  useEffect(() => {
+    setEndPoint(container.current.scrollHeight + window.innerHeight * 0.6);
+    window.addEventListener('resize', () => {
+      setEndPoint(container.current.scrollHeight + window.innerHeight * 0.6);
+    });
+    return () => {
+      window.removeEventListener('resize', () => {});
+    };
+  }, [container]);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ['start start', 'end end'],
+    offset: ['start start', `${endPoint}px end`],
   });
+  const opacity = useTransform(scrollYProgress, [0.2, 0.8], [1, 0]);
   return (
     <ReactLenis root>
-      <main ref={container} className="min-h-screen my-24">
+      <main ref={container} className="min-h-screen my-30">
+        <motion.div
+          className="sticky top-[8%] mb-8 w-full flex justify-center"
+          style={{ opacity }}
+        >
+          <h2 className="font-tuner inlinetext-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent lg:text-left">
+            {props.title}
+          </h2>
+        </motion.div>
+
         <section className="w-full">
           {props.content?.map((item, i) => {
             const targetScale = 1 - (props.content?.length - i) * 0.05;
@@ -59,7 +73,7 @@ export default function index(props): JSX.Element {
                 length={props.content?.length}
                 item={item}
                 progress={scrollYProgress}
-                range={[i * 0.15, Math.min(1, i * 0.15 + 0.5)]}
+                range={[i * 0.12, Math.min(1, i * 0.12 + 0.5)]}
                 targetScale={targetScale}
               />
             );
@@ -91,25 +105,31 @@ export const Card: React.FC<CardProps> = ({
   const opacity = useTransform(progress, (value) => {
     return computeOpacity(value, i, length);
   });
+  const top = useTransform(progress, (value) => {
+    return `${25 * (1 - value * 0.5)}%`;
+  });
 
   useEffect(() => {}, [scale]);
 
   return (
-    <div
+    <motion.div
       ref={container}
-      className="py-16 h-[20vh] flex items-center justify-center sticky top-20"
+      className="py-16 h-30 flex items-center justify-center sticky"
+      style={{
+        top: top,
+      }}
     >
       <motion.div
         style={{
           backgroundColor: 'white',
           scale,
           opacity,
-          top: `calc(-5vh + ${i * 25}px)`,
+          top: `calc(-${5 + i}vh + ${i * 25}px)`,
         }}
         className={`flex flex-col relative -top-[25%] w-full max-w-42 mx-16 h-52 rounded-2xl origin-top shadow-lg overflow-hidden`}
       >
         {item}
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
