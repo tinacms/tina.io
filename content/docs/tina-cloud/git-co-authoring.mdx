@@ -3,6 +3,8 @@ title: Git Co-Authoring - What is it and how do we use it?
 last_edited: '2025-01-06T01:36:27.804Z'
 next: ''
 previous: ''
+seo:
+  description: 'Explore the concept of Git Co-Authoring in TinaCMS and how it enhances collaboration and transparency in version control.'
 ---
 
 TinaCMS simplifies content editing for websites by seamlessly integrating with GitHub. To enhance collaboration and transparency in version control, TinaCMS introduces GitHub Co-Authoring
@@ -16,7 +18,7 @@ The issue here is when you have numerous members of a team making their own resp
 
 ## What is Co-Authoring?
 
-Co-authoring is a feature that combines the user’s identity with the tina-cloud-app entity in GitHub commit logs. This ensures that when users commit changes to their TinaCMS projects, both their GitHub account and the tina-cloud-app entity are listed as co-authors. When a user with Co-Authoring enabled makes content edits through TinaCMS, the corresponding Git changes are marked as “Co-authored by tina-cloud-app.”
+Co-authoring is a feature that combines the user's identity with the tina-cloud-app entity in GitHub commit logs. This ensures that when users commit changes to their TinaCMS projects, both their GitHub account and the tina-cloud-app entity are listed as co-authors. When a user with Co-Authoring enabled makes content edits through TinaCMS, the corresponding Git changes are marked as "Co-authored by tina-cloud-app."
 
 ![](/tina-cloud-app-good-example.png)
 **Figure: ✅ Good Example - I can track down Ben Neoh about this change**
@@ -25,18 +27,17 @@ Co-authoring is a feature that combines the user’s identity with the tina-clou
 
 #### Transparency
 
-* Co-authoring makes it clear that the edits were made with assistance by TinaCMS. This builds trust with the pull request reviewer and other stakeholders, ensuring that changes to the repository were mediated and verified by TinaCMS
-* A co-authored commit also identifies that the specific commit is only a content change - meaning that non-developers will be able to review these commits. If a pull request is only made up of tina-cloud-app commits then it identifies that no javascript/typescript changes were made in this pull request
+- Co-authoring makes it clear that the edits were made with assistance by TinaCMS. This builds trust with the pull request reviewer and other stakeholders, ensuring that changes to the repository were mediated and verified by TinaCMS
+- A co-authored commit also identifies that the specific commit is only a content change - meaning that non-developers will be able to review these commits. If a pull request is only made up of tina-cloud-app commits then it identifies that no javascript/typescript changes were made in this pull request
 
 #### Collaboration Visibility
 
-* Adding TinaCMS as a co-author highlights its role in the content creation process, while also recognizing the author of the change. This makes it useful for tracking which edits were made with TinaCMS, and which were not
-* Enabling Co-Authoring identifies which users in a team are using the TinaCMS tool - ultimately making the GitHub commit history more clear as we can see who is making the commit
-
+- Adding TinaCMS as a co-author highlights its role in the content creation process, while also recognizing the author of the change. This makes it useful for tracking which edits were made with TinaCMS, and which were not
+- Enabling Co-Authoring identifies which users in a team are using the TinaCMS tool - ultimately making the GitHub commit history more clear as we can see who is making the commit
 
 #### Context for Pull Requests
 
-* "Co-authored by tina cloud app" serves to give reviewers more context, allowing them to differentiate between manual developer edits, and changes made through the TinaCMS platform
+- "Co-authored by tina cloud app" serves to give reviewers more context, allowing them to differentiate between manual developer edits, and changes made through the TinaCMS platform
 
 ## How to Enable Co-Authoring?
 

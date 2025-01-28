@@ -4,6 +4,8 @@ title: Self Hosted Manual Setup
 last_edited: '2024-11-19T00:56:06.271Z'
 next: content/docs/self-hosted/migrating-from-tina-cloud.mdx
 previous: content/docs/self-hosted/existing-site.mdx
+seo:
+  description: 'Step-by-step guide for manually setting up a self-hosted TinaCMS backend, including choosing providers and installing dependencies.'
 ---
 
 ## 1. Choose a Git provider, database adapter, and auth provider
@@ -35,25 +37,25 @@ Create a file called `database.{js,ts}` in the `tina` folder of your project. Th
 `tina/database.{ts,js}`
 
 ```ts
-import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
+import { createDatabase, createLocalDatabase } from '@tinacms/datalayer';
 
 // Change this to your chosen git provider
-import { GitHubProvider } from 'tinacms-gitprovider-github'
+import { GitHubProvider } from 'tinacms-gitprovider-github';
 
 // Change this to your chosen database adapter
-import { Redis } from '@upstash/redis'
-import { RedisLevel } from 'upstash-redis-level'
+import { Redis } from '@upstash/redis';
+import { RedisLevel } from 'upstash-redis-level';
 
 // Manage this flag in your CI/CD pipeline and make sure it is set to false in production
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
 
 const branch =
-  process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || 'main'
+  process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || 'main';
 
 if (!branch) {
   throw new Error(
     'No branch found. Make sure that you have set the GITHUB_BRANCH or process.env.VERCEL_GIT_COMMIT_REF environment variable.'
-  )
+  );
 }
 
 export default isLocal
@@ -78,7 +80,7 @@ export default isLocal
         debug: process.env.DEBUG === 'true' || false,
         namespace: branch,
       }),
-    })
+    });
 ```
 
 ## 4. Host the Tina Backend
@@ -90,12 +92,15 @@ In this example we will show how to host the GraphQL API on Vercel. You can use 
 ```js
 // pages/api/tina/[...routes].{ts,js}
 
-import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
-import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+import {
+  TinaNodeBackend,
+  LocalBackendAuthentication,
+} from '@tinacms/datalayer';
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs';
 
-import databaseClient from '../../../tina/__generated__/databaseClient'
+import databaseClient from '../../../tina/__generated__/databaseClient';
 
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
 
 const handler = TinaNodeBackend({
   authentication: isLocal
@@ -107,12 +112,12 @@ const handler = TinaNodeBackend({
         }),
       }),
   databaseClient,
-})
+});
 
 export default (req, res) => {
   // Modify the request here if you need to
-  return handler(req, res)
-}
+  return handler(req, res);
+};
 ```
 
 > For more info see [Backend Host](/docs/reference/self-hosted/tina-backend/nextjs)
@@ -136,6 +141,6 @@ Now you should be able to run your site and use TinaCMS to edit your content. Se
 
 ## Next Steps
 
-* [Querying Data](/docs/self-hosted/querying-data)
-* If you want to change your Git provider, database adapter, or auth provider, check out the [reference](/docs/reference/self-hosted/overview/).
-* Got questions? Feel ask in our [Discord](https://discord.com/invite/zumN63Ybpf)
+- [Querying Data](/docs/self-hosted/querying-data)
+- If you want to change your Git provider, database adapter, or auth provider, check out the [reference](/docs/reference/self-hosted/overview/).
+- Got questions? Feel ask in our [Discord](https://discord.com/invite/zumN63Ybpf)

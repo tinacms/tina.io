@@ -3,6 +3,8 @@ title: Self-hosting Tina
 last_edited: '2023-07-06T07:00:00.000Z'
 next: content/docs/self-hosted/starters/nextjs-vercel.mdx
 previous: content/docs/tina-cloud/api-versioning.mdx
+seo:
+  description: 'Explore the self-hosting options for TinaCMS, including setup, data layer, and backend configuration.'
 ---
 
 ## Introduction
@@ -28,13 +30,13 @@ The TinaCMS backend is designed to be compatible with any Node.js serverless env
 ```js
 // pages/api/tina/[...routes].{ts,js}
 // ...
-import { TinaNodeBackend } from '@tinacms/datalayer'
+import { TinaNodeBackend } from '@tinacms/datalayer';
 const tinaHandler = TinaNodeBackend({
   // ...
-})
+});
 export default (req, res) => {
-  return tinaHandler(req, res)
-}
+  return tinaHandler(req, res);
+};
 ```
 
 > Note: This is a Next.js example, but you can use TinaCMS with any framework.
@@ -52,7 +54,6 @@ Each module is designed to be standalone, meaning you have the option to replace
 
 > Note: Some features are not available when self-hosting TinaCMS. See the [Self-hosted Limitations](/docs/introduction/faq#what-features-are-unavailable-in-self-hosted-tina-compared-to-tinacloud) section for more info.
 
-
 ## Next Steps
 
 - Start from scratch by checking out the [Next.js self-hosted starter guide](/docs/self-hosted/starters/nextjs-vercel/).
@@ -60,5 +61,5 @@ Each module is designed to be standalone, meaning you have the option to replace
 
 ## Join the TinaCMS Community
 
-- **Discord**: [Join our Discord community](https://discord.com/invite/zumN63Ybpf) to connect with other TinaCMS users and developers. It’s a great space to get help, share your work, and discuss ideas
+- **Discord**: [Join our Discord community](https://discord.com/invite/zumN63Ybpf) to connect with other TinaCMS users and developers. It's a great space to get help, share your work, and discuss ideas
 - **GitHub**: [Open an issue](https://github.com/tinacms/tinacms/issues/new/choose) to report problems or suggest new features. We welcome your bug reports, feature requests, and contributions to our discussions. If you're passionate about TinaCMS and want to help make it even better, we encourage you to contribute to our code and documentation!
