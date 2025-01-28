@@ -50,15 +50,17 @@ export default function index(props): JSX.Element {
     target: container,
     offset: ['start start', `${endPoint}px end`],
   });
-  const opacity = useTransform(scrollYProgress, [0.2, 0.8], [1, 0]);
+
+  const minHeight = useTransform(scrollYProgress, [0, 0.5], ['0px', '288px']);
+
   return (
     <ReactLenis root>
-      <main ref={container} className="min-h-screen my-30">
+      <main ref={container} className="min-h-screen my-30 relative">
         <motion.div
-          className="sticky top-[8%] mb-8 w-full flex justify-center"
-          style={{ opacity }}
+          className="sticky mb-8 w-full flex justify-center top-[8%]"
+          style={{ minHeight }}
         >
-          <h2 className="font-tuner inlinetext-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent lg:text-left">
+          <h2 className="font-tuner text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent lg:text-left">
             {props.title}
           </h2>
         </motion.div>
@@ -126,7 +128,7 @@ export const Card: React.FC<CardProps> = ({
           opacity,
           top: `calc(-${5 + i}vh + ${i * 25}px)`,
         }}
-        className={`flex flex-col relative -top-[25%] w-full max-w-42 mx-16 h-52 rounded-2xl origin-top shadow-lg overflow-hidden`}
+        className={`flex flex-col relative -top-[25%] w-full max-w-42 md:mx-16 mx-12 h-52 rounded-2xl origin-top shadow-lg overflow-hidden`}
       >
         {item}
       </motion.div>

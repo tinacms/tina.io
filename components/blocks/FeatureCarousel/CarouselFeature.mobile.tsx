@@ -13,7 +13,7 @@ function CarouselFeatureMobileItem(data) {
   return (
     <div
       data-tina-field={tinaField(data, 'headline')}
-      className="flex flex-col p-10"
+      className="flex flex-col md:p-10 p-6"
     >
       <div className="flex items-center mb-2 px-1 text-left">
         {IconComponent && (
@@ -30,7 +30,9 @@ function CarouselFeatureMobileItem(data) {
         )}
       </div>
       {text && (
-        <p className={`lg:text-lg text-md font-medium slide-up`}>{text}</p>
+        <p className={`lg:text-lg md:text-md text-sm font-medium slide-up`}>
+          {text}
+        </p>
       )}
       {button && (
         <div className={`slide-up flex justify-start`}>
