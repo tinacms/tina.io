@@ -13,7 +13,7 @@ export const BlockWrapper = (props: WrapperProps) => {
       className={
         data?.isFullscreen
           ? 'min-h-[70vh] pt-48 pb-36 flex items-center justify-center w-full'
-          : 'pt-20 last:pb-30'
+          : 'pt-28 last:pb-30'
       }
     >
       {children}
