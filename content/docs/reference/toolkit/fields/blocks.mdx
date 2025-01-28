@@ -3,6 +3,8 @@ consumes:
   - file: /packages/tinacms/src/plugins/fields/BlocksFieldPlugin.tsx
     details: Shows blocks interface
 title: Blocks Field
+seo:
+  description: Guide to using the Blocks field in TinaCMS, including configuration and examples for creating flexible content structures.
 last_edited: '2025-01-08T01:32:08.992Z'
 next: ''
 previous: ''
@@ -35,7 +37,7 @@ const PageForm = {
       },
     },
   ],
-}
+};
 ```
 
 ```jsx
@@ -49,7 +51,7 @@ export const ContentBlock = {
     content: '',
   },
   fields: [{ name: 'content', label: 'Content', component: 'textarea' }],
-}
+};
 ```
 
 The source data for the `ContentBlock` might look like the example below. When new blocks are added, additional JSON objects will be added to the `blocks` array:
@@ -68,16 +70,16 @@ The source data for the `ContentBlock` might look like the example below. When n
 ## Blocks Field Options
 
 ```typescript
-import { Field } from '@tinacms/core'
+import { Field } from '@tinacms/core';
 
 interface BlocksConfig {
-  name: string
-  component: 'blocks'
-  label?: string
-  description?: string
+  name: string;
+  component: 'blocks';
+  label?: string;
+  description?: string;
   templates: {
-    [key: string]: BlockTemplate
-  }
+    [key: string]: BlockTemplate;
+  };
 }
 ```
 
@@ -85,31 +87,31 @@ interface BlocksConfig {
 | ------------- | ----------------------------------------------------------------------------------------------- |
 | `component`   | The name of the plugin component. Always `'blocks'`.                                            |
 | `name`        | The path to some value in the data being edited.                                                |
-| `label`       | A human readable label for the field. Defaults to the `name`. *(Optional)*                      |
-| `description` | Description that expands on the purpose of the field or prompts a specific action. *(Optional)* |
+| `label`       | A human readable label for the field. Defaults to the `name`. _(Optional)_                      |
+| `description` | Description that expands on the purpose of the field or prompts a specific action. _(Optional)_ |
 | `templates`   | A list of **Block templates** that define the fields used in the Blocks.                        |
 
 ## Block Template Options
 
 ```typescript
 interface BlockTemplate {
-  label: string
-  key: string
-  fields: Field[]
-  defaultItem?: object | (() => object)
+  label: string;
+  key: string;
+  fields: Field[];
+  defaultItem?: object | (() => object);
   itemProps?: (item: object) => {
-    key?: string
-    label?: string
-  }
+    key?: string;
+    label?: string;
+  };
 }
 ```
 
-| Option        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `label`       | A human readable label for the Block.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `key`         | Should be unique to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `fields`      | An array of [`fields`](/docs/extending-tina/custom-field-components/#default-field-plugins) that will render as a sub-menu for each group item. The fields should map to editable content.                                                                                                                                                                                                                                                                                                                                                                         |
-| `defaultItem` | A function to provide the block with default data upon being created. *(Optional)*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `itemProps`   | A function that generates `props` for each group item. It takes the item as an argument. *(Optional)*  It returns an object containing, `key`: This property is used to optimize the rendering of lists. If rendering is causing problems, use `defaultItem` to generate a new key, as is seen in [this example](http://tinacms.org/docs/reference/toolkit/fields/group-list#definition). Feel free to reference the [React documentation](https://reactjs.org/docs/lists-and-keys.html) for more on keys and lists.  `label`: A readable label for the new Block. |
+| Option        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `label`       | A human readable label for the Block.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `key`         | Should be unique to optimize the [rendering of the list](https://reactjs.org/docs/lists-and-keys.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `fields`      | An array of [`fields`](/docs/extending-tina/custom-field-components/#default-field-plugins) that will render as a sub-menu for each group item. The fields should map to editable content.                                                                                                                                                                                                                                                                                                                                                                       |
+| `defaultItem` | A function to provide the block with default data upon being created. _(Optional)_                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `itemProps`   | A function that generates `props` for each group item. It takes the item as an argument. _(Optional)_ It returns an object containing, `key`: This property is used to optimize the rendering of lists. If rendering is causing problems, use `defaultItem` to generate a new key, as is seen in [this example](http://tinacms.org/docs/reference/toolkit/fields/group-list#definition). Feel free to reference the [React documentation](https://reactjs.org/docs/lists-and-keys.html) for more on keys and lists. `label`: A readable label for the new Block. |
 
-> This interfaces only shows the keys unique to the blocks field. Visit the [Field Config](/docs/extending-tina/custom-field-components/#default-field-plugins "custom field component link") docs for a complete list of options.
+> This interfaces only shows the keys unique to the blocks field. Visit the [Field Config](/docs/extending-tina/custom-field-components/#default-field-plugins 'custom field component link') docs for a complete list of options.

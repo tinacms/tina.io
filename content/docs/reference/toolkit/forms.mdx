@@ -1,5 +1,7 @@
 ---
 title: Forms
+seo:
+  description: Guide to configuring forms in TinaCMS using the Final Form library, including options and examples.
 last_edited: '2021-11-10T00:00:00.000Z'
 ---
 
@@ -18,19 +20,19 @@ In addition to Final Form's options, Tina's form hooks accept the following addi
 
 ```typescript
 interface FormOptions<S> {
-  id: any
-  label: string
-  fields: Field[]
-  loadInitialValues?: () => Promise<S>
-  onSubmit?: () => Promise<any>
-  reset?(): void
-  onChange?(state): void
-  actions?: any[]
+  id: any;
+  label: string;
+  fields: Field[];
+  loadInitialValues?: () => Promise<S>;
+  onSubmit?: () => Promise<any>;
+  reset?(): void;
+  onChange?(state): void;
+  actions?: any[];
   buttons?: {
-    save: string
-    reset: string
-  }
-  __type?: string
+    save: string;
+    reset: string;
+  };
+  __type?: string;
 }
 ```
 
