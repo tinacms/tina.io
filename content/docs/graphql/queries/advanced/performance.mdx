@@ -1,6 +1,8 @@
 ---
 id: /docs/graphql/queries/advanced/performance
 title: Query performance
+seo:
+  description: Tips for optimizing query performance in TinaCMS's GraphQL API, including indexing and filtering strategies.
 ---
 
 The GraphQL API indexes on collection fields to provide sorted results when using the `sort` parameter. If a `filter` is specified, the existence of an index can have a large impact on how quickly a query executes.
