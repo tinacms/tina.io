@@ -16,6 +16,11 @@
   },
   "redirects": [
     {
+      "source": "/early-access",
+      "destination": "",
+      "permanent": true
+    },
+    {
       "source": "/docs/tinacms-context/",
       "destination": "/docs/contextual-editing/overview",
       "permanent": true

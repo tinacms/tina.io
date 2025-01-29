@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import { addToMailchimp } from '../../utils';
 import { Input, Button } from '../ui';
@@ -19,6 +20,7 @@ export const EmailForm = (props: EmailFormProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsProcessing(true);
