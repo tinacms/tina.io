@@ -1,12 +1,15 @@
 ---
 title: Using Multiple Branches
 last_edited: '2023-04-12T10:00:00.000Z'
+seo:
+  description: 'Discover how to use multiple branches in TinaCMS, including installation and demo of the branch switching plugin.'
 ---
 
 > For a more advanced branching and Pull-Request workflow, checkout TinaCloud's [editorial workflow](https://tina.io/editorial-workflow/) (only available on Business and Enterprise plans).
 
-If your content editors need to work on multiple branches, you can enable Tina's branch switching plugin. This allows you to create new branches and switch between them from Tina's UI. In the future, we'll build on this foundation and support creating pull requests, merging, and other related workflows. 
-<WebmEmbed embedSrc="/img/docs/tina-cloud/branch-selector_e5ndeg.webm"/>
+If your content editors need to work on multiple branches, you can enable Tina's branch switching plugin. This allows you to create new branches and switch between them from Tina's UI. In the future, we'll build on this foundation and support creating pull requests, merging, and other related workflows.
+
+<WebmEmbed embedSrc="/img/docs/tina-cloud/branch-selector_e5ndeg.webm" />
 
 ## Installation
 
@@ -14,9 +17,9 @@ Simply add the branch-switcher flag to your CMS callback function in your Tina [
 
 ```javascript
 cmsCallback: (cms) => {
-  cms.flags.set('branch-switcher', true)
-  return cms
-}
+  cms.flags.set('branch-switcher', true);
+  return cms;
+};
 ```
 
 \

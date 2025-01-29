@@ -4,19 +4,23 @@ date: '2024-12-23T13:00:00.000Z'
 author: Matt Wicks
 prev: content/blog/referential-integrity.mdx
 next: ''
+seo:
+  description: >-
+    'Public disclosure of a security breach in TinaCloud involving compromised
+    AWS access keys and unauthorized email activity.'
 ---
 
 ## Overview of the Incident
 
 On 15th December 2024, TinaCMS identified unauthorized activity involving compromised AWS access keys. These keys were exploited to send unauthorized emails (targeting the general French community, not Tina customers specifically) using our Amazon Simple Email Service (SES) infrastructure.
 
-![A screenshot of one of the phishing emails](/img/blog/2024-12-tinacloud-public-disclosure-security-breach/phishing-email.png "Figure: the emails sent were in French")**Figure: the emails sent were in French**
+![A screenshot of one of the phishing emails](/img/blog/2024-12-tinacloud-public-disclosure-security-breach/phishing-email.png 'Figure: the emails sent were in French')**Figure: the emails sent were in French**
 
 As an automated measure, the impacted key was revoked. Afterwards, our team confirmed the extent of the incident using CloudTrail logs, investigated root cause, and took steps (described below) to secure our systems.
 
 Outbound email functionality, including user invitations, was impacted. This has since been resolved.
 
-We apologize for this, and we are confident that it won’t happen again.
+We apologize for this, and we are confident that it won't happen again.
 
 ## Incident Details
 
@@ -28,20 +32,20 @@ Type of Incident: Unauthorized use of AWS access keys
 
 Services Impacted:
 
-* Amazon SES (email sending)
-* User invitation workflows relying on outbound email
+- Amazon SES (email sending)
+- User invitation workflows relying on outbound email
 
 Nature of Access:
 
-* AWS access keys with root permissions were compromised and misused
+- AWS access keys with root permissions were compromised and misused
 
 Verification:
 
-* CloudTrail logs were used to confirm which systems and services were accessed during the incident
+- CloudTrail logs were used to confirm which systems and services were accessed during the incident
 
 ## Root Cause Analysis
 
-The unauthorized access was traced to a vulnerability in our CI/CD pipeline. During the build process, a step in the GitHub Actions workflow inadvertently wrote the GitHub Actions Runner’s environment variables, including sensitive AWS access keys, to a JavaScript file.
+The unauthorized access was traced to a vulnerability in our CI/CD pipeline. During the build process, a step in the GitHub Actions workflow inadvertently wrote the GitHub Actions Runner's environment variables, including sensitive AWS access keys, to a JavaScript file.
 
 The JavaScript file containing the keys was subsequently deployed and served publicly as part of TinaCloud, allowing attackers to obtain the access keys directly from the front-end code.
 
@@ -70,13 +74,13 @@ This includes content databases, end user login information, access to applicati
    MFA (Multi-Factor Authentication) is enabled on all user accounts that have console access
    Revoked access to all unnecessary users
 4. ✅ Done - Suspension of email sending:
-   Outbound email services were temporarily suspended whilst we were ascertaining root cause and AWS’s review.
+   Outbound email services were temporarily suspended whilst we were ascertaining root cause and AWS's review.
    Services have now been restored.
 5. ✅ Done - CI/CD AWS access:
    Authentication for the GitHub Actions has been upgraded from long lived Access Keys to OIDC
 6. ✅ Done - Build process:
    The build process was reviewed, and the handling of environment variables was updated.
-   The use of process.env was replaced with import.meta, following best practices outlined in [Vite’s documentation](https://vite.dev/config/shared-options.html#define), to prevent sensitive data from being exposed in build artifacts.
+   The use of process.env was replaced with import.meta, following best practices outlined in [Vite's documentation](https://vite.dev/config/shared-options.html#define), to prevent sensitive data from being exposed in build artifacts.
 7. ✅ Done - Repository secrets audit:
    A thorough audit of all GitHub repositories is being conducted to identify any other sensitive information that may have been inadvertently exposed in past builds or commits
 8. \[TODO] Hardened IAM policies:
@@ -90,7 +94,7 @@ This includes content databases, end user login information, access to applicati
 
 ## Advice to Tina Customers
 
-1. Report suspicious emails: If you received unauthorized or suspicious emails from TinaCMS, please report them to [security@tina.io](mailto\:security@tina.io)
+1. Report suspicious emails: If you received unauthorized or suspicious emails from TinaCMS, please report them to [security@tina.io](mailto:security@tina.io)
 2. Verify email origin: Ensure any emails claiming to be from TinaCMS are legitimate
 3. Stay updated: Follow our official communication channels for real-time updates
 
@@ -98,8 +102,8 @@ This includes content databases, end user login information, access to applicati
 
 For questions, concerns, or further information, please contact:
 
-* Email: [security@tina.io](mailto\:security@tina.io)
-* Website: [https://tina.io/security](https://tina.io/security)
+- Email: [security@tina.io](mailto:security@tina.io)
+- Website: [https://tina.io/security](https://tina.io/security)
 
 TinaCMS remains committed to protecting our systems and maintaining transparency.
 

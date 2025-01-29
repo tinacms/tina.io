@@ -1,5 +1,7 @@
 ---
 title: Repo-based Media (default)
+seo:
+  description: Guide to using repo-based media storage in TinaCMS, including configuration and benefits for static site generators.
 last_edited: '2024-11-12T23:12:35.189Z'
 next: ''
 previous: ''
@@ -27,7 +29,7 @@ export default defineConfig({
       static: false, //default is false
     },
   },
-})
+});
 ```
 
 ### `publicFolder`
@@ -50,8 +52,8 @@ E.g, in our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/t
 
 This property determines whether media files can be uploaded, edited, or deleted directly through the editor.
 
-* **`static: true`** Editors cannot upload/delete media (static assets)
-* **`static: false`** (default): Editors can upload/delete media (dynamic assets).
+- **`static: true`** Editors cannot upload/delete media (static assets)
+- **`static: false`** (default): Editors can upload/delete media (dynamic assets).
 
 ### Overriding the default accepted media types
 
@@ -94,7 +96,7 @@ export default defineConfig({
     },
     accept: ['image/jpeg', 'video/mp4'],
   },
-})
+});
 ```
 
 ### `accept` (List\<String>)
@@ -110,7 +112,7 @@ module.exports = {
   images: {
     domains: ['assets.tina.io'],
   },
-}
+};
 ```
 
 See the [next/image docs](https://nextjs.org/docs/api-reference/next/image#domains) for more information.
@@ -144,9 +146,9 @@ When uploading files to TinaCloud, the maximum allowed file size is 100 MiB.
 
 Repo-based media is designed to be used around a single-branch workflow. If your project is using [multiple branches](/docs/tina-cloud/branching/) or [Editorial Workflow](/docs/drafts/editorial-workflow/), there's some known caveats to be aware of.
 
-* Images cannot be altered, once uploaded any subsequent changes to an asset will not be reflected.
-* If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
-* If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
+- Images cannot be altered, once uploaded any subsequent changes to an asset will not be reflected.
+- If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
+- If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
 
 If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), you may see this message in the TinaCloud media settings:
 

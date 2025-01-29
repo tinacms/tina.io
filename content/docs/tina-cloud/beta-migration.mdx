@@ -3,6 +3,8 @@ title: Upgrading from Alpha to Beta
 last_edited: '2024-09-17T05:31:51.681Z'
 next: ''
 previous: ''
+seo:
+  description: 'Learn how to upgrade from TinaCloud Alpha to Beta, including changes in user accounts and migration steps.'
 ---
 
 <WarningCallout body="Tina is currently in full release. While the content of this page may still be useful, we recommend using later versions of Tina – [latest changes](https://tina.io/whats-new/tinacms/)." />
@@ -25,9 +27,9 @@ Since we're changing how user accounts work within TinaCloud, existing alpha use
 
 ### Recreate your TinaCloud Account
 
-* Head to [https://app.tina.io](https://app.tina.io) and sign up for a new account.
-* Log in to your newly created account [recreate any existing projects](/docs/tina-cloud/dashboard/projects/).
-* Invite any users to your newly created account.
+- Head to [https://app.tina.io](https://app.tina.io) and sign up for a new account.
+- Log in to your newly created account [recreate any existing projects](/docs/tina-cloud/dashboard/projects/).
+- Invite any users to your newly created account.
 
 ### Update your TinaCloud site
 
@@ -48,8 +50,8 @@ yarn add -D @tinacms/cli
 2. Update `package.json`. Replace `yarn tina-gql` calls with `yarn tinacms`.
 3. Update your site's environment variables.
 
-* Delete `NEXT_PUBLIC_ORGANIZATION_NAME`
-* Change `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID found in your new TinaCloud Account.
+- Delete `NEXT_PUBLIC_ORGANIZATION_NAME`
+- Change `NEXT_PUBLIC_TINA_CLIENT_ID` to the Client ID found in your new TinaCloud Account.
 
 That's it! With any luck you should be able to keep working on your Tina enabled site the same as before. We're not expecting to have to repeat this process when we make it to our first full release.
 
