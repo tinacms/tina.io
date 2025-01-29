@@ -1,6 +1,8 @@
 ---
 id: /docs/tina-cloud/deployment-options/github-pages
 title: Deploying to GitHub Pages
+seo:
+  description: Guide to deploying TinaCMS projects to GitHub Pages, including build configuration and GitHub Actions setup.
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/netlify.mdx
 ---
@@ -103,7 +105,7 @@ const Index = Filename;
 
 export const getStaticProps = async ({ params }) => {
   return FilenameStaticProps({ params: { filename: 'home' } });
-}
+};
 
 export default Index;
 ```
