@@ -3,6 +3,8 @@ title: Converting an existing Gatsby project to TinaCMS
 last_edited: '2024-11-11T00:11:37.036Z'
 next: content/docs/cli-overview.mdx
 previous: content/docs/contextual-editing/overview.mdx
+seo:
+  description: Step-by-step guide to converting an existing Gatsby project to TinaCMS, including limitations and considerations.
 ---
 
 <WarningCallout body="TinaCMS does not officially support Gatsby. We recommend migrating your Gatsby site to a well supported framework such as Next.JS instead." />
@@ -738,7 +740,7 @@ export const pageQuery = graphql`
 }
 ```
 
-On the homepage, we’ll need to implement a server-side fetch to retrieve the full list of articles through TinaCMS.
+On the homepage, we'll need to implement a server-side fetch to retrieve the full list of articles through TinaCMS.
 
 ```diff
 + import client from "../../tina/__generated__/client"
@@ -859,11 +861,11 @@ Since each blog post is stored in its own folder within the `content` directory,
   schema: {
     collections: [
       {
-+        ui: {
-+          router: ({ document }) => {
-+            return document._sys.breadcrumbs[0]
-+          },
-+        },
+        ui: {
+          router: ({ document }) => {
+            return document._sys.breadcrumbs[0]
+          },
+        },
 ```
 
 ## (Optional) Adding React components
