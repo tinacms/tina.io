@@ -57,7 +57,7 @@ export default function index(props): JSX.Element {
     <ReactLenis root>
       <main ref={container} className="min-h-screen my-30 relative">
         <motion.div
-          className="sticky mb-32 w-full flex justify-center top-[6%]"
+          className="sticky mb-24 w-full flex justify-center top-[6%]"
           style={{ minHeight }}
         >
           <h2 className="font-tuner text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent lg:text-left">
