@@ -1,7 +1,5 @@
 ---
 title: From GraphQL Gateway to TinaCMS
-seo:
-  description: 'Learn about the transition from GraphQL Gateway to TinaCMS and the package reorganization involved in this migration.'
 ---
 
 # Package reorganization
@@ -49,7 +47,7 @@ yarn remove tina-graphql-gateway-cli
 
 ## The new `defineSchema` API
 
-We're going to be leaning on a more _primitive_ concept of how types are defined with Tina, and in doing so will be introducing some breaking changes to the way schemas are defined.
+We're going to be leaning on a more _primitive_ concept of how types are defined with Tina, and in doing so will be introducing some breaking changes to the way schemas are defined. 
 
 ### Collections now accept a `fields` _or_ `templates` property
 
@@ -70,7 +68,7 @@ You can now provide `fields` instead of `templates` for your collection, doing s
         },
       ],
     },
-  ];
+  ]
 }
 ```
 
@@ -143,7 +141,7 @@ For the most part, the UI properties are added to the field and adhere to the ex
 cms.fields.add({
   name: 'myMapField',
   Component: MapPicker,
-});
+})
 ```
 
 #### One important gotcha
@@ -164,15 +162,15 @@ Every property in the `defineSchema` API must be serializable. Meaning functions
 And then when you register the plugin, provide your custom logic here:
 
 ```js
-import { TextFieldPlugin } from 'tinacms';
+import { TextFieldPlugin } from 'tinacms'
 // ...
 cms.fields.add({
   ...TextFieldPlugin, // spread existing text plugin
   name: 'myText',
-  validate: (value) => {
-    someValidationLogic(value);
+  validate: value => {
+    someValidationLogic(value)
   },
-});
+})
 ```
 
 **Why?**

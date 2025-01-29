@@ -4,8 +4,6 @@ id: /docs/self-hosted/querying-data
 title: Querying Content in Self-hosted Backend
 next: content/docs/self-hosted/user-management.mdx
 previous: content/docs/self-hosted/migrating-from-tina-cloud.mdx
-seo:
-  description: 'Learn how to query content in a self-hosted TinaCMS backend using the database client and GraphQL.'
 ---
 
 ## Overview
@@ -13,13 +11,13 @@ seo:
 When using TinaCloud, you would typically use the [TinaCMS client](/docs/data-fetching/overview/) to query your content.
 
 ```js
-import { client } from '../[pathToTina]/tina/__generated__/client';
+import { client } from '../[pathToTina]/tina/__generated__/client'
 
 const myPost = await client.queries.blogPost({
   relativePath: 'HelloWorld.md',
-});
+})
 
-console.log(myPost.title);
+console.log(myPost.title)
 ```
 
 Under the hood, this uses the fetch api to request data from TinaCloud.
@@ -44,8 +42,8 @@ The `databaseClient` uses the exported database in your `database.{ts,js}`. It c
 The `databaseClient` has the same interface as the [TinaCMS client](/docs/data-fetching/overview/). This means you can use it in the same way you would use the [TinaCMS client](/docs/data-fetching/overview/).
 
 ```ts
-import databaseClient from '../tina/__generated__/databaseClient';
+import databaseClient from '../tina/__generated__/databaseClient'
 
 //...
-const res = await databaseClient.queries.postConnection();
+const res = await databaseClient.queries.postConnection()
 ```

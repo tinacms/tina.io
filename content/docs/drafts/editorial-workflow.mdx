@@ -1,10 +1,9 @@
 ---
 id: /docs/drafts/editorial-workflow
+
 title: Editorial Workflow
 last_edited: '2023-06-14T04:00:00.000Z'
 previous: content/docs/drafts/drafts-fields.mdx
-seo:
-  description: Learn about TinaCMS's Editorial Workflow feature that enables content teams to work on multiple branches and manage content through pull requests
 ---
 
 <Youtube embedSrc="https://www.youtube.com/embed/gYukiULGqGc" />
@@ -45,7 +44,7 @@ When you are ready to publish your content, merge the draft pull request into th
 
 ## GitHub Pull Request links
 
-In the branch list modal, you can click on the dropdown and click "View Pull Request" to view the pull request on GitHub. This will open a new tab in your browser. This link will only appear if the pull request has been created with TinaCMS and not if it was created manually.
+In the branch list modal, you can click on the dropdown and click "View Pull Request" to view the pull request on GitHub. This will open a new tab in your browser. This link will only aprear of the pull request has been created with TinaCMS and not if it was created manually.
 
 ![PR Links](/img/docs/editorial-workflow/preview-link.png)
 
@@ -63,7 +62,7 @@ This will allow you to preview your content changes before merging them into the
 export default defineConfig({
   // ...
   ui: {
-    // Eg. If you're deploying to Vercel, and your repo name is 'my-app', Vercel's preview URL would be based on the branch:
+    // Eg. If you're deplying to Vercel, and your repo name is 'my-app', Vercel's preview URL would be based on the branch:
     previewUrl: (context) => {
       const repoName = 'my-app'
       // `https://<project-name>-git-<branch-name>.vercel.app`

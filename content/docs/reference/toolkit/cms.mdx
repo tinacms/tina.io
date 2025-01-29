@@ -1,7 +1,5 @@
 ---
 title: The CMS
-seo:
-  description: Overview of the CMS object in TinaCMS, including its role, usage, and integration with plugins and APIs.
 last_edited: '2021-11-10T00:00:00.000Z'
 ---
 
@@ -12,12 +10,12 @@ The CMS object in Tina is a container for attaching and accessing plugins, APIs,
 The CMS object can be retrieved from context via the `useCMS` hook (from anywhere within the Tina provider). Reference the available [core properties](/docs/cms#reference) to work with.
 
 ```javascript
-import * as React from 'react';
-import { useCMS } from 'tinacms';
+import * as React from 'react'
+import { useCMS } from 'tinacms'
 
 // <SomeComponent /> is assumed to be nested inside of the <TinaProvider> context
 export default function SomeComponent() {
-  const cms = useCMS();
+  const cms = useCMS()
   //...
 }
 ```
@@ -27,18 +25,18 @@ export default function SomeComponent() {
 The CMS can be enabled or disabled via methods or configuration on the CMS object. Disabling the CMS prevents the editing UI from rendering and forms from registering.
 
 ```js
-import * as React from 'react';
-import { useCMS } from 'tinacms';
+import * as React from 'react'
+import { useCMS } from 'tinacms'
 
 // <ExitButton /> is assumed to be nested inside of the <TinaProvider> context
 export default function ExitButton() {
-  const cms = useCMS();
+  const cms = useCMS()
 
   return (
     <button onClick={() => cms.toggle()}>
       {cms.enabled ? `Exit Tina` : `Edit with Tina`}
     </button>
-  );
+  )
 }
 ```
 
@@ -48,33 +46,33 @@ When instantiating the `TinaCMS` object, you can pass in a configuration object.
 
 ```typescript
 interface TinaCMSConfig {
-  enabled?: boolean;
-  plugins?: Plugin[];
-  apis?: { [key: string]: any };
-  sidebar?: SidebarConfig | boolean;
-  toolbar?: ToolbarConfig | boolean;
+  enabled?: boolean
+  plugins?: Plugin[]
+  apis?: { [key: string]: any }
+  sidebar?: SidebarConfig | boolean
+  toolbar?: ToolbarConfig | boolean
   media?: {
-    store: MediaStore;
-  };
+    store: MediaStore
+  }
   mediaOptions?: {
-    pageSize?: number;
-  };
+    pageSize?: number
+  }
 }
 
 interface SidebarConfig {
-  position?: SidebarPosition;
-  placeholder?: React.FC;
+  position?: SidebarPosition
+  placeholder?: React.FC
   buttons?: {
-    save: string;
-    reset: string;
-  };
+    save: string
+    reset: string
+  }
 }
 
 interface ToolbarConfig {
   buttons?: {
-    save: string;
-    reset: string;
-  };
+    save: string
+    reset: string
+  }
 }
 ```
 
@@ -100,12 +98,12 @@ There are a number of [core properties](https://github.com/tinacms/tinacms/blob/
 
 ```ts
 interface TinaCMS {
-  enabled: boolean;
-  disabled: boolean;
-  registerApi(name: string, api: any): void;
-  enable(): void;
-  disable(): void;
-  toggle(): void;
+  enabled: boolean
+  disabled: boolean
+  registerApi(name: string, api: any): void
+  enable(): void
+  disable(): void
+  toggle(): void
 }
 ```
 

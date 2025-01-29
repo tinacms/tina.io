@@ -1,8 +1,6 @@
 ---
 id: /docs/guides/nextjs-internationalization
 title: Internationalization with NextJS+Tina
-seo:
-  description: 'Guide to implementing internationalization in Next.js with TinaCMS, using content sub-folders and i18n routing.'
 ---
 
 ## Overview
@@ -23,10 +21,10 @@ While Next.js is used in our solution, other frameworks could be substituted as 
 
 ## In this Guide
 
-- Updating the `next.config.json` to support `i18n` locales
-- Modifying `getStaticPaths` to build `locale`-aware paths
-- Modifying `getStaticProps` to include `locale` in the `relativePath`
-- Creating `locale`-ready Documents in the CMS
+* Updating the `next.config.json` to support `i18n` locales
+* Modifying `getStaticPaths` to build `locale`-aware paths
+* Modifying `getStaticProps` to include `locale` in the `relativePath`
+* Creating `locale`-ready Documents in the CMS
 
 ## Update `next.config.js`
 
@@ -59,7 +57,7 @@ Given that we're adding `i18n` support to the `post` collection, we'll be updati
 /**
  * /pages/post/[filename].tsx
  */
-import { client } from '../[pathToTina]/tina/__generated__/client';
+import { client } from '../[pathToTina]/tina/__generated__/client'
 
 // ...
 
@@ -82,8 +80,8 @@ const getStaticPaths = async ({ locales }) => {
   return {
     paths,
     fallback: true,
-  };
-};
+  }
+}
 ```
 
 ## Modify `getStaticProps()`
@@ -118,9 +116,9 @@ Now, we'll venture into the CMS either through the Global Nav or directly via `/
 
 For our example, we'll want to create three versions in our `post` collection by modifying the `filename` field to include each `locale` as a sub-folder:
 
-- `en-US/hello-world` for our "English (United States)" version
-- `fr/hello-world` for our "French" version
-- `nl-NL/hello-world` for our "Netherlands" version
+* `en-US/hello-world` for our "English (United States)" version
+* `fr/hello-world` for our "French" version
+* `nl-NL/hello-world` for our "Netherlands" version
 
 ## Testing
 
@@ -155,13 +153,13 @@ const getStaticProps = async({ params, locale }) {
 
 The output will appear in the CLI console:
 
-- Visiting `http://localhost:3000/post/hello-world`
+* Visiting `http://localhost:3000/post/hello-world`
 
 ```bash
 locale en-US
 ```
 
-- Visiting `http://localhost:3000/fr/post/hello-world`
+* Visiting `http://localhost:3000/fr/post/hello-world`
 
 ```bash
 locale fr
@@ -175,5 +173,5 @@ From this point, we can explore more of what Next.js offers including:
 
 [https://nextjs.org/docs/advanced-features/i18n-routing#accessing-the-locale-information](https://nextjs.org/docs/advanced-features/i18n-routing#accessing-the-locale-information)
 
-- Using `useRouter()` to attach `locale` information to the app
-- Using `next/link` with a `locale` prop to influence navigation to a `locale`
+* Using `useRouter()` to attach `locale` information to the app
+* Using `next/link` with a `locale` prop to influence navigation to a `locale`

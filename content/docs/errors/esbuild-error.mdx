@@ -1,7 +1,5 @@
 ---
 title: 'ESbuild compilation and build errors'
-seo:
-  description: Troubleshooting guide for ESbuild-related compilation and execution errors in TinaCMS, including schema build failures and config execution issues
 ---
 
 The `tina/config.{ts,js,tsx}` file is built with [esbuild](https://esbuild.github.io/) and executed in a node.js runtime. This allows you to import from outside your `.tina` folder and esbuild will handle this for us. This also can run into some edge cases where some things are being run on the server that should not be.
