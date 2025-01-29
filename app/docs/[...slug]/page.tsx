@@ -39,7 +39,7 @@ export async function generateMetadata({
       description: data.doc.seo?.description || `${excerpt} || TinaCMS Docs`,
       openGraph: {
         title: data.doc.title,
-        description: data.doc.seo?.description,
+        description: data.doc.seo?.description || `${excerpt} || TinaCMS Docs`,
       },
     };
   } catch (error) {
