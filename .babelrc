@@ -11,6 +11,6 @@
   ],
   "plugins": [
     ["styled-components", { "ssr": true }],
-    // "babel-plugin-react-compiler"
+    "babel-plugin-react-compiler"
   ]
 }
