@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "lenis/react": ["node_modules/lenis/dist/lenis-react"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

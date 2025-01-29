@@ -65,7 +65,7 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-96 w-1/2 justify-self-start ${
+            className={`relative min-w-0 md:min-w-96 md:w-1/2 justify-self-start ${
               isReversed ? 'lg:pr-8' : ''
             } ${(data.media[0].image || data.media[0].src) && ''}`}
           >
@@ -150,6 +150,18 @@ export function FeatureBlock({ data, index }) {
       <style jsx>{`
         .max-w-60ch {
           max-width: 65ch;
+        }
+
+        hr {
+          display: block;
+          border: none;
+          border-image: initial;
+          background: url('/svg/hr.svg');
+          background-size: auto 100%;
+          background-repeat: no-repeat;
+          height: 7px;
+          width: 100%;
+          margin: 2rem 0px;
         }
 
         .pane-container {
