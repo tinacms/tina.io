@@ -1,8 +1,8 @@
 {
   "seo": {
     "title": "About TinaCMS | The Git and Markdown CMS",
-    "hasCustomSuffix": true,
-    "description": "The context of TinaCMS and intro to the product."
+    "description": "The context of TinaCMS and intro to the product.",
+    "hasCustomSuffix": true
   },
   "blocks": [
     {
@@ -12,7 +12,7 @@
     },
     {
       "headline": "Meet Tina",
-      "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs-all while keeping content creators in control. No databases, no hassle.",
+      "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs - all while keeping content creators in control. No databases, no hassle.",
       "margin": " lg:pb-24",
       "spacing": "",
       "_template": "hero"
