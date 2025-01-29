@@ -38,9 +38,9 @@ export default function index(props): JSX.Element {
   const container = useRef(null);
   const [endPoint, setEndPoint] = useState(0);
   useEffect(() => {
-    setEndPoint(container.current.scrollHeight + window.innerHeight * 0.6);
+    setEndPoint(container.current?.scrollHeight + window.innerHeight * 0.6);
     window.addEventListener('resize', () => {
-      setEndPoint(container.current.scrollHeight + window.innerHeight * 0.6);
+      setEndPoint(container.current?.scrollHeight + window.innerHeight * 0.6);
     });
     return () => {
       window.removeEventListener('resize', () => {});

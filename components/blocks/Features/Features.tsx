@@ -33,12 +33,12 @@ export function FeatureBlock({ data, index }) {
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse flex-wrap-reverse justify-start items-center lg:justify-center gap-8 perspective ${
+        className={`relative w-full flex flex-col-reverse flex-wrap-reverse xl:flex-nowrap items-center gap-8 lg:justify-center perspective ${
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
         <div
-          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 ${
+          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:justify-self-center ${
             isVideo ? 'lg:mr-8' : ''
           }`}
         >
@@ -65,7 +65,7 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-96 lg:w-1/2 ${
+            className={`relative min-w-96 w-1/2 justify-self-start ${
               isReversed ? 'lg:pr-8' : ''
             } ${(data.media[0].image || data.media[0].src) && ''}`}
           >
