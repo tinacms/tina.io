@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -97,4 +98,4 @@ const BookingBlock = ({ data, index }) => {
   );
 };
 
-export { BookingBlock };
+export default BookingBlock;

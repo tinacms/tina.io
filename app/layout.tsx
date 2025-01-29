@@ -7,6 +7,8 @@ import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
 import dynamic from 'next/dynamic';
 import data from '../content/siteConfig.json';
 import '../styles/tailwind.css';
+import StyledComponentsRegistry from '../lib/registry';
+import Script from 'next/script';
 
 const TinaChatBot = dynamic(
   () => import('../components/AppRouterMigrationComponents/TinaChatBot'),
@@ -16,8 +18,11 @@ const TinaChatBot = dynamic(
 );
 
 export const metadata = {
-  title: data.seoDefaultTitle,
-  descripton: data.description,
+  title: {
+    template: `%s | ${data.title}`,
+    default: data.seoDefaultTitle,
+  },
+  description: data.description,
   icons: {
     icon: '/favicon/favicon.ico',
   },
@@ -49,16 +54,34 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#E6FAF8" />
+        <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+      </head>
       <body>
-        <meta name="googlebot" content="index,follow" />
-        <meta name="robots" content="index,follow" />
-        <CloudBanner />
-        <AdminLink />
-        <ConsentBanner />
-        <TinaChatBot />
-        <SiteLayout>{children}</SiteLayout>
+        <StyledComponentsRegistry>
+          <meta name="googlebot" content="index,follow" />
+          <meta name="robots" content="index,follow" />
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${process.env.SSW_GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+          <CloudBanner />
+          <AdminLink />
+          <ConsentBanner />
+          <TinaChatBot />
+          <SiteLayout>{children}</SiteLayout>
+        </StyledComponentsRegistry>
+
         <GoogleTagManager gtmId={process.env.SSW_GTM_ID || ''} />
-        <script
+
+        <Script
+          id="hotjar"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(h,o,t,j,a,r){
@@ -72,7 +95,10 @@ export default async function RootLayout({
             `,
           }}
         />
-        <script
+
+        <Script
+          id="clarity"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){
@@ -87,5 +113,3 @@ export default async function RootLayout({
     </html>
   );
 }
-
-
