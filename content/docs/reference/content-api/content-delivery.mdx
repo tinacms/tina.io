@@ -2,8 +2,6 @@
 id: /docs/reference/content-api/content-delivery
 title: Content Delivery
 last_edited: '2022-06-15T15:51:56.737Z'
-seo:
-  description: 'Guide to content delivery using TinaCMS Content API, including request methods and authentication with Read Only Tokens.'
 ---
 
 Requests can be made to the Tina Content API with Read Only Tokens. In the majority of cases, these requests are made using the [Tina client](/docs/features/data-fetching/#making-requests-with-the-tina-client), however you can also hit the API directly.
@@ -32,20 +30,20 @@ curl --location --request POST 'https://content.tinajs.io/<TinaGraphQLVersion>/c
 ### Fetch
 
 ```js
-var myHeaders = new Headers();
-myHeaders.append('X-API-KEY', '5f47d1d1c89755aba3b54684dd25f580ec6bb0d3');
-myHeaders.append('Content-Type', 'application/json');
+var myHeaders = new Headers()
+myHeaders.append('X-API-KEY', '5f47d1d1c89755aba3b54684dd25f580ec6bb0d3')
+myHeaders.append('Content-Type', 'application/json')
 
 var graphql = JSON.stringify({
   query: '{\n        collections{\n            name\n        }\n}',
   variables: {},
-});
+})
 var requestOptions = {
   method: 'POST',
   headers: myHeaders,
   body: graphql,
   redirect: 'follow',
-};
+}
 
 fetch(
   'https://content.tinajs.io/<TinaGraphQLVersion>/content/<ClientId>/github/main',
@@ -53,5 +51,5 @@ fetch(
 )
   .then((response) => response.text())
   .then((result) => console.log(result))
-  .catch((error) => console.log('error', error));
+  .catch((error) => console.log('error', error))
 ```

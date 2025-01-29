@@ -1,10 +1,8 @@
 ---
-id: /docs/reference/types/reference
-title: Reference Field
-next: content/docs/reference/types/rich-text.mdx
-previous: content/docs/reference/types/object.mdx
-seo:
-  description: Documentation for TinaCMS's reference field type, allowing content relationships and cross-referencing between documents
+title: The "reference" field
+last_edited: '2024-10-03T05:10:48.908Z'
+next: ''
+previous: ''
 ---
 
 ## `reference` Type
@@ -374,3 +372,8 @@ export interface InternalSys {
 }
 
 export type CollectionProps = AuthorProps | PostProps
+```
+
+You can enforce type safety in your custom reference selection, reducing the likelihood of errors and ensuring consistency across your application.
+
+Using the `AuthorProps` interface (you can named it how you like) as an example, the name and description fields are predefined in the Author collection schema and will be passed to the `optionComponent` function. The `_collection` field is provided by the system to represent the specific collection (author in this case).

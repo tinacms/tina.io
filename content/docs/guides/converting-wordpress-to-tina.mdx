@@ -3,8 +3,6 @@ title: Migrating WordPress Content
 last_edited: '2024-11-08T05:20:16.628Z'
 next: ''
 previous: ''
-seo:
-  description: 'Guide to migrating WordPress content to TinaCMS, including using a WordPress to Markdown converter.'
 ---
 
 ## Introduction
@@ -17,15 +15,15 @@ This guide focuses on transferring content and media only and will not include p
 
 Other conversion options that are not covered in this guide include:
 
-- Using the WordPress Rest API - best for extracting the pure html for page or post content in JSON format
-- Using the WPGraphQL plugin - best for cases where you want to query and extract specific data and content
+* Using the WordPress Rest API - best for extracting the pure html for page or post content in JSON format
+* Using the WPGraphQL plugin - best for cases where you want to query and extract specific data and content
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) is installed
-- You have set up a [Tina starter](https://tina.io/docs/introduction/using-starter)
-- Have a basic understanding of using the [Tina Editor](https://tina.io/docs/using-tina-editor) and [the schema](https://tina.io/docs/schema)
-- Have a basic understanding of [React](https://react.dev/learn)
+* [Node.js](https://nodejs.org/) is installed
+* You have set up a [Tina starter](https://tina.io/docs/introduction/using-starter)
+* Have a basic understanding of using the [Tina Editor](https://tina.io/docs/using-tina-editor) and [the schema](https://tina.io/docs/schema)
+* Have a basic understanding of [React](https://react.dev/learn)
 
 ## Getting Started
 
@@ -145,8 +143,8 @@ You'll notice that your pages won't display your media properly, let's fix that!
 
 We can do this in two methods, unfortunately, they both will require some manual work.
 
-- Option 1 - Updating each post's hero image to the cover image - Recommended if the hero component fits your needs without much changing
-- Option 2 - Updating the schema to match the Markdown - Recommended for updating your schema to match what it used to look like
+* Option 1 - Updating each post's hero image to the cover image - Recommended if the hero component fits your needs without much changing
+* Option 2 - Updating the schema to match the Markdown - Recommended for updating your schema to match what it used to look like
 
 #### Option 1: Manually update posts' image
 
@@ -220,5 +218,5 @@ return (
 
 ## Next Steps
 
-- Making changes to the themes and any missing features from the exporter
-- Take advantage of [npm packages](https://www.npmjs.com/) to replace WordPress plugins functionalities
+* Making changes to the themes and any missing features from the exporter
+* Take advantage of [npm packages](https://www.npmjs.com/) to replace WordPress plugins functionalities

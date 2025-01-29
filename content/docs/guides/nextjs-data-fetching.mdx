@@ -1,8 +1,6 @@
 ---
 id: /docs/guides/nextjs-data-fetching
 title: Querying Tina Content in Nextjs
-seo:
-  description: 'Guide to querying TinaCMS content in Next.js, including static, SSR, and CSR data fetching methods.'
 ---
 
 ## Querying Tina Content in NextJS
@@ -15,11 +13,11 @@ In NextJS, content can be queried statically at build-time or dynamically at run
 
 ```tsx
 // pages/home.js
-import { client } from '../[pathToTina]/tina/__generated__/client';
+import { client } from '../[pathToTina]/tina/__generated__/client'
 const getStaticProps = async () => {
-  let postResponse = {};
+  let postResponse = {}
   try {
-    postResponse = await client.queries.post({ relativePath: 'HelloWorld.md' });
+    postResponse = await client.queries.post({ relativePath: 'HelloWorld.md' })
   } catch {
     // swallow errors related to document creation
   }
@@ -29,8 +27,8 @@ const getStaticProps = async () => {
       query: postResponse.query,
       variables: postResponse.variables,
     },
-  };
-};
+  }
+}
 ```
 
 #### Example: Fetching content through getStaticPaths
@@ -39,14 +37,14 @@ You'll likely want to query the Tina's Content API for [dynamic routes](https://
 
 ```js
 export const getStaticPaths = async () => {
-  const postListResponse = await client.queries.postConnection();
+  const postListResponse = await client.queries.postConnection()
   return {
     paths: postListResponse.data.postConnection.edges.map((page) => ({
       params: { filename: page.node._sys.filename },
     })),
     fallback: 'blocking',
-  };
-};
+  }
+}
 ```
 
 #### Next.js `fallback: "blocking"`
@@ -61,11 +59,11 @@ For a full working example of Tina + NextJS, [check out our "Barebones Starter"]
 
 ```tsx
 // pages/home.js
-import { client } from '../[pathToTina]/tina/__generated__/client';
+import { client } from '../[pathToTina]/tina/__generated__/client'
 const getServerSideProps = async () => {
-  let postResponse = {};
+  let postResponse = {}
   try {
-    postResponse = await client.queries.post({ relativePath: 'HelloWorld.md' });
+    postResponse = await client.queries.post({ relativePath: 'HelloWorld.md' })
   } catch {
     // swallow errors related to document creation
   }
@@ -75,6 +73,6 @@ const getServerSideProps = async () => {
       query: postResponse.query,
       variables: postResponse.variables,
     },
-  };
-};
+  }
+}
 ```
