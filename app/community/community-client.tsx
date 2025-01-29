@@ -8,7 +8,7 @@ import { EmailForm } from 'components/modals/AppRouterEmailForm';
 import { ButtonGroup, LinkButton } from 'components/ui';
 
 export default function CommunityPageClient(data) {
-  console.log(data.supporting_body);
+  
   return (
     <div className="flex flex-col">
       <div className="text-center my-10">

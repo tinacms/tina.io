@@ -24,7 +24,7 @@ async function getCommunityPageData() {
 export default async function CommunityPage() {
   const data = await getCommunityPageData();
   const cleanData = data.props.file.data;
-  console.log(cleanData)
+  
 
   return (
     <>
