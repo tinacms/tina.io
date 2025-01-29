@@ -33,7 +33,7 @@ export function FeatureBlock({ data, index }) {
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center perspective ${
+        className={`relative w-full flex flex-col-reverse flex-wrap-reverse justify-start items-center lg:justify-center gap-8 perspective ${
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
@@ -65,7 +65,7 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-0 lg:w-1/2 ${
+            className={`relative min-w-96 lg:w-1/2 ${
               isReversed ? 'lg:pr-8' : ''
             } ${(data.media[0].image || data.media[0].src) && ''}`}
           >
