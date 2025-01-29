@@ -4,6 +4,7 @@ import client from 'tina/__generated__/client';
 import { getDocsNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import DocsClient from './DocsPagesClient';
+import { getExcerpt } from 'utils/getExcerpt';
 
 export async function generateStaticParams() {
   try{
@@ -31,10 +32,11 @@ export async function generateMetadata({
   const slug = params.slug.join('/');
   try {
     const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
+    const excerpt = getExcerpt(data.doc.body, 140);
 
     return {
       title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
-      description: data.doc.seo?.description || '',
+      description: data.doc.seo?.description || `${excerpt} || TinaCMS Docs`,
       openGraph: {
         title: data.doc.title,
         description: data.doc.seo?.description,
