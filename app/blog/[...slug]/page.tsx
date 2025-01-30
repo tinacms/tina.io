@@ -3,6 +3,7 @@ import client from 'tina/__generated__/client';
 import BlogPageClient from './BlogPageClient';
 import { TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import { BlogPost } from './BlogType';
+import { getExcerpt } from 'utils/getExcerpt';
 
 export async function generateStaticParams() {
   let allPosts = [];
@@ -47,6 +48,7 @@ export async function generateMetadata({
 
   try {
     const { data } = await client.queries.getExpandedPostDocument(vars);
+    const excerpt = getExcerpt(data.post.body, 140);
 
     if (!data?.post) {
       console.warn(`No metadata found for slug: ${slugPath}`);
@@ -55,8 +57,10 @@ export async function generateMetadata({
 
     return {
       title: `${data.post.title} | TinaCMS Blog`,
+      description: excerpt,
       openGraph: {
         title: data.post.title,
+        description: excerpt,
       },
     };
   } catch (error) {
