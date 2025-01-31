@@ -1,9 +1,10 @@
+import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
@@ -11,8 +12,6 @@ import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
-import React from 'react';
-import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
   {
@@ -316,31 +315,35 @@ export const docAndBlogComponents: Components<{
   // @ts-ignore TODO: fix this in TinaCMS
   code_block: ({ value, lang, children }) => {
     const [hasCopied, setHasCopied] = React.useState(false);
-  
+
     const handleCopy = () => {
-      navigator.clipboard.writeText(children || value || "");
+      navigator.clipboard.writeText(children || value || '');
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 2000);
     };
-  
+
     return (
       <div className="relative py-3 word-break white-space overflow-x-hidden rounded-xl">
         <button
           onClick={handleCopy}
           className="absolute top-6 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded"
         >
-          {hasCopied ? <CheckIcon className="h-4 w-4" /> : <ClipboardIcon className="h-4 w-4" />}
+          {hasCopied ? (
+            <CheckIcon className="h-4 w-4" />
+          ) : (
+            <ClipboardIcon className="h-4 w-4" />
+          )}
           <span className="sr-only">Copy</span>
         </button>
         <Prism
-          value={children || value || ""}
-          lang={lang || "jsx"}
+          value={children || value || ''}
+          lang={lang || 'jsx'}
           theme="nightOwl"
         />
       </div>
     );
   },
-  
+
   GraphQLCodeBlock: ({ query, response, preselectResponse }) => {
     return (
       <GraphQLQueryResponseTabs
@@ -408,12 +411,40 @@ function FormatHeaders({ children, level }) {
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',
   };
 
+  const handleHeaderClick = (event) => {
+    event.preventDefault();
+    scrollToElement(id);
+    window.history.pushState(null, '', linkHref);
+  };
+
+  const scrollToElement = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      const offset = 130; //offset in pixels
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1); 
+      scrollToElement(hash);
+    }
+  }, []);
+
   return (
     <HeadingTag id={id} className={`${styles[level]} relative cursor-pointer`}>
       <a
         href={linkHref}
         className="no-underline group"
-        onClick={() => navigator.clipboard.writeText(`tina.io${linkHref}`)}
+        onClick={handleHeaderClick}
       >
         {' '}
         {children}
