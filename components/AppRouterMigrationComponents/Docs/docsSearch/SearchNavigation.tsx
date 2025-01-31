@@ -265,7 +265,7 @@ export const DocsSearchBarHeader = ({
 
 export const LeftHandSideParentContainer = ({ tableOfContents }) => {
   return (
-    <div className="rounded-2xl shadow-xl w-full bg-white/50">
+    <div className="rounded-2xl shadow-xl w-full bg-white/50 h-5/6">
       <DocsSearchBarHeader
         paddingGlobal="p-4"
         headerColour="blue"
@@ -273,7 +273,7 @@ export const LeftHandSideParentContainer = ({ tableOfContents }) => {
         searchMargin="mx-3"
         searchBarPadding=""
       />
-      <div className="overflow-y-scroll overflow-x-hidden max-h-[62vh] 2xl:max-h-[75vh] pl-4 2xl:pl-0">
+      <div className="overflow-y-scroll overflow-x-hidden h-[76%] 2xl:max-h-[75vh] pl-4 2xl:pl-0">
         <DocsNavigationList navItems={tableOfContents} />
       </div>
     </div>
