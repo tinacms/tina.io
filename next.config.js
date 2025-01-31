@@ -27,7 +27,6 @@ const config = {
   ...extraConfig,
   experimental: {
     forceSwcTransforms: true,
-    appDir: true,
   },
   compiler: {
     styledComponents: true,
