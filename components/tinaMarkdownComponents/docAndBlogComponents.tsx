@@ -437,6 +437,7 @@ function FormatHeaders({ children, level }) {
       const hash = window.location.hash.substring(1); 
       scrollToElement(hash);
     }
+    //this is used for when you get sent a link with a hash (i.e link to a header)
   }, []);
 
   return (
