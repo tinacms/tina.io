@@ -1,11 +1,13 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import path from 'path';
+import { fileToUrl } from 'utils/urls';
 import { client } from '../../tina/__generated__/client';
 import ClientPage from './client-page';
-import { fileToUrl } from 'utils/urls';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import path from 'path';
 
 const fg = require('fast-glob');
+
+export const dynamicParams = false;
 
 interface PageProps {
   params: {

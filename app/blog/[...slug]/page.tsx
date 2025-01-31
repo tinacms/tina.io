@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
-import BlogPageClient from './BlogPageClient';
 import { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import BlogPageClient from './BlogPageClient';
 import { BlogPost } from './BlogType';
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   let allPosts = [];
@@ -34,8 +36,6 @@ export async function generateStaticParams() {
   }
   return allPosts;
 }
-
-export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
