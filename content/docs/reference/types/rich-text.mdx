@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2024-12-31T02:27:57.931Z'
+last_edited: '2025-01-31T03:00:53.813Z'
 next: ''
 previous: ''
 ---
@@ -332,11 +332,11 @@ will be treated as html
 
 ### Avoid Using "children" as a Field Name
 
-When defining a rich-text field in TinaCMS, avoid using "children" as the field name. This can cause unexpected behavior due to potential conflicts with React's reserved prop names and the internal structure of TinaCMS.
+When defining a `rich-text` field in TinaCMS, avoid using `"children"` as the field name. This can cause unexpected behavior due to potential conflicts with React's reserved prop names and the internal structure of TinaCMS.
 
 #### Recommended Fix:
 
-Instead of "children", use a different name like "body" and include isBody: true to ensure proper functionality.
+Instead of `"children"`, use a different name like `"body"` and include [`isBody: true`](https://tina.io/docs/reference/fields#isbody) to get the same functionality as you would expect when using `"children"`.
 
 ## Other notes
 
