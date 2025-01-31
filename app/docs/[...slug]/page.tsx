@@ -6,22 +6,22 @@ import getTableOfContents from 'utils/docs/getTableOfContents';
 import DocsClient from './DocsPagesClient';
 import { getExcerpt } from 'utils/getExcerpt';
 
-export async function generateStaticParams() {
-  try{
-      const contentDir = './content/docs/';
-  const files = await glob(`${contentDir}**/*.mdx`);
-  return files
-    .filter((file) => !file.endsWith('index.mdx'))
-    .map((file) => {
-      const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/docs/" and ".mdx"
-      return { slug: path.split('/') };
-    });
-  } catch(error)
-  {
-    console.error(error);
-    notFound()
-  }
+export const dynamicParams = false;
 
+export async function generateStaticParams() {
+  try {
+    const contentDir = './content/docs/';
+    const files = await glob(`${contentDir}**/*.mdx`);
+    return files
+      .filter((file) => !file.endsWith('index.mdx'))
+      .map((file) => {
+        const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/docs/" and ".mdx"
+        return { slug: path.split('/') };
+      });
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
 }
 
 export async function generateMetadata({
