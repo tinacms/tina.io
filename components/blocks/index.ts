@@ -3,7 +3,7 @@ export * from './Container';
 export * from './Divider';
 export * from './Features/Features';
 export * from './Flying/Flying';
-// export * from './GlobalStyles'
+// export * from './Global
 export * from '../forms/Icons';
 export * from './Blocks';
 export * from './Content/Content';
