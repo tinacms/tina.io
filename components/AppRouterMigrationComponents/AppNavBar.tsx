@@ -144,7 +144,7 @@ export function AppNavBar({ sticky = true }) {
                 <Button
                   key={index}
                   color={item.color as ValidColors}
-                  size="small"
+                  size="extraSmall"
                   onClick={() => openModal(item.modal)}
                 >
                   {item.icon2 && iconMapping[item.icon2] && (
