@@ -124,7 +124,7 @@ export const Card: React.FC<CardProps> = ({
       <motion.div
         style={{
           backgroundColor: 'white',
-          // scale,
+          scale,
           opacity,
           top: `calc(-${5 + i}vh + ${i * 25}px)`,
         }}
