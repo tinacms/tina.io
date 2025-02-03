@@ -124,11 +124,11 @@ export const Card: React.FC<CardProps> = ({
       <motion.div
         style={{
           backgroundColor: 'white',
-          scale,
+          // scale,
           opacity,
           top: `calc(-${5 + i}vh + ${i * 25}px)`,
         }}
-        className={` will-change-scroll flex flex-col relative -top-[25%] w-full max-w-42 md:mx-16 mx-12 h-52 rounded-2xl origin-top shadow-lg`}
+        className={`will-change-scroll flex flex-col relative -top-[25%] w-full max-w-42 md:mx-16 mx-12 h-52 rounded-2xl origin-top shadow-lg`}
       >
         {item}
       </motion.div>
