@@ -150,7 +150,7 @@ export const docAndBlogComponents: Components<{
       <a
         href={props.url}
         {...props}
-        className="underline opacity-80 transition-all duration-[185ms] ease-out hover:text-orange-500"
+        className="underline opacity-80 transition-all duration-200 ease-out hover:text-orange-500"
       />
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );

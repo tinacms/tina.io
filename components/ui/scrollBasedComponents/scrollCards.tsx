@@ -116,7 +116,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <motion.div
       ref={container}
-      className="py-4 h-30 flex items-center justify-center sticky will-change-scroll overflow-hidden"
+      className="py-4 h-30 flex items-center justify-center sticky will-change-scroll"
       style={{
         top: top,
       }}
@@ -128,7 +128,7 @@ export const Card: React.FC<CardProps> = ({
           opacity,
           top: `calc(-${5 + i}vh + ${i * 25}px)`,
         }}
-        className={` will-change-scroll flex flex-col relative -top-[25%] w-full max-w-42 md:mx-16 mx-12 h-52 rounded-2xl origin-top shadow-lg overflow-hidden`}
+        className={` will-change-scroll flex flex-col relative -top-[25%] w-full max-w-42 md:mx-16 mx-12 h-52 rounded-2xl origin-top shadow-lg`}
       >
         {item}
       </motion.div>
