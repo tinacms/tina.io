@@ -5,7 +5,7 @@
   "author": "Forestry.io",
   "main": "n/a",
   "engines": {
-    "node": ">=18"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "tinacms dev  --noTelemetry  -c \"next dev\"",
