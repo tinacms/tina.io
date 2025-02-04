@@ -121,21 +121,16 @@ export const Card: React.FC<CardProps> = ({
   const opacity = useTransform(progress, (value) => {
     return computeOpacity(value, i, length);
   });
-
-  const translateY = useTransform(progress, (value) => {
+  const top = useTransform(progress, (value) => {
     return `${25 * (1 - value * 0.5)}%`;
   });
 
   return (
     <motion.div
       ref={container}
-      className="py-4 h-56 flex items-center justify-center sticky will-change-transform"
+      className="py-4 h-56 flex items-center justify-center sticky will-change-scroll"
       style={{
-        transform: `translateY(${translateY})`,
-        WebkitTransform: `translateY(${translateY})`,
-        WebkitBackfaceVisibility: 'hidden',
-        WebkitPerspective: 1000,
-        WebkitTransformStyle: 'preserve-3d',
+        top: top,
       }}
     >
       <motion.div
@@ -143,13 +138,9 @@ export const Card: React.FC<CardProps> = ({
           backgroundColor: 'white',
           scale,
           opacity,
-          transform: `translateY(calc(-${5 + i}vh + ${i * 25}px))`,
-          WebkitTransform: `translateY(calc(-${5 + i}vh + ${i * 25}px))`,
-          WebkitBackfaceVisibility: 'hidden',
-          WebkitPerspective: 1000,
-          WebkitTransformStyle: 'preserve-3d',
+          top: `calc(-${5 + i}vh + ${i * 25}px)`,
         }}
-        className="will-change-transform flex flex-col relative w-full max-w-42 md:mx-16 mx-12 h-52 rounded-2xl origin-top shadow-lg"
+        className={`will-change-scroll flex flex-col relative -top-[25%] w-full max-w-42 md:mx-16 mx-12 h-52 rounded-2xl origin-top shadow-lg`}
       >
         {item}
       </motion.div>
