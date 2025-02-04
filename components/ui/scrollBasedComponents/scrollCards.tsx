@@ -59,7 +59,7 @@ export default function index(props): JSX.Element {
         ref={container}
         className="min-h-screen my-30 relative"
         style={{
-          height: props.content?.length * 180,
+          height: props.content?.length * 275,
         }}
       >
         <motion.div
@@ -122,7 +122,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <motion.div
       ref={container}
-      className="py-4 h-32 flex items-center justify-center sticky will-change-scroll"
+      className="py-4 h-56 flex items-center justify-center sticky will-change-scroll"
       style={{
         top: top,
       }}
