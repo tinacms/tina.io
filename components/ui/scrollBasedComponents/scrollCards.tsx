@@ -55,7 +55,13 @@ export default function index(props): JSX.Element {
 
   return (
     <ReactLenis root>
-      <main ref={container} className="min-h-screen my-30 relative">
+      <main
+        ref={container}
+        className="min-h-screen my-30 relative"
+        style={{
+          height: props.content?.length * 180,
+        }}
+      >
         <motion.div
           className="sticky mb-24 w-full flex justify-center top-[6%]"
           style={{ minHeight }}
@@ -116,7 +122,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <motion.div
       ref={container}
-      className="py-4 h-30 flex items-center justify-center sticky will-change-scroll"
+      className="py-4 h-32 flex items-center justify-center sticky will-change-scroll"
       style={{
         top: top,
       }}
