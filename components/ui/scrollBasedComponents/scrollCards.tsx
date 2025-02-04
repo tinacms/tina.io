@@ -59,7 +59,7 @@ export default function index(props): JSX.Element {
       options={{
         smoothWheel: true,
         wheelMultiplier: 0.8,
-        touchMultiplier: 1.5,
+        touchMultiplier: 0.8,
         syncTouch: true,
       }}
     >
