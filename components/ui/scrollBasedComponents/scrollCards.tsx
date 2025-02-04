@@ -58,9 +58,9 @@ export default function index(props): JSX.Element {
       root
       options={{
         smoothWheel: true,
-        wheelMultiplier: 0.8,
-        touchMultiplier: 0.8,
         syncTouch: true,
+        lerp: 0.1,
+        autoResize: false,
       }}
     >
       <main
