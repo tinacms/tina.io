@@ -1,7 +1,7 @@
 import { devices, expect, test } from '@playwright/test';
 
 test.use(devices['iPhone 12']);
-test('TinaCMS homepage loads and displays successfully', async ({ page }) => {
+test('TinaIO homepage loads and displays successfully', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Sites, Docs and Llamas. No' })).toBeVisible();
 
@@ -9,7 +9,7 @@ test('TinaCMS homepage loads and displays successfully', async ({ page }) => {
 });
 
 test.use(devices['iPhone 12']);
-test('TinaCMS homepage scrolls without breaking', async ({ page }) => {
+test('TinaIO homepage scrolls without breaking', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.getByRole('heading', { name: 'Sites, Docs and Llamas. No' })).toBeVisible();
