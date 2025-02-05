@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import styled from 'styled-components';
@@ -11,7 +10,6 @@ export interface DocsNavProps {
 
 export function DocumentationNavigation({ navItems }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
-  const router = useRouter();
   return (
     <>
       {!mobileNavIsOpen && (
