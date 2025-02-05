@@ -5,7 +5,12 @@ import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { FlushButton, LinkButton } from '../../ui';
 
-export const Actions = ({ items, align = 'left', flush = false }) => {
+export const Actions = ({
+  items,
+  align = 'left',
+  flush = false,
+  className = '',
+}) => {
   const isList = true;
   const ActionButton = flush ? FlushButton : LinkButton;
 
@@ -38,6 +43,7 @@ export const Actions = ({ items, align = 'left', flush = false }) => {
                   target={external ? '_blank' : '_self'}
                   color={variant}
                   data-tina-field={tinaField(item, 'label')}
+                  className={className}
                 >
                   {label}
                   {icon && (

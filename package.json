@@ -8,7 +8,7 @@
     "node": "20.x"
   },
   "scripts": {
-    "dev": "tinacms dev --noTelemetry -c \"next dev\"",
+    "dev": "tinacms dev --noTelemetry -c \"next dev -H 0.0.0.0\"",
     "build": "pnpm create-rss && tinacms build && next build",
     "export": "tinacms build && EXPORT_MODE=static,UNOPTIMIZED_IMAGES=true next build",
     "prestart": "tinacms build  && npm run export",
@@ -51,6 +51,9 @@
     "date-fns": "^4.1.0",
     "dotenv": "^8.6.0",
     "email-validator": "^2.0.4",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-class-names": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "fast-glob": "^3.3.2",
     "framer-motion": "^12.0.3",
     "github-slugger": "^1.5.0",

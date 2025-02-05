@@ -1,4 +1,4 @@
-import ScrollCards from 'components/ui/scrollBasedComponents/scrollCards';
+import EmblaCarousel from 'components/ui/EmblaCarousel/EmblaCarousel';
 import { tinaField } from 'tinacms/dist/react';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -13,30 +13,27 @@ function CarouselFeatureMobileItem(data) {
   return (
     <div
       data-tina-field={tinaField(data, 'headline')}
-      className="flex flex-col md:p-10 p-6"
+      className="h-full w-full flex flex-col md:p-10 p-6 group bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-md pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl"
     >
-      <div className="flex items-center mb-2 px-1 text-left">
-        {IconComponent && (
-          <IconComponent
-            className={`text-xl text-orange-500/90 md:text-3xl pb-1`}
-          />
-        )}
+      <div className="flex mb-2 text-left">
         {headline && (
           <h3
-            className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-3 text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text`}
+            className={`md:text-2xl text-xl font-tuner cursor-pointer text-transparent bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text`}
           >
             {headline}
           </h3>
         )}
       </div>
       {text && (
-        <p className={`lg:text-lg md:text-md text-sm font-medium slide-up`}>
+        <p
+          className={`pl-[1px] lg:text-lg md:text-md text-sm font-medium slide-up mb-4`}
+        >
           {text}
         </p>
       )}
       {button && (
-        <div className={`slide-up flex justify-start`}>
-          <Actions items={actionsArray} />
+        <div className={`pl-[1px] slide-up flex mt-auto`}>
+          <Actions items={actionsArray} className="!p-0" />
         </div>
       )}
     </div>
@@ -54,7 +51,10 @@ export function CarouselFeatureMobile(props: CarouselFeatureMobileProps) {
   ));
   return items.length > 0 ? (
     <>
-      <ScrollCards content={items} title={data.blockHeadline} />
+      <h2 className="text-center font-tuner text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent">
+        {data.blockHeadline}
+      </h2>
+      <EmblaCarousel slides={items} />
     </>
   ) : null;
 }
