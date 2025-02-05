@@ -12,7 +12,7 @@ export const BlockWrapper = (props: WrapperProps) => {
     <div
       className={
         data?.isFullscreen
-          ? 'min-h-[70vh] pt-48 pb-36 flex items-center justify-center w-full'
+          ? 'md:min-h-[70vh] pt-28 md:pt-48 md:pb-36 pb-0 flex items-center justify-center w-full'
           : 'pt-28 last:pb-30'
       }
     >
@@ -42,7 +42,6 @@ export const Container = ({
         .container {
           margin: 0 auto;
           padding: 0 20px;
-          
 
           @media (min-width: 800px) {
             width: 80%;

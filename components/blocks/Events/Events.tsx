@@ -185,7 +185,7 @@ const EventsBlock = () => {
     .slice(0, 3); // Take only the first 3 events
 
   return (
-    <div className="md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
+    <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
       <div className="flex flex-col lg:flex-row lg:gap-4">
         <div
           className="w-full hidden md:flex lg:w-1/2 justify-center items-center rounded-lg"

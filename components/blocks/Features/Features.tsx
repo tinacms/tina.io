@@ -65,7 +65,7 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-0 md:min-w-96 md:w-1/2 justify-self-start ${
+            className={`relative min-w-0 md:min-w-96 md:w-[80%] justify-self-start ${
               isReversed ? 'lg:pr-8' : ''
             } ${(data.media[0].image || data.media[0].src) && ''}`}
           >

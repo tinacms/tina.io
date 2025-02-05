@@ -283,7 +283,7 @@
     },
     {
       "blockSettings": {
-        "isFullscreen": true
+        "isFullscreen": false
       },
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",

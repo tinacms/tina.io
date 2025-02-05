@@ -40,7 +40,7 @@ export function LogoGridBlock({ data, index }) {
   return (
     <section
       key={`feature-grid-${index}`}
-      className="relative z-10 w-full overflow-hidden"
+      className="relative z-10 w-full overflow-hidden max-w-[1500px] m-auto"
     >
       <div className="flex flex-col items-center w-full justify-center">
         <h1 className="pl-3 font-tuner inline w-fit m-auto text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
