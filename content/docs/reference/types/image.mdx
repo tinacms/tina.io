@@ -85,11 +85,13 @@ If you need to customize how an image is formatted in a field, you can use the `
 }
 ```
 
-## Image Optimiziation for Next.js
+You can read more about `format` & `parse` [here](/docs/extending-tina/format-and-parse/).
+
+## Image optimiziation for Next.js
 
 ### Adding set dimensions to images
 
-Next.js' image component requires predefined dimensions to prevent layout shifts. We can add fields so that we have those dimensions at build time.
+Next.js' [Image](https://nextjs.org/docs/pages/api-reference/components/image) component requires predefined dimensions to prevent layout shifts. We can add fields so that we have those dimensions at build time.
 
 ```tsx
 export default defineConfig({
@@ -191,5 +193,3 @@ export default defineConfig({
   },
 })
 ```
-
-You can read more about `format` & `parse` [here](/docs/extending-tina/format-and-parse/).
