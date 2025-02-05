@@ -1,5 +1,7 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import React from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { matchActualTarget } from 'utils';
 
@@ -43,8 +45,8 @@ const getNestedBreadcrumbs = (
 };
 
 export function Breadcrumbs({ navItems }: DocsNavProps) {
-  const router = useRouter();
-  const breadcrumbs = getNestedBreadcrumbs(navItems, router.asPath) || [];
+  const pathname = usePathname();
+  const breadcrumbs = getNestedBreadcrumbs(navItems, pathname) || [];
   return (
     <>
       <BreadcrumbList>
