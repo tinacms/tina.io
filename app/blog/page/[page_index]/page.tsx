@@ -1,9 +1,11 @@
-import client from 'tina/__generated__/client';
 import { glob } from 'fast-glob';
-import BlogIndexPageClient from './BlogIndexPageClient';
 import { notFound } from 'next/navigation';
+import client from 'tina/__generated__/client';
+import BlogIndexPageClient from './BlogIndexPageClient';
 
 const POSTS_PER_PAGE = 8;
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const contentDir = './content/blog/';
@@ -14,7 +16,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { page_index: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { page_index: string };
+}) {
   const title = 'TinaCMS Blog';
   const description =
     'Stay updated with the TinaCMS blog. Get tips, guides and the latest news on content management and development';
@@ -50,7 +56,7 @@ export default async function BlogPaginationPage({
     });
   } catch (err) {
     console.error('Error fetching postConnection:', err);
-    notFound()
+    notFound();
   }
 
   let reversedPosts = [];
@@ -61,7 +67,7 @@ export default async function BlogPaginationPage({
       ?.reverse();
   } catch (err) {
     console.error('Error processing posts:', err);
-    notFound()
+    notFound();
   }
 
   const finalisedPostData = reversedPosts.slice(

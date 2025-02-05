@@ -224,7 +224,7 @@ const Pane = ({ data, position, ...props }) => {
               }}
             >
               <CodeWrapper>
-                <div className="[&>pre]:!bg-transparent [&>pre]:!border-none">
+                <div className="[&>pre]:!bg-transparent [&>pre]:!border-none rounded-xl">
                   <Prism
                     lang={
                       data.file.language ? data.file.language : 'javascript'
