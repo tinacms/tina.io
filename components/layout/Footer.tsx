@@ -152,7 +152,7 @@ export const Footer = () => {
           })}
           {/* Social links column */}
           <div className="flex flex-col lg:items-center">
-            <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm">
+            <div className="flex flex-col lg:items-start gap-4 drop-shadow-sm">
               {FooterData.Column4.footerItem.map((socialItem, idx) => (
                 <SocialLink key={`social-${idx}`} link={socialItem.href}>
                   {socialItem.image ? (

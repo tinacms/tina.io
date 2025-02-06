@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { addToMailchimp } from '../../utils';
 import { Input, Button } from '../ui';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import BettyWithLlama from '../../public/img/BettyWithLlama.png';
 import { ImCross } from "react-icons/im";
@@ -19,8 +18,6 @@ export const EmailForm = (props: EmailFormProps) => {
   const [isEntering, setIsEntering] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
-
-  const { push } = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

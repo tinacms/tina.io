@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
-import { Overlay } from '../ui/Overlay';
-import { DocsLeftSidebar } from './DocsLeftSidebar';
-import { DocsNavigationList } from './DocsNavigationList';
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
-import { FallbackPlaceholder } from '../../components/fallback-placeholder';
-import Search from '../search';
-import { HitsWrapper } from '../../components/search/styles';
-import { searchIndices } from '../../components/search/indices';
-import { VersionSelect } from './VersionSelect';
 import { BiMenu } from 'react-icons/bi';
-import { IoMdClose } from 'react-icons/io';
-import { LeftHandSideParentContainer } from 'components/docsSearch/SearchNavigation';
+import styled from 'styled-components';
+import { HitsWrapper } from '../../components/search/styles';
+import { Overlay } from '../ui/Overlay';
 
 export interface DocsNavProps {
   navItems: any;
@@ -19,13 +10,11 @@ export interface DocsNavProps {
 
 export function DocumentationNavigation({ navItems }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
-  const router = useRouter();
   return (
     <>
-      
       {!mobileNavIsOpen && (
         <MobileNavToggle
-          open={mobileNavIsOpen}  
+          open={mobileNavIsOpen}
           onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)}
         />
       )}
@@ -38,15 +27,19 @@ export function DocumentationNavigation({ navItems }: DocsNavProps) {
   );
 }
 
-
-const MobileNavToggle = ({ open, onClick }: { open: boolean, onClick: () => void }) => {
+const MobileNavToggle = ({
+  open,
+  onClick,
+}: {
+  open: boolean;
+  onClick: () => void;
+}) => {
   return (
     <ToggleWrapper open={open} onClick={onClick}>
       <BiMenu className="icon menu-icon text-orange-500 hover:text-orange-400 mt-[8px] mb-[6px] mr-[7px]" />
     </ToggleWrapper>
   );
 };
-
 
 const CloseButton = styled.button<{ mobileNavIsOpen: boolean }>`
   position: absolute;

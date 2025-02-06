@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { FaChevronRight } from 'react-icons/fa'
-import { fetchMeetingLinks } from 'utils/getMeetingLinks'
+'use client';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaChevronRight } from 'react-icons/fa';
+import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 
 export type BookingItem = {
-  name: string
-  description: string
-  image: string
-  url: string
-}
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+};
 
 const BookingCard = ({ cardItem }) => {
   const isValidImage = (url) => {
-    return url && (url.startsWith('http') || url.startsWith('/'))
-  }
+    return url && (url.startsWith('http') || url.startsWith('/'));
+  };
 
   return (
     <Link href={cardItem.url || '#'}>
@@ -39,17 +40,17 @@ const BookingCard = ({ cardItem }) => {
         </div>
       </div>
     </Link>
-  )
-}
+  );
+};
 
 const BookingBlock = ({ data, index }) => {
   const [meetingPeople, setMeetingPeople] = useState<BookingItem[]>([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const fetchData = async () => {
       const meetingPeopleData = await fetchMeetingLinks();
       setMeetingPeople(meetingPeopleData);
-    }
+    };
 
     fetchData();
   }, []);
@@ -95,7 +96,6 @@ const BookingBlock = ({ data, index }) => {
       </div>
     </div>
   );
-  
-}
+};
 
-export { BookingBlock }
+export default BookingBlock;
