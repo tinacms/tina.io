@@ -17,8 +17,8 @@ export const Container = ({
       <style jsx>{`
         .container {
           margin: 0 auto;
-          padding: 0 var(--container-padding);
-          width: 100%;
+          padding: 0 20px;
+          
 
           @media (min-width: 800px) {
             width: 80%;

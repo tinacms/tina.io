@@ -1,3 +1,4 @@
+'use client';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import type {
@@ -17,9 +18,7 @@ import {
   StoryBlock,
 } from './';
 
-import { BookingBlock } from './Booking/Booking';
 import { ColumnsBlock } from './Columns/Columns';
-import { CompareBoxBlock } from './CompareBox/CompareBox';
 import { VerticalCardsBlock } from './Events/Events';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
 import { MediaComponent } from './Media/MediaComponent';
@@ -36,6 +35,10 @@ const CarouselFeatureBlock = dynamic(
   { ssr: false }
 );
 const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
+  ssr: false,
+});
+const BookingBlock = dynamic(() => import('./Booking/Booking'), { ssr: false });
+const CompareBoxBlock = dynamic(() => import('./CompareBox/CompareBox'), {
   ssr: false,
 });
 

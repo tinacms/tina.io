@@ -4,23 +4,24 @@ import client from 'tina/__generated__/client';
 import { getDocsNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import DocsClient from './DocsPagesClient';
+import { getExcerpt } from 'utils/getExcerpt';
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  try{
-      const contentDir = './content/docs/';
-  const files = await glob(`${contentDir}**/*.mdx`);
-  return files
-    .filter((file) => !file.endsWith('index.mdx'))
-    .map((file) => {
-      const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/docs/" and ".mdx"
-      return { slug: path.split('/') };
-    });
-  } catch(error)
-  {
+  try {
+    const contentDir = './content/docs/';
+    const files = await glob(`${contentDir}**/*.mdx`);
+    return files
+      .filter((file) => !file.endsWith('index.mdx'))
+      .map((file) => {
+        const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/docs/" and ".mdx"
+        return { slug: path.split('/') };
+      });
+  } catch (error) {
     console.error(error);
-    notFound()
+    notFound();
   }
-
 }
 
 export async function generateMetadata({
@@ -31,13 +32,14 @@ export async function generateMetadata({
   const slug = params.slug.join('/');
   try {
     const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
+    const excerpt = getExcerpt(data.doc.body, 140);
 
     return {
       title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
-      description: data.doc.seo?.description || '',
+      description: data.doc.seo?.description || `${excerpt} || TinaCMS Docs`,
       openGraph: {
         title: data.doc.title,
-        description: data.doc.seo?.description,
+        description: data.doc.seo?.description || `${excerpt} || TinaCMS Docs`,
       },
     };
   } catch (error) {

@@ -1,13 +1,13 @@
+import { usePathname } from 'next/navigation';
 import React, { createContext } from 'react';
+import AnimateHeight from 'react-animate-height';
+import { BiChevronRight } from 'react-icons/bi';
 import styled, { css } from 'styled-components';
-import { DocsNavProps } from './DocumentationNavigation';
-import { useRouter } from 'next/router';
 import { matchActualTarget } from 'utils';
 import { DynamicLink } from '../../components/ui';
 import docsLinks from '../../content/docs-navigation.json';
-import { BiChevronRight } from 'react-icons/bi';
-import AnimateHeight from 'react-animate-height';
 import data from '../../content/siteConfig.json';
+import { DocsNavProps } from './DocumentationNavigation';
 
 interface NavTitleProps {
   level: number;
@@ -16,8 +16,6 @@ interface NavTitleProps {
   children: React.ReactNode | React.ReactNode[];
   onClick?: () => void;
 }
-
-
 
 const NavTitle = ({
   children,
@@ -90,20 +88,18 @@ const NavLevel = ({
   level?: number;
 }) => {
   const navLevelElem = React.useRef(null);
-  const router = useRouter();
-  const path = router.asPath;
+  const pathname = usePathname();
   const slug = categoryData.slug?.replace(/\/$/, '');
   const [expanded, setExpanded] = React.useState(
-    matchActualTarget(slug || categoryData.href, path) ||
-      hasNestedSlug(categoryData.items, path) ||
+    matchActualTarget(slug || categoryData.href, pathname) ||
+      hasNestedSlug(categoryData.items, pathname) ||
       level === 0
   );
 
-
   const selected =
-    path.split('#')[0] == slug || (slug == '/docs' && path == '/docs/');
+    pathname.split('#')[0] == slug || (slug == '/docs' && pathname == '/docs/');
 
-  const childSelected = hasNestedSlug(categoryData.items, router.asPath);
+  const childSelected = hasNestedSlug(categoryData.items, pathname);
   React.useEffect(() => {
     if (
       navListElem &&
@@ -159,12 +155,9 @@ const NavLevel = ({
             )}
           </NavTitle>
         )}
-        
+
         {!childSelected && selected && level > 0 && (
-          <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"
-            
-          ></div>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"></div>
         )}
       </NavLabelContainer>
       {categoryData.items && (
