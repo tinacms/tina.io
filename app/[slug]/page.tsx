@@ -32,7 +32,7 @@ export async function generateMetadata({
     }
 
     return {
-      title: `%s | TinaCMS Docs`,
+      title: `${data.seo.title} | TinaCMS`,
       description: data.seo.description,
       openGraph: {
         title: data.seo.title,
