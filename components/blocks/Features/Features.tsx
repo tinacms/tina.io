@@ -9,6 +9,7 @@ import { Container } from '../Container';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
+  const isFullScreen = data.isFullScreen
   const isBackgroundEnabled = data.imageBackground;
   const isVideo = data.media && data.media[0] && data.media[0].src;
 
@@ -32,7 +33,7 @@ export function FeatureBlock({ data, index }) {
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center lg:min-h-[70vh] perspective ${
+        className={`relative w-full flex flex-col-reverse items-center lg:justify-center ${isFullScreen ? 'lg:min-h-[70vh]' : ''} perspective ${
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
@@ -85,7 +86,9 @@ export function FeatureBlock({ data, index }) {
               <>
                 <div className="relative w-full h-auto pb-4 group">
                   <a
-                    href="https://youtube.com/tinacms"
+                    href={
+                      data.media[0].link ?? 'https://www.youtube.com/@TinaCMS'
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     id="play-button-overlay"
@@ -126,7 +129,7 @@ export function FeatureBlock({ data, index }) {
                   }}
                 >
                   <CodeWrapper>
-                    <div className="[&>pre]:!bg-transparent [&>pre]:!border-none">
+                    <div className="[&>pre]:!bg-transparent [&>pre]:!border-none rounded-xl">
                       <Prism
                         lang={
                           data.media[0].language
@@ -221,7 +224,7 @@ export function FeaturesBlock({ data, index }) {
       className={'py-12 lg:py-16 last:pb-20 last:lg:pb-32'}
     >
       <Container width="wide">
-        <div className="flex flex-col gap-16 w-full">
+        <div className="flex flex-col gap-32 lg:gap-48 w-full">
           {/* TODO: why is there a type error here */}
           {/* @ts-ignore */}
           {data.features &&

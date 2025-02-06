@@ -44,7 +44,7 @@ const LinkGroup = ({ item, isOpen, onClick }: {
 }) => {
   return (
     <details
-      className={`inline-block drop-shadow-sm relative opacity-90 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out ${isOpen ? 'open' : ''}`}
+      className={`inline-block drop-shadow-sm relative opacity-90 text-white text-lg lg:text-xl font-tuner transition duration-150 ease-out ${isOpen ? 'open' : ''}`}
       open={isOpen}
       onClick={(e) => {
         e.preventDefault(); 
@@ -74,7 +74,7 @@ export const LinkItem = ({ item }) => {
 
   return (
     <DynamicLink href={link} passHref>
-      <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
+      <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
         {label}
       </div>
     </DynamicLink>
@@ -119,7 +119,7 @@ export const Footer = () => {
                 className="flex flex-col items-stretch justify-start gap-2"
               >
                 {hasHeader && (
-                  <p className="uppercase text-orange-100 font-bold -mt-1">
+                  <p className="uppercase text-orange-100 opacity-70 font-bold -mt-1">
                     {column.header}
                   </p>
                 )}
@@ -152,7 +152,7 @@ export const Footer = () => {
           })}
           {/* Social links column */}
           <div className="flex flex-col lg:items-center">
-            <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm">
+            <div className="flex flex-col lg:items-start gap-4 drop-shadow-sm">
               {FooterData.Column4.footerItem.map((socialItem, idx) => (
                 <SocialLink key={`social-${idx}`} link={socialItem.href}>
                   {socialItem.image ? (
