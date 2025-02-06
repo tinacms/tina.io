@@ -94,8 +94,8 @@ export const compareBoxTemplate: Template = {
       companies: [
         {
           headline: 'Company 1',
-          logoColour: '/logo-black.png',
-          logoWhite: '/logo.svg',
+          logoColour: '/img/brand-assets/llama.svg',
+          logoWhite: '/img/brand-assets/llama.svg',
           active: true,
           isHidden: false,
           backgroundColor: '#ffAAAA',
@@ -103,8 +103,8 @@ export const compareBoxTemplate: Template = {
         },
         {
           headline: 'Company 2',
-          logoColour: '/logo-black.png',
-          logoWhite: '/logo.svg',
+          logoColour: '/img/brand-assets/llama.svg',
+          logoWhite: '/img/brand-assets/llama.svg',
           active: false,
           isHidden: false,
           backgroundColor: '#ffffBB',
@@ -112,8 +112,8 @@ export const compareBoxTemplate: Template = {
         },
         {
           headline: 'Company 3',
-          logoColour: '/logo-black.png',
-          logoWhite: '/logo.svg',
+          logoColour: '/img/brand-assets/llama.svg',
+          logoWhite: '/img/brand-assets/llama.svg',
           active: false,
           isHidden: false,
           backgroundColor: '#212121',
@@ -121,8 +121,8 @@ export const compareBoxTemplate: Template = {
         },
         {
           headline: 'Company 4',
-          logoColour: '/logo-black.png',
-          logoWhite: '/logo.svg',
+          logoColour: '/img/brand-assets/llama.svg',
+          logoWhite: '/img/brand-assets/llama.svg',
           active: false,
           isHidden: false,
           backgroundColor: '#fff555',

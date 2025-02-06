@@ -2,7 +2,6 @@ import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import BlobBackground from '../../../public/svg/blob-bg.svg';
 import { RichTextWrapper } from '../../layout/RichTextWrapper';
-import { Wrapper } from '../../layout/Wrapper';
 import { Container } from '../Container';
 
 export function FaqBlock({ data, index }) {
