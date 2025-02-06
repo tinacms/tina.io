@@ -6,6 +6,9 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
@@ -39,6 +42,9 @@
       "_template": "features"
     },
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
       "title": "",
       "link": "",
       "items": [
@@ -276,6 +282,9 @@
       "_template": "events"
     },
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
       "title2": "\"Tina is transforming the way we do docs at Unity\"",
       "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
       "logo": "/img/logos/unity-logo.png",

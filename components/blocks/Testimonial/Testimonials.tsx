@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
+import { Container } from '../Container';
 
 const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';
@@ -70,9 +71,9 @@ export default function TestimonialsBlock({ data, index }) {
   const secondRow = data.testimonials.slice(data.testimonials.length / 2);
 
   return (
-    <>
+    <div className="max-w-[1500px] m-auto">
       <h1
-        className={`font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20`}
+        className={`w-full font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center`}
         data-tina-field={tinaField(data, 'title')}
         ref={titleRef}
       >
@@ -115,6 +116,6 @@ export default function TestimonialsBlock({ data, index }) {
           mask-repeat: no-repeat;
         }
       `}</style>
-    </>
+    </div>
   );
 }

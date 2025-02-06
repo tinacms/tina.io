@@ -5,10 +5,10 @@
   "author": "Forestry.io",
   "main": "n/a",
   "engines": {
-    "node": ">=18"
+    "node": "20.x"
   },
   "scripts": {
-    "dev": "tinacms dev  --noTelemetry  -c \"next dev\"",
+    "dev": "tinacms dev --noTelemetry -c \"next dev\"",
     "build": "pnpm create-rss && tinacms build && next build",
     "export": "tinacms build && EXPORT_MODE=static,UNOPTIMIZED_IMAGES=true next build",
     "prestart": "tinacms build  && npm run export",
@@ -51,12 +51,17 @@
     "date-fns": "^4.1.0",
     "dotenv": "^8.6.0",
     "email-validator": "^2.0.4",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-class-names": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "fast-glob": "^3.3.2",
+    "framer-motion": "^12.0.3",
     "github-slugger": "^1.5.0",
     "graphql": "^15.9.0",
     "gray-matter": "^4.0.3",
     "js-cookie": "^3.0.5",
     "jsonp": "^0.2.1",
+    "lenis": "^1.1.20",
     "lodash": "^4.17.21",
     "lucide-react": "^0.471.0",
     "markdown-toc": "^1.2.0",

@@ -1,6 +1,6 @@
 export const recentPostsTemplate = {
   name: 'recentPosts',
-  label: 'Recent Posts',
+  label: '<⭐> Recent Posts',
   ui: {
     previewSrc: '/img/blocks/recent-posts.png',
   },
@@ -11,4 +11,4 @@ export const recentPostsTemplate = {
       type: 'string',
     },
   ],
-}
+};

@@ -2,7 +2,7 @@ import { contentComponents } from 'components/tinaMarkdownComponents/contentComp
 import React from 'react';
 import { DocsTextWrapper } from '../../layout/DocsTextWrapper';
 import { Section } from '../../layout/Section';
-import { Wrapper } from '../../layout/Wrapper';
+import { Container } from '../Container';
 
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
@@ -10,17 +10,24 @@ export function ContentBlock({ data, index }) {
   return (
     <Section color={data.options?.color || 'white'}>
       <DocsTextWrapper>
-        <Wrapper
-          align={data.options?.align || 'left'}
-          narrow={data.options?.narrow || false}
+        <div
+          className={
+            data.options?.align === 'center'
+              ? 'text-center'
+              : data.options?.align === 'right'
+              ? 'text-right'
+              : 'text-left'
+          }
         >
-          {data.content && (
-            <TinaMarkdown
-              components={contentComponents}
-              content={data.content}
-            />
-          )}
-        </Wrapper>
+          <Container width={data.options?.narrow ? 'narrow' : 'medium'}>
+            {data.content && (
+              <TinaMarkdown
+                components={contentComponents}
+                content={data.content}
+              />
+            )}
+          </Container>
+        </div>
       </DocsTextWrapper>
     </Section>
   );
