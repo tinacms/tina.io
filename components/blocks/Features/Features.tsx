@@ -129,7 +129,7 @@ export function FeatureBlock({ data, index }) {
                   }}
                 >
                   <CodeWrapper>
-                    <div className="[&>pre]:!bg-transparent [&>pre]:!border-none">
+                    <div className="[&>pre]:!bg-transparent [&>pre]:!border-none rounded-xl">
                       <Prism
                         lang={
                           data.media[0].language

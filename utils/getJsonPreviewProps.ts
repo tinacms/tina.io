@@ -2,9 +2,9 @@ import { readFile } from './readFile'
 import path from 'path'
 
 export const getJsonPreviewProps = async (
-  fileRelativePath: string,
-  preview: boolean,
-  previewData: any
+  fileRelativePath?: string,
+  preview?: boolean,
+  previewData?: any
 ) => {
   let file = null
   let error = null
