@@ -32,10 +32,7 @@ export async function generateMetadata({
     }
 
     return {
-      title: {
-        default: data.seo.title,
-        template: data.seo.hasCustomSuffix ? '%s' : '%s | Tina',
-      },
+      title: `%s | TinaCMS Docs`,
       description: data.seo.description,
       openGraph: {
         title: data.seo.title,
