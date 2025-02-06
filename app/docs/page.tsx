@@ -7,7 +7,7 @@ import DocsClient from './[...slug]/DocsPagesClient';
 import { generateMetadata as generateMetadataDocs } from './[...slug]/page';
 
 export async function generateMetadata() {
-  return generateMetadataDocs({ params: { slug: ['docs', 'index'] } });
+  return generateMetadataDocs({ params: { slug: ['index'] } });
 }
 
 export default async function DocsPage() {
