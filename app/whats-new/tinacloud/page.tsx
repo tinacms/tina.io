@@ -8,13 +8,13 @@ export async function generateMetadata() {
     (edge) => edge.node
   );
   const seoData = (nodesData[0] as { seo?: any })?.seo || {
-    title: "What's New in TinaCloud | TinaCMS",
+    title: "What's New in TinaCloud",
     description:
       'Stay updated with the latest improvements and features in TinaCloud.',
   };
 
   return {
-    title: `${seoData.title} | TinaCMS`,
+    title: `${seoData.title} | TinaCloud`,
     description: seoData.description,
     openGraph: {
       title: seoData.title,
