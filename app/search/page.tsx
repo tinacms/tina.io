@@ -7,13 +7,6 @@ import { formatTableofContentsData } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import SearchPageClient from './search-client';
 
-export async function generateMetadata() {
-  return {
-    title: 'Search | TinaCMS',
-    description: 'Search for documentation and examples on TinaCMS',
-  };
-}
-
 async function getSearchPageData() {
   const slug = 'index';
   let tableOfContents, formatted;
