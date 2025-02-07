@@ -8,54 +8,10 @@ import {
   DocsSearchBarHeader,
   LeftHandSideParentContainer,
 } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
-import { notFound, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
-import client from 'tina/__generated__/client';
-import { formatTableofContentsData } from 'utils/docs/getDocProps';
-import getTableOfContents from 'utils/docs/getTableOfContents';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-async function getSearchPageData() {
-  const slug = 'index';
-  let tableOfContents, formatted;
-
-  try {
-    const results = await client.queries.doc({ relativePath: `${slug}.mdx` });
-    const documentData = results.data.doc;
-    tableOfContents = getTableOfContents(documentData.body.children);
-  } catch (e) {
-    console.error('Error Fetching Docs Navigation Data: ', e.message);
-    notFound();
-  }
-
-  try {
-    const query = `
-      query {
-        docsTableOfContents(relativePath: "docs-toc.json") {
-          _values
-        }
-      }
-    `;
-    const docTocData = await client.request(
-      {
-        query,
-        variables: { relativePath: 'docs-toc.json' },
-      },
-      {}
-    );
-    formatted = formatTableofContentsData(docTocData, null);
-  } catch (e) {
-    console.error('Error fetching Docs Table of Content Data: ', e.message);
-  }
-
-  return {
-    props: {
-      tableOfContents,
-      formatted,
-    },
-  };
-}
-
-export function SearchPageInnerContent({ props }) {
+export default function SearchPageClient({ props }) {
   const [query, setQuery] = useState('');
 
   const searchParams = useSearchParams();
@@ -87,22 +43,6 @@ export function SearchPageInnerContent({ props }) {
           <SearchTabs query={query} />
         </div>
       </div>
-    </div>
-  );
-}
-
-export default function SearchPageClient() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    getSearchPageData().then((data) => setData(data));
-  }, []);
-
-  return (
-    <div>
-      <Suspense fallback={null}>
-        <SearchPageInnerContent {...data} />
-      </Suspense>
     </div>
   );
 }
