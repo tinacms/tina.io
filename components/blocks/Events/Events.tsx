@@ -99,7 +99,7 @@ export const Card = ({ cardItem, onHover }) => {
               src={cardItem.image}
               alt={cardItem.headline}
               className="object-cover"
-              layout="fill"
+              fill={true}
             />
           </div>
         )}

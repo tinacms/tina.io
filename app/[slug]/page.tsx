@@ -49,14 +49,9 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const pages = await fg(`./content/blocksPages/*.json`);
-  return pages
-    .filter((file) => {
-      const filename = path.basename(file);
-      return !filename.includes('_400x400') && !filename.endsWith('.jpg.json');
-    })
-    .map((file) => ({
-      slug: fileToUrl(file, 'blocksPages'),
-    }));
+  return pages.map((file) => ({
+    slug: fileToUrl(file, 'blocksPages'),
+  }));
 }
 
 export default async function Page({ params }: PageProps) {
