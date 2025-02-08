@@ -4,7 +4,7 @@ export const quoteTemplate: Template = {
   label: 'Quote',
   name: 'quote',
   ui: {
-    // previewSrc: '/img/blocks/columns.png',
+    previewSrc: '/img/blocks/quote.png',
   },
   fields: [
     {

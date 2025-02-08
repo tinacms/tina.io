@@ -1,11 +1,12 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 interface WrapperProps {
-  narrow?: boolean
-  wide?: boolean
-  align?: string
+  narrow?: boolean;
+  wide?: boolean;
+  align?: string;
 }
 
+//This is duplicated from the block 'Container' JSX component.... let's phase it out
 export const Wrapper = styled.div<WrapperProps>`
   width: 100%;
   max-width: 1350px;
@@ -57,4 +58,4 @@ export const Wrapper = styled.div<WrapperProps>`
         width: 92%;
       }
     `};
-`
+`;

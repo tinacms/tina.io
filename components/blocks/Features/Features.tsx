@@ -9,7 +9,7 @@ import { Container } from '../Container';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
-  const isFullScreen = data.isFullScreen
+  const isFullScreen = data.isFullScreen;
   const isBackgroundEnabled = data.imageBackground;
   const isVideo = data.media && data.media[0] && data.media[0].src;
 
@@ -33,12 +33,12 @@ export function FeatureBlock({ data, index }) {
     <>
       <div
         key={'feature-' + index}
-        className={`relative w-full flex flex-col-reverse items-center lg:justify-center ${isFullScreen ? 'lg:min-h-[70vh]' : ''} perspective ${
+        className={`relative w-full flex flex-col-reverse flex-wrap-reverse xl:flex-nowrap items-center gap-8 lg:justify-center perspective ${
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
         <div
-          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 ${
+          className={`pt-6 lg:pt-0 w-full lg:w-3/10 max-w-60ch flex flex-col gap-6 lg:justify-self-center ${
             isVideo ? 'lg:mr-8' : ''
           }`}
         >
@@ -65,7 +65,7 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-0 lg:w-1/2 ${
+            className={`relative min-w-0 md:min-w-96 md:w-[80%] justify-self-start ${
               isReversed ? 'lg:pr-8' : ''
             } ${(data.media[0].image || data.media[0].src) && ''}`}
           >
@@ -152,6 +152,18 @@ export function FeatureBlock({ data, index }) {
           max-width: 65ch;
         }
 
+        hr {
+          display: block;
+          border: none;
+          border-image: initial;
+          background: url('/svg/hr.svg');
+          background-size: auto 100%;
+          background-repeat: no-repeat;
+          height: 7px;
+          width: 100%;
+          margin: 2rem 0px;
+        }
+
         .pane-container {
           perspective: 1000px;
           -moz-perspective: none;
@@ -219,10 +231,7 @@ export function FeatureBlock({ data, index }) {
 
 export function FeaturesBlock({ data, index }) {
   return (
-    <section
-      key={'features-' + index}
-      className={'py-12 lg:py-16 last:pb-20 last:lg:pb-32'}
-    >
+    <section key={'features-' + index} className="w-full">
       <Container width="wide">
         <div className="flex flex-col gap-32 lg:gap-48 w-full">
           {/* TODO: why is there a type error here */}

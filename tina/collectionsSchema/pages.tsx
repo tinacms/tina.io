@@ -1,7 +1,10 @@
 import { Form, Template, TinaCMS } from 'tinacms';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
-import { compareBoxTemplate, criteriaMapping } from '../../components/blocks/CompareBox/CompareBox.template';
+import {
+  compareBoxTemplate,
+  criteriaMapping,
+} from '../../components/blocks/CompareBox/CompareBox.template';
 import { contentTemplate } from '../../components/blocks/Content/Content.template';
 import { eventsTemplate } from '../../components/blocks/Events/Events.template';
 import { faqTemplate } from '../../components/blocks/FAQ/FAQ.template';
@@ -21,11 +24,12 @@ import { roadmapGridTemplate } from '../../components/blocks/RoadMap/RoadmapGrid
 import { showcaseTemplate } from '../../components/blocks/Showcase/Showcase.template';
 import { spacerTemplate } from '../../components/blocks/Spacer/Spacer.template';
 import { storyTemplate } from '../../components/blocks/Story/Story.template';
+import { tableTemplate } from '../../components/blocks/Table/table.template';
 import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testimonials.template';
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
+import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
-import { tableTemplate } from '../../components/blocks/Table/table.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
@@ -43,31 +47,70 @@ const extendedSeoInformation = {
   ],
 };
 
+const templates = [
+  featuresTemplate as Template,
+  logoGridTemplate as Template,
+  testimonialsTemplate as Template,
+  carouselFeatureTemplate as Template,
+  eventsTemplate as Template,
+  highlightsSectionTemplate as Template,
+  recentPostsTemplate as Template,
+  compareBoxTemplate as Template,
+  RecipeBlock as Template,
+  tableTemplate as Template,
+  pricingTemplate as Template,
+  spacerTemplate as Template,
+  featureGridTemplate as Template,
+  heroTemplate as Template,
+  flyingTemplate as Template,
+  faqTemplate as Template,
+  contentTemplate as Template,
+  showcaseTemplate as Template,
+  columnsTemplate as Template,
+  roadmapGridTemplate as Template,
+  quoteTemplate as Template,
+  bookingTemplate as Template,
+  mediaComponentTemplate as Template,
+  textAndMediaColumnsComponentTemplate as Template,
+  tinaBannerTemplate as Template,
+  storyTemplate as Template,
+].map((template) => {
+  const updatedTemplate = template;
+  if (updatedTemplate.fields) {
+    //@ts-ignore - this is necessary as block settings are not being recognised as a Field type (even though it is)
+    updatedTemplate.fields = [blockSettings, ...updatedTemplate.fields];
+  }
+  return updatedTemplate as Template;
+});
+
 export const pagesCollection = {
-    label: 'Pages',
-    name: 'page',
-    path: 'content/blocksPages',
-    format: 'json',
-    ui: {
-      router: ({ document }) => {
-        if (document._sys.filename === 'home') {
-          return `/`
-        }
-        return `/${document._sys.filename}`
-      },
-      beforeSubmit: async ({ values, cms, form }: {
-        form: Form
-        cms: TinaCMS
-        values: Record<string, any>
-      }) => {
-        
-        //Template based transformations (NOTE: this is the only way to pass data between parent/child form fields)
-        const criteriaMappedValues = criteriaMapping(values );
-        return {
-          ...criteriaMappedValues.values,
-        }
+  label: 'Pages',
+  name: 'page',
+  path: 'content/blocksPages',
+  format: 'json',
+  ui: {
+    router: ({ document }) => {
+      if (document._sys.filename === 'home') {
+        return `/`;
       }
+      return `/${document._sys.filename}`;
     },
+    beforeSubmit: async ({
+      values,
+      cms,
+      form,
+    }: {
+      form: Form;
+      cms: TinaCMS;
+      values: Record<string, any>;
+    }) => {
+      //Template based transformations (NOTE: this is the only way to pass data between parent/child form fields)
+      const criteriaMappedValues = criteriaMapping(values);
+      return {
+        ...criteriaMappedValues.values,
+      };
+    },
+  },
   fields: [
     extendedSeoInformation,
     {
@@ -78,34 +121,7 @@ export const pagesCollection = {
       ui: {
         visualSelector: true,
       },
-      templates: [
-        heroTemplate as Template,
-        featuresTemplate as Template,
-        flyingTemplate as Template,
-        pricingTemplate as Template,
-        faqTemplate as Template,
-        contentTemplate as Template,
-        showcaseTemplate as Template,
-        columnsTemplate as Template,
-        storyTemplate as Template,
-        featureGridTemplate as Template,
-        logoGridTemplate as Template,
-        roadmapGridTemplate as Template,
-        recentPostsTemplate as Template,
-        testimonialsTemplate as Template,
-        quoteTemplate as Template,
-        eventsTemplate as Template,
-        compareBoxTemplate as Template,
-        tableTemplate as Template,
-        bookingTemplate as Template,
-        mediaComponentTemplate as Template,
-        textAndMediaColumnsComponentTemplate as Template,
-        tinaBannerTemplate as Template,
-        highlightsSectionTemplate as Template,
-        spacerTemplate as Template,
-        carouselFeatureTemplate as Template,
-        RecipeBlock as Template,
-      ],
+      templates: [...templates],
     },
   ],
 };

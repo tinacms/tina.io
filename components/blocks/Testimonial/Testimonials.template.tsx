@@ -1,5 +1,5 @@
 export const testimonialsTemplate = {
-  label: 'Testimonials',
+  label: '<⭐> Testimonials',
   name: 'testimonials',
   ui: {
     previewSrc: '/img/blocks/testimonials.png',
@@ -16,14 +16,19 @@ export const testimonialsTemplate = {
       list: true,
       ui: {
         itemProps: (item) => {
-          return { label: item?.name }
+          return { label: item?.name };
         },
       },
       fields: [
         { name: 'name', label: 'Name', type: 'string' },
         { name: 'username', label: 'Username', type: 'string' },
         { name: 'rhsImage', label: 'Image on the right', type: 'boolean' },
-        { name: 'imageBorder', label: 'Circular Image Border', description: 'A la social media account profiles', type: 'boolean' },
+        {
+          name: 'imageBorder',
+          label: 'Circular Image Border',
+          description: 'A la social media account profiles',
+          type: 'boolean',
+        },
         {
           name: 'avatar',
           label: 'Avatar',
@@ -35,10 +40,8 @@ export const testimonialsTemplate = {
           type: 'datetime',
           ui: {
             parse: (value) => {
-
               return value ? new Date(value).toISOString() : undefined;
-            }
-            
+            },
           },
         },
         {
@@ -50,4 +53,4 @@ export const testimonialsTemplate = {
       ],
     },
   ],
-}
+};

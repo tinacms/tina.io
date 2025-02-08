@@ -1,3 +1,4 @@
+import checkTouchScreen from 'components/util/touchscreenDetection';
 import Image from 'next/image';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
@@ -6,27 +7,7 @@ import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
-
-const checkTouchScreen = () => {
-  let hasTouchScreen = false;
-  if ('maxTouchPoints' in navigator) {
-    hasTouchScreen = navigator.maxTouchPoints > 0;
-  } else {
-    const mQ = matchMedia?.('(pointer:coarse)');
-    if (mQ?.media === '(pointer:coarse)') {
-      hasTouchScreen = !!mQ.matches;
-    } else if ('orientation' in window) {
-      hasTouchScreen = true; // deprecated, but good fallback
-    } else {
-      // Only as a last resort, fall back to user agent sniffing
-      const UA: string = (navigator as Navigator).userAgent;
-      hasTouchScreen =
-        /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
-        /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
-    }
-  }
-  return hasTouchScreen;
-};
+import { CarouselFeatureMobile } from './CarouselFeature.mobile';
 
 const CarouselItem = ({
   data,
@@ -42,7 +23,7 @@ const CarouselItem = ({
   const IconComponent = icons[icon2] || null;
 
   const commonStyles =
-    'transition-all delay-[50] duration-500 hover:scale-105 hover:z-20';
+    'transition-all delay-75 duration-500 hover:scale-105 hover:z-20';
 
   const actionsArray = button ? [button] : [];
 
@@ -242,10 +223,14 @@ export default function CarouselFeatureBlock({ data, index }) {
     throw new Error(`Unsupported video format: ${fileExtension}`);
   };
 
+  if (isTouchScreen || isSmallOrMediumScreen) {
+    return <CarouselFeatureMobile data={data} />;
+  }
+
   return (
     <section
       key={'feature-grid-' + index}
-      className={'relative z-0 py-20 lg:py-28 lg:h-[1100px]'}
+      className={'relative z-0'}
       style={{ overflow: 'visible' }}
     >
       <Container width="wide">
