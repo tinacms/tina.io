@@ -44,7 +44,6 @@ export const CodeButton = ({ children, label, id, ...props }) => {
       <style jsx>{`
         .bash {
           opacity: 0.5;
-          margin-right: 0.25rem;
         }
 
         .label {
@@ -100,7 +99,6 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           align-items: center;
           justify-content: center;
           font-weight: bold;
-          overflow: hidden;
           font-size: 1rem;
           border-radius: 0.375rem;
           cursor: pointer;
