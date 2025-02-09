@@ -528,6 +528,9 @@
         }
       ],
       "_template": "features"
+    },
+    {
+      "_template": "spacer"
     }
   ]
 }
