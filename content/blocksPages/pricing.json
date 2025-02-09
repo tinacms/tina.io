@@ -521,7 +521,7 @@
               "icon": false,
               "variant": "blue",
               "size": "medium",
-              "url": "/",
+              "url": "/meetings",
               "_template": "actions"
             }
           ]
