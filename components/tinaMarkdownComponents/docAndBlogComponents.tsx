@@ -142,6 +142,16 @@ export const docAndBlogComponents: Components<{
   h4: (props) => <FormatHeaders level={5} {...props} />,
   h5: (props) => <FormatHeaders level={5} {...props} />,
   h6: (props) => <FormatHeaders level={6} {...props} />,
+  img: (props) => {
+    return (
+      <img
+        className="my-4 rounded-lg"
+        src={props.url}
+        alt={props.alt || ''}
+        title={props.caption || ''}
+      ></img>
+    );
+  },
   ul: (props) => <ul className="list-disc my-6 ml-5" {...props} />,
   ol: (props) => <ol className="list-decimal ml-5" {...props} />,
   li: (props) => <li className="mb-2 ml-10" {...props} />,
@@ -174,7 +184,7 @@ export const docAndBlogComponents: Components<{
     );
   },
   WebmEmbed: ({ embedSrc, width = '100%' }) => (
-    <div className="video-container flex py-2 justify-center">
+    <div className="video-container flex justify-center my-4">
       <video
         width={width}
         height="auto"
@@ -434,7 +444,7 @@ function FormatHeaders({ children, level }) {
 
   useEffect(() => {
     if (window.location.hash) {
-      const hash = window.location.hash.substring(1); 
+      const hash = window.location.hash.substring(1);
       scrollToElement(hash);
     }
     //this is used for when you get sent a link with a hash (i.e link to a header)
