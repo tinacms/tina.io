@@ -4,7 +4,7 @@ import 'react-datetime/css/react-datetime.css';
 import type { Template } from 'tinacms';
 
 export const eventsTemplate: Template = {
-  label: 'Events',
+  label: '<⭐> Events – prepopulated ✨',
   name: 'events',
   ui: {
     previewSrc: '/img/blocks/events.png',

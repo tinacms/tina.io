@@ -5,6 +5,9 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "headline": "Plans & Pricing",
       "freeTier": {
         "name": "Free",
@@ -319,6 +322,9 @@
       "_template": "logoGrid"
     },
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
       "tableHeader": "Plan Comparison",
       "columnItems": [
         {

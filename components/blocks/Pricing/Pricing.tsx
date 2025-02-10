@@ -48,26 +48,26 @@ const FreeTier = ({ data }) => (
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
           <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-            {data.freeTier.name}
+            {data.freeTier?.name}
           </h2>
           <div className="flex items-baseline mt-2 sm:mt-0">
             <h2 className="font-tuner text-3xl bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.freeTier.price}
+              {data.freeTier?.price}
             </h2>
             <span className="text-lg ml-2 bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
-              {data.freeTier.interval}
+              {data.freeTier?.interval}
             </span>
           </div>
         </div>
       )}
       <div className="flex flex-col sm:flex-row justify-between">
         <TinaMarkdown
-          content={data.freeTier.description}
+          content={data.freeTier?.description}
           components={pricingComponents}
         />
         <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
-          {data.freeTier.buttons &&
-            data.freeTier.buttons.map((button, index) => (
+          {data.freeTier?.buttons &&
+            data.freeTier?.buttons.map((button, index) => (
               <RenderButton key={index} button={button} index={index} />
             ))}
         </div>
@@ -115,10 +115,12 @@ const PaidTier = ({ data, isMonthly }) => {
         </div>
         <div
           className={`py-1 text-stone-600 text-sm transition-all duration-500 ${
-            isMonthly ? 'animate-fadeOut opacity-0' : 'animate-fadeIn opacity-100'
+            isMonthly
+              ? 'animate-fadeOut opacity-0'
+              : 'animate-fadeIn opacity-100'
           } ${!data.annualDescription ? 'mt-5' : ''}`}
         >
-          {data.annualDescription } {' '}
+          {data.annualDescription}{' '}
         </div>
         <div className="pt-3 flex">
           {data.buttons &&
@@ -275,29 +277,27 @@ export function PricingBlock({ data }) {
   const [isMonthly, setIsMonthly] = useState(true);
 
   return (
-    <div className="p-6">
-      <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-7xl mx-auto">
-        <h1 className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
-          {data.headline}
-        </h1>
+    <div className="max-w-7xl w-full mx-8">
+      <h1 className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+        {data.headline}
+      </h1>
 
-        <div className="pt-2 max-w-7xl mx-auto flex justify-center">
-          <FreeTier data={data} />
-        </div>
-        <PillSwitch
-          isMonthly={isMonthly}
-          setIsMonthly={setIsMonthly}
-          visibleText={data.pillSwitchVisibileText}
-          toggleText={data.pillSwitchToggleText}
-        />
-        <div className="responsive-grid">
-          {data.plans &&
-            data.plans.map((plan, index) => (
-              <div key={index} className="flex flex-col">
-                <PaidTier data={plan} isMonthly={isMonthly} />
-              </div>
-            ))}
-        </div>
+      <div className="pt-2 max-w-7xl mx-auto flex justify-center">
+        <FreeTier data={data} />
+      </div>
+      <PillSwitch
+        isMonthly={isMonthly}
+        setIsMonthly={setIsMonthly}
+        visibleText={data.pillSwitchVisibileText}
+        toggleText={data.pillSwitchToggleText}
+      />
+      <div className="responsive-grid">
+        {data.plans &&
+          data.plans.map((plan, index) => (
+            <div key={index} className="flex flex-col">
+              <PaidTier data={plan} isMonthly={isMonthly} />
+            </div>
+          ))}
       </div>
       <style jsx>{`
         .responsive-grid {

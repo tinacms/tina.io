@@ -2,8 +2,11 @@ import { Template, wrapFieldsWithMeta } from 'tinacms';
 import IconSelector from '../../forms/IconSelector';
 
 export const highlightsSectionTemplate: Template = {
-  label: 'Highlights Section',
+  label: '<⭐> Highlights Section',
   name: 'highlightsSection',
+  ui: {
+    previewSrc: '/img/blocks/highlights.png',
+  },
   fields: [
     {
       name: 'highlightColumn',

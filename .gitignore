@@ -47,3 +47,9 @@ tina/__generated__
 scripts/content-auditor/auditor-found-files.txt
 scripts/content-auditor/auditor-responses.md
 scripts/content-auditor/content-auditor-prompt.txt
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -39,6 +39,7 @@ export const roadmapGridTemplate: Template = {
     {
       name: 'options',
       label: 'Options',
+      description: 'LEGACY. DO NOT USE ⚠️.',
       type: 'object',
       fields: [
         { name: 'paddingTop', label: 'Top Padding', type: 'boolean' },

@@ -77,7 +77,8 @@ export const cardTemplate: Template = {
           name: 'annualDescription',
           label: 'Annual Description',
           type: 'string',
-          description: '⚠️ If this field is empty, it will show the normal description for both annual and monthly'
+          description:
+            '⚠️ If this field is empty, it will show the normal description for both annual and monthly',
         },
       ],
     },
@@ -106,7 +107,7 @@ export const cardTemplate: Template = {
 
 export const pricingTemplate: Template = {
   name: 'pricing',
-  label: 'Pricing',
+  label: '<⭐> Pricing',
   ui: {
     previewSrc: '/img/blocks/pricing.png',
     defaultItem: {
