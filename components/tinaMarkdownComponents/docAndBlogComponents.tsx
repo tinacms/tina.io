@@ -145,7 +145,7 @@ export const docAndBlogComponents: Components<{
   img: (props) => {
     return (
       <img
-        className="my-4 rounded-lg"
+        className="my-4 rounded-xl"
         src={props.url}
         alt={props.alt || ''}
         title={props.caption || ''}
