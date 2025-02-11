@@ -18,7 +18,6 @@ export const fetchAlgoliaSearchResults = async (
   query: string
 ): Promise<SearchResults> => {
   try {
-    console.log('Raw query:', query);
     const searchParams = {
       hitsPerPage: 50,
       attributesToHighlight: ['title', 'excerpt'],
