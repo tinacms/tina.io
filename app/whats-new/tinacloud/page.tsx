@@ -14,7 +14,7 @@ export async function generateMetadata() {
   };
 
   return {
-    title: seoData.title,
+    title: `${seoData.title} | TinaCloud`,
     description: seoData.description,
     openGraph: {
       title: seoData.title,

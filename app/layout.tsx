@@ -1,14 +1,14 @@
-import './global.css';
 import { GoogleTagManager } from '@next/third-parties/google';
 import AdminLink from 'components/AppRouterMigrationComponents/AdminLink';
 import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner';
 import ConsentBanner from 'components/AppRouterMigrationComponents/ConsentBanner';
 import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
 import dynamic from 'next/dynamic';
-import data from '../content/siteConfig.json';
-import '../styles/tailwind.css';
-import StyledComponentsRegistry from '../lib/registry';
 import Script from 'next/script';
+import data from '../content/siteConfig.json';
+import StyledComponentsRegistry from '../lib/registry';
+import '../styles/tailwind.css';
+import './global.css';
 
 const TinaChatBot = dynamic(
   () => import('../components/AppRouterMigrationComponents/TinaChatBot'),
@@ -19,7 +19,7 @@ const TinaChatBot = dynamic(
 
 export const metadata = {
   title: {
-    template: `%s | ${data.title}`,
+    template: `%s`,
     default: data.seoDefaultTitle,
   },
   description: data.description,
