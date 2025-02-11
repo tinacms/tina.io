@@ -1,12 +1,11 @@
 'use client';
 
-import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import client from 'tina/__generated__/client';
 import { formatTableofContentsData } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import SearchPageClient from './search-client';
-
 
 async function getSearchPageData() {
   const slug = 'index';
@@ -52,7 +51,6 @@ async function getSearchPageData() {
 export default async function SearchPage() {
   const data = await getSearchPageData();
 
-  
   return (
     <div>
       <Suspense fallback={null}>

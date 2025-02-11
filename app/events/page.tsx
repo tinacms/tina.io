@@ -4,11 +4,11 @@ import EventsClient from './EventsClient';
 export async function generateMetadata() {
   const vars = {};
   const { data } = await fetchEvents(vars);
-  const nodesData = data.eventsConnection.edges.map((edge: any) => edge.node)
-  const eventsSEOData = nodesData[0].seo
-  
+  const nodesData = data.eventsConnection.edges.map((edge: any) => edge.node);
+  const eventsSEOData = nodesData[0].seo;
+
   return {
-    title: eventsSEOData.title,
+    title: `${eventsSEOData.title} | TinaCMS`,
     description: eventsSEOData.description,
     openGrah: {
       title: eventsSEOData.title,
@@ -24,8 +24,8 @@ export async function generateMetadata() {
           alt: `Tina - The Markdown CMS`,
         },
       ],
-    }
-  }
+    },
+  };
 }
 
 export default async function EventsPage() {
