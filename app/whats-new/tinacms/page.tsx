@@ -13,7 +13,7 @@ export async function generateMetadata() {
   };
 
   return {
-    title: whatsNewSEOData.title,
+    title: `${whatsNewSEOData.title} | TinaCMS`,
     description: whatsNewSEOData.description,
     openGraph: {
       title: whatsNewSEOData.title,
@@ -37,7 +37,6 @@ export default async function TinaCMSPage() {
   const vars = { last: 10, sort: 'dateReleased' };
 
   const { data, query } = await fetchWhatsNewData(vars);
-
 
   return <WhatsNewTinaCMSPageLayout data={data} />;
 }
