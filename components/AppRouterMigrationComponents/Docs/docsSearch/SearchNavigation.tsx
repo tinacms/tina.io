@@ -273,7 +273,7 @@ export const LeftHandSideParentContainer = ({ tableOfContents }) => {
         searchMargin="mx-3"
         searchBarPadding=""
       />
-      <div className="overflow-y-scroll overflow-x-hidden h-[76%] 2xl:max-h-[75vh] pl-4 2xl:pl-0">
+      <div className="overflow-y-scroll overflow-x-hidden h-[80%] 2xl:max-h-[75vh] pl-4 2xl:pl-0">
         <DocsNavigationList navItems={tableOfContents} />
       </div>
     </div>
