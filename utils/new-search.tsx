@@ -18,15 +18,15 @@ export const fetchAlgoliaSearchResults = async (
   query: string
 ): Promise<SearchResults> => {
   try {
+    const searchParams = {
+      hitsPerPage: 50,
+      attributesToHighlight: ['title', 'excerpt'],
+      advancedSyntax: true,
+    };
+
     const [docsResults, blogsResults] = await Promise.all([
-      searchClient
-        .initIndex('Tina-Docs-Next')
-        .search(query, { hitsPerPage: 50, attributesToHighlight: ['title', 'excerpt']
-      }),
-      searchClient
-        .initIndex('Tina-Blogs-Next')
-        .search(query, { hitsPerPage: 50 , attributesToHighlight: ['title', 'excerpt']
-      }),
+      searchClient.initIndex('Tina-Docs-Next').search(query, searchParams),
+      searchClient.initIndex('Tina-Blogs-Next').search(query, searchParams),
     ]);
 
     return {

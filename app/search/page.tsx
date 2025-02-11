@@ -1,7 +1,5 @@
-'use client';
-
-import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import { formatTableofContentsData } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';

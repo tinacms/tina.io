@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { fetchAlgoliaSearchResults } from "utils/new-search";
-import { highlightText } from "./SearchNavigation";
+import Link from 'next/link';
+import { useState, useEffect, useRef } from 'react';
+import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import { highlightText } from './SearchNavigation';
 
 export const SearchHeader = ({ query }: { query: string }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -20,10 +20,20 @@ export const SearchHeader = ({ query }: { query: string }) => {
     setIsFilterOpen(false);
   };
 
+  const isExactSearch = query.startsWith('"') && query.endsWith('"');
+  const displayQuery = isExactSearch ? query.slice(1, -1) : query;
+
   return (
     <div className="flex justify-between relative pt-4">
-      <div className="font-tuner text-3xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
-        Results for "{query}"
+      <div className="flex items-center gap-3">
+        <div className="font-tuner text-3xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
+          Results for "{displayQuery}"
+        </div>
+        {isExactSearch && (
+          <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
+            Exact Match
+          </span>
+        )}
       </div>
       <div className="flex text-end gap-6 items-center">
         {/* Filter Button */}
@@ -42,7 +52,6 @@ export const SearchHeader = ({ query }: { query: string }) => {
                   key={option}
                   className="py-2 text-left cursor-pointer font-light"
                   onClick={() => {
-                    
                     setIsFilterOpen(false);
                   }}
                 >
@@ -109,7 +118,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
   const width = (activeTabElement?.offsetWidth || 0) + 30;
 
   const numberOfResults =
-    (algoliaSearchResults?.docs?.count + algoliaSearchResults?.blogs?.count) || 0;
+    algoliaSearchResults?.docs?.count + algoliaSearchResults?.blogs?.count || 0;
 
   return (
     <div className="pt-6 w-full">
@@ -149,8 +158,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
 
           {/* Search Results Count */}
           <div className="ml-auto text-end text-lg font-inter text-blue-800">
-            {numberOfResults}{' '}
-            Results
+            {numberOfResults} Results
           </div>
         </div>
         {isLoading && (
@@ -158,13 +166,16 @@ export const SearchTabs = ({ query }: { query: string }) => {
             Mustering all the Llamas...
           </div>
         )}
-          <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
-        {(numberOfResults == 0 && isLoading==false) && <div className='font-inter font-semibold text-gray-500 text-xl'>No Results Found...</div>}  
+        <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
+        {numberOfResults == 0 && isLoading == false && (
+          <div className="font-inter font-semibold text-gray-500 text-xl">
+            No Results Found...
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
 
 export const SearchBody = ({
   results,
