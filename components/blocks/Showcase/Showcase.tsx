@@ -70,6 +70,7 @@ export function ShowcaseBlock({ data, index }) {
             grid-template-columns: 1fr 1fr;
             grid-gap: var(--spacer-size);
           }
+          padding: 2rem 0;
         }
         .featureReverse {
           direction: rtl;
@@ -137,7 +138,7 @@ export function ShowcaseBlock({ data, index }) {
 
 export function ShowcaseItemsBlock({ data, index }) {
   return (
-    <section key={'features-' + index}>
+    <section key={'features-' + index} className="w-full">
       <Container>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}
