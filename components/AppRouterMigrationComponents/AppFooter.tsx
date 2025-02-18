@@ -265,14 +265,14 @@ export const AppFooter = ({}) => {
             );
           })}
           <div className="flex flex-col lg:items-center font-tuner">
-            <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm font-tuner">
+            <div className="flex flex-col lg:items-start gap-4 drop-shadow-sm font-tuner">
               <SocialLink link="https://github.com/tinacms/tinacms">
                 <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 GitHub
               </SocialLink>
-              <SocialLink link="https://twitter.com/tinacms">
+              <SocialLink link="https://x.com/tinacms">
                 <XIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                Twitter
+                X
               </SocialLink>
               <SocialLink link="https://discord.com/invite/zumN63Ybpf">
                 <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
