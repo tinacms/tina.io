@@ -1,6 +1,6 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-02-19T02:52:43.315Z'
+last_edited: '2025-02-19T03:17:14.726Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
@@ -19,27 +19,34 @@ After creating your ECS instance, you'll need to set up the necessary software f
 
 PM2 is a process manager for Node.js applications that helps keep your application running in production.
 
+```
 pnpm install -g pm2
+```
 
 #### Install and Configure Nginx
 
 Nginx will serve as a reverse proxy for your TinaCMS application.
 
+```
 yum install nginx
+```
 
 Next, start Nginx and enable it to run on system boot:
 
+```
 systemctl start nginx    # Start the Nginx service
-
 systemctl enable nginx   # Configure Nginx to start automatically on system boot
-
 systemctl status nginx   # Check the status of the Nginx service
+
+```
 
 #### Configure Nginx as a Reverse Proxy
 
 Create a configuration file for your TinaCMS site:
 
-vim [/etc/nginx/conf.d/tinademo.conf](/etc/nginx/conf.d/tinademo.conf)
+```
+vim /etc/nginx/conf.d/tinademo.conf
+```
 
 Add the following configuration:
 
@@ -60,8 +67,12 @@ server {
 
 Test your Nginx configuration for syntax errors:
 
+```
 nginx -t
+```
 
 Reload Nginx to apply the new configuration:
 
+```
 nginx -s reload
+```
