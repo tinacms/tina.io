@@ -1,6 +1,6 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-02-19T09:01:38.798Z'
+last_edited: '2025-02-19T10:11:51.539Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
@@ -202,3 +202,25 @@ jobs:
             NODE_ENV=production pm2 start "pnpm start" --name tinademo
 
 ```
+
+## Configuring a Custom Domain
+
+To use a custom domain with your TinaCMS project in China:
+
+### Domain Setup
+
+1. Purchase a domain from a Chinese provider (e.g. Alibaba Cloud, Tencent Cloud)
+2. Add an A record pointing to your Alibaba Cloud server's IP address
+3. Update your Nginx configuration: 
+
+```
+server {
+    listen 80;
+    server_name yourdomain.cn;
+    # Rest of configuration
+}
+```
+
+### ICP Filing
+
+Remember that websites hosted in mainland China require ICP filing. Start this process through your domain provider or Alibaba Cloud.
