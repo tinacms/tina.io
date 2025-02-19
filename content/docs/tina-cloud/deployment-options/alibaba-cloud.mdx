@@ -1,6 +1,6 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-02-19T07:30:12.545Z'
+last_edited: '2025-02-19T09:01:38.798Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
@@ -119,23 +119,23 @@ After generating your SSH key, you'll need to add several secrets to your GitHub
 
 You'll need to configure the following secrets:
 
-1. SSH\_PRIVATE\_KEY : The private key generated on your server
-   * View it using: cat \~/.ssh/id\_ed25519
-   * Make sure to include the entire key, including the -----BEGIN OPENSSH PRIVATE KEY----and -----END OPENSSH PRIVATE KEY-----
-2. SERVER\_HOST: Your Alibaba Cloud server's IP address
+1. `SSH_PRIVATE_KEY` : The private key generated on your server
+   * View it using: `cat ~/.ssh/id_ed25519`
+   * Make sure to include the entire key, including the `-----BEGIN OPENSSH PRIVATE KEY----` and `-----END OPENSSH PRIVATE KEY-----`
+2. `SERVER_HOST`: Your Alibaba Cloud server's IP address
    * This is the public IP address of your ECS instance
-3. SERVER\_USERNAME: The username for connecting to your server
-   * Typically root or the user account you created on your ECS instance
-4. NEXT\_PUBLIC\_TINA\_BRANCH: The branch that Tina CMS should use for content
-   * Usually your main branch (e.g., main  or master)
-5. NEXT\_PUBLIC\_TINA\_CLIENT\_ID: Your Tina Cloud client ID
+3. `SERVER_USERNAME`: The username for connecting to your server
+   * Typically `root` or the user account you created on your ECS instance
+4. `NEXT_PUBLIC_TINA_BRANCH`: The branch that Tina CMS should use for content
+   * Usually your main branch (e.g., `main`  or `master`)
+5. `NEXT_PUBLIC_TINA_CLIENT_ID`: Your Tina Cloud client ID
    * Find this in your Tina Cloud dashboard under project settings
-6. TINA\_TOKEN: Your Tina Cloud token for authentication
+6. `TINA_TOKEN`: Your Tina Cloud token for authentication
    * Generate this from your Tina Cloud dashboard under API Access
 
 ## Creating GitHub Actions Workflow
 
-Create a new file in your repository at .github/workflows/deploy.yml with the following content:
+Create a new file in your repository at `.github/workflows/deploy.yml` with the following content:
 
 ```yaml
 name: Deploy to Alibaba Cloud Server
