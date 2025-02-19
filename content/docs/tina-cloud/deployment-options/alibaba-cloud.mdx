@@ -1,6 +1,6 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-02-19T03:17:14.726Z'
+last_edited: '2025-02-19T07:30:12.545Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
@@ -9,7 +9,7 @@ Alibaba Cloud is the leading cloud service provider in China. Since China doesn'
 
 ## Alibaba Cloud Configuration
 
-Alibaba Cloud offers a wide range of server options. We generally recommend using Elastic Compute Service (ECS) for TinaCMS project deployment. For detailed instructions on creating and configuring your server, please refer to the official Alibaba Cloud documentation: [https://www.alibabacloud.com/help/en/elastic-compute-service](https://www.alibabacloud.com/help/en/elastic-compute-service)
+Alibaba Cloud offers a wide range of server options. We generally recommend using **Elastic Compute Service (ECS)** for TinaCMS project deployment. For detailed instructions on creating and configuring your server, please refer to the [Official Alibaba Cloud Documentation](https://www.alibabacloud.com/help/en/elastic-compute-service).
 
 ### Server Setup
 
@@ -37,7 +37,6 @@ Next, start Nginx and enable it to run on system boot:
 systemctl start nginx    # Start the Nginx service
 systemctl enable nginx   # Configure Nginx to start automatically on system boot
 systemctl status nginx   # Check the status of the Nginx service
-
 ```
 
 #### Configure Nginx as a Reverse Proxy
@@ -75,4 +74,131 @@ Reload Nginx to apply the new configuration:
 
 ```
 nginx -s reload
+```
+
+### Preparing for GitHub Actions Deployment
+
+#### Create Deployment Directory
+
+First, create a directory on your server where your Tina CMS project will be deployed:
+
+```
+mkdir -p /www/tinademo
+cd /www/tinademo
+```
+
+#### Generate SSH Keys for GitHub Actions
+
+Generate an SSH key pair on your Alibaba Cloud server:
+
+```
+ssh -keygen -t ed25519 -C "deploy-key"
+# Press Enter to use the default path
+# Leave the passphrase empty by pressing Enter
+```
+
+#### Add Public Key to Authorized Keys
+
+Add the generated public key to the authorized\_keys file to allow GitHub Actions to authenticate:
+
+```
+cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+```
+
+## Configuring GitHub Secrets
+
+After generating your SSH key, you'll need to add several secrets to your GitHub repository to enable secure deployment.
+
+### Navigate to GitHub Secrets
+
+1. GitHub repository → Settings
+2. Secrets and variables → Actions
+3. Click "New repository secret"
+
+### Required GitHub Secrets
+
+You'll need to configure the following secrets:
+
+1. SSH\_PRIVATE\_KEY : The private key generated on your server
+   * View it using: cat \~/.ssh/id\_ed25519
+   * Make sure to include the entire key, including the -----BEGIN OPENSSH PRIVATE KEY----and -----END OPENSSH PRIVATE KEY-----
+2. SERVER\_HOST: Your Alibaba Cloud server's IP address
+   * This is the public IP address of your ECS instance
+3. SERVER\_USERNAME: The username for connecting to your server
+   * Typically root or the user account you created on your ECS instance
+4. NEXT\_PUBLIC\_TINA\_BRANCH: The branch that Tina CMS should use for content
+   * Usually your main branch (e.g., main  or master)
+5. NEXT\_PUBLIC\_TINA\_CLIENT\_ID: Your Tina Cloud client ID
+   * Find this in your Tina Cloud dashboard under project settings
+6. TINA\_TOKEN: Your Tina Cloud token for authentication
+   * Generate this from your Tina Cloud dashboard under API Access
+
+## Creating GitHub Actions Workflow
+
+Create a new file in your repository at .github/workflows/deploy.yml with the following content:
+
+```yaml
+name: Deploy to Alibaba Cloud Server
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.14.0"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Create .env file
+        run: |
+          cat > .env << EOL
+          NEXT_PUBLIC_TINA_CLIENT_ID=${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN=${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH=${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
+          EOL
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH: ${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
+        run: pnpm build
+
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: ".next/,public/,package.json,pnpm-lock.yaml,.env,tina/,next.config.js,.tina/"
+          target: "/tina/tinademo/"
+          rm: true
+
+      - name: Execute Remote SSH Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /tina/tinademo
+            pnpm install
+            pm2 delete tinademo || true
+            pm2 flush tinademo
+            NODE_ENV=production pm2 start "pnpm start" --name tinademo
+
 ```
