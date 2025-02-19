@@ -1,0 +1,67 @@
+---
+title: Deploying to Alibaba Cloud
+last_edited: '2025-02-19T02:52:43.315Z'
+next: content/docs/tina-cloud/api-versioning.mdx
+previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
+---
+
+Alibaba Cloud is the leading cloud service provider in China. Since China doesn't have mature GitHub-integrated hosting services like Vercel, Alibaba Cloud becomes the go-to option for developers who want to deploy their websites within mainland China.
+
+## Alibaba Cloud Configuration
+
+Alibaba Cloud offers a wide range of server options. We generally recommend using Elastic Compute Service (ECS) for TinaCMS project deployment. For detailed instructions on creating and configuring your server, please refer to the official Alibaba Cloud documentation: [https://www.alibabacloud.com/help/en/elastic-compute-service](https://www.alibabacloud.com/help/en/elastic-compute-service)
+
+### Server Setup
+
+After creating your ECS instance, you'll need to set up the necessary software for manage your TinaCMS project.
+
+#### Install PM2 for Process Management
+
+PM2 is a process manager for Node.js applications that helps keep your application running in production.
+
+pnpm install -g pm2
+
+#### Install and Configure Nginx
+
+Nginx will serve as a reverse proxy for your TinaCMS application.
+
+yum install nginx
+
+Next, start Nginx and enable it to run on system boot:
+
+systemctl start nginx    # Start the Nginx service
+
+systemctl enable nginx   # Configure Nginx to start automatically on system boot
+
+systemctl status nginx   # Check the status of the Nginx service
+
+#### Configure Nginx as a Reverse Proxy
+
+Create a configuration file for your TinaCMS site:
+
+vim [/etc/nginx/conf.d/tinademo.conf](/etc/nginx/conf.d/tinademo.conf)
+
+Add the following configuration:
+
+```
+server {
+    listen 80;
+    server_name your - domain.com;  # Replace with your actual domain
+  location / {
+    proxy_pass http://localhost:3000;
+      proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+
+Test your Nginx configuration for syntax errors:
+
+nginx -t
+
+Reload Nginx to apply the new configuration:
+
+nginx -s reload
