@@ -1,13 +1,22 @@
 ---
 title: FAQ
-last_edited: '2025-01-07T23:28:52.036Z'
+last_edited: '2025-02-21T00:25:47.105Z'
 next: ''
 previous: ''
 ---
 
 ## What is TinaCloud?
 
-TinaCloud is a hosted [datalayer](/docs/reference/content-api/data-layer) for TinaCMS. TinaCloud is the easiest way to use TinaCMS in production. It provides a hosted GraphQL endpoint for your content, Git integration, user management, editorial workflow features and more. It also grants authorization for other users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub. TinaCMS can be [self-hosted](/docs/self-hosted/overview) or used independently of TinaCloud as well.
+TinaCloud is a hosted [datalayer](/docs/reference/content-api/data-layer) for TinaCMS. TinaCloud is the easiest way to use TinaCMS in production. It provides:
+
+* A hosted GraphQL endpoint for your content,
+* Git integration
+* User management
+* [Editorial Workflow](/docs/drafts/editorial-workflow) features
+
+It also allows authorization for different types of users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub.
+
+TinaCMS can be [self-hosted](/docs/self-hosted/overview) or used independently of TinaCloud as well.
 
 For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
@@ -181,7 +190,7 @@ If you receive an error like `The specified branch, 'my-branch-name', has not be
 2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process.
 3. Verify that the branch exists in the GitHub repository.
 4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
-5. Ensure that the Tina project is located in the root directory 
+5. Ensure that the Tina project is located in the root directory
 
 ### How do I resolve `There was a problem saving your document` errors?
 
