@@ -28,6 +28,8 @@ export default function DocsClient({ props }) {
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
   const { activeIds, contentRef } = useTocListener(DocumentationData);
 
+  
+
   const previousPage = {
     slug: DocumentationData?.previous?.id.slice(7, -4),
     title: DocumentationData?.previous?.title,
@@ -76,7 +78,7 @@ export default function DocsClient({ props }) {
           {isScreenSmallerThan1200 && !DocumentationData?.tocIsHidden && (
             <TocOverflowButton tocData={PageTableOfContents} />
           )}
-          <div ref={contentRef}>
+          <div ref={contentRef} className="pb-6">
             {' '}
             <TinaMarkdown
               content={DocumentationData?.body}
