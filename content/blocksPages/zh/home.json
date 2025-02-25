@@ -424,11 +424,11 @@
     {
       "features": [
         {
-          "headline": "Avoid Mistakes with Editorial Workflow",
-          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
+          "headline": "编辑工作流程助您避免错误",
+          "text": "通过编辑工作流功能，用户可以在不使用GitHub或其他IDE的情况下，直接审阅和管理不同分支上的内容",
           "buttons": [
             {
-              "label": "Editorial Workflow",
+              "label": "编辑工作流程",
               "icon": false,
               "variant": "blue",
               "size": "small",
