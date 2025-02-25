@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "TinaCMS – Headless CMS with GitHub & Markdown Support",
-    "description": "Combine the power of GitHub and Markdown with TinaCMS for seamless content management. Empower developers and creators to edit, preview, and manage static and dynamic sites effortlessly.",
+    "title": "TinaCMS – 集成GitHub和Markdown的无头CMS",
+    "description": "将Github和Markdown的强大功能与TinaCMS集成，实现无缝内容管理。让开发者和创作者能够轻松地编辑、预览和管理静态及动态网站",
     "hasCustomSuffix": true
   },
   "blocks": [
@@ -12,10 +12,10 @@
       "features": [
         {
           "headline": "网站、文档与羊驼，轻松无碍",
-          "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
+          "text": "TinaCMS是一个开源的无头内容管理系统，支持Git，并内置版本控制功能。",
           "buttons": [
             {
-              "label": "Try the editor now",
+              "label": "立即体验在线编辑",
               "icon": true,
               "variant": "blue",
               "size": "small",
@@ -45,7 +45,7 @@
       "blockSettings": {
         "isFullscreen": false
       },
-      "title": "",
+      "title": "深受以下企业信赖",
       "link": "",
       "items": [
         {
@@ -142,15 +142,15 @@
       "_template": "logoGrid"
     },
     {
-      "blockHeadline": "Key Features",
+      "blockHeadline": "核心特性",
       "items": [
         {
-          "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit",
+          "headline": "可视化编辑",
+          "text": "实时查看编辑内容变化",
           "icon2": "FaClock",
           "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "了解更多",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
@@ -158,12 +158,12 @@
           }
         },
         {
-          "headline": "Open Source",
-          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
+          "headline": "开源",
+          "text": "Tina采用Apache 2.0许可协议。可以自托管或托管在TinaCloud上",
           "icon2": "FaUnlock",
           "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "了解更多",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
@@ -171,12 +171,12 @@
           }
         },
         {
-          "headline": "Develop Locally",
-          "text": "Easily set up and run Tina locally to talk to your local filesystem",
+          "headline": "本地开发",
+          "text": "在本地环境轻松配置Tina，与本地文件系统直接交互",
           "icon2": "FaCodeBranch",
           "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "了解更多",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
@@ -184,8 +184,8 @@
           }
         },
         {
-          "headline": "3rd Party Media",
-          "text": "Store Media assets is your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
+          "headline": "第三方媒体管理",
+          "text": "将媒体资产存储在您的代码库中，或连接到S3、Cloudinary、DigitalOcean Spaces等服务。您也可以使用TinaCloud",
           "icon2": "FaCloudDownloadAlt",
           "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
           "button": {
@@ -197,12 +197,12 @@
           }
         },
         {
-          "headline": "Build with Blocks",
-          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
+          "headline": "区块化构建",
+          "text": "使用预建模板或从头创建自定义组件 - 您可以完全掌控如何构建您的网站",
           "icon2": "FaPuzzlePiece",
           "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "了解更多",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
@@ -210,12 +210,12 @@
           }
         },
         {
-          "headline": "Markdown at Scale",
-          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
+          "headline": "大规模Markdown支持",
+          "text": "Tina支持使用Markdown构建拥有10,000+页面的超快速网站，Markdown是您网站内容的最佳语言",
           "icon2": "FaMarkdown",
           "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "了解更多",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
@@ -223,12 +223,12 @@
           }
         },
         {
-          "headline": "Git Integration",
-          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
+          "headline": "Git集成",
+          "text": "用户可以在界面内编辑、保存更改和请求审批 - 而开发者则可在GitHub中查看分支、提交和拉取请求",
           "icon2": "FaGithub",
           "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "了解更多",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
@@ -236,12 +236,12 @@
           }
         },
         {
-          "headline": "Easy Documentation",
-          "text": "Tina's docs run on TinaCMS - check it out!",
+          "headline": "官方文档",
+          "text": "Tina的文档使用TinaCMS构建 - 快来看看吧！",
           "icon2": "FaFileAlt",
           "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "了解更多",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
