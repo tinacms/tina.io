@@ -254,11 +254,11 @@
     {
       "features": [
         {
-          "headline": "Talk to a Tina Expert",
-          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
+          "headline": "与Tina专家对话",
+          "text": "正在为您的项目考虑使用Tina？立即预约30分钟与TinaCMS架构师的专业咨询",
           "buttons": [
             {
-              "label": "Schedule Call",
+              "label": "预约咨询",
               "icon": true,
               "color": "blue",
               "size": "small",
