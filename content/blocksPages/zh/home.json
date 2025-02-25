@@ -285,8 +285,8 @@
       "blockSettings": {
         "isFullscreen": false
       },
-      "title2": "\"Tina is transforming the way we do docs at Unity\"",
-      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
+      "title2": "\"Tina正在改变我们在Unity进行文档工作的方式\"",
+      "subtext": "Anton Iancu, AI和文档产品工程经理",
       "logo": "/img/logos/unity-logo.png",
       "_template": "quote"
     },
