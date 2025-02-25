@@ -445,8 +445,8 @@
           ]
         },
         {
-          "headline": "Unbeatable UX",
-          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
+          "headline": "无与伦比的用户体验",
+          "text": "编辑Markdown、MDX和JSON文件的内容不再繁琐。Tina提供实时预览功能，让用户体验达到全新水平",
           "media": [
             {
               "src": "/img/docs/introduction/homepage-demo-2.webm",
@@ -459,7 +459,7 @@
       "_template": "features"
     },
     {
-      "title": "Recent Posts",
+      "title": "最新文章",
       "_template": "recentPosts"
     }
   ]
