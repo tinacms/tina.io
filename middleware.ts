@@ -4,26 +4,35 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const SUPPORTED_LOCALES = ['en', 'zh'];
 export const DEFAULT_LOCALE = 'en';
+const RESERVED_PATHS = [
+  'api',
+  'blog',
+  'community',
+  'docs',
+  'events',
+  'examples',
+  'search',
+  'test-analytics',
+  'whats-new',
+  'admin',
+];
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   const isValidPath =
     pathname === '/' ||
-    /^\/[^/]+$/.test(pathname) || // matches /xxx
-    /^\/[^/]+\/[^/]+/.test(pathname); // matches /locale/xxx
+    (/^\/[^/]+$/.test(pathname) &&
+      !RESERVED_PATHS.includes(pathname.substring(1))) || // matches /xxx but not reserved paths
+    (/^\/[^/]+\/[^/]+/.test(pathname) &&
+      SUPPORTED_LOCALES.includes(pathname.split('/')[1])); // matches /locale/xxx
 
-  // Return early if path doesn't match the patterns
   if (!isValidPath) {
     return;
   }
 
   // ignore static files
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.includes('/api/') ||
-    pathname.includes('.')
-  ) {
+  if (pathname.startsWith('/_next') || pathname.includes('.')) {
     return;
   }
 

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
 import { SUPPORTED_LOCALES } from '../../../middleware';
 import { client } from '../../../tina/__generated__/client';
@@ -8,7 +8,7 @@ import ClientPage from './client-page';
 
 const fg = require('fast-glob');
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 interface PageProps {
   params: {
@@ -18,14 +18,14 @@ interface PageProps {
 }
 
 export async function generateMetadata({
-  //Files with different language should have different metadata
   params,
 }: PageProps): Promise<Metadata> {
   const { locale, slug } = params;
-
+  const relativePath =
+    locale === 'en' ? `${slug}.json` : `${locale}/${slug}.json`;
   try {
     const res = await client.queries.pageWithRecentPosts({
-      relativePath: slug + '.json',
+      relativePath,
     });
 
     const data = res.data.page;
@@ -64,19 +64,42 @@ export async function generateStaticParams() {
     };
   });
 }
+
 export default async function Page({ params }: PageProps) {
   const { locale, slug } = params;
   const relativePath =
     locale === 'en' ? `${slug}.json` : `${locale}/${slug}.json`;
-  const vars = { relativePath: relativePath };
 
   try {
     const res = await client.queries.pageWithRecentPosts({
       relativePath,
     });
 
-    return <ClientPage query={res.query} data={res.data} variables={vars} />;
-  } catch (error) {
-    notFound();
+    return (
+      <ClientPage
+        query={res.query}
+        data={res.data}
+        variables={{ relativePath }}
+      />
+    );
+  } catch {
+    if (locale !== 'en') {
+      const enPageExists = await checkEnglishPageExists(slug);
+      if (enPageExists) {
+        redirect(`/en/${slug}`);
+      }
+    }
+    return notFound();
+  }
+}
+
+async function checkEnglishPageExists(slug: string): Promise<boolean> {
+  try {
+    await client.queries.pageWithRecentPosts({
+      relativePath: `${slug}.json`,
+    });
+    return true;
+  } catch {
+    return false;
   }
 }
