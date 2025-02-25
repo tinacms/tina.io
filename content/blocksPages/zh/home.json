@@ -184,8 +184,8 @@
           }
         },
         {
-          "headline": "第三方媒体管理",
-          "text": "将媒体资产存储在您的代码库中，或连接到S3、Cloudinary、DigitalOcean Spaces等服务。您也可以使用TinaCloud",
+          "headline": "第三方资源管理",
+          "text": "将媒体资源存储在您的代码库中，或连接到S3、Cloudinary、DigitalOcean Spaces等服务。您也可以使用TinaCloud存储。",
           "icon2": "FaCloudDownloadAlt",
           "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
           "button": {
