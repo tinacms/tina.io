@@ -20,22 +20,21 @@ const RESERVED_PATHS = [
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  //filter the invalid path
   const isValidPath =
     pathname === '/' ||
     (/^\/[^/]+$/.test(pathname) &&
       !RESERVED_PATHS.includes(pathname.substring(1))) || // matches /xxx but not reserved paths
     (/^\/[^/]+\/[^/]+/.test(pathname) &&
       SUPPORTED_LOCALES.includes(pathname.split('/')[1])); // matches /locale/xxx
-
   if (!isValidPath) {
     return;
   }
-
-  // ignore static files
   if (pathname.startsWith('/_next') || pathname.includes('.')) {
     return;
   }
 
+  //Show the original info
   console.log(`default language: ${DEFAULT_LOCALE}`);
   console.log(`current path: ${pathname}`);
 
@@ -46,23 +45,29 @@ export function middleware(request: NextRequest) {
       pathname === `/${locale}` ||
       pathname === `/${locale}/`
   );
-
   if (matchedLocale) {
+    //handle the root path
     if (pathname === `/${matchedLocale}` || pathname === `/${matchedLocale}/`) {
       const url = request.nextUrl.clone();
       url.pathname = `/${matchedLocale}/home`;
       return NextResponse.redirect(url);
+    } else {
+      return;
     }
-    return; // the final output
   }
 
-  // get the locale from the request
+  // Get the locale info from the request
   const locale = getLocale(request);
   console.log(`locale: ${locale}`);
 
   const url = request.nextUrl.clone();
   url.pathname = pathname === '/' ? `/${locale}/home` : `/${locale}${pathname}`;
-  return NextResponse.redirect(url);
+  const response = NextResponse.redirect(url);
+  response.cookies.set('NEXT_LOCALE', locale, {
+    maxAge: 60 * 60 * 24 * 365,
+    path: '/',
+  });
+  return response;
 }
 
 export const config = {
@@ -72,17 +77,17 @@ export const config = {
 function getLocale(request: NextRequest): string {
   const cookieLocale = getLocaleFromCookie(request);
   if (cookieLocale) {
-    console.log(`Get cookie locale: ${cookieLocale}`);
+    console.log(`Get from cookie locale: ${cookieLocale}`);
     return cookieLocale;
   }
 
   const acceptLanguageLocale = getLocaleFromAcceptLanguage(request);
   if (acceptLanguageLocale) {
-    console.log(`Get accept language locale: ${acceptLanguageLocale}`);
+    console.log(`Get from accept language locale: ${acceptLanguageLocale}`);
     return acceptLanguageLocale;
   }
 
-  console.log(`Get default locale: ${DEFAULT_LOCALE}`);
+  console.log(`Get from default locale: ${DEFAULT_LOCALE}`);
   return DEFAULT_LOCALE;
 }
 
