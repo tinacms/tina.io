@@ -1,6 +1,8 @@
 'use client';
 
 import { DemoForm } from 'components/modals/BookDemo';
+import LanguageSelect from 'components/modals/LanguageSelect';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { BiChevronRight, BiLinkExternal, BiMenu } from 'react-icons/bi';
@@ -9,6 +11,7 @@ import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
+import { styled } from 'styled-components';
 import data from '../../content/navigationBar/navMenu.json';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
@@ -24,11 +27,33 @@ enum ValidColors {
   Ghost = 'ghost',
 }
 
+const EnFlag = ({ className }) => (
+  <Image
+    src="/img/flags/en.png"
+    alt="English Flag"
+    width={20}
+    height={12}
+    className={className}
+  />
+);
+
+const ZhFlag = ({ className }) => (
+  <Image
+    src="/img/flags/zh.png"
+    alt="Chinese Flag"
+    width={20}
+    height={12}
+    className={className}
+  />
+);
+
 const modalButtonString = 'modalButton';
 
 const iconMapping = {
   MdEmail: MdEmail,
   FaCalendarDay: FaCalendarDay,
+  EnFlag: EnFlag,
+  ZhFlag: ZhFlag,
 };
 
 export function AppNavBar({ sticky = true }) {
@@ -60,6 +85,8 @@ export function AppNavBar({ sticky = true }) {
   const closeModal = () => setModalType(null);
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+
+  console.log('NAV ITEMS type: ', navItems);
 
   return (
     <>
@@ -140,21 +167,35 @@ export function AppNavBar({ sticky = true }) {
           <div className="flex space-x-2 gap-2 cursor-pointer">
             {navItems
               .filter((item) => item._template === modalButtonString)
-              .map((item, index) => (
-                <Button
-                  key={index}
-                  color={item.color as ValidColors}
-                  size="extraSmall"
-                  onClick={() => openModal(item.modal)}
-                >
-                  {item.icon2 && iconMapping[item.icon2] && (
-                    <span className="mr-2">
-                      {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-                    </span>
-                  )}
-                  {item.label}
-                </Button>
-              ))}
+              .map((item, index) =>
+                item.size === 'flag' ? (
+                  <div
+                    key={index}
+                    className="flex items-center cursor-pointer  min-w-[28px] min-h-[28px] w-auto h-auto"
+                    onClick={() => openModal(item.modal)}
+                  >
+                    {item.icon2 && iconMapping[item.icon2] && (
+                      <span className="flex items-center">
+                        {iconMapping[item.icon2]({ className: 'w-6 h-6' })}
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <Button
+                    key={index}
+                    color={item.color as ValidColors}
+                    size="extraSmall"
+                    onClick={() => openModal(item.modal)}
+                  >
+                    {item.icon2 && iconMapping[item.icon2] && (
+                      <span className="mr-2">
+                        {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
+                      </span>
+                    )}
+                    {item.label}
+                  </Button>
+                )
+              )}
           </div>
         </div>
         {/* Start of large (desktop +) view */}
@@ -170,24 +211,39 @@ export function AppNavBar({ sticky = true }) {
               className={`w-40 flex items-center h-auto fill-orange-500 mb-4`}
             />
           </Link>
-          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1300px]:items-center gap-2 min-[1300px]:gap-x-12">
-            <ul className="flex gap-6 min-[1300px]:gap-8 min-[1300px]:gap-12 relative z-20">
+          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1360px]:items-center gap-2 min-[1360px]:gap-x-12">
+            <ul className="flex gap-6 min-[1360px]:gap-8 min-[1360px]:gap-12 relative z-20">
               {navItems.map((item, index) =>
                 item._template === modalButtonString ? (
-                  <li key={index} className={`group ${navLinkClasses} py-2`}>
-                    <Button
-                      color={item.color as ValidColors}
-                      size="small"
-                      onClick={() => openModal(item.modal)}
-                    >
-                      {item.icon2 && iconMapping[item.icon2] && (
-                        <span className="mr-2">
-                          {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-                        </span>
-                      )}
-
-                      {item.label}
-                    </Button>
+                  <li
+                    key={index}
+                    className={`group ${navLinkClasses} py-2 flex items-center`}
+                  >
+                    {item.size === 'flag' ? (
+                      <div
+                        className="flex items-center cursor-pointer z-30 min-w-[28px] min-h-[28px]"
+                        onClick={() => openModal(item.modal)}
+                      >
+                        {item.icon2 && iconMapping[item.icon2] && (
+                          <span className="flex items-center">
+                            {iconMapping[item.icon2]({ className: 'w-7 h-7' })}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <Button
+                        color={item.color as ValidColors}
+                        size="small"
+                        onClick={() => openModal(item.modal)}
+                      >
+                        {item.icon2 && iconMapping[item.icon2] && (
+                          <span className="mr-2">
+                            {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
+                          </span>
+                        )}
+                        {item.label}
+                      </Button>
+                    )}
                   </li>
                 ) : (
                   <li key={index} className={`group ${navLinkClasses}`}>
@@ -241,6 +297,27 @@ export function AppNavBar({ sticky = true }) {
       <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
         <EmailForm isFooter={false} />
       </Modal>
+
+      <Modal
+        open={modalType === 'LanguageSelect'}
+        onClose={closeModal}
+        center
+        styles={{
+          modal: {
+            maxWidth: '400px !important',
+          },
+        }}
+      >
+        <ModalContentWrapper>
+          <LanguageSelect />
+        </ModalContentWrapper>
+      </Modal>
     </>
   );
 }
+
+const ModalContentWrapper = styled.div`
+  max-width: 400px !important;
+  width: 100%;
+  margin: 0 auto;
+`;

@@ -1,4 +1,4 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
+const modals = ['BookDemo', 'EmailForm', 'LanguageSelect'];
 
 export const modalButtonTemplateFields = [
   { name: 'label', label: 'Label', type: 'string' },
@@ -24,6 +24,7 @@ export const modalButtonTemplateFields = [
       { value: 'small', label: 'Small' },
       { value: 'medium', label: 'Medium' },
       { value: 'large', label: 'Large' },
+      { value: 'flag', label: 'Flag' },
     ],
   },
   { name: 'modal', label: 'Modal', type: 'string', options: modals },
@@ -45,5 +46,5 @@ export const modalButtonTemplate = {
       size: 'medium',
     },
   },
-  fields: modalButtonTemplateFields, 
+  fields: modalButtonTemplateFields,
 };
