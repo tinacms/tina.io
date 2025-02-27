@@ -70,10 +70,11 @@ export default async function Page({ params }: PageProps) {
     locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
 
   try {
+    console.log('Attempting to fetch data for:', relativePath);
     const res = await client.queries.pageWithRecentPosts({
       relativePath,
     });
-
+    console.log('Data fetched successfully');
     return (
       <ClientPage
         query={res.query}
@@ -82,6 +83,7 @@ export default async function Page({ params }: PageProps) {
       />
     );
   } catch {
+    console.error('Error details:', error);
     console.log('Not found chinese versoin', relativePath);
     if (locale !== defaultLocale) {
       const enPageExists = await checkEnglishPageExists(slug);
