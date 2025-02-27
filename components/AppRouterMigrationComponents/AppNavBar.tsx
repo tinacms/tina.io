@@ -86,6 +86,8 @@ export function AppNavBar({ sticky = true }) {
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
 
+  console.log('NAV ITEMS type: ', navItems);
+
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>

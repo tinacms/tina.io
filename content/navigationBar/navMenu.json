@@ -100,9 +100,8 @@
     },
     {
       "label": "En",
-      "icon": true,
-      "color": "default",
-      "size": "small",
+      "icon": false,
+      "size": "medium",
       "modal": "LanguageSelect",
       "icon2": "EnFlag",
       "_template": "modalButton"
