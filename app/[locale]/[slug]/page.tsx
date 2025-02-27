@@ -82,6 +82,7 @@ export default async function Page({ params }: PageProps) {
       />
     );
   } catch {
+    console.log('Not found chinese versoin', relativePath);
     if (locale !== defaultLocale) {
       const enPageExists = await checkEnglishPageExists(slug);
       if (enPageExists) {
