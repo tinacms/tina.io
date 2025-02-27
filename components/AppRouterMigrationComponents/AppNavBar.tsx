@@ -71,7 +71,7 @@ export function AppNavBar({ sticky = true }) {
     setTimeout(() => {
       setAnimateFlag(true);
       setTimeout(() => setAnimateFlag(false), 600);
-    }, 80);
+    }, 20);
   };
 
   const navRef = useRef(null);
@@ -275,7 +275,7 @@ export function AppNavBar({ sticky = true }) {
                   <DropdownMenuTrigger asChild>
                     <button
                       className={`outline-none hover:animate-jelly ${
-                        animateFlag ? 'animate-jump' : ''
+                        animateFlag ? 'animate-bounce' : ''
                       }`}
                     >
                       {selectedFlag === 'en' ? (
