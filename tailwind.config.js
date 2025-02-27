@@ -183,15 +183,17 @@ module.exports = {
         bounce: {
           '0%, 100%': { transform: 'translateY(0)' },
           '5%': { transform: 'translateY(-15px)' },
-          '10%': { transform: 'translateY(-20px)' },
           '15%': { transform: 'translateY(-25px)' },
           '20%': { transform: 'translateY(-30px)' },
-          '30%': { transform: 'translateY(-27px)' },
+          '30%': { transform: 'translateY(-23px)' },
           '40%': { transform: 'translateY(-15px)' },
-          '60%': { transform: 'translateY(-4px) scale(1.2, 0.8)' },
-          '70%': { transform: 'translateY(-3px) scale(1, 1.2)' },
-          '80%': { transform: 'translateY(-2px) scale(1.05, 0.95)' },
-          '90%': { transform: 'translateY(-1px)' },
+          '50%': { transform: 'translateY(-0px)' },
+          '60%': { transform: 'translateY(0px) scale(1.1, 0.9)' },
+          '65%': { transform: 'translateY(0px) scale(1.3, 0.7)' },
+          '70%': { transform: 'translateY(-4px) scale(1, 1.2)' },
+          '80%': { transform: 'translateY(-3px) scale(1.1, 1)' },
+          '90%': { transform: 'translateY(-1px) scale(1.05, 0.95)' },
+          '100%': { transform: 'translateY(0px)' },
         },
         slideIn: {
           '0%': {
@@ -230,7 +232,7 @@ module.exports = {
       },
       animation: {
         jelly: 'jelly 0.6s ease',
-        bounce: 'bounce 0.6s ease-in-out',
+        bounce: 'bounce 0.4s ease-in-out',
         'slide-in': 'slideIn 200ms ease-out 1',
         'pop-in': 'popIn 0.5s ease-out forwards',
         marquee: 'marquee var(--duration) infinite linear',
