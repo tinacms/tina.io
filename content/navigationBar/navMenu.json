@@ -97,6 +97,15 @@
       "modal": "BookDemo",
       "icon2": "FaCalendarDay",
       "_template": "modalButton"
+    },
+    {
+      "label": "",
+      "icon": false,
+      "color": "",
+      "size": "flag",
+      "modal": "LanguageSelect",
+      "icon2": "EnFlag",
+      "_template": "modalButton"
     }
   ]
 }
