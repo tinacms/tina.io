@@ -1,5 +1,11 @@
 'use client';
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@radix-ui/react-dropdown-menu';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
 import Image from 'next/image';
@@ -52,14 +58,19 @@ const modalButtonString = 'modalButton';
 const iconMapping = {
   MdEmail: MdEmail,
   FaCalendarDay: FaCalendarDay,
-  EnFlag: EnFlag,
-  ZhFlag: ZhFlag,
 };
 
 export function AppNavBar({ sticky = true }) {
   const [open, setOpen] = useState(false);
   const [stuck, setStuck] = useState(false);
   const [modalType, setModalType] = useState(null);
+
+  const [selectedFlag, setSelectedFlag] = useState('en');
+
+  const handleFlagChange = (flag) => {
+    setSelectedFlag(flag);
+  };
+
   const navRef = useRef(null);
 
   const navLinkClasses =
@@ -85,8 +96,6 @@ export function AppNavBar({ sticky = true }) {
   const closeModal = () => setModalType(null);
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
-
-  console.log('NAV ITEMS type: ', navItems);
 
   return (
     <>
@@ -167,35 +176,21 @@ export function AppNavBar({ sticky = true }) {
           <div className="flex space-x-2 gap-2 cursor-pointer">
             {navItems
               .filter((item) => item._template === modalButtonString)
-              .map((item, index) =>
-                item.size === 'flag' ? (
-                  <div
-                    key={index}
-                    className="flex items-center cursor-pointer  min-w-[28px] min-h-[28px] w-auto h-auto"
-                    onClick={() => openModal(item.modal)}
-                  >
-                    {item.icon2 && iconMapping[item.icon2] && (
-                      <span className="flex items-center">
-                        {iconMapping[item.icon2]({ className: 'w-6 h-6' })}
-                      </span>
-                    )}
-                  </div>
-                ) : (
-                  <Button
-                    key={index}
-                    color={item.color as ValidColors}
-                    size="extraSmall"
-                    onClick={() => openModal(item.modal)}
-                  >
-                    {item.icon2 && iconMapping[item.icon2] && (
-                      <span className="mr-2">
-                        {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-                      </span>
-                    )}
-                    {item.label}
-                  </Button>
-                )
-              )}
+              .map((item, index) => (
+                <Button
+                  key={index}
+                  color={item.color as ValidColors}
+                  size="extraSmall"
+                  onClick={() => openModal(item.modal)}
+                >
+                  {item.icon2 && iconMapping[item.icon2] && (
+                    <span className="mr-2">
+                      {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
+                    </span>
+                  )}
+                  {item.label}
+                </Button>
+              ))}
           </div>
         </div>
         {/* Start of large (desktop +) view */}
@@ -204,46 +199,33 @@ export function AppNavBar({ sticky = true }) {
             stuck && sticky
               ? `min-[1300px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full min-[1300px]:px-10 hidden min-[1300px]:flex items-center justify-between gap-6`}
+          } z-40 w-full min-[1300px]:px-10 hidden min-[1300px]:flex items-center justify-between `}
         >
           <Link href={'/'}>
             <TinaLogoSvg
               className={`w-40 flex items-center h-auto fill-orange-500 mb-4`}
             />
           </Link>
-          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1360px]:items-center gap-2 min-[1360px]:gap-x-12">
-            <ul className="flex gap-6 min-[1360px]:gap-8 min-[1360px]:gap-12 relative z-20">
+          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1300px]:items-center gap-2 min-[1300px]:gap-x-12">
+            <ul className="flex gap-6 ">
               {navItems.map((item, index) =>
                 item._template === modalButtonString ? (
                   <li
                     key={index}
                     className={`group ${navLinkClasses} py-2 flex items-center`}
                   >
-                    {item.size === 'flag' ? (
-                      <div
-                        className="flex items-center cursor-pointer z-30 min-w-[28px] min-h-[28px]"
-                        onClick={() => openModal(item.modal)}
-                      >
-                        {item.icon2 && iconMapping[item.icon2] && (
-                          <span className="flex items-center">
-                            {iconMapping[item.icon2]({ className: 'w-7 h-7' })}
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      <Button
-                        color={item.color as ValidColors}
-                        size="small"
-                        onClick={() => openModal(item.modal)}
-                      >
-                        {item.icon2 && iconMapping[item.icon2] && (
-                          <span className="mr-2">
-                            {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-                          </span>
-                        )}
-                        {item.label}
-                      </Button>
-                    )}
+                    <Button
+                      color={item.color as ValidColors}
+                      size="small"
+                      onClick={() => openModal(item.modal)}
+                    >
+                      {item.icon2 && iconMapping[item.icon2] && (
+                        <span className="mr-2">
+                          {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
+                        </span>
+                      )}
+                      {item.label}
+                    </Button>
                   </li>
                 ) : (
                   <li key={index} className={`group ${navLinkClasses}`}>
@@ -285,7 +267,32 @@ export function AppNavBar({ sticky = true }) {
                   </li>
                 )
               )}
+              <li className="group items-center flex ">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="cursor-pointer outline-none transition-transform duration-200 ease-out transform hover:scale-110">
+                      {selectedFlag === 'en' ? (
+                        <EnFlag className="w-8 h-8" />
+                      ) : (
+                        <ZhFlag className="w-8 h-8" />
+                      )}
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="mt-2 cursor-pointer transition-transform duration-200 ease-out transform hover:scale-110">
+                    {selectedFlag === 'en' ? (
+                      <DropdownMenuItem onSelect={() => handleFlagChange('zh')}>
+                        <ZhFlag className="w-8 h-8" />
+                      </DropdownMenuItem>
+                    ) : (
+                      <DropdownMenuItem onSelect={() => handleFlagChange('en')}>
+                        <EnFlag className="w-8 h-8" />
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </li>
             </ul>
+            <div className="flex items-center"></div>
           </nav>
         </div>
       </div>
