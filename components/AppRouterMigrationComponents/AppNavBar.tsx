@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu';
 import { DemoForm } from 'components/modals/BookDemo';
+import LanguageSelect from 'components/modals/LanguageSelect';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
@@ -99,6 +100,16 @@ export function AppNavBar({ sticky = true }) {
   const closeModal = () => setModalType(null);
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+
+  // Define a function to update the selected flag
+  const handleLanguageChange = (code) => {
+    setSelectedFlag(code);
+    closeModal(); // Close the modal after selecting a language
+    setTimeout(() => {
+      setAnimateFlag(true);
+      setTimeout(() => setAnimateFlag(false), 600);
+    }, 20);
+  };
 
   return (
     <>
@@ -270,39 +281,19 @@ export function AppNavBar({ sticky = true }) {
                   </li>
                 )
               )}
-              <li className="group items-center flex">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button
-                      className={`outline-none hover:animate-jelly ${
-                        animateFlag ? 'animate-bounce' : ''
-                      }`}
-                    >
-                      {selectedFlag === 'en' ? (
-                        <EnFlag className="w-8 h-8" />
-                      ) : (
-                        <ZhFlag className="w-8 h-8" />
-                      )}
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className=" mt-2 cursor-pointer hover:animate-jelly">
-                    {selectedFlag === 'en' ? (
-                      <DropdownMenuItem
-                        className="outline-none"
-                        onSelect={() => handleFlagChange('zh')}
-                      >
-                        <ZhFlag className="w-8 h-8" />
-                      </DropdownMenuItem>
-                    ) : (
-                      <DropdownMenuItem
-                        className="outline-none"
-                        onSelect={() => handleFlagChange('en')}
-                      >
-                        <EnFlag className="w-8 h-8" />
-                      </DropdownMenuItem>
-                    )}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+              <li className="group flex items-center cursor-pointer">
+                <button
+                  className={`outline-none hover:animate-jelly ${
+                    animateFlag ? 'animate-bounce' : ''
+                  }`}
+                  onClick={() => openModal('LanguageSelect')}
+                >
+                  {selectedFlag === 'en' ? (
+                    <EnFlag className="w-8 h-8" />
+                  ) : (
+                    <ZhFlag className="w-8 h-8" />
+                  )}
+                </button>
               </li>
             </ul>
             <div className="flex items-center"></div>
@@ -316,6 +307,18 @@ export function AppNavBar({ sticky = true }) {
 
       <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
         <EmailForm isFooter={false} />
+      </Modal>
+
+      <Modal
+        open={modalType === 'LanguageSelect'}
+        onClose={closeModal}
+        center
+        classNames={{ modal: 'language-select-modal' }}
+      >
+        <LanguageSelect
+          onLanguageSelect={handleLanguageChange}
+          currentLanguage={selectedFlag}
+        />
       </Modal>
     </>
   );

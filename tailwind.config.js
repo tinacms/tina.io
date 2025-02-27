@@ -232,7 +232,7 @@ module.exports = {
       },
       animation: {
         jelly: 'jelly 0.6s ease',
-        bounce: 'bounce 0.4s ease-in-out',
+        bounce: 'bounce 0.5s ease-in-out',
         'slide-in': 'slideIn 200ms ease-out 1',
         'pop-in': 'popIn 0.5s ease-out forwards',
         marquee: 'marquee var(--duration) infinite linear',

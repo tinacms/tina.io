@@ -8,9 +8,17 @@ interface Language {
   nativeName: string;
   flag: string;
 }
+interface LanguageSelectProps {
+  onLanguageSelect: (code: string) => void;
+  currentLanguage: string;
+}
 
-export const LanguageSelect = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
+export const LanguageSelect: React.FC<LanguageSelectProps> = ({
+  onLanguageSelect,
+  currentLanguage,
+}) => {
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>(currentLanguage);
 
   const languages: Language[] = [
     {
@@ -29,15 +37,14 @@ export const LanguageSelect = () => {
 
   const handleLanguageSelect = (code: string) => {
     setSelectedLanguage(code);
-    // Here you would implement your language change logic
-    // For example: i18n.changeLanguage(code);
+    onLanguageSelect(code); // Call the function passed from AppNavBar
   };
 
   return (
     <>
       <div className="py-10">
         <div className="flex justify-center pb-8">
-          <h1 className="inline-block m-0 md:text-4xl font-tuner lg:text-3xl md:text-2xl lg:leading-tight bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+          <h1 className="inline-block m-0 md:text-4xl font-tuner lg:text-3xl lg:leading-tight bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
             Select your language
           </h1>
         </div>
