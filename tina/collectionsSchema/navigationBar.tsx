@@ -1,4 +1,5 @@
-const iconOptions = ['FaCalendarDay', 'MdEmail', 'EnFlag', 'ZhFlag'];
+const modals = ['BookDemo', 'EmailForm'];
+const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
 import { modalButtonTemplateFields } from '../../components/blocks/ModalButton/ModalButton.template';
 
