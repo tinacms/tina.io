@@ -290,23 +290,27 @@ export function AppNavBar({ sticky = true }) {
         </div>
       </div>
 
-      <Modal open={modalType === 'BookDemo'} onClose={closeModal} center>
+      <Modal
+        open={modalType === 'BookDemo'}
+        onClose={closeModal}
+        center
+        classNames={{ modal: 'email-and-demo-modal' }}
+      >
         <DemoForm />
       </Modal>
-
-      <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
+      <Modal
+        open={modalType === 'EmailForm'}
+        onClose={closeModal}
+        center
+        classNames={{ modal: 'email-and-demo-modal' }}
+      >
         <EmailForm isFooter={false} />
       </Modal>
-
       <Modal
         open={modalType === 'LanguageSelect'}
         onClose={closeModal}
         center
-        styles={{
-          modal: {
-            maxWidth: '400px !important',
-          },
-        }}
+        classNames={{ modal: 'language-select-modal' }}
       >
         <ModalContentWrapper>
           <LanguageSelect />
