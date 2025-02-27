@@ -1,6 +1,6 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-02-19T10:11:51.539Z'
+last_edited: '2025-02-27T02:42:44.894Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
@@ -99,7 +99,7 @@ ssh -keygen -t ed25519 -C "deploy-key"
 
 #### Add Public Key to Authorized Keys
 
-Add the generated public key to the authorized_keys file to allow GitHub Actions to authenticate:
+Add the generated public key to the authorized\_keys file to allow GitHub Actions to authenticate:
 
 ```
 cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
@@ -120,18 +120,18 @@ After generating your SSH key, you'll need to add several secrets to your GitHub
 You'll need to configure the following secrets:
 
 1. `SSH_PRIVATE_KEY` : The private key generated on your server
-   - View it using: `cat ~/.ssh/id_ed25519`
-   - Make sure to include the entire key, including the `-----BEGIN OPENSSH PRIVATE KEY----` and `-----END OPENSSH PRIVATE KEY-----`
+   * View it using: `cat ~/.ssh/id_ed25519`
+   * Make sure to include the entire key, including the `-----BEGIN OPENSSH PRIVATE KEY----` and `-----END OPENSSH PRIVATE KEY-----`
 2. `SERVER_HOST`: Your Alibaba Cloud server's IP address
-   - This is the public IP address of your ECS instance
+   * This is the public IP address of your ECS instance
 3. `SERVER_USERNAME`: The username for connecting to your server
-   - Typically `root` or the user account you created on your ECS instance
+   * Typically `root` or the user account you created on your ECS instance
 4. `NEXT_PUBLIC_TINA_BRANCH`: The branch that TinaCMS should use for content
-   - Usually your main branch (e.g., `main` or `master`)
+   * Usually your main branch (e.g., `main` or `master`)
 5. `NEXT_PUBLIC_TINA_CLIENT_ID`: Your TinaCloud client ID
-   - Find this in your TinaCloud dashboard under project settings
+   * Find this in your TinaCloud dashboard under project settings
 6. `TINA_TOKEN`: Your TinaCloud token for authentication
-   - Generate this from your TinaCloud dashboard under API Access
+   * Generate this from your TinaCloud dashboard under API Access
 
 ## Creating GitHub Actions Workflow
 
@@ -222,4 +222,5 @@ server {
 
 ### ICP Filing
 
-Remember that websites hosted in mainland China require ICP filing. Start this process through your domain provider or Alibaba Cloud.
+Remember that websites hosted in mainland China require ICP filing. Start this process through your domain provider or Alibaba Cloud.\
+For complete ICP filing guidelines, refer to [Alibaba Cloud's official documentation](https://help.aliyun.com/zh/icp-filing/basic-icp-service/product-overview/?spm=a2c4g.11186623.help-menu-35468.d_0.39926256l9czkS) for detailed information on required materials, process steps, and approval timeframes.
