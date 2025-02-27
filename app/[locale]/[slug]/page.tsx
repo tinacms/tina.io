@@ -82,7 +82,7 @@ export default async function Page({ params }: PageProps) {
         variables={{ relativePath }}
       />
     );
-  } catch {
+  } catch (error) {
     console.error('Error details:', error);
     console.log('Not found chinese versoin', relativePath);
     if (locale !== defaultLocale) {
