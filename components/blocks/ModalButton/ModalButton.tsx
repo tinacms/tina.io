@@ -1,6 +1,5 @@
 import { EmailForm } from 'components/forms';
 import { DemoForm } from 'components/modals/BookDemo';
-import { LanguageSelect } from 'components/modals/LanguageSelect';
 import React, { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { Modal } from 'react-responsive-modal';
@@ -12,7 +11,6 @@ import { ModalButton } from '../../ui';
 const modals = {
   'BookDemo.tsx': <DemoForm />,
   'EmailForm.tsx': <EmailForm />,
-  'LanguageSelect.tsx': <LanguageSelect />,
 };
 
 export const ModalB = ({ items, align = 'left' }) => {

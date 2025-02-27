@@ -91,20 +91,10 @@
     },
     {
       "label": "Book a demo",
-      "icon": false,
       "color": "orange",
-      "size": "large",
+      "size": "medium",
       "modal": "BookDemo",
       "icon2": "FaCalendarDay",
-      "_template": "modalButton"
-    },
-    {
-      "label": "",
-      "icon": false,
-      "color": "",
-      "size": "flag",
-      "modal": "LanguageSelect",
-      "icon2": "EnFlag",
       "_template": "modalButton"
     }
   ]
