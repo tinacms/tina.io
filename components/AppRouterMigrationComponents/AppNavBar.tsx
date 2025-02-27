@@ -7,7 +7,6 @@ import {
   DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu';
 import { DemoForm } from 'components/modals/BookDemo';
-import LanguageSelect from 'components/modals/LanguageSelect';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
@@ -17,7 +16,6 @@ import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import { styled } from 'styled-components';
 import data from '../../content/navigationBar/navMenu.json';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
@@ -66,9 +64,14 @@ export function AppNavBar({ sticky = true }) {
   const [modalType, setModalType] = useState(null);
 
   const [selectedFlag, setSelectedFlag] = useState('en');
+  const [animateFlag, setAnimateFlag] = useState(false);
 
   const handleFlagChange = (flag) => {
     setSelectedFlag(flag);
+    setTimeout(() => {
+      setAnimateFlag(true);
+      setTimeout(() => setAnimateFlag(false), 600);
+    }, 80);
   };
 
   const navRef = useRef(null);
@@ -267,10 +270,14 @@ export function AppNavBar({ sticky = true }) {
                   </li>
                 )
               )}
-              <li className="group items-center flex ">
+              <li className="group items-center flex">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="cursor-pointer outline-none transition-transform duration-200 ease-out transform hover:scale-110">
+                    <button
+                      className={`outline-none hover:animate-jelly ${
+                        animateFlag ? 'animate-jump' : ''
+                      }`}
+                    >
                       {selectedFlag === 'en' ? (
                         <EnFlag className="w-8 h-8" />
                       ) : (
@@ -278,13 +285,19 @@ export function AppNavBar({ sticky = true }) {
                       )}
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="mt-2 cursor-pointer transition-transform duration-200 ease-out transform hover:scale-110">
+                  <DropdownMenuContent className=" mt-2 cursor-pointer hover:animate-jelly">
                     {selectedFlag === 'en' ? (
-                      <DropdownMenuItem onSelect={() => handleFlagChange('zh')}>
+                      <DropdownMenuItem
+                        className="outline-none"
+                        onSelect={() => handleFlagChange('zh')}
+                      >
                         <ZhFlag className="w-8 h-8" />
                       </DropdownMenuItem>
                     ) : (
-                      <DropdownMenuItem onSelect={() => handleFlagChange('en')}>
+                      <DropdownMenuItem
+                        className="outline-none"
+                        onSelect={() => handleFlagChange('en')}
+                      >
                         <EnFlag className="w-8 h-8" />
                       </DropdownMenuItem>
                     )}
@@ -304,27 +317,6 @@ export function AppNavBar({ sticky = true }) {
       <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
         <EmailForm isFooter={false} />
       </Modal>
-
-      <Modal
-        open={modalType === 'LanguageSelect'}
-        onClose={closeModal}
-        center
-        styles={{
-          modal: {
-            maxWidth: '400px !important',
-          },
-        }}
-      >
-        <ModalContentWrapper>
-          <LanguageSelect />
-        </ModalContentWrapper>
-      </Modal>
     </>
   );
 }
-
-const ModalContentWrapper = styled.div`
-  max-width: 400px !important;
-  width: 100%;
-  margin: 0 auto;
-`;

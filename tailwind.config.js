@@ -174,6 +174,16 @@ module.exports = {
     },
     extend: {
       keyframes: {
+        jelly: {
+          '0%, 100%': { transform: 'scale(1, 1)' },
+          '25%': { transform: 'scale(1.1, 0.9)' },
+          '50%': { transform: 'scale(0.9, 1.1)' },
+          '75%': { transform: 'scale(1.05, 0.95)' },
+        },
+        jump: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
         slideIn: {
           '0%': {
             transform: 'translate3d(0,-100%,0)',
@@ -210,6 +220,8 @@ module.exports = {
         },
       },
       animation: {
+        jelly: 'jelly 0.6s ease',
+        jump: 'jump 0.6s ease',
         'slide-in': 'slideIn 200ms ease-out 1',
         'pop-in': 'popIn 0.5s ease-out forwards',
         marquee: 'marquee var(--duration) infinite linear',
