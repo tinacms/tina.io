@@ -1,0 +1,466 @@
+{
+  "seo": {
+    "title": "TinaCMS – 集成GitHub和Markdown的无头CMS",
+    "description": "将Github和Markdown的强大功能与TinaCMS集成，实现无缝内容管理。让开发者和创作者能够轻松地编辑、预览和管理静态及动态网站",
+    "hasCustomSuffix": true
+  },
+  "blocks": [
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "features": [
+        {
+          "headline": "网站、文档与羊驼，轻松无碍",
+          "text": "TinaCMS是一个开源的无头内容管理系统，支持Git，并内置版本控制功能。",
+          "buttons": [
+            {
+              "label": "立即体验在线编辑",
+              "icon": true,
+              "variant": "blue",
+              "size": "small",
+              "url": "https://demo.tina.io/admin#/~",
+              "_template": "actions"
+            },
+            {
+              "label": "npx create-tina-app@latest",
+              "_template": "codeButton"
+            }
+          ],
+          "media": [
+            {
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
+              "link": "https://www.youtube.com/watch?v=zRkeKSZjlyw",
+              "_template": "video"
+            }
+          ],
+          "isFullScreen": true,
+          "isReversed": false,
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "title": "深受以下企业信赖",
+      "link": "",
+      "items": [
+        {
+          "name": "Bunny Net",
+          "link": "/showcase#bunny-net",
+          "logo": "/svg/logos/bunnynet.svg",
+          "size": 220
+        },
+        {
+          "name": "Unity",
+          "link": "/showcase#unity",
+          "logo": "/svg/logos/unity.svg",
+          "size": 200
+        },
+        {
+          "name": "Protocol Labs",
+          "link": "/showcase#Microgen",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 80
+        },
+        {
+          "name": "City of London",
+          "link": "https://www.cityoflondon.gov.uk/",
+          "logo": "/svg/logos/cityoflondon.svg",
+          "size": 120
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "/showcase#devolver-digital",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 150
+        },
+        {
+          "name": "Smashing Magazine",
+          "link": "/showcase#smashing-magazine",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 90
+        },
+        {
+          "name": "Roev",
+          "link": "/showcase#roev",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
+          "name": "Supernova",
+          "link": "/showcase#supernova",
+          "logo": "/svg/logos/supernova.svg",
+          "size": 240
+        },
+        {
+          "name": "Paradise Helicopters",
+          "link": "/showcase#paradise-helicopters",
+          "logo": "/svg/logos/paradisehelicopters.svg",
+          "size": 150
+        },
+        {
+          "name": "NDC Conferences",
+          "link": "/showcase#ndc-conferences",
+          "logo": "/img/logos/NDCLogo.png",
+          "size": 220
+        },
+        {
+          "name": "SSW",
+          "link": "/showcase#ssw",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size": 150
+        },
+        {
+          "name": "Comedia",
+          "link": "/showcase#comedia",
+          "logo": "/svg/logos/comedia.svg",
+          "size": 110
+        },
+        {
+          "name": "RRE Ventures",
+          "link": "/showcase#rre-ventures",
+          "logo": "/svg/logos/rreventures.svg",
+          "size": 220
+        },
+        {
+          "name": "Shadow Lion",
+          "link": "/showcase#shadow-lion",
+          "logo": "/svg/logos/shadowlion.svg",
+          "size": 220
+        },
+        {
+          "name": "Locality Bank",
+          "link": "/showcase#locality-bank",
+          "logo": "/svg/logos/localitybank.svg",
+          "size": 200
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
+      "blockHeadline": "核心特性",
+      "items": [
+        {
+          "headline": "可视化编辑",
+          "text": "实时查看编辑内容变化",
+          "icon2": "FaClock",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://demo.tina.io/admin#/"
+          }
+        },
+        {
+          "headline": "开源",
+          "text": "Tina采用Apache 2.0许可协议。可以自托管或托管在TinaCloud上",
+          "icon2": "FaUnlock",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://github.com/tinacms/tinacms"
+          }
+        },
+        {
+          "headline": "本地开发",
+          "text": "在本地环境轻松配置Tina，与本地文件系统直接交互",
+          "icon2": "FaCodeBranch",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/setup-overview/"
+          }
+        },
+        {
+          "headline": "第三方资源管理",
+          "text": "将媒体资源存储在您的代码库中，或连接到S3、Cloudinary、DigitalOcean Spaces等服务。您也可以使用TinaCloud存储。",
+          "icon2": "FaCloudDownloadAlt",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/reference/media/overview"
+          }
+        },
+        {
+          "headline": "区块化构建",
+          "text": "使用预建模板或从头创建自定义组件 - 您可以完全掌控如何构建您的网站",
+          "icon2": "FaPuzzlePiece",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/blocks"
+          }
+        },
+        {
+          "headline": "大规模Markdown支持",
+          "text": "Tina支持使用Markdown构建拥有10,000+页面的超快速网站，Markdown是您网站内容的最佳语言",
+          "icon2": "FaMarkdown",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/overview"
+          }
+        },
+        {
+          "headline": "Git集成",
+          "text": "用户可以在界面内编辑、保存更改和请求审批 - 而开发者则可在GitHub中查看分支、提交和拉取请求",
+          "icon2": "FaGithub",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/drafts/editorial-workflow/"
+          }
+        },
+        {
+          "headline": "官方文档",
+          "text": "Tina的文档使用TinaCMS构建 - 快来看看吧！",
+          "icon2": "FaFileAlt",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
+          "button": {
+            "label": "了解更多",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs"
+          }
+        }
+      ],
+      "_template": "carouselFeature"
+    },
+    {
+      "features": [
+        {
+          "headline": "与Tina专家对话",
+          "text": "正在为您的项目考虑使用Tina？立即预约30分钟与TinaCMS架构师的专业咨询",
+          "buttons": [
+            {
+              "label": "预约咨询",
+              "icon": true,
+              "color": "blue",
+              "size": "small",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/TinaExpert.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "_template": "events"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "title2": "\"Tina正在改变我们在Unity进行文档工作的方式\"",
+      "subtext": "Anton Iancu, AI和文档产品工程经理",
+      "logo": "/img/logos/unity-logo.png",
+      "_template": "quote"
+    },
+    {
+      "title": "开发者的最爱",
+      "testimonials": [
+        {
+          "name": "MadeWithReactJS",
+          "username": "madewith_react",
+          "imageBorder": true,
+          "avatar": "/wfxl9SVF_400x400.jpg",
+          "date": "2024-11-06T13:00:00.000Z",
+          "testimonial": "Add real-time content editing to your React websites with TinaCMS, an open-source toolkit to create visual editing experiences\n",
+          "link": "https://x.com/madewith_react/status/1854188254716645700"
+        },
+        {
+          "name": "ffmad.xcp",
+          "username": "quentinbdb",
+          "imageBorder": true,
+          "avatar": "/Fr4NQFpf_400x400.jpg",
+          "date": "2024-10-19T13:00:00.000Z",
+          "testimonial": "Very happy to finally release the new website !\n\nThere is still a few things to add and adjust, but it will be easy to do so! We built it on Astro & TinaCMS for speed and collaboration!\n",
+          "link": "https://x.com/quentinbdb/status/1847795017416401229"
+        },
+        {
+          "name": "Aaron Crowder",
+          "username": "CrowderSoup",
+          "imageBorder": true,
+          "avatar": "/tTsoaH2o_400x400.jpg",
+          "date": "2024-09-27T14:00:00.000Z",
+          "testimonial": "Whoa, this works with Hugo (which I'm currently using). Definitely going to have to play with this over the weekend.\n",
+          "link": "https://x.com/CrowderSoup/status/1839722550232003048"
+        },
+        {
+          "name": "Cassidy",
+          "username": "cassidoo",
+          "imageBorder": true,
+          "avatar": "/1d5PR5ge_400x400.jpg",
+          "date": "2024-09-26T14:00:00.000Z",
+          "testimonial": "TinaCMS is what I use and I love it!\n",
+          "link": "https://x.com/cassidoo/status/1839650659735663054"
+        },
+        {
+          "name": "Manu Coffin",
+          "username": "manucoffin",
+          "imageBorder": true,
+          "avatar": "/3D97Wrt5_400x400.jpg",
+          "date": "2024-08-18T14:00:00.000Z",
+          "testimonial": "I just built a complete blog structure for my upcoming project with TinaCMS in 2 minutes.\nAnd it worked perfectly on the first try\n",
+          "link": "https://x.com/manucoffin/status/1825455891421802720"
+        },
+        {
+          "name": "Arzafran",
+          "username": "arzafran",
+          "imageBorder": true,
+          "avatar": "/XfCc9f0B_400x400.jpg",
+          "date": "2023-10-31T13:00:00.000Z",
+          "testimonial": "From complaining here, to merged PR in less than 24hs,\nincredible customer experience by TinaCMS.\nTheir CEO jumped on a call, listened to all our issues and took notes, but not on imaginary paper, feels like fixes where WIP as we were describing them.\n",
+          "link": "https://twitter.com/arzafran/status/1719387497564708956"
+        },
+        {
+          "name": "Boko Colse",
+          "username": "struhy_xd",
+          "imageBorder": true,
+          "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
+          "date": "2023-09-26T14:00:00.000Z",
+          "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
+          "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
+        },
+        {
+          "name": "Smashing Magazine",
+          "username": "smashingmag",
+          "imageBorder": true,
+          "avatar": "/mTxJyTGY_400x400.jpg",
+          "date": "2023-09-18T14:00:00.000Z",
+          "testimonial": "With the recent integration of TinaCMS, SmashingMag enjoys the best of both worlds — the performance benefits of static assets and the writing experience that helps streamline the editing process.\n",
+          "link": "https://twitter.com/smashingmag/status/1703886402704842990"
+        },
+        {
+          "name": " Dave Keen",
+          "username": "ccapndave",
+          "rhsImage": false,
+          "imageBorder": true,
+          "avatar": "/img/avatars/ccapndave_ka7f5u.webp",
+          "date": "2023-06-07T14:00:00.000Z",
+          "testimonial": "It’s absolutely amazing. Its so simple to install, the typed NextJS integration is amazing, the live editor is as good as it gets. And compared to other CMSs, the admin is incredibly easy for editors to understand and use.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1113764832668299274"
+        },
+        {
+          "name": "Billy Best",
+          "username": "billybest5276",
+          "imageBorder": true,
+          "avatar": "/img/avatars/billy-best_wbcpsb.jpg",
+          "date": "2023-08-06T03:00:00.000Z",
+          "testimonial": "Just found this and I think I am already in love.\n",
+          "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
+        },
+        {
+          "name": "Mravec",
+          "username": "mravec",
+          "imageBorder": true,
+          "avatar": "/img/avatars/mravec_tglyht.webp",
+          "date": "2023-06-14T03:00:00.000Z",
+          "testimonial": "Just tried out click-to-edit and it's really awesome. Super easy to use and to setup, love that it's fully typed and works passed down as a prop, kinda feels like magic tbh.\n",
+          "link": "https://discord.com/channels/835168149439643678/848932514911354880/1118255235706663103"
+        },
+        {
+          "name": "Peter Rusin",
+          "imageBorder": true,
+          "avatar": "/img/avatars/piotr-rusin_ne0l3j.jpg",
+          "date": "2023-09-05T03:00:00.000Z",
+          "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
+          "link": "https://rusin.work"
+        },
+        {
+          "name": "Sean Pearce",
+          "imageBorder": true,
+          "avatar": "/img/avatars/sean_bnwhd9.png",
+          "date": "2023-03-30T03:00:00.000Z",
+          "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n",
+          "link": "https://www.shaunpearce.ie/"
+        },
+        {
+          "name": "rascode",
+          "username": "rascode11",
+          "imageBorder": true,
+          "avatar": "/img/avatars/rascode11_elrciv.jpg",
+          "date": "2022-12-06T04:00:00.000Z",
+          "testimonial": "@tinacms is a dream come true.\n",
+          "link": "https://twitter.com/rascode11/status/1600175861621088266"
+        }
+      ],
+      "_template": "testimonials"
+    },
+    {
+      "features": [
+        {
+          "headline": "编辑工作流程助您避免错误",
+          "text": "通过编辑工作流功能，用户可以在不使用GitHub或其他IDE的情况下，直接审阅和管理不同分支上的内容",
+          "buttons": [
+            {
+              "label": "编辑工作流程",
+              "icon": false,
+              "variant": "blue",
+              "size": "small",
+              "url": "/editorial-workflow",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "src": "/video/create-branch.webm",
+              "link": "https://www.youtube.com/watch?v=gYukiULGqGc",
+              "_template": "video"
+            }
+          ]
+        },
+        {
+          "headline": "无与伦比的用户体验",
+          "text": "编辑Markdown、MDX和JSON文件的内容不再繁琐。Tina提供实时预览功能，让用户体验达到全新水平",
+          "media": [
+            {
+              "src": "/img/docs/introduction/homepage-demo-2.webm",
+              "_template": "video"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "title": "最新文章",
+      "_template": "recentPosts"
+    }
+  ]
+}
