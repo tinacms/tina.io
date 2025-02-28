@@ -29,7 +29,6 @@
     "graphql": "^15.5.1"
   },
   "dependencies": {
-    "@formatjs/intl-localematcher": "^0.6.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
@@ -71,7 +70,6 @@
     "moment-timezone": "^0.5.46",
     "monaco-editor": "^0.52.0",
     "monaco-editor-webpack-plugin": "^7.1.0",
-    "negotiator": "^1.0.0",
     "next": "^14.2.18",
     "next-seo": "^4.29.0",
     "next-svgr": "0.0.2",
@@ -118,7 +116,6 @@
     "@tinacms/cli": "1.8.1",
     "@types/cookie": "^0.3.3",
     "@types/jest": "^25.2.3",
-    "@types/negotiator": "^0.6.3",
     "@types/node": "^22.10.1",
     "@types/react": "^16.14.62",
     "@types/react-instantsearch-dom": "^5.2.6",
