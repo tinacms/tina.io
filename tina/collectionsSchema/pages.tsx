@@ -89,11 +89,14 @@ export const pagesCollection = {
   path: 'content/blocksPages',
   format: 'json',
   ui: {
-    router: ({ document }) => {
-      if (document._sys.filename === 'home') {
-        return `/`;
-      }
-      return `/${document._sys.filename}`;
+    router: ({ document, collection }) => {
+      const fullPath = document._sys.path;
+      const basePath = `${collection.path}`;
+      const relativePath = fullPath
+        .substring(basePath.length)
+        .replace(/\.[^/.]+$/, '');
+
+      return `${relativePath}`;
     },
     beforeSubmit: async ({
       values,

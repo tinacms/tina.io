@@ -1,6 +1,6 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-02-19T10:11:51.539Z'
+last_edited: '2025-02-27T02:42:44.894Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
@@ -80,7 +80,7 @@ nginx -s reload
 
 #### Create Deployment Directory
 
-First, create a directory on your server where your Tina CMS project will be deployed:
+First, create a directory on your server where your TinaCMS project will be deployed:
 
 ```
 mkdir -p /www/tinademo
@@ -126,8 +126,8 @@ You'll need to configure the following secrets:
    * This is the public IP address of your ECS instance
 3. `SERVER_USERNAME`: The username for connecting to your server
    * Typically `root` or the user account you created on your ECS instance
-4. `NEXT_PUBLIC_TINA_BRANCH`: The branch that Tina CMS should use for content
-   * Usually your main branch (e.g., `main`  or `master`)
+4. `NEXT_PUBLIC_TINA_BRANCH`: The branch that TinaCMS should use for content
+   * Usually your main branch (e.g., `main` or `master`)
 5. `NEXT_PUBLIC_TINA_CLIENT_ID`: Your TinaCloud client ID
    * Find this in your TinaCloud dashboard under project settings
 6. `TINA_TOKEN`: Your TinaCloud token for authentication
@@ -153,7 +153,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "22.14.0"
+          node-version: '22.14.0'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -184,8 +184,8 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ".next/,public/,package.json,pnpm-lock.yaml,.env,tina/,next.config.js,.tina/"
-          target: "/tina/tinademo/"
+          source: '.next/,public/,package.json,pnpm-lock.yaml,.env,tina/,next.config.js,.tina/'
+          target: '/tina/tinademo/'
           rm: true
 
       - name: Execute Remote SSH Commands
@@ -200,7 +200,6 @@ jobs:
             pm2 delete tinademo || true
             pm2 flush tinademo
             NODE_ENV=production pm2 start "pnpm start" --name tinademo
-
 ```
 
 ## Configuring a Custom Domain
@@ -211,7 +210,7 @@ To use a custom domain with your TinaCMS project in China:
 
 1. Purchase a domain from a Chinese provider (e.g. Alibaba Cloud, Tencent Cloud)
 2. Add an A record pointing to your Alibaba Cloud server's IP address
-3. Update your Nginx configuration: 
+3. Update your Nginx configuration:
 
 ```
 server {
@@ -223,4 +222,5 @@ server {
 
 ### ICP Filing
 
-Remember that websites hosted in mainland China require ICP filing. Start this process through your domain provider or Alibaba Cloud.
+Remember that websites hosted in mainland China require ICP filing. Start this process through your domain provider or Alibaba Cloud.\
+For complete ICP filing guidelines, refer to [Alibaba Cloud's official documentation](https://help.aliyun.com/zh/icp-filing/basic-icp-service/product-overview/?spm=a2c4g.11186623.help-menu-35468.d_0.39926256l9czkS) for detailed information on required materials, process steps, and approval timeframes.
