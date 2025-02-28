@@ -27,9 +27,6 @@ const config = {
   ...extraConfig,
   experimental: {
     forceSwcTransforms: true,
-    serverActions: {
-      allowedOrigins: ['*'],
-    },
   },
   compiler: {
     styledComponents: true,

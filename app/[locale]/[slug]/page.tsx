@@ -74,6 +74,10 @@ export default async function Page({ params }: PageProps) {
       relativePath,
     });
 
+    if (!res.data || !res.query) {
+      throw new Error('Invalid API response structure');
+    }
+
     return (
       <ClientPage
         query={res.query}
