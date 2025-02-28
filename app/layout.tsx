@@ -96,9 +96,8 @@ export default async function RootLayout({
           }}
         />
 
-        <Script
-          id="clarity"
-          strategy="afterInteractive"
+        <script
+          type="text/javascript"
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){
