@@ -65,23 +65,33 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: PageProps) {
-  redirect(`/en/home`);
   const { locale, slug } = params;
   const relativePath =
     locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
 
   try {
-    const res = await client.queries.pageWithRecentPosts({
-      relativePath,
-    });
+    let res;
+    try {
+      res = await client.queries.pageWithRecentPosts({
+        relativePath,
+      });
+    } catch (error) {
+      console.error(`数据获取失败 (${relativePath}):`, error);
+      throw error;
+    }
 
-    return (
-      <ClientPage
-        query={res.query}
-        data={res.data}
-        variables={{ relativePath }}
-      />
-    );
+    try {
+      return (
+        <ClientPage
+          query={res.query}
+          data={res.data}
+          variables={{ relativePath }}
+        />
+      );
+    } catch (error) {
+      console.error(`组件渲染失败 (${relativePath}):`, error);
+      throw error; // 重新抛出以进入主catch块
+    }
   } catch {
     if (locale !== defaultLocale) {
       const enPageExists = await checkEnglishPageExists(slug);
