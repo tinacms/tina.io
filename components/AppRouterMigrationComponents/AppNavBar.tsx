@@ -1,15 +1,11 @@
 'use client';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
+import { DEFAULT_LOCALE } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import { BiChevronRight, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
@@ -64,18 +60,12 @@ export function AppNavBar({ sticky = true }) {
   const [stuck, setStuck] = useState(false);
   const [modalType, setModalType] = useState(null);
 
-  const [selectedFlag, setSelectedFlag] = useState('en');
+  const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
 
-  const handleFlagChange = (flag) => {
-    setSelectedFlag(flag);
-    setTimeout(() => {
-      setAnimateFlag(true);
-      setTimeout(() => setAnimateFlag(false), 600);
-    }, 20);
-  };
-
   const navRef = useRef(null);
+  const router = useRouter();
+  const pathName = usePathname();
 
   const navLinkClasses =
     'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
@@ -95,20 +85,30 @@ export function AppNavBar({ sticky = true }) {
     }
   }, [sticky]);
 
+  useEffect(() => {
+    const pathLocale = pathName.split('/')[1];
+    if (pathLocale === 'en' || pathLocale === 'zh') {
+      setSelectedFlag(pathLocale);
+    } else {
+      setSelectedFlag(DEFAULT_LOCALE);
+    }
+  }, [pathName]);
+
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
 
-  // Define a function to update the selected flag
   const handleLanguageChange = (code) => {
     setSelectedFlag(code);
-    closeModal(); // Close the modal after selecting a language
+    closeModal();
     setTimeout(() => {
       setAnimateFlag(true);
       setTimeout(() => setAnimateFlag(false), 600);
     }, 20);
+
+    router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
   };
 
   return (
