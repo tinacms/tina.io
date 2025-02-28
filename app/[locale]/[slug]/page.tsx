@@ -65,6 +65,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: PageProps) {
+  redirect(`/en/home`);
   const { locale, slug } = params;
   const relativePath =
     locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
@@ -73,10 +74,6 @@ export default async function Page({ params }: PageProps) {
     const res = await client.queries.pageWithRecentPosts({
       relativePath,
     });
-
-    if (!res.data || !res.query) {
-      throw new Error('Invalid API response structure');
-    }
 
     return (
       <ClientPage
