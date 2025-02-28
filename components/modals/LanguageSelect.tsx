@@ -37,7 +37,7 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
 
   const handleLanguageSelect = (code: string) => {
     setSelectedLanguage(code);
-    onLanguageSelect(code); // Call the function passed from AppNavBar
+    onLanguageSelect(code);
   };
 
   return (
