@@ -48,6 +48,69 @@ const NotFoundContent = () => {
   );
 };
 
+const RediectPage = ({ defaultLocale = 'en', pathRoute = 'home' }) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24">
+      <div className="flex flex-col">
+        <div className="mb-7">
+          <h2 className="font-tuner text-5xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500">
+            Translation in progress
+          </h2>
+          <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+            Translation for this content is in progress. Proceeding to the
+            English version temporarily.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <DynamicLink href={`/${defaultLocale}/${pathRoute}`} passHref>
+            <Button>Continue to English version for now</Button>
+          </DynamicLink>
+        </div>
+      </div>
+      <div className="max-w-[65vw] mx-auto md:max-w-none">
+        <div className="relative aspect-square rounded-3xl overflow-hidden">
+          <Image
+            src="/img/rico-replacement.jpg"
+            alt="404 Llama"
+            className="object-cover"
+            width={364}
+            height={364}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const LoadingPage = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24">
+      <div className="flex flex-col">
+        <div className="mb-7">
+          <h2 className="font-tuner text-6xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500">
+            Please wait...
+          </h2>
+          <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+            Checking available language options for this page...
+          </p>
+        </div>
+      </div>
+      <div className="max-w-[65vw] mx-auto md:max-w-none">
+        <div className="relative aspect-square rounded-3xl overflow-hidden">
+          <Image
+            src="/img/rico-replacement.jpg"
+            alt="404 Llama"
+            className="object-cover"
+            width={364}
+            height={364}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 export default function NotFoundClient() {
   const pathname = usePathname();
   const defaultLocale = DEFAULT_LOCALE;
@@ -91,14 +154,10 @@ export default function NotFoundClient() {
   }, [pathRoute]);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading...
-      </div>
-    );
+    return <LoadingPage />;
   }
   if (pageExists) {
-    return <></>;
+    return <RediectPage defaultLocale={defaultLocale} pathRoute={pathRoute} />;
   } else {
     return <NotFoundContent />;
   }
