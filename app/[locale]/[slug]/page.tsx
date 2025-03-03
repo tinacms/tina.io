@@ -20,9 +20,8 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale, slug } = params;
-  // const relativePath =
-  //   locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
-  const relativePath = `${slug}.json`;
+  const relativePath =
+    locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
   try {
     const res = await client.queries.pageWithRecentPosts({
       relativePath,
@@ -67,13 +66,13 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: PageProps) {
   const { locale, slug } = params;
-  const relativePath =
-    locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
+  // const relativePath =
+  //   locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
+  const relativePath = `${slug}.json`;
   try {
     const res = await client.queries.pageWithRecentPosts({
       relativePath: relativePath,
     });
-    //console.log(res.errors);
     return (
       <ClientPage
         query={res.query}
