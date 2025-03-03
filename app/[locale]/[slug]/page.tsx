@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
 import { DEFAULT_LOCALE } from '../../../middleware';
 import { client } from '../../../tina/__generated__/client';
@@ -66,12 +66,11 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: PageProps) {
   const { locale, slug } = params;
-  // const relativePath =
-  //   locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
-  const relativePath = `${slug}.json`;
+  const relativePath =
+    locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
   try {
     const res = await client.queries.pageWithRecentPosts({
-      relativePath,
+      relativePath: relativePath,
     });
 
     return (
@@ -82,23 +81,6 @@ export default async function Page({ params }: PageProps) {
       />
     );
   } catch {
-    if (locale !== defaultLocale) {
-      const enPageExists = await checkEnglishPageExists(slug);
-      if (enPageExists) {
-        redirect(`/${defaultLocale}/${slug}`);
-      }
-    }
     return notFound();
-  }
-}
-
-async function checkEnglishPageExists(slug: string): Promise<boolean> {
-  try {
-    await client.queries.pageWithRecentPosts({
-      relativePath: `${slug}.json`,
-    });
-    return true;
-  } catch {
-    return false;
   }
 }
