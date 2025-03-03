@@ -1,11 +1,14 @@
 'use client';
 
-import { Button } from '../components/ui'
+import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
+import { usePathname, useParams } from 'next/navigation';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
+import { client } from '../tina/__generated__/client';
 
-export default function NotFoundClient() {
+const NotFoundContent = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24">
       <div className="flex flex-col">
@@ -43,4 +46,60 @@ export default function NotFoundClient() {
       </div>
     </div>
   );
+};
+
+export default function NotFoundClient() {
+  const pathname = usePathname();
+  const defaultLocale = DEFAULT_LOCALE;
+  const localeList = SUPPORTED_LOCALES;
+  const [loading, setLoading] = useState(true);
+  const [pageExists, setPageExists] = useState(true);
+
+  const pathSegments = pathname.split('/').filter(Boolean);
+  const pathLocale = pathSegments[0] || '';
+  const pathRoute = pathSegments[1] || '';
+
+  if (pathLocale === defaultLocale || !localeList.includes(pathLocale)) {
+    return <NotFoundContent />;
+  }
+
+  useEffect(() => {
+    async function checkEnglishPageExists() {
+      if (!pathRoute) {
+        setPageExists(false);
+        return;
+      }
+      try {
+        let res = await client.queries.pageWithRecentPosts({
+          relativePath: `${pathRoute}.json`,
+        });
+        if (!res) {
+          res = await client.queries.pageWithRecentPosts({
+            relativePath: `${pathRoute}.mdx`,
+          });
+        }
+        setPageExists(!!res);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error checking page existence:', error);
+        setPageExists(false);
+        setLoading(false);
+      }
+    }
+
+    checkEnglishPageExists();
+  }, [pathRoute]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        Loading...
+      </div>
+    );
+  }
+  if (pageExists) {
+    return <></>;
+  } else {
+    return <NotFoundContent />;
+  }
 }

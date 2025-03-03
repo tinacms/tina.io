@@ -7,7 +7,7 @@ import ClientPage from './client-page';
 
 const fg = require('fast-glob');
 const defaultLocale = DEFAULT_LOCALE;
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 interface PageProps {
   params: {
@@ -66,9 +66,8 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: PageProps) {
   const { locale, slug } = params;
-  // const relativePath =
-  //   locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
-  const relativePath = `${slug}.json`;
+  const relativePath =
+    locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
   try {
     const res = await client.queries.pageWithRecentPosts({
       relativePath: relativePath,
