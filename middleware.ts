@@ -2,7 +2,10 @@ import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const SUPPORTED_LOCALES = ['en', 'zh'];
+export enum SupportedLocales {
+  EN = 'en',
+  ZH = 'zh',
+}
 export const DEFAULT_LOCALE = 'en';
 const RESERVED_PATHS = [
   'api',
@@ -16,6 +19,8 @@ const RESERVED_PATHS = [
   'whats-new',
   'admin',
 ];
+
+const SUPPORTED_LOCALES = ['en', 'zh'];
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
