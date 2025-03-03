@@ -72,7 +72,7 @@ export default async function Page({ params }: PageProps) {
     const res = await client.queries.pageWithRecentPosts({
       relativePath: relativePath,
     });
-
+    //console.log(res.errors);
     return (
       <ClientPage
         query={res.query}
