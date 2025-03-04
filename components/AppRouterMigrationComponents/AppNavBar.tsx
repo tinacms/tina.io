@@ -2,7 +2,7 @@
 
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
-import { DEFAULT_LOCALE } from 'middleware';
+import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -62,6 +62,7 @@ export function AppNavBar({ sticky = true }) {
 
   const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
+  const [hideZh, setHideZh] = useState(false);
 
   const navRef = useRef(null);
   const router = useRouter();
@@ -87,9 +88,14 @@ export function AppNavBar({ sticky = true }) {
 
   useEffect(() => {
     const pathLocale = pathName.split('/')[1];
-    if (pathLocale === 'en' || pathLocale === 'zh') {
+    if (
+      pathLocale === SupportedLocales.EN ||
+      pathLocale === SupportedLocales.ZH
+    ) {
+      setHideZh(false);
       setSelectedFlag(pathLocale);
     } else {
+      setHideZh(true);
       setSelectedFlag(DEFAULT_LOCALE);
     }
   }, [pathName]);
@@ -318,6 +324,7 @@ export function AppNavBar({ sticky = true }) {
         <LanguageSelect
           onLanguageSelect={handleLanguageChange}
           currentLanguage={selectedFlag}
+          hideZh={hideZh}
         />
       </Modal>
     </>
