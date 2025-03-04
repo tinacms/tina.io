@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
 import { DEFAULT_LOCALE } from '../../../middleware';
 import { client } from '../../../tina/__generated__/client';
@@ -7,7 +7,7 @@ import ClientPage from './client-page';
 
 const fg = require('fast-glob');
 const defaultLocale = DEFAULT_LOCALE;
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 interface PageProps {
   params: {
@@ -68,12 +68,10 @@ export default async function Page({ params }: PageProps) {
   const { locale, slug } = params;
   const relativePath =
     locale === defaultLocale ? `${slug}.json` : `${locale}/${slug}.json`;
-
   try {
     const res = await client.queries.pageWithRecentPosts({
-      relativePath,
+      relativePath: relativePath,
     });
-
     return (
       <ClientPage
         query={res.query}
@@ -82,23 +80,6 @@ export default async function Page({ params }: PageProps) {
       />
     );
   } catch {
-    if (locale !== defaultLocale) {
-      const enPageExists = await checkEnglishPageExists(slug);
-      if (enPageExists) {
-        redirect(`/${defaultLocale}/${slug}`);
-      }
-    }
     return notFound();
-  }
-}
-
-async function checkEnglishPageExists(slug: string): Promise<boolean> {
-  try {
-    await client.queries.pageWithRecentPosts({
-      relativePath: `${slug}.json`,
-    });
-    return true;
-  } catch {
-    return false;
   }
 }
