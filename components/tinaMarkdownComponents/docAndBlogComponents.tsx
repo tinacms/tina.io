@@ -145,16 +145,16 @@ export const docAndBlogComponents: Components<{
   img: (props) => {
     return (
       <img
-        className="my-4 rounded-xl"
+        className="my-4 rounded-xl border"
         src={props.url}
         alt={props.alt || ''}
         title={props.caption || ''}
       ></img>
     );
   },
-  ul: (props) => <ul className="list-disc my-6 ml-5" {...props} />,
-  ol: (props) => <ol className="list-decimal ml-5" {...props} />,
-  li: (props) => <li className="mb-2 ml-10" {...props} />,
+  ul: (props) => <ul className="list-disc my-4 ml-2" {...props} />,
+  ol: (props) => <ol className="list-decimal my-4 ml-2" {...props} />,
+  li: (props) => <li className="mb-2 ml-8" {...props} />,
   a: (props) => {
     return (
       <a
@@ -169,7 +169,7 @@ export const docAndBlogComponents: Components<{
   blockquote: (props) => (
     <blockquote
       style={{
-        backgroundColor: 'var(--color-seafoam)',
+        backgroundColor: 'var(--color-white)',
       }}
       className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2"
       {...props}
