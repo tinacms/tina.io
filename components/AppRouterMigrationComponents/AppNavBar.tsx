@@ -14,6 +14,8 @@ import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import data from '../../content/navigationBar/navMenu.json';
+import enFlag from '../../public/flags/en.png';
+import zhFlag from '../../public/flags/zh.png';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
@@ -30,9 +32,9 @@ enum ValidColors {
 
 const EnFlag = ({ className }) => (
   <Image
-    src="/img/flags/en.png"
+    src={enFlag}
     alt="English Flag"
-    width={20}
+    width={12}
     height={12}
     className={className}
   />
@@ -40,9 +42,9 @@ const EnFlag = ({ className }) => (
 
 const ZhFlag = ({ className }) => (
   <Image
-    src="/img/flags/zh.png"
+    src={zhFlag}
     alt="Chinese Flag"
-    width={20}
+    width={12}
     height={12}
     className={className}
   />
