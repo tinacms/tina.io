@@ -53,3 +53,6 @@ scripts/content-auditor/content-auditor-prompt.txt
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Vercel
+.vercel
