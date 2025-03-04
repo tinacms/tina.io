@@ -32,7 +32,7 @@ const EnFlag = ({ className }) => (
   <Image
     src="/flags/en.png"
     alt="English Flag"
-    width={12}
+    width={20}
     height={12}
     className={className}
   />
@@ -42,7 +42,7 @@ const ZhFlag = ({ className }) => (
   <Image
     src="/flags/zh.png"
     alt="Chinese Flag"
-    width={12}
+    width={20}
     height={12}
     className={className}
   />
