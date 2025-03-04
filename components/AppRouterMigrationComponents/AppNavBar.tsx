@@ -62,6 +62,7 @@ export function AppNavBar({ sticky = true }) {
 
   const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
+  const [modalClass, setModalClass] = useState('language-select-modal');
   const [hideZh, setHideZh] = useState(false);
 
   const navRef = useRef(null);
@@ -87,6 +88,22 @@ export function AppNavBar({ sticky = true }) {
   }, [sticky]);
 
   useEffect(() => {
+    const updateModalClass = () => {
+      setModalClass(
+        window.innerWidth < 540
+          ? 'mobile-language-select-modal'
+          : 'language-select-modal'
+      );
+    };
+
+    updateModalClass();
+    window.addEventListener('resize', updateModalClass);
+    return () => {
+      window.removeEventListener('resize', updateModalClass);
+    };
+  }, []);
+
+  useEffect(() => {
     const pathLocale = pathName.split('/')[1];
     if (
       pathLocale === SupportedLocales.EN ||
@@ -108,6 +125,7 @@ export function AppNavBar({ sticky = true }) {
 
   const handleLanguageChange = (code) => {
     setSelectedFlag(code);
+    setOpen(false);
     closeModal();
     setTimeout(() => {
       setAnimateFlag(true);
@@ -142,19 +160,20 @@ export function AppNavBar({ sticky = true }) {
                 }`}
               />
             </button>
-            <ul className="flex flex-col py-4 px-6 relative z-20">
-              <li className="pb-4 pt-2">
+
+            <div className="flex py-4 px-6 relative z-20 justify-between items-center">
+              <div className="pb-4 pt-2">
                 <Link href={'/'}>
                   <TinaLogoSvg
                     className={`flex items-center w-36 h-auto fill-orange-500`}
                   />
                 </Link>
-              </li>
-              <li>
+              </div>
+              <div className="flex items-center">
                 <button
                   className={`outline-none hover:animate-jelly ${
                     animateFlag ? 'animate-bounce' : ''
-                  } hidden sm:block`}
+                  } hidden max-[639px]:block`} // Adjust breakpoint as needed
                   onClick={() => openModal('LanguageSelect')}
                 >
                   {selectedFlag === 'en' ? (
@@ -163,7 +182,9 @@ export function AppNavBar({ sticky = true }) {
                     <ZhFlag className="w-8 h-8" />
                   )}
                 </button>
-              </li>
+              </div>
+            </div>
+            <ul className="flex flex-col py-4 px-6 relative z-20">
               {navItems.map((item, index) =>
                 item.items ? (
                   item.items.map((subItem, subIndex) =>
@@ -229,7 +250,7 @@ export function AppNavBar({ sticky = true }) {
             <button
               className={`outline-none hover:animate-jelly ${
                 animateFlag ? 'animate-bounce' : ''
-              } hidden sm:block`}
+              } hidden min-[640px]:block`}
               onClick={() => openModal('LanguageSelect')}
             >
               {selectedFlag === 'en' ? (
@@ -329,7 +350,6 @@ export function AppNavBar({ sticky = true }) {
                 </button>
               </li>
             </ul>
-            <div className="flex items-center"></div>
           </nav>
         </div>
       </div>
@@ -346,7 +366,9 @@ export function AppNavBar({ sticky = true }) {
         open={modalType === 'LanguageSelect'}
         onClose={closeModal}
         center
-        classNames={{ modal: 'language-select-modal' }}
+        classNames={{
+          modal: modalClass,
+        }}
       >
         <LanguageSelect
           onLanguageSelect={handleLanguageChange}

@@ -20,6 +20,11 @@
   max-width: 500px !important;
 }
 
+.mobile-language-select-modal {
+  width: 100% !important;
+  max-width: 350px !important;
+}
+
 .react-responsive-modal-closeButton {
   background-color: white !important;
   border-radius: 50% !important;
