@@ -150,6 +150,20 @@ export function AppNavBar({ sticky = true }) {
                   />
                 </Link>
               </li>
+              <li>
+                <button
+                  className={`outline-none hover:animate-jelly ${
+                    animateFlag ? 'animate-bounce' : ''
+                  } hidden sm:block`}
+                  onClick={() => openModal('LanguageSelect')}
+                >
+                  {selectedFlag === 'en' ? (
+                    <EnFlag className="w-8 h-8" />
+                  ) : (
+                    <ZhFlag className="w-8 h-8" />
+                  )}
+                </button>
+              </li>
               {navItems.map((item, index) =>
                 item.items ? (
                   item.items.map((subItem, subIndex) =>
@@ -211,6 +225,19 @@ export function AppNavBar({ sticky = true }) {
                   {item.label}
                 </Button>
               ))}
+
+            <button
+              className={`outline-none hover:animate-jelly ${
+                animateFlag ? 'animate-bounce' : ''
+              } hidden sm:block`}
+              onClick={() => openModal('LanguageSelect')}
+            >
+              {selectedFlag === 'en' ? (
+                <EnFlag className="w-8 h-8" />
+              ) : (
+                <ZhFlag className="w-8 h-8" />
+              )}
+            </button>
           </div>
         </div>
         {/* Start of large (desktop +) view */}
