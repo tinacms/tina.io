@@ -19,7 +19,7 @@ import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
 import { EmailForm } from '../modals/EmailForm';
 import { Button } from '../ui/Button';
-
+import { saveLocaleToCookie } from '../../utils/locale';
 enum ValidColors {
   White = 'white',
   Blue = 'blue',
@@ -133,6 +133,7 @@ export function AppNavBar({ sticky = true }) {
     }, 20);
 
     router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
+    saveLocaleToCookie(code);
   };
 
   return (
