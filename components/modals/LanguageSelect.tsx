@@ -38,6 +38,12 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
     },
   ];
 
+  const languageTitles: { [key: string]: string } = {
+    en: 'Select your language',
+    zh: '选择语言',
+    // Add more languages here
+  };
+
   const handleLanguageSelect = (code: string) => {
     setSelectedLanguage(code);
     onLanguageSelect(code);
@@ -47,8 +53,8 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
     <>
       <div className="py-10">
         <div className="flex justify-center pb-8">
-          <h1 className="inline-block m-0 md:text-4xl font-tuner lg:text-3xl lg:leading-tight bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
-            Select your language
+          <h1 className="inline-block m-0 min-[640px]:text-3xl min-[540px]:text-2xl lg:leading-tight bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+            {languageTitles[currentLanguage] || languageTitles['en']}
           </h1>
         </div>
         <div className="grid lg:grid-cols-1 gap-3 px-6 md:px-0 lg:px-6">
