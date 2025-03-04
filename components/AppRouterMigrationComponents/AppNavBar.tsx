@@ -275,7 +275,7 @@ export function AppNavBar({ sticky = true }) {
             />
           </Link>
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1300px]:items-center gap-2 min-[1300px]:gap-x-12">
-            <ul className="flex gap-6 ">
+            <ul className="flex gap-4 ">
               {navItems.map((item, index) =>
                 item._template === modalButtonString ? (
                   <li
