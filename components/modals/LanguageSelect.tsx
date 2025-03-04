@@ -28,13 +28,13 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
       code: 'en',
       name: 'English',
       nativeName: 'English',
-      flag: '/img/flags/en.png',
+      flag: '/flags/en.png',
     },
     {
       code: 'zh',
       name: 'Chinese',
       nativeName: '中文',
-      flag: '/img/flags/zh.png',
+      flag: '/flags/zh.png',
     },
   ];
 
