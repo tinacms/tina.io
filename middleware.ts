@@ -2,6 +2,11 @@ import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 import { NextRequest, NextResponse } from 'next/server';
 
+export enum SupportedLocales {
+  EN = 'en',
+  ZH = 'zh',
+}
+
 export const SUPPORTED_LOCALES = ['en', 'zh'];
 export const DEFAULT_LOCALE = 'en';
 const RESERVED_PATHS = [
