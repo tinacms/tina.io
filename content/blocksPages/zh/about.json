@@ -118,8 +118,8 @@
           "content": "TinaCMS扩展了对Next.js、Hugo和Jekyll等其他静态网站生成器的支持，增强了其覆盖范围和通用性。媒体管理器被引入，同时[行内编辑功能进行了全面改进](https://tina.io/blog/inline-editing-project)。\n"
         },
         {
-          "headline": "2019: TinaCMS was born!",
-          "content": "**[Announcing TinaCMS 🥳 ](https://tina.io/blog/announcing-tinacms/)**\n\nInitially launched as an open-source project by Forestry.io, TinaCMS was developed to create a more flexible, inline-editing CMS experience that was also Git-backed.\n\nIt aimed at making site editing easier for non-technical users within static site generators like Gatsby, allowing them to edit directly within the frontend. \n"
+          "headline": "2019年：TinaCMS诞生了！",
+          "content": "**[TinaCMS正式发布 🥳](https://tina.io/blog/announcing-tinacms/)**\n\n最初由Forestry.io作为开源项目推出，TinaCMS的开发旨在创建一个更灵活、支持行内编辑的内容管理系统体验，同时由Git提供支持。 \n\n它的目标是让非技术用户能够更轻松地在Gatsby等静态网站生成器中编辑网站，使他们可以直接在前端进行编辑。\n"
         },
         {
           "headline": "2016: Forestry.io was created  ",
