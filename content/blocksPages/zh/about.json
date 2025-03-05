@@ -107,11 +107,11 @@
         },
         {
           "headline": "2022年：改进开发者体验",
-          "content": "1.0版本正式发布！团队优化了开发者工作流程，增加了详尽的文档以简化安装和集成过程。 \n\nTina还增强了区块编辑器，改进了模式管理，并扩展了插件支持，使其在不同使用场景中更加灵活。\n"
+          "content": "[1.0版本正式发布](https://tina.io/blog/tina-1-0-announcement/)！团队优化了开发者工作流程，增加了详尽的文档以简化安装和集成过程。 \n\nTina还增强了区块编辑器，改进了模式管理，并扩展了插件支持，使其在不同使用场景中更加灵活。\n"
         },
         {
-          "headline": "2021: Introduction of TinaCloud",
-          "content": "**[TinaCMS introduced TinaCloud](https://tina.io/blog/2021-a-year-in-review/)**, a managed service that added features like real-time collaboration, identity management, and advanced content workflows, reducing the complexity of self-hosting.\n\nTinaCloud provided Git-backed editing without requiring users to manage infrastructure, making it more accessible for small teams and reducing the complexity of deployment. \n"
+          "headline": "2021年：TinaCloud的推出",
+          "content": "**[TinaCMS推出了TinaCloud](https://tina.io/blog/2021-a-year-in-review/)**，这是一项托管服务，增加了实时协作、身份管理和高级内容工作流等功能，减少了自托管的复杂性。\n\nTinaCloud提供了基于Git的编辑功能，无需用户管理基础设施，使其对小型团队更加友好，同时降低了部署的复杂性。\n"
         },
         {
           "headline": "2020: Expansion beyond Gatsby  ",
