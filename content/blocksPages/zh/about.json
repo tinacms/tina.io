@@ -99,7 +99,7 @@
       "items": [
         {
           "headline": "2024年：被SSW收购",
-          "content": "SSW对使用Tina的体验非常满意，以至于他们主动伸出援手，最终\\*\\*[SSW收购了TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)\\*\\*，带来了更多企业资源、支持和专业知识。\n\n**Version 2** 正式发布，包含重大更新，如改进的内容索引和更佳的性能表现。此外，团队在六月推出了TinaGPT聊天机器人，将人工智能驱动的辅助功能整合到平台中。\n"
+          "content": "SSW对使用Tina的体验非常满意，以至于他们主动伸出援手，最终 **[SSW收购了TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)** ，带来了更多企业资源、支持和专业知识。\n\n**Version 2** 正式发布，包含重大更新，如改进的内容索引和更佳的性能表现。此外，团队在六月推出了TinaGPT聊天机器人，将人工智能驱动的辅助功能整合到平台中。\n"
         },
         {
           "headline": "2023年：在GitHub上获得10,000个收藏⭐",
@@ -115,7 +115,7 @@
         },
         {
           "headline": "2020年：超越Gatsby的扩展",
-          "content": "TinaCMS扩展了对Next.js、Hugo和Jekyll等其他静态网站生成器的支持，增强了其覆盖范围和通用性。媒体管理器被引入，同时**[行内编辑功能进行了全面改进](https://tina.io/blog/inline-editing-project)**。\n"
+          "content": "TinaCMS扩展了对Next.js、Hugo和Jekyll等其他静态网站生成器的支持，增强了其覆盖范围和通用性。媒体管理器被引入，同时 **[行内编辑功能进行了全面改进](https://tina.io/blog/inline-editing-project)** 。\n"
         },
         {
           "headline": "2019年：TinaCMS诞生了！",
@@ -124,7 +124,7 @@
         {
           "headline": "2016年：Forestry.io创立",
           "status": "",
-          "content": "这是一个**[革命性的无头内容管理系统](https://tina.io/forestry/)**，它是最早专注于JAMstack的基于Git的CMS平台之一。其直接与GitHub等代码库集成的能力为管理基于markdown的内容设立了新标准。\n\n这个CMS系统让内容团队能够与开发者无缝协作，弥合了技术和非技术用户之间的鸿沟。\n"
+          "content": "这是一个 **[革命性的无头内容管理系统](https://tina.io/forestry/)** ，它是最早专注于JAMstack的基于Git的CMS平台之一。其直接与GitHub等代码库集成的能力为管理基于markdown的内容设立了新标准。\n\n这个CMS系统让内容团队能够与开发者无缝协作，弥合了技术和非技术用户之间的鸿沟。\n"
         }
       ],
       "options": {
