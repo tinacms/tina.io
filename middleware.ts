@@ -23,56 +23,61 @@ const RESERVED_PATHS = [
 ];
 
 export function middleware(request: NextRequest) {
+  //现在默认英文无前缀，其他语言有前缀
   const pathname = request.nextUrl.pathname;
 
-  //filter the invalid path
   const isValidPath =
     pathname === '/' ||
     (/^\/[^/]+$/.test(pathname) &&
-      !RESERVED_PATHS.includes(pathname.substring(1))) || // matches /xxx but not reserved paths
+      !RESERVED_PATHS.includes(pathname.substring(1)) &&
+      !pathname.startsWith('/_next') &&
+      !pathname.includes('.')) ||
     (/^\/[^/]+\/[^/]+/.test(pathname) &&
-      SUPPORTED_LOCALES.includes(pathname.split('/')[1])); // matches /locale/xxx
+      SUPPORTED_LOCALES.includes(pathname.split('/')[1]) &&
+      !pathname.startsWith('/_next') &&
+      !pathname.includes('.'));
   if (!isValidPath) {
     return;
   }
-  if (pathname.startsWith('/_next') || pathname.includes('.')) {
-    return;
-  }
+  //谁能打到这里
+  // /  -> /home 有可能可以通过page直接处理 需要重定向为 /locale/home  对应直接访问官网的情况 需要cookie
+  // /有效文件 -> /有效文件 对应按钮跳转的情况 因为可能从中文页面发出也可能从英文页面发出，所以需要重定向， 需要cookie
+  // /无效文件 -> /无效文件
+  // /有效locale -> 重写 /有效locale/home 已经申明locale就不要cookie
+  // /无效locale -> /无效locale
+  // /有效locale/无效文件 -> /有效locale/无效文件 /也不需要cookie
+  // /有效locale/有效文件 -> /有效locale/有效文件 /也不需要cookie
 
   //Show the original info
   console.log(`default language: ${DEFAULT_LOCALE}`);
   console.log(`current path: ${pathname}`);
 
-  // check if the pathname has a locale
   const matchedLocale = SUPPORTED_LOCALES.find(
-    (locale) =>
-      pathname.startsWith(`/${locale}/`) ||
-      pathname === `/${locale}` ||
-      pathname === `/${locale}/`
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
   if (matchedLocale) {
-    //handle the root path
-    if (pathname === `/${matchedLocale}` || pathname === `/${matchedLocale}/`) {
+    if (pathname === `/${matchedLocale}`) {
       const url = request.nextUrl.clone();
       url.pathname = `/${matchedLocale}/home`;
-      return NextResponse.redirect(url);
+      return NextResponse.rewrite(url);
     } else {
       return;
     }
   }
-
-  // Get the locale info from the request
   const locale = getLocale(request);
-  console.log(`locale: ${locale}`);
-
-  const url = request.nextUrl.clone();
-  url.pathname = pathname === '/' ? `/${locale}/home` : `/${locale}${pathname}`;
-  const response = NextResponse.redirect(url);
-  response.cookies.set('NEXT_LOCALE', locale, {
-    maxAge: 60 * 60 * 24 * 365,
-    path: '/',
-  });
-  return response;
+  console.log(`Current Locale: ${locale}`);
+  if (locale === DEFAULT_LOCALE) {
+    return;
+  } else {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}${pathname}`;
+    const response = NextResponse.redirect(url);
+    response.cookies.set('NEXT_LOCALE', locale, {
+      maxAge: 60 * 60 * 24 * 365,
+      path: '/',
+    });
+    return response;
+  }
 }
 
 export const config = {
@@ -82,17 +87,17 @@ export const config = {
 function getLocale(request: NextRequest): string {
   const cookieLocale = getLocaleFromCookie(request);
   if (cookieLocale) {
-    console.log(`Get from cookie locale: ${cookieLocale}`);
+    console.log(`Get locale from cookie: ${cookieLocale}`);
     return cookieLocale;
   }
 
   const acceptLanguageLocale = getLocaleFromAcceptLanguage(request);
   if (acceptLanguageLocale) {
-    console.log(`Get from accept language locale: ${acceptLanguageLocale}`);
+    console.log(`Get locale from accept language: ${acceptLanguageLocale}`);
     return acceptLanguageLocale;
   }
 
-  console.log(`Get from default locale: ${DEFAULT_LOCALE}`);
+  console.log(`Get locale from default: ${DEFAULT_LOCALE}`);
   return DEFAULT_LOCALE;
 }
 
