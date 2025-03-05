@@ -122,8 +122,9 @@
           "content": "**[TinaCMS正式发布 🥳](https://tina.io/blog/announcing-tinacms/)**\n\n最初由Forestry.io作为开源项目推出，TinaCMS的开发旨在创建一个更灵活、支持行内编辑的内容管理系统体验，同时由Git提供支持。 \n\n它的目标是让非技术用户能够更轻松地在Gatsby等静态网站生成器中编辑网站，使他们可以直接在前端进行编辑。\n"
         },
         {
-          "headline": "2016: Forestry.io was created  ",
-          "content": "This was a **[revolutionary Headless CMS](https://tina.io/forestry/)** as it was one of the first Git-based CMS platforms that focused on the JAMstack. Its ability to integrate directly with repositories like GitHub set a new standard for managing markdown-based content.\n\nThe CMS allowed content teams to work seamlessly with developers, bridging the gap between technical and non-technical users. \n"
+          "headline": "2016年：Forestry.io创立",
+          "status": "",
+          "content": "这是一个**[革命性的无头内容管理系统](https://tina.io/forestry/)**，它是最早专注于JAMstack的基于Git的CMS平台之一。其直接与GitHub等代码库集成的能力为管理基于markdown的内容设立了新标准。 \n\n这个CMS系统让内容团队能够与开发者无缝协作，弥合了技术和非技术用户之间的鸿沟。\n"
         }
       ],
       "options": {
