@@ -1,8 +1,8 @@
 {
   "seo": {
     "title": "关于TinaCMS | Git与Markdown内容管理系统",
-    "hasCustomSuffix": true,
-    "description": "TinaCMS的背景与产品介绍"
+    "description": "TinaCMS的背景与产品介绍",
+    "hasCustomSuffix": true
   },
   "blocks": [
     {
@@ -56,10 +56,10 @@
           ]
         },
         {
-          "heading": "Loved by Devs",
+          "heading": "为开发者所爱",
           "highlights": [
             {
-              "name": "GitHub Integration",
+              "name": "GitHub 集成",
               "icon": "FaGithub"
             },
             {
