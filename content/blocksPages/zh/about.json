@@ -63,19 +63,19 @@
               "icon": "FaGithub"
             },
             {
-              "name": "Git Version Control",
+              "name": "Git 版本控制",
               "icon": "FaCodeBranch"
             },
             {
-              "name": "Database-Free",
+              "name": "免数据库式",
               "icon": "FaFileAlt"
             },
             {
-              "name": "Local Development",
+              "name": "本地开发",
               "icon": "FaDesktop"
             },
             {
-              "name": "Fully Open Source",
+              "name": "完全开源",
               "icon": "FaUnlock"
             }
           ]
