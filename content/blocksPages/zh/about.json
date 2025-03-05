@@ -114,8 +114,8 @@
           "content": "**[TinaCMS推出了TinaCloud](https://tina.io/blog/2021-a-year-in-review/)**，这是一项托管服务，增加了实时协作、身份管理和高级内容工作流等功能，减少了自托管的复杂性。\n\nTinaCloud提供了基于Git的编辑功能，无需用户管理基础设施，使其对小型团队更加友好，同时降低了部署的复杂性。\n"
         },
         {
-          "headline": "2020: Expansion beyond Gatsby  ",
-          "content": "TinaCMS expanded to work with other static site generators like Next.js, Hugo and Jekyll, increasing its reach and versatility. Media Manager is introduced and **[Inline Editing is revamped](https://tina.io/blog/inline-editing-project/)**.\n"
+          "headline": "2020年：超越Gatsby的扩展",
+          "content": "TinaCMS扩展了对Next.js、Hugo和Jekyll等其他静态网站生成器的支持，增强了其覆盖范围和通用性。媒体管理器被引入，同时[行内编辑功能进行了全面改进](https://tina.io/blog/inline-editing-project)。\n"
         },
         {
           "headline": "2019: TinaCMS was born!",
