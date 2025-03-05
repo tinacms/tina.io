@@ -99,15 +99,15 @@
       "items": [
         {
           "headline": "2024年：被SSW收购",
-          "content": "SSW对使用Tina的体验非常满意，以至于他们主动伸出援手，最终[SSW收购了TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)，带来了更多企业资源、支持和专业知识。第二版正式发布，包含重大更新，如改进的内容索引和更佳的性能表现。此外，团队在六月推出了TinaGPT聊天机器人，将人工智能驱动的辅助功能整合到平台中。\n"
+          "content": "SSW对使用Tina的体验非常满意，以至于他们主动伸出援手，最终[SSW收购了TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)，带来了更多企业资源、支持和专业知识。\\\n\n\n第二版正式发布，包含重大更新，如改进的内容索引和更佳的性能表现。此外，团队在六月推出了TinaGPT聊天机器人，将人工智能驱动的辅助功能整合到平台中。\n"
         },
         {
-          "headline": "2023: 10,000 stars on GitHub ⭐  ",
-          "content": "Tina reached some exciting milestones: **[now fully open-source](https://tina.io/blog/Tinacms-is-now-fully-open-source/)**, Tina reached 1,000 members in our Discord support forum and 10,000 GitHub stargazers, thanks to the amazing Tina community 🥰 \n\nTinaCloud added enterprise features like [Single Sign On and an Editorial Workflow](https://tina.io/blog/Introducing-Editorial-Workflow-Features-for-your-Team).\n"
+          "headline": "2023年：在GitHub上获得10,000个收藏⭐",
+          "content": "Tina达成了一些令人兴奋的里程碑：[现已完全开源](https://tina.io/blog/Tinacms-is-now-fully-open-source)，多亏了令人惊叹的Tina社区，Tina在Discord支持论坛中拥有1,000名成员，并在GitHub上获得了10,000名关注者🥰 \n\nTinaCloud增加了企业级功能，如[单点登录和编辑工作流程。](https://tina.io/blog/Introducing-Editorial-Workflow-Features-for-your-Team)\n"
         },
         {
-          "headline": "2022: Improved Developer Experience",
-          "content": "**[Version 1.0 is live](https://tina.io/blog/tina-1-0-announcement/)**! The team streamlined developer workflows, adding robust documentation to simplify setup and integration.\n\nTina also got enhanced block editors, better schema management, and expanded plugin support that made it more flexible for different use cases. \n"
+          "headline": "2022年：改进开发者体验",
+          "content": "1.0版本正式发布！团队优化了开发者工作流程，增加了详尽的文档以简化安装和集成过程。 \n\nTina还增强了区块编辑器，改进了模式管理，并扩展了插件支持，使其在不同使用场景中更加灵活。\n"
         },
         {
           "headline": "2021: Introduction of TinaCloud",
