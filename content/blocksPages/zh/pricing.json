@@ -1,0 +1,536 @@
+{
+  "seo": {
+    "title": "计划与定价",
+    "description": "TinaCMS为开发者和团队提供灵活的定价选项，旨在支持无缝的编辑体验。无论您是刚刚起步还是正在扩展，都能找到适合您项目的计划。"
+  },
+  "blocks": [
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "headline": "计划与定价",
+      "freeTier": {
+        "name": "免费",
+        "description": "包括2个用户，2个角色和社区支持。\n",
+        "price": "¥0",
+        "interval": "永久免费",
+        "buttons": [
+          {
+            "label": "免费开始",
+            "icon": false,
+            "variant": "orangeWithBorder",
+            "size": "medium",
+            "url": "https://app.tina.io/register?origin=https://app.tina.io",
+            "_template": "actions"
+          }
+        ]
+      },
+      "intro": "需要扩展？没问题！Tina提供**按项目**定价模式，随着您的需求增长。\n\n切换到年度计费并节省！所有价格以**美元**计\n",
+      "pillSwitchVisibileText": "所有价格均为**按项目**计费，并以**美元**为单位。\n",
+      "pillSwitchToggleText": "年度计费可享受**2个月免费**\n",
+      "plans": [
+        {
+          "name": "团队",
+          "description": "适合成长中的团队\n",
+          "price": "¥29",
+          "annualPrice": "¥24",
+          "annualDescription": "¥290 年度计费（节省 ¥58）",
+          "interval": "/ 月",
+          "cardItem": [
+            {
+              "name": "3个用户",
+              "icon": "AiOutlineUser",
+              "description": ""
+            },
+            {
+              "name": "2个角色",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "团队支持",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "最多10个用户",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "¥9/额外席位",
+              "annualDescription": "¥90/额外席位每年"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "开始团队计划",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "name": "团队增强版",
+          "description": "适合更大的团队\n",
+          "price": "¥49",
+          "annualPrice": "¥41",
+          "annualDescription": "¥490 年度计费（节省 ¥98）",
+          "interval": "/ 月",
+          "cardItem": [
+            {
+              "name": "5个用户",
+              "icon": "AiOutlineUser",
+              "description": ""
+            },
+            {
+              "name": "2个角色",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "团队支持",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "最多20个用户",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "¥15/额外席位",
+              "annualDescription": "¥150/额外席位每年"
+            },
+            {
+              "name": "编辑工作流",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "AI功能（测试版）",
+              "icon": "HiOutlineSparkles"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "开始团队计划",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "name": "商业",
+          "description": "适合高级支持\n",
+          "price": "¥299",
+          "annualPrice": "¥249",
+          "annualDescription": "¥2,990 年度计费（节省 ¥598）",
+          "interval": "/ 月",
+          "cardItem": [
+            {
+              "name": "20个用户",
+              "icon": "AiOutlineUser",
+              "description": "",
+              "annualDescription": ""
+            },
+            {
+              "name": "3个角色（测试版）",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "商业支持",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "无用户限制",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "¥18/额外席位",
+              "annualDescription": "¥180/额外席位每年"
+            },
+            {
+              "name": "编辑工作流",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "AI功能（测试版）",
+              "icon": "HiOutlineSparkles"
+            },
+            {
+              "name": "API（测试版）",
+              "icon": "TbPlugConnected"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "开始商业计划",
+              "icon": false,
+              "variant": "orange",
+              "size": "medium",
+              "url": "https://app.tina.io/register?origin=https://app.tina.io",
+              "_template": "actions"
+            }
+          ],
+          "isStarred": true
+        },
+        {
+          "name": "企业",
+          "description": "适合定制需求\n",
+          "price": "定制",
+          "annualPrice": "定制",
+          "interval": "",
+          "cardItem": [
+            {
+              "name": "定制用户",
+              "icon": "AiOutlineUser",
+              "description": ""
+            },
+            {
+              "name": "定制角色",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "企业支持",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "无用户限制",
+              "icon": "AiOutlineUsergroupAdd",
+              "description": "可变用户定价"
+            },
+            {
+              "name": "定制编辑工作流",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "AI功能（测试版）",
+              "icon": "HiOutlineSparkles"
+            },
+            {
+              "name": "API（测试版）",
+              "icon": "TbPlugConnected"
+            },
+            {
+              "name": "单点登录（SSO）",
+              "icon": "SlLock"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "联系销售",
+              "icon": false,
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "mailto:info@tina.io",
+              "_template": "actions"
+            }
+          ]
+        }
+      ],
+      "_template": "pricing"
+    },
+    {
+      "title": "",
+      "link": "",
+      "items": [
+        {
+          "name": "Bunny Net",
+          "link": "/showcase#bunny-net",
+          "logo": "/svg/logos/bunnynet.svg",
+          "size": 220
+        },
+        {
+          "name": "Unity",
+          "link": "/showcase#unity",
+          "logo": "/svg/logos/unity.svg",
+          "size": 200
+        },
+        {
+          "name": "Protocol Labs",
+          "link": "/showcase#Microgen",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 80
+        },
+        {
+          "name": "伦敦市",
+          "link": "https://www.cityoflondon.gov.uk/",
+          "logo": "/svg/logos/cityoflondon.svg",
+          "size": 120
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "/showcase#devolver-digital",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 150
+        },
+        {
+          "name": "Smashing Magazine",
+          "link": "/showcase#smashing-magazine",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 90
+        },
+        {
+          "name": "Supernova",
+          "link": "/showcase#supernova",
+          "logo": "/svg/logos/supernova.svg",
+          "size": 240
+        },
+        {
+          "name": "Paradise Helicopters",
+          "link": "/showcase#paradise-helicopters",
+          "logo": "/svg/logos/paradisehelicopters.svg",
+          "size": 150
+        },
+        {
+          "name": "NDC Conferences",
+          "link": "/showcase#ndc-conferences",
+          "logo": "/img/logos/NDCLogo.png",
+          "size": 220
+        },
+        {
+          "name": "SSW",
+          "link": "/showcase#ssw",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size": 150
+        },
+        {
+          "name": "Comedia",
+          "link": "/showcase#comedia",
+          "logo": "/svg/logos/comedia.svg",
+          "size": 110
+        },
+        {
+          "name": "RRE Ventures",
+          "link": "/showcase#rre-ventures",
+          "logo": "/svg/logos/rreventures.svg",
+          "size": 220
+        },
+        {
+          "name": "Shadow Lion",
+          "link": "/showcase#shadow-lion",
+          "logo": "/svg/logos/shadowlion.svg",
+          "size": 220
+        },
+        {
+          "name": "Roev",
+          "link": "/showcase#roev",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
+          "name": "Locality Bank",
+          "link": "/showcase#locality-bank",
+          "logo": "/svg/logos/localitybank.svg",
+          "size": 200
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "tableHeader": "计划对比",
+      "columnItems": [
+        {
+          "columnHeader": "免费",
+          "columnByLine": "¥0 永久免费",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "columnHeader": "团队",
+          "columnByLine": "¥29/月",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "columnHeader": "团队增强版",
+          "columnByLine": "¥49/月",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "isReccomended": true,
+          "columnHeader": "商业",
+          "columnByLine": "¥299/月",
+          "columnHeaderLink": "https://app.tina.io/register?origin=https://app.tina.io"
+        },
+        {
+          "columnHeader": "企业",
+          "columnByLine": "定制",
+          "columnHeaderLink": "mailto:info@tina.io"
+        }
+      ],
+      "rowItems": [
+        {
+          "rowHeader": "年度计费",
+          "rowDescription": "节省超过16% - 年度计费并享受2个月免费！",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"¥290/年\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"¥490/年\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"¥2,990/年\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"定制\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "包含用户",
+          "rowDescription": "每个计划默认包含的用户数量",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"3\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"5\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"20\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"定制\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "额外用户",
+          "rowDescription": "为您的计划增加更多用户",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"¥9/用户\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"¥15/用户\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"¥18/用户\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"定制\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "用户限制",
+          "rowDescription": "计划中的最大用户数量",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"10\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"20\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"无限制\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"无限制\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "角色",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"2\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"3\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"定制\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "社区支持",
+          "rowDescription": "活跃的在线Discord社区论坛和tina.io/docs上的全面文档",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "高级支持",
+          "rowDescription": "支持选项和定制支持计划可用",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"商业支持\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"企业支持\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "单点登录（SSO）",
+          "rowDescription": "企业计划提供单点登录",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "编辑工作流",
+          "rowDescription": "用户可以提交内容更改，这些更改将在GitHub中发起拉取请求，团队成员可以在发布前审查、提供反馈并批准更新，确保质量和协作。",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "AI辅助",
+          "rowDescription": "查看Tina路线图以获取更多详细信息",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"即将推出\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"即将推出\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"即将推出\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "项目",
+          "rowDescription": "所有Tina计划均为按项目计费",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"1\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"1\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "仓库",
+          "rowDescription": "Tina项目可以根据需要设置多个仓库。",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"\",\"isTicked\":true}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"\",\"isTicked\":true}"
+          ]
+        },
+        {
+          "rowHeader": "文档",
+          "rowDescription": "文档或内容项的数量",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"无限制\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"无限制\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"无限制\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"无限制\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"无限制\",\"isTicked\":false}"
+          ]
+        },
+        {
+          "rowHeader": "资源大小上限",
+          "rowCells": [
+            "{\"columnHeader\":\"免费\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"团队增强版\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"商业\",\"cellValue\":\"100 MB\",\"isTicked\":false}",
+            "{\"columnHeader\":\"企业\",\"cellValue\":\"100 MB\",\"isTicked\":false}"
+          ]
+        }
+      ],
+      "_template": "table"
+    },
+    {
+      "features": [
+        {
+          "headline": "跳过繁琐，与我们的团队聊聊（虽然不是真的羊驼）",
+          "text": "不确定TinaCMS是否适合您？\n让我们一起找出答案。与我们的团队预约一次通话。",
+          "buttons": [
+            {
+              "label": "预约通话",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/meetings",
+              "_template": "actions"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "_template": "spacer"
+    }
+  ]
+}
