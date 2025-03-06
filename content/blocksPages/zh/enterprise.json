@@ -1,0 +1,240 @@
+{
+  "seo": {
+    "title": "TinaCMS 企业版：可扩展的内容解决方案",
+    "description": "通过TinaCMS解锁企业级内容管理。为大型团队量身定制的可扩展、安全且灵活的解决方案。"
+  },
+  "blocks": [
+    {
+      "headline": "Tina 企业版",
+      "text": "降低成本。提高安全性和性能。",
+      "margin": "",
+      "spacing": "gap-10",
+      "buttons": [
+        {
+          "label": "请求单页介绍",
+          "icon": false,
+          "variant": "white",
+          "size": "medium",
+          "url": "mailto:info@tina.io?subject=TinaCMS 企业版单页介绍&body=您好，我想了解更多关于TinaCMS企业版解决方案的信息。",
+          "_template": "actions"
+        },
+        {
+          "label": "预约演示",
+          "icon": false,
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "hero"
+    },
+    {
+      "title": "受信任于",
+      "link": "https://ndcconferences.com",
+      "items": [
+        {
+          "name": "Bunny Net",
+          "link": "/showcase#bunny-net",
+          "logo": "/svg/logos/bunnynet.svg",
+          "size": 220
+        },
+        {
+          "name": "Unity",
+          "link": "/showcase#unity",
+          "logo": "/svg/logos/unity.svg",
+          "size": 220
+        },
+        {
+          "name": "Protocol Labs",
+          "link": "/showcase#protocol-labs",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 90
+        },
+        {
+          "name": "伦敦市",
+          "link": "/showcase#city-of-london",
+          "logo": "/svg/logos/cityoflondon.svg",
+          "size": 120
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "/showcase#devolver-digital",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 150
+        },
+        {
+          "name": "Smashing Magazine",
+          "link": "/showcase#smashing-magazine",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 90
+        },
+        {
+          "name": "Supernova",
+          "link": "/showcase#supernova",
+          "logo": "/svg/logos/supernova.svg",
+          "size": 240
+        },
+        {
+          "name": "Paradise Helicopters",
+          "link": "/showcase#paradise-helicopters",
+          "logo": "/svg/logos/paradisehelicopters.svg",
+          "size": 150
+        },
+        {
+          "name": "NDC会议",
+          "link": "https://ndcconferences.com",
+          "logo": "/img/logos/NDCLogo.png",
+          "size": 220
+        },
+        {
+          "name": "SSW",
+          "link": "/showcase#ssw",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size": 150
+        },
+        {
+          "name": "Comedia",
+          "link": "/showcase#comedia",
+          "logo": "/svg/logos/comedia.svg",
+          "size": 110
+        },
+        {
+          "name": "RRE Ventures",
+          "link": "/showcase#rre-ventures",
+          "logo": "/svg/logos/rreventures.svg",
+          "size": 220
+        },
+        {
+          "name": "Shadow Lion",
+          "link": "/showcase#shadow-lion",
+          "logo": "/svg/logos/shadowlion.svg",
+          "size": 220
+        },
+        {
+          "name": "Roev",
+          "link": "/showcase#roev",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
+          "name": "Locality Bank",
+          "link": "/showcase#locality-bank",
+          "logo": "/svg/logos/localitybank.svg",
+          "size": 200
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
+      "items": [
+        {
+          "headline": "内置版本控制",
+          "text": "Tina基于Git构建。轻松恢复到早期版本，撤销错误，在分支上工作，并自信地部署。"
+        },
+        {
+          "headline": "降低成本",
+          "text": "切换到TinaCMS后，大多数客户的许可和运营成本降低了50%以上。"
+        },
+        {
+          "headline": "自托管",
+          "text": "TinaCMS可以在您的防火墙后自托管，以提高安全性。"
+        },
+        {
+          "headline": "编辑工作流",
+          "text": "Tina内置了基于Git的编辑工作流。您的内容团队可以在不离开CMS的情况下创建拉取请求（PR）。",
+          "actions": [
+            {
+              "label": "了解更多",
+              "icon": false,
+              "variant": "white",
+              "size": "small",
+              "url": "https://tina.io/editorial-workflow/"
+            }
+          ]
+        },
+        {
+          "headline": "性能和可扩展性",
+          "text": "静态架构通过预渲染页面为静态资源并通过CDN分发，提供了快速的加载时间和可扩展性。这通常消除了停机时间，并将首次字节时间缩短了10倍。"
+        },
+        {
+          "headline": "增强的安全性",
+          "text": "减少攻击面，无需数据库和服务器端处理。静态文件和严格的访问控制最大限度地减少了漏洞，提供了更安全的架构。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "title2": "\"Tina正在改变我们在Unity处理文档的方式\"",
+      "subtext": "Anton Iancu，AI和文档产品工程经理",
+      "logo": "/svg/logos/unity.svg",
+      "_template": "quote"
+    },
+    {
+      "items": [
+        {
+          "headline": "单点登录",
+          "text": "兼容最流行的身份提供商（IdP），如Okta，并支持SAML和OIDC。"
+        },
+        {
+          "headline": "SOC 2和GDPR",
+          "text": "正在积极追求SOC 2认证和GDPR合规性。"
+        },
+        {
+          "headline": "正常运行时间SLA",
+          "text": "99.9%的服务器正常运行时间，如果发送集成受到影响，将迅速通知。"
+        },
+        {
+          "headline": "简化的开发和维护",
+          "text": "使用现代框架和TinaCMS时，Web团队变得高效。更新和部署变得更简单，减少了错误和停机的风险。"
+        },
+        {
+          "headline": "CI/CD",
+          "text": "与现代CI/CD管道集成，执行所有检查并运行脚本。轻松配置单独的环境，如预生产和生产环境。\n"
+        },
+        {
+          "headline": "无需缓存",
+          "text": "消除了对复杂缓存层的需求。缓存是内置的，静态生成的内容通过CDN网络分发。\n"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white",
+        "align": "center"
+      },
+      "content": "## 降低托管和运营成本\n\n大多数客户在从其他企业级CMS平台切换到TinaCMS时，将许可和运营成本降低了50%以上。\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "降低托管和运营成本",
+          "text": "大多数客户在从其他企业级CMS平台切换到TinaCMS时，将许可和运营成本降低了50%以上。"
+        },
+        {
+          "headline": "培训与支持",
+          "text": "获得TinaCMS团队的支持，包括培训、优先支持和定制开发。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "获取演示",
+      "text": "与TinaCMS团队成员讨论您的项目并获取演示",
+      "buttons": [
+        {
+          "label": "获取演示",
+          "icon": false,
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "hero"
+    }
+  ]
+}
