@@ -1,0 +1,240 @@
+{
+  "seo": {
+    "title": "TinaCMS 企业版：企业级内容管理解决方案",
+    "description": "TinaCMS为企业提供可扩展、安全、灵活的内容管理平台，助力大型团队实现高效协作。"
+  },
+  "blocks": [
+    {
+      "headline": "Tina 企业版",
+      "text": "降本增效，安全无忧",
+      "margin": "",
+      "spacing": "gap-10",
+      "buttons": [
+        {
+          "label": "获取产品手册",
+          "icon": false,
+          "variant": "white",
+          "size": "medium",
+          "url": "mailto:info@tina.io?subject=TinaCMS企业版资料索取&body=您好，请发送TinaCMS企业版相关介绍资料。",
+          "_template": "actions"
+        },
+        {
+          "label": "预约产品演示",
+          "icon": false,
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "hero"
+    },
+    {
+      "title": "客户信赖之选",
+      "link": "https://ndcconferences.com",
+      "items": [
+        {
+          "name": "Bunny Net",
+          "link": "/showcase#bunny-net",
+          "logo": "/svg/logos/bunnynet.svg",
+          "size": 220
+        },
+        {
+          "name": "Unity",
+          "link": "/showcase#unity",
+          "logo": "/svg/logos/unity.svg",
+          "size": 220
+        },
+        {
+          "name": "Protocol Labs",
+          "link": "/showcase#protocol-labs",
+          "logo": "/svg/logos/protocollabs.svg",
+          "size": 90
+        },
+        {
+          "name": "伦敦市",
+          "link": "/showcase#city-of-london",
+          "logo": "/svg/logos/cityoflondon.svg",
+          "size": 120
+        },
+        {
+          "name": "Devolver Digital",
+          "link": "/showcase#devolver-digital",
+          "logo": "/svg/logos/devolverdigital.svg",
+          "size": 150
+        },
+        {
+          "name": "Smashing Magazine",
+          "link": "/showcase#smashing-magazine",
+          "logo": "/svg/logos/smashing.svg",
+          "size": 90
+        },
+        {
+          "name": "Supernova",
+          "link": "/showcase#supernova",
+          "logo": "/svg/logos/supernova.svg",
+          "size": 240
+        },
+        {
+          "name": "Paradise Helicopters",
+          "link": "/showcase#paradise-helicopters",
+          "logo": "/svg/logos/paradisehelicopters.svg",
+          "size": 150
+        },
+        {
+          "name": "NDC会议",
+          "link": "https://ndcconferences.com",
+          "logo": "/img/logos/NDCLogo.png",
+          "size": 220
+        },
+        {
+          "name": "SSW",
+          "link": "/showcase#ssw",
+          "logo": "/svg/logos/ssw-logo-charcoal.svg",
+          "size": 150
+        },
+        {
+          "name": "Comedia",
+          "link": "/showcase#comedia",
+          "logo": "/svg/logos/comedia.svg",
+          "size": 110
+        },
+        {
+          "name": "RRE Ventures",
+          "link": "/showcase#rre-ventures",
+          "logo": "/svg/logos/rreventures.svg",
+          "size": 220
+        },
+        {
+          "name": "Shadow Lion",
+          "link": "/showcase#shadow-lion",
+          "logo": "/svg/logos/shadowlion.svg",
+          "size": 220
+        },
+        {
+          "name": "Roev",
+          "link": "/showcase#roev",
+          "logo": "/svg/logos/roe.svg",
+          "size": 200
+        },
+        {
+          "name": "Locality Bank",
+          "link": "/showcase#locality-bank",
+          "logo": "/svg/logos/localitybank.svg",
+          "size": 200
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
+      "items": [
+        {
+          "headline": "内置版本控制",
+          "text": "基于Git构建，支持版本回溯、分支管理，确保内容更新安全可靠。"
+        },
+        {
+          "headline": "降低成本",
+          "text": "采用TinaCMS的企业平均节省50%以上的许可和运营支出。"
+        },
+        {
+          "headline": "灵活部署方案",
+          "text": "支持本地化部署，满足企业级安全需求。"
+        },
+        {
+          "headline": "高效协作流程",
+          "text": "集成Git工作流，支持内容团队在CMS内直接创建和管理PR。",
+          "actions": [
+            {
+              "label": "查看详情",
+              "icon": false,
+              "variant": "white",
+              "size": "small",
+              "url": "https://tina.io/editorial-workflow/"
+            }
+          ]
+        },
+        {
+          "headline": "卓越性能表现",
+          "text": "静态架构配合CDN分发，页面加载速度提升10倍，确保业务连续性。"
+        },
+        {
+          "headline": "全方位安全保障",
+          "text": "无数据库架构减少攻击面，严格的访问控制确保系统安全。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "title2": "\"Tina彻底革新了Unity的文档管理方式\"",
+      "subtext": "Anton Iancu，AI与文档产品工程经理",
+      "logo": "/svg/logos/unity.svg",
+      "_template": "quote"
+    },
+    {
+      "items": [
+        {
+          "headline": "统一身份认证",
+          "text": "支持主流身份提供商（IdP），兼容SAML和OIDC协议。"
+        },
+        {
+          "headline": "合规性保障",
+          "text": "积极推进SOC 2认证，全面符合GDPR规范。"
+        },
+        {
+          "headline": "高可用性承诺",
+          "text": "99.9%服务可用性，集成异常实时告警。"
+        },
+        {
+          "headline": "简化运维管理",
+          "text": "现代化架构降低运维复杂度，减少系统故障风险。"
+        },
+        {
+          "headline": "持续集成部署",
+          "text": "无缝对接CI/CD管道，支持多环境独立部署。"
+        },
+        {
+          "headline": "智能缓存机制",
+          "text": "内置CDN缓存，无需额外配置，提升内容分发效率。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white",
+        "align": "center"
+      },
+      "content": "## 显著降低运营成本\n\n相比传统企业级CMS，TinaCMS帮助客户平均节省50%以上的运营支出。\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "成本效益显著",
+          "text": "相比传统解决方案，显著降低许可和基础设施成本。"
+        },
+        {
+          "headline": "专业服务支持",
+          "text": "提供专属培训、优先技术支持和定制开发服务。"
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "headline": "立即体验",
+      "text": "预约产品演示，了解TinaCMS如何助力您的业务",
+      "buttons": [
+        {
+          "label": "预约演示",
+          "icon": false,
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "hero"
+    }
+  ]
+}

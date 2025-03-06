@@ -1,0 +1,310 @@
+{
+  "seo": {
+    "title": "比较 TinaCMS：现代开发的最佳内容管理系统",
+    "description": "了解 TinaCMS 如何通过内联编辑、Git 驱动的工作流程以及无头功能，为开发人员和编辑者提供卓越体验。"
+  },
+  "blocks": [
+    {
+      "headline": "TinaCMS 为何与众不同？",
+      "text": "提示：不仅仅是因为那只羊驼",
+      "_template": "hero"
+    },
+    {
+      "criteriaItems": [
+        {
+          "criteria": "仓库式媒体管理",
+          "description": "资源可以存储在 GitHub 中，与其他内容一起，同时由 CMS 编辑器进行管理"
+        },
+        {
+          "criteria": "开源前端",
+          "description": "一个透明、可扩展且由社区驱动的内容管理系统（CMS）"
+        },
+        {
+          "criteria": "内容 API",
+          "description": "随时随地查询您的数据"
+        },
+        {
+          "criteria": "基于 Git 的内容管理",
+          "description": "直接从您的网站获得 GitHub 编辑工作流的所有优势 - 拉取请求、分支、版本控制"
+        },
+        {
+          "criteria": "GitHub 贡献",
+          "description": "编辑者在进行更改时会获得 GitHub 贡献"
+        },
+        {
+          "criteria": "Markdown 支持",
+          "description": "使用 Markdown 以简单轻量的格式存储您的内容"
+        },
+        {
+          "criteria": "可视化编辑功能",
+          "description": "在进行更改的同时，即时预览您的网站变化"
+        },
+        {
+          "criteria": "免费方案",
+          "description": "永久免费使用CMS的方案"
+        },
+        {
+          "criteria": "本地开发工作流",
+          "description": "在您喜欢的 IDE 中本地开发您的网站"
+        },
+        {
+          "criteria": "自托管选项",
+          "description": "可选择自行托管"
+        }
+      ],
+      "companies": [
+        {
+          "headline": "TinaCMS",
+          "logoColour": "/svg/logos/tina.svg",
+          "logoWhite": "/svg/logos/tina-white.svg",
+          "active": true,
+          "isHidden": true,
+          "backgroundColor": "#EC4815",
+          "satisfiedCriteria": [
+            "true-仓库式媒体管理",
+            "true-开源前端",
+            "true-内容 API",
+            "true-基于 Git 的内容管理",
+            "true-GitHub 贡献",
+            "true-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "true-本地开发工作流",
+            "true-自托管选项"
+          ]
+        },
+        {
+          "headline": "Prepr CMS",
+          "logoColour": "/svg/logos/Prepr-clr.svg",
+          "logoWhite": "/svg/logos/Prepr-wht.svg",
+          "backgroundColor": "#5237E6",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "false-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "true-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
+          ]
+        },
+        {
+          "headline": "Umbraco",
+          "logoColour": "/svg/logos/Umbraco-clr.svg",
+          "logoWhite": "/svg/logos/Umbraco-wht.svg",
+          "backgroundColor": "#3544B1",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "true-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "true-GitHub 贡献",
+            "false-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "true-本地开发工作流",
+            "true-自托管选项"
+          ]
+        },
+        {
+          "headline": "Decap CMS",
+          "logoColour": "/svg/logos/Decap-clr.svg",
+          "logoWhite": "/svg/logos/Decap-wht.svg",
+          "backgroundColor": "#FF0080",
+          "satisfiedCriteria": [
+            "true-仓库式媒体管理",
+            "true-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "true-GitHub 贡献",
+            "true-Markdown 支持",
+            "false-可视化编辑功能",
+            "true-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
+          ]
+        },
+        {
+          "headline": "Adobe (AEM)",
+          "logoColour": "/svg/logos/AEM-clr.svg",
+          "logoWhite": "/svg/logos/AEM-wht.svg",
+          "backgroundColor": "#EB1000",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "false-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "true-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
+          ]
+        },
+        {
+          "headline": "Contentstack",
+          "logoColour": "/svg/logos/Contentstack-clr.svg",
+          "logoWhite": "/svg/logos/Contentstack-wht.svg",
+          "backgroundColor": "#6610F2",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "false-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "true-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
+          ]
+        },
+        {
+          "headline": "Contentful",
+          "logoColour": "/svg/logos/Contentful-clr.svg",
+          "logoWhite": "/svg/logos/Contentful-wht.svg",
+          "backgroundColor": "#007AFF",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "false-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "true-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
+          ]
+        },
+        {
+          "headline": "Storyblok",
+          "logoColour": "/svg/logos/Storyblok-clr.svg",
+          "logoWhite": "/svg/logos/Storyblok-wht.svg",
+          "backgroundColor": "#2DB47D",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "false-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
+          ]
+        },
+        {
+          "headline": "Sanity",
+          "logoColour": "/svg/logos/Sanity-clr.svg",
+          "logoWhite": "/svg/logos/Sanity-wht.svg",
+          "backgroundColor": "#EF4434",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "true-开源前端",
+            "false-内容 API",
+            "true-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "true-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "true-本地开发工作流",
+            "true-自托管选项"
+          ]
+        },
+        {
+          "headline": "Payload",
+          "logoColour": "/svg/logos/Payload-clr.svg",
+          "logoWhite": "/svg/logos/Payload-wht.svg",
+          "backgroundColor": "#007FAE",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "true-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "true-本地开发工作流",
+            "true-自托管选项"
+          ]
+        },
+        {
+          "headline": "prismic.io",
+          "logoColour": "/svg/logos/Prismic-clr.svg",
+          "logoWhite": "/svg/logos/Prismic-wht.svg",
+          "backgroundColor": "#8E44EC",
+          "satisfiedCriteria": [
+            "false-仓库式媒体管理",
+            "false-开源前端",
+            "true-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "true-Markdown 支持",
+            "true-可视化编辑功能",
+            "true-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
+          ]
+        }
+      ],
+      "_template": "CompareBox"
+    },
+    {
+      "title": "了解 Tina 的竞争优势",
+      "testimonials": [
+        {
+          "name": " Contentful",
+          "username": "",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Contentful-clr.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-contentful-comparison"
+        },
+        {
+          "name": "StoryBlok",
+          "username": "",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Storyblok-clr.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-storyblok-comparison"
+        },
+        {
+          "name": "Sanity",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Sanity-clr-v2.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/sanity-tina-comparison"
+        },
+        {
+          "name": "DecapCMS",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Decap-clr.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-netlifycms-comparison"
+        },
+        {
+          "name": "Builder.io",
+          "rhsImage": true,
+          "avatar": "/svg/logos/builderio-mono.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-builder-comparison"
+        },
+        {
+          "name": "Strapi",
+          "rhsImage": true,
+          "avatar": "/svg/logos/Strapi.monogram.logo.svg",
+          "testimonial": "TinaCMS vs\n",
+          "link": "/tinacms-strapi-comparison"
+        }
+      ],
+      "_template": "testimonials"
+    }
+  ]
+}
