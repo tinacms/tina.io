@@ -12,8 +12,8 @@
     {
       "criteriaItems": [
         {
-          "criteria": "Repo-based Media",
-          "description": "Assets can be stored in GitHub, alongside other content, while being managed by the CMS editor"
+          "criteria": "仓库式媒体管理",
+          "description": "资源可以存储在 GitHub 中，与其他内容一起，同时由 CMS 编辑器进行管理"
         },
         {
           "criteria": "Open Source Front-end",
@@ -61,7 +61,7 @@
           "isHidden": true,
           "backgroundColor": "#EC4815",
           "satisfiedCriteria": [
-            "true-Repo-based Media",
+            "false-仓库式媒体管理",
             "true-Open Source Front-end",
             "true-Content API",
             "true-Git-based Content Management ",
@@ -79,7 +79,7 @@
           "logoWhite": "/svg/logos/Prepr-wht.svg",
           "backgroundColor": "#5237E6",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "false-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
@@ -97,7 +97,7 @@
           "logoWhite": "/svg/logos/Umbraco-wht.svg",
           "backgroundColor": "#3544B1",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "true-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
@@ -115,7 +115,7 @@
           "logoWhite": "/svg/logos/Decap-wht.svg",
           "backgroundColor": "#FF0080",
           "satisfiedCriteria": [
-            "true-Repo-based Media",
+            "false-仓库式媒体管理",
             "true-Open Source Front-end",
             "false-Content API",
             "false-Git-based Content Management ",
@@ -133,7 +133,7 @@
           "logoWhite": "/svg/logos/AEM-wht.svg",
           "backgroundColor": "#EB1000",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "false-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
@@ -151,7 +151,7 @@
           "logoWhite": "/svg/logos/Contentstack-wht.svg",
           "backgroundColor": "#6610F2",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "false-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
@@ -169,7 +169,7 @@
           "logoWhite": "/svg/logos/Contentful-wht.svg",
           "backgroundColor": "#007AFF",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "false-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
@@ -187,7 +187,7 @@
           "logoWhite": "/svg/logos/Storyblok-wht.svg",
           "backgroundColor": "#2DB47D",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "false-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
@@ -205,7 +205,7 @@
           "logoWhite": "/svg/logos/Sanity-wht.svg",
           "backgroundColor": "#EF4434",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "true-Open Source Front-end",
             "false-Content API",
             "true-Git-based Content Management ",
@@ -223,7 +223,7 @@
           "logoWhite": "/svg/logos/Payload-wht.svg",
           "backgroundColor": "#007FAE",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "true-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
@@ -241,7 +241,7 @@
           "logoWhite": "/svg/logos/Prismic-wht.svg",
           "backgroundColor": "#8E44EC",
           "satisfiedCriteria": [
-            "false-Repo-based Media",
+            "false-仓库式媒体管理",
             "false-Open Source Front-end",
             "true-Content API",
             "false-Git-based Content Management ",
