@@ -1,11 +1,11 @@
 {
   "seo": {
-    "title": "路线图",
-    "description": "TinaCMS的路线图"
+    "title": "产品路线图",
+    "description": "探索TinaCMS的未来发展规划"
   },
   "blocks": [
     {
-      "headline": "路线图",
+      "headline": "产品发展蓝图",
       "text": "",
       "_template": "hero"
     },
@@ -14,16 +14,16 @@
         "narrow": true,
         "color": "white"
       },
-      "content": "欢迎来到Tina的公共路线图！这是一个实时文档，将会定期更新。要提交想法或查看我们正在考虑的功能请求和想法列表，请查看我们的[GitHub讨论](https://github.com/tinacms/tinacms/discussions \"GitHub讨论\")\n",
+      "content": "欢迎了解Tina的产品发展规划！这是一个实时更新的动态路线图。如果您有好的想法或建议，或者想了解我们正在评估的功能计划，欢迎参与我们的[GitHub讨论](https://github.com/tinacms/tinacms/discussions )\n",
       "_template": "content"
     },
     {
-      "headline": "最近发布",
+      "headline": "最新动态",
       "items": [
         {
-          "headline": "GitHub企业版支持",
-          "status": "已发布",
-          "content": "TinaCloud现在支持连接到GitHub企业版本地安装。\n"
+          "headline": "GitHub企业版集成",
+          "status": "已上线",
+          "content": "TinaCloud现已支持与本地部署的GitHub企业版无缝对接。\n"
         }
       ],
       "options": {
@@ -36,30 +36,30 @@
       "blockSettings": {
         "isFullscreen": true
       },
-      "headline": "即将推出",
+      "headline": "未来展望",
       "items": [
         {
-          "headline": "改进媒体管理用户体验",
-          "status": "进行中",
-          "content": "我们有许多媒体管理改进计划（如图片搜索、支持更多媒体类型等）。\n"
+          "headline": "媒体管理体验升级",
+          "status": "开发中",
+          "content": "我们正在规划多项媒体管理功能优化，包括图片智能搜索、支持更多媒体格式等。\n"
         },
         {
-          "headline": "AI工具",
-          "status": "即将推出",
-          "content": "我们正在开发一些利用AI优化内容创建流程的工具。\n"
+          "headline": "AI智能工具",
+          "status": "即将发布",
+          "content": "我们正在研发一系列AI辅助工具，帮助您更高效地创建和管理内容。\n"
         },
         {
-          "headline": "文档模板",
-          "status": "即将推出",
-          "content": "由于Tina在文档网站中表现出色，我们正在构建一个最佳实践的Tina + 文档启动模板。\n"
+          "headline": "文档模板库",
+          "status": "即将发布",
+          "content": "基于Tina在文档网站中的出色表现，我们正在打造一套最佳实践模板，助您快速搭建文档站点。\n"
         },
         {
-          "headline": "改进的PR工作流",
-          "status": "即将推出",
-          "content": "我们正在对Tina的编辑工作流进行一些改进，允许您直接从CMS UI中合并拉取请求。\n",
+          "headline": "PR工作流优化",
+          "status": "即将发布",
+          "content": "我们正在改进Tina的编辑工作流，未来您可以直接在CMS界面完成拉取请求的合并操作。\n",
           "actions": [
             {
-              "label": "编辑工作流",
+              "label": "了解工作流",
               "icon": false,
               "variant": "blue",
               "size": "medium",
