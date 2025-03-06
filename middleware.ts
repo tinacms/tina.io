@@ -64,6 +64,14 @@ export function middleware(request: NextRequest) {
       return;
     }
   }
+  //谁能打到这里
+  // 无有效语言前缀
+  // 无效前缀 -> 直接跳到not found去处理
+  // 无前缀英文页面
+  // 只有我们选择访问英文界面或者点击按钮的时候会发生
+  // 如果我们实际想访问英文就直接返回
+  // 如果我们实际想访问中文就重定向到中文页面
+
   const locale = getLocale(request);
   console.log(`Current Locale: ${locale}`);
   if (locale === DEFAULT_LOCALE) {

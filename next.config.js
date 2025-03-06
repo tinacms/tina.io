@@ -55,6 +55,10 @@ const config = {
         destination: '/home',
       },
       {
+        source: '/en/:path*',
+        destination: '/:path*',
+      },
+      {
         source: '/admin',
         destination: '/admin/index.html',
       },
