@@ -61,7 +61,7 @@
           "isHidden": true,
           "backgroundColor": "#EC4815",
           "satisfiedCriteria": [
-            "false-仓库式媒体管理",
+            "true-仓库式媒体管理",
             "true-Open Source Front-end",
             "true-Content API",
             "true-Git-based Content Management ",
