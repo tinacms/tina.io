@@ -5,8 +5,8 @@
   },
   "blocks": [
     {
-      "headline": "What Makes TinaCMS Different?",
-      "text": "Hint: It's more than just the Llama",
+      "headline": "TinaCMS 为何与众不同？",
+      "text": "提示：不仅仅是因为那只羊驼",
       "_template": "hero"
     },
     {
