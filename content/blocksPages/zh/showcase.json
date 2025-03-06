@@ -15,7 +15,7 @@
       },
       "items": [
         {
-          "headline": "NDC会议",
+          "headline": "NDC Conferences",
           "text": "[NDC会议](https://ndcconferences.com/) 举办全球软件开发活动，将大型会议与专业研讨会相结合。他们利用TinaCMS管理网站内容，确保为观众提供无缝的数字体验。\n这些会议汇聚了技术专业人士，促进学习、交流和分享国际社区的见解。",
           "url": "https://ndcconferences.com/",
           "media": {
@@ -127,7 +127,7 @@
           }
         },
         {
-          "headline": "社区协调建模中心",
+          "headline": "Community Coordinated Modeling Center",
           "text": "[CCMC](https://ccmc.gsfc.nasa.gov/) 是NASA内的一个小组，致力于支持空间科学研究。",
           "url": "https://ccmc.gsfc.nasa.gov/",
           "media": {
