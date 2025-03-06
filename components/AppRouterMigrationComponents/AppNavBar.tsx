@@ -64,7 +64,6 @@ export function AppNavBar({ sticky = true }) {
   const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
   const [modalClass, setModalClass] = useState('language-select-modal');
-  const [hideZh, setHideZh] = useState(false);
 
   const navRef = useRef(null);
   const router = useRouter();
@@ -105,16 +104,23 @@ export function AppNavBar({ sticky = true }) {
   }, []);
 
   useEffect(() => {
-    const pathLocale = pathName.split('/')[1];
-    if (
-      pathLocale === SupportedLocales.EN ||
-      pathLocale === SupportedLocales.ZH
-    ) {
-      setHideZh(false);
-      setSelectedFlag(pathLocale);
+    // const pathLocale = pathName.split('/')[1];
+    // if (
+    //   pathLocale === SupportedLocales.EN ||
+    //   pathLocale === SupportedLocales.ZH
+    // ) {
+    //   setHideZh(false);
+    //   setSelectedFlag(pathLocale);
+    // } else {
+    //   setHideZh(true);
+    //   setSelectedFlag(DEFAULT_LOCALE);
+    // }
+    // Check if the path starts with /zh
+    if (pathName.startsWith('/zh')) {
+      setSelectedFlag(SupportedLocales.ZH);
     } else {
-      setHideZh(true);
-      setSelectedFlag(DEFAULT_LOCALE);
+      // All other paths default to English
+      setSelectedFlag(SupportedLocales.EN);
     }
   }, [pathName]);
 
@@ -131,7 +137,7 @@ export function AppNavBar({ sticky = true }) {
       ? data.navItem
       : [];
 
-  const handleLanguageChange = (code) => {
+  const handleLanguageChange = (code: string) => {
     setSelectedFlag(code);
     setOpen(false);
     closeModal();
@@ -140,7 +146,21 @@ export function AppNavBar({ sticky = true }) {
       setTimeout(() => setAnimateFlag(false), 600);
     }, 20);
 
-    router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
+    // router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
+    debugger;
+    if (code === SupportedLocales.EN) {
+      // If switching to English, remove the /zh prefix if it exists
+      const newPath = pathName.replace(/^\/zh(\/|$)/, '/');
+      router.push(newPath);
+    } else if (code === SupportedLocales.ZH) {
+      // If switching to Chinese, add the /zh prefix if it doesn't exist
+      if (pathName === '/') {
+        router.push('/zh');
+      } else if (!pathName.startsWith('/zh')) {
+        router.push(`/zh${pathName}`);
+      }
+    }
+
     saveLocaleToCookie(code);
   };
 
@@ -382,7 +402,6 @@ export function AppNavBar({ sticky = true }) {
         <LanguageSelect
           onLanguageSelect={handleLanguageChange}
           currentLanguage={selectedFlag}
-          hideZh={hideZh}
         />
       </Modal>
     </>
