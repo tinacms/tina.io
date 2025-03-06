@@ -79,7 +79,7 @@ export function middleware(request: NextRequest) {
   } else {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
-    const response = NextResponse.redirect(url);
+    response = NextResponse.redirect(url);
   }
   response.cookies.set('NEXT_LOCALE', locale, {
     maxAge: 60 * 60 * 24 * 365,
