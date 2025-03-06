@@ -16,40 +16,40 @@
           "description": "资源可以存储在 GitHub 中，与其他内容一起，同时由 CMS 编辑器进行管理"
         },
         {
-          "criteria": "Open Source Front-end",
-          "description": "A CMS which is transparent, extensible and community driven"
+          "criteria": "开源前端",
+          "description": "一个透明、可扩展且由社区驱动的内容管理系统（CMS）"
         },
         {
-          "criteria": "Content API",
-          "description": "Query your data, wherever, whenever"
+          "criteria": "内容 API",
+          "description": "随时随地查询您的数据"
         },
         {
-          "criteria": "Git-based Content Management ",
-          "description": "Get all the benefits of the GitHub editing workflow directly from your site - Pull requests, branching, version control"
+          "criteria": "基于 Git 的内容管理",
+          "description": "直接从您的网站获得 GitHub 编辑工作流的所有优势 - 拉取请求、分支、版本控制"
         },
         {
-          "criteria": "GitHub Contributions",
-          "description": "Editors get GitHub contributions when they make changes"
+          "criteria": "GitHub 贡献",
+          "description": "编辑者在进行更改时会获得 GitHub 贡献"
         },
         {
-          "criteria": "Markdown Support",
-          "description": "Store your content in a simple and lightweight format with Markdown"
+          "criteria": "Markdown 支持",
+          "description": "使用 Markdown 以简单轻量的格式存储您的内容"
         },
         {
-          "criteria": "Visual Editing Capabilities ",
-          "description": "See your changes on your site as you make them"
+          "criteria": "可视化编辑功能",
+          "description": "在进行更改的同时，即时预览您的网站变化"
         },
         {
-          "criteria": "Free Option",
-          "description": "An option to use the CMS for free, forever"
+          "criteria": "免费方案",
+          "description": "永久免费使用CMS的方案"
         },
         {
-          "criteria": "Local Development Workflow ",
-          "description": "Develop your site locally within your favourite IDE"
+          "criteria": "本地开发工作流",
+          "description": "在您喜欢的 IDE 中本地开发您的网站"
         },
         {
-          "criteria": "Self-hosted Option",
-          "description": "Option to self-host"
+          "criteria": "自托管选项",
+          "description": "可选择自行托管"
         }
       ],
       "companies": [
@@ -62,15 +62,15 @@
           "backgroundColor": "#EC4815",
           "satisfiedCriteria": [
             "true-仓库式媒体管理",
-            "true-Open Source Front-end",
-            "true-Content API",
-            "true-Git-based Content Management ",
-            "true-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -80,15 +80,15 @@
           "backgroundColor": "#5237E6",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -98,15 +98,15 @@
           "backgroundColor": "#3544B1",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "true-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "true-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -116,15 +116,15 @@
           "backgroundColor": "#FF0080",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "true-Open Source Front-end",
-            "false-Content API",
-            "false-Git-based Content Management ",
-            "true-GitHub Contributions",
-            "true-Markdown Support",
-            "false-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -134,15 +134,15 @@
           "backgroundColor": "#EB1000",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "false-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -152,15 +152,15 @@
           "backgroundColor": "#6610F2",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "false-Visual Editing Capabilities ",
-            "false-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -170,15 +170,15 @@
           "backgroundColor": "#007AFF",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -188,15 +188,15 @@
           "backgroundColor": "#2DB47D",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -206,15 +206,15 @@
           "backgroundColor": "#EF4434",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "true-Open Source Front-end",
-            "false-Content API",
-            "true-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -224,15 +224,15 @@
           "backgroundColor": "#007FAE",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "true-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "false-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "true-Local Development Workflow ",
-            "true-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         },
         {
@@ -242,15 +242,15 @@
           "backgroundColor": "#8E44EC",
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
-            "false-Open Source Front-end",
-            "true-Content API",
-            "false-Git-based Content Management ",
-            "false-GitHub Contributions",
-            "true-Markdown Support",
-            "true-Visual Editing Capabilities ",
-            "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "false-开源前端",
+            "false-内容 API",
+            "false-基于 Git 的内容管理",
+            "false-GitHub 贡献",
+            "false-Markdown 支持",
+            "false-可视化编辑功能",
+            "false-免费方案",
+            "false-本地开发工作流",
+            "false-自托管选项"
           ]
         }
       ],
