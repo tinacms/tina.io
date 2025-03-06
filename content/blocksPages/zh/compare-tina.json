@@ -135,11 +135,11 @@
           "satisfiedCriteria": [
             "false-仓库式媒体管理",
             "false-开源前端",
-            "false-内容 API",
+            "true-内容 API",
             "false-基于 Git 的内容管理",
             "false-GitHub 贡献",
             "false-Markdown 支持",
-            "false-可视化编辑功能",
+            "true-可视化编辑功能",
             "false-免费方案",
             "false-本地开发工作流",
             "false-自托管选项"
