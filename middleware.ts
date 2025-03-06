@@ -71,21 +71,21 @@ export function middleware(request: NextRequest) {
   // 只有我们选择访问英文界面或者点击按钮的时候会发生
   // 如果我们实际想访问英文就直接返回
   // 如果我们实际想访问中文就重定向到中文页面
-
+  let response;
   const locale = getLocale(request);
   console.log(`Current Locale: ${locale}`);
   if (locale === DEFAULT_LOCALE) {
-    return;
+    response = NextResponse.next();
   } else {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
     const response = NextResponse.redirect(url);
-    response.cookies.set('NEXT_LOCALE', locale, {
-      maxAge: 60 * 60 * 24 * 365,
-      path: '/',
-    });
-    return response;
   }
+  response.cookies.set('NEXT_LOCALE', locale, {
+    maxAge: 60 * 60 * 24 * 365,
+    path: '/',
+  });
+  return response;
 }
 
 export const config = {
