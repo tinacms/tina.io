@@ -1,15 +1,15 @@
 'use client';
 
-import React, { createContext } from 'react';
-import styled, { css } from 'styled-components';
-import { DocsNavProps } from './DocumentationNavigation';
-import { usePathname } from 'next/navigation';
-import { matchActualTarget } from 'utils';
 import { DynamicLink } from 'components/ui';
-import docsLinks from '../../../../content/docs-navigation.json';
-import { BiChevronRight } from 'react-icons/bi';
+import { usePathname } from 'next/navigation';
+import React, { createContext } from 'react';
 import AnimateHeight from 'react-animate-height';
+import { BiChevronRight } from 'react-icons/bi';
+import styled, { css } from 'styled-components';
+import { matchActualTarget } from 'utils';
+import docsLinks from '../../../../content/docs-navigation.json';
 import data from '../../../../content/siteConfig.json';
+import { DocsNavProps } from './DocumentationNavigation';
 
 interface NavTitleProps {
   level: number;
@@ -162,19 +162,22 @@ const NavLevel = ({
         )}
       </NavLabelContainer>
       {categoryData.items && (
-        <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
-          <NavLevelChildContainer level={level}>
-            {(categoryData.items || []).map((item) => (
-              <div key={item.slug ? item.slug + level : item.title + level}>
-                <NavLevel
-                  navListElem={navListElem}
-                  level={level + 1}
-                  categoryData={item}
-                />
-              </div>
-            ))}
-          </NavLevelChildContainer>
-        </AnimateHeight>
+        <>
+          <div className="mb-2"></div>
+          <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
+            <NavLevelChildContainer level={level}>
+              {(categoryData.items || []).map((item) => (
+                <div key={item.slug ? item.slug + level : item.title + level}>
+                  <NavLevel
+                    navListElem={navListElem}
+                    level={level + 1}
+                    categoryData={item}
+                  />
+                </div>
+              ))}
+            </NavLevelChildContainer>
+          </AnimateHeight>
+        </>
       )}
     </>
   );
