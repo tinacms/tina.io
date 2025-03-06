@@ -1,0 +1,78 @@
+{
+  "seo": {
+    "title": "路线图",
+    "description": "TinaCMS的路线图"
+  },
+  "blocks": [
+    {
+      "headline": "路线图",
+      "text": "",
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "欢迎来到Tina的公共路线图！这是一个实时文档，将会定期更新。要提交想法或查看我们正在考虑的功能请求和想法列表，请查看我们的[GitHub讨论](https://github.com/tinacms/tinacms/discussions \"GitHub讨论\")\n",
+      "_template": "content"
+    },
+    {
+      "headline": "最近发布",
+      "items": [
+        {
+          "headline": "GitHub企业版支持",
+          "status": "已发布",
+          "content": "TinaCloud现在支持连接到GitHub企业版本地安装。\n"
+        }
+      ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
+      "_template": "roadmapGrid"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "headline": "即将推出",
+      "items": [
+        {
+          "headline": "改进媒体管理用户体验",
+          "status": "进行中",
+          "content": "我们有许多媒体管理改进计划（如图片搜索、支持更多媒体类型等）。\n"
+        },
+        {
+          "headline": "AI工具",
+          "status": "即将推出",
+          "content": "我们正在开发一些利用AI优化内容创建流程的工具。\n"
+        },
+        {
+          "headline": "文档模板",
+          "status": "即将推出",
+          "content": "由于Tina在文档网站中表现出色，我们正在构建一个最佳实践的Tina + 文档启动模板。\n"
+        },
+        {
+          "headline": "改进的PR工作流",
+          "status": "即将推出",
+          "content": "我们正在对Tina的编辑工作流进行一些改进，允许您直接从CMS UI中合并拉取请求。\n",
+          "actions": [
+            {
+              "label": "编辑工作流",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/editorial-workflow/"
+            }
+          ]
+        }
+      ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
+      "_template": "roadmapGrid"
+    }
+  ]
+}
