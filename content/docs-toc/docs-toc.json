@@ -294,6 +294,11 @@
                   "title": "Github Pages",
                   "slug": "content/docs/tina-cloud/deployment-options/github-pages.mdx",
                   "_template": "item"
+                },
+                {
+                  "title": "Alibaba Cloud",
+                  "slug": "content/docs/tina-cloud/deployment-options/alibaba-cloud.mdx",
+                  "_template": "item"
                 }
               ],
               "_template": "items"

@@ -5,10 +5,10 @@
   "author": "Forestry.io",
   "main": "n/a",
   "engines": {
-    "node": ">=18"
+    "node": "20.x"
   },
   "scripts": {
-    "dev": "tinacms dev  --noTelemetry  -c \"next dev\"",
+    "dev": "tinacms dev --noTelemetry -c \"next dev\"",
     "build": "pnpm create-rss && tinacms build && next build",
     "export": "tinacms build && EXPORT_MODE=static,UNOPTIMIZED_IMAGES=true next build",
     "prestart": "tinacms build  && npm run export",
@@ -29,6 +29,7 @@
     "graphql": "^15.5.1"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.6.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
@@ -51,12 +52,17 @@
     "date-fns": "^4.1.0",
     "dotenv": "^8.6.0",
     "email-validator": "^2.0.4",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-class-names": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "fast-glob": "^3.3.2",
+    "framer-motion": "^12.0.3",
     "github-slugger": "^1.5.0",
     "graphql": "^15.9.0",
     "gray-matter": "^4.0.3",
     "js-cookie": "^3.0.5",
     "jsonp": "^0.2.1",
+    "lenis": "^1.1.20",
     "lodash": "^4.17.21",
     "lucide-react": "^0.471.0",
     "markdown-toc": "^1.2.0",
@@ -65,6 +71,7 @@
     "moment-timezone": "^0.5.46",
     "monaco-editor": "^0.52.0",
     "monaco-editor-webpack-plugin": "^7.1.0",
+    "negotiator": "^1.0.0",
     "next": "^14.2.18",
     "next-seo": "^4.29.0",
     "next-svgr": "0.0.2",
@@ -106,10 +113,12 @@
     "webpack": "^5.96.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "@tailwindcss/forms": "^0.5.9",
     "@tinacms/cli": "1.8.1",
     "@types/cookie": "^0.3.3",
     "@types/jest": "^25.2.3",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^22.10.1",
     "@types/react": "^16.14.62",
     "@types/react-instantsearch-dom": "^5.2.6",

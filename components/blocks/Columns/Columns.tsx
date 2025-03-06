@@ -1,39 +1,46 @@
-import React from 'react'
-import { Wrapper } from '../../layout/Wrapper'
-import { Section } from '../../layout/Section'
-import { contentComponents } from 'components/tinaMarkdownComponents/contentComponents'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { contentComponents } from 'components/tinaMarkdownComponents/contentComponents';
+import React from 'react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { Section } from '../../layout/Section';
+import { Container } from '../Container';
 
-import { DocsTextWrapper } from '../../layout/DocsTextWrapper'
+import { DocsTextWrapper } from '../../layout/DocsTextWrapper';
 
 export const ColumnsBlock = ({ data, index }) => {
   return (
     <>
       <Section color={data.options?.color || 'white'}>
         <DocsTextWrapper>
-          <Wrapper
-            align={data.options?.align || 'left'}
-            narrow={data.options?.narrow || false}
+          <div
+            className={
+              data.options?.align === 'center'
+                ? 'text-center'
+                : data.options?.align === 'right'
+                ? 'text-right'
+                : 'text-left'
+            }
           >
-            <div className="columns">
-              <div className="column">
-                {data.columnOne && (
-                  <TinaMarkdown
-                    components={contentComponents}
-                    content={data.columnOne}
-                  />
-                )}
+            <Container width={data.options?.narrow ? 'narrow' : 'medium'}>
+              <div className="columns">
+                <div className="column">
+                  {data.columnOne && (
+                    <TinaMarkdown
+                      components={contentComponents}
+                      content={data.columnOne}
+                    />
+                  )}
+                </div>
+                <div className="column">
+                  {data.columnTwo && (
+                    <TinaMarkdown
+                      components={contentComponents}
+                      content={data.columnTwo}
+                    />
+                  )}
+                </div>
               </div>
-              <div className="column">
-                {data.columnTwo && (
-                  <TinaMarkdown
-                    components={contentComponents}
-                    content={data.columnTwo}
-                  />
-                )}
-              </div>
-            </div>
-          </Wrapper>
+            </Container>
+          </div>
         </DocsTextWrapper>
       </Section>
       <style jsx>{`
@@ -48,5 +55,5 @@ export const ColumnsBlock = ({ data, index }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};

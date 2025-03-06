@@ -142,15 +142,26 @@ export const docAndBlogComponents: Components<{
   h4: (props) => <FormatHeaders level={5} {...props} />,
   h5: (props) => <FormatHeaders level={5} {...props} />,
   h6: (props) => <FormatHeaders level={6} {...props} />,
-  ul: (props) => <ul className="list-disc my-6 ml-5" {...props} />,
-  ol: (props) => <ol className="list-decimal ml-5" {...props} />,
-  li: (props) => <li className="mb-2 ml-10" {...props} />,
+  img: (props) => {
+    return (
+      <img
+        className="my-4 rounded-xl border"
+        src={props.url}
+        alt={props.alt || ''}
+        title={props.caption || ''}
+      ></img>
+    );
+  },
+  ul: (props) => <ul className="list-disc my-4 ml-2" {...props} />,
+  ol: (props) => <ol className="list-decimal my-4 ml-2" {...props} />,
+  li: (props) => <li className="mb-2 ml-8" {...props} />,
+  p: (props) => <p className="mb-2" {...props} />,
   a: (props) => {
     return (
       <a
         href={props.url}
         {...props}
-        className="underline opacity-80 transition-all duration-[185ms] ease-out hover:text-orange-500"
+        className="underline opacity-80 transition-all duration-200 ease-out hover:text-orange-500"
       />
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
@@ -159,7 +170,7 @@ export const docAndBlogComponents: Components<{
   blockquote: (props) => (
     <blockquote
       style={{
-        backgroundColor: 'var(--color-seafoam)',
+        backgroundColor: 'var(--color-white)',
       }}
       className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2"
       {...props}
@@ -174,7 +185,7 @@ export const docAndBlogComponents: Components<{
     );
   },
   WebmEmbed: ({ embedSrc, width = '100%' }) => (
-    <div className="video-container flex py-2 justify-center">
+    <div className="video-container flex justify-center my-4">
       <video
         width={width}
         height="auto"
@@ -404,8 +415,8 @@ function FormatHeaders({ children, level }) {
 
   const styles = {
     1: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl mt-4 mb-4',
-    2: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl mt-4 mb-3',
-    3: 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 !important',
+    2: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl mt-8 mb-2',
+    3: 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-4 mb-2 !important',
     4: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2 mb-2',
     5: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2 mb-1',
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',
@@ -434,7 +445,7 @@ function FormatHeaders({ children, level }) {
 
   useEffect(() => {
     if (window.location.hash) {
-      const hash = window.location.hash.substring(1); 
+      const hash = window.location.hash.substring(1);
       scrollToElement(hash);
     }
     //this is used for when you get sent a link with a hash (i.e link to a header)

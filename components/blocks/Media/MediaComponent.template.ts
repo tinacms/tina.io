@@ -3,8 +3,11 @@ import { cloudinaryMediaComponent } from '../../sharedTemplates/CloudinaryMedia.
 import { youtubeMediaTemplate } from '../../sharedTemplates/YoutubeMediaTemplate';
 
 export const mediaComponentTemplate: Template = {
-  label: 'Media Component',
+  label: 'Media Grid',
   name: 'mediaComponent',
+  ui: {
+    previewSrc: '/img/blocks/media.png',
+  },
   fields: [
     { name: 'headline', label: 'Headline', type: 'string' },
     {

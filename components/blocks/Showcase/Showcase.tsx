@@ -66,13 +66,11 @@ export function ShowcaseBlock({ data, index }) {
           grid-gap: var(--spacer-size);
           align-items: center;
           z-index: 2;
-          :not(:last-child) {
-            margin-bottom: 9rem;
-          }
           @media (min-width: 900px) {
             grid-template-columns: 1fr 1fr;
             grid-gap: var(--spacer-size);
           }
+          padding: 2rem 0;
         }
         .featureReverse {
           direction: rtl;
@@ -140,10 +138,7 @@ export function ShowcaseBlock({ data, index }) {
 
 export function ShowcaseItemsBlock({ data, index }) {
   return (
-    <section
-      key={'features-' + index}
-      className={'py-12 lg:py-16 last:pb-20 last:lg:pb-32'}
-    >
+    <section key={'features-' + index} className="w-full">
       <Container>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}

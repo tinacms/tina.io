@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { wrapFieldsWithMeta, type Template } from 'tinacms';
 import { checkboxList } from '../../../tina/customTinaFormFields/checkboxList';
-import React from 'react';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
-import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
 import { codeButtonTemplate } from '../CodeButton/CodeButton.template';
+import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
 
 //This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
 export const splitOneAndJoin = (item, separator) => {
@@ -14,8 +13,11 @@ export const splitOneAndJoin = (item, separator) => {
 };
 
 export const tableTemplate: Template = {
-  label: 'Table Box',
+  label: '<⭐> Table Box',
   name: 'table',
+  ui: {
+    previewSrc: '/img/blocks/table.png',
+  },
   fields: [
     {
       name: 'tableHeader',
@@ -36,8 +38,8 @@ export const tableTemplate: Template = {
       fields: [
         { name: 'isReccomended', label: 'Is Reccomended?', type: 'boolean' },
         { name: 'columnHeader', label: 'Column Header', type: 'string' },
-        { name: 'columnByLine', label: 'Column By-Line', type: 'string'},
-        { name: 'columnHeaderLink', label: 'Column Link', type: 'string'},
+        { name: 'columnByLine', label: 'Column By-Line', type: 'string' },
+        { name: 'columnHeaderLink', label: 'Column Link', type: 'string' },
       ],
     },
     {

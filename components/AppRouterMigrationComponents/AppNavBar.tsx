@@ -1,7 +1,11 @@
 'use client';
 
 import { DemoForm } from 'components/modals/BookDemo';
+import LanguageSelect from 'components/modals/LanguageSelect';
+import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
+import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import { BiChevronRight, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
@@ -15,7 +19,7 @@ import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
 import { EmailForm } from '../modals/EmailForm';
 import { Button } from '../ui/Button';
-
+import { saveLocaleToCookie } from '../../utils/locale';
 enum ValidColors {
   White = 'white',
   Blue = 'blue',
@@ -23,6 +27,26 @@ enum ValidColors {
   Seafoam = 'seafoam',
   Ghost = 'ghost',
 }
+
+const EnFlag = ({ className }) => (
+  <Image
+    src="/flags/en.png"
+    alt="English Flag"
+    width={20}
+    height={12}
+    className={className}
+  />
+);
+
+const ZhFlag = ({ className }) => (
+  <Image
+    src="/flags/zh.png"
+    alt="Chinese Flag"
+    width={20}
+    height={12}
+    className={className}
+  />
+);
 
 const modalButtonString = 'modalButton';
 
@@ -35,7 +59,15 @@ export function AppNavBar({ sticky = true }) {
   const [open, setOpen] = useState(false);
   const [stuck, setStuck] = useState(false);
   const [modalType, setModalType] = useState(null);
+
+  const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
+  const [animateFlag, setAnimateFlag] = useState(false);
+  const [modalClass, setModalClass] = useState('language-select-modal');
+  const [hideZh, setHideZh] = useState(false);
+
   const navRef = useRef(null);
+  const router = useRouter();
+  const pathName = usePathname();
 
   const navLinkClasses =
     'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
@@ -55,11 +87,54 @@ export function AppNavBar({ sticky = true }) {
     }
   }, [sticky]);
 
+  useEffect(() => {
+    const updateModalClass = () => {
+      setModalClass(
+        window.innerWidth < 540
+          ? 'mobile-language-select-modal'
+          : 'language-select-modal'
+      );
+    };
+
+    updateModalClass();
+    window.addEventListener('resize', updateModalClass);
+    return () => {
+      window.removeEventListener('resize', updateModalClass);
+    };
+  }, []);
+
+  useEffect(() => {
+    const pathLocale = pathName.split('/')[1];
+    if (
+      pathLocale === SupportedLocales.EN ||
+      pathLocale === SupportedLocales.ZH
+    ) {
+      setHideZh(false);
+      setSelectedFlag(pathLocale);
+    } else {
+      setHideZh(true);
+      setSelectedFlag(DEFAULT_LOCALE);
+    }
+  }, [pathName]);
+
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+
+  const handleLanguageChange = (code) => {
+    setSelectedFlag(code);
+    setOpen(false);
+    closeModal();
+    setTimeout(() => {
+      setAnimateFlag(true);
+      setTimeout(() => setAnimateFlag(false), 600);
+    }, 20);
+
+    router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
+    saveLocaleToCookie(code);
+  };
 
   return (
     <>
@@ -86,14 +161,31 @@ export function AppNavBar({ sticky = true }) {
                 }`}
               />
             </button>
-            <ul className="flex flex-col py-4 px-6 relative z-20">
-              <li className="pb-4 pt-2">
+
+            <div className="flex py-4 px-6 relative z-20 justify-between items-center">
+              <div className="pb-4 pt-2">
                 <Link href={'/'}>
                   <TinaLogoSvg
                     className={`flex items-center w-36 h-auto fill-orange-500`}
                   />
                 </Link>
-              </li>
+              </div>
+              <div className="flex items-center">
+                <button
+                  className={`outline-none hover:animate-jelly ${
+                    animateFlag ? 'animate-bounce' : ''
+                  } hidden max-[639px]:block`} // Adjust breakpoint as needed
+                  onClick={() => openModal('LanguageSelect')}
+                >
+                  {selectedFlag === 'en' ? (
+                    <EnFlag className="w-8 h-8" />
+                  ) : (
+                    <ZhFlag className="w-8 h-8" />
+                  )}
+                </button>
+              </div>
+            </div>
+            <ul className="flex flex-col py-4 px-6 relative z-20">
               {navItems.map((item, index) =>
                 item.items ? (
                   item.items.map((subItem, subIndex) =>
@@ -155,6 +247,19 @@ export function AppNavBar({ sticky = true }) {
                   {item.label}
                 </Button>
               ))}
+
+            <button
+              className={`outline-none hover:animate-jelly ${
+                animateFlag ? 'animate-bounce' : ''
+              } hidden min-[640px]:block`}
+              onClick={() => openModal('LanguageSelect')}
+            >
+              {selectedFlag === 'en' ? (
+                <EnFlag className="w-8 h-8" />
+              ) : (
+                <ZhFlag className="w-8 h-8" />
+              )}
+            </button>
           </div>
         </div>
         {/* Start of large (desktop +) view */}
@@ -163,7 +268,7 @@ export function AppNavBar({ sticky = true }) {
             stuck && sticky
               ? `min-[1300px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full min-[1300px]:px-10 hidden min-[1300px]:flex items-center justify-between gap-6`}
+          } z-40 w-full min-[1300px]:px-10 hidden min-[1300px]:flex items-center justify-between `}
         >
           <Link href={'/'}>
             <TinaLogoSvg
@@ -171,10 +276,13 @@ export function AppNavBar({ sticky = true }) {
             />
           </Link>
           <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1300px]:items-center gap-2 min-[1300px]:gap-x-12">
-            <ul className="flex gap-6 min-[1300px]:gap-8 min-[1300px]:gap-12 relative z-20">
+            <ul className="flex gap-4 ">
               {navItems.map((item, index) =>
                 item._template === modalButtonString ? (
-                  <li key={index} className={`group ${navLinkClasses} py-2`}>
+                  <li
+                    key={index}
+                    className={`group ${navLinkClasses} py-2 flex items-center`}
+                  >
                     <Button
                       color={item.color as ValidColors}
                       size="small"
@@ -185,7 +293,6 @@ export function AppNavBar({ sticky = true }) {
                           {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
                         </span>
                       )}
-
                       {item.label}
                     </Button>
                   </li>
@@ -229,6 +336,20 @@ export function AppNavBar({ sticky = true }) {
                   </li>
                 )
               )}
+              <li className="group flex items-center cursor-pointer">
+                <button
+                  className={`outline-none hover:animate-jelly ${
+                    animateFlag ? 'animate-bounce' : ''
+                  }`}
+                  onClick={() => openModal('LanguageSelect')}
+                >
+                  {selectedFlag === 'en' ? (
+                    <EnFlag className="w-8 h-8" />
+                  ) : (
+                    <ZhFlag className="w-8 h-8" />
+                  )}
+                </button>
+              </li>
             </ul>
           </nav>
         </div>
@@ -240,6 +361,21 @@ export function AppNavBar({ sticky = true }) {
 
       <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
         <EmailForm isFooter={false} />
+      </Modal>
+
+      <Modal
+        open={modalType === 'LanguageSelect'}
+        onClose={closeModal}
+        center
+        classNames={{
+          modal: modalClass,
+        }}
+      >
+        <LanguageSelect
+          onLanguageSelect={handleLanguageChange}
+          currentLanguage={selectedFlag}
+          hideZh={hideZh}
+        />
       </Modal>
     </>
   );

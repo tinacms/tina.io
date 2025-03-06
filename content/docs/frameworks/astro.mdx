@@ -1,65 +1,88 @@
 ---
 id: /docs/frameworks/astro
-
 title: Astro + Tina Setup Guide
 next: content/docs/frameworks/hugo.mdx
 previous: content/docs/frameworks/next/pages-router.mdx
 ---
 
-## Introduction
-
-TinaCMS can be added to your Astro site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
+\
+TinaCMS can be added to your Astro site locally, enabling seamless content management and editing. This guide will walk you through the local setup, configuring your content model, running TinaCMS, and enabling visual editing.
 
 ## Getting Started
 
-From within your site's directory, run:
+### 1. Initialize TinaCMS in Your Astro Site
+
+From within your site’s root directory, run the following command to initialize TinaCMS:
 
 ```bash
- npx @tinacms/cli@latest init
+npx @tinacms/cli@latest init
 ```
 
-This will ask you a few setup questions.
+This command will prompt you with a few setup questions. When asked for the **public assets directory**, enter:
 
-When prompted for the "**public assets directory**", enter: **public**.
+```
+public
+```
 
-## Model your content
-
-To edit your site's content in Tina, you can model your content in the tina/config.ts file.
-
-Learn more about content modelling [here](/docs/schema/)
-
-## Starting TinaCMS
-
-You can start TinaCMS with:
+Alternatively, you can use the TinaCMS starter template by running:
 
 ```bash
-npx tinacms dev -c "astro dev --port 8080"
+npx create-tina-app@latest --template tina-astro-starter
 ```
 
-> `astro dev --port 8080`can be replaced with your site's custom dev command.
+This will set up a blog-ready [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) with TinaCMS preconfigured.
 
-With TinaCMS running, navigate to `http://localhost:8080/admin/index.html`
+## Modeling Your Content
 
-> ^ The above default port may differ depending on your framework.
+To edit your site’s content using TinaCMS, define your content models in the `tina/config.ts` file.
 
-> Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
+Learn more about content modeling [here](/docs/schema/).
 
-At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
+## Running TinaCMS
 
-![](/img/hugo-tina-admin-screenshot.png)
+You can start TinaCMS with the following command:
 
-## Setting up Visual Editing (Optional)
+```bash
+npx tinacms dev -c "astro dev"
+```
 
-If you want to power your pages with TinaCMS's API, you'll be able to leverage TinaCMS's visual editing features.
+> Note: `--port 8080` can be added after `astro dev` to specify a custom port. 
 
-![block-based-editing-visual](/gif/blocks.gif)
+Once TinaCMS is running, navigate to:
+
+```
+http://localhost:<port>/admin/index.html
+or
+/admin (If using the Tina Astro Starter which redirects you to /admin/index.html)
+```
+
+> **Tip:** If you encounter errors, check the [Common Errors](/docs/forestry/common-errors) page.
+
+At this point, you should be able to see the Tina admin interface, select a post, save changes, and observe updates persisting to your local markdown files.
+
+![TinaCMS Admin](/img/hugo-tina-admin-screenshot.png)
+
+## Enabling Visual Editing (Optional)
+
+If you want to leverage TinaCMS's API for real-time editing, you can enable Visual Editing.
+
+
+> Note: In the [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) this is already enabled! 
+
+
+
+![Visual Editing](/gif/blocks.gif)
 
 Read more about [data fetching](/docs/features/data-fetching/) and [visual editing](/docs/contextual-editing/overview/).
 
-> Note: Visual Editing with Astro is considered experimental. [See Discussion](https://github.com/tinacms/tinacms/discussions/3399)
+> **Note:** Visual Editing with Astro is currently experimental. [See Discussion](https://github.com/tinacms/tinacms/discussions/3399).
 
 ## Next Steps
 
-- [Check out the content Modeling docs](/docs/schema/)
-- [Learn how to query your content](/docs/features/data-fetching/)
-- [Deploy Your Site](/docs/tina-cloud)
+* [Check out the content modeling docs](/docs/schema/)
+* [Learn how to query your content](/docs/features/data-fetching/)
+* [Deploy Your Site](/docs/tina-cloud)
+
+For more details, visit the official [TinaCMS documentation](https://tina.io/docs/) and [Astro documentation](https://astro.build/docs/).
+
+Join the [TinaCMS Discord](https://discord.gg/suurtdwX) for community support.

@@ -9,7 +9,6 @@ import css from 'styled-jsx/css';
 import { tinaField } from 'tinacms/dist/react';
 import { splitOneAndJoin } from './CompareBox.template';
 
-
 //Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
   let r = parseInt(hex.slice(1, 3), 16);
@@ -36,13 +35,15 @@ const CompanyItem = ({ company, onClick }) => {
       }`}
       onClick={onClick}
     >
-      {company.logoColour && <Image
-        src={company.logoColour}
-        alt={`${company.headline || "Unknown"} logo`}
-        className="lg:h-10 lg:w-10 md:h-8 md:w-8 h-6 w-6 "
-        width={40}
-        height={40}
-      />}
+      {company.logoColour && (
+        <Image
+          src={company.logoColour}
+          alt={`${company.headline || 'Unknown'} logo`}
+          className="lg:h-10 lg:w-10 md:h-8 md:w-8 h-6 w-6 "
+          width={40}
+          height={40}
+        />
+      )}
       <span
         className={`font-tuner  ${
           company.active
@@ -90,8 +91,9 @@ const CriteriaCard = ({ criteriaItems }) => {
 };
 
 const CompanyCard = ({ company, criteria }) => {
-
-  const criterias = company.satisfiedCriteria?.map((item) => splitOneAndJoin(item, "-"));
+  const criterias = company.satisfiedCriteria?.map((item) =>
+    splitOneAndJoin(item, '-')
+  );
   const baseColor = company.backgroundColor || '#000000';
   return (
     <div className="rounded-lg flex flex-col items-center w-full company-card">
@@ -108,13 +110,15 @@ const CompanyCard = ({ company, criteria }) => {
           )} 100%)`,
         }}
       >
-        {company.logoWhite && <Image
-          src={company.logoWhite}
-          alt={`${company.headline ?? "Unknown"} logo`}
-          className="xl:h-10 xl:w-10 lg:h-7 lg:w-7 md:h-7 md:w-7 h-8 w-8 pr-1 filter-transparent"
-          width={40}
-          height={40}
-        />}
+        {company.logoWhite && (
+          <Image
+            src={company.logoWhite}
+            alt={`${company.headline ?? 'Unknown'} logo`}
+            className="xl:h-10 xl:w-10 lg:h-7 lg:w-7 md:h-7 md:w-7 h-8 w-8 pr-1 filter-transparent"
+            width={40}
+            height={40}
+          />
+        )}
         <h3 className="hidden sm:block xl:text-xl lg:text-lg md:text-md text-xs font-bold text-white whitespace-nowrap">
           {company.headline}
         </h3>
@@ -122,32 +126,35 @@ const CompanyCard = ({ company, criteria }) => {
 
       <div className="w-full">
         {Array.from({ length: criteria?.length ?? 0 }, (_, idx) => {
-          const satisfied = criterias?.find((item) => item[1] === criteria[idx].criteria);
+          const satisfied = criterias?.find(
+            (item) => item[1] === criteria[idx].criteria
+          );
 
           return (
-          <div key={idx} className="flex flex-col items-center w-full">
-            <div
-              className="flex items-center justify-center w-full"
-              style={{
-                ...commonHeightStyle,
-                backgroundColor: company.backgroundColor
-                  ? hexToRgba(company.backgroundColor, 0.2)
-                  : 'transparent',
-              }}
-            >
-              {satisfied?.[0] === "true" && (
-                <FaCircle
-                  style={{ color: company.backgroundColor }}
-                  className="xl:h-5 xl:w-5 lg:h-5 lg:w-5 md:h-4 md:w-4 h-4 w-4"
-                />
-              )}
+            <div key={idx} className="flex flex-col items-center w-full">
+              <div
+                className="flex items-center justify-center w-full"
+                style={{
+                  ...commonHeightStyle,
+                  backgroundColor: company.backgroundColor
+                    ? hexToRgba(company.backgroundColor, 0.2)
+                    : 'transparent',
+                }}
+              >
+                {satisfied?.[0] === 'true' && (
+                  <FaCircle
+                    style={{ color: company.backgroundColor }}
+                    className="xl:h-5 xl:w-5 lg:h-5 lg:w-5 md:h-4 md:w-4 h-4 w-4"
+                  />
+                )}
+              </div>
+              <div
+                className="w-full"
+                style={{ backgroundColor: 'transparent', height: '0px' }}
+              ></div>
             </div>
-            <div
-              className="w-full"
-              style={{ backgroundColor: 'transparent', height: '0px' }}
-            ></div>
-          </div>
-        )})}
+          );
+        })}
       </div>
     </div>
   );
@@ -165,8 +172,8 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-      setCompanies(data.companies);
-    }, [data]);
+    setCompanies(data.companies);
+  }, [data]);
 
   useEffect(() => {
     if (userInteracted) return;
@@ -283,7 +290,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
   };
 
   return (
-    <div className="md:px-10 lg:px-10 rounded-lg">
+    <div className="md:px-10 lg:px-10 rounded-lg w-full">
       <div className="px-8 py-8 md:px-8 bg-gradient-to-br from-white/25 via-white/50 to-white/75  break-inside-avoid rounded-xl shadow-2xl">
         <h1 className="pl-3 font-tuner flex items-center text-center justify-center text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance px-2 mt-10 pb-8">
           Why Tina?
@@ -324,9 +331,14 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             <div className="col-span-1">
               <CriteriaCard criteriaItems={data.criteriaItems} />
             </div>
-            {companies?.filter((company) => company.active)
+            {companies
+              ?.filter((company) => company.active)
               .map((company, idx) => (
-                <CompanyCard key={`company-card-${idx}`} company={company} criteria={data.criteriaItems} />
+                <CompanyCard
+                  key={`company-card-${idx}`}
+                  company={company}
+                  criteria={data.criteriaItems}
+                />
               ))}
           </div>
         </div>

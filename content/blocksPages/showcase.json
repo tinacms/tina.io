@@ -10,6 +10,9 @@
       "_template": "hero"
     },
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "items": [
         {
           "headline": "NDC Conferences",

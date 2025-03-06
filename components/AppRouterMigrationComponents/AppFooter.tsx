@@ -197,8 +197,8 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
         {item.label}
       </summary>
       <div className="p-4">
-        {item.children.map((subItem) => (
-          <div>
+        {item.children.map((subItem, index) => (
+          <div key={index}>
             <DynamicLink href={subItem.link} passHref>
               <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
@@ -265,14 +265,14 @@ export const AppFooter = ({}) => {
             );
           })}
           <div className="flex flex-col lg:items-center font-tuner">
-            <div className="flex w-1/2 flex-col lg:items-start gap-4 drop-shadow-sm font-tuner">
+            <div className="flex flex-col lg:items-start gap-4 drop-shadow-sm font-tuner">
               <SocialLink link="https://github.com/tinacms/tinacms">
                 <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
                 GitHub
               </SocialLink>
-              <SocialLink link="https://twitter.com/tinacms">
+              <SocialLink link="https://x.com/tinacms">
                 <XIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                Twitter
+                X
               </SocialLink>
               <SocialLink link="https://discord.com/invite/zumN63Ybpf">
                 <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}

@@ -8,6 +8,8 @@ title: 'TinaCloud - A Headless CMS Backed by Git '
 date: '2021-04-21T14:06:05-03:00'
 last_edited: '2021-04-22T16:21:48.271Z'
 author: Scott Gallant
+prev: content/blog/2021-q1-tinacms-updates.mdx
+next: content/blog/using-graphql-with-the-filesystem.mdx
 ---
 
 We are giving teams the ability to edit content stored in Git, but visually, in the context of their site.
@@ -18,7 +20,7 @@ Just over a year ago, we[ announced TinaCMS](https://www.youtube.com/watch?v=iP
 
 With TinaCMS you can edit in the context of your site and those content changes get synced with *any* storage solution: a Markdown file in GitHub, an Airtable document, a Google Sheet, or just another headless CMS, etc.
 
-![](/img/blog/Before.png)
+![A cute TinaCMS llama is syncing content](/img/blog/Before.png "Edit in your TinaCMS site and those content changes get synced with any storage solution")
 
 This storage-agnostic approach maintains a separation of code and content, and doesn't lock you in to any specific content storage solution.
 
@@ -26,7 +28,7 @@ However, at the same time, this approach adds complexity to the setup process an
 
 ## TinaCloud: a best-in-class API on top of Git
 
-![](/img/blog/After.png)
+![TinaCloud is like a headless CMS stripped of the editing interface, which is provided by TinaCMS.](/img/blog/After.png)
 
 You can think of TinaCloud as a headless CMS stripped of the editing interface, which is provided by TinaCMS.
 
@@ -36,7 +38,7 @@ We are big believers in storing your website’s content in the filesystem backe
 
 However, Git and the filesystem have limitations when you’re interacting with your content programmatically. That’s why databases exist.
 
-> *Because of the file-based nature of content in a Git-based CMS, there really is no way to guarantee* *[referential integrity](https://en.wikipedia.org/wiki/Referential_integrity)* — [Brian Rinaldi](https://www.stackbit.com/blog/git-based-cms-relationships/)
+> *Because of the file-based nature of content in a Git-based CMS, there really is no way to guarantee* *[referential integrity](https://en.wikipedia.org/wiki/Referential_integrity)* — [Brian Rinaldi](https://www.stackbit.com/blog/git-based-cms-relationships)
 
 To overcome these limitations, TinaCloud provides a GraphQL interface to your repository files where content is stored in open formats like Markdown and JSON. This way you can interact with your repository files like you would a database: define content types, relationships, and query your content with GraphQL.
 

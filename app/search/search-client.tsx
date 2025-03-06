@@ -10,11 +10,22 @@ import {
 } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import {getSearchPageData} from './getSearchPageData';
 
-export default function SearchPageClient({ props }) {
+export default function SearchPageClient() {
+  const [props, setProps] = useState<{ formatted?: any }>({});
+
   const [query, setQuery] = useState('');
 
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getSearchPageData();
+      setProps(data.props);
+    }
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const param = searchParams.get('query');
@@ -27,7 +38,8 @@ export default function SearchPageClient({ props }) {
     <div className="relative my-16 flex justify-center items-center">
       <div className="lg:px-16 w-full max-w-[2000px] lg:grid grid-cols-[1fr_3fr] gap-16">
         <div className="hidden lg:block sticky top-32 h-[calc(100vh)]">
-          <LeftHandSideParentContainer tableOfContents={props.formatted.data} />
+          <LeftHandSideParentContainer tableOfContents={props?.formatted?.data} /> 
+          
         </div>
         <div className="mx-16 lg:mx-0">
           <div className="block lg:hidden">
