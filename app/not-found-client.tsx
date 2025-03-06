@@ -62,13 +62,13 @@ const NotFoundContent = () => (
   </PageLayout>
 );
 
-const RedirectPage = ({ defaultLocale = 'en', pathRoute = 'home' }) => (
+const RedirectPage = ({ pathRoute = 'home' }) => (
   <PageLayout
     title="Page Not Yet Translated"
     description="This page hasn’t been translated yet. You’ll be redirected to the English version."
   >
     <div className="flex flex-wrap gap-4">
-      <DynamicLink href={`/${defaultLocale}/${pathRoute}`} passHref>
+      <DynamicLink href={`/en/${pathRoute}`} passHref>
         <Button>Continue in English</Button>
       </DynamicLink>
     </div>
@@ -84,27 +84,25 @@ const LoadingPage = () => (
 
 export default function NotFoundClient() {
   const pathname = usePathname();
-  const defaultLocale = DEFAULT_LOCALE;
   const localeList = SUPPORTED_LOCALES;
   const [loading, setLoading] = useState(true);
-  const [pageExists, setPageExists] = useState(true);
+  const [pageExists, setPageExists] = useState(false);
 
   const pathSegments = pathname.split('/').filter(Boolean);
   const pathLocale = pathSegments[0] || '';
   const pathRoute = pathSegments[1] || '';
 
-  if (pathLocale === defaultLocale || !localeList.includes(pathLocale)) {
+  //几种情况
+  //无前缀 有效内容 不会触发
+  //无前缀 无效内容 应该not found
+  //无效前缀 应该直接not found
+  //有效前缀 无效内容 判断
+  if (!localeList.includes(pathLocale)) {
     return <NotFoundContent />;
   }
 
   useEffect(() => {
     async function checkEnglishPageExists() {
-      if (!pathRoute) {
-        setPageExists(false);
-        setLoading(false);
-        return;
-      }
-
       try {
         let res = await client.queries.pageWithRecentPosts({
           relativePath: `${pathRoute}.json`,
@@ -118,6 +116,7 @@ export default function NotFoundClient() {
 
         setPageExists(!!res);
       } catch (error) {
+        // TODO check if the second query can be excuted correctly
         console.error('Error checking page existence:', error);
         setPageExists(false);
       } finally {
@@ -133,7 +132,7 @@ export default function NotFoundClient() {
   }
 
   return pageExists ? (
-    <RedirectPage defaultLocale={defaultLocale} pathRoute={pathRoute} />
+    <RedirectPage pathRoute={pathRoute} />
   ) : (
     <NotFoundContent />
   );
