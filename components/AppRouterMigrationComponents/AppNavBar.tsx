@@ -104,22 +104,9 @@ export function AppNavBar({ sticky = true }) {
   }, []);
 
   useEffect(() => {
-    // const pathLocale = pathName.split('/')[1];
-    // if (
-    //   pathLocale === SupportedLocales.EN ||
-    //   pathLocale === SupportedLocales.ZH
-    // ) {
-    //   setHideZh(false);
-    //   setSelectedFlag(pathLocale);
-    // } else {
-    //   setHideZh(true);
-    //   setSelectedFlag(DEFAULT_LOCALE);
-    // }
-    // Check if the path starts with /zh
     if (pathName.startsWith('/zh')) {
       setSelectedFlag(SupportedLocales.ZH);
     } else {
-      // All other paths default to English
       setSelectedFlag(SupportedLocales.EN);
     }
   }, [pathName]);
@@ -211,7 +198,7 @@ export function AppNavBar({ sticky = true }) {
                 <button
                   className={`outline-none hover:animate-jelly ${
                     animateFlag ? 'animate-bounce' : ''
-                  } hidden max-[639px]:block`} // Adjust breakpoint as needed
+                  } hidden max-[639px]:block`}
                   onClick={() => openModal('LanguageSelect')}
                 >
                   {selectedFlag === 'en' ? (
