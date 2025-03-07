@@ -146,15 +146,22 @@ export function AppNavBar({ sticky = true }) {
   const handleLanguageChange = (code: string) => {
     saveLocaleToCookie(code);
     if (code === SupportedLocales.EN) {
-      // If switching to English, remove the /zh prefix if it exists
-      const newPath = pathName.replace(/^\/zh(\/|$)/, '/');
-      router.push(newPath);
+      if (pathName.startsWith(`/${SupportedLocales.ZH}`)) {
+        const newPath = pathName.replace(`/${SupportedLocales.ZH}`, '');
+        router.push(newPath);
+      }
     } else if (code === SupportedLocales.ZH) {
-      // If switching to Chinese, add the /zh prefix if it doesn't exist
-      if (pathName === '/') {
-        router.push('/zh');
-      } else if (!pathName.startsWith('/zh')) {
-        router.push(`/zh${pathName}`);
+      if (!pathName.startsWith(`/${SupportedLocales.ZH}`)) {
+        const localePattern = new RegExp(
+          `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+        );
+        const newPath = localePattern.test(pathName)
+          ? pathName.replace(localePattern, `/${SupportedLocales.ZH}$2`)
+          : pathName === '/'
+          ? `/${SupportedLocales.ZH}`
+          : `/${SupportedLocales.ZH}${pathName}`;
+
+        router.push(newPath);
       }
     }
     setSelectedFlag(code);
