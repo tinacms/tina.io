@@ -136,16 +136,7 @@ export function AppNavBar({ sticky = true }) {
   const navItems = Array.isArray(data.navItem) ? data.navItem : [];
 
   const handleLanguageChange = (code: string) => {
-    setSelectedFlag(code);
-    setOpen(false);
-    closeModal();
-    setTimeout(() => {
-      setAnimateFlag(true);
-      setTimeout(() => setAnimateFlag(false), 600);
-    }, 20);
-
-    // router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
-    debugger;
+    saveLocaleToCookie(code);
     if (code === SupportedLocales.EN) {
       // If switching to English, remove the /zh prefix if it exists
       const newPath = pathName.replace(/^\/zh(\/|$)/, '/');
@@ -158,8 +149,13 @@ export function AppNavBar({ sticky = true }) {
         router.push(`/zh${pathName}`);
       }
     }
-
-    saveLocaleToCookie(code);
+    setSelectedFlag(code);
+    setOpen(false);
+    closeModal();
+    setTimeout(() => {
+      setAnimateFlag(true);
+      setTimeout(() => setAnimateFlag(false), 600);
+    }, 20);
   };
 
   return (
