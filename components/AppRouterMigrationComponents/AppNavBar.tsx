@@ -139,7 +139,7 @@ export function AppNavBar({ sticky = true }) {
     saveLocaleToCookie(code);
     if (code === SupportedLocales.EN) {
       if (pathName.startsWith(`/${SupportedLocales.ZH}`)) {
-        const newPath = pathName.replace(`/${SupportedLocales.ZH}`, '');
+        const newPath = pathName.replace(`/${SupportedLocales.ZH}`, '') || '/';
         router.push(newPath);
       }
     } else if (code === SupportedLocales.ZH) {
