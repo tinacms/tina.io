@@ -2,7 +2,7 @@
 
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
-import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
+import { DEFAULT_LOCALE, SupportedLocales, isValidPathCheck } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -122,6 +122,12 @@ export function AppNavBar({ sticky = true }) {
       // All other paths default to English
       setSelectedFlag(SupportedLocales.EN);
     }
+  }, [pathName]);
+
+  const [isChinafyPath, setIsChinafyPath] = useState(true);
+  useEffect(() => {
+    const isValid = isValidPathCheck(pathName);
+    setIsChinafyPath(isValid);
   }, [pathName]);
 
   const toggleMenu = () => setOpen((prev) => !prev);
@@ -365,18 +371,20 @@ export function AppNavBar({ sticky = true }) {
                 )
               )}
               <li className="group flex items-center cursor-pointer">
-                <button
-                  className={`outline-none hover:animate-jelly ${
-                    animateFlag ? 'animate-bounce' : ''
-                  }`}
-                  onClick={() => openModal('LanguageSelect')}
-                >
-                  {selectedFlag === 'en' ? (
-                    <EnFlag className="w-8 h-8" />
-                  ) : (
-                    <ZhFlag className="w-8 h-8" />
-                  )}
-                </button>
+                {isChinafyPath && (
+                  <button
+                    className={`outline-none hover:animate-jelly ${
+                      animateFlag ? 'animate-bounce' : ''
+                    }`}
+                    onClick={() => openModal('LanguageSelect')}
+                  >
+                    {selectedFlag === 'en' ? (
+                      <EnFlag className="w-8 h-8" />
+                    ) : (
+                      <ZhFlag className="w-8 h-8" />
+                    )}
+                  </button>
+                )}
               </li>
             </ul>
           </nav>
