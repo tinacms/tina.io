@@ -102,7 +102,7 @@
       "items": [
         {
           "title": "Content Model Overview",
-          "slug": "content/docs/schema.mdx",
+          "slug": "content/docs/content-model-intro.mdx",
           "_template": "item"
         },
         {
@@ -287,7 +287,8 @@
               "slug": "content/docs/extending-tina/before-submit.mdx",
               "_template": "item"
             }
-          ]
+          ],
+          "_template": "items"
         }
       ]
     },
@@ -496,8 +497,7 @@
           ],
           "_template": "items"
         }
-      ],
-      "_template": "items"
+      ]
     },
     {
       "title": "Guides",
