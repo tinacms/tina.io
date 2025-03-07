@@ -1,5 +1,6 @@
 import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
+import { PathnameContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import { NextRequest, NextResponse } from 'next/server';
 
 export enum SupportedLocales {
@@ -23,32 +24,11 @@ const RESERVED_PATHS = [
 ];
 
 export function middleware(request: NextRequest) {
-  //现在默认英文无前缀，其他语言有前缀
   const pathname = request.nextUrl.pathname;
-
-  const isValidPath =
-    pathname === '/' ||
-    (/^\/[^/]+$/.test(pathname) &&
-      !RESERVED_PATHS.includes(pathname.substring(1)) &&
-      !pathname.startsWith('/_next') &&
-      !pathname.includes('.')) ||
-    (/^\/[^/]+\/[^/]+/.test(pathname) &&
-      SUPPORTED_LOCALES.includes(pathname.split('/')[1]) &&
-      !pathname.startsWith('/_next') &&
-      !pathname.includes('.'));
-  if (!isValidPath) {
+  if (!isValidPathCheck(pathname)) {
     return;
   }
-  //谁能打到这里
-  // /  -> /home 有可能可以通过page直接处理 需要重定向为 /locale/home  对应直接访问官网的情况 需要cookie
-  // /有效文件 -> /有效文件 对应按钮跳转的情况 因为可能从中文页面发出也可能从英文页面发出，所以需要重定向， 需要cookie
-  // /无效文件 -> /无效文件
-  // /有效locale -> 重写 /有效locale/home 已经申明locale就不要cookie
-  // /无效locale -> /无效locale
-  // /有效locale/无效文件 -> /有效locale/无效文件 /也不需要cookie
-  // /有效locale/有效文件 -> /有效locale/有效文件 /也不需要cookie
 
-  //Show the original info
   console.log(`default language: ${DEFAULT_LOCALE}`);
   console.log(`current path: ${pathname}`);
 
@@ -64,13 +44,7 @@ export function middleware(request: NextRequest) {
       return;
     }
   }
-  //谁能打到这里
-  // 无有效语言前缀
-  // 无效前缀 -> 直接跳到not found去处理
-  // 无前缀英文页面
-  // 只有我们选择访问英文界面或者点击按钮的时候会发生
-  // 如果我们实际想访问英文就直接返回
-  // 如果我们实际想访问中文就重定向到中文页面
+
   let response;
   const locale = getLocale(request);
   console.log(`Current Locale: ${locale}`);
@@ -129,4 +103,18 @@ function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
   } catch (error) {
     return null;
   }
+}
+
+export function isValidPathCheck(pathname) {
+  return (
+    pathname === '/' ||
+    (/^\/[^/]+$/.test(pathname) &&
+      !RESERVED_PATHS.includes(pathname.substring(1)) &&
+      !pathname.startsWith('/_next') &&
+      !pathname.includes('.')) ||
+    (/^\/[^/]+\/[^/]+/.test(pathname) &&
+      SUPPORTED_LOCALES.includes(pathname.split('/')[1]) &&
+      !pathname.startsWith('/_next') &&
+      !pathname.includes('.'))
+  );
 }
