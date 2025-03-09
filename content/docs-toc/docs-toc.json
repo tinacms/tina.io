@@ -30,11 +30,6 @@
               "title": "Next.js",
               "items": [
                 {
-                  "title": "Overview",
-                  "slug": "content/docs/frameworks/next/overview.mdx",
-                  "_template": "item"
-                },
-                {
                   "title": "App Router",
                   "slug": "content/docs/frameworks/next/app-router.mdx",
                   "_template": "item"
