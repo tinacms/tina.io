@@ -110,7 +110,7 @@ export function AppNavBar({ sticky = true }) {
     }
   }, [pathName]);
 
-  const [isChinafyPath, setIsChinafyPath] = useState(true);
+  const [isChinafyPath, setIsChinafyPath] = useState(false);
   useEffect(() => {
     const isValid = isValidPathCheck(pathName);
     setIsChinafyPath(isValid);

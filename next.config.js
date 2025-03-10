@@ -55,6 +55,11 @@ const config = {
         destination: '/home',
       },
       {
+        source: '/:locale(en|zh)',
+        destination: '/:locale/home',
+      },
+      {
+        // TODO Check if necessary
         source: '/en/:path*',
         destination: '/:path*',
       },
@@ -110,6 +115,7 @@ const config = {
     ];
   },
   async redirects() {
+    //TODO We need a better way to handle redirects
     return [
       {
         source: '/early-access',

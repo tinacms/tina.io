@@ -1,6 +1,5 @@
 import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
-import { PathnameContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import { NextRequest, NextResponse } from 'next/server';
 
 export enum SupportedLocales {
@@ -8,51 +7,34 @@ export enum SupportedLocales {
   ZH = 'zh',
 }
 
+export const VALID_PATHS = [
+  '/',
+  '/about',
+  '/compare-tina',
+  '/enterprise',
+  '/home',
+  '/roadmap',
+  '/showcase',
+  '/pricing',
+];
+
 export const SUPPORTED_LOCALES = ['en', 'zh'];
 export const DEFAULT_LOCALE = 'en';
-const RESERVED_PATHS = [
-  'api',
-  'blog',
-  'community',
-  'docs',
-  'events',
-  'examples',
-  'search',
-  'test-analytics',
-  'whats-new',
-  'admin',
-];
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  if (!isValidPathCheck(pathname)) {
-    return;
-  }
-
-  console.log(`default language: ${DEFAULT_LOCALE}`);
+  console.log(`Pass through middleware`);
   console.log(`current path: ${pathname}`);
-
-  const matchedLocale = SUPPORTED_LOCALES.find(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-  if (matchedLocale) {
-    if (pathname === `/${matchedLocale}`) {
-      const url = request.nextUrl.clone();
-      url.pathname = `/${matchedLocale}/home`;
-      return NextResponse.rewrite(url);
-    } else {
-      return;
-    }
-  }
+  console.log(`default language: ${DEFAULT_LOCALE}`);
 
   let response;
   const locale = getLocale(request);
-  console.log(`Current Locale: ${locale}`);
   if (locale === DEFAULT_LOCALE) {
     response = NextResponse.next();
   } else {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
+    console.log(`Redirect to ${url}`);
     response = NextResponse.redirect(url);
   }
   response.cookies.set('NEXT_LOCALE', locale, {
@@ -63,7 +45,16 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|public|api).*)'],
+  matcher: [
+    '/',
+    '/about',
+    '/compare-tina',
+    '/enterprise',
+    '/home',
+    '/roadmap',
+    '/showcase',
+    '/pricing',
+  ],
 };
 
 function getLocale(request: NextRequest): string {
@@ -106,15 +97,12 @@ function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
 }
 
 export function isValidPathCheck(pathname) {
-  return (
-    pathname === '/' ||
-    (/^\/[^/]+$/.test(pathname) &&
-      !RESERVED_PATHS.includes(pathname.substring(1)) &&
-      !pathname.startsWith('/_next') &&
-      !pathname.includes('.')) ||
-    (/^\/[^/]+\/[^/]+/.test(pathname) &&
-      SUPPORTED_LOCALES.includes(pathname.split('/')[1]) &&
-      !pathname.startsWith('/_next') &&
-      !pathname.includes('.'))
-  );
+  if (VALID_PATHS.includes(pathname)) {
+    return true;
+  }
+  const pathParts = pathname.split('/').filter(Boolean);
+  if (pathParts.length >= 1 && SUPPORTED_LOCALES.includes(pathParts[0])) {
+    return true;
+  }
+  return false;
 }
