@@ -187,7 +187,7 @@ export default function ScrollBasedShowcase(data: {
     <div
       ref={componentRef}
       // doc-container replacements:
-      className="block relative w-full my-20 mx-auto"
+      className="block relative w-full my-5 mx-auto"
     >
       <div className="flex relative min-h-screen">
         <div id="main-content-container" className="flex-1 m-2 p-2 box-border">
