@@ -1,12 +1,12 @@
 ---
 title: Before Reaching Out...
-last_edited: '2025-03-10T00:56:03.031Z'
+last_edited: '2025-03-10T01:03:05.136Z'
 tocIsHidden: true
 next: ''
 previous: ''
 ---
 
-First Steps – Debugging
+## First Steps – Debugging
 
 1. tina-lock.json – check your Tina lock-file is up to date. You can update it by running XYZ. This resolves the majority of user issues related to indexing.
 2. TinaCloud indexing – you can re-index a branch via the TinaCloud dashboard if you're still running into indexing problems.
@@ -15,7 +15,7 @@ First Steps – Debugging
 
 ![](/img/docs/SCR-20250310-jylo.png)
 
-Best Practices
+## Best Practices
 
 1\. Keep your Tina client abstracted from UI code – keeping a clean distinction between TinaCMS content fetches and the rest of your application helps you isolate whether a problem is related to Tina or in your application.
 
@@ -23,4 +23,18 @@ Best Practices
 
 3\. Styling the Editor – custom tailwind classes can't be used in the TinaCMS Editor. This is partially by design to help avoid conflicts with your application, especially in Visual Editing scenarios. Design custom editor components with this in mind.
 
-4\. Abstracting Template Code – TinaCMS generates code (typing information, queries, related infrastructure) based on your provided schema. If you're importing files into your tina/config.ts  for this purpose, make sure the file only contains the schema definition. Additional content will also be parsed for code generation, which may not always be desirable.
+4\. Isolating Schema Definition – TinaCMS generates code (typing information, queries, related infrastructure) based on your provided schema. If you're importing files into your tina/config.ts  for this purpose, make sure the file only contains the schema definition. Additional content will also be parsed for code generation, which may not always be desirable.
+
+## Reaching Out
+
+<cardGrid
+  cards={[
+    {
+      link: "https://tina.io/docs/introduction/faq",
+      title: "Frequently Asked Questions",
+      description:
+        "Check out the most frequently asked questions on the FAQ page, including solutions for common issues."
+    },
+    {}
+  ]}
+/>
