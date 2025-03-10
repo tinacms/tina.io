@@ -266,10 +266,12 @@ export default function Post(props: ClientPageProps) {
 
 When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where Vercel is aggressively caching content causing certain updates to not reflect correctly.
 
-There's two ways to fix this:
+The root cause is that the [Vercel Data Cache](https://vercel.com/docs/data-cache) is caching responses from TinaCloud's content API. This can be confirmed by either querying the GraphQL API and looking for the updated content, or by checking the [cache's usage in Vercel](https://vercel.com/docs/data-cache/manage-data-cache).
 
-1. Manually updating the default re-validation time for route segments. Find more information here: [https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
-2. Pass { cache: 'no-store' } as an additional parameter to fetch requests to force the fetching of latest content. Find more information here: [https://nextjs.org/docs/app/api-reference/functions/fetch#optionscache](https://nextjs.org/docs/app/api-reference/functions/fetch#optionscache)
+There are 2 ways to modify your site to best work with the Vercel Data Cache:
+
+1. Manually updating the default re-validation time for route segments. This will cause Incremental Static Regeneration to rebuild the pages whilst revalidating cached content API reponses at runtime with updated content. Find more information here: [https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
+2. Add an extra parameter to your query (TinaCMS generated) e.g. `const response = await client.queries.page({ relativePath: 'pages/home.mdx'}, { fetchOptions: { next: { revalidate: 60 } })})`. This will be passed to the underlying `fetch` request.  Find more information about how Next.js extends `fetch`: [https://nextjs.org/docs/app/api-reference/functions/fetch](https://nextjs.org/docs/app/api-reference/functions/fetch)
 
 ### Newly Created Content Items Not Appearing on Page
 
