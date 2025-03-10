@@ -16,7 +16,7 @@
       "items": [
         {
           "label": "关于 TinaCMS",
-          "href": "/about"
+          "href": "/zh/about"
         },
         {
           "label": "博客",
@@ -24,7 +24,7 @@
         },
         {
           "label": "产品对比",
-          "href": "/compare-tina"
+          "href": "/zh/compare-tina"
         },
         {
           "label": "示例",
@@ -46,11 +46,11 @@
       "items": [
         {
           "label": "案例展示",
-          "href": "/showcase"
+          "href": "/zh/showcase"
         },
         {
           "label": "产品路线",
-          "href": "/roadmap"
+          "href": "/zh/roadmap"
         },
         {
           "label": "技术支持",
@@ -73,7 +73,7 @@
     },
     {
       "label": "企业版",
-      "href": "/enterprise",
+      "href": "/zh/enterprise",
       "_template": "stringItem"
     },
     {
