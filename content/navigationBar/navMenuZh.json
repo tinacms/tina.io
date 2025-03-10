@@ -31,11 +31,11 @@
           "href": "/examples"
         },
         {
-          "label": "Whats New - TinaCMS",
+          "label": "最新动态 - TinaCMS",
           "href": "/whats-new/tinacms"
         },
         {
-          "label": "Whats New - TinaCloud",
+          "label": "最新动态 - TinaCloud",
           "href": "/whats-new/tinacloud"
         }
       ],
@@ -77,7 +77,7 @@
       "_template": "stringItem"
     },
     {
-      "label": "Tina云",
+      "label": "TinaCloud",
       "href": "https://app.tina.io/signin",
       "_template": "stringItem"
     },
