@@ -9,6 +9,7 @@
   overflow: hidden !important;
   max-height: 100% !important;
   max-width: 62rem !important;
+  height: 20rem;
 }
 
 .email-and-demo-modal {
