@@ -7,23 +7,23 @@
       "_template": "stringItem"
     },
     {
-      "label": "Cloud Pricing",
+      "label": "价位",
       "href": "/pricing",
       "_template": "stringItem"
     },
     {
-      "label": "Resources",
+      "label": "资源中心",
       "items": [
         {
-          "label": "About TinaCMS",
+          "label": "关于 TinaCMS",
           "href": "/about"
         },
         {
-          "label": "Blog",
+          "label": "博客",
           "href": "/blog"
         },
         {
-          "label": "Compare Tina",
+          "label": "产品对比",
           "href": "/compare-tina"
         },
         {
@@ -42,18 +42,18 @@
       "_template": "groupOfStringItems"
     },
     {
-      "label": "Community",
+      "label": "社区",
       "items": [
         {
-          "label": "Showcase",
+          "label": "案例展示",
           "href": "/showcase"
         },
         {
-          "label": "Roadmap",
+          "label": "产品路线",
           "href": "/roadmap"
         },
         {
-          "label": "Support",
+          "label": "技术支持",
           "href": "/docs/support"
         },
         {
@@ -65,24 +65,24 @@
           "href": "https://discord.com/invite/zumN63Ybpf"
         },
         {
-          "label": "Forum",
+          "label": "论坛",
           "href": "https://github.com/tinacms/tinacms/discussions"
         }
       ],
       "_template": "groupOfStringItems"
     },
     {
-      "label": "Enterprise",
+      "label": "企业版",
       "href": "/enterprise",
       "_template": "stringItem"
     },
     {
-      "label": "My TinaCloud",
+      "label": "Tina云",
       "href": "https://app.tina.io/signin",
       "_template": "stringItem"
     },
     {
-      "label": "Subscribe",
+      "label": "订阅",
       "color": "white",
       "size": "medium",
       "modal": "EmailForm",
@@ -90,7 +90,7 @@
       "_template": "modalButton"
     },
     {
-      "label": "Book a demo",
+      "label": "预约演示",
       "color": "orange",
       "size": "medium",
       "modal": "BookDemo",
