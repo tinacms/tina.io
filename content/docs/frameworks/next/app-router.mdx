@@ -262,11 +262,19 @@ export default function Post(props: ClientPageProps) {
 
 ## FAQs
 
+### Updates Not Reflecting Correctly on Page
+
+When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where Vercel is aggressively caching content causing certain updates to not reflect correctly.
+
+There's two ways to fix this:
+
+1. Manually updating the default re-validation time for route segments. Find more information here: [https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
+2. Pass { cache: 'no-store' } as an additional parameter to fetch requests to force the fetching of latest content. Find more information here: [https://nextjs.org/docs/app/api-reference/functions/fetch#optionscache](https://nextjs.org/docs/app/api-reference/functions/fetch#optionscache)
+
 ### Newly Created Content Items Not Appearing on Page
 
 When working with TinaCMS in a Next.js project using the App Router, you might encounter situations where newly created content items do not immediately appear on the corresponding page. This behavior is typically caused by the aggressive caching mechanisms employed by Next.js and the browser.
 
-\
 To ensure you see the most up-to-date content during local development, you can disable browser caching in your browser's Developer Tools:
 
 1. Open Developer Tools in your browser (e.g., Chrome, Firefox).
