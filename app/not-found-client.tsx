@@ -92,11 +92,6 @@ export default function NotFoundClient() {
   const pathLocale = pathSegments[0] || '';
   const pathRoute = pathSegments[1] || '';
 
-  //几种情况
-  //无前缀 有效内容 不会触发
-  //无前缀 无效内容 应该not found
-  //无效前缀 应该直接not found
-  //有效前缀 无效内容 判断
   if (!localeList.includes(pathLocale)) {
     return <NotFoundContent />;
   }
@@ -116,7 +111,6 @@ export default function NotFoundClient() {
 
         setPageExists(!!res);
       } catch (error) {
-        // TODO check if the second query can be excuted correctly
         console.error('Error checking page existence:', error);
         setPageExists(false);
       } finally {

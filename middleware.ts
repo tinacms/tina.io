@@ -45,16 +45,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/',
-    '/about',
-    '/compare-tina',
-    '/enterprise',
-    '/home',
-    '/roadmap',
-    '/showcase',
-    '/pricing',
-  ],
+  matcher: ['/'],
 };
 
 function getLocale(request: NextRequest): string {

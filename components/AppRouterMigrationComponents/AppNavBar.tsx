@@ -132,22 +132,25 @@ export function AppNavBar({ sticky = true }) {
 
   const handleLanguageChange = (code: string) => {
     saveLocaleToCookie(code);
+    const localePattern = new RegExp(
+      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+    );
     if (code === SupportedLocales.EN) {
-      if (pathName.startsWith(`/${SupportedLocales.ZH}`)) {
-        const newPath = pathName.replace(`/${SupportedLocales.ZH}`, '') || '/';
-        router.push(newPath);
-      }
-    } else if (code === SupportedLocales.ZH) {
-      if (!pathName.startsWith(`/${SupportedLocales.ZH}`)) {
-        const localePattern = new RegExp(
-          `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+      if (localePattern.test(pathName)) {
+        const newPath = pathName.replace(
+          localePattern,
+          (match, locale, slash) => {
+            return slash === '/' ? '/' : '';
+          }
         );
-        const newPath = localePattern.test(pathName)
-          ? pathName.replace(localePattern, `/${SupportedLocales.ZH}$2`)
-          : pathName === '/'
-          ? `/${SupportedLocales.ZH}`
-          : `/${SupportedLocales.ZH}${pathName}`;
-
+        router.push(newPath === '' ? '/' : newPath);
+      }
+    } else {
+      if (localePattern.test(pathName)) {
+        const newPath = pathName.replace(localePattern, `/${code}$2`);
+        router.push(newPath);
+      } else {
+        const newPath = pathName === '/' ? `/${code}` : `/${code}${pathName}`;
         router.push(newPath);
       }
     }

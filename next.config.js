@@ -59,11 +59,6 @@ const config = {
         destination: '/:locale/home',
       },
       {
-        // TODO Check if necessary
-        source: '/en/:path*',
-        destination: '/:path*',
-      },
-      {
         source: '/admin',
         destination: '/admin/index.html',
       },
