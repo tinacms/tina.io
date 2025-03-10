@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import { FaChevronRight } from "react-icons/fa";
 import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 
@@ -44,7 +44,7 @@ export const DemoForm = () => {
                   )}
                   <div className="flex-grow text-center md:text-left lg:text-left">
                     <div className="font-medium text-lg">{person.name}</div>
-                    <div className="text-muted-foreground text-xs">
+                    <div className="text-muted-foreground text-md">
                       {person.description}
                     </div>
                   </div>

@@ -8,6 +8,7 @@
   border-radius: 16px !important;
   overflow: hidden !important;
   max-height: 100% !important;
+  max-width: 62rem !important;
 }
 
 .email-and-demo-modal {
