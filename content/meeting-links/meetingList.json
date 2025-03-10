@@ -1,20 +1,22 @@
-{"bookingCard": [
-  {
-    "name": "Oceania & Asia",
-    "description": "Meet with Levi (English)",
-    "image": "/img/people/levi-circle_ca5za1.png",
-    "url": "https://meetings-eu1.hubspot.com/levi-jackson"
-  },
-  {
-    "name": "Europe",
-    "description": "Meet with Jean (English & French)",
-    "image": "/img/people/jean-circle_v4aiw5.png",
-    "url": "https://meetings-eu1.hubspot.com/jean-thirion"
-  },
-  {
-    "name": "Americas",
-    "description": "Meet with Scott (English)",
-    "image": "/img/people/scott-circle2_dlmyxx.jpg",
-    "url": "https://meetings-eu1.hubspot.com/scott15"
-  }
-]}
+{
+  "bookingCard": [
+    {
+      "name": "Oceania & Asia",
+      "description": "Meet with Levi 🇦🇺",
+      "image": "/img/people/levi-circle_ca5za1.png",
+      "url": "https://meetings-eu1.hubspot.com/levi-jackson"
+    },
+    {
+      "name": "Europe + USA (East) + South America",
+      "description": "Meet with Jean 🇫🇷 🇬🇧",
+      "image": "/img/people/jean-circle_v4aiw5.png",
+      "url": "https://meetings-eu1.hubspot.com/jean-thirion"
+    },
+    {
+      "name": "USA (West) + Pacific",
+      "description": "Meet with Seth 🇺🇸",
+      "image": "/Seth-Daily-square.jpg",
+      "url": "https://meetings-eu1.hubspot.com/meetings/seth-daily"
+    }
+  ]
+}

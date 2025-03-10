@@ -14,12 +14,13 @@ import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import data from '../../content/navigationBar/navMenu.json';
+import zhData from '../../content/navigationBar/navMenuZh.json';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
+import { saveLocaleToCookie } from '../../utils/locale';
 import { EmailForm } from '../modals/EmailForm';
 import { Button } from '../ui/Button';
-import { saveLocaleToCookie } from '../../utils/locale';
 enum ValidColors {
   White = 'white',
   Blue = 'blue',
@@ -121,7 +122,14 @@ export function AppNavBar({ sticky = true }) {
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
-  const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+  const navItems =
+    selectedFlag === SupportedLocales.ZH
+      ? Array.isArray(zhData.navItem)
+        ? zhData.navItem
+        : []
+      : Array.isArray(data.navItem)
+      ? data.navItem
+      : [];
 
   const handleLanguageChange = (code) => {
     setSelectedFlag(code);
