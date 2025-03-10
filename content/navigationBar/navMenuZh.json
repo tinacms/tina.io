@@ -1,0 +1,101 @@
+{
+  "navigationBar": "Master",
+  "navItem": [
+    {
+      "label": "文档",
+      "href": "/docs",
+      "_template": "stringItem"
+    },
+    {
+      "label": "价位",
+      "href": "/pricing",
+      "_template": "stringItem"
+    },
+    {
+      "label": "资源中心",
+      "items": [
+        {
+          "label": "关于 TinaCMS",
+          "href": "/zh/about"
+        },
+        {
+          "label": "博客",
+          "href": "/blog"
+        },
+        {
+          "label": "产品对比",
+          "href": "/zh/compare-tina"
+        },
+        {
+          "label": "示例",
+          "href": "/examples"
+        },
+        {
+          "label": "最新动态 - TinaCMS",
+          "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "最新动态 - TinaCloud",
+          "href": "/whats-new/tinacloud"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "社区",
+      "items": [
+        {
+          "label": "案例展示",
+          "href": "/zh/showcase"
+        },
+        {
+          "label": "产品路线",
+          "href": "/zh/roadmap"
+        },
+        {
+          "label": "技术支持",
+          "href": "/docs/support"
+        },
+        {
+          "label": "Awesome TinaCMS",
+          "href": "https://github.com/tinacms/awesome-tinacms"
+        },
+        {
+          "label": "Discord",
+          "href": "https://discord.com/invite/zumN63Ybpf"
+        },
+        {
+          "label": "论坛",
+          "href": "https://github.com/tinacms/tinacms/discussions"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "企业版",
+      "href": "/zh/enterprise",
+      "_template": "stringItem"
+    },
+    {
+      "label": "TinaCloud",
+      "href": "https://app.tina.io/signin",
+      "_template": "stringItem"
+    },
+    {
+      "label": "订阅",
+      "color": "white",
+      "size": "medium",
+      "modal": "EmailForm",
+      "icon2": "MdEmail",
+      "_template": "modalButton"
+    },
+    {
+      "label": "预约演示",
+      "color": "orange",
+      "size": "medium",
+      "modal": "BookDemo",
+      "icon2": "FaCalendarDay",
+      "_template": "modalButton"
+    }
+  ]
+}
