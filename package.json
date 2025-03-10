@@ -33,7 +33,7 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
-    "@next/bundle-analyzer": "^14.2.18",
+    "@next/bundle-analyzer": "^15.2.1",
     "@next/third-parties": "^15.1.1",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
