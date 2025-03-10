@@ -1,12 +1,20 @@
 ---
 title: Before Reaching Out...
-last_edited: '2025-03-09T23:52:58.193Z'
+last_edited: '2025-03-10T00:30:22.294Z'
 tocIsHidden: true
 next: ''
 previous: ''
 ---
 
-Common Pitfalls Checklist
+First Steps – Debugging
 
 1. tina-lock.json – check your Tina lock-file is up to date. You can update it by running XYZ. This resolves the majority of user issues related to indexing.
-2.
+2. TinaCloud indexing – you can re-index a branch via the TinaCloud dashboard if you're still running into indexing problems.
+
+\<TODO Images>
+
+Best Practices
+
+1\. Keep your Tina client abstracted from UI code – keeping a clean distinction between Tina content fetches and the rest of your application helps you isolate whether a problem is related to Tina or your application.
+
+2\. Caching – TinaCloud has caching layers for your content, and it's likely your framework and hosting service have caching layers as well. These interactions can be complex, 
