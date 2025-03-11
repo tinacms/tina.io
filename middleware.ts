@@ -23,9 +23,6 @@ export const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  console.log(`Pass through middleware`);
-  console.log(`current path: ${pathname}`);
-  console.log(`default language: ${DEFAULT_LOCALE}`);
 
   let response;
   const locale = getLocale(request);
@@ -34,7 +31,6 @@ export function middleware(request: NextRequest) {
   } else {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
-    console.log(`Redirect to ${url}`);
     response = NextResponse.redirect(url);
   }
   response.cookies.set('NEXT_LOCALE', locale, {
@@ -51,17 +47,14 @@ export const config = {
 function getLocale(request: NextRequest): string {
   const cookieLocale = getLocaleFromCookie(request);
   if (cookieLocale) {
-    console.log(`Get locale from cookie: ${cookieLocale}`);
     return cookieLocale;
   }
 
   const acceptLanguageLocale = getLocaleFromAcceptLanguage(request);
   if (acceptLanguageLocale) {
-    console.log(`Get locale from accept language: ${acceptLanguageLocale}`);
     return acceptLanguageLocale;
   }
 
-  console.log(`Get locale from default: ${DEFAULT_LOCALE}`);
   return DEFAULT_LOCALE;
 }
 
