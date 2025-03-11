@@ -132,6 +132,14 @@ export function AppNavBar({ sticky = true }) {
 
   const handleLanguageChange = (code: string) => {
     saveLocaleToCookie(code);
+    setSelectedFlag(code);
+    setOpen(false);
+    closeModal();
+    setTimeout(() => {
+      setAnimateFlag(true);
+      setTimeout(() => setAnimateFlag(false), 600);
+    }, 20);
+
     const localePattern = new RegExp(
       `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
     );
@@ -154,13 +162,6 @@ export function AppNavBar({ sticky = true }) {
         router.push(newPath);
       }
     }
-    setSelectedFlag(code);
-    setOpen(false);
-    closeModal();
-    setTimeout(() => {
-      setAnimateFlag(true);
-      setTimeout(() => setAnimateFlag(false), 600);
-    }, 20);
   };
 
   return (
