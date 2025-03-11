@@ -4,13 +4,8 @@
       "title": "Introduction",
       "items": [
         {
-          "title": "Overview",
+          "title": "What is TinaCMS?",
           "slug": "content/docs/index.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Introduction To TinaCMS",
-          "slug": "content/docs/product-tour.mdx",
           "_template": "item"
         },
         {
@@ -98,16 +93,6 @@
         {
           "title": "Content Model Overview",
           "slug": "content/docs/content-model-intro.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Markdown & MDX",
-          "slug": "content/docs/editing/markdown.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Block-Based Editing",
-          "slug": "content/docs/editing/blocks.mdx",
           "_template": "item"
         },
         {
@@ -238,6 +223,11 @@
             }
           ],
           "_template": "items"
+        },
+        {
+          "title": "Markdown & MDX",
+          "slug": "content/docs/editing/markdown.mdx",
+          "_template": "item"
         },
         {
           "title": "Customizing the Editor",
@@ -497,6 +487,11 @@
     {
       "title": "Guides",
       "items": [
+        {
+          "title": "Using Tina as a Website Builder",
+          "slug": "content/docs/editing/blocks.mdx",
+          "_template": "item"
+        },
         {
           "title": "Framework Guides",
           "items": [
