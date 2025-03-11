@@ -68,7 +68,7 @@ const RedirectPage = ({ pathRoute = 'home' }) => (
     description="This page hasn’t been translated yet. You’ll be redirected to the English version."
   >
     <div className="flex flex-wrap gap-4">
-      <DynamicLink href={`/en/${pathRoute}`} passHref>
+      <DynamicLink href={`/${pathRoute}`} passHref>
         <Button>Continue in English</Button>
       </DynamicLink>
     </div>

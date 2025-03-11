@@ -104,11 +104,11 @@ export function AppNavBar({ sticky = true }) {
   }, []);
 
   useEffect(() => {
-    if (pathName.startsWith('/zh')) {
-      setSelectedFlag(SupportedLocales.ZH);
-    } else {
-      setSelectedFlag(SupportedLocales.EN);
-    }
+    Object.values(SupportedLocales).forEach((locale) => {
+      if (pathName.startsWith(`/${locale}`)) {
+        setSelectedFlag(locale);
+      }
+    });
   }, [pathName]);
 
   const [isChinafyPath, setIsChinafyPath] = useState(false);
