@@ -103,32 +103,35 @@ export function AppNavBar({ sticky = true }) {
     };
   }, []);
 
-  useEffect(() => {
-    Object.values(SupportedLocales).forEach((locale) => {
-      if (pathName.startsWith(`/${locale}`)) {
-        setSelectedFlag(locale);
-      }
-    });
-  }, [pathName]);
-
+  const [navItems, setNavItems] = useState(
+    Array.isArray(data.navItem) ? data.navItem : []
+  );
   const [isChinafyPath, setIsChinafyPath] = useState(false);
-  useEffect(() => {
-    const isValid = isValidPathCheck(pathName);
-    setIsChinafyPath(isValid);
-  }, [pathName]);
-
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
-  const navItems =
-    selectedFlag === SupportedLocales.ZH
-      ? Array.isArray(zhData.navItem)
-        ? zhData.navItem
+  useEffect(() => {
+    const matchedLocale = Object.values(SupportedLocales).find((locale) =>
+      pathName.startsWith(`/${locale}`)
+    );
+    setSelectedFlag(matchedLocale || SupportedLocales.EN);
+
+    const isValid = isValidPathCheck(pathName);
+    setIsChinafyPath(isValid);
+  }, [pathName]);
+
+  useEffect(() => {
+    setNavItems(
+      selectedFlag === SupportedLocales.ZH
+        ? zhData && Array.isArray(zhData.navItem)
+          ? zhData.navItem
+          : []
+        : data && Array.isArray(data.navItem)
+        ? data.navItem
         : []
-      : Array.isArray(data.navItem)
-      ? data.navItem
-      : [];
+    );
+  }, [pathName, selectedFlag]);
 
   const handleLanguageChange = (code: string) => {
     saveLocaleToCookie(code);
