@@ -1,6 +1,6 @@
 ---
 title: Before Reaching Out...
-last_edited: '2025-03-11T22:01:01.362Z'
+last_edited: '2025-03-11T22:13:14.367Z'
 tocIsHidden: true
 next: ''
 previous: ''
@@ -20,7 +20,7 @@ previous: ''
 * **Keep your Tina client abstracted from UI code** – keeping a clean distinction between TinaCMS content fetches and the rest of your application helps you isolate whether a problem is related to Tina or in your application.
 * **Caching** – TinaCloud has caching layers for your content, and it's likely your framework and hosting service have caching layers as well. We aim to make using Tina as painless as possible with common services, but these interactions can be complex. If you're running into problems, try taking out any custom caching layers first.
 * **Styling the editor** – custom tailwind classes can't be used for custom components in the TinaCMS Editor. This is partially by design to help avoid conflicts with your application, especially in Visual Editing scenarios. Design custom editor components with this in mind.
-* **Isolating schema definitions** – TinaCMS generates code (typing information, queries, related infrastructure) based on your provided schema. If you're importing files into your tina/config.ts  for this purpose, make sure the file **only** contains the schema definition. Additional content will also be parsed for code generation, which may not always be desirable.
+* **Isolating schema definitions** – TinaCMS generates code (typing information, queries, related infrastructure) based on your provided schema. If you're importing schema definitions from a seperate file, make sure that file **only** contains the schema definition / custom components. Additional content will also be parsed for code generation, which may not always be desirable.
 
 ## Reaching Out
 
