@@ -110,7 +110,6 @@ const config = {
     ];
   },
   async redirects() {
-    //TODO We need a better way to handle redirects
     return [
       {
         source: '/early-access',
