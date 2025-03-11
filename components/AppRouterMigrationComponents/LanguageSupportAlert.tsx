@@ -22,7 +22,7 @@ export function LanguageSupportAlert() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-3 right-3 z-50 max-w-md">
+    <div className="fixed bottom-3 left-3 z-50 max-w-md">
       <Alert
         variant="default"
         className="bg-yellow-100 border-yellow-400 text-yellow-800 cursor-pointer transition-opacity hover:opacity-90"
