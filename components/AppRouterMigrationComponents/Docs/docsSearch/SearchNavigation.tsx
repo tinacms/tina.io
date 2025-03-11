@@ -1,6 +1,5 @@
 'use client';
 
-import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 import { VersionSelect } from 'components/DocumentationNavigation/VersionSelect';
 import { MobileVersionSelect } from 'components/docsMain/docsMobileHeader';
 import Link from 'next/link';
@@ -8,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 
 // Helper function for highlighting Algolia search hits
 export const highlightText = (text: string) => {
@@ -265,7 +265,7 @@ export const DocsSearchBarHeader = ({
 
 export const LeftHandSideParentContainer = ({ tableOfContents }) => {
   return (
-    <div className="rounded-2xl shadow-xl w-full bg-white/50 h-5/6">
+    <div className="rounded-2xl shadow-xl w-full bg-white/50 h-5/6 overflow-y-hidden relative">
       <DocsSearchBarHeader
         paddingGlobal="p-4"
         headerColour="blue"
@@ -273,9 +273,12 @@ export const LeftHandSideParentContainer = ({ tableOfContents }) => {
         searchMargin="mx-3"
         searchBarPadding=""
       />
-      <div className="overflow-y-scroll overflow-x-hidden h-[80%] 2xl:max-h-[75vh] pl-4 2xl:pl-0">
-        <DocsNavigationList navItems={tableOfContents} />
+      <div className="overflow-y-hidden overflow-x-hidden h-full pl-4 2xl:pl-0 relative">
+        <div className="h-full overflow-y-scroll overflow-x-hidden pb-44">
+          <DocsNavigationList navItems={tableOfContents} />
+        </div>
       </div>
+      <div className="absolute -bottom-1 left-0 right-0 h-7 bg-gradient-to-t from-white/90 to-transparent pointer-events-none"></div>
     </div>
   );
 };
