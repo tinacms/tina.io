@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppFooter } from './AppFooter';
 import { AppNavBar } from './AppNavBar';
+import { LanguageSupportAlert } from './LanguageSupportAlert';
 
 interface LayoutProps {
   children: any | any[];
@@ -17,6 +18,7 @@ export const SiteLayout = ({ children, color, sticky = true }: LayoutProps) => {
         {/* TODO: consult with betty - if we want to add global gutters we can do it here easily */}
         <div className="flex flex-col flex-1">{children}</div>
         <AppFooter />
+        <LanguageSupportAlert />
       </div>
     </>
   );
