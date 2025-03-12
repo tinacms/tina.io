@@ -36,7 +36,17 @@ function formatTime(time: string) {
 
 function SessionCard({ session }: { session: Session }) {
   return (
-    <div className="border bg-white/10 p-5 rounded-xl shadow-2xl flex w-full max-w-2xl text-start">
+    <div
+      className={`border p-5 rounded-xl shadow-2xl flex w-full max-w-2xl text-start ${
+        session.sessionType === 'Workshop'
+          ? 'bg-gradient-to-br from-orange-50 to-orange-200'
+          : session.sessionType === 'Talk'
+          ? 'bg-gradient-to-br from-blue-50 to-blue-100'
+          : session.sessionType === 'Break'
+          ? 'bg-gradient-to-br from-gray-50 to-gray-200'
+          : 'bg-white/10'
+      }`}
+    >
       <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
         <div className="flex flex-col sm:hidden">
           <p className="text-black text-md text-start font-semibold">
