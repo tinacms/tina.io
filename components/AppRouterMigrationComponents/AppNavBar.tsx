@@ -18,7 +18,7 @@ import zhData from '../../content/navigationBar/navMenuZh.json';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
-import { saveLocaleToCookie } from '../../utils/locale';
+import { saveLocale } from '../../utils/locale';
 import { EmailForm } from '../modals/EmailForm';
 import { Button } from '../ui/Button';
 enum ValidColors {
@@ -130,7 +130,7 @@ export function AppNavBar({ sticky = true }) {
   }, [pathName, selectedFlag]);
 
   const handleLanguageChange = (code: string) => {
-    saveLocaleToCookie(code);
+    saveLocale(code);
     setSelectedFlag(code);
     setOpen(false);
     closeModal();
