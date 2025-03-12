@@ -1,0 +1,42 @@
+---
+title: Before Reaching Out...
+last_edited: '2025-03-11T22:13:14.367Z'
+tocIsHidden: true
+next: ''
+previous: ''
+---
+
+## First Steps – Debugging
+
+1. `tina-lock.json` – check your Tina lock-file is up to date. You can manually update it by running the CMS locally with `tinacms dev` (typically this is a part of your dev run command). This resolves the majority of user issues related to indexing. [Learn more](https://tina.io/docs/support#tina-lockjson).
+2. **TinaCloud indexing** – you can re-index a branch via the [TinaCloud dashboard](https://app.tina.io/projects) if you're still running into indexing problems that aren't resolved with an up to date `tina-lock.json`.
+
+![](/img/docs/SCR-20250310-jybh.png)
+
+![](/img/docs/SCR-20250310-jylo.png)
+
+## Best Practices
+
+* **Keep your Tina client abstracted from UI code** – keeping a clean distinction between TinaCMS content fetches and the rest of your application helps you isolate whether a problem is related to Tina or in your application.
+* **Caching** – TinaCloud has caching layers for your content, and it's likely your framework and hosting service have caching layers as well. We aim to make using Tina as painless as possible with common services, but these interactions can be complex. If you're running into problems, try taking out any custom caching layers first.
+* **Styling the editor** – custom tailwind classes can't be used for custom components in the TinaCMS Editor. This is partially by design to help avoid conflicts with your application, especially in Visual Editing scenarios. Design custom editor components with this in mind.
+* **Isolating schema definitions** – TinaCMS generates code (typing information, queries, related infrastructure) based on your provided schema. If you're importing schema definitions from a seperate file, make sure that file **only** contains the schema definition / custom components. Additional content will also be parsed for code generation, which may not always be desirable.
+
+## Reaching Out
+
+<cardGrid
+  cards={[
+    {
+      link: "https://tina.io/docs/introduction/faq",
+      title: "Frequently Asked Questions",
+      description:
+        "Check out the most frequently asked questions on our FAQ page, including solutions for common issues."
+    },
+    {
+      title: "Get in Touch",
+      description:
+        "If you can't resolve your problem with these resources, reach out on Discord for specific support. ",
+      link: "https://discord.com/invite/zumN63Ybpf"
+    }
+  ]}
+/>
