@@ -1,0 +1,22 @@
+{
+  "notFound": {
+    "title": "抱歉，朋友。",
+    "description": "我们找不到您要查找的内容。",
+    "buttons": {
+      "documentation": "文档",
+      "guides": "指南",
+      "home": "首页"
+    }
+  },
+  "notTranslated": {
+    "title": "页面尚未翻译",
+    "description": "此页面尚未翻译。您将被重定向到英文版本。",
+    "buttons": {
+      "continue": "继续使用英文"
+    }
+  },
+  "loading": {
+    "title": "请稍候...",
+    "description": "正在检查此页面的可用语言选项..."
+  }
+}

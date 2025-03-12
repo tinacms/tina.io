@@ -2,7 +2,7 @@
 
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
-import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
+import { DEFAULT_LOCALE, SupportedLocales, isValidPathCheck } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -64,7 +64,6 @@ export function AppNavBar({ sticky = true }) {
   const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
   const [modalClass, setModalClass] = useState('language-select-modal');
-  const [hideZh, setHideZh] = useState(false);
 
   const navRef = useRef(null);
   const router = useRouter();
@@ -104,34 +103,38 @@ export function AppNavBar({ sticky = true }) {
     };
   }, []);
 
-  useEffect(() => {
-    const pathLocale = pathName.split('/')[1];
-    if (
-      pathLocale === SupportedLocales.EN ||
-      pathLocale === SupportedLocales.ZH
-    ) {
-      setHideZh(false);
-      setSelectedFlag(pathLocale);
-    } else {
-      setHideZh(true);
-      setSelectedFlag(DEFAULT_LOCALE);
-    }
-  }, [pathName]);
-
+  const [navItems, setNavItems] = useState(
+    Array.isArray(data.navItem) ? data.navItem : []
+  );
+  const [isChinafyPath, setIsChinafyPath] = useState(false);
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
-  const navItems =
-    selectedFlag === SupportedLocales.ZH
-      ? Array.isArray(zhData.navItem)
-        ? zhData.navItem
-        : []
-      : Array.isArray(data.navItem)
-      ? data.navItem
-      : [];
+  useEffect(() => {
+    const matchedLocale = Object.values(SupportedLocales).find((locale) =>
+      pathName.startsWith(`/${locale}`)
+    );
+    setSelectedFlag(matchedLocale || SupportedLocales.EN);
 
-  const handleLanguageChange = (code) => {
+    const isValid = isValidPathCheck(pathName);
+    setIsChinafyPath(isValid);
+  }, [pathName]);
+
+  useEffect(() => {
+    setNavItems(
+      selectedFlag === SupportedLocales.ZH
+        ? zhData && Array.isArray(zhData.navItem)
+          ? zhData.navItem
+          : []
+        : data && Array.isArray(data.navItem)
+        ? data.navItem
+        : []
+    );
+  }, [pathName, selectedFlag]);
+
+  const handleLanguageChange = (code: string) => {
+    saveLocaleToCookie(code);
     setSelectedFlag(code);
     setOpen(false);
     closeModal();
@@ -140,8 +143,28 @@ export function AppNavBar({ sticky = true }) {
       setTimeout(() => setAnimateFlag(false), 600);
     }, 20);
 
-    router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
-    saveLocaleToCookie(code);
+    const localePattern = new RegExp(
+      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+    );
+    if (code === SupportedLocales.EN) {
+      if (localePattern.test(pathName)) {
+        const newPath = pathName.replace(
+          localePattern,
+          (match, locale, slash) => {
+            return slash === '/' ? '/' : '';
+          }
+        );
+        router.push(newPath === '' ? '/' : newPath);
+      }
+    } else {
+      if (localePattern.test(pathName)) {
+        const newPath = pathName.replace(localePattern, `/${code}$2`);
+        router.push(newPath);
+      } else {
+        const newPath = pathName === '/' ? `/${code}` : `/${code}${pathName}`;
+        router.push(newPath);
+      }
+    }
   };
 
   return (
@@ -182,7 +205,7 @@ export function AppNavBar({ sticky = true }) {
                 <button
                   className={`outline-none hover:animate-jelly ${
                     animateFlag ? 'animate-bounce' : ''
-                  } hidden max-[639px]:block`} // Adjust breakpoint as needed
+                  } hidden max-[639px]:block`}
                   onClick={() => openModal('LanguageSelect')}
                 >
                   {selectedFlag === 'en' ? (
@@ -345,18 +368,20 @@ export function AppNavBar({ sticky = true }) {
                 )
               )}
               <li className="group flex items-center cursor-pointer">
-                <button
-                  className={`outline-none hover:animate-jelly ${
-                    animateFlag ? 'animate-bounce' : ''
-                  }`}
-                  onClick={() => openModal('LanguageSelect')}
-                >
-                  {selectedFlag === 'en' ? (
-                    <EnFlag className="w-8 h-8" />
-                  ) : (
-                    <ZhFlag className="w-8 h-8" />
-                  )}
-                </button>
+                {isChinafyPath && (
+                  <button
+                    className={`outline-none hover:animate-jelly ${
+                      animateFlag ? 'animate-bounce' : ''
+                    }`}
+                    onClick={() => openModal('LanguageSelect')}
+                  >
+                    {selectedFlag === 'en' ? (
+                      <EnFlag className="w-8 h-8" />
+                    ) : (
+                      <ZhFlag className="w-8 h-8" />
+                    )}
+                  </button>
+                )}
               </li>
             </ul>
           </nav>
@@ -382,7 +407,6 @@ export function AppNavBar({ sticky = true }) {
         <LanguageSelect
           onLanguageSelect={handleLanguageChange}
           currentLanguage={selectedFlag}
-          hideZh={hideZh}
         />
       </Modal>
     </>
