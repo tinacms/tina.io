@@ -33,11 +33,13 @@ function ConferencePage() {
           About the Conference
         </h2>
         <p className="text-lg max-w-4xl">
-          TinaCon brings together industry leaders, innovators, and enthusiasts
-          for a day packed with cutting-edge insights, hands-on workshops, and
-          unparalleled networking opportunities. Whether you're a seasoned
-          professional or just starting your journey, our carefully curated
-          program offers something valuable for everyone
+          Join us for an exciting and hands-on mini conference at SSW Melbourne!
+          This event will bring together developers, content creators, and tech
+          enthusiasts for an afternoon filled with inspiring talks, practical
+          workshops, and networking opportunities. With topics ranging from
+          GitHub tips with MishManners, to creating documentation sites with
+          TinaCMS, this is the perfect chance to deepen your knowledge, learn
+          new skills, and connect with like-minded individuals
         </p>
         <div className="flex py-12 gap-10 max-w-4xl">
           <div className="flex flex-col gap-2 items-center">
@@ -47,7 +49,7 @@ function ConferencePage() {
             />{' '}
             <h3 className="font-bold">7 Experts Speakers</h3>{' '}
             <p>
-              Learn form industry-leading experts who are shaping the future
+              Learn from industry-leading experts who are shaping the future
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center">
@@ -55,9 +57,10 @@ function ConferencePage() {
               size={40}
               className="text-blue-500 bg-blue-200 p-2 rounded-full"
             />{' '}
-            <h3 className="font-bold">7 Experts Speakers</h3>{' '}
+            <h3 className="font-bold">7 Interactive Workshops</h3>{' '}
             <p>
-              Learn form industry-leading experts who are shaping the future
+              Gain practical insights and hands-on experience from experts in
+              their fields
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center">
@@ -65,9 +68,10 @@ function ConferencePage() {
               size={40}
               className="text-orange-500 bg-orange-200 p-2 rounded-full"
             />{' '}
-            <h3 className="font-bold">7 Experts Speakers</h3>{' '}
+            <h3 className="font-bold">Premium Networking</h3>{' '}
             <p>
-              Learn form industry-leading experts who are shaping the future
+              Connect with industry leaders and innovators in a relaxed and
+              friendly environment
             </p>
           </div>
         </div>
@@ -76,7 +80,10 @@ function ConferencePage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-x-10 lg:px-20">
           <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
-            <Link href="https://www.ssw.com.au/people/adam-cogan/" target="_blank">
+            <Link
+              href="https://www.ssw.com.au/people/adam-cogan/"
+              target="_blank"
+            >
               <Image
                 src="/img/people/Adam-Cogan-Profile.jpg"
                 alt="Adam Cogan"
