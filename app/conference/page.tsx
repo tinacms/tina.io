@@ -108,7 +108,7 @@ function ConferencePage() {
             <FaRegClock /> <span>9:00 AM - 6:00 PM</span>
           </div>
           <div className="flex gap-2 items-center">
-            <FaLocationDot /> <span>SSW Melbourne Office</span>
+            <FaLocationDot /> <Link href="https://www.ssw.com.au/offices/melbourne " target='_blank' className='underline'>SSW Melbourne Office</Link>
           </div>
         </div>
         <button
@@ -123,7 +123,7 @@ function ConferencePage() {
           About the Conference
         </h2>
         <p className="text-lg max-w-4xl">
-          Join us for an exciting and hands-on mini conference at SSW Melbourne!
+          Join us for an exciting and hands-on mini conference at <Link href="https://www.ssw.com.au/offices/melbourne" target='_blank' className='underline'>SSW Melbourne</Link>!
           This event will bring together developers, content creators, and tech
           enthusiasts for an afternoon filled with inspiring talks, practical
           workshops, and networking opportunities. With topics ranging from
@@ -166,7 +166,7 @@ function ConferencePage() {
           </div>
         </div>
         <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text">
-          Our Speakers
+        Open Source Expert Speakers
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-x-10 lg:px-20">
           <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
