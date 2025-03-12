@@ -1,18 +1,29 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { AlertTriangle, X } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { usePathname } from 'next/navigation';
-import { isValidPathCheck } from 'middleware';
+import { isValidPathCheck, SupportedLocales } from 'middleware';
 
 export function LanguageSupportAlert() {
   const [isVisible, setIsVisible] = useState(false);
   const pathName = usePathname();
+  const prevPathRef = useRef('');
+
+  const isLocalesPath = (path) => {
+    if (!path) return false;
+    return Object.values(SupportedLocales).some(
+      (locale) => path === `/${locale}` || path.startsWith(`/${locale}/`)
+    );
+  };
 
   useEffect(() => {
-    if (!isValidPathCheck(pathName)) {
+    const previousPath = prevPathRef.current;
+    prevPathRef.current = pathName;
+
+    if (!isValidPathCheck(pathName) && isLocalesPath(previousPath)) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
