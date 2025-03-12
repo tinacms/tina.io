@@ -74,12 +74,9 @@ function ConferencePage() {
         <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text">
           Our Speakers
         </h2>
-        <div className="grid grid-cols-3 gap-10 gap-x-10 px-20">
-          <div className="col-span-3 flex flex-col gap-2 items-center">
-            <Link
-              href="https://www.ssw.com.au/people/adam-cogan/"
-              target="_blank"
-            >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-x-10 lg:px-20">
+          <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
+            <Link href="https://www.ssw.com.au/people/adam-cogan/" target="_blank">
               <Image
                 src="/img/people/Adam-Cogan-Profile.jpg"
                 alt="Adam Cogan"
@@ -90,7 +87,7 @@ function ConferencePage() {
             </Link>
             <h3 className="font-bold">Adam Cogan</h3>{' '}
             <h4 className="text-orange-500">SSW Chief Architect</h4>
-            <div className="max-w-[33%] text-center">
+            <div className="md:max-w-[33%] text-center">
               <p>
                 Chief Architect at SSW, a Microsoft Solutions Partner
                 specializing in custom enterprise .NET and Azure solutions
@@ -162,8 +159,8 @@ function ConferencePage() {
               technology, and financial technology.
             </p>
           </div>
-          <div className="col-span-3 m-5 flex flex-col gap-2 items-center">
-            <h3 className="font-bold text-3xl">More coming soon...</h3>{' '}
+          <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
+            <h3 className="font-bold">More coming...</h3>{' '}
           </div>
         </div>
       </div>
