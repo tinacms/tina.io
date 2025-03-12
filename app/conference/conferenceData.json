@@ -1,0 +1,104 @@
+{
+  "speakerSchedule": [
+    {
+      "talkSpeakerName": "Adam Cogan",
+      "talkSpeakerImage": "/img/people/Adam-Cogan-Profile.jpg",
+      "speachTitle": "Keynote - TinaCMS and the road ahead",
+      "speachDescription": "Join us for the Keynote - TinaCMS and the Road Ahead, where we’ll explore the future of TinaCMS. Discover upcoming features, improvements, and the vision shaping its development.",
+      "talkTimeStart": "2025-03-12T09:00:00Z",
+      "talkTimeEnd": "2025-03-12T10:00:00Z",
+      "sessionType": "Talk"
+    },
+    {
+      "talkSpeakerName": "Matt Wicks",
+      "talkSpeakerImage": "/img/people/Matt-Wicks-Profile.jpg",
+      "speachTitle": "TBD",
+      "speachDescription": "TBD",
+      "talkTimeStart": "2025-03-12T10:00:00Z",
+      "talkTimeEnd": "2025-03-12T11:00:00Z",
+      "sessionType": "Talk"
+    },
+    {
+      "talkSpeakerName": "TBD",
+      "talkSpeakerImage": "/img/people/Mystery.png",
+      "speachTitle": "TBD",
+      "speachDescription": "TBD",
+      "talkTimeStart": "2025-03-12T11:00:00Z",
+      "talkTimeEnd": "2025-03-12T12:00:00Z",
+      "sessionType": "Talk"
+    },
+    {
+      "talkSpeakerName": "Michelle Duke",
+      "talkSpeakerImage": "/img/people/Michelle-Duke-Profile.jpg",
+      "speachTitle": "TBD",
+      "speachDescription": "TBD",
+      "talkTimeStart": "2025-03-12T13:00:00Z",
+      "talkTimeEnd": "2025-03-12T14:00:00Z",
+      "sessionType": "Talk"
+    },
+    {
+      "talkSpeakerName": "TBD",
+      "talkSpeakerImage": "/img/people/Mystery.png",
+      "speachTitle": "TBD",
+      "speachDescription": "TBD",
+      "talkTimeStart": "2025-03-12T14:00:00Z",
+      "talkTimeEnd": "2025-03-12T15:00:00Z",
+      "sessionType": "Talk"
+    },
+    {
+      "talkSpeakerName": "Hajir Lesani",
+      "talkSpeakerImage": "/img/people/Hajir-Lesani-Profile.jpg",
+      "speachTitle": "TBD",
+      "speachDescription": "TBD",
+      "talkTimeStart": "2025-03-12T15:00:00Z",
+      "talkTimeEnd": "2025-03-12T16:00:00Z",
+      "sessionType": "Talk"
+    },
+    {
+      "talkSpeakerName": "TBD",
+      "talkSpeakerImage": "/img/people/Mystery.png",
+      "speachTitle": "TBD",
+      "speachDescription": "TBD",
+      "talkTimeStart": "2025-03-12T16:00:00Z",
+      "talkTimeEnd": "2025-03-12T17:00:00Z",
+      "sessionType": "Talk"
+    },
+    {
+      "talkSpeakerName": "",
+      "talkSpeakerImage": "/img/brand-assets/llama.svg",
+      "speachTitle": "Lunch",
+      "speachDescription": "Indulge in a unique lunch featuring creamy Llama Milkshakes and crispy Yak Wings, crafted for adventurous foodies at TinaCon 2025!",
+      "talkTimeStart": "2025-03-12T12:00:00Z",
+      "talkTimeEnd": "2025-03-12T13:00:00Z",
+      "sessionType": "Break"
+    },
+    {
+      "talkSpeakerName": "",
+      "talkSpeakerImage": "/img/brand-assets/llama.svg",
+      "speachTitle": "After Party",
+      "speachDescription": "Unwind at the TinaCon After Party with great music, refreshing drinks, and lively networking—celebrate a day of innovation in style!",
+      "talkTimeStart": "2025-03-12T18:00:00Z",
+      "talkTimeEnd": "2025-03-12T22:00:00Z",
+      "sessionType": "Break"
+    },
+    {
+      "talkSpeakerName": "Isaac Lombard",
+      "talkSpeakerImage": "/img/people/Isaac-Lombard-Profile.jpg",
+      "speachTitle": "Manage your content with TinaCMS",
+      "speachDescription": "Discover how to efficiently manage and edit your website content using TinaCMS, a powerful and user-friendly content management system.",
+      "talkTimeStart": "2025-03-12T10:00:00Z",
+      "talkTimeEnd": "2025-03-12T11:00:00Z",
+      "sessionType": "Workshop"
+    },
+    {
+      "talkSpeakerName": "Caleb Williams",
+      "talkSpeakerImage": "/img/people/Caleb-Williams-Profile.jpg",
+      "speachTitle": "Optimize your website with Next.js",
+      "speachDescription": "Learn the best practices and advanced techniques for optimizing your website's performance and user experience with Next.js, a powerful React framework.",
+      "talkTimeStart": "2025-03-12T13:00:00Z",
+      "talkTimeEnd": "2025-03-12T14:00:00Z",
+      "sessionType": "Workshop"
+    }
+    
+  ]
+}

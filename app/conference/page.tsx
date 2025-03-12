@@ -1,11 +1,98 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { CiCalendar } from 'react-icons/ci';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
+import sessionData from './conferenceData.json';
+import { useState, useRef } from 'react';
+
+interface Session {
+  talkSpeakerName: string;
+  talkSpeakerImage: string;
+  speachTitle: string;
+  speachDescription: string;
+  talkTimeStart: string;
+  talkTimeEnd: string;
+  sessionType: 'Talk' | 'Workshop' | 'Break';
+}
+
+const sessions: Session[] = sessionData.speakerSchedule.map(session => ({
+  ...session,
+  sessionType: session.sessionType as 'Talk' | 'Workshop' | 'Break'
+}));
+
+function formatTime(time: string) {
+  const date = new Date(time);
+  const hours = date.getUTCHours();
+  const minutes = date.getUTCMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const formattedHour = hours % 12 === 0 ? 12 : hours % 12;
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  return `${formattedHour}:${formattedMinutes} ${ampm}`;
+}
+
+function SessionCard({ session }: { session: Session }) {
+  return (
+    <div className="border bg-white/10 p-5 rounded-xl shadow-2xl flex w-full max-w-2xl text-start">
+      <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
+        <div className="flex flex-col sm:hidden">
+          <p className="text-orange-500 text-md text-start font-semibold">
+            {session.talkSpeakerName}
+          </p>
+        </div>
+        <div className="hidden sm:flex flex-col" style={{ flex: '0 0 20%' }}>
+          <Image
+            src={session.talkSpeakerImage}
+            alt={session.talkSpeakerName}
+            width={80}
+            height={80}
+            className="rounded-full h-full object-cover"
+          />
+          <p className="text-orange-500 text-md text-start font-semibold mt-2">
+            {session.talkSpeakerName}
+          </p>
+          <p className="text-blue-700 text-sm text-start">
+            {session.sessionType}
+          </p>
+        </div>
+        <div className="flex flex-col" style={{ flex: '0 0 80%' }}>
+          <h3 className="text-lg font-bold">{session.speachTitle}</h3>
+          <p className="text-sm text-gray-500">
+            {formatTime(session.talkTimeStart)} -{' '}
+            {formatTime(session.talkTimeEnd)}
+          </p>
+          <p className="text-gray-600 text-sm pt-2">
+            {session.speachDescription}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ConferencePage() {
+  const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
+  const filteredSessions = sessions
+    .filter((session) => filter === 'all' || session.sessionType === filter)
+    .sort(
+      (a, b) =>
+        new Date(a.talkTimeStart).getTime() -
+        new Date(b.talkTimeStart).getTime()
+    );
+
+  const agendaRef = useRef<HTMLDivElement>(null);
+
+  const scrollToAgenda = () => {
+    if (agendaRef.current) {
+      const offset = 30;
+      const top = agendaRef.current.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center text-center p-10 bg-gradient-to-br from-orange-400 to-orange-600 text-white">
@@ -24,7 +111,10 @@ function ConferencePage() {
             <FaLocationDot /> <span>SSW Melbourne Office</span>
           </div>
         </div>
-        <button className="bg-white text-orange-500 px-5 py-3 rounded-2xl font-tuner shadow-2xl relative top-0 hover:-top-1 transition-all ease-in-out duration-300">
+        <button
+          className="bg-white text-orange-500 px-5 py-3 rounded-2xl font-tuner shadow-2xl relative top-0 hover:-top-1 transition-all ease-in-out duration-300"
+          onClick={scrollToAgenda}
+        >
           Agenda
         </button>
       </div>
@@ -166,8 +256,44 @@ function ConferencePage() {
               technology, and financial technology.
             </p>
           </div>
-          <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
-            <h3 className="font-bold">More coming...</h3>{' '}
+        </div>
+        <div className="flex flex-col items-center p-10" ref={agendaRef}>
+          <h2
+            id="agenda"
+            className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text"
+          >
+            Agenda
+          </h2>
+          <div className="flex justify-center gap-4 pb-4">
+            <button
+              className={`px-4 py-2 rounded-lg ${
+                filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+              onClick={() => setFilter('all')}
+            >
+              All Sessions
+            </button>
+            <button
+              className={`px-4 py-2 rounded-lg ${
+                filter === 'Talk' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+              onClick={() => setFilter('Talk')}
+            >
+              Talks Only
+            </button>
+            <button
+              className={`px-4 py-2 rounded-lg ${
+                filter === 'Workshop' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+              onClick={() => setFilter('Workshop')}
+            >
+              Workshops Only
+            </button>
+          </div>
+          <div className="flex flex-col gap-6 w-full max-w-3xl">
+            {filteredSessions.map((session, index) => (
+              <SessionCard key={index} session={session} />
+            ))}
           </div>
         </div>
       </div>
