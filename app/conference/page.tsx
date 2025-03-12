@@ -2,6 +2,8 @@ import { CiCalendar } from 'react-icons/ci';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
+import Image from 'next/image';
+import Link from 'next/link';
 
 function ConferencePage() {
   return (
@@ -72,13 +74,18 @@ function ConferencePage() {
         <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text">
           Our Speakers
         </h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-10 gap-x-10 px-20">
           <div className="col-span-3 flex flex-col gap-2 items-center">
-            <IoIosInformationCircleOutline
-              size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
-            />{' '}
-            <h3 className="font-bold">Adam</h3>{' '}
+            <Link href="https://www.ssw.com.au/people/adam-cogan/" target="_blank">
+              <Image
+                src="/img/people/Adam-Cogan-Profile.jpg"
+                alt="Adam Cogan"
+                width={150}
+                height={150}
+                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-4 transition-all"
+              />
+            </Link>
+            <h3 className="font-bold">Adam Cogan</h3>{' '}
             <h4 className="text-orange-500">SSW Chief Architect</h4>
             <div className="max-w-[33%] text-center">
               <p>
@@ -89,11 +96,16 @@ function ConferencePage() {
             </div>
           </div>
           <div className="flex flex-col gap-2 items-center">
-            <IoIosInformationCircleOutline
-              size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
-            />{' '}
-            <h3 className="font-bold">Wicksy</h3>{' '}
+            <Link href="https://www.ssw.com.au/people/matt-wicks/" target="_blank">
+              <Image
+                src="/img/people/Matt-Wicks-Profile.jpg"
+                alt="Matt Wicks"
+                width={150}
+                height={150}
+               className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
+              />
+            </Link>
+            <h3 className="font-bold">Matt Wicks</h3>{' '}
             <h4 className="text-orange-500">Solution Architect</h4>
             <p>
               Matt is an elite SSW Solution Architect who runs the Newcastle
@@ -102,11 +114,16 @@ function ConferencePage() {
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center">
-            <IoIosInformationCircleOutline
-              size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
-            />{' '}
-            <h3 className="font-bold">Mish</h3>{' '}
+            <Link href="https://www.ssw.com.au/people/michelle-duke/" target="_blank">
+              <Image
+                src="/img/people/Michelle-Duke-Profile.jpg"
+                alt="Michelle Duke"
+                width={150}
+                height={150}
+                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
+              />
+            </Link>
+            <h3 className="font-bold">Michelle Duke</h3>{' '}
             <h4 className="text-orange-500">Senior Developer Advocate</h4>
             <p>
               Mish is the Senior Developer Advocate at SSW, coming to you from
@@ -115,11 +132,16 @@ function ConferencePage() {
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center">
-            <IoIosInformationCircleOutline
-              size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
-            />{' '}
-            <h3 className="font-bold">Hajir</h3>{' '}
+            <Link href="https://www.ssw.com.au/people/hajir-lesani/" target="_blank">
+              <Image
+                src="/img/people/Hajir-Lesani-Profile.jpg"
+                alt="Hajir Lesani"
+                width={150}
+                height={150}
+                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
+              />
+            </Link>
+            <h3 className="font-bold">Hajir Lesani</h3>{' '}
             <h4 className="text-orange-500">Solution Architect</h4>
             <p>
               Hajir is an SSW Solution Architect and Team Lead with over 14
