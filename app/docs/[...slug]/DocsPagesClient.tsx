@@ -28,8 +28,6 @@ export default function DocsClient({ props }) {
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
   const { activeIds, contentRef } = useTocListener(DocumentationData);
 
-  
-
   const previousPage = {
     slug: DocumentationData?.previous?.id.slice(7, -4),
     title: DocumentationData?.previous?.title,
@@ -49,7 +47,7 @@ export default function DocsClient({ props }) {
     : 'grid-cols-[1.25fr_3fr_0.75fr]';
 
   return (
-    <div className="relative my-6 lg:my-16 flex justify-center items-start">
+    <div className="relative my-6 lg:mb-16 xl:mt-16 flex justify-center items-start">
       <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
         {/* LEFT COLUMN */}
         <div

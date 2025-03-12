@@ -106,7 +106,6 @@ export function AppNavBar({ sticky = true }) {
   const [navItems, setNavItems] = useState(
     Array.isArray(data.navItem) ? data.navItem : []
   );
-  const [isChinafyPath, setIsChinafyPath] = useState(false);
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
@@ -116,9 +115,6 @@ export function AppNavBar({ sticky = true }) {
       pathName.startsWith(`/${locale}`)
     );
     setSelectedFlag(matchedLocale || SupportedLocales.EN);
-
-    const isValid = isValidPathCheck(pathName);
-    setIsChinafyPath(isValid);
   }, [pathName]);
 
   useEffect(() => {
@@ -170,7 +166,7 @@ export function AppNavBar({ sticky = true }) {
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>
-        <div className="flex min-[1300px]:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
+        <div className="flex xl:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           {/* Start of sm and md view */}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
@@ -297,16 +293,16 @@ export function AppNavBar({ sticky = true }) {
         <div
           className={`absolute ${
             stuck && sticky
-              ? `min-[1300px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
+              ? `xl:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full min-[1300px]:px-10 hidden min-[1300px]:flex items-center justify-between `}
+          } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between `}
         >
           <Link href={'/'}>
             <TinaLogoSvg
               className={`w-40 flex items-center h-auto fill-orange-500 mb-4`}
             />
           </Link>
-          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1300px]:items-center gap-2 min-[1300px]:gap-x-12">
+          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end xl:items-center gap-2 xl:gap-x-12">
             <ul className="flex gap-4 ">
               {navItems.map((item, index) =>
                 item._template === modalButtonString ? (
@@ -368,20 +364,18 @@ export function AppNavBar({ sticky = true }) {
                 )
               )}
               <li className="group flex items-center cursor-pointer">
-                {isChinafyPath && (
-                  <button
-                    className={`outline-none hover:animate-jelly ${
-                      animateFlag ? 'animate-bounce' : ''
-                    }`}
-                    onClick={() => openModal('LanguageSelect')}
-                  >
-                    {selectedFlag === 'en' ? (
-                      <EnFlag className="w-8 h-8" />
-                    ) : (
-                      <ZhFlag className="w-8 h-8" />
-                    )}
-                  </button>
-                )}
+                <button
+                  className={`outline-none hover:animate-jelly ${
+                    animateFlag ? 'animate-bounce' : ''
+                  }`}
+                  onClick={() => openModal('LanguageSelect')}
+                >
+                  {selectedFlag === 'en' ? (
+                    <EnFlag className="w-8 h-8" />
+                  ) : (
+                    <ZhFlag className="w-8 h-8" />
+                  )}
+                </button>
               </li>
             </ul>
           </nav>
