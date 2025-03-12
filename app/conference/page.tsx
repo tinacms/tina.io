@@ -264,33 +264,40 @@ function ConferencePage() {
           >
             Agenda
           </h2>
-          <div className="flex justify-center gap-4 pb-4">
-            <button
-              className={`px-4 py-2 rounded-lg ${
-                filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+          <div className="relative w-full max-w-2xl">
+            <div className="flex justify-between items-center text-center bg-gray-200 p-2 rounded-2xl w-full gap-1">
+              <button
+                className={`px-4 py-2 rounded-lg w-full ${
+                  filter === 'all' ? 'text-blue-500' : 'text-gray-500'
+                }`}
+                onClick={() => setFilter('all')}
+              >
+                All Sessions
+              </button>
+              <button
+                className={`px-4 py-2 rounded-lg w-full ${
+                  filter === 'Talk' ? 'text-blue-500' : 'text-gray-500'
+                }`}
+                onClick={() => setFilter('Talk')}
+              >
+                Talks Only
+              </button>
+              <button
+                className={`px-4 py-2 rounded-lg w-full ${
+                  filter === 'Workshop' ? 'text-blue-500' : 'text-gray-500'
+                }`}
+                onClick={() => setFilter('Workshop')}
+              >
+                Workshops Only
+              </button>
+            </div>
+            <div
+              className={`absolute top-0 left-0 h-full w-1/3 bg-blue-500 rounded-2xl transition-transform duration-300 ease-in-out opacity-50 ${
+                filter === 'all' ? 'translate-x-0' : filter === 'Talk' ? 'translate-x-full' : 'translate-x-[200%]'
               }`}
-              onClick={() => setFilter('all')}
-            >
-              All Sessions
-            </button>
-            <button
-              className={`px-4 py-2 rounded-lg ${
-                filter === 'Talk' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => setFilter('Talk')}
-            >
-              Talks Only
-            </button>
-            <button
-              className={`px-4 py-2 rounded-lg ${
-                filter === 'Workshop' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => setFilter('Workshop')}
-            >
-              Workshops Only
-            </button>
+            ></div>
           </div>
-          <div className="flex flex-col gap-6 w-full max-w-3xl">
+          <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
             {filteredSessions.map((session, index) => (
               <SessionCard key={index} session={session} />
             ))}
