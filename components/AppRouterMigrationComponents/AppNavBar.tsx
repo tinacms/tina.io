@@ -106,7 +106,6 @@ export function AppNavBar({ sticky = true }) {
   const [navItems, setNavItems] = useState(
     Array.isArray(data.navItem) ? data.navItem : []
   );
-  const [isChinafyPath, setIsChinafyPath] = useState(false);
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
@@ -116,9 +115,6 @@ export function AppNavBar({ sticky = true }) {
       pathName.startsWith(`/${locale}`)
     );
     setSelectedFlag(matchedLocale || SupportedLocales.EN);
-
-    const isValid = isValidPathCheck(pathName);
-    setIsChinafyPath(isValid);
   }, [pathName]);
 
   useEffect(() => {
@@ -368,20 +364,18 @@ export function AppNavBar({ sticky = true }) {
                 )
               )}
               <li className="group flex items-center cursor-pointer">
-                {isChinafyPath && (
-                  <button
-                    className={`outline-none hover:animate-jelly ${
-                      animateFlag ? 'animate-bounce' : ''
-                    }`}
-                    onClick={() => openModal('LanguageSelect')}
-                  >
-                    {selectedFlag === 'en' ? (
-                      <EnFlag className="w-8 h-8" />
-                    ) : (
-                      <ZhFlag className="w-8 h-8" />
-                    )}
-                  </button>
-                )}
+                <button
+                  className={`outline-none hover:animate-jelly ${
+                    animateFlag ? 'animate-bounce' : ''
+                  }`}
+                  onClick={() => openModal('LanguageSelect')}
+                >
+                  {selectedFlag === 'en' ? (
+                    <EnFlag className="w-8 h-8" />
+                  ) : (
+                    <ZhFlag className="w-8 h-8" />
+                  )}
+                </button>
               </li>
             </ul>
           </nav>
