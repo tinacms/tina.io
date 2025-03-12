@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef, useState } from 'react';
 import { CiCalendar } from 'react-icons/ci';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import sessionData from './conferenceData.json';
-import { useState, useRef } from 'react';
 
 interface Session {
   talkSpeakerName: string;
@@ -19,9 +19,9 @@ interface Session {
   sessionType: 'Talk' | 'Workshop' | 'Break';
 }
 
-const sessions: Session[] = sessionData.speakerSchedule.map(session => ({
+const sessions: Session[] = sessionData.speakerSchedule.map((session) => ({
   ...session,
-  sessionType: session.sessionType as 'Talk' | 'Workshop' | 'Break'
+  sessionType: session.sessionType as 'Talk' | 'Workshop' | 'Break',
 }));
 
 function formatTime(time: string) {
@@ -39,7 +39,7 @@ function SessionCard({ session }: { session: Session }) {
     <div className="border bg-white/10 p-5 rounded-xl shadow-2xl flex w-full max-w-2xl text-start">
       <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
         <div className="flex flex-col sm:hidden">
-          <p className="text-orange-500 text-md text-start font-semibold">
+          <p className="text-black text-md text-start font-semibold">
             {session.talkSpeakerName}
           </p>
         </div>
@@ -51,10 +51,20 @@ function SessionCard({ session }: { session: Session }) {
             height={80}
             className="rounded-full h-full object-cover"
           />
-          <p className="text-orange-500 text-md text-start font-semibold mt-2">
+          <p className="text-black text-md text-start font-semibold mt-2">
             {session.talkSpeakerName}
           </p>
-          <p className="text-blue-700 text-sm text-start">
+          <p
+            className={`text-sm font-bold text-start ${
+              session.sessionType === 'Break'
+                ? 'text-gray-400'
+                : session.sessionType === 'Workshop'
+                ? 'text-orange-500'
+                : session.sessionType === 'Talk'
+                ? 'text-blue-500'
+                : 'text-gray-700'
+            }`}
+          >
             {session.sessionType}
           </p>
         </div>
@@ -88,7 +98,10 @@ function ConferencePage() {
   const scrollToAgenda = () => {
     if (agendaRef.current) {
       const offset = 30;
-      const top = agendaRef.current.getBoundingClientRect().top + window.pageYOffset - offset;
+      const top =
+        agendaRef.current.getBoundingClientRect().top +
+        window.pageYOffset -
+        offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
   };
@@ -108,7 +121,14 @@ function ConferencePage() {
             <FaRegClock /> <span>9:00 AM - 6:00 PM</span>
           </div>
           <div className="flex gap-2 items-center">
-            <FaLocationDot /> <Link href="https://www.ssw.com.au/offices/melbourne " target='_blank' className='underline'>SSW Melbourne Office</Link>
+            <FaLocationDot />{' '}
+            <Link
+              href="https://www.ssw.com.au/offices/melbourne "
+              target="_blank"
+              className="underline"
+            >
+              SSW Melbourne Office
+            </Link>
           </div>
         </div>
         <button
@@ -123,13 +143,20 @@ function ConferencePage() {
           About the Conference
         </h2>
         <p className="text-lg max-w-4xl">
-          Join us for an exciting and hands-on mini conference at <Link href="https://www.ssw.com.au/offices/melbourne" target='_blank' className='underline'>SSW Melbourne</Link>!
-          This event will bring together developers, content creators, and tech
-          enthusiasts for an afternoon filled with inspiring talks, practical
-          workshops, and networking opportunities. With topics ranging from
-          GitHub tips with MishManners, to creating documentation sites with
-          TinaCMS, this is the perfect chance to deepen your knowledge, learn
-          new skills, and connect with like-minded individuals
+          Join us for an exciting and hands-on mini conference at{' '}
+          <Link
+            href="https://www.ssw.com.au/offices/melbourne"
+            target="_blank"
+            className="underline"
+          >
+            SSW Melbourne
+          </Link>
+          ! This event will bring together developers, content creators, and
+          tech enthusiasts for an afternoon filled with inspiring talks,
+          practical workshops, and networking opportunities. With topics ranging
+          from GitHub tips with MishManners, to creating documentation sites
+          with TinaCMS, this is the perfect chance to deepen your knowledge,
+          learn new skills, and connect with like-minded individuals
         </p>
         <div className="flex py-12 gap-10 max-w-4xl">
           <div className="flex flex-col gap-2 items-center">
@@ -166,7 +193,7 @@ function ConferencePage() {
           </div>
         </div>
         <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text">
-        Open Source Expert Speakers
+          Open Source Expert Speakers
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-x-10 lg:px-20">
           <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
@@ -283,7 +310,7 @@ function ConferencePage() {
                 Talks Only
               </button>
               <button
-                className={`px-4 py-2 rounded-lg w-full font-bold${
+                className={`px-4 py-2 rounded-lg w-full font-bold ${
                   filter === 'Workshop' ? 'text-blue-500' : 'text-gray-500'
                 }`}
                 onClick={() => setFilter('Workshop')}
@@ -293,7 +320,11 @@ function ConferencePage() {
             </div>
             <div
               className={`absolute top-0 left-0 h-full w-1/3 bg-blue-500 rounded-2xl transition-transform duration-300 ease-in-out opacity-50 ${
-                filter === 'all' ? 'translate-x-0' : filter === 'Talk' ? 'translate-x-full' : 'translate-x-[200%]'
+                filter === 'all'
+                  ? 'translate-x-0'
+                  : filter === 'Talk'
+                  ? 'translate-x-full'
+                  : 'translate-x-[200%]'
               }`}
             ></div>
           </div>
