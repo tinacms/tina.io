@@ -64,7 +64,7 @@ function SessionCard({ session }: { session: Session }) {
             {formatTime(session.talkTimeStart)} -{' '}
             {formatTime(session.talkTimeEnd)}
           </p>
-          <p className="text-gray-600 text-sm pt-2">
+          <p className="text-gray-600 text-lg pt-2">
             {session.speachDescription}
           </p>
         </div>
@@ -267,7 +267,7 @@ function ConferencePage() {
           <div className="relative w-full max-w-2xl">
             <div className="flex justify-between items-center text-center bg-gray-200 p-2 rounded-2xl w-full gap-1">
               <button
-                className={`px-4 py-2 rounded-lg w-full ${
+                className={`px-4 py-2 rounded-lg w-full font-bold ${
                   filter === 'all' ? 'text-blue-500' : 'text-gray-500'
                 }`}
                 onClick={() => setFilter('all')}
@@ -275,7 +275,7 @@ function ConferencePage() {
                 All Sessions
               </button>
               <button
-                className={`px-4 py-2 rounded-lg w-full ${
+                className={`px-4 py-2 rounded-lg w-full font-bold ${
                   filter === 'Talk' ? 'text-blue-500' : 'text-gray-500'
                 }`}
                 onClick={() => setFilter('Talk')}
@@ -283,7 +283,7 @@ function ConferencePage() {
                 Talks Only
               </button>
               <button
-                className={`px-4 py-2 rounded-lg w-full ${
+                className={`px-4 py-2 rounded-lg w-full font-bold${
                   filter === 'Workshop' ? 'text-blue-500' : 'text-gray-500'
                 }`}
                 onClick={() => setFilter('Workshop')}
