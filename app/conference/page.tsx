@@ -1,9 +1,9 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import { CiCalendar } from 'react-icons/ci';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
-import Image from 'next/image';
-import Link from 'next/link';
 
 function ConferencePage() {
   return (
@@ -76,7 +76,10 @@ function ConferencePage() {
         </h2>
         <div className="grid grid-cols-3 gap-10 gap-x-10 px-20">
           <div className="col-span-3 flex flex-col gap-2 items-center">
-            <Link href="https://www.ssw.com.au/people/adam-cogan/" target="_blank">
+            <Link
+              href="https://www.ssw.com.au/people/adam-cogan/"
+              target="_blank"
+            >
               <Image
                 src="/img/people/Adam-Cogan-Profile.jpg"
                 alt="Adam Cogan"
@@ -96,13 +99,16 @@ function ConferencePage() {
             </div>
           </div>
           <div className="flex flex-col gap-2 items-center">
-            <Link href="https://www.ssw.com.au/people/matt-wicks/" target="_blank">
+            <Link
+              href="https://www.ssw.com.au/people/matt-wicks/"
+              target="_blank"
+            >
               <Image
                 src="/img/people/Matt-Wicks-Profile.jpg"
                 alt="Matt Wicks"
                 width={150}
                 height={150}
-               className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
+                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
               />
             </Link>
             <h3 className="font-bold">Matt Wicks</h3>{' '}
@@ -114,7 +120,10 @@ function ConferencePage() {
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center">
-            <Link href="https://www.ssw.com.au/people/michelle-duke/" target="_blank">
+            <Link
+              href="https://www.ssw.com.au/people/michelle-duke/"
+              target="_blank"
+            >
               <Image
                 src="/img/people/Michelle-Duke-Profile.jpg"
                 alt="Michelle Duke"
@@ -132,7 +141,10 @@ function ConferencePage() {
             </p>
           </div>
           <div className="flex flex-col gap-2 items-center">
-            <Link href="https://www.ssw.com.au/people/hajir-lesani/" target="_blank">
+            <Link
+              href="https://www.ssw.com.au/people/hajir-lesani/"
+              target="_blank"
+            >
               <Image
                 src="/img/people/Hajir-Lesani-Profile.jpg"
                 alt="Hajir Lesani"
@@ -150,8 +162,8 @@ function ConferencePage() {
               technology, and financial technology.
             </p>
           </div>
-          <div className="col-span-3 flex flex-col gap-2 items-center">
-            <h3 className="font-bold">More coming...</h3>{' '}
+          <div className="col-span-3 m-5 flex flex-col gap-2 items-center">
+            <h3 className="font-bold text-3xl">More coming soon...</h3>{' '}
           </div>
         </div>
       </div>
