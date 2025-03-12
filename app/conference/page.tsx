@@ -64,7 +64,7 @@ function SessionCard({ session }: { session: Session }) {
             {formatTime(session.talkTimeStart)} -{' '}
             {formatTime(session.talkTimeEnd)}
           </p>
-          <p className="text-gray-600 text-sm pt-2">
+          <p className="text-gray-600 text-lg pt-2">
             {session.speachDescription}
           </p>
         </div>
@@ -108,7 +108,7 @@ function ConferencePage() {
             <FaRegClock /> <span>9:00 AM - 6:00 PM</span>
           </div>
           <div className="flex gap-2 items-center">
-            <FaLocationDot /> <span>SSW Melbourne Office</span>
+            <FaLocationDot /> <Link href="https://www.ssw.com.au/offices/melbourne " target='_blank' className='underline'>SSW Melbourne Office</Link>
           </div>
         </div>
         <button
@@ -123,7 +123,7 @@ function ConferencePage() {
           About the Conference
         </h2>
         <p className="text-lg max-w-4xl">
-          Join us for an exciting and hands-on mini conference at SSW Melbourne!
+          Join us for an exciting and hands-on mini conference at <Link href="https://www.ssw.com.au/offices/melbourne" target='_blank' className='underline'>SSW Melbourne</Link>!
           This event will bring together developers, content creators, and tech
           enthusiasts for an afternoon filled with inspiring talks, practical
           workshops, and networking opportunities. With topics ranging from
@@ -166,7 +166,7 @@ function ConferencePage() {
           </div>
         </div>
         <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text">
-          Our Speakers
+        Open Source Expert Speakers
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-x-10 lg:px-20">
           <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
@@ -267,7 +267,7 @@ function ConferencePage() {
           <div className="relative w-full max-w-2xl">
             <div className="flex justify-between items-center text-center bg-gray-200 p-2 rounded-2xl w-full gap-1">
               <button
-                className={`px-4 py-2 rounded-lg w-full ${
+                className={`px-4 py-2 rounded-lg w-full font-bold ${
                   filter === 'all' ? 'text-blue-500' : 'text-gray-500'
                 }`}
                 onClick={() => setFilter('all')}
@@ -275,7 +275,7 @@ function ConferencePage() {
                 All Sessions
               </button>
               <button
-                className={`px-4 py-2 rounded-lg w-full ${
+                className={`px-4 py-2 rounded-lg w-full font-bold ${
                   filter === 'Talk' ? 'text-blue-500' : 'text-gray-500'
                 }`}
                 onClick={() => setFilter('Talk')}
@@ -283,7 +283,7 @@ function ConferencePage() {
                 Talks Only
               </button>
               <button
-                className={`px-4 py-2 rounded-lg w-full ${
+                className={`px-4 py-2 rounded-lg w-full font-bold${
                   filter === 'Workshop' ? 'text-blue-500' : 'text-gray-500'
                 }`}
                 onClick={() => setFilter('Workshop')}
