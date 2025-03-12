@@ -98,6 +98,15 @@
       "talkTimeStart": "2025-03-12T13:00:00Z",
       "talkTimeEnd": "2025-03-12T14:00:00Z",
       "sessionType": "Workshop"
+    },
+    {
+      "talkSpeakerName": "Christian Morford-Waite",
+      "talkSpeakerImage": "/img/people/Christian-Morford-Waite-Profile.jpg",
+      "speachTitle": "Accelerating web-development on Astro",
+      "speachDescription": "Explore how Astro can revolutionize your web development process with its modern architecture and performance optimizations.",
+      "talkTimeStart": "2025-03-12T15:00:00Z",
+      "talkTimeEnd": "2025-03-12T16:00:00Z",
+      "sessionType": "Workshop"
     }
     
   ]
