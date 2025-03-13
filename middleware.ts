@@ -29,14 +29,14 @@ export function middleware(request: NextRequest) {
   console.log('Current Locale:', locale);
 
   if (locale === DEFAULT_LOCALE) {
+    console.log('Same path:', pathname);
     response = NextResponse.next();
   } else {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
     response = NextResponse.redirect(url);
+    console.log('Redirect to:', url.pathname);
   }
-
-  console.log('Redirect to:', response.nextUrl.pathname);
   return saveLocaleToCookieServer(response, locale);
 }
 
