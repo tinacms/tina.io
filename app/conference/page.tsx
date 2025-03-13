@@ -149,7 +149,7 @@ function ConferencePage() {
         </button>
       </div>
       <div className="flex flex-col justify-center items-center text-center p-10">
-        <h2 className="text-3xl font-bold pb-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text">
+        <h2 className="text-3xl font-bold pb-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           About the Conference
         </h2>
         <p className="text-lg max-w-4xl">
@@ -202,7 +202,7 @@ function ConferencePage() {
             </p>
           </div>
         </div>
-        <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text">
+        <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           Open Source Expert Speakers
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-x-10 lg:px-20">
@@ -297,7 +297,7 @@ function ConferencePage() {
         <div className="flex flex-col items-center p-10" ref={agendaRef}>
           <h2
             id="agenda"
-            className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-500 to-blue-700 text-transparent bg-clip-text"
+            className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
           >
             Agenda
           </h2>
