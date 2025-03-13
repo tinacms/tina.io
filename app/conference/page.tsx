@@ -59,7 +59,7 @@ function SessionCard({ session }: { session: Session }) {
             alt={session.talkSpeakerName}
             width={80}
             height={80}
-            className="rounded-full h-full object-cover"
+            className="rounded-2xl h-full object-cover"
           />
           <p className="text-black text-md text-start font-semibold mt-2">
             {session.talkSpeakerName}
