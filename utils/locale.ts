@@ -48,6 +48,7 @@ export function getLocale(request: NextRequest): string {
     return acceptLanguageLocale;
   }
 
+  console.log(`Get locale from default: ${DEFAULT_LOCALE}`);
   return DEFAULT_LOCALE;
 }
 
@@ -55,6 +56,7 @@ function getLocaleFromCookie(request: NextRequest): string | null {
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
 
   if (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale)) {
+    console.log(`Get locale from cookie: ${cookieLocale}`);
     return cookieLocale;
   }
 
@@ -67,6 +69,7 @@ function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
 
   let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
   try {
+    console.log(`Get locale from headers: ${languages}`);
     return match(languages, SUPPORTED_LOCALES, DEFAULT_LOCALE);
   } catch (error) {
     return null;

@@ -22,9 +22,12 @@ export const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  console.log('Try to access:', pathname);
 
   let response;
   const locale = getLocale(request);
+  console.log('Current Locale:', locale);
+
   if (locale === DEFAULT_LOCALE) {
     response = NextResponse.next();
   } else {
@@ -32,6 +35,8 @@ export function middleware(request: NextRequest) {
     url.pathname = `/${locale}${pathname}`;
     response = NextResponse.redirect(url);
   }
+
+  console.log('Redirect to:', response.nextUrl.pathname);
   return saveLocaleToCookieServer(response, locale);
 }
 
