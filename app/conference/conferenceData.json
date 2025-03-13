@@ -1,10 +1,19 @@
 {
   "speakerSchedule": [
     {
+      "talkSpeakerName": "",
+      "talkSpeakerImage": "/img/brand-assets/llama.svg",
+      "speachTitle": "Registration & Breakfast",
+      "speachDescription": "Check-in and enjoy complimentary breakfast while networking with fellow attendees",
+      "talkTimeStart": "2025-03-12T08:00:00Z",
+      "talkTimeEnd": "2025-03-12T09:00:00Z",
+      "sessionType": "Break"
+    },
+    {
       "talkSpeakerName": "Adam Cogan",
       "talkSpeakerImage": "/img/people/Adam-Cogan-Profile.jpg",
       "speachTitle": "Keynote - TinaCMS and the road ahead",
-      "speachDescription": "Join us for the Keynote - TinaCMS and the Road Ahead, where we’ll explore the future of TinaCMS. Discover upcoming features, improvements, and the vision shaping its development.",
+      "speachDescription": "Join us for the Keynote - TinaCMS and the Road Ahead, where we'll explore the future of TinaCMS. Discover upcoming features, improvements, and the vision shaping its development.",
       "talkTimeStart": "2025-03-12T09:00:00Z",
       "talkTimeEnd": "2025-03-12T10:00:00Z",
       "sessionType": "Talk"
@@ -108,6 +117,5 @@
       "talkTimeEnd": "2025-03-12T16:00:00Z",
       "sessionType": "Workshop"
     }
-    
   ]
 }

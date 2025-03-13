@@ -4,6 +4,7 @@ dist
 out
 
 # dependencies
+.cursorrules
 node_modules
 test/node_modules
 
