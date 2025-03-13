@@ -139,6 +139,7 @@ export function AppNavBar({ sticky = true }) {
       setTimeout(() => setAnimateFlag(false), 600);
     }, 20);
 
+    console.log('Current pathName:', pathName);
     const localePattern = new RegExp(
       `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
     );
@@ -150,14 +151,17 @@ export function AppNavBar({ sticky = true }) {
             return slash === '/' ? '/' : '';
           }
         );
+        console.log('Switching to:', newPath);
         router.push(newPath === '' ? '/' : newPath);
       }
     } else {
       if (localePattern.test(pathName)) {
         const newPath = pathName.replace(localePattern, `/${code}$2`);
+        console.log('Switching to:', newPath);
         router.push(newPath);
       } else {
         const newPath = pathName === '/' ? `/${code}` : `/${code}${pathName}`;
+        console.log('Switching to:', newPath);
         router.push(newPath);
       }
     }
