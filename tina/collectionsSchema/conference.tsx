@@ -230,7 +230,7 @@ export const conferenceTinaCMSCollection = {
       list: true,
       ui: {
         itemProps: (item) => {
-          return { label: item.speachTitle };
+          return { label: `${item.talkSpeakerName} - ${item.speachTitle}` };
         },
       },
       fields: [
@@ -257,13 +257,15 @@ export const conferenceTinaCMSCollection = {
         {
           name: 'talkTimeStart',
           label: 'Talk Time Start',
-          type: 'datetime',
+          type: 'number',
+          description: 'Enter in 24 hour format',
         },
         {
           name: 'talkTimeEnd',
           label: 'Talk Time End',
-          type: 'datetime',
-        },        
+          type: 'number',
+          description: 'Enter in 24 hour format',
+        },
       ],
     },
   ],
