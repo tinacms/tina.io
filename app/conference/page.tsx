@@ -216,7 +216,7 @@ function ConferencePage() {
                 alt="Adam Cogan"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-4 transition-all"
+                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
               />
             </Link>
             <h3 className="font-bold">Adam Cogan</h3>{' '}
@@ -239,7 +239,7 @@ function ConferencePage() {
                 alt="Matt Wicks"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
+                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
               />
             </Link>
             <h3 className="font-bold">Matt Wicks</h3>{' '}
@@ -260,7 +260,7 @@ function ConferencePage() {
                 alt="Michelle Duke"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
+                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
               />
             </Link>
             <h3 className="font-bold">Michelle Duke</h3>{' '}
@@ -281,7 +281,7 @@ function ConferencePage() {
                 alt="Hajir Lesani"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl border border-orange-600 hover:scale-105 hover:border-orange-600 hover:border-4 transition-all"
+                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
               />
             </Link>
             <h3 className="font-bold">Hajir Lesani</h3>{' '}
