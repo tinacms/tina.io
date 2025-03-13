@@ -1,6 +1,6 @@
 ---
 title: The "rich-text" field
-last_edited: '2025-02-10T06:35:37.198Z'
+last_edited: '2025-03-13T01:18:22.459Z'
 next: ''
 previous: content/docs/reference/rich-text-usage/mermaid.mdx
 ---
@@ -161,11 +161,13 @@ Results in the following response from the content API:
 To insert a line break into an empty line in TinaCMS Rich Text:
 
 * Press Shift + Enter to create the line break
-* If the line break is not followed by a line with text, it will render as a \ in the final output.\
+* If the line break is not followed by a paragraph, it will render as a `\` in the final output e.g. if the next line is a header then a `\` will be rendered\
   This can be fixed by deleting and re-creating the line\
-  Ensure that the line break precedes text content to avoid this issue
+  Ensure that the line break precedes text content in a paragraph to avoid this issue
 
-Note: This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
+Note: This behavior is consistent with standard GitHub Flavored Markdown specification.
+
+If you need to have multiple line breaks or line breaks before text (that is not a paragraph e.g. a heading) or other elements - we recommend utilising CSS or custom elements to provide the padding you require.
 
 ### Using Table
 
