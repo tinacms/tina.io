@@ -3,11 +3,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { CiCalendar } from 'react-icons/ci';
+import { FaRegCalendar } from 'react-icons/fa';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import sessionData from './conferenceData.json';
+import { FaRegMap } from "react-icons/fa";
+
+import { FaRegStar } from "react-icons/fa";
 
 interface Session {
   talkSpeakerName: string;
@@ -117,21 +120,23 @@ function ConferencePage() {
   };
 
   return (
-    <div>
-      <div className="flex flex-col justify-center items-center text-center p-10 bg-gradient-to-br from-orange-400 to-orange-600 text-white">
-        <h1 className="font-tuner text-4xl pb-4">TinaCon 2025</h1>
+    <div className="mt-6">
+      <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
+        <h1 className="font-tuner text-4xl pb-4 text-orange-500">
+          TinaCon 2025
+        </h1>
         <h2 className="text-2xl max-w-4xl">
           Join us for transformative day of learning, networking and inspiration
         </h2>
         <div className="flex py-6 gap-10">
           <div className="flex gap-2 items-center">
-            <CiCalendar /> <span>May 2, 2025</span>
+            <FaRegCalendar /> <span>May 2, 2025</span>
           </div>
           <div className="flex gap-2 items-center">
             <FaRegClock /> <span>9:00 AM - 6:00 PM</span>
           </div>
           <div className="flex gap-2 items-center">
-            <FaLocationDot />{' '}
+            <FaRegMap />{' '}
             <Link
               href="https://www.ssw.com.au/offices/melbourne "
               target="_blank"
@@ -148,7 +153,7 @@ function ConferencePage() {
           Agenda
         </button>
       </div>
-      <div className="flex flex-col justify-center items-center text-center p-10">
+      <div className="flex flex-col justify-center items-center text-center p-16">
         <h2 className="text-3xl font-bold pb-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           About the Conference
         </h2>
@@ -168,11 +173,11 @@ function ConferencePage() {
           with TinaCMS, this is the perfect chance to deepen your knowledge,
           learn new skills, and connect with like-minded individuals
         </p>
-        <div className="flex py-12 gap-10 max-w-4xl">
+        <div className="flex py-12 gap-10 max-w-4xl text-lg">
           <div className="flex flex-col gap-2 items-center">
-            <IoIosInformationCircleOutline
+            <FaRegStar
               size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
+              className="text-orange-500 bg-orange-200 p-2 mb-4 rounded-full"
             />{' '}
             <h3 className="font-bold">7 Experts Speakers</h3>{' '}
             <p>
@@ -182,7 +187,7 @@ function ConferencePage() {
           <div className="flex flex-col gap-2 items-center">
             <IoMdBook
               size={40}
-              className="text-blue-500 bg-blue-200 p-2 rounded-full"
+              className="text-blue-500 bg-blue-200 p-2 mb-4 rounded-full"
             />{' '}
             <h3 className="font-bold">7 Interactive Workshops</h3>{' '}
             <p>
@@ -193,7 +198,7 @@ function ConferencePage() {
           <div className="flex flex-col gap-2 items-center">
             <GoPeople
               size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
+              className="text-seafoam-700 bg-seafoam-200 p-2 mb-4 rounded-full"
             />{' '}
             <h3 className="font-bold">Premium Networking</h3>{' '}
             <p>
