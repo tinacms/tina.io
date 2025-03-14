@@ -57,11 +57,40 @@ export const getStaticProps = async () => {
 
 After a page is setup with the `useTina` hook, you can add a [router to your collection](/docs/contextual-editing/router) so that you can access contextual-editing from the CMS.
 
-## Click to Edit (Experimental)
+## Experimental Features:
+
+### Select Form By ID (Experimental)
+
+Tina's experimental **Select Form By ID** feature allows developers to choose which form shows in the visual editing sidebar when multiple `useTina` hooks (or queries) exist on a page. By default, the first query requested is used to determine the form. However, by using this feature, you can ensure that a specific form — such as the one associated with a page collection rather than a global config — is used in the Tina sidebar.
+
+### How It Works
+
+When initializing the `useTina` hook, you can pass an experimental callback named `experimental___selectFormByFormId()`. This callback should return a unique form identifier, which tells Tina which document’s form should be shown in visual editing.
+
+### Example
+
+```typescript
+export default function PageComponent(props: PageComponentProps) {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+    experimental___selectFormByFormId() {
+      return `content/pages/${props.variables.relativePath}`;
+    },
+  });
+
+  // ...rest of the component code
+}
+```
+
+In the example above, the callback generates a form ID using the page's `relativePath`, ensuring that the appropriate form is used for editing in the sidebar.
+
+### Click to Edit (Experimental)
 
 Tina's "click to edit" feature allows editors to select the element they want to edit on the page in order to see it in the sidebar.
 
-<WebmEmbed embedSrc="/video/quick-edit-demo.webm"/>
+<WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
 
 > [Try the demo](https://demo.tina.io/admin#/~)!
 
