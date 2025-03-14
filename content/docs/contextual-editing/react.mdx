@@ -1,6 +1,7 @@
 ---
 id: /docs/contextual-editing/react
 title: Visual Editing in React
+last_edited: '2025-03-14T04:18:13.976Z'
 next: content/docs/contextual-editing/vue.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -63,11 +64,11 @@ After a page is setup with the `useTina` hook, you can add a [router to your col
 
 Tina's experimental **Select Form By ID** feature allows developers to choose which form shows in the visual editing sidebar when multiple `useTina` hooks (or queries) exist on a page. By default, the first query requested is used to determine the form. However, by using this feature, you can ensure that a specific form — such as the one associated with a page collection rather than a global config — is used in the Tina sidebar.
 
-### How It Works
+#### How It Works
 
 When initializing the `useTina` hook, you can pass an experimental callback named `experimental___selectFormByFormId()`. This callback should return a unique form identifier, which tells Tina which document’s form should be shown in visual editing.
 
-### Example
+#### Example
 
 ```typescript
 export default function PageComponent(props: PageComponentProps) {
