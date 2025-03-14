@@ -1,6 +1,6 @@
 ---
 title: Content Model Overview
-last_edited: '2025-03-11T01:57:45.118Z'
+last_edited: '2025-03-12T23:26:54.432Z'
 tocIsHidden: true
 next: ''
 previous: ''
@@ -12,15 +12,13 @@ The Tina schema defines the shape of your content. Tina uses a "content-modeling
 * Mutating the schema is easy, as you can test out changes locally, or in a branch.
 * The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
 
-The content model, and all configuration code is defined in a file called `tina/config.{ts,js,tsx}`.
+The content model, and all configuration code is defined in a file called `tina/config.{ts,js,tsx}` – specifically via the `defineConfig` method (see example below).
 
-The `schema` field in this object controls all data mapping between your content store and the editor. 
+The `schema` property determines data mapping between your content store and the editor.
 
-Each item in the inner `collections` array represents its own entity, which maps to certain directories in our site's repository. 
+Each item in the `schema.collections` array represents a distinct entity, which maps to certain directories of content in our site's repository. Each item contains an array of `fields` to control what appears in the TinaCMS editor.
 
-These `collections` array items each contain an array of `fields` that control what appears in the TinaCMS editor.
-
-See the example below to see a simple model definition following this structure.
+The example below is a simple model definition following this structure.
 
 ```ts
 // tina/config.{ts,js,tsx}

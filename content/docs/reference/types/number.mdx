@@ -1,27 +1,26 @@
 ---
-title: The "number" field
-last_edited: '2024-09-12T01:52:02.407Z'
+title: Number Fields
+last_edited: '2025-03-13T04:33:34.266Z'
 next: ''
 previous: ''
 ---
 
-## `number` Type
+An input field for storing numeric values.
+
+## Type Definition
 
 ```ts
 type NumberField = {
-  label: string
-  name: string
-  type: 'number'
-  list?: boolean
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
+  name: string,
+  type: 'number',
+  label?: string,
+  description?: string,
+  list?: boolean,
   ui?: {
-    label?: string
-    description?: string
-    component?: FC<any> | string | null
-    parse?: (value: number | number[], name: string, field: F) => any
-    format?: (value: number | number[], name: string, field: F) => any
-    validate?(
-      // number or  number[] depends on list true or false
+    component?: FC<any> | string | null,
+    parse?: (value: number | number[], name: string, field: F) => any,
+    format?: (value: number | number[], name: string, field: F) => any,  
+    validate?: (
       value: number | number[],
       allValues: any,
       meta: any,
@@ -31,11 +30,13 @@ type NumberField = {
 }
 ```
 
+This is just a reference. The generic [Field](/docs/reference/fields) type definition contains usage information.
+
 ## Examples
 
 Tina will generate the appropriate component depending on the configuration provided.
 
-### Simple
+### Simple field
 
 ```javascript
 {

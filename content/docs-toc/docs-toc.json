@@ -99,16 +99,6 @@
           "title": "Defining Your Model",
           "items": [
             {
-              "title": "Overview",
-              "slug": "content/docs/schema.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "The Tina Schema",
-              "slug": "content/docs/reference/schema.mdx",
-              "_template": "item"
-            },
-            {
               "title": "Collections",
               "slug": "content/docs/reference/collections.mdx",
               "_template": "item"
@@ -122,78 +112,78 @@
               "title": "Templates",
               "slug": "content/docs/reference/templates.mdx",
               "_template": "item"
-            },
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "Field Types",
+          "items": [
             {
-              "title": "Draft Fields",
-              "slug": "content/docs/drafts/drafts-fields.mdx",
+              "title": "String Fields",
+              "slug": "content/docs/reference/types/string.mdx",
               "_template": "item"
             },
             {
-              "title": "Editor Field Types",
+              "title": "Number Fields",
+              "slug": "content/docs/reference/types/number.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Date Fields",
+              "slug": "content/docs/reference/types/datetime.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Boolean Fields",
+              "slug": "content/docs/reference/types/boolean.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Image Fields",
+              "slug": "content/docs/reference/types/image.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Reference Fields",
+              "slug": "content/docs/reference/types/reference.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Object Fields",
+              "slug": "content/docs/reference/types/object.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Markdown Content",
               "items": [
                 {
-                  "title": "Overview",
-                  "slug": "content/docs/reference/types.mdx",
+                  "title": "What is Markdown?",
+                  "slug": "content/docs/editing/markdown.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "string",
-                  "slug": "content/docs/reference/types/string.mdx",
+                  "title": "Rich-Text Fields",
+                  "slug": "content/docs/reference/types/rich-text.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "number",
-                  "slug": "content/docs/reference/types/number.mdx",
+                  "title": "Rendering Markdown Content",
+                  "slug": "content/docs/reference/types/rendering-markdown.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "datetime",
-                  "slug": "content/docs/reference/types/datetime.mdx",
+                  "title": "Custom Syntax",
+                  "slug": "content/docs/reference/rich-text-usage/markdown-shortcode.mdx",
                   "_template": "item"
-                },
-                {
-                  "title": "boolean",
-                  "slug": "content/docs/reference/types/boolean.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "image",
-                  "slug": "content/docs/reference/types/image.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "reference",
-                  "slug": "content/docs/reference/types/reference.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "object",
-                  "slug": "content/docs/reference/types/object.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "Markdown",
-                  "items": [
-                    {
-                      "title": "rich-text",
-                      "slug": "content/docs/reference/types/rich-text.mdx",
-                      "_template": "item"
-                    },
-                    {
-                      "title": "Markdown Tables",
-                      "slug": "content/docs/reference/rich-text-usage/markdown-tables.mdx",
-                      "_template": "item"
-                    },
-                    {
-                      "title": "Markdown Shortcode",
-                      "slug": "content/docs/reference/rich-text-usage/markdown-shortcode.mdx",
-                      "_template": "item"
-                    }
-                  ],
-                  "_template": "items"
                 }
               ],
               "_template": "items"
+            },
+            {
+              "title": "Custom Input Components",
+              "slug": "content/docs/extending-tina/custom-field-components.mdx",
+              "_template": "item"
             }
           ],
           "_template": "items"
@@ -219,57 +209,6 @@
             {
               "title": "Setting up the Router",
               "slug": "content/docs/contextual-editing/router.mdx",
-              "_template": "item"
-            }
-          ],
-          "_template": "items"
-        },
-        {
-          "title": "Markdown & MDX",
-          "slug": "content/docs/editing/markdown.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Customizing the Editor",
-          "items": [
-            {
-              "title": "Overview",
-              "slug": "content/docs/extending-tina/overview.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Single Document Collections",
-              "slug": "content/docs/editing/single-document-collections.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Validation",
-              "slug": "content/docs/extending-tina/validation.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Custom Field Components",
-              "slug": "content/docs/extending-tina/custom-field-components.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Custom List Rendering",
-              "slug": "content/docs/extending-tina/customize-list-ui.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Format and Parse Input",
-              "slug": "content/docs/extending-tina/format-and-parse.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Filename Customization",
-              "slug": "content/docs/extending-tina/filename-customization.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Before Submit function",
-              "slug": "content/docs/extending-tina/before-submit.mdx",
               "_template": "item"
             }
           ],
@@ -493,6 +432,37 @@
           "_template": "item"
         },
         {
+          "title": "Querying Tina Content at Runtime",
+          "slug": "content/docs/guides/react-data-fetching.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Configuring Collections",
+          "items": [
+            {
+              "title": "Single Document Collections",
+              "slug": "content/docs/editing/single-document-collections.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Marking Draft Documents",
+              "slug": "content/docs/drafts/drafts-fields.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Modifying Data on Save",
+              "slug": "content/docs/extending-tina/before-submit.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Automatic Filenames",
+              "slug": "content/docs/extending-tina/filename-customization.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
           "title": "Framework Guides",
           "items": [
             {
@@ -546,13 +516,13 @@
           "_template": "items"
         },
         {
-          "title": "Separate Content Repo",
-          "slug": "content/docs/guides/separate-content-repo.mdx",
+          "title": "Marking Draft Pages",
+          "slug": "content/docs/drafts/drafts-fields.mdx",
           "_template": "item"
         },
         {
-          "title": "Querying Tina Content at Runtime",
-          "slug": "content/docs/guides/react-data-fetching.mdx",
+          "title": "Separate Content Repo",
+          "slug": "content/docs/guides/separate-content-repo.mdx",
           "_template": "item"
         },
         {

@@ -1,23 +1,29 @@
 ---
 id: templates
 title: Templates
-last_edited: '2022-06-15T15:51:56.737Z'
+last_edited: '2025-03-13T00:43:52.469Z'
 next: content/docs/reference/types.mdx
 previous: content/docs/reference/fields.mdx
 ---
 
-In most cases, just using [`fields`](/docs/reference/fields/) is enough, however templates can be used when there are multiple variants of the same collection or object. For example in a "page" collection there might be a need for a marketing page template and a content page template, both under the collection "page".
+Templates exist as an alternative to the fields type when multiple variants of the same **collection** or **object**.
 
-## Definition
+> For example in a "page" collection there might be a need for a marketing page template and a content page template, both under the collection "page".
 
-| Property | Description                                               |
-| -------- | --------------------------------------------------------- |
-| `name`   | The name of the template                                  |
-| `label`  | A human friendly label that will be displayed to the user |
-| `inline` | Changes the component to inline styling                   |
-| `fields` | An array of [fields](/docs/reference/fields/)             |
+## Type Definition
 
-## Example using templates instead of fields
+| Property       | Description                                                                           |
+| -------------- | ------------------------------------------------------------------------------------- |
+| `name`         | The name of the template.                                                             |
+| `label`        | The template name as shown in the editor.                                             |
+| `fields`       | An array of [fields](/docs/reference/fields/).                                        |
+| ui.itemProps   | Controls how each template appears in the editor.                                     |
+| ui.defaultItem | An object or a function that returns the default data when a new document is created. |
+| ui.previewSrc  | Sample image for this template.                                                       |
+
+## Examples
+
+### Basic example with two templates
 
 ```ts
 export default defineConfig({
