@@ -1,6 +1,5 @@
-import { match } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
 import { NextRequest, NextResponse } from 'next/server';
+import { getLocale } from 'utils/locale';
 
 export enum SupportedLocales {
   EN = 'en',
@@ -24,9 +23,11 @@ export const DEFAULT_LOCALE = 'en';
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const pathname = url.pathname;
-
+  console.log('Try to Access:', pathname);
+  console.log('Get from Locale:', getLocale(request));
+  console.log('Get from Params:', url.searchParams.get('setLocale'));
   const locale = url.searchParams.get('setLocale') || getLocale(request);
-
+  console.log('Final locale:', locale);
   let response;
 
   if (url.searchParams.has('setLocale')) {
@@ -52,42 +53,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ['/'],
 };
-
-function getLocale(request: NextRequest): string {
-  const cookieLocale = getLocaleFromCookie(request);
-  if (cookieLocale) {
-    return cookieLocale;
-  }
-
-  const acceptLanguageLocale = getLocaleFromAcceptLanguage(request);
-  if (acceptLanguageLocale) {
-    return acceptLanguageLocale;
-  }
-
-  return DEFAULT_LOCALE;
-}
-
-function getLocaleFromCookie(request: NextRequest): string | null {
-  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
-
-  if (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale)) {
-    return cookieLocale;
-  }
-
-  return null;
-}
-
-function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-  try {
-    return match(languages, SUPPORTED_LOCALES, DEFAULT_LOCALE);
-  } catch (error) {
-    return null;
-  }
-}
 
 export function isValidPathCheck(pathname) {
   if (VALID_PATHS.includes(pathname)) {
