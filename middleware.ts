@@ -22,17 +22,26 @@ export const SUPPORTED_LOCALES = ['en', 'zh'];
 export const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+  const url = request.nextUrl.clone();
+  const pathname = url.pathname;
+
+  const locale = url.searchParams.get('setLocale') || getLocale(request);
 
   let response;
-  const locale = getLocale(request);
-  if (locale === DEFAULT_LOCALE) {
-    response = NextResponse.next();
+
+  if (url.searchParams.has('setLocale')) {
+    url.searchParams.delete('setLocale');
+    if (locale === DEFAULT_LOCALE) {
+      response = NextResponse.redirect(new URL('/', request.url));
+    } else {
+      response = NextResponse.redirect(new URL(`/${locale}`, request.url));
+    }
+  } else if (pathname === '/' && locale !== DEFAULT_LOCALE) {
+    response = NextResponse.redirect(new URL(`/${locale}`, request.url));
   } else {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}${pathname}`;
-    response = NextResponse.redirect(url);
+    response = NextResponse.next();
   }
+
   response.cookies.set('NEXT_LOCALE', locale, {
     maxAge: 60 * 60 * 24 * 365,
     path: '/',
