@@ -2,7 +2,7 @@
   "speakerSchedule": [
     {
       "talkSpeakerName": "",
-      "talkSpeakerImage": "/img/brand-assets/llama.svg",
+      "talkSpeakerImage": "/img/people/Tina.png",
       "speachTitle": "Registration & Breakfast",
       "speachDescription": "Check-in and enjoy complimentary breakfast while networking with fellow attendees",
       "talkTimeStart": "2025-03-12T08:00:00Z",
@@ -11,7 +11,7 @@
     },
     {
       "talkSpeakerName": "Adam Cogan",
-      "talkSpeakerImage": "/img/people/Adam-Cogan-Profile.jpg",
+      "talkSpeakerImage": "/img/people/Adam-Cogan.png",
       "speachTitle": "Keynote - TinaCMS and the road ahead",
       "speachDescription": "Join us for the Keynote - TinaCMS and the Road Ahead, where we'll explore the future of TinaCMS. Discover upcoming features, improvements, and the vision shaping its development.",
       "talkTimeStart": "2025-03-12T09:00:00Z",
@@ -20,7 +20,7 @@
     },
     {
       "talkSpeakerName": "Matt Wicks",
-      "talkSpeakerImage": "/img/people/Matt-Wicks-Profile.jpg",
+      "talkSpeakerImage": "/img/people/Matt-Wicks.png",
       "speachTitle": "From Starter to Stunner: Automating Static Sites with TinaCMS & GitHub Actions",
       "speachDescription": "Take your GitHub profile to the next level by building and automating a statically generated website with TinaCMS. In this session, we’ll walk through setting up a site using the TinaCMS starter, fetching dynamic content, and leveraging GitHub Actions to automate deployment.",
       "talkTimeStart": "2025-03-12T10:00:00Z",
@@ -29,7 +29,7 @@
     },
     {
       "talkSpeakerName": "TBD",
-      "talkSpeakerImage": "/img/people/Mystery.png",
+      "talkSpeakerImage": "/img/people/TBD.png",
       "speachTitle": "TBD",
       "speachDescription": "TBD",
       "talkTimeStart": "2025-03-12T11:00:00Z",
@@ -38,7 +38,7 @@
     },
     {
       "talkSpeakerName": "Michelle Duke",
-      "talkSpeakerImage": "/img/people/Michelle-Duke-Profile.jpg",
+      "talkSpeakerImage": "/img/people/Michelle-Duke.png",
       "speachTitle": "The Art of Git-Based Content Management with GitHub",
       "speachDescription": "Managing content shouldn’t be a chaotic mess of outdated files, endless email threads, or confusing version names. Whether you're working on blogs, documentation, or even entire websites, GitHub offers a powerful yet often underutilised way to streamline your workflow.",
       "talkTimeStart": "2025-03-12T13:00:00Z",
@@ -47,7 +47,7 @@
     },
     {
       "talkSpeakerName": "TBD",
-      "talkSpeakerImage": "/img/people/Mystery.png",
+      "talkSpeakerImage": "/img/people/TBD.png",
       "speachTitle": "TBD",
       "speachDescription": "TBD",
       "talkTimeStart": "2025-03-12T14:00:00Z",
@@ -65,7 +65,7 @@
     },
     {
       "talkSpeakerName": "TBD",
-      "talkSpeakerImage": "/img/people/Mystery.png",
+      "talkSpeakerImage": "/img/people/TBD.png",
       "speachTitle": "TBD",
       "speachDescription": "TBD",
       "talkTimeStart": "2025-03-12T16:00:00Z",
@@ -74,7 +74,7 @@
     },
     {
       "talkSpeakerName": "",
-      "talkSpeakerImage": "/img/brand-assets/llama.svg",
+      "talkSpeakerImage": "/img/people/Tina.png",
       "speachTitle": "Lunch",
       "speachDescription": "Indulge in a unique lunch featuring creamy Llama Milkshakes and crispy Yak Wings, crafted for adventurous foodies at TinaCon 2025!",
       "talkTimeStart": "2025-03-12T12:00:00Z",
@@ -83,7 +83,7 @@
     },
     {
       "talkSpeakerName": "",
-      "talkSpeakerImage": "/img/brand-assets/llama.svg",
+      "talkSpeakerImage": "/img/people/Tina.png",
       "speachTitle": "After Party",
       "speachDescription": "Unwind at the TinaCon After Party with great music, refreshing drinks, and lively networking—celebrate a day of innovation in style!",
       "talkTimeStart": "2025-03-12T18:00:00Z",
@@ -92,7 +92,7 @@
     },
     {
       "talkSpeakerName": "Isaac Lombard",
-      "talkSpeakerImage": "/img/people/Isaac-Lombard-Profile.jpg",
+      "talkSpeakerImage": "/img/people/Isaac-Lombard.png",
       "speachTitle": "Manage your content with TinaCMS",
       "speachDescription": "Discover how to efficiently manage and edit your website content using TinaCMS, a powerful and user-friendly content management system.",
       "talkTimeStart": "2025-03-12T10:00:00Z",
@@ -101,7 +101,7 @@
     },
     {
       "talkSpeakerName": "Caleb Williams",
-      "talkSpeakerImage": "/img/people/Caleb-Williams-Profile.jpg",
+      "talkSpeakerImage": "/img/people/Caleb-Williams.png",
       "speachTitle": "Mastering the Balance: SSR vs. CSR in Next.js for Optimal Performance",
       "speachDescription": "Unlock the full potential of Next.js by mastering the balance between Server-Side Rendering (SSR) and Client-Side Rendering (CSR). In this session, we’ll explore best practices and advanced strategies to enhance website performance, improve SEO, and deliver seamless user experiences.",
       "talkTimeStart": "2025-03-12T13:00:00Z",

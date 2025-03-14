@@ -217,7 +217,7 @@ function ConferencePage() {
               target="_blank"
             >
               <Image
-                src="/img/people/Adam-Cogan-Profile.jpg"
+                src="/img/people/Adam-Cogan.png"
                 alt="Adam Cogan"
                 width={150}
                 height={150}
@@ -236,7 +236,7 @@ function ConferencePage() {
               target="_blank"
             >
               <Image
-                src="/img/people/Matt-Wicks-Profile.jpg"
+                src="/img/people/Matt-Wicks.png"
                 alt="Matt Wicks"
                 width={150}
                 height={150}
@@ -254,7 +254,7 @@ function ConferencePage() {
               target="_blank"
             >
               <Image
-                src="/img/people/Michelle-Duke-Profile.jpg"
+                src="/img/people/Michelle-Duke.png"
                 alt="Michelle Duke"
                 width={150}
                 height={150}
@@ -272,7 +272,7 @@ function ConferencePage() {
               target="_blank"
             >
               <Image
-                src="/img/people/Hajir-Lesani-Profile.jpg"
+                src="/img/people/Hajir-Lesani.png"
                 alt="Hajir Lesani"
                 width={150}
                 height={150}
