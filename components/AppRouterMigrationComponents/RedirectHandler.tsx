@@ -7,20 +7,20 @@ import { DEFAULT_LOCALE } from 'middleware';
 export const RedirectHandler = () => {
   const router = useRouter();
   const pathName = usePathname();
-  const [redirected, setRedirected] = useState(false);
 
   useEffect(() => {
-    if (redirected) return;
+    if (pathName !== '/') return;
 
     const locale = getLocaleClient();
     if (locale != DEFAULT_LOCALE) {
+      console.log('Current Path:', pathName);
       const newPath = `/${locale}${pathName}`;
       saveLocale(locale);
-      setRedirected(true);
+      console.log('Redirect to:', newPath);
       router.push(newPath);
     }
     saveLocale(locale);
-  }, [pathName === '/']);
+  }, [pathName, router]);
 
   return null;
 };
