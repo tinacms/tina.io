@@ -292,43 +292,40 @@ function ConferencePage() {
           >
             Agenda
           </h2>
-          <div className="relative w-full max-w-2xl">
-            <div className="flex justify-between items-center text-center bg-gray-200 p-2 rounded-2xl w-full gap-1">
-              <button
-                className={`px-4 py-2 rounded-lg w-full font-bold ${
-                  filter === 'all' ? 'text-blue-600' : 'text-gray-500'
-                }`}
-                onClick={() => setFilter('all')}
-              >
-                All Sessions
-              </button>
-              <button
-                className={`px-4 py-2 rounded-lg w-full font-bold ${
-                  filter === 'Talk' ? 'text-blue-500' : 'text-gray-500'
-                }`}
-                onClick={() => setFilter('Talk')}
-              >
-                Talks Only
-              </button>
-              <button
-                className={`px-4 py-2 rounded-lg w-full font-bold ${
-                  filter === 'Workshop' ? 'text-blue-500' : 'text-gray-500'
-                }`}
-                onClick={() => setFilter('Workshop')}
-              >
-                Workshops Only
-              </button>
-            </div>
+          <div className="relative bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-md rounded-full flex w-full">
+          <div className="relative flex z-10 w-full">
             <div
-              className={`absolute top-0 left-0 h-full w-1/3 bg-blue-500 rounded-2xl transition-transform duration-300 ease-in-out opacity-50 ${
-                filter === 'all'
-                  ? 'translate-x-0'
-                  : filter === 'Talk'
-                  ? 'translate-x-full'
-                  : 'translate-x-[200%]'
+            className={`absolute top-0 left-0 w-1/3 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 border-4 border-white ${
+              // For some reason the translate-x-1/3, 2/3, etc doesnt work so we have full and 200% which is just full x 2
+              filter === 'all' ? 'translate-x-0' : filter === 'Talk' ? 'translate-x-full' : 'translate-x-[200%]'
+            }`}
+          ></div>
+            <button
+              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                filter === 'all' ? 'text-white' : 'text-blue-500'
               }`}
-            ></div>
+              onClick={() => setFilter('all')}
+            >
+              All Sessions
+            </button>
+            <button
+              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                filter === 'Talk' ? 'text-white' : 'text-blue-500'
+              }`}
+              onClick={() => setFilter('Talk')}
+            >
+              Talks
+            </button>
+            <button
+              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                filter === 'Workshop' ? 'text-white' : 'text-blue-500'
+              }`}
+              onClick={() => setFilter('Workshop')}
+            >
+              Workshops
+            </button>
           </div>
+        </div>
           <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
             {filteredSessions.map((session, index) => (
               <SessionCard key={index} session={session} />
