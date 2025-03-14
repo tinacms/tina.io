@@ -1,13 +1,16 @@
 'use client';
-
+import { FaRegUser } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { CiCalendar } from 'react-icons/ci';
+import { FaRegCalendar } from 'react-icons/fa';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import sessionData from './conferenceData.json';
+import { FaRegMap } from 'react-icons/fa';
+
+import { FaRegStar } from 'react-icons/fa';
 
 interface Session {
   talkSpeakerName: string;
@@ -37,54 +40,54 @@ function formatTime(time: string) {
 function SessionCard({ session }: { session: Session }) {
   return (
     <div
-      className={`border p-5 rounded-xl shadow-2xl flex w-full max-w-2xl text-start ${
-        session.sessionType === 'Workshop'
-          ? 'bg-gradient-to-br from-orange-50 to-orange-200'
-          : session.sessionType === 'Talk'
-          ? 'bg-gradient-to-br from-blue-50 to-blue-100'
-          : session.sessionType === 'Break'
-          ? 'bg-gradient-to-br from-gray-50 to-gray-200'
-          : 'bg-white/10'
-      }`}
+      className={`border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start
+        `}
     >
       <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
-        <div className="flex flex-col sm:hidden">
-          <p className="text-black text-md text-start font-semibold">
-            {session.talkSpeakerName}
-          </p>
-        </div>
-        <div className="hidden sm:flex flex-col" style={{ flex: '0 0 20%' }}>
+        <div className="hidden sm:flex flex-col pr-4" style={{ flex: '0 0 20%' }}>
           <Image
             src={session.talkSpeakerImage}
             alt={session.talkSpeakerName}
-            width={80}
-            height={80}
-            className="rounded-2xl h-full object-cover"
+            width={1000}
+            height={1000}
+            className="rounded-full w-full h-auto"
           />
-          <p className="text-black text-md text-start font-semibold mt-2">
-            {session.talkSpeakerName}
-          </p>
-          <p
-            className={`text-sm font-bold text-start ${
+        </div>
+        <div className="flex flex-col" style={{ flex: '0 0 80%' }}>
+          <span
+            className={`text-sm rounded-full text-center px-2 mb-2 -ml-1 ${
               session.sessionType === 'Break'
-                ? 'text-gray-400'
+                ? 'bg-gradient-to-br from-seafoam-200 to-seafoam-200 w-14 text-seafoam-700'
                 : session.sessionType === 'Workshop'
-                ? 'text-orange-500'
+                ? 'bg-gradient-to-br from-orange-100 to-orange-100 w-[5.5rem] text-orange-500'
                 : session.sessionType === 'Talk'
-                ? 'text-blue-500'
+                ? 'bg-gradient-to-br from-blue-100 to-blue-100 w-11 text-blue-500'
                 : 'text-gray-700'
             }`}
           >
             {session.sessionType}
-          </p>
-        </div>
-        <div className="flex flex-col" style={{ flex: '0 0 80%' }}>
+          </span>
           <h3 className="text-lg font-bold">{session.speachTitle}</h3>
-          <p className="text-sm text-gray-500">
-            {formatTime(session.talkTimeStart)} -{' '}
-            {formatTime(session.talkTimeEnd)}
-          </p>
-          <p className="text-gray-600 text-lg pt-2">
+          <span className="flex items-center gap-2 text-gray-600">
+            {session.talkSpeakerName && (
+              <>
+                <FaRegUser />
+                <p className="text-sm text-gray-600 text-center flex items-center">
+                  {session.talkSpeakerName}
+                </p>
+              </>
+            )}
+          </span>
+
+          <span className="flex items-center gap-2 text-gray-600">
+            <FaRegClock />
+            <p className="text-sm">
+              {formatTime(session.talkTimeStart)} -{' '}
+              {formatTime(session.talkTimeEnd)}
+            </p>
+          </span>
+
+          <p className="text-gray-600 text-sm pt-2">
             {session.speachDescription}
           </p>
         </div>
@@ -117,21 +120,23 @@ function ConferencePage() {
   };
 
   return (
-    <div>
-      <div className="flex flex-col justify-center items-center text-center p-10 bg-gradient-to-br from-orange-400 to-orange-600 text-white">
-        <h1 className="font-tuner text-4xl pb-4">TinaCon 2025</h1>
+    <div className="mt-6">
+      <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
+        <h1 className="font-tuner text-4xl pb-4 text-orange-500">
+          TinaCon 2025
+        </h1>
         <h2 className="text-2xl max-w-4xl">
           Join us for transformative day of learning, networking and inspiration
         </h2>
         <div className="flex py-6 gap-10">
           <div className="flex gap-2 items-center">
-            <CiCalendar /> <span>May 2, 2025</span>
+            <FaRegCalendar /> <span>May 2, 2025</span>
           </div>
           <div className="flex gap-2 items-center">
             <FaRegClock /> <span>9:00 AM - 6:00 PM</span>
           </div>
           <div className="flex gap-2 items-center">
-            <FaLocationDot />{' '}
+            <FaRegMap />{' '}
             <Link
               href="https://www.ssw.com.au/offices/melbourne "
               target="_blank"
@@ -148,7 +153,7 @@ function ConferencePage() {
           Agenda
         </button>
       </div>
-      <div className="flex flex-col justify-center items-center text-center p-10">
+      <div className="flex flex-col justify-center items-center text-center p-16">
         <h2 className="text-3xl font-bold pb-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           About the Conference
         </h2>
@@ -168,11 +173,11 @@ function ConferencePage() {
           with TinaCMS, this is the perfect chance to deepen your knowledge,
           learn new skills, and connect with like-minded individuals
         </p>
-        <div className="flex py-12 gap-10 max-w-4xl">
+        <div className="flex py-12 gap-10 max-w-4xl text-lg">
           <div className="flex flex-col gap-2 items-center">
-            <IoIosInformationCircleOutline
+            <FaRegStar
               size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
+              className="text-white bg-gradient-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full"
             />{' '}
             <h3 className="font-bold">7 Experts Speakers</h3>{' '}
             <p>
@@ -182,7 +187,7 @@ function ConferencePage() {
           <div className="flex flex-col gap-2 items-center">
             <IoMdBook
               size={40}
-              className="text-blue-500 bg-blue-200 p-2 rounded-full"
+              className="text-white bg-gradient-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full"
             />{' '}
             <h3 className="font-bold">7 Interactive Workshops</h3>{' '}
             <p>
@@ -193,7 +198,7 @@ function ConferencePage() {
           <div className="flex flex-col gap-2 items-center">
             <GoPeople
               size={40}
-              className="text-orange-500 bg-orange-200 p-2 rounded-full"
+              className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700  p-2 mb-4 rounded-full"
             />{' '}
             <h3 className="font-bold">Premium Networking</h3>{' '}
             <p>
@@ -202,142 +207,125 @@ function ConferencePage() {
             </p>
           </div>
         </div>
-        <h2 className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
+        <h2 className="text-3xl font-bold py-16 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           Open Source Expert Speakers
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 gap-x-10 lg:px-20">
-          <div className="col-span-1 md:col-span-3 flex flex-col gap-2 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14 lg:px-44">
+          <div className="col-span-1 flex flex-col gap-2 items-center">
             <Link
               href="https://www.ssw.com.au/people/adam-cogan/"
               target="_blank"
             >
               <Image
-                src="/img/people/Adam-Cogan-Profile.jpg"
+                src="/img/people/Adam-Cogan.png"
                 alt="Adam Cogan"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
+                className="rounded-full shadow-xl  "
               />
             </Link>
-            <h3 className="font-bold">Adam Cogan</h3>{' '}
-            <h4 className="text-orange-500">SSW Chief Architect</h4>
-            <div className="md:max-w-[33%] text-center">
-              <p>
-                Chief Architect at SSW, a Microsoft Solutions Partner
-                specializing in custom enterprise .NET and Azure solutions
-                mostly using Blazor, Angular, and React.
-              </p>
-            </div>
+            <h3 className="font-bold text-lg pt-5">Adam Cogan</h3>{' '}
+            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
+              SSW Chief Architect
+            </h4>
+            <div className="text-center"></div>
           </div>
-          <div className="flex flex-col gap-2 items-center">
+          <div className="col-span-1  flex flex-col items-center">
             <Link
               href="https://www.ssw.com.au/people/matt-wicks/"
               target="_blank"
             >
               <Image
-                src="/img/people/Matt-Wicks-Profile.jpg"
+                src="/img/people/Matt-Wicks.png"
                 alt="Matt Wicks"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
+                className="rounded-full shadow-xl "
               />
             </Link>
-            <h3 className="font-bold">Matt Wicks</h3>{' '}
-            <h4 className="text-orange-500">Solution Architect</h4>
-            <p>
-              Matt is an elite SSW Solution Architect who runs the Newcastle
-              office. Matt stands out in the tech landscape as a certified Scrum
-              Master, an Octopus Insider, and is GitHub accredited.
-            </p>
+            <h3 className="font-bold text-lg pt-5">Matt Wicks</h3>{' '}
+            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
+              Solution Architect
+            </h4>
           </div>
-          <div className="flex flex-col gap-2 items-center">
+          <div className="col-span-1  flex flex-col gap-2 items-center">
             <Link
               href="https://www.ssw.com.au/people/michelle-duke/"
               target="_blank"
             >
               <Image
-                src="/img/people/Michelle-Duke-Profile.jpg"
+                src="/img/people/Michelle-Duke.png"
                 alt="Michelle Duke"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
+                className="rounded-full shadow-xl "
               />
             </Link>
-            <h3 className="font-bold">Michelle Duke</h3>{' '}
-            <h4 className="text-orange-500">Senior Developer Advocate</h4>
-            <p>
-              Mish is the Senior Developer Advocate at SSW, coming to you from
-              the Melbourne office. She loves creating content and connecting
-              with the developer community.
-            </p>
+            <h3 className="font-bold text-lg pt-5">Michelle Duke</h3>{' '}
+            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
+              Senior Developer Advocate
+            </h4>
           </div>
-          <div className="flex flex-col gap-2 items-center">
+          <div className="col-span-1  flex flex-col gap-2 items-center">
             <Link
               href="https://www.ssw.com.au/people/hajir-lesani/"
               target="_blank"
             >
               <Image
-                src="/img/people/Hajir-Lesani-Profile.jpg"
+                src="/img/people/Hajir-Lesani.png"
                 alt="Hajir Lesani"
                 width={150}
                 height={150}
-                className="rounded-full shadow-xl hover:border-orange-600 hover:border-4 transition-all hover:scale-105"
+                className="rounded-full shadow-xl "
               />
             </Link>
-            <h3 className="font-bold">Hajir Lesani</h3>{' '}
-            <h4 className="text-orange-500">Solution Architect</h4>
-            <p>
-              Hajir is an SSW Solution Architect and Team Lead with over 14
-              years of experience across diverse sectors including government
-              organizations, United Nations, logistics and supply chain
-              technology, and financial technology.
-            </p>
+            <h3 className="font-bold text-lg pt-5">Hajir Lesani</h3>{' '}
+            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
+              Solution Architect
+            </h4>
           </div>
         </div>
         <div className="flex flex-col items-center p-10" ref={agendaRef}>
           <h2
             id="agenda"
-            className="text-3xl font-bold py-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
+            className="text-3xl font-bold pt-16 pb-8 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
           >
             Agenda
           </h2>
-          <div className="relative w-full max-w-2xl">
-            <div className="flex justify-between items-center text-center bg-gray-200 p-2 rounded-2xl w-full gap-1">
-              <button
-                className={`px-4 py-2 rounded-lg w-full font-bold ${
-                  filter === 'all' ? 'text-blue-500' : 'text-gray-500'
-                }`}
-                onClick={() => setFilter('all')}
-              >
-                All Sessions
-              </button>
-              <button
-                className={`px-4 py-2 rounded-lg w-full font-bold ${
-                  filter === 'Talk' ? 'text-blue-500' : 'text-gray-500'
-                }`}
-                onClick={() => setFilter('Talk')}
-              >
-                Talks Only
-              </button>
-              <button
-                className={`px-4 py-2 rounded-lg w-full font-bold ${
-                  filter === 'Workshop' ? 'text-blue-500' : 'text-gray-500'
-                }`}
-                onClick={() => setFilter('Workshop')}
-              >
-                Workshops Only
-              </button>
-            </div>
+          <div className="relative bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-md rounded-full flex w-full">
+          <div className="relative flex z-10 w-full">
             <div
-              className={`absolute top-0 left-0 h-full w-1/3 bg-blue-500 rounded-2xl transition-transform duration-300 ease-in-out opacity-50 ${
-                filter === 'all'
-                  ? 'translate-x-0'
-                  : filter === 'Talk'
-                  ? 'translate-x-full'
-                  : 'translate-x-[200%]'
+            className={`absolute top-0 left-0 w-1/3 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 border-4 border-white ${
+              // For some reason the translate-x-1/3, 2/3, etc doesnt work so we have full and 200% which is just full x 2
+              filter === 'all' ? 'translate-x-0' : filter === 'Talk' ? 'translate-x-full' : 'translate-x-[200%]'
+            }`}
+          ></div>
+            <button
+              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                filter === 'all' ? 'text-white' : 'text-blue-500'
               }`}
-            ></div>
+              onClick={() => setFilter('all')}
+            >
+              All Sessions
+            </button>
+            <button
+              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                filter === 'Talk' ? 'text-white' : 'text-blue-500'
+              }`}
+              onClick={() => setFilter('Talk')}
+            >
+              Talks
+            </button>
+            <button
+              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                filter === 'Workshop' ? 'text-white' : 'text-blue-500'
+              }`}
+              onClick={() => setFilter('Workshop')}
+            >
+              Workshops
+            </button>
           </div>
+        </div>
           <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
             {filteredSessions.map((session, index) => (
               <SessionCard key={index} session={session} />

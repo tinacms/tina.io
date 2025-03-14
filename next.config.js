@@ -112,6 +112,11 @@ const config = {
   async redirects() {
     return [
       {
+        source: '/conf',
+        destination: '/conference',
+        permanent: true,
+      },
+      {
         source: '/early-access',
         destination: '/',
         permanent: true,
