@@ -75,3 +75,53 @@ function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
     return null;
   }
 }
+
+export function getLocaleClient(): string {
+  const localStorageLocale = getLocaleFromLocalStorage();
+  if (localStorageLocale) {
+    return localStorageLocale;
+  }
+
+  const cookieLocale = getLocaleFromCookieClient();
+  if (cookieLocale) {
+    return cookieLocale;
+  }
+
+  const browserLocale = getLocaleFromBrowser();
+  if (browserLocale) {
+    return browserLocale;
+  }
+
+  return DEFAULT_LOCALE;
+}
+
+function getLocaleFromLocalStorage(): string | null {
+  const localStorageLocale = localStorage.getItem('NEXT_LOCALE');
+  if (localStorageLocale && SUPPORTED_LOCALES.includes(localStorageLocale)) {
+    return localStorageLocale;
+  }
+
+  return null;
+}
+
+function getLocaleFromCookieClient(): string | null {
+  const cookieLocale = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('NEXT_LOCALE='))
+    ?.split('=')[1];
+
+  if (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale)) {
+    return cookieLocale;
+  }
+
+  return null;
+}
+
+function getLocaleFromBrowser(): string | null {
+  const languages = navigator.languages;
+  try {
+    return match(languages, SUPPORTED_LOCALES, DEFAULT_LOCALE);
+  } catch (error) {
+    return null;
+  }
+}

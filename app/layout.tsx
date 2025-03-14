@@ -3,6 +3,7 @@ import AdminLink from 'components/AppRouterMigrationComponents/AdminLink';
 import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner';
 import ConsentBanner from 'components/AppRouterMigrationComponents/ConsentBanner';
 import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
+import { RedirectHandler } from 'components/AppRouterMigrationComponents/RedirectHandler';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import data from '../content/siteConfig.json';
@@ -70,6 +71,7 @@ export default async function RootLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
+          <RedirectHandler />
           <CloudBanner />
           <AdminLink />
           <ConsentBanner />
