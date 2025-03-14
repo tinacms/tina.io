@@ -134,6 +134,7 @@ export function AppNavBar({ sticky = true }) {
     setSelectedFlag(code);
     setOpen(false);
     closeModal();
+
     setTimeout(() => {
       setAnimateFlag(true);
       setTimeout(() => setAnimateFlag(false), 600);
@@ -142,25 +143,30 @@ export function AppNavBar({ sticky = true }) {
     const localePattern = new RegExp(
       `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
     );
-    if (code === SupportedLocales.EN) {
-      if (localePattern.test(pathName)) {
-        const newPath = pathName.replace(
-          localePattern,
-          (match, locale, slash) => {
-            return slash === '/' ? '/' : '';
-          }
-        );
-        router.push(newPath === '' ? '/' : newPath);
-      }
-    } else {
-      if (localePattern.test(pathName)) {
-        const newPath = pathName.replace(localePattern, `/${code}$2`);
-        router.push(newPath);
-      } else {
-        const newPath = pathName === '/' ? `/${code}` : `/${code}${pathName}`;
-        router.push(newPath);
-      }
+    const isRootOrLocale =
+      pathName === '/' ||
+      (localePattern.test(pathName) && !pathName.replace(localePattern, '$2'));
+
+    if (isRootOrLocale) {
+      router.push(`/?setLocale=${code}`);
+      return;
     }
+
+    const isEnglish = code === SupportedLocales.EN;
+    const hasLocalePrefix = localePattern.test(pathName);
+
+    let newPath;
+    if (hasLocalePrefix) {
+      newPath = isEnglish
+        ? pathName.replace(localePattern, (_, __, slash) =>
+            slash === '/' ? '/' : ''
+          )
+        : pathName.replace(localePattern, `/${code}$2`);
+    } else {
+      newPath = isEnglish ? pathName : `/${code}${pathName}`;
+    }
+
+    router.push(newPath === '' ? '/' : newPath);
   };
 
   return (
