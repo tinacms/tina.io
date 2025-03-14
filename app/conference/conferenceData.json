@@ -21,8 +21,8 @@
     {
       "talkSpeakerName": "Matt Wicks",
       "talkSpeakerImage": "/img/people/Matt-Wicks-Profile.jpg",
-      "speachTitle": "TBD",
-      "speachDescription": "TBD",
+      "speachTitle": "From Starter to Stunner: Automating Static Sites with TinaCMS & GitHub Actions",
+      "speachDescription": "Take your GitHub profile to the next level by building and automating a statically generated website with TinaCMS. In this session, we’ll walk through setting up a site using the TinaCMS starter, fetching dynamic content, and leveraging GitHub Actions to automate deployment.",
       "talkTimeStart": "2025-03-12T10:00:00Z",
       "talkTimeEnd": "2025-03-12T11:00:00Z",
       "sessionType": "Talk"
@@ -39,8 +39,8 @@
     {
       "talkSpeakerName": "Michelle Duke",
       "talkSpeakerImage": "/img/people/Michelle-Duke-Profile.jpg",
-      "speachTitle": "TBD",
-      "speachDescription": "TBD",
+      "speachTitle": "The Art of Git-Based Content Management with GitHub",
+      "speachDescription": "Managing content shouldn’t be a chaotic mess of outdated files, endless email threads, or confusing version names. Whether you're working on blogs, documentation, or even entire websites, GitHub offers a powerful yet often underutilised way to streamline your workflow.",
       "talkTimeStart": "2025-03-12T13:00:00Z",
       "talkTimeEnd": "2025-03-12T14:00:00Z",
       "sessionType": "Talk"
@@ -56,9 +56,9 @@
     },
     {
       "talkSpeakerName": "Hajir Lesani",
-      "talkSpeakerImage": "/img/people/Hajir-Lesani-Profile.jpg",
-      "speachTitle": "TBD",
-      "speachDescription": "TBD",
+      "talkSpeakerImage": "/img/people/hajir.png",
+      "speachTitle": "Optimizing AI Development: MCP Servers & Cursor Workflows",
+      "speachDescription": "Discover how to streamline AI development with efficient workflows using Cursor and MCP Servers. This session will cover best practices for managing AI-driven projects, optimizing development pipelines, and leveraging MCP Servers for scalable processing.",
       "talkTimeStart": "2025-03-12T15:00:00Z",
       "talkTimeEnd": "2025-03-12T16:00:00Z",
       "sessionType": "Talk"
@@ -102,19 +102,10 @@
     {
       "talkSpeakerName": "Caleb Williams",
       "talkSpeakerImage": "/img/people/Caleb-Williams-Profile.jpg",
-      "speachTitle": "Optimize your website with Next.js",
-      "speachDescription": "Learn the best practices and advanced techniques for optimizing your website's performance and user experience with Next.js, a powerful React framework.",
+      "speachTitle": "Mastering the Balance: SSR vs. CSR in Next.js for Optimal Performance",
+      "speachDescription": "Unlock the full potential of Next.js by mastering the balance between Server-Side Rendering (SSR) and Client-Side Rendering (CSR). In this session, we’ll explore best practices and advanced strategies to enhance website performance, improve SEO, and deliver seamless user experiences.",
       "talkTimeStart": "2025-03-12T13:00:00Z",
       "talkTimeEnd": "2025-03-12T14:00:00Z",
-      "sessionType": "Workshop"
-    },
-    {
-      "talkSpeakerName": "Christian Morford-Waite",
-      "talkSpeakerImage": "/img/people/Christian-Morford-Waite-Profile.jpg",
-      "speachTitle": "Accelerating web-development on Astro",
-      "speachDescription": "Explore how Astro can revolutionize your web development process with its modern architecture and performance optimizations.",
-      "talkTimeStart": "2025-03-12T15:00:00Z",
-      "talkTimeEnd": "2025-03-12T16:00:00Z",
       "sessionType": "Workshop"
     }
   ]
