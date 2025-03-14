@@ -1,14 +1,12 @@
 'use client';
-import { FaRegUser } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { FaRegCalendar } from 'react-icons/fa';
+import { FaRegCalendar, FaRegMap, FaRegUser } from 'react-icons/fa';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import sessionData from './conferenceData.json';
-import { FaRegMap } from 'react-icons/fa';
 
 import { FaRegStar } from 'react-icons/fa';
 
@@ -44,7 +42,10 @@ function SessionCard({ session }: { session: Session }) {
         `}
     >
       <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
-        <div className="hidden sm:flex flex-col pr-4" style={{ flex: '0 0 20%' }}>
+        <div
+          className="hidden sm:flex flex-col pr-4"
+          style={{ flex: '0 0 20%' }}
+        >
           <Image
             src={session.talkSpeakerImage}
             alt={session.talkSpeakerName}
@@ -57,9 +58,9 @@ function SessionCard({ session }: { session: Session }) {
           <span
             className={`text-sm rounded-full text-center px-2 mb-2 -ml-1 ${
               session.sessionType === 'Break'
-                ? 'bg-gradient-to-br from-seafoam-200 to-seafoam-200 w-14 text-seafoam-700'
+                ? 'bg-gradient-to-br from-orange-100 to-orange-100 w-14 text-orange-500'
                 : session.sessionType === 'Workshop'
-                ? 'bg-gradient-to-br from-orange-100 to-orange-100 w-[5.5rem] text-orange-500'
+                ? 'bg-gradient-to-br from-seafoam-200 to-seafoam-200 w-[5.5rem] text-seafoam-700'
                 : session.sessionType === 'Talk'
                 ? 'bg-gradient-to-br from-blue-100 to-blue-100 w-11 text-blue-500'
                 : 'text-gray-700'
@@ -293,39 +294,43 @@ function ConferencePage() {
             Agenda
           </h2>
           <div className="relative bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-md rounded-full flex w-full">
-          <div className="relative flex z-10 w-full">
-            <div
-            className={`absolute top-0 left-0 w-1/3 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 border-4 border-white ${
-              // For some reason the translate-x-1/3, 2/3, etc doesnt work so we have full and 200% which is just full x 2
-              filter === 'all' ? 'translate-x-0' : filter === 'Talk' ? 'translate-x-full' : 'translate-x-[200%]'
-            }`}
-          ></div>
-            <button
-              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-                filter === 'all' ? 'text-white' : 'text-blue-500'
-              }`}
-              onClick={() => setFilter('all')}
-            >
-              All Sessions
-            </button>
-            <button
-              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-                filter === 'Talk' ? 'text-white' : 'text-blue-500'
-              }`}
-              onClick={() => setFilter('Talk')}
-            >
-              Talks
-            </button>
-            <button
-              className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-                filter === 'Workshop' ? 'text-white' : 'text-blue-500'
-              }`}
-              onClick={() => setFilter('Workshop')}
-            >
-              Workshops
-            </button>
+            <div className="relative flex z-10 w-full">
+              <div
+                className={`absolute top-0 left-0 w-1/3 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 border-4 border-white ${
+                  // For some reason the translate-x-1/3, 2/3, etc doesnt work so we have full and 200% which is just full x 2
+                  filter === 'all'
+                    ? 'translate-x-0'
+                    : filter === 'Talk'
+                    ? 'translate-x-full'
+                    : 'translate-x-[200%]'
+                }`}
+              ></div>
+              <button
+                className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                  filter === 'all' ? 'text-white' : 'text-blue-500'
+                }`}
+                onClick={() => setFilter('all')}
+              >
+                All Sessions
+              </button>
+              <button
+                className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                  filter === 'Talk' ? 'text-white' : 'text-blue-500'
+                }`}
+                onClick={() => setFilter('Talk')}
+              >
+                Talks
+              </button>
+              <button
+                className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+                  filter === 'Workshop' ? 'text-white' : 'text-blue-500'
+                }`}
+                onClick={() => setFilter('Workshop')}
+              >
+                Workshops
+              </button>
+            </div>
           </div>
-        </div>
           <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
             {filteredSessions.map((session, index) => (
               <SessionCard key={index} session={session} />
