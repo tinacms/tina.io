@@ -1,13 +1,58 @@
 ---
 title: Rendering Markdown Content
-last_edited: '2025-03-14T04:19:18.003Z'
+last_edited: '2025-03-14T04:42:25.696Z'
 next: ''
 previous: ''
 ---
 
-When your markdown content is requested through Tina's API, Tina serves a *parsed AST* version of the content.
+When your markdown content is requested through Tina's API, Tina serves a *parsed AST (abstract syntax tree)* version of the content.
+
+The below example has some sample markdown and associated AST. 
 
 > The *parsed AST* gives developers the ability to step through each node, and render it with full control.
+
+```markdown
+This is how TinaCMS turns your markdown into structured data!
+
+Here is an image: ![](/github-mark.svg)
+```
+
+```javascript
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "text": "This is how TinaCMS turns your markdown into structured data!"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "text": "Here is an image: "
+        },
+        {
+          "type": "img",
+          "url": "/github-mark.svg",
+          "caption": null,
+          "children": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+  ]
+}
+```
 
 ## Rendering content with `TinaMarkdown`
 

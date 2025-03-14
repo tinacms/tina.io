@@ -113,6 +113,18 @@ export const docsCollection = {
               label: 'Select Response by Default',
               description: 'Select the response tab by default',
             },
+            {
+              type: 'string',
+              name: 'customQueryName',
+              label: 'Custom Query Name',
+              description: "Replaces 'Query' in the tab name",
+            },
+            {
+              type: 'string',
+              name: 'customResponseName',
+              label: 'Custom Response Name',
+              description: "Replaces 'Response' in the tab name",
+            },
           ],
         },
         {

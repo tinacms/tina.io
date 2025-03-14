@@ -27,6 +27,8 @@ export const docAndBlogComponents: Components<{
     query: string;
     response: string;
     preselectResponse: boolean;
+    customQueryName?: string;
+    customResponseName?: string;
   };
   Callout: {
     title: string;
@@ -355,12 +357,20 @@ export const docAndBlogComponents: Components<{
     );
   },
 
-  GraphQLCodeBlock: ({ query, response, preselectResponse }) => {
+  GraphQLCodeBlock: ({
+    query,
+    response,
+    preselectResponse,
+    customQueryName,
+    customResponseName,
+  }) => {
     return (
       <GraphQLQueryResponseTabs
         query={query}
         response={response}
         preselectResponse={preselectResponse}
+        customQueryName={customQueryName}
+        customResponseName={customResponseName}
       />
     );
   },

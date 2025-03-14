@@ -46,6 +46,8 @@ export default function DocsClient({ props }) {
     ? 'grid-cols-[1.25fr_3fr]'
     : 'grid-cols-[1.25fr_3fr_0.75fr]';
 
+  console.log(DocumentationData.body);
+
   return (
     <div className="relative my-6 lg:mb-16 xl:mt-16 flex justify-center items-start">
       <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
