@@ -1,76 +1,62 @@
 ---
 title: Rendering Markdown Content
-last_edited: '2025-03-14T04:42:25.696Z'
+last_edited: '2025-03-14T06:26:37.493Z'
 next: ''
 previous: ''
 ---
 
 When your markdown content is requested through Tina's API, Tina serves a *parsed AST (abstract syntax tree)* version of the content.
 
-The below example has some sample markdown and associated AST. 
-
 > The *parsed AST* gives developers the ability to step through each node, and render it with full control.
 
-```markdown
-This is how TinaCMS turns your markdown into structured data!
+The below example has some sample markdown and associated AST.
 
-Here is an image: ![](/github-mark.svg)
-```
+<GraphQLCodeBlock
+  customQueryName="Markdown"
+  customResponseName="Parsed AST"
+  query="This#is#how#TinaCMS#turns#your#markdown#into#structured#data!
 
-```javascript
-{
-  "type": "root",
-  "children": [
-    {
-      "type": "p",
-      "children": [
-        {
-          "type": "text",
-          "text": "This is how TinaCMS turns your markdown into structured data!"
-        }
-      ]
-    },
-    {
-      "type": "p",
-      "children": [
-        {
-          "type": "text",
-          "text": "Here is an image: "
-        },
-        {
-          "type": "img",
-          "url": "/github-mark.svg",
-          "caption": null,
-          "children": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ]
-        }
-      ]
-    },
-  ]
-}
-```
+  Here#is#an#image:#![](/github-mark.svg)"
+  response="{
+  ##&#x22;type&#x22;:#&#x22;root&#x22;,
+  ##&#x22;children&#x22;:#[
+  ####{
+  ######&#x22;type&#x22;:#&#x22;p&#x22;,
+  ######&#x22;children&#x22;:#[
+  ########{
+  ##########&#x22;type&#x22;:#&#x22;text&#x22;,
+  ##########&#x22;text&#x22;:#&#x22;This#is#how#TinaCMS#turns#your#markdown#into#structured#data!&#x22;
+  ########}
+  ######]
+  ####},
+  ####{
+  ######&#x22;type&#x22;:#&#x22;p&#x22;,
+  ######&#x22;children&#x22;:#[
+  ########{
+  ##########&#x22;type&#x22;:#&#x22;text&#x22;,
+  ##########&#x22;text&#x22;:#&#x22;Here#is#an#image:#&#x22;
+  ########},
+  ########{
+  ##########&#x22;type&#x22;:#&#x22;img&#x22;,
+  ##########&#x22;url&#x22;:#&#x22;/github-mark.svg&#x22;,
+  ########}
+  ######]
+  ####},
+  ##]
+  }"
+  preselectResponse={true}
+/>
 
-## Rendering content with `TinaMarkdown`
+## Inbuilt Markdown Rendering
 
-Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the *parsed AST*.
+Tina also provides a `<TinaMarkdown>` component, which renders your `md` or `mdx` component from the *parsed AST* without having to handle the data structure yourself.
 
-Here's an example of fetching our markdown content, and rendering it on the page.
+It's as easy as passing in the markdown content via the content attribute.
 
 ```jsx
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-// server code
-const getStaticProps = () => {
-  const post = await client.queries.post({ relativePath: 'HelloWorld.md' })
-  return { data: { post: post } }
-}
-
-// Page component
-const MyBlogPost = (props) => {
+const MyMarkdownBlog = (props) => {
   return (<>
     <h1>{props.data.title}</h1>
     <TinaMarkdown content={props.data.body} />
@@ -78,88 +64,102 @@ const MyBlogPost = (props) => {
 }
 ```
 
-## Providing "custom components" for MDX documents
+### Styling Markdown elements
+
+The `<TinaMarkdown>` component takes a `components` field, which takes a mapping of html element properties to react components.
+
+When an element appears in the AST tree, it will be intercepted and replaced with the react component from the mapping.
+
+```javascript
+const components = {
+  h1: (props) => (
+    <h1 style={{ color: 'blue' }}>
+      {props.children}
+    </h1>
+  ),
+  p: (props) => (
+    <p style={{ fontSize: '18px' }}>
+      {props.children}
+    </p>
+  ),
+};
+
+<TinaMarkdown
+  content={body}
+  components={components}
+/>
+```
+
+## MDX and Custom Elements
 
 If you are using `mdx` as the format, you'll have the ability to define custom components that your editors can leverage.
 
-<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/Docs_Starter_Example.webm" />
+### How does MDX work with Tina?
 
-> How does MDX work with Tina?Tina doesn't require a compilation step like other MDX tooling you
-> might be familiar with, so it needs to know about all the possible elements
-> you support ahead of time. Instead of doing an `import` statement in MDX,
-> you need to register each element as a `template` in your Tina schema.
+Tina doesn't require a compilation step like other MDX tooling you
+might be familiar with, so it needs to know about all the possible elements
+you support ahead of time. \
+\
+Instead of doing an `import` statement in MDX,
+you need to register each element as a `template` in your Tina schema.
 
-### Defining a "template" in a collection
+### Rich-text templates
 
-Tina needs to have each MDX component defined in advance, in the `tina/config.{ts,js,tsx}` file.
+This only works for documents of the `mdx` format.
 
-```diff
-export default defineConfig({
-  // ...
-  schema: {
-    collections: [
-      {
-        label: 'Blog Posts',
-        name: 'post',
-        path: 'content/posts',
--     format: 'md',
-+     format: 'mdx',
-        fields: [
-          // ...
-          {
-            type: 'rich-text',
-            label: 'Post Body',
-            name: 'body',
-            isBody: true,
-+          templates: [
-+            {
-+              name: "NewsletterSignup",
-+              label: "Newsletter Sign Up",
-+              fields: [
-+                {
-+                  name: "children",
-+                  label: "CTA",
-+                  type: "rich-text",
-+                },
-+                {
-+                  name: "buttonText",
-+                  label: "Button Text",
-+                  type: "string",
-+                }
-+              ],
-+            },
-+          ],
-          },
-        ],
-      },
-    ],
-  }
-})
-```
+Tina also needs to have each MDX component defined in advance, when you define your collection.
 
 By defining the above `NewsletterSignup` template, our editors now have the ability to add that template to the page body.
 
-![MDX Template](/img/docs/editing-md/md-embed.png)
-
-Saving a document would output a component in the markdown body that looks like this:
-
-```tsx
-//...
-
-<NewsletterSignup buttonText="Submit">### Hello world</NewsletterSignup>
+```diff
+  {
+    label: 'Blog Posts',
+    name: 'post',
+    path: 'content/posts',
+-   format: 'md',
++   format: 'mdx',
+    fields: [
+      {
+        type: 'rich-text',
+        label: 'Post Body',
+        name: 'body',
+        isBody: true,
++       templates: [
++         {
++           name: "newsletterSignup",
++           label: "Newsletter Sign Up",
++           fields: [
++             {
++               name: "children",
++               label: "CTA",
++               type: "rich-text",
++             },
++             {
++               name: "buttonText",
++               label: "Button Text",
++               type: "string",
++             }
++           ],
++         },
++       ],
+      },
+    ],
+  },
 ```
 
-### Registering a "component" with `TinaMarkdown`
+The rich-text field also gets a new 'embed' option for adding in these components.
 
-Once you've registered a `template` with a rich-text field in a collection, Tina still needs to know how to render the custom component.
+![](/img/docs/reference/SCR-20250314-oprm.png)
 
-Custom components can be defined with the `components` prop on `<TinaMarkdown>`.
+### Linking to react components
 
-```tsx
+Once you've registered a `template` with a rich-text field in a collection, Tina still needs to know how to render the custom component. Add the key and component to the mapping you pass into the `components` prop on `<TinaMarkdown>`.
+
+The key should match the templates name property.
+
+```javascript
 const components = {
-  // The "NewsletterSignup" key maps to a "template" defined
-  // on our "rich-text" field
-  NewsletterSignup: (props) => {
+  newsletterSignup: (props) => {
     return (
       <>
         <div>
@@ -167,7 +167,6 @@ const components = {
         </div>
         <div>
           <form>
-            <label htmlFor="email-address">Email address</label>
             <input name="email-address" type="email" required />
             <button type="submit">{props.buttonText}</button>
           </form>
@@ -175,22 +174,14 @@ const components = {
       </>
     )
   },
-}
+};
 
-const MyBlogPost = (props) => {
-  return (
-    <>
-      <h1>{props.data.title}</h1>
-      <TinaMarkdown content={props.data.body} components={components} />
-    </>
-  )
-}
+<TinaMarkdown
+  content={body}
+  components={components}
+/>
 ```
 
 Once our custom component has been registered with TinaMarkdown, editors can easily add components, and immediately see them rendered on the page.
 
 ![MDX Template](/img/docs/editing-md/embed-in-md.png)
-
-## Reference
-
-For full usage details, check out the [`rich-text`](/docs/reference/types/rich-text) reference documentation.

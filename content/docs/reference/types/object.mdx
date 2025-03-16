@@ -1,6 +1,6 @@
 ---
 title: The Object Field
-last_edited: '2025-03-14T03:42:23.708Z'
+last_edited: '2025-03-16T22:04:17.328Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
@@ -46,20 +46,18 @@ Importantly, there are two key ways to use the object type...
    With `list` set to `true`, the object repeats inner fields in a sub-window for each list item.![](</img/docs/reference/Screen Recording 2025-03-14 at 11.38.07 am.gif>)
 2. With `list` set to `true`, and using `templates` (as opposed to `fields`). \
    \
-   The user can select between associated [templates](/docs/reference/templates) – this appears as above, but pressing the `+`  gives you the option to choose from a defined template set.\
+   The user can select between associated [templates](/docs/reference/templates) – this appears as above, but pressing the `+`  gives you the option to choose one of a set of options\
    ![](</img/docs/reference/Screen Recording 2025-03-14 at 12.03.21 pm.gif>)
 
 ## The Visual Selector
 
-This visual block selector allows editors to select Templates with images as well as text, and group templates into categories.
+This visual block selector allows editors to select Templates with images as well as text.
 
-To enable the visual block selector, the visualSelector property must be true.
-
-In the editor, this also opens a new window for template selection.
+To enable the visual block selector, the `visualSelector` property must be true. In the editor, this also opens a new window for template selection.
 
 ![](</img/docs/reference/Screen Recording 2025-03-14 at 11.43.03 am.gif>)
 
-To get images for a certain template, you need to provide the image with the template's ui.previewSrc property. This is relative to your [public folder](/docs/reference/media/repo-based) defined in the TinaCMS configuration.
+To get images for a certain template, you need to provide the image with the template's `ui.previewSrc` property. This is relative to your [public folder](/docs/reference/media/repo-based) defined in the TinaCMS configuration.
 
 ```javascript
 const showcaseTemplate: Template = {
@@ -182,7 +180,7 @@ This example uses both templates and fields.
 
 * The `featureItem` objects stores a vector array `[headline, description, buttons]`.
 * Each feature item in the list has a unique label, so items can be identified in the editor (lines 12-14)
-* The buttons element of the featureBlock array is also an object list, with the option to choose between 3 templates for each list element.
+* The buttons element of the `featureBlock` array is also an object list, with the option to choose between 3 templates for each list element.
 
 ```javascript
 import type { Template, TinaField } from 'tinacms';

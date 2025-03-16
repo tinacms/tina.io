@@ -155,7 +155,7 @@
               "_template": "item"
             },
             {
-              "title": "Markdown Content",
+              "title": "Markdown (MD) Content",
               "items": [
                 {
                   "title": "What is Markdown?",
@@ -168,13 +168,23 @@
                   "_template": "item"
                 },
                 {
-                  "title": "Rendering Markdown Content",
+                  "title": "Rendering MD Content",
                   "slug": "content/docs/reference/types/rendering-markdown.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "Custom Syntax",
+                  "title": "MD Diagrams (Mermaid)",
+                  "slug": "content/docs/reference/rich-text-usage/mermaid.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Custom MD Syntax",
                   "slug": "content/docs/reference/rich-text-usage/markdown-shortcode.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "TinaCMS MD Specification",
+                  "slug": "content/docs/reference/markdown-spec.mdx",
                   "_template": "item"
                 }
               ],
