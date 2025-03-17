@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The Click-To-Edit API
-last_edited: '2025-03-17T06:28:59.002Z'
+last_edited: '2025-03-17T22:36:11.006Z'
 next: ''
 previous: ''
 ---
@@ -150,11 +150,7 @@ The `tinaField` helper simply plucks out the appropriate information from the `_
 
 ## Using `tinaField` with custom React components
 
-The `[data-tina-field]` attribute can only be applied directly to HTML elements. This makes it tricky to use with React components because attribute names need to have kebab case. Here are some work arounds you can use.
-
-### Using custom attributes
-
-The easiest way to assign \[data-tina-field] in a React component is by creating an attribute for your component, allowing the tinaField helper's output to be passed in a string.
+The `[data-tina-field]` attribute can only be applied directly to HTML elements. This makes it tricky to use with React components because attribute names need to have kebab case. to work around this we can define an attribute on our react component allowing us to pass the data in.
 
 ```js
 import { useTina, tinaField } from 'tinacms/dist/react';
@@ -173,37 +169,9 @@ type SectionProps = {
   children?: React.ReactNode,
   tinaField?: string,
 };
-
+// defining a tinaField property (the name is arbitrary)
 const Section = ({ children, tinaField }: SectionProps) => {
+  //passing the tina field information to our html element
   return <section data-tina-field={tinaField}>{children}</section>;
-};
-```
-
-### Passing the outer object for the field
-
-Alternatively, we could pass the outer object containing the desired field into our component and then cherrypick the field we want using tinaField. This approach is useful when the field you want to edit is deeply nested.
-
-```js
-import { useTina, tinaField } from 'tinacms/dist/react';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
-
-const Page = (props) => {
-  const { data } = useTina(props);
-  return (
-    <Section data={data}>
-      <TinaMarkdown content={data.body} />
-    </Section>
-  );
-};
-
-type SectionProps = {
-  data: any,
-  children?: React.ReactNode,
-};
-
-const Section = ({ data, children }: SectionProps) => {
-  return (
-    <section data-tina-field={tinaField(data, 'body')}>{children}</section>
-  );
 };
 ```
