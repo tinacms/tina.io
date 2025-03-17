@@ -24,6 +24,16 @@
           "headline": "GitHub Enterprise Support",
           "status": "Released",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
+        },
+        {
+          "headline": "2FA Authentication",
+          "status": "✅ Done",
+          "content": "Strengthens security for TinaCloud users by adding an extra layer of protection to prevent unauthorized access, ensuring safer content management.\n"
+        },
+        {
+          "headline": "Vercel Data Cache Support",
+          "status": "✅ Done",
+          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n\nRead more [https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache](https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache) \n"
         }
       ],
       "options": {
@@ -33,16 +43,29 @@
       "_template": "roadmapGrid"
     },
     {
+      "headline": "Working on it now",
+      "items": [
+        {
+          "headline": "TinaCloud Performance",
+          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n"
+        },
+        {
+          "headline": "React 19 Support",
+          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n"
+        },
+        {
+          "headline": "Improving Media Management UX",
+          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n"
+        }
+      ],
+      "_template": "roadmapGrid"
+    },
+    {
       "blockSettings": {
         "isFullscreen": true
       },
       "headline": "Coming Soon",
       "items": [
-        {
-          "headline": "Improving Media Management UX",
-          "status": "In Progress",
-          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n"
-        },
         {
           "headline": "AI Tooling",
           "status": "Soon",
