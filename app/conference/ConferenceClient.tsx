@@ -14,8 +14,8 @@ import { FaRegStar } from 'react-icons/fa';
 interface Session {
   talkSpeakerName: string;
   talkSpeakerImage: string;
-  speachTitle: string;
-  speachDescription: string;
+  speechTitle: string;
+  speechDescription: string;
   talkTimeStart: string;
   talkTimeEnd: string;
   sessionType: 'Talk' | 'Workshop' | 'Break';
@@ -69,7 +69,7 @@ function SessionCard({ session }: { session: Session }) {
           >
             {session.sessionType}
           </span>
-          <h3 className="text-lg font-bold">{session.speachTitle}</h3>
+          <h3 className="text-lg font-bold">{session.speechTitle}</h3>
           <span className="flex items-center gap-2 text-gray-600">
             {session.talkSpeakerName && (
               <>
@@ -90,7 +90,7 @@ function SessionCard({ session }: { session: Session }) {
           </span>
 
           <p className="text-gray-600 text-sm pt-2">
-            {session.speachDescription}
+            {session.speechDescription}
           </p>
         </div>
       </div>
@@ -174,8 +174,7 @@ function ConferencePage({
           {tinaData.data?.conference?.about?.heading}
         </h2>
         <p className="text-lg max-w-4xl">
-          Bla
-          {/* Fix rich text not rendering */}
+          ⚠️ Fix rich text
           {/* {tinaData.data?.conference?.about?.description} */}
         </p>
         <div className="flex py-12 gap-10 max-w-4xl text-lg">

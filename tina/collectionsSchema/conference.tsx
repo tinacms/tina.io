@@ -230,18 +230,18 @@ export const conferenceTinaCMSCollection = {
       list: true,
       ui: {
         itemProps: (item) => {
-          return { label: `${item.talkSpeakerName} - ${item.speachTitle}` };
+          return { label: `${item.talkSpeakerName} - ${item.speechTitle}` };
         },
       },
       fields: [
         {
-          name: 'speachTitle',
-          label: 'Speach Title',
+          name: 'speechTitle',
+          label: 'speech Title',
           type: 'string',
         },
         {
-          name: 'speachDescription',
-          label: 'Speach Description',
+          name: 'speechDescription',
+          label: 'speech Description',
           type: 'string',
         },
         {
