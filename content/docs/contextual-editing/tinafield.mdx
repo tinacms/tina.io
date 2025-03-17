@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T01:02:34.133Z'
+last_edited: '2025-03-17T01:06:54.378Z'
 next: ''
 previous: ''
 ---
@@ -117,7 +117,7 @@ const Page = (props) => {
 }
 ```
 
-## Using with custom React components
+## Using `tinaField` with custom React components
 
 * Adding `[data-tina-field]` directly to a react component can be a bit tricky because React doesn't allow you to define attribute names with kebab casing. There are a couple of work arounds you can  use for adding click based editing for React components
 
@@ -147,9 +147,9 @@ const Section = ({ children, tinaField }: SectionProps) => {
 export default PageComponent;
 ```
 
-### Passing the full data object response
+### Passing the outer object of the field
 
-A less ideal solution would be to pass the response from Tina directly into our component, allowing us to cherry pick the field we want from the object. This approach works well for components with multiple layers of nesting
+A less ideal solution would be to pass the object housing the field we want from Tina. This allows us to cherry pick the field we want from the object. While this approach works well for fields with multiple layers of nesting, it can make it difficult to figure out which element we can edit contextually from a glance.
 
 ```js
 const Page = (props) => {
