@@ -20,6 +20,40 @@ const conferenceMarkdownComponents = {
   ),
 };
 
+interface Speaker {
+  name: string;
+  position: string;
+  image: string;
+  socialLink: string;
+}
+
+const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
+  return (
+    <div className="flex flex-col items-center text-center p-16">
+      <h2 className="text-3xl font-bold py-16 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
+        Open Source Expert Speakers
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14 lg:px-44">
+        {speakers.map((speaker, index) => (
+          <div key={index} className="col-span-1 flex flex-col items-center">
+            <Link href={speaker.socialLink} target="_blank">
+              <Image
+                src={speaker.image}
+                alt={speaker.name}
+                width={150}
+                height={150}
+                className="rounded-full shadow-xl"
+              />
+            </Link>
+            <h3 className="font-bold text-lg pt-5">{speaker.name}</h3>
+            <h4 className="text-slate-500 text-lg pb-2 -pt-1">{speaker.position}</h4>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 interface Session {
   talkSpeakerName: string;
   talkSpeakerImage: string;
@@ -228,84 +262,8 @@ function ConferencePage({
             </p>
           </div>
         </div>
-        <h2 className="text-3xl font-bold py-16 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
-          Open Source Expert Speakers
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14 lg:px-44">
-          <div className="col-span-1 flex flex-col gap-2 items-center">
-            <Link
-              href="https://www.ssw.com.au/people/adam-cogan/"
-              target="_blank"
-            >
-              <Image
-                src="/img/people/Adam-Cogan.png"
-                alt="Adam Cogan"
-                width={150}
-                height={150}
-                className="rounded-full shadow-xl  "
-              />
-            </Link>
-            <h3 className="font-bold text-lg pt-5">Adam Cogan</h3>{' '}
-            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
-              SSW Chief Architect
-            </h4>
-            <div className="text-center"></div>
-          </div>
-          <div className="col-span-1  flex flex-col items-center">
-            <Link
-              href="https://www.ssw.com.au/people/matt-wicks/"
-              target="_blank"
-            >
-              <Image
-                src="/img/people/Matt-Wicks.png"
-                alt="Matt Wicks"
-                width={150}
-                height={150}
-                className="rounded-full shadow-xl "
-              />
-            </Link>
-            <h3 className="font-bold text-lg pt-5">Matt Wicks</h3>{' '}
-            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
-              Solution Architect
-            </h4>
-          </div>
-          <div className="col-span-1  flex flex-col gap-2 items-center">
-            <Link
-              href="https://www.ssw.com.au/people/michelle-duke/"
-              target="_blank"
-            >
-              <Image
-                src="/img/people/Michelle-Duke.png"
-                alt="Michelle Duke"
-                width={150}
-                height={150}
-                className="rounded-full shadow-xl "
-              />
-            </Link>
-            <h3 className="font-bold text-lg pt-5">Michelle Duke</h3>{' '}
-            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
-              Senior Developer Advocate
-            </h4>
-          </div>
-          <div className="col-span-1  flex flex-col gap-2 items-center">
-            <Link
-              href="https://www.ssw.com.au/people/hajir-lesani/"
-              target="_blank"
-            >
-              <Image
-                src="/img/people/Hajir-Lesani.png"
-                alt="Hajir Lesani"
-                width={150}
-                height={150}
-                className="rounded-full shadow-xl "
-              />
-            </Link>
-            <h3 className="font-bold text-lg pt-5">Hajir Lesani</h3>{' '}
-            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
-              Solution Architect
-            </h4>
-          </div>
-        </div>
+        <OpenSourceExpertSpeakers speakers={tinaData.data?.conference?.speakers || []} />
+        
         <div className="flex flex-col items-center p-10" ref={agendaRef}>
           <h2
             id="agenda"
