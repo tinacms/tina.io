@@ -213,12 +213,12 @@
           "title": "Visual Editing",
           "items": [
             {
-              "title": "Overview",
+              "title": "What is Visual Editing?",
               "slug": "content/docs/contextual-editing/overview.mdx",
               "_template": "item"
             },
             {
-              "title": "React Setup",
+              "title": "Visual Editing Setup",
               "slug": "content/docs/contextual-editing/react.mdx",
               "_template": "item"
             },

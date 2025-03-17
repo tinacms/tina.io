@@ -1,7 +1,7 @@
 ---
 id: /docs/extending-tina/custom-field-components
 title: React Components
-last_edited: '2025-03-17T04:59:45.103Z'
+last_edited: '2025-03-17T05:18:21.974Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -29,7 +29,7 @@ To keep the same label, description, validation and other meta settings on your 
 
 The `form` prop can be used to control form values in other fields.
 
-Any field in the collection can be updated with `form.change` – `(name: string, value: any) => void`, using the field `name` property.
+Any field in the collection can be updated with `form.change` – `form.change(name: string, value: any) => void`, using the field `name` property.
 
 Any field in the collection can be accessed using `form.getFieldState(name: string)?.value`, using the field `name` property.
 
@@ -85,11 +85,7 @@ NextJS and other frameworks are able to improve performance if image widths and 
 
 **TinaCMS can be used to determine and store this on upload**.
 
-First, we want the component to be consistent with the rest of the editor.
-
-As such we use the TinaCMS `ImageField` – the component used for the `"image"` field type.
-
-We pass along this input component, and intercept changes to it with a `useEffect` that updates our width and height fields.
+We can pass along the existing TinaCMS Image component, and intercept changes to it with a `useEffect` that updates our width and height fields.
 
 ```javascript
 
@@ -116,9 +112,7 @@ const CustomImageField = (props) => {
 };
 ```
 
-In the data model, we want to use our new component on an image component.
-
-We also need the two fields for its height and width, which we can set to `"hidden"` so they don't appear in the editor:
+In the content model we also need two additional fields for height and width, which are set to `"hidden"` so they don't appear in the editor.
 
 ```javascript
 {
