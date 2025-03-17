@@ -117,7 +117,7 @@ function ConferencePage({
   ).map((session: any) => ({
     speechTitle: session.speechTitle || 'TBD',
     speechDescription: session.speechDescription || 'TBD',
-    talkSpeakerName: session.talkSpeakerName || 'Unknown',
+    talkSpeakerName: session.talkSpeakerName,
     talkSpeakerImage: session.talkSpeakerImage || '/img/people/Mystery.png',
     talkTimeStart: session.talkTimeStart || 0,
     talkTimeEnd:
