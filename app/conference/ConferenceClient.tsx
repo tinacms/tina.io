@@ -30,12 +30,6 @@ interface Session {
   sessionType: 'Talk' | 'Workshop' | 'Break';
 }
 
-
-const sessions: Session[] = sessionData.speakerSchedule.map((session) => ({
-  ...session,
-  sessionType: (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
-}));
-
 function formatTime(time: string) {
   const date = new Date(time);
   const hours = date.getUTCHours();
@@ -48,52 +42,35 @@ function formatTime(time: string) {
 
 function SessionCard({ session }: { session: Session }) {
   return (
-    <div
-      className={`border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start
-        `}
-    >
+    <div className="border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start">
       <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
-        <div
-          className="hidden sm:flex flex-col pr-4"
-          style={{ flex: '0 0 20%' }}
-        >
-          <Image
-            src={session.talkSpeakerImage}
-            alt={session.talkSpeakerName}
-            width={1000}
-            height={1000}
-            className="rounded-full w-full h-auto"
-          />
-        </div>
-        <div className="flex flex-col" style={{ flex: '0 0 80%' }}>
-          <span
-            className={`text-sm rounded-full text-center px-2 mb-2 -ml-1 ${
-              session.sessionType === 'Break'
-                ? 'bg-gradient-to-br from-orange-100 to-orange-100 w-14 text-orange-500'
-                : session.sessionType === 'Workshop'
-                ? 'bg-gradient-to-br from-seafoam-200 to-seafoam-200 w-[5.5rem] text-seafoam-700'
-                : session.sessionType === 'Talk'
-                ? 'bg-gradient-to-br from-blue-100 to-blue-100 w-11 text-blue-500'
-                : 'text-gray-700'
-            }`}
+        {session.talkSpeakerImage && (
+          <div
+            className="hidden sm:flex flex-col pr-4"
+            style={{ flex: '0 0 20%' }}
           >
-            {session.sessionType}
+            <Image
+              src={session.talkSpeakerImage}
+              alt={session.talkSpeakerName || 'Unknown Speaker'}
+              width={1000}
+              height={1000}
+              className="rounded-full w-full h-auto"
+            />
+          </div>
+        )}
+        <div className="flex flex-col" style={{ flex: '0 0 80%' }}>
+          <span className="text-sm rounded-full text-center px-2 mb-2 -ml-1">
+            {session.sessionType || 'Break'}
           </span>
-          <h3 className="text-lg font-bold">
-            {session.speechTitle}
-            {/* {tinaData.data?.conference?.speakerSchedule?.speechTitle} */}
-          </h3>
-          <span className="flex items-center gap-2 text-gray-600">
-            {session.talkSpeakerName && (
-              <>
-                <FaRegUser />
-                <p className="text-sm text-gray-600 text-center flex items-center">
-                  {session.talkSpeakerName}
-                </p>
-              </>
-            )}
-          </span>
-
+          <h3 className="text-lg font-bold">{session.speechTitle || 'TBD'}</h3>
+          {session.talkSpeakerName && (
+            <span className="flex items-center gap-2 text-gray-600">
+              <FaRegUser />
+              <p className="text-sm text-gray-600 text-center flex items-center">
+                {session.talkSpeakerName}
+              </p>
+            </span>
+          )}
           <span className="flex items-center gap-2 text-gray-600">
             <FaRegClock />
             <p className="text-sm">
@@ -101,9 +78,8 @@ function SessionCard({ session }: { session: Session }) {
               {formatTime(session.talkTimeEnd)}
             </p>
           </span>
-
           <p className="text-gray-600 text-sm pt-2">
-            {session.speechDescription}
+            {session.speechDescription || 'TBD'}
           </p>
         </div>
       </div>
@@ -125,22 +101,30 @@ function ConferencePage({
     data,
     variables: vars,
   });
-  // Remove console.log later
-  console.log('⚠️⚠️⚠️');
-  console.log(tinaData.data);
-  // console.log(tinaData.data?.conference?.speakerSchedule);
-  const speakerSchedule = tinaData.data?.conference?.speakerSchedule as Session[];
-``
+
+  const speakerSchedule = (
+    tinaData.data?.conference?.speakerSchedule || []
+  ).map((session: any) => ({
+    speechTitle: session.speechTitle || 'TBD',
+    speechDescription: session.speechDescription || 'TBD',
+    talkSpeakerName: session.talkSpeakerName || 'Unknown',
+    talkSpeakerImage: session.talkSpeakerImage || '/img/people/Mystery.png',
+    talkTimeStart: session.talkTimeStart || 0,
+    talkTimeEnd: session.talkTimeEnd || 0,
+    sessionType:
+      (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
+  }));
+
   const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
   const filteredSessions = speakerSchedule
-  .filter((session) => filter === 'all' || session.sessionType === filter)
-  .sort((a, b) => Number(a.talkTimeStart) - Number(b.talkTimeStart));
-
+    .filter((session) => filter === 'all' || session.sessionType === filter)
+    .sort((a, b) => a.talkTimeStart - b.talkTimeStart);
 
   const agendaRef = useRef<HTMLDivElement>(null);
   const scrollToAgenda = () => {
     if (agendaRef.current) {
-      const offset = 30;``
+      const offset = 30;
+      ``;
       const top =
         agendaRef.current.getBoundingClientRect().top +
         window.pageYOffset -
@@ -364,7 +348,8 @@ function ConferencePage({
               />
             ))}
           </div>
-        </div>``
+        </div>
+        ``
       </div>
     </div>
   );
