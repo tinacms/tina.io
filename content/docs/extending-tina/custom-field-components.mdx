@@ -1,7 +1,7 @@
 ---
 id: /docs/extending-tina/custom-field-components
-title: Custom Input Components
-last_edited: '2025-03-17T00:34:57.460Z'
+title: React Components
+last_edited: '2025-03-17T04:59:45.103Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -14,227 +14,42 @@ Provide your new component through the `ui.component` property of the field.
 
 This should be set to a valid React component that accepts three props:
 
-- `field`: The [field definition](https://tinacms.org/docs/reference/toolkit/fields) for the current field.
-- `input`: The data and callbacks necessary to make an input.
-- `meta`: Metadata about the field in the form. (e.g. `dirty`, `valid`)
+* `field`: The [field definition](https://tinacms.org/docs/reference/toolkit/fields) for the current field.
+* `input`: The data and callbacks necessary to make an input.
+* `meta`: Metadata about the field in the form. (e.g. `dirty`, `valid`).
+* `form`: The CMS form, use to retrieve and update other fields from the same collection.
 
 > Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
 
-## Built-In Components
+### Preserving Metadata
 
-Tina also provides a variety of pre-built components you can use via the `ui.component` property. Set it to a string with the plugin name.
+To keep the same label, description, validation and other meta settings on your custom component, you can make use of the wrapper function `wrapFieldsWithMeta`.
 
-```javascript
-{
-  type: 'string',
-  label: 'Background Color',
-  name: 'color',
-  ui: {
-    component: "color",
-    colorFormat: "rgb"
-  }
-}
-```
+### Form management
 
-> You can pass in additional plugin configurations via `ui` – such as `colorFormat` in the above example.
+The `form` prop can be used to control form values in other fields.
 
-### Default Field Plugins
+Any field in the collection can be updated with `form.change` – `(name: string, value: any) => void`, using the field `name` property.
 
-<ImageAndText
-  image="/img/fields/text.png"
-  docText={
-    <>
-      #### Text Input Plugin The default input type for string fields. Set
-      `ui.compontent` to `"text"`. [Plugin
-      details](/docs/reference/toolkit/fields/text/).
-    </>
-  }
-/>
+Any field in the collection can be accessed using `form.getFieldState(name: string)?.value`, using the field `name` property.
 
-<ImageAndText
-  image="/img/fields/textarea.png"
-  docText={
-    <>
-      #### Textarea Input Plugin Used for multi-line text input. Set
-      `ui.compontent` to `"textarea"`. [Plugin
-      details](/docs/reference/toolkit/fields/textarea/).
-    </>
-  }
-/>
+> Further usage patterns can be inferred from the [react-final-form FormAPI docs.](https://final-form.org/docs/final-form/types/FormApi)
 
-<ImageAndText
-  image="/img/fields/number-field.png"
-  docText={
-    <>
-      #### Number Input Plugin Used for numerical values. Set `ui.compontent` to
-      `"number"`. [Plugin details](/docs/reference/toolkit/fields/number/).
-    </>
-  }
-/>
+### Hidden fields
 
-<ImageAndText
-  image="/img/fields/image.png"
-  docText={
-    <>
-      #### Image Input Plugin Used for uploading and selecting images. Set
-      `ui.compontent` to `"image"`. [Plugin
-      details](/docs/reference/toolkit/fields/image/).
-    </>
-  }
-/>
+Setting `component.ui` to the value `"hidden"` removes the field from the editor.
 
-<ImageAndText
-  image="/img/fields/color.jpg"
-  docText={
-    <>
-      #### Color Input Plugin Used for color selection with a color picker. Set
-      `ui.compontent` to `"color"`. [Plugin
-      details](/docs/reference/toolkit/fields/color/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/fields/toggle.png"
-  docText={
-    <>
-      #### Toggle Input Plugin Used for boolean values with an on/off switch.
-      Set `ui.compontent` to `"toggle"`. [Plugin
-      details](/docs/reference/toolkit/fields/toggle/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/fields/radio-group-field-horizontal-radio.gif"
-  docText={
-    <>
-      #### Radio Group Input Plugin Used for selecting a single option from a
-      list of radio buttons. Set `ui.compontent` to `"radio-group"`. [Plugin
-      details](/docs/reference/toolkit/fields/radio-group/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/fields/select-field.png"
-  docText={
-    <>
-      #### Select Input Plugin Used for selecting from a dropdown menu of
-      options. Set `ui.compontent` to `"select"`. [Plugin
-      details](/docs/reference/toolkit/fields/select/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/fields/tags-field.png"
-  docText={
-    <>
-      #### Tags Input Plugin Used for creating and managing multiple tag values.
-      Set `ui.compontent` to `"tags"`. [Plugin
-      details](/docs/reference/toolkit/fields/tags/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/fields/list-field.png"
-  docText={
-    <>
-      #### List Input Plugin Used for managing an array of primitive values. Set
-      `ui.compontent` to `"list"`. [Plugin
-      details](/docs/reference/toolkit/fields/list/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/fields/group.gif"
-  docText={
-    <>
-      #### Group Input Plugin Used for grouping related fields together. Set
-      `ui.compontent` to `"group"`. [Plugin
-      details](/docs/reference/toolkit/fields/group/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/blocks.gif"
-  docText={
-    <>
-      #### Group List Input Plugin Used for managing an array of objects with
-      the same shape. Set `ui.compontent` to `"group-list"`. [Plugin
-      details](/docs/reference/toolkit/fields/group-list/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/blocks.png"
-  docText={
-    <>
-      #### Blocks Input Plugin Used for managing an array of objects with
-      different shapes. Set `ui.compontent` to `"blocks"`. [Plugin
-      details](/docs/reference/toolkit/fields/blocks/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/fields/date.jpg"
-  docText={
-    <>
-      #### Date Input Plugin Used for selecting dates with a date picker. Set
-      `ui.compontent` to `"date"`. [Plugin
-      details](/docs/reference/toolkit/fields/date/).
-    </>
-  }
-/>
-
-Tina also supports some add-on field plugins. These need to be imported and registered from separate packages:
-
-<ImageAndText
-  image="/img/fields/markdown.png"
-  docText={
-    <>
-      #### Markdown Input Plugin Used for editing markdown content with a rich
-      text editor. Requires additional setup. [Plugin
-      details](/docs/reference/toolkit/fields/markdown/).
-    </>
-  }
-/>
-
-<ImageAndText
-  image="/img/image.png"
-  docText={
-    <>
-      #### HTML Input Plugin Used for editing HTML content with a rich text
-      editor. Requires additional setup. [Plugin
-      details](/docs/reference/toolkit/fields/html/).
-    </>
-  }
-/>
-
-## Video Tutorial
-
-Jeff See goes into the step-by-step process of using custom React components in Tina.
-
-<Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
+The field still exists behind the scenes and can be accessed in other ways.
 
 ## Examples
 
-### Custom slider component
+### Slider component
 
 Here is a custom slider component that can be used for adjusting image saturation.
 
 ![A basic slider custom component](/img/docs/extending-tina/image-saturation.png)
 
 ```tsx
-import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
-
-//.. other fields
 {
   label: "Image Saturation",
   name: "saturation",
@@ -242,8 +57,6 @@ import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
   description: "My custom saturation field",
   ui: {
     parse: (val) => Number(val),
-
-    // wrapping our component in wrapFieldsWithMeta renders our label & description.
     component: wrapFieldsWithMeta(({ field, input, meta }) => {
       return (
         <div>
@@ -254,7 +67,7 @@ import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
             min="0"
             max="10"
             step=".1"
-            // This will pass along props.input.onChange to set our form values as this input changes.
+            // Passes props.input.onChange
             {...input}
           />
           <br />
@@ -265,3 +78,113 @@ import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
   }
 }
 ```
+
+### Image component with hidden meta-fields
+
+NextJS and other frameworks are able to improve performance if image widths and heights are known ahead of time.
+
+**TinaCMS can be used to determine and store this on upload**.
+
+First, we want the component to be consistent with the rest of the editor.
+
+As such we use the TinaCMS `ImageField` – the component used for the `"image"` field type.
+
+We pass along this input component, and intercept changes to it with a `useEffect` that updates our width and height fields.
+
+```javascript
+
+import { ImageField } from 'tinacms';
+
+const CustomImageField = (props) => {
+
+  const loadImage = async (url) => {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    return img;
+  };
+  const { form, input } = props;
+
+  useEffect(() => {
+    loadImage(input.value).then((img) => {
+      form.change("imgWidth", img.naturalWidth);
+      form.change("imgHeight", img.naturalHeight);
+    });
+  }, [form, input]);
+  
+  return ImageField(props);
+};
+```
+
+In the data model, we want to use our new component on an image component.
+
+We also need the two fields for its height and width, which we can set to `"hidden"` so they don't appear in the editor:
+
+```javascript
+{
+  type: 'image',
+  label: 'Hero image',
+  name: 'imgSrc',
+  ui: {
+    component: CustomImageField,
+  },
+},
+{
+  type: "number",
+  name: "imgWidth",
+  ui: {
+    component: "hidden",
+  },
+},
+{
+  type: "number",
+  name: "imgHeight",
+  ui: {
+    component: "hidden",
+  },
+}
+```
+
+This shows up as a singular Image input in the editor, but 3 values will be saved on each update (image source, height and width).
+
+![](/img/docs/reference/SCR-20250317-mtnf.png)
+
+```markdown
+imgSrc: /uploads/llama - 2.avif
+imgWidth: 987
+imgHeight: 1480
+```
+
+### Conditional component
+
+Conditional fields can be created by checking values of other form fields.
+
+> With this approach, a hidden conditional field will hold whatever  value was saved to it before it was hidden.
+
+![](</gif/Screen Recording 2025-03-17 at 3.21.09 pm.gif>)
+
+```javascript
+{
+  type: "boolean",
+  name: "imageEnabled",
+  label: "Image Enabled",
+},
+{
+  type: 'image',
+  label: 'Hero image',
+  name: 'imgSrc',
+  ui: {
+  component: (props) => {
+    const { form } = props;
+    return form.getFieldState("imageEnabled")?.value ?
+      ImageField(props) : null;
+    },
+  },
+},
+```
+
+### Icon-picker component (video)
+
+The below tutorial includes a segment on creating a custom Icon selector using a custom field component.
+
+<Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />

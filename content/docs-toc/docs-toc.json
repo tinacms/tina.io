@@ -191,9 +191,20 @@
               "_template": "items"
             },
             {
-              "title": "Custom Input Components",
-              "slug": "content/docs/extending-tina/custom-field-components.mdx",
-              "_template": "item"
+              "title": "Custom Inputs",
+              "items": [
+                {
+                  "title": "React Components",
+                  "slug": "content/docs/extending-tina/custom-field-components.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Plug-in Components",
+                  "slug": "content/docs/reference/toolkit/fields/built-in-plugins.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
             }
           ],
           "_template": "items"

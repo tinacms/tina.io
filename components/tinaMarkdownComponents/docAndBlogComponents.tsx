@@ -97,30 +97,32 @@ export const docAndBlogComponents: Components<{
     };
 
     return (
-      <div className="bg-white/40 rounded-lg shadow-sm mb-2 overflow-hidden">
+      <div
+        className={`bg-white/40 rounded-lg shadow-sm mb-2 overflow-hidden transition-[width] duration-300 ease-in-out max-w-full ${
+          isExpanded ? 'w-full' : 'w-80 delay-700'
+        }`}
+      >
         <div
-          className="p-4 cursor-pointer flex justify-between items-center"
+          className="py-1 px-4 cursor-pointer flex justify-between items-center"
           onClick={toggleExpand}
         >
-          {/* {docAndBlogComponents.h4({
-            children: {
-              type: 'text',
-              : props.heading || 'Click to expand',
-            },
-          })} */}
+          {FormatHeaders({
+            children: props.heading || 'Click to expand',
+            level: 6,
+          })}
           <div>
             {isExpanded ? (
-              <FaMinus className="text-orange-500" />
+              <FaMinus className="text-blue-800 size-3" />
             ) : (
-              <FaPlus className="text-orange-500" />
+              <FaPlus className="text-gray-500 size-3" />
             )}
           </div>
         </div>
 
         <div
-          className={`grid sm:grid-cols-2 gap-4 border-t border-gray-100 transition-all duration-500 ease-in-out ${
+          className={`grid sm:grid-cols-2 gap-4 border-t border-gray-100 transition-all duration-700 ease-in-out ${
             isExpanded
-              ? 'max-h-[2000px] opacity-100'
+              ? 'max-h-[2000px] opacity-100 delay-500'
               : 'max-h-0 opacity-0 overflow-hidden'
           }`}
           ref={contentRef}
@@ -475,6 +477,15 @@ function FormatHeaders({ children, level }) {
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',
   };
 
+  const linkColor = {
+    1: 'text-orange-500',
+    2: 'text-orange-500',
+    3: 'text-blue-900',
+    4: 'text-orange-500',
+    5: 'text-orange-500',
+    6: 'text-gray-500',
+  };
+
   const handleHeaderClick = (event) => {
     event.preventDefault();
     scrollToElement(id);
@@ -505,15 +516,24 @@ function FormatHeaders({ children, level }) {
   }, []);
 
   return (
-    <HeadingTag id={id} className={`${styles[level]} relative cursor-pointer`}>
+    <HeadingTag
+      id={id}
+      className={`${styles[level]} relative cursor-pointer group`}
+    >
       <a
         href={linkHref}
-        className="no-underline group"
+        className="no-underline inline-block"
         onClick={handleHeaderClick}
       >
         {' '}
         {children}
-        <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex mb-2" />
+        <FiLink
+          className={`${linkColor[level]} opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle`}
+          style={{
+            display: 'inline-block',
+            marginTop: '0.25rem',
+          }}
+        />
       </a>
     </HeadingTag>
   );
