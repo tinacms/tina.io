@@ -7,7 +7,6 @@ import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
-import sessionData from './conferenceData.json';
 
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
