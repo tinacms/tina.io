@@ -26,7 +26,7 @@ interface Session {
   speechTitle: string;
   speechDescription: string;
   talkTimeStart: number;
-  talkTimeEnd: number;
+  talkTimeEnd?: number;
   sessionType: 'Talk' | 'Workshop' | 'Break';
 }
 
@@ -40,6 +40,7 @@ function formatTime(time: number) {
 }
 
 function SessionCard({ session }: { session: Session }) {
+  console.log(session);
   return (
     <div className="border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start">
       <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
@@ -73,8 +74,8 @@ function SessionCard({ session }: { session: Session }) {
           <span className="flex items-center gap-2 text-gray-600">
             <FaRegClock />
             <p className="text-sm">
-              {formatTime(session.talkTimeStart)} -{' '}
-              {formatTime(session.talkTimeEnd)}
+              {formatTime(session.talkTimeStart)}
+              {session?.talkTimeEnd && (` - ${formatTime(session.talkTimeEnd)}`)}
             </p>
           </span>
           <p className="text-gray-600 text-sm pt-2">
@@ -109,7 +110,7 @@ function ConferencePage({
     talkSpeakerName: session.talkSpeakerName || 'Unknown',
     talkSpeakerImage: session.talkSpeakerImage || '/img/people/Mystery.png',
     talkTimeStart: session.talkTimeStart || 0,
-    talkTimeEnd: session.talkTimeEnd || 0,
+    talkTimeEnd: session.talkTimeEnd !== undefined ? session.talkTimeEnd : undefined,
     sessionType:
       (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
   }));
@@ -341,10 +342,7 @@ function ConferencePage({
           </div>
           <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
             {filteredSessions.map((session, index) => (
-              <SessionCard
-                key={index}
-                session={session}
-              />
+              <SessionCard key={index} session={session} />
             ))}
           </div>
         </div>
