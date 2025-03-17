@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T05:45:07.620Z'
+last_edited: '2025-03-17T05:45:38.388Z'
 next: ''
 previous: ''
 ---
@@ -114,8 +114,8 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 const Page = (props) => {
   const { data } = useTina(props);
   return (
-    <Section tinaField={tinaField(data.page, 'body')}>
-      <TinaMarkdown content={data.page.body} />
+    <Section tinaField={tinaField(data, 'body')}>
+      <TinaMarkdown content={data.body} />
     </Section>
   );
 };
