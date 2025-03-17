@@ -11,10 +11,66 @@ import { useTina } from 'tinacms/dist/react';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
+const HeaderBanner = ({
+  tinaData,
+  scrollToAgenda,
+}: {
+  tinaData: any;
+  scrollToAgenda: () => void;
+}) => {
+  return (
+    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
+      <h1 className="font-tuner text-4xl pb-4 text-orange-500">
+        {tinaData.bannerTitle}
+      </h1>
+      <h2 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h2>
+      <div className="flex py-6 gap-10">
+        <div className="flex gap-2 items-center">
+          <FaRegCalendar /> <span>{tinaData.date}</span>
+        </div>
+        <div className="flex gap-2 items-center">
+          <FaRegClock /> <span>{tinaData.time}</span>
+        </div>
+        <div className="flex gap-2 items-center">
+          <FaRegMap />{' '}
+          <Link
+            href="https://www.ssw.com.au/offices/melbourne "
+            target="_blank"
+            className="underline"
+          >
+            {tinaData.location}
+          </Link>
+        </div>
+      </div>
+      <button
+        className="bg-white text-orange-500 px-5 py-3 rounded-2xl font-tuner shadow-2xl relative top-0 hover:-top-1 transition-all ease-in-out duration-300"
+        onClick={scrollToAgenda}
+      >
+        Agenda
+      </button>
+    </div>
+  );
+};
+
 const icons = {
-  FaRegStar: <FaRegStar size={40} className="text-white bg-gradient-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full" />,
-  IoMdBook: <IoMdBook size={40} className="text-white bg-gradient-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full" />,
-  GoPeople: <GoPeople size={40} className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 mb-4 rounded-full" />,
+  FaRegStar: (
+    <FaRegStar
+      size={40}
+      className="text-white bg-gradient-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full"
+    />
+  ),
+  IoMdBook: (
+    <IoMdBook
+      size={40}
+      className="text-white bg-gradient-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full"
+    />
+  ),
+  GoPeople: (
+    <GoPeople
+      size={40}
+      className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 mb-4 rounded-full"
+    />
+  ),
 };
 
 interface KeyHighlightsProps {
@@ -33,10 +89,16 @@ interface KeyHighlightsProps {
 const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
   return (
     <div className="flex py-12 gap-10 max-w-4xl text-lg">
-      {[['headerLeft', 'descriptionLeft', 'iconLeft'], ['headerMiddle', 'descriptionMiddle', 'iconMiddle'], ['headerRight', 'descriptionRight', 'iconRight']].map(([header, description, icon], index) => (
+      {[
+        ['headerLeft', 'descriptionLeft', 'iconLeft'],
+        ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
+        ['headerRight', 'descriptionRight', 'iconRight'],
+      ].map(([header, description, icon], index) => (
         <div key={index} className="flex flex-col gap-2 items-center w-1/3">
           {icons[highlights[icon as keyof typeof highlights]]}
-          <h3 className="font-bold">{highlights[header as keyof typeof highlights]}</h3>
+          <h3 className="font-bold">
+            {highlights[header as keyof typeof highlights]}
+          </h3>
           <p>{highlights[description as keyof typeof highlights]}</p>
         </div>
       ))}
@@ -88,14 +150,15 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
               />
             </Link>
             <h3 className="font-bold text-lg pt-5">{speaker.name}</h3>
-            <h4 className="text-slate-500 text-lg pb-2 -pt-1">{speaker.position}</h4>
+            <h4 className="text-slate-500 text-lg pb-2 -pt-1">
+              {speaker.position}
+            </h4>
           </div>
         ))}
       </div>
     </div>
   );
 };
-
 
 function formatTime(time: number) {
   const hours = Math.floor(time);
@@ -214,40 +277,10 @@ function ConferencePage({
 
   return (
     <div className="mt-6">
-      <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
-        <h1 className="font-tuner text-4xl pb-4 text-orange-500">
-          {tinaData.data?.conference?.banner?.bannerTitle}
-        </h1>
-        <h2 className="text-2xl max-w-4xl">
-          {tinaData.data?.conference?.banner?.bannerDescription}
-        </h2>
-        <div className="flex py-6 gap-10">
-          <div className="flex gap-2 items-center">
-            <FaRegCalendar />{' '}
-            <span>{tinaData.data?.conference?.banner?.date}</span>
-          </div>
-          <div className="flex gap-2 items-center">
-            <FaRegClock />{' '}
-            <span>{tinaData.data?.conference?.banner?.time}</span>
-          </div>
-          <div className="flex gap-2 items-center">
-            <FaRegMap />{' '}
-            <Link
-              href="https://www.ssw.com.au/offices/melbourne "
-              target="_blank"
-              className="underline"
-            >
-              SSW Melbourne Office
-            </Link>
-          </div>
-        </div>
-        <button
-          className="bg-white text-orange-500 px-5 py-3 rounded-2xl font-tuner shadow-2xl relative top-0 hover:-top-1 transition-all ease-in-out duration-300"
-          onClick={scrollToAgenda}
-        >
-          Agenda
-        </button>
-      </div>
+      <HeaderBanner
+        tinaData={tinaData.data?.conference?.banner}
+        scrollToAgenda={scrollToAgenda}
+      />
       <div className="flex flex-col justify-center items-center text-center p-16">
         <h2 className="text-3xl font-bold pb-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           {tinaData.data?.conference?.about?.heading}
@@ -258,10 +291,12 @@ function ConferencePage({
             components={conferenceMarkdownComponents}
           />
         </p>
-        <KeyHighlights highlights={tinaData.data?.conference?.about?.keyHighlights} />
-
-        <OpenSourceExpertSpeakers speakers={tinaData.data?.conference?.speakers || []} />
-        
+        <KeyHighlights
+          highlights={tinaData.data?.conference?.about?.keyHighlights}
+        />
+        <OpenSourceExpertSpeakers
+          speakers={tinaData.data?.conference?.speakers || []}
+        />
         <div className="flex flex-col items-center p-10" ref={agendaRef}>
           <h2
             id="agenda"
@@ -287,7 +322,7 @@ function ConferencePage({
                 }`}
                 onClick={() => setFilter('all')}
               >
-                All Sessions
+                All
               </button>
               <button
                 className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
@@ -313,7 +348,6 @@ function ConferencePage({
             ))}
           </div>
         </div>
-        ``
       </div>
     </div>
   );
