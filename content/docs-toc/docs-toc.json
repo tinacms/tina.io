@@ -178,13 +178,13 @@
                   "_template": "item"
                 },
                 {
-                  "title": "Custom MD Syntax",
-                  "slug": "content/docs/reference/rich-text-usage/markdown-shortcode.mdx",
+                  "title": "MD Syntax Guide",
+                  "slug": "content/docs/reference/markdown-spec.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "TinaCMS MD Specification",
-                  "slug": "content/docs/reference/markdown-spec.mdx",
+                  "title": "Custom MD Syntax",
+                  "slug": "content/docs/reference/rich-text-usage/markdown-shortcode.mdx",
                   "_template": "item"
                 }
               ],

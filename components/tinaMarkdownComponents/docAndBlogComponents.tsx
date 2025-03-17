@@ -4,7 +4,7 @@ import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
@@ -12,6 +12,7 @@ import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
+import MermaidElement from './mermaid';
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
   {
@@ -89,7 +90,7 @@ export const docAndBlogComponents: Components<{
   },
   ImageAndText: (props) => {
     return (
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 bg-white/40 rounded-lg p-4 shadow-sm">
         <div className="bg-red">
           {' '}
           <TinaMarkdown
@@ -98,7 +99,9 @@ export const docAndBlogComponents: Components<{
           />{' '}
         </div>
         <div>
-          <Image src={props?.image} alt="image" className="w-full" />
+          {props?.image && (
+            <img src={props?.image} alt="image" className="w-full rounded-lg" />
+          )}
         </div>
       </div>
     );
@@ -178,7 +181,9 @@ export const docAndBlogComponents: Components<{
       {...props}
     />
   ),
-
+  mermaid: (value) => {
+    return <MermaidElement value={value.value} />;
+  },
   Iframe: ({ iframeSrc, height }) => {
     return (
       <div>

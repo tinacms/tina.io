@@ -1,23 +1,88 @@
 ---
 id: /docs/extending-tina/custom-field-components
-
-title: Custom field components
+title: Custom Input Components
+last_edited: '2025-03-17T00:34:57.460Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
+previous: ''
 ---
 
-A custom component can be passed and rendered by setting the `ui.component` property on a field. This component completely overrides the original component, providing the user with the ability to fully customize the field.
+You can use a custom React component in place of a usual field type input.
 
-## Providing your own component
+Provide your new component through the `ui.component` property of the field.
 
-A field's `ui.component` property is a React component that accepts three props:
+## The `ui.component` Property
+
+This should be set to a valid React component that accepts three props:
 
 - `field`: The [field definition](https://tinacms.org/docs/reference/toolkit/fields) for the current field.
 - `input`: The data and callbacks necessary to make an input.
 - `meta`: Metadata about the field in the form. (e.g. `dirty`, `valid`)
 
-Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
+> Checkout the [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) docs for a more detailed description of the `input` and `meta` props.
 
-### Custom Component Example
+## Built-In Components
+
+Tina also provides a variety of pre-built components you can use via the `ui.component` property. Set it to a string with the plugin name.
+
+```javascript
+{
+  type: 'string',
+  label: 'Background Color',
+  name: 'color',
+  ui: {
+    component: "color",
+    colorFormat: "rgb"
+  }
+}
+```
+
+> You can pass in additional plugin configurations via `ui` – such as `colorFormat` in the above example.
+
+### Default Field Plugins
+
+<ImageAndText
+  image="/img/fields/text.png"
+  docText={
+    <>
+      #### Text Input Plugin 
+      
+      The default input type for string fields. 
+      
+      Set `ui.compontent` to `"text"`. [Plugin details](/docs/reference/toolkit/fields/text/).
+      
+    </>
+  }
+/>
+
+- [text](/docs/reference/toolkit/fields/text/)
+- [textarea](/docs/reference/toolkit/fields/textarea/)
+- [number](/docs/reference/toolkit/fields/number/)
+- [image](/docs/reference/toolkit/fields/image/)
+- [color](/docs/reference/toolkit/fields/color/)
+- [toggle](/docs/reference/toolkit/fields/toggle/)
+- [radio-group](/docs/reference/toolkit/fields/radio-group/)
+- [select](/docs/reference/toolkit/fields/select/)
+- [tags](/docs/reference/toolkit/fields/tags/)
+- [list](/docs/reference/toolkit/fields/list/)
+- [group](/docs/reference/toolkit/fields/group/)
+- [group-list](/docs/reference/toolkit/fields/group-list/)
+- [blocks](/docs/reference/toolkit/fields/blocks/)
+- [date](/docs/reference/toolkit/fields/date/)
+
+Tina also supports some add-on field plugins. These need to be imported and registered from separate packages:
+
+- [markdown](/docs/reference/toolkit/fields/markdown/)
+- [html](/docs/reference/toolkit/fields/html/)
+
+## Video Tutorial
+
+Jeff See goes into the step-by-step process of using custom React components in Tina.
+
+<Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
+
+## Examples
+
+### Custom slider component
 
 Here is a custom slider component that can be used for adjusting image saturation.
 
@@ -57,59 +122,3 @@ import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
   }
 }
 ```
-
-> Note: in this example, `parse` is also needed. [Read more about `parse`](/docs/extending-tina/format-and-parse/).
-
-## Using pre-built components
-
-Tina also provides a variety of pre-built components. To specify these, the `ui.component` property should be configured with the string name of the registered field plugin.
-
-Below is a list of default fields.
-
-### Default Field Plugins
-
-- [text](/docs/reference/toolkit/fields/text/)
-- [textarea](/docs/reference/toolkit/fields/textarea/)
-- [number](/docs/reference/toolkit/fields/number/)
-- [image](/docs/reference/toolkit/fields/image/)
-- [color](/docs/reference/toolkit/fields/color/)
-- [toggle](/docs/reference/toolkit/fields/toggle/)
-- [radio-group](/docs/reference/toolkit/fields/radio-group/)
-- [select](/docs/reference/toolkit/fields/select/)
-- [tags](/docs/reference/toolkit/fields/tags/)
-- [list](/docs/reference/toolkit/fields/list/)
-- [group](/docs/reference/toolkit/fields/group/)
-- [group-list](/docs/reference/toolkit/fields/group-list/)
-- [blocks](/docs/reference/toolkit/fields/blocks/)
-- [date](/docs/reference/toolkit/fields/date/)
-
-Tina also supports some add-on field plugins. These need to be imported and registered from separate packages:
-
-- [markdown](/docs/reference/toolkit/fields/markdown/)
-- [html](/docs/reference/toolkit/fields/html/)
-
-### Configuring a field plugin
-
-Each field has a unique set of properties that can be configured within the schema.
-
-For example, if you take a look at the color field plugin's definition, it takes a `colorFormat` property. We can configure that in our schema like so:
-
-```ts
-// ...
-        {
-          type: 'string',
-          label: 'Background Color',
-          name: 'color',
-          ui: {
-            component: "color",
-            colorFormat: "rgb"
-          }
-        },
-// ...
-```
-
-## Video Tutorial
-
-For those who prefer to learn from video, you can check out a snippet on "Customizing Components" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
-
-<Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
