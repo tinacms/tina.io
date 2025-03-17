@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T03:03:54.810Z'
+last_edited: '2025-03-17T03:05:00.083Z'
 next: ''
 previous: ''
 ---
@@ -132,7 +132,7 @@ const Section = ({ children, tinaField }: SectionProps) => {
 
 ### Passing the outer object for the field
 
-A less ideal solution would be to pass the outer object housing the field we want from Tina. This allows us to cherry pick the field and use it for our `[data-tina-field]` attribute. While this approach works well for fields with multiple layers of nesting, it can make it difficult to figure out which elements on our page we can edit contextually from a glance.
+A less ideal solution would be to pass the outer object housing the field we want directly into our component. This allows us to cherry pick the field and use it for our `[data-tina-field]` attribute. While this approach works well for fields with multiple layers of nesting, it can make it difficult to figure out which elements in our code we can edit contextually from from a glance.
 
 ```js
 import { useTina, tinaField } from 'tinacms/dist/react'
