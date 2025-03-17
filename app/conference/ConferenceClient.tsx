@@ -34,7 +34,7 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
   return (
     <div className="flex py-12 gap-10 max-w-4xl text-lg">
       {[['headerLeft', 'descriptionLeft', 'iconLeft'], ['headerMiddle', 'descriptionMiddle', 'iconMiddle'], ['headerRight', 'descriptionRight', 'iconRight']].map(([header, description, icon], index) => (
-        <div key={index} className="flex flex-col gap-2 items-center">
+        <div key={index} className="flex flex-col gap-2 items-center w-1/3">
           {icons[highlights[icon as keyof typeof highlights]]}
           <h3 className="font-bold">{highlights[header as keyof typeof highlights]}</h3>
           <p>{highlights[description as keyof typeof highlights]}</p>
