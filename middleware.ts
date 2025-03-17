@@ -23,11 +23,9 @@ export const DEFAULT_LOCALE = 'en';
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const pathname = url.pathname;
-  console.log('Try to Access:', pathname);
-  console.log('Get from Locale:', getLocale(request));
-  console.log('Get from Params:', url.searchParams.get('setLocale'));
+
   const locale = url.searchParams.get('setLocale') || getLocale(request);
-  console.log('Final locale:', locale);
+
   let response;
 
   if (url.searchParams.has('setLocale')) {
