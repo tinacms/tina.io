@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T01:16:17.183Z'
+last_edited: '2025-03-17T03:03:54.810Z'
 next: ''
 previous: ''
 ---
@@ -101,13 +101,16 @@ The `tinaField` helper simply plucks out the appropriate information from the `_
 
 ## Using `tinaField` with custom React components
 
-* Adding `[data-tina-field]` directly to a react component can be a bit tricky because React doesn't allow you to define attribute names with kebab casing. There are a couple of work arounds you can  use for adding click based editing for React components
+* Adding `[data-tina-field]` directly to a react component can be a bit tricky because React doesn't allow you to define attribute names with kebab casing. There are a couple of work arounds you can  use for adding click based editing for React components.
 
 ### Using custom attributes
 
 The easiest way to assign `[data-tina-field]` to a React component is to create a custom attribute. This will allow you to to pass the output from the `tinaField` helper to the expecting HTML element directly as a string.
 
 ```js
+import { useTina, tinaField } from 'tinacms/dist/react'
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+
 const Page = (props) => {
   const { data } = useTina(props);
   return (
@@ -125,8 +128,6 @@ type SectionProps = {
 const Section = ({ children, tinaField }: SectionProps) => {
   return <section data-tina-field={tinaField}>{children}</section>;
 };
-
-export default PageComponent;
 ```
 
 ### Passing the outer object for the field
@@ -134,6 +135,9 @@ export default PageComponent;
 A less ideal solution would be to pass the outer object housing the field we want from Tina. This allows us to cherry pick the field and use it for our `[data-tina-field]` attribute. While this approach works well for fields with multiple layers of nesting, it can make it difficult to figure out which elements on our page we can edit contextually from a glance.
 
 ```js
+import { useTina, tinaField } from 'tinacms/dist/react'
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+
 const Page = (props) => {
   const { data } = useTina(props);
   return (
@@ -188,7 +192,7 @@ Section.displayName = 'Section';
 
 ## Important notes
 
-* The \[data-tina-field] helper does not affect the flow of data from Tina. It simply determines which part of the form Tina will open when the user clicks a given element.
+* The \[data-tina-field] helper does not affect the flow of data from Tina. It simply determines which part of the form Tina will open when the user clicks a given HTML element.
 * `[data-tina-field]` cannot be applied directly to the [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown) component. This is because the TinaMarkdown component doesn't render a root element in the DOM.
 
 ```js
