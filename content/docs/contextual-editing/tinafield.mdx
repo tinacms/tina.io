@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T01:13:52.099Z'
+last_edited: '2025-03-17T01:16:17.183Z'
 next: ''
 previous: ''
 ---
@@ -189,6 +189,7 @@ Section.displayName = 'Section';
 ## Important notes
 
 * The \[data-tina-field] helper does not affect the flow of data from Tina. It simply determines which part of the form Tina will open when the user clicks a given element.
+* `[data-tina-field]` cannot be applied directly to the [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown) component. This is because the TinaMarkdown component doesn't render a root element in the DOM.
 
 ```js
 import { useTina, tinaField } from 'tinacms/dist/react'
