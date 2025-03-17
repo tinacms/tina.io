@@ -45,7 +45,7 @@ export const docAndBlogComponents: Components<{
   CustomFieldComponentDemo: {};
   CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
-  ImageAndText: { docText: string; image: string };
+  ImageAndText: { docText: string; image: string; heading?: string };
   Summary: { heading: string; text: string };
   recipeBlock: {
     title?: string;
@@ -89,19 +89,57 @@ export const docAndBlogComponents: Components<{
     );
   },
   ImageAndText: (props) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    const toggleExpand = () => {
+      setIsExpanded(!isExpanded);
+    };
+
     return (
-      <div className="grid grid-cols-2 gap-4 bg-white/40 rounded-lg p-4 shadow-sm">
-        <div className="bg-red">
-          {' '}
-          <TinaMarkdown
-            content={props.docText as any}
-            components={docAndBlogComponents}
-          />{' '}
+      <div className="bg-white/40 rounded-lg shadow-sm mb-2 overflow-hidden">
+        <div
+          className="p-4 cursor-pointer flex justify-between items-center"
+          onClick={toggleExpand}
+        >
+          {/* {docAndBlogComponents.h4({
+            children: {
+              type: 'text',
+              : props.heading || 'Click to expand',
+            },
+          })} */}
+          <div>
+            {isExpanded ? (
+              <FaMinus className="text-orange-500" />
+            ) : (
+              <FaPlus className="text-orange-500" />
+            )}
+          </div>
         </div>
-        <div>
-          {props?.image && (
-            <img src={props?.image} alt="image" className="w-full rounded-lg" />
-          )}
+
+        <div
+          className={`grid sm:grid-cols-2 gap-4 border-t border-gray-100 transition-all duration-500 ease-in-out ${
+            isExpanded
+              ? 'max-h-[2000px] opacity-100'
+              : 'max-h-0 opacity-0 overflow-hidden'
+          }`}
+          ref={contentRef}
+        >
+          <div className="p-4">
+            <TinaMarkdown
+              content={props.docText as any}
+              components={docAndBlogComponents}
+            />
+          </div>
+          <div className="p-4">
+            {props?.image && (
+              <img
+                src={props?.image}
+                alt="image"
+                className="w-full rounded-lg"
+              />
+            )}
+          </div>
         </div>
       </div>
     );

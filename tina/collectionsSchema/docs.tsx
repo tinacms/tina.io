@@ -187,12 +187,17 @@ export const docsCollection = {
           label: 'Image and Text',
           fields: [
             {
+              name: 'heading',
+              label: 'Heading',
+              type: 'string',
+              description:
+                'The heading text that will be displayed in the collapsed state',
+            },
+            {
               name: 'docText',
               label: 'docText',
               isBody: true,
               type: 'rich-text',
-              description:
-                'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
             },
             {
               name: 'image',
