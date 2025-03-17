@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-16T23:23:46.359Z'
+last_edited: '2025-03-17T00:41:44.458Z'
 next: ''
 previous: ''
 ---
@@ -116,6 +116,14 @@ const Page = (props) => {
   )
 }
 ```
+
+## Using with custom React components
+
+* Adding `[data-tina-field]` directly to a react component can be a bit tricky because React doesn't allow you to define attribute names with kebab casing. There are a couple of work arounds you can  use for adding click based editing for React components
+
+### Using custom attributes
+
+The easiest way to assign `[data-tina-field]` to a React component is to create a custom attribute. This will allow you to to pass the output from the `tinaField` helper to the expecting HTML element directly.
 
 ## API Reference
 
