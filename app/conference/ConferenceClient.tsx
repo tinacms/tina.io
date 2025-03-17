@@ -25,15 +25,14 @@ interface Session {
   talkSpeakerImage: string;
   speechTitle: string;
   speechDescription: string;
-  talkTimeStart: string;
-  talkTimeEnd: string;
+  talkTimeStart: number;
+  talkTimeEnd: number;
   sessionType: 'Talk' | 'Workshop' | 'Break';
 }
 
-function formatTime(time: string) {
-  const date = new Date(time);
-  const hours = date.getUTCHours();
-  const minutes = date.getUTCMinutes();
+function formatTime(time: number) {
+  const hours = Math.floor(time);
+  const minutes = (time - hours) * 60;
   const ampm = hours >= 12 ? 'PM' : 'AM';
   const formattedHour = hours % 12 === 0 ? 12 : hours % 12;
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -114,6 +113,8 @@ function ConferencePage({
     sessionType:
       (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
   }));
+
+  console.log(tinaData.data);
 
   const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
   const filteredSessions = speakerSchedule
