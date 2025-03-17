@@ -11,6 +11,39 @@ import { useTina } from 'tinacms/dist/react';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
+const icons = {
+  FaRegStar: <FaRegStar size={40} className="text-white bg-gradient-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full" />,
+  IoMdBook: <IoMdBook size={40} className="text-white bg-gradient-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full" />,
+  GoPeople: <GoPeople size={40} className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 mb-4 rounded-full" />,
+};
+
+interface KeyHighlightsProps {
+  highlights: {
+    headerLeft: string;
+    descriptionLeft: string;
+    iconLeft: keyof typeof icons;
+    headerMiddle: string;
+    descriptionMiddle: string;
+    iconMiddle: keyof typeof icons;
+    headerRight: string;
+    descriptionRight: string;
+    iconRight: keyof typeof icons;
+  };
+}
+const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
+  return (
+    <div className="flex py-12 gap-10 max-w-4xl text-lg">
+      {[['headerLeft', 'descriptionLeft', 'iconLeft'], ['headerMiddle', 'descriptionMiddle', 'iconMiddle'], ['headerRight', 'descriptionRight', 'iconRight']].map(([header, description, icon], index) => (
+        <div key={index} className="flex flex-col gap-2 items-center">
+          {icons[highlights[icon as keyof typeof highlights]]}
+          <h3 className="font-bold">{highlights[header as keyof typeof highlights]}</h3>
+          <p>{highlights[description as keyof typeof highlights]}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const conferenceMarkdownComponents = {
   a: ({ children, url }: { children: React.ReactNode; url: string }) => (
     <Link href={url} target="_blank" className="underline">
@@ -24,6 +57,16 @@ interface Speaker {
   position: string;
   image: string;
   socialLink: string;
+}
+
+interface Session {
+  talkSpeakerName: string;
+  talkSpeakerImage: string;
+  speechTitle: string;
+  speechDescription: string;
+  talkTimeStart: number;
+  talkTimeEnd?: number;
+  sessionType: 'Talk' | 'Workshop' | 'Break';
 }
 
 const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
@@ -53,15 +96,6 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   );
 };
 
-interface Session {
-  talkSpeakerName: string;
-  talkSpeakerImage: string;
-  speechTitle: string;
-  speechDescription: string;
-  talkTimeStart: number;
-  talkTimeEnd?: number;
-  sessionType: 'Talk' | 'Workshop' | 'Break';
-}
 
 function formatTime(time: number) {
   const hours = Math.floor(time);
@@ -73,7 +107,6 @@ function formatTime(time: number) {
 }
 
 function SessionCard({ session }: { session: Session }) {
-  console.log(session);
   return (
     <div className="border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start">
       <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
@@ -225,42 +258,8 @@ function ConferencePage({
             components={conferenceMarkdownComponents}
           />
         </p>
-        <div className="flex py-12 gap-10 max-w-4xl text-lg">
-          <div className="flex flex-col gap-2 items-center">
-            <FaRegStar
-              size={40}
-              className="text-white bg-gradient-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full"
-            />{' '}
-            <h3 className="font-bold">
-              {tinaData.data?.conference?.about?.keyHighlights?.headerLeft}
-            </h3>{' '}
-            <p>
-              Learn from industry-leading experts who are shaping the future
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <IoMdBook
-              size={40}
-              className="text-white bg-gradient-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full"
-            />{' '}
-            <h3 className="font-bold">7 Interactive Workshops</h3>{' '}
-            <p>
-              Gain practical insights and hands-on experience from experts in
-              their fields
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <GoPeople
-              size={40}
-              className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700  p-2 mb-4 rounded-full"
-            />{' '}
-            <h3 className="font-bold">Premium Networking</h3>{' '}
-            <p>
-              Connect with industry leaders and innovators in a relaxed and
-              friendly environment
-            </p>
-          </div>
-        </div>
+        <KeyHighlights highlights={tinaData.data?.conference?.about?.keyHighlights} />
+
         <OpenSourceExpertSpeakers speakers={tinaData.data?.conference?.speakers || []} />
         
         <div className="flex flex-col items-center p-10" ref={agendaRef}>
