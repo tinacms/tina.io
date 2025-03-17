@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T03:09:02.415Z'
+last_edited: '2025-03-17T03:09:17.616Z'
 next: ''
 previous: ''
 ---
@@ -194,20 +194,6 @@ Section.displayName = 'Section';
 
 * The `tinaField` helper does not affect the flow of data from Tina. It simply determines which part of the form Tina will open when the user clicks the HTML element it was supplied to.
 * `[data-tina-field]` cannot be applied directly to the [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown) component. This is because the TinaMarkdown component doesn't render a root element in the DOM, meaning there's no component to attach the editing window to.
-
-```js
-import { useTina, tinaField } from 'tinacms/dist/react'
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-
-const Page = (props) => {
-  const { data } = useTina(props)
-  return (
-    <section data-tina-field={tinaField(data, 'body')}>
-      <TinaMarkdown content={props.data.body} />
-    </section>
-  )
-}
-```
 
 ## API Reference
 
