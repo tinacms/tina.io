@@ -10,6 +10,11 @@ import { useTina } from 'tinacms/dist/react';
 import sessionData from './conferenceData.json';
 
 import { FaRegStar } from 'react-icons/fa';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+
+const conferenceMarkdownComponents = { 
+  a: ({ children, url }: { children: React.ReactNode, url: string }) => <Link href={url} target="_blank" className="underline">{children}</Link>,
+}
 
 interface Session {
   talkSpeakerName: string;
@@ -195,8 +200,9 @@ function ConferencePage({
           {tinaData.data?.conference?.about?.heading}
         </h2>
         <p className="text-lg max-w-4xl">
-          ⚠️ Fix rich text
+          {/* ⚠️ Fix rich text */}
           {/* {tinaData.data?.conference?.about?.description} */}
+          <TinaMarkdown content={tinaData.data?.conference?.about?.description} components={conferenceMarkdownComponents} />
         </p>
         <div className="flex py-12 gap-10 max-w-4xl text-lg">
           <div className="flex flex-col gap-2 items-center">
