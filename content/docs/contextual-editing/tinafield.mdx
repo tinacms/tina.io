@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T03:05:00.083Z'
+last_edited: '2025-03-17T03:06:01.037Z'
 next: ''
 previous: ''
 ---
@@ -161,7 +161,7 @@ const Section = ({ data, children }: SectionProps) => {
 
 ### Using forwardRef
 
-This approach is a little tricker to get right in a type safe manner. Using a forwardRef instead of a component we can apply the `[data-tina-field]` attribute to the React component being edited. The attribute gets passed in directly when we use the spread operator on `props`.
+This approach is a little tricker to get right in a type safe manner. By using a `forwardRef` we can apply the `[data-tina-field]` attribute to the React component being edited. The attribute gets passed in directly when we use the spread operator on `props`.
 
 ```
 const Page = (props) => {
