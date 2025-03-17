@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T05:42:35.212Z'
+last_edited: '2025-03-17T05:44:09.329Z'
 next: ''
 previous: ''
 ---
@@ -161,7 +161,7 @@ const Section = ({ data, children }: SectionProps) => {
 
 ### Using forwardRef
 
-By using a `forwardRef` we can apply the `[data-tina-field]` attribute to the React component directly. We then pass the attribute to the corresponding HTML using the spread operator.
+By using a `forwardRef` we can apply the `[data-tina-field]` attribute to the React component directly. 
 
 ```
 const Page = (props) => {
@@ -180,6 +180,7 @@ type SectionProps = {
 const Section = forwardRef<HTMLEmbedElement, SectionProps>(
   ({ children, ...props }, ref) => {
     return (
+      //"...props" contains the binding for "data-tina-field"
       <section ref={ref} {...props}>
         {children}
       </section>
