@@ -174,8 +174,6 @@ function ConferencePage({
           {tinaData.data?.conference?.about?.heading}
         </h2>
         <p className="text-lg max-w-4xl">
-          {/* ⚠️ Fix rich text */}
-          {/* {tinaData.data?.conference?.about?.description} */}
           <TinaMarkdown
             content={tinaData.data?.conference?.about?.description}
             components={conferenceMarkdownComponents}
