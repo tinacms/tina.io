@@ -1,20 +1,69 @@
 ---
 id: /docs/contextual-editing/tinafield
-title: The tinafield helper
-last_edited: '2025-03-17T06:01:20.154Z'
+title: The Click-To-Edit API
+last_edited: '2025-03-17T06:27:12.826Z'
 next: ''
 previous: ''
 ---
 
-## Introduction
-
 Tina's "click to edit" feature allows editors to select the HTML element they want to click on the page in order to see the corresponding field in the sidebar.
 
-> `[data-tina-field]` cannot be applied directly to the [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown) component. This is because the TinaMarkdown component doesn't render a root element in the DOM, meaning there's no component to attach the editing window to.
+We can implement this with the `data-tina-field` API.
+
+> `[data-tina-field]` cannot be applied directly to React components, such as [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown).
+
+## API Reference
+
+| Argument   | Description                                                                                                | Type   | Required |
+| ---------- | ---------------------------------------------------------------------------------------------------------- | ------ | -------- |
+| `object`   | The object which holds the field you're accessing                                                          | Object | Yes      |
+| `property` | The property from the object which you're accessing, omitting this will return the object field's metadata | String | No       |
+
+```jsx
+// components/blocks/hero
+import { tinaField } from 'tinacms/dist/react';
+
+export const HeroComponent = (props) => {
+  return (
+    <div>
+      <h4 data-tina-field={tinaField(props, 'heading')}>{props.heading}</h4>
+      <p data-tina-field={tinaField(props, 'message')}>{props.message}</p>
+      <ul data-tina-field={tinaField(props, 'links')}>
+        {props.links.map((link) => (
+          <li>
+            <a data-tina-field={tinaField(link)} href={link.url}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+```
+
+Notice that the `<a>` tag's data attribute only needs access to the `link` data object.
+
+## Styling the visual editing interface
 
 <WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
 
-> [Try the demo](https://demo.tina.io/admin#/~)!
+When Tina finds an element with the `[data-tina-field]` attribute, it will attach some CSS to it when in edit mode, clicking on the element triggers
+the Tina form to open and focus the matching field.
+
+Since Tina uses CSS to achieve the interface, it's possible for styles to collide. Overriding and customizing Tina's
+styles are encouraged. Here's an example of overriding the outline color to red:
+
+```css
+.__tina-quick-editing-enabled [data-tina-field] {
+  outline: 2px dashed rgba(254, 34, 56, 0.5);
+}
+.__tina-quick-editing-enabled [data-tina-field]:hover {
+  outline: 2px dashed rgba(254, 34, 56, 1);
+}
+```
+
+## How does the `tinaField` helper work?
 
 In order for this to work, Tina needs to know what document and field the
 element is associated with. Tina makes this easy with the `tinaField` helper
@@ -39,7 +88,7 @@ that's been configured.
 
 > "Click to edit" will work for any field in your query, this means you can also click on fields from references as well.
 
-The `tinaField` function used above is a _type-safe_ helper designed to pluck the metadata out of the data object for the given
+The `tinaField` function used above is a *type-safe* helper designed to pluck the metadata out of the data object for the given
 property to be used on the `[data-tina-field]` attribute:
 
 ```js
@@ -48,8 +97,6 @@ tinaField(data);
 // Get metadata for the `data.title` field
 tinaField(data, 'title');
 ```
-
-## How does the `tinaField` helper work?
 
 When not in edit-mode, the `data` returned by the `useTina` hook might look like this:
 
@@ -159,85 +206,4 @@ const Section = ({ data, children }: SectionProps) => {
     <section data-tina-field={tinaField(data, 'body')}>{children}</section>
   );
 };
-```
-
-### Using forwardRef
-
-By using a `forwardRef` we can apply the `[data-tina-field]` attribute to the React component directly.
-
-```
-const Page = (props) => {
-  const { data } = useTina(props);
-  return (
-    <Section data-tina-field={tinaField(data, 'body')}>
-      <TinaMarkdown content={data.body} />
-    </Section>
-  );
-};
-
-type SectionProps = {
-  children?: React.ReactNode;
-};
-
-const Section = forwardRef<HTMLEmbedElement, SectionProps>(
-  ({ children, ...props }, ref) => {
-    return (
-      //"...props" contains the binding for "data-tina-field"
-      <section ref={ref} {...props}>
-        {children}
-      </section>
-    );
-  }
-);
-Section.displayName = 'Section';
-
-```
-
-## API Reference
-
-| Argument   | Description                                                                                                | Type   | Required |
-| ---------- | ---------------------------------------------------------------------------------------------------------- | ------ | -------- |
-| `object`   | The object which holds the field you're accessing                                                          | Object | Yes      |
-| `property` | The property from the object which you're accessing, omitting this will return the object field's metadata | String | No       |
-
-```jsx
-// components/blocks/hero
-import { tinaField } from 'tinacms/dist/react';
-
-export const HeroComponent = (props) => {
-  return (
-    <div>
-      <h4 data-tina-field={tinaField(props, 'heading')}>{props.heading}</h4>
-      <p data-tina-field={tinaField(props, 'message')}>{props.message}</p>
-      <ul data-tina-field={tinaField(props, 'links')}>
-        {props.links.map((link) => (
-          <li>
-            <a data-tina-field={tinaField(link)} href={link.url}>
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-```
-
-Notice that the `<a>` tag's data attribute only needs access to the `link` data object.
-
-## Styling the visual editing interface
-
-When Tina finds an element with the `[data-tina-field]` attribute, it will attach some CSS to it when in edit mode, clicking on the element triggers
-the Tina form to open and focus the matching field.
-
-Since Tina uses CSS to achieve the interface, it's possible for styles to collide. Overriding and customizing Tina's
-styles are encouraged. Here's an example of overriding the outline color to red:
-
-```css
-.__tina-quick-editing-enabled [data-tina-field] {
-  outline: 2px dashed rgba(254, 34, 56, 0.5);
-}
-.__tina-quick-editing-enabled [data-tina-field]:hover {
-  outline: 2px dashed rgba(254, 34, 56, 1);
-}
 ```
