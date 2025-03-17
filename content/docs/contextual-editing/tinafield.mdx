@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T00:50:03.659Z'
+last_edited: '2025-03-17T01:02:34.133Z'
 next: ''
 previous: ''
 ---
@@ -145,6 +145,32 @@ const Section = ({ children, tinaField }: SectionProps) => {
 };
 
 export default PageComponent;
+```
+
+### Passing the full data object response
+
+A less ideal solution would be to pass the response from Tina directly into our component, allowing us to cherry pick the field we want from the object. This approach works well for components with multiple layers of nesting
+
+```js
+const Page = (props) => {
+  const { data } = useTina(props);
+  return (
+    <Section data={data.page}>
+      <TinaMarkdown content={data.page.body} />
+    </Section>
+  );
+};
+
+type SectionProps = {
+  data: any;
+  children?: React.ReactNode;
+};
+
+const Section = ({ data, children }: SectionProps) => {
+  return (
+    <section data-tina-field={tinaField(data, 'body')}>{children}</section>
+  );
+};
 ```
 
 ### Using forwardRef
