@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T01:12:07.145Z'
+last_edited: '2025-03-17T01:12:41.457Z'
 next: ''
 previous: ''
 ---
@@ -98,24 +98,6 @@ Once edit-mode is enabled, Tina will update each nested object with `_tina_metad
 ```
 
 The `tinaField` helper simply plucks out the appropriate information from the `_tina_metadata` object.
-
-## Important notes
-
-* The \[data-tina-field] helper does not affect the flow of data from tina, it simply determines which Tina field will open when the user clicks an element. For example, I may use a TinaMarkdown element
-
-```js
-import { useTina, tinaField } from 'tinacms/dist/react'
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-
-const Page = (props) => {
-  const { data } = useTina(props)
-  return (
-    <section data-tina-field={tinaField(data, 'body')}>
-      <TinaMarkdown content={props.data.body} />
-    </section>
-  )
-}
-```
 
 ## Using `tinaField` with custom React components
 
