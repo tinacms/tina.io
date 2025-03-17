@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T00:41:44.458Z'
+last_edited: '2025-03-17T00:50:03.659Z'
 next: ''
 previous: ''
 ---
@@ -124,6 +124,59 @@ const Page = (props) => {
 ### Using custom attributes
 
 The easiest way to assign `[data-tina-field]` to a React component is to create a custom attribute. This will allow you to to pass the output from the `tinaField` helper to the expecting HTML element directly.
+
+```js
+const Page = (props) => {
+  const { data } = useTina(props);
+  return (
+    <Section tinaField={tinaField(data.page, 'body')}>
+      <TinaMarkdown content={data.page.body} />
+    </Section>
+  );
+};
+
+type SectionProps = {
+  children?: React.ReactNode;
+  tinaField?: string;
+};
+
+const Section = ({ children, tinaField }: SectionProps) => {
+  return <section data-tina-field={tinaField}>{children}</section>;
+};
+
+export default PageComponent;
+```
+
+### Using forwardRef
+
+This is a little tricker to do due to the typing but by using forwardRef we can apply the `[data-tina-field]` attribute directly to the expecting React component.
+
+```
+const Page = (props) => {
+  const { data } = useTina(props);
+  return (
+    <Section data-tina-field={tinaField(data, 'body')}>
+      <TinaMarkdown content={data.body} />
+    </Section>
+  );
+};
+
+type SectionProps = {
+  children?: React.ReactNode;
+};
+
+const Section = forwardRef<HTMLEmbedElement, SectionProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <section ref={ref} {...props}>
+        {children}
+      </section>
+    );
+  }
+);
+Section.displayName = 'Section';
+
+```
 
 ## API Reference
 
