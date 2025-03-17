@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/react
 title: Visual Editing Setup
-last_edited: '2025-03-17T06:02:40.520Z'
+last_edited: '2025-03-17T06:50:30.762Z'
 next: content/docs/contextual-editing/vue.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -13,22 +13,22 @@ previous: content/docs/contextual-editing/overview.mdx
 
 In react, (or react based frameworks like Next.js) you can configure a page for Visual Editing with the `useTina` hook.
 
-This hook can be associated to content areas in your code, and registers the corresponding fields in your sidebar. As these fields are changes, content areas contextually update.
+This hook can be associated to content areas in your code, and registers the corresponding fields in your sidebar. As these fields are changed, content areas contextually update.
 
-> In production, this hook will only pass through its initial data value.
+In production, this hook will only pass through its initial data value.
 
 ## `useTina` Usage
 
 `useTina` should be provided three parameters:
 
-* `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
+* `query` and `variables`: These are the same values that you used for [backend data-fetching](/docs/features/data-fetching/). The query must be for an **individual document only**.
 * `data`: This is the production value that gets passed through to the response unchanged in production.
 
-<WarningCallout body="Only queries for individual documents can be used with `useTina`." />
+> If you used the Tina client API for data fetching, the three return values can be plugged directly into the useTina hook.
 
-After a page is setup with the `useTina` hook, you can add a [router to your collection](/docs/contextual-editing/router) so that you can access contextual-editing from the CMS.
+## Examples
 
-Here is an example of setting up visual editing, on a NextJS-based site.
+### Visual Editing for NextJS
 
 ```jsx
 // ...
@@ -59,5 +59,3 @@ export const getStaticProps = async () => {
   }
 }
 ```
-
-![usetina-hello-world](/img/docs/contextual-editing/hello-world.png)
