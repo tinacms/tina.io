@@ -226,6 +226,72 @@ function SessionCard({ session }: { session: Session }) {
   );
 }
 
+function Agenda({
+  filteredSessions,
+  filter,
+  setFilter,
+  agendaRef,
+}: {
+  filteredSessions: Session[];
+  filter: 'all' | 'Talk' | 'Workshop';
+  setFilter: (filter: 'all' | 'Talk' | 'Workshop') => void;
+  agendaRef: React.RefObject<HTMLDivElement>;
+}) {
+  return (
+    <div className="flex flex-col items-center p-10" ref={agendaRef}>
+      <h2
+        id="agenda"
+        className="text-3xl font-bold pt-16 pb-8 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
+      >
+        Agenda
+      </h2>
+      <div className="relative bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-md rounded-full flex w-full">
+        <div className="relative flex z-10 w-full">
+          <div
+            className={`absolute top-0 left-0 w-1/3 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 border-4 border-white ${
+              // For some reason the translate-x-1/3, 2/3, etc doesnt work so we have full and 200% which is just full x 2
+              filter === 'all'
+                ? 'translate-x-0'
+                : filter === 'Talk'
+                ? 'translate-x-full'
+                : 'translate-x-[200%]'
+            }`}
+          ></div>
+          <button
+            className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+              filter === 'all' ? 'text-white' : 'text-blue-500'
+            }`}
+            onClick={() => setFilter('all')}
+          >
+            All
+          </button>
+          <button
+            className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+              filter === 'Talk' ? 'text-white' : 'text-blue-500'
+            }`}
+            onClick={() => setFilter('Talk')}
+          >
+            Talks
+          </button>
+          <button
+            className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
+              filter === 'Workshop' ? 'text-white' : 'text-blue-500'
+            }`}
+            onClick={() => setFilter('Workshop')}
+          >
+            Workshops
+          </button>
+        </div>
+      </div>
+      <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
+        {filteredSessions.map((session, index) => (
+          <SessionCard key={index} session={session} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ConferencePage({
   query,
   data,
@@ -297,57 +363,12 @@ function ConferencePage({
         <OpenSourceExpertSpeakers
           speakers={tinaData.data?.conference?.speakers || []}
         />
-        <div className="flex flex-col items-center p-10" ref={agendaRef}>
-          <h2
-            id="agenda"
-            className="text-3xl font-bold pt-16 pb-8 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
-          >
-            Agenda
-          </h2>
-          <div className="relative bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-md rounded-full flex w-full">
-            <div className="relative flex z-10 w-full">
-              <div
-                className={`absolute top-0 left-0 w-1/3 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 border-4 border-white ${
-                  // For some reason the translate-x-1/3, 2/3, etc doesnt work so we have full and 200% which is just full x 2
-                  filter === 'all'
-                    ? 'translate-x-0'
-                    : filter === 'Talk'
-                    ? 'translate-x-full'
-                    : 'translate-x-[200%]'
-                }`}
-              ></div>
-              <button
-                className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-                  filter === 'all' ? 'text-white' : 'text-blue-500'
-                }`}
-                onClick={() => setFilter('all')}
-              >
-                All
-              </button>
-              <button
-                className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-                  filter === 'Talk' ? 'text-white' : 'text-blue-500'
-                }`}
-                onClick={() => setFilter('Talk')}
-              >
-                Talks
-              </button>
-              <button
-                className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-                  filter === 'Workshop' ? 'text-white' : 'text-blue-500'
-                }`}
-                onClick={() => setFilter('Workshop')}
-              >
-                Workshops
-              </button>
-            </div>
-          </div>
-          <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
-            {filteredSessions.map((session, index) => (
-              <SessionCard key={index} session={session} />
-            ))}
-          </div>
-        </div>
+        <Agenda
+          filteredSessions={filteredSessions}
+          filter={filter}
+          setFilter={setFilter}
+          agendaRef={agendaRef}
+        />
       </div>
     </div>
   );
