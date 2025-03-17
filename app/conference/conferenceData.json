@@ -64,15 +64,6 @@
       "sessionType": "Talk"
     },
     {
-      "talkSpeakerName": "TBD",
-      "talkSpeakerImage": "/img/people/TBD.png",
-      "speechTitle": "TBD",
-      "speechDescription": "TBD",
-      "talkTimeStart": "2025-03-12T16:00:00Z",
-      "talkTimeEnd": "2025-03-12T17:00:00Z",
-      "sessionType": "Talk"
-    },
-    {
       "talkSpeakerName": "",
       "talkSpeakerImage": "/img/people/Tina.png",
       "speechTitle": "Lunch",
@@ -85,9 +76,9 @@
       "talkSpeakerName": "",
       "talkSpeakerImage": "/img/people/Tina.png",
       "speechTitle": "After Party",
-      "speechDescription": "Unwind at the TinaCon After Party with great music, refreshing drinks, and lively networking—celebrate a day of innovation in style!",
-      "talkTimeStart": "2025-03-12T18:00:00Z",
-      "talkTimeEnd": "2025-03-12T22:00:00Z",
+      "speechDescription": "Unwind at the TinaCon After Party with refreshing drinks, and lively networking—celebrate a day of innovation in style!",
+      "talkTimeStart": "2025-03-12T16:00:00Z",
+      "talkTimeEnd": "2025-03-12T18:00:00Z",
       "sessionType": "Break"
     },
     {
