@@ -12,9 +12,13 @@ import sessionData from './conferenceData.json';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
-const conferenceMarkdownComponents = { 
-  a: ({ children, url }: { children: React.ReactNode, url: string }) => <Link href={url} target="_blank" className="underline">{children}</Link>,
-}
+const conferenceMarkdownComponents = {
+  a: ({ children, url }: { children: React.ReactNode; url: string }) => (
+    <Link href={url} target="_blank" className="underline">
+      {children}
+    </Link>
+  ),
+};
 
 interface Session {
   talkSpeakerName: string;
@@ -26,9 +30,10 @@ interface Session {
   sessionType: 'Talk' | 'Workshop' | 'Break';
 }
 
+
 const sessions: Session[] = sessionData.speakerSchedule.map((session) => ({
   ...session,
-  sessionType: session.sessionType as 'Talk' | 'Workshop' | 'Break',
+  sessionType: (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
 }));
 
 function formatTime(time: string) {
@@ -41,22 +46,7 @@ function formatTime(time: string) {
   return `${formattedHour}:${formattedMinutes} ${ampm}`;
 }
 
-function SessionCard({
-  query,
-  data,
-  vars,
-  session,
-}: {
-  query: string;
-  data: any;
-  vars: any;
-  session: Session;
-}) {
-  const tinaData = useTina({
-    query,
-    data,
-    variables: vars,
-  });
+function SessionCard({ session }: { session: Session }) {
   return (
     <div
       className={`border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start
@@ -90,8 +80,8 @@ function SessionCard({
             {session.sessionType}
           </span>
           <h3 className="text-lg font-bold">
-            {/* {session.speechTitle} */}
-            {tinaData.data?.conference?.speakerSchedule?.speechTitle}
+            {session.speechTitle}
+            {/* {tinaData.data?.conference?.speakerSchedule?.speechTitle} */}
           </h3>
           <span className="flex items-center gap-2 text-gray-600">
             {session.talkSpeakerName && (
@@ -138,19 +128,19 @@ function ConferencePage({
   // Remove console.log later
   console.log('⚠️⚠️⚠️');
   console.log(tinaData.data);
+  // console.log(tinaData.data?.conference?.speakerSchedule);
+  const speakerSchedule = tinaData.data?.conference?.speakerSchedule as Session[];
+``
   const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
-  const filteredSessions = sessions
-    .filter((session) => filter === 'all' || session.sessionType === filter)
-    .sort(
-      (a, b) =>
-        new Date(a.talkTimeStart).getTime() -
-        new Date(b.talkTimeStart).getTime()
-    );
+  const filteredSessions = speakerSchedule
+  .filter((session) => filter === 'all' || session.sessionType === filter)
+  .sort((a, b) => Number(a.talkTimeStart) - Number(b.talkTimeStart));
+
 
   const agendaRef = useRef<HTMLDivElement>(null);
   const scrollToAgenda = () => {
     if (agendaRef.current) {
-      const offset = 30;
+      const offset = 30;``
       const top =
         agendaRef.current.getBoundingClientRect().top +
         window.pageYOffset -
@@ -202,7 +192,10 @@ function ConferencePage({
         <p className="text-lg max-w-4xl">
           {/* ⚠️ Fix rich text */}
           {/* {tinaData.data?.conference?.about?.description} */}
-          <TinaMarkdown content={tinaData.data?.conference?.about?.description} components={conferenceMarkdownComponents} />
+          <TinaMarkdown
+            content={tinaData.data?.conference?.about?.description}
+            components={conferenceMarkdownComponents}
+          />
         </p>
         <div className="flex py-12 gap-10 max-w-4xl text-lg">
           <div className="flex flex-col gap-2 items-center">
@@ -368,13 +361,10 @@ function ConferencePage({
               <SessionCard
                 key={index}
                 session={session}
-                query={query}
-                data={data}
-                vars={vars}
               />
             ))}
           </div>
-        </div>
+        </div>``
       </div>
     </div>
   );

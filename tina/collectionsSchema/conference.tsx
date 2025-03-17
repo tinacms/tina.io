@@ -266,6 +266,12 @@ export const conferenceTinaCMSCollection = {
           type: 'number',
           description: 'Enter in 24 hour format',
         },
+        {
+          name: 'sessionType',
+          label: 'Session Type',
+          type: 'string',
+          options: ['Talk', 'Workshop', 'Break'],
+        },
       ],
     },
   ],
