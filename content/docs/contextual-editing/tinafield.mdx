@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The tinafield helper
-last_edited: '2025-03-17T05:49:17.975Z'
+last_edited: '2025-03-17T05:51:02.274Z'
 next: ''
 previous: ''
 ---
@@ -9,6 +9,8 @@ previous: ''
 ## Introduction
 
 Tina's "click to edit" feature allows editors to select the HTML element they want to click on the page in order to see the corresponding field in the sidebar.
+
+> `[data-tina-field]` cannot be applied directly to the [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown) component. This is because the TinaMarkdown component doesn't render a root element in the DOM, meaning there's no component to attach the editing window to.
 
 <WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
 
@@ -190,10 +192,6 @@ const Section = forwardRef<HTMLEmbedElement, SectionProps>(
 Section.displayName = 'Section';
 
 ```
-
-## Important notes
-
-* `[data-tina-field]` cannot be applied directly to the [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown) component. This is because the TinaMarkdown component doesn't render a root element in the DOM, meaning there's no component to attach the editing window to.
 
 ## API Reference
 
