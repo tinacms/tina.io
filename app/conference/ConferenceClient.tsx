@@ -59,8 +59,18 @@ function SessionCard({ session }: { session: Session }) {
           </div>
         )}
         <div className="flex flex-col" style={{ flex: '0 0 80%' }}>
-          <span className="text-sm rounded-full text-center px-2 mb-2 -ml-1">
-            {session.sessionType || 'Break'}
+          <span
+            className={`text-sm rounded-full text-center px-2 mb-2 -ml-1 ${
+              session.sessionType === 'Break'
+                ? 'bg-gradient-to-br from-orange-100 to-orange-100 w-14 text-orange-500'
+                : session.sessionType === 'Workshop'
+                ? 'bg-gradient-to-br from-seafoam-200 to-seafoam-200 w-[5.5rem] text-seafoam-700'
+                : session.sessionType === 'Talk'
+                ? 'bg-gradient-to-br from-blue-100 to-blue-100 w-11 text-blue-500'
+                : 'text-gray-700'
+            }`}
+          >
+            {session.sessionType}
           </span>
           <h3 className="text-lg font-bold">{session.speechTitle || 'TBD'}</h3>
           {session.talkSpeakerName && (
@@ -75,7 +85,7 @@ function SessionCard({ session }: { session: Session }) {
             <FaRegClock />
             <p className="text-sm">
               {formatTime(session.talkTimeStart)}
-              {session?.talkTimeEnd && (` - ${formatTime(session.talkTimeEnd)}`)}
+              {session?.talkTimeEnd && ` - ${formatTime(session.talkTimeEnd)}`}
             </p>
           </span>
           <p className="text-gray-600 text-sm pt-2">
@@ -110,7 +120,8 @@ function ConferencePage({
     talkSpeakerName: session.talkSpeakerName || 'Unknown',
     talkSpeakerImage: session.talkSpeakerImage || '/img/people/Mystery.png',
     talkTimeStart: session.talkTimeStart || 0,
-    talkTimeEnd: session.talkTimeEnd !== undefined ? session.talkTimeEnd : undefined,
+    talkTimeEnd:
+      session.talkTimeEnd !== undefined ? session.talkTimeEnd : undefined,
     sessionType:
       (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
   }));
