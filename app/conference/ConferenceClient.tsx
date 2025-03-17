@@ -36,7 +36,22 @@ function formatTime(time: string) {
   return `${formattedHour}:${formattedMinutes} ${ampm}`;
 }
 
-function SessionCard({ session }: { session: Session }) {
+function SessionCard({
+  query,
+  data,
+  vars,
+  session,
+}: {
+  query: string;
+  data: any;
+  vars: any;
+  session: Session;
+}) {
+  const tinaData = useTina({
+    query,
+    data,
+    variables: vars,
+  });
   return (
     <div
       className={`border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start
@@ -69,7 +84,10 @@ function SessionCard({ session }: { session: Session }) {
           >
             {session.sessionType}
           </span>
-          <h3 className="text-lg font-bold">{session.speechTitle}</h3>
+          <h3 className="text-lg font-bold">
+            {/* {session.speechTitle} */}
+            {tinaData.data?.conference?.speakerSchedule?.speechTitle}
+          </h3>
           <span className="flex items-center gap-2 text-gray-600">
             {session.talkSpeakerName && (
               <>
@@ -112,6 +130,9 @@ function ConferencePage({
     data,
     variables: vars,
   });
+  // Remove console.log later
+  console.log('⚠️⚠️⚠️');
+  console.log(tinaData.data);
   const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
   const filteredSessions = sessions
     .filter((session) => filter === 'all' || session.sessionType === filter)
@@ -183,7 +204,9 @@ function ConferencePage({
               size={40}
               className="text-white bg-gradient-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full"
             />{' '}
-            <h3 className="font-bold">7 Experts Speakers</h3>{' '}
+            <h3 className="font-bold">
+              {tinaData.data?.conference?.about?.keyHighlights?.headerLeft}
+            </h3>{' '}
             <p>
               Learn from industry-leading experts who are shaping the future
             </p>
@@ -336,7 +359,13 @@ function ConferencePage({
           </div>
           <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
             {filteredSessions.map((session, index) => (
-              <SessionCard key={index} session={session} />
+              <SessionCard
+                key={index}
+                session={session}
+                query={query}
+                data={data}
+                vars={vars}
+              />
             ))}
           </div>
         </div>
