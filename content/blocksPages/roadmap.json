@@ -22,7 +22,7 @@
       "items": [
         {
           "headline": "GitHub Enterprise Support",
-          "status": "Released",
+          "status": "✅ Done",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
         },
         {
@@ -33,7 +33,7 @@
         {
           "headline": "Vercel Data Cache Support",
           "status": "✅ Done",
-          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n\nRead more [https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache](https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache) \n"
+          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n\nRead more [https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache](https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache)\n"
         }
       ],
       "options": {
