@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The Click-To-Edit API
-last_edited: '2025-03-17T22:41:15.502Z'
+last_edited: '2025-03-17T22:45:24.825Z'
 next: ''
 previous: ''
 ---
@@ -152,7 +152,7 @@ The `tinaField` helper simply plucks out the appropriate information from the `_
 
 ## Using `tinaField` with custom React components
 
-The `[data-tina-field]` attribute can only be applied directly to HTML elements. This makes it tricky to use with React components because attribute names need to have kebab case. to work around this we can define an attribute on our react component allowing us to pass the data in.
+The `[data-tina-field]` attribute can only be applied directly to HTML elements. This makes it tricky to use with React components because attribute names need to have kebab case. Instead we can define a prop on our React component allowing us to pass `tinaField` in.
 
 ```js
 import { useTina, tinaField } from 'tinacms/dist/react';
