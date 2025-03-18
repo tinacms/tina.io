@@ -321,8 +321,6 @@ function ConferencePage({
       (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
   }));
 
-  console.log(tinaData.data);
-
   const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
   const filteredSessions = speakerSchedule
     .filter((session) => filter === 'all' || session.sessionType === filter)
