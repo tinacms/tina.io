@@ -43,8 +43,8 @@ const HeaderBanner = ({
           </Link>
         </div>
       </div>
-      <div className="flex flex-row gap-20">
-        <Button color="white" size="medium" onClick={scrollToAgenda}>
+      <div className="flex flex-row gap-4">
+        <Button color="blue" size="medium" onClick={scrollToAgenda}>
           <span className="mr-2">Agenda</span>
         </Button>
         <Button color="orange" size="medium" onClick={scrollToAgenda}>
@@ -97,7 +97,10 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
         ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
         ['headerRight', 'descriptionRight', 'iconRight'],
       ].map(([header, description, icon], index) => (
-        <div key={index} className="flex flex-col gap-2 items-center w-full md:w-1/3">
+        <div
+          key={index}
+          className="flex flex-col gap-2 items-center w-full md:w-1/3"
+        >
           {icons[highlights[icon as keyof typeof highlights]]}
           <h3 className="font-bold">
             {highlights[header as keyof typeof highlights]}
