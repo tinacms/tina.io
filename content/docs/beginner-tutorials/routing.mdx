@@ -1,12 +1,14 @@
 ---
 title: Routing to the Editor
-last_edited: '2025-03-18T06:57:41.136Z'
+last_edited: '2025-03-18T23:52:31.297Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/wiring-content.mdx
 previous: content/docs/beginner-tutorials/display-content.mdx
 ---
 
-Right now, if we want to edit our amazing title, we have to go into the Tina editor, find our collection, and then edit the record in our collection before we can view our changes. Wouldn't it be cool if we could make edits to the title, and see our changes directly on the page while we're editing our content? Let's do that now!
+Right now, if we want to edit our amazing title, we have to go into the Tina editor, find our collection, and then edit the record in our collection before we can view our changes. 😮‍💨 
+
+Wouldn't it be cool if we could make edits to the title, and see our changes directly on the page while we're editing our content? **Let's do that now**!
 
 1\. Uncomment the `ui` section of Tina's `config.ts`
 
@@ -50,7 +52,14 @@ ui: {
 So what's going on here...
 
 First up, this particular router is only for the Tina visual editor. It does not control any routes of your actual site - that's still controlled by our NextJS App Router.
-Secondly, we are cheating a little here by hard-coding the `"Hello-World"` filename directly to the home route. We can make this better later, but for now let's just roll with it.
+
+
+Secondly, we are cheating a little here by hard-coding the `"Hello-World"` filename directly to the home route. \
+
+
+> Match your filename from the content directory, the filename might be different if you set your title to something other than Hello World!
+
+We can make this better later, but for now let's just roll with it.
 
 3\. Open your app by going to `http://localhost:3000` and you should see your awesome "Hello World!" title.
 
@@ -58,6 +67,6 @@ Secondly, we are cheating a little here by hard-coding the `"Hello-World"` filen
 
 **OMG**! We can see our homepage in the editor! 🎉
 
-There's just one small problem... There's no way for us to edit our amazing title from this page. We still have to navigate to our collection, and then to our file, in order to change the title. 
+There's just one small problem... There's no way for us to edit our amazing title from this page. We still have to navigate to our collection, and then to our file, in order to change the title.
 
 Let's fix that!
