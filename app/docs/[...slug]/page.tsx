@@ -1,10 +1,10 @@
 import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
-import { getDocsNav } from 'utils/docs/getDocProps';
+import { getDocsNav, getLearnNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
-import DocsClient from './DocsPagesClient';
 import { getExcerpt } from 'utils/getExcerpt';
+import DocsClient from './DocsPagesClient';
 
 export const dynamicParams = false;
 
@@ -56,9 +56,10 @@ export default async function DocPage({
   const slug = params.slug.join('/');
 
   try {
-    const [results, navDocData] = await Promise.all([
+    const [results, navDocData, navLearnData] = await Promise.all([
       client.queries.doc({ relativePath: `${slug}.mdx` }),
       getDocsNav(),
+      getLearnNav(),
     ]);
 
     const docData = results.data.doc;
@@ -71,6 +72,7 @@ export default async function DocPage({
       PageTableOfContents,
       DocumentationData: docData,
       NavigationDocsData: navDocData,
+      NavigationLearnData: navLearnData,
     };
 
     return (

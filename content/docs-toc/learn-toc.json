@@ -1,0 +1,24 @@
+{
+  "supermenuGroup": [
+    {
+      "title": "Beginner Series",
+      "items": [
+        {
+          "title": "test",
+          "slug": "content/docs/cli-overview.mdx",
+          "_template": "item"
+        }
+      ]
+    },
+    {
+      "title": "Advanced Series",
+      "items": [
+        {
+          "title": "test",
+          "slug": "content/docs/cli-overview.mdx",
+          "_template": "item"
+        }
+      ]
+    }
+  ]
+}

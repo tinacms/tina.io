@@ -9,6 +9,7 @@ import { formatDate } from 'components/AppRouterMigrationComponents/utils/format
 import { screenResizer } from 'components/hooks/ScreenResizer';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import { useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
@@ -19,10 +20,16 @@ export default function DocsClient({ props }) {
     data: props.data,
   });
 
-  const { PageTableOfContents, NavigationDocsData } = props;
+  const { PageTableOfContents, NavigationDocsData, NavigationLearnData } =
+    props;
   const DocumentationData = data.doc;
 
-  const allData = [DocumentationData, PageTableOfContents, NavigationDocsData];
+  const allData = [
+    DocumentationData,
+    PageTableOfContents,
+    NavigationDocsData,
+    NavigationLearnData,
+  ];
 
   const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
@@ -38,6 +45,7 @@ export default function DocsClient({ props }) {
     title: DocumentationData?.next?.title,
   };
 
+  const [learnActive, setLearnActive] = useState(false);
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
   const gridClass = isScreenSmallerThan840
@@ -57,6 +65,9 @@ export default function DocsClient({ props }) {
         >
           <LeftHandSideParentContainer
             tableOfContents={NavigationDocsData?.data}
+            tableOfContentsLearn={NavigationLearnData?.data}
+            learnActive={learnActive}
+            setLearnActive={setLearnActive}
           />
         </div>
         {/* MIDDLE COLUMN */}
