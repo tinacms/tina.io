@@ -33,7 +33,7 @@
         {
           "headline": "Vercel Data Cache Support",
           "status": "✅ Done",
-          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n\nRead more [https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache](https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache)\n"
+          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n\n[https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache](https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache)\n"
         }
       ],
       "options": {
@@ -47,11 +47,11 @@
       "items": [
         {
           "headline": "TinaCloud Performance",
-          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n"
+          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n\n[https://github.com/tinacms/tinacms/discussions/5576](https://github.com/tinacms/tinacms/discussions/5576)\n"
         },
         {
           "headline": "React 19 Support",
-          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n"
+          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n\n[https://github.com/tinacms/tinacms/issues/5244](https://github.com/tinacms/tinacms/issues/5244)\n"
         },
         {
           "headline": "Improving Media Management UX",
