@@ -59,8 +59,8 @@ export const MobileVersionSelect = () => {
   );
 };
 
-const DocsMobileHeader = (data) => {
-  const [learnActive, setLearnActive] = useState(false);
+const DocsMobileHeader = (props) => {
+  const { docsData, learnData, learnActive, setLearnActive } = props;
 
   return (
     <div className="relative pb-20">
@@ -73,7 +73,10 @@ const DocsMobileHeader = (data) => {
         learnActive={learnActive}
         setLearnActive={setLearnActive}
       />
-      <DirectoryOverflowButton tocData={data.data} />
+      <DirectoryOverflowButton
+        tocData={learnActive ? learnData : docsData}
+        label={learnActive ? 'Learn' : 'Documentation'}
+      />
     </div>
   );
 };

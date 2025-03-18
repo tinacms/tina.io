@@ -229,10 +229,10 @@ export const DocsSearchBarHeader = ({
 
   return (
     <div className={`${paddingGlobal} pt-8`}>
-      <div className="flex justify-between max-w-sm">
+      <div className="flex gap-8 max-w-sm">
         <h1
           className={`${
-            !learnActive ? 'opacity-100' : 'opacity-50'
+            !learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
           } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br ${headerStyling} ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(false)}
         >
@@ -240,7 +240,7 @@ export const DocsSearchBarHeader = ({
         </h1>
         <h1
           className={`${
-            learnActive ? 'opacity-100' : 'opacity-50'
+            learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
           } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br ${headerStyling} ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(true)}
         >
@@ -248,7 +248,7 @@ export const DocsSearchBarHeader = ({
         </h1>
         <div className="mr-3"></div>
       </div>
-      <div className="flex justify-between mb-4 md:ml-4">
+      <div className="flex justify-between mb-4 [@media(min-width:840px)]:ml-4">
         <MobileVersionSelect />
       </div>
       <div className={`relative ${searchMargin}`}>
@@ -285,6 +285,7 @@ export const LeftHandSideParentContainer = ({
 }) => {
   return (
     <div className="rounded-2xl shadow-xl w-full bg-white/50 h-5/6 overflow-y-hidden relative">
+      <div className="absolute -bottom-1 left-0 right-0 h-8 bg-gradient-to-t from-white/90 to-transparent pointer-events-none z-40"></div>
       <DocsSearchBarHeader
         paddingGlobal="p-4"
         headerColour="blue"
@@ -295,15 +296,41 @@ export const LeftHandSideParentContainer = ({
         setLearnActive={setLearnActive}
       />
       <div className="overflow-y-hidden overflow-x-hidden h-full pl-4 2xl:pl-0 relative">
-        <div className="h-full overflow-y-scroll overflow-x-hidden pb-44">
-          {learnActive ? (
-            <DocsNavigationList navItems={tableOfContentsLearn} />
-          ) : (
-            <DocsNavigationList navItems={tableOfContents} />
-          )}
+        <div className="h-full relative overflow-hidden">
+          <div
+            className="flex w-[200%] h-full absolute top-0 left-0"
+            style={{
+              transform: learnActive ? 'translateX(-50%)' : 'translateX(0)',
+              transition: 'transform 500ms ease-in-out',
+            }}
+          >
+            <div
+              className="w-1/2 flex-shrink-0 h-full"
+              style={{
+                opacity: learnActive ? 0.3 : 1,
+                transition: 'opacity 400ms ease-in-out',
+                pointerEvents: learnActive ? 'none' : 'auto',
+              }}
+            >
+              <div className="h-full overflow-y-auto pb-44 relative">
+                <DocsNavigationList navItems={tableOfContents} />
+              </div>
+            </div>
+            <div
+              className="w-1/2 flex-shrink-0 h-full"
+              style={{
+                opacity: learnActive ? 1 : 0.3,
+                transition: 'opacity 400ms ease-in-out',
+                pointerEvents: learnActive ? 'auto' : 'none',
+              }}
+            >
+              <div className="h-full overflow-y-auto pb-44 relative">
+                <DocsNavigationList navItems={tableOfContentsLearn} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="absolute -bottom-1 left-0 right-0 h-7 bg-gradient-to-t from-white/90 to-transparent pointer-events-none"></div>
     </div>
   );
 };

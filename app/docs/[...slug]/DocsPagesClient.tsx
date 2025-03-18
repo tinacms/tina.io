@@ -2,6 +2,7 @@
 
 import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMainBody';
 import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
+import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
 import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
@@ -9,7 +10,6 @@ import { formatDate } from 'components/AppRouterMigrationComponents/utils/format
 import { screenResizer } from 'components/hooks/ScreenResizer';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
-import { useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
@@ -45,7 +45,8 @@ export default function DocsClient({ props }) {
     title: DocumentationData?.next?.title,
   };
 
-  const [learnActive, setLearnActive] = useState(false);
+  const { learnActive, setLearnActive } = useDocsNavigation();
+
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
   const gridClass = isScreenSmallerThan840
@@ -79,10 +80,12 @@ export default function DocsClient({ props }) {
           }`}
         >
           <MainDocsBodyHeader
-            allData={allData}
             DocumentTitle={DocumentationData?.title}
             screenResizing={isScreenSmallerThan840}
             NavigationDocsItems={NavigationDocsData.data}
+            learnActive={learnActive}
+            setLearnActive={setLearnActive}
+            NavigationLearnItems={NavigationLearnData?.data}
           />
           {isScreenSmallerThan1200 && !DocumentationData?.tocIsHidden && (
             <TocOverflowButton tocData={PageTableOfContents} />
