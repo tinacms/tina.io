@@ -1,6 +1,6 @@
 ---
 title: Render Your Content
-last_edited: '2025-03-18T23:32:07.276Z'
+last_edited: '2025-03-18T23:32:27.905Z'
 tocIsHidden: true
 next: ''
 previous: ''
@@ -15,7 +15,8 @@ Now we've got our amazing "Hello world" content in Tina, we need to display it i
 2\. Add the following code:
 
 ```typescript
-"use client"; // needed because NextJS is SSR by default, and we want to do client-side rendering for now.
+"use client";
+// needed because NextJS is SSR by default, and we want to do client-side rendering for now.
 import { useState, useEffect } from "react";
 import { client } from "../tina/__generated__/client";
 // this will be used to query our Tina CMS to get our awesome title
