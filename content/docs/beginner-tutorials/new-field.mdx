@@ -1,0 +1,91 @@
+---
+title: Our New Field
+last_edited: '2025-03-18T07:09:52.133Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/string-to-markdown.mdx
+previous: content/docs/beginner-tutorials/loading-content.mdx
+---
+
+Our amazing title is pretty amazing, but one title does not a website make. Let's extend the schema a little, so we can get some more interesting content displayed.
+
+1\. Edit your `config.ts` file, and add a new field to your `my_first_collection` schema.
+
+```typescript
+schema: {
+    collections: [
+      {
+        name: "my_first_collection",
+        label: "My first collection",
+        path: "content/first",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          // 👇 New field! 👇 
+          {
+            type: "string",
+            name: "body",
+            label: "Body",
+            isBody: true, // <--- New property!
+            required: true
+          }
+        ],
+        ui: {
+          // This is a DEMO router. You can remove this to fit your site
+          router: ({ document }) => {
+            if (document._sys.filename == "Hello-World") {
+              return "/";
+            }
+          },
+        },
+      }
+    ],
+  },
+```
+
+2\. Now, just to do something a little different, go ahead and edit your `Hello-World.md` file directly in your IDE. 
+
+3\. Add some text to the body of the markdown file, like this:
+
+```
+---
+title: Hello World! Look at my amazing title!
+---
+
+Look at my incredible body 🦙
+```
+
+> The `isBody` property does what it says on the tin - it tells Tina that this property is the "body" of the markdown content (ie, *not* in front-matter).
+
+4\. Edit the `awesome-content.tsx` component so it renders out the body content:
+
+```typescript
+"use client";
+import { useTina } from "tinacms/dist/react";
+
+export default function AwesomeContent({data}) {
+  const pageData = useTina({
+    data: data.data,
+    query: data.query,
+    variables: data.variables,
+  });
+
+  const amazingTitle = pageData.data.my_first_collection.title;
+  const incredibleBody = pageData.data.my_first_collection.body;
+
+  return (
+    <>
+    <h1>{amazingTitle}</h1>
+    <p>{incredibleBody}</p>
+    </>
+  );
+}
+```
+
+5\. Navigate to `http://localhost:3000` and you will see your incredible body on screen.
+
+> What about editing? Well, try going to `http://localhost:3000/admin/index.html` and you'll see a new field has magically appeared in your  visual editor. Hooray! 🙌 🎉 

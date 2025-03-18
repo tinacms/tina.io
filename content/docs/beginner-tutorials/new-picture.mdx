@@ -1,0 +1,58 @@
+---
+title: "A Thousand Words... \U0001F5BC️"
+last_edited: '2025-03-18T22:14:16.232Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/what-are-blocks.mdx
+previous: content/docs/beginner-tutorials/rendering-markdown.mdx
+---
+
+Before we move on, let's add an image to our page. Everyone loves images!
+
+1\. Add another property to our schema:
+
+```typescript
+fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "rich-text", // bourgeoisie
+            name: "body",
+            label: "Body",
+            isBody: true,
+            required: true,
+          },
+          {
+            type: "image",      // paints a thousand words
+            name: "beautifulImage",
+            label: "Beautiful Image",
+            required: false,
+          }
+```
+
+2\. Modify our `awesome-content.tsx` component to render our beautiful image.
+
+```typescript
+const beautifulImage = pageData.data.my_first_collection.beautifulImage;
+...
+
+return (
+    <>
+    <h1>{amazingTitle}</h1>
+    <img src={beautifulImage} />
+    <TinaMarkdown content={incredibleBody} />
+    </>
+  );
+```
+
+3\. Go into the Visual editor (`http://localhost:3000/admin/index.html`) and marvel at the new input for uploading an image! 🖼️
+
+4\. Pick a beautiful image to go with our amazing title and incredible body (bonus points for a llama pic)
+
+> 💡 By default, TinaCMS uses [an image store from your repository](https://tina.io/docs/reference/media/repo-based). \
+> \
+> You can also configure this to use external media providers instead.

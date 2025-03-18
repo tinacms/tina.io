@@ -1,0 +1,29 @@
+---
+title: Rendering Our Markdown
+last_edited: '2025-03-18T22:14:35.143Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/new-picture.mdx
+previous: content/docs/beginner-tutorials/string-to-markdown.mdx
+---
+
+Let's fix up our Markdown content.
+
+1\. Update the `awesome-content.tsx` and add the following:
+
+```typescript
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+
+...
+
+<h1>{amazingTitle}</h1>
+<TinaMarkdown content={incredibleBody} />
+
+```
+
+Test it. It works! Now try and edit your content again. Look, a rich-text editor!
+
+2\. Go ahead and add **some** *styling* to your body.
+
+> 💡 *Why did we need to do this?* When we ask TinaCMS for our Markdown content back it gives us a parsed [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST). This looks like a big JavaScript object that contains our text / formatting / structure each in it's own node. \
+> \
+> Tina can handle this for us using TinaMarkdown as above, or we can step through it ourselves for even more control. 🔧

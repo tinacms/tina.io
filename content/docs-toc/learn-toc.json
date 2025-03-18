@@ -4,18 +4,117 @@
       "title": "Beginner Series",
       "items": [
         {
-          "title": "test",
-          "slug": "content/docs/cli-overview.mdx",
-          "_template": "item"
+          "title": "1 – Your New TinaCMS Site 🌐",
+          "items": [
+            {
+              "title": "NextJS Setup",
+              "slug": "content/docs/beginner-tutorials/nextjs-app.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Cleanup Extra Code",
+              "slug": "content/docs/beginner-tutorials/intro-cleanup.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Install the CMS 🦙",
+              "slug": "content/docs/beginner-tutorials/install-tinacms.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Hello World! 🌏👋",
+              "slug": "content/docs/beginner-tutorials/hello-world.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Render Your Content",
+              "slug": "content/docs/beginner-tutorials/display-content.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "2 – Live Editing ",
+          "items": [
+            {
+              "title": "Routing to the Editor",
+              "slug": "content/docs/beginner-tutorials/routing.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Wiring Content to the Editor",
+              "slug": "content/docs/beginner-tutorials/wiring-content.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Loading Your Content",
+              "slug": "content/docs/beginner-tutorials/loading-content.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "3 – The Content Model 🏗️",
+          "items": [
+            {
+              "title": "Our New Field",
+              "slug": "content/docs/beginner-tutorials/new-field.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "From String to Markdown 🌟",
+              "slug": "content/docs/beginner-tutorials/string-to-markdown.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Rendering our Markdown",
+              "slug": "content/docs/beginner-tutorials/rendering-markdown.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "A Thousand Words... 🖼️",
+              "slug": "content/docs/beginner-tutorials/new-picture.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "4 – A Website Builder Experience",
+          "items": [
+            {
+              "title": "What are \"Blocks\"?",
+              "slug": "content/docs/beginner-tutorials/what-are-blocks.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Create a New Template",
+              "slug": "content/docs/beginner-tutorials/new-template.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Link it to Your Model",
+              "slug": "content/docs/beginner-tutorials/linking-to-model.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Render Your Templates",
+              "slug": "content/docs/beginner-tutorials/render-templates.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
         }
       ]
     },
     {
-      "title": "Advanced Series",
+      "title": "Video Series",
       "items": [
         {
-          "title": "test",
-          "slug": "content/docs/cli-overview.mdx",
+          "title": "Coming soon...",
+          "slug": "content/docs/index.mdx",
           "_template": "item"
         }
       ]
