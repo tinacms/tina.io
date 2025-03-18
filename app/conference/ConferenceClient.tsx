@@ -44,10 +44,10 @@ const HeaderBanner = ({
         </div>
       </div>
       <div className="flex flex-row gap-4">
-        <Button color="blue" size="medium" onClick={scrollToAgenda}>
+        <Button color="white" size="medium" onClick={scrollToAgenda}>
           <span className="mr-2">Agenda</span>
         </Button>
-        <Button color="orange" size="medium" onClick={scrollToAgenda}>
+        <Button color="blue" size="medium" onClick={scrollToAgenda}>
           <span className="mr-2">Register</span>
         </Button>
       </div>
