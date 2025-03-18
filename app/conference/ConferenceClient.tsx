@@ -8,6 +8,7 @@ import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
 
+import { Button } from 'components/ui';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
@@ -42,12 +43,14 @@ const HeaderBanner = ({
           </Link>
         </div>
       </div>
-      <button
-        className="bg-white text-orange-500 px-5 py-3 rounded-2xl font-tuner shadow-2xl relative top-0 hover:-top-1 transition-all ease-in-out duration-300"
-        onClick={scrollToAgenda}
-      >
-        Agenda
-      </button>
+      <div className="flex flex-row gap-20">
+        <Button color="white" size="medium" onClick={scrollToAgenda}>
+          <span className="mr-2">Agenda</span>
+        </Button>
+        <Button color="orange" size="medium" onClick={scrollToAgenda}>
+          <span className="mr-2">Register</span>
+        </Button>
+      </div>
     </div>
   );
 };
