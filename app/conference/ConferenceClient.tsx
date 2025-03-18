@@ -25,7 +25,7 @@ const HeaderBanner = ({
         {tinaData.bannerTitle}
       </h1>
       <h2 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h2>
-      <div className="flex py-6 gap-10">
+      <div className="flex flex-col md:flex-row py-6 gap-6  md:gap-10">
         <div className="flex gap-2 items-center">
           <FaRegCalendar /> <span>{tinaData.date}</span>
         </div>
@@ -91,13 +91,13 @@ interface KeyHighlightsProps {
 }
 const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
   return (
-    <div className="flex py-12 gap-10 max-w-4xl text-lg">
+    <div className="flex flex-col md:flex-row py-12 gap-10 max-w-4xl text-lg">
       {[
         ['headerLeft', 'descriptionLeft', 'iconLeft'],
         ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
         ['headerRight', 'descriptionRight', 'iconRight'],
       ].map(([header, description, icon], index) => (
-        <div key={index} className="flex flex-col gap-2 items-center w-1/3">
+        <div key={index} className="flex flex-col gap-2 items-center w-full md:w-1/3">
           {icons[highlights[icon as keyof typeof highlights]]}
           <h3 className="font-bold">
             {highlights[header as keyof typeof highlights]}
@@ -136,11 +136,11 @@ interface Session {
 
 const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   return (
-    <div className="flex flex-col items-center text-center p-16">
+    <div className="flex flex-col items-center text-center p-6 md:p-16">
       <h2 className="text-3xl font-bold py-16 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
         Open Source Expert Speakers
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14 lg:px-44">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
         {speakers.map((speaker, index) => (
           <div key={index} className="col-span-1 flex flex-col items-center">
             <Link href={speaker.socialLink} target="_blank">
