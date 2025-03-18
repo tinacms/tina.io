@@ -103,6 +103,11 @@
               "title": "Render Your Templates",
               "slug": "content/docs/beginner-tutorials/render-templates.mdx",
               "_template": "item"
+            },
+            {
+              "title": "A Website Builder Experience ✨",
+              "slug": "content/docs/beginner-tutorials/website-builder-experience.mdx",
+              "_template": "item"
             }
           ],
           "_template": "items"
@@ -114,7 +119,7 @@
       "items": [
         {
           "title": "Coming soon...",
-          "slug": "content/docs/index.mdx",
+          "slug": "https://www.youtube.com/@TinaCMS/videos",
           "_template": "item"
         }
       ]
