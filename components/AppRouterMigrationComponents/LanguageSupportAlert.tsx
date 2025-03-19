@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
 import { AlertTriangle, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { usePathname } from 'next/navigation';
 import { isValidPathCheck, SupportedLocales } from 'middleware';
+import { usePathname } from 'next/navigation';
 
 export function LanguageSupportAlert() {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,9 +39,13 @@ export function LanguageSupportAlert() {
         className="bg-yellow-100 border-yellow-400 text-yellow-800 cursor-pointer transition-opacity relative pr-8"
       >
         <AlertTriangle className="h-4 w-4 text-yellow-600" />
-        <AlertTitle className="font-medium">Warning</AlertTitle>
+        <AlertTitle className="font-medium mb-3">
+          <span className="mr-2">警告</span>
+          <span>Warning</span>
+        </AlertTitle>
         <AlertDescription>
-          Current page only supports English version.
+          <p className="mb-1">当前页面仅支持英文版本。</p>
+          <p>Current page only supports English version.</p>
         </AlertDescription>
         <button
           className="absolute top-2 right-2 rounded-full hover:bg-yellow-200 flex items-center justify-center"
