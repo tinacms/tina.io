@@ -7,6 +7,13 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
 import { client } from '../tina/__generated__/client';
+import enLocale from 'content/not-found/en.json';
+import zhLocale from 'content/not-found/zh.json';
+
+const localeContent = {
+  en: enLocale,
+  zh: zhLocale,
+};
 
 const PageLayout = ({
   title,
@@ -43,68 +50,64 @@ const PageLayout = ({
   );
 };
 
-const NotFoundContent = () => (
+const NotFoundContent = ({ content }) => (
   <PageLayout
-    title="Sorry, Friend."
-    description="We couldn't find what you were looking for."
+    title={content.notFound.title}
+    description={content.notFound.description}
   >
     <div className="flex flex-wrap gap-4">
       <DynamicLink href="/docs" passHref>
-        <Button>Documentation</Button>
+        <Button>{content.notFound.buttons.documentation}</Button>
       </DynamicLink>
       <DynamicLink href="/docs/guides" passHref>
-        <Button>Guides</Button>
+        <Button>{content.notFound.buttons.guides}</Button>
       </DynamicLink>
       <DynamicLink href="/" passHref>
-        <Button>Home</Button>
+        <Button>{content.notFound.buttons.home}</Button>
       </DynamicLink>
     </div>
   </PageLayout>
 );
 
-const RedirectPage = ({ defaultLocale = 'en', pathRoute = 'home' }) => (
+const RedirectPage = ({ pathRoute = 'home', content }) => (
   <PageLayout
-    title="Page Not Yet Translated"
-    description="This page hasn’t been translated yet. You’ll be redirected to the English version."
+    title={content.notTranslated.title}
+    description={content.notTranslated.description}
   >
     <div className="flex flex-wrap gap-4">
-      <DynamicLink href={`/${defaultLocale}/${pathRoute}`} passHref>
-        <Button>Continue in English</Button>
+      <DynamicLink href={`/${pathRoute}`} passHref>
+        <Button>{content.notTranslated.buttons.continue}</Button>
       </DynamicLink>
     </div>
   </PageLayout>
 );
 
-const LoadingPage = () => (
+const LoadingPage = ({ content }) => (
   <PageLayout
-    title="Please wait..."
-    description="Checking available language options for this page..."
+    title={content.loading.title}
+    description={content.loading.description}
   ></PageLayout>
 );
 
 export default function NotFoundClient() {
   const pathname = usePathname();
-  const defaultLocale = DEFAULT_LOCALE;
   const localeList = SUPPORTED_LOCALES;
   const [loading, setLoading] = useState(true);
-  const [pageExists, setPageExists] = useState(true);
+  const [pageExists, setPageExists] = useState(false);
 
   const pathSegments = pathname.split('/').filter(Boolean);
   const pathLocale = pathSegments[0] || '';
   const pathRoute = pathSegments[1] || '';
 
-  if (pathLocale === defaultLocale || !localeList.includes(pathLocale)) {
-    return <NotFoundContent />;
+  const locale = localeList.includes(pathLocale) ? pathLocale : DEFAULT_LOCALE;
+  const content = localeContent[locale] || localeContent.en;
+
+  if (!localeList.includes(pathLocale)) {
+    return <NotFoundContent content={content} />;
   }
 
   useEffect(() => {
     async function checkEnglishPageExists() {
-      if (!pathRoute) {
-        setPageExists(false);
-        setLoading(false);
-        return;
-      }
-
       try {
         let res = await client.queries.pageWithRecentPosts({
           relativePath: `${pathRoute}.json`,
@@ -129,12 +132,12 @@ export default function NotFoundClient() {
   }, [pathRoute]);
 
   if (loading) {
-    return <LoadingPage />;
+    return <LoadingPage content={content} />;
   }
 
   return pageExists ? (
-    <RedirectPage defaultLocale={defaultLocale} pathRoute={pathRoute} />
+    <RedirectPage pathRoute={pathRoute} content={content} />
   ) : (
-    <NotFoundContent />
+    <NotFoundContent content={content} />
   );
 }

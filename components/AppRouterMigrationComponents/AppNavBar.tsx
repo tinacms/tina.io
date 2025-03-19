@@ -2,7 +2,7 @@
 
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
-import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
+import { DEFAULT_LOCALE, SupportedLocales, isValidPathCheck } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -14,6 +14,7 @@ import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import data from '../../content/navigationBar/navMenu.json';
+import zhData from '../../content/navigationBar/navMenuZh.json';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
@@ -63,7 +64,6 @@ export function AppNavBar({ sticky = true }) {
   const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
   const [modalClass, setModalClass] = useState('language-select-modal');
-  const [hideZh, setHideZh] = useState(false);
 
   const navRef = useRef(null);
   const router = useRouter();
@@ -103,37 +103,70 @@ export function AppNavBar({ sticky = true }) {
     };
   }, []);
 
-  useEffect(() => {
-    const pathLocale = pathName.split('/')[1];
-    if (
-      pathLocale === SupportedLocales.EN ||
-      pathLocale === SupportedLocales.ZH
-    ) {
-      setHideZh(false);
-      setSelectedFlag(pathLocale);
-    } else {
-      setHideZh(true);
-      setSelectedFlag(DEFAULT_LOCALE);
-    }
-  }, [pathName]);
-
+  const [navItems, setNavItems] = useState(
+    Array.isArray(data.navItem) ? data.navItem : []
+  );
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
-  const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+  useEffect(() => {
+    const matchedLocale = Object.values(SupportedLocales).find((locale) =>
+      pathName.startsWith(`/${locale}`)
+    );
+    setSelectedFlag(matchedLocale || SupportedLocales.EN);
+  }, [pathName]);
 
-  const handleLanguageChange = (code) => {
+  useEffect(() => {
+    setNavItems(
+      selectedFlag === SupportedLocales.ZH
+        ? zhData && Array.isArray(zhData.navItem)
+          ? zhData.navItem
+          : []
+        : data && Array.isArray(data.navItem)
+        ? data.navItem
+        : []
+    );
+  }, [pathName, selectedFlag]);
+
+  const handleLanguageChange = (code: string) => {
+    saveLocaleToCookie(code);
     setSelectedFlag(code);
     setOpen(false);
     closeModal();
+
     setTimeout(() => {
       setAnimateFlag(true);
       setTimeout(() => setAnimateFlag(false), 600);
     }, 20);
 
-    router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
-    saveLocaleToCookie(code);
+    const localePattern = new RegExp(
+      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+    );
+    const isRootOrLocale =
+      pathName === '/' ||
+      (localePattern.test(pathName) && !pathName.replace(localePattern, '$2'));
+
+    if (isRootOrLocale) {
+      router.push(`/?setLocale=${code}`);
+      return;
+    }
+
+    const isEnglish = code === SupportedLocales.EN;
+    const hasLocalePrefix = localePattern.test(pathName);
+
+    let newPath;
+    if (hasLocalePrefix) {
+      newPath = isEnglish
+        ? pathName.replace(localePattern, (_, __, slash) =>
+            slash === '/' ? '/' : ''
+          )
+        : pathName.replace(localePattern, `/${code}$2`);
+    } else {
+      newPath = isEnglish ? pathName : `/${code}${pathName}`;
+    }
+
+    router.push(newPath === '' ? '/' : newPath);
   };
 
   return (
@@ -174,7 +207,7 @@ export function AppNavBar({ sticky = true }) {
                 <button
                   className={`outline-none hover:animate-jelly ${
                     animateFlag ? 'animate-bounce' : ''
-                  } hidden max-[639px]:block`} // Adjust breakpoint as needed
+                  } hidden max-[639px]:block`}
                   onClick={() => openModal('LanguageSelect')}
                 >
                   {selectedFlag === 'en' ? (
@@ -374,7 +407,6 @@ export function AppNavBar({ sticky = true }) {
         <LanguageSelect
           onLanguageSelect={handleLanguageChange}
           currentLanguage={selectedFlag}
-          hideZh={hideZh}
         />
       </Modal>
     </>

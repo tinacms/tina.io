@@ -1,0 +1,22 @@
+{
+  "notFound": {
+    "title": "Sorry, Friend.",
+    "description": "We couldn't find what you were looking for.",
+    "buttons": {
+      "documentation": "Documentation",
+      "guides": "Guides",
+      "home": "Home"
+    }
+  },
+  "notTranslated": {
+    "title": "Page Not Yet Translated",
+    "description": "This page hasn't been translated yet. You'll be redirected to the English version.",
+    "buttons": {
+      "continue": "Continue in English"
+    }
+  },
+  "loading": {
+    "title": "Please wait...",
+    "description": "Checking available language options for this page..."
+  }
+}

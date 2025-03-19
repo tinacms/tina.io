@@ -21,8 +21,8 @@ In production, this hook will only pass through its initial data value.
 
 `useTina` should be provided three parameters:
 
-* `query` and `variables`: These are the same values that you used for [backend data-fetching](/docs/features/data-fetching/). The query must be for an **individual document only**.
-* `data`: This is the production value that gets passed through to the response unchanged in production.
+- `query` and `variables`: These are the same values that you used for [backend data-fetching](/docs/features/data-fetching/). The query must be for an **individual document only**.
+- `data`: This is the production value that gets passed through to the response unchanged in production.
 
 > If you used the Tina client API for data fetching, the three return values can be plugged directly into the useTina hook.
 
@@ -32,7 +32,7 @@ In production, this hook will only pass through its initial data value.
 
 ```jsx
 // ...
-import { useTina } from 'tinacms/dist/react'
+import { useTina } from 'tinacms/dist/react';
 
 export default function Home(props) {
   // Pass our data through the "useTina" hook to make it editable
@@ -40,15 +40,15 @@ export default function Home(props) {
     query: props.query,
     variables: props.variables,
     data: props.data,
-  })
+  });
 
   // Note how our page title uses "data", and not the original "props.data".
   // This ensures that the content will be updated in edit-mode as the user types
-  return <h1>{data.page.title}</h1>
+  return <h1>{data.page.title}</h1>;
 }
 
 export const getStaticProps = async () => {
-  const pageResponse = await client.queries.page({ relativePath: 'home.mdx' })
+  const pageResponse = await client.queries.page({ relativePath: 'home.mdx' });
 
   return {
     props: {
@@ -56,6 +56,81 @@ export const getStaticProps = async () => {
       query: pageResponse.query,
       variables: pageResponse.variables,
     },
-  }
+  };
+};
+```
+
+![usetina-hello-world](/img/docs/contextual-editing/hello-world.png)
+
+## The useTina hook:
+
+`useTina` is used to make a piece of Tina content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
+
+`useTina` takes in a parameter with a few keys:
+
+- `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
+- `data`: This is the production value that gets passed through to the response unchanged in production.
+
+> Note: Only queries for individual documents can be used with `useTina`
+
+After a page is setup with the `useTina` hook, you can add a [router to your collection](/docs/contextual-editing/router) so that you can access contextual-editing from the CMS.
+
+## Experimental Features:
+
+### Select Form By ID (Experimental)
+
+Tina's experimental **Select Form By ID** feature allows developers to choose which form shows in the visual editing sidebar when multiple `useTina` hooks (or queries) exist on a page. By default, the first query requested is used to determine the form. However, by using this feature, you can ensure that a specific form — such as the one associated with a page collection rather than a global config — is used in the Tina sidebar. This can be particularly useful when working with multiple domains, where distinct sections or areas of your site require different form configurations.
+
+#### How It Works
+
+When initializing the `useTina` hook, you can pass an experimental callback named `experimental___selectFormByFormId()`. This callback should return a unique form identifier, which tells Tina which document’s form should be shown in visual editing.
+
+#### Example
+
+```typescript
+export default function PageComponent(props: PageComponentProps) {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+    experimental___selectFormByFormId() {
+      return `content/pages/${props.variables.relativePath}`;
+    },
+  });
+
+  // ...rest of the component code
 }
 ```
+
+In the example above, the callback generates a form ID using the page's `relativePath`, ensuring that the appropriate form is used for editing in the sidebar.
+
+### Click to Edit (Experimental)
+
+Tina's "click to edit" feature allows editors to select the element they want to edit on the page in order to see it in the sidebar.
+
+<WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
+
+> [Try the demo](https://demo.tina.io/admin#/~)!
+
+In order for this to work, Tina needs to know what document and field the
+element is associated with. Tina makes this easy with the `tinaField` helper
+function. Using this function, developers can add the appropriate metadata
+to the `[data-tina-field]` attribute.
+
+```jsx
+import { useTina, tinaField } from 'tinacms/dist/react';
+
+const Page = (props) => {
+  const { data } = useTina(props);
+  return (
+    <div>
+      <h1 data-tina-field={tinaField(data, 'title')}>{data.title}</h1>
+    </div>
+  );
+};
+```
+
+Now, when you open the Tina sidebar you'll see editing overlays on any element
+that's been configured.
+
+For more information on the tinaField helper, see the [reference docs](/docs/contextual-editing/tinafield)

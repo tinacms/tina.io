@@ -1,73 +1,46 @@
-import { match } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
 import { NextRequest, NextResponse } from 'next/server';
+import { getLocale } from 'utils/locale';
 
 export enum SupportedLocales {
   EN = 'en',
   ZH = 'zh',
 }
 
-export const SUPPORTED_LOCALES = ['en', 'zh'];
-export const DEFAULT_LOCALE = 'en';
-const RESERVED_PATHS = [
-  'api',
-  'blog',
-  'community',
-  'docs',
-  'events',
-  'examples',
-  'search',
-  'test-analytics',
-  'whats-new',
-  'admin',
+export const VALID_PATHS = [
+  '/',
+  '/about',
+  '/compare-tina',
+  '/enterprise',
+  '/home',
+  '/roadmap',
+  '/showcase',
+  '/pricing',
 ];
 
+export const SUPPORTED_LOCALES = ['en', 'zh'];
+export const DEFAULT_LOCALE = 'en';
+
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-
-  //filter the invalid path
-  const isValidPath =
-    pathname === '/' ||
-    (/^\/[^/]+$/.test(pathname) &&
-      !RESERVED_PATHS.includes(pathname.substring(1))) || // matches /xxx but not reserved paths
-    (/^\/[^/]+\/[^/]+/.test(pathname) &&
-      SUPPORTED_LOCALES.includes(pathname.split('/')[1])); // matches /locale/xxx
-  if (!isValidPath) {
-    return;
-  }
-  if (pathname.startsWith('/_next') || pathname.includes('.')) {
-    return;
-  }
-
-  //Show the original info
-  console.log(`default language: ${DEFAULT_LOCALE}`);
-  console.log(`current path: ${pathname}`);
-
-  // check if the pathname has a locale
-  const matchedLocale = SUPPORTED_LOCALES.find(
-    (locale) =>
-      pathname.startsWith(`/${locale}/`) ||
-      pathname === `/${locale}` ||
-      pathname === `/${locale}/`
-  );
-  if (matchedLocale) {
-    //handle the root path
-    if (pathname === `/${matchedLocale}` || pathname === `/${matchedLocale}/`) {
-      const url = request.nextUrl.clone();
-      url.pathname = `/${matchedLocale}/home`;
-      return NextResponse.redirect(url);
-    } else {
-      return;
-    }
-  }
-
-  // Get the locale info from the request
-  const locale = getLocale(request);
-  console.log(`locale: ${locale}`);
-
   const url = request.nextUrl.clone();
-  url.pathname = pathname === '/' ? `/${locale}/home` : `/${locale}${pathname}`;
-  const response = NextResponse.redirect(url);
+  const pathname = url.pathname;
+
+  const locale = url.searchParams.get('setLocale') || getLocale(request);
+
+  let response;
+
+  if (url.searchParams.has('setLocale')) {
+    url.searchParams.delete('setLocale');
+    if (locale === DEFAULT_LOCALE) {
+      response = NextResponse.redirect(new URL('/', request.url));
+    } else {
+      response = NextResponse.redirect(new URL(`/${locale}`, request.url));
+    }
+  } else if (pathname === '/' && locale !== DEFAULT_LOCALE) {
+    response = NextResponse.redirect(new URL(`/${locale}`, request.url));
+  } else {
+    response = NextResponse.next();
+  }
+
   response.cookies.set('NEXT_LOCALE', locale, {
     maxAge: 60 * 60 * 24 * 365,
     path: '/',
@@ -76,44 +49,16 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|public|api).*)'],
+  matcher: ['/'],
 };
 
-function getLocale(request: NextRequest): string {
-  const cookieLocale = getLocaleFromCookie(request);
-  if (cookieLocale) {
-    console.log(`Get from cookie locale: ${cookieLocale}`);
-    return cookieLocale;
+export function isValidPathCheck(pathname) {
+  if (VALID_PATHS.includes(pathname)) {
+    return true;
   }
-
-  const acceptLanguageLocale = getLocaleFromAcceptLanguage(request);
-  if (acceptLanguageLocale) {
-    console.log(`Get from accept language locale: ${acceptLanguageLocale}`);
-    return acceptLanguageLocale;
+  const pathParts = pathname.split('/').filter(Boolean);
+  if (pathParts.length >= 1 && SUPPORTED_LOCALES.includes(pathParts[0])) {
+    return true;
   }
-
-  console.log(`Get from default locale: ${DEFAULT_LOCALE}`);
-  return DEFAULT_LOCALE;
-}
-
-function getLocaleFromCookie(request: NextRequest): string | null {
-  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
-
-  if (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale)) {
-    return cookieLocale;
-  }
-
-  return null;
-}
-
-function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-  try {
-    return match(languages, SUPPORTED_LOCALES, DEFAULT_LOCALE);
-  } catch (error) {
-    return null;
-  }
+  return false;
 }
