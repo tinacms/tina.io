@@ -2,6 +2,7 @@
 
 import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMainBody';
 import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
+import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
 import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
@@ -19,10 +20,16 @@ export default function DocsClient({ props }) {
     data: props.data,
   });
 
-  const { PageTableOfContents, NavigationDocsData } = props;
+  const { PageTableOfContents, NavigationDocsData, NavigationLearnData } =
+    props;
   const DocumentationData = data.doc;
 
-  const allData = [DocumentationData, PageTableOfContents, NavigationDocsData];
+  const allData = [
+    DocumentationData,
+    PageTableOfContents,
+    NavigationDocsData,
+    NavigationLearnData,
+  ];
 
   const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
@@ -37,6 +44,8 @@ export default function DocsClient({ props }) {
     slug: DocumentationData?.next?.id.slice(7, -4),
     title: DocumentationData?.next?.title,
   };
+
+  const { learnActive, setLearnActive } = useDocsNavigation();
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
@@ -57,6 +66,9 @@ export default function DocsClient({ props }) {
         >
           <LeftHandSideParentContainer
             tableOfContents={NavigationDocsData?.data}
+            tableOfContentsLearn={NavigationLearnData?.data}
+            learnActive={learnActive}
+            setLearnActive={setLearnActive}
           />
         </div>
         {/* MIDDLE COLUMN */}
@@ -68,10 +80,12 @@ export default function DocsClient({ props }) {
           }`}
         >
           <MainDocsBodyHeader
-            allData={allData}
             DocumentTitle={DocumentationData?.title}
             screenResizing={isScreenSmallerThan840}
             NavigationDocsItems={NavigationDocsData.data}
+            learnActive={learnActive}
+            setLearnActive={setLearnActive}
+            NavigationLearnItems={NavigationLearnData?.data}
           />
           {isScreenSmallerThan1200 && !DocumentationData?.tocIsHidden && (
             <TocOverflowButton tocData={PageTableOfContents} />
