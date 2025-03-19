@@ -19,7 +19,7 @@ import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
 import { saveLocaleToCookie } from '../../utils/locale';
-import { EmailForm } from '../modals/EmailForm';
+import { EmailForm } from '../modals/AppRouterEmailForm';
 import { Button } from '../ui/Button';
 enum ValidColors {
   White = 'white',
@@ -392,7 +392,14 @@ export function AppNavBar({ sticky = true }) {
         <DemoForm />
       </Modal>
 
-      <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
+      <Modal
+        open={modalType === 'EmailForm'}
+        onClose={closeModal}
+        center
+        classNames={{
+          modal: 'email-and-demo-modal email-form-modal',
+        }}
+      >
         <EmailForm isFooter={false} />
       </Modal>
 
