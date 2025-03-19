@@ -10,9 +10,9 @@ import { formatDate } from 'components/AppRouterMigrationComponents/utils/format
 import { screenResizer } from 'components/hooks/ScreenResizer';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import { useEffect } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-
 export default function DocsClient({ props }) {
   const { data } = useTina({
     query: props.query,
@@ -44,6 +44,21 @@ export default function DocsClient({ props }) {
     slug: DocumentationData?.next?.id.slice(7, -4),
     title: DocumentationData?.next?.title,
   };
+
+  useEffect(() => {
+    const filepath = DocumentationData?.id;
+    const slug = filepath.substring(7, filepath.length - 4) + '/';
+    const recuseItems = (items) => {
+      items.forEach((item) => {
+        if (item.items) {
+          recuseItems(item.items);
+        } else if (item.slug === slug) {
+          setLearnActive(true);
+        }
+      });
+    };
+    recuseItems(NavigationLearnData?.data);
+  }, [NavigationLearnData, DocumentationData]);
 
   const { learnActive, setLearnActive } = useDocsNavigation();
 
