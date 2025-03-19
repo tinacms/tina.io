@@ -1,3 +1,6 @@
+import IconSelector from "components/forms/IconSelector";
+import { wrapFieldsWithMeta } from "tinacms";
+
 export const conferenceTinaCMSCollection = {
   name: 'conference',
   label: 'Conference',
@@ -25,6 +28,9 @@ export const conferenceTinaCMSCollection = {
           name: 'bannerDescription',
           label: 'Banner Description',
           type: 'string',
+          ui: {
+            component: 'textarea',
+          },
         },
         {
           name: 'date',
@@ -90,6 +96,19 @@ export const conferenceTinaCMSCollection = {
               name: 'descriptionLeft',
               label: 'Description Left',
               type: 'string',
+              ui: {
+                component: 'textarea',
+              },
+            },
+            {
+              name: 'iconLeft',
+              label: 'Icon Left',
+              type: 'string',
+              description:
+                "Can't find the icon you want? ask a developer to add it",
+              ui: {
+                component: wrapFieldsWithMeta(IconSelector),
+              },
             },
             {
               name: 'headerMiddle',
@@ -100,6 +119,19 @@ export const conferenceTinaCMSCollection = {
               name: 'descriptionMiddle',
               label: 'Description Middle',
               type: 'string',
+              ui: {
+                component: 'textarea',
+              },
+            },
+            {
+              name: 'iconMiddle',
+              label: 'Icon Middle',
+              type: 'string',
+              description:
+                "Can't find the icon you want? ask a developer to add it",
+              ui: {
+                component: wrapFieldsWithMeta(IconSelector),
+              },
             },
             {
               name: 'headerRight',
@@ -110,6 +142,19 @@ export const conferenceTinaCMSCollection = {
               name: 'descriptionRight',
               label: 'Description Right',
               type: 'string',
+              ui: {
+                component: 'textarea',
+              },
+            },
+            {
+              name: 'iconRight',
+              label: 'Icon Right',
+              type: 'string',
+              description:
+                "Can't find the icon you want? ask a developer to add it",
+              ui: {
+                component: wrapFieldsWithMeta(IconSelector),
+              },
             },
           ],
         },
@@ -149,6 +194,9 @@ export const conferenceTinaCMSCollection = {
           name: 'description',
           label: 'Description',
           type: 'string',
+          ui: {
+            component: 'textarea',
+          },
         },
         {
           name: 'socialLink',
@@ -157,72 +205,7 @@ export const conferenceTinaCMSCollection = {
         },
       ],
     },
-    // Workshops section (max 7)
-    {
-      name: 'workshops',
-      label: 'Workshops',
-      type: 'object',
-      list: true,
-      ui: {
-        itemProps: (item) => {
-          return { label: item.name };
-        },
-        max: 7,
-      },
-      fields: [
-        {
-          name: 'heading',
-          label: 'Heading',
-          type: 'string',
-        },
-        {
-          name: 'description',
-          label: 'Description',
-          type: 'string',
-        },
-        {
-          name: 'workshopType',
-          label: 'Workshop Type',
-          type: 'string',
-        },
-        {
-          name: 'workshopDuration',
-          label: 'Workshop Duration',
-          type: 'string',
-        },
-        {
-          name: 'presenterName',
-          label: 'Presenter Name',
-          type: 'string',
-        },
-        {
-          name: 'presenterImage',
-          label: 'Presenter Image',
-          type: 'image',
-        },
-        {
-          name: 'presenterDescription',
-          label: 'Presenter Description',
-          type: 'string',
-        },
-        {
-          name: 'presenterSocialLink',
-          label: 'Presenter Social Link',
-          type: 'string',
-        },
-        {
-          name: 'workshopTimeStart',
-          label: 'Workshop Time Start',
-          type: 'datetime',
-        },
-        {
-          name: 'workshopTimeEnd',
-          label: 'Workshop Time End',
-          type: 'datetime',
-        },
-      ],
-    },
-    // Schedule section
+    
     {
       name: 'speakerSchedule',
       label: 'Speaker Schedule',
@@ -230,19 +213,22 @@ export const conferenceTinaCMSCollection = {
       list: true,
       ui: {
         itemProps: (item) => {
-          return { label: `${item.talkSpeakerName} - ${item.speachTitle}` };
+          return { label: `${item.talkSpeakerName && `${item.talkSpeakerName} -`} ${item.speechTitle}` };
         },
       },
       fields: [
         {
-          name: 'speachTitle',
-          label: 'Speach Title',
+          name: 'speechTitle',
+          label: 'speech Title',
           type: 'string',
         },
         {
-          name: 'speachDescription',
-          label: 'Speach Description',
+          name: 'speechDescription',
+          label: 'speech Description',
           type: 'string',
+          ui: {
+            component: 'textarea',
+          },
         },
         {
           name: 'talkSpeakerName',
@@ -265,6 +251,12 @@ export const conferenceTinaCMSCollection = {
           label: 'Talk Time End',
           type: 'number',
           description: 'Enter in 24 hour format',
+        },
+        {
+          name: 'sessionType',
+          label: 'Session Type',
+          type: 'string',
+          options: ['Talk', 'Workshop', 'Break'],
         },
       ],
     },

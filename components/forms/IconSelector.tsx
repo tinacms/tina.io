@@ -25,6 +25,9 @@ import { HiOutlineSparkles } from 'react-icons/hi2';
 import { TbPlugConnected } from 'react-icons/tb';
 import { SlLock } from 'react-icons/sl';
 import { ImCross } from 'react-icons/im';
+import { FaRegStar } from 'react-icons/fa';
+import { IoMdBook } from 'react-icons/io';
+import { GoPeople } from 'react-icons/go';
 
 const icons = {
   FaClock,
@@ -48,6 +51,9 @@ const icons = {
   FaDesktop,
   FaLockOpen,
   FaHandPointer,
+  FaRegStar,
+  IoMdBook,
+  GoPeople,
 };
 
 const IconSelector = ({ input }) => {
