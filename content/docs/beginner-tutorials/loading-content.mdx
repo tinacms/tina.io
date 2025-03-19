@@ -1,0 +1,88 @@
+---
+title: Loading Your Content
+last_edited: '2025-03-19T01:54:30.957Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/new-field.mdx
+previous: content/docs/beginner-tutorials/wiring-content.mdx
+---
+
+In the previous step, we saw an error being thrown from our implementation.
+
+This is because the `useTina` callback is being called before `fetchContent` has completed... and it's all being done client side!
+
+To fix this, we need to alter our approach a little, so that the `useTina` method is called once our async data fetching is complete.
+
+We will do this by creating a new child component, and only render that component when we have some data (a typical React solution to asynchronous data fetching).
+
+1\. Create a new component next to `page.tsx` - `awesome-content.tsx`
+
+2\. Add the following code to it:
+
+```typescript
+"use client";
+import { useTina } from "tinacms/dist/react";
+
+export default function AwesomeContent({data}) {
+  const pageData = useTina({
+    data: data.data,
+    query: data.query,
+    variables: data.variables,
+  });
+
+  const amazingTitle = pageData.data.my_first_collection.title;
+
+  return (
+    <>
+    <h1>{amazingTitle}</h1>
+    </>
+  );
+}
+```
+
+3\. Refactor the `page.tsx` to conditionally display `<AwesomeContent />` only when we have data:
+
+```typescript
+"use client";
+import { useState, useEffect } from "react";
+import { client } from "../tina/__generated__/client";
+import AwesomeContent from "./awesome-content";
+
+export default function Home() {
+
+  const[graphQLresponse, setGraphQLresponse] = useState<any>();
+
+  useEffect(() => {
+    // stupid React bullshit to call an async method in useEffect
+    const fetchContent = async () => {
+      const result = await client.queries.my_first_collection({
+        relativePath: "Hello-World.md",
+      });
+      setGraphQLresponse(result);
+    };
+
+    fetchContent();
+    
+  }, []);
+
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        {!graphQLresponse && <p>Loading...</p>}
+        {graphQLresponse && <AwesomeContent data={graphQLresponse} />}
+      </main>
+    </div>
+  );
+}
+```
+
+That's it!
+
+Now let's check that it works!
+
+4\. Navigate to `http://localhost/admin/index.html` and edit your amazing title and see how the changes are immediately reflected in the HTML.
+
+5\. Click "Save", and navigate back to `http://localhost:3000` to see your changes persisted on your "production" site.
+
+> Bonus: check your `Hello-World.md` file in your IDE to see how the underlying content has been saved with your new changes.
+
+![](</gif/Screen Recording 2025-03-19 at 11.08.18 am.gif>)

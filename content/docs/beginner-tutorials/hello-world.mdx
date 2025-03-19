@@ -1,0 +1,90 @@
+---
+title: "Hello World! \U0001F44B\U0001F30F"
+last_edited: '2025-03-18T23:05:23.448Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/display-content.mdx
+previous: content/docs/beginner-tutorials/install-tinacms.mdx
+---
+
+We want to move our hard-coded "Hello world" greeting into Tina, so it can be accessed and edited via the Tina editor, **without needing to touch the code**.
+
+Before we can do this, we first need to define a [Tina schema]() which will control the "shape" of the data that we will receive from Tina.
+
+1\. Go to the `/tina/config.ts` file and locate the `schema` field. It should look like this:
+
+> This is a sample schema that's provided out-of-the-box, but we're going to build our own.
+
+```typescript
+schema: {
+    collections: [
+      {
+        name: "post",
+        label: "Posts",
+        path: "content/posts",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+        ui: {
+          // This is an DEMO router. You can remove this to fit your site
+          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+        },
+      },
+    ],
+  },
+```
+
+2\. Replace the schema with a basic entry that contains a single field for our amazing Hello World message:
+
+```typescript
+schema: {
+   collections: [
+     {
+       name: "my_first_collection",
+       label: "My first collection",
+       path: "content/first",
+       fields: [
+         {
+           type: "string",
+           name: "title",
+           label: "Title",
+           isTitle: true,
+           required: true,
+         }
+       ],
+       // Comment this out for now. We will come back to this later!
+       // ui: {
+       //   // This is an DEMO router. You can remove this to fit your site
+       //   router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+       // },
+     },
+   ],
+ },
+```
+
+3\. Now a schema has been defined, it's time to add some data to our new CMS schema!
+
+4\. Start your app and go to `http://localhost:3000/admin/index.html`
+
+5\. Notice on the left, we now have a "My first collection" menu item!
+
+6\. Click on that menu item.
+
+7\. Click the "Add Files" button
+
+8\. You can see the single **field** we described in our Schema - the `Title` field. Add your amazing title "Hello World!" into it.
+
+9\. Click "Save"
+
+> If we jump back into the code, you will see a new file has been created. Look in `content/` and you'll find a `first` folder, that contains our new markdown content! The `first` folder is what we defined in our `path` field in the schema. All content we create in the "My first collection" collection will be created in this directory.

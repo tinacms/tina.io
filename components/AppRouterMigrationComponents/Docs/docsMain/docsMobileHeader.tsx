@@ -1,6 +1,6 @@
-import { DocsSearchBarHeader } from '../docsSearch/SearchNavigation';
 import { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import { DocsSearchBarHeader } from '../docsSearch/SearchNavigation';
 import DirectoryOverflowButton from './directoryOverflowButton';
 
 export const MobileVersionSelect = () => {
@@ -59,8 +59,9 @@ export const MobileVersionSelect = () => {
   );
 };
 
-const DocsMobileHeader = (data) => {
-  
+const DocsMobileHeader = (props) => {
+  const { docsData, learnData, learnActive, setLearnActive } = props;
+
   return (
     <div className="relative pb-20">
       <DocsSearchBarHeader
@@ -69,8 +70,13 @@ const DocsMobileHeader = (data) => {
         headerPadding=""
         searchMargin=""
         searchBarPadding="py-3"
+        learnActive={learnActive}
+        setLearnActive={setLearnActive}
       />
-      <DirectoryOverflowButton tocData={data.data} />
+      <DirectoryOverflowButton
+        tocData={learnActive ? learnData : docsData}
+        label={learnActive ? 'Learn' : 'Documentation'}
+      />
     </div>
   );
 };
