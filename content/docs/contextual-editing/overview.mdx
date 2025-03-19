@@ -1,25 +1,27 @@
 ---
 id: /docs/contextual-editing/overview
-
-title: Visual Editing
+title: What is Visual Editing?
+last_edited: '2025-03-17T22:11:33.557Z'
 next: content/docs/contextual-editing/react.mdx
 previous: content/docs/features/data-fetching.mdx
 ---
 
-Out of the box, once you define a new collection in Tina, its content becomes available through the "basic editor".
+When you define a collection, TinaCMS gives you access to a full-page editor window to add your content.
 
-![basic editor](/img/docs/basic-editor.png)
+Tina also allows for "Visual Editing" when used with React. This is a setup that allows your **website and editor window to sit side-by-side**, showing your changes in real-time.
 
-Tina also allows for "Visual Editing" so that editors can see their pages being updated in real-time as they make changes
+![](/img/docs/contextual-editing/hello-world.png)
 
-![contextual editor](/img/docs/contextual-editing.png)
+## How does it work?
 
-## Adding contextual-editing to a page
+For pages to update as you edit, you'll need to re-hydrate the page data.
 
-To add visual editing to a page, you'll need to hydrate the pages data. In React, this is done by [using the `useTina`](/docs/contextual-editing/react) hook. We are currently working on adding support for other frameworks such as [vue](/docs/contextual-editing/vue).
+In React, this is done by [using the `useTina`](/docs/contextual-editing/react) hook.
 
-## Video Tutorial
+> We are currently working on adding support for other frameworks such as [vue](/docs/contextual-editing/vue).
 
-For those who prefer to learn from video, you can check out a snippet on Visual Editing from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
+### Video Tutorial
+
+For those who prefer to learn from video, you can check out a snippet on Visual Editing from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
 
 <Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=1067" />

@@ -4,7 +4,7 @@ import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
@@ -12,6 +12,7 @@ import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
+import MermaidElement from './mermaid';
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
   {
@@ -27,6 +28,8 @@ export const docAndBlogComponents: Components<{
     query: string;
     response: string;
     preselectResponse: boolean;
+    customQueryName?: string;
+    customResponseName?: string;
   };
   Callout: {
     title: string;
@@ -42,7 +45,7 @@ export const docAndBlogComponents: Components<{
   CustomFieldComponentDemo: {};
   CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
-  ImageAndText: { docText: string; image: string };
+  ImageAndText: { docText: string; image: string; heading?: string };
   Summary: { heading: string; text: string };
   recipeBlock: {
     title?: string;
@@ -86,17 +89,59 @@ export const docAndBlogComponents: Components<{
     );
   },
   ImageAndText: (props) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    const toggleExpand = () => {
+      setIsExpanded(!isExpanded);
+    };
+
     return (
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-red">
-          {' '}
-          <TinaMarkdown
-            content={props.docText as any}
-            components={docAndBlogComponents}
-          />{' '}
+      <div
+        className={`bg-white/40 rounded-lg shadow-sm mb-2 overflow-hidden transition-[width] duration-300 ease-in-out max-w-full ${
+          isExpanded ? 'w-full' : 'w-80 delay-700'
+        }`}
+      >
+        <div
+          className="py-1 px-4 cursor-pointer flex justify-between items-center"
+          onClick={toggleExpand}
+        >
+          {FormatHeaders({
+            children: props.heading || 'Click to expand',
+            level: 6,
+          })}
+          <div>
+            {isExpanded ? (
+              <FaMinus className="text-blue-800 size-3" />
+            ) : (
+              <FaPlus className="text-gray-500 size-3" />
+            )}
+          </div>
         </div>
-        <div>
-          <Image src={props?.image} alt="image" className="w-full" />
+
+        <div
+          className={`grid sm:grid-cols-2 gap-4 border-t border-gray-100 transition-all duration-700 ease-in-out ${
+            isExpanded
+              ? 'max-h-[2000px] opacity-100 delay-500'
+              : 'max-h-0 opacity-0 overflow-hidden'
+          }`}
+          ref={contentRef}
+        >
+          <div className="p-4">
+            <TinaMarkdown
+              content={props.docText as any}
+              components={docAndBlogComponents}
+            />
+          </div>
+          <div className="p-4">
+            {props?.image && (
+              <img
+                src={props?.image}
+                alt="image"
+                className="w-full rounded-lg"
+              />
+            )}
+          </div>
         </div>
       </div>
     );
@@ -176,7 +221,9 @@ export const docAndBlogComponents: Components<{
       {...props}
     />
   ),
-
+  mermaid: (value) => {
+    return <MermaidElement value={value.value} />;
+  },
   Iframe: ({ iframeSrc, height }) => {
     return (
       <div>
@@ -206,7 +253,7 @@ export const docAndBlogComponents: Components<{
       style={{ paddingBottom: '56.25%' }}
     >
       <iframe
-        className="absolute top-0 left-0 w-full h-full"
+        className="absolute top-0 left-0 w-full h-full rounded-md"
         src={embedSrc}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -355,12 +402,20 @@ export const docAndBlogComponents: Components<{
     );
   },
 
-  GraphQLCodeBlock: ({ query, response, preselectResponse }) => {
+  GraphQLCodeBlock: ({
+    query,
+    response,
+    preselectResponse,
+    customQueryName,
+    customResponseName,
+  }) => {
     return (
       <GraphQLQueryResponseTabs
         query={query}
         response={response}
         preselectResponse={preselectResponse}
+        customQueryName={customQueryName}
+        customResponseName={customResponseName}
       />
     );
   },
@@ -422,6 +477,15 @@ function FormatHeaders({ children, level }) {
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',
   };
 
+  const linkColor = {
+    1: 'text-orange-500',
+    2: 'text-orange-500',
+    3: 'text-blue-900',
+    4: 'text-orange-500',
+    5: 'text-orange-500',
+    6: 'text-gray-500',
+  };
+
   const handleHeaderClick = (event) => {
     event.preventDefault();
     scrollToElement(id);
@@ -452,15 +516,24 @@ function FormatHeaders({ children, level }) {
   }, []);
 
   return (
-    <HeadingTag id={id} className={`${styles[level]} relative cursor-pointer`}>
+    <HeadingTag
+      id={id}
+      className={`${styles[level]} relative cursor-pointer group`}
+    >
       <a
         href={linkHref}
-        className="no-underline group"
+        className="no-underline inline-block"
         onClick={handleHeaderClick}
       >
         {' '}
         {children}
-        <FiLink className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex mb-2" />
+        <FiLink
+          className={`${linkColor[level]} opacity-0 group-hover:opacity-80 transition-opacity duration-200 absolute ml-1 group-hover:animate-wiggle`}
+          style={{
+            display: 'inline-block',
+            marginTop: '0.25rem',
+          }}
+        />
       </a>
     </HeadingTag>
   );

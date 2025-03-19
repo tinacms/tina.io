@@ -1,27 +1,27 @@
 ---
-title: The "datetime" field
-last_edited: '2024-10-02T06:55:41.481Z'
+title: Date Fields
+last_edited: '2025-03-14T03:44:22.203Z'
 next: ''
 previous: ''
 ---
 
-## `datetime` Type
+A structured input that stores date values in ISO 8601 format. Uses [react-datetime](https://www.npmjs.com/package/react-datetime) under the hood.
+
+## Type Definition
 
 ```ts
 type DatetimeField = {
-  label: string
-  name: string
-  type: 'string'
+  name: string,
+  type: 'datetime'
+  label?: string,
+  description?: string,
   list?: boolean
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
   ui?: {
-    dateFormat: string // eg 'YYYY MM DD'
-    label?: string
-    description?: string
+    dateFormat?: string // eg 'YYYY MM DD'
     component?: FC<any> | string | null
     parse?: (value: string, name: string, field: F) => any
     format?: (value: string, name: string, field: F) => any
-    validate?(
+    validate?: (
       value: string,
       allValues: any,
       meta: any,
@@ -31,16 +31,15 @@ type DatetimeField = {
 }
 ```
 
-Datetimes are persisted as UTC.
+This is just a reference. The generic [Field](http://localhost:3000/docs/reference/fields) type definition contains further usage information.
 
-The return value for a datetime is in [ISO string format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+Datetimes' are persisted as UTC, converted from local time of the user on input.
+
+> Any extra properties added to the the date field definition under ui will be passed along to the [react-datettime](https://www.npmjs.com/package/react-datetime) component.
 
 ## Examples
 
-Tina will generate the appropriate component depending on the
-configuration provided.
-
-### Simple
+### Simple field
 
 ```javascript
 {
@@ -52,7 +51,7 @@ configuration provided.
 
 ![](/img/docs/reference/date.png)
 
-### Custom Format
+### Field with custom date format
 
 You can customize the format that the date field use by customizing the dateFormat & parse properties.
 
@@ -70,9 +69,9 @@ You can customize the format that the date field use by customizing the dateFor
 
 ![](/img/docs/reference/date2.png)
 
-### Using a Time Picker
+### Field including time picker
 
-You can add a timepicker to the date UI by supplying the ui.timeFormat property
+You can add a timepicker to the date UI by supplying the `ui.timeFormat` property.
 
 ```javascript
 {

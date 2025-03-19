@@ -1,32 +1,30 @@
 ---
-title: The "string" field
-last_edited: '2024-09-12T01:52:13.442Z'
+title: String Fields
+last_edited: '2025-03-13T04:33:39.682Z'
 next: ''
 previous: ''
 ---
 
-## `string` Type
+A text input field used to store short-form content, such as titles or descriptions.
+
+For indents, embolding and other formatting, use the [rich-text field type](/docs/reference/types/rich-text) instead.
+
+## Type Definition
 
 ```ts
 type StringField = {
-  label: string
-  name: string
-  type: 'string'
-  list?: boolean
-  options?: (string | { value: string; label: string })[]
-  // Represents the "body" of a markdown file
-  isBody?: boolean
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
+  name: string,
+  type: 'string',
+  label?: string,
+  description?: string,
+  list?: boolean,
+  options?: (string | { value: string; label: string })[],
+  isBody?: boolean,
   ui?: {
-    label?: string
-    description?: string
-    component?: FC<any> | string | null
-    parse?: (value: string | string[], name: string, field: F) => any
-    format?: (value: string | string[], name: string, field: F) => any
-    // defaultItem can only can be used when {list: true}
-    defaultItem?: () => string | string
-    validate?(
-      // string or string[] depends on list true or false
+    component?: FC<any> | string | null,
+    parse?: (value: string | string[], name: string, field: F) => any,
+    format?: (value: string | string[], name: string, field: F) => any,  
+    validate?: (
       value: string | string[],
       allValues: any,
       meta: any,
@@ -36,12 +34,11 @@ type StringField = {
 }
 ```
 
+This is just a reference. The generic [Field](/docs/reference/fields) type definition contains usage information.
+
 ## Examples
 
-Tina will generate the appropriate component depending on the
-configuration provided.
-
-### Simple
+### Simple field
 
 ```javascript
 
@@ -54,7 +51,7 @@ configuration provided.
 
 ![](/img/docs/reference/hello-world.png)
 
-### Simple w/ List
+### Simple list field
 
 Setting list: true will make the value an array
 
@@ -69,56 +66,16 @@ Setting list: true will make the value an array
 
 ![](/img/docs/reference/value-hello-world.png)
 
-### As a list w/ options
+### Field with text area component
 
-Setting list: true and providing options will make the value an array with a selection list
-
-```javascript
-{
-  type: 'string',
-  name: 'title',
-  label: 'Title',
-  list: true,
-    options: [
-      {
-        value: "movies",
-        label: "Movies"
-      }, {
-        value: "music",
-        label: "Music"
-      }
-    ]
-}
-```
-
-![](/img/docs/reference/category-select.png)
-
-### Using the isBody property
-
-When working with markdown, you can indicate that a given field should represent the markdown body
-
-```javascript
-{
-  type: 'string',
-  name: 'body',
-  label: 'Body',
-  // Indicates this field should repesent the file's body
-  isBody: true
-}
-```
-
-![](/img/docs/reference/body-example.png)
-
-### Override the built-in component
-
-By default, the text field is used for strings. To use a different core field plugin, specify it with the ui.component property
+By default, the text field is used for strings. To use a different core field plugin, specify it with the ui.component property.
 
 ```javascript
 {
   label: "Description",
   name: "description",
   type: "string",
-      ui: {
+  ui: {
     component: "textarea"
   }
 }
@@ -126,16 +83,16 @@ By default, the text field is used for strings. To use a different core field p
 
 ![](/img/docs/reference/description-example.png)
 
-### Providing a custom component
+### Field with custom component
 
-You can [create your own components](https://tina.io/docs/extending-tina/custom-field-components/)
+You can [create your own components](https://tina.io/docs/extending-tina/custom-field-components/) for the TinaCMS editor to store String type content.
 
 ```javascript
 {
   label: "Title",
   name: "title",
   type: "string",
-      ui: {
+  ui: {
     component: ({ input }) => {
       return (
         <div>

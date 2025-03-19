@@ -113,6 +113,18 @@ export const docsCollection = {
               label: 'Select Response by Default',
               description: 'Select the response tab by default',
             },
+            {
+              type: 'string',
+              name: 'customQueryName',
+              label: 'Custom Query Name',
+              description: "Replaces 'Query' in the tab name",
+            },
+            {
+              type: 'string',
+              name: 'customResponseName',
+              label: 'Custom Response Name',
+              description: "Replaces 'Response' in the tab name",
+            },
           ],
         },
         {
@@ -175,12 +187,17 @@ export const docsCollection = {
           label: 'Image and Text',
           fields: [
             {
+              name: 'heading',
+              label: 'Heading',
+              type: 'string',
+              description:
+                'The heading text that will be displayed in the collapsed state',
+            },
+            {
               name: 'docText',
               label: 'docText',
               isBody: true,
               type: 'rich-text',
-              description:
-                'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
             },
             {
               name: 'image',
