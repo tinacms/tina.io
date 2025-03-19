@@ -47,18 +47,18 @@ export default function DocsClient({ props }) {
 
   useEffect(() => {
     const filepath = DocumentationData?.id;
-    if(filePath){
-    const slug = filepath.substring(7, filepath.length - 4) + '/';
-    const recurseItems = (items) => {
-      items?.forEach((item) => {
-        if (item.items) {
-          recurseItems(item.items);
-        } else if (item.slug === slug) {
-          setLearnActive(true);
-        }
-      });
-    };
-    recurseItems(NavigationLearnData?.data);
+    if (filepath) {
+      const slug = filepath.substring(7, filepath.length - 4) + '/';
+      const recurseItems = (items) => {
+        items?.forEach((item) => {
+          if (item.items) {
+            recurseItems(item.items);
+          } else if (item.slug === slug) {
+            setLearnActive(true);
+          }
+        });
+      };
+      recurseItems(NavigationLearnData?.data);
     }
   }, [NavigationLearnData, DocumentationData]);
 
