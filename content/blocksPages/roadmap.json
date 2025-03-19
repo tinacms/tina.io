@@ -18,21 +18,21 @@
       "_template": "content"
     },
     {
-      "headline": "Recently Released",
+      "headline": "✔️ Done",
       "items": [
         {
           "headline": "GitHub Enterprise Support",
-          "status": "✅ Done",
+          "status": "",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
         },
         {
           "headline": "2FA Authentication",
-          "status": "✅ Done",
+          "status": "",
           "content": "Strengthens security for TinaCloud users by adding an extra layer of protection to prevent unauthorized access, ensuring safer content management.\n"
         },
         {
           "headline": "Vercel Data Cache Support",
-          "status": "✅ Done",
+          "status": "",
           "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n\n[https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache](https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache)\n"
         }
       ],
@@ -68,17 +68,17 @@
       "items": [
         {
           "headline": "AI Tooling",
-          "status": "Soon",
+          "status": "",
           "content": "We're working on some ways to leverage AI in the content creation process.\n"
         },
         {
           "headline": "Docs Template",
-          "status": "Soon",
+          "status": "",
           "content": "Since Tina works so well with documentation sites, we're building a best-of-breed Tina + Docs starter template.\n"
         },
         {
           "headline": "Improved PR workflow",
-          "status": "Soon",
+          "status": "",
           "content": "We are making some improvements to Tina's editorial workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
           "actions": [
             {
