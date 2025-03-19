@@ -1,6 +1,6 @@
 ---
 title: Our New Field
-last_edited: '2025-03-18T07:09:52.133Z'
+last_edited: '2025-03-19T00:11:18.017Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/string-to-markdown.mdx
 previous: content/docs/beginner-tutorials/loading-content.mdx
@@ -35,7 +35,6 @@ schema: {
           }
         ],
         ui: {
-          // This is a DEMO router. You can remove this to fit your site
           router: ({ document }) => {
             if (document._sys.filename == "Hello-World") {
               return "/";
@@ -47,7 +46,7 @@ schema: {
   },
 ```
 
-2\. Now, just to do something a little different, go ahead and edit your `Hello-World.md` file directly in your IDE. 
+2\. Now, just to do something a little different, go ahead and edit your `Hello-World.md` file directly in your IDE.
 
 3\. Add some text to the body of the markdown file, like this:
 
@@ -88,4 +87,4 @@ export default function AwesomeContent({data}) {
 
 5\. Navigate to `http://localhost:3000` and you will see your incredible body on screen.
 
-> What about editing? Well, try going to `http://localhost:3000/admin/index.html` and you'll see a new field has magically appeared in your  visual editor. Hooray! 🙌 🎉 
+> What about editing? Well, try going to `http://localhost:3000/admin/index.html` and you'll see a new field has magically appeared in your  visual editor. Hooray! 🙌 🎉
