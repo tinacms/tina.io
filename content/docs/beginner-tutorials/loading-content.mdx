@@ -1,6 +1,6 @@
 ---
 title: Loading Your Content
-last_edited: '2025-03-19T01:35:44.437Z'
+last_edited: '2025-03-19T01:54:30.957Z'
 next: content/docs/beginner-tutorials/new-field.mdx
 previous: content/docs/beginner-tutorials/wiring-content.mdx
 ---
@@ -65,7 +65,7 @@ export default function Home() {
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-white">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         {!graphQLresponse && <p>Loading...</p>}
         {graphQLresponse && <AwesomeContent data={graphQLresponse} />}
       </main>
