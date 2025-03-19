@@ -1,5 +1,6 @@
 'use client';
 
+import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import {
   SearchHeader,
   SearchTabs,
@@ -11,14 +12,13 @@ import {
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getSearchPageData } from './getSearchPageData';
-
 export default function SearchPageClient() {
   const [props, setProps] = useState<{
     formatted?: any;
     formattedLearn?: any;
   }>({});
   const [query, setQuery] = useState('');
-  const [learnActive, setLearnActive] = useState(false);
+  const { learnActive, setLearnActive } = useDocsNavigation();
 
   const searchParams = useSearchParams();
 
