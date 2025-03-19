@@ -1,6 +1,6 @@
 ---
 title: Render Your Templates
-last_edited: '2025-03-18T22:45:26.768Z'
+last_edited: '2025-03-19T00:29:03.492Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/website-builder-experience.mdx
 previous: content/docs/beginner-tutorials/linking-to-model.mdx
@@ -43,7 +43,7 @@ There are a few ways we can do this, but for now we'll go with the quick-n-dirty
 
   return (
     <>
-    {blocks.map((block, index) => {
+    {blocks?.map((block, index) => {
       switch (block.__typename) {
         case "My_first_collectionBlocksTitleBlock":
           return <h1 key={index}>{block.title}</h1>;
