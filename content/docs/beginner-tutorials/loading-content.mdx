@@ -1,19 +1,19 @@
 ---
 title: Loading Your Content
-last_edited: '2025-03-18T07:01:49.546Z'
+last_edited: '2025-03-19T00:06:06.911Z'
 next: ''
 previous: ''
 ---
 
 In the previous step, we saw an error being thrown from our implementation.
 
-This is because the `useTina` callback is being called before `fetchContent` has completed... and it's all being done client side! 
+This is because the `useTina` callback is being called before `fetchContent` has completed... and it's all being done client side!
 
 To fix this, we need to alter our approach a little, so that the `useTina` method is called once our async data fetching is complete.
 
 We will do this by creating a new child component, and only render that component when we have some data (a typical React solution to asynchronous data fetching).
 
-1\. Create a new component - `awesome-content.tsx`
+1\. Create a new component next to `page.tsx` - `awesome-content.tsx`
 
 2\. Add the following code to it:
 
