@@ -19,6 +19,7 @@ const HeaderBanner = ({
   tinaData: any;
   scrollToAgenda: () => void;
 }) => {
+  console.log(tinaData);
   return (
     <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
       <h1 className="font-tuner text-4xl pb-4 text-orange-500">
@@ -45,11 +46,13 @@ const HeaderBanner = ({
       </div>
       <div className="flex flex-row gap-4">
         <Button color="white" size="medium" onClick={scrollToAgenda}>
-          <span className="mr-2">Agenda</span>
+          <span className="mr-2">{tinaData.actionButton.title}</span>
         </Button>
-        <Button color="blue" size="medium" onClick={scrollToAgenda}>
-          <span className="mr-2">Register</span>
-        </Button>
+        <Link href={tinaData?.rightButton?.link} target="_blank">
+          <Button color="blue" size="medium">
+            <span className="mr-2">{tinaData?.rightButton?.title}</span>
+          </Button>
+        </Link>
       </div>
     </div>
   );
