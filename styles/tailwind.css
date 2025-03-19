@@ -17,6 +17,12 @@
   max-width: 1200px !important;
 }
 
+.email-form-modal {
+  height: auto !important;
+  min-height: 20rem;
+  max-height: 90vh !important;
+}
+
 .language-select-modal {
   width: 100% !important;
   max-width: 500px !important;
