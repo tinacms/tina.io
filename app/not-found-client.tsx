@@ -89,6 +89,126 @@ const LoadingPage = ({ content }) => (
   ></PageLayout>
 );
 
+type RouteInfo = {
+  type: string;
+  queryFunction: (params: any) => Promise<any>;
+  getRedirectPath: (path: string) => string;
+  getRelativePath: (path: string) => string;
+  fileExtension: string;
+  checkExists?: (response: any) => boolean;
+};
+
+const routeConfig: Record<string, RouteInfo> = {
+  docs: {
+    type: 'docs',
+    queryFunction: async (params) => {
+      return await client.queries.doc({
+        relativePath: params,
+      });
+    },
+    getRedirectPath: (path) => {
+      return path === 'index' || path === '' ? '/docs' : `/docs/${path}`;
+    },
+    getRelativePath: (path) => `${path || 'index'}.mdx`,
+    fileExtension: '.mdx',
+  },
+  blog: {
+    type: 'blog',
+    queryFunction: async (params) => {
+      return await client.queries.getExpandedPostDocument({
+        relativePath: params,
+      });
+    },
+    getRedirectPath: (path) => `/blog/${path}`,
+    getRelativePath: (path) => `${path}.mdx`,
+    fileExtension: '.mdx',
+  },
+  'blog/page': {
+    type: 'blogPagination',
+    queryFunction: async () => {
+      return await client.queries.postConnection();
+    },
+    getRedirectPath: (path) => {
+      const pageNumber = path.split('/')[1] || '1';
+      return pageNumber === '1' ? '/blog' : `/blog/page/${pageNumber}`;
+    },
+    getRelativePath: () => '',
+    fileExtension: '',
+  },
+  community: {
+    type: 'community',
+    queryFunction: async (params) => {
+      return await client.queries.page({
+        relativePath: params,
+      });
+    },
+    getRedirectPath: () => '/community',
+    getRelativePath: () => 'community.json',
+    fileExtension: '.json',
+  },
+  conference: {
+    type: 'conference',
+    queryFunction: async (params) => {
+      return await client.queries.conference({
+        relativePath: params,
+      });
+    },
+    getRedirectPath: () => '/conference',
+    getRelativePath: () => 'TinaCon2025.mdx',
+    fileExtension: '.mdx',
+  },
+  events: {
+    type: 'events',
+    queryFunction: async () => {
+      return await client.queries.eventsConnection();
+    },
+    getRedirectPath: () => '/events',
+    getRelativePath: () => '',
+    fileExtension: '',
+  },
+  examples: {
+    type: 'examples',
+    queryFunction: async (params) => {
+      return await client.queries.examples({
+        relativePath: params,
+      });
+    },
+    getRedirectPath: () => '/examples',
+    getRelativePath: () => 'index.json',
+    fileExtension: '.json',
+  },
+  'whats-new': {
+    type: 'whatsNew',
+    queryFunction: async () => {
+      return await client.queries.WhatsNewTinaCMSConnection();
+    },
+    getRedirectPath: () => '/whats-new/tinacms',
+    getRelativePath: () => '',
+    fileExtension: '',
+  },
+  default: {
+    type: 'page',
+    queryFunction: async (params) => {
+      console.log('[debug] Default route query params:', params);
+      return await client.queries.pageWithRecentPosts({
+        relativePath: typeof params === 'string' ? params : 'index.json',
+      });
+    },
+    getRedirectPath: (path) => {
+      if (path === 'index' || path === '') {
+        return '/';
+      }
+      return `/${path}`;
+    },
+    getRelativePath: (path) => {
+      console.log('[debug] Default route getRelativePath path:', path);
+      return path ? `${path}.json` : 'index.json';
+    },
+    fileExtension: '.json',
+    checkExists: (response) => !!response?.data?.page,
+  },
+};
+
 const parsePath = (pathname, localeList) => {
   const segments = pathname.split('/').filter(Boolean);
   const hasLocalePrefix =
@@ -99,116 +219,106 @@ const parsePath = (pathname, localeList) => {
     return { needsQuery: false, locale };
   }
 
-  const isDocsPage = segments.length > 1 && segments[1] === 'docs';
-  const isBlogPage = segments.length > 1 && segments[1] === 'blog';
-  const isBlogPaginationPage =
-    isBlogPage &&
-    (segments.length === 2 || (segments.length > 2 && segments[2] === 'page'));
-  const isBlogPostPage = isBlogPage && !isBlogPaginationPage;
+  if (segments.length === 1) {
+    return { needsQuery: false, locale };
+  }
+
+  const routeType = segments[1];
+
+  const isBlogPagination =
+    routeType === 'blog' && segments.length > 2 && segments[2] === 'page';
+  const isBlogRoot = routeType === 'blog' && segments.length === 2;
+
+  let routeKey = routeType;
+  if (isBlogPagination || isBlogRoot) {
+    routeKey = 'blog/page';
+  }
 
   let pathWithoutPrefix;
-  if (isDocsPage) {
+  if (isBlogPagination) {
     pathWithoutPrefix = segments.slice(2).join('/');
-  } else if (isBlogPaginationPage) {
-    if (segments.length === 2) {
-      pathWithoutPrefix = 'page/1';
-    } else {
-      pathWithoutPrefix = segments.slice(2).join('/');
-    }
-  } else if (isBlogPostPage) {
-    pathWithoutPrefix = segments.slice(2).join('/');
+  } else if (isBlogRoot) {
+    pathWithoutPrefix = 'page/1';
+  } else if (segments.length === 2) {
+    pathWithoutPrefix = '';
   } else {
-    pathWithoutPrefix = segments.slice(1).join('/');
+    pathWithoutPrefix = segments.slice(2).join('/');
   }
+
+  console.log(
+    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`
+  );
 
   return {
     needsQuery: true,
     locale,
-    isDocsPage,
-    isBlogPage,
-    isBlogPaginationPage,
-    isBlogPostPage,
+    routeKey,
     pathWithoutPrefix,
   };
 };
 
 const queryPage = async (pathInfo) => {
   try {
-    const {
-      isDocsPage,
-      isBlogPaginationPage,
-      isBlogPostPage,
-      pathWithoutPrefix,
-    } = pathInfo;
+    const { routeKey, pathWithoutPrefix } = pathInfo;
+    const config = routeConfig[routeKey] || routeConfig['default'];
 
-    if (isDocsPage) {
-      const docPath = pathWithoutPrefix || 'index';
-      const response = await client.queries.doc({
-        relativePath: `${docPath}.mdx`,
+    try {
+      const relativePath = config.getRelativePath(
+        config.type === 'page' ? routeKey : pathWithoutPrefix
+      );
+
+      console.log(`[debug] Route info:`, {
+        routeKey,
+        pathWithoutPrefix,
+        relativePath,
+        configType: config.type,
       });
 
-      const redirectPath =
-        docPath === 'index' || docPath === '' ? '/docs' : `/docs/${docPath}`;
+      const response = relativePath
+        ? await config.queryFunction(relativePath)
+        : await config.queryFunction({});
+
+      const redirectPath = config.getRedirectPath(
+        config.type === 'page' ? routeKey : pathWithoutPrefix
+      );
+
+      console.log(`[debug] Response info:`, {
+        redirectPath,
+        hasResponse: !!response,
+        dataKeys: response?.data ? Object.keys(response.data) : [],
+      });
+
+      let exists = false;
+
+      if (config.type === 'docs') {
+        exists = !!response?.data?.doc;
+      } else if (config.type === 'blog') {
+        exists = !!response?.data?.post;
+      } else if (config.type === 'blogPagination') {
+        exists = !!response?.data?.postConnection?.edges?.length;
+      } else if (config.type === 'community') {
+        exists = !!response?.data?.page;
+      } else if (config.type === 'examples') {
+        exists = !!response?.data?.examples;
+      } else if (config.type === 'conference') {
+        exists = !!response?.data?.conference;
+      } else if (config.type === 'events') {
+        exists = !!response?.data?.eventsConnection?.edges?.length;
+      } else if (config.type === 'whatsNew') {
+        exists = !!response?.data?.WhatsNewTinaCMSConnection?.edges?.length;
+      } else if (config.type === 'page') {
+        exists = !!response;
+      } else {
+        exists = !!response;
+      }
 
       return {
-        exists: !!response?.data?.doc,
+        exists,
         redirectPath,
       };
-    } else if (isBlogPaginationPage) {
-      try {
-        const contentDir = './content/blog/';
-        const postResponse = await client.queries.postConnection();
-
-        if (postResponse?.data?.postConnection?.edges?.length) {
-          const pageSegments = pathWithoutPrefix.split('/');
-          const pageNumber = pageSegments.length > 1 ? pageSegments[1] : '1';
-
-          const redirectPath =
-            pageNumber === '1' ? '/blog' : `/blog/page/${pageNumber}`;
-
-          return {
-            exists: true,
-            redirectPath,
-          };
-        }
-
-        return { exists: false };
-      } catch (error) {
-        console.error('Error checking blog pagination:', error);
-        return { exists: false };
-      }
-    } else if (isBlogPostPage) {
-      try {
-        const response = await client.queries.getExpandedPostDocument({
-          relativePath: `${pathWithoutPrefix}.mdx`,
-        });
-
-        const redirectPath = `/blog/${pathWithoutPrefix}`;
-
-        return {
-          exists: !!response?.data?.post,
-          redirectPath,
-        };
-      } catch (error) {
-        console.error('Error checking blog post existence:', error);
-        return { exists: false };
-      }
-    } else {
-      const pagePath = pathWithoutPrefix || 'index';
-      const redirectPath = pagePath === 'index' ? '/' : `/${pagePath}`;
-
-      try {
-        const response = await client.queries.pageWithRecentPosts({
-          relativePath: `${pagePath}.json`,
-        });
-        return {
-          exists: !!response,
-          redirectPath,
-        };
-      } catch (error) {
-        console.error('Error checking page existence:', error);
-        return { exists: false };
-      }
+    } catch (error) {
+      console.error(`Error checking ${routeKey} existence:`, error);
+      return { exists: false };
     }
   } catch (error) {
     console.error('Error querying page:', error);
