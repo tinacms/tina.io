@@ -32,7 +32,6 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
             clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 35% 100%)',
           }}
         ></div>
-        {/* Desktop Layout */}
         <div className="relative hidden md:flex items-center justify-between px-8 py-8">
           <div className="w-[5%]">
             <Image
@@ -75,7 +74,6 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
 
         {/* Mobile Layout */}
         <div className="relative md:hidden">
-          {/* Orange Section */}
           <div className="flex items-center justify-between px-6 py-4">
             <div className="w-[10%]">
               <Image
@@ -96,7 +94,6 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
             </div>
           </div>
 
-          {/* Blue Section with Polygon */}
           <div
             className="absolute inset-0 bg-blue-900"
             style={{
