@@ -1,14 +1,14 @@
 'use client';
 
-import { Button } from '../components/ui';
-import { DynamicLink } from '../components/ui/DynamicLink';
-import { usePathname } from 'next/navigation';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
-import { client } from '../tina/__generated__/client';
 import enLocale from 'content/not-found/en.json';
 import zhLocale from 'content/not-found/zh.json';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { Button } from '../components/ui';
+import { DynamicLink } from '../components/ui/DynamicLink';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
+import client from '../tina/__generated__/client';
 
 const localeContent = {
   en: enLocale,
@@ -69,13 +69,13 @@ const NotFoundContent = ({ content }) => (
   </PageLayout>
 );
 
-const RedirectPage = ({ pathRoute = 'home', content }) => (
+const RedirectPage = ({ redirectPath, content }) => (
   <PageLayout
     title={content.notTranslated.title}
     description={content.notTranslated.description}
   >
     <div className="flex flex-wrap gap-4">
-      <DynamicLink href={`/${pathRoute}`} passHref>
+      <DynamicLink href={redirectPath} passHref>
         <Button>{content.notTranslated.buttons.continue}</Button>
       </DynamicLink>
     </div>
@@ -89,54 +89,107 @@ const LoadingPage = ({ content }) => (
   ></PageLayout>
 );
 
+const parsePath = (pathname, localeList) => {
+  const segments = pathname.split('/').filter(Boolean);
+  const hasLocalePrefix =
+    segments.length > 0 && localeList.includes(segments[0]);
+  const locale = hasLocalePrefix ? segments[0] : DEFAULT_LOCALE;
+
+  if (!hasLocalePrefix) {
+    return { needsQuery: false, locale };
+  }
+
+  const isDocsPage = segments.length > 1 && segments[1] === 'docs';
+  const pathWithoutPrefix = isDocsPage
+    ? segments.slice(2).join('/')
+    : segments.slice(1).join('/');
+
+  return {
+    needsQuery: true,
+    locale,
+    isDocsPage,
+    pathWithoutPrefix,
+  };
+};
+
+const queryPage = async (isDocsPage, path) => {
+  try {
+    if (isDocsPage) {
+      const docPath = path || 'index';
+      const response = await client.queries.doc({
+        relativePath: `${docPath}.mdx`,
+      });
+
+      const redirectPath =
+        docPath === 'index' || docPath === '' ? '/docs' : `/docs/${docPath}`;
+
+      return {
+        exists: !!response?.data?.doc,
+        redirectPath,
+      };
+    } else {
+      const pagePath = path || 'index';
+      const redirectPath = pagePath === 'index' ? '/' : `/${pagePath}`;
+
+      try {
+        const response = await client.queries.pageWithRecentPosts({
+          relativePath: `${pagePath}.json`,
+        });
+        return {
+          exists: !!response,
+          redirectPath,
+        };
+      } catch (error) {
+        console.error('Error checking page existence:', error);
+        return { exists: false };
+      }
+    }
+  } catch (error) {
+    console.error('Error querying page:', error);
+    return { exists: false };
+  }
+};
+
 export default function NotFoundClient() {
   const pathname = usePathname();
   const localeList = SUPPORTED_LOCALES;
   const [loading, setLoading] = useState(true);
   const [pageExists, setPageExists] = useState(false);
+  const [redirectPath, setRedirectPath] = useState('');
 
-  const pathSegments = pathname.split('/').filter(Boolean);
-  const pathLocale = pathSegments[0] || '';
-  const pathRoute = pathSegments[1] || '';
+  const pathInfo = parsePath(pathname, localeList);
+  const content = localeContent[pathInfo.locale] || localeContent.en;
 
-  const locale = localeList.includes(pathLocale) ? pathLocale : DEFAULT_LOCALE;
-  const content = localeContent[locale] || localeContent.en;
-
-  if (!localeList.includes(pathLocale)) {
+  if (!pathInfo.needsQuery) {
     return <NotFoundContent content={content} />;
   }
 
   useEffect(() => {
-    async function checkEnglishPageExists() {
+    async function checkPageExists() {
       try {
-        let res = await client.queries.pageWithRecentPosts({
-          relativePath: `${pathRoute}.json`,
-        });
+        const result = await queryPage(
+          pathInfo.isDocsPage,
+          pathInfo.pathWithoutPrefix
+        );
 
-        if (!res) {
-          res = await client.queries.pageWithRecentPosts({
-            relativePath: `${pathRoute}.mdx`,
-          });
+        setPageExists(result.exists);
+        if (result.exists) {
+          setRedirectPath(result.redirectPath);
         }
-
-        setPageExists(!!res);
-      } catch (error) {
-        console.error('Error checking page existence:', error);
-        setPageExists(false);
       } finally {
         setLoading(false);
       }
     }
 
-    checkEnglishPageExists();
-  }, [pathRoute]);
+    checkPageExists();
+  }, [pathInfo]);
 
   if (loading) {
     return <LoadingPage content={content} />;
   }
 
   return pageExists ? (
-    <RedirectPage pathRoute={pathRoute} content={content} />
+    <RedirectPage redirectPath={redirectPath} content={content} />
   ) : (
     <NotFoundContent content={content} />
   );
