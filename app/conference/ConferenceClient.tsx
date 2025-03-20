@@ -15,7 +15,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 const TopBanner = ({ tinaData }: { tinaData: any }) => {
   return (
     <div className="w-full flex justify-center relative">
-      <div className="absolute left-[40%] -top-7 z-10">
+      <div className="absolute left-[40%] -top-7 z-10 hidden md:block">
         <Image
           src="/svg/microphone.svg"
           alt="Microphone Icon"
@@ -24,15 +24,16 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
           className="text-white"
         />
       </div>
-      <div className="w-[70%] relative py-8 rounded-xl overflow-hidden">
+      <div className="w-[70%] relative rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-orange-500"></div>
         <div
-          className="absolute inset-0 bg-blue-900"
+          className="absolute inset-0 bg-blue-900 hidden md:block"
           style={{
             clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 35% 100%)',
           }}
         ></div>
-        <div className="relative flex items-center justify-between px-8">
+        {/* Desktop Layout */}
+        <div className="relative hidden md:flex items-center justify-between px-8 py-8">
           <div className="w-[5%]">
             <Image
               src="/svg/logos/tina-white.svg"
@@ -69,6 +70,71 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="relative md:hidden">
+          {/* Orange Section */}
+          <div className="flex items-center justify-between px-6 py-4">
+            <div className="w-[10%]">
+              <Image
+                src="/svg/logos/tina-white.svg"
+                alt="Tina Logo"
+                width={100}
+                height={100}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-[85%] text-white">
+              <div className="font-tuner text-2xl text-left">
+                <span className="font-bold">tina</span>con 2025
+              </div>
+              <div className="font-tuner text-xl text-left">
+                Herding the Future
+              </div>
+            </div>
+          </div>
+
+          {/* Blue Section with Polygon */}
+          <div
+            className="absolute inset-0 bg-blue-900"
+            style={{
+              clipPath: 'polygon(0% 35%, 100% 45%, 100% 100%, 0% 100%)',
+              borderRadius: '0 0 0.75rem 0.75rem',
+            }}
+          ></div>
+          <div className="relative px-6 py-4 text-white">
+            <div className="flex items-center gap-4 font-tuner text-base mb-2">
+              <span>May 2</span>
+              <span>|</span>
+              <span>9AM - 6PM</span>
+            </div>
+            <div className="mb-4">
+              <Link
+                href="https://www.ssw.com.au/offices/melbourne"
+                target="_blank"
+                className="underline"
+              >
+                SSW Melbourne, Australia
+              </Link>
+            </div>
+            <div>
+              <Link href={tinaData?.rightButton?.link} target="_blank">
+                <Button color="blue" size="medium">
+                  <span className="mr-2">Join us</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="absolute right-2 bottom-3 w-[17%]">
+            <Image
+              src="/svg/microphone.svg"
+              alt="Microphone Icon"
+              width={100}
+              height={100}
+              className="text-white"
+            />
           </div>
         </div>
       </div>
