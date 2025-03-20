@@ -98,6 +98,20 @@ type RouteInfo = {
   checkExists?: (response: any) => boolean;
 };
 
+const responseCheckers = {
+  docs: (response) => !!response?.data?.doc,
+  blog: (response) => !!response?.data?.post,
+  blogPagination: (response) => !!response?.data?.postConnection?.edges?.length,
+  community: (response) => !!response?.data?.page,
+  examples: (response) => !!response?.data?.examples,
+  conference: (response) => !!response?.data?.conference,
+  events: (response) => !!response?.data?.eventsConnection?.edges?.length,
+  whatsNew: (response) =>
+    !!response?.data?.WhatsNewTinaCMSConnection?.edges?.length,
+  page: (response) => !!response?.data?.page,
+  default: (response) => !!response,
+};
+
 const routeConfig: Record<string, RouteInfo> = {
   docs: {
     type: 'docs',
@@ -111,6 +125,7 @@ const routeConfig: Record<string, RouteInfo> = {
     },
     getRelativePath: (path) => `${path || 'index'}.mdx`,
     fileExtension: '.mdx',
+    checkExists: responseCheckers.docs,
   },
   blog: {
     type: 'blog',
@@ -122,6 +137,7 @@ const routeConfig: Record<string, RouteInfo> = {
     getRedirectPath: (path) => `/blog/${path}`,
     getRelativePath: (path) => `${path}.mdx`,
     fileExtension: '.mdx',
+    checkExists: responseCheckers.blog,
   },
   'blog/page': {
     type: 'blogPagination',
@@ -134,6 +150,7 @@ const routeConfig: Record<string, RouteInfo> = {
     },
     getRelativePath: () => '',
     fileExtension: '',
+    checkExists: responseCheckers.blogPagination,
   },
   community: {
     type: 'community',
@@ -145,6 +162,7 @@ const routeConfig: Record<string, RouteInfo> = {
     getRedirectPath: () => '/community',
     getRelativePath: () => 'community.json',
     fileExtension: '.json',
+    checkExists: responseCheckers.community,
   },
   conference: {
     type: 'conference',
@@ -156,6 +174,7 @@ const routeConfig: Record<string, RouteInfo> = {
     getRedirectPath: () => '/conference',
     getRelativePath: () => 'TinaCon2025.mdx',
     fileExtension: '.mdx',
+    checkExists: responseCheckers.conference,
   },
   events: {
     type: 'events',
@@ -165,6 +184,7 @@ const routeConfig: Record<string, RouteInfo> = {
     getRedirectPath: () => '/events',
     getRelativePath: () => '',
     fileExtension: '',
+    checkExists: responseCheckers.events,
   },
   examples: {
     type: 'examples',
@@ -176,6 +196,7 @@ const routeConfig: Record<string, RouteInfo> = {
     getRedirectPath: () => '/examples',
     getRelativePath: () => 'index.json',
     fileExtension: '.json',
+    checkExists: responseCheckers.examples,
   },
   'whats-new': {
     type: 'whatsNew',
@@ -185,6 +206,7 @@ const routeConfig: Record<string, RouteInfo> = {
     getRedirectPath: () => '/whats-new/tinacms',
     getRelativePath: () => '',
     fileExtension: '',
+    checkExists: responseCheckers.whatsNew,
   },
   default: {
     type: 'page',
@@ -205,45 +227,32 @@ const routeConfig: Record<string, RouteInfo> = {
       return path ? `${path}.json` : 'index.json';
     },
     fileExtension: '.json',
-    checkExists: (response) => !!response?.data?.page,
+    checkExists: responseCheckers.page,
   },
 };
 
-const parsePath = (pathname, localeList) => {
+const parsePath = (pathname: string, localeList: string[]) => {
   const segments = pathname.split('/').filter(Boolean);
   const hasLocalePrefix =
     segments.length > 0 && localeList.includes(segments[0]);
   const locale = hasLocalePrefix ? segments[0] : DEFAULT_LOCALE;
 
-  if (!hasLocalePrefix) {
-    return { needsQuery: false, locale };
-  }
-
-  if (segments.length === 1) {
+  if (!hasLocalePrefix || segments.length === 1) {
     return { needsQuery: false, locale };
   }
 
   const routeType = segments[1];
-
   const isBlogPagination =
     routeType === 'blog' && segments.length > 2 && segments[2] === 'page';
   const isBlogRoot = routeType === 'blog' && segments.length === 2;
 
-  let routeKey = routeType;
-  if (isBlogPagination || isBlogRoot) {
-    routeKey = 'blog/page';
-  }
-
-  let pathWithoutPrefix;
-  if (isBlogPagination) {
-    pathWithoutPrefix = segments.slice(2).join('/');
-  } else if (isBlogRoot) {
-    pathWithoutPrefix = 'page/1';
-  } else if (segments.length === 2) {
-    pathWithoutPrefix = '';
-  } else {
-    pathWithoutPrefix = segments.slice(2).join('/');
-  }
+  const routeKey = isBlogPagination || isBlogRoot ? 'blog/page' : routeType;
+  const pathWithoutPrefix = ((type: string, segs: string[]) => {
+    if (isBlogPagination) return segs.slice(2).join('/');
+    if (isBlogRoot) return 'page/1';
+    if (segs.length === 2) return '';
+    return segs.slice(2).join('/');
+  })(routeType, segments);
 
   console.log(
     `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`
@@ -257,15 +266,18 @@ const parsePath = (pathname, localeList) => {
   };
 };
 
-const queryPage = async (pathInfo) => {
+const queryPage = async (pathInfo: {
+  routeKey: string;
+  pathWithoutPrefix: string;
+}) => {
   try {
     const { routeKey, pathWithoutPrefix } = pathInfo;
     const config = routeConfig[routeKey] || routeConfig['default'];
+    const isDefaultRoute = config.type === 'page';
 
     try {
-      const relativePath = config.getRelativePath(
-        config.type === 'page' ? routeKey : pathWithoutPrefix
-      );
+      const path = isDefaultRoute ? routeKey : pathWithoutPrefix;
+      const relativePath = config.getRelativePath(path);
 
       console.log(`[debug] Route info:`, {
         routeKey,
@@ -278,9 +290,7 @@ const queryPage = async (pathInfo) => {
         ? await config.queryFunction(relativePath)
         : await config.queryFunction({});
 
-      const redirectPath = config.getRedirectPath(
-        config.type === 'page' ? routeKey : pathWithoutPrefix
-      );
+      const redirectPath = config.getRedirectPath(path);
 
       console.log(`[debug] Response info:`, {
         redirectPath,
@@ -288,34 +298,9 @@ const queryPage = async (pathInfo) => {
         dataKeys: response?.data ? Object.keys(response.data) : [],
       });
 
-      let exists = false;
+      const exists = config.checkExists?.(response) ?? !!response;
 
-      if (config.type === 'docs') {
-        exists = !!response?.data?.doc;
-      } else if (config.type === 'blog') {
-        exists = !!response?.data?.post;
-      } else if (config.type === 'blogPagination') {
-        exists = !!response?.data?.postConnection?.edges?.length;
-      } else if (config.type === 'community') {
-        exists = !!response?.data?.page;
-      } else if (config.type === 'examples') {
-        exists = !!response?.data?.examples;
-      } else if (config.type === 'conference') {
-        exists = !!response?.data?.conference;
-      } else if (config.type === 'events') {
-        exists = !!response?.data?.eventsConnection?.edges?.length;
-      } else if (config.type === 'whatsNew') {
-        exists = !!response?.data?.WhatsNewTinaCMSConnection?.edges?.length;
-      } else if (config.type === 'page') {
-        exists = !!response;
-      } else {
-        exists = !!response;
-      }
-
-      return {
-        exists,
-        redirectPath,
-      };
+      return { exists, redirectPath };
     } catch (error) {
       console.error(`Error checking ${routeKey} existence:`, error);
       return { exists: false };
@@ -343,8 +328,10 @@ export default function NotFoundClient() {
   useEffect(() => {
     async function checkPageExists() {
       try {
-        const result = await queryPage(pathInfo);
-
+        const result = await queryPage({
+          routeKey: pathInfo.routeKey,
+          pathWithoutPrefix: pathInfo.pathWithoutPrefix,
+        });
         setPageExists(result.exists);
         if (result.exists) {
           setRedirectPath(result.redirectPath);
