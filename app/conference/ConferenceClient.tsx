@@ -33,13 +33,13 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
           }}
         ></div>
         <div className="relative hidden md:flex items-center justify-between px-8 py-8">
-          <div className="w-[5%]">
+          <div className="w-[4rem]">
             <Image
               src="/svg/logos/tina-white.svg"
               alt="Tina Logo"
               width={100}
               height={100}
-              className="w-full h-auto"
+              className="w-[100px] h-auto"
             />
           </div>
           <div className="w-[40%] text-white mt-6">
@@ -75,7 +75,7 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
         {/* Mobile Layout */}
         <div className="relative md:hidden">
           <div className="flex items-center justify-between px-6 py-4">
-            <div className="w-[10%]">
+            <div className="w-[2rem]">
               <Image
                 src="/svg/logos/tina-white.svg"
                 alt="Tina Logo"
