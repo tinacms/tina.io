@@ -14,7 +14,16 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 const TopBanner = ({ tinaData }: { tinaData: any }) => {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center relative">
+      <div className="absolute left-[40%] -top-7 z-10">
+        <Image
+          src="/svg/microphone.svg"
+          alt="Microphone Icon"
+          width={100}
+          height={100}
+          className="text-white"
+        />
+      </div>
       <div className="w-[70%] relative py-8 rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-orange-500"></div>
         <div
