@@ -12,6 +12,50 @@ import { Button } from 'components/ui';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
+const TopBanner = ({ tinaData }: { tinaData: any }) => {
+  return (
+    <div className="w-full relative py-4">
+      <div className="absolute inset-0 bg-orange-500"></div>
+      <div
+        className="absolute inset-0 bg-blue-900"
+        style={{
+          clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 35% 100%)',
+        }}
+      ></div>
+      <div className="relative flex justify-between items-center px-8">
+        <div className="w-[40%] text-white">
+          <div className="font-tuner text-4xl">
+            <span className="font-bold">tina</span>con 2025
+          </div>
+          <div className="font-tuner text-2xl">Herding the Future</div>
+        </div>
+        <div className="w-[60%] text-white">
+          <div className="flex items-center gap-4 font-tuner text-lg">
+            <span>May 2</span>
+            <span>|</span>
+            <span>9AM - 6PM</span>
+            <span>|</span>
+            <Link
+              href="https://www.ssw.com.au/offices/melbourne"
+              target="_blank"
+              className="underline"
+            >
+              SSW Melbourne, Australia
+            </Link>
+          </div>
+          <div className="mt-4">
+            <Link href={tinaData?.rightButton?.link} target="_blank">
+              <Button color="blue" size="medium">
+                <span className="mr-2">Join us</span>
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const HeaderBanner = ({
   tinaData,
   scrollToAgenda,
@@ -350,6 +394,7 @@ function ConferencePage({
 
   return (
     <div className="mt-6">
+      <TopBanner tinaData={tinaData.data?.conference?.banner} />
       <HeaderBanner
         tinaData={tinaData.data?.conference?.banner}
         scrollToAgenda={scrollToAgenda}
