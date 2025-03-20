@@ -23,15 +23,24 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
             clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 35% 100%)',
           }}
         ></div>
-        <div className="relative flex justify-between items-center px-12">
-          <div className="w-[40%] text-white">
+        <div className="relative flex items-center justify-between px-8">
+          <div className="w-[5%]">
+            <Image
+              src="/svg/logos/tina-white.svg"
+              alt="Tina Logo"
+              width={100}
+              height={100}
+              className="w-full h-auto"
+            />
+          </div>
+          <div className="w-[40%] text-white mt-6">
             <div className="font-tuner text-4xl">
               <span className="font-bold">tina</span>con 2025
             </div>
-            <div className="font-tuner text-2xl">Herding the Future</div>
+            <div className="font-tuner text-2xl mt-4">Herding the Future</div>
           </div>
           <div className="w-[50%] text-white">
-            <div className="flex items-center gap-4 font-tuner text-lg">
+            <div className="flex items-center gap-4 font-tuner text-lg mt-6">
               <span>May 2</span>
               <span>|</span>
               <span>9AM - 6PM</span>
