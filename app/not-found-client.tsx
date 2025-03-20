@@ -100,22 +100,49 @@ const parsePath = (pathname, localeList) => {
   }
 
   const isDocsPage = segments.length > 1 && segments[1] === 'docs';
-  const pathWithoutPrefix = isDocsPage
-    ? segments.slice(2).join('/')
-    : segments.slice(1).join('/');
+  const isBlogPage = segments.length > 1 && segments[1] === 'blog';
+  const isBlogPaginationPage =
+    isBlogPage &&
+    (segments.length === 2 || (segments.length > 2 && segments[2] === 'page'));
+  const isBlogPostPage = isBlogPage && !isBlogPaginationPage;
+
+  let pathWithoutPrefix;
+  if (isDocsPage) {
+    pathWithoutPrefix = segments.slice(2).join('/');
+  } else if (isBlogPaginationPage) {
+    if (segments.length === 2) {
+      pathWithoutPrefix = 'page/1';
+    } else {
+      pathWithoutPrefix = segments.slice(2).join('/');
+    }
+  } else if (isBlogPostPage) {
+    pathWithoutPrefix = segments.slice(2).join('/');
+  } else {
+    pathWithoutPrefix = segments.slice(1).join('/');
+  }
 
   return {
     needsQuery: true,
     locale,
     isDocsPage,
+    isBlogPage,
+    isBlogPaginationPage,
+    isBlogPostPage,
     pathWithoutPrefix,
   };
 };
 
-const queryPage = async (isDocsPage, path) => {
+const queryPage = async (pathInfo) => {
   try {
+    const {
+      isDocsPage,
+      isBlogPaginationPage,
+      isBlogPostPage,
+      pathWithoutPrefix,
+    } = pathInfo;
+
     if (isDocsPage) {
-      const docPath = path || 'index';
+      const docPath = pathWithoutPrefix || 'index';
       const response = await client.queries.doc({
         relativePath: `${docPath}.mdx`,
       });
@@ -127,8 +154,47 @@ const queryPage = async (isDocsPage, path) => {
         exists: !!response?.data?.doc,
         redirectPath,
       };
+    } else if (isBlogPaginationPage) {
+      try {
+        const contentDir = './content/blog/';
+        const postResponse = await client.queries.postConnection();
+
+        if (postResponse?.data?.postConnection?.edges?.length) {
+          const pageSegments = pathWithoutPrefix.split('/');
+          const pageNumber = pageSegments.length > 1 ? pageSegments[1] : '1';
+
+          const redirectPath =
+            pageNumber === '1' ? '/blog' : `/blog/page/${pageNumber}`;
+
+          return {
+            exists: true,
+            redirectPath,
+          };
+        }
+
+        return { exists: false };
+      } catch (error) {
+        console.error('Error checking blog pagination:', error);
+        return { exists: false };
+      }
+    } else if (isBlogPostPage) {
+      try {
+        const response = await client.queries.getExpandedPostDocument({
+          relativePath: `${pathWithoutPrefix}.mdx`,
+        });
+
+        const redirectPath = `/blog/${pathWithoutPrefix}`;
+
+        return {
+          exists: !!response?.data?.post,
+          redirectPath,
+        };
+      } catch (error) {
+        console.error('Error checking blog post existence:', error);
+        return { exists: false };
+      }
     } else {
-      const pagePath = path || 'index';
+      const pagePath = pathWithoutPrefix || 'index';
       const redirectPath = pagePath === 'index' ? '/' : `/${pagePath}`;
 
       try {
@@ -167,10 +233,7 @@ export default function NotFoundClient() {
   useEffect(() => {
     async function checkPageExists() {
       try {
-        const result = await queryPage(
-          pathInfo.isDocsPage,
-          pathInfo.pathWithoutPrefix
-        );
+        const result = await queryPage(pathInfo);
 
         setPageExists(result.exists);
         if (result.exists) {
