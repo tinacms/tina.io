@@ -1,0 +1,81 @@
+---
+seo:
+  title: Set Up GitHub Enterprise Integration with TinaCloud
+  description: >-
+    Step-by-step guide to connect GitHub Enterprise (Server or Cloud) with
+    TinaCloud securely and efficiently
+title: Setting Up GitHub Enterprise Integration with TinaCloud
+next: ''
+previous: ''
+---
+
+This guide provides step-by-step instructions for integrating a GitHub Enterprise (GHE) instance with TinaCloud. This integration supports both GitHub Enterprise Server (self-hosted) and GitHub Enterprise Cloud (GitHub-hosted), with the caveat that GitHub Enterprise Server must be accessible by TinaCloud.
+
+## Prerequisites
+
+1. A GitHub Enterprise instance (either GitHub Enterprise Server or GitHub Enterprise Cloud).
+2. Administrative access to configure GitHub Apps in your GitHub organization.
+3. If self-hosting GitHub Enterprise Server, ensure it is accessible by TinaCloud.
+
+## Step 1: Configure the GitHub App in GitHub Enterprise
+
+### Create the GitHub App
+
+1. Go to your GitHub organization and navigate to Settings > Developer settings > GitHub Apps.
+2. Click New GitHub App.
+3. Provide the following details:
+   1. App name: Choose a name for your app (e.g., "TinaCloud Integration").
+   2. Description: Add a description for the app (e.g., "Integration for TinaCloud to manage content and pull requests").
+   3. Homepage URL: Enter a URL for the app (e.g., [https://tina.io](https://tina.io/)).
+4. Under Callback URL, enter: [https://app.tina.io/github-authenticating](https://app.tina.io/github-authenticating).
+5. Leave the following options unchecked:
+   1. Request user authorization (OAuth) during installation
+   2. Enable Device Flow
+6. Under Post Installation, configure the following:
+   1. Setup URL: Enter [https://app.tina.io/github-installed](https://app.tina.io/github-installed).
+   2. Check the box for Redirect On Update.
+7. Webhook URL: No webhook URL is required for this integration.
+8. Permissions: Configure the following permissions for the GitHub App:
+   1. Contents: Read + Write
+   2. Metadata: Read
+   3. Pull Requests: Read + Write
+   4. Webhooks: Read + Write
+9. Under Where can this GitHub App be installed?, select Any account.
+
+### Generate Credentials
+
+1. After creating the app, navigate to the General tab on the app's settings page.
+2. Note the App ID and Client ID displayed on this page.
+3. Generate a Client Secret by clicking Generate a new client secret.
+4. Generate a Private Key by clicking Generate a private key. Save the .pem file securely.
+
+## Step 2: Configure the GitHub Enterprise Server in TinaCloud
+
+1. Navigate to the TinaCloud GitHub Hosts configuration page: [https://app.tina.io/githosts/new](https://app.tina.io/githosts/new).
+2. Enter the following details:
+3. Server Name: A name for your GitHub Enterprise instance (e.g., "My GitHub Enterprise").
+4. Hostname: The URL of your GitHub Enterprise instance.
+5. App ID: The App ID obtained from the GitHub App settings.
+6. Client ID: The Client ID obtained from the GitHub App settings.
+7. Client Secret: The Client Secret generated in the GitHub App settings.
+8. Private Key: Upload the .pem file generated in the GitHub App settings.
+9. Click the Verify button to validate the configuration. If the verification is successful, proceed to save the configuration.
+
+Once the server is successfully configured, users will be able to select it when creating new projects in TinaCloud.
+
+## Step 3: Verify the Integration
+
+1. After configuring the GitHub App and GitHub Enterprise Server, return to TinaCloud.
+2. Create a new project and select the configured GitHub Enterprise instance.
+3. If the integration is successful, you will see a list of repositories available on the GitHub Enterprise instance.
+
+## Troubleshooting
+
+* GitHub Enterprise Server not accessible: Ensure your GitHub Enterprise Server is reachable by TinaCloud. Check firewall rules and network configurations.
+* Permissions issues: Verify that the GitHub App has the correct permissions as outlined above.
+* Configuration errors: Double-check the URLs, credentials, and settings entered during the GitHub App setup.
+* Verification failure: If the verification fails, ensure all credentials (App ID, Client ID, Client Secret, and Private Key) are entered correctly and match the GitHub App settings.
+
+## Support
+
+For additional assistance, contact TinaCloud support.
