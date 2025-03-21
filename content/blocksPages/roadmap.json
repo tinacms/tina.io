@@ -87,7 +87,7 @@
           "content": "We're working on some ways to leverage AI in the content creation process.\n",
           "actions": [
             {
-              "label": "Do you provide an llms.txt file to make your website LLM-friendly?",
+              "label": "Do you use /llms.txt to make your website LLM-friendly?",
               "icon": false,
               "variant": "default",
               "size": "medium",
