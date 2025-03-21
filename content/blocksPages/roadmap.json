@@ -24,10 +24,10 @@
       "_template": "content"
     },
     {
-      "headline": "✔️ Done",
+      "headline": "Done",
       "items": [
         {
-          "headline": "GitHub Enterprise Support",
+          "headline": "☑︎ GitHub Enterprise Support",
           "status": "",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
         },
