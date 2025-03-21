@@ -14,25 +14,25 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 const TopBanner = ({ tinaData }: { tinaData: any }) => {
   return (
-    <div className="w-full flex justify-center relative">
-      <div className="absolute left-[40%] -top-7 z-10 hidden md:block">
+    <div className="w-full flex justify-center relative px-10 lg:h-52">
+      <div className="absolute left-[38%] -top-11 z-10 hidden lg:block">
         <Image
-          src="/svg/microphone.svg"
+          src="/svg/llama-mic.svg"
           alt="Microphone Icon"
-          width={100}
-          height={100}
+          width={200}
+          height={200}
           className="text-white"
         />
       </div>
-      <div className="w-[70%] relative rounded-xl overflow-hidden">
+      <div className="w-full relative rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-orange-500"></div>
         <div
-          className="absolute inset-0 bg-blue-900 hidden md:block"
+          className="absolute inset-0 bg-blue-900 hidden lg:block"
           style={{
             clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 35% 100%)',
           }}
         ></div>
-        <div className="relative hidden md:flex items-center justify-between px-8 py-8">
+        <div className="relative hidden lg:flex items-center justify-between px-8 py-6 lg:h-52">
           <div className="w-[4rem]">
             <Image
               src="/svg/logos/tina-white.svg"
@@ -49,7 +49,7 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
             <div className="font-tuner text-2xl mt-4">Herding the Future</div>
           </div>
           <div className="w-[50%] text-white">
-            <div className="flex items-center gap-4 font-tuner text-lg mt-6">
+            <div className="flex flex-wrap justify-center items-center gap-4 font-tuner text-lg mt-6 ml-8">
               <span>May 2</span>
               <span>|</span>
               <span>9AM - 6PM</span>
@@ -62,7 +62,7 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
                 SSW Melbourne, Australia
               </Link>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 flex justify-center items-center">
               <Link href={tinaData?.rightButton?.link} target="_blank">
                 <Button color="blue" size="medium">
                   <span className="mr-2">Join us</span>
@@ -73,7 +73,7 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="relative md:hidden">
+        <div className="relative lg:hidden">
           <div className="flex items-center justify-between px-6 py-4">
             <div className="w-[2rem]">
               <Image
@@ -126,10 +126,10 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
           </div>
           <div className="absolute right-2 bottom-3 w-[17%]">
             <Image
-              src="/svg/microphone.svg"
+              src="/svg/llama-mic.svg"
               alt="Microphone Icon"
-              width={100}
-              height={100}
+              width={200}
+              height={200}
               className="text-white"
             />
           </div>
