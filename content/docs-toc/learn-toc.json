@@ -123,6 +123,115 @@
           "_template": "item"
         }
       ]
+    },
+    {
+      "title": "Guides",
+      "items": [
+        {
+          "title": "Using Tina as a Website Builder",
+          "slug": "content/docs/editing/blocks.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Querying Tina Content at Runtime",
+          "slug": "content/docs/guides/react-data-fetching.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Configuring Collections",
+          "items": [
+            {
+              "title": "Single Document Collections",
+              "slug": "content/docs/editing/single-document-collections.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Marking Draft Documents",
+              "slug": "content/docs/drafts/drafts-fields.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Modifying Data on Save",
+              "slug": "content/docs/extending-tina/before-submit.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Automatic Filenames",
+              "slug": "content/docs/extending-tina/filename-customization.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "Framework Guides",
+          "items": [
+            {
+              "title": "Overview",
+              "slug": "content/docs/integration/frameworks.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Migrating From WordPress",
+              "slug": "content/docs/guides/converting-wordpress-to-tina.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Gatsby",
+              "items": [
+                {
+                  "title": "Migrating an existing Gatsby blog to TinaCMS",
+                  "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
+              "title": "NextJS",
+              "items": [
+                {
+                  "title": "Querying Tina Content in NextJS",
+                  "slug": "content/docs/guides/nextjs-data-fetching.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Internationalization with NextJS+Tina",
+                  "slug": "content/docs/guides/nextjs-internationalization.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Using Drafts with Visual Editing",
+                  "slug": "content/docs/guides/contextual-drafts.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
+              "title": "Docusaurus",
+              "slug": "content/docs/guides/docusaurus.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "Marking Draft Pages",
+          "slug": "content/docs/drafts/drafts-fields.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Separate Content Repo",
+          "slug": "content/docs/guides/separate-content-repo.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Internationalization",
+          "slug": "content/docs/guides/internationalization.mdx",
+          "_template": "item"
+        }
+      ]
     }
   ]
 }
