@@ -32,7 +32,7 @@
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
         },
         {
-          "headline": "2FA Authentication",
+          "headline": "☑︎ 2FA Authentication",
           "status": "",
           "content": "Strengthens security for TinaCloud users by adding an extra layer of protection to prevent unauthorized access, ensuring safer content management.\n",
           "actions": [
