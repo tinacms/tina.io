@@ -107,7 +107,7 @@
           "actions": [
             {
               "label": "Editorial Workflow",
-              "icon": false,
+              "icon": true,
               "variant": "blue",
               "size": "medium",
               "url": "https://tina.io/editorial-workflow/"
