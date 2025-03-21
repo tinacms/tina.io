@@ -1,24 +1,28 @@
 ---
 title: Content Model Overview
-last_edited: '2025-03-12T23:26:54.432Z'
+last_edited: '2025-03-20T23:37:13.973Z'
 tocIsHidden: true
 next: ''
 previous: ''
 ---
 
-The Tina schema defines the shape of your content. Tina uses a "content-modeling as code" approach. This has a few benefits compared to modelling through a UI:
+The **Tina schema defines the shape of your content**.
+
+Tina uses a "content-modeling as code" approach.
 
 * The schema is version-controlled
-* Mutating the schema is easy, as you can test out changes locally, or in a branch.
-* The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
+* You can test out schema changes locally, or in a branch.
+* You can extend the schema in interesting ways (custom validation, custom UI fields, etc).
 
-The content model, and all configuration code is defined in a file called `tina/config.{ts,js,tsx}` – specifically via the `defineConfig` method (see example below).
+The content model, and all configuration code is defined in a file called `tina/config.{ts,js,tsx}`.
+
+> Specifically via the `defineConfig` method (see example below).
 
 The `schema` property determines data mapping between your content store and the editor.
 
-Each item in the `schema.collections` array represents a distinct entity, which maps to certain directories of content in our site's repository. Each item contains an array of `fields` to control what appears in the TinaCMS editor.
+Each item in the `schema.collections` array represents a different content structure.
 
-The example below is a simple model definition following this structure.
+Each of these contains an array of `fields` to control what appears in the TinaCMS editor.
 
 ```ts
 // tina/config.{ts,js,tsx}
@@ -27,12 +31,13 @@ import { defineConfig } from 'tinacms'
 export default defineConfig({
   // ...
   schema: {
-    collections: [
+    collections: [ 
+      //⤵️ each item is a different content structure
       {
         label: 'Blog Posts',
         name: 'post',
         path: 'content/posts',
-        fields: [
+        fields: [ //⤵️ each item is a new field in the editor
           {
             type: 'string',
             label: 'Title',
@@ -46,6 +51,9 @@ export default defineConfig({
           },
         ],
       },
+      {
+        ...
+      }
     ],
   },
 })

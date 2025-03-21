@@ -9,6 +9,11 @@
           "_template": "item"
         },
         {
+          "title": "The Editing Experience",
+          "slug": "content/docs/using-tina-editor.mdx",
+          "_template": "item"
+        },
+        {
           "title": "Quickstart",
           "slug": "content/docs/setup-overview.mdx",
           "_template": "item"
@@ -74,11 +79,6 @@
             }
           ],
           "_template": "items"
-        },
-        {
-          "title": "Using the Tina Editor",
-          "slug": "content/docs/using-tina-editor.mdx",
-          "_template": "item"
         },
         {
           "title": "FAQ",

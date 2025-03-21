@@ -23,7 +23,7 @@ Continue on for a quick **2 minute rundown of TinaCMS**, and how it fits in your
 <scrollBasedShowcase
   showcaseItems={[
     {
-      title: 'TinaCMS',
+      title: 'Introduction',
       image: '/img/placeholder.png',
       content:
         'TinaCMS is an open-source Content Management System (CMS) that seamlessly integrates with your Markdown workflow.\n',
@@ -31,18 +31,44 @@ Continue on for a quick **2 minute rundown of TinaCMS**, and how it fits in your
     },
     {
       title: 'Your Website',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Hosting ( (2).png',
+      image: '/img/docs/product-tour/headless_cms1.png',
       content:
         'With TinaCMS, The developer hosts the site where they like, using whichever framework they choose.\n',
       useAsSubsection: true,
     },
     {
       title: 'Headless CMS',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Hosting ( (7).png',
+      image: '/img/docs/product-tour/headless_cms2.png',
       content:
         'TinaCMS is "Headless", meaning it\'s decoupled from your website. TinaCMS provides a queryable content API that your website\'s code consumes.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'The CMS Backend',
+      image: '/img/docs/product-tour/queryable_database.png',
+      content:
+        'The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.\n',
+      useAsSubsection: false,
+    },
+    {
+      title: 'Git-Backed Content',
+      image: '/img/docs/product-tour/git-backed.png',
+      content:
+        'All your content gets backed by git into JSON/Markdown/MDX files.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'TinaCloud',
+      image: '/img/docs/product-tour/tina-cloud.png',
+      content:
+        'Out of the box, we provide an easy-to-use hosted version of the backend, called TinaCloud.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Self-Hosted Backend',
+      image: '/img/docs/product-tour/self-host-backend.png',
+      content:
+        'For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.\n',
       useAsSubsection: true,
     },
     {
@@ -54,93 +80,56 @@ Continue on for a quick **2 minute rundown of TinaCMS**, and how it fits in your
     },
     {
       title: '/admin Route',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Hosting ( (3).png',
+      image: '/img/docs/product-tour/admin.png',
       content:
         'Users interact with the CMS by navigating to the `/admin` page on your site.\n',
       useAsSubsection: true,
     },
     {
       title: 'Saving',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Hosting ( (5).png',
+      image: '/img/docs/product-tour/git-save.png',
       content:
         'When users make a change in the CMS, a commit is made back to your Git repository.\n',
       useAsSubsection: true,
     },
     {
-      title: 'The CMS Backend',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/Untitled design (1).png',
-      content:
-        'The TinaCMS backend provides the GraphQL-based API for querying your content, offering support for filtering, searching, and pagination.\n',
-      useAsSubsection: false,
-    },
-    {
-      title: 'Git-Backed Content',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Hosting ( (6).png',
-      content:
-        'All your content gets backed by git into JSON/Markdown/MDX files.\n',
-      useAsSubsection: true,
-    },
-    {
-      title: 'TinaCloud',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Copy of Copy of Copy of Copy of Hosting ( (3).png',
-      content:
-        'Out of the box, we provide an easy-to-use hosted version of the backend, called TinaCloud.\n',
-      useAsSubsection: true,
-    },
-    {
-      title: 'Self-Hosted Backend',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Copy of Copy of Copy of Copy of Hosting ( (2).png',
-      content:
-        'For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.\n',
-      useAsSubsection: true,
-    },
-    {
       title: 'Integrating TinaCMS into a site',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Hosting ( (8).png',
+      image: '/img/docs/product-tour/cli-init.png',
       content:
         'TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina packages, and add some boilerplate.\n',
       useAsSubsection: false,
     },
     {
       title: 'Running TinaCMS Locally',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/CMS Interface (1).png',
+      image: '/img/docs/product-tour/local-workflow.png',
       content:
         'You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API. This gives developers an ultra-fast feedback loop.\n',
       useAsSubsection: true,
     },
     {
       title: 'Content Modelling',
-      image:
-        'https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/docs/product-tour/Your paragraph text (2).png',
+      image: '/img/docs/product-tour/content-modelling.png',
       content:
         'Content in TinaCMS is modelled using a \\`tina/config.ts\\` file in your project. Through this, you can define "collections" that model various content types on your site.\n',
       useAsSubsection: true,
     },
     {
       title: 'Data-Fetching',
-      image: '/img/docs/product-tour/Your paragraph text (4).png',
+      image: '/img/docs/product-tour/graphql-query_5.png',
       content:
         'TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.\n',
       useAsSubsection: true,
     },
     {
       title: 'Client',
-      image: '/img/docs/product-tour/JS (1).png',
+      image: '/img/docs/product-tour/client.png',
       content:
         'Moreover, we also generate a user-friendly client that simplifies the process of querying your content.\n',
       useAsSubsection: true,
     },
     {
       title: 'Type-Safety',
-      image: '/img/docs/product-tour/TS (1).png',
+      image: '/img/docs/product-tour/client-typesafe.png',
       content:
         'TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.\n',
       useAsSubsection: true,

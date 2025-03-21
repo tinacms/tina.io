@@ -1,17 +1,21 @@
 ---
 id: collections
 title: Collections
-last_edited: '2025-03-13T00:43:30.937Z'
+last_edited: '2025-03-21T00:08:57.524Z'
 next: content/docs/reference/fields.mdx
 previous: content/docs/reference/schema.mdx
 ---
 
-Collections group content by directory in your Git Repository. Creating a new bit of content in TinaCMS is done on a per-collection basis so that:
+Each collection is a distinct content structure. Creating a content document in TinaCMS is done on a per-collection basis so that:
 
-* Content structure should match the collection definition.
-* Content is linked to one collection.
+* Content structure matches a collection definition.
+* The document exists under that collection.
 
-![](/img/docs/schema/SCR-20250312-nnbi.png)Each collection corresponds to a distinct set of form fields when seen in the TinaCMS editor. These can be specified in the collections'`fields` or `templates` array.
+![](/img/docs/schema/SCR-20250312-nnbi.png)
+
+Each collection defines its own form fields for the TinaCMS editor.
+
+These can be specified in the collections'`fields` or `templates` array.
 
 The `format` property can be set to control the filetype of content created in the collection.
 
@@ -54,9 +58,11 @@ We recommend using singular naming in a collection (post,  not post**s**).
 
 ### Path
 
-`path` controls the path to the directory storing this collection.
+`path` let's Tina know which directories hold documents for a collection.
 
-[`Format`](#format) or [`match`](#match) properties can further filter included documents. The CLI will print a warning if there are overlapping documents.
+[`Format`](#format) or [`match`](#match) properties can further specify included documents. 
+
+Documents of different collections can be co-located, but the CLI will print a warning if there are overlapping documents.
 
 By default, the path is relative to where the CLI is running but this can be changed by using the [`--rootPath`](/docs/cli-overview) CLI flag.
 
@@ -70,7 +76,7 @@ If unspecified, markdown files are used.
 
 ### match.include
 
-A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that will be used to match a subset of the files in the `path` directory, not including the file extension. Use this field to \*\*exclude subdirectories \*\*or **match specific filesets**.
+A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that will be used to match a subset of the files in the `path` directory, not including the file extension. Use this field to **exclude subdirectories** or **match specific filesets**.
 
 * `?` matches a single character
 * `*` matches any number of any characters (except `/`)
