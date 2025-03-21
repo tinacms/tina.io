@@ -184,6 +184,51 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
+  table: (props) => {
+    // Navigate through the nested structure to find the actual table content
+    // @ts-ignore - Linter is wrong about the actual structure
+    const tableRows = props?.children?.props?.children || [];
+
+    return (
+      <div className="overflow-x-auto my-6">
+        <table className="table-auto w-full border-collapse">
+          <tbody>
+            {tableRows.map((row, rowIndex) => {
+              // Each row has its own props.children array containing cells
+              // @ts-ignore - Linter is wrong about the actual structure
+              const cells = row?.props?.children || [];
+
+              return (
+                <tr
+                  key={`row-${rowIndex}`}
+                  className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                >
+                  {cells.map((cell, cellIndex) => {
+                    // Determine if this is a header cell based on its name
+                    const isHeaderCell = cell?.name === 'th';
+                    const CellComponent = isHeaderCell ? 'th' : 'td';
+
+                    return (
+                      <CellComponent
+                        key={`cell-${rowIndex}-${cellIndex}`}
+                        className={`border px-4 py-2 ${
+                          isHeaderCell ? 'font-bold bg-gray-100' : ''
+                        }`}
+                      >
+                        {/* @ts-ignore - Linter is wrong about the actual structure */}
+                        {console.log(cell)}
+                        {cell?.props?.children}
+                      </CellComponent>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  },
   WebmEmbed: ({ embedSrc, width = '100%' }) => (
     <div className="video-container flex justify-center my-4">
       <video
