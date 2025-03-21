@@ -39,7 +39,7 @@
         {
           "headline": "Vercel Data Cache Support",
           "status": "",
-          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n\n[https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache](https://tina.io/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache)\n",
+          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n",
           "actions": [
             {
               "label": "Blogged",
