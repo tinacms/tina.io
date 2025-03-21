@@ -12,6 +12,7 @@ import { Button } from 'components/ui';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
+
 const TopBanner = ({ tinaData }: { tinaData: any }) => {
   return (
     <div className="w-full flex justify-center relative px-10 lg:h-52">
@@ -477,7 +478,7 @@ function ConferencePage({
 
   return (
     <div className="mt-6">
-      <TopBanner tinaData={tinaData.data?.conference?.banner} />
+      {/* <TopBanner tinaData={tinaData.data?.conference?.banner} /> */}
       <HeaderBanner
         tinaData={tinaData.data?.conference?.banner}
         scrollToAgenda={scrollToAgenda}
