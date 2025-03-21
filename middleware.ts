@@ -22,10 +22,8 @@ export const DEFAULT_LOCALE = 'en';
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
-  const pathname = url.pathname;
 
   const locale = url.searchParams.get('setLocale') || getLocale(request);
-
   let response;
 
   if (url.searchParams.has('setLocale')) {
@@ -35,7 +33,7 @@ export function middleware(request: NextRequest) {
     } else {
       response = NextResponse.redirect(new URL(`/${locale}`, request.url));
     }
-  } else if (pathname === '/' && locale !== DEFAULT_LOCALE) {
+  } else if (locale !== DEFAULT_LOCALE) {
     response = NextResponse.redirect(new URL(`/${locale}`, request.url));
   } else {
     response = NextResponse.next();
