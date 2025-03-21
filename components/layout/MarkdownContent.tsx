@@ -13,8 +13,6 @@ import { Prism } from '../styles/Prism';
 import styled from 'styled-components';
 import LinkSvg from '../../public/svg/link.svg';
 
-import * as shortcodeRenderers from '../../utils/shortcodes';
-
 import GithubSlugger from 'github-slugger';
 import Image from 'next/image';
 
@@ -123,18 +121,6 @@ const HeadingLink = styled.a`
     opacity: 1;
   }
 `;
-
-// https://github.com/rexxars/react-markdown/issues/113#issuecomment-490060741
-const ShortcodeRenderer = ({ identifier, attributes }) => {
-  const Renderer = shortcodeRenderers[identifier];
-
-  if (!Renderer) {
-    console.warn(`No renderer for shortcode: ${identifier}`);
-    return null;
-  }
-
-  return <Renderer {...attributes} />;
-};
 
 const CodeSnippets = (props) => {
   return (

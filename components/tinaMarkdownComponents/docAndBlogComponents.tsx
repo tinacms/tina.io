@@ -8,9 +8,9 @@ import React, { useEffect, useState } from 'react';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
+import { IoIosBulb, IoIosWarning } from 'react-icons/io';
 import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
-import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
@@ -172,9 +172,16 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2"
-      {...props}
-    />
+      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+    >
+      <IoIosBulb className="absolute top-[10%] -left-5 size-18 text-teal-400/50" />
+      <div className="ml-12">
+        <TinaMarkdown
+          content={props.children.props.content as any}
+          components={docAndBlogComponents}
+        />
+      </div>
+    </blockquote>
   ),
 
   Iframe: ({ iframeSrc, height }) => {
@@ -251,7 +258,23 @@ export const docAndBlogComponents: Components<{
       </div>
     </>
   ),
-  WarningCallout: ({ body }) => <WarningCallout text={body} />,
+  WarningCallout: ({ body }) => (
+    <blockquote
+      style={{
+        backgroundColor: 'var(--color-white)',
+      }}
+      className="my-6 border-l-4 py-6 border-x-red-600/50 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+    >
+      {/* <div className="flex items-start gap-2">
+        <IoIosWarning className="size-10 flex-shrink-0 text-red-500/80 pt-1" />
+        <TinaMarkdown content={body as any} components={docAndBlogComponents} />
+      </div> */}
+      <IoIosWarning className="absolute top-[10%] -left-4 size-18 text-red-600/50" />
+      <div className="ml-12">
+        <TinaMarkdown content={body as any} components={docAndBlogComponents} />
+      </div>
+    </blockquote>
+  ),
   Callout: ({ title, description, url, buttonText }) => (
     <div className="callout">
       <img
