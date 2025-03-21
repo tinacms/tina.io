@@ -245,8 +245,6 @@ export function MarkdownContent({
         h4: (props) => <WithHeadings level={5} {...props} />,
         h5: (props) => <WithHeadings level={5} {...props} />,
         h6: (props) => <WithHeadings level={6} {...props} />,
-        // @ts-ignore
-        shortcode: ShortcodeRenderer,
       }}
     >
       {body}
