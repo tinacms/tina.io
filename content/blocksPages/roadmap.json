@@ -62,7 +62,16 @@
       "items": [
         {
           "headline": "TinaCloud Performance",
-          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n\n[https://github.com/tinacms/tinacms/discussions/5576](https://github.com/tinacms/tinacms/discussions/5576)\n"
+          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n",
+          "actions": [
+            {
+              "label": "Github Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/5576"
+            }
+          ]
         },
         {
           "headline": "React 19 Support",
