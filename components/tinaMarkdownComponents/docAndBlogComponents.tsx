@@ -5,10 +5,10 @@ import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
-import { IoIosBulb, IoIosWarning } from 'react-icons/io';
 import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { Prism } from '../styles/Prism';
@@ -172,14 +172,16 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
     >
-      <IoIosBulb className="absolute top-[10%] -left-5 size-18 text-teal-400/50" />
-      <div className="ml-12">
-        <TinaMarkdown
-          content={props.children.props.content as any}
-          components={docAndBlogComponents}
-        />
+      <div className="flex flex-col md:flex-row items-center md:gap-2 text-slate-800">
+        <AiOutlineBulb className="size-8 flex-shrink-0 text-teal-400/80 pt-1 md:mb-0 mb-4 -mt-2" />
+        <div>
+          <TinaMarkdown
+            content={props.children.props.content as any}
+            components={docAndBlogComponents}
+          />
+        </div>
       </div>
     </blockquote>
   ),
@@ -263,14 +265,10 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 py-6 border-x-red-600/50 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className="my-6 border-l-4 py-6 border-x-red-600/50 pl-2 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
     >
-      {/* <div className="flex items-start gap-2">
-        <IoIosWarning className="size-10 flex-shrink-0 text-red-500/80 pt-1" />
-        <TinaMarkdown content={body as any} components={docAndBlogComponents} />
-      </div> */}
-      <IoIosWarning className="absolute top-[10%] -left-4 size-18 text-red-600/50" />
-      <div className="ml-12">
+      <div className="flex flex-col md:flex-row gap-2 text-slate-800 items-center">
+        <AiOutlineWarning className="size-8 flex-shrink-0 text-red-500/80 pt-1 md:mb-0 mb-4 -mt-3" />
         <TinaMarkdown content={body as any} components={docAndBlogComponents} />
       </div>
     </blockquote>
