@@ -172,10 +172,15 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className="my-6 border-l-4 py-6 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
     >
-      <div className="flex flex-col md:flex-row items-center md:gap-2 text-slate-800">
-        <AiOutlineBulb className="size-8 flex-shrink-0 text-teal-400/80 pt-1 md:mb-0 mb-4 -mt-2" />
+      <div className="flex flex-col md:flex-row md:items-center md:gap-2 text-slate-800 items-start">
+        <div className="flex-shrink-0">
+          <AiOutlineBulb
+            size={40}
+            className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+          />
+        </div>
         <div>
           <TinaMarkdown
             content={props.children.props.content as any}
@@ -265,10 +270,15 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 py-6 border-x-red-600/50 pl-2 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className="my-6 border-l-4 py-6 border-x-orange-400 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
     >
-      <div className="flex flex-col md:flex-row gap-2 text-slate-800 items-center">
-        <AiOutlineWarning className="size-8 flex-shrink-0 text-red-500/80 pt-1 md:mb-0 mb-4 -mt-3" />
+      <div className="flex flex-col md:flex-row gap-2 text-slate-800 md:items-center items-start">
+        <div>
+          <AiOutlineWarning
+            size={40}
+            className="text-white bg-gradient-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+          />
+        </div>
         <TinaMarkdown content={body as any} components={docAndBlogComponents} />
       </div>
     </blockquote>
