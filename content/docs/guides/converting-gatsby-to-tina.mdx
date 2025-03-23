@@ -5,7 +5,11 @@ next: content/docs/cli-overview.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
 
-<WarningCallout body="TinaCMS does not officially support Gatsby. We recommend migrating your Gatsby site to a well supported framework such as Next.JS instead." />
+<WarningCallout
+  body={<>
+    TinaCMS does not officially support Gatsby. We recommend migrating your Gatsby site to a well supported framework such as Next.JS instead.
+  </>}
+/>
 
 ## Introduction
 
@@ -279,7 +283,11 @@ Congratulations! Your Gatsby MDX blog is now set up with Tina. Run `yarn develop
 
 ## (Recommended) Adding Visual editing
 
-<WarningCallout body="Warning - If you do decide to add visual editing you will need to swap any custom MDX plugins you're using" />
+<WarningCallout
+  body={<>
+    Warning - If you do decide to add visual editing you will need to swap any custom MDX plugins you're using
+  </>}
+/>
 
 Up until now we've only set up TinaCMS as an editor for our markdown files. The display logic is still being handled by Gatsby's plugins.
 
