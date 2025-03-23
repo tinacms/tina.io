@@ -13,6 +13,7 @@ import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 
+//TODO: Remove once TinaCon is over
 const TopBanner = ({ tinaData }: { tinaData: any }) => {
   return (
     <div className="w-full flex justify-center relative px-10 lg:h-52">
