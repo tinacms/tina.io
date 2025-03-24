@@ -134,29 +134,86 @@ export function RealTimeTranslateButton() {
   // 激活翻译
   const activateTranslation = () => {
     setTimeout(() => {
-      // 查找并点击中文选项
-      const translateIframe = document.querySelector(
-        '.goog-te-menu-frame'
-      ) as HTMLIFrameElement;
-      if (translateIframe && translateIframe.contentDocument) {
-        const zhButton = translateIframe.contentDocument.querySelector(
-          'a[href*="zh-CN"]'
-        ) as HTMLAnchorElement;
-        if (zhButton) {
-          zhButton.click();
+      try {
+        // 尝试直接设置 Google 翻译 Cookie
+        document.cookie = 'googtrans=/en/zh-CN; path=/;';
+        const domain = window.location.hostname;
+        if (domain !== 'localhost') {
+          // 为主域和子域都设置 cookie
+          const mainDomain = domain.split('.').slice(-2).join('.');
+          document.cookie = `googtrans=/en/zh-CN; domain=.${mainDomain}; path=/;`;
+          document.cookie = `googtrans=/en/zh-CN; domain=${domain}; path=/;`;
+        }
+
+        // 尝试多种方式激活翻译
+        const translateWidget = document.getElementById('google_translate_element');
+        if (translateWidget) {
+          // 方法1: 通过事件触发选择语言 
+          const selectElement = translateWidget.querySelector('.goog-te-combo') as HTMLSelectElement;
+          if (selectElement) {
+            selectElement.value = 'zh-CN';
+            selectElement.dispatchEvent(new Event('change'));
+            setIsTranslated(true);
+          } else {
+            // 方法2: 直接查找 iframe 中的中文链接并点击
+            const frames = document.querySelectorAll('iframe.goog-te-menu-frame');
+            let translationActivated = false;
+            
+            frames.forEach(iframe => {
+              try {
+                const iframeDocument = (iframe as HTMLIFrameElement).contentDocument;
+                if (iframeDocument) {
+                  // 尝试各种可能的选择器
+                  const selectors = [
+                    'a[href*="zh-CN"]',
+                    'div[value="zh-CN"]',
+                    '.goog-te-menu2-item div:contains("中文")',
+                    'table.goog-te-menu-frame td',
+                  ];
+                  
+                  for (const selector of selectors) {
+                    const element = iframeDocument.querySelector(selector) as HTMLElement;
+                    if (element) {
+                      element.click();
+                      translationActivated = true;
+                      break;
+                    }
+                  }
+                }
+              } catch (e) {
+                console.error('Error accessing iframe content:', e);
+              }
+            });
+            
+            if (translationActivated) {
+              setIsTranslated(true);
+            }
+          }
+        }
+        
+        // 如果上述方法都失败，尝试强制刷新页面来应用翻译
+        if (!document.body.classList.contains('translated-ltr') && 
+            !document.body.classList.contains('translated-rtl')) {
+          // 如果我们设置了 cookie 但页面没有翻译类，可以尝试重新加载页面
+          // 这里我们不自动刷新，而是通知用户可能需要刷新
+          console.log('Translation may require page refresh');
+        } else {
           document.body.classList.add('translated-content');
           setIsTranslated(true);
         }
+      } catch (error) {
+        console.error('Translation activation error:', error);
       }
+
       setIsTranslating(false);
-    }, 1000);
+    }, 1500); // 增加等待时间，确保翻译组件已完全加载
   };
 
   return (
-    <div className="fixed bottom-3 right-3 z-50">
+    <div className="fixed bottom-3 left-3 z-40 max-w-md">
       {isTranslated ? (
-        <Button
-          color="white"
+        <Button 
+          color="white" 
           className="text-gray-800"
           onClick={cleanupTranslation}
         >
@@ -164,7 +221,7 @@ export function RealTimeTranslateButton() {
           返回英文
         </Button>
       ) : (
-        <Button
+        <Button 
           color="blue"
           onClick={loadGoogleTranslate}
           disabled={isTranslating}
