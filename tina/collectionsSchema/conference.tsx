@@ -25,6 +25,11 @@ export const conferenceTinaCMSCollection = {
           type: 'string',
         },
         {
+          name: 'bannerTagline',
+          label: 'Banner Tagline',
+          type: 'string',
+        },
+        {
           name: 'bannerDescription',
           label: 'Banner Description',
           type: 'string',
