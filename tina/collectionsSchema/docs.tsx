@@ -166,10 +166,7 @@ export const docsCollection = {
             {
               name: 'body',
               label: 'Body',
-              type: 'string',
-              ui: {
-                component: 'textarea',
-              },
+              type: 'rich-text',
             },
           ],
         },
