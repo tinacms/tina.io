@@ -25,7 +25,7 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
           className="text-white"
         />
       </div>
-      <div className="w-full relative rounded-xl overflow-hidden">
+      <div className="w-full relative rounded-t-xl overflow-hidden">
         <div className="absolute inset-0 bg-orange-500"></div>
         <div
           className="absolute inset-0 bg-blue-900 hidden lg:block"
@@ -364,7 +364,7 @@ function Agenda({
       </h2>
 
       {/* Desktop view (table) */}
-      <div className="w-full max-w-6xl overflow-x-auto hidden md:block">
+      <div className="w-full max-w-6xl overflow-x-auto hidden md:block rounded-xl">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-blue-100">
