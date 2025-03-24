@@ -65,6 +65,50 @@ export const docsCollection = {
         CardGridSchema,
         RecipeBlock as Template,
         {
+          name: 'apiReference',
+          label: 'API Reference',
+          fields: [
+            {
+              type: 'string',
+              name: 'title',
+              label: 'Title',
+            },
+            {
+              type: 'object',
+              name: 'property',
+              label: 'Property',
+              list: true,
+              fields: [
+                {
+                  type: 'string',
+                  name: 'name',
+                  label: 'Name',
+                },
+                {
+                  type: 'rich-text',
+                  name: 'description',
+                  label: 'Description',
+                },
+                {
+                  type: 'string',
+                  name: 'type',
+                  label: 'Type',
+                },
+                {
+                  type: 'string',
+                  name: 'default',
+                  label: 'Default',
+                },
+                {
+                  type: 'boolean',
+                  name: 'required',
+                  label: 'Required',
+                },
+              ],
+            },
+          ],
+        },
+        {
           name: 'Youtube',
           label: 'Youtube Embed',
           fields: [

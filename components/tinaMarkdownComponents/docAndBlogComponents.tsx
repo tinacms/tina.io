@@ -2,6 +2,7 @@ import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
+import { Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -33,6 +34,16 @@ export const docAndBlogComponents: Components<{
     description: string;
     url: string;
     buttonText: string;
+  };
+  ApiReference: {
+    title: string;
+    property: {
+      name: string;
+      description: string;
+      type: string;
+      default: string;
+      required: boolean;
+    }[];
   };
   WebmEmbed: { embedSrc: string; width?: string };
   WarningCallout: { body: string };
@@ -181,6 +192,64 @@ export const docAndBlogComponents: Components<{
     return (
       <div>
         <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+      </div>
+    );
+  },
+  apiReference: (props) => {
+    return (
+      <div className="bg-white/40 rounded-lg shadow-lg p-6 my-6">
+        <h2 className="text-3xl text-blue-600 mb-6">{props.title}</h2>
+        {props.property?.map((property, index) => {
+          return (
+            <div className="space-y-4">
+              <div
+                className={` border-gray-100 py-4 ${
+                  index === props.property.length - 1 ? '' : 'border-b-2'
+                }`}
+              >
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <div className="w-full md:w-1/3">
+                    <div className="mb-1">
+                      {property.required && (
+                        <span className="text-orange-500 font-medium text-sm">
+                          REQUIRED
+                        </span>
+                      )}
+                    </div>
+                    <div className="font-tuner text-blue-500 font-medium">
+                      {property.name}
+                    </div>
+                    <div className="text-gray-500 text-sm">{property.type}</div>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <TinaMarkdown
+                      content={property.description as any}
+                      components={docAndBlogComponents}
+                    />
+                    {property.default && (
+                      <div className="text-slate-900 text-md">
+                        Default is{' '}
+                        <span className="font-mono text-orange-500">
+                          {property.default}
+                        </span>
+                        .
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        <div className="mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
+          <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 flex-shrink-0" />
+          <p className="text-sm text-gray-700">
+            All properties marked as{' '}
+            <span className="text-[#FF5533] font-medium">REQUIRED</span> must be
+            specified for the field to work properly.
+          </p>
+        </div>
       </div>
     );
   },

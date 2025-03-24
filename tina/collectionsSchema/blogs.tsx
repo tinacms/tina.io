@@ -1,4 +1,4 @@
-import { seoInformation } from "./sharedFields/seoInformation";
+import { seoInformation } from './sharedFields/seoInformation';
 
 export const blogsCollection = {
   name: 'post',
@@ -6,8 +6,10 @@ export const blogsCollection = {
   path: 'content/blog',
   format: 'mdx',
   fields: [
-    {...seoInformation,
-      description: 'Meta Information – if not set, the meta description will be set to a standard default, and title to "Title | Tina Blogs" per the field below'
+    {
+      ...seoInformation,
+      description:
+        'Meta Information – if not set, the meta description will be set to a standard default, and title to "Title | Tina Blogs" per the field below',
     },
     {
       type: 'string',
@@ -111,8 +113,52 @@ export const blogsCollection = {
               type: 'string',
               name: 'width',
               label: 'width',
-            }
-          ]
+            },
+          ],
+        },
+        {
+          name: 'apiReference',
+          label: 'API Reference',
+          fields: [
+            {
+              type: 'string',
+              name: 'title',
+              label: 'Title',
+            },
+            {
+              type: 'object',
+              name: 'property',
+              label: 'Property',
+              list: true,
+              fields: [
+                {
+                  type: 'string',
+                  name: 'name',
+                  label: 'Name',
+                },
+                {
+                  type: 'rich-text',
+                  name: 'description',
+                  label: 'Description',
+                },
+                {
+                  type: 'string',
+                  name: 'type',
+                  label: 'Type',
+                },
+                {
+                  type: 'string',
+                  name: 'default',
+                  label: 'Default',
+                },
+                {
+                  type: 'boolean',
+                  name: 'required',
+                  label: 'Required',
+                },
+              ],
+            },
+          ],
         },
         {
           name: 'GraphQLCodeBlock',
