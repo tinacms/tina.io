@@ -7,7 +7,11 @@ previous: ''
 
 ## Custom shortcode syntax
 
-<WarningCallout body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our community channels or via the related [GitHub discussion](https://github.com/tinacms/tinacms/discussions/4794)." />
+<WarningCallout
+  body={<>
+    This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our community channels or via the related [GitHub discussion](https://github.com/tinacms/tinacms/discussions/4794).
+  </>}
+/>
 
 If you have some custom shortcode logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
 

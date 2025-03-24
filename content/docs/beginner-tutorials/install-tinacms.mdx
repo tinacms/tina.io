@@ -1,6 +1,6 @@
 ---
 title: "Install TinaCMS \U0001F999"
-last_edited: '2025-03-18T23:49:45.953Z'
+last_edited: '2025-03-21T01:41:38.979Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/hello-world.mdx
 previous: content/docs/beginner-tutorials/intro-cleanup.mdx
@@ -17,6 +17,10 @@ Now we're ready to start adding in Tina!
 7. Run `npm run dev` to start your new **Tinafied** NextJS app!![](/img/tutorials/SCR-20250319-jkaq.png)
 8. Access your new Tina editor by going to `http://localhost:3000/admin/index.html`
 
-> ⚠️ **DELETE** the `src/pages/` directory, this is generated to ensure compatibility with older versions.
+<WarningCallout
+  body={<>
+    **DELETE** the `src/pages/` directory, this is generated to ensure compatibility with older versions.
+  </>}
+/>
 
 Since you just set up TinaCMS, you might notice there's no content to edit yet. This is because Tina needs knowledge of a model to determines what data your pages need! We'll add that in the next step.

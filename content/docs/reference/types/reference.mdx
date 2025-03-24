@@ -145,7 +145,11 @@ You can search your reference with reference selector.
 
 If you have a long list of reference items, you can filter them in the schema using the `ui.collectionFilter` field using a property from the referenced collection.
 
-<WarningCallout body="The current `collectionFilter`only supports properties of type string and is also **case sensitive** ( e.g. Using the example below, if you enter `australia`, it will not filter authors by `Australia`)." />
+<WarningCallout
+  body={<>
+    The current `collectionFilter`only supports properties of type string and is also **case sensitive** ( e.g. Using the example below, if you enter `australia`, it will not filter authors by `Australia`).
+  </>}
+/>
 
 > Scenario: You have a list of authors in different locations, and you only want the reference selected in your post collection to be authors from a specific location.
 
