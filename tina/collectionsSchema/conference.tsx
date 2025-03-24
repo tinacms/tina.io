@@ -49,7 +49,24 @@ export const conferenceTinaCMSCollection = {
         },
         {
           name: 'actionButton',
-          label: 'Action Button',
+          label: 'Left Button',
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              label: 'Title',
+              type: 'string',
+            },
+            {
+              name: 'link',
+              label: 'Link',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'rightButton',
+          label: 'right Button',
           type: 'object',
           fields: [
             {
