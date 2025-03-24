@@ -146,22 +146,29 @@ export function RealTimeTranslateButton() {
         }
 
         // 尝试多种方式激活翻译
-        const translateWidget = document.getElementById('google_translate_element');
+        const translateWidget = document.getElementById(
+          'google_translate_element'
+        );
         if (translateWidget) {
-          // 方法1: 通过事件触发选择语言 
-          const selectElement = translateWidget.querySelector('.goog-te-combo') as HTMLSelectElement;
+          // 方法1: 通过事件触发选择语言
+          const selectElement = translateWidget.querySelector(
+            '.goog-te-combo'
+          ) as HTMLSelectElement;
           if (selectElement) {
             selectElement.value = 'zh-CN';
             selectElement.dispatchEvent(new Event('change'));
             setIsTranslated(true);
           } else {
             // 方法2: 直接查找 iframe 中的中文链接并点击
-            const frames = document.querySelectorAll('iframe.goog-te-menu-frame');
+            const frames = document.querySelectorAll(
+              'iframe.goog-te-menu-frame'
+            );
             let translationActivated = false;
-            
-            frames.forEach(iframe => {
+
+            frames.forEach((iframe) => {
               try {
-                const iframeDocument = (iframe as HTMLIFrameElement).contentDocument;
+                const iframeDocument = (iframe as HTMLIFrameElement)
+                  .contentDocument;
                 if (iframeDocument) {
                   // 尝试各种可能的选择器
                   const selectors = [
@@ -170,9 +177,11 @@ export function RealTimeTranslateButton() {
                     '.goog-te-menu2-item div:contains("中文")',
                     'table.goog-te-menu-frame td',
                   ];
-                  
+
                   for (const selector of selectors) {
-                    const element = iframeDocument.querySelector(selector) as HTMLElement;
+                    const element = iframeDocument.querySelector(
+                      selector
+                    ) as HTMLElement;
                     if (element) {
                       element.click();
                       translationActivated = true;
@@ -184,16 +193,18 @@ export function RealTimeTranslateButton() {
                 console.error('Error accessing iframe content:', e);
               }
             });
-            
+
             if (translationActivated) {
               setIsTranslated(true);
             }
           }
         }
-        
+
         // 如果上述方法都失败，尝试强制刷新页面来应用翻译
-        if (!document.body.classList.contains('translated-ltr') && 
-            !document.body.classList.contains('translated-rtl')) {
+        if (
+          !document.body.classList.contains('translated-ltr') &&
+          !document.body.classList.contains('translated-rtl')
+        ) {
           // 如果我们设置了 cookie 但页面没有翻译类，可以尝试重新加载页面
           // 这里我们不自动刷新，而是通知用户可能需要刷新
           console.log('Translation may require page refresh');
@@ -212,8 +223,8 @@ export function RealTimeTranslateButton() {
   return (
     <div className="fixed bottom-3 left-3 z-40 max-w-md">
       {isTranslated ? (
-        <Button 
-          color="white" 
+        <Button
+          color="white"
           className="text-gray-800"
           onClick={cleanupTranslation}
         >
@@ -221,7 +232,7 @@ export function RealTimeTranslateButton() {
           返回英文
         </Button>
       ) : (
-        <Button 
+        <Button
           color="blue"
           onClick={loadGoogleTranslate}
           disabled={isTranslating}
