@@ -1,7 +1,7 @@
 ---
 id: collections
 title: Collections
-last_edited: '2025-03-23T21:18:47.115Z'
+last_edited: '2025-03-24T06:11:54.366Z'
 next: content/docs/reference/fields.mdx
 previous: content/docs/reference/schema.mdx
 ---
@@ -368,12 +368,16 @@ export default defineConfig({
 })
 ```
 
-### Example file naming conventions
+### Naming conventions for collections
+
+Making changes to your site configuration in Tina can be an expensive operation taking considerably longer than your typical hot reload in React. For this reason we recommend keeping your collection definitions in separate files from the React components that use them.
+
+The typical convention is to add a collection for a given component to a file of the same name ending in an accompanying file called `collection.tsx` assuming you're using typescript. This ensures that the index for your site is only rebuilt when changes are made to your data model. You'll still be able to itera
 
 ```javascript
 src/
 ├── app/
 │   ├── components/
-│   │   ├── heading.collection.tsx
-│   │   ├── heading.tsx
+│   │   ├── events-list.collection.tsx
+│   │   ├── events-list.tsx
 ```
