@@ -20,13 +20,10 @@ export function RealTimeTranslateButton() {
   const translateElementRef = useRef<HTMLDivElement>(null);
   const retryCount = useRef(0);
 
-  // 确定是否显示翻译按钮 - 只在docs页面显示
+  // 确定是否显示翻译按钮 - 在所有isValidPathCheck为false的页面显示
   useEffect(() => {
-    if (pathName.startsWith('/docs/')) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
+    // 显示翻译按钮如果路径检查返回false
+    setIsVisible(!isValidPathCheck(pathName));
   }, [pathName]);
 
   // 检查翻译状态
@@ -110,11 +107,10 @@ export function RealTimeTranslateButton() {
     }
   };
 
-  // 加载Google翻译API
+  // 加载Google翻译API - 简化为单一明确的方法
   const loadGoogleTranslate = () => {
     setIsTranslating(true);
     setTranslationError(false);
-    retryCount.current = 0;
 
     // 创建翻译容器如果不存在
     if (!document.getElementById('google_translate_element')) {
@@ -134,21 +130,41 @@ export function RealTimeTranslateButton() {
       window.googleTranslateElementInit = () => {
         try {
           // 初始化翻译小部件
-          const translateElement = new window.google.translate.TranslateElement(
+          new window.google.translate.TranslateElement(
             {
               pageLanguage: 'en',
               includedLanguages: 'zh-CN',
               autoDisplay: false,
-              layout:
-                window.google.translate.TranslateElement.InlineLayout.SIMPLE,
             },
             'google_translate_element'
           );
 
-          // 等待翻译组件加载完成后尝试激活翻译
+          // 直接设置Cookie来激活中文翻译
+          document.cookie = 'googtrans=/en/zh-CN; path=/;';
+          document.cookie =
+            'googtrans=/en/zh-CN; domain=' +
+            window.location.hostname +
+            '; path=/;';
+
+          // 使用一个定时器检查翻译是否成功激活
+          const checkInterval = setInterval(() => {
+            if (
+              document.body.classList.contains('translated-ltr') ||
+              document.body.classList.contains('translated-rtl')
+            ) {
+              setIsTranslated(true);
+              setIsTranslating(false);
+              clearInterval(checkInterval);
+            }
+          }, 500);
+
+          // 设置一个超时，如果翻译在一定时间内没有激活，则标记为错误
           setTimeout(() => {
-            activateTranslation();
-          }, 1000);
+            if (!isTranslated) {
+              clearInterval(checkInterval);
+              handleTranslationError();
+            }
+          }, 5000);
         } catch (error) {
           console.error('Error initializing translator:', error);
           handleTranslationError();
@@ -165,85 +181,6 @@ export function RealTimeTranslateButton() {
       document.body.appendChild(script);
     } catch (error) {
       console.error('Error loading Google Translate:', error);
-      handleTranslationError();
-    }
-  };
-
-  // 激活中文翻译
-  const activateTranslation = () => {
-    try {
-      // 尝试方法1: 直接设置Cookie
-      document.cookie = 'googtrans=/en/zh-CN; path=/;';
-      document.cookie =
-        'googtrans=/en/zh-CN; domain=' + window.location.hostname + '; path=/;';
-
-      setTimeout(() => {
-        // 检查是否已翻译成功
-        if (
-          document.body.classList.contains('translated-ltr') ||
-          document.body.classList.contains('translated-rtl')
-        ) {
-          setIsTranslated(true);
-          setIsTranslating(false);
-          return;
-        }
-
-        // 尝试方法2: 通过UI交互自动选择中文
-        const doUIActivation = () => {
-          // 找到并点击翻译控件
-          const selectGoogleObj = document.querySelector(
-            '.goog-te-combo'
-          ) as HTMLSelectElement;
-          if (selectGoogleObj) {
-            selectGoogleObj.value = 'zh-CN';
-            selectGoogleObj.dispatchEvent(new Event('change'));
-            setIsTranslated(true);
-            setIsTranslating(false);
-            return true;
-          }
-
-          // 尝试在iframe中找到链接
-          const frameList = document.querySelectorAll(
-            'iframe.goog-te-menu-frame'
-          );
-          for (let i = 0; i < frameList.length; i++) {
-            try {
-              const doc = (frameList[i] as HTMLIFrameElement).contentDocument;
-              if (doc) {
-                const links = doc.querySelectorAll('a');
-                for (let j = 0; j < links.length; j++) {
-                  if (
-                    links[j].textContent?.includes('中文') ||
-                    links[j].innerHTML?.includes('中文') ||
-                    links[j].href?.includes('zh-CN')
-                  ) {
-                    links[j].click();
-                    setIsTranslated(true);
-                    setIsTranslating(false);
-                    return true;
-                  }
-                }
-              }
-            } catch (e) {
-              console.warn('Error accessing iframe:', e);
-            }
-          }
-
-          return false;
-        };
-
-        // 如果UI交互方法失败，重试几次
-        if (!doUIActivation()) {
-          retryCount.current += 1;
-          if (retryCount.current < 3) {
-            setTimeout(activateTranslation, 1000);
-          } else {
-            handleTranslationError();
-          }
-        }
-      }, 1000);
-    } catch (error) {
-      console.error('Error during translation activation:', error);
       handleTranslationError();
     }
   };
