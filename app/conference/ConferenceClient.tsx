@@ -152,7 +152,8 @@ const HeaderBanner = ({
       <h1 className="font-tuner text-4xl pb-4 text-orange-500">
         {tinaData.bannerTitle}
       </h1>
-      <h2 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h2>
+      <h2 className="text-2xl max-w-4xl text-orange-500 font-tuner pb-4">{tinaData.bannerTagline}</h2>
+      <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
       <div className="flex flex-col md:flex-row py-6 gap-6  md:gap-10">
         <div className="flex gap-2 items-center">
           <FaRegCalendar /> <span>{tinaData.date}</span>
