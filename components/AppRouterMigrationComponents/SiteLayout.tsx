@@ -2,6 +2,7 @@ import React from 'react';
 import { AppFooter } from './AppFooter';
 import { AppNavBar } from './AppNavBar';
 import { LanguageSupportAlert } from './LanguageSupportAlert';
+import { RealTimeTranslateButton } from './RealTimeTranslateButton';
 
 interface LayoutProps {
   children: any | any[];
@@ -19,6 +20,7 @@ export const SiteLayout = ({ children, color, sticky = true }: LayoutProps) => {
         <div className="flex flex-col flex-1">{children}</div>
         <AppFooter />
         <LanguageSupportAlert />
+        <RealTimeTranslateButton />
       </div>
     </>
   );
