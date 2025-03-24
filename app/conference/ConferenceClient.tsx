@@ -8,8 +8,138 @@ import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
 
+import { Button } from 'components/ui';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+
+
+//TODO: Remove once TinaCon is over
+const TopBanner = ({ tinaData }: { tinaData: any }) => {
+  return (
+    <div className="w-full flex justify-center relative px-10 lg:h-52">
+      <div className="absolute left-[38%] -top-11 z-10 hidden lg:block">
+        <Image
+          src="/svg/llama-mic.svg"
+          alt="Microphone Icon"
+          width={200}
+          height={200}
+          className="text-white"
+        />
+      </div>
+      <div className="w-full relative rounded-xl overflow-hidden">
+        <div className="absolute inset-0 bg-orange-500"></div>
+        <div
+          className="absolute inset-0 bg-blue-900 hidden lg:block"
+          style={{
+            clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 35% 100%)',
+          }}
+        ></div>
+        <div className="relative hidden lg:flex items-center justify-between px-8 py-6 lg:h-52">
+          <div className="w-[4rem]">
+            <Image
+              src="/svg/logos/tina-white.svg"
+              alt="Tina Logo"
+              width={100}
+              height={100}
+              className="w-[100px] h-auto"
+            />
+          </div>
+          <div className="w-[40%] text-white mt-6">
+            <div className="font-tuner text-4xl">
+              <span className="font-bold">tina</span>con 2025
+            </div>
+            <div className="font-tuner text-2xl mt-4">Herding the Future</div>
+          </div>
+          <div className="w-[50%] text-white">
+            <div className="flex flex-wrap justify-center items-center gap-4 font-tuner text-lg mt-6 ml-8">
+              <span>May 2</span>
+              <span>|</span>
+              <span>9AM - 6PM</span>
+              <span>|</span>
+              <Link
+                href="https://www.ssw.com.au/offices/melbourne"
+                target="_blank"
+                className="underline"
+              >
+                SSW Melbourne, Australia
+              </Link>
+            </div>
+            <div className="mt-4 flex justify-center items-center">
+              <Link href={tinaData?.rightButton?.link} target="_blank">
+                <Button color="blue" size="medium">
+                  <span className="mr-2">Join us</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="relative lg:hidden">
+          <div className="flex items-center justify-between px-6 py-4">
+            <div className="w-[2rem]">
+              <Image
+                src="/svg/logos/tina-white.svg"
+                alt="Tina Logo"
+                width={100}
+                height={100}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-[85%] text-white">
+              <div className="font-tuner text-2xl text-left">
+                <span className="font-bold">tina</span>con 2025
+              </div>
+              <div className="font-tuner text-xl text-left">
+                Herding the Future
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="absolute inset-0 bg-blue-900"
+            style={{
+              clipPath: 'polygon(0% 35%, 100% 45%, 100% 100%, 0% 100%)',
+              borderRadius: '0 0 0.75rem 0.75rem',
+            }}
+          ></div>
+          <div className="relative px-6 py-4 text-white">
+            <div className="flex items-center gap-4 font-tuner text-base mb-2">
+              <span>May 2</span>
+              <span>|</span>
+              <span>9AM - 6PM</span>
+            </div>
+            <div className="mb-4">
+              <Link
+                href="https://www.ssw.com.au/offices/melbourne"
+                target="_blank"
+                className="underline"
+              >
+                SSW Melbourne, Australia
+              </Link>
+            </div>
+            <div>
+              <Link href={tinaData?.rightButton?.link} target="_blank">
+                <Button color="blue" size="medium">
+                  <span className="mr-2">Join us</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="absolute right-2 bottom-3 w-[17%]">
+            <Image
+              src="/svg/llama-mic.svg"
+              alt="Microphone Icon"
+              width={200}
+              height={200}
+              className="text-white"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const HeaderBanner = ({
   tinaData,
@@ -18,13 +148,14 @@ const HeaderBanner = ({
   tinaData: any;
   scrollToAgenda: () => void;
 }) => {
+  console.log(tinaData);
   return (
     <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
       <h1 className="font-tuner text-4xl pb-4 text-orange-500">
         {tinaData.bannerTitle}
       </h1>
       <h2 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h2>
-      <div className="flex py-6 gap-10">
+      <div className="flex flex-col md:flex-row py-6 gap-6  md:gap-10">
         <div className="flex gap-2 items-center">
           <FaRegCalendar /> <span>{tinaData.date}</span>
         </div>
@@ -42,12 +173,16 @@ const HeaderBanner = ({
           </Link>
         </div>
       </div>
-      <button
-        className="bg-white text-orange-500 px-5 py-3 rounded-2xl font-tuner shadow-2xl relative top-0 hover:-top-1 transition-all ease-in-out duration-300"
-        onClick={scrollToAgenda}
-      >
-        Agenda
-      </button>
+      <div className="flex flex-row gap-4">
+        <Button color="white" size="medium" onClick={scrollToAgenda}>
+          <span className="mr-2">{tinaData.actionButton.title}</span>
+        </Button>
+        <Link href={tinaData?.rightButton?.link} target="_blank">
+          <Button color="blue" size="medium">
+            <span className="mr-2">{tinaData?.rightButton?.title}</span>
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };
@@ -88,13 +223,16 @@ interface KeyHighlightsProps {
 }
 const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
   return (
-    <div className="flex py-12 gap-10 max-w-4xl text-lg">
+    <div className="flex flex-col md:flex-row py-12 gap-10 max-w-4xl text-lg">
       {[
         ['headerLeft', 'descriptionLeft', 'iconLeft'],
         ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
         ['headerRight', 'descriptionRight', 'iconRight'],
       ].map(([header, description, icon], index) => (
-        <div key={index} className="flex flex-col gap-2 items-center w-1/3">
+        <div
+          key={index}
+          className="flex flex-col gap-2 items-center w-full md:w-1/3"
+        >
           {icons[highlights[icon as keyof typeof highlights]]}
           <h3 className="font-bold">
             {highlights[header as keyof typeof highlights]}
@@ -133,11 +271,11 @@ interface Session {
 
 const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   return (
-    <div className="flex flex-col items-center text-center p-16">
+    <div className="flex flex-col items-center text-center p-6 md:p-16">
       <h2 className="text-3xl font-bold py-16 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
         Open Source Expert Speakers
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14 lg:px-44">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
         {speakers.map((speaker, index) => (
           <div key={index} className="col-span-1 flex flex-col items-center">
             <Link href={speaker.socialLink} target="_blank">
@@ -341,6 +479,7 @@ function ConferencePage({
 
   return (
     <div className="mt-6">
+      {/* <TopBanner tinaData={tinaData.data?.conference?.banner} /> */}
       <HeaderBanner
         tinaData={tinaData.data?.conference?.banner}
         scrollToAgenda={scrollToAgenda}
