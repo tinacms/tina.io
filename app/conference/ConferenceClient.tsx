@@ -450,7 +450,7 @@ function Agenda({
                         <h3 className="text-lg font-bold">
                           {breakSession.speechTitle}
                         </h3>
-                        <p className="text-gray-600 text-sm pt-2">
+                        <p className="text-gray-600 text-sm">
                           {breakSession.speechDescription}
                         </p>
                       </div>
@@ -550,7 +550,7 @@ function Agenda({
                     <h3 className="text-lg leading-5 font-bold">
                       {breakSession.speechTitle}
                     </h3>
-                    <p className="text-gray-600 text-sm pt-2">
+                    <p className="text-gray-600 text-sm pt-1">
                       {breakSession.speechDescription}
                     </p>
                   </div>
