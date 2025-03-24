@@ -2,15 +2,16 @@ import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
+import { Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
+import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
-import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
 import MermaidElement from './mermaid';
 const ScrollBasedShowcase = dynamic(
@@ -36,6 +37,16 @@ export const docAndBlogComponents: Components<{
     description: string;
     url: string;
     buttonText: string;
+  };
+  ApiReference: {
+    title: string;
+    property: {
+      name: string;
+      description: string;
+      type: string;
+      default: string;
+      required: boolean;
+    }[];
   };
   WebmEmbed: { embedSrc: string; width?: string };
   WarningCallout: { body: string };
@@ -217,9 +228,23 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2"
-      {...props}
-    />
+      className="my-6 border-l-4 py-6 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+    >
+      <div className="flex flex-col md:flex-row md:items-center md:gap-2 text-slate-800 items-start">
+        <div className="flex-shrink-0">
+          <AiOutlineBulb
+            size={40}
+            className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+          />
+        </div>
+        <div>
+          <TinaMarkdown
+            content={props.children.props.content as any}
+            components={docAndBlogComponents}
+          />
+        </div>
+      </div>
+    </blockquote>
   ),
   mermaid: (value) => {
     return <MermaidElement value={value.value} />;
@@ -228,6 +253,115 @@ export const docAndBlogComponents: Components<{
     return (
       <div>
         <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+      </div>
+    );
+  },
+  apiReference: (props) => {
+    return (
+      <div className="bg-white/40 rounded-lg shadow-lg p-6 my-6">
+        <h2 className="text-3xl text-blue-600 mb-6">{props.title}</h2>
+        {props.property?.map((property, index) => {
+          return (
+            <div className="space-y-4">
+              <div
+                className={` border-gray-100 py-4 ${
+                  index === props.property.length - 1 ? '' : 'border-b-2'
+                }`}
+              >
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <div className="w-full md:w-1/3">
+                    <div className="mb-1">
+                      {property.required && (
+                        <span className="text-orange-500 font-medium text-sm">
+                          REQUIRED
+                        </span>
+                      )}
+                    </div>
+                    <div className="font-tuner text-blue-500 font-medium">
+                      {property.name}
+                    </div>
+                    <div className="text-gray-500 text-sm">{property.type}</div>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <TinaMarkdown
+                      content={property.description as any}
+                      components={docAndBlogComponents}
+                    />
+                    {property.default && (
+                      <div className="text-slate-900 text-md">
+                        Default is{' '}
+                        <span className="font-mono text-orange-500">
+                          {property.default}
+                        </span>
+                        .
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        {props.property?.some((property) => property.required) && (
+          <div className="mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
+            <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 flex-shrink-0" />
+            <p className="text-sm text-gray-700">
+              All properties marked as{' '}
+              <span className="text-[#FF5533] font-medium">REQUIRED</span> must
+              be specified for the field to work properly.
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  },
+  table: (props) => {
+    // Navigate through the nested structure to find the actual table content
+    // @ts-ignore - Linter is wrong about the actual structure
+    const tableRows = props?.children?.props?.children || [];
+
+    return (
+      <div className="overflow-x-auto my-6 rounded-lg shadow-md">
+        <table className="table-auto w-full">
+          <tbody>
+            {tableRows.map((row, rowIndex) => {
+              // Each row has its own props.children array containing cells
+              // @ts-ignore - Linter is wrong about the actual structure
+              const cells = row?.props?.children || [];
+              const CellComponent = rowIndex === 0 ? 'th' : 'td';
+
+              return (
+                <tr
+                  key={`row-${rowIndex}`}
+                  className={
+                    rowIndex % 2 === 0 ? 'bg-white/5' : 'bg-blue-500/5'
+                  }
+                >
+                  {cells.map((cell, cellIndex) => {
+                    return (
+                      <CellComponent
+                        key={`cell-${rowIndex}-${cellIndex}`}
+                        className={`border border-orange-100 px-4 py-2 ${
+                          rowIndex === 0
+                            ? 'font-normal bg-white/50 text-left text-orange-500 font-tuner'
+                            : ''
+                        } ${cellIndex === 0 ? 'break-words max-w-xs' : ''}`}
+                      >
+                        {/* @ts-ignore - Linter is wrong about the actual structure */}
+                        {cell?.props?.children}
+                        <TinaMarkdown
+                          content={cell?.props?.content as any}
+                          components={docAndBlogComponents}
+                        />
+                      </CellComponent>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   },
@@ -298,7 +432,24 @@ export const docAndBlogComponents: Components<{
       </div>
     </>
   ),
-  WarningCallout: ({ body }) => <WarningCallout text={body} />,
+  WarningCallout: ({ body }) => (
+    <blockquote
+      style={{
+        backgroundColor: 'var(--color-white)',
+      }}
+      className="my-6 border-l-4 py-6 border-x-orange-400 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+    >
+      <div className="flex flex-col md:flex-row gap-2 text-slate-800 md:items-center items-start">
+        <div>
+          <AiOutlineWarning
+            size={40}
+            className="text-white bg-gradient-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+          />
+        </div>
+        <TinaMarkdown content={body as any} components={docAndBlogComponents} />
+      </div>
+    </blockquote>
+  ),
   Callout: ({ title, description, url, buttonText }) => (
     <div className="callout">
       <img

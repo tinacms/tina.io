@@ -206,6 +206,10 @@
               "icon": "TbPlugConnected"
             },
             {
+              "name": "GitHub Enterprise Support",
+              "icon": "FaGithub"
+            },
+            {
               "name": "SSO",
               "icon": "SlLock"
             }

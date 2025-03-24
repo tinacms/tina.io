@@ -8,8 +8,8 @@ previous: content/docs/reference/schema.mdx
 
 Each collection is a distinct content structure. Creating a content document in TinaCMS is done on a per-collection basis so that:
 
-* Content structure matches a collection definition.
-* The document exists under that collection.
+- Content structure matches a collection definition.
+- The document exists under that collection.
 
 ![](/img/docs/schema/SCR-20250312-nnbi.png)
 
@@ -26,8 +26,8 @@ The `format` property can be set to control the filetype of content created in t
 | [`name`](#name)                        | The name of the collection                                                                                                                                                                                    |
 | [`path`](#path)                        | The related content directory.                                                                                                                                                                                |
 | [`format`](#format)                    | The extension of content files. One of `"md"` (**default**), `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.                                                                                           |
-| [`match.include`](#match.include)      | A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that specifies files in the `path` folder.                                                                                               |
-| [`match.exclude`](#match.exclude)      | A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that excludes specific files in the `path` folder from the collection.                                                                   |
+| [`match.include`](#match.include)      | A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that specifies files in the `path` folder.                                                                                               |
+| [`match.exclude`](#match.exclude)      | A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that excludes specific files in the `path` folder from the collection.                                                                   |
 | `label`                                | The collection name as shown in the editor.                                                                                                                                                                   |
 | `fields`                               | An array of [fields](/docs/reference/fields/)                                                                                                                                                                 |
 | `templates`                            | An array of [templates](/docs/reference/templates/)                                                                                                                                                           |
@@ -52,7 +52,7 @@ The `format` property can be set to control the filetype of content created in t
 
 **Should be unique for each collection.**
 
-We recommend using singular naming in a collection (post,  not post**s**).
+We recommend using singular naming in a collection (post, not post**s**).
 
 <WarningCallout body="This name cannot have spaces, dashes, or special characters. It must be a valid GraphQL name." />
 
@@ -60,7 +60,7 @@ We recommend using singular naming in a collection (post,  not post**s**).
 
 `path` let's Tina know which directories hold documents for a collection.
 
-[`Format`](#format) or [`match`](#match) properties can further specify included documents. 
+[`Format`](#format) or [`match`](#match) properties can further specify included documents.
 
 Documents of different collections can be co-located, but the CLI will print a warning if there are overlapping documents.
 
@@ -76,13 +76,13 @@ If unspecified, markdown files are used.
 
 ### match.include
 
-A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that will be used to match a subset of the files in the `path` directory, not including the file extension. Use this field to **exclude subdirectories** or **match specific filesets**.
+A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that will be used to match a subset of the files in the `path` directory, not including the file extension. Use this field to **exclude subdirectories** or **match specific filesets**.
 
-* `?` matches a single character
-* `*` matches any number of any characters (except `/`)
-* `[abc]` matches any one character in the given set
-* `[a-z]` matches a range.
-* `{foo,bar}` matches any whole word in the given set
+- `?` matches a single character
+- `*` matches any number of any characters (except `/`)
+- `[abc]` matches any one character in the given set
+- `[a-z]` matches a range.
+- `{foo,bar}` matches any whole word in the given set
 
 The final set of included files is defined from`<path>/<match.include>.<format>`.
 
@@ -171,7 +171,7 @@ export default defineConfig({
       },
     ],
   },
-})
+});
 ```
 
 ### JSON collection with restricted file management permissions
@@ -202,7 +202,7 @@ export default defineConfig({
       },
     ],
   },
-})
+});
 ```
 
 ### Markdown collection with a default title
@@ -220,7 +220,7 @@ export default defineConfig({
           return {
             // When a new post is created the title field will be set to "New post"
             title: 'New Post',
-          }
+          };
         },
         fields: [
           {
@@ -232,5 +232,5 @@ export default defineConfig({
       },
     ],
   },
-})
+});
 ```
