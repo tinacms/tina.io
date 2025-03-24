@@ -411,7 +411,7 @@ function Agenda({
   );
 
   return (
-    <div className="flex flex-col items-center p-10" ref={agendaRef}>
+    <div className="flex flex-col items-center md:p-10" ref={agendaRef}>
       <h2
         id="agenda"
         className="text-3xl font-bold pt-16 pb-8 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
@@ -425,15 +425,15 @@ function Agenda({
           <thead>
             <tr className="bg-blue-100">
               <th className="border p-4 w-1/6 text-left">Time</th>
-              <th className="border p-4 w-2/5 text-left">Talks</th>
-              <th className="border p-4 w-2/5 text-left">Workshops</th>
+              <th className="border p-4 w-2/5 text-center">Talks</th>
+              <th className="border p-4 w-2/5 text-center">Workshops</th>
             </tr>
           </thead>
           <tbody>
             {timeSlots.map((slot, index) => (
               <tr
                 key={index}
-                className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
+                
               >
                 <td className="border p-4 align-top text-left">
                   <div className="font-bold">
@@ -463,7 +463,7 @@ function Agenda({
                       {slot.talks.map((talk, idx) => (
                         <div key={idx} className="mb-4 last:mb-0 flex">
                           <div>
-                            <h3 className="text-lg leading-5 font-bold">
+                            <h3 className="text-lg leading-6 font-bold">
                               {talk.speechTitle}
                             </h3>
                             {talk.talkSpeakerName && (
@@ -496,7 +496,7 @@ function Agenda({
                         <div key={idx} className="mb-4 last:mb-0 flex">
                           <div className="mr-3 mt-1"></div>
                           <div>
-                            <h3 className="text-lg leading-5 font-bold">
+                            <h3 className="text-lg leading-6 font-bold">
                               {workshop.speechTitle}
                             </h3>
                             {workshop.talkSpeakerName && (
@@ -534,20 +534,20 @@ function Agenda({
       <div className="w-full max-w-6xl md:hidden text-left">
         {timeSlots.map((slot, slotIndex) => (
           <div key={slotIndex} className="mb-8">
-            <div className="bg-blue-100 p-3 rounded-t-lg font-bold">
+            <div className="bg-blue-100 py-3 px-4 rounded-t-lg font-bold">
               {formatTime(slot.timeStart)} -{' '}
               {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
             </div>
 
             {/* Break sessions */}
             {slot.breaks.length > 0 && (
-              <div className="border border-t-0 p-4 bg-white">
+              <div className="border border-t-0 p-4">
                 {slot.breaks.map((breakSession, idx) => (
                   <div key={idx} className="mb-4 last:mb-0">
                     <div className="bg-orange-100 text-orange-500 text-sm rounded-full px-2 w-14 mb-2">
                       Break
                     </div>
-                    <h3 className="text-lg font-bold">
+                    <h3 className="text-lg leading-5 font-bold">
                       {breakSession.speechTitle}
                     </h3>
                     <p className="text-gray-600 text-sm pt-2">
@@ -560,7 +560,7 @@ function Agenda({
 
             {/* Talks and Workshops */}
             {slot.breaks.length === 0 && (
-              <div className="border border-t-0 p-4 bg-white space-y-6">
+              <div className="border border-t-0 p-4  space-y-6">
                 {/* Talks */}
                 {slot.talks.map((talk, idx) => (
                   <div
@@ -570,7 +570,7 @@ function Agenda({
                     <div className="bg-blue-100 text-blue-500 text-sm rounded-full px-2 w-11 mb-2">
                       Talk
                     </div>
-                    <h3 className="text-lg font-bold">{talk.speechTitle}</h3>
+                    <h3 className="text-lg font-bold leading-5">{talk.speechTitle}</h3>
                     {talk.talkSpeakerName && (
                       <div className="flex items-center gap-2 text-gray-600 mt-1">
                         <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
@@ -600,7 +600,7 @@ function Agenda({
                     <div className="bg-seafoam-200 text-seafoam-700 text-sm rounded-full px-2 w-[5.5rem] mb-2">
                       Workshop
                     </div>
-                    <h3 className="text-lg font-bold">
+                    <h3 className="text-lg font-bold leading-5">
                       {workshop.speechTitle}
                     </h3>
                     {workshop.talkSpeakerName && (
