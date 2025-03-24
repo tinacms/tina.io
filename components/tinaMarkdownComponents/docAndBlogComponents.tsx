@@ -5,12 +5,12 @@ import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
-import { WarningCallout } from 'utils/shortcodes';
 import { Prism } from '../styles/Prism';
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
@@ -172,9 +172,23 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 py-6 border-x-teal-400/50 pl-4 rounded-tr-lg rounded-br-lg pr-2"
-      {...props}
-    />
+      className="my-6 border-l-4 py-6 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+    >
+      <div className="flex flex-col md:flex-row md:items-center md:gap-2 text-slate-800 items-start">
+        <div className="flex-shrink-0">
+          <AiOutlineBulb
+            size={40}
+            className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+          />
+        </div>
+        <div>
+          <TinaMarkdown
+            content={props.children.props.content as any}
+            components={docAndBlogComponents}
+          />
+        </div>
+      </div>
+    </blockquote>
   ),
 
   Iframe: ({ iframeSrc, height }) => {
@@ -251,7 +265,24 @@ export const docAndBlogComponents: Components<{
       </div>
     </>
   ),
-  WarningCallout: ({ body }) => <WarningCallout text={body} />,
+  WarningCallout: ({ body }) => (
+    <blockquote
+      style={{
+        backgroundColor: 'var(--color-white)',
+      }}
+      className="my-6 border-l-4 py-6 border-x-orange-400 pl-4 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+    >
+      <div className="flex flex-col md:flex-row gap-2 text-slate-800 md:items-center items-start">
+        <div>
+          <AiOutlineWarning
+            size={40}
+            className="text-white bg-gradient-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+          />
+        </div>
+        <TinaMarkdown content={body as any} components={docAndBlogComponents} />
+      </div>
+    </blockquote>
+  ),
   Callout: ({ title, description, url, buttonText }) => (
     <div className="callout">
       <img
