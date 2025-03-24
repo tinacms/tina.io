@@ -256,14 +256,16 @@ export const docAndBlogComponents: Components<{
           );
         })}
 
-        <div className="mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
-          <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 flex-shrink-0" />
-          <p className="text-sm text-gray-700">
-            All properties marked as{' '}
-            <span className="text-[#FF5533] font-medium">REQUIRED</span> must be
-            specified for the field to work properly.
-          </p>
-        </div>
+        {props.property?.some((property) => property.required) && (
+          <div className="mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
+            <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 flex-shrink-0" />
+            <p className="text-sm text-gray-700">
+              All properties marked as{' '}
+              <span className="text-[#FF5533] font-medium">REQUIRED</span> must
+              be specified for the field to work properly.
+            </p>
+          </div>
+        )}
       </div>
     );
   },
@@ -300,7 +302,6 @@ export const docAndBlogComponents: Components<{
                         } ${cellIndex === 0 ? 'break-words max-w-xs' : ''}`}
                       >
                         {/* @ts-ignore - Linter is wrong about the actual structure */}
-                        {console.log(cell)}
                         {cell?.props?.children}
                         <TinaMarkdown
                           content={cell?.props?.content as any}
