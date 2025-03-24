@@ -190,34 +190,39 @@ export const docAndBlogComponents: Components<{
     const tableRows = props?.children?.props?.children || [];
 
     return (
-      <div className="overflow-x-auto my-6">
-        <table className="table-auto w-full border-collapse">
+      <div className="overflow-x-auto my-6 rounded-lg shadow-md">
+        <table className="table-auto w-full">
           <tbody>
             {tableRows.map((row, rowIndex) => {
               // Each row has its own props.children array containing cells
               // @ts-ignore - Linter is wrong about the actual structure
               const cells = row?.props?.children || [];
+              const CellComponent = rowIndex === 0 ? 'th' : 'td';
 
               return (
                 <tr
                   key={`row-${rowIndex}`}
-                  className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                  className={
+                    rowIndex % 2 === 0 ? 'bg-white/5' : 'bg-blue-500/5'
+                  }
                 >
                   {cells.map((cell, cellIndex) => {
-                    // Determine if this is a header cell based on its name
-                    const isHeaderCell = cell?.name === 'th';
-                    const CellComponent = isHeaderCell ? 'th' : 'td';
-
                     return (
                       <CellComponent
                         key={`cell-${rowIndex}-${cellIndex}`}
-                        className={`border px-4 py-2 ${
-                          isHeaderCell ? 'font-bold bg-gray-100' : ''
-                        }`}
+                        className={`border border-orange-100 px-4 py-2 ${
+                          rowIndex === 0
+                            ? 'font-normal bg-white/50 text-left text-orange-500 font-tuner'
+                            : ''
+                        } ${cellIndex === 0 ? 'break-words max-w-xs' : ''}`}
                       >
                         {/* @ts-ignore - Linter is wrong about the actual structure */}
                         {console.log(cell)}
                         {cell?.props?.children}
+                        <TinaMarkdown
+                          content={cell?.props?.content as any}
+                          components={docAndBlogComponents}
+                        />
                       </CellComponent>
                     );
                   })}
