@@ -23,25 +23,20 @@ export function RealTimeTranslateButton() {
 
   const translateText = async (text: string) => {
     try {
-      const response = await fetch('https://libretranslate.de/translate', {
-        method: 'POST',
-        body: JSON.stringify({
-          q: text,
-          source: 'en',
-          target: 'zh',
-          format: 'text',
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      // Use Google Translate's free web API
+      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh&dt=t&q=${encodeURIComponent(
+        text
+      )}`;
 
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Translation failed');
       }
 
       const data = await response.json();
-      return data.translatedText;
+      // Extract translated text from Google's response format
+      const translatedText = data[0]?.map((item: any[]) => item[0]).join('');
+      return translatedText || null;
     } catch (error) {
       console.error('Translation error:', error);
       return null;
