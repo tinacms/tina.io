@@ -54,14 +54,14 @@ function ExperimentalBanner() {
   return (
     <Link href="/conference">
       <Image
-        src="/img/desktop-banner.png"
+        src="/img/TinaCon-desktop-banner.png"
         alt="tinaconMobileBanner"
-        width={10000}
-        height={10000}
+        width={5000}
+        height={5000}
         className="sm:block hidden px-5 lg:px-10"
       />
-            <Image
-        src="/img/tablet-banner.png"
+        <Image
+        src="/img/TinaCon-tablet-banner.png"
         alt="tinaconMobileBanner"
         width={2000}
         height={2000}
