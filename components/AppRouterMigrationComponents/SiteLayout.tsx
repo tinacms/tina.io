@@ -19,8 +19,10 @@ export const SiteLayout = ({ children, color, sticky = true }: LayoutProps) => {
         {/* TODO: consult with betty - if we want to add global gutters we can do it here easily */}
         <div className="flex flex-col flex-1">{children}</div>
         <AppFooter />
-        <LanguageSupportAlert />
-        <RealTimeTranslateButton />
+        <div className="fixed bottom-3 left-3 z-50 flex flex-col gap-3">
+          <LanguageSupportAlert />
+          <RealTimeTranslateButton />
+        </div>
       </div>
     </>
   );
