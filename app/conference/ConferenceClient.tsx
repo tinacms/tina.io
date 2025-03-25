@@ -12,7 +12,6 @@ import { Button } from 'components/ui';
 import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
-
 //TODO: Remove once TinaCon is over
 const TopBanner = ({ tinaData }: { tinaData: any }) => {
   return (
@@ -26,7 +25,7 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
           className="text-white"
         />
       </div>
-      <div className="w-full relative rounded-xl overflow-hidden">
+      <div className="w-full relative rounded-t-xl overflow-hidden">
         <div className="absolute inset-0 bg-orange-500"></div>
         <div
           className="absolute inset-0 bg-blue-900 hidden lg:block"
@@ -148,13 +147,13 @@ const HeaderBanner = ({
   tinaData: any;
   scrollToAgenda: () => void;
 }) => {
-  console.log(tinaData);
   return (
     <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
       <h1 className="font-tuner text-4xl pb-4 text-orange-500">
         {tinaData.bannerTitle}
       </h1>
-      <h2 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h2>
+      <h2 className="text-2xl max-w-4xl text-orange-500 font-tuner pb-4">{tinaData.bannerTagline}</h2>
+      <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
       <div className="flex flex-col md:flex-row py-6 gap-6  md:gap-10">
         <div className="flex gap-2 items-center">
           <FaRegCalendar /> <span>{tinaData.date}</span>
@@ -307,123 +306,272 @@ function formatTime(time: number) {
   return `${formattedHour}:${formattedMinutes} ${ampm}`;
 }
 
-function SessionCard({ session }: { session: Session }) {
-  return (
-    <div className="border p-5 rounded-xl shadow-xl flex w-full max-w-2xl text-start">
-      <div className="flex flex-col sm:flex-row" style={{ width: '100%' }}>
-        {session.talkSpeakerImage && (
-          <div
-            className="hidden sm:flex flex-col pr-4"
-            style={{ flex: '0 0 20%' }}
-          >
-            <Image
-              src={session.talkSpeakerImage}
-              alt={session.talkSpeakerName || 'Unknown Speaker'}
-              width={1000}
-              height={1000}
-              className="rounded-full w-full h-auto"
-            />
-          </div>
-        )}
-        <div className="flex flex-col" style={{ flex: '0 0 80%' }}>
-          <span
-            className={`text-sm rounded-full text-center px-2 mb-2 -ml-1 ${
-              session.sessionType === 'Break'
-                ? 'bg-gradient-to-br from-orange-100 to-orange-100 w-14 text-orange-500'
-                : session.sessionType === 'Workshop'
-                ? 'bg-gradient-to-br from-seafoam-200 to-seafoam-200 w-[5.5rem] text-seafoam-700'
-                : session.sessionType === 'Talk'
-                ? 'bg-gradient-to-br from-blue-100 to-blue-100 w-11 text-blue-500'
-                : 'text-gray-700'
-            }`}
-          >
-            {session.sessionType}
-          </span>
-          <h3 className="text-lg font-bold">{session.speechTitle || 'TBD'}</h3>
-          {session.talkSpeakerName && (
-            <span className="flex items-center gap-2 text-gray-600">
-              <FaRegUser />
-              <p className="text-sm text-gray-600 text-center flex items-center">
-                {session.talkSpeakerName}
-              </p>
-            </span>
-          )}
-          <span className="flex items-center gap-2 text-gray-600">
-            <FaRegClock />
-            <p className="text-sm">
-              {formatTime(session.talkTimeStart)}
-              {session?.talkTimeEnd && ` - ${formatTime(session.talkTimeEnd)}`}
-            </p>
-          </span>
-          <p className="text-gray-600 text-sm pt-2">
-            {session.speechDescription || 'TBD'}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Agenda({
   filteredSessions,
-  filter,
-  setFilter,
   agendaRef,
 }: {
   filteredSessions: Session[];
-  filter: 'all' | 'Talk' | 'Workshop';
-  setFilter: (filter: 'all' | 'Talk' | 'Workshop') => void;
   agendaRef: React.RefObject<HTMLDivElement>;
 }) {
+  // Group sessions by start time
+  const sessionsByTime = filteredSessions.reduce(
+    (acc, session) => {
+      const timeKey = session.talkTimeStart.toString();
+      if (!acc[timeKey]) {
+        acc[timeKey] = {
+          timeStart: session.talkTimeStart,
+          timeEnd: session.talkTimeEnd,
+          talks: [],
+          workshops: [],
+          breaks: [],
+        };
+      }
+
+      if (session.sessionType === 'Break') {
+        acc[timeKey].breaks.push(session);
+      } else if (session.sessionType === 'Talk') {
+        acc[timeKey].talks.push(session);
+      } else if (session.sessionType === 'Workshop') {
+        acc[timeKey].workshops.push(session);
+      }
+
+      return acc;
+    },
+    {} as Record<
+      string,
+      {
+        timeStart: number;
+        timeEnd?: number;
+        talks: Session[];
+        workshops: Session[];
+        breaks: Session[];
+      }
+    >
+  );
+
+  // Sort by time
+  const timeSlots = Object.values(sessionsByTime).sort(
+    (a, b) => a.timeStart - b.timeStart
+  );
+
   return (
-    <div className="flex flex-col items-center p-10" ref={agendaRef}>
+    <div className="flex flex-col items-center" ref={agendaRef}>
       <h2
         id="agenda"
         className="text-3xl font-bold pt-16 pb-8 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
       >
         Agenda
       </h2>
-      <div className="relative bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-md rounded-full flex w-full">
-        <div className="relative flex z-10 w-full">
-          <div
-            className={`absolute top-0 left-0 w-1/3 h-full bg-gradient-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 border-4 border-white ${
-              // For some reason the translate-x-1/3, 2/3, etc doesnt work so we have full and 200% which is just full x 2
-              filter === 'all'
-                ? 'translate-x-0'
-                : filter === 'Talk'
-                ? 'translate-x-full'
-                : 'translate-x-[200%]'
-            }`}
-          ></div>
-          <button
-            className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-              filter === 'all' ? 'text-white' : 'text-blue-500'
-            }`}
-            onClick={() => setFilter('all')}
-          >
-            All
-          </button>
-          <button
-            className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-              filter === 'Talk' ? 'text-white' : 'text-blue-500'
-            }`}
-            onClick={() => setFilter('Talk')}
-          >
-            Talks
-          </button>
-          <button
-            className={`flex-1 px-10 py-4 z-20 transition-colors duration-500 ${
-              filter === 'Workshop' ? 'text-white' : 'text-blue-500'
-            }`}
-            onClick={() => setFilter('Workshop')}
-          >
-            Workshops
-          </button>
-        </div>
+
+      {/* Desktop view (table) */}
+      <div className="w-full max-w-6xl overflow-x-auto hidden md:block rounded-xl">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-blue-100">
+              <th className="border p-4 w-1/6 text-left">Time</th>
+              <th className="border p-4 w-2/5 text-center">Talks</th>
+              <th className="border p-4 w-2/5 text-center">Workshops</th>
+            </tr>
+          </thead>
+          <tbody>
+            {timeSlots.map((slot, index) => (
+              <tr
+                key={index}
+                
+              >
+                <td className="border p-4 align-top text-left">
+                  <div className="font-bold leading-6">
+                    {formatTime(slot.timeStart)} -
+                    <br />
+                    {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
+                  </div>
+                </td>
+
+                {slot.breaks.length > 0 ? (
+                  <td colSpan={2} className="border p-4 text-center">
+                    {slot.breaks.map((breakSession, idx) => (
+                      <div key={idx} className="mb-4 last:mb-0">
+                        <h3 className="text-lg font-bold">
+                          {breakSession.speechTitle}
+                        </h3>
+                        <p className="text-gray-600 text-sm">
+                          {breakSession.speechDescription}
+                        </p>
+                      </div>
+                    ))}
+                  </td>
+                ) : (
+                  <>
+                    {/* Talks column */}
+                    <td className="border p-4 align-top text-left">
+                      {slot.talks.map((talk, idx) => (
+                        <div key={idx} className="mb-4 last:mb-0 flex">
+                          <div>
+                            <h3 className="text-lg leading-6 font-bold">
+                              {talk.speechTitle}
+                            </h3>
+                            {talk.talkSpeakerName && (
+                              <div className="flex items-center gap-2 text-gray-600 mt-1">
+                                <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
+                                  <Image
+                                    src={talk.talkSpeakerImage}
+                                    alt={talk.talkSpeakerName || 'Speaker'}
+                                    width={100}
+                                    height={100}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <span className="text-sm">
+                                  {talk.talkSpeakerName}
+                                </span>
+                              </div>
+                            )}
+                            <p className="text-gray-600 text-sm pt-2">
+                              {talk.speechDescription}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </td>
+
+                    {/* Workshops column */}
+                    <td className="border p-4 align-top text-left">
+                      {slot.workshops.map((workshop, idx) => (
+                        <div key={idx} className="mb-4 last:mb-0 flex">
+                          <div className="mr-3 mt-1"></div>
+                          <div>
+                            <h3 className="text-lg leading-6 font-bold">
+                              {workshop.speechTitle}
+                            </h3>
+                            {workshop.talkSpeakerName && (
+                              <div className="flex items-center gap-2 text-gray-600 mt-1">
+                                <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
+                                  <Image
+                                    src={workshop.talkSpeakerImage}
+                                    alt={workshop.talkSpeakerName || 'Speaker'}
+                                    width={50}
+                                    height={50}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <span className="text-sm">
+                                  {workshop.talkSpeakerName}
+                                </span>
+                              </div>
+                            )}
+                            <p className="text-gray-600 text-sm pt-2">
+                              {workshop.speechDescription}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <div className="pt-10 flex flex-col gap-6 w-full max-w-3xl">
-        {filteredSessions.map((session, index) => (
-          <SessionCard key={index} session={session} />
+
+      {/* Mobile view (cards) */}
+      <div className="w-full max-w-6xl md:hidden text-left">
+        {timeSlots.map((slot, slotIndex) => (
+          <div key={slotIndex} className="mb-8">
+            <div className="bg-blue-100 py-3 px-4 rounded-t-lg font-bold">
+              {formatTime(slot.timeStart)} -{' '}
+              {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
+            </div>
+
+            {/* Break sessions */}
+            {slot.breaks.length > 0 && (
+              <div className="border border-t-0 p-4">
+                {slot.breaks.map((breakSession, idx) => (
+                  <div key={idx} className="mb-4 last:mb-0">
+                    <div className="bg-orange-100 text-orange-500 text-sm rounded-full px-2 w-14 mb-2">
+                      Break
+                    </div>
+                    <h3 className="text-lg leading-5 font-bold">
+                      {breakSession.speechTitle}
+                    </h3>
+                    <p className="text-gray-600 text-sm pt-1">
+                      {breakSession.speechDescription}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Talks and Workshops */}
+            {slot.breaks.length === 0 && (
+              <div className="border border-t-0 p-4  space-y-6">
+                {/* Talks */}
+                {slot.talks.map((talk, idx) => (
+                  <div
+                    key={`talk-${idx}`}
+                    className="pb-4 border-b last:border-b-0 last:pb-0"
+                  >
+                    <div className="bg-blue-100 text-blue-500 text-sm rounded-full px-2 w-11 mb-2">
+                      Talk
+                    </div>
+                    <h3 className="text-lg font-bold leading-5">{talk.speechTitle}</h3>
+                    {talk.talkSpeakerName && (
+                      <div className="flex items-center gap-2 text-gray-600 mt-1">
+                        <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
+                          <Image
+                            src={talk.talkSpeakerImage}
+                            alt={talk.talkSpeakerName || 'Speaker'}
+                            width={100}
+                            height={100}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <span className="text-sm">{talk.talkSpeakerName}</span>
+                      </div>
+                    )}
+                    <p className="text-gray-600 text-sm pt-2">
+                      {talk.speechDescription}
+                    </p>
+                  </div>
+                ))}
+
+                {/* Workshops */}
+                {slot.workshops.map((workshop, idx) => (
+                  <div
+                    key={`workshop-${idx}`}
+                    className="pb-4 border-b last:border-b-0 last:pb-0"
+                  >
+                    <div className="bg-seafoam-200 text-seafoam-700 text-sm rounded-full px-2 w-[5.5rem] mb-2">
+                      Workshop
+                    </div>
+                    <h3 className="text-lg font-bold leading-5">
+                      {workshop.speechTitle}
+                    </h3>
+                    {workshop.talkSpeakerName && (
+                      <div className="flex items-center gap-2 text-gray-600 mt-1">
+                        <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
+                          <Image
+                            src={workshop.talkSpeakerImage}
+                            alt={workshop.talkSpeakerName || 'Speaker'}
+                            width={50}
+                            height={50}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <span className="text-sm">
+                          {workshop.talkSpeakerName}
+                        </span>
+                      </div>
+                    )}
+                    <p className="text-gray-600 text-sm pt-2">
+                      {workshop.speechDescription}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </div>
@@ -450,8 +598,12 @@ function ConferencePage({
   ).map((session: any) => ({
     speechTitle: session.speechTitle || 'TBD',
     speechDescription: session.speechDescription || 'TBD',
-    talkSpeakerName: session.talkSpeakerName,
-    talkSpeakerImage: session.talkSpeakerImage || '/img/people/Mystery.png',
+    talkSpeakerName:
+      session.sessionType === 'Break' ? null : session.talkSpeakerName,
+    talkSpeakerImage:
+      session.sessionType === 'Break'
+        ? null
+        : session.talkSpeakerImage || '/img/people/Mystery.png',
     talkTimeStart: session.talkTimeStart || 0,
     talkTimeEnd:
       session.talkTimeEnd !== undefined ? session.talkTimeEnd : undefined,
@@ -500,12 +652,7 @@ function ConferencePage({
         <OpenSourceExpertSpeakers
           speakers={tinaData.data?.conference?.speakers || []}
         />
-        <Agenda
-          filteredSessions={filteredSessions}
-          filter={filter}
-          setFilter={setFilter}
-          agendaRef={agendaRef}
-        />
+        <Agenda filteredSessions={filteredSessions} agendaRef={agendaRef} />
       </div>
     </div>
   );
