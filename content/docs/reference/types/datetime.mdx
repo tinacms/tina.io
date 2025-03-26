@@ -1,6 +1,6 @@
 ---
 title: Date Fields
-last_edited: '2025-03-14T03:44:22.203Z'
+last_edited: '2025-03-26T01:06:16.097Z'
 next: ''
 previous: ''
 ---
@@ -9,29 +9,30 @@ A structured input that stores date values in ISO 8601 format. Uses [react-datet
 
 ## Type Definition
 
-```ts
-type DatetimeField = {
-  name: string,
-  type: 'datetime'
-  label?: string,
-  description?: string,
-  list?: boolean
-  ui?: {
-    dateFormat?: string // eg 'YYYY MM DD'
-    component?: FC<any> | string | null
-    parse?: (value: string, name: string, field: F) => any
-    format?: (value: string, name: string, field: F) => any
-    validate?: (
-      value: string,
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
-}
-```
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-This is just a reference. The generic [Field](http://localhost:3000/docs/reference/fields) type definition contains further usage information.
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"datetime"` to use the Datetime Field.\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "dateFormat",
+      description: "Defines the UI date format.\n\nFor example, 'YYYY MM DD'.\n",
+      type: "string"
+    }
+  ]}
+/>
 
 Datetimes' are persisted as UTC, converted from local time of the user on input.
 

@@ -1,13 +1,13 @@
 ---
 title: Reference Fields
-last_edited: '2025-03-14T04:36:04.696Z'
+last_edited: '2025-03-26T01:13:27.168Z'
 next: ''
 previous: ''
 ---
 
-The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on _one side_.
+The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
 
-Once defined, the values of the _referenced_ document become available to the parent.
+Once defined, the values of the *referenced* document become available to the parent.
 
 ## Type Definition
 
@@ -83,7 +83,7 @@ When editing in Tina, the user will be able to choose a document in the `author`
 
 ![](/img/docs/reference/reference_field_example_tszsxd.png)
 
-When querying for a `post` document via the client or raw GraphQL, the `author` key in the response will contain the values of the _referenced_ `author` document:
+When querying for a `post` document via the client or raw GraphQL, the `author` key in the response will contain the values of the *referenced* `author` document:
 
 <GraphQLCodeBlock
   query="{
@@ -118,12 +118,10 @@ You can search your references based on document file-path.
 If you have a long list of reference items, you can filter them in the schema using the `ui.collectionFilter` field using a property from the referenced collection.
 
 <WarningCallout
-  body={
-    <>
-      The current `collectionFilter`only supports properties of type string and
-      is also **case sensitive**.
-    </>
-  }
+  body={<>
+    The current `collectionFilter`only supports properties of type string and
+    is also **case sensitive**.
+  </>}
 />
 
 To only show authors who's location is set to 'Australia':
@@ -150,14 +148,18 @@ By default the reference selector shows the document filename. This can be set t
 
 The `optionComponent` function provides you with two parameters: `props` and `_internalSys`.
 
-- `props` represents the fields from the reference collection.
-- `_internalSys` contains various useful information for you to use in the custom component such as the `file name` and `path`.
+* `props` represents the fields from the reference collection.
+* `_internalSys` contains various useful information for you to use in the custom component such as the `file name` and `path`.
 
 ![](/img/docs/reference/custom-reference-field-ui_ojtrlx.png)
 
-> Since this is dependent on your schema, run `console.log(props)` or `console.log(_internalSys)` to get the full list of values accessible.
+<WarningCallout
+  body={<>
+    If you require strict typing in your application, you'll need to manually declare the type of props for optionComponent ahead of time. See examples below.
+  </>}
+/>
 
-<WarningCallout body="If you require strict typing in your application, you'll need to manually declare the type of props for `optionComponent` ahead of time. See examples below." />
+> Since this is dependent on your schema, run `console.log(props)` or `console.log(_internalSys)` to get the full list of values accessible.
 
 ## Examples
 
@@ -246,7 +248,11 @@ const referenceField = {
 };
 ```
 
-<WarningCallout body="If you pass in a function, it should be passed as an executable. Running something like `const url = new URL('https://bob-northwind-sydney.com')` directly in the callback isn't allowed." />
+<WarningCallout
+  body={<>
+    If you pass in a function, it should be passed as an executable. Running something like const url = new URL('https\://bob-northwind-sydney.com') directly in the callback isn't allowed.
+  </>}
+/>
 
 ### Field with simple custom label
 

@@ -15,28 +15,24 @@ Images can be uploaded to the image component with drag-and-drop actions, or wit
 
 ## Type Definition
 
-```ts
-type ImageField = {
-  name: string,
-  type: 'image',
-  label?: string,
-  description?: string,
-  list?: boolean,
-  ui?: {
-    component?: FC<any> | string | null
-    parse?: (value: string, name: string, field: F) => any
-    format?: (value: string, name: string, field: F) => any
-    validate?: (
-      value: string,
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
-}
-```
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-This is just a reference. The generic [Field](http://localhost:3000/docs/reference/fields) type definition contains further usage information.
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: 'Set this to `"image"` to use the Image Field.\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: 'The name of the field for internal use.\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
 
 ## Example
 

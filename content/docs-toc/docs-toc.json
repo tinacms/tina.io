@@ -91,13 +91,13 @@
       "title": "Configuring TinaCMS",
       "items": [
         {
-          "title": "The TinaCMS Config File",
-          "slug": "content/docs/reference/config.mdx",
+          "title": "The /tina Folder",
+          "slug": "content/docs/tina-folder/overview.mdx",
           "_template": "item"
         },
         {
-          "title": "The \"tina\" Folder",
-          "slug": "content/docs/tina-folder/overview.mdx",
+          "title": "The Config File",
+          "slug": "content/docs/reference/config.mdx",
           "_template": "item"
         },
         {

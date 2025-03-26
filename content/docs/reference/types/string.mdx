@@ -1,6 +1,6 @@
 ---
 title: String Fields
-last_edited: '2025-03-13T04:33:39.682Z'
+last_edited: '2025-03-26T00:50:49.005Z'
 next: ''
 previous: ''
 ---
@@ -11,30 +11,24 @@ For indents, embolding and other formatting, use the [rich-text field type](/doc
 
 ## Type Definition
 
-```ts
-type StringField = {
-  name: string,
-  type: 'string',
-  label?: string,
-  description?: string,
-  list?: boolean,
-  options?: (string | { value: string; label: string })[],
-  isBody?: boolean,
-  ui?: {
-    component?: FC<any> | string | null,
-    parse?: (value: string | string[], name: string, field: F) => any,
-    format?: (value: string | string[], name: string, field: F) => any,  
-    validate?: (
-      value: string | string[],
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
-}
-```
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-This is just a reference. The generic [Field](/docs/reference/fields) type definition contains usage information.
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: 'Set this to `"string"` to use the String Field.\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: 'The name of the field for internal use.\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
 
 ## Examples
 

@@ -9,28 +9,24 @@ A toggle input that stores `true` or `false` values.
 
 ## Type Definition
 
-```ts
-type BooleanField = {
-  name: string,
-  type: 'boolean',
-  label?: string,
-  description?: string,
-  list?: boolean,
-  ui?: {
-    component?: FC<any> | string | null,
-    parse?: (value: boolean | boolean[], name: string, field: F) => any,
-    format?: (value: boolean | boolean[], name: string, field: F) => any,
-    validate?: (
-      value: boolean | boolean[],
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
-}
-```
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-This is just a reference. The generic [Field](http://localhost:3000/docs/reference/fields) type definition contains further usage information.
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: 'Set this to `"boolean"` to use the Boolean Field.\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: 'The name of the field for internal use.\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
 
 ## Examples
 

@@ -1,7 +1,7 @@
 ---
 id: fields
 title: Fields
-last_edited: '2025-03-13T04:19:02.832Z'
+last_edited: '2025-03-26T00:57:06.497Z'
 next: content/docs/reference/templates.mdx
 previous: content/docs/reference/collections.mdx
 ---
@@ -25,43 +25,125 @@ The basic type definition is outlined below. Some field types extend the below t
 
 ## Type Definition
 
-### Universal Properties
-
-All field types include at least these options.
-
-| Property       | Description                                                                                                                |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `name`         | The name of the field.                                                                                                     |
-| `type`         | Determines the data type and form field used.                                                                              |
-| `label`        | The collection name as shown in the editor. Uses `name` if omitted.                                                        |
-| `description`  | A short description about the field that will be displayed to the user (can include html formatting e.g. style attributes) |
-| `required`     | If `true`, disables save while this field has no value. The default is `false`.                                            |
-| `nameOverride` | Controls the name used for the field in content files.                                                                     |
-| `ui.component` | Used for [custom field components](/docs/extending-tina/custom-field-components).                                          |
-
-### Other common properties
-
-Multiple field types make use of these properties.
-
-| Property      | Description                                                                           |
-| ------------- | ------------------------------------------------------------------------------------- |
-| `isTitle`     | Defines the field title (see below). The default is `false`.                          |
-| `isBody`      | Defines the field is linked to the Markdown body (see below). The default is `false`. |
-| options       | Restrict allowed values to the given options.                                         |
-| `ui.list`     | This can be used to store an array of values.                                         |
-| `ui.min`      | Minimum amount of items for list fields.                                              |
-| `ui.max`      | Maximum amount of items for list fields.                                              |
-| `ui.validate` | Used for [custom field validation](/docs/extending-tina/validation/).                 |
-| `ui.parse`    | A function that modifies what data is saved to the content document.                  |
-| `ui.format`   | A function that modifies what data is shown to the user.                              |
+<apiReference
+  title=""
+  property={[
+    {
+      name: "name",
+      type: "string",
+      description: "The name of the field.\n",
+      required: true
+    },
+    {
+      name: "type",
+      type: "string",
+      description: "Determines the data type and form field used.\n",
+      required: true
+    },
+    {
+      name: "label",
+      type: "string",
+      description:
+        "The collection name as shown in the editor. Uses `name` if omitted.\n"
+    },
+    {
+      name: "description",
+      type: "string",
+      description:
+        "A short description about the field that will be displayed to the user.\n",
+      experimental: false
+    },
+    {
+      name: "required",
+      type: "boolean",
+      description: "If `true`, disables save while this field has no value.\n",
+      default: "false"
+    },
+    {
+      name: "nameOverride",
+      type: "string",
+      description: "Controls the name used for the field in content files.\n"
+    },
+    {
+      name: "isTitle",
+      type: "boolean",
+      description: "Defines the field title.\n\n*String* fields only.\n",
+      default: "false"
+    },
+    {
+      name: "isBody",
+      type: "boolean",
+      description:
+        "Defines the field is linked to the Markdown body.\n\n*Text* (`rich-text` and `string`) fields only.\n",
+      default: "false"
+    },
+    {
+      name: "options",
+      type: "array",
+      description:
+        "Restrict allowed values to the given options.\n\n*Scalar *fields only.\n"
+    },
+    {
+      groupName: "ui",
+      name: "list",
+      type: "boolean",
+      description:
+        "This can be used to store an array of values. [Check compatibility](/docs/reference/fields#list-fields).\n"
+    },
+    {
+      groupName: "ui",
+      name: "min",
+      type: "number",
+      description: "Minimum amount of items for list fields.\n"
+    },
+    {
+      groupName: "ui",
+      name: "max",
+      type: "number",
+      description: "Maximum amount of items for list fields.\n"
+    },
+    {
+      groupName: "ui",
+      name: "validate",
+      type: "function",
+      description:
+        "Used for custom field validation. [Check compatibility](/docs/reference/fields#validating-field-values).\n"
+    },
+    {
+      groupName: "ui",
+      name: "parse",
+      type: "function",
+      description:
+        "A function that modifies what data is saved to the content document.\n"
+    },
+    {
+      groupName: "ui",
+      name: "format",
+      type: "function",
+      description: "A function that modifies what data is shown to the user.\n"
+    },
+    {
+      groupName: "ui",
+      name: "component",
+      type: "FC<any> | string | null",
+      description:
+        "Used for [custom field components](/docs/extending-tina/custom-field-components).\n"
+    }
+  ]}
+/>
 
 ### Name
 
 The name of the field to be used in the GraphQL schema.
 
-Should be unique amongst sibling fields.
+<WarningCallout
+  body={<>
+    This name cannot have spaces, dashes, or special characters. It must be a
+    valid GraphQL name.
+  </>}
+/>
 
-<WarningCallout body="This name cannot have spaces, dashes, or special characters. It must be a valid GraphQL name." />
+Should be unique amongst sibling fields.
 
 To use a name with these characters in your content files, the nameOverride property can be set. The actual name property will still be used in other cases.
 
@@ -69,10 +151,10 @@ To use a name with these characters in your content files, the nameOverride prop
 fields: [
   {
     name: 'my_field',
-    nameOverride: 'my-field'
+    nameOverride: 'my-field',
     //...
   },
-]
+];
 ```
 
 ### Field title
@@ -119,16 +201,20 @@ fields: [
     type: 'image',
     list: true,
   },
-]
+];
 ```
 
 ### ui.max
 
 Setting `ui.max` on lists of [object field types](/docs/reference/types/object/) disables the add button in the editor, once at least the given number of elements have been added.
 
-<WarningCallout body="Not compatible with object Templates." />
-
 ![](/img/docs/reference/obj-list.png)
+
+<WarningCallout
+  body={<>
+    This is not supported for reference field types.
+  </>}
+/>
 
 ```javascript
 {
@@ -167,9 +253,10 @@ Any *scalar* field can accept an `options` array to restrict allowed values. Thi
 
 You can either pass in an array of values, or an array of objects of structure:
 
-| value | The actual value associated with the option.    |
-| ----- | ----------------------------------------------- |
-| label | The name of this option as shown in the editor. |
+| Option Property | Definition                                      |
+| --------------- | ----------------------------------------------- |
+| value           | The actual value associated with the option.    |
+| label           | The name of this option as shown in the editor. |
 
 ### Checkbox fields
 
@@ -192,7 +279,7 @@ fields: [
       // ...
     ],
   },
-]
+];
 ```
 
 ### Dropdown field
@@ -215,7 +302,7 @@ fields: [
       // ...
     ],
   },
-]
+];
 ```
 
 ## Formatting Field Values
@@ -245,7 +332,12 @@ Tina allows client-side validation using a validation function, `ui.validate`. T
 
 To include other field values of the form in the validation, an `allValues` argument can be used.
 
-<WarningCallout body="Not compatible with reference, object and rich-text field types – they have a more complex internal structure" />
+<WarningCallout
+  body={<>
+    Not compatible with reference, object and rich-text field types – they
+    have a more complex internal structure.
+  </>}
+/>
 
 ```javascript
 {
@@ -255,9 +347,9 @@ To include other field values of the form in the validation, an `allValues` argu
   ui: {
     validate: (value, allValues) => {
       const titleLength = value?.length || 0
-      const descLength = allValues?.description?.length || 0  
+      const descLength = allValues?.description?.length || 0
       if (titleLength >= descLength) {
-        return 'The description must be longer than the title'  
+        return 'The description must be longer than the title'
       }
     }
   }

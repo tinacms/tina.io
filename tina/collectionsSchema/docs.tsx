@@ -1,4 +1,4 @@
-import { Template } from 'tinacms';
+import { Template, wrapFieldsWithMeta } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
@@ -78,7 +78,23 @@ export const docsCollection = {
               name: 'property',
               label: 'Property',
               list: true,
+              ui: {
+                itemProps: (item) => {
+                  return {
+                    label: item.groupName
+                      ? `📂 ${item.groupName} | ${item.name}`
+                      : item.name,
+                  };
+                },
+              },
               fields: [
+                {
+                  type: 'string',
+                  name: 'groupName',
+                  label: 'Group Name',
+                  description:
+                    'Adjacent properties with the same group name will be grouped together',
+                },
                 {
                   type: 'string',
                   name: 'name',
@@ -103,6 +119,11 @@ export const docsCollection = {
                   type: 'boolean',
                   name: 'required',
                   label: 'Required',
+                },
+                {
+                  type: 'boolean',
+                  name: 'experimental',
+                  label: 'Experimental',
                 },
               ],
             },

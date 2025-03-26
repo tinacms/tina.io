@@ -1,15 +1,15 @@
 ---
 id: collections
 title: Collections
-last_edited: '2025-03-21T00:08:57.524Z'
+last_edited: '2025-03-26T00:04:14.454Z'
 next: content/docs/reference/fields.mdx
 previous: content/docs/reference/schema.mdx
 ---
 
 Each collection is a distinct content structure. Creating a content document in TinaCMS is done on a per-collection basis so that:
 
-- Content structure matches a collection definition.
-- The document exists under that collection.
+* Content structure matches a collection definition.
+* The document exists under that collection.
 
 ![](/img/docs/schema/SCR-20250312-nnbi.png)
 
@@ -19,32 +19,153 @@ These can be specified in the collections'`fields` or `templates` array.
 
 The `format` property can be set to control the filetype of content created in the collection.
 
-## Type Definition
+## Object Definition
 
-| Property                               | Description                                                                                                                                                                                                   |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`name`](#name)                        | The name of the collection                                                                                                                                                                                    |
-| [`path`](#path)                        | The related content directory.                                                                                                                                                                                |
-| [`format`](#format)                    | The extension of content files. One of `"md"` (**default**), `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.                                                                                           |
-| [`match.include`](#match.include)      | A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that specifies files in the `path` folder.                                                                                               |
-| [`match.exclude`](#match.exclude)      | A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that excludes specific files in the `path` folder from the collection.                                                                   |
-| `label`                                | The collection name as shown in the editor.                                                                                                                                                                   |
-| `fields`                               | An array of [fields](/docs/reference/fields/)                                                                                                                                                                 |
-| `templates`                            | An array of [templates](/docs/reference/templates/)                                                                                                                                                           |
-| [`defaultItem`](#defaultitem)          | An object or a function that returns the default data when a new document is created.                                                                                                                         |
-| `frontmatterFormat`                    | The format used to parse the frontmatter. This can be `"yaml"` (**default**), `"toml"`, or `"json"`.                                                                                                          |
-| `frontmatterDelimiters`                | [Delimiters](https://github.com/jonschlinkert/gray-matter#optionsdelimiters) used for the frontmatter, of type `string \| [string, string]` . The default is `"---"`.                                         |
-| `ui.filename`                          | See [Filename customization.](/docs/extending-tina/filename-customization/)                                                                                                                                   |
-| `ui.beforeSubmit`                      | A function called before the form is submitted. Any return value will replace the form submit value.                                                                                                          |
-| `ui.global`                            | A boolean that if true will make this collection Global.                                                                                                                                                      |
-| `ui.router`                            | A function that takes in a document and returns the route for it. If nothing is returned the basic editor will be used. Used to setup [Visual Editing](/docs/contextual-editing/router/#the-router-property). |
-| `ui.allowedActions.create`             | If this is false, the create button will not appear in the collection list. See [example](#example-with-allowed-actions).                                                                                     |
-| `ui.allowedActions.delete`             | If this is false, the create delete button will not appear in the collection list. See [example](#example-with-allowed-actions).                                                                              |
-| `ui.allowedActions.createNestedFolder` | If this is false, the create folder button will not appear in the collection list. See [example](#example-with-allowed-actions).                                                                              |
-| `ui.filename.description`              | A short description for the filename field that will be displayed to the user (can include html formatting e.g. style attributes)                                                                             |
-| `ui.filename.showFirst`                | A boolean that if true will render the filename field at the top of the form. The default is `false`.                                                                                                         |
+<apiReference
+  title=""
+  property={[
+    {
+      groupName: "",
+      name: "name",
+      type: "string",
+      description: "The internal name of the collection.\n",
+      required: true
+    },
+    {
+      groupName: "",
+      name: "path",
+      type: "string",
+      description: "Determines where documents are stored for this collection.\n",
+      required: true
+    },
+    {
+      groupName: "",
+      name: "format",
+      type: '"md" | "markdown" | "mdx" | "json" | "toml" | "yaml"',
+      description: "The extension and format of content files.\n",
+      default: '"md"'
+    },
+    {
+      groupName: "",
+      name: "label",
+      type: "string",
+      description: "The collection name as shown in the editor.\n"
+    },
+    {
+      groupName: "",
+      name: "fields",
+      type: "Field[]",
+      description: "An array of [fields](/docs/reference/fields/).\n"
+    },
+    {
+      groupName: "",
+      name: "templates",
+      type: "Template[]",
+      description: "An array of [templates](/docs/reference/templates/).\n"
+    },
+    {
+      groupName: "",
+      name: "defaultItem",
+      type: "object | function",
+      description: "Defines pre-populated data in newly created documents.\n"
+    },
+    {
+      groupName: "",
+      name: "frontmatterFormat",
+      type: '"yaml" | "toml" | "json"',
+      description: "The format used to parse the frontmatter.\n",
+      default: '"yaml"'
+    },
+    {
+      groupName: "",
+      name: "frontmatterDelimiters",
+      type: "string | [string, string]",
+      description:
+        "[Delimiters](https://github.com/jonschlinkert/gray-matter#optionsdelimiters) used for the frontmatter.\n",
+      default: '"---"'
+    },
+    {
+      groupName: "match",
+      name: "include",
+      type: "string",
+      description:
+        "A [glob pattern](https://en.wikipedia.org/wiki/Glob_\\(programming\\)) that further specifies included files in the `path` folder.\n"
+    },
+    {
+      groupName: "match",
+      name: "exclude",
+      type: "string",
+      description:
+        "A [glob pattern](https://en.wikipedia.org/wiki/Glob_\\(programming\\)) that excludes specific files in the `path` folder.\n"
+    },
+    {
+      groupName: "ui",
+      name: "beforeSubmit",
+      type: "async function -- { values, cms, form } => { values }",
+      description:
+        "A function called before the form is submitted. Any return value will replace the form submit value.\n"
+    },
+    {
+      groupName: "ui",
+      name: "global",
+      type: "boolean",
+      description: "A boolean that if true will make this collection Global.\n",
+      default: "false"
+    },
+    {
+      groupName: "ui",
+      name: "router",
+      type: "function -- { document } => string",
+      description:
+        "A function that takes in a document and returns the route for it. If nothing is returned the basic editor will be used. Used to setup [Visual Editing](/docs/contextual-editing/router/#the-router-property).\n"
+    },
+    {
+      groupName: "ui.allowedActions",
+      name: "create",
+      type: "boolean",
+      description:
+        "Set to false to prevent users creating new content documents.\n",
+      default: "true"
+    },
+    {
+      groupName: "ui.allowedActions",
+      name: "delete",
+      type: "boolean",
+      description:
+        "Set to false to prevent users from deleting content documents.\n",
+      default: "true"
+    },
+    {
+      groupName: "ui.allowedActions",
+      name: "createNestedFolder",
+      type: "boolean",
+      description:
+        "Set to false to prevent users creating folders in the collection path.\n",
+      default: "true"
+    },
+    {
+      groupName: "ui.filename",
+      name: "description",
+      type: "string",
+      description:
+        "A short description for the filename field that will be displayed to the user.\n"
+    },
+    {
+      groupName: "ui.filename",
+      name: "showFirst",
+      type: "boolean",
+      description:
+        "If true, renders the filename field at the top of the form.\n",
+      default: "false"
+    }
+  ]}
+/>
 
-<WarningCallout body="Must provide only one of fields or templates." />
+<WarningCallout
+  body={<>
+    Must provide only one of fields or templates.
+  </>}
+/>
 
 ### Name
 
@@ -54,7 +175,12 @@ The `format` property can be set to control the filetype of content created in t
 
 We recommend using singular naming in a collection (post, not post**s**).
 
-<WarningCallout body="This name cannot have spaces, dashes, or special characters. It must be a valid GraphQL name." />
+<WarningCallout
+  body={<>
+    This name cannot have spaces, dashes, or special characters. It must be a
+    valid GraphQL name.
+  </>}
+/>
 
 ### Path
 
@@ -76,13 +202,13 @@ If unspecified, markdown files are used.
 
 ### match.include
 
-A [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) that will be used to match a subset of the files in the `path` directory, not including the file extension. Use this field to **exclude subdirectories** or **match specific filesets**.
+A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that will be used to match a subset of the files in the `path` directory, not including the file extension. Use this field to **exclude subdirectories** or **match specific filesets**.
 
-- `?` matches a single character
-- `*` matches any number of any characters (except `/`)
-- `[abc]` matches any one character in the given set
-- `[a-z]` matches a range.
-- `{foo,bar}` matches any whole word in the given set
+* `?` matches a single character
+* `*` matches any number of any characters (except `/`)
+* `[abc]` matches any one character in the given set
+* `[a-z]` matches a range.
+* `{foo,bar}` matches any whole word in the given set
 
 The final set of included files is defined from`<path>/<match.include>.<format>`.
 

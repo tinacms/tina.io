@@ -1,7 +1,7 @@
 ---
 id: templates
 title: Templates
-last_edited: '2025-03-13T00:43:52.469Z'
+last_edited: '2025-03-26T00:49:19.922Z'
 next: content/docs/reference/types.mdx
 previous: content/docs/reference/fields.mdx
 ---
@@ -12,14 +12,47 @@ Templates exist as an alternative to the fields type when multiple variants of t
 
 ## Type Definition
 
-| Property       | Description                                                                           |
-| -------------- | ------------------------------------------------------------------------------------- |
-| `name`         | The name of the template.                                                             |
-| `label`        | The template name as shown in the editor.                                             |
-| `fields`       | An array of [fields](/docs/reference/fields/).                                        |
-| ui.itemProps   | Controls how each template appears in the editor.                                     |
-| ui.defaultItem | An object or a function that returns the default data when a new document is created. |
-| ui.previewSrc  | Sample image for this template.                                                       |
+<apiReference
+  property={[
+    {
+      name: "name",
+      description: "The name of the template.\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "",
+      name: "fields",
+      description: "An array of [fields](/docs/reference/fields/).\n",
+      type: "Field[]",
+      required: true
+    },
+    {
+      name: "label",
+      description: "The template name as shown in the editor.\n",
+      type: "string"
+    },
+    {
+      groupName: "ui",
+      name: "itemProps",
+      description: "Specify custom labels for the editor.\n",
+      type: "function -- { value } => { label: string }"
+    },
+    {
+      groupName: "ui",
+      name: "defaultItem",
+      description:
+        "An object or a function that returns the default data when a new document is created.\n",
+      type: "object | function"
+    },
+    {
+      name: "previewSrc",
+      description: "Path to a sample image for this template.\n",
+      type: "string",
+      groupName: "ui"
+    }
+  ]}
+/>
 
 ## Examples
 

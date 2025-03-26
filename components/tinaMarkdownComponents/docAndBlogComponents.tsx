@@ -2,7 +2,7 @@ import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
-import { Info } from 'lucide-react';
+import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
@@ -41,6 +41,7 @@ export const docAndBlogComponents: Components<{
   ApiReference: {
     title: string;
     property: {
+      groupName: string;
       name: string;
       description: string;
       type: string;
@@ -131,11 +132,11 @@ export const docAndBlogComponents: Components<{
         </div>
 
         <div
-          className={`grid sm:grid-cols-2 gap-4 border-t border-gray-100 transition-all duration-700 ease-in-out ${
+          className={`grid gap-4 border-t border-gray-100 transition-all duration-700 ease-in-out ${
             isExpanded
               ? 'max-h-[2000px] opacity-100 delay-500'
               : 'max-h-0 opacity-0 overflow-hidden'
-          }`}
+          } ${props?.image ? 'sm:grid-cols-2' : ''}`}
           ref={contentRef}
         >
           <div className="p-4">
@@ -144,15 +145,15 @@ export const docAndBlogComponents: Components<{
               components={docAndBlogComponents}
             />
           </div>
-          <div className="p-4">
-            {props?.image && (
+          {props?.image && (
+            <div className="p-4">
               <img
                 src={props?.image}
                 alt="image"
                 className="w-full rounded-lg"
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -257,54 +258,183 @@ export const docAndBlogComponents: Components<{
     );
   },
   apiReference: (props) => {
-    return (
-      <div className="bg-white/40 rounded-lg shadow-lg p-6 my-6">
-        <h2 className="text-3xl text-blue-600 mb-6">{props.title}</h2>
-        {props.property?.map((property, index) => {
-          return (
-            <div className="space-y-4">
-              <div
-                className={` border-gray-100 py-4 ${
-                  index === props.property.length - 1 ? '' : 'border-b-2'
-                }`}
-              >
-                <div className="flex flex-col md:flex-row md:items-start gap-4">
-                  <div className="w-full md:w-1/3">
-                    <div className="mb-1">
-                      {property.required && (
-                        <span className="text-orange-500 font-medium text-sm">
-                          REQUIRED
-                        </span>
-                      )}
-                    </div>
-                    <div className="font-tuner text-blue-500 font-medium">
-                      {property.name}
-                    </div>
-                    <div className="text-gray-500 text-sm">{property.type}</div>
-                  </div>
-                  <div className="w-full md:w-2/3">
-                    <TinaMarkdown
-                      content={property.description as any}
-                      components={docAndBlogComponents}
-                    />
-                    {property.default && (
-                      <div className="text-slate-900 text-md">
-                        Default is{' '}
-                        <span className="font-mono text-orange-500">
-                          {property.default}
-                        </span>
-                        .
-                      </div>
-                    )}
-                  </div>
-                </div>
+    const [openGroups, setOpenGroups] = useState([]);
+    const propertyItem = (property) => {
+      return (
+        <div className="space-y-4 py-4 px-6">
+          <div className="flex flex-col md:flex-row md:items-start gap-4">
+            <div className="w-full md:w-1/3">
+              <div className="mb-1">
+                {property.required && (
+                  <span className="text-orange-500 font-medium text-sm">
+                    REQUIRED
+                  </span>
+                )}
+                {property.experimental && (
+                  <span className="text-seafoam-700 font-medium text-sm">
+                    EXPERIMENTAL
+                  </span>
+                )}
               </div>
+              <div className="font-tuner text-blue-500 font-medium break-normal max-w-full inline-block">
+                {property?.name?.replace(/([A-Z])/g, '\u200B$1')}
+              </div>
+              <div className="text-gray-500 text-sm">{property.type}</div>
             </div>
-          );
-        })}
+            <div className="w-full md:w-2/3">
+              <TinaMarkdown
+                content={property.description as any}
+                components={docAndBlogComponents}
+              />
+              {property.default && (
+                <div className="text-slate-900 text-md">
+                  Default is{' '}
+                  <span className="font-mono text-orange-500">
+                    {property.default}
+                  </span>
+                  .
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const group = (groupName, groupProperties) => {
+      const required = groupProperties.some((property) => property.required);
+
+      return (
+        <div className=" my-4 overflow-hidden group">
+          <button
+            onClick={() =>
+              setOpenGroups(
+                openGroups.includes(groupName)
+                  ? openGroups.filter((group) => group !== groupName)
+                  : [...openGroups, groupName]
+              )
+            }
+            className="bg-gradient-to-b from-blue-100/20 to-blue-50/20 w-full flex items-center justify-between px-6 py-4 text-left bg-transparent hover:bg-blue-200/10 transition-colors"
+          >
+            <div>
+              {required && (
+                <p className="text-orange-500 font-medium text-sm">REQUIRED</p>
+              )}
+              <h3 className="text-md font-medium text-blue-500 font-tuner">
+                {groupName || 'Object'}
+              </h3>
+            </div>
+
+            <ChevronRight
+              className={`w-5 h-5 text-blue-200 transition-transform ${
+                openGroups.includes(groupName) ? 'rotate-90' : ''
+              } group-hover:text-blue-500`}
+            />
+          </button>
+          {openGroups.includes(groupName) && (
+            <div className="px-4">
+              {groupProperties.map((property, index) => {
+                return (
+                  <div key={`property-${index}`}>
+                    {index !== 0 && (
+                      <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg -my-0.5" />
+                    )}
+                    <div className="mx-2 border-l-2 border-solid border-orange-400">
+                      <React.Fragment>{propertyItem(property)}</React.Fragment>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    return (
+      <div
+        className={`bg-white rounded-lg shadow-lg my-6 pb-6 ${
+          props.title ? 'pt-6' : 'pt-2'
+        }`}
+      >
+        {props.title && (
+          <h2 className="text-3xl text-blue-600 mb-6">{props.title}</h2>
+        )}
+
+        {/* Process properties in order, grouping only adjacent items with same groupName */}
+        {(() => {
+          if (!props.property?.length) return null;
+
+          const result = [];
+          let currentGroup = null;
+          let currentGroupProperties = [];
+
+          // Process each property in original order
+          props.property.forEach((property, index) => {
+            // If property has no groupName, render it individually
+            if (!property.groupName) {
+              // If we were building a group, finalize it
+              if (currentGroup) {
+                result.push(
+                  <React.Fragment key={`group-${result.length}`}>
+                    {group(currentGroup, currentGroupProperties)}
+                  </React.Fragment>
+                );
+                currentGroup = null;
+                currentGroupProperties = [];
+              } else {
+                if (index !== 0) {
+                  result.push(
+                    <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg" />
+                  );
+                }
+              }
+
+              // Add the individual property
+              result.push(
+                <React.Fragment key={`ind-${index}`}>
+                  {propertyItem(property)}
+                </React.Fragment>
+              );
+            }
+            // If property has a groupName
+            else {
+              // If it's the same group as we're currently building, add to it
+              if (currentGroup === property.groupName) {
+                currentGroupProperties.push(property);
+              }
+              // If it's a different group or first group
+              else {
+                // Finalize previous group if it exists
+                if (currentGroup) {
+                  result.push(
+                    <React.Fragment key={`group-${result.length}`}>
+                      {group(currentGroup, currentGroupProperties)}
+                    </React.Fragment>
+                  );
+                }
+
+                // Start a new group
+                currentGroup = property.groupName;
+                currentGroupProperties = [property];
+              }
+            }
+          });
+
+          // Don't forget to add the last group if we were building one
+          if (currentGroup) {
+            result.push(
+              <React.Fragment key={`group-${result.length}`}>
+                {group(currentGroup, currentGroupProperties)}
+              </React.Fragment>
+            );
+          }
+
+          return result;
+        })()}
 
         {props.property?.some((property) => property.required) && (
-          <div className="mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
+          <div className=" mx-6 mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
             <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 flex-shrink-0" />
             <p className="text-sm text-gray-700">
               All properties marked as{' '}
@@ -446,7 +576,12 @@ export const docAndBlogComponents: Components<{
             className="text-white bg-gradient-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
           />
         </div>
-        <TinaMarkdown content={body as any} components={docAndBlogComponents} />
+        <div>
+          <TinaMarkdown
+            content={body as any}
+            components={docAndBlogComponents}
+          />
+        </div>
       </div>
     </blockquote>
   ),
@@ -532,7 +667,7 @@ export const docAndBlogComponents: Components<{
     };
 
     return (
-      <div className="relative py-3 word-break white-space overflow-x-hidden rounded-xl">
+      <div className="relative py-3 word-break white-space overflow-x-hidden !rounded-xl">
         <button
           onClick={handleCopy}
           className="absolute top-6 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded"

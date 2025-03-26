@@ -1,6 +1,6 @@
 ---
 title: Content Model Overview
-last_edited: '2025-03-20T23:37:13.973Z'
+last_edited: '2025-03-25T23:30:40.776Z'
 tocIsHidden: true
 next: ''
 previous: ''
@@ -14,11 +14,7 @@ Tina uses a "content-modeling as code" approach.
 * You can test out schema changes locally, or in a branch.
 * You can extend the schema in interesting ways (custom validation, custom UI fields, etc).
 
-The content model, and all configuration code is defined in a file called `tina/config.{ts,js,tsx}`.
-
-> Specifically via the `defineConfig` method (see example below).
-
-The `schema` property determines data mapping between your content store and the editor.
+Specifically, the `schema` property in your [TinaCMS Config file](/docs/reference/config) determines data mapping between your content store and the editor.
 
 Each item in the `schema.collections` array represents a different content structure.
 
