@@ -1,7 +1,7 @@
 ---
 id: /docs/editing/blocks
 title: Using Tina as a Website Builder
-last_edited: '2025-03-11T01:52:33.226Z'
+last_edited: '2025-03-26T06:39:19.507Z'
 next: content/docs/editing/single-document-collections.mdx
 previous: content/docs/editing/markdown.mdx
 ---
@@ -29,13 +29,6 @@ import type { Template } from 'tinacms'
 const heroBlock: Template = {
   name: 'hero',
   label: 'Hero',
-  ui: {
-    defaultItem: {
-      tagline: "Here's some text above the other text",
-      headline: 'This Big Text is Totally Awesome',
-      text: 'Phasellus scelerisque,
-    },
-  },
   fields: [
     {
       type: 'string',
@@ -86,11 +79,6 @@ const featureBlock: Template = {
 const contentBlock: Template = {
   name: 'content',
   label: 'Content',
-  ui: {
-    defaultItem: {
-      body: 'Lorem ipsum dolor sit amet,
-    },
-  },
   fields: [
     {
       type: 'string',
@@ -125,8 +113,6 @@ export default defineConfig({
 ```
 
 We have defined the structure of our 3 blocks (`content`, `features`, `hero`), as well as our main blocks field: `blocks`.
-
-> Note, since our contentBlock uses the [markdown plugin](/docs/reference/toolkit/fields/markdown/) which is not registered out of the box, we will need to manually import the `react-tinacms-editor` plugin.
 
 ## Querying Block Data
 

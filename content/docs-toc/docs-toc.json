@@ -226,7 +226,7 @@
               "title": "External Media Providers",
               "items": [
                 {
-                  "title": "Setting up Authentication",
+                  "title": "Backend Media Handler",
                   "slug": "content/docs/reference/media/external/authentication.mdx",
                   "_template": "item"
                 },
