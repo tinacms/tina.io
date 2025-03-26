@@ -2,7 +2,7 @@
 seo:
   title: Naming Conventions
 title: Naming Conventions
-last_edited: '2025-03-26T03:08:12.497Z'
+last_edited: '2025-03-26T03:12:02.946Z'
 next: ''
 previous: ''
 ---
@@ -28,7 +28,7 @@ src/
 
 ### Example - Shared Fields
 
-Code shared between multiple collections, including field definitions and lists of field definitions are typically stored in files ending in `.schema.tsx`. In the Example below assume we are sharing the `title` field between the `hero-image` and image-text-block. Component.
+Code shared between multiple collections, including field definitions and lists of field definitions are also typically stored in files ending in `.schema.tsx`. In the Example below assume we are sharing the `title` field between the `hero-image` and image-text-block. Component.
 
 ```javascript
 src/
@@ -48,11 +48,11 @@ src/
 
 ### Naming conventions for blocks
 
-If you're re-using a template in multiple collections it's good practice to separate that template into a file ending in `.template.tsx`.
+If you're re-using the template for a block component between multiple collections it's good practice to separate that template into a file ending in `.template.tsx`.
 
 > Note: `templates` are passed into existing collections using a [block-based editing](https://tina.io/docs/editing/blocks)
 
-In the example below, assume we are using the `image-carousel` block template in the our block renderer.
+In the example below, assume we are using the `image-carousel` block template in the our block renderer. The `image-carousel` template can be shared between the `home` and `about` collections.
 
 ```javascript
 src/
@@ -70,7 +70,7 @@ src/
 
 ### Naming Conventions
 
-| naming convention | Purpose                                                                                            |
-| ----------------- | -------------------------------------------------------------------------------------------------- |
-| `.schema.tsx`     | Used for collections, code shared between collections                                              |
-| `.template.tsx`   | Used for template definitions used in [block-based rendering](https://tina.io/docs/editing/blocks) |
+| naming convention | Purpose                                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| `.schema.tsx`     | Used for collections and code shared between collections                                            |
+| `.template.tsx`   | Used for template definitions used for [block-based rendering](https://tina.io/docs/editing/blocks) |
