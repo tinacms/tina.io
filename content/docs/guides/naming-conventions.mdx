@@ -2,6 +2,34 @@
 seo:
   title: Naming Conventions
 title: Naming Conventions
-last_edited: '2025-03-26T00:52:36.419Z'
+last_edited: '2025-03-26T01:19:10.700Z'
+next: ''
+previous: ''
 ---
 
+### Naming conventions for collections
+
+Making changes to your site configuration in Tina can be an expensive operation taking considerably longer than your typical hot reload in React. For this reason we recommend keeping your collection definitions in separate files from the React components that use them.
+
+The typical convention is to add a collection for a given React component to an accompanying file of the same name with the suffix `collection.tsx`. This ensures that the index for your site is only rebuilt when changes are made to your data model and not to the component itself.
+
+```javascript
+src/
+├── app/
+│   ├── components/
+│   │   ├── events-list.collection.tsx
+│   │   ├── events-list.tsx
+```
+
+```javascript
+src/
+├── tina/
+│   ├── collections/
+│   │   ├── home.tsx
+├── app/
+│   ├── components/
+│   │   ├── blocks/
+│   │   │   ├── image-carousel.tsx
+│   │   │   ├── image-carousel.template.tsx
+│   │   │   ├── blocks-renderer.tsx
+```
