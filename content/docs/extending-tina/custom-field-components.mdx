@@ -1,14 +1,14 @@
 ---
 id: /docs/extending-tina/custom-field-components
 title: React Components
-last_edited: '2025-03-17T05:18:21.974Z'
+last_edited: '2025-03-26T05:59:08.902Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
 
-You can use a custom React component in place of a usual field type input.
+A custom component can be passed and rendered by setting the ui.component property on a field. 
 
-Provide your new component through the `ui.component` property of the field.
+This component completely overrides the original component, providing the user with the ability to fully customize the field.
 
 ## The `ui.component` Property
 
@@ -29,9 +29,9 @@ To keep the same label, description, validation and other meta settings on your 
 
 The `form` prop can be used to control form values in other fields.
 
-Any field in the collection can be updated with `form.change` – `form.change(name: string, value: any) => void`, using the field `name` property.
+Any field in the collection can be updated with `form.change` – `form.change(name: string, value: any) => void`, using the fields `name` property.
 
-Any field in the collection can be accessed using `form.getFieldState(name: string)?.value`, using the field `name` property.
+Any field in the collection can be accessed using `form.getFieldState(name: string)?.value`, using the fields `name` property.
 
 > Further usage patterns can be inferred from the [react-final-form FormAPI docs.](https://final-form.org/docs/final-form/types/FormApi)
 

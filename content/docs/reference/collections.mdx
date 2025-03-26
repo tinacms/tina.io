@@ -1,7 +1,7 @@
 ---
 id: collections
 title: Collections
-last_edited: '2025-03-26T00:04:14.454Z'
+last_edited: '2025-03-26T04:54:11.946Z'
 next: content/docs/reference/fields.mdx
 previous: content/docs/reference/schema.mdx
 ---
@@ -101,7 +101,7 @@ The `format` property can be set to control the filetype of content created in t
     {
       groupName: "ui",
       name: "beforeSubmit",
-      type: "async function -- { values, cms, form } => { values }",
+      type: "(values, cms, form) => { values }",
       description:
         "A function called before the form is submitted. Any return value will replace the form submit value.\n"
     },
@@ -115,7 +115,7 @@ The `format` property can be set to control the filetype of content created in t
     {
       groupName: "ui",
       name: "router",
-      type: "function -- { document } => string",
+      type: "(document) => string",
       description:
         "A function that takes in a document and returns the route for it. If nothing is returned the basic editor will be used. Used to setup [Visual Editing](/docs/contextual-editing/router/#the-router-property).\n"
     },
@@ -177,8 +177,7 @@ We recommend using singular naming in a collection (post, not post**s**).
 
 <WarningCallout
   body={<>
-    This name cannot have spaces, dashes, or special characters. It must be a
-    valid GraphQL name.
+    This name cannot have spaces, dashes, or special characters.
   </>}
 />
 

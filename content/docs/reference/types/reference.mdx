@@ -1,45 +1,54 @@
 ---
 title: Reference Fields
-last_edited: '2025-03-26T01:13:27.168Z'
+last_edited: '2025-03-26T05:27:39.833Z'
 next: ''
 previous: ''
 ---
 
-The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
+The `reference` field allows a "parent" document to connect to another document in a different collection. This relationship only needs to be defined on *one side*.
 
 Once defined, the values of the *referenced* document become available to the parent.
 
 ## Type Definition
 
-> The collections property controls the set of collections we can reference.
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-```ts
-type ReferenceField = {
-  name: string;
-  type: 'reference';
-  label?: string;
-  description?: string;
-  collections: string[];
-  ui?: {
-    collectionFilter?: any;
-    optionComponent?: (
-      props: CollectionProps,
-      _internalSys: InternalSys
-    ) => React.ReactNode | Element;
-    component?: FC<any> | string | null;
-    parse?: (value: string, name: string, field: F) => any;
-    format?: (value: string, name: string, field: F) => any;
-    validate?: (
-      value: string,
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ) => string | undefined | void;
-  };
-};
-```
-
-This is just a guide. The generic [Field](/docs/reference/fields) type definition contains usage information.
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"reference"` to use the Reference Field.\n',
+      required: true
+    },
+    {
+      name: "collections",
+      type: "string[]",
+      description: "The collections to reference.\n",
+      required: true
+    },
+    {
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "collectionFilter",
+      description:
+        "Filter shown references based on a property in the referenced collection.\n",
+      type: "any"
+    },
+    {
+      groupName: "ui",
+      name: "optionComponent",
+      description:
+        "Return a custom component for each option in the reference selector.\n",
+      type: "function"
+    }
+  ]}
+/>
 
 ### Conceptualising the Reference type
 
@@ -142,7 +151,7 @@ const referenceField = {
 };
 ```
 
-## Custom Document Labels ✍️
+## Custom Document Labels
 
 By default the reference selector shows the document filename. This can be set to a **custom react component** using `ui.optionComponent` instead.
 
@@ -155,7 +164,9 @@ The `optionComponent` function provides you with two parameters: `props` and `_i
 
 <WarningCallout
   body={<>
-    If you require strict typing in your application, you'll need to manually declare the type of props for optionComponent ahead of time. See examples below.
+    If you require strict typing in your application, you'll need to manually
+    declare the type of `props` for `optionComponent` ahead of time. See examples
+    below.
   </>}
 />
 
@@ -250,7 +261,9 @@ const referenceField = {
 
 <WarningCallout
   body={<>
-    If you pass in a function, it should be passed as an executable. Running something like const url = new URL('https\://bob-northwind-sydney.com') directly in the callback isn't allowed.
+    If you pass in a function, it should be passed as an executable. Running
+    something like `const url = new URL('https://bob-northwind-sydney.com')`
+    directly in the callback isn't allowed.
   </>}
 />
 

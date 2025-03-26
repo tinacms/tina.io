@@ -4,7 +4,7 @@
       "title": "Beginner Series",
       "items": [
         {
-          "title": "1 – Your New TinaCMS Site 🌐",
+          "title": "1️⃣ Your New TinaCMS Site",
           "items": [
             {
               "title": "NextJS Setup",
@@ -35,7 +35,7 @@
           "_template": "items"
         },
         {
-          "title": "2 – Live Editing ",
+          "title": "2️⃣ Live Editing ",
           "items": [
             {
               "title": "Routing to the Editor",
@@ -56,7 +56,7 @@
           "_template": "items"
         },
         {
-          "title": "3 – The Content Model 🏗️",
+          "title": "3️⃣ The Content Model",
           "items": [
             {
               "title": "Our New Field",
@@ -82,7 +82,7 @@
           "_template": "items"
         },
         {
-          "title": "4 – A Website Builder Experience",
+          "title": "4️⃣ A Website Builder Experience",
           "items": [
             {
               "title": "What are \"Blocks\"?",
@@ -115,18 +115,13 @@
       ]
     },
     {
-      "title": "Video Tutorials",
+      "title": "Technical Guides",
       "items": [
         {
-          "title": "Coming soon...",
-          "slug": "https://www.youtube.com/@TinaCMS/videos",
+          "title": "What is Markdown?",
+          "slug": "content/docs/editing/markdown.mdx",
           "_template": "item"
-        }
-      ]
-    },
-    {
-      "title": "Guides",
-      "items": [
+        },
         {
           "title": "Using Tina as a Website Builder",
           "slug": "content/docs/editing/blocks.mdx",
@@ -164,7 +159,7 @@
           "_template": "items"
         },
         {
-          "title": "Framework Guides",
+          "title": "Framework-Specific Guides",
           "items": [
             {
               "title": "Overview",

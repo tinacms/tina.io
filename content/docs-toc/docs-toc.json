@@ -14,6 +14,11 @@
           "_template": "item"
         },
         {
+          "title": "The Tina Content Model",
+          "slug": "content/docs/content-model-intro.mdx",
+          "_template": "item"
+        },
+        {
           "title": "Quickstart",
           "slug": "content/docs/setup-overview.mdx",
           "_template": "item"
@@ -27,55 +32,55 @@
               "_template": "item"
             },
             {
-              "title": "Next.js",
+              "title": "Add to an Existing Site",
               "items": [
                 {
-                  "title": "App Router",
+                  "title": "NextJS (App Router)",
                   "slug": "content/docs/frameworks/next/app-router.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "Pages Router",
+                  "title": "NextJS (Pages Router)",
                   "slug": "content/docs/frameworks/next/pages-router.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Astro",
+                  "slug": "content/docs/frameworks/astro.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Hugo",
+                  "slug": "content/docs/frameworks/hugo.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Gatsby",
+                  "slug": "content/docs/frameworks/gatsby.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Jekyll",
+                  "slug": "content/docs/frameworks/jekyll.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Remix",
+                  "slug": "content/docs/frameworks/remix.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "11ty",
+                  "slug": "content/docs/frameworks/11ty.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Other Frameworks",
+                  "slug": "content/docs/frameworks/other.mdx",
                   "_template": "item"
                 }
               ],
               "_template": "items"
-            },
-            {
-              "title": "Astro",
-              "slug": "content/docs/frameworks/astro.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Hugo",
-              "slug": "content/docs/frameworks/hugo.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Gatsby",
-              "slug": "content/docs/frameworks/gatsby.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Jekyll",
-              "slug": "content/docs/frameworks/jekyll.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Remix",
-              "slug": "content/docs/frameworks/remix.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "11ty",
-              "slug": "content/docs/frameworks/11ty.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Other Frameworks",
-              "slug": "content/docs/frameworks/other.mdx",
-              "_template": "item"
             }
           ],
           "_template": "items"
@@ -101,13 +106,8 @@
           "_template": "item"
         },
         {
-          "title": "Defining Content Models",
+          "title": "Content Modelling",
           "items": [
-            {
-              "title": "The Tina Content Model",
-              "slug": "content/docs/content-model-intro.mdx",
-              "_template": "item"
-            },
             {
               "title": "Collections",
               "slug": "content/docs/reference/collections.mdx",
@@ -122,56 +122,51 @@
               "title": "Templates",
               "slug": "content/docs/reference/templates.mdx",
               "_template": "item"
-            }
-          ],
-          "_template": "items"
-        },
-        {
-          "title": "Field Types",
-          "items": [
-            {
-              "title": "String Fields",
-              "slug": "content/docs/reference/types/string.mdx",
-              "_template": "item"
             },
             {
-              "title": "Number Fields",
-              "slug": "content/docs/reference/types/number.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Date Fields",
-              "slug": "content/docs/reference/types/datetime.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Boolean Fields",
-              "slug": "content/docs/reference/types/boolean.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Image Fields",
-              "slug": "content/docs/reference/types/image.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Reference Fields",
-              "slug": "content/docs/reference/types/reference.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Object Fields",
-              "slug": "content/docs/reference/types/object.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Markdown (MD) Content",
+              "title": "Basic Fields",
               "items": [
                 {
-                  "title": "What is Markdown?",
-                  "slug": "content/docs/editing/markdown.mdx",
+                  "title": "String Fields",
+                  "slug": "content/docs/reference/types/string.mdx",
                   "_template": "item"
                 },
+                {
+                  "title": "Number Fields",
+                  "slug": "content/docs/reference/types/number.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Date Fields",
+                  "slug": "content/docs/reference/types/datetime.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Boolean Fields",
+                  "slug": "content/docs/reference/types/boolean.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Image Fields",
+                  "slug": "content/docs/reference/types/image.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Reference Fields",
+                  "slug": "content/docs/reference/types/reference.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Object Fields",
+                  "slug": "content/docs/reference/types/object.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
+              "title": "Markdown (MD) Fields",
+              "items": [
                 {
                   "title": "Rich-Text Fields",
                   "slug": "content/docs/reference/types/rich-text.mdx",
@@ -201,7 +196,7 @@
               "_template": "items"
             },
             {
-              "title": "Custom Inputs",
+              "title": "Custom Fields",
               "items": [
                 {
                   "title": "React Components",
@@ -215,45 +210,40 @@
                 }
               ],
               "_template": "items"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "Media Storage",
+          "items": [
+            {
+              "title": "Repo-based Media",
+              "slug": "content/docs/reference/media/repo-based.mdx",
+              "_template": "item"
             },
             {
-              "title": "Media Storage",
+              "title": "External Media Providers",
               "items": [
                 {
-                  "title": "Overview",
-                  "slug": "content/docs/reference/media/overview.mdx",
+                  "title": "Setting up Authentication",
+                  "slug": "content/docs/reference/media/external/authentication.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "Repo-based Media",
-                  "slug": "content/docs/reference/media/repo-based.mdx",
+                  "title": "Digital Ocean Spaces",
+                  "slug": "content/docs/reference/media/external/do-spaces.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "External Media Providers",
-                  "items": [
-                    {
-                      "title": "Setting up Authentication",
-                      "slug": "content/docs/reference/media/external/authentication.mdx",
-                      "_template": "item"
-                    },
-                    {
-                      "title": "Digital Ocean Spaces",
-                      "slug": "content/docs/reference/media/external/do-spaces.mdx",
-                      "_template": "item"
-                    },
-                    {
-                      "title": "Cloudinary",
-                      "slug": "content/docs/reference/media/external/cloudinary.mdx",
-                      "_template": "item"
-                    },
-                    {
-                      "title": "AWS S3 Bucket",
-                      "slug": "content/docs/reference/media/external/s3.mdx",
-                      "_template": "item"
-                    }
-                  ],
-                  "_template": "items"
+                  "title": "Cloudinary",
+                  "slug": "content/docs/reference/media/external/cloudinary.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "AWS S3 Bucket",
+                  "slug": "content/docs/reference/media/external/s3.mdx",
+                  "_template": "item"
                 }
               ],
               "_template": "items"
@@ -264,11 +254,6 @@
         {
           "title": "Visual Editing",
           "items": [
-            {
-              "title": "What is Visual Editing?",
-              "slug": "content/docs/contextual-editing/overview.mdx",
-              "_template": "item"
-            },
             {
               "title": "Visual Editing Setup",
               "slug": "content/docs/contextual-editing/react.mdx",
@@ -501,17 +486,12 @@
       "items": [
         {
           "title": "Overview",
-          "slug": "content/docs/self-hosting/overview.mdx",
+          "slug": "content/docs/self-hosted/overview.mdx",
           "_template": "item"
         },
         {
           "title": "Self-Hosted Datalayer",
           "items": [
-            {
-              "title": "Introduction",
-              "slug": "content/docs/self-hosted/overview.mdx",
-              "_template": "item"
-            },
             {
               "title": "Getting Started",
               "items": [
@@ -552,105 +532,106 @@
           "_template": "items"
         },
         {
-          "title": "Overview",
-          "slug": "content/docs/reference/self-hosted/overview.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Backend Host",
+          "title": "Self-Hosting Components",
           "items": [
             {
-              "title": "Next.js",
-              "slug": "content/docs/reference/self-hosted/tina-backend/nextjs.mdx",
-              "_template": "item"
+              "title": "Backend Host",
+              "items": [
+                {
+                  "title": "Next.js",
+                  "slug": "content/docs/reference/self-hosted/tina-backend/nextjs.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Vercel Serverless Functions",
+                  "slug": "content/docs/reference/self-hosted/tina-backend/vercel-functions.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Netlify Functions",
+                  "slug": "content/docs/reference/self-hosted/tina-backend/netlify-functions.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
             },
             {
-              "title": "Vercel Serverless Functions",
-              "slug": "content/docs/reference/self-hosted/tina-backend/vercel-functions.mdx",
-              "_template": "item"
+              "title": "Git Provider",
+              "items": [
+                {
+                  "title": "Overview",
+                  "slug": "content/docs/reference/self-hosted/git-provider/overview.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "GitHub",
+                  "slug": "content/docs/reference/self-hosted/git-provider/github.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Bring Your Own Git Provider",
+                  "slug": "content/docs/reference/self-hosted/git-provider/make-your-own.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
             },
             {
-              "title": "Netlify Functions",
-              "slug": "content/docs/reference/self-hosted/tina-backend/netlify-functions.mdx",
-              "_template": "item"
-            }
-          ],
-          "_template": "items"
-        },
-        {
-          "title": "Git Provider",
-          "items": [
-            {
-              "title": "Overview",
-              "slug": "content/docs/reference/self-hosted/git-provider/overview.mdx",
-              "_template": "item"
+              "title": "Database Adapter",
+              "items": [
+                {
+                  "title": "Overview",
+                  "slug": "content/docs/reference/self-hosted/database-adapter/overview.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Vercel KV",
+                  "slug": "content/docs/reference/self-hosted/database-adapter/vercel-kv.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Mongo DB",
+                  "slug": "content/docs/reference/self-hosted/database-adapter/mongodb.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Bring Your Own  Database Adapter",
+                  "slug": "content/docs/reference/self-hosted/database-adapter/make-your-own.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
             },
             {
-              "title": "GitHub",
-              "slug": "content/docs/reference/self-hosted/git-provider/github.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Bring Your Own Git Provider",
-              "slug": "content/docs/reference/self-hosted/git-provider/make-your-own.mdx",
-              "_template": "item"
-            }
-          ],
-          "_template": "items"
-        },
-        {
-          "title": "Database Adapter",
-          "items": [
-            {
-              "title": "Overview",
-              "slug": "content/docs/reference/self-hosted/database-adapter/overview.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Vercel KV",
-              "slug": "content/docs/reference/self-hosted/database-adapter/vercel-kv.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Mongo DB",
-              "slug": "content/docs/reference/self-hosted/database-adapter/mongodb.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Bring Your Own  Database Adapter",
-              "slug": "content/docs/reference/self-hosted/database-adapter/make-your-own.mdx",
-              "_template": "item"
-            }
-          ],
-          "_template": "items"
-        },
-        {
-          "title": "Auth Provider",
-          "items": [
-            {
-              "title": "Overview",
-              "slug": "content/docs/reference/self-hosted/auth-provider/overview.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Default (Auth.js)",
-              "slug": "content/docs/reference/self-hosted/auth-provider/authjs.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Tina Cloud",
-              "slug": "content/docs/reference/self-hosted/auth-provider/tina-cloud.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Clerk",
-              "slug": "content/docs/reference/self-hosted/auth-provider/clerk-auth.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Bring Your Own Auth",
-              "slug": "content/docs/reference/self-hosted/auth-provider/bring-your-own.mdx",
-              "_template": "item"
+              "title": "Auth Provider",
+              "items": [
+                {
+                  "title": "Overview",
+                  "slug": "content/docs/reference/self-hosted/auth-provider/overview.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Default (Auth.js)",
+                  "slug": "content/docs/reference/self-hosted/auth-provider/authjs.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Tina Cloud",
+                  "slug": "content/docs/reference/self-hosted/auth-provider/tina-cloud.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Clerk",
+                  "slug": "content/docs/reference/self-hosted/auth-provider/clerk-auth.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Bring Your Own Auth",
+                  "slug": "content/docs/reference/self-hosted/auth-provider/bring-your-own.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
             }
           ],
           "_template": "items"

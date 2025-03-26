@@ -1,32 +1,52 @@
 ---
 title: Rich-Text Fields
-last_edited: '2025-03-16T22:06:24.197Z'
+last_edited: '2025-03-26T06:28:07.274Z'
 next: ''
 previous: content/docs/reference/rich-text-usage/mermaid.mdx
 ---
 
-The rich-text field gives a WYSIWYG interface, supporting features like text formatting, links, media and custom elements (if used with mdx).
-
-Stores markdown content.
+The rich-text field stores **markdown content** with a WYSIWYG interface, supporting features like text formatting, links, media and custom elements (if used with mdx).
 
 ## Type Definition
 
-```ts
-type RichTextField = {
-  name: string;
-  type: 'rich-text';
-  label?: string;
-  description?: string;
-  templates?: Template[];
-  toolbarOverride?: string[];
-};
-```
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-This is just a reference. The generic [Field](http://localhost:3000/docs/reference/fields) type definition contains further usage information.
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"rich-text"` to use the Rich-Text Field.\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    },
+    {
+      name: "toolbarOverride",
+      description: "Select specific toolbar options to display.\n",
+      type: "string[]"
+    },
+    {
+      name: "templates",
+      description:
+        'MDX support. The "embed" option in the editor to inject custom React components.\n',
+      type: "Template[]"
+    }
+  ]}
+/>
 
 > The `templates` property is for `mdx` support.
 
-<WarningCallout body="`&#x22;children&#x22;` should not be used as the `name` for rich-text fields, as it conflicts with other parts of the application." />
+<WarningCallout
+  body={<>
+    `"children"` should not be used as the `name` for rich-text fields, as it
+    conflicts with other parts of the application.
+  </>}
+/>
 
 ## Toolbar Customisation
 
@@ -57,8 +77,8 @@ toolbarOverride: [
 
 To insert a line break into an empty line in TinaCMS Rich Text:
 
-- Press Shift + Enter to create the line break
-- If the line break is not followed by a line with text, it will render as a \ in the final output.\
+* Press Shift + Enter to create the line break
+* If the line break is not followed by a line with text, it will render as a \ in the final output.\
   This can be fixed by deleting and re-creating the line\
   Ensure that the line break precedes text content to avoid this issue
 
@@ -133,43 +153,43 @@ Custom components can be embedded in rich-text blocks.
 <GraphQLCodeBlock
   query="This#is#some#text
 
-<Cta#heading=&#x22;Welcome&#x22;#/>"
-response="{
-##&#x22;data&#x22;:#{
-####&#x22;post&#x22;:#{
-######&#x22;body&#x22;:#{
-########&#x22;type&#x22;:#&#x22;root&#x22;,
-##########{
-############&#x22;type&#x22;:#&#x22;p&#x22;,
-############&#x22;children&#x22;:#[
-##############{
-################&#x22;type&#x22;:#&#x22;text&#x22;,
-################&#x22;text&#x22;:#&#x22;This#is#some#text&#x22;
-##############}
-############]
-##########},
-##########{
-############&#x22;type&#x22;:#&#x22;mdxJsxFlowElement&#x22;,
-############&#x22;name&#x22;:#&#x22;Cta&#x22;,
-############&#x22;props&#x22;:#{
-##############&#x22;heading&#x22;:#&#x22;Welcome&#x22;
-############}
-##########}
-########]
-######}
-####}
-##}
-}"
-preselectResponse={true}
-customQueryName="Markdown"
-customResponseName="Parsed AST"
+  <Cta#heading=&#x22;Welcome&#x22;#/>"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;body&#x22;:#{
+  ########&#x22;type&#x22;:#&#x22;root&#x22;,
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;p&#x22;,
+  ############&#x22;children&#x22;:#[
+  ##############{
+  ################&#x22;type&#x22;:#&#x22;text&#x22;,
+  ################&#x22;text&#x22;:#&#x22;This#is#some#text&#x22;
+  ##############}
+  ############]
+  ##########},
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;mdxJsxFlowElement&#x22;,
+  ############&#x22;name&#x22;:#&#x22;Cta&#x22;,
+  ############&#x22;props&#x22;:#{
+  ##############&#x22;heading&#x22;:#&#x22;Welcome&#x22;
+  ############}
+  ##########}
+  ########]
+  ######}
+  ####}
+  ##}
+  }"
+  preselectResponse={true}
+  customQueryName="Markdown"
+  customResponseName="Parsed AST"
 />
 
 ### Collection with default rich-text value
 
 To set a default value for a rich-text field, the entire AST tree should be specified as in the example below.
 
-> Recommended approach is to fill in your data, then console.log the CMS API return value for the related field. \
+> Recommended approach is to fill in your data, then `console.log` the CMS API return value for the related field. \
 > \
 > Then copy it from there into the collections `defaultItem` property.
 

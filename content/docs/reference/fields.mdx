@@ -1,7 +1,7 @@
 ---
 id: fields
 title: Fields
-last_edited: '2025-03-26T00:57:06.497Z'
+last_edited: '2025-03-26T05:18:10.207Z'
 next: content/docs/reference/templates.mdx
 previous: content/docs/reference/collections.mdx
 ---
@@ -21,7 +21,7 @@ Options for field types include:
 * [`object`](/docs/reference/types/object/)
 * [`rich-text`](/docs/reference/types/rich-text/)(markdown)
 
-The basic type definition is outlined below. Some field types extend the below type definition with type-specific option sets.
+The basic type definition is outlined below. Some field types extend the below type definition with type-specific options.
 
 ## Type Definition
 
@@ -74,14 +74,14 @@ The basic type definition is outlined below. Some field types extend the below t
       name: "isBody",
       type: "boolean",
       description:
-        "Defines the field is linked to the Markdown body.\n\n*Text* (`rich-text` and `string`) fields only.\n",
+        "Defines which field is saved to the Markdown body.\n\n*Text* (`rich-text` and `string`) fields only.\n",
       default: "false"
     },
     {
       name: "options",
       type: "array",
       description:
-        "Restrict allowed values to the given options.\n\n*Scalar *fields only.\n"
+        "Restrict allowed values to the given options.\n\n*Scalar* fields only.\n"
     },
     {
       groupName: "ui",
@@ -105,21 +105,21 @@ The basic type definition is outlined below. Some field types extend the below t
     {
       groupName: "ui",
       name: "validate",
-      type: "function",
+      type: "(value: any, allValues: any, meta: any, field: Field) => string | object | undefined",
       description:
         "Used for custom field validation. [Check compatibility](/docs/reference/fields#validating-field-values).\n"
     },
     {
       groupName: "ui",
       name: "parse",
-      type: "function",
+      type: "(value: any, name: string, field: F) => any",
       description:
         "A function that modifies what data is saved to the content document.\n"
     },
     {
       groupName: "ui",
       name: "format",
-      type: "function",
+      type: "(value: any, name: string, field: F) => any",
       description: "A function that modifies what data is shown to the user.\n"
     },
     {
@@ -136,16 +136,15 @@ The basic type definition is outlined below. Some field types extend the below t
 
 The name of the field to be used in the GraphQL schema.
 
+Should be unique amongst sibling fields.
+
 <WarningCallout
   body={<>
-    This name cannot have spaces, dashes, or special characters. It must be a
-    valid GraphQL name.
+    This name cannot have spaces, dashes, or special characters.
   </>}
 />
 
-Should be unique amongst sibling fields.
-
-To use a name with these characters in your content files, the nameOverride property can be set. The actual name property will still be used in other cases.
+The `nameOverride` property can be set to be used to replace the field name in your content files. The actual name property will still be used in other cases.
 
 ```javascript
 fields: [
@@ -177,13 +176,13 @@ Typically content saved in markdown files will be stored in the front-matter sec
 
 To use this property...
 
-* The field should be of type rich-text or string.
+* The field should be of type `rich-text` or `string`.
 * The collection should be `"mdx"` or `"md"` format.
 * Only include on one field per collection.
 
 ## List Fields
 
-Specifying `list: true` creates an array of a certain field in your content file that field into an array.
+Specifying `list: true` creates an array of the associated field.
 
 * [Reference Field Types](/docs/reference/types/reference/) cannot be set as a list. To work around this, they can [be wrapped](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) in an object field type that has been been marked with `list: true`.
 * Only the following types have dedicated list UIs built into the CMS...
@@ -212,7 +211,7 @@ Setting `ui.max` on lists of [object field types](/docs/reference/types/object/)
 
 <WarningCallout
   body={<>
-    This is not supported for reference field types.
+    This is not supported for objects using Templates.
   </>}
 />
 
@@ -231,7 +230,7 @@ Setting `ui.max` on lists of [object field types](/docs/reference/types/object/)
 
 ### ui.min 
 
-For any list field, if`ui.min` is set, the delete button is greyed out (see below) until there are more than the given number of elements in the list.
+For any list field, if `ui.min` is set, the delete button is greyed out (see below) while there are less than the minimum items.
 
 ![](/img/docs/reference/llama-list.png)
 
@@ -265,7 +264,6 @@ Create a set of checkbox fields by using both `options` and `list` properties:
 ![](/img/docs/reference/SCR-20250313-jzht.png)
 
 ```js
-// ...
 fields: [
   {
     name: 'categories',
@@ -276,7 +274,11 @@ fields: [
         value: 'movies',
         label: 'Movies',
       },
-      // ...
+      {
+        value: 'music',
+        label: 'Music',
+      },
+      //...
     ],
   },
 ];
@@ -289,7 +291,6 @@ Create a dropdown field by using `options` but not the `list` property:
 ![](/img/docs/reference/SCR-20250313-jzkn.png)
 
 ```js
-// ...
 fields: [
   {
     name: 'categories',
@@ -299,7 +300,11 @@ fields: [
         value: 'movies',
         label: 'Movies',
       },
-      // ...
+      {
+        value: 'music',
+        label: 'Music',
+      },
+      //...
     ],
   },
 ];
