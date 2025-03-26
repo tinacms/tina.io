@@ -568,6 +568,11 @@
             }
           ],
           "_template": "items"
+        },
+        {
+          "title": "Naming conventions for collections",
+          "slug": "content/docs/guides/naming-conventions.mdx",
+          "_template": "item"
         }
       ]
     },

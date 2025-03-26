@@ -1,0 +1,77 @@
+---
+seo:
+  title: Naming conventions for collections
+  description: >-
+    Use file naming conventions to optimize your code scanning and hot reload
+    speed for your TinaCMS project
+title: Naming conventions for collections
+last_edited: '2025-03-26T03:25:42.261Z'
+next: ''
+previous: ''
+---
+
+There are two primary reasons for following naming conventions in your Tina project:
+
+* **Improved hot reloads**: Rebuilding your schema is an expensive process and keeping your schemas in separate files prevents rebuilds making code changes
+* **Improved code scanning**: It's easy to find the schema configuration for a React component when it has the same file name as the component
+
+## Naming Conventions
+
+| naming convention | Purpose                                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| `.schema.tsx`     | Used for collections and code shared between collections                                            |
+| `.template.tsx`   | Used for template definitions used for [block-based rendering](https://tina.io/docs/editing/blocks) |
+
+### React components
+
+The typical convention is to add the schema for a given React component to an accompanying file of the same name with the suffix `schema.tsx`. This ensures your index is only rebuilt when changes are made to your data model and not to the component.
+
+```javascript
+src/
+├── app/
+│   ├── components/
+│   │   ├── events-list.schema.tsx
+│   │   ├── events-list.tsx
+```
+
+### Shared Fields
+
+Code shared between multiple collections, including field definitions and lists of field definitions are also typically stored in files ending in `.schema.tsx`. In the Example below assume we are sharing the `title` field between the `hero-image` and image-text-block. Component.
+
+```javascript
+src/
+├── tina/
+│   ├── collections/
+│   │   ├── shared-fields/
+│   │   │   ├── title.schema.tsx
+├── app/
+│   ├── components/
+│   │   ├── blocks/
+│   │   │   ├── hero-image.schema.tsx
+│   │   │   ├── hero-image.tsx
+│   │   │   ├── image-text-block.schema.tsx
+│   │   │   ├── image-text-block.tsx
+
+```
+
+### Naming conventions for blocks
+
+If you're re-using the template for a block component between multiple collections it's good practice to separate that template into a file ending in `.template.tsx`.
+
+> `templates` are passed into existing collections using a [block-based editing](https://tina.io/docs/editing/blocks)
+
+In the example below, assume we are using the `image-carousel` block template in the our block renderer. The `image-carousel` template can be shared between the `home` and `about` collections.
+
+```javascript
+src/
+├── tina/
+│   ├── collections/
+│   │   ├── home.tsx
+│   │   ├── about.tsx
+├── app/
+│   ├── components/
+│   │   ├── blocks/
+│   │   │   ├── image-carousel.tsx
+│   │   │   ├── image-carousel.template.tsx
+│   │   │   ├── blocks-renderer.tsx
+```
