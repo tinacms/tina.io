@@ -84,8 +84,13 @@ export const Card = ({ cardItem, onHover }) => {
 
   const isLiveOrPastEvent = hoursUntilEvent < 0;
   const isLiveEvent = hoursUntilEvent <= 0 && hoursUntilEventEnd > 0;
+  const startDate = new Date(cardItem.startDate);
+  const startYear = startDate.getFullYear();
 
-  const endYear = new Date(cardItem.endDate);
+  const endYear = cardItem.endDate
+    ? new Date(cardItem.endDate).getFullYear()
+    : startYear;
+
   return (
     <div
       className="relative px-4 pt-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
@@ -110,7 +115,7 @@ export const Card = ({ cardItem, onHover }) => {
         </h3>
         <div className="flex items-center text-md">
           <p className="mr-2">
-            {displayDate()} {endYear.getFullYear()}
+            {displayDate()} {endYear}
           </p>
           {isLiveEvent ? (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
