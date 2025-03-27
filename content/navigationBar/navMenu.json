@@ -57,6 +57,10 @@
           "href": "/docs/support"
         },
         {
+          "label": "Events",
+          "href": "/events"
+        },
+        {
           "label": "Awesome TinaCMS",
           "href": "https://github.com/tinacms/awesome-tinacms"
         },
