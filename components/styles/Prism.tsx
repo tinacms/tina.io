@@ -34,7 +34,7 @@ export const Prism = (props: {
                 <span
                   {...getTokenProps({ token, key })}
                   style={{
-                    paddingRight: key === line.length - 1 ? '12px' : '0px',
+                    paddingRight: key === line.length - 1 ? '3em' : '0px',
                   }}
                 />
               ))}
