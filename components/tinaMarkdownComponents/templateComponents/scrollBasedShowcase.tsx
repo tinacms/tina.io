@@ -181,8 +181,6 @@ export default function ScrollBasedShowcase(data: {
     }
   }, [activeIds, headings]);
 
-  console.log(activeIds);
-
   return (
     <div
       ref={componentRef}
