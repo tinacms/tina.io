@@ -267,6 +267,9 @@ importers:
       '@tailwindcss/forms':
         specifier: ^0.5.9
         version: 0.5.10(tailwindcss@3.4.17)
+      '@tailwindcss/typography':
+        specifier: ^0.5.16
+        version: 0.5.16(tailwindcss@3.4.17)
       '@tinacms/cli':
         specifier: 1.9.3
         version: 1.9.3(@babel/core@7.26.7)(@codemirror/language@6.0.0)(@types/node@22.13.0)(@types/react@16.14.62)(abstract-level@1.0.4)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@3.29.5)(sass@1.83.4)(scheduler@0.23.2)(sucrase@3.35.0)(terser@5.37.0)
@@ -18746,7 +18749,7 @@ snapshots:
       jest-environment-jsdom: 25.5.0(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       jest-environment-node: 25.5.0
       jest-get-type: 25.2.6
-      jest-jasmine2: 25.5.4
+      jest-jasmine2: 25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       jest-regex-util: 25.2.6
       jest-resolve: 25.5.1
       jest-util: 25.5.0
@@ -18822,7 +18825,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-jasmine2@25.5.4:
+  jest-jasmine2@25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3):
     dependencies:
       '@babel/traverse': 7.26.7
       '@jest/environment': 25.5.0
@@ -18842,7 +18845,10 @@ snapshots:
       pretty-format: 25.5.0
       throat: 5.0.0
     transitivePeerDependencies:
+      - bufferutil
+      - canvas
       - supports-color
+      - utf-8-validate
 
   jest-leak-detector@25.5.0:
     dependencies:
@@ -18907,7 +18913,7 @@ snapshots:
       jest-config: 25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       jest-docblock: 25.3.0
       jest-haste-map: 25.5.1
-      jest-jasmine2: 25.5.4
+      jest-jasmine2: 25.5.4(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       jest-leak-detector: 25.5.0
       jest-message-util: 25.5.0
       jest-resolve: 25.5.1
