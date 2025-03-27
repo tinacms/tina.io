@@ -1,4 +1,4 @@
-import { Template } from 'tinacms';
+import { Template, wrapFieldsWithMeta } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
@@ -78,7 +78,23 @@ export const docsCollection = {
               name: 'property',
               label: 'Property',
               list: true,
+              ui: {
+                itemProps: (item) => {
+                  return {
+                    label: item.groupName
+                      ? `📂 ${item.groupName} | ${item.name}`
+                      : item.name,
+                  };
+                },
+              },
               fields: [
+                {
+                  type: 'string',
+                  name: 'groupName',
+                  label: 'Group Name',
+                  description:
+                    'Adjacent properties with the same group name will be grouped together',
+                },
                 {
                   type: 'string',
                   name: 'name',
@@ -103,6 +119,11 @@ export const docsCollection = {
                   type: 'boolean',
                   name: 'required',
                   label: 'Required',
+                },
+                {
+                  type: 'boolean',
+                  name: 'experimental',
+                  label: 'Experimental',
                 },
               ],
             },
@@ -156,6 +177,18 @@ export const docsCollection = {
               name: 'preselectResponse',
               label: 'Select Response by Default',
               description: 'Select the response tab by default',
+            },
+            {
+              type: 'string',
+              name: 'customQueryName',
+              label: 'Custom Query Name',
+              description: "Replaces 'Query' in the tab name",
+            },
+            {
+              type: 'string',
+              name: 'customResponseName',
+              label: 'Custom Response Name',
+              description: "Replaces 'Response' in the tab name",
             },
           ],
         },
@@ -216,12 +249,17 @@ export const docsCollection = {
           label: 'Image and Text',
           fields: [
             {
+              name: 'heading',
+              label: 'Heading',
+              type: 'string',
+              description:
+                'The heading text that will be displayed in the collapsed state',
+            },
+            {
               name: 'docText',
               label: 'docText',
               isBody: true,
               type: 'rich-text',
-              description:
-                'DO NOT USE THIS TEMPLATE WHILST YOU SEE THIS MESSAGE //TODO: #1967',
             },
             {
               name: 'image',

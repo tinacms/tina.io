@@ -1,22 +1,49 @@
 ---
 id: /docs/contextual-editing/react
-title: Visual Editing in React
-last_edited: '2025-03-14T04:18:55.703Z'
-tocIsHidden: false
+title: Visual Editing Setup
+last_edited: '2025-03-26T06:07:44.067Z'
 next: content/docs/contextual-editing/vue.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
 
-> **Visual Editing Requirements:**
-> Before a page can be setup with visual editing, it first needs to be using [Tina's data-fetching](/docs/features/data-fetching/).
+When you define a collection, TinaCMS gives you access to a full-page editor window to add your content.
 
-In react, (or react based frameworks like Next.js) visual editing can be set up on a page with the `useTina` hook
+Tina also allows for "Visual Editing" when used with React. This is a setup that allows your **website and editor window to sit side-by-side**, showing your changes in real-time.
 
-Here is an example of setting up visual editing, on a NextJS-based site.
+<WarningCallout
+  body={
+    <>
+      **Visual Editing Requirements** – before a page can be setup with visual
+      editing, it first needs to be using [Tina's
+      data-fetching](/docs/features/data-fetching/).
+    </>
+  }
+/>
+
+![](/img/docs/contextual-editing/hello-world.png)
+
+## Usage
+
+For pages to update as you edit, you'll need to re-hydrate the page data. In React, (or react based frameworks like NextJS) you can configure a page for Visual Editing with the `useTina` hook.
+
+This hook can be associated to content areas in your code, and registers the corresponding fields in your sidebar and for re-hydration.
+
+In production, this hook will only pass through its initial data value.
+
+`useTina` should be provided three parameters:
+
+- `query` and `variables`: These are the same values that you used for [backend data-fetching](/docs/features/data-fetching/). The query must be for an **individual document only**.
+- `data`: This is the GraphQL response you received from the Tina API.
+
+> If you used the Tina client functions for data fetching, the three return values can be plugged directly into the `useTina` hook.
+
+## Examples
+
+### Visual Editing for NextJS
 
 ```jsx
 // ...
-import { useTina } from 'tinacms/dist/react'
+import { useTina } from 'tinacms/dist/react';
 
 export default function Home(props) {
   // Pass our data through the "useTina" hook to make it editable
@@ -24,15 +51,15 @@ export default function Home(props) {
     query: props.query,
     variables: props.variables,
     data: props.data,
-  })
+  });
 
   // Note how our page title uses "data", and not the original "props.data".
   // This ensures that the content will be updated in edit-mode as the user types
-  return <h1>{data.page.title}</h1>
+  return <h1>{data.page.title}</h1>;
 }
 
 export const getStaticProps = async () => {
-  const pageResponse = await client.queries.page({ relativePath: 'home.mdx' })
+  const pageResponse = await client.queries.page({ relativePath: 'home.mdx' });
 
   return {
     props: {
@@ -40,28 +67,13 @@ export const getStaticProps = async () => {
       query: pageResponse.query,
       variables: pageResponse.variables,
     },
-  }
-}
+  };
+};
 ```
 
 ![usetina-hello-world](/img/docs/contextual-editing/hello-world.png)
 
-## The useTina hook:
-
-`useTina` is used to make a piece of Tina content contextually editable. It is code-split, so that in production, this hook will simply pass through its data value. In edit-mode, it registers an editable form in the sidebar, and contextually updates its value as the user types.
-
-`useTina` takes in a parameter with a few keys:
-
-* `query` and `variables`: These are the same values that you would use for the [backend data-fetching](/docs/features/data-fetching/).
-* `data`: This is the production value that gets passed through to the response unchanged in production.
-
-> Note: Only queries for individual documents can be used with `useTina`
-
-After a page is setup with the `useTina` hook, you can add a [router to your collection](/docs/contextual-editing/router) so that you can access contextual-editing from the CMS.
-
-## Experimental Features:
-
-### Select Form By ID (Experimental)
+### Visual Editing with a Specified Form (experimental)
 
 Tina's experimental **Select Form By ID** feature allows developers to choose which form shows in the visual editing sidebar when multiple `useTina` hooks (or queries) exist on a page. By default, the first query requested is used to determine the form. However, by using this feature, you can ensure that a specific form — such as the one associated with a page collection rather than a global config — is used in the Tina sidebar. This can be particularly useful when working with multiple domains, where distinct sections or areas of your site require different form configurations.
 
@@ -87,34 +99,3 @@ export default function PageComponent(props: PageComponentProps) {
 ```
 
 In the example above, the callback generates a form ID using the page's `relativePath`, ensuring that the appropriate form is used for editing in the sidebar.
-
-### Click to Edit (Experimental)
-
-Tina's "click to edit" feature allows editors to select the element they want to edit on the page in order to see it in the sidebar.
-
-<WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
-
-> [Try the demo](https://demo.tina.io/admin#/~)!
-
-In order for this to work, Tina needs to know what document and field the
-element is associated with. Tina makes this easy with the `tinaField` helper
-function. Using this function, developers can add the appropriate metadata
-to the `[data-tina-field]` attribute.
-
-```jsx
-import { useTina, tinaField } from 'tinacms/dist/react'
-
-const Page = (props) => {
-  const { data } = useTina(props)
-  return (
-    <div>
-      <h1 data-tina-field={tinaField(data, 'title')}>{data.title}</h1>
-    </div>
-  )
-}
-```
-
-Now, when you open the Tina sidebar you'll see editing overlays on any element
-that's been configured.
-
-For more information on the tinaField helper, see the [reference docs](/docs/contextual-editing/tinafield)

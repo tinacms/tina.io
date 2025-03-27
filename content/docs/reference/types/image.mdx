@@ -1,73 +1,58 @@
 ---
-title: The "image" field
-last_edited: '2024-09-12T01:51:04.538Z'
+title: Image Fields
+last_edited: '2025-03-13T04:53:47.012Z'
 next: ''
 previous: ''
 ---
 
-## `image` Type
+A dedicated file input that stores the URL or path of an uploaded image.
 
-```ts
-type ImageField = {
-  label: string
-  name: string
-  type: 'image'
-  list?: boolean
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
-  ui?: {
-    label?: string
-    description?: string
-    component?: FC<any> | string | null
-    parse?: (value: string, name: string, field: F) => any
-    format?: (value: string, name: string, field: F) => any
-    validate?(
-      value: string,
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
-}
-```
+It supports [external media library integration](http://localhost:3000/docs/reference/media/overview#external-media-providers), but also [repo-based media configurations](http://localhost:3000/docs/reference/media/repo-based).
+
+Images can be uploaded to the image component with drag-and-drop actions, or with the dedicated media manager that comes with the CMS.
+
+![](/img/docs/reference/SCR-20250313-nzft.png)
+
+## Type Definition
+
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
+
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: 'Set this to `"image"` to use the Image Field.\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: 'The name of the field for internal use.\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
 
 ## Example
 
+### Simple field
+
 ```ts
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        name: 'posts',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'mdx',
-        fields: [
-          {
-            type: 'image',
-            label: 'Hero image',
-            name: 'imgSrc',
-          },
-          // ... other fields
-        ],
-      },
-    ],
-  },
-})
-// ...
+{
+  type: 'image',
+  label: 'Hero image',
+  name: 'imgSrc',
+}
 ```
 
-Please see [the media docs](/docs/reference/media/overview/) for how to set up media in your site.
+![](/img/docs/reference/SCR-20250313-nzau.png)
 
-## Customizing an image formatting
+### Field with image path formatting
 
 If you need to customize how an image is formatted in a field, you can use the `format` & `parse` options.
 
 ```js
-//tina/config.ts
-
-// fields
-// ...
 {
   type: "image",
   name: "heroImg",
@@ -84,5 +69,3 @@ If you need to customize how an image is formatted in a field, you can use the `
   }
 }
 ```
-
-You can read more about `format` & `parse` [here](/docs/extending-tina/format-and-parse/).
