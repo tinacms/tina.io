@@ -4,6 +4,11 @@
       "title": "Beginner Series",
       "items": [
         {
+          "title": "What is the Beginner Series?",
+          "slug": "content/docs/beginner-tutorials/tutorial-overview.mdx",
+          "_template": "item"
+        },
+        {
           "title": "1. Your New TinaCMS Site",
           "items": [
             {
