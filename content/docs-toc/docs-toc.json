@@ -449,6 +449,11 @@
               "title": "Organizations",
               "slug": "content/docs/tina-cloud/dashboard/organizations.mdx",
               "_template": "item"
+            },
+            {
+              "title": "GitHub Enterprise Integration",
+              "slug": "content/docs/tina-cloud/github-enterprise-integration.mdx",
+              "_template": "item"
             }
           ],
           "_template": "items"
