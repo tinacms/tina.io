@@ -229,7 +229,7 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="my-6 border-l-4 md:py-6 pt-2 pb-4 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className="!my-6 border-l-4 md:py-6 pt-2 pb-4 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
     >
       <div className="flex flex-col md:flex-row md:items-center md:gap-2 items-start">
         <div className="flex-shrink-0">
