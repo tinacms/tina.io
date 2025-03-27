@@ -52,7 +52,6 @@ export default function Home() {
   const[graphQLresponse, setGraphQLresponse] = useState<any>();
 
   useEffect(() => {
-    // stupid React bullshit to call an async method in useEffect
     const fetchContent = async () => {
       const result = await client.queries.my_first_collection({
         relativePath: "Hello-World.md",
