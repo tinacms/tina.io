@@ -4,7 +4,7 @@
       "title": "Beginner Series",
       "items": [
         {
-          "title": "1️⃣ Your New TinaCMS Site",
+          "title": "1. Your New TinaCMS Site",
           "items": [
             {
               "title": "NextJS Setup",
@@ -35,7 +35,7 @@
           "_template": "items"
         },
         {
-          "title": "2️⃣ Live Editing ",
+          "title": "2. Live Editing ",
           "items": [
             {
               "title": "Routing to the Editor",
@@ -56,7 +56,7 @@
           "_template": "items"
         },
         {
-          "title": "3️⃣ The Content Model",
+          "title": "3. The Content Model",
           "items": [
             {
               "title": "Our New Field",
@@ -82,7 +82,7 @@
           "_template": "items"
         },
         {
-          "title": "4️⃣ A Website Builder Experience",
+          "title": "4. A Website Builder Experience",
           "items": [
             {
               "title": "What are \"Blocks\"?",
