@@ -1,0 +1,77 @@
+name: Auto Translate MDX to Chinese
+
+on:
+  pull_request:
+    types: [closed]
+    paths:
+      - 'content/docs/**.mdx'
+
+jobs:
+  translate-mdx:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: .github
+
+      - name: Get changed files from merged PR
+        id: get-changed-files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: node .github/scripts/get-changed-files.js
+
+      - name: Create translation branch
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          BRANCH_NAME="translate-pr-$PR_NUMBER-$(date +%s)"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Translate changed MDX files
+        if: env.HAS_CHANGED_FILES == 'true'
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: node .github/scripts/translate-mdx.js
+
+      - name: Commit and push changes
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          if git diff --quiet --exit-code; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add content/docs-zh/
+          git commit -m "Add Chinese translation for docs from PR #${{ github.event.pull_request.number }}"
+          git push origin $BRANCH_NAME
+
+      - name: Create Pull Request
+        if: env.HAS_CHANGED_FILES == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+          REPO: ${{ github.repository }}
+        run: node .github/scripts/create-pr.js
