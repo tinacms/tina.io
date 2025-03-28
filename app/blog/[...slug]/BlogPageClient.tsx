@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
+import Giscus from '@giscus/react';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { BlogPageClientProps } from './BlogType';
-
 
 const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
   const blogPostData = data.post;
@@ -33,8 +33,8 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
   return (
     <div>
       <BlogPageTitle title={blogPostData.title} />
-      <div className="p-6">
-        <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
+      <div className="px-6 pt-6">
+        <div className="pt-12 lg:pt-16 max-w-prose mx-auto">
           <div className="flex flex-col items-center opacity-80 m-0">
             <span>{postedDate}</span>
             <div className="flex flex-row text-lg gap-1 pb-4">
@@ -55,6 +55,23 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
             </div>
           )}
           <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+          <div className="mt-2">
+            <Giscus
+              id="discussion-box"
+              repo={blogPostData.giscusProps.giscusRepo}
+              repoId={blogPostData.giscusProps.giscusRepoId}
+              category={blogPostData.giscusProps.giscusCategory}
+              categoryId={blogPostData.giscusProps.giscusCategoryId}
+              mapping="pathname"
+              strict="0"
+              reactionsEnabled="1"
+              emitMetadata="0"
+              inputPosition="top"
+              theme="http://localhost:3000/giscus-light-theme.css"
+              lang="en"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>
