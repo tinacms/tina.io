@@ -1,0 +1,71 @@
+// .github/scripts/create-pr.js
+const axios = require('axios');
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const PR_NUMBER = process.env.PR_NUMBER;
+const BRANCH_NAME = process.env.BRANCH_NAME;
+const REPO = process.env.REPO;
+const [OWNER, REPO_NAME] = REPO.split('/');
+const SERVER_URL = process.env.GITHUB_SERVER_URL || 'https://github.com';
+
+async function createPullRequest() {
+  try {
+    const prTitle = `Chinese translation for PR #${PR_NUMBER}`;
+    const prBody = `This PR contains Chinese translations for the documentation files updated in PR #${PR_NUMBER} (${SERVER_URL}/${REPO}/pull/${PR_NUMBER}).`;
+
+    const response = await axios.post(
+      `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls`,
+      {
+        title: prTitle,
+        body: prBody,
+        head: BRANCH_NAME,
+        base: 'main',
+      },
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+      }
+    );
+
+    console.log(
+      `Successfully created PR #${response.data.number}: ${response.data.html_url}`
+    );
+
+    if (response.data.number) {
+      try {
+        await axios.post(
+          `https://api.github.com/repos/${OWNER}/${REPO_NAME}/issues/${response.data.number}/labels`,
+          { labels: ['translation', 'automated-pr'] },
+          {
+            headers: {
+              Authorization: `token ${GITHUB_TOKEN}`,
+              Accept: 'application/vnd.github.v3+json',
+            },
+          }
+        );
+        console.log(`Added labels to PR #${response.data.number}`);
+      } catch (labelError) {
+        console.warn(`Warning: Failed to add labels: ${labelError.message}`);
+      }
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error creating pull request:', error.message);
+    if (error.response) {
+      console.error(`API response: ${JSON.stringify(error.response.data)}`);
+    }
+    throw error;
+  }
+}
+
+async function main() {
+  await createPullRequest();
+}
+
+main().catch((error) => {
+  console.error('Failed to create pull request:', error);
+  process.exit(1);
+});
