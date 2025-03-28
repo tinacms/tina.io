@@ -53,12 +53,12 @@
           "href": "/roadmap"
         },
         {
-          "label": "Support",
-          "href": "/docs/support"
-        },
-        {
           "label": "Events",
           "href": "/events"
+        },
+        {
+          "label": "Support",
+          "href": "/docs/support"
         },
         {
           "label": "Awesome TinaCMS",
