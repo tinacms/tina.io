@@ -22,6 +22,11 @@ export function getLocale(request: NextRequest): string {
     return cookieLocale;
   }
 
+  const hostname = request.headers.get('host') || '';
+  if (hostname === 'tinacms.com.cn') {
+    return 'zh';
+  }
+
   const acceptLanguageLocale = getLocaleFromAcceptLanguage(request);
   if (acceptLanguageLocale) {
     return acceptLanguageLocale;
