@@ -1,14 +1,14 @@
 ---
 title: Wiring Content Up to the Editor
-last_edited: '2025-03-18T06:59:55.715Z'
+last_edited: '2025-03-28T01:01:59.294Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/loading-content.mdx
 previous: content/docs/beginner-tutorials/routing.mdx
 ---
 
-There's just one small problem... There's no way for us to edit our amazing title from this page. We still have to navigate to our collection, and then to our file, in order to change the title. Let's fix that!
+As you can see, there's no way for us to edit our amazing title from this page. We still have to navigate to our collection, and then to our file, in order to change the title. Let's fix that!
 
-1\. Change the `Page.tsx` file to have the following code:
+1\. Change `app/page.tsx` to have the following code:
 
 ```typescript
 "use client";
@@ -57,4 +57,4 @@ There are a couple of small, but significant changes here. Let's go through them
 
 We aren't quite done here. If you open up your browser's Dev Tools and navigate to `http://localhost:3000/admin/index.html`, you'll see an error appear in your console.
 
-This is actually from how NextJS works – continue on to get your Visual Editor up and runnning.
+This is actually from how NextJS works – continue on to get your Visual Editor up and running.
