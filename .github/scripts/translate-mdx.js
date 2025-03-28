@@ -17,6 +17,7 @@ async function translateMdx(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
 
+    //TODO: Need update
     const response = await axios.post(
       config.apiEndpoint,
       {
