@@ -98,8 +98,8 @@ export const featuresTemplate: Template = {
                   type: 'image',
                 },
                 {
-                  name: 'videoEmbedLink',
-                  label: 'YouTube Video Embed Link',
+                  name: 'videoEmbedId',
+                  label: 'YouTube Video Embed ID',
                   type: 'string',
                 },
                 {

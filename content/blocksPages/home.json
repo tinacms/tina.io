@@ -29,9 +29,10 @@
           ],
           "media": [
             {
-              "src": "/img/docs/introduction/homepage-demo-2.webm",
-              "link": "https://www.youtube.com/watch?v=zRkeKSZjlyw",
-              "_template": "video"
+              "thumbnailImage": "/img/discord-support.png",
+              "videoEmbedId": "zRkeKSZjlyw",
+              "figureCaption": "Video: TinaCMS Demo (4 min)",
+              "_template": "thumbnailToInternalVideo"
             }
           ],
           "isFullScreen": true,
