@@ -9,10 +9,7 @@ import { Container } from '../Container';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
-  const isFullScreen = data.isFullScreen;
-  const isBackgroundEnabled = data.imageBackground;
   const isVideo = data.media && data.media[0] && data.media[0].src;
-
   const isOrNeeded = data.buttons && data.buttons.length >= 2;
 
   const renderButtonsWithOr = (buttons) => {
@@ -65,86 +62,13 @@ export function FeatureBlock({ data, index }) {
         </div>
         {data.media && data.media[0] && (
           <div
-            className={`relative min-w-0 md:min-w-96 md:w-[80%] justify-self-start ${
-              isReversed ? 'lg:pr-8' : ''
-            } ${(data.media[0].image || data.media[0].src) && ''}`}
-          >
-            {data.media && data.media[0].image && (
-              <>
-                <Image
-                  src={data.media[0].image}
-                  alt={data.headline}
-                  className={`w-full h-auto rounded-lg ${
-                    isBackgroundEnabled ? 'shadow-panel' : ''
-                  } overflow-hidden bg-transparent`}
-                  width={1200}
-                  height={1200}
-                />
-              </>
-            )}
-            {data.media && data.media[0].src && (
-              <>
-                <div className="relative w-full h-auto pb-4 group">
-                  <a
-                    href={
-                      data.media[0].link ?? 'https://www.youtube.com/@TinaCMS'
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    id="play-button-overlay"
-                    className="relative block"
-                  >
-                    <FeatureVideo
-                      className="w-full h-auto rounded-lg"
-                      src={data.media[0].src}
-                    />
-                    <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
-                    </div>
-                  </a>
-                </div>
-              </>
-            )}
-
-            {data.media && data.media[0].code && (
-              <div className="flex flex-col justify-start items-start">
-                {data.media[0].file && (
-                  <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-gradient-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-tuner">
-                    {data.media[0].file}
-                  </div>
-                )}
-                <div
-                  className={`file relative ${
-                    data.media[0].file
-                      ? 'rounded-lg rounded-tl-none'
-                      : 'rounded-lg'
-                  } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-gradient-to-br from-[#333333] via-[#1a1a1a] to-black ${
-                    isBackgroundEnabled ? 'shadow-panel' : ''
-                  }`}
-                  style={{
-                    fontSize:
-                      1.25 * (data.media[0].scale ? data.media[0].scale : 1) +
-                      'em',
-                  }}
-                >
-                  <CodeWrapper>
-                    <div className="[&>pre]:!bg-transparent [&>pre]:!border-none rounded-xl">
-                      <Prism
-                        lang={
-                          data.media[0].language
-                            ? data.media[0].language
-                            : 'javascript'
-                        }
-                        theme="nightOwl"
-                        value={data.media[0].code}
-                      />
-                    </div>
-                  </CodeWrapper>
-                </div>
-              </div>
-            )}
-          </div>
+          className={`relative min-w-0 md:min-w-96 md:w-[80%] justify-self-start ${
+            isReversed ? 'lg:pr-8' : ''
+          } ${(data.media[0].image || data.media[0].src) && ''}`}
+        >
+          <RenderMedia data={data} />
+          
+        </div>
         )}
       </div>
       <style jsx>{`
@@ -228,6 +152,91 @@ export function FeatureBlock({ data, index }) {
     </>
   );
 }
+
+//Media Names-  "PageBlocksFeaturesFeaturesMediaVideo"
+// - "PageBlocksFeaturesFeaturesMediaImage"
+// - "PageBlocksFeaturesFeaturesMediaCode"
+// - "PageBlocksFeaturesFeaturesMediaThumbnailToInternalVideo"
+
+const RenderMedia = ({ data }) => {
+  if (data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo') {
+    return (
+      <>
+        <div className="relative w-full h-auto pb-4 group">
+          <a
+            href={data.media[0].link ?? 'https://www.youtube.com/@TinaCMS'}
+            target="_blank"
+            rel="noopener noreferrer"
+            id="play-button-overlay"
+            className="relative block"
+          >
+            <FeatureVideo
+              className="w-full h-auto rounded-lg"
+              src={data.media[0].src}
+            />
+            <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
+            </div>
+          </a>
+        </div>
+      </>
+    );
+  }
+  if (data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage') {
+    return (
+      <>
+        <Image
+          src={data.media[0].image}
+          alt={data.headline}
+          className={`w-full h-auto rounded-lg ${
+            data.isBackgroundEnabled ? 'shadow-panel' : ''
+          } overflow-hidden bg-transparent`}
+          width={1200}
+          height={1200}
+        />
+      </>
+    );
+  }
+  if (data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaCode') {
+    return (
+      <>
+        <div className="flex flex-col justify-start items-start">
+          {data.media[0].file && (
+            <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-gradient-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-tuner">
+              {data.media[0].file}
+            </div>
+          )}
+          <div
+            className={`file relative ${
+              data.media[0].file ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
+            } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-gradient-to-br from-[#333333] via-[#1a1a1a] to-black ${
+              data.isBackgroundEnabled ? 'shadow-panel' : ''
+            }`}
+            style={{
+              fontSize:
+                1.25 * (data.media[0].scale ? data.media[0].scale : 1) + 'em',
+            }}
+          >
+            <CodeWrapper>
+              <div className="[&>pre]:!bg-transparent [&>pre]:!border-none rounded-xl">
+                <Prism
+                  lang={
+                    data.media[0].language
+                      ? data.media[0].language
+                      : 'javascript'
+                  }
+                  theme="nightOwl"
+                  value={data.media[0].code}
+                />
+              </div>
+            </CodeWrapper>
+          </div>
+        </div>
+      </>
+    );
+  }
+};
 
 export function FeaturesBlock({ data, index }) {
   return (
