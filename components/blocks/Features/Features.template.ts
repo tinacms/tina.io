@@ -89,12 +89,34 @@ export const featuresTemplate: Template = {
             },
             {
               name: 'thumbnailToInternalVideo',
-              label: 'Thumbnail to Internal YouTube Video',
+              label: 'Image Thumbnail to Internal YouTube Video',
               type: 'object',
               fields: [
                 {
                   name: 'thumbnailImage',
                   label: 'Thumbnail Image',
+                  type: 'image',
+                },
+                {
+                  name: 'videoEmbedId',
+                  label: 'YouTube Video Embed ID',
+                  type: 'string',
+                },
+                {
+                  name: 'figureCaption',
+                  label: 'Figure Caption',
+                  type: 'string',
+                },
+              ],
+            },
+            {
+              name: 'videoThumbnailToInternalVideo',
+              label: 'Video Thumbnail to Internal YouTube Video',
+              type: 'object',
+              fields: [
+                {
+                  name: 'thumbnailVideo',
+                  label: 'Thumbnail Video',
                   type: 'image',
                 },
                 {

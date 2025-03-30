@@ -57,7 +57,7 @@ export function FeatureBlock({ data, index }) {
           </div>
         </div>
         <div className="w-full lg:w-1/2">
-          <RenderMedia data={data} />
+          {data.media && <RenderMedia data={data} />}
         </div>
       </div>
     </>
@@ -177,6 +177,55 @@ const RenderMedia = ({ data }) => {
                   className="w-full h-full object-cover"
                   style={{ objectPosition: 'center' }}
                 />
+                <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
+                </div>
+              </div>
+            </button>
+            <span className="text-[#777777] text-left text-base font-tuner mt-2">
+              {data.media[0].figureCaption}
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
+  if (
+    data.media[0].__typename ===
+    'PageBlocksFeaturesFeaturesMediaVideoThumbnailToInternalVideo'
+  ) {
+    return (
+      <div className="relative w-full pb-4 group">
+        {isPlaying ? (
+          <div className="flex flex-col justify-center w-full h-full pb-4 group">
+            <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
+            <span className="text-[#777777] text-left text-base font-tuner">
+              {data.media[0].figureCaption}
+            </span>
+          </div>
+        ) : (
+          <div className="flex flex-col">
+            <button
+              onClick={() => setIsPlaying(true)}
+              className="relative block w-full"
+              id="play-button-overlay"
+            >
+              <div className="relative w-full pb-[56.25%] rounded-lg overflow-hidden">
+                <video
+                  className="absolute top-0 left-0 w-full h-full object-cover"
+                  autoPlay={true}
+                  loop
+                  muted
+                  playsInline
+                  poster={data.media[0].thumbnailVideo}
+                >
+                  <source
+                    src={data.media[0].thumbnailVideo}
+                    type="video/webm"
+                  />
+                  <source src={data.media[0].thumbnailVideo} type="video/mp4" />
+                </video>
                 <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />

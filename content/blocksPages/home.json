@@ -29,10 +29,10 @@
           ],
           "media": [
             {
-              "thumbnailImage": "/img/discord-support.png",
+              "thumbnailVideo": "/video/click-to-edit.webm",
               "videoEmbedId": "zRkeKSZjlyw",
               "figureCaption": "Video: TinaCMS Demo (4 min)",
-              "_template": "thumbnailToInternalVideo"
+              "_template": "videoThumbnailToInternalVideo"
             }
           ],
           "isFullScreen": true,
