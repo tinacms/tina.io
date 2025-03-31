@@ -55,7 +55,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
             </div>
           )}
           <DocsPagination prevPage={previousPage} nextPage={nextPage} />
-          <div className="mt-2">
+          <div className="mt-8">
             <Giscus
               id="discussion-box"
               repo={blogPostData.giscusProps.giscusRepo}
