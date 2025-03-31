@@ -3,7 +3,6 @@
 import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMainBody';
 import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
 import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
-import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
 import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
@@ -13,6 +12,8 @@ import { DocsPagination } from 'components/ui';
 import { useEffect } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { useNavigationData } from '../toc-layout-client';
+
 export default function DocsClient({ props }) {
   const { data } = useTina({
     query: props.query,
@@ -20,16 +21,10 @@ export default function DocsClient({ props }) {
     data: props.data,
   });
 
-  const { PageTableOfContents, NavigationDocsData, NavigationLearnData } =
-    props;
+  // Get the navigation data from context instead of props
+  const { NavigationDocsData, NavigationLearnData } = useNavigationData();
+  const { PageTableOfContents } = props;
   const DocumentationData = data.doc;
-
-  const allData = [
-    DocumentationData,
-    PageTableOfContents,
-    NavigationDocsData,
-    NavigationLearnData,
-  ];
 
   const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
   const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
@@ -69,25 +64,14 @@ export default function DocsClient({ props }) {
   const gridClass = isScreenSmallerThan840
     ? 'grid-cols-1'
     : isScreenSmallerThan1200
-    ? 'grid-cols-[1.25fr_3fr]'
-    : 'grid-cols-[1.25fr_3fr_0.75fr]';
+    ? 'grid-cols-[1fr_3fr]'
+    : 'grid-cols-[1fr_3fr_0.75fr]';
 
   return (
     <div className="relative my-6 lg:mb-16 xl:mt-16 flex justify-center items-start">
       <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
-        {/* LEFT COLUMN */}
-        <div
-          className={`block sticky top-32 h-[calc(100vh)] ${
-            isScreenSmallerThan840 ? 'hidden' : 'block'
-          }`}
-        >
-          <LeftHandSideParentContainer
-            tableOfContents={NavigationDocsData?.data}
-            tableOfContentsLearn={NavigationLearnData?.data}
-            learnActive={learnActive}
-            setLearnActive={setLearnActive}
-          />
-        </div>
+        {/* Remove the LEFT COLUMN since it's now in layout */}
+
         {/* MIDDLE COLUMN */}
         <div
           className={`mx-8 max-w-full overflow-hidden break-words px-2 ${
