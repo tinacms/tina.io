@@ -29,7 +29,7 @@
           ],
           "media": [
             {
-              "thumbnailVideo": "/video/click-to-edit.webm",
+              "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
               "videoEmbedId": "zRkeKSZjlyw",
               "figureCaption": "Video: TinaCMS Demo (4 min)",
               "_template": "videoThumbnailToInternalVideo"
@@ -439,9 +439,10 @@
           ],
           "media": [
             {
-              "src": "/video/create-branch.webm",
-              "link": "https://www.youtube.com/watch?v=gYukiULGqGc",
-              "_template": "video"
+              "thumbnailVideo": "/video/create-branch.webm",
+              "videoEmbedId": "gYukiULGqGc",
+              "figureCaption": "Video: Making a Change with the Editorial Workflow (1 min)",
+              "_template": "videoThumbnailToInternalVideo"
             }
           ]
         },
@@ -450,8 +451,10 @@
           "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
           "media": [
             {
-              "src": "/img/docs/introduction/homepage-demo-2.webm",
-              "_template": "video"
+              "thumbnailVideo": "/video/click-to-edit.webm",
+              "videoEmbedId": "CsCQS7HIBv0",
+              "figureCaption": "Video: Managing your Content Workflows (2 min)",
+              "_template": "videoThumbnailToInternalVideo"
             }
           ],
           "isReversed": true
