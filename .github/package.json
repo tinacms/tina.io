@@ -1,0 +1,11 @@
+{
+  "name": "docs-translation-workflow",
+  "version": "1.0.0",
+  "description": "GitHub Action workflow for translating documentation",
+  "private": true,
+  "dependencies": {
+    "@octokit/rest": "^19.0.7",
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1"
+  }
+}
