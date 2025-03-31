@@ -23,7 +23,7 @@ const ScrollBasedShowcase = dynamic(
 
 export const docAndBlogComponents: Components<{
   Iframe: { iframeSrc: string; height: string };
-  Youtube: { embedSrc: string };
+  Youtube: { embedSrc: string; caption?: string; minutes?: string };
   CreateAppCta: { ctaText: string; cliText: string };
   GraphQLCodeBlock: {
     query: string;
@@ -201,12 +201,19 @@ export const docAndBlogComponents: Components<{
   h6: (props) => <FormatHeaders level={6} {...props} />,
   img: (props) => {
     return (
-      <img
-        className="my-4 rounded-xl border"
-        src={props.url}
-        alt={props.alt || ''}
-        title={props.caption || ''}
-      ></img>
+      <div className="flex flex-col gap-2 my-4">
+        <img
+          className="rounded-xl border"
+          src={props.url}
+          alt={props.alt || ''}
+          title={props.caption || ''}
+        />
+        {props.caption && (
+          <div className="text-sm font-tuner text-gray-500">
+            {props.caption}
+          </div>
+        )}
+      </div>
     );
   },
   ul: (props) => <ul className="list-disc my-4 ml-2" {...props} />,
@@ -511,18 +518,25 @@ export const docAndBlogComponents: Components<{
       </video>
     </div>
   ),
-  Youtube: ({ embedSrc }) => (
-    <div
-      className="youtube-container my-6 w-full relative"
-      style={{ paddingBottom: '56.25%' }}
-    >
-      <iframe
-        className="absolute top-0 left-0 w-full h-full rounded-md"
-        src={embedSrc}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen={true}
-      ></iframe>
+  Youtube: ({ embedSrc, caption, minutes }) => (
+    <div className="flex flex-col gap-2 my-6">
+      <div
+        className="youtube-container w-full relative"
+        style={{ paddingBottom: '56.25%' }}
+      >
+        <iframe
+          className="absolute top-0 left-0 w-full h-full rounded-md"
+          src={embedSrc}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen={true}
+        ></iframe>
+      </div>
+      {caption && (
+        <div className="text-sm font-tuner text-gray-500">
+          Video: {caption} {minutes && `(${minutes} minutes)`}
+        </div>
+      )}
     </div>
   ),
 
