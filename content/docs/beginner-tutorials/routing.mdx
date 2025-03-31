@@ -1,6 +1,6 @@
 ---
 title: Routing to the Editor
-last_edited: '2025-03-21T01:41:04.715Z'
+last_edited: '2025-03-28T01:01:04.318Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/wiring-content.mdx
 previous: content/docs/beginner-tutorials/display-content.mdx
@@ -10,7 +10,7 @@ Right now, if we want to edit our amazing title, we have to go into the Tina edi
 
 Wouldn't it be cool if we could make edits to the title, and see our changes directly on the page while we're editing our content? **Let's do that now**!
 
-1\. Uncomment the `ui` section of Tina's `config.ts`
+1\. Uncomment the `ui` section of the `tina/config.ts`
 
 ```typescript
 schema: {
@@ -55,7 +55,7 @@ First up, this particular router is only for the Tina visual editor. It does not
 
 Secondly, we are cheating a little here by hard-coding the `"Hello-World"` filename directly to the home route.
 
-It's also possible to define this routing programmatically, but for now let's just roll with this.\\
+It's also possible to define this routing programmatically, but for now let's just roll with this.
 
 > Match this to your filename from the content directory, the filename might be different if you set your title to something other than "Hello World!".
 
@@ -68,7 +68,3 @@ It's also possible to define this routing programmatically, but for now let's ju
 > The router lets Tina know which pages are going to be used for live editing, but also creates a link to the Visual Editor page from the collection list.
 
 ![](</gif/Untitled video - Made with Clipchamp (9).gif>)
-
-There's just one small problem... There's no way for us to edit our amazing title from this page. We still have to navigate to our collection, and then to our file, in order to change the title.
-
-Let's fix that!

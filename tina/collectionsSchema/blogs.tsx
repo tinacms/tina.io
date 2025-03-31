@@ -85,35 +85,6 @@ export const blogsCollection = {
           ],
         },
         {
-          name: 'Youtube',
-          label: 'Youtube Embed',
-          fields: [
-            {
-              type: 'string',
-              name: 'embedSrc',
-              label: 'Embed URL',
-              description:
-                '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
-            },
-          ],
-        },
-        {
-          name: 'WebmEmbed',
-          label: 'Webm Embed',
-          fields: [
-            {
-              type: 'string',
-              name: 'embedSrc',
-              label: 'Embed SRC',
-            },
-            {
-              type: 'string',
-              name: 'width',
-              label: 'width',
-            },
-          ],
-        },
-        {
           name: 'apiReference',
           label: 'API Reference',
           fields: [
@@ -127,7 +98,23 @@ export const blogsCollection = {
               name: 'property',
               label: 'Property',
               list: true,
+              ui: {
+                itemProps: (item) => {
+                  return {
+                    label: item.groupName
+                      ? `${item.groupName} - ${item.name}`
+                      : item.name,
+                  };
+                },
+              },
               fields: [
+                {
+                  type: 'string',
+                  name: 'groupName',
+                  label: 'Group Name',
+                  description:
+                    'Adjacent properties with the same group name will be grouped together',
+                },
                 {
                   type: 'string',
                   name: 'name',
@@ -153,7 +140,41 @@ export const blogsCollection = {
                   name: 'required',
                   label: 'Required',
                 },
+                {
+                  type: 'boolean',
+                  name: 'experimental',
+                  label: 'Experimental',
+                },
               ],
+            },
+          ],
+        },
+        {
+          name: 'Youtube',
+          label: 'Youtube Embed',
+          fields: [
+            {
+              type: 'string',
+              name: 'embedSrc',
+              label: 'Embed URL',
+              description:
+                '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+            },
+          ],
+        },
+        {
+          name: 'WebmEmbed',
+          label: 'Webm Embed',
+          fields: [
+            {
+              type: 'string',
+              name: 'embedSrc',
+              label: 'Embed SRC',
+            },
+            {
+              type: 'string',
+              name: 'width',
+              label: 'width',
             },
           ],
         },

@@ -1,106 +1,207 @@
 ---
 id: collections
 title: Collections
-last_edited: '2025-03-24T06:53:08.079Z'
+last_edited: '2025-03-26T04:54:11.946Z'
 next: content/docs/reference/fields.mdx
 previous: content/docs/reference/schema.mdx
 ---
 
-Collections represent a type of content (EX, blog post, page, author, etc). We recommend using singular naming in a collection (Ex: use post and not posts).
+Each collection is a distinct content structure. Creating a content document in TinaCMS is done on a per-collection basis so that:
 
-## Overview
+* Content structure matches a collection definition.
+* The document exists under that collection.
 
-| Property                               | Description                                                                                                                                                                                                                          |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`name`](#name)                        | The name of the collection                                                                                                                                                                                                           |
-| [`path`](#path)                        | The path (relative to where the CLI is running) to a folder where the content is stored.                                                                                                                                             |
-| [`format`](#format)                    | The extension of all the documents in this collection (Default is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.                                                                               |
-| [`match.include`](#match.include)      | A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) (without the file extension) that will be used to match a subset of the files in the `path` folder.                                                             |
-| [`match.exclude`](#match.exclude)      | A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) (without the file extension) that will be used to exclude a subset of the files in the `path` folder.                                                           |
-| `label`                                | A human friendly label that will be displayed to the user                                                                                                                                                                            |
-| `fields`                               | An array of [fields](/docs/reference/fields/)                                                                                                                                                                                        |
-| `templates`                            | An array of [templates](/docs/reference/templates/)                                                                                                                                                                                  |
-| [`defaultItem`](#defaultitem)          | An object or a function that returns an object. The object that is returned will be the data used as the default data when a new document is created.                                                                                |
-| `frontmatterFormat`                    | The format used to parse the frontmatter. This can be `"yaml"` ,`"toml"`, or `"json"`. It defaults to `"yaml"`                                                                                                                       |
-| `frontmatterDelimiters`                | The Delimiters used for the frontmatter for a document. This is what Has type `string \| [string, string]` . The default is `---`. Read more about delimiters [here](https://github.com/jonschlinkert/gray-matter#optionsdelimiters) |
-| `ui.filename`                          | See [Filename customization](/docs/extending-tina/filename-customization/)                                                                                                                                                           |
-| `ui.beforeSubmit`                      | This function is called before the form is submitted. If values are returned from this function they will be the values used to submit the form. (*optional*)                                                                        |
-| `ui.global`                            | A boolean that if true will make this collection Global. (*optional*)                                                                                                                                                                |
-| `ui.router`                            | A function that takes in a document and returns the route for it. If nothing is returned the basic editor will be used. Read more about visual editing [here](/docs/contextual-editing/router/#the-router-property)(*optional*)      |
-| `ui.allowedActions.create`             | If this is false, the create button will not appear in the collection list page. See [example](#example-with-allowed-actions). (*optional*)                                                                                          |
-| `ui.allowedActions.delete`             | If this is false, the create delete button will not appear in the collection list page. See [example](#example-with-allowed-actions). (*optional*)                                                                                   |
-| `ui.allowedActions.createNestedFolder` | If this is false, the create folder button will not appear in the collection list page. See [example](#example-with-allowed-actions). (*optional*)                                                                                   |
-| `ui.filename.description`              | A short description for the filename field that will be displayed to the user (*optional*, can include html formatting e.g. style attributes)                                                                                        |
-| `ui.filename.showFirst`                | A boolean that if true will render the filename field at the top of the form (*optional*, default `false`)                                                                                                                           |
+![](/img/docs/schema/SCR-20250312-nnbi.png)
 
-> Note: Must provide only one of `fields` or `templates` but never both
+Each collection defines its own form fields for the TinaCMS editor.
 
-## Name
+These can be specified in the collections'`fields` or `templates` array.
 
-The name of the collection that is used in the GraphQL schema. A name can only be used once and an error will occur if two or more collections have the same name. This name cannot have spaces, dashes, or special characters. It must be a valid GraphQL name. We recommend using singular naming in a collection (Ex: use post and not posts).
+The `format` property can be set to control the filetype of content created in the collection.
 
-## Path
+## Object Definition
 
-The path to a folder where the content is stored. By default, the path is relative to where the CLI is running but this can be changed by using the [`--rootPath`](/docs/cli-overview) CLI flag. Paths do not have to be unique across collections as long as a different [`format`](#format) or [`match`](#match) is specified. The CLI will print a warning if there are overlapping documents.
+<apiReference
+  title=""
+  property={[
+    {
+      groupName: "",
+      name: "name",
+      type: "string",
+      description: "The internal name of the collection.\n",
+      required: true
+    },
+    {
+      groupName: "",
+      name: "path",
+      type: "string",
+      description: "Determines where documents are stored for this collection.\n",
+      required: true
+    },
+    {
+      groupName: "",
+      name: "format",
+      type: '"md" | "markdown" | "mdx" | "json" | "toml" | "yaml"',
+      description: "The extension and format of content files.\n",
+      default: '"md"'
+    },
+    {
+      groupName: "",
+      name: "label",
+      type: "string",
+      description: "The collection name as shown in the editor.\n"
+    },
+    {
+      groupName: "",
+      name: "fields",
+      type: "Field[]",
+      description: "An array of [fields](/docs/reference/fields/).\n"
+    },
+    {
+      groupName: "",
+      name: "templates",
+      type: "Template[]",
+      description: "An array of [templates](/docs/reference/templates/).\n"
+    },
+    {
+      groupName: "",
+      name: "defaultItem",
+      type: "object | function",
+      description: "Defines pre-populated data in newly created documents.\n"
+    },
+    {
+      groupName: "",
+      name: "frontmatterFormat",
+      type: '"yaml" | "toml" | "json"',
+      description: "The format used to parse the frontmatter.\n",
+      default: '"yaml"'
+    },
+    {
+      groupName: "",
+      name: "frontmatterDelimiters",
+      type: "string | [string, string]",
+      description:
+        "[Delimiters](https://github.com/jonschlinkert/gray-matter#optionsdelimiters) used for the frontmatter.\n",
+      default: '"---"'
+    },
+    {
+      groupName: "match",
+      name: "include",
+      type: "string",
+      description:
+        "A [glob pattern](https://en.wikipedia.org/wiki/Glob_\\(programming\\)) that further specifies included files in the `path` folder.\n"
+    },
+    {
+      groupName: "match",
+      name: "exclude",
+      type: "string",
+      description:
+        "A [glob pattern](https://en.wikipedia.org/wiki/Glob_\\(programming\\)) that excludes specific files in the `path` folder.\n"
+    },
+    {
+      groupName: "ui",
+      name: "beforeSubmit",
+      type: "(values, cms, form) => { values }",
+      description:
+        "A function called before the form is submitted. Any return value will replace the form submit value.\n"
+    },
+    {
+      groupName: "ui",
+      name: "global",
+      type: "boolean",
+      description: "A boolean that if true will make this collection Global.\n",
+      default: "false"
+    },
+    {
+      groupName: "ui",
+      name: "router",
+      type: "(document) => string",
+      description:
+        "A function that takes in a document and returns the route for it. If nothing is returned the basic editor will be used. Used to setup [Visual Editing](/docs/contextual-editing/router/#the-router-property).\n"
+    },
+    {
+      groupName: "ui.allowedActions",
+      name: "create",
+      type: "boolean",
+      description:
+        "Set to false to prevent users creating new content documents.\n",
+      default: "true"
+    },
+    {
+      groupName: "ui.allowedActions",
+      name: "delete",
+      type: "boolean",
+      description:
+        "Set to false to prevent users from deleting content documents.\n",
+      default: "true"
+    },
+    {
+      groupName: "ui.allowedActions",
+      name: "createNestedFolder",
+      type: "boolean",
+      description:
+        "Set to false to prevent users creating folders in the collection path.\n",
+      default: "true"
+    },
+    {
+      groupName: "ui.filename",
+      name: "description",
+      type: "string",
+      description:
+        "A short description for the filename field that will be displayed to the user.\n"
+    },
+    {
+      groupName: "ui.filename",
+      name: "showFirst",
+      type: "boolean",
+      description:
+        "If true, renders the filename field at the top of the form.\n",
+      default: "false"
+    }
+  ]}
+/>
 
-## Format
+<WarningCallout
+  body={<>
+    Must provide only one of fields or templates.
+  </>}
+/>
 
-The file extension of all the documents in this collection. (Default extension is "md"). Must be one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.
+### Name
 
-The format is used to determine the parser that will be used to parse the document. The format is also used to determine the extension of the file when a new document is created. We do not support more then one format per collection but you can work around this by doing the following:
+`name` defines the name of the collection used in the GraphQL schema.
 
-```ts
+**Should be unique for each collection.**
 
-// Fields for all posts
-const fields = [
-  // an array of fields
-]
-export const defineConfig({
-  schema: {
-    collections: [
-      {
-        name: 'posts',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'mdx',
-        fields,
-      },
-      {
-        name: 'posts-json',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'json',
-        fields,
-      },
-    ],
-  },
-})
-```
+We recommend using singular naming in a collection (post, not post**s**).
 
-## match.include
+<WarningCallout
+  body={<>
+    This name cannot have spaces, dashes, or special characters.
+  </>}
+/>
 
-A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that will be used to match a subset of the files in the `path` directory.
+### Path
 
-The provided pattern does not have to include the file extension. The extension will be added automatically based on the [`format`](#format) of the collection. The final pattern that is used will be determined by `match`, `format` and `path`.
+`path` let's Tina know which directories hold documents for a collection.
 
-`<path>/<match.include>.<format>`
+[`Format`](#format) or [`match`](#match) properties can further specify included documents.
 
-For example, if you have a collection with the following:
+Documents of different collections can be co-located, but the CLI will print a warning if there are overlapping documents.
 
-```ts
-{
-  path: 'content/posts',
-  match: {
-    include: '*',
-  },
-  format: 'md'
-}
-```
+By default, the path is relative to where the CLI is running but this can be changed by using the [`--rootPath`](/docs/cli-overview) CLI flag.
 
-The final pattern used would be
-`content/posts/*.md`
+### File Format
 
-### Basic Syntax
+`Format` defines the file extension of documents in this collection. Set to one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.
+
+If unspecified, markdown files are used.
+
+## Path Matching
+
+### match.include
+
+A [glob pattern](https://en.wikipedia.org/wiki/Glob_\(programming\)) that will be used to match a subset of the files in the `path` directory, not including the file extension. Use this field to **exclude subdirectories** or **match specific filesets**.
 
 * `?` matches a single character
 * `*` matches any number of any characters (except `/`)
@@ -108,11 +209,9 @@ The final pattern used would be
 * `[a-z]` matches a range.
 * `{foo,bar}` matches any whole word in the given set
 
-### Some common glob patterns
+The final set of included files is defined from`<path>/<match.include>.<format>`.
 
-#### Don't match subdirectories `*`
-
-Example:
+To get all markdown files in the post directory (i.e.`content/posts/*.md`), but not subdirectories, use:
 
 ```ts
 {
@@ -124,27 +223,7 @@ Example:
 }
 ```
 
-Matches all files in `content/posts` folder but does not match subdirectories. It would match `content/posts/hello-world.md` but not `content/posts/subfolder/foo.md`
-
-#### Match on a single file
-
-Example:
-
-```ts
-{
-  path: 'content/config',
-  match: {
-    include: 'index',
-  },
-  format: 'json'
-}
-```
-
-This matches a single file `content/config/index.json`. It will not match on anything else.
-
-#### Match on a set of files
-
-Example:
+To get only the two files `content/config/foo.json` and `content/config/bar.json`, use:
 
 ```ts
 {
@@ -156,33 +235,13 @@ Example:
 }
 ```
 
-This matches on `content/config/foo.json` and `content/config/bar.json`. It will not match on anything else.
+### match.exclude
 
-#### Match on a set of files with a prefix
+This works the same as `match.include` but will exclude any files that match the pattern. Exclude files that you don't want edited, or that are a part of a different collection.
 
-Example:
+The final set of excluded files is defined from`!(<path>/<match.exclude>.<format>)`.
 
-```ts
-{
-  path: 'content/config',
-  match: {
-    include:'foo-{bar,baz}',
-  },
-  format: 'json'
-}
-```
-
-This will match on `content/config/foo-bar.json` and `content/config/foo-baz.json`. It will not match on anything else.
-
-## match.exclude
-
-This works the same as `match.include` but will exclude any files that match the pattern. This is useful for excluding files that you don't want to be editable or that are a part of a different collection.
-
-The resulting pattern is the same except that it is prefixed with `!`
-
-`!(<path>/<match.exclude>.<format>)`
-
-### Example with match.exclude
+To exclude all `index.md` files from your collection, use:
 
 ```ts
 {
@@ -194,53 +253,33 @@ The resulting pattern is the same except that it is prefixed with `!`
 }
 ```
 
-This will exclude all `index.md` files from your collection.
+## Defining Defaults
 
-## defaultItem
+The `defaultItem` property defines what data should exist on **document creation**. The default item is a function that takes in the `collection` and returns the default item.
 
-The default item that will be used when a new document is created. This is useful for setting default values for fields. The default item can be a function that takes in the `collection` and returns the default item. This is useful for setting default values that are based on the collection.
-
-> Note: This will not update existing documents. It will only be used when a new document is created.
-
-### Default Item Example
+All properties of the default item should correspond to fields defined on the collection.
 
 ```ts
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        name: 'posts',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'mdx',
-        defaultItem: () => {
-          return {
-            title: 'New Post',
-            date: new Date().toISOString(),
-          }
-        },
-        fields: [
-          {
-            name: 'title',
-            type: 'string',
-          },
-          {
-            name: 'date',
-            type: 'datetime',
-          },
-        ],
-      },
-    ],
-  },
-})
+defaultItem: () => {
+  return {
+    {{field name}}: {{value}}
+  }
+}
 ```
 
-Now when a new document is created the name and date fields will have default values.
+### Default value for objects
+
+[Object field types](/docs/reference/types/object) define their default values independently. See here for more information.
+
+### Default value for rich-text
+
+To set the default for a [rich-text field](/docs/reference/types/rich-text/), you must provide an Abstract Syntax Tree (AST). See here for more information.
 
 ## Examples
 
-### Basic Example
+### Simple markdown collection
+
+By default, files in a collection will be in markdown format.
 
 ```ts
 export default defineConfig({
@@ -251,95 +290,18 @@ export default defineConfig({
         name: 'posts',
         label: 'Blog Posts',
         path: 'content/posts',
-        format: 'mdx',
         fields: [
           // An array of fields
         ],
       },
     ],
   },
-})
+});
 ```
 
-### Example with router and global
+### JSON collection with restricted file management permissions
 
-```ts
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        name: 'posts',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'mdx',
-        ui: {
-          router: ({ document }) => {
-            // navigate to the post that was clicked
-            return `/post/${document._sys.filename}`
-          },
-        },
-        fields: [
-          // An array of fields
-        ],
-      },
-      {
-        label: 'Global',
-        name: 'global',
-        path: 'content/global',
-        ui: {
-          global: true,
-        },
-        format: 'json',
-        fields: [
-          // An array of fields
-        ],
-      },
-    ],
-  },
-})
-```
-
-### Example with default item
-
-```ts
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        name: 'posts',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'mdx',
-        defaultItem: () => {
-          return {
-            // Return a default title and the current date as the default date
-            title: 'new post',
-            date: new Date().toISOString(),
-          }
-        },
-        fields: [
-          {
-            label: 'Title',
-            name: 'title',
-            type: 'string',
-          },
-          {
-            label: 'Date',
-            name: 'date',
-            type: 'datetime',
-          },
-        ],
-      },
-    ],
-  },
-})
-```
-
-For more information [check out the content modeling docs](/docs/schema/)
-
-### Example with allowed actions
+The allowed actions properties control whether users can create, delete and organise content files from the collections page.
 
 ```ts
 export default defineConfig({
@@ -365,5 +327,35 @@ export default defineConfig({
       },
     ],
   },
-})
+});
+```
+
+### Markdown collection with a default title
+
+```js
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        defaultItem: () => {
+          return {
+            // When a new post is created the title field will be set to "New post"
+            title: 'New Post',
+          };
+        },
+        fields: [
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+        ],
+      },
+    ],
+  },
+});
 ```

@@ -1,0 +1,56 @@
+---
+title: The Tina Content Model
+last_edited: '2025-03-27T01:30:29.329Z'
+tocIsHidden: true
+next: content/docs/introduction/using-starter.mdx
+previous: content/docs/using-tina-editor.mdx
+---
+
+The **Tina schema defines the shape of your content**.
+
+Tina uses a "content-modeling as code" approach.
+
+* The schema is version-controlled
+* You can test out schema changes locally, or in a branch.
+* You can extend the schema in interesting ways (custom validation, custom UI fields, etc).
+
+Specifically, the `schema` property in your [TinaCMS Config file](/docs/reference/config) determines data mapping between your content store and the editor.
+
+Each item in the `schema.collections` array represents a different content structure.
+
+Each of these contains an array of `fields` to control what appears in the TinaCMS editor.
+
+```ts
+// tina/config.{ts,js,tsx}
+import { defineConfig } from 'tinacms'
+
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [ 
+      //⤵️ each item is a different content structure
+      {
+        label: 'Blog Posts',
+        name: 'post',
+        path: 'content/posts',
+        fields: [ //⤵️ each item is a new field in the editor
+          {
+            type: 'string',
+            label: 'Title',
+            name: 'title',
+          },
+          {
+            type: 'string',
+            label: 'Post Body',
+            name: 'body',
+            isBody: true,
+          },
+        ],
+      },
+      {
+        ...
+      }
+    ],
+  },
+})
+```
