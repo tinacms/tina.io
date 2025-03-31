@@ -33,7 +33,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
   return (
     <div>
       <BlogPageTitle title={blogPostData.title} />
-      <div className="px-6 pt-6">
+      <div className="p-6">
         <div className="pt-12 lg:pt-16 max-w-prose mx-auto">
           <div className="flex flex-col items-center opacity-80 m-0">
             <span>{postedDate}</span>
