@@ -67,7 +67,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
               reactionsEnabled="1"
               emitMetadata="0"
               inputPosition="top"
-              theme="http://localhost:3000/giscus-light-theme.css"
+              theme="https://tina-io-git-3070-giscus-without-comments-tinacms.vercel.app/giscus-light-theme.css"
               lang="en"
               loading="lazy"
             />
