@@ -30,7 +30,7 @@ export function FeatureBlock({ data, index }) {
   return (
     <>
       <div
-        className={`flex flex-col-reverse w-full px-10 lg:gap-4 ${
+        className={`flex flex-col-reverse w-full px-10 lg:gap-8 ${
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
