@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import { BsDiscord } from 'react-icons/bs';
 import GithubIconSvg from '../../public/svg/github-icon.svg';
@@ -12,14 +14,10 @@ import { TinaIcon } from '../logo';
 import { DynamicLink } from '../ui';
 
 //TODO: Implement TinaCMS collection - https://github.com/tinacms/tina.io/issues/2656
-const footerNav = [
+const footerNavEn = [
   {
     label: 'Product',
     items: [
-      // {
-      //   link: '/demo/',
-      //   label: 'Demo',
-      // },
       {
         link: '/showcase',
         label: 'Showcase',
@@ -158,7 +156,149 @@ const footerNav = [
   },
 ] as const;
 
-const footerLinks = [
+const footerNavZh = [
+  {
+    label: '产品',
+    items: [
+      {
+        link: '/showcase',
+        label: '案例展示',
+      },
+      {
+        link: 'https://app.tina.io',
+        label: 'TinaCloud',
+      },
+      {
+        link: '/docs',
+        label: '产品介绍',
+      },
+      {
+        link: '/docs/product-tour',
+        label: '工作原理',
+      },
+      {
+        label: '产品路线',
+        link: '/roadmap',
+      },
+    ],
+  },
+  {
+    label: '资源',
+    items: [
+      {
+        label: '博客',
+        link: '/blog',
+      },
+      {
+        label: '示例',
+        link: '/examples',
+      },
+      {
+        label: '产品对比',
+        link: '/compare-tina',
+      },
+      {
+        label: '技术支持',
+        link: '/docs/support',
+      },
+      {
+        link: '/media',
+        label: '媒体资源',
+      },
+    ],
+  },
+  {
+    label: '',
+    items: [
+      {
+        label: '最新动态',
+        children: [
+          {
+            link: '/whats-new/tinacms',
+            label: 'TinaCMS',
+          },
+          {
+            link: '/whats-new/tinacloud',
+            label: 'TinaCloud',
+          },
+        ],
+      },
+      {
+        label: '应用场景',
+        children: [
+          {
+            link: '/agencies',
+            label: '开发机构',
+          },
+          {
+            link: '/documentation',
+            label: '文档管理',
+          },
+          {
+            link: '/cms-for-teams',
+            label: '团队协作',
+          },
+          {
+            link: '/jamstack-cms',
+            label: 'Jamstack CMS',
+          },
+        ],
+      },
+      {
+        label: '核心优势',
+        children: [
+          {
+            link: '/mdx-cms',
+            label: 'MDX支持',
+          },
+          {
+            link: '/markdown-cms',
+            label: 'Markdown支持',
+          },
+          {
+            link: '/git-cms',
+            label: 'Git集成',
+          },
+          {
+            link: '/editorial-workflow',
+            label: '编辑工作流',
+          },
+          {
+            link: '/flexible-cms',
+            label: '高度定制',
+          },
+          {
+            link: '/seo',
+            label: 'SEO优化',
+          },
+        ],
+      },
+      {
+        label: '集成方案',
+        children: [
+          {
+            link: '/astro',
+            label: 'Astro',
+          },
+          {
+            link: '/hugo-cms',
+            label: 'Hugo',
+          },
+          {
+            link: '/nextjs-cms',
+            label: 'NextJS',
+          },
+          {
+            link: '/jekyll-cms',
+            label: 'Jekyll',
+          },
+        ],
+      },
+    ],
+  },
+] as const;
+
+const footerLinksEn = [
   {
     link: '/security',
     label: 'Security',
@@ -185,8 +325,37 @@ const footerLinks = [
   },
 ];
 
+const footerLinksZh = [
+  {
+    link: '/security',
+    label: '安全政策',
+  },
+  {
+    link: '/telemetry',
+    label: '开源遥测',
+  },
+  {
+    link: '/terms-of-service',
+    label: '服务条款', 
+  },
+  {
+    link: '/privacy-notice',
+    label: '隐私声明',
+  },
+  {
+    link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
+    label: '开源许可',
+  },
+  {
+    link: '/docs/support',
+    label: '技术支持',
+  },
+];
+
 const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
   const [open, setOpen] = React.useState(false);
+
+
 
   return (
     <details
@@ -236,6 +405,12 @@ const SocialLink = ({ link, children }) => {
 };
 
 export const AppFooter = ({}) => {
+  const pathName = usePathname();
+  const isZhPath = pathName?.includes('/zh') || false;
+
+  const currentFooterNav = isZhPath ? footerNavZh : footerNavEn;
+  const currentFooterLinks = isZhPath ? footerLinksZh : footerLinksEn;
+
   return (
     <div>
       {/* Top */}
@@ -244,7 +419,7 @@ export const AppFooter = ({}) => {
           <TinaIcon color="white" />
         </div>
         <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {footerNav.map((item) => {
+          {currentFooterNav.map((item) => {
             const { label, items } = item;
             return (
               <div
@@ -295,7 +470,7 @@ export const AppFooter = ({}) => {
       <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-18 gap-6">
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {footerLinks.map((item) => {
+            {currentFooterLinks.map((item) => {
               const { link, label } = item;
               return <FooterLink key={label} link={link} label={label} />;
             })}
