@@ -7,20 +7,19 @@ const MainDocsBodyHeader = ({
   DocumentTitle,
   NavigationDocsItems,
   NavigationLearnItems,
-  screenResizing,
   learnActive,
   setLearnActive,
 }) => {
   return (
     <div>
-      {screenResizing && (
+      <div className="block md:hidden">
         <DocsMobileHeader
           docsData={NavigationDocsItems}
           learnActive={learnActive}
           setLearnActive={setLearnActive}
           learnData={NavigationLearnItems}
         ></DocsMobileHeader>
-      )}
+      </div>
       <Breadcrumbs
         navItems={[...NavigationLearnItems, ...NavigationDocsItems]}
       />

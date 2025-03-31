@@ -1,7 +1,6 @@
 'use client';
 
-import { VersionSelect } from 'components/DocumentationNavigation/VersionSelect';
-import { MobileVersionSelect } from 'components/docsMain/docsMobileHeader';
+import { MobileVersionSelect } from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMobileHeader';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -248,7 +247,7 @@ export const DocsSearchBarHeader = ({
         </h1>
         <div className="mr-3"></div>
       </div>
-      <div className="flex justify-between mb-4 [@media(min-width:840px)]:ml-4">
+      <div className="flex justify-between mb-4 md:ml-4">
         <MobileVersionSelect />
       </div>
       <div className={`relative ${searchMargin}`}>

@@ -5,7 +5,6 @@ import {
   useDocsNavigation,
 } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
-import { screenResizer } from 'components/hooks/ScreenResizer';
 import React, { createContext, useContext } from 'react';
 
 // Create a context for the navigation data
@@ -45,27 +44,23 @@ export default function DocsLayoutClient({
 function DocsLayoutContent({ children }: { children: React.ReactNode }) {
   const { learnActive, setLearnActive } = useDocsNavigation();
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
-  const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
 
   return (
-    <div className="relative flex justify-center">
-      <div className="w-full max-w-[2000px]">
-        {/* Left sidebar for navigation - always visible on larger screens */}
-        {!isScreenSmallerThan840 && (
-          <div className="fixed top-32 h-[calc(100vh)] w-[250px] lg:w-[300px]">
-            <LeftHandSideParentContainer
-              tableOfContents={NavigationDocsData.data}
-              tableOfContentsLearn={NavigationLearnData.data}
-              learnActive={learnActive}
-              setLearnActive={setLearnActive}
-            />
-          </div>
-        )}
-
-        {/* Main content shifted to the right on larger screens */}
-        <div className={`${!isScreenSmallerThan840 ? 'ml-[300px]' : ''}`}>
-          {children}
+    <div className="relative my-6 lg:mb-16 xl:mt-16 flex justify-center items-start">
+      <div
+        className={`xl:px-16 md:px-8 px-3 w-full max-w-[2000px] grid grid-cols-1 md:grid-cols-[1.25fr_3fr] xl:grid-cols-[1.25fr_3fr_0.75fr]`}
+      >
+        {/* LEFT COLUMN */}
+        <div className={`sticky top-32 h-[calc(100vh)] hidden md:block`}>
+          <LeftHandSideParentContainer
+            tableOfContents={NavigationDocsData?.data}
+            tableOfContentsLearn={NavigationLearnData?.data}
+            learnActive={learnActive}
+            setLearnActive={setLearnActive}
+          />
         </div>
+        {/* MIDDLE COLUMN */}
+        <div className="col-span-2 md:col-span-1 xl:col-span-2">{children}</div>
       </div>
     </div>
   );

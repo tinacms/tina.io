@@ -6,7 +6,6 @@ import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
 import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
-import { screenResizer } from 'components/hooks/ScreenResizer';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { useEffect } from 'react';
@@ -26,8 +25,6 @@ export default function DocsClient({ props }) {
   const { PageTableOfContents } = props;
   const DocumentationData = data.doc;
 
-  const isScreenSmallerThan1200 = screenResizer().isScreenSmallerThan1200;
-  const isScreenSmallerThan840 = screenResizer().isScreenSmallerThan840;
   const { activeIds, contentRef } = useTocListener(DocumentationData);
 
   const previousPage = {
@@ -61,66 +58,50 @@ export default function DocsClient({ props }) {
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
-  const gridClass = isScreenSmallerThan840
-    ? 'grid-cols-1'
-    : isScreenSmallerThan1200
-    ? 'grid-cols-[1fr_3fr]'
-    : 'grid-cols-[1fr_3fr_0.75fr]';
 
   return (
-    <div className="relative my-6 lg:mb-16 xl:mt-16 flex justify-center items-start">
-      <div className={`lg:px-16 px-3 w-full max-w-[2000px] grid ${gridClass}`}>
-        {/* Remove the LEFT COLUMN since it's now in layout */}
-
-        {/* MIDDLE COLUMN */}
-        <div
-          className={`mx-8 max-w-full overflow-hidden break-words px-2 ${
-            DocumentationData?.tocIsHidden && !isScreenSmallerThan1200
-              ? 'col-span-2'
-              : ''
-          }`}
-        >
-          <MainDocsBodyHeader
-            DocumentTitle={DocumentationData?.title}
-            screenResizing={isScreenSmallerThan840}
-            NavigationDocsItems={NavigationDocsData.data}
-            learnActive={learnActive}
-            setLearnActive={setLearnActive}
-            NavigationLearnItems={NavigationLearnData?.data}
-          />
-          {isScreenSmallerThan1200 && !DocumentationData?.tocIsHidden && (
-            <TocOverflowButton tocData={PageTableOfContents} />
-          )}
-          <div
-            ref={contentRef}
-            className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6"
-          >
-            {' '}
-            <TinaMarkdown
-              content={DocumentationData?.body}
-              components={docAndBlogComponents}
-            />
-          </div>
-
-          {formattedDate && (
-            <span className="text-slate-500 text-md">
-              {' '}
-              Last Edited: {formattedDate}
-            </span>
-          )}
-          <DocsPagination prevPage={previousPage} nextPage={nextPage} />
+    <div className="grid grid-cols-1 md:grid-cols-[3fr_0.5fr] xl:grid-cols-[3fr_0.25fr]">
+      {/* MIDDLE COLUMN */}
+      <div
+        className={`mx-8 max-w-full overflow-hidden break-words px-2 col-span-2 ${
+          !DocumentationData?.tocIsHidden ? 'xl:col-span-1' : ''
+        }`}
+      >
+        <MainDocsBodyHeader
+          DocumentTitle={DocumentationData?.title}
+          NavigationDocsItems={NavigationDocsData.data}
+          learnActive={learnActive}
+          setLearnActive={setLearnActive}
+          NavigationLearnItems={NavigationLearnData?.data}
+        />
+        <div className="block xl:hidden">
+          <TocOverflowButton tocData={PageTableOfContents} />
         </div>
-        {/* RIGHT COLUMN */}
-        {DocumentationData?.tocIsHidden ? null : (
-          <div
-            className={`block sticky top-32 h-[calc(100vh)] ${
-              isScreenSmallerThan1200 ? 'hidden' : 'block'
-            }`}
-          >
-            <ToC tocItems={PageTableOfContents} activeIds={activeIds} />
-          </div>
+        <div
+          ref={contentRef}
+          className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6"
+        >
+          {' '}
+          <TinaMarkdown
+            content={DocumentationData?.body}
+            components={docAndBlogComponents}
+          />
+        </div>
+
+        {formattedDate && (
+          <span className="text-slate-500 text-md">
+            {' '}
+            Last Edited: {formattedDate}
+          </span>
         )}
+        <DocsPagination prevPage={previousPage} nextPage={nextPage} />
       </div>
+      {/* RIGHT COLUMN */}
+      {DocumentationData?.tocIsHidden ? null : (
+        <div className={`sticky top-32 h-[calc(100vh)] hidden xl:block`}>
+          <ToC tocItems={PageTableOfContents} activeIds={activeIds} />
+        </div>
+      )}
     </div>
   );
 }
