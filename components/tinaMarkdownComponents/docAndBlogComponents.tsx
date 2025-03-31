@@ -210,7 +210,7 @@ export const docAndBlogComponents: Components<{
         />
         {props.caption && (
           <div className="text-sm font-tuner text-gray-500">
-            {props.caption}
+            Figure: {props.caption}
           </div>
         )}
       </div>
