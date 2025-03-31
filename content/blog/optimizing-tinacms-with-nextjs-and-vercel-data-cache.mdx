@@ -19,6 +19,8 @@ next: ''
 
 <Youtube embedSrc="https://youtube.com/embed/gz9Lxlj5RDU" />
 
+**Figure**: TinaCMS - Using nextjs and the vercel data cache (6 min)
+
 In December 2024, with the release of `tinacms@2.5.2` and `@tinacms/cli@1.7.0`, TinaCMS transitioned to using Node.js’s native fetch function, eliminating the need for the fetch-ponyfill dependency. This change reduced dependencies, enhancing both security and performance. It also allowed us to support the **Vercel Data Cache**.
 
 When integrating TinaCMS with Next.js and deploying on Vercel, it’s essential to understand Vercel’s Data Cache mechanism since it operates seamlessly. This caching system stores API responses, reducing redundant requests and improving page load times. However, Vercel caches TinaCloud’s API responses for an extended period by default, which can lead to stale content.
