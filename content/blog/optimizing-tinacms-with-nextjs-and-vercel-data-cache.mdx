@@ -15,6 +15,8 @@ next: ''
 
 **Update 19/3/2025:** Added a video to demo how the Vercel Data Cache could affect your site and how to tweak Next.js so that you can better use the cache.
 
+**Update 31/3/2025:** Added a couple images to add additional information on enabled the Vercel Data Cache and possible issues.
+
 <Youtube embedSrc="https://youtube.com/embed/gz9Lxlj5RDU" />
 
 In December 2024, with the release of `tinacms@2.5.2` and `@tinacms/cli@1.7.0`, TinaCMS transitioned to using Node.js’s native fetch function, eliminating the need for the fetch-ponyfill dependency. This change reduced dependencies, enhancing both security and performance. It also allowed us to support the **Vercel Data Cache**.
@@ -33,6 +35,8 @@ When integrating TinaCMS with Next.js and deploying on Vercel, it’s essential 
    More details on Next.js fetch extensions [nextjs.org/docs/app/api-reference/functions/fetch](https://nextjs.org/docs/app/api-reference/functions/fetch)
 
 It's also worth noting that in **Next.js 14**, caching mechanisms such as fetch() and GET route handlers were automatically enabled by default, requiring developers to opt out when dynamic behavior was desired. In contrast, **Next.js 15** introduced a significant change by no longer caching these mechanisms by default, granting developers more explicit control over caching strategies by allowing them to opt in as needed.
+
+Figure: If you're using Next.js 15, you can opt into caching for better performance - [https://nextjs.org/docs/app/api-reference/directives/use-cache](https://nextjs.org/docs/app/api-reference/directives/use-cache)
 
 By implementing these strategies, you can optimize your TinaCMS integration with Next.js and Vercel, ensuring efficient data caching and up-to-date content delivery.
 
