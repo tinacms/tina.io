@@ -16,21 +16,23 @@ import { defineSchema } from 'tinacms';
 import { itemTemplate } from '../components/toc/toc-item.template';
 import { submenuTemplate } from '../components/toc/toc-submenu.template';
 import { blogsCollection } from './collectionsSchema/blogs';
+import { conferenceTinaCMSCollection } from './collectionsSchema/conference';
 import { docsCollection } from './collectionsSchema/docs';
+import { docsZhCollection } from './collectionsSchema/docsZh';
 import { eventsCollection } from './collectionsSchema/eventsSchema';
 import { examplesCollection } from './collectionsSchema/examples';
+import { footerCollection } from './collectionsSchema/footer';
 import { meetingLinksCollection } from './collectionsSchema/meetingLinks';
 import { navigationBarCollection } from './collectionsSchema/navigationBar';
 import { pagesCollection } from './collectionsSchema/pages';
 import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud';
-import { footerCollection } from './collectionsSchema/footer';
-import { conferenceTinaCMSCollection } from './collectionsSchema/conference';
 
 export const schema = defineSchema({
   collections: [
     pagesCollection as Collection,
     docsCollection as Collection,
+    docsZhCollection as Collection,
     blogsCollection as Collection,
     examplesCollection as Collection,
     meetingLinksCollection as Collection,
