@@ -161,7 +161,7 @@ const footerNavZh = [
     label: '产品',
     items: [
       {
-        link: '/showcase',
+        link: '/zh/showcase',
         label: '案例展示',
       },
       {
@@ -178,7 +178,7 @@ const footerNavZh = [
       },
       {
         label: '产品路线',
-        link: '/roadmap',
+        link: '/zh/roadmap',
       },
     ],
   },
@@ -195,7 +195,7 @@ const footerNavZh = [
       },
       {
         label: '产品对比',
-        link: '/compare-tina',
+        link: '/zh/compare-tina',
       },
       {
         label: '技术支持',
@@ -336,7 +336,7 @@ const footerLinksZh = [
   },
   {
     link: '/terms-of-service',
-    label: '服务条款', 
+    label: '服务条款',
   },
   {
     link: '/privacy-notice',
@@ -354,8 +354,6 @@ const footerLinksZh = [
 
 const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
   const [open, setOpen] = React.useState(false);
-
-
 
   return (
     <details
@@ -446,8 +444,7 @@ export const AppFooter = ({}) => {
                 GitHub
               </SocialLink>
               <SocialLink link="https://x.com/tinacms">
-                <XIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                X
+                <XIconSvg className="w-7 h-auto fill-current opacity-80" /> X
               </SocialLink>
               <SocialLink link="https://discord.com/invite/zumN63Ybpf">
                 <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
@@ -481,6 +478,19 @@ export const AppFooter = ({}) => {
               {new Date().getFullYear()}
             </p>
           </div>
+          {isZhPath && (
+            <div>
+              <p>
+                网站备案号:{' '}
+                <a
+                  href="https://beian.miit.gov.cn/#/Integrated/index"
+                  className="transition-all duration-200 hover:underline hover:opacity-100 opacity-80"
+                >
+                  浙ICP备20009588号-5
+                </a>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
