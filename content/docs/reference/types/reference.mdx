@@ -1,157 +1,139 @@
 ---
-title: The "reference" field
-last_edited: '2024-10-03T05:10:48.908Z'
+title: Reference Fields
+last_edited: '2025-03-26T05:27:39.833Z'
 next: ''
 previous: ''
 ---
 
-## `reference` Type
-
-The `reference` field allows a "parent" document to connect to another document in different collection. This relationship only needs to be defined on *one side*.
+The `reference` field allows a "parent" document to connect to another document in a different collection. This relationship only needs to be defined on *one side*.
 
 Once defined, the values of the *referenced* document become available to the parent.
 
-> Note: `reference` with `list: true` is not currently supported. Object type lists can be used [as a wrapper](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) around `reference` field types to create a list of references.
+## Type Definition
+
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"reference"` to use the Reference Field.\n',
+      required: true
+    },
+    {
+      name: "collections",
+      type: "string[]",
+      description: "The collections to reference.\n",
+      required: true
+    },
+    {
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "collectionFilter",
+      description:
+        "Filter shown references based on a property in the referenced collection.\n",
+      type: "any"
+    },
+    {
+      groupName: "ui",
+      name: "optionComponent",
+      description:
+        "Return a custom component for each option in the reference selector.\n",
+      type: "function"
+    }
+  ]}
+/>
+
+### Conceptualising the Reference type
+
+Given the following schema...
 
 ```ts
-type ReferenceField = {
-  label: string
-  name: string
-  type: 'reference'
-  // The `name` of another collection
-  collections: string[]
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
-  ui?: {
-    label?: string
-    description?: string
-    component?: FC<any> | string | null
-    parse?: (value: string, name: string, field: F) => any
-    format?: (value: string, name: string, field: F) => any
-    validate?(
-      value: string,
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
+schema: {
+  collections: [
+    {
+      label: 'Post',
+      name: 'post',
+      path: 'posts',
+      fields: [
+        {
+          label: 'Author',
+          name: 'author',
+          type: 'reference',
+          collections: ['author'],
+        },
+      ],
+    },
+    {
+      label: 'Author',
+      name: 'author',
+      path: 'authors',
+      fields: [
+        {
+          label: 'Name',
+          name: 'name',
+          type: 'string',
+        },
+      ],
+    },
+  ],
 }
-```
-
-## Example
-
-Given the following schema:
-
-```ts
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        label: 'Post',
-        name: 'post',
-        path: 'posts',
-        fields: [
-          {
-            label: 'Author',
-            name: 'author',
-            type: 'reference',
-            collections: ['author'],
-          },
-        ],
-      },
-      {
-        label: 'Author',
-        name: 'author',
-        path: 'authors',
-        fields: [
-          {
-            label: 'Name',
-            name: 'name',
-            type: 'string',
-          },
-          {
-            label: 'Avatar',
-            name: 'avatar',
-            type: 'string',
-          },
-        ],
-      },
-    ],
-  },
-})
 ```
 
 The `post` collection has a `reference` field to the `author` collection.
 
 When editing in Tina, the user will be able to choose a document in the `author` collection for the value of `author`.
 
-When querying for a `post` document, the `author` key in the response will contain the values of the *referenced* `author` document:
-
-```graphql
-{
-  post(relativePath: "myBlogPost.md") {
-    title
-    author {
-      ... on Author {
-        name
-        avatar
-      }
-    }
-  }
-}
-```
-
-### Basic Dropdown
-
-```javascript
-{
-  type: 'reference',
-  name: 'author',
-  label: 'Author'
-  collections: ['author']
-}
-```
-
 ![](/img/docs/reference/reference_field_example_tszsxd.png)
 
-**Figure:** File name will be displayed in the reference field selector.
+When querying for a `post` document via the client or raw GraphQL, the `author` key in the response will contain the values of the *referenced* `author` document:
 
-### Search reference
+<GraphQLCodeBlock
+  query="{
+  ##post(relativePath:#&#x22;edgar.md&#x22;)#{
+  ####title
+  ####author#{
+  ######...#on#Author#{
+  ########name
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;author&#x22;:#{
+  ########&#x22;name&#x22;:#&#x22;Edgar#Allama#Poe&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>
 
-You can search your reference with reference selector.
+## Searching References
+
+You can search your references based on document file-path.
 
 ![](/img/docs/reference/search_reference_p5w3ce.png)
 
-> Note: This search functionality only works based on the file path of the document.
-
-```ts
-{
-      label: 'Authors',
-      name: 'author',
-      path: 'content/author',
-      format: 'md',
-      fields: [
-        {
-          type: 'string',
-          label: 'Name',
-          name: 'name',
-          required: true,
-        },
-      ],
-    }
-```
-
-### Filter reference
+## Filtering References
 
 If you have a long list of reference items, you can filter them in the schema using the `ui.collectionFilter` field using a property from the referenced collection.
 
 <WarningCallout
   body={<>
-    The current `collectionFilter`only supports properties of type string and is also **case sensitive** ( e.g. Using the example below, if you enter `australia`, it will not filter authors by `Australia`).
+    The current `collectionFilter`only supports properties of type string and
+    is also **case sensitive**.
   </>}
 />
 
-> Scenario: You have a list of authors in different locations, and you only want the reference selected in your post collection to be authors from a specific location.
+To only show authors who's location is set to 'Australia':
 
 ```typescript
 const referenceField = {
@@ -161,25 +143,63 @@ const referenceField = {
   ui: {
     collectionFilter: {
       author: {
-        location: 'Australia'
-      }
+        location: 'Australia',
+      },
     },
   },
   collections: ['author'],
-}
+};
 ```
 
-It's also possible to filter references options based on a list of values.
+## Custom Document Labels
+
+By default the reference selector shows the document filename. This can be set to a **custom react component** using `ui.optionComponent` instead.
+
+The `optionComponent` function provides you with two parameters: `props` and `_internalSys`.
+
+* `props` represents the fields from the reference collection.
+* `_internalSys` contains various useful information for you to use in the custom component such as the `file name` and `path`.
+
+![](/img/docs/reference/custom-reference-field-ui_ojtrlx.png)
+
+<WarningCallout
+  body={<>
+    If you require strict typing in your application, you'll need to manually
+    declare the type of `props` for `optionComponent` ahead of time. See examples
+    below.
+  </>}
+/>
+
+> Since this is dependent on your schema, run `console.log(props)` or `console.log(_internalSys)` to get the full list of values accessible.
+
+## Examples
+
+### Simple field
+
+```javascript
+{
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  collections: ['author'],
+},
+```
+
+![](/img/docs/reference/reference_field_example_tszsxd.png)
+
+### Field filtered by multiple values
+
+Members of the author collection with their location set to either 'Australia' or 'United States' will be included.
 
 ```typescript
-const referenceField = {
+{
   label: 'Author',
   name: 'author',
   type: 'reference',
   ui: {
     collectionFilter: {
       author: {
-        location: ['Australia','United States']
+        location: ['Australia', 'United States']
       }
     },
   },
@@ -187,17 +207,19 @@ const referenceField = {
 }
 ```
 
-Reference fields on multiple collections can be filtered by the values in either collection.
+### Field with multiple collections and filtering
 
-```typescript
-const referenceField = {
+Members of both the author and post collections will be included, depending on their respective filtered conditions.
+
+```javascript
+{
   label: 'Author & Post',
   name: 'author and post',
   type: 'reference',
   ui: {
     collectionFilter: {
       author: {
-        location: ['Australia','United States']
+        location: ['Australia', 'United States']
       },
       post: {
         status: 'published',
@@ -208,15 +230,15 @@ const referenceField = {
 }
 ```
 
-The `collectionFilter` also support function input, when you need it for dynamic rendering. The input function will trigger during run time.
+### Field with dynamic filter conditions
+
+Using a function with `ui.collectionFilter` for dynamic rendering, triggered at runtime.
 
 ```typescript
-// Dynamic reference list - You can define as a function here if you need dynamic list but need to make sure the return type match the schema
-
 const getLocation = () => {
-  const url = new URL('https://bob-northwind-sydney.com')
-  const hostname = url.hostname
-  return hostname
+  const url = new URL('https://bob-northwind-sydney.com');
+  const hostname = url.hostname;
+  return hostname;
 };
 
 const referenceField = {
@@ -227,140 +249,171 @@ const referenceField = {
     collectionFilter: () => {
       const location = getLocation();
       return {
-        author : {
-          location : location
-        }
-      }
+        author: {
+          location: location,
+        },
+      };
     },
   },
   collections: ['author'],
-}
+};
 ```
 
-> Note : If you pass as function, the functions need to be passed as executables, not references. The below example will not works.
+<WarningCallout
+  body={<>
+    If you pass in a function, it should be passed as an executable. Running
+    something like `const url = new URL('https://bob-northwind-sydney.com')`
+    directly in the callback isn't allowed.
+  </>}
+/>
 
-```typescript
-const referenceField = {
-  label: 'Author & Post',
-  name: 'author and post',
-  type: 'reference',
-  ui: {
-    collectionFilter: () => {
-      return {
-        author : {
-          location : () => {
-            const url = new URL('https://bob-northwind-sydney.com')
-            const hostname = url.hostname
-            return hostname
-          };
-        }
-      }
-    },
-  },
-  collections: ['author'],
-}
-```
+### Field with simple custom label
 
-### Customizing Reference Selector with optionComponent
+A simple example of using `optionComponent` for custom reference labels.
 
-The default reference selector displays the file path, there are cases where you may want to customize what is displayed in the dropdown to provide a better user experience. For example, showing the author's name instead of the file name can make the selection process more intuitive.
+`ProfilePicture` is a custom component referenced but not included in the example.
 
-Below are some examples on how to customize the  reference select using `ui.optionComponent`.
-
-Check out [custom field](https://tina.io/docs/extending-tina/custom-field-components/) to lean more about `ui`.
-
-The below example shows a page collection with an author collection as it's reference field. The `reference field` has been extract into a module.
-
-```ts
-    {
-      label: 'Page Content',
-      name: 'page',
-      path: 'content/page',
-      format: 'mdx',
-      fields: [
-        referenceField,
-      ],
-    },
-```
-
-```ts
+```javascript
 {
-      label: 'Authors',
-      name: 'author',
-      path: 'content/author',
-      format: 'md',
-      fields: [
-        {
-          type: 'string',
-          label: 'Name',
-          name: 'name',
-          required: true,
-        },
-        {
-          type: 'string',
-          label: 'description',
-          name: 'description',
-          required: true,
-        },
-      ],
-    },
-```
-
-```ts
-const referenceField = {
-  label: 'Author',
-  name: 'author',
-  type: 'reference',
+  type: "reference",
+  name: "presenter",
+  label: "Presenter",
+  collections: ["presenter"],
   ui: {
-    optionComponent: (props: CollectionProps, _internalSys: InternalSys) => {
-      switch (props._collection) {
-        case COLLECTIONS.AUTHOR:
-          return (
-            <AuthorCollectionCustomReference
-              name={props.name}
-              description={props.description}
-            />
-          )
-
-        case COLLECTIONS.POST:
-          return <PostCollectionCustomReference title={props.title} />
-
-        default:
-          return _internalSys.path
-      }
+  optionComponent: (
+    props: {
+      presenter: { name?: string };
+      profileImg: string
     },
-  },
-  collections: ['author', 'post'],
+    _internalSys: { path: string }
+  ) => {
+    const presenter = props.presenter;
+    if (!presenter.name) return _internalSys.path;
+
+    return (
+      <p className="flex min-h-8 items-center gap-4">
+        {props.profileImg && (
+          <ProfilePicture
+            src={props.profileImg}
+            alt={`${presenter.name} Profile`}
+          />
+        )}
+        {presenter.name}{" "}
+      </p>
+    );
+  }
 }
 ```
 
-The Author collection and Post collection are used as a reference for the Page collection. The `optionComponent`  function allows you to create a custom reference display by providing two parameters: `props` and `_internalSys`.
+![](/img/docs/reference/reference_custom_field.png)
 
-* `props` represents the fields from the reference collection (In this case, the fields from the Author collection, which are `name` and `description`).
-* `_internalSys` contains various useful information for you to use in the custom component such as the `file name` and `path`.
-* `AuthorCollectionCustomReference` and `PostCollectionCustomReference` are the custom components that display in the reference select dropdown (see the image below for a visual of the custom reference UI).
+### Field with multiple collections and custom label (advanced)
 
-![](/img/docs/reference/custom-reference-field-ui_ojtrlx.png)
+The below example shows a collection, called `reference`, associated to both the author and post collections with a reference field. The `ui.optionComponent` property defines how the labels of each document will appear in the UI.
 
-> Tips: You can do console log(props) or console log(\_internalSys) in the optionComponent to find out all the provided properties used in your custom component.
+`AuthorCollectionCustomReference` and `PostCollectionCustomReference` are the custom components not included in the example.
 
-### Type Safe custom reference field
+```ts
+collections: [
+  //collection 1 - authors
+  {
+    label: 'Authors',
+    name: 'author',
+    path: 'content/author',
+    format: 'md',
+    fields: [
+      {
+        type: 'string',
+        label: 'Name',
+        name: 'name',
+        required: true,
+      },
+      {
+        type: 'string',
+        label: 'description',
+        name: 'description',
+        required: true,
+      },
+    ],
+  },
+  //collection 2 - posts
+  {
+    label: 'Posts',
+    name: 'post',
+    path: 'content/posts',
+    format: 'md',
+    fields: [
+      {
+        type: 'string',
+        label: 'title',
+        name: 'Title',
+        required: true,
+      },
+    ],
+  },
+  //collection 3 - reference collection
+  {
+    label: 'Author and Post',
+    name: 'reference',
+    path: 'content/references',
+    fields: [
+      {
+        label: 'Author',
+        name: 'author',
+        type: 'reference',
+        collections: ['author', 'post'],
+        ui: {
+          //custom reference label
+          optionComponent: (
+            props: CollectionProps,
+            _internalSys: InternalSys
+          ) => {
+            //choosing component based on collection type
+            switch (props._collection) {
+              case COLLECTIONS.AUTHOR:
+                return (
+                  //imported react component
+                  <AuthorCollectionCustomReference
+                    name={props.name}
+                    description={props.description}
+                  />
+                )
+              case COLLECTIONS.POST:
+                return (
+                  <PostCollectionCustomReference
+                    title={props.title}
+                  />
+                )
+              default:
+                return _internalSys.path
+            }
+          },
+        },
+      },
+    ]
+  }
+],
+```
 
-The recommended implementation for custom reference selection with type safety.
+We also need to define expected types ourselves based on what we need.
+
+Using the `AuthorProps` interface as an example, the `optionComponent` function can expect the name and description we're using from the props input.
+
+The `_collection` field is provided by the system to represent the specific collection (author or post in this case).
 
 ```ts
 // You should define the types for the fields in the author collection for type safety
 export interface AuthorProps {
-  name: string
-  description: string
-  _collection: 'author'
+  name: string;
+  description: string;
+  _collection: 'author';
 }
 
 // You should define the types for the fields in the post collection for type safety
 export interface PostProps {
-  title: string
-  excerpt: string
-  _collection: 'post'
+  title: string;
+  excerpt: string;
+  _collection: 'post';
 }
 
 // You should define the list of collection used in the reference for type safety
@@ -371,13 +424,9 @@ export enum COLLECTIONS {
 
 // InternalSys is from tinacms where it gives a lot of useful information for user to customize their custom component
 export interface InternalSys {
-  filename: string
-  path: string
+  filename: string;
+  path: string;
 }
 
-export type CollectionProps = AuthorProps | PostProps
+export type CollectionProps = AuthorProps | PostProps;
 ```
-
-You can enforce type safety in your custom reference selection, reducing the likelihood of errors and ensuring consistency across your application.
-
-Using the `AuthorProps` interface (you can named it how you like) as an example, the name and description fields are predefined in the Author collection schema and will be passed to the `optionComponent` function. The `_collection` field is provided by the system to represent the specific collection (author in this case).

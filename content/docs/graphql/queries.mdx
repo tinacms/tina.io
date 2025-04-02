@@ -1,6 +1,9 @@
 ---
 id: /docs/graphql/queries
-title: Querying the GraphQL API
+title: Overview
+last_edited: '2025-03-26T03:57:10.395Z'
+next: ''
+previous: ''
 ---
 
 ## Schema-specific queries
@@ -11,13 +14,13 @@ The GraphQL API will generate queries which are specific to the schema you defin
 
 **Available queries**:
 
-- `<collection>`
-- `<collection>Connection`
+* `<collection>`
+* `<collection>Connection`
 
 **Available mutations**
 
-- `update<collection>`
-- `addPendingDocument`
+* `update<collection>`
+* `addPendingDocument`
 
 For a given collection, it's `name` will be used to generate `<collection>` and `<collection>Connection` queries, and the `update<collection>` mutation.
 
@@ -25,11 +28,11 @@ For a given collection, it's `name` will be used to generate `<collection>` and 
 
 As an alternative to the schema-specific queries, the GraphQL API also makes the following general queries available:
 
-- document
-- collection
-- collections
-- addPendingDocument
-- updateDocument
+* document
+* collection
+* collections
+* addPendingDocument
+* updateDocument
 
 ## Example schema
 
