@@ -61,13 +61,7 @@ function getChangedFilesFromGit() {
 
 async function main() {
   // const changedFiles = await getChangedFilesFromApi();
-  if (EVENT_NAME === 'pull_request') {
-    // For pull request events
-    changedFiles = await getChangedFilesFromApi();
-  } else {
-    // For push events
-    changedFiles = getChangedFilesFromGit();
-  }
+  const changedFiles = getChangedFilesFromGit();
 
   console.log(`Found ${changedFiles.length} changed MDX files`);
 
