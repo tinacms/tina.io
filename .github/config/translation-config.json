@@ -1,5 +1,4 @@
 {
-  "apiEndpoint": "https://api.your-llm-provider.com/v1/completions",
   "azureApiBase": "https://tinoopenai.openai.azure.com",
   "azureDeploymentId": "gpt-4o",
   "azureApiVersion": "2024-10-21",

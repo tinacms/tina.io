@@ -19,20 +19,6 @@ async function translateMdx(filePath) {
 
     //TODO: Need update
     const response = await axios.post(
-      // config.apiEndpoint,
-      // {
-      //   model: config.modelName,
-      //   prompt: config.promptTemplate.replace('{{content}}', content),
-      //   max_tokens: config.maxTokens || 5000,
-      //   temperature: config.temperature || 0.1,
-      // },
-      // {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     Authorization: `Bearer ${API_KEY}`,
-      //   },
-      // }
-
       `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
       {
         messages: [
@@ -53,12 +39,14 @@ async function translateMdx(filePath) {
         headers: {
           'Content-Type': 'application/json',
           // Azure OpenAI uses api-key instead of Bearer token
-          'api-key': `${API_KEY}`,
+          'api-key': API_KEY,
         },
       }
     );
 
-    const translatedContent = response.data.choices[0].text.trim();
+    console.log(`Translation response: ${JSON.stringify(response.data)}`);
+
+    const translatedContent = response.data.choices[0].message.content.trim();
 
     const relativePath = filePath.replace(`${SOURCE_PATH}/`, '');
     const targetPath = path.join(TARGET_PATH, relativePath);
