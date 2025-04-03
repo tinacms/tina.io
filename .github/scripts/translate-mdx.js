@@ -18,31 +18,29 @@ async function translateMdx(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
 
     //TODO: Need update
-    const response = await axios.post(
-      `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
-      {
+    const response = await axios({
+      method: 'post',
+      url: `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': API_KEY,
+      },
+      data: {
         messages: [
           {
             role: 'system',
             content:
-              'You are a professional translator that translates English technical documentation to Simplified Chinese.',
+              '你是一个翻译助手，负责将英文内容翻译成中文。请确保翻译准确，并保持原有的Markdown格式和代码块。请不要添加任何额外的注释或解释。',
           },
           {
             role: 'user',
             content: config.promptTemplate.replace('{{content}}', content),
           },
         ],
+        temperature: config.temperature || 0.7,
         max_tokens: config.maxTokens || 5000,
-        temperature: config.temperature || 0.1,
       },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          // Azure OpenAI uses api-key instead of Bearer token
-          'api-key': API_KEY,
-        },
-      }
-    );
+    });
 
     console.log(`Translation response: ${JSON.stringify(response.data)}`);
 
