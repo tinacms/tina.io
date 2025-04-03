@@ -39,9 +39,35 @@ async function getChangedFilesFromApi() {
     return [];
   }
 }
+// TODO: Remove after testing
+function getChangedFilesFromGit() {
+  try {
+    // For push events, get the latest commit files
+    const command = 'git diff-tree --no-commit-id --name-only -r HEAD';
+    const output = execSync(command).toString();
+
+    const changedFiles = output
+      .split('\n')
+      .filter(
+        (file) => file.startsWith('content/docs/') && file.endsWith('.mdx')
+      );
+
+    return changedFiles;
+  } catch (error) {
+    console.error('Error getting changed files from Git:', error);
+    return [];
+  }
+}
 
 async function main() {
-  const changedFiles = await getChangedFilesFromApi();
+  // const changedFiles = await getChangedFilesFromApi();
+  if (EVENT_NAME === 'pull_request') {
+    // For pull request events
+    changedFiles = await getChangedFilesFromApi();
+  } else {
+    // For push events
+    changedFiles = getChangedFilesFromGit();
+  }
 
   console.log(`Found ${changedFiles.length} changed MDX files`);
 
