@@ -1,23 +1,62 @@
 ---
 id: templates
 title: Templates
-last_edited: '2022-06-15T15:51:56.737Z'
+last_edited: '2025-03-26T01:40:40.668Z'
 next: content/docs/reference/types.mdx
 previous: content/docs/reference/fields.mdx
 ---
 
-In most cases, just using [`fields`](/docs/reference/fields/) is enough, however templates can be used when there are multiple variants of the same collection or object. For example in a "page" collection there might be a need for a marketing page template and a content page template, both under the collection "page".
+Templates exist as an alternative to the fields type when multiple variants of the same **collection** or **object**.
 
-## Definition
+> For example in a "page" collection there might be a need for a marketing page template and a content page template, both under the collection "page".
 
-| Property | Description                                               |
-| -------- | --------------------------------------------------------- |
-| `name`   | The name of the template                                  |
-| `label`  | A human friendly label that will be displayed to the user |
-| `inline` | Changes the component to inline styling                   |
-| `fields` | An array of [fields](/docs/reference/fields/)             |
+## Type Definition
 
-## Example using templates instead of fields
+<apiReference
+  property={[
+    {
+      name: "name",
+      description: "The name of the template.\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "",
+      name: "fields",
+      description: "An array of [fields](/docs/reference/fields/).\n",
+      type: "Field[]",
+      required: true
+    },
+    {
+      name: "label",
+      description: "The template name as shown in the editor.\n",
+      type: "string"
+    },
+    {
+      groupName: "ui",
+      name: "itemProps",
+      description: "Specify custom labels for the editor.\n",
+      type: "( value ) => { label: string }"
+    },
+    {
+      groupName: "ui",
+      name: "defaultItem",
+      description:
+        "An object or a function that returns the default data when a new document is created.\n",
+      type: "object | function"
+    },
+    {
+      name: "previewSrc",
+      description: "Path to a sample image for this template.\n",
+      type: "string",
+      groupName: "ui"
+    }
+  ]}
+/>
+
+## Examples
+
+### Basic example with two templates
 
 ```ts
 export default defineConfig({

@@ -1,6 +1,6 @@
 ---
 title: Loading Your Content
-last_edited: '2025-03-19T01:54:30.957Z'
+last_edited: '2025-03-28T01:02:24.212Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/new-field.mdx
 previous: content/docs/beginner-tutorials/wiring-content.mdx
@@ -14,7 +14,7 @@ To fix this, we need to alter our approach a little, so that the `useTina` metho
 
 We will do this by creating a new child component, and only render that component when we have some data (a typical React solution to asynchronous data fetching).
 
-1\. Create a new component next to `page.tsx` - `awesome-content.tsx`
+1\. Create a new component `app/awesome-content.tsx`
 
 2\. Add the following code to it:
 
@@ -39,7 +39,7 @@ export default function AwesomeContent({data}) {
 }
 ```
 
-3\. Refactor the `page.tsx` to conditionally display `<AwesomeContent />` only when we have data:
+3\. Refactor the `app/page.tsx` to conditionally display `<AwesomeContent />` only when we have data:
 
 ```typescript
 "use client";
@@ -52,7 +52,6 @@ export default function Home() {
   const[graphQLresponse, setGraphQLresponse] = useState<any>();
 
   useEffect(() => {
-    // stupid React bullshit to call an async method in useEffect
     const fetchContent = async () => {
       const result = await client.queries.my_first_collection({
         relativePath: "Hello-World.md",
@@ -83,6 +82,6 @@ Now let's check that it works!
 
 5\. Click "Save", and navigate back to `http://localhost:3000` to see your changes persisted on your "production" site.
 
-> Bonus: check your `Hello-World.md` file in your IDE to see how the underlying content has been saved with your new changes.
+> **Bonus**: check your `Hello-World.md` file in your IDE to see how the underlying content has been saved with your new changes.
 
 ![](</gif/Screen Recording 2025-03-19 at 11.08.18 am.gif>)

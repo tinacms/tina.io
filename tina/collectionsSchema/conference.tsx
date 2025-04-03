@@ -1,5 +1,5 @@
-import IconSelector from "components/forms/IconSelector";
-import { wrapFieldsWithMeta } from "tinacms";
+import IconSelector from 'components/forms/IconSelector';
+import { wrapFieldsWithMeta } from 'tinacms';
 
 export const conferenceTinaCMSCollection = {
   name: 'conference',
@@ -22,6 +22,11 @@ export const conferenceTinaCMSCollection = {
         {
           name: 'bannerTitle',
           label: 'Banner Title',
+          type: 'string',
+        },
+        {
+          name: 'bannerTagline',
+          label: 'Banner Tagline',
           type: 'string',
         },
         {
@@ -49,7 +54,24 @@ export const conferenceTinaCMSCollection = {
         },
         {
           name: 'actionButton',
-          label: 'Action Button',
+          label: 'Left Button',
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              label: 'Title',
+              type: 'string',
+            },
+            {
+              name: 'link',
+              label: 'Link',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'rightButton',
+          label: 'right Button',
           type: 'object',
           fields: [
             {
@@ -205,7 +227,7 @@ export const conferenceTinaCMSCollection = {
         },
       ],
     },
-    
+
     {
       name: 'speakerSchedule',
       label: 'Speaker Schedule',
@@ -213,7 +235,11 @@ export const conferenceTinaCMSCollection = {
       list: true,
       ui: {
         itemProps: (item) => {
-          return { label: `${item.talkSpeakerName && `${item.talkSpeakerName} -`} ${item.speechTitle}` };
+          return {
+            label: `${item.talkSpeakerName && `${item.talkSpeakerName} -`} ${
+              item.speechTitle
+            }`,
+          };
         },
       },
       fields: [

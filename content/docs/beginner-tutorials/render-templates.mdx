@@ -1,16 +1,16 @@
 ---
 title: Render Your Templates
-last_edited: '2025-03-19T00:39:09.998Z'
+last_edited: '2025-03-28T01:06:18.826Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/website-builder-experience.mdx
 previous: content/docs/beginner-tutorials/linking-to-model.mdx
 ---
 
-Now we've done most of the plumbing, the last step is to have our `awesome-content.tsx` component render out the blocks to our view.
+Now we've done most of the plumbing, the last step is to have the `app/awesome-content.tsx` component render out the blocks to our view.
 
 > Remember... the power of blocks is how it enables non-developers to dictate the order in which the content is displayed on the page, so we can't just hard-code things any more.
 
-1\. Navigate to `awesome-content.tsx` and make the following changes:
+1\. Navigate to `app/awesome-content.tsx` and make the following changes:
 
 ```typescript
   const awesomeTitle = pageData.data.my_first_collection.title;
@@ -31,7 +31,7 @@ To update our template, we want to:
 
 There are a few ways we can do this, but for now we'll go with the quick-n-dirty solution.
 
-2\. Change your `awesome-content.tsx` to the following:
+2\. Change `app/awesome-content.tsx` to the following:
 
 ```typescript
 
@@ -57,7 +57,7 @@ There are a few ways we can do this, but for now we'll go with the quick-n-dirty
   );
 ```
 
-> 💡 The order of the `blocks` array is preserved by Tina, so it respects the order that our users selected when they were building out the content via the Visual Editor, so a simple `map` + `switch` statement is all that's needed to render the appropriate HTML snippet.
+> The order of the `blocks` array is preserved by Tina, so it respects the order that our users selected when they were building out the content via the Visual Editor, so a simple `map` + `switch` statement is all that's needed to render the appropriate HTML snippet.
 
 Try using the Visual Editor to re-order your templates, or even add more! You can have as many instances of each template as you like!
 

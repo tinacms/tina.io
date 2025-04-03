@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
 import { client } from '../../tina/__generated__/client';
 import ClientPage from './client-page';
-
+import Image from 'next/image';
+import Link from 'next/link';
 const fg = require('fast-glob');
 export const dynamicParams = false;
 
@@ -49,6 +50,27 @@ export async function generateMetadata({
   }
 }
 
+function ExperimentalBanner() {
+  return (
+    <Link href="/conference">
+      <Image
+        src="/img/TinaCon-desktop-banner.png"
+        alt="tinaconMobileBanner"
+        width={5000}
+        height={5000}
+        className="sm:block hidden px-5 lg:px-10"
+      />
+        <Image
+        src="/img/TinaCon-tablet-banner.png"
+        alt="tinaconMobileBanner"
+        width={2000}
+        height={2000}
+        className="sm:hidden block"
+      />
+    </Link>
+  );
+}
+
 export default async function Page({ params }: PageProps) {
   const { slug } = params;
   const relativePath = `${slug.join('/')}.json`;
@@ -57,11 +79,15 @@ export default async function Page({ params }: PageProps) {
       relativePath: relativePath,
     });
     return (
-      <ClientPage
-        query={res.query}
-        data={res.data}
-        variables={{ relativePath }}
-      />
+      <>
+      {/* TODO: Remove once TinaCon is over */}
+        {slug[0] === 'home' && <ExperimentalBanner />}
+        <ClientPage
+          query={res.query}
+          data={res.data}
+          variables={{ relativePath }}
+        />
+      </>
     );
   } catch {
     return notFound();

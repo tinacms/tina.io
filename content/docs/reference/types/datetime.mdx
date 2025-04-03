@@ -1,46 +1,46 @@
 ---
-title: The "datetime" field
-last_edited: '2024-10-02T06:55:41.481Z'
+title: Date Fields
+last_edited: '2025-03-26T01:06:16.097Z'
 next: ''
 previous: ''
 ---
 
-## `datetime` Type
+A structured input that stores date values in ISO 8601 format. Uses [react-datetime](https://www.npmjs.com/package/react-datetime) under the hood.
 
-```ts
-type DatetimeField = {
-  label: string
-  name: string
-  type: 'string'
-  list?: boolean
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
-  ui?: {
-    dateFormat: string // eg 'YYYY MM DD'
-    label?: string
-    description?: string
-    component?: FC<any> | string | null
-    parse?: (value: string, name: string, field: F) => any
-    format?: (value: string, name: string, field: F) => any
-    validate?(
-      value: string,
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
-}
-```
+## Type Definition
 
-Datetimes are persisted as UTC.
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-The return value for a datetime is in [ISO string format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"datetime"` to use the Datetime Field.\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "dateFormat",
+      description: "Defines the UI date format.\n\nFor example, 'YYYY MM DD'.\n",
+      type: "string"
+    }
+  ]}
+/>
+
+Datetimes' are persisted as UTC, converted from local time of the user on input.
+
+> Any extra properties added to the the date field definition under ui will be passed along to the [react-datettime](https://www.npmjs.com/package/react-datetime) component.
 
 ## Examples
 
-Tina will generate the appropriate component depending on the
-configuration provided.
-
-### Simple
+### Simple field
 
 ```javascript
 {
@@ -52,7 +52,7 @@ configuration provided.
 
 ![](/img/docs/reference/date.png)
 
-### Custom Format
+### Field with custom date format
 
 You can customize the format that the date field use by customizing the dateFormat & parse properties.
 
@@ -70,9 +70,9 @@ You can customize the format that the date field use by customizing the dateFor
 
 ![](/img/docs/reference/date2.png)
 
-### Using a Time Picker
+### Field including time picker
 
-You can add a timepicker to the date UI by supplying the ui.timeFormat property
+You can add a timepicker to the date UI by supplying the `ui.timeFormat` property.
 
 ```javascript
 {

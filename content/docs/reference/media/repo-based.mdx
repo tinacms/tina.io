@@ -1,15 +1,19 @@
 ---
-title: Repo-based Media (default)
-last_edited: '2024-11-12T23:12:35.189Z'
+title: Repo-based Media
+last_edited: '2025-03-26T03:40:07.387Z'
 next: ''
 previous: ''
 ---
 
-Repo-based media storage is the default media storage solution for TinaCMS.
+TinaCMS has **a built-in Repository (git) based media storage option**. Alternatively you can connect your CMS to an external media storage provider.
 
-For static site generators, it allows for local development and preview environments to show the exact content and media as in production.
+> Repo-based media keeps your assets alongside your content, meaning you can **track changes and roll back versions for both code and media**.
 
-This can also reduce dependencies, usage of external APIs.
+This has other benefits such reducing dependencies, usage of external APIs, syncronization between local development and preview environments.
+
+<Youtube embedSrc="https://www.youtube.com/embed/x0ACBQeNcts?start=388&end=469" />
+
+> Not seeing your media? To see your media in the media manager, you will need to press the "Sync Media" button in the media manager. This will pull all of your media from GitHub and add it to TinaCMS.
 
 ## Configuration
 
@@ -27,33 +31,31 @@ export default defineConfig({
       static: false, //default is false
     },
   },
-})
+});
 ```
 
-### `publicFolder`
+### Asset Storage Path
 
-The path to your site's "public" folder. This path is relative to your project's root.
+Set `publicFolder` to the path to your site's "public" folder. This path is relative to your project's root.
 
-E.g, For any NextJS site, (such as our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)), this value would be `"public"`
+> For any NextJS site, (such as our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)), this value should be `"public"`.
 
-### `mediaRoot`
+### Media Storage Path
 
 The path to your media folder, relative to the `publicFolder` value.
 
-E.g, in our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public), this value would be `"uploads"`
+Set this to `""`, if you want your media to be uploaded to the root of your `publicFolder`.
 
-> Note, anything in this directory will be synced with TinaCloud's media server, and the images will be publicly accessible.
+> Anything in this directory will be synced with TinaCloud's media server, and the images will be publicly accessible.
 
-`mediaRoot` can be set to "", if you want your media to be uploaded to the root of your `publicFolder`.
+### Media Permissions
 
-### `static` (Boolean)
-
-This property determines whether media files can be uploaded, edited, or deleted directly through the editor.
+The `static` property determines whether media files can be uploaded, edited, or deleted directly through the editor.
 
 * **`static: true`** Editors cannot upload/delete media (static assets)
 * **`static: false`** (default): Editors can upload/delete media (dynamic assets).
 
-### Overriding the default accepted media types
+## Supported Media Types
 
 The following file types are supported by default
 
@@ -94,53 +96,34 @@ export default defineConfig({
     },
     accept: ['image/jpeg', 'video/mp4'],
   },
-})
+});
 ```
 
-### `accept` (List\<String>)
+### NextJS Images
 
-This property determines the filetypes that can be uploaded.
-
-### next/image
-
-If you are using Next images, you will need to add the following to your `next.config.js` file to allow access to external images hosted on the Tina media hostname:
+If you are using NextJS images, you will need to add some like the following to your `next.config.js` file to allow access to external images.
 
 ```javascript
 module.exports = {
   images: {
-    domains: ['assets.tina.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.tina.io',
+        port: '',
+      },
+    ],
   },
-}
+};
 ```
 
-See the [next/image docs](https://nextjs.org/docs/api-reference/next/image#domains) for more information.
-
-## Usage
-
-Once media has been configured, you can use `image` fields in your collections.
-
-In your `schema` add a new `image` field to a collection, e.g:
-
-```javascript
- // ...
- {
-  name: 'hero',
-  type: 'image',
-  label: 'Hero Image',
- }
-```
-
-When your editors add an image to a document, the value that is saved will be a relative path:
-
-`"/<mediaRoot>/<imgName>"`
-
-> Not seeing your media? To see your media in the media manager, you will need to press the "Sync Media" button in the media manager. This will pull all of your media from GitHub and add it to TinaCMS.
+Learn more about remote patterns [here](https://nextjs.org/docs/app/api-reference/components/image#remotepatterns).
 
 ### Maximum file size
 
 When uploading files to TinaCloud, the maximum allowed file size is 100 MiB.
 
-## Branching Caveats
+## How does this work with Branching?
 
 Repo-based media is designed to be used around a single-branch workflow. If your project is using [multiple branches](/docs/tina-cloud/branching/) or [Editorial Workflow](/docs/drafts/editorial-workflow/), there's some known caveats to be aware of.
 

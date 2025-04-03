@@ -1,6 +1,7 @@
 ---
 id: /docs/frameworks/astro
 title: Astro + Tina Setup Guide
+last_edited: '2025-03-24T06:10:09.941Z'
 next: content/docs/frameworks/hugo.mdx
 previous: content/docs/frameworks/next/pages-router.mdx
 ---
@@ -46,7 +47,7 @@ You can start TinaCMS with the following command:
 npx tinacms dev -c "astro dev"
 ```
 
-> Note: `--port 8080` can be added after `astro dev` to specify a custom port. 
+> Note: `--port 8080` can be added after `astro dev` to specify a custom port.
 
 Once TinaCMS is running, navigate to:
 
@@ -64,12 +65,9 @@ At this point, you should be able to see the Tina admin interface, select a post
 
 ## Enabling Visual Editing (Optional)
 
-If you want to leverage TinaCMS's API for real-time editing, you can enable Visual Editing.
+If you want to leverage TinaCMS's API for real-time editing, you can enable Visual Editing. To enable Visual Editing with TinaCMS we have had to use React components and a new client\:tinaDirective.
 
-
-> Note: In the [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) this is already enabled! 
-
-
+> Note: In the [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) this is already enabled!
 
 ![Visual Editing](/gif/blocks.gif)
 

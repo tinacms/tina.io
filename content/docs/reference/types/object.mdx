@@ -1,229 +1,163 @@
 ---
-title: The "object" field
-last_edited: '2024-11-26T03:31:16.548Z'
+title: The Object Field
+last_edited: '2025-03-26T05:48:23.867Z'
 next: content/docs/reference/types/rich-text.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
 
-## `object` Type
+The `object` field is a dynamic field type that creates a **nested page** in the CMS with the data it contains.
 
-The `object` field is a dynamic field type that creates a nested page in the CMS with the data it contains.
+This can be used to **create repeated data structures** or **group related data** in the CMS.
 
-This can be used to create repeated data structures, group related data in the CMS and/or give users the option to choose between a set of templates.
+## Type Definition
 
-```ts
-type ObjectField = {
-  label: string
-  name: string
-  type: 'object'
-  list?: boolean
-  // `fields` OR `templates` may be provided, not both
-  fields?: Field[]
-  templates?: Template[]
-  /** Customize the default "_template" key that gets set
-     in a document to identify a block-type.
-     Only applicable when list: true **/
-  templatesKey?: string
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
-  ui?: {
-     // Whether or not the Visual Selector  is enabled. See https://tina.io/docs/editing/blocks/#adding-a-visual-block-selector-experimental
-    visualSelector?: boolean,
-    // defaultItem can only can be used when {list: true}
-    defaultItem?: Record<string, any> | () => Record<string, any>,
-    itemProps?(
-      item: Record<string, any>
-    ): {
-      label?: string
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"object"` to use the Object Field.\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    },
+    {
+      name: "fields",
+      description: "The fields to display in the object.\n",
+      type: "Field[]"
+    },
+    {
+      name: "templates",
+      description:
+        "The templates to display in the object.\n\nAvailable when list: true.\n",
+      type: "Template[]"
+    },
+    {
+      name: "templatesKey",
+      description: "Choose a different reference key for the templates.\n",
+      type: "string"
+    },
+    {
+      groupName: "ui",
+      name: "visualSelector",
+      description: "Whether to display a visual selector for the object.\n",
+      type: "boolean",
+      default: "false"
+    },
+    {
+      groupName: "ui",
+      name: "defaultItem",
+      description:
+        "Pre-populated data when a new object is added.\n\nAvailable when list: true.\n",
+      type: "Record<string, any> | () => Record<string, any>"
+    },
+    {
+      groupName: "ui",
+      name: "itemProps",
+      description:
+        "Set a custom label for list elements.\n\nAvailable when list: true.\n",
+      type: "(item: Record<string, any>) => { label?: string }"
     }
-  }
-}
-```
+  ]}
+/>
 
-## Usage
+Only **one** of `fields` or `templates` should be defined.
 
-Ultimately there are 3 ways to configure this type...
+### Conceptualising the object type
 
-* With `list` set to `false`, the `fields` array can be used to wrap some data – this appears in the editor as a nested page. This can be used to organise the CMS, such as grouping options together, as in the gif below.
+Importantly, there are two key ways to use the object type...
 
-  <WebmEmbed embedSrc="/img/docs/reference/rodmap-grid.webm" width="50%" />
-* With `list` set to `true`, the `fields` array contains the data structure to be repeated – this appears in the editor as above, but grouped as a list.
+1. Using `fields`, the object wraps its inner fields in a sub-window.![](</img/docs/reference/Screen Recording 2025-03-14 at 11.38.07 am.gif>)
+2. When using `templates`, the user can select between associated [templates](/docs/reference/templates).![](</img/docs/reference/Screen Recording 2025-03-14 at 12.03.21 pm.gif>)
 
-  <WebmEmbed embedSrc="/img/docs/reference/roadmap-items.webm" width="50%" />
-* With `list` set to `true`, and using `templates` as opposed to `fields` the user can select between associated templates – this appears as above, but pressing the `+`  gives you the option to choose between templates.
+This appears as above, but pressing the `+` gives you the option to choose one of a set of options.
 
-  <WebmEmbed embedSrc="/img/docs/reference/text-and-media-component.webm" width="50%" />
+## The Visual Selector
 
-> Scenario: We have a component on our site that needs to hold an array of other field types, so we define it as a type object. Some of the field types within this parent object are also objects themselves.
+This visual block selector allows editors to select Templates with images as well as text.
+
+To enable the visual block selector, the `visualSelector` property must be true. In the editor, this also opens a new window for template selection.
+
+![](</img/docs/reference/Screen Recording 2025-03-14 at 11.43.03 am.gif>)
+
+To get images for a certain template, you need to provide the image with the template's `ui.previewSrc` property. This is a URL, or relative to your [public folder](/docs/reference/media/repo-based) as defined in the TinaCMS configuration.
 
 ```javascript
-import type { Template, TinaField } from 'tinacms';
-
-export const featuresTemplate: Template = {
-  label: 'Feature Block',
-  name: 'featureBlock',
+const showcaseTemplate: Template = {
+  label: 'Showcase',
+  name: 'showcase',
+  ui: {
+    previewSrc: '/img/blocks/features.png',
+  },
   fields: [
-    {
-      name: 'featureItem',
-      label: 'Feature Items',
-      type: 'object',
-      list: true,
-      ui {
-      itemProps: (item) => {
-          return { label: item?.headline };
-        },
-      },
-    fields: [
-      { name: 'headline', label: 'Headline', type: 'string' },
-      {
-        name: 'description', label: 'Description',
-        type: 'string', ui: { component: 'textarea' }
-      },
-      {
-        name: 'buttons',
-        label: 'Buttons',
-        list: true,
-        type: 'object',
-        ui: {
-          visualSelector: true,
-          itemProps: (item) => {
-            return { label: item?.label };
-          },
-        },
-        templates: [
-          actionsButtonTemplate as Template,
-          codeButtonTemplate as Template,
-          modalButtonTemplate as Template
-        ],
-      },
-      ] as TinaField[], 
-    },
+    //...
   ],
 };
 ```
 
-### Code-Block Breakdown
+## Custom List Labels
 
-* We originally have a list of feature item objects, each of these objects store an array \[Headline, description, buttons]
-* Each feature item in the list has a dynamic label so that we can differentiate between each feature item in our editor (lines 12-14) 
-* We then have some reusable objects which are stored as a list within our buttons element of the featureBlock array
-* Because each of our unique 3 button templates also stores an array of variables themself, we use the type: object
+By default, object lists label each element with the Template `label` or the object's `label` + `" Item"`.
 
-An example of what this object array would look like is
+![list UI](/img/docs/extending-tina/Extending_Tina_No_List_Props.png)
 
-```javascript
-{
-  'headline': 'Feature Item 1',
-  'description': 'All stuff Tina!',
-    'buttons': [
-      {
-        label: 'Button A',
-        href: '/docs',
-      },
-      {
-        label: 'Button B',
-        href: '/blog'
-      }
-  ],
-},
-{
-  'headline': 'Feature Item 2',
-  'description': 'This feature has no buttons'
-}
+If you have a number of objects in the list, this can be customised per element with the `itemProps` function property.
+
+* set this on the object if using `fields`
+* set this on each template if using `templates`
+
+![List UI with label prop](/img/docs/extending-tina/Extending_Tina_Label_List_Props.png)
+
+## Custom Template Identifiers
+
+When using the templates property, your document stores each chosen template with the key, `_template`.
+
+```markdown
+---
+farm:
+  - name: Tina
+    _template: llama
+  - name: Napoleon
+    _template: farmer
+---
 ```
 
-## More Examples
+You can customise this with the `templatesKey` property – the given key instead.
 
-Tina will generate the appropriate component depending on the configuration provided.
+## Examples
 
-### A basic object configuration
+### Simple field
 
-```json
+```javascript
 {
   label: "Testimonial",
   name: "testimonial",
   type: "object",
   fields: [
-      {
-        label: "Author",
-        name: "author",
-        type: "string"
-      },
-      {
-        label: "Role",
-        name: "role",
-        type: "string"
-      },
-      {
-        label: "Quote",
-        name: "quote",
-        type: "string",
-        ui: {
-          component: "textarea"
-        }
-      }
-        ]
-}
-```
-
-### As a list with default values
-
-```javascript
-{
-  label: "Testimonials",
-  name: "testimonials",
-  type: "object",
-        list: true,
-          ui: {
-    itemProps: (item) => {
-      return { label: `${item?.author}  ( ${item?.role} ) ` }
-    },
-      defaultItem: {
-      author: "Judith Black",
-        role: "CEO",
-          quote: "Lorem ipsum dol..."
-    }
-  },
-  fields: [
     {
+      label: "Author",
       name: "author",
-      // ...
+      type: "string"
     },
     {
-      name: "role",
-      // ...
-    },
-    {
+      label: "Quote",
       name: "quote",
-      // ...
+      type: "string",
+      ui: {
+        component: "textarea"
+      }
     }
   ]
 }
 ```
 
-![](/img/docs/reference/testimonial.png)
-
-### Using list object as a wrapper for other types
-
-Number, boolean, datetime, reference and rich-text field types can be used as the sole field of an object to create a list of one of those types.
-
-```javascript
-{
-  label: "Author List",
-  name: "authorList",
-  type: "object",
-  list: true,      
-  fields: [
-    {
-      label: 'Author',
-      name: 'author',
-      type: 'reference',
-      collections: ['author'],
-    },
-  ]
-}
-```
-
-### Using templates instead of fields
+### Simple field (templates)
 
 ```javascript
 {
@@ -247,3 +181,158 @@ Number, boolean, datetime, reference and rich-text field types can be used as th
 ```
 
 ![](/img/docs/reference/page-blocks.png)
+
+### Simple wrapper field
+
+Number, boolean, datetime, reference and rich-text field types can be used as the sole field of an object to create a list of one of those types.
+
+```javascript
+{
+  label: "Author List",
+  name: "authorList",
+  type: "object",
+  list: true,
+  fields: [
+    {
+      label: 'Author',
+      name: 'author',
+      type: 'reference',
+      collections: ['author'],
+    },
+  ]
+}
+```
+
+### Nested object fields
+
+This example uses both templates and fields.
+
+* The `featureItem` objects stores an object array `{ headline, description, buttons }`.
+* Each feature item in the list has a unique label, set by the itemProps function.
+* The buttons element of the `featureBlock` array is also an object list, with 3 options to choose from (Templates).
+
+```javascript
+import type { Template, TinaField } from 'tinacms';
+
+export const featuresTemplate: Template = {
+  label: 'Feature Block',
+  name: 'featureBlock',
+  fields: [
+    {
+      name: 'featureItem',
+      label: 'Feature Items',
+      type: 'object',
+      list: true,
+      ui {
+      itemProps: (item) => {
+        return { label: item?.headline };
+      },
+    },
+    fields: [
+      { name: 'headline', label: 'Headline', type: 'string' },
+      {
+        name: 'description', label: 'Description',
+        type: 'string', ui: { component: 'textarea' }
+      },
+      {
+        name: 'buttons',
+        label: 'Buttons',
+        list: true,
+        type: 'object',
+        ui: {
+          visualSelector: true,
+          itemProps: (item) => {
+            return { label: item?.label };
+          },
+        },
+        templates: [
+          actionsButtonTemplate as Template,
+          codeButtonTemplate as Template,
+          modalButtonTemplate as Template
+        ],
+      },
+    ] as TinaField[],
+    },
+  ],
+};
+```
+
+### Field with default values
+
+When a new item is added to the list, it will be created with these `defaultItem` values.
+
+```javascript
+{
+  label: "Testimonials",
+  name: "testimonials",
+  type: "object",
+  list: true,
+  defaultItem: {
+    author: "Judith Black",
+    role: "CEO",
+    quote: "Lorem ipsum dol..."
+  }
+  fields: [
+    {
+      name: "author",
+      type: "string"
+    },
+    {
+      name: "role",
+      type: "string"
+    },
+    {
+      name: "quote",
+      type: "string"
+      ui: {
+        component: "textarea"
+      }
+    }
+  ]
+}
+```
+
+![](/img/docs/reference/testimonial.png)
+
+### Field with custom reference key
+
+Setting templateKey here changes our saved data to the below, where the key defining the template has been set to `"type"`.
+
+```javascript
+{
+  name: "farm",
+  type: "object",
+  list: true,
+  templateKey: "type",
+  templates: [
+    {
+      name: "llama",
+      fields: [
+        {
+          name: "name",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "farmer",
+      fields: [
+        {
+          name: "name",
+          type: "string",
+        },
+      ],
+    },
+  ],
+},
+```
+
+```markdown
+---
+farm:
+  - name: Tina
+    type: llama
+  - name: Napoleon
+    type: farmer
+---
+```

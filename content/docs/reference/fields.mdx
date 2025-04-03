@@ -1,108 +1,219 @@
 ---
 id: fields
 title: Fields
-last_edited: '2024-09-12T05:57:13.528Z'
+last_edited: '2025-03-26T05:18:10.207Z'
 next: content/docs/reference/templates.mdx
 previous: content/docs/reference/collections.mdx
 ---
 
-Fields define the shape of the content and the user input. There are [many types of fields](/docs/reference/types) each with its own input and type.
+Fields define the content structure, and the form fields that appear in the editor for a particular [collection](/docs/reference/collections).
 
-Although some fields have more properties here is a list of common ones that are used.
+These are categorised as Field Types – which determine what data is stored and which input component appears in the editor.
 
-## Definition
+Options for field types include:
 
-| Property       | Description                                                                                                                                                                                                                                                                                                                                                           |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`         | The name of the field                                                                                                                                                                                                                                                                                                                                                 |
-| `type`         | The [type of the field](/docs/reference/types/) to be used                                                                                                                                                                                                                                                                                                            |
-| `label`        | A human friendly label that will be displayed to the user (*optional*, defaults to `name`)                                                                                                                                                                                                                                                                            |
-| `description`  | A short description about the field that will be displayed to the user (*optional*, can include html formatting e.g. style attributes)                                                                                                                                                                                                                                |
-| `required`     | If `true`, the collection cannot be saved without this field present (*optional*, defaults to `false`)                                                                                                                                                                                                                                                                |
-| `isTitle`      | Denote a field as the title of a collection. [See below for more details](#istitle) (*optional*, defaults to `false`)                                                                                                                                                                                                                                                 |
-| `isBody`       | If `true` this field will be used as the body of the document. [See below for more details](#isbody) (*optional*, defaults to `false`)                                                                                                                                                                                                                                |
-| `nameOverride` | An optional property to allow exporting a field with a special character, that wouldn't be supported by the `name` property. E.g: `{ name: 'custom_id', nameOverride: 'id' }` or `{ name: 'my_field', nameOverride: 'my-field' }`. When a document is written/read to/from GitHub, the nameOverride will be used as the frontmatter field key, instead of the `name`. |
-| `ui`           | Used to extend the user interface of the field and the field behavior. See [extending tina section](/docs/extending-tina/overview/#customizing-fields) for more information (*optional*)                                                                                                                                                                              |
-| `ui.list`      | This can be used to make any field into a list of that type (*optional*)                                                                                                                                                                                                                                                                                              |
-| `ui.min`       | If `{ list: true }` can provide a minimum amount of items (*optional*)                                                                                                                                                                                                                                                                                                |
-| `ui.max`       | If `{ list: true }` can provide a maximum amount of items (*optional*)                                                                                                                                                                                                                                                                                                |
-| `ui.component` | Used for [custom field components](/docs/extending-tina/custom-field-components)                                                                                                                                                                                                                                                                                      |
-| `ui.validate`  | Used for [custom field validation](/docs/extending-tina/validation/)                                                                                                                                                                                                                                                                                                  |
+* [`string`](/docs/reference/types/string/)
+* [`number`](/docs/reference/types/number/)
+* [`datetime`](/docs/reference/types/datetime/)
+* [`boolean`](/docs/reference/types/boolean/)
+* [`image`](/docs/reference/types/image/)
+* [`reference`](/docs/reference/types/reference/)
+* [`object`](/docs/reference/types/object/)
+* [`rich-text`](/docs/reference/types/rich-text/)(markdown)
 
-## `isTitle`
+The basic type definition is outlined below. Some field types extend the below type definition with type-specific options.
 
-`isTitle` can be used to denote which field represents the title of the document. The field set with `isTitle=true` is what is displayed in the CMS list view page.
+## Type Definition
 
-Make sure the following is true when using `isTitle`
+<apiReference
+  title=""
+  property={[
+    {
+      name: "name",
+      type: "string",
+      description: "The name of the field.\n",
+      required: true
+    },
+    {
+      name: "type",
+      type: "string",
+      description: "Determines the data type and form field used.\n",
+      required: true
+    },
+    {
+      name: "label",
+      type: "string",
+      description:
+        "The collection name as shown in the editor. Uses `name` if omitted.\n"
+    },
+    {
+      name: "description",
+      type: "string",
+      description:
+        "A short description about the field that will be displayed to the user.\n",
+      experimental: false
+    },
+    {
+      name: "required",
+      type: "boolean",
+      description: "If `true`, disables save while this field has no value.\n",
+      default: "false"
+    },
+    {
+      name: "nameOverride",
+      type: "string",
+      description: "Controls the name used for the field in content files.\n"
+    },
+    {
+      name: "isTitle",
+      type: "boolean",
+      description: "Defines the field title.\n\n*String* fields only.\n",
+      default: "false"
+    },
+    {
+      name: "isBody",
+      type: "boolean",
+      description:
+        "Defines which field is saved to the Markdown body.\n\n*Text* (`rich-text` and `string`) fields only.\n",
+      default: "false"
+    },
+    {
+      name: "options",
+      type: "array",
+      description:
+        "Restrict allowed values to the given options.\n\n*Scalar* fields only.\n"
+    },
+    {
+      groupName: "ui",
+      name: "list",
+      type: "boolean",
+      description:
+        "This can be used to store an array of values. [Check compatibility](/docs/reference/fields#list-fields).\n"
+    },
+    {
+      groupName: "ui",
+      name: "min",
+      type: "number",
+      description: "Minimum amount of items for list fields.\n"
+    },
+    {
+      groupName: "ui",
+      name: "max",
+      type: "number",
+      description: "Maximum amount of items for list fields.\n"
+    },
+    {
+      groupName: "ui",
+      name: "validate",
+      type: "(value: any, allValues: any, meta: any, field: Field) => string | object | undefined",
+      description:
+        "Used for custom field validation. [Check compatibility](/docs/reference/fields#validating-field-values).\n"
+    },
+    {
+      groupName: "ui",
+      name: "parse",
+      type: "(value: any, name: string, field: F) => any",
+      description:
+        "A function that modifies what data is saved to the content document.\n"
+    },
+    {
+      groupName: "ui",
+      name: "format",
+      type: "(value: any, name: string, field: F) => any",
+      description: "A function that modifies what data is shown to the user.\n"
+    },
+    {
+      groupName: "ui",
+      name: "component",
+      type: "FC<any> | string | null",
+      description:
+        "Used for [custom field components](/docs/extending-tina/custom-field-components).\n"
+    }
+  ]}
+/>
 
-* It is a top-level field (it is defined in `collections.fields` or `collections.templates.fields`)
-* It is only used once per collection
-* `required` is set to true
+### Name
 
-### Example of `isTitle`
+The name of the field to be used in the GraphQL schema.
 
-```ts
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        name: 'posts',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'mdx',
-        fields: [
-          {
-            type: 'string',
-            label: 'Title',
-            name: 'title',
-            isTitle: true,
-            required: true,
-          },
-          // ... other fields
-        ],
-      },
-    ],
+Should be unique amongst sibling fields.
+
+<WarningCallout
+  body={<>
+    This name cannot have spaces, dashes, or special characters.
+  </>}
+/>
+
+The `nameOverride` property can be set to be used to replace the field name in your content files. The actual name property will still be used in other cases.
+
+```javascript
+fields: [
+  {
+    name: 'my_field',
+    nameOverride: 'my-field',
+    //...
   },
-})
+];
 ```
 
-## `isBody`
+### Field title
 
-`isBody` can be used for `"mdx"`, `"markdown"`, and `"md"` formats. The field used for `isBody = true` must have type `string` or `rich-text`. When `isBody` is true it will save that field to the body of the document.
+`isTitle` controls which field will be shown for the file in the collections page. If never set, filename will be used.
 
-### Example of `isBody`
+![](/img/docs/reference/SCR-20250313-ifbe.png)
 
-```ts
-export default defineConfig({
-  //...
-  schema: {
-    collections: [
-      {
-        name: 'posts',
-        label: 'Blog Posts',
-        path: 'content/posts',
-        format: 'mdx',
-        fields: [
-          {
-            type: 'rich-text',
-            label: 'Body of post',
-            name: 'body',
-            isBody: true,
-          },
-          //... Other fields
-        ],
-      },
-    ],
+To use this property...
+
+* Keep it as a top-level field (it is defined in `collections.fields` or `collections.templates.fields`).
+* Set`required` to true on the same field.
+* Only include on one field per collection.
+
+### Field (markdown) body
+
+Typically content saved in markdown files will be stored in the front-matter section.
+
+`isBody` controls what field to link to the body section instead.
+
+To use this property...
+
+* The field should be of type `rich-text` or `string`.
+* The collection should be `"mdx"` or `"md"` format.
+* Only include on one field per collection.
+
+## List Fields
+
+Specifying `list: true` creates an array of the associated field.
+
+* [Reference Field Types](/docs/reference/types/reference/) cannot be set as a list. To work around this, they can [be wrapped](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) in an object field type that has been been marked with `list: true`.
+* Only the following types have dedicated list UIs built into the CMS...
+  * [String field type](https://tina.io/docs/reference/types/string/)
+  * [Object field type](/docs/reference/types/object/)
+  * [Image field type](/docs/reference/types/image/)
+
+![](/img/docs/schema/image-example.png)
+
+```js
+fields: [
+  {
+    label: 'Hero Image',
+    name: 'heroImage',
+    type: 'image',
+    list: true,
   },
-})
+];
 ```
 
-## `ui.min` and `ui.max`
+### ui.max
 
-`ui.max` only takes effect on `object` field types with `list: true` specified. It also isn't compatible with `object` field types using `templates`. It disables the add button in the editor once at least the given number of elements have been added.
+Setting `ui.max` on lists of [object field types](/docs/reference/types/object/) disables the add button in the editor, once at least the given number of elements have been added.
 
 ![](/img/docs/reference/obj-list.png)
+
+<WarningCallout
+  body={<>
+    This is not supported for objects using Templates.
+  </>}
+/>
 
 ```javascript
 {
@@ -113,21 +224,13 @@ export default defineConfig({
   ui: {
     max: 3,
   },
-  fields: [
-    {
-     //...
-    },
-  ]
+  // ...
 }
 ```
 
-`ui.min` will ensure that once the specified minimum number of items is added (ex: 3 in the example), users will not be able to remove items if there are only the minimum number of items.
+### ui.min 
 
-It can apply to all field types with list `list: true` specified, provided they appear as a list in the editor. Specifically, this is the:
-
-* [String Field Type](https://tina.io/docs/reference/types/string/)
-* [Object Field Type](/docs/reference/types/object/)
-* [Image Field Type](/docs/reference/types/image/)
+For any list field, if `ui.min` is set, the delete button is greyed out (see below) while there are less than the minimum items.
 
 ![](/img/docs/reference/llama-list.png)
 
@@ -142,3 +245,120 @@ It can apply to all field types with list `list: true` specified, provided they 
   }
 }
 ```
+
+## Select Fields
+
+Any *scalar* field can accept an `options` array to restrict allowed values. This changes the editor component to either a dropdown or set of checkboxes.
+
+You can either pass in an array of values, or an array of objects of structure:
+
+| Option Property | Definition                                      |
+| --------------- | ----------------------------------------------- |
+| value           | The actual value associated with the option.    |
+| label           | The name of this option as shown in the editor. |
+
+### Checkbox fields
+
+Create a set of checkbox fields by using both `options` and `list` properties:
+
+![](/img/docs/reference/SCR-20250313-jzht.png)
+
+```js
+fields: [
+  {
+    name: 'categories',
+    type: 'string',
+    list: true,
+    options: [
+      {
+        value: 'movies',
+        label: 'Movies',
+      },
+      {
+        value: 'music',
+        label: 'Music',
+      },
+      //...
+    ],
+  },
+];
+```
+
+### Dropdown field
+
+Create a dropdown field by using `options` but not the `list` property:
+
+![](/img/docs/reference/SCR-20250313-jzkn.png)
+
+```js
+fields: [
+  {
+    name: 'categories',
+    type: 'string',
+    options: [
+      {
+        value: 'movies',
+        label: 'Movies',
+      },
+      {
+        value: 'music',
+        label: 'Music',
+      },
+      //...
+    ],
+  },
+];
+```
+
+## Formatting Field Values
+
+The `format` and `parse` defines functions that control what is rendered and what is being saved.
+
+In the below example, as the user types they will see all lowercase characters. When it is saved, it will be all uppercase characters.
+
+```ts
+// ...fields
+{
+ name: "username",
+ type: "string",
+ label: "Username",
+ ui: {
+// is called on every form change but result is stored in data and not in the form value (saved to file but not displayed to the user)
+   parse: (val?: string)=>val && val.toUpperCase(),
+// Is called on every form change and the result is put back into the value of the form (displayed to the user)
+   format: (val?: string)=> (val ? val.toLowerCase() : ""),
+ },
+},
+```
+
+## Validating Field Values
+
+Tina allows client-side validation using a validation function, `ui.validate`. This function returns a `string` error message if the value is **invalid** or `null` if the field is **valid**.
+
+To include other field values of the form in the validation, an `allValues` argument can be used.
+
+<WarningCallout
+  body={<>
+    Not compatible with reference, object and rich-text field types – they
+    have a more complex internal structure.
+  </>}
+/>
+
+```javascript
+{
+  label: "Title",
+  name: "title",
+  type: "string",
+  ui: {
+    validate: (value, allValues) => {
+      const titleLength = value?.length || 0
+      const descLength = allValues?.description?.length || 0
+      if (titleLength >= descLength) {
+        return 'The description must be longer than the title'
+      }
+    }
+  }
+}
+```
+
+![](/img/docs/extending-tina/invalid1_fbnwh1.png)

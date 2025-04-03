@@ -1,6 +1,6 @@
 ---
 title: Our New Field
-last_edited: '2025-03-19T00:15:10.495Z'
+last_edited: '2025-03-28T01:03:45.048Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/string-to-markdown.mdx
 previous: content/docs/beginner-tutorials/loading-content.mdx
@@ -8,7 +8,7 @@ previous: content/docs/beginner-tutorials/loading-content.mdx
 
 Our amazing title is pretty amazing, but one title does not a website make. Let's extend the schema a little, so we can get some more interesting content displayed.
 
-1\. Edit your `config.ts` file, and add a new field to your `my_first_collection` schema.
+1\. Edit `tina/config.ts`, and add a new field to the `my_first_collection` schema.
 
 ```typescript
 schema: {
@@ -46,7 +46,7 @@ schema: {
   },
 ```
 
-2\. Now, just to do something a little different, go ahead and edit your `Hello-World.md` file directly in your IDE.
+2\. Now, just to do something a little different, go ahead and edit `Hello-World.md` file directly in your IDE.
 
 3\. Add some text to the body of the markdown file, like this:
 
@@ -60,7 +60,7 @@ Look at my incredible body 🦙
 
 > The `isBody` property does what it says on the tin - it tells Tina that this property is the "body" of the markdown content (ie, *not* in front-matter).
 
-4\. Edit the `awesome-content.tsx` component so it renders out the body content:
+4\. Edit the `app/awesome-content.tsx` component so it renders out the body content:
 
 ```typescript
 "use client";
