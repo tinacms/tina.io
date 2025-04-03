@@ -17,6 +17,16 @@ async function translateMdx(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
 
+    // TODO: Remove debug logs in production
+    console.log(
+      `API URL: ${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`
+    );
+    console.log(
+      `API Key (first 4 chars): ${
+        API_KEY ? API_KEY.substring(0, 4) + '...' : 'undefined'
+      }`
+    );
+
     //TODO: Need update
     const response = await axios({
       method: 'post',
