@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
 
-const API_KEY = process.env.LLM_API_KEY;
+const API_KEY = process.env.AZURE_OPENAI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
   f.trim()
 );
@@ -19,17 +19,41 @@ async function translateMdx(filePath) {
 
     //TODO: Need update
     const response = await axios.post(
-      config.apiEndpoint,
+      // config.apiEndpoint,
+      // {
+      //   model: config.modelName,
+      //   prompt: config.promptTemplate.replace('{{content}}', content),
+      //   max_tokens: config.maxTokens || 5000,
+      //   temperature: config.temperature || 0.1,
+      // },
+      // {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     Authorization: `Bearer ${API_KEY}`,
+      //   },
+      // }
+
+      `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
       {
-        model: config.modelName,
-        prompt: config.promptTemplate.replace('{{content}}', content),
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You are a professional translator that translates English technical documentation to Simplified Chinese.',
+          },
+          {
+            role: 'user',
+            content: config.promptTemplate.replace('{{content}}', content),
+          },
+        ],
         max_tokens: config.maxTokens || 5000,
         temperature: config.temperature || 0.1,
       },
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${API_KEY}`,
+          // Azure OpenAI uses api-key instead of Bearer token
+          'api-key': `${API_KEY}`,
         },
       }
     );
