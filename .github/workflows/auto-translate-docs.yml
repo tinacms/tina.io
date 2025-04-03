@@ -1,15 +1,21 @@
 name: Auto Translate MDX to Chinese
 
 on:
-  pull_request:
-    types: [closed]
+  # pull_request:
+  #   types: [closed]
+  #   paths:
+  #     - 'content/docs/**.mdx'
+  push:
+    branches:
+      - test-md-translate-ai
     paths:
       - 'content/docs/**.mdx'
 
 jobs:
   translate-mdx:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    environment: ALL ENVIRONMENTS
     permissions:
       contents: write
       pull-requests: write
@@ -26,14 +32,23 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: .github
 
-      - name: Get changed files from merged PR
+      # - name: Get changed files from merged PR
+      #   id: get-changed-files
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     PR_NUMBER: ${{ github.event.pull_request.number }}
+      #   run: node .github/scripts/get-changed-files.js
+
+      #TODO: Remove this after testing
+      - name: Get changed files
         id: get-changed-files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: node .github/scripts/get-changed-files.js
 
       - name: Create translation branch
@@ -47,7 +62,7 @@ jobs:
       - name: Translate changed MDX files
         if: env.HAS_CHANGED_FILES == 'true'
         env:
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: node .github/scripts/translate-mdx.js
