@@ -76,6 +76,7 @@ const DocsMobileHeader = (props) => {
       <DirectoryOverflowButton
         tocData={learnActive ? learnData : docsData}
         label={learnActive ? 'Learn' : 'Documentation'}
+        color={learnActive ? 'blue' : 'orange'}
       />
     </div>
   );
