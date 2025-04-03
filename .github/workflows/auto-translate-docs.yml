@@ -1,10 +1,13 @@
 name: Auto Translate MDX to Chinese
 
 on:
-  pull_request:
-    types: [closed]
-    paths:
-      - 'content/docs/**.mdx'
+  # pull_request:
+  #   types: [closed]
+  #   paths:
+  #     - 'content/docs/**.mdx'
+  push:
+    branches:
+      - test-md-translate-ai
 
 jobs:
   translate-mdx:
