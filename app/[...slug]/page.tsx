@@ -1,10 +1,11 @@
+import { Container } from 'components/blocks/Container';
 import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
 import { client } from '../../tina/__generated__/client';
 import ClientPage from './client-page';
-import Image from 'next/image';
-import Link from 'next/link';
 const fg = require('fast-glob');
 export const dynamicParams = false;
 
@@ -60,7 +61,7 @@ function ExperimentalBanner() {
         height={5000}
         className="sm:block hidden px-5 lg:px-10"
       />
-        <Image
+      <Image
         src="/img/TinaCon-tablet-banner.png"
         alt="tinaconMobileBanner"
         width={2000}
@@ -80,8 +81,12 @@ export default async function Page({ params }: PageProps) {
     });
     return (
       <>
-      {/* TODO: Remove once TinaCon is over */}
-        {slug[0] === 'home' && <ExperimentalBanner />}
+        {/* TODO: Remove once TinaCon is over */}
+        {slug[0] === 'home' && (
+          <div className="max-w-[1300px] mx-auto mt-10">
+            <ExperimentalBanner />
+          </div>
+        )}
         <ClientPage
           query={res.query}
           data={res.data}
