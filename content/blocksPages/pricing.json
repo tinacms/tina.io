@@ -515,25 +515,6 @@
       "_template": "table"
     },
     {
-      "features": [
-        {
-          "headline": "Skip the Drama, Chat with a Llama (Well, Our Team)",
-          "text": "Not sure if TinaCMS is the right fit? \nLet’s figure it out together. Book a call with our team.",
-          "buttons": [
-            {
-              "label": "Book a Chat",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "/meetings",
-              "_template": "actions"
-            }
-          ]
-        }
-      ],
-      "_template": "features"
-    },
-    {
       "blockSettings": {
         "isFullscreen": false
       },
@@ -541,11 +522,11 @@
       "text": "Not sure if TinaCMS is the right fit?  Let’s figure it out together. Book a call with our team.",
       "buttons": [
         {
-          "label": "Secondary Action",
+          "label": "Book a Chat",
           "icon": false,
-          "variant": "default",
+          "variant": "blue",
           "size": "medium",
-          "url": "/",
+          "url": "/meetings",
           "_template": "actions"
         }
       ],
