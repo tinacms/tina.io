@@ -2,7 +2,7 @@
 
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
-import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
+import { DEFAULT_LOCALE, SupportedLocales, isValidPathCheck } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -14,12 +14,13 @@ import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import data from '../../content/navigationBar/navMenu.json';
+import zhData from '../../content/navigationBar/navMenuZh.json';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
-import { EmailForm } from '../modals/EmailForm';
-import { Button } from '../ui/Button';
 import { saveLocaleToCookie } from '../../utils/locale';
+import { EmailForm } from '../modals/AppRouterEmailForm';
+import { Button } from '../ui/Button';
 enum ValidColors {
   White = 'white',
   Blue = 'blue',
@@ -63,7 +64,6 @@ export function AppNavBar({ sticky = true }) {
   const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
   const [modalClass, setModalClass] = useState('language-select-modal');
-  const [hideZh, setHideZh] = useState(false);
 
   const navRef = useRef(null);
   const router = useRouter();
@@ -103,43 +103,76 @@ export function AppNavBar({ sticky = true }) {
     };
   }, []);
 
-  useEffect(() => {
-    const pathLocale = pathName.split('/')[1];
-    if (
-      pathLocale === SupportedLocales.EN ||
-      pathLocale === SupportedLocales.ZH
-    ) {
-      setHideZh(false);
-      setSelectedFlag(pathLocale);
-    } else {
-      setHideZh(true);
-      setSelectedFlag(DEFAULT_LOCALE);
-    }
-  }, [pathName]);
-
+  const [navItems, setNavItems] = useState(
+    Array.isArray(data.navItem) ? data.navItem : []
+  );
   const toggleMenu = () => setOpen((prev) => !prev);
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
-  const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+  useEffect(() => {
+    const matchedLocale = Object.values(SupportedLocales).find((locale) =>
+      pathName.startsWith(`/${locale}`)
+    );
+    setSelectedFlag(matchedLocale || SupportedLocales.EN);
+  }, [pathName]);
 
-  const handleLanguageChange = (code) => {
+  useEffect(() => {
+    setNavItems(
+      selectedFlag === SupportedLocales.ZH
+        ? zhData && Array.isArray(zhData.navItem)
+          ? zhData.navItem
+          : []
+        : data && Array.isArray(data.navItem)
+        ? data.navItem
+        : []
+    );
+  }, [pathName, selectedFlag]);
+
+  const handleLanguageChange = (code: string) => {
+    saveLocaleToCookie(code);
     setSelectedFlag(code);
     setOpen(false);
     closeModal();
+
     setTimeout(() => {
       setAnimateFlag(true);
       setTimeout(() => setAnimateFlag(false), 600);
     }, 20);
 
-    router.push(pathName.replace(/^\/(en|zh)/, `/${code}`));
-    saveLocaleToCookie(code);
+    const localePattern = new RegExp(
+      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+    );
+    const isRootOrLocale =
+      pathName === '/' ||
+      (localePattern.test(pathName) && !pathName.replace(localePattern, '$2'));
+
+    if (isRootOrLocale) {
+      router.push(`/?setLocale=${code}`);
+      return;
+    }
+
+    const isEnglish = code === SupportedLocales.EN;
+    const hasLocalePrefix = localePattern.test(pathName);
+
+    let newPath;
+    if (hasLocalePrefix) {
+      newPath = isEnglish
+        ? pathName.replace(localePattern, (_, __, slash) =>
+            slash === '/' ? '/' : ''
+          )
+        : pathName.replace(localePattern, `/${code}$2`);
+    } else {
+      newPath = isEnglish ? pathName : `/${code}${pathName}`;
+    }
+
+    router.push(newPath === '' ? '/' : newPath);
   };
 
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>
-        <div className="flex min-[1300px]:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
+        <div className="flex xl:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           {/* Start of sm and md view */}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
@@ -174,7 +207,7 @@ export function AppNavBar({ sticky = true }) {
                 <button
                   className={`outline-none hover:animate-jelly ${
                     animateFlag ? 'animate-bounce' : ''
-                  } hidden max-[639px]:block`} // Adjust breakpoint as needed
+                  } hidden max-[639px]:block`}
                   onClick={() => openModal('LanguageSelect')}
                 >
                   {selectedFlag === 'en' ? (
@@ -266,16 +299,16 @@ export function AppNavBar({ sticky = true }) {
         <div
           className={`absolute ${
             stuck && sticky
-              ? `min-[1300px]:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
+              ? `xl:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full min-[1300px]:px-10 hidden min-[1300px]:flex items-center justify-between `}
+          } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between `}
         >
           <Link href={'/'}>
             <TinaLogoSvg
               className={`w-40 flex items-center h-auto fill-orange-500 mb-4`}
             />
           </Link>
-          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end min-[1300px]:items-center gap-2 min-[1300px]:gap-x-12">
+          <nav className="flex-1 flex flex-wrap-reverse justify-end items-end xl:items-center gap-2 xl:gap-x-12">
             <ul className="flex gap-4 ">
               {navItems.map((item, index) =>
                 item._template === modalButtonString ? (
@@ -359,7 +392,14 @@ export function AppNavBar({ sticky = true }) {
         <DemoForm />
       </Modal>
 
-      <Modal open={modalType === 'EmailForm'} onClose={closeModal} center>
+      <Modal
+        open={modalType === 'EmailForm'}
+        onClose={closeModal}
+        center
+        classNames={{
+          modal: 'email-and-demo-modal email-form-modal',
+        }}
+      >
         <EmailForm isFooter={false} />
       </Modal>
 
@@ -374,7 +414,6 @@ export function AppNavBar({ sticky = true }) {
         <LanguageSelect
           onLanguageSelect={handleLanguageChange}
           currentLanguage={selectedFlag}
-          hideZh={hideZh}
         />
       </Modal>
     </>

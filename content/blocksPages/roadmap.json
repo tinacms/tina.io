@@ -5,11 +5,17 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
       "headline": "Roadmap",
       "text": "",
       "_template": "hero"
     },
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
       "options": {
         "narrow": true,
         "color": "white"
@@ -18,12 +24,40 @@
       "_template": "content"
     },
     {
-      "headline": "Recently Released",
+      "headline": "Done",
       "items": [
         {
-          "headline": "GitHub Enterprise Support",
-          "status": "Released",
+          "headline": "☑︎ GitHub Enterprise Support",
+          "status": "",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
+        },
+        {
+          "headline": "☑︎ 2FA Authentication",
+          "status": "",
+          "content": "Strengthens security for TinaCloud users by adding an extra layer of protection to prevent unauthorized access, ensuring safer content management.\n",
+          "actions": [
+            {
+              "label": "Blogged",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "blog/two_factor_authentication"
+            }
+          ]
+        },
+        {
+          "headline": "☑︎ Vercel Data Cache Support",
+          "status": "",
+          "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n",
+          "actions": [
+            {
+              "label": "Blogged",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
+            }
+          ]
         }
       ],
       "options": {
@@ -33,34 +67,91 @@
       "_template": "roadmapGrid"
     },
     {
+      "headline": "Working on it now",
+      "items": [
+        {
+          "headline": "□ TinaCloud Performance",
+          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n",
+          "actions": [
+            {
+              "label": "Github Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/5576"
+            }
+          ]
+        },
+        {
+          "headline": "□ React 19 Support",
+          "status": "",
+          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n",
+          "actions": [
+            {
+              "label": "🧪 Beta version available",
+              "icon": true,
+              "variant": "orange",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/pull/5607"
+            },
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/issues/5244"
+            }
+          ]
+        },
+        {
+          "headline": "□ Improving Media Management UX",
+          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/4476"
+            }
+          ]
+        }
+      ],
+      "_template": "roadmapGrid"
+    },
+    {
       "blockSettings": {
         "isFullscreen": true
       },
       "headline": "Coming Soon",
       "items": [
         {
-          "headline": "Improving Media Management UX",
-          "status": "In Progress",
-          "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n"
-        },
-        {
           "headline": "AI Tooling",
-          "status": "Soon",
-          "content": "We're working on some ways to leverage AI in the content creation process.\n"
+          "status": "",
+          "content": "We're working on some ways to leverage AI in the content creation process.\n",
+          "actions": [
+            {
+              "label": "Do you use /llms.txt to make your site LLM-friendly? 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
+            }
+          ]
         },
         {
           "headline": "Docs Template",
-          "status": "Soon",
+          "status": "",
           "content": "Since Tina works so well with documentation sites, we're building a best-of-breed Tina + Docs starter template.\n"
         },
         {
           "headline": "Improved PR workflow",
-          "status": "Soon",
+          "status": "",
           "content": "We are making some improvements to Tina's editorial workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
           "actions": [
             {
               "label": "Editorial Workflow",
-              "icon": false,
+              "icon": true,
               "variant": "blue",
               "size": "medium",
               "url": "https://tina.io/editorial-workflow/"

@@ -1,0 +1,29 @@
+---
+title: Clean Up Your Project
+last_edited: '2025-03-28T00:57:15.532Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/install-tinacms.mdx
+previous: content/docs/beginner-tutorials/nextjs-app.mdx
+---
+
+Let's prepare our project for integration with TinaCMS.
+
+This is only to keep things simple moving forward.
+
+1. Open up the project in your preferred IDE.
+2. Delete the content from your NextJS `app/page.tsx` file.
+3. Add a "Hello world" header!
+
+You should end up with:
+
+```typescript
+export default function Home() {
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <h1>Hello World!</h1>
+      </main>
+    </div>
+  );
+}
+```

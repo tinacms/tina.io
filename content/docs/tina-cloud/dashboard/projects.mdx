@@ -108,7 +108,11 @@ There are two types of tokens associated with projects in TinaCloud: Content (Re
 - Content tokens provide read-only access to your project's content.
 - Search tokens provide write access to the TinaCloud search API.
 
-<WarningCallout body="Warning: API tokens should be considered sensitive and not be committed to your project repository. Content tokens allow clients read-only access to your repository content. Search tokens allow clients to update the TinaCloud hosted search index for your site. Please use environment variables for these in your Tina configuration." />
+<WarningCallout
+  body={<>
+    Warning: API tokens should be considered sensitive and not be committed to your project repository. Content tokens allow clients read-only access to your repository content. Search tokens allow clients to update the TinaCloud hosted search index for your site. Please use environment variables for these in your Tina configuration.
+  </>}
+/>
 
 #### Generate tokens from the dashboard
 

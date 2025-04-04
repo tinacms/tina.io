@@ -1,51 +1,34 @@
 ---
 id: /docs/using-tina-editor/
-
-title: Using the Tina Editor
-last_edited: '2022-01-09T00:00:00.000Z'
-previous: content/docs/frameworks/other.mdx
+title: The Editing Experience
+last_edited: '2025-03-31T04:23:55.362Z'
+tocIsHidden: true
+next: content/docs/content-model-intro.mdx
+previous: content/docs/setup-overview.mdx
 ---
 
-Tina is very flexible & extendable, so any Tina site may have a unique experience. As an introduction, we'll cover the out-of-the-box experience that most of our starters implement.
+<Youtube embedSrc="https://www.youtube.com/embed/CsCQS7HIBv0?si=rrQbD_l21B7u2zyo" caption="" minutes="" />
 
-## Entering the CMS
+## Accessing the CMS
 
-When tina is initialized it creates a static build of your site, and a `/admin` route that allows you to edit your site's content. The static build is located at `<PublicFolder>/admin/index.html`.
+On running, TinaCMS creates a **static build** of your site. This (and the editor) can be accessed at the `/admin/index.html` route of your website.
 
-When this page is visited in the browser, the Tina CMS is loaded and the user is prompted to log in.
+> In the video above, [NextJS rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) are used to access `/admin/index.html` on `/admin`.
+
+If there's no current session, you'll be prompted to login.
 
 ![Tina Login Page](/img/tina-login.png)
 
-After successfully logging in, the user will arrive at the CMS.
+## Making Changes
 
-## Using the CMS
+Making changes is super simple.
 
-![Tina Editor Dashboard](/img/tina-dashboard.png)
-
-Depending on how Tina is configured, one or more Collections will appear in the Global Navigation. Clicking on a Collection will take the user to a Document List for that Collection.
+One or more Collections (**content structures**) will appear in the Global Navigation. Each takes you to the Document List for that Collection.
 
 ![Tina Editor List Page](/img/tina-list-page.png)
 
-The table here lists all documents for the chosen Collection. This page also allows the user to create a new document or a new folder see below.
+Clicking on a document takes you to its editor.
 
-![](/img/docs/add-folder-tinacms_c8pxte.png)\
+The **save** button adds any changes into your content files.
 
-If **contextual-editing** has been configured, clicking on a document will navigate the user to that document's preview with the Sidebar open and ready for editing.
-
-![Tina Editor Visual Editing](/img/docs/contextual-editing.png)
-
-However, if **contextual-editing** is not configured or simply not available for a particular Collection, clicking on a document will present the user with the basic editor.
-
-![Tina Editor Standard Editing](/img/tina-standard-editing.png)
-
-> Note: You can learn more about how to set up **contextual-editing** for your users [here](/docs/contextual-editing/overview).
-
-Once saved, the changes to the document will be stored against the files.
-
-## What's Next?
-
-There's plenty to do to customize your editing experience. We suggest:
-
-- Checking out [our concept docs](/docs/schema/), to learn how Tina powers the starters under the hood
-- Learn how [Tina can be extended](/docs/extending-tina/overview) to create new field components
-- Make your site [editable with Tina on production](/docs/tina-cloud/)
+![](/2.png)

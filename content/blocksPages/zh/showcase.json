@@ -1,0 +1,157 @@
+{
+  "seo": {
+    "title": "案例展示",
+    "description": "使用Tina构建的项目。"
+  },
+  "blocks": [
+    {
+      "headline": "案例展示",
+      "text": "使用TinaCMS的精选网站",
+      "_template": "hero"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "items": [
+        {
+          "headline": "NDC Conferences",
+          "text": "[NDC会议](https://ndcconferences.com/) 举办全球软件开发活动，将大型会议与专业研讨会相结合。他们利用TinaCMS管理网站内容，确保为观众提供无缝的数字体验。\n这些会议汇聚了技术专业人士，促进学习、交流和分享国际社区的见解。",
+          "url": "https://ndcconferences.com/",
+          "media": {
+            "src": "/video/ndc-sites.webm"
+          }
+        },
+        {
+          "headline": "SSW",
+          "text": "TinaCMS为[SSW](https://www.ssw.com.au/)带来了变革。我们喜欢它如何让我们的内容管理变得顺畅，并让开发人员和营销人员无障碍地协作。它快速、灵活，正是我们所需要的。",
+          "url": "https://www.ssw.com.au/",
+          "media": {
+            "src": "/img/tina-showcase/ssw-website-screenshot.jpg"
+          }
+        },
+        {
+          "headline": "Smashing Magazine",
+          "text": "Smashing Magazine使用TinaCMS编辑成千上万的帖子和页面内容。查看他们的[文章](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)，了解他们如何使用分支和Git通过Tina的[编辑工作流](https://tina.io/editorial-workflow)管理内容。",
+          "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
+          "media": {
+            "src": "/gif/smashingmagazine-tinacms.gif"
+          }
+        },
+        {
+          "headline": "Devolver Digital",
+          "text": "[Devolver](https://www.devolverdigital.com/) 是一家精品游戏发行商，与世界各地的独立开发者合作，制作和推广过去十年中最具原创性、独特性和受欢迎的游戏。",
+          "url": "https://www.devolverdigital.com/",
+          "media": {
+            "src": "/img/tina-showcase/devolver.png"
+          }
+        },
+        {
+          "headline": "Unity",
+          "text": "[Unity](https://docs.unity.com/cloud/en-us) 是《Pokémon Go》和《Call of Duty》背后的游戏引擎，正在使用TinaCMS和Next.js构建一个新的文档平台。他们选择Tina是因为它为Markdown内容提供了图形用户界面，并且Tina的GraphQL API允许他们将文档内容导入其他系统，如他们的AI聊天机器人。",
+          "url": "https://docs.unity.com/cloud/en-us",
+          "media": {
+            "src": "/img/tina-showcase/unity-documentation-tinacms.png"
+          }
+        },
+        {
+          "headline": "Locality Bank",
+          "text": "[Locality](https://localitybank.com) 正在重新定义本地商业银行业务——将最佳的个人关系与全面的融资经验和创新技术相结合，帮助南佛罗里达的企业蓬勃发展。",
+          "url": "https://localitybank.com",
+          "media": {
+            "src": "/img/tina-showcase/locality-bank.png"
+          }
+        },
+        {
+          "headline": "Roev",
+          "text": "[Roev](https://www.roev.com/) 是一家在电动汽车和可再生能源交叉领域创新的公司。该网站由[CoMedia](https://www.comediadesign.com/)设计和构建。",
+          "url": "https://www.roev.com/",
+          "media": {
+            "src": "/gif/roev.gif"
+          }
+        },
+        {
+          "headline": "Shadow Lion",
+          "text": "[Shadow Lion](https://shadowlion.com/) 成立于2017年，旨在支持Tom Brady的场外媒体工作，但很快开始为其他运动员、影响者和组织提供创意服务。该网站由位于马萨诸塞州波士顿的数字工作室[VisualBoston](https://visualboston.com/)构建。",
+          "url": "https://shadowlion.com/",
+          "media": {
+            "src": "/gif/shadowlion3.gif"
+          }
+        },
+        {
+          "headline": "Redactive AI",
+          "text": "Redactive为AI应用程序开发者提供安全且可扩展的管道，以根据最终用户的请求和访问控制级别从业务数据源中实时检索数据。网站由[CoMedia](https://www.comediadesign.com/)制作。",
+          "url": "https://www.redactive.ai/",
+          "media": {
+            "src": "/img/tina-showcase/redactive-ai.png"
+          }
+        },
+        {
+          "headline": "RRE Ventures",
+          "text": "RRE Ventures是一家总部位于纽约市的早期风险投资公司，成立于1994年，他们寻找并与那些试图颠覆和改变行业的杰出企业家合作。该网站由[Studio Freight](https://studiofreight.com/)设计和构建。",
+          "url": "https://rre.com",
+          "media": {
+            "src": "/gif/rre-ventures.gif"
+          }
+        },
+        {
+          "headline": "Comedia",
+          "text": "[Comedia](http://www.comediadesign.com/) 是一家数字产品代理公司，在旧金山和温哥华设有办事处。我们为客户打造产品和体验，客户包括Vodafone、Ericsson、NEC和Postmates。",
+          "url": "https://www.comediadesign.com/",
+          "media": {
+            "src": "/gif/comedia.gif"
+          }
+        },
+        {
+          "headline": "Paradise Helicopters",
+          "text": "这是夏威夷最大的本地拥有和运营的直升机公司的营销网站。由位于俄勒冈州波特兰的[Murmur Creative](https://murmurcreative.com/)构建。",
+          "url": "https://paradisecopters.com/",
+          "media": {
+            "src": "/img/tina-showcase/paradise-helicopters.png"
+          }
+        },
+        {
+          "headline": "Supernova",
+          "text": "Supernova是由150多位成功退出的创始人组成的团队，为顶级初创公司提供咨询、运营和投资支持。该网站由[Zeon studio](https://zeon.studio/)开发。",
+          "url": "https://1supernova.com/",
+          "media": {
+            "src": "/img/tina-showcase/supernova.png"
+          }
+        },
+        {
+          "headline": "bunny.net",
+          "text": "访问[bunny.net](https://bunny.net/)，通过下一代内容分发服务（CDN）、边缘存储和优化服务，加速您的网络表现。",
+          "url": "https://bunny.net/",
+          "media": {
+            "src": "/img/tina-showcase/bunny-net.png"
+          }
+        },
+        {
+          "headline": "Community Coordinated Modeling Center",
+          "text": "[CCMC](https://ccmc.gsfc.nasa.gov/) 是NASA内的一个小组，致力于支持空间科学研究。",
+          "url": "https://ccmc.gsfc.nasa.gov/",
+          "media": {
+            "src": "/img/tina-showcase/CCMC.png"
+          }
+        },
+        {
+          "headline": "Microgen",
+          "text": "[Microgen](https://microgen.site/) 是由[Protocol Labs](https://protocol.ai/)和[Bustout](https://bustout.com/)开发的开源网站构建工具。在[GitHub](https://github.com/pathfindertools/microgen)上找到它。\n",
+          "url": "https://microgen.site/",
+          "media": {
+            "src": "/img/tina-showcase/microgen.png"
+          }
+        },
+        {
+          "headline": "We Are Many Hands",
+          "text": "[ManyHands](https://wearemanyhands.com) 是一个面向产品人员的活动。该活动（和网站）由[Lighthouse](https://wearelighthouse.com)制作，这是一家位于伦敦的专业UX和UI设计机构。",
+          "url": "https://wearemanyhands.com",
+          "media": {
+            "src": "/img/tina-showcase/wearemanyhands.png"
+          }
+        }
+      ],
+      "_template": "showcase"
+    }
+  ]
+}

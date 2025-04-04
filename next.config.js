@@ -51,6 +51,14 @@ const config = {
   async rewrites() {
     return [
       {
+        source: '/',
+        destination: '/home',
+      },
+      {
+        source: '/:locale(en|zh)',
+        destination: '/:locale/home',
+      },
+      {
         source: '/admin',
         destination: '/admin/index.html',
       },
@@ -103,6 +111,11 @@ const config = {
   },
   async redirects() {
     return [
+      {
+        source: '/conf',
+        destination: '/conference',
+        permanent: true,
+      },
       {
         source: '/early-access',
         destination: '/',

@@ -1,0 +1,70 @@
+---
+title: Routing to the Editor
+last_edited: '2025-03-28T01:01:04.318Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/wiring-content.mdx
+previous: content/docs/beginner-tutorials/display-content.mdx
+---
+
+Right now, if we want to edit our amazing title, we have to go into the Tina editor, find our collection, and then edit the record in our collection before we can view our changes. 😮‍💨
+
+Wouldn't it be cool if we could make edits to the title, and see our changes directly on the page while we're editing our content? **Let's do that now**!
+
+1\. Uncomment the `ui` section of the `tina/config.ts`
+
+```typescript
+schema: {
+    collections: [
+      {
+        name: "my_first_collection",
+        label: "My first collection",
+        path: "content/first",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          }
+        ],
+        ui: {
+          // This is a DEMO router. You can remove this to fit your site
+          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+        },
+      }
+    ],
+  },
+});
+```
+
+2\. Edit the `ui` section, and replace it with the following:
+
+```typescript
+ui: {
+    router: ({ document }) => {
+    if (document._sys.filename == "Hello-World") {
+        return "/";
+    }
+},
+```
+
+So what's going on here...
+
+First up, this particular router is only for the Tina visual editor. It does not control any routes of your actual site - that's still controlled by our NextJS App Router.
+
+Secondly, we are cheating a little here by hard-coding the `"Hello-World"` filename directly to the home route.
+
+It's also possible to define this routing programmatically, but for now let's just roll with this.
+
+> Match this to your filename from the content directory, the filename might be different if you set your title to something other than "Hello World!".
+
+3\. Open your app by going to `http://localhost:3000` and you should see your awesome "Hello World!" title.
+
+4\. Now open the visual editor again by going to `http://localhost:3000/admin/index.html`
+
+**OMG**! We can see our homepage in the editor! 🎉
+
+> The router lets Tina know which pages are going to be used for live editing, but also creates a link to the Visual Editor page from the collection list.
+
+![](</gif/Untitled video - Made with Clipchamp (9).gif>)

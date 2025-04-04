@@ -1,0 +1,62 @@
+---
+title: Link it to Your Model
+last_edited: '2025-03-21T01:43:55.471Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/render-templates.mdx
+previous: content/docs/beginner-tutorials/new-template.mdx
+---
+
+1\. Navigate back to our `tina/config.ts` file.
+
+2\. Replace the old schema with a new **object** type field to unlock the power of our templates 💪
+
+```typescript
+import { amazingTitleBlock } from "@/app/amazing-header/amazing-header.template";
+import { beautifulImageBlock } from "@/app/beautiful-image/beautiful-image.template";
+import { incredibleBodyBlock } from "@/app/incredible-body/incredible-body";
+// at the top of your file ⤴️
+
+
+//...
+collections: [
+      {
+        name: "my_first_collection",
+        label: "My first collection",
+        path: "content/first",
+        fields: [
+          {
+            type: "object", // <--- oooohhh, fancy.
+            name: "blocks",
+            label: "Blocks",
+            list: true,
+            templates: [amazingTitleBlock, beautifulImageBlock, incredibleBodyBlock], // Templates for days!
+          }
+        ],
+        ui: {
+          router: ({ document }) => {
+            if (document._sys.filename == "Hello-World") {
+              return "/";
+            }
+          },
+        },
+      }
+    ],
+```
+
+<WarningCallout
+  body={<>
+    We have changed the schema of our `my_first_collection` object, but the `Hello-World.md` file is still using the old schema. **Be aware that you can easily break your page/site if you don't update the content to match schema changes.**
+  </>}
+/>
+
+3\. For now, let's manually open `Hello-World.md` and **delete** the contents of that file.
+
+4\. To help us build out the React component changes, let's add some new content to our `Hello-World.md` file by opening up the Visual Editor (`http://localhost:3000/admin/index.html` and navigating to our `my_first_collection` list, and edit the `Hello-World` content through the editor.)
+
+> Notice how the Visual Editor now has a field called **Blocks**. This is our fancy `object` field we declared in our `tina/config.ts` file. See how it gives us a magical + button. Click it!
+
+5\. Add an amazing title, a beautiful image, and an incredible body!
+
+6\. Examine the `Hello-World.md` file in your IDE. You'll see the shape of it has changed, and our templates/content are now all stored in front-matter.
+
+> TinaCMS can be configured to save content to other formats, such as JSON, which is great for this kind of data.

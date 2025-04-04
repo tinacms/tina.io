@@ -1,60 +1,58 @@
 ---
-title: The "rich-text" field
-last_edited: '2025-02-10T06:35:37.198Z'
+title: Rich-Text Fields
+last_edited: '2025-03-26T06:28:07.274Z'
 next: ''
 previous: content/docs/reference/rich-text-usage/mermaid.mdx
 ---
 
-## `rich-text` Type
+The rich-text field stores **markdown content** with a WYSIWYG interface, supporting features like text formatting, links, media and custom elements (if used with mdx).
 
-Tina's `rich-text` field leverages MDX so you can embed your own structured blocks. To render
-a `rich-text` field with React we recommend the `<TinaMarkdown>` component from `tinacms`. See [usage](/docs/editing/markdown/#rendering-content-with-tinamarkdown)
-for details.
+## Type Definition
 
-```ts
-type RichTextField = {
-  label: string
-  name: string
-  type: 'rich-text'
-  templates: Template[]
-}
-```
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
 
-## Examples
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"rich-text"` to use the Rich-Text Field.\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    },
+    {
+      name: "toolbarOverride",
+      description: "Select specific toolbar options to display.\n",
+      type: "string[]"
+    },
+    {
+      name: "templates",
+      description:
+        'MDX support. The "embed" option in the editor to inject custom React components.\n',
+      type: "Template[]"
+    }
+  ]}
+/>
 
-Tina will generate the appropriate component depending on the
-configuration provided.
+> The `templates` property is for `mdx` support.
 
-### Simple
+<WarningCallout
+  body={<>
+    `"children"` should not be used as the `name` for rich-text fields, as it
+    conflicts with other parts of the application.
+  </>}
+/>
 
-```ts
-{
-  label: "Body",
-  name: "body",
-  isBody: true,
-  type: "rich-text",
-}
-```
+## Toolbar Customisation
 
-![](/img/docs/reference/rtf.png)
+The `toolbarOverride` property controls what options appear in the rich-text editor.
 
-### Toolbar override
-
-Change what you want to display and the order it is displayed in the editor
-
-```javascript
-{
-  label: "Body",
-  name: "body",
-  isBody: true,
-  type: "rich-text",
-  toolbarOverride: ["heading","bold", "italic"],
-}
-```
-
-![](/img/docs/reference/blog-post.png)
-
-Full list of `toolbarOverride` options:
+It can be set to any subset of:
 
 ```javascript
 toolbarOverride: [
@@ -75,7 +73,60 @@ toolbarOverride: [
 ];
 ```
 
-### Custom templates
+## Line Breaks
+
+To insert a line break into an empty line in TinaCMS Rich Text:
+
+* Press Shift + Enter to create the line break
+* If the line break is not followed by a line with text, it will render as a \ in the final output.\
+  This can be fixed by deleting and re-creating the line\
+  Ensure that the line break precedes text content to avoid this issue
+
+> This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
+
+## Markdown Tables
+
+Check out this video on how to use Table in rich text editor:
+
+<Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
+
+## Examples
+
+Tina will generate the appropriate component depending on the
+configuration provided.
+
+### Simple field
+
+```javascript
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+}
+```
+
+![](/img/docs/reference/rtf.png)
+
+### Simple field with toolbar override
+
+Change what you want to display and the order it is displayed in the editor
+
+```javascript
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+  toolbarOverride: ["heading","bold", "italic"],
+}
+```
+
+![](/img/docs/reference/blog-post.png)
+
+### Field with custom component (`mdx`)
+
+Custom components can be embedded in rich-text blocks.
 
 ```ts
 {
@@ -99,39 +150,15 @@ toolbarOverride: [
 
 ![](/img/docs/reference/custom-template.png)
 
-In markdown, this would look like...
-
-```md
-## Hello, world!
-
-This is some text
-
-<Cta heading="Welcome" />
-```
-
-Results in the following response from the content API:
-
 <GraphQLCodeBlock
-  query="{
-  ##post(relativePath:#&#x22;voteForPedro.json&#x22;)#{
-  ####body
-  ##}
-  }"
+  query="This#is#some#text
+
+  <Cta#heading=&#x22;Welcome&#x22;#/>"
   response="{
   ##&#x22;data&#x22;:#{
   ####&#x22;post&#x22;:#{
   ######&#x22;body&#x22;:#{
   ########&#x22;type&#x22;:#&#x22;root&#x22;,
-  ########&#x22;children&#x22;:#[
-  ##########{
-  ############&#x22;type&#x22;:#&#x22;h2&#x22;,
-  ############&#x22;children&#x22;:#[
-  ##############{
-  ################&#x22;type&#x22;:#&#x22;text&#x22;,
-  ################&#x22;text&#x22;:#&#x22;Hello,#world!&#x22;
-  ##############}
-  ############]
-  ##########},
   ##########{
   ############&#x22;type&#x22;:#&#x22;p&#x22;,
   ############&#x22;children&#x22;:#[
@@ -154,196 +181,54 @@ Results in the following response from the content API:
   ##}
   }"
   preselectResponse={true}
+  customQueryName="Markdown"
+  customResponseName="Parsed AST"
 />
 
-### Line Breaks
+### Collection with default rich-text value
 
-To insert a line break into an empty line in TinaCMS Rich Text:
+To set a default value for a rich-text field, the entire AST tree should be specified as in the example below.
 
-* Press Shift + Enter to create the line break
-* If the line break is not followed by a line with text, it will render as a \ in the final output.\
-  This can be fixed by deleting and re-creating the line\
-  Ensure that the line break precedes text content to avoid this issue
-
-Note: This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
-
-### Using Table
-
-Check out how to use Table in rich text editor
-
-<Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
-
-## Using `TinaMarkdown`
-
-The `<TinaMarkdown>` component allows you to control how each element
-is rendered. You *must* provide a component for each template registered
-in the `templates` property of your field definition. Note that you can also
-control rendering of built-in elements like `<h1>, <a>, <img>`
-
-```ts
-type TinaMarkdown = ({
-  // The rich-text data returned from the content API
-  content: TinaMarkdownContent
-  /**
-   * Any templates provided in the rich-text field.
-   * Optionally, most elements (ex. <a>) can also
-   * be overridden
-   */
-  components?: Components<{}>
-}) => JSX.Element
-```
-
-```ts
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-
-// The `props` here are based off our custom "Cta" MDX component
-const Cta = (props) => {
-  return <h2>{props.heading}</h2>
-}
-
-export default function MyPage(props) {
-  return (
-    <div>
-      <h1>{props.data.post.title}</h1>
-      <TinaMarkdown components={{ Cta }} content={props.data.post.body} />
-    </div>
-  )
-}
-```
-
-## Markdown Handling
-
-Since markdown is an open-format Tina does its best to handle the most common syntax's, but in some scenarios Tina will ignore or automatically alter content:
-
-### Unsupported elements
-
-While most markdown features are supported out of the box, Tina will ignore elements that it cannot handle. We *do not* expect to support the full [CommonMark](https://commonmark.org/) and
-[GitHub Flavored Markdown](https://github.github.com/gfm/) specs. Be sure to voice your support for various rich-text features by reaching out through one of our [community channels](/community/)!
-
-* Footnotes
-* Code blocks via indentation (use ` ``` ` instead)
-* Strikethrough
-
-##### Table Cell Limitations
-
-Within table cells, support is limited to inline elements only. The following types are unsupported:
-
-* Code Block
-* Lists
-* Quote
-* Headings
-
-If you try to add these types into a table cell, they will be treated as a string.![](/img/docs/rich-text/cells-1.png)**❌ Figure: Bad example - A table with block elements treated as strings**\
-\
-![supported-table-cell-formats](/img/docs/rich-text/cells-2.png)**✅ Figure: Good example - A table with inline elements**
-
-### Automatic transforms
-
-For some elements, Tina will automatically transform the values:
-
-**Bold and italic marks**:
-
-```
-__Hello__
-```
-
-Will be transformed to:
-
-```
-**Hello**
-```
-
-**Line items**:
-
-```
-- Item 1
-```
-
-Will be transformed to:
-
-```
-* Item 1
-```
-
-**Deeply-nested blockquotes and code blocks**:
-
-Some of the more complex nesting patterns you can do with markdown are not supported
-
-```
-* > My blockquote
-```
-
-Will be transformed to:
-
-```
-* My blockquote
-```
-
-## Caveats
-
-Since markdown and MDX are traditionally handled through some sort of build
-step, Tina's approach adds some constraints to make things work as expected.
-[Read more](/docs/editing/markdown/) about Tina's approach to handling markdown
-and MDX.
-
-### All content must be *serializable*
-
-When we say serializable, we mean that they must not be JavaScript expressions that would need to be executed at any point.
-
-* No support for `import`/`export`
-* No support for JavaScript expressions (eg. `const a = 2`, `console.log("Hello")`)
-
-For example:
-
-```md
-## Today is {new Date().toLocaleString()}
-```
-
-This expression will be ignored, instead register a "Date" `template`:
-
-```md
-## Today is <Date />
-```
-
-Then you can create a `Date` component which returns `new Date().toLocaleString()` under the hood.
-
-### Links must start with a supported scheme
-
-When using hyperlinks in markdown within the markdown editor, ensure that the URLs begin with one of the following supported schemes:
-
-* http
-* https
-* mailto
-* tel
-* xref
-
-Any URLs not starting with these schemes will be ignored.
+> Recommended approach is to fill in your data, then `console.log` the CMS API return value for the related field. \
+> \
+> Then copy it from there into the collections `defaultItem` property.
 
 ```javascript
-e.g.
-❌ google.com
-✅ https://tina.io
+{
+  label: 'Blog Posts',
+  name: 'post',
+  path: 'content/posts',
+  defaultItem: () => {
+    return {
+      title: 'My New Post',
+      body: {
+        type: 'root',
+        children: [
+          {
+            type: 'p',
+            children: [
+              {
+                type: 'text',
+                text: 'Default Text',
+              },
+            ],
+          },
+        ],
+      },
+    }
+  },
+  fields: [
+    {
+      type: 'string',
+      label: 'Title',
+      name: 'title',
+    },
+    {
+      type: 'string',
+      label: 'Post Body',
+      name: 'body',
+      isBody: true,
+    },
+  ],
+}
 ```
-
-### All JSX must be registered as a `template`
-
-In the above example, if you failed to add the `Cta` *template* in your schema definition, the JSX element
-will be treated as html
-
-### Avoid Using "children" as a Field Name
-
-When defining a `rich-text` field in TinaCMS, avoid using `"children"` as the field name. This can cause unexpected behavior due to potential conflicts with React's reserved prop names and the internal structure of TinaCMS.
-
-#### Recommended Fix:
-
-Instead of `"children"`, use a different name like `"body"` and include `isBody: true` (More details [here](https://tina.io/docs/reference/fields#isbody)) to get the same functionality as you would expect when using `"children"`.
-
-## Other notes
-
-### Full Spec
-
-The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "TinaCMS MDX Spec")
-
-### Default values
-
-If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)

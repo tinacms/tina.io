@@ -1,21 +1,22 @@
 'use client';
 
-import React, { createContext } from 'react';
-import styled, { css } from 'styled-components';
-import { DocsNavProps } from './DocumentationNavigation';
-import { usePathname } from 'next/navigation';
-import { matchActualTarget } from 'utils';
 import { DynamicLink } from 'components/ui';
-import docsLinks from '../../../../content/docs-navigation.json';
-import { BiChevronRight } from 'react-icons/bi';
+import { usePathname } from 'next/navigation';
+import React, { createContext } from 'react';
 import AnimateHeight from 'react-animate-height';
+import { BiChevronRight } from 'react-icons/bi';
+import styled, { css } from 'styled-components';
+import { matchActualTarget } from 'utils';
+import docsLinks from '../../../../content/docs-navigation.json';
 import data from '../../../../content/siteConfig.json';
+import { DocsNavProps } from './DocumentationNavigation';
 
 interface NavTitleProps {
   level: number;
   selected: boolean;
   childSelected?: boolean;
   children: React.ReactNode | React.ReactNode[];
+  color: string;
   onClick?: () => void;
 }
 
@@ -24,23 +25,27 @@ const NavTitle = ({
   level = 3,
   selected,
   childSelected,
+  color,
   ...props
 }: NavTitleProps) => {
   const headerLevelClasses = {
-    0: 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
+    0:
+      color === 'blue'
+        ? 'opacity-100 font-tuner-light text-blue-700 text-xl pt-2'
+        : 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
     1: {
       default: 'text-base font-sans pt-1 text-gray-800',
-      selected: 'text-base font-sans pt-1 font-bold text-blue-500',
+      selected: 'text-base font-sans pt-1 font-bold',
       childSelected: 'text-base font-sans pt-1 font-[500] text-gray-800',
     },
     2: {
       default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
-      selected: 'text-[15px] font-sans pt-0.5 font-bold text-blue-500',
+      selected: 'text-[15px] font-sans pt-0.5 font-bold',
       childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
     3: {
       default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
-      selected: 'text-[15px] font-sans pt-0.5 font-bold text-blue-500',
+      selected: 'text-[15px] font-sans pt-0.5 font-bold',
       childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
   };
@@ -58,7 +63,13 @@ const NavTitle = ({
 
   return (
     <div
-      className={`group flex items-center gap-1 transition duration-150 ease-out cursor-pointer hover:opacity-100 leading-tight pb-0.5 pl-4 ${classes}`}
+      className={`group flex items-center gap-1 transition duration-150 ease-out cursor-pointer hover:opacity-100 leading-tight pb-0.5 pl-4 ${classes} ${
+        selected && level > 0
+          ? color === 'blue'
+            ? 'text-blue-500'
+            : 'text-orange-500'
+          : ''
+      }`}
       {...props}
     >
       {children}
@@ -84,10 +95,12 @@ const NavLevel = ({
   navListElem,
   categoryData,
   level = 0,
+  color,
 }: {
   navListElem?: any;
   categoryData: any;
   level?: number;
+  color: string;
 }) => {
   const navLevelElem = React.useRef(null);
   const pathname = usePathname(); // Replace useRouter with usePathname
@@ -133,7 +146,11 @@ const NavLevel = ({
       <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
         {categoryData.slug ? (
           <DynamicLink href={categoryData.slug} passHref>
-            <NavTitle level={level} selected={selected && !childSelected}>
+            <NavTitle
+              level={level}
+              selected={selected && !childSelected}
+              color={color}
+            >
               <span className="pr-2 -mr-2">{categoryData.title}</span>
             </NavTitle>
           </DynamicLink>
@@ -145,14 +162,15 @@ const NavLevel = ({
             onClick={() => {
               setExpanded(!expanded);
             }}
+            color={color}
           >
             <span className=" pr-2 -mr-2">{categoryData.title}</span>
             {categoryData.items && !selected && (
               <BiChevronRight
                 className={`${
-                  level < 1
-                    ? 'text-orange-100 group-hover:text-orange-300'
-                    : 'text-blue-200 group-hover:text-blue-400'
+                  color === 'blue'
+                    ? 'text-blue-300 group-hover:text-blue-500'
+                    : 'text-orange-300 group-hover:text-orange-500'
                 } group-hover:rotate-90 w-5 h-auto -my-2 transition ease-out duration-300 transform ${
                   expanded ? 'rotate-90' : ''
                 }`}
@@ -162,19 +180,23 @@ const NavLevel = ({
         )}
       </NavLabelContainer>
       {categoryData.items && (
-        <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
-          <NavLevelChildContainer level={level}>
-            {(categoryData.items || []).map((item) => (
-              <div key={item.slug ? item.slug + level : item.title + level}>
-                <NavLevel
-                  navListElem={navListElem}
-                  level={level + 1}
-                  categoryData={item}
-                />
-              </div>
-            ))}
-          </NavLevelChildContainer>
-        </AnimateHeight>
+        <>
+          <div className="mb-1.5"></div>
+          <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
+            <NavLevelChildContainer level={level}>
+              {(categoryData.items || []).map((item) => (
+                <div key={item.slug ? item.slug + level : item.title + level}>
+                  <NavLevel
+                    navListElem={navListElem}
+                    level={level + 1}
+                    categoryData={item}
+                    color={color}
+                  />
+                </div>
+              ))}
+            </NavLevelChildContainer>
+          </AnimateHeight>
+        </>
       )}
     </>
   );
@@ -234,7 +256,10 @@ const NavLabelContainer = styled.div<{ status: string }>`
     `}
 `;
 
-export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
+export const DocsNavigationList = ({
+  navItems,
+  color = 'orange',
+}: DocsNavProps) => {
   const navListElem = React.useRef(null);
 
   return (
@@ -247,6 +272,7 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
           }
           navListElem={navListElem}
           categoryData={categoryData}
+          color={color}
         />
       ))}
     </DocsNavigationContainer>

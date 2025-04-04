@@ -1,0 +1,27 @@
+---
+title: What are "Blocks"
+last_edited: '2025-03-28T01:05:16.169Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/new-template.mdx
+previous: content/docs/beginner-tutorials/new-picture.mdx
+---
+
+**Congrats**! 🎉
+
+You now have a web page, complete with a title, image, and body! **BUT**! Right now the `app/awesome-content.tsx` component is controlling the layout of our content.
+
+We have our Header, then our image, then our body.
+
+What happens if you want some pages to have the image at the top? Or at the bottom?
+
+It would be pretty neat if we could allow our users to dictate which sections a page will have, along with the order these sections should appear without needing a developer to come in and create/edit the React components.
+
+![](/img/docs/your-blocks.gif)
+
+*Let's make this possible now with the power of TinaCMS Templates.*
+
+Firstly, to make these fields (title, image, body) rearrangeable, we have to change our schema. We will...
+
+* Convert each of our fields into a Template.
+* Update the schema to use our cool templates.
+* Wire them up to our HTML!

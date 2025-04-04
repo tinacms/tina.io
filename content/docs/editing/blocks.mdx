@@ -1,20 +1,20 @@
 ---
 id: /docs/editing/blocks
-title: Block-based editing
-last_edited: '2024-12-04T04:48:32.050Z'
+title: Using Tina as a Website Builder
+last_edited: '2025-03-26T06:39:19.507Z'
 next: content/docs/editing/single-document-collections.mdx
 previous: content/docs/editing/markdown.mdx
 ---
 
-Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks.
+Tina supports block-based editing, so that your editors can build out full pages using your pre-defined blocks (i.e. **page sections**).
 
 <WebmEmbed embedSrc="/img/docs/your-blocks.webm" />
 
 Let's say you want your editors to build out a page, and you have 3 main "block" types to start:
 
-* a "Hero" block
-* a "Feature" block
-* a "Main Content" block
+- a "Hero" block
+- a "Feature" block
+- a "Main Content" block
 
 We want to allow our editors to use various blocks on each page.
 
@@ -23,19 +23,12 @@ We want to allow our editors to use various blocks on each page.
 We are going to use the [`object` type](/docs/schema/#grouping-properties-within-an-object), and provide a list of `templates`, where each "template" represents a unique block type.
 
 ```typescript
-import { defineConfig } from 'tinacms'
-import type { Template } from 'tinacms'
+import { defineConfig } from 'tinacms';
+import type { Template } from 'tinacms';
 
 const heroBlock: Template = {
   name: 'hero',
   label: 'Hero',
-  ui: {
-    defaultItem: {
-      tagline: "Here's some text above the other text",
-      headline: 'This Big Text is Totally Awesome',
-      text: 'Phasellus scelerisque,
-    },
-  },
   fields: [
     {
       type: 'string',
@@ -56,7 +49,7 @@ const heroBlock: Template = {
       },
     },
   ],
-}
+};
 
 const featureBlock: Template = {
   name: 'features',
@@ -81,16 +74,11 @@ const featureBlock: Template = {
       ],
     },
   ],
-}
+};
 
 const contentBlock: Template = {
   name: 'content',
   label: 'Content',
-  ui: {
-    defaultItem: {
-      body: 'Lorem ipsum dolor sit amet,
-    },
-  },
   fields: [
     {
       type: 'string',
@@ -101,7 +89,7 @@ const contentBlock: Template = {
       name: 'body',
     },
   ],
-}
+};
 
 export default defineConfig({
   // ...
@@ -121,12 +109,10 @@ export default defineConfig({
       },
     ],
   },
-})
+});
 ```
 
 We have defined the structure of our 3 blocks (`content`, `features`, `hero`), as well as our main blocks field: `blocks`.
-
-> Note, since our contentBlock uses the [markdown plugin](/docs/reference/toolkit/fields/markdown/) which is not registered out of the box, we will need to manually import the `react-tinacms-editor` plugin.
 
 ## Querying Block Data
 
@@ -207,12 +193,12 @@ We can render out the blocks on a page by creating a new `Blocks` component, whi
 ```tsx
 // Blocks.tsx
 
-import React from 'react'
-import type { Pages } from '../tina/__generated__/types'
-import { Content } from './blocks/content'
-import { Features } from './blocks/features'
-import { Hero } from './blocks/hero'
-import { Testimonial } from './blocks/testimonial'
+import React from 'react';
+import type { Pages } from '../tina/__generated__/types';
+import { Content } from './blocks/content';
+import { Features } from './blocks/features';
+import { Hero } from './blocks/hero';
+import { Testimonial } from './blocks/testimonial';
 
 export const Blocks = (props: Pages) => {
   return (
@@ -225,42 +211,50 @@ export const Blocks = (props: Pages) => {
                   <React.Fragment key={i + block.__typename}>
                     <Content data={block} />
                   </React.Fragment>
-                )
+                );
               case 'PagesBlocksHero':
                 return (
                   <React.Fragment key={i + block.__typename}>
                     <Hero data={block} />
                   </React.Fragment>
-                )
+                );
               case 'PagesBlocksFeatures':
                 return (
                   <React.Fragment key={i + block.__typename}>
                     <Features data={block} />
                   </React.Fragment>
-                )
+                );
               default:
-                return null
+                return null;
             }
           })
         : null}
     </>
-  )
-}
+  );
+};
 ```
 
 Note that the `__typename` on each blog is `{CollectionName}{FieldName}{BlockTemplateName}`.
 
 In our case:
 
-* CollectionName: "Pages"
-* FieldName: "Blocks"
-* BlockTemplateName: "Content" | "Hero" | "Features"
+- CollectionName: "Pages"
+- FieldName: "Blocks"
+- BlockTemplateName: "Content" | "Hero" | "Features"
 
 ## Adding a visual block selector (Experimental)
 
 <WebmEmbed embedSrc="/img/docs/editing/visual-selector-preview.webm" />
 
-<WarningCallout body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our community channels" />
+<WarningCallout
+  body={
+    <>
+      This is an experimental feature, and the API is subject to change. Have
+      any thoughts? Let us know in the chat, or through one of our community
+      channels
+    </>
+  }
+/>
 
 This visual block selector allows editors to select blocks from a set images instead of text.
 
@@ -326,7 +320,7 @@ const featureBlock = {
 
 The `previewSrc` is an image URL that will be rendered in the visual selector. If a preview isn't provided the block will still be available with a title to click on, just no preview image will be displayed.
 
-*optionally* a `category` can be provided that allow the blocks to be grouped into different categories.
+_optionally_ a `category` can be provided that allow the blocks to be grouped into different categories.
 
 ```diff
 const featureBlock = {
@@ -361,6 +355,6 @@ const featureBlock = {
 
 ## Video Tutorial
 
-For those who prefer to learn from video, you can check out a snippet on "Setting Up Blocks" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
+For those who prefer to learn from video, you can check out a snippet on "Setting Up Blocks" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) series.
 
 <Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=555&end=727" />

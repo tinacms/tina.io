@@ -1,0 +1,33 @@
+---
+title: "From String to Markdown \U0001F31F"
+last_edited: '2025-03-18T07:11:43.147Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/rendering-markdown.mdx
+previous: content/docs/beginner-tutorials/new-field.mdx
+---
+
+We've just added a new field, but that field is just a plain old input - not the best UX for the thought-provoking blogs you'll be writing. 
+
+Let's change this field to be a **rich text editor** so you can wow your audience with *bourgeoisie* text.
+
+Thankfully, this is a one-line change directly in our schema!
+
+1. Replace your old body field with the one below:
+
+```typescript
+{
+  type: "rich-text", // bourgeoisie
+  name: "body",
+  label: "Body",
+  isBody: true,
+  required: true,
+}
+```
+
+Now that's changed, go ahead and refresh your page and... 💥
+
+Uh oh, something blew up. What happened?
+
+We're now trying to render **markdown** content on screen. Markdown can contain all sorts of weird and wonderful content, like headings, tables, lists, etc. Our poor old `<p>` tag just doesn't cut it anymore. 
+
+Time to upgrade!

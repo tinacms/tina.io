@@ -1,51 +1,10 @@
 ---
 id: /docs/schema/
 title: Content Modeling with TinaCMS
-last_edited: '2024-09-17T04:55:51.594Z'
+last_edited: '2025-03-11T22:39:21.344Z'
 next: content/docs/features/data-fetching.mdx
 previous: ''
 ---
-
-## Introduction
-
-The Tina schema defines the shape of your content. Tina uses a "content-modeling as code" approach. This has a few benefits compared to modelling through a UI:
-
-* The schema is version-controlled
-* Mutating the schema is easy, as you can test out changes locally, or in a branch.
-* The developer can extend the schema in interesting ways (custom validation, custom UI fields, etc).
-
-The content model, and all configuration code is defined in a file called `tina/config.{ts,js,tsx}`.
-
-```ts
-// tina/config.{ts,js,tsx}
-import { defineConfig } from 'tinacms'
-
-export default defineConfig({
-  // ...
-  schema: {
-    collections: [
-      {
-        label: 'Blog Posts',
-        name: 'post',
-        path: 'content/posts',
-        fields: [
-          {
-            type: 'string',
-            label: 'Title',
-            name: 'title',
-          },
-          {
-            type: 'string',
-            label: 'Post Body',
-            name: 'body',
-            isBody: true,
-          },
-        ],
-      },
-    ],
-  },
-})
-```
 
 ## Defining "collections"
 
@@ -62,66 +21,6 @@ This is my main post body.
 > Note: The `isBody` property is used to output a given field to the markdown body, instead of its frontmatter.
 
 Once we've defined a collection, we can edit its fields through the Tina UI, or [query its content](/docs/graphql/overview/) using the Tina Content API.
-
-## "List" fields
-
-![](/img/docs/schema/image-example.png)
-
-Specifying `list: true` on *almost any* field type will turn that field into an array of items:
-
-```js
-fields: [
-  {
-    label: 'Tags',
-    name: 'tags',
-    type: 'string',
-    list: true,
-  },
-]
-```
-
-### Caveats
-
-Certain field types cannot be set as a list, or may not have a specific list UI when changed through the content editor. To create lists of these fields, they can [be wrapped](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types) in an object field type that has been been marked with `list: true`.
-
-Types that cannot be marked as a list:
-
-* [Reference Field Type](/docs/reference/types/reference/)
-
-A list of these types can be set, but they appear as a singular field in the content editor:
-
-* [Number Field Type](/docs/reference/types/number/)
-* [Datetime Field Type](/docs/reference/types/datetime/)
-* [Boolean Field Type](/docs/reference/types/boolean/)
-* [Rich-Text Field Type](/docs/reference/types/rich-text/)
-
-## Limiting values to a set of options
-
-Any *scalar* field can accept an `options` array, note that in the example below we're using both `options` and `list` properties:
-
-```js
-// ...
-fields: [
-  {
-    label: 'Categories',
-    name: 'categories',
-    type: 'string',
-    list: true,
-    options: [
-      {
-        value: 'movies',
-        label: 'Movies',
-      },
-      {
-        value: 'music',
-        label: 'Music',
-      },
-    ],
-  },
-]
-```
-
-> Omitting `list: true` (or setting it to `false`) would result in a single-select `radio` field.
 
 ## Grouping properties as an "object"
 
@@ -162,98 +61,6 @@ fields: [
 Setting `list: true` would turn the values into an array.
 
 > More complex shapes can be built by using the [`templates`](/docs/reference/types/object/#with-multiple-templates) property. This allows your editors to build out pages using predefined blocks.
-
-## Defining defaults
-
-Every collection has a `defaultItem` property, which is used to populate the form when creating a new item. This is useful for setting default values for fields, or for adding default content to the markdown body.
-
-### Default item
-
-```js
-export default defineConfig({
-  // ...
-  schema: {
-    collections: [
-      {
-        label: 'Blog Posts',
-        name: 'post',
-        path: 'content/posts',
-        defaultItem: () => {
-          return {
-            // When a new post is created the title field will be set to "New post"
-            title: 'New Post',
-          }
-        },
-        fields: [
-          {
-            type: 'string',
-            label: 'Title',
-            name: 'title',
-          },
-        ],
-      },
-    ],
-  },
-})
-```
-
-[See the docs](/docs/reference/collections/) for more examples of how to define defaults.
-
-### Default value for objects
-
-To set default values for objects of fields, use the `defaultItem` property.
-
-### Default value for rich-text
-
-Currently, when setting a default value for a [rich-text field](/docs/reference/types/rich-text/), you must provide the document Abstract Syntax Tree (AST). See the following example:
-
-```js
-export default defineConfig({
-  // ...
-  schema: {
-    collections: [
-      {
-        label: 'Blog Posts',
-        name: 'post',
-        path: 'content/posts',
-        defaultItem: () => {
-          return {
-            title: 'My New Post',
-            // The body will be populated with "Default Text"
-            body: {
-              type: 'root',
-              children: [
-                {
-                  type: 'p',
-                  children: [
-                    {
-                      type: 'text',
-                      text: 'Default Text',
-                    },
-                  ],
-                },
-              ],
-            },
-          }
-        },
-        fields: [
-          {
-            type: 'string',
-            label: 'Title',
-            name: 'title',
-          },
-          {
-            type: 'string',
-            label: 'Post Body',
-            name: 'body',
-            isBody: true,
-          },
-        ],
-      },
-    ],
-  },
-})
-```
 
 ## Referencing another document
 

@@ -1,5 +1,10 @@
 ---
+seo:
+  description: >-
+    Set up TinaCMS with Next.js Pages Router. Learn configuration steps, best
+    practices, and how to enable a smooth editing experience.
 title: Next.js Pages Router
+last_edited: '2025-03-27T01:38:32.349Z'
 next: content/docs/frameworks/astro.mdx
 previous: content/docs/frameworks/next/app-router.mdx
 ---
@@ -24,7 +29,7 @@ This will ask you a few setup questions. When prompted for the **public assets d
 
 `tina init` should have updated your `package.json` scripts.
 
-```json
+```javascript
 "scripts": {
   "dev": "tinacms dev -c \"next dev\"",
   "build": "tinacms build && next build",
@@ -254,6 +259,6 @@ export const getStaticProps = async (ctx) => {
 
 ## Next Steps
 
-- [Check out the content modeling docs](/docs/schema/)
-- [Learn how to query your content](/docs/features/data-fetching/)
-- [Deploy Your Site](/docs/tina-cloud)
+* [Check out the content modeling docs](/docs/schema/)
+* [Learn how to query your content](/docs/features/data-fetching/)
+* [Deploy Your Site](/docs/tina-cloud)

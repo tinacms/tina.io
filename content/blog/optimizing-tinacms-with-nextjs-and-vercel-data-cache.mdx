@@ -1,0 +1,50 @@
+---
+seo:
+  title: Manage TinaCMS Caching in Next.js with Vercel Data Cache
+  description: >-
+    Learn how to manage caching and revalidation in TinaCMS when using Next.js
+    with Vercel's Data Cache. Ensure fresh content with ISR and query
+    parameters.
+title: Optimizing TinaCMS with Next.js and Vercel Data Cache
+date: '2025-03-12T14:00:00.000Z'
+last_edited: '2025-03-18T13:00:00.000Z'
+author: Brook Jeynes
+prev: content/blog/2024-12-tinacloud-public-disclosure-security-breach.mdx
+next: ''
+---
+
+**Update 19/3/2025:** Added a video to demo how the Vercel Data Cache could affect your site and how to tweak Next.js so that you can better use the cache.
+
+**Update 31/3/2025:** Added a couple images to add additional information on enabling the Vercel Data Cache and possible issues.
+
+<Youtube embedSrc="https://youtube.com/embed/gz9Lxlj5RDU" caption="TinaCMS - Using nextjs and the vercel data cache" minutes="6" />
+
+In December 2024, with the release of `tinacms@2.5.2` and `@tinacms/cli@1.7.0`, TinaCMS transitioned to using Node.js’s native fetch function, eliminating the need for the fetch-ponyfill dependency. This change reduced dependencies, enhancing both security and performance. It also allowed us to support the **Vercel Data Cache**.
+
+When integrating TinaCMS with Next.js and deploying on Vercel, it’s essential to understand Vercel’s Data Cache mechanism since it operates seamlessly. This caching system stores API responses, reducing redundant requests and improving page load times. However, Vercel caches TinaCloud’s API responses for an extended period by default, which can lead to stale content.
+
+![](/img/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache/one-year-caching.png "One of our sites using Tina experienced late content updates due to 1 year default caching.")
+
+To manage revalidation and ensure content freshness, consider the following approaches:
+
+1. **Adjust the Revalidation Time**\
+   Modify the `revalidate` setting for route segments to control how often Vercel checks for updates. This enables Incremental Static Regeneration (ISR) to refresh pages with new data. [nextjs.org/docs/app/api-reference/file-conventions/route-segment-config](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
+2. **Use Query Parameters for Fresh Fetches**\
+   Add a `revalidate` parameter to your TinaCMS GraphQL queries, ensuring that Next.js fetch requests are updated at a set interval:
+   `const response = await client.queries.page(`
+   `   { relativePath: 'pages/home.mdx' },`
+   `   { fetchOptions: { next: { revalidate: 60 } } }`
+   `);`
+   This approach ensures that data is revalidated every 60 seconds.
+   More details on Next.js fetch extensions [nextjs.org/docs/app/api-reference/functions/fetch](https://nextjs.org/docs/app/api-reference/functions/fetch)
+
+It's also worth noting that in **Next.js 14**, caching mechanisms such as fetch() and GET route handlers were automatically enabled by default, requiring developers to opt out when dynamic behavior was desired. In contrast, **Next.js 15** introduced a significant change by no longer caching these mechanisms by default, granting developers more explicit control over caching strategies by allowing them to opt in as needed.
+
+![](/img/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache/use-cache-nextjs.png "If you're using Next.js 15, you can opt into caching for better performance - https://nextjs.org/docs/app/api-reference/directives/use-cache")
+
+By implementing these strategies, you can optimize your TinaCMS integration with Next.js and Vercel, ensuring efficient data caching and up-to-date content delivery.
+
+You can find more information in the TinaCMS docs [tina.io/docs/frameworks/next/overview](https://tina.io/docs/frameworks/next/overview#updates-not-reflecting-correctly-on-page)
+
+Best,
+The TinaCMS Team 🦙

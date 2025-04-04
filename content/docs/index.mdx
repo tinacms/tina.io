@@ -5,37 +5,134 @@ seo:
   description: >-
     TinaCMS is an open-source, Git-backed CMS with real-time editing, version
     control, and scalability, empowering developers and content creators alike.
-title: Tina Docs
-last_edited: '2025-02-07T04:03:14.432Z'
-next: content/docs/product-tour.mdx
+title: What is TinaCMS?
+last_edited: '2025-03-11T00:24:52.066Z'
+tocIsHidden: true
+next: content/docs/setup-overview.mdx
 previous: ''
 ---
 
-## Introduction
+TinaCMS is an open-source, Git-backed headless content management system (CMS) – it allows you to craft a no-code editing experience on top of your website.
 
-Tina is an open-source, Git-backed headless content management system (CMS) that empowers both developers and content creators to collaborate seamlessly on a single platform. Tina enables developers to craft a custom visual editing experience perfectly tailored to their website or application while supporting a broad range of content types such as Markdown, MDX, and JSON.
+Tina doesn't lock you into a proprietary database. You control your content in the form of Markdown, MDX, and JSON files stored with the power of Git.
 
-<Youtube embedSrc="https://www.youtube.com/embed/zRkeKSZjlyw" />
+Continue on for a quick **2 minute rundown of TinaCMS**, and how it fits in your website.
 
-## Advantages of Tina
+> If you want to jump right in, head over to our [Quickstart page](/docs/setup-overview/).
 
-### Git-based content management
-
-* Tina uses Git to provide a single source of truth for content and code, enhancing collaboration between developers and content editors.
-* Content changes are committed directly to your repository, ensuring version control and content history.
-
-### Real-time visual editing
-
-* Create and edit content directly in the context of your website or application with Tina's real-time visual editor.
-* Customizable content blocks allow content editors to assemble pages and manage content intuitively, similar to using a site builder.
-* The changes made by the editors can be previewed in real-time before publishing, ensuring the quality of the content.
-
-### Control over content
-
-* Tina's open-source model gives you complete control and ownership over your content.
-* Tina's (optional) self-hosted backend gives you piece of mind from vendor lock-in.
-
-### Scalability
-
-* **Performance at Scale:** Tina is designed for large-scale projects. Whether your site has hundreds or tens of thousands of pages, Tina ensures optimal performance.
-* **Powerful Query Capabilities:** With Tina's unique data layer, your Markdown content becomes as flexible and queryable as if it were in a database.
+<scrollBasedShowcase
+  showcaseItems={[
+    {
+      title: 'Introduction',
+      image: '/img/placeholder.png',
+      content:
+        'TinaCMS is an open-source Content Management System (CMS) that seamlessly integrates with your Markdown workflow.\n',
+      useAsSubsection: false,
+    },
+    {
+      title: 'Your Website',
+      image: '/img/docs/product-tour/headless_cms1.png',
+      content:
+        'With TinaCMS, The developer hosts the site where they like, using whichever framework they choose.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Headless CMS',
+      image: '/img/docs/product-tour/headless_cms2.png',
+      content:
+        'TinaCMS is "Headless", meaning it\'s decoupled from your website. TinaCMS provides a queryable content API that your website\'s code consumes.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'The CMS Backend',
+      image: '/img/docs/product-tour/queryable_database.png',
+      content:
+        'The TinaCMS backend provides the API for querying your content, offering support for filtering, searching, and pagination.\n',
+      useAsSubsection: false,
+    },
+    {
+      title: 'Git-Backed Content',
+      image: '/img/docs/product-tour/git-backed.png',
+      content:
+        'All your content gets backed by git into JSON/Markdown/MDX files.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'TinaCloud',
+      image: '/img/docs/product-tour/tina-cloud.png',
+      content:
+        'Out of the box, we provide an easy-to-use hosted version of the backend, called TinaCloud.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Self-Hosted Backend',
+      image: '/img/docs/product-tour/self-host-backend.png',
+      content:
+        'For those preferring more control and customization, TinaCMS also allows you to host the backend entirely on your own stack.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'The CMS Frontend',
+      image: '/img/docs/your-blocks.gif',
+      content:
+        'TinaCMS provides an intuitive CMS interface for your editors. For sites using React, TinaCMS supports "Visual Editing" to allow content editors to see real-time changes.\n',
+      useAsSubsection: false,
+    },
+    {
+      title: '/admin Route',
+      image: '/img/docs/product-tour/admin.png',
+      content:
+        'Users interact with the CMS by navigating to the `/admin` page on your site.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Saving',
+      image: '/img/docs/product-tour/git-save.png',
+      content:
+        'When users make a change in the CMS, a commit is made back to your Git repository.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Integrating TinaCMS into a site',
+      image: '/img/docs/product-tour/cli-init.png',
+      content:
+        'TinaCMS can be setup on your site with `tinacms init`. This installs a few Tina packages, and add some boilerplate.\n',
+      useAsSubsection: false,
+    },
+    {
+      title: 'Running TinaCMS Locally',
+      image: '/img/docs/product-tour/local-workflow.png',
+      content:
+        'You also have the flexibility to run TinaCMS locally, sourcing local files instead of interacting with the hosted API. This gives developers an ultra-fast feedback loop.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Content Modelling',
+      image: '/img/docs/product-tour/content-modelling.png',
+      content:
+        'Content in TinaCMS is modelled using a \\`tina/config.ts\\` file in your project. Through this, you can define "collections" that model various content types on your site.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Data-Fetching',
+      image: '/img/docs/product-tour/graphql-query_5.png',
+      content:
+        'TinaCMS provides a GraphQL API, making data-fetching more efficient and powerful.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Client',
+      image: '/img/docs/product-tour/client.png',
+      content:
+        'Moreover, we also generate a user-friendly client that simplifies the process of querying your content.\n',
+      useAsSubsection: true,
+    },
+    {
+      title: 'Type-Safety',
+      image: '/img/docs/product-tour/client-typesafe.png',
+      content:
+        'TinaCMS emphasizes type safety, ensuring your content queries remain error-free and consistent, thus improving code reliability and maintainability.\n',
+      useAsSubsection: true,
+    },
+  ]}
+/>

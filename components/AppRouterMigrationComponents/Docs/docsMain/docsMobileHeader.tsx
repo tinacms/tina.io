@@ -1,6 +1,6 @@
-import { DocsSearchBarHeader } from '../docsSearch/SearchNavigation';
 import { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import { DocsSearchBarHeader } from '../docsSearch/SearchNavigation';
 import DirectoryOverflowButton from './directoryOverflowButton';
 
 export const MobileVersionSelect = () => {
@@ -29,7 +29,7 @@ export const MobileVersionSelect = () => {
     <div className="relative">
       {/* VERSION SELECT PILL BUTTON */}
       <div
-        className="bg-white cursor-pointer px-4 py-1 rounded-2xl shadow-sm flex justify-center text-center items-center text-stone-600"
+        className="bg-white cursor-pointer px-4 py-1 rounded-lg shadow-md flex justify-center text-center items-center text-stone-600"
         onClick={() => setIsOverflowOpen(!isOverflowOpen)}
       >
         <div>{versionSelected}</div>
@@ -59,18 +59,24 @@ export const MobileVersionSelect = () => {
   );
 };
 
-const DocsMobileHeader = (data) => {
-  
+const DocsMobileHeader = (props) => {
+  const { docsData, learnData, learnActive, setLearnActive } = props;
+
   return (
     <div className="relative pb-20">
       <DocsSearchBarHeader
         paddingGlobal="pb-4"
-        headerColour="orange"
         headerPadding=""
         searchMargin=""
         searchBarPadding="py-3"
+        learnActive={learnActive}
+        setLearnActive={setLearnActive}
       />
-      <DirectoryOverflowButton tocData={data.data} />
+      <DirectoryOverflowButton
+        tocData={learnActive ? learnData : docsData}
+        label={learnActive ? 'Learn' : 'Documentation'}
+        color={learnActive ? 'blue' : 'orange'}
+      />
     </div>
   );
 };

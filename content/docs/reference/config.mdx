@@ -1,91 +1,317 @@
 ---
 id: /docs/reference/config/
 title: Config Reference
-last_edited: '2022-09-29T15:51:56.737Z'
+last_edited: '2025-03-26T00:00:43.096Z'
+tocIsHidden: false
 next: content/docs/reference/schema.mdx
 previous: content/docs/reference/overview.mdx
 ---
 
-# The config file
+The result of the `defineConfig` function when exported from `tina/config.{ts,tsx,js,jsx}` defines your TinaCMS setup.
 
-When you provide a file at `tina/config.{ts,tsx,js,jsx}` that exports a `defineConfig` function,
-Tina will automatically generate TinaCMS as a static asset. Note that it **must be** the default export of this file.
+Note that it **must be** the default export.
 
 > The location for the config file was previously at `.tina/config.{ts,tsx,js,jsx}`
 
-## Definition
+## Options
 
-| Property             | Description                                                                                                          |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `branch`             | The branch that will be used to query content on TinaCloud (Not used in local mode)                                  |
-| `clientId`           | The ClientId [generated on TinaCloud](/docs/tina-cloud/dashboard/) (Not used in local mode)                          |
-| `token`              | A read only token [generated on TinaCloud](/docs/tina-cloud/dashboard/projects/#api-tokens) (Not used in local mode) |
-| `build`              | Build configuration for storing Tina as a static asset                                                               |
-| `build.publicFolder` | The public asset folder for your framework                                                                           |
-| `build.outputFolder` | Within the public asset folder, the desired output location                                                          |
-| `build.basePath`     | If your site will be served at a sub-path like `my-domain.com/my-site`, provide `"my-site"`                          |
-| `media`              | [Media configuration](/docs/reference/media/overview/) for external and git backed media                             |
-| `schema`             | The [schema](/docs/reference/schema/) defines the shape of your content.                                             |
-| `search`             | [Search configuration](/docs/reference/search/overview/#configuration)                                               |
+<apiReference
+  title=""
+  property={[
+    {
+      groupName: "",
+      name: "schema",
+      type: "Schema",
+      description: "Defines your **content model**.\n",
+      required: true
+    },
+    {
+      groupName: "build",
+      name: "publicFolder",
+      type: "string",
+      required: true,
+      description: 'Application asset folder path.\n\nTypically, `"public"`.\n'
+    },
+    {
+      groupName: "build",
+      name: "outputFolder",
+      type: "string",
+      required: true,
+      description:
+        'The TinaCMS build path (editor route).\n\nTypically, `"admin"`.\n\nThis would be viewable at `[url]/admin/index.html`.\n'
+    },
+    {
+      groupName: "build",
+      name: "host",
+      type: "string | boolean",
+      description: "The host option for the vite config.\n"
+    },
+    {
+      groupName: "build",
+      name: "basePath",
+      type: "string",
+      description:
+        'Set if serving at a subpath.\n\nFor `[url]/my-site`, set to `"my-site"`.\n'
+    },
+    {
+      groupName: "",
+      name: "branch",
+      type: "string | null",
+      description:
+        "The base branch to pull content from. Required for **TinaCloud**.\n"
+    },
+    {
+      groupName: "",
+      name: "clientId",
+      type: "string | null",
+      description: "The`clientId` from TinaCloud. Required for **TinaCloud.**\n"
+    },
+    {
+      groupName: "",
+      name: "token",
+      type: "string | null",
+      description:
+        "Your read only token from TinaCloud. Required for **TinaCloud.**\n"
+    },
+    {
+      groupName: "",
+      name: "localContentPath",
+      type: "string",
+      description:
+        "The relative path of a seperate content repo in local development.\n"
+    },
+    {
+      groupName: "",
+      name: "authProvider",
+      type: "AuthProvider",
+      description:
+        "Set-up for [custom authentication](/docs/reference/self-hosted/auth-provider/overview).\n"
+    },
+    {
+      groupName: "admin",
+      name: "authHooks",
+      type: "AuthHooks",
+      description: "Used to run logic on authentication events.\n"
+    },
+    {
+      groupName: "ui",
+      name: "previewUrl",
+      type: "function -- context: { branch: string } => { url: string }",
+      description:
+        "Identify branch-specific URL patterns, such as for preview deployments, and link to them via editor.\n\n![](/img/docs/share-btn_xvmxii.png)\n"
+    },
+    {
+      groupName: "client",
+      name: "skip",
+      type: "boolean",
+      description: "Skip building the autogenerated GraphQL client.\n"
+    },
+    {
+      groupName: "client",
+      name: "referenceDepth",
+      type: "number",
+      description:
+        "Generated queries will traverse references to a given depth.\n",
+      default: "2"
+    },
+    {
+      groupName: "client",
+      name: "errorPolicy",
+      type: "'throw' | 'include'",
+      description:
+        "Sets client error handling. 'throw' will throw the error on query fail, 'include' will return it in the query response.\n",
+      default: "throw"
+    },
+    {
+      groupName: "media",
+      name: "loadCustomStore",
+      type: "() => Promise<Store>",
+      description:
+        "Load a custom media store like Cloudinary.\n\n**Either set this property or the** `media.tina` **object, not both.**\n"
+    },
+    {
+      groupName: "media",
+      name: "accept",
+      type: "string | string[]",
+      description:
+        'Allowed media types.\n\nFor example `["image/png", "image/jpeg"]` or `"image/*"`.\n'
+    },
+    {
+      groupName: "media.tina",
+      name: "publicFolder",
+      type: "string",
+      description: "Your asset file-path.\n"
+    },
+    {
+      groupName: "media.tina",
+      name: "mediaRoot",
+      description:
+        "The root folder for media (subdirectory of the public folder).\n",
+      type: "string"
+    },
+    {
+      groupName: "media.tina",
+      name: "static",
+      description: "Indicates whether editors can manage media.\n",
+      default: "false",
+      type: "boolean"
+    },
+    {
+      groupName: "search",
+      name: "indexBatchSize",
+      type: "number",
+      description: "The number of documents to index per PUT request.\n"
+    },
+    {
+      groupName: "search",
+      name: "maxSearchIndexFieldLength",
+      type: "number",
+      description:
+        "The maximum length of a string field that will be indexed for search.\n"
+    },
+    {
+      groupName: "search",
+      name: "searchClient",
+      type: "SearchClient",
+      description:
+        "An instance of a custom search client like Algolia.\n\n**Either set this property or the** `search.tina` **object, not both.**\n"
+    },
+    {
+      groupName: "search.tina",
+      name: "indexerToken",
+      type: "string",
+      description:
+        "Search index token with permissions to write to search index. Only used by CLI.\n"
+    },
+    {
+      groupName: "search.tina",
+      name: "stopwordLanguages",
+      type: "string[]",
+      description: "Stopword languages to use.\n",
+      default: '["eng"]'
+    },
+    {
+      groupName: "search.tina",
+      name: "tokenSplitRegex",
+      type: "string",
+      description: "Regex used for splitting tokens.\n",
+      default: "/[\\p{L}\\d_]+/"
+    },
+    {
+      groupName: "",
+      name: "contentApiUrlOverride",
+      type: "string",
+      description: "Override the default content API URL.\n",
+      experimental: true
+    }
+  ]}
+/>
 
-## Example
+## Examples
+
+### Vercel and TinaCloud Configuration
+
+This is a standard configuration using TinaCloud to host your datalayer, and the built-in Tina media and search capabilities.
 
 ```ts
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
-  'main'
+  'main';
 
 export default defineConfig({
   branch,
-  token: '<Your Read Only Token>' // generated on app.tina.io
-  clientId: '<Your Client ID>', // generated on app.tina.io
+  // generated by TinaCloud
+  token: '<Your Read Only Token>',
+  // generated by TinaCloud
+  clientId: '<Your Client ID>',
   build: {
-    publicFolder: 'public', // The public asset folder for your framework
-    outputFolder: 'admin'  // within the public folder
-  }
-  // See https://tina.io/docs/reference/schema/ for more information
+    publicFolder: 'public',
+    outputFolder: 'admin',
+  },
   schema: {
-    collections: [
-      //..Array of collections
-    ],
-  }
-})
+    //Content model definition here...
+  },
+  ui: {
+    previewUrl: (context) => {
+      // Use Vercel preview deployments based on branch names
+      return { url: `https://my-app-git-${context.branch}.vercel.app` };
+    },
+  },
+  media: {
+    tina: {
+      publicFolder: 'public',
+      mediaRoot: 'uploads',
+    },
+  },
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_SEARCH_TOKEN,
+    },
+  },
+});
 ```
 
-In this example, the TinaCMS admin will be viewable at `<my-site-url>/admin/index.html`.
-For more information [check out the content modeling section](/docs/schema/).
+### Cloudinary Media Store
 
-## Typescript Path Alias
+Tina supports both Git-backed media and specific external media providers:
 
-TinaCMS supports TypeScript path aliases in the `tina/config.{ts,js,tsx}` file and collections, making it easier to organize and maintain your code.
+```ts
+export default defineConfig({
+  // ... other config options
+  media: {
+    loadCustomStore: async () => {
+      const pack = await import('next-tinacms-cloudinary');
+      return pack.TinaCloudCloudinaryMediaStore;
+    },
+    accept: 'image/*',
+  },
+});
+```
 
-##### Use alias in tina/config.ts,js,tsx
+### TinaCloud Search Options
 
-Ensure that `tsconfig.json` exists at the root of your project. Define your aliases in the `compilerOptions` section:
+Tina provides built-in search capabilities through TinaCloud.
 
-```json
+```ts
+// Tina Cloud search
+export default defineConfig({
+  // ... other config options
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_SEARCH_TOKEN,
+      stopwordLanguages: ['eng', 'fra'],
+      tokenSplitRegex: '/[p{L}d_]+/',
+    },
+  },
+});
+```
+
+### Imports with Typescript Path Aliases
+
+TinaCMS supports TypeScript path aliases in the `tina/config.{ts,js,tsx}` file and collections.
+
+Ensure that `tsconfig.json` exists at the root of your project. Define your aliases in the `compilerOptions` section.
+
+```javascript
+//tsconfig.json
 {
   "compilerOptions": {
     "baseUrl": ".",
-      "paths": {
+    "paths": {
       "@/*": ["src/*"]
     }
   }
 }
 ```
 
-Figure: Your defined `tsconfig.json`
-
-You can now import utilities or other modules using the aliases:
+You can now import utilities or other modules using the aliases.
 
 ```typescript
 import { someUtility } from '@/lib/utils';
 
 export default defineConfig({
-  ....
-})
+  //...
+});
 ```
-
-Figure: Using aliases in `tina/config.{ts,js,tsx}`

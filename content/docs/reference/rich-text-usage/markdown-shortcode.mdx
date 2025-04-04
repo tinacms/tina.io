@@ -1,15 +1,21 @@
 ---
-title: Markdown Shortcode
-last_edited: '2024-09-17T23:33:12.783Z'
+title: Custom Markdown Syntax
+last_edited: '2025-03-27T04:57:08.395Z'
 next: ''
 previous: ''
 ---
 
-## Custom shortcode syntax
+<WarningCallout
+  body={<>
+    We are not continuously developing this.
+    
+    If you need this capability, we recommend using [mdx](/docs/reference/types/rendering-markdown#mdx-and-custom-elements) features instead.
+  </>}
+/>
 
-<WarningCallout body="This is an experimental feature, and the API is subject to change. Have any thoughts? Let us know in the chat, or through one of our community channels or via the related [GitHub discussion](https://github.com/tinacms/tinacms/discussions/4794)." />
+## Handling Markdown Shortcode
 
-If you have some custom shortcode logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
+If you have some custom **shortcode** logic in your markdown, you can specify it in the `templates` property and Tina will handle it as if it were a `jsx` element:
 
 The following snippet would throw an error while parsing since Tina doesn't know what to do with `{{}}`:
 
@@ -46,10 +52,10 @@ fields: [
       },
     ],
   },
-]
+];
 ```
 
-### Raw strings in shortcodes
+### Raw string shortcodes
 
 Certain frameworks support shortcodes with Raw string values:
 
@@ -83,10 +89,10 @@ fields: [
       },
     ],
   },
-]
+];
 ```
 
-### Nesting content in a shortcode
+### Nested content shortcodes
 
 Shortcodes can provide a `children` field, which allows content to be nested within a shortcode.
 
@@ -116,9 +122,9 @@ Your field template definition would look something like:
 }
 ```
 
-> Note: the children type currently needs to be of type: \`rich-text\`.
+> The children type needs to be of type `rich-text`.
 
-### Using shortcode names with dashes
+### Shortcode names with dashes
 
 Sometimes your shortcode will contain characters that aren't supported in Tina's content modelling
 
@@ -146,20 +152,10 @@ fields: [
       },
     ],
   },
-]
+];
 ```
 
-## Other notes
-
-### Full Spec
-
-The full Tina MDX spec can be found [here](https://github.com/tinacms/tinacms/blob/main/packages/%40tinacms/mdx/spec.md "TinaCMS MDX Spec")
-
-### Default values
-
-If setting a default value for a rich-text field, you must provide the document AST. See [example here](/docs/schema/#default-value-for-rich-text)
-
-### Shortcode in the CMS
+## Shortcode in the CMS
 
 The shortcode appears in the CMS as any other custom markdown embed. To inspect the shortcode in the CMS, use the raw markdown option in the editor.
 

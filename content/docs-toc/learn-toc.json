@@ -1,0 +1,237 @@
+{
+  "supermenuGroup": [
+    {
+      "title": "Beginner Series",
+      "items": [
+        {
+          "title": "What is the Beginner Series?",
+          "slug": "content/docs/beginner-tutorials/tutorial-overview.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "1. Your New TinaCMS Site",
+          "items": [
+            {
+              "title": "NextJS Setup",
+              "slug": "content/docs/beginner-tutorials/nextjs-app.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Cleanup Extra Code",
+              "slug": "content/docs/beginner-tutorials/intro-cleanup.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Install the CMS 🦙",
+              "slug": "content/docs/beginner-tutorials/install-tinacms.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Hello World! 👋🌏",
+              "slug": "content/docs/beginner-tutorials/hello-world.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Render Your Content",
+              "slug": "content/docs/beginner-tutorials/display-content.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "2. Live Editing ",
+          "items": [
+            {
+              "title": "Routing to the Editor",
+              "slug": "content/docs/beginner-tutorials/routing.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Wiring Content to the Editor",
+              "slug": "content/docs/beginner-tutorials/wiring-content.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Loading Your Content",
+              "slug": "content/docs/beginner-tutorials/loading-content.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "3. The Content Model",
+          "items": [
+            {
+              "title": "Our New Field",
+              "slug": "content/docs/beginner-tutorials/new-field.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "From String to Markdown 🌟",
+              "slug": "content/docs/beginner-tutorials/string-to-markdown.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Rendering our Markdown",
+              "slug": "content/docs/beginner-tutorials/rendering-markdown.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "A Thousand Words... 🖼️",
+              "slug": "content/docs/beginner-tutorials/new-picture.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "4. A Website Builder Experience",
+          "items": [
+            {
+              "title": "What are \"Blocks\"?",
+              "slug": "content/docs/beginner-tutorials/what-are-blocks.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Create a New Template",
+              "slug": "content/docs/beginner-tutorials/new-template.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Link it to Your Model",
+              "slug": "content/docs/beginner-tutorials/linking-to-model.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Render Your Templates",
+              "slug": "content/docs/beginner-tutorials/render-templates.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "A Website Builder Experience ✨",
+              "slug": "content/docs/beginner-tutorials/website-builder-experience.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        }
+      ]
+    },
+    {
+      "title": "Technical Guides",
+      "items": [
+        {
+          "title": "What is Markdown?",
+          "slug": "content/docs/editing/markdown.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Using Tina as a Website Builder",
+          "slug": "content/docs/editing/blocks.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Querying Tina Content at Runtime",
+          "slug": "content/docs/guides/react-data-fetching.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Configuring Collections",
+          "items": [
+            {
+              "title": "Single Document Collections",
+              "slug": "content/docs/editing/single-document-collections.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Marking Draft Documents",
+              "slug": "content/docs/drafts/drafts-fields.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Modifying Data on Save",
+              "slug": "content/docs/extending-tina/before-submit.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Automatic Filenames",
+              "slug": "content/docs/extending-tina/filename-customization.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "Framework-Specific Guides",
+          "items": [
+            {
+              "title": "Overview",
+              "slug": "content/docs/integration/frameworks.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Migrating From WordPress",
+              "slug": "content/docs/guides/converting-wordpress-to-tina.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Gatsby",
+              "items": [
+                {
+                  "title": "Migrating an existing Gatsby blog to TinaCMS",
+                  "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
+              "title": "NextJS",
+              "items": [
+                {
+                  "title": "Querying Tina Content in NextJS",
+                  "slug": "content/docs/guides/nextjs-data-fetching.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Internationalization with NextJS+Tina",
+                  "slug": "content/docs/guides/nextjs-internationalization.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Using Drafts with Visual Editing",
+                  "slug": "content/docs/guides/contextual-drafts.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
+              "title": "Docusaurus",
+              "slug": "content/docs/guides/docusaurus.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "Marking Draft Pages",
+          "slug": "content/docs/drafts/drafts-fields.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Separate Content Repo",
+          "slug": "content/docs/guides/separate-content-repo.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Internationalization",
+          "slug": "content/docs/guides/internationalization.mdx",
+          "_template": "item"
+        }
+      ]
+    }
+  ]
+}
