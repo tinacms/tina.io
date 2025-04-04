@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",
+    "@giscus/react": "^3.1.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",

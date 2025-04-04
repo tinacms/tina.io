@@ -9,6 +9,11 @@ env:
   NODE_OPTIONS: '--max_old_space_size=4096'
   TINA_SEARCH_TOKEN: ${{ secrets.TINA_SEARCH_TOKEN }}
   UNOPTIMIZED_IMAGES: 'true'
+  GISCUS_ORG: 'tinacms'
+  GISCUS_REPO_NAME: 'tina.io'
+  GISCUS_CATEGORY: 'Tina Blog Discussions'
+  GISCUS_REPO_ID: ${{ secrets. GISCUS_REPO_ID}}
+  GISCUS_CATEGORY_ID: ${{ secrets.GISCUS_CATEGORY_ID }}
 
 jobs:
   build:

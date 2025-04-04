@@ -1,5 +1,4 @@
-import { TinaMarkdownContent } from "tinacms/dist/rich-text";
-
+import { TinaMarkdownContent } from 'tinacms/dist/rich-text';
 
 interface Sys {
   filename: string;
@@ -20,6 +19,13 @@ interface PostSummary {
   title: string;
 }
 
+interface GiscusProps {
+  giscusRepo: `${string}/${string}`;
+  giscusRepoId: string;
+  giscusCategory: string;
+  giscusCategoryId: string;
+}
+
 export interface BlogPost {
   _sys: Sys;
   id: string;
@@ -31,6 +37,7 @@ export interface BlogPost {
   prev: PostSummary | null;
   next: PostSummary | null;
   body: TinaMarkdownContent;
+  giscusProps: GiscusProps;
 }
 
 export interface BlogPageClientProps {
