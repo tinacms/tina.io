@@ -534,7 +534,22 @@
       "_template": "features"
     },
     {
-      "_template": "spacer"
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "headline": "Skip the Drama, Chat with a Llama",
+      "text": "Not sure if TinaCMS is the right fit?  Let’s figure it out together. Book a call with our team.",
+      "buttons": [
+        {
+          "label": "Secondary Action",
+          "icon": false,
+          "variant": "default",
+          "size": "medium",
+          "url": "/",
+          "_template": "actions"
+        }
+      ],
+      "_template": "hero"
     }
   ]
 }
