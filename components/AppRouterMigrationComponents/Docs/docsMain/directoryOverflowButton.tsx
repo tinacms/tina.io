@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 
-const DirectoryOverflow = ({ tocData }) => {
+const DirectoryOverflow = ({ tocData, color }) => {
   return (
     <div className="absolute z-20 bg-white mt-4 rounded-lg w-full p-6 shadow-xl animate-fade-down animate-duration-300 overflow-y-scroll h-96">
-      <DocsNavigationList navItems={tocData} />
+      <DocsNavigationList navItems={tocData} color={color} />
     </div>
   );
 };
@@ -43,7 +43,7 @@ const DirectoryOverflowButton = (props) => {
       </div>
       {isTableOfContentsOpen && props.tocData && (
         <div className="w-full relative">
-          <DirectoryOverflow tocData={props.tocData} />
+          <DirectoryOverflow tocData={props.tocData} color={props.color} />
         </div>
       )}
     </div>

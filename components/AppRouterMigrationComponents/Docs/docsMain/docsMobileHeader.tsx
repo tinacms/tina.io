@@ -66,7 +66,6 @@ const DocsMobileHeader = (props) => {
     <div className="relative pb-20">
       <DocsSearchBarHeader
         paddingGlobal="pb-4"
-        headerColour="orange"
         headerPadding=""
         searchMargin=""
         searchBarPadding="py-3"
@@ -76,6 +75,7 @@ const DocsMobileHeader = (props) => {
       <DirectoryOverflowButton
         tocData={learnActive ? learnData : docsData}
         label={learnActive ? 'Learn' : 'Documentation'}
+        color={learnActive ? 'blue' : 'orange'}
       />
     </div>
   );

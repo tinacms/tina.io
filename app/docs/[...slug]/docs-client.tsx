@@ -8,7 +8,7 @@ import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { useNavigationData } from '../toc-layout-client';
@@ -25,6 +25,9 @@ export default function DocsClient({ props }) {
   const { PageTableOfContents } = props;
   const DocumentationData = data.doc;
 
+  const { learnActive, setLearnActive } = useDocsNavigation();
+  const [isLearnDocument, setIsLearnDocument] = useState(learnActive);
+
   const { activeIds, contentRef } = useTocListener(DocumentationData);
 
   const previousPage = {
@@ -37,7 +40,7 @@ export default function DocsClient({ props }) {
     title: DocumentationData?.next?.title,
   };
 
-  useEffect(() => {
+  const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
       const slug = filepath.substring(7, filepath.length - 4) + '/';
@@ -46,15 +49,21 @@ export default function DocsClient({ props }) {
           if (item.items) {
             recurseItems(item.items);
           } else if (item.slug === slug) {
-            setLearnActive(true);
+            callback(true);
           }
         });
       };
       recurseItems(NavigationLearnData?.data);
     }
-  }, [NavigationLearnData, DocumentationData]);
+  };
 
-  const { learnActive, setLearnActive } = useDocsNavigation();
+  useEffect(() => {
+    checkLearn(setIsLearnDocument);
+  }, []);
+
+  useEffect(() => {
+    checkLearn(setLearnActive);
+  }, [NavigationLearnData, DocumentationData]);
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
