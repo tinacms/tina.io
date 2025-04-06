@@ -12,7 +12,10 @@ function useWindowSize() {
   if (typeof window !== 'undefined') {
     return { width: 1200, height: 800 };
   }
-  const [windowSize, setWindowSize] = useState<{ width: number; height: number }>();
+  const [windowSize, setWindowSize] = useState<{
+    width: number;
+    height: number;
+  }>();
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,7 +62,8 @@ function createListener(
     const scrollPos =
       window.scrollY - componentRef.current.offsetTop + window.innerHeight / 6;
     const newActiveIds: string[] = [];
-    const relativeScrollPosition = scrollPos / componentRef.current.scrollHeight;
+    const relativeScrollPosition =
+      scrollPos / componentRef.current.scrollHeight;
 
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
       (heading) => relativeScrollPosition >= heading.relativePagePosition
@@ -159,7 +163,11 @@ export default function ScrollBasedShowcase(data: {
   /** Throttled scroll event */
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const activeTocListener = createListener(componentRef, headings, setActiveIds);
+    const activeTocListener = createListener(
+      componentRef,
+      headings,
+      setActiveIds
+    );
     window.addEventListener('scroll', activeTocListener);
     return () => window.removeEventListener('scroll', activeTocListener);
   }, [headings, windowSize]);
@@ -173,17 +181,11 @@ export default function ScrollBasedShowcase(data: {
     }
   }, [activeIds, headings]);
 
-  console.log(
-    componentRef.current?.scrollHeight -
-      headings.filter((h) => activeIds.includes(h.id))[activeIds.length - 1]?.offset -
-      activeImg.current?.scrollHeight
-  );
-
   return (
     <div
       ref={componentRef}
       // doc-container replacements:
-      className="block relative w-full px-8 pt-4 pb-12 my-20 mx-auto"
+      className="block relative w-full my-5 mx-auto"
     >
       <div className="flex relative min-h-screen">
         <div id="main-content-container" className="flex-1 m-2 p-2 box-border">
@@ -197,9 +199,10 @@ export default function ScrollBasedShowcase(data: {
                 // If active => full opacity + orange border + text color
                 // If not => half opacity + gray border
                 className={`mt-0 md:mt-8 transition-all duration-300 ease-in-out
-                  ${isFocused
-                    ? 'opacity-100  text-gray-900'
-                    : 'opacity-15  border-gray-300 text-gray-800'
+                  ${
+                    isFocused
+                      ? 'opacity-100  text-gray-900'
+                      : 'opacity-15  border-gray-300 text-gray-800'
                   }
                 `}
               >
@@ -209,7 +212,15 @@ export default function ScrollBasedShowcase(data: {
                     className="pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
-                    <div className={`bg-gradient-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${isFocused ? 'from-orange-400 via-orange-500 to-orange-600' : 'from-gray-800 to-gray-700' } !important`}>{item.title}</div>
+                    <div
+                      className={`bg-gradient-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${
+                        isFocused
+                          ? 'from-orange-400 via-orange-500 to-orange-600'
+                          : 'from-gray-800 to-gray-700'
+                      } !important`}
+                    >
+                      {item.title}
+                    </div>
                   </div>
                 ) : (
                   <div
@@ -217,13 +228,28 @@ export default function ScrollBasedShowcase(data: {
                     className="pointer-events-none"
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
-                    <h2 className={`bg-gradient-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${isFocused ? 'from-orange-400 via-orange-500 to-orange-600' : 'from-gray-800 to-gray-700' }`}>{item.title}</h2>
+                    <h2
+                      className={`bg-gradient-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${
+                        isFocused
+                          ? 'from-orange-400 via-orange-500 to-orange-600'
+                          : 'from-gray-800 to-gray-700'
+                      }`}
+                    >
+                      {item.title}
+                    </h2>
                   </div>
                 )}
 
-                <ul className={`list-none pl-4 transition-colors duration-500 ease-in-out border-l-4 ${isFocused ? 'border-orange-400' : 'border-gray-800' }`}>
+                <ul
+                  className={`list-none pl-4 transition-colors duration-500 ease-in-out border-l-4 ${
+                    isFocused ? 'border-orange-400' : 'border-gray-800'
+                  }`}
+                >
                   <li>
-                    <TinaMarkdown content={item.content} components={docAndBlogComponents} />
+                    <TinaMarkdown
+                      content={item.content}
+                      components={docAndBlogComponents}
+                    />
                   </li>
                 </ul>
 
@@ -240,7 +266,7 @@ export default function ScrollBasedShowcase(data: {
         </div>
 
         {/* This image container is only displayed on md+ */}
-        <div className="relative w-full flex-1 hidden md:block">
+        <div className="relative w-full flex-1 hidden md:block overflow-hidden">
           <img
             ref={activeImg}
             src={headings[0]?.src || ''}
@@ -250,9 +276,13 @@ export default function ScrollBasedShowcase(data: {
               opacity: activeIds.length ? 1 : 0,
               bottom: Math.max(
                 componentRef.current?.scrollHeight -
-                  headings.filter((h) => activeIds.includes(h.id))[activeIds.length - 1]
-                    ?.offset -
-                  activeImg.current?.scrollHeight,
+                  headings.filter((h) => activeIds.includes(h.id))[
+                    activeIds.length - 1
+                  ]?.offset -
+                  (activeIds.includes(headings[0]?.id) && activeIds.length === 1
+                    ? activeImg.current?.scrollHeight
+                    : activeImg.current?.scrollHeight / 1.2) +
+                  (activeIds.length - 1) * 32,
                 0
               ),
             }}

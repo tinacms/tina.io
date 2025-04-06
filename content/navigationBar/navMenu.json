@@ -53,6 +53,10 @@
           "href": "/roadmap"
         },
         {
+          "label": "Events",
+          "href": "/events"
+        },
+        {
           "label": "Support",
           "href": "/docs/support"
         },

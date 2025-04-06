@@ -1,5 +1,5 @@
-import IconSelector from "components/forms/IconSelector";
-import { wrapFieldsWithMeta } from "tinacms";
+import IconSelector from 'components/forms/IconSelector';
+import { wrapFieldsWithMeta } from 'tinacms';
 
 export const conferenceTinaCMSCollection = {
   name: 'conference',
@@ -227,7 +227,7 @@ export const conferenceTinaCMSCollection = {
         },
       ],
     },
-    
+
     {
       name: 'speakerSchedule',
       label: 'Speaker Schedule',
@@ -235,7 +235,11 @@ export const conferenceTinaCMSCollection = {
       list: true,
       ui: {
         itemProps: (item) => {
-          return { label: `${item.talkSpeakerName && `${item.talkSpeakerName} -`} ${item.speechTitle}` };
+          return {
+            label: `${item.talkSpeakerName && `${item.talkSpeakerName} -`} ${
+              item.speechTitle
+            }`,
+          };
         },
       },
       fields: [

@@ -6,7 +6,7 @@ seo:
 title: Next.js App Router
 last_edited: '2025-03-10T01:28:03.399Z'
 next: content/docs/frameworks/next/pages-router.mdx
-previous: content/docs/frameworks/next/overview.mdx
+previous: content/docs/introduction/using-starter.mdx
 ---
 
 > 👆This guide assumes you are using the **[Next.js app router.](https://nextjs.org/docs/app)**
@@ -183,8 +183,8 @@ export default async function Page() {
 
 As you may have noticed this is a Server Rendered page. Depending on how this page is generated can mean Next will either,
 
-* **A. Build this as a Dynamic / Server Rendered page**
-* **B. Build this as a Static page.**
+- **A. Build this as a Dynamic / Server Rendered page**
+- **B. Build this as a Static page.**
 
 This is up to you on how you want this page to be rendered.
 
@@ -273,7 +273,7 @@ There are 2 ways to modify your site to best work with the Vercel Data Cache:
 1. Manually updating the default re-validation time for route segments. This will cause Incremental Static Regeneration to rebuild the pages whilst re-validating cached content API responses at runtime with updated content. Find more information here: [https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
 2. Add an extra parameter to your query (TinaCMS generated) e.g. \
    `const response = await client.queries.page({ relativePath: 'pages/home.mdx'}, { fetchOptions: { next: { revalidate: 60 } })})`\
-   This will be passed to the underlying `fetch` request.  Find more information about how Next.js extends `fetch`: [https://nextjs.org/docs/app/api-reference/functions/fetch](https://nextjs.org/docs/app/api-reference/functions/fetch)
+   This will be passed to the underlying `fetch` request. Find more information about how Next.js extends `fetch`: [https://nextjs.org/docs/app/api-reference/functions/fetch](https://nextjs.org/docs/app/api-reference/functions/fetch)
 
 ### Newly Created Content Items Not Appearing on Page
 
@@ -294,6 +294,6 @@ For more detailed information about caching in Next.js, refer to the official Ne
 
 ## Next Steps
 
-* [Check out the content modeling docs](/docs/schema/)
-* [Learn how to query your content](/docs/features/data-fetching/)
-* [Deploy Your Site](/docs/tina-cloud)
+- [Check out the content modeling docs](/docs/schema/)
+- [Learn how to query your content](/docs/features/data-fetching/)
+- [Deploy Your Site](/docs/tina-cloud)

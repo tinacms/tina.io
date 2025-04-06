@@ -1,45 +1,38 @@
 ---
-seo:
-  description: >-
-    Learn how to use the Boolean field in TinaCMS, including configuration
-    options and best practices for defining true/false values in your schema.
-title: The "boolean" field
-last_edited: '2025-03-06T00:51:14.950Z'
+title: Boolean Fields
+last_edited: '2025-03-13T04:45:39.806Z'
 next: ''
 previous: ''
 ---
 
-## `boolean` Type
+A toggle input that stores `true` or `false` values.
 
-```ts
-type BooleanField = {
-  label: string
-  name: string
-  type: 'boolean'
-  list?: boolean
-  // See https://tina.io/docs/extending-tina/overview/ for customizing the UI
-  ui?: {
-    label?: string
-    description?: string
-    component?: FC<any> | string | null
-    parse?: (value: boolean | boolean[], name: string, field: F) => any
-    format?: (value: boolean | boolean[], name: string, field: F) => any
-    validate?(
-      // boolean or  boolean[] depends on list true or false
-      value: boolean | boolean[],
-      allValues: any,
-      meta: any,
-      field: UIField<F, Shape>
-    ): string | undefined | void
-  }
-}
-```
+## Type Definition
+
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
+
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: 'Set this to `"boolean"` to use the Boolean Field.\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: 'The name of the field for internal use.\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
 
 ## Examples
 
 Tina will generate the appropriate component depending on the configuration provided.
 
-### Simple
+### Simple field
 
 ```javascript
 {

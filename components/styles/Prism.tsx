@@ -1,17 +1,15 @@
-import React from 'react'
-import { Highlight, themes, Prism as rootPrism } from 'prism-react-renderer'
-
-//import 'prismjs/components/prism-bash'
-;(typeof global !== 'undefined' ? global : window).Prism = rootPrism
-require('prismjs/components/prism-bash')
-require('prismjs/components/prism-diff')
-require('prismjs/components/prism-css')
-require('prismjs/components/prism-json')
+import { Highlight, Prism as rootPrism, themes } from 'prism-react-renderer';
+import React from 'react';
+(typeof global !== 'undefined' ? global : window).Prism = rootPrism;
+require('prismjs/components/prism-bash');
+require('prismjs/components/prism-diff');
+require('prismjs/components/prism-css');
+require('prismjs/components/prism-json');
 
 export const Prism = (props: {
-  value: string
-  lang?: string
-  theme?: keyof typeof themes
+  value: string;
+  lang?: string;
+  theme?: keyof typeof themes;
 }) => {
   return (
     <Highlight
@@ -27,18 +25,23 @@ export const Prism = (props: {
             width: '100%',
             border: 'none',
             marginBottom: 0,
-            borderRadius: '12px', 
+            borderRadius: '12px',
           }}
         >
           {tokens.map((line, i) => (
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
+                <span
+                  {...getTokenProps({ token, key })}
+                  style={{
+                    paddingRight: key === line.length - 1 ? '3em' : '0px',
+                  }}
+                />
               ))}
             </div>
           ))}
         </pre>
       )}
     </Highlight>
-  )
-}
+  );
+};

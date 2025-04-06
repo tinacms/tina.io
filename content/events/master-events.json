@@ -77,6 +77,17 @@
       "link": "https://ndcmelbourne.com/",
       "markerLAT": -27.81015,
       "markerLONG": 220.9541
+    },
+    {
+      "headline": "TinaCon 2025",
+      "startDate": "2025-05-02T00:00:00.000Z",
+      "startTime": "2025-03-27T08:00:00.000Z",
+      "timezone": 11,
+      "location": "Melbourne, Australia",
+      "image": "/TinaCon-Mobile.png",
+      "link": "https://tina.io/conference",
+      "markerLAT": -27.81015,
+      "markerLONG": 220.9541
     }
   ]
 }
