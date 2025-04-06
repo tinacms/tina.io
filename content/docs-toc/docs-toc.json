@@ -215,141 +215,44 @@
           "_template": "items"
         },
         {
-          "title": "Overview",
-          "slug": "content/docs/reference/media/overview.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Repo-based Media",
-          "slug": "content/docs/reference/media/repo-based.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "External Media Providers",
+          "title": "Media Storage",
           "items": [
             {
-              "title": "Setting up Authentication",
-              "slug": "content/docs/reference/media/external/authentication.mdx",
+              "title": "Repo-based Media",
+              "slug": "content/docs/reference/media/repo-based.mdx",
               "_template": "item"
             },
             {
-              "title": "Digital Ocean Spaces",
-              "slug": "content/docs/reference/media/external/do-spaces.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Cloudinary",
-              "slug": "content/docs/reference/media/external/cloudinary.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "AWS S3 Bucket",
-              "slug": "content/docs/reference/media/external/s3.mdx",
-              "_template": "item"
-            }
-          ],
-          "_template": "items"
-        }
-      ]
-    },
-    {
-      "title": "Drafts",
-      "items": [
-        {
-          "title": "Overview",
-          "slug": "content/docs/drafts/overview.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Draft Fields",
-          "slug": "content/docs/drafts/drafts-fields.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Editorial Workflow",
-          "slug": "content/docs/drafts/editorial-workflow.mdx",
-          "_template": "item"
-        }
-      ]
-    },
-    {
-      "title": "Guides",
-      "items": [
-        {
-          "title": "Overview",
-          "slug": "content/docs/guides.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Framework Guides",
-          "items": [
-            {
-              "title": "Overview",
-              "slug": "content/docs/integration/frameworks.mdx",
-              "_template": "item"
-            },
-            {
-              "title": "Gatsby",
+              "title": "External Media Providers",
               "items": [
                 {
-                  "title": "Migrating an existing Gatsby blog to TinaCMS",
-                  "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
+                  "title": "Backend Media Handler",
+                  "slug": "content/docs/reference/media/external/authentication.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Digital Ocean Spaces",
+                  "slug": "content/docs/reference/media/external/do-spaces.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Cloudinary",
+                  "slug": "content/docs/reference/media/external/cloudinary.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "AWS S3 Bucket",
+                  "slug": "content/docs/reference/media/external/s3.mdx",
                   "_template": "item"
                 }
               ],
               "_template": "items"
-            },
-            {
-              "title": "NextJS",
-              "items": [
-                {
-                  "title": "Querying Tina Content in NextJS",
-                  "slug": "content/docs/guides/nextjs-data-fetching.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "Internationalization with NextJS+Tina",
-                  "slug": "content/docs/guides/nextjs-internationalization.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "Using Drafts with Visual Editing",
-                  "slug": "content/docs/guides/contextual-drafts.mdx",
-                  "_template": "item"
-                }
-              ],
-              "_template": "items"
-            },
-            {
-              "title": "Docusaurus",
-              "slug": "content/docs/guides/docusaurus.mdx",
-              "_template": "item"
             }
           ],
           "_template": "items"
         },
         {
-          "title": "Separate Content Repo",
-          "slug": "content/docs/guides/separate-content-repo.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Querying Tina Content at Runtime",
-          "slug": "content/docs/guides/react-data-fetching.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Internationalization",
-          "slug": "content/docs/guides/internationalization.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Migrating From WordPress",
-          "slug": "content/docs/guides/converting-wordpress-to-tina.mdx",
-          "_template": "item"
-        },
-        {
-          "title": "Migrating From Forestry",
+          "title": "Visual Editing",
           "items": [
             {
               "title": "Visual Editing Setup",
@@ -368,11 +271,6 @@
             }
           ],
           "_template": "items"
-        },
-        {
-          "title": "Naming conventions for collections",
-          "slug": "content/docs/guides/naming-conventions.mdx",
-          "_template": "item"
         }
       ]
     },
