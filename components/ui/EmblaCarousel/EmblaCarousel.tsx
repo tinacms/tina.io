@@ -79,7 +79,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-      <div className="flex justify-center items-center gap-2">
+      <div className="flex justify-center items-center gap-4">
         {Array.from({ length: slideNumber }).map((_, index) => (
           <button
             className={`w-4 h-4 rounded-full transition-colors ${
