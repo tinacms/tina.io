@@ -3,7 +3,7 @@
 import { EmblaOptionsType } from 'embla-carousel';
 import ClassNames from 'embla-carousel-class-names';
 import useEmblaCarousel from 'embla-carousel-react';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 type PropType = {
   slides: number[];
@@ -15,7 +15,29 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const options: EmblaOptionsType = {
     loop: true,
   };
+  const [slideNumber, setSlideNumber] = useState(slides?.length);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [ClassNames()]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
 
   return (
     <section
@@ -56,6 +78,18 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="flex justify-center items-center gap-2">
+        {Array.from({ length: slideNumber }).map((_, index) => (
+          <button
+            className={`w-4 h-4 rounded-full transition-colors ${
+              index === selectedIndex ? 'bg-orange-500' : 'bg-gray-300'
+            }`}
+            key={`embla-carousel-dot-${index}`}
+            onClick={() => scrollTo(index)}
+            type="button"
+          />
+        ))}
       </div>
     </section>
   );
