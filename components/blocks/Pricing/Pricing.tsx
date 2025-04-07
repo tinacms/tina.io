@@ -274,7 +274,7 @@ export function PillSwitch({
 }
 
 export function PricingBlock({ data }) {
-  const [isMonthly, setIsMonthly] = useState(false);
+  const [isMonthly, setIsMonthly] = useState(true);
 
   return (
     <div className="max-w-7xl w-full mx-8">

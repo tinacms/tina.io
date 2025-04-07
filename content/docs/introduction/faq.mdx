@@ -9,7 +9,7 @@ previous: ''
 
 TinaCloud is a hosted [datalayer](/docs/reference/content-api/data-layer) for TinaCMS. TinaCloud is the easiest way to use TinaCMS in production. It provides:
 
-* A hosted GraphQL endpoint for your content
+* A hosted GraphQL endpoint for your content,
 * Git integration
 * User management
 * [Editorial Workflow](/docs/drafts/editorial-workflow) features
@@ -22,7 +22,7 @@ For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
 ## 2. Where can I get help or share an idea for TinaCMS or TinaCloud?
 
-Check out our communities at [tina.io/community](https://tina.io/community).
+* Check out our communities at [https://tina.io/community/](https://tina.io/community/)
 
 ## 3. What versions of Node are supported?
 
@@ -54,13 +54,13 @@ The reason for its absence is due to the process involving media uploads. When u
 
 TinaCloud allows for changing the content branch at runtime, a feature managed through URL modification. However, in self-hosted Tina, changing branches is restricted to the build phase only.
 
-This limitation means that commands like...
+This limitation means that commands like:
 
 ```ts
 client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 ```
 
-...are not functional in a self-hosted Tina setup.
+are not functional in a self-hosted Tina setup.
 
 ### 3. Search
 
@@ -79,35 +79,31 @@ Follow these steps to set it up:
 1. Go to your [TinaCloud account settings](https://app.tina.io/account/settings)
 2. Fill out the git co-author name and email
 3. Click `Enable co-authoring`
-4. Click `Save`
+4. Click Save
 
 > **Note:** The co-author email is publicly viewable on GitHub. If you want to hide your email, GitHub provides an anonymous email address for each user. You can find your anonymous email address in the [GitHub email settings](https://github.com/settings/emails). This email address can then be configured in TinaCloud as the co-author.
 
-Find out more about [Git Co-Authoring](/docs/tina-cloud/git-co-authoring).
+Find out more about [Git Co-Authoring](/docs/tina-cloud/git-co-authoring)
 
 ## 6. Why do I need a database when using markdown?
 
-A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations. 
-
-Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by TinaCloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.
+A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations. Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by TinaCloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.
 
 ## 7. What is "Local Mode" vs "Prod Mode"?
 
-### Local Mode
+### Local-Mode
 
 When developers are developing locally, it's often convenient to load/save content from their local filesystem rather than connecting to the content on TinaCloud.
 
 When in local-mode, you **will not** need to login to enter edit-mode.
 
-
 <WarningCallout
   body={<>
-    **Note:** Local-mode is meant for developing locally, and will not work when your site is hosted on production. When in local-mode, Tina tries to hit `http://localhost:4001`, which isn't available at runtime on your production site (and neither is the underlying filesystem content).
+    Note: Local-mode is meant for developing locally, and will not work when your site is hosted on production. When in local-mode, Tina tries to hit `http://localhost:4001`, which isn't available at runtime on your production site (and neither is the underlying filesystem content).
   </>}
 />
 
-
-### Prod Mode
+### Prod-Mode
 
 Once you are ready to host your site in production and put editing behind authentication, you can self-host the CMS backend yourself or you can use TinaCloud's hosted backend.
 
@@ -115,11 +111,11 @@ Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using [TinaClo
 
 ## 8. Does TinaCloud only work with GitHub repositories?
 
-Currently yes, the first Git provider that TinaCloud integrates with is GitHub. Other Git providers may be available in the future.
+Currently, yes, the first Git provider that TinaCloud integrates with is GitHub. Other Git providers may be available in the future.
 
 ## 9. Does TinaCloud work with Monorepos?
 
-It does! TinaCloud can work with sites inside monorepos by specifying the path to your `tina` folder in your project configuration.
+It does! TinaCloud can work with sites inside monorepos by specifying the path to your `tina` folder in your Project configuration.
 
 If your repo is not a monorepo, there's no need to do any configuration. We'll expect your `tina` folder at the root of your repo.
 
@@ -147,7 +143,7 @@ The most common reasons for this issue are:
 
 ### Site is building on a sub-path
 
-There is a known limitation where TinaCMS doesn't load assets correctly when the admin is deployed to a sub-path: (`https://jamespohalloran.github.io/my-site-root/admin/` for example). To resolve the issue, in your [Tina config file](/docs/reference/config/), set the `build.basePath` property to value of the sub-path (e.g. `my-site-root`).
+There is a known limitation where Tinacms doesn't load assets correctly when the admin is deployed to a sub-path: (`https://jamespohalloran.github.io/my-site-root/admin/` for example). To resolve the issue, in your [Tina config file](/docs/reference/config/), set the `build.basePath` property to value of the sub-path (e.g. `my-site-root`).
 
 ## 11. How do I resolve "Failed loading TinaCMS assets" error?
 
@@ -163,7 +159,7 @@ If your site is served at a sub-directory, ensure that your `build.basePath` is 
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
-**Video: FAQ - Setting a base path for TinaCMS (3 min)**
+**Video: FAQ - Setting a base path for TinaCMS (3min)**
 
 ## 12. What are the common TinaCloud errors?
 
@@ -171,21 +167,22 @@ If your site is served at a sub-directory, ensure that your `build.basePath` is 
 
 TinaCloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
-* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote
-  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it
-* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder
-  * The referenced branch should be created and should contain the `tina` folder
-* The apiURL prop is misconfigured on the TinaCMS component
-  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch
+* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote.
+  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
+* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder.
+  * The referenced branch should be created and should contain the `tina` folder.
+* The apiURL prop is misconfigured on the TinaCMS component.
+  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch.
 
-### 2. How do I resolve `The local GraphQL schema doesn't match the remote GraphQL schema` error?
+### 2. How do I resolve `The local GraphQL schema doesn't match the remote GraphQL schema.` errors?
 
-If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud. To resolve it:
+If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud.
+To resolve it:
 
-1. Ensure that your schema (generated from `tina/config.ts`) does not include any varying information, such as timestamps or random text
-2. Ensure that you have the latest versions of `@tinacms/cli` and `tinacms` in your project
-3. Run the dev command locally
-4. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud
+1. Ensure that your schema (generated from `tina/config.ts`) does not include any varying information, such as timestamps or random text.
+2. Ensure that you have the latest versions of `@tinacms/cli` and `tinacms` in your project.
+3. Run the dev command locally.
+4. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
 
 If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of `tinacms` and `@tinacms/cli` on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
 
@@ -193,13 +190,13 @@ If you are getting this error when access the TinaCMS interface, it can be cause
 
 If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, or see no branches indexed at all, try the following:
 
-1. Verify that a configuration file exists at `tina/config.ts` on the default branch
-2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process
-3. Verify that the branch exists in the GitHub repository
-4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved
+1. Verify that a configuration file exists at `tina/config.ts` on the default branch.
+2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process.
+3. Verify that the branch exists in the GitHub repository.
+4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved.
 5. Ensure that the Tina project is located in the root directory
 
-### 4. How do I resolve `There was a problem saving your document` error?
+### 4. How do I resolve `There was a problem saving your document` errors?
 
 When using TinaCloud without [Editorial Workflow](/editorial-workflow), you need to ensure that the [TinaCloud App](https://github.com/apps/tina-cloud-app) is able to commit to the selected branch of the repository.
 
@@ -224,16 +221,15 @@ To fix this issue, either:
   Ensure that the TinaCloud app is allowed to bypass the rule requiring branch protection
 * Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
 
-### 5. How do I resolve `Invalid or undefined branch` error?
+### 5. How do I resolve `Invalid or undefined branch` errors?
 
 The current branch that Tina is using is invalid or undefined. Double check that the correct branch is selected and it does in fact exist.
 
 You can view the branches that have been indexed by TinaCloud by visiting `https://app.tina.io/projects/<your-project-id>/configuration`.
 
-![Indexed Branches](/img/docs/tina-cloud/branch-status.png)\
-**Figure: Branches indexed by TinaCloud**
+![Indexed Branches](/img/docs/tina-cloud/branch-status.png)
 
-### 6. How do I resolve `tina directory not pushed to git` error?
+### 6. How do I resolve `tina directory not pushed to git` errors?
 
 Everything in the `tina` directory (except the `__generated__` folder) needs to be pushed up to the git repository. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). Also make sure that the branch you're trying to use has the `tina` directory and is up to date.
 
@@ -241,17 +237,13 @@ Everything in the `tina` directory (except the `__generated__` folder) needs to 
 
 The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
 
-### 8. How do I resolve `Invalid ` errors?
+### 8. How do I resolve `Invalid Site URL` errors?
 
-When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud Site URLs. 
+When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud site URLs. To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
 
-To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
+!['?origin=' URL parameter](/img/docs/introduction/origin-url-highlight.png)
 
-!['?origin=' URL parameter](/img/docs/introduction/origin-url-highlight.png)\
-**Figure: URL parameter**
-
-![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)\
-**Figure: TinaCloud Site URLs settings**
+![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)
 
 ## 13. How to to access local GraphQL server when it's not running or in prod?
 
@@ -259,9 +251,9 @@ To resolve this, ensure that one of the URLs specified in your TinaCloud Site UR
 
 Make sure your API URL isn't set to point at your local GraphQL server when in production. You should be pointing to the ContentAPI.
 
-### Locally
+### Working locally
 
-If you are working locally, make sure your [GraphQL server is running](/docs/graphql/cli/).
+If you are working locally, make sure your GraphQL server is running. See [here](/docs/graphql/cli/) for more information.
 
 ## 14. Vercel Deployment Issues -  What are the common issues when deploying starter templates?
 
@@ -269,7 +261,6 @@ If you are working locally, make sure your [GraphQL server is running](/docs/gra
 
 After choosing which starter template to deploy and being redirected to Vercel, a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened."
 
-![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)\
-**Figure: Popup blocked**
+![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)
 
 To fix, check your browser's address bar for blocked popups, allow them, and retry.

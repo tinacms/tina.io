@@ -1,9 +1,10 @@
 import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
+import { getDocsNav, getLearnNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import { getExcerpt } from 'utils/getExcerpt';
-import DocsClient from './docs-client';
+import DocsClient from './DocsPagesClient';
 
 export const dynamicParams = false;
 
@@ -55,8 +56,11 @@ export default async function DocPage({
   const slug = params.slug.join('/');
 
   try {
-    // Only fetch page data - navigation data is provided by layout
-    const results = await client.queries.doc({ relativePath: `${slug}.mdx` });
+    const [results, navDocData, navLearnData] = await Promise.all([
+      client.queries.doc({ relativePath: `${slug}.mdx` }),
+      getDocsNav(),
+      getLearnNav(),
+    ]);
 
     const docData = results.data.doc;
     const PageTableOfContents = getTableOfContents(docData.body.children);
@@ -67,10 +71,15 @@ export default async function DocPage({
       data: results.data,
       PageTableOfContents,
       DocumentationData: docData,
+      NavigationDocsData: navDocData,
+      NavigationLearnData: navLearnData,
     };
 
-    // Use DocsClient directly - navigation data will be accessed via context in the component
-    return <DocsClient props={props} />;
+    return (
+      <div>
+        <DocsClient props={props} />
+      </div>
+    );
   } catch (error) {
     console.error('Found an error catching data:', error);
     return notFound();

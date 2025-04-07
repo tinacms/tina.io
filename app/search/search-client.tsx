@@ -52,6 +52,7 @@ export default function SearchPageClient() {
           <div className="block lg:hidden">
             <DocsSearchBarHeader
               paddingGlobal={undefined}
+              headerColour="orange"
               headerPadding=""
               searchMargin="mb-6"
               searchBarPadding=""

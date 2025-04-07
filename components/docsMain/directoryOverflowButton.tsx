@@ -1,25 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { DocsNavigationList } from 'components/DocumentationNavigation/DocsNavigationList';
+import { useState, useEffect, useRef } from 'react';
 import { MdMenu } from 'react-icons/md';
-import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 
 const DirectoryOverflow = ({ tocData }) => {
   return (
     <div className="absolute z-20 bg-white mt-4 rounded-lg w-full p-6 shadow-xl animate-fade-down animate-duration-300 overflow-y-scroll h-96">
-      <DocsNavigationList navItems={tocData} />
+      <DocsNavigationList navItems={tocData.tocData} />
     </div>
   );
 };
 
-const DirectoryOverflowButton = (props) => {
+const DirectoryOverflowButton = (tocData) => {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
         setIsTableOfContentsOpen(false);
       }
     };
@@ -38,12 +35,12 @@ const DirectoryOverflowButton = (props) => {
       >
         <span className="flex items-center space-x-2 py-1">
           <MdMenu size={20} className="text-orange-500" />
-          <span className="text-slate-600">{props.label}</span>
+          <span className="text-slate-600">Topics</span>
         </span>
       </div>
-      {isTableOfContentsOpen && props.tocData && (
+      {isTableOfContentsOpen && (
         <div className="w-full relative">
-          <DirectoryOverflow tocData={props.tocData} />
+          <DirectoryOverflow tocData={tocData} />
         </div>
       )}
     </div>

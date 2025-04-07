@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
 import { client } from '../../tina/__generated__/client';
 import ClientPage from './client-page';
+import Image from 'next/image';
+import Link from 'next/link';
 const fg = require('fast-glob');
 export const dynamicParams = false;
 
@@ -52,25 +52,21 @@ export async function generateMetadata({
 
 function ExperimentalBanner() {
   return (
-    <Link href="/conference" className="block w-full">
-      <div className="relative w-full">
+    <Link href="/conference">
+      <Image
+        src="/img/TinaCon-desktop-banner.png"
+        alt="tinaconMobileBanner"
+        width={5000}
+        height={5000}
+        className="sm:block hidden px-5 lg:px-10"
+      />
         <Image
-          src="/img/TinaCon-desktop-banner.png"
-          alt="TinaCon Conference Banner"
-          width={1300}
-          height={520}
-          className="w-full h-auto sm:block hidden"
-          priority
-        />
-        <Image
-          src="/img/TinaCon-tablet-banner.png"
-          alt="TinaCon Conference Banner"
-          width={768}
-          height={307}
-          className="w-full h-auto sm:hidden block"
-          priority
-        />
-      </div>
+        src="/img/TinaCon-tablet-banner.png"
+        alt="tinaconMobileBanner"
+        width={2000}
+        height={2000}
+        className="sm:hidden block"
+      />
     </Link>
   );
 }
@@ -84,12 +80,8 @@ export default async function Page({ params }: PageProps) {
     });
     return (
       <>
-        {/* TODO: Remove once TinaCon is over */}
-        {slug[0] === 'home' && (
-          <div className="max-w-[1300px] mx-auto mt-10 px-5 lg:px-10">
-            <ExperimentalBanner />
-          </div>
-        )}
+      {/* TODO: Remove once TinaCon is over */}
+        {slug[0] === 'home' && <ExperimentalBanner />}
         <ClientPage
           query={res.query}
           data={res.data}

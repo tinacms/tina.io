@@ -10,7 +10,7 @@ next: ''
 
 On 15th December 2024, TinaCMS identified unauthorized activity involving compromised AWS access keys. These keys were exploited to send unauthorized emails (targeting the general French community, not Tina customers specifically) using our Amazon Simple Email Service (SES) infrastructure.
 
-![A screenshot of one of the phishing emails](/img/blog/2024-12-tinacloud-public-disclosure-security-breach/phishing-email.png "The emails sent were in French")
+![A screenshot of one of the phishing emails](/img/blog/2024-12-tinacloud-public-disclosure-security-breach/phishing-email.png "Figure: the emails sent were in French")**Figure: the emails sent were in French**
 
 As an automated measure, the impacted key was revoked. Afterwards, our team confirmed the extent of the incident using CloudTrail logs, investigated root cause, and took steps (described below) to secure our systems.
 
@@ -28,16 +28,16 @@ Type of Incident: Unauthorized use of AWS access keys
 
 Services Impacted:
 
-- Amazon SES (email sending)
-- User invitation workflows relying on outbound email
+* Amazon SES (email sending)
+* User invitation workflows relying on outbound email
 
 Nature of Access:
 
-- AWS access keys with root permissions were compromised and misused
+* AWS access keys with root permissions were compromised and misused
 
 Verification:
 
-- CloudTrail logs were used to confirm which systems and services were accessed during the incident
+* CloudTrail logs were used to confirm which systems and services were accessed during the incident
 
 ## Root Cause Analysis
 
@@ -90,7 +90,7 @@ This includes content databases, end user login information, access to applicati
 
 ## Advice to Tina Customers
 
-1. Report suspicious emails: If you received unauthorized or suspicious emails from TinaCMS, please report them to [security@tina.io](mailto:security@tina.io)
+1. Report suspicious emails: If you received unauthorized or suspicious emails from TinaCMS, please report them to [security@tina.io](mailto\:security@tina.io)
 2. Verify email origin: Ensure any emails claiming to be from TinaCMS are legitimate
 3. Stay updated: Follow our official communication channels for real-time updates
 
@@ -98,8 +98,8 @@ This includes content databases, end user login information, access to applicati
 
 For questions, concerns, or further information, please contact:
 
-- Email: [security@tina.io](mailto:security@tina.io)
-- Website: [https://tina.io/security](https://tina.io/security)
+* Email: [security@tina.io](mailto\:security@tina.io)
+* Website: [https://tina.io/security](https://tina.io/security)
 
 TinaCMS remains committed to protecting our systems and maintaining transparency.
 

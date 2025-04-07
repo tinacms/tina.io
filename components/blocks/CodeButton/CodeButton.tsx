@@ -1,85 +1,46 @@
 import { useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
 import 'react-responsive-modal/styles.css';
-import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
-export const CodeButtonMarkdownStyle: Components<{}> = {
-  a: (props) => {
-    return (
-      <a
-        href={props.url}
-        {...props}
-        className="underline opacity-80 transition-all duration-200 ease-out hover:text-orange-500"
-      />
-    );
-  },
-};
-
-export const CodeButton = ({
-  children,
-  label,
-  id,
-  clickedOnText,
-  ...props
-}) => {
+export const CodeButton = ({ children, label, id, ...props }) => {
   const [copied, setCopied] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
 
   const clickEvent = () => {
     setCopied(true);
     copyToClipboard(label);
-    setShowTooltip(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
-    setTimeout(() => {
-      setShowTooltip(false);
-    }, 5000);
   };
-
-  console.log(label);
-  console.log(clickedOnText);
 
   const buttonId = id || sanitizeLabel(label);
 
   return (
     <>
-      <div className="relative w-max">
-        <button
-          className="code-button event-cmd-button"
-          onClick={clickEvent}
-          id={buttonId}
-          {...props}
-        >
-          <div className="content">
-            <span className="text">
-              <span className="bash">&gt;</span> {children}
-            </span>
-            <span className="label">{label}</span>
-            <span className="icon">
-              <BiCopy />
-            </span>
-          </div>
-
-          <span
-            id={buttonId}
-            className={`success-message ${copied ? 'visible' : ''}`}
-          >
-            Copied to clipboard!
+      <button
+        className="code-button event-cmd-button"
+        onClick={clickEvent}
+        id={buttonId}
+        {...props}
+      >
+        <div className="content">
+          <span className="text">
+            <span className="bash">&gt;</span> {children}
           </span>
-        </button>
-
-        {showTooltip && clickedOnText && (
-          <div className="absolute top-[calc(100%+8px)] left-0 bg-white border border-[#b4f4e0] rounded-md p-3 z-20 shadow-md max-w-[300px] font-[var(--font-tuner)] text-[var(--color-secondary)] text-sm leading-relaxed before:content-[''] before:absolute before:top-[-8px] before:left-4 before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-[#b4f4e0] before:rotate-45 before:transform">
-            <TinaMarkdown
-              content={clickedOnText}
-              components={CodeButtonMarkdownStyle}
-            />
-          </div>
-        )}
-      </div>
+          <span className="label">{label}</span>
+          <span className="icon">
+            <BiCopy />
+          </span>
+        </div>
+        <span
+          id={buttonId}
+          className={`success-message ${copied ? 'visible' : ''}`}
+        >
+          Copied to clipboard!
+        </span>
+      </button>
       <style jsx>{`
         .bash {
           opacity: 0.5;

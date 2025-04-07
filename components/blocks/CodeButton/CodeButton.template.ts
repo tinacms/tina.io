@@ -12,11 +12,5 @@ export const codeButtonTemplate = {
   },
   fields: [
     { name: 'label', label: 'Label', type: 'string' },
-    {
-      name: 'clickedOnText',
-      label: 'Clicked On Text',
-      type: 'rich-text',
-      description: 'This is for the tooltip that appears when the button is clicked (optional)',
-    },
   ],
 };

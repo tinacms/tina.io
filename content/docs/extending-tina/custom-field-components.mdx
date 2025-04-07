@@ -1,18 +1,18 @@
 ---
 id: /docs/extending-tina/custom-field-components
 title: React Components
-last_edited: '2025-04-01T06:32:03.368Z'
+last_edited: '2025-03-26T05:59:08.902Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
 
-A custom component can be passed and rendered by setting the ui.component property on a field.
+A custom component can be passed and rendered by setting the ui.component property on a field. 
 
 This component completely overrides the original component, providing the user with the ability to fully customize the field.
 
 ## The `ui.component` Property
 
-This should be set to a valid React component that accepts up to four props:
+This should be set to a valid React component that accepts three props:
 
 * `field`: The [field definition](https://tinacms.org/docs/reference/toolkit/fields) for the current field.
 * `input`: The data and callbacks necessary to make an input.

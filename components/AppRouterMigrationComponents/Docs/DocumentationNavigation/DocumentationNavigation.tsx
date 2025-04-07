@@ -6,7 +6,6 @@ import { Overlay } from '../../../ui/Overlay';
 
 export interface DocsNavProps {
   navItems: any;
-  color: string;
 }
 
 export function DocumentationNavigation({ navItems }: DocsNavProps) {
