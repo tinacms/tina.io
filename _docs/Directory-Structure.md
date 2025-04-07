@@ -27,8 +27,8 @@ Last updated: 26/09/2024
 │   └── ... 🦙 🦙 🦙 (tina-managed site content)
 ├── data-api/ and indices/
 │   └── ... related to algolia and content searching
-├── pages/
-│   └── ... 🖥️ nextjs page router 🖥️
+├── app/
+│   └── ... 🖥️ nextjs app router 🖥️
 ├── public/
 │   └── ... assets
 ├── rss/
