@@ -62,6 +62,91 @@ export const heroTemplate: Template = {
                 'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
               type: 'string',
             },
+            {
+              name: 'link',
+              label: 'Video Link',
+              description: 'This is the link when the video is clicked.',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'thumbnailToInternalVideo',
+          label: 'Image Thumbnail to Internal YouTube Video',
+          fields: [
+            {
+              name: 'thumbnailImage',
+              label: 'Thumbnail Image',
+              type: 'image',
+            },
+            {
+              name: 'videoEmbedId',
+              label: 'YouTube Video Embed ID',
+              type: 'string',
+            },
+            {
+              name: 'figureCaption',
+              label: 'Figure Caption',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'videoThumbnailToInternalVideo',
+          label: 'Video Thumbnail to Internal YouTube Video',
+          fields: [
+            {
+              name: 'thumbnailVideo',
+              label: 'Thumbnail Video',
+              type: 'image',
+            },
+            {
+              name: 'videoEmbedId',
+              label: 'YouTube Video Embed ID',
+              type: 'string',
+            },
+            {
+              name: 'figureCaption',
+              label: 'Figure Caption',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'code',
+          label: 'Code',
+          ui: {
+            defaultItem: {
+              file: 'index.js',
+              code: 'console.log("Hello World")',
+              language: 'javascript',
+              scale: 1,
+            },
+          },
+          fields: [
+            {
+              name: 'file',
+              label: 'Filename',
+              type: 'string',
+            },
+            {
+              name: 'code',
+              label: 'Code',
+              type: 'string',
+              ui: {
+                component: 'textarea',
+              },
+            },
+            {
+              name: 'language',
+              label: 'Language',
+              type: 'string',
+            },
+            {
+              name: 'scale',
+              label: 'Text Scale',
+              type: 'number',
+            },
           ],
         },
       ],

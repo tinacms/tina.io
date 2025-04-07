@@ -3,6 +3,7 @@ import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
+import { RenderMedia } from '../Features/Features';
 
 export function HeroBlock({ data, index }) {
   return (
@@ -14,27 +15,7 @@ export function HeroBlock({ data, index }) {
     >
       <Container width="narrow" center>
         <HeroFeature item={data} spacing={data.spacing}>
-          {data.media && data.media[0] && (
-            <div
-              className={`mt-6 min-w-0 w-full ${
-                (data.media[0].image || data.media[0].src) &&
-                'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
-              }`}
-            >
-              {data.media && data.media[0].image && (
-                <Image
-                  src={data.media[0].image}
-                  alt={data.headline}
-                  className="w-full h-auto"
-                  width={1200}
-                  height={1200}
-                />
-              )}
-              {data.media && data.media[0].src && (
-                <Video className="w-full h-auto" src={data.media[0].src} />
-              )}
-            </div>
-          )}
+          {data.media && <RenderMedia data={data} />}
         </HeroFeature>
       </Container>
     </section>
