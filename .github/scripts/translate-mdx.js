@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
 
-const API_KEY = process.env.AZURE_OPENAI_API_KEY;
+const API_KEY = process.env.AZURE_AI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
   f.trim()
 );
