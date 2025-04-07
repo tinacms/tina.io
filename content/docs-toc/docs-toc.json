@@ -105,6 +105,7 @@
           "slug": "content/docs/reference/config.mdx",
           "_template": "item"
         },
+
         {
           "title": "Content Modelling",
           "items": [
@@ -210,6 +211,11 @@
                 }
               ],
               "_template": "items"
+            },
+            {
+              "title": "Naming conventions for collections",
+              "slug": "content/docs/guides/naming-conventions.mdx",
+              "_template": "item"
             }
           ],
           "_template": "items"
