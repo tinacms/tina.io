@@ -1,4 +1,3 @@
-import { Container } from 'components/blocks/Container';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
