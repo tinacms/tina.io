@@ -54,8 +54,9 @@ jobs:
       - name: Create translation branch
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
+          TIMESTAMP=$(date +%s)
           PR_NUMBER="${{ github.event.pull_request.number }}"
-          BRANCH_NAME="translate-pr-$PR_NUMBER-$(date +%s)"
+          BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
           git checkout -b $BRANCH_NAME
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
@@ -70,6 +71,8 @@ jobs:
       - name: Commit and push changes
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
@@ -86,7 +89,7 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Add Chinese translation for docs from PR #${{ github.event.pull_request.number }}"
+          git commit -m "Add Chinese translation for docs from PR $PR_NUMBER"
           git push origin $BRANCH_NAME
 
       - name: Create Pull Request
