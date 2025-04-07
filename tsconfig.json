@@ -24,9 +24,7 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "strictNullChecks": false
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
