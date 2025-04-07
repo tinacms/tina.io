@@ -23,9 +23,7 @@ export function getLocale(request: NextRequest): string {
   }
 
   const hostname = request.headers.get('host') || '';
-  console.log(`hostname: ${hostname}`);
-  return 'zh';
-  if (hostname === 'tinacms.com.cn') {
+  if (hostname === 'www.tinacms.com.cn' || hostname === 'tinacms.com.cn') {
     return 'zh';
   }
 
@@ -41,7 +39,6 @@ function getLocaleFromCookie(request: NextRequest): string | null {
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
 
   if (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale)) {
-    console.log(`Locale from cookie: ${cookieLocale}`);
     return cookieLocale;
   }
 
