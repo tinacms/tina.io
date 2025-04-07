@@ -89,7 +89,7 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Add Chinese translation for docs from PR $PR_NUMBER"
+          git commit -m "Add Chinese translation for docs from PR #$PR_NUMBER"
           git push origin $BRANCH_NAME
 
       - name: Create Pull Request
