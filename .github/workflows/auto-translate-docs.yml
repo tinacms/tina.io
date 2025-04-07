@@ -73,12 +73,19 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          if git diff --quiet --exit-code; then
-            echo "No changes to commit"
+          echo "Git status:"
+          git status
+
+          git add content/docs-zh/
+
+          echo "Git status:"
+          git status
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit after git add"
             exit 0
           fi
 
-          git add content/docs-zh/
           git commit -m "Add Chinese translation for docs from PR #${{ github.event.pull_request.number }}"
           git push origin $BRANCH_NAME
 
