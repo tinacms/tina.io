@@ -15,7 +15,7 @@ jobs:
   translate-mdx:
     # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    environment: ALL ENVIRONMENTS
+    environment: All Environments
     permissions:
       contents: write
       pull-requests: write
