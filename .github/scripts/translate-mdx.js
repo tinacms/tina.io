@@ -52,16 +52,8 @@ async function translateMdx(filePath) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
 
-    // TODO: REmove debug console.log
-    console.log(`Writing translated content to ${targetPath}`);
-    console.log(`Directory exists: ${fs.existsSync(targetDir)}`);
-
     fs.writeFileSync(targetPath, translatedContent);
     console.log(`Translated and saved to: ${targetPath}`);
-
-    // TODO: Remove debug console.log
-    console.log(`File written successfully: ${fs.existsSync(targetPath)}`);
-    console.log(`File size: ${fs.statSync(targetPath).size} bytes`);
 
     return targetPath;
   } catch (error) {
