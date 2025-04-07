@@ -47,7 +47,7 @@ jobs:
         id: get-changed-files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ github.event.number }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: node .github/scripts/get-changed-files.js
 
@@ -55,7 +55,7 @@ jobs:
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
           TIMESTAMP=$(date +%s)
-          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_NUMBER: ${{ github.event.number }}
           BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
           git checkout -b $BRANCH_NAME
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
@@ -65,14 +65,12 @@ jobs:
         env:
           AZURE_AI_API_KEY: ${{ secrets.AZURE_AI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ github.event.number }}
         run: node .github/scripts/translate-mdx.js
 
       - name: Commit and push changes
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
-          PR_NUMBER="${{ github.event.pull_request.number }}"
-
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
@@ -89,14 +87,14 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Add Chinese translation for docs from PR $PR_NUMBER"
+          git commit -m "Add Chinese translation for docs"
           git push origin $BRANCH_NAME
 
       - name: Create Pull Request
         if: env.HAS_CHANGED_FILES == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ github.event.number }}
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
           REPO: ${{ github.repository }}
         run: node .github/scripts/create-pr.js
