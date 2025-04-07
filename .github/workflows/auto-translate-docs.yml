@@ -54,8 +54,28 @@ jobs:
       - name: Create translation branch
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
+          # PR_NUMBER="${{ github.event.pull_request.number }}"
+          # BRANCH_NAME="translate-pr-$PR_NUMBER-$(date +%s)"
+          # git checkout -b $BRANCH_NAME
+          # echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+          # Fetch all branches
+          git fetch origin
+
+          # Check out the main branch first
+          git checkout origin/main
+
+          # Create new branch from main
           PR_NUMBER="${{ github.event.pull_request.number }}"
-          BRANCH_NAME="translate-pr-$PR_NUMBER-$(date +%s)"
+          TIMESTAMP=$(date +%s)
+
+          if [ -z "$PR_NUMBER" ]; then
+            BRANCH_NAME="translate-push-$TIMESTAMP"
+          else
+            BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
+          fi
+
+          echo "Creating branch: $BRANCH_NAME from main"
           git checkout -b $BRANCH_NAME
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
