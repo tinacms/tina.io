@@ -23,6 +23,7 @@ export function getLocale(request: NextRequest): string {
   }
 
   const hostname = request.headers.get('host') || '';
+  console.log(`hostname: ${hostname}`);
   if (hostname === 'tinacms.com.cn') {
     return 'zh';
   }
