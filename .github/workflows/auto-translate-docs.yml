@@ -60,14 +60,11 @@ jobs:
           # echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
           # Fetch all branches
-          git fetch origin
+          git fetch origin main
 
-          # Check out the main branch first
-          git checkout origin/main
-
-          # Create new branch from main
-          PR_NUMBER="${{ github.event.pull_request.number }}"
+          # Create a new clean branch from main
           TIMESTAMP=$(date +%s)
+          PR_NUMBER="${{ github.event.pull_request.number }}"
 
           if [ -z "$PR_NUMBER" ]; then
             BRANCH_NAME="translate-push-$TIMESTAMP"
@@ -75,9 +72,17 @@ jobs:
             BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
           fi
 
-          echo "Creating branch: $BRANCH_NAME from main"
-          git checkout -b $BRANCH_NAME
+          echo "Creating clean branch from main: $BRANCH_NAME"
+          git checkout -b $BRANCH_NAME origin/main
+
+          # Save the branch name for later steps
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+          # If we're in a PR context, we need to extract just the docs changes
+          if [[ ! -z "$PR_NUMBER" ]]; then
+            echo "Processing PR #$PR_NUMBER - only extracting docs changes"
+            # We'll only bring over specific doc changes in the translation script
+          fi
 
       - name: Translate changed MDX files
         if: env.HAS_CHANGED_FILES == 'true'
