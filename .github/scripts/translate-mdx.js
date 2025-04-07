@@ -16,18 +16,6 @@ async function translateMdx(filePath) {
 
   try {
     const content = fs.readFileSync(filePath, 'utf8');
-
-    // TODO: Remove debug logs in production
-    console.log(
-      `API URL: ${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`
-    );
-    console.log(
-      `API Key (first 4 chars): ${
-        API_KEY ? API_KEY.substring(0, 4) + '...' : 'undefined'
-      }`
-    );
-
-    //TODO: Need update
     const response = await axios({
       method: 'post',
       url: `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
@@ -64,8 +52,16 @@ async function translateMdx(filePath) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
 
+    // TODO: REmove debug console.log
+    console.log(`Writing translated content to ${targetPath}`);
+    console.log(`Directory exists: ${fs.existsSync(targetDir)}`);
+
     fs.writeFileSync(targetPath, translatedContent);
     console.log(`Translated and saved to: ${targetPath}`);
+
+    // TODO: Remove debug console.log
+    console.log(`File written successfully: ${fs.existsSync(targetPath)}`);
+    console.log(`File size: ${fs.statSync(targetPath).size} bytes`);
 
     return targetPath;
   } catch (error) {

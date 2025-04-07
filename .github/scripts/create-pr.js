@@ -19,7 +19,8 @@ async function createPullRequest() {
         title: prTitle,
         body: prBody,
         head: BRANCH_NAME,
-        base: 'main',
+        // TODO: Switch to main
+        base: 'add-translate-action',
       },
       {
         headers: {
