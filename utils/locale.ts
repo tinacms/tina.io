@@ -40,6 +40,7 @@ function getLocaleFromCookie(request: NextRequest): string | null {
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
 
   if (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale)) {
+    console.log(`Locale from cookie: ${cookieLocale}`);
     return cookieLocale;
   }
 
