@@ -25,7 +25,7 @@ export const CodeButton = ({
   ...props
 }) => {
   const [copied, setCopied] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
 
   const clickEvent = () => {
     setCopied(true);

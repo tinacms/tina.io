@@ -10,7 +10,7 @@ export function HeroBlock({ data, index }) {
     <section
       key={index}
       className={`relative overflow-visible z-10 text-center ${
-        data.margin ? data.margin : 'px-8 py-12 lg:py-16'
+        data.margin ? data.margin : 'px-8 pb-12 lg:pb-16'
       }`}
     >
       <Container width="narrow" center>
@@ -68,7 +68,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
             {item.text}
           </p>
         )}
-        <div className="flex justify-center items-center gap-10">
+        <div className="flex justify-center items-center gap-10 pb-10">
           {item.buttons && renderButtonsWithOr(item.buttons)}
         </div>
         {children}
