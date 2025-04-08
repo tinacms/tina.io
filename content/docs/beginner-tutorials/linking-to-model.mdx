@@ -11,6 +11,13 @@ previous: content/docs/beginner-tutorials/new-template.mdx
 2\. Replace the old schema with a new **object** type field to unlock the power of our templates 💪
 
 ```typescript
+import { amazingTitleBlock } from "@/app/amazing-header/amazing-header.template";
+import { beautifulImageBlock } from "@/app/beautiful-image/beautiful-image.template";
+import { incredibleBodyBlock } from "@/app/incredible-body/incredible-body";
+// at the top of your file ⤴️
+
+
+//...
 collections: [
       {
         name: "my_first_collection",
