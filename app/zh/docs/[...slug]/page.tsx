@@ -11,12 +11,10 @@ export async function generateStaticParams() {
   try {
     const contentDir = './content/docs-zh/';
     const files = await glob(`${contentDir}**/*.mdx`);
-    return files
-      .filter((file) => !file.endsWith('index.mdx'))
-      .map((file) => {
-        const path = file.substring(contentDir.length, file.length - 4);
-        return { slug: path.split('/') };
-      });
+    return files.map((file) => {
+      const path = file.substring(contentDir.length, file.length - 4);
+      return { slug: path.split('/') };
+    });
   } catch (error) {
     console.error(error);
     notFound();

@@ -9,7 +9,7 @@ export async function generateMetadata() {
 }
 
 export default async function DocsPage() {
-  const slug = 'index'; // Default root document slug for /docs
+  const slug = 'index';
 
   try {
     const results = await client.queries.docZh({ relativePath: `${slug}.mdx` });
