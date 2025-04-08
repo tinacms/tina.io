@@ -84,8 +84,16 @@
         },
         {
           "headline": "□ React 19 Support",
+          "status": "",
           "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n",
           "actions": [
+            {
+              "label": "🧪 Beta version available",
+              "icon": true,
+              "variant": "orange",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/pull/5607"
+            },
             {
               "label": "GitHub Discussion 🔗",
               "icon": false,
