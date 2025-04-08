@@ -68,7 +68,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
             {item.text}
           </p>
         )}
-        <div className="flex justify-center items-center gap-10 pb-10">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-10 pb-10">
           {item.buttons && renderButtonsWithOr(item.buttons)}
         </div>
         {children}
