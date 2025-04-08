@@ -30,17 +30,11 @@ export const CodeButton = ({
   const clickEvent = () => {
     setCopied(true);
     copyToClipboard(label);
-    setShowTooltip(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
-    setTimeout(() => {
-      setShowTooltip(false);
-    }, 5000);
+  
   };
-
-  console.log(label);
-  console.log(clickedOnText);
 
   const buttonId = id || sanitizeLabel(label);
 
