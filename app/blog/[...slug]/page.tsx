@@ -109,6 +109,7 @@ export default async function BlogPage({
         giscusRepoId: process.env.GISCUS_REPO_ID,
         giscusCategory: process.env.GISCUS_CATEGORY,
         giscusCategoryId: process.env.GISCUS_CATEGORY_ID,
+        giscusThemeUrl: process.env.GISCUS_THEME_URL,
       },
     };
 
