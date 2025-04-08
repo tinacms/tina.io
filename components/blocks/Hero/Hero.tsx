@@ -23,14 +23,43 @@ export function HeroBlock({ data, index }) {
 }
 
 export const HeroFeature = ({ item, spacing, children }) => {
+  const isOrNeeded = item.buttons && item.buttons.length >= 2;
+
+  const renderButtonsWithOr = (buttons) => {
+    return buttons.reduce((acc, button, index) => {
+      if (index > 0 && isOrNeeded) {
+        acc.push(
+          <span key={`or-${index}`} className="or-text font-tuner">
+            or
+          </span>
+        );
+      }
+      acc.push(<RenderButton key={index} button={button} index={index} />);
+      return acc;
+    }, []);
+  };
+
   return (
     <>
       <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
-        {item.headline && (
-          <h2 className="heading" data-tina-field={tinaField(item, 'headline')}>
-            {item.headline}
-          </h2>
-        )}
+        <div className="flex flex-col gap-2">
+          {item.headline && (
+            <h2
+              className="heading"
+              data-tina-field={tinaField(item, 'headline')}
+            >
+              {item.headline}
+            </h2>
+          )}
+          {item.headline2 && (
+            <h2
+              className="heading"
+              data-tina-field={tinaField(item, 'headline2')}
+            >
+              {item.headline2}
+            </h2>
+          )}
+        </div>
         {item.text && (
           <p
             className={item.mobileTextSize ? 'text-lg lg:text-xl' : 'text-xl'}
@@ -40,10 +69,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
           </p>
         )}
         <div className="flex justify-center items-center gap-10">
-          {item.buttons &&
-            item.buttons.map((button, index) => (
-              <RenderButton key={index} button={button} index={index} />
-            ))}
+          {item.buttons && renderButtonsWithOr(item.buttons)}
         </div>
         {children}
       </div>

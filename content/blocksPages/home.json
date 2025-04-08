@@ -6,7 +6,8 @@
   },
   "blocks": [
     {
-      "headline": "Site, Docs and Llamas. No Dramas",
+      "headline": "Sites, Docs and Llamas",
+      "headline2": "No Dramas",
       "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
       "media": [
         {
