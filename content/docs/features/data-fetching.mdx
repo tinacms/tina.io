@@ -1,7 +1,7 @@
 ---
 id: /docs/features/data-fetching
 title: Content API Overview
-last_edited: '2025-04-08T00:52:52.131Z'
+last_edited: '2025-04-08T00:54:33.051Z'
 next: content/docs/contextual-editing/overview.mdx
 previous: content/docs/schema.mdx
 ---
@@ -69,8 +69,6 @@ To retrieve cookies in Next.js, refer to the [Next.js cookies documentation](htt
 ### Example Implementation
 
 ```typescript
-const activeBranch = /* Retrieve the active branch from cookie */;
-
 const data = await client.queries.post(
   {
     relativePath: `${params.filename?.join('/')}.md`,
@@ -78,7 +76,8 @@ const data = await client.queries.post(
   {
     fetchOptions: {
       headers: {
-        'x-branch': activeBranch,
+        /* Retrieve the active branch from cookie */
+        'x-branch': cookieStore.get('x-branch')?.value, 
       },
     },
   }
