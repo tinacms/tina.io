@@ -5,11 +5,17 @@ on:
     types: [closed]
     paths:
       - 'content/docs/**.mdx'
+  # push:
+  #   branches:
+  #     - test-md-translate-ai-v2
+  #   paths:
+  #     - 'content/docs/**.mdx'
 
 jobs:
   translate-mdx:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    environment: All Environments
     permissions:
       contents: write
       pull-requests: write
@@ -26,7 +32,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: .github
 
       - name: Get changed files from merged PR
@@ -36,18 +42,28 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: node .github/scripts/get-changed-files.js
 
+      #TODO: Remove this after testing
+      # - name: Get changed files
+      #   id: get-changed-files
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     PR_NUMBER: ${{ github.event.pull_request.number }}
+      #     GITHUB_EVENT_NAME: ${{ github.event_name }}
+      #   run: node .github/scripts/get-changed-files.js
+
       - name: Create translation branch
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
+          TIMESTAMP=$(date +%s)
           PR_NUMBER="${{ github.event.pull_request.number }}"
-          BRANCH_NAME="translate-pr-$PR_NUMBER-$(date +%s)"
+          BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
           git checkout -b $BRANCH_NAME
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Translate changed MDX files
         if: env.HAS_CHANGED_FILES == 'true'
         env:
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          AZURE_AI_API_KEY: ${{ secrets.AZURE_AI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: node .github/scripts/translate-mdx.js
@@ -55,16 +71,25 @@ jobs:
       - name: Commit and push changes
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          if git diff --quiet --exit-code; then
-            echo "No changes to commit"
+          echo "Git status:"
+          git status
+
+          git add content/docs-zh/
+
+          echo "Git status:"
+          git status
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit after git add"
             exit 0
           fi
 
-          git add content/docs-zh/
-          git commit -m "Add Chinese translation for docs from PR #${{ github.event.pull_request.number }}"
+          git commit -m "Add Chinese translation for docs from PR $PR_NUMBER"
           git push origin $BRANCH_NAME
 
       - name: Create Pull Request

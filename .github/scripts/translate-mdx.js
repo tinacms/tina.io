@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
 
-const API_KEY = process.env.LLM_API_KEY;
+const API_KEY = process.env.AZURE_AI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
   f.trim()
 );
@@ -16,25 +16,33 @@ async function translateMdx(filePath) {
 
   try {
     const content = fs.readFileSync(filePath, 'utf8');
-
-    //TODO: Need update
-    const response = await axios.post(
-      config.apiEndpoint,
-      {
-        model: config.modelName,
-        prompt: config.promptTemplate.replace('{{content}}', content),
-        max_tokens: config.maxTokens || 5000,
-        temperature: config.temperature || 0.1,
+    const response = await axios({
+      method: 'post',
+      url: `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': API_KEY,
       },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${API_KEY}`,
-        },
-      }
-    );
+      data: {
+        messages: [
+          {
+            role: 'system',
+            content:
+              '你是一个翻译助手，负责将英文内容翻译成中文。请确保翻译准确，并保持原有的Markdown格式和代码块。请不要添加任何额外的注释或解释。',
+          },
+          {
+            role: 'user',
+            content: config.promptTemplate.replace('{{content}}', content),
+          },
+        ],
+        temperature: config.temperature || 0.7,
+        max_tokens: config.maxTokens || 5000,
+      },
+    });
 
-    const translatedContent = response.data.choices[0].text.trim();
+    console.log(`Translation response: ${JSON.stringify(response.data)}`);
+
+    const translatedContent = response.data.choices[0].message.content.trim();
 
     const relativePath = filePath.replace(`${SOURCE_PATH}/`, '');
     const targetPath = path.join(TARGET_PATH, relativePath);
