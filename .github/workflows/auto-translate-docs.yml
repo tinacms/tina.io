@@ -10,6 +10,11 @@ on:
       - test-md-translate-ai
     paths:
       - 'content/docs/**.mdx'
+  # push:
+  #   branches:
+  #     - test-md-translate-ai-v2
+  #   paths:
+  #     - 'content/docs/**.mdx'
 
 jobs:
   translate-mdx:

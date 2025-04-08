@@ -10,7 +10,12 @@ const RenderButton = ({ button, index }) => {
     return <ModalB key={index} items={[button]} />;
   } else if (button.__typename.includes('CodeButton')) {
     return (
-      <CodeButton key={index} id={button.id} label={button.label}>
+      <CodeButton
+        key={index}
+        id={button.id}
+        label={button.label}
+        clickedOnText={button?.clickedOnText}
+      >
         {button.children}
       </CodeButton>
     );

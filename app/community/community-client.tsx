@@ -1,14 +1,13 @@
 'use client';
 
-import { Hero, MarkdownContent, RichTextWrapper } from 'components/layout';
-import { FaDiscord, FaTwitter, FaGithub } from 'react-icons/fa';
-import TinaIconSvg from 'public/svg/tina-icon.svg';
-import Image from 'next/image';
+import { MarkdownContent, RichTextWrapper } from 'components/layout';
 import { EmailForm } from 'components/modals/AppRouterEmailForm';
 import { ButtonGroup, LinkButton } from 'components/ui';
+import Image from 'next/image';
+import TinaIconSvg from 'public/svg/tina-icon.svg';
+import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 
 export default function CommunityPageClient(data) {
-  
   return (
     <div className="flex flex-col">
       <div className="text-center my-10">
