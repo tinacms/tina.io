@@ -1,19 +1,19 @@
 name: Auto Translate MDX to Chinese
 
 on:
-  # pull_request:
-  #   types: [closed]
-  #   paths:
-  #     - 'content/docs/**.mdx'
-  push:
-    branches:
-      - test-md-translate-ai
+  pull_request:
+    types: [closed]
     paths:
       - 'content/docs/**.mdx'
+  # push:
+  #   branches:
+  #     - test-md-translate-ai-v2
+  #   paths:
+  #     - 'content/docs/**.mdx'
 
 jobs:
   translate-mdx:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment: All Environments
     permissions:
