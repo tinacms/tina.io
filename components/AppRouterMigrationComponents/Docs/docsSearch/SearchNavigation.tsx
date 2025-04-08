@@ -175,7 +175,6 @@ export const SearchResultsOverflow = ({ query }) => {
 
 export const DocsSearchBarHeader = ({
   paddingGlobal,
-  headerColour,
   headerPadding,
   searchMargin,
   searchBarPadding,
@@ -188,10 +187,6 @@ export const DocsSearchBarHeader = ({
   const [userHasTyped, setUserHasTyped] = useState(false);
   const [searchOverFlowOpen, setSearchOverflowOpen] = useState(false);
   const router = useRouter();
-  const headerStyling =
-    headerColour.toLowerCase() === 'blue'
-      ? 'from-blue-600/80 via-blue-800/80 to-blue-1000'
-      : 'from-orange-400 via-orange-500 to-orange-600';
 
   const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchOverflowOpen(true);
@@ -232,7 +227,7 @@ export const DocsSearchBarHeader = ({
         <h1
           className={`${
             !learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-          } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br ${headerStyling} ${headerPadding} bg-clip-text text-transparent`}
+          } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(false)}
         >
           Docs
@@ -240,7 +235,7 @@ export const DocsSearchBarHeader = ({
         <h1
           className={`${
             learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-          } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br ${headerStyling} ${headerPadding} bg-clip-text text-transparent`}
+          } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(true)}
         >
           Learn
@@ -287,7 +282,6 @@ export const LeftHandSideParentContainer = ({
       <div className="absolute -bottom-1 left-0 right-0 h-8 bg-gradient-to-t from-white/90 to-transparent pointer-events-none z-40"></div>
       <DocsSearchBarHeader
         paddingGlobal="p-4"
-        headerColour="blue"
         headerPadding="pl-4"
         searchMargin="mx-3"
         searchBarPadding=""
@@ -312,7 +306,10 @@ export const LeftHandSideParentContainer = ({
               }}
             >
               <div className="h-full overflow-y-auto pb-44 relative">
-                <DocsNavigationList navItems={tableOfContents} />
+                <DocsNavigationList
+                  color={'orange'}
+                  navItems={tableOfContents}
+                />
               </div>
             </div>
             <div
@@ -324,7 +321,10 @@ export const LeftHandSideParentContainer = ({
               }}
             >
               <div className="h-full overflow-y-auto pb-44 relative">
-                <DocsNavigationList navItems={tableOfContentsLearn} />
+                <DocsNavigationList
+                  color={'blue'}
+                  navItems={tableOfContentsLearn}
+                />
               </div>
             </div>
           </div>
