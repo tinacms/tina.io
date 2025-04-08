@@ -412,7 +412,7 @@ export const AppFooter = ({}) => {
   return (
     <div>
       {/* Top */}
-      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-6 py-8 lg:py-12 lg:px-12 -mt-px">
+      <div className="flex flex-col md:flex-row gap-6 w-full justify-between items-start bg-[url('/svg/orange-bg.svg')] bg-cover bg-center px-6 py-8 lg:py-12 lg:px-12 mt-12">
         <div className="max-w-[20%] flex-1 drop-shadow-sm">
           <TinaIcon color="white" />
         </div>
