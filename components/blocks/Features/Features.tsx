@@ -71,7 +71,6 @@ export function FeatureBlock({ data, index }) {
 
 export const RenderMedia = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  console.log('the typename', data.media[0]);
   if (
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo' ||
     data.media[0].__typename === 'PageBlocksHeroMediaVideo'
