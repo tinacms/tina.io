@@ -11,7 +11,7 @@ const SERVER_URL = process.env.GITHUB_SERVER_URL || 'https://github.com';
 async function createPullRequest() {
   try {
     const prTitle = `Chinese translation for PR #${PR_NUMBER}`;
-    const prBody = `This PR contains Chinese translations for the documentation files updated in PR #${PR_NUMBER} (${SERVER_URL}/${REPO}/pull/${PR_NUMBER}).`;
+    const prBody = `This PR contains Chinese translations for the documentation files updated in PR (${SERVER_URL}/${REPO}/pull/${PR_NUMBER}).`;
 
     const response = await axios.post(
       `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls`,
