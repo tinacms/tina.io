@@ -1,10 +1,9 @@
 import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
-import { getDocsNav, getLearnNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import { getExcerpt } from 'utils/getExcerpt';
-import DocsClient from './DocsPagesClient';
+import DocsClient from './docs-client';
 
 export const dynamicParams = false;
 
@@ -12,12 +11,10 @@ export async function generateStaticParams() {
   try {
     const contentDir = './content/docs-zh/';
     const files = await glob(`${contentDir}**/*.mdx`);
-    return files
-      .filter((file) => !file.endsWith('index.mdx'))
-      .map((file) => {
-        const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/docs/" and ".mdx"
-        return { slug: path.split('/') };
-      });
+    return files.map((file) => {
+      const path = file.substring(contentDir.length, file.length - 4);
+      return { slug: path.split('/') };
+    });
   } catch (error) {
     console.error(error);
     notFound();
@@ -59,11 +56,8 @@ export default async function DocPage({
   const slug = params.slug.join('/');
 
   try {
-    const [results, navDocData, navLearnData] = await Promise.all([
-      client.queries.docZh({ relativePath: `${slug}.mdx` }),
-      getDocsNav(),
-      getLearnNav(),
-    ]);
+    // Only fetch page data - navigation data is provided by layout
+    const results = await client.queries.docZh({ relativePath: `${slug}.mdx` });
 
     const docData = results.data.docZh;
     const PageTableOfContents = getTableOfContents(docData.body.children);
@@ -74,15 +68,10 @@ export default async function DocPage({
       data: results.data,
       PageTableOfContents,
       DocumentationData: docData,
-      NavigationDocsData: navDocData,
-      NavigationLearnData: navLearnData,
     };
 
-    return (
-      <div>
-        <DocsClient props={props} />
-      </div>
-    );
+    // Use DocsClient directly - navigation data will be accessed via context in the component
+    return <DocsClient props={props} />;
   } catch (error) {
     console.error('Found an error catching data:', error);
     return notFound();

@@ -1,39 +1,29 @@
-import { TinaClient } from 'app/tina-client';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
-import { getDocsNav, getLearnNav } from 'utils/docs/getDocProps';
 import getTableOfContents from 'utils/docs/getTableOfContents';
-import DocsClient from './[...slug]/DocsPagesClient';
 import { generateMetadata as generateMetadataDocs } from './[...slug]/page';
+import MainDocClient from './doc-client';
 
 export async function generateMetadata() {
   return generateMetadataDocs({ params: { slug: ['index'] } });
 }
 
 export default async function DocsPage() {
-  const slug = 'index'; // Default root document slug for /docs
+  const slug = 'index';
 
   try {
-    const [results, navDocData, navLearnData] = await Promise.all([
-      client.queries.docZh({ relativePath: `${slug}.mdx` }),
-      getDocsNav(),
-      getLearnNav(),
-    ]);
-
+    const results = await client.queries.docZh({ relativePath: `${slug}.mdx` });
     const docData = results.data.docZh;
     const PageTableOfContents = getTableOfContents(docData.body.children);
 
     return (
-      <TinaClient
-        Component={DocsClient}
+      <MainDocClient
         props={{
           query: results.query,
           variables: results.variables,
           data: results.data,
           PageTableOfContents,
           DocumentationData: docData,
-          NavigationDocsData: navDocData,
-          NavigationLearnData: navLearnData,
         }}
       />
     );

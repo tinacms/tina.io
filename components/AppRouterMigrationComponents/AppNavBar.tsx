@@ -2,7 +2,7 @@
 
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
-import { DEFAULT_LOCALE, SupportedLocales, isValidPathCheck } from 'middleware';
+import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
