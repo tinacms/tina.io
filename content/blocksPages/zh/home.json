@@ -24,6 +24,7 @@
             },
             {
               "label": "npx create-tina-app@latest",
+              "clickedOnText": "**视频:** [NPX 快速上手](/docs/introduction/using-starter)（6 分钟）\n",
               "_template": "codeButton"
             }
           ],
