@@ -1,4 +1,3 @@
-```markdown
 ---
 title: 你好，世界！
 last_edited: '2025-03-28T00:59:08.454Z'
@@ -7,11 +6,11 @@ next: content/docs/beginner-tutorials/display-content.mdx
 previous: content/docs/beginner-tutorials/install-tinacms.mdx
 ---
 
-我们希望将硬编码的“你好，世界！”问候语移到Tina中，这样就可以通过Tina编辑器访问和编辑它，**而无需修改代码**。
+我们希望将硬编码的“你好，世界”问候语移入Tina，这样就可以通过Tina编辑器访问和编辑它，**无需修改代码**。
 
-在我们这样做之前，我们需要先定义一个`Tina schema`，它将控制我们从Tina接收的数据的“结构”。
+在实现这一目标之前，我们需要先定义一个`Tina schema`，它将控制我们从Tina接收的数据的“结构”。
 
-1\. 打开`tina/config.ts`文件并找到`schema`字段。它应该看起来像这样：
+1\. 打开`tina/config.ts`文件，找到`schema`字段。它应该看起来像这样：
 
 > 这是一个开箱即用的示例schema，但我们将构建自己的schema。
 
@@ -46,7 +45,7 @@ schema: {
   },
 ```
 
-2\. 将schema替换为一个包含单个字段的基本条目，用于我们的精彩“你好，世界！”消息：
+2\. 将schema替换为一个包含单个字段的基本条目，用于我们的精彩“你好，世界”消息：
 
 ```typescript
 schema: {
@@ -88,5 +87,4 @@ schema: {
 
 9\. 点击“保存”。
 
-> 如果我们回到代码中，您会看到一个新文件已经创建。查看`content/`，您会发现一个`first`文件夹，其中包含我们的新Markdown内容！`first`文件夹是我们在schema中的`path`字段中定义的。我们在“我的第一个集合”集合中创建的所有内容都将创建在此目录中。
-```
+> 如果我们回到代码中，您会看到一个新文件已经创建。查看`content/`，您会发现一个`first`文件夹，其中包含我们的新Markdown内容！`first`文件夹是我们在schema中的`path`字段中定义的。我们在“我的第一个集合”集合中创建的所有内容都将存储在此目录中。
