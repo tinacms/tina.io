@@ -7,7 +7,7 @@ seo:
     internationalization with TinaCMS for a seamless multilingual user
     experience
 title: Internationalization
-last_edited: '2025-04-10T08:27:46.000Z'
+last_edited: '2025-04-10T09:16:03.206Z'
 next: ''
 previous: ''
 ---
@@ -164,17 +164,78 @@ When using Directory-Based Localization, developers need to place the correspond
 
 ### Setting up trigger conditions for GitHub Actions
 
-It is necessary to establish a trigger condition for this GitHub Action. Typically, the recommended approach is to trigger the translation process when a PR is successfully merged. If concerns exist regarding token consumption due to frequent triggering, an alternative option is to configure the GitHub Action to run on a scheduled basis. Below is an example of a GitHub Action that triggers only when a PR is successfully merged and contains file modifications within the specified directory.
+A trigger condition must be set for this GitHub Action. Generally, triggering occurs when a PR is successfully merged. To reduce token consumption, scheduled triggering is an alternative. The example below shows a GitHub Action that activates only when a PR is merged with changes in the specified directory.
 
 ```yaml
-# Triggerd when the PR is successfully merged
+# Only triggered after a PR is successfully closed and contains changes in the specified directory
 on:
   pull_request:
-    types: [closed]
+    types: [closed] 
     paths:
-      - 'content/docs/**.mdx' //
+      - 'content/docs/**.mdx'
 
 jobs:
   translate-mdx:
     if: github.event.pull_request.merged == true
 ```
+
+### &#x20;Identify modified target files
+
+To minimize token usage, identifying only modified files for translation is essential. Below is a simple example of scanning for modified files.
+
+```javascript
+// Identify modified target files under currrent PR
+async function getChangedFilesFromApi() {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls/${PR_NUMBER}/files`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+      }
+    );
+    const mdxFiles = response.data
+      .filter(
+        (file) =>
+          file.filename.startsWith('content/docs/') &&
+          file.filename.endsWith('.mdx')
+      )
+      .map((file) => file.filename);
+
+    return mdxFiles;
+  } catch (error) {
+    console.error('Error fetching changed files from API:', error.message);
+    return [];
+  }
+}
+```
+
+### Create Translation Branch
+
+Creating a separate branch to differentiate between the original branch and newly added translations is essential. This approach facilitates thorough review and independent secondary revisions by translation professionals.
+
+```yaml
+- name: Create translation branch
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          TIMESTAMP=$(date +%s)
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+```
+
+### Acquiring translations through LLM API Calls
+
+External LLMs are employed for automatic translation. Translation quality and format integrity depend on the selected model and prompt design. Below is an English prompt example for translating MDX files into Chinese while preserving document interfaces and critical information.
+
+````
+Please translate the following Markdown content into Chinese, preserving all Markdown formatting, code blocks, and front matter metadata.Only translate the text content, do not modify code, variable names, or other technical content.Do not add ```markdown``` in the newly translated Markdown file.Please note the following special requirements:
+  1. Do not modify URLs, next and preview fields
+  2. Maintain the original format structure, including heading hierarchy, lists, tables, etc.
+  3. Comments in code blocks can be translated, but the code itself and its functionality should not be changed
+  4. Please return the translated markdown source code directly in your reply, without adding any other prompts or explanations
+{{content}}
+````
