@@ -76,13 +76,11 @@ export default async function RootLayout({
           <TinaChatBot />
           <SiteLayout>{children}</SiteLayout>
         </StyledComponentsRegistry>
-        <script
-          type="text/javascript"
+        <Script
           id="hs-script-loader"
-          async
-          defer
+          strategy="afterInteractive"
           src="//js-eu1.hs-scripts.com/25605879.js"
-        ></script>
+        />
         <GoogleTagManager gtmId={process.env.SSW_GTM_ID || ''} />
 
         <Script
