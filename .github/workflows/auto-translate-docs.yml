@@ -5,11 +5,6 @@ on:
     types: [closed]
     paths:
       - 'content/docs/**.mdx'
-  # push:
-  #   branches:
-  #     - test-md-translate-ai-v2
-  #   paths:
-  #     - 'content/docs/**.mdx'
 
 jobs:
   translate-mdx:
@@ -41,15 +36,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: node .github/scripts/get-changed-files.js
-
-      #TODO: Remove this after testing
-      # - name: Get changed files
-      #   id: get-changed-files
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     PR_NUMBER: ${{ github.event.pull_request.number }}
-      #     GITHUB_EVENT_NAME: ${{ github.event_name }}
-      #   run: node .github/scripts/get-changed-files.js
 
       - name: Create translation branch
         if: env.HAS_CHANGED_FILES == 'true'
