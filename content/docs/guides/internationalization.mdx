@@ -6,7 +6,7 @@ seo:
     This guide covers setup, configuration and best practice to implement
     internationalization with TinaCMS for a seamless multilingual user
     experience
-title: Tina Guides
+title: Internationalization
 last_edited: '2024-11-06T00:58:35.729Z'
 next: ''
 previous: ''
@@ -16,8 +16,8 @@ previous: ''
 
 Managing multilingual content is essential for global reach. TinaCMS provides versatile options to facilitate this. This guide focuses on two main strategies:
 
-* Directory-Based Localization
-* Field-Based Localization
+- Directory-Based Localization
+- Field-Based Localization
 
 ### Directory-Based Localization
 
@@ -136,7 +136,7 @@ export const pageSchema = {
     },
     // ...other fields
   ],
-}
+};
 ```
 
 > Note: If you are using markdown/mdx content, and want to use the markdown body for your content, you might prefer using the directory-based approach to localization.
@@ -147,9 +147,9 @@ In your site's components, you can then choose the correct localized field to di
 
 ```jsx
 const PageComponent = ({ data, locale }) => {
-  const title = data.title[locale]
+  const title = data.title[locale];
   // ...display content
-}
+};
 ```
 
 #### Content Management:
