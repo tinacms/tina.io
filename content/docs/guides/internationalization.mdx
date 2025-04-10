@@ -7,7 +7,7 @@ seo:
     internationalization with TinaCMS for a seamless multilingual user
     experience
 title: Internationalization
-last_edited: '2025-04-10T06:54:35.427Z'
+last_edited: '2025-04-10T07:08:55.007Z'
 next: ''
 previous: ''
 ---
@@ -163,3 +163,16 @@ TinaCMS will display all localized fields as children of the root-level field.
 When using Directory-Based Localization, developers need to place the corresponding language MDX or JSON files in the correct location for loading multilingual routes. Developers can choose to manually translate text content and place it in the correct location, or they can use a GitHub Action to automate this process. The following is an example explaining what components an effective GitHub Action should include.
 
 ### Setting up trigger conditions for GitHub Actions
+
+```yaml
+//Triggerd when the PR is successfully merged
+on:
+  pull_request:
+    types: [closed]
+    paths:
+      - 'content/docs/**.mdx' //
+
+jobs:
+  translate-mdx:
+    if: github.event.pull_request.merged == true
+```
