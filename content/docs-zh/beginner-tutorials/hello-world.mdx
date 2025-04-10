@@ -1,0 +1,92 @@
+```markdown
+---
+title: 你好，世界！
+last_edited: '2025-03-28T00:59:08.454Z'
+tocIsHidden: true
+next: content/docs/beginner-tutorials/display-content.mdx
+previous: content/docs/beginner-tutorials/install-tinacms.mdx
+---
+
+我们希望将硬编码的“你好，世界！”问候语移到Tina中，这样就可以通过Tina编辑器访问和编辑它，**而无需修改代码**。
+
+在我们这样做之前，我们需要先定义一个`Tina schema`，它将控制我们从Tina接收的数据的“结构”。
+
+1\. 打开`tina/config.ts`文件并找到`schema`字段。它应该看起来像这样：
+
+> 这是一个开箱即用的示例schema，但我们将构建自己的schema。
+
+```typescript
+schema: {
+    collections: [
+      {
+        name: "post",
+        label: "文章",
+        path: "content/posts",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "标题",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "正文",
+            isBody: true,
+          },
+        ],
+        ui: {
+          // 这是一个演示路由。您可以移除它以适配您的站点
+          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+        },
+      },
+    ],
+  },
+```
+
+2\. 将schema替换为一个包含单个字段的基本条目，用于我们的精彩“你好，世界！”消息：
+
+```typescript
+schema: {
+   collections: [
+     {
+       name: "my_first_collection",
+       label: "我的第一个集合",
+       path: "content/first",
+       fields: [
+         {
+           type: "string",
+           name: "title",
+           label: "标题",
+           isTitle: true,
+           required: true,
+         }
+       ],
+       // 暂时将其注释掉。我们稍后会回到这里！
+       // ui: {
+       //   // 这是一个演示路由。您可以移除它以适配您的站点
+       //   router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+       // },
+     },
+   ],
+ },
+```
+
+3\. 现在schema已经定义好了，是时候向我们的新CMS schema添加一些数据了！
+
+4\. 启动您的应用并访问`http://localhost:3000/admin/index.html`
+
+5\. 注意左侧现在有一个“我的第一个集合”菜单项！
+
+6\. 点击该菜单项。
+
+7\. 点击“添加文件”按钮。
+
+8\. 您可以看到我们在Schema中描述的单个**字段**——`标题`字段。将您的精彩标题“你好，世界！”添加到其中。
+
+9\. 点击“保存”。
+
+> 如果我们回到代码中，您会看到一个新文件已经创建。查看`content/`，您会发现一个`first`文件夹，其中包含我们的新Markdown内容！`first`文件夹是我们在schema中的`path`字段中定义的。我们在“我的第一个集合”集合中创建的所有内容都将创建在此目录中。
+```
