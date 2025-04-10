@@ -7,7 +7,7 @@ seo:
     internationalization with TinaCMS for a seamless multilingual user
     experience
 title: Internationalization
-last_edited: '2025-04-10T07:08:55.007Z'
+last_edited: '2025-04-10T08:27:46.000Z'
 next: ''
 previous: ''
 ---
@@ -164,8 +164,10 @@ When using Directory-Based Localization, developers need to place the correspond
 
 ### Setting up trigger conditions for GitHub Actions
 
+It is necessary to establish a trigger condition for this GitHub Action. Typically, the recommended approach is to trigger the translation process when a PR is successfully merged. If concerns exist regarding token consumption due to frequent triggering, an alternative option is to configure the GitHub Action to run on a scheduled basis. Below is an example of a GitHub Action that triggers only when a PR is successfully merged and contains file modifications within the specified directory.
+
 ```yaml
-//Triggerd when the PR is successfully merged
+# Triggerd when the PR is successfully merged
 on:
   pull_request:
     types: [closed]
