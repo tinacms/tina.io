@@ -7,7 +7,7 @@ seo:
     internationalization with TinaCMS for a seamless multilingual user
     experience
 title: Internationalization
-last_edited: '2024-11-06T00:58:35.729Z'
+last_edited: '2025-04-10T06:54:35.427Z'
 next: ''
 previous: ''
 ---
@@ -16,8 +16,8 @@ previous: ''
 
 Managing multilingual content is essential for global reach. TinaCMS provides versatile options to facilitate this. This guide focuses on two main strategies:
 
-- Directory-Based Localization
-- Field-Based Localization
+* Directory-Based Localization
+* Field-Based Localization
 
 ### Directory-Based Localization
 
@@ -157,3 +157,9 @@ const PageComponent = ({ data, locale }) => {
 TinaCMS will display all localized fields as children of the root-level field.
 
 ![Localized Fields](/img/docs/i18n/localized-fields.png)
+
+## Internationalization with GitHub Action
+
+When using Directory-Based Localization, developers need to place the corresponding language MDX or JSON files in the correct location for loading multilingual routes. Developers can choose to manually translate text content and place it in the correct location, or they can use a GitHub Action to automate this process. The following is an example explaining what components an effective GitHub Action should include.
+
+### Setting up trigger conditions for GitHub Actions
