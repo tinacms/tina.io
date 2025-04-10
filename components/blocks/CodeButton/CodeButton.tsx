@@ -25,22 +25,16 @@ export const CodeButton = ({
   ...props
 }) => {
   const [copied, setCopied] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
 
   const clickEvent = () => {
     setCopied(true);
     copyToClipboard(label);
-    setShowTooltip(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
-    setTimeout(() => {
-      setShowTooltip(false);
-    }, 5000);
+  
   };
-
-  console.log(label);
-  console.log(clickedOnText);
 
   const buttonId = id || sanitizeLabel(label);
 

@@ -22,6 +22,9 @@
       "_template": "hero"
     },
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "features": [
         {
           "headline": "Logos",

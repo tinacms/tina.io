@@ -6,42 +6,35 @@
   },
   "blocks": [
     {
-      "blockSettings": {
-        "isFullscreen": true
-      },
-      "features": [
+      "headline": "Sites, Docs and Llamas",
+      "headline2": "No Dramas",
+      "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
+      "media": [
         {
-          "headline": "Sites, Docs and Llamas. No Dramas",
-          "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
-          "buttons": [
-            {
-              "label": "Try the editor now",
-              "icon": true,
-              "variant": "blue",
-              "size": "small",
-              "url": "https://demo.tina.io/admin#/~",
-              "_template": "actions"
-            },
-            {
-              "label": "npx create-tina-app@latest",
-              "clickedOnText": "See [getting started with NPX!](/docs/introduction/using-starter)\n",
-              "_template": "codeButton"
-            }
-          ],
-          "media": [
-            {
-              "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
-              "videoEmbedId": "zRkeKSZjlyw",
-              "figureCaption": "Video: TinaCMS Demo (4 min)",
-              "_template": "videoThumbnailToInternalVideo"
-            }
-          ],
-          "isFullScreen": true,
-          "isReversed": false,
-          "imageBackground": false
+          "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
+          "videoEmbedId": "zRkeKSZjlyw",
+          "figureCaption": "Video: TinaCMS Demo (4 min)",
+          "_template": "videoThumbnailToInternalVideo"
         }
       ],
-      "_template": "features"
+      "margin": "",
+      "spacing": "gap-10",
+      "buttons": [
+        {
+          "label": "Try the editor now",
+          "icon": true,
+          "variant": "blue",
+          "size": "medium",
+          "url": "https://demo.tina.io/admin#/~",
+          "_template": "actions"
+        },
+        {
+          "label": "npx create-tina-app@latest",
+          "clickedOnText": "**Video:** [getting started with NPX!](/docs/introduction/using-starter) (6 min)\n",
+          "_template": "codeButton"
+        }
+      ],
+      "_template": "hero"
     },
     {
       "blockSettings": {

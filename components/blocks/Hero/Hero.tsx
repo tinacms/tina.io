@@ -3,38 +3,19 @@ import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
+import { RenderMedia } from '../Features/Features';
 
 export function HeroBlock({ data, index }) {
   return (
     <section
       key={index}
       className={`relative overflow-visible z-10 text-center ${
-        data.margin ? data.margin : 'px-8 py-12 lg:py-16'
+        data.margin ? data.margin : 'px-8 pb-12 lg:pb-16'
       }`}
     >
       <Container width="narrow" center>
         <HeroFeature item={data} spacing={data.spacing}>
-          {data.media && data.media[0] && (
-            <div
-              className={`mt-6 min-w-0 w-full ${
-                (data.media[0].image || data.media[0].src) &&
-                'rounded-lg shadow-panel overflow-hidden bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900'
-              }`}
-            >
-              {data.media && data.media[0].image && (
-                <Image
-                  src={data.media[0].image}
-                  alt={data.headline}
-                  className="w-full h-auto"
-                  width={1200}
-                  height={1200}
-                />
-              )}
-              {data.media && data.media[0].src && (
-                <Video className="w-full h-auto" src={data.media[0].src} />
-              )}
-            </div>
-          )}
+          {data.media && <RenderMedia data={data} />}
         </HeroFeature>
       </Container>
     </section>
@@ -42,14 +23,43 @@ export function HeroBlock({ data, index }) {
 }
 
 export const HeroFeature = ({ item, spacing, children }) => {
+  const isOrNeeded = item.buttons && item.buttons.length >= 2;
+
+  const renderButtonsWithOr = (buttons) => {
+    return buttons.reduce((acc, button, index) => {
+      if (index > 0 && isOrNeeded) {
+        acc.push(
+          <span key={`or-${index}`} className="or-text font-tuner">
+            or
+          </span>
+        );
+      }
+      acc.push(<RenderButton key={index} button={button} index={index} />);
+      return acc;
+    }, []);
+  };
+
   return (
     <>
       <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
-        {item.headline && (
-          <h2 className="heading" data-tina-field={tinaField(item, 'headline')}>
-            {item.headline}
-          </h2>
-        )}
+        <div className="flex flex-col gap-2">
+          {item.headline && (
+            <h2
+              className="heading"
+              data-tina-field={tinaField(item, 'headline')}
+            >
+              {item.headline}
+            </h2>
+          )}
+          {item.headline2 && (
+            <h2
+              className="heading"
+              data-tina-field={tinaField(item, 'headline2')}
+            >
+              {item.headline2}
+            </h2>
+          )}
+        </div>
         {item.text && (
           <p
             className={item.mobileTextSize ? 'text-lg lg:text-xl' : 'text-xl'}
@@ -58,11 +68,8 @@ export const HeroFeature = ({ item, spacing, children }) => {
             {item.text}
           </p>
         )}
-        <div className="flex justify-center items-center gap-10">
-          {item.buttons &&
-            item.buttons.map((button, index) => (
-              <RenderButton key={index} button={button} index={index} />
-            ))}
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-10 pb-10">
+          {item.buttons && renderButtonsWithOr(item.buttons)}
         </div>
         {children}
       </div>
