@@ -175,11 +175,11 @@
       "items": [
         {
           "headline": "Designed for large teams",
-          "text": "Scales to 1000+ users - compatible with the most popular IdPs like Okta and support for both SAML and OIDC.\n\n"
+          "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more.\n\n"
         },
         {
           "headline": "Enterprise-grade security",
-          "text": "SSO with SAML or OIDC, encrypted tokens, and audit logs ensure you meet compliance standards - plus we are pursuing SOC 2 certification and GDPR compliance."
+          "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
         },
         {
           "headline": "Priority support and SLAs",
