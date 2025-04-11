@@ -163,24 +163,24 @@
           ]
         },
         {
+          "headline": "Costs",
+          "text": "Customers typically cut CMS licensing and ops costs by 50%+ by switching to Tina’s Git-backed architecture.\n\n"
+        },
+        {
           "headline": "Deployment",
           "text": "Run Tina self-hosted in your own infrastructure or use TinaCloud—your choice of control and convenience."
-        },
-        {
-          "headline": "Security",
-          "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
-        },
-        {
-          "headline": "Scalability",
-          "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
         },
         {
           "headline": "Large teams",
           "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more."
         },
         {
-          "headline": "Costs",
-          "text": "Customers typically cut CMS licensing and ops costs by 50%+ by switching to Tina’s Git-backed architecture.\n\n"
+          "headline": "Scalability",
+          "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
+        },
+        {
+          "headline": "Security",
+          "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
         },
         {
           "headline": "Support",
