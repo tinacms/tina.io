@@ -502,7 +502,7 @@ export function AppFooter() {
               </div>
             );
           })}
-          <div className="flex flex-col lg:items-center">
+          <div className="flex flex-col">
             <div className="flex lg:items-start gap-6 drop-shadow-sm">
               <SocialLink link="https://github.com/tinacms/tinacms">
                 <GithubIconSvg className="w-7 h-auto fill-current " />{' '}
@@ -528,7 +528,7 @@ export function AppFooter() {
               <div className="flex flex-col gap-1 w-full">
                 <div className="flex gap-1">
                   <input
-                    className="w-full px-2 py-1 text-xs bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
+                    className="w-full px-2 py-1 text-sm bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
                     placeholder="First name"
                     name="firstName"
                     type="text"
@@ -538,7 +538,7 @@ export function AppFooter() {
                     disabled={isSubmitting}
                   />
                   <input
-                    className="w-full px-2 py-1 text-xs bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
+                    className="w-full px-2 py-1 text-sm bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
                     placeholder="Last name"
                     name="lastName"
                     type="text"
@@ -550,7 +550,7 @@ export function AppFooter() {
                 </div>
 
                 <input
-                  className="w-full px-2 py-1 text-xs bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
+                  className="w-full px-2 py-1 text-sm bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
                   placeholder="Email"
                   name="email"
                   type="email"
@@ -581,13 +581,15 @@ export function AppFooter() {
                     {message.text}
                   </p>
                 )}
-                <button
-                  type="submit"
-                  className="mt-1 px-2 py-1 text-xs bg-white text-black rounded-md hover:bg-white/50 transition-colors duration-200 "
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
-                </button>
+                <div className="flex justify-center pt-3">
+                  <button
+                    type="submit"
+                    className="mt-1 px-2 py-1 text-xs bg-white text-black font-tuner shadow-xl pt-2 hover:bg-white/80 transition-colors duration-200 w-1/2 rounded-full "
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                  </button>
+                </div>
               </div>
             </form>
           </div>
