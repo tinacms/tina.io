@@ -5,32 +5,33 @@
   },
   "blocks": [
     {
-      "headline": "Tina for Enterprise",
-      "text": "Reduce costs. Increase security & performance.",
+      "headline": "TinaCMS enterprise",
+      "text": "Used by the best of the best to accelerate content management and increase performance.",
       "margin": "",
       "spacing": "gap-10",
+      "smallerMobileBodyText": false,
       "buttons": [
         {
-          "label": "Request 1-Pager",
-          "icon": false,
-          "variant": "white",
-          "size": "medium",
-          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hello, I'd like more information about the TinaCMS Enterprise Solution.",
-          "_template": "actions"
-        },
-        {
-          "label": "Schedule a Demo",
+          "label": "Book a demo",
           "icon": false,
           "color": "blue",
           "size": "medium",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
+        },
+        {
+          "label": "Request 1-pager",
+          "icon": false,
+          "variant": "white",
+          "size": "medium",
+          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hello, I'd like more information about the TinaCMS Enterprise Solution.",
+          "_template": "actions"
         }
       ],
       "_template": "hero"
     },
     {
-      "title": "Trusted by",
+      "title": "Trusted by 50+ top companies",
       "link": "https://ndcconferences.com",
       "items": [
         {
@@ -127,6 +128,12 @@
       "_template": "logoGrid"
     },
     {
+      "title2": "\"TinaCMS is transforming the way we do docs at unity.\"",
+      "subtext": "Anton Iancu, product engineering manager for AI and docs",
+      "logo": "/svg/logos/unity.svg",
+      "_template": "quote"
+    },
+    {
       "items": [
         {
           "headline": "Built-in Version Control",
@@ -137,8 +144,8 @@
           "text": "When switching to TinaCMS, most customers reduce licensing and operating costs by more than 50%. "
         },
         {
-          "headline": "Self-host",
-          "text": "TinaCMS can be self-hosted behind your firewall for increased security. "
+          "headline": "Self-hosted or TinaCloud",
+          "text": "Deploy TinaCMS in your own infrastructure or use our managed TinaCloud—your choice of control and convenience."
         },
         {
           "headline": "Editorial Workflow",
@@ -165,12 +172,6 @@
       "_template": "featureGrid"
     },
     {
-      "title2": "\"Tina is transforming the way we do docs at Unity\"",
-      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "/svg/logos/unity.svg",
-      "_template": "quote"
-    },
-    {
       "items": [
         {
           "headline": "Single Sign On",
@@ -181,20 +182,24 @@
           "text": "Actively pursuing SOC 2 certification and GDPR compliance."
         },
         {
-          "headline": "Uptime SLAs",
-          "text": "99.9% server uptime with swift communications if something impacts your sending integration."
+          "headline": "Priority support and SLAs",
+          "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
         },
         {
           "headline": "Simplified Development & Maintenance",
           "text": "Web teams become efficient when using modern frameworks and TinaCMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
         },
         {
-          "headline": "CI/CD ",
-          "text": "Integration with a modern CI/CD pipeline to perform all checks and run scripts.   Easily configure separate environments such as pre-production and  production. \n"
+          "headline": "Framework-agnostic",
+          "text": "Not tied to any CMS backend—Tina is a UI layer over your existing Git content, giving you full freedom on architecture.\n"
         },
         {
           "headline": "No More Caching",
           "text": "Remove the need for complex caching layers. Caching is built in, with statically generated content distributed through CDN networks. \n"
+        },
+        {
+          "headline": "Open-source foundation",
+          "text": "Built on an extensible open-source core—no vendor lock-in, with the ability to customize deeply if needed."
         }
       ],
       "_template": "featureGrid"
@@ -220,21 +225,6 @@
         }
       ],
       "_template": "featureGrid"
-    },
-    {
-      "headline": "Get a Demo",
-      "text": "Discuss your project and get a demo from a TinaCMS team member",
-      "buttons": [
-        {
-          "label": "Get a Demo",
-          "icon": false,
-          "color": "blue",
-          "size": "medium",
-          "modal": "BookDemo.tsx",
-          "_template": "modalButton"
-        }
-      ],
-      "_template": "hero"
     }
   ]
 }
