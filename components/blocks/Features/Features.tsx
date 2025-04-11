@@ -37,17 +37,17 @@ export function FeatureBlock({ data, index }) {
           >
             {data.text}
           </p>
-          <div className="grid grid-cols-2 gap-4 lg:justify-items-start justify-items-center">
-            {data.buttons?.map((button, index) => (
-              <div
-                key={index}
-                className={`w-auto ${
-                  index === 2 ? 'col-span-2 justify-self-center lg:justify-self-start' : ''
-                }`}
-              >
+          <div className="flex flex-col items-center lg:items-start">
+            <div className="flex gap-2">
+              {data.buttons?.slice(0, 2).map((button, index) => (
                 <RenderButton button={button} index={index} />
+              ))}
+            </div>
+            {data.buttons?.length > 2 && (
+              <div className="flex mt-4">
+                <RenderButton button={data.buttons[2]} index={2} />
               </div>
-            ))}
+            )}
           </div>
         </div>
         <div className="w-full lg:w-1/2">
