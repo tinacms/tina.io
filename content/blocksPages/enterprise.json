@@ -141,7 +141,7 @@
         },
         {
           "headline": "Reduced Costs",
-          "text": "When switching to TinaCMS, most customers reduce licensing and operating costs by more than 50%. "
+          "text": "Customers typically cut CMS licensing and ops costs by 50%+ by switching to Tina’s Git-backed architecture.\n\n"
         },
         {
           "headline": "Self-hosted or TinaCloud",
@@ -162,7 +162,7 @@
         },
         {
           "headline": "Performance and Scalability",
-          "text": "Static architecture delivers fast load times and scalability by pre-rendering pages as static assets and serving them from a CDN. This often  eliminates down-time and results in a 10 x time-to-first-byte."
+          "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
         },
         {
           "headline": "Enhanced Security",
@@ -188,10 +188,6 @@
         {
           "headline": "Framework-agnostic",
           "text": "Tina works with Next.js, Astro, Hugo, and more—UI layer over your Git content, not tied to any backend.\n"
-        },
-        {
-          "headline": "No More Caching",
-          "text": "Remove the need for complex caching layers. Caching is built in, with statically generated content distributed through CDN networks. \n"
         },
         {
           "headline": " Developer-first, open-source",
