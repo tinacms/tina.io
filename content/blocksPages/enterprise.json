@@ -136,8 +136,18 @@
     {
       "items": [
         {
-          "headline": "Framework-agnostic",
-          "text": "Tina works with Next.js, Astro, Hugo, and more—UI layer over your Git content, not tied to any backend."
+          "headline": "All TinaCMS base features",
+          "text": "Enterprise users have all the functionality that people choose tina for. ",
+          "url": "",
+          "actions": [
+            {
+              "label": "Compare Tina",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "/compare-tina"
+            }
+          ]
         },
         {
           "headline": "Version Control",
@@ -183,15 +193,10 @@
         {
           "headline": " Developer-first, open-source",
           "text": "No admin panels—developers stay in their codebase. Built on a customizable, extensible open-source foundation."
-        }
-      ],
-      "_template": "featureGrid"
-    },
-    {
-      "items": [
+        },
         {
-          "headline": "",
-          "text": ""
+          "headline": "Framework-agnostic",
+          "text": "Tina works with Next.js, Astro, Hugo, and more—UI layer over your Git content, not tied to any backend."
         }
       ],
       "_template": "featureGrid"
