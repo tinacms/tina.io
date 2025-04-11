@@ -13,7 +13,7 @@ import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { Button } from '../../components/ui/Button';
-import data from '../../content/navigationBar/navMenu.json';
+import navData from '../../content/navigationBar/navMenu.json';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import { EmailForm } from '../modals/EmailForm';
@@ -32,6 +32,71 @@ const iconMapping = {
   MdEmail: MdEmail,
   FaCalendarDay: FaCalendarDay,
 };
+
+type NavItemBase = {
+  label: string;
+  _template: string;
+};
+
+type NavItemLink = NavItemBase & {
+  href: string;
+  _template: 'stringItem';
+  items?: never;
+  owner?: never;
+  repo?: never;
+};
+
+type NavItemGroup = NavItemBase & {
+  items: Array<{
+    label: string;
+    href: string;
+  }>;
+  _template: 'groupOfStringItems';
+  href?: never;
+  owner?: never;
+  repo?: never;
+};
+
+type NavItemGitHub = NavItemBase & {
+  owner: string;
+  repo: string;
+  _template: 'GitHubStarButton';
+  href?: never;
+  items?: never;
+};
+
+type NavItemModal = NavItemBase & {
+  color: ValidColors;
+  modal: string;
+  icon2?: keyof typeof iconMapping;
+  _template: typeof modalButtonString;
+  href?: never;
+  items?: never;
+  owner?: never;
+  repo?: never;
+};
+
+type NavItem = NavItemLink | NavItemGroup | NavItemGitHub | NavItemModal;
+
+type NavData = {
+  navigationBar: string;
+  navItem: Array<{
+    label: string;
+    _template: string;
+    href?: string;
+    items?: Array<{
+      label: string;
+      href: string;
+    }>;
+    owner?: string;
+    repo?: string;
+    color?: ValidColors;
+    modal?: string;
+    icon2?: keyof typeof iconMapping;
+  }>;
+};
+
+const data = navData as NavData;
 
 export function Navbar({ sticky = true }) {
   const [open, setOpen] = useState(false);
@@ -61,7 +126,23 @@ export function Navbar({ sticky = true }) {
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
-  const navItems = Array.isArray(data.navItem) ? data.navItem : [];
+  const navItems = Array.isArray(data.navItem)
+    ? data.navItem.filter((item): item is NavItem => {
+        if (item._template === 'stringItem' && item.href) {
+          return true;
+        }
+        if (item._template === 'groupOfStringItems' && item.items) {
+          return true;
+        }
+        if (item._template === 'GitHubStarButton' && item.owner && item.repo) {
+          return true;
+        }
+        if (item._template === modalButtonString && item.color && item.modal) {
+          return true;
+        }
+        return false;
+      })
+    : [];
 
   return (
     <>
@@ -97,7 +178,7 @@ export function Navbar({ sticky = true }) {
                 </Link>
               </li>
               {navItems.map((item, index) =>
-                item.items ? (
+                item._template === 'groupOfStringItems' ? (
                   item.items.map((subItem, subIndex) =>
                     subItem.href ? (
                       <li
@@ -115,7 +196,7 @@ export function Navbar({ sticky = true }) {
                       </li>
                     ) : null
                   )
-                ) : item.href ? (
+                ) : item._template === 'stringItem' && item.href ? (
                   <li key={index} className={`group ${navLinkClasses}`}>
                     <Link href={item.href} className="py-2">
                       {item.label}
@@ -178,7 +259,7 @@ export function Navbar({ sticky = true }) {
                 item._template === modalButtonString ? (
                   <li key={index} className={`group ${navLinkClasses} py-2`}>
                     <Button
-                      color={item.color as ValidColors}
+                      color={item.color}
                       size="small"
                       onClick={() => openModal(item.modal)}
                     >
@@ -187,49 +268,46 @@ export function Navbar({ sticky = true }) {
                           {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
                         </span>
                       )}
-
                       {item.label}
                     </Button>
                   </li>
-                ) : (
+                ) : item._template === 'groupOfStringItems' ? (
                   <li key={index} className={`group ${navLinkClasses}`}>
-                    {item.items ? (
-                      <div className="relative group">
-                        <span className="flex items-center cursor-pointer">
-                          {item.label}
-                          <BiChevronRight
-                            className={`ml-1 text-blue-200 group-hover:text-blue-400 transition-transform duration-200 group-hover:rotate-90`}
-                          />
-                        </span>
-                        <ul
-                          className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
-                        >
-                          {item.items.map((subItem, subIndex) =>
-                            subItem.href ? (
-                              <li
-                                key={subIndex}
-                                className="py-2 px-2 flex items-center"
-                              >
-                                <Link href={subItem.href}>
-                                  <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
-                                    {subItem.label}
-                                    {subItem.href.startsWith('https://') && (
-                                      <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
-                                    )}
-                                  </span>
-                                </Link>
-                              </li>
-                            ) : null
-                          )}
-                        </ul>
-                      </div>
-                    ) : item.href ? (
-                      <Link href={item.href} className="py-2 w-max">
+                    <div className="relative group">
+                      <span className="flex items-center cursor-pointer">
                         {item.label}
-                      </Link>
-                    ) : null}
+                        <BiChevronRight
+                          className={`ml-1 text-blue-200 group-hover:text-blue-400 transition-transform duration-200 group-hover:rotate-90`}
+                        />
+                      </span>
+                      <ul
+                        className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
+                      >
+                        {item.items.map((subItem, subIndex) =>
+                          subItem.href ? (
+                            <li
+                              key={subIndex}
+                              className="py-2 px-2 flex items-center"
+                            >
+                              <Link href={subItem.href}>
+                                <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
+                                  {subItem.label}
+                                  {subItem.href.startsWith('https://') && (
+                                    <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
+                                  )}
+                                </span>
+                              </Link>
+                            </li>
+                          ) : null
+                        )}
+                      </ul>
+                    </div>
                   </li>
-                )
+                ) : item._template === 'stringItem' && item.href ? (
+                  <Link href={item.href} className="py-2 w-max">
+                    {item.label}
+                  </Link>
+                ) : null
               )}
             </ul>
           </nav>
