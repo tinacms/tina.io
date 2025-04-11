@@ -9,24 +9,24 @@
       "headline": "Sites, Docs and Llamas",
       "headline2": "No Dramas",
       "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
-      "media": [
-        {
-          "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
-          "videoEmbedId": "zRkeKSZjlyw",
-          "figureCaption": "Video: TinaCMS Demo (4 min)",
-          "_template": "videoThumbnailToInternalVideo"
-        }
-      ],
       "margin": "",
       "spacing": "gap-10",
       "buttons": [
         {
           "label": "Try the editor now",
-          "icon": true,
+          "icon": false,
           "variant": "blue",
           "size": "medium",
           "url": "https://demo.tina.io/admin#/~",
           "_template": "actions"
+        },
+        {
+          "label": "Book a Demo",
+          "icon": false,
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         },
         {
           "label": "npx create-tina-app@latest",
