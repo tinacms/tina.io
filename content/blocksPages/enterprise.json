@@ -136,6 +136,10 @@
     {
       "items": [
         {
+          "headline": "Framework-agnostic",
+          "text": "Tina works with Next.js, Astro, Hugo, and more—UI layer over your Git content, not tied to any backend."
+        },
+        {
           "headline": "Version Control",
           "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
         },
@@ -182,12 +186,8 @@
     {
       "items": [
         {
-          "headline": "Priority support and SLAs",
-          "text": ""
-        },
-        {
           "headline": "Framework-agnostic",
-          "text": "Tina works with Next.js, Astro, Hugo, and more—UI layer over your Git content, not tied to any backend.\n"
+          "text": ""
         },
         {
           "headline": " Developer-first, open-source",
