@@ -174,8 +174,8 @@
     {
       "items": [
         {
-          "headline": "Single Sign On",
-          "text": "Compatible with the most popular IdPs like Okta and support for both SAML and OIDC."
+          "headline": "Designed for large teams",
+          "text": "Scales to 1000+ users - compatible with the most popular IdPs like Okta and support for both SAML and OIDC.\n\n"
         },
         {
           "headline": "SOC 2 and GDPR",
