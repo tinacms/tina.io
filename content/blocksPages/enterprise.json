@@ -5,7 +5,7 @@
   },
   "blocks": [
     {
-      "headline": "TinaCMS enterprise",
+      "headline": "Enterprise TinaCMS",
       "text": "Trusted by the best for smooth content management and top performance.",
       "margin": "",
       "spacing": "gap-10",
@@ -137,7 +137,7 @@
       "items": [
         {
           "headline": "All TinaCMS base features",
-          "text": "Enterprise users have all the functionality that makes Tina unique. ",
+          "text": "Enterprise plans start with all the functionality and features that make Tina unique. ",
           "url": "",
           "actions": [
             {
