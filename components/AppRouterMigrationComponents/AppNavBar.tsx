@@ -396,21 +396,24 @@ export function AppNavBar({ sticky = true }) {
           <div className="flex space-x-2 gap-2 cursor-pointer">
             {navItems
               .filter((item) => item._template === modalButtonString)
-              .map((item, index) => (
-                <Button
-                  key={index}
-                  color={item.color as ValidColors}
-                  size="extraSmall"
-                  onClick={() => openModal(item.modal)}
-                >
-                  {item.icon2 && iconMapping[item.icon2] && (
-                    <span className="mr-2">
-                      {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-                    </span>
-                  )}
-                  {item.label}
-                </Button>
-              ))}
+              .map(
+                (item, index) =>
+                  isModalButtonItem(item) && (
+                    <Button
+                      key={index}
+                      color={item.color as ValidColors}
+                      size="extraSmall"
+                      onClick={() => openModal(item.modal)}
+                    >
+                      {item.icon2 && iconMapping[item.icon2] && (
+                        <span className="mr-2">
+                          {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
+                        </span>
+                      )}
+                      {item.label}
+                    </Button>
+                  )
+              )}
 
             <button
               className={`outline-none hover:animate-jelly ${
