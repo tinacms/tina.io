@@ -148,8 +148,8 @@
           "text": "Deploy TinaCMS in your own infrastructure or use our managed TinaCloud—your choice of control and convenience."
         },
         {
-          "headline": "Editorial Workflow",
-          "text": "Editorial workflows backed by Git are built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. ",
+          "headline": "Customizable editorial workflows",
+          "text": "Fully configurable, backed by Git, and built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. ",
           "actions": [
             {
               "label": "Learn More",
