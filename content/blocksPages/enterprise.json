@@ -144,31 +144,27 @@
               "label": "Compare Tina",
               "icon": false,
               "variant": "default",
-              "size": "medium",
+              "size": "small",
               "url": "/compare-tina"
             }
           ]
         },
         {
-          "headline": "Reduced Costs",
-          "text": "Customers typically cut CMS licensing and ops costs by 50%+ by switching to Tina’s Git-backed architecture.\n\n"
-        },
-        {
-          "headline": "Self-hosted or TinaCloud",
-          "text": "Deploy in your own infrastructure or use TinaCloud—your choice of control and convenience."
-        },
-        {
-          "headline": "Customizable editorial workflows",
-          "text": "Fully configurable, backed by Git, and built-in. Your content team can make Pull Requests (PRs) without leaving the CMS. ",
+          "headline": "Editorial workflows",
+          "text": "Configurable and backed by Git. Your content team makes pull requests without leaving the CMS. ",
           "actions": [
             {
               "label": "Learn More",
               "icon": false,
-              "variant": "white",
+              "variant": "default",
               "size": "small",
               "url": "https://tina.io/editorial-workflow/"
             }
           ]
+        },
+        {
+          "headline": "Self-hosted or TinaCloud",
+          "text": "Deploy in your own infrastructure or use TinaCloud—your choice of control and convenience."
         },
         {
           "headline": "Security",
@@ -179,8 +175,12 @@
           "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
         },
         {
-          "headline": "Designed for large teams",
+          "headline": "Large teams",
           "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more."
+        },
+        {
+          "headline": "Reduced Costs",
+          "text": "Customers typically cut CMS licensing and ops costs by 50%+ by switching to Tina’s Git-backed architecture.\n\n"
         },
         {
           "headline": "Priority support and SLAs",
