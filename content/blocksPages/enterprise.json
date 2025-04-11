@@ -175,7 +175,7 @@
           "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
         },
         {
-          "headline": "Performance and Scalability",
+          "headline": "Scalability",
           "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
         },
         {
