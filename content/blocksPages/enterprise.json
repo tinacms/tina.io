@@ -136,10 +136,6 @@
     {
       "items": [
         {
-          "headline": "Enterprise-grade security",
-          "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
-        },
-        {
           "headline": "Built-in Version Control",
           "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
         },
@@ -165,6 +161,10 @@
           ]
         },
         {
+          "headline": "Enterprise-grade security",
+          "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
+        },
+        {
           "headline": "Performance and Scalability",
           "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
         }
@@ -178,10 +178,6 @@
           "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more.\n\n"
         },
         {
-          "headline": "Enterprise-grade security",
-          "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
-        },
-        {
           "headline": "Priority support and SLAs",
           "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
         },
@@ -192,28 +188,6 @@
         {
           "headline": " Developer-first, open-source",
           "text": "No admin panels—developers stay in their codebase. Built on a customizable, extensible open-source foundation."
-        }
-      ],
-      "_template": "featureGrid"
-    },
-    {
-      "options": {
-        "narrow": true,
-        "color": "white",
-        "align": "center"
-      },
-      "content": "## Reduced Hosting and Operating Costs\n\nMost customers reduce licensing and operating costs by more than 50% when switching to TinaCMS from other enterprise-level CMS platforms.\n",
-      "_template": "content"
-    },
-    {
-      "items": [
-        {
-          "headline": "Reduced Hosting and Operating Costs",
-          "text": "Most customers reduce licensing and operating costs by more than 50% when switching to TinaCMS from other enterprise-level CMS platforms."
-        },
-        {
-          "headline": "Training & Support",
-          "text": "Get access to the team behind TinaCMS for training, priority support, and custom development."
         }
       ],
       "_template": "featureGrid"
