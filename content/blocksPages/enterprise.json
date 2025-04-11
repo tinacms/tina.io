@@ -150,10 +150,6 @@
           ]
         },
         {
-          "headline": "Version Control",
-          "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
-        },
-        {
           "headline": "Reduced Costs",
           "text": "Customers typically cut CMS licensing and ops costs by 50%+ by switching to Tina’s Git-backed architecture.\n\n"
         },
@@ -175,7 +171,7 @@
           ]
         },
         {
-          "headline": "Enterprise-grade security",
+          "headline": "Security",
           "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
         },
         {
@@ -189,14 +185,6 @@
         {
           "headline": "Priority support and SLAs",
           "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
-        },
-        {
-          "headline": " Developer-first, open-source",
-          "text": "No admin panels—developers stay in their codebase. Built on a customizable, extensible open-source foundation."
-        },
-        {
-          "headline": "Framework-agnostic",
-          "text": "Tina works with Next.js, Astro, Hugo, and more—UI layer over your Git content, not tied to any backend."
         }
       ],
       "_template": "featureGrid"
