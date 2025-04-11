@@ -186,20 +186,16 @@
           "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
         },
         {
-          "headline": "Built for developer velocity",
-          "text": "Developers stay in code, not in admin panels. Updates and deployments become simpler when using TinaCMS with modern frameworks like Next.js, Astro, and Hugo"
-        },
-        {
           "headline": "Framework-agnostic",
-          "text": "Not tied to any CMS backend—Tina is a UI layer over your existing Git content, giving you full freedom on architecture.\n"
+          "text": "Tina works with Next.js, Astro, Hugo, and more—UI layer over your Git content, not tied to any backend.\n"
         },
         {
           "headline": "No More Caching",
           "text": "Remove the need for complex caching layers. Caching is built in, with statically generated content distributed through CDN networks. \n"
         },
         {
-          "headline": "Open-source foundation",
-          "text": "Built on an extensible open-source core—no vendor lock-in, with the ability to customize deeply if needed."
+          "headline": " Developer-first, open-source",
+          "text": "No admin panels—developers stay in their codebase. Built on a customizable, extensible open-source foundation."
         }
       ],
       "_template": "featureGrid"
