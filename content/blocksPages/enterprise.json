@@ -136,6 +136,10 @@
     {
       "items": [
         {
+          "headline": "Enterprise-grade security",
+          "text": "SSO (SAML/OIDC), encrypted tokens, audit logs, and a no-database model reduce risk. SOC 2 and GDPR in progress."
+        },
+        {
           "headline": "Built-in Version Control",
           "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
         },
@@ -163,10 +167,6 @@
         {
           "headline": "Performance and Scalability",
           "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
-        },
-        {
-          "headline": "Enhanced Security",
-          "text": "Reduce the attack surface without a database and server-side processing. Static files and strict access controls minimize vulnerabilities, offering a more secure architecture. "
         }
       ],
       "_template": "featureGrid"
