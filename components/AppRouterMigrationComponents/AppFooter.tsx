@@ -3,17 +3,20 @@
 import Link from 'next/link';
 
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { BsDiscord } from 'react-icons/bs';
+import { ImCross } from 'react-icons/im';
+import { IoIosWarning } from 'react-icons/io';
+import { TiTick } from 'react-icons/ti';
 import GithubIconSvg from '../../public/svg/github-icon.svg';
 import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg';
 import XIconSvg from '../../public/svg/x-icon.svg';
 import YoutubeIconSvg from '../../public/svg/youtube-icon.svg';
 import '../../styles/tailwind.css';
+import { addToMailchimp } from '../../utils';
 import { TinaIcon } from '../logo';
-import { DynamicLink } from '../ui';
+import { DynamicLink, Input, ModalButton } from '../ui';
 
-//TODO: Implement TinaCMS collection - https://github.com/tinacms/tina.io/issues/2656
 const footerNavEn = [
   {
     label: 'Product',
@@ -402,12 +405,74 @@ const SocialLink = ({ link, children }) => {
   );
 };
 
-export const AppFooter = ({}) => {
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export function AppFooter() {
   const pathName = usePathname();
   const isZhPath = pathName?.includes('/zh') || false;
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
 
   const currentFooterNav = isZhPath ? footerNavZh : footerNavEn;
   const currentFooterLinks = isZhPath ? footerLinksZh : footerLinksEn;
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage({ text: '', type: '' });
+
+    try {
+      const result = await addToMailchimp(
+        formData.email,
+        formData.firstName,
+        formData.lastName
+      );
+
+      if (result.result === 'success') {
+        setMessage({
+          text: "You've been added to the llama list!",
+          type: 'success',
+        });
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+        });
+      } else if (result.message.includes('400')) {
+        setMessage({ text: "You're already in our herd!", type: 'warning' });
+      } else {
+        setMessage({
+          text: 'There was an error. Please try again.',
+          type: 'error',
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setMessage({
+        text: 'There was an error. Please try again.',
+        type: 'error',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div>
@@ -437,28 +502,94 @@ export const AppFooter = ({}) => {
               </div>
             );
           })}
-          <div className="flex flex-col lg:items-center font-tuner">
-            <div className="flex flex-col lg:items-start gap-4 drop-shadow-sm font-tuner">
+          <div className="flex flex-col lg:items-center">
+            <div className="flex lg:items-start gap-6 drop-shadow-sm">
               <SocialLink link="https://github.com/tinacms/tinacms">
-                <GithubIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                GitHub
+                <GithubIconSvg className="w-7 h-auto fill-current " />{' '}
               </SocialLink>
               <SocialLink link="https://x.com/tinacms">
-                <XIconSvg className="w-7 h-auto fill-current opacity-80" /> X
+                <XIconSvg className="w-7 h-auto fill-current " />
               </SocialLink>
               <SocialLink link="https://discord.com/invite/zumN63Ybpf">
-                <BsDiscord className="w-7 h-auto fill-current opacity-80" />{' '}
-                Discord
+                <BsDiscord className="w-7 h-auto fill-current" />{' '}
               </SocialLink>
               <SocialLink link="https://www.youtube.com/@TinaCMS">
-                <YoutubeIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                YouTube
+                <YoutubeIconSvg className="w-7 h-auto fill-current " />{' '}
               </SocialLink>
               <SocialLink link="https://www.linkedin.com/company/tinacms">
-                <LinkedInIconSvg className="w-7 h-auto fill-current opacity-80" />{' '}
-                LinkedIn
+                <LinkedInIconSvg className="w-7 h-auto fill-current " />{' '}
               </SocialLink>
             </div>
+            <form
+              className="flex flex-col text-left gap-1.5 items-start w-full pt-6"
+              onSubmit={handleSubmit}
+            >
+              <h2 className="text-xs font-tuner text-white">Join the Herd!</h2>
+              <div className="flex flex-col gap-1 w-full">
+                <div className="flex gap-1">
+                  <input
+                    className="w-full px-2 py-1 text-xs bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
+                    placeholder="First name"
+                    name="firstName"
+                    type="text"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                    disabled={isSubmitting}
+                  />
+                  <input
+                    className="w-full px-2 py-1 text-xs bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
+                    placeholder="Last name"
+                    name="lastName"
+                    type="text"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <input
+                  className="w-full px-2 py-1 text-xs bg-transparent text-white border-0 border-b border-white placeholder:text-white/70"
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  disabled={isSubmitting}
+                />
+                {message.text && (
+                  <p
+                    className={`text-xs flex items-center gap-1 ${
+                      message.type === 'success'
+                        ? 'text-green-300'
+                        : message.type === 'warning'
+                        ? 'text-white'
+                        : 'text-white'
+                    }`}
+                  >
+                    {message.type === 'success' && (
+                      <TiTick className="w-3 h-3" />
+                    )}
+                    {message.type === 'warning' && (
+                      <IoIosWarning className="w-3 h-3" />
+                    )}
+                    {message.type === 'error' && (
+                      <ImCross className="w-3 h-3" />
+                    )}
+                    {message.text}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  className="mt-1 px-2 py-1 text-xs bg-white text-black rounded-md hover:bg-white/50 transition-colors duration-200 "
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -495,7 +626,7 @@ export const AppFooter = ({}) => {
       </div>
     </div>
   );
-};
+}
 
 const FooterLink = ({ link, label }) => {
   return (

@@ -180,6 +180,15 @@
         "href": "https://www.linkedin.com/company/tinacms",
         "image": "/LinkedIn_icon-white1.svg",
         "_template": "socialLink"
+      },
+      {
+        "label": "Subscribe",
+        "icon": false,
+        "color": "orange",
+        "size": "medium",
+        "modal": "EmailForm.tsx",
+        "icon2": "MdEmail",
+        "_template": "modalButton"
       }
     ]
   }
