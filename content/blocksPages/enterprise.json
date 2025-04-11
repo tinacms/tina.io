@@ -171,6 +171,10 @@
         {
           "headline": "Designed for large teams",
           "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more."
+        },
+        {
+          "headline": "Priority support and SLAs",
+          "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
         }
       ],
       "_template": "featureGrid"
@@ -178,12 +182,8 @@
     {
       "items": [
         {
-          "headline": "Designed for large teams",
-          "text": "\n\n"
-        },
-        {
           "headline": "Priority support and SLAs",
-          "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
+          "text": ""
         },
         {
           "headline": "Framework-agnostic",
