@@ -319,8 +319,8 @@ export function AppNavBar({ sticky = true }) {
             </div>
             <ul className="flex flex-col py-4 px-6 relative z-20">
               {navItems.map((item, index) =>
-                item.items ? (
-                  item.items.map((subItem, subIndex) =>
+                'items' in item ? (
+                  (item.items as any[]).map((subItem, subIndex) =>
                     subItem.href ? (
                       <li
                         key={`${index}-${subIndex}`}
@@ -337,7 +337,7 @@ export function AppNavBar({ sticky = true }) {
                       </li>
                     ) : null
                   )
-                ) : item.href ? (
+                ) : 'href' in item ? (
                   <li key={index} className={`group ${navLinkClasses}`}>
                     <Link href={item.href} className="py-2">
                       {item.label}
