@@ -179,6 +179,10 @@
         {
           "headline": "Priority support and SLAs",
           "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
+        },
+        {
+          "headline": " Developer-first, open-source",
+          "text": "No admin panels—developers stay in their codebase. Built on a customizable, extensible open-source foundation."
         }
       ],
       "_template": "featureGrid"
@@ -186,12 +190,8 @@
     {
       "items": [
         {
-          "headline": "Framework-agnostic",
+          "headline": "",
           "text": ""
-        },
-        {
-          "headline": " Developer-first, open-source",
-          "text": "No admin panels—developers stay in their codebase. Built on a customizable, extensible open-source foundation."
         }
       ],
       "_template": "featureGrid"
