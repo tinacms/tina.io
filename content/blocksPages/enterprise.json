@@ -150,7 +150,7 @@
           ]
         },
         {
-          "headline": "Editorial workflows",
+          "headline": "Workflows",
           "text": "Configurable and backed by Git. Your content team makes pull requests without leaving the CMS. ",
           "actions": [
             {
@@ -163,7 +163,7 @@
           ]
         },
         {
-          "headline": "Flexible deployment",
+          "headline": "Deployment",
           "text": "Run Tina self-hosted in your own infrastructure or use TinaCloud—your choice of control and convenience."
         },
         {
@@ -179,12 +179,12 @@
           "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more."
         },
         {
-          "headline": "Reduced Costs",
+          "headline": "Costs",
           "text": "Customers typically cut CMS licensing and ops costs by 50%+ by switching to Tina’s Git-backed architecture.\n\n"
         },
         {
-          "headline": "Support and SLAs",
-          "text": "Enterprise plans come with a dedicated success engineer, support response guarantees, and roadmap influence."
+          "headline": "Support",
+          "text": "Enterprise plans come with a dedicated success engineer, support agreements (SLAs), and roadmap influence."
         }
       ],
       "_template": "featureGrid"
