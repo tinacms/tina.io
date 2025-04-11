@@ -259,15 +259,18 @@ export function Navbar({ sticky = true }) {
                 item._template === modalButtonString ? (
                   <li key={index} className={`group ${navLinkClasses} py-2`}>
                     <Button
-                      color={item.color}
+                      color={(item as NavItemModal).color}
                       size="small"
-                      onClick={() => openModal(item.modal)}
+                      onClick={() => openModal((item as NavItemModal).modal)}
                     >
-                      {item.icon2 && iconMapping[item.icon2] && (
-                        <span className="mr-2">
-                          {iconMapping[item.icon2]({ className: 'w-5 h-5' })}
-                        </span>
-                      )}
+                      {(item as NavItemModal).icon2 &&
+                        iconMapping[(item as NavItemModal).icon2] && (
+                          <span className="mr-2">
+                            {iconMapping[(item as NavItemModal).icon2]({
+                              className: 'w-5 h-5',
+                            })}
+                          </span>
+                        )}
                       {item.label}
                     </Button>
                   </li>
@@ -283,7 +286,7 @@ export function Navbar({ sticky = true }) {
                       <ul
                         className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
                       >
-                        {item.items.map((subItem, subIndex) =>
+                        {(item as NavItemGroup).items.map((subItem, subIndex) =>
                           subItem.href ? (
                             <li
                               key={subIndex}
@@ -303,8 +306,11 @@ export function Navbar({ sticky = true }) {
                       </ul>
                     </div>
                   </li>
-                ) : item._template === 'stringItem' && item.href ? (
-                  <Link href={item.href} className="py-2 w-max">
+                ) : item._template === 'stringItem' ? (
+                  <Link
+                    href={(item as NavItemLink).href}
+                    className="py-2 w-max"
+                  >
                     {item.label}
                   </Link>
                 ) : null
