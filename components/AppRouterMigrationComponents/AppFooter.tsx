@@ -479,10 +479,10 @@ export function AppFooter() {
       {/* Top */}
       <div className=" bg-[url('/svg/orange-bg.svg')] bg-cover bg-center ">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row w-full justify-between items-start py-8 lg:py-12 -mt-px px-2 lg:px-0">
-          <div className="max-w-[20%] flex-1 drop-shadow-sm">
+          <div className="max-w-[15%] flex-1 drop-shadow-sm">
             <TinaIcon color="white" />
           </div>
-          <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {currentFooterNav.map((item) => {
               const { label, items } = item;
               return (

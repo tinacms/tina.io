@@ -11,21 +11,6 @@ import { Container } from '../Container';
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
   const isVideo = data.media && data.media[0] && data.media[0].src;
-  const isOrNeeded = data.buttons && data.buttons.length >= 2;
-
-  const renderButtonsWithOr = (buttons) => {
-    return buttons.reduce((acc, button, index) => {
-      if (index > 0 && isOrNeeded) {
-        acc.push(
-          <span key={`or-${index}`} className="or-text font-tuner">
-            or
-          </span>
-        );
-      }
-      acc.push(<RenderButton key={index} button={button} index={index} />);
-      return acc;
-    }, []);
-  };
 
   return (
     <>
@@ -52,8 +37,17 @@ export function FeatureBlock({ data, index }) {
           >
             {data.text}
           </p>
-          <div className=" flex flex-col lg:flex-row md:justify-center lg:justify-start items-center gap-4">
-            {data.buttons && renderButtonsWithOr(data.buttons)}
+          <div className="grid grid-cols-2 gap-4 lg:justify-items-start justify-items-center">
+            {data.buttons?.map((button, index) => (
+              <div
+                key={index}
+                className={`w-auto ${
+                  index === 2 ? 'col-span-2 justify-self-center lg:justify-self-start' : ''
+                }`}
+              >
+                <RenderButton button={button} index={index} />
+              </div>
+            ))}
           </div>
         </div>
         <div className="w-full lg:w-1/2">
@@ -71,6 +65,7 @@ export function FeatureBlock({ data, index }) {
 
 export const RenderMedia = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  console.log(data);
   if (
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo' ||
     data.media[0].__typename === 'PageBlocksHeroMediaVideo'
@@ -204,7 +199,8 @@ export const RenderMedia = ({ data }) => {
   if (
     data.media[0].__typename ===
       'PageBlocksFeaturesFeaturesMediaVideoThumbnailToInternalVideo' ||
-    data.media[0].__typename === 'PageBlocksHeroMediaVideoThumbnailToInternalVideo'
+    data.media[0].__typename ===
+      'PageBlocksHeroMediaVideoThumbnailToInternalVideo'
   ) {
     return (
       <div className="relative w-full pb-4 group">
@@ -248,6 +244,20 @@ export const RenderMedia = ({ data }) => {
             </span>
           </div>
         )}
+      </div>
+    );
+  }
+  if (
+    data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaV2Video' ||
+    data.media[0].__typename === 'PageBlocksHeroMediaV2Video'
+  ) {
+    return (
+      <div className="relative w-full pb-4">
+        <img
+          src={data.media[0].src}
+          alt={data.headline}
+          className="w-full h-auto rounded-lg"
+        />
       </div>
     );
   }

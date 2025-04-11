@@ -49,7 +49,7 @@ export const ModalB = ({ items, align = 'left' }) => {
                 key={label}
                 color={color}
                 id={sanitizeLabel(label)}
-                className="w-full"
+                className=""
                 onClick={() => openModal(modal)}
                 data-tina-field={tinaField(item, 'label')}
               >
