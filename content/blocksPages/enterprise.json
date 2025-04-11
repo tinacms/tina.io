@@ -136,7 +136,7 @@
     {
       "items": [
         {
-          "headline": "Built-in Version Control",
+          "headline": "Version Control",
           "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
         },
         {
@@ -145,11 +145,11 @@
         },
         {
           "headline": "Self-hosted or TinaCloud",
-          "text": "Deploy TinaCMS in your own infrastructure or use our managed TinaCloud—your choice of control and convenience."
+          "text": "Deploy in your own infrastructure or use TinaCloud—your choice of control and convenience."
         },
         {
           "headline": "Customizable editorial workflows",
-          "text": "Fully configurable, backed by Git, and built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. ",
+          "text": "Fully configurable, backed by Git, and built-in. Your content team can make Pull Requests (PRs) without leaving the CMS. ",
           "actions": [
             {
               "label": "Learn More",
@@ -167,6 +167,10 @@
         {
           "headline": "Performance and Scalability",
           "text": "Static architecture delivers near-instant load times and infinite scale with global CDN distribution and built-in caching."
+        },
+        {
+          "headline": "Designed for large teams",
+          "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more."
         }
       ],
       "_template": "featureGrid"
@@ -175,7 +179,7 @@
       "items": [
         {
           "headline": "Designed for large teams",
-          "text": "Supports 1000+ users. Integrates with enterprise IdPs like Okta, Azure AD, and more.\n\n"
+          "text": "\n\n"
         },
         {
           "headline": "Priority support and SLAs",
