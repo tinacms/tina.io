@@ -38,7 +38,7 @@ export function FeatureBlock({ data, index }) {
             {data.text}
           </p>
           <div className="flex flex-col items-center lg:items-start">
-            <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
               {data.buttons?.slice(0, 2).map((button, index) => (
                 <RenderButton button={button} index={index} />
               ))}
