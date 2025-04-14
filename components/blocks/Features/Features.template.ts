@@ -88,6 +88,19 @@ export const featuresTemplate: Template = {
               ],
             },
             {
+              name: 'v2Video',
+              label: 'v2Video',
+              type: 'object',
+              description: 'This is so that we dont ruin sources using the old video object',
+              fields: [
+                {
+                  name: 'src',
+                  label: 'Video Source',
+                  type: 'image',
+                },
+              ],
+            },
+            {
               name: 'thumbnailToInternalVideo',
               label: 'Image Thumbnail to Internal YouTube Video',
               type: 'object',

@@ -4,7 +4,7 @@ import { DefaultSeo } from 'next-seo';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 import { Footer } from './Footer';
-import { Navbar } from './Navbar';
+
 
 interface LayoutProps {
   children: any | any[];
@@ -24,7 +24,7 @@ export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
           }}
         />
         <div className="pb-0 lg:pb-20">
-          <Navbar sticky={sticky} />
+          
         </div>
         <div className="flex flex-col flex-1">{children}</div>
         <Footer />

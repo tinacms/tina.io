@@ -70,7 +70,7 @@ export default async function RootLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
-          <CloudBanner />
+          
           <AdminLink />
           <ConsentBanner />
           <TinaChatBot />

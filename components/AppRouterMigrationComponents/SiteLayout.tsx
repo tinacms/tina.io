@@ -12,6 +12,7 @@ export const SiteLayout = ({ children, color, sticky = true }: LayoutProps) => {
   return (
     <>
       <div className="flex flex-col min-h-screen blob-bg font-sans bg-blob-bg bg-[length:100%_100%] bg-top bg-fixed">
+        
         <div className="pb-0 lg:pb-5 xl:pb-20">
           <AppNavBar sticky={sticky} />
         </div>
