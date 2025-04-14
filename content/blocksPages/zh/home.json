@@ -6,9 +6,6 @@
   },
   "blocks": [
     {
-      "blockSettings": {
-        "isFullscreen": true
-      },
       "features": [
         {
           "headline": "网站、文档与羊驼，轻松无碍",
@@ -16,27 +13,33 @@
           "buttons": [
             {
               "label": "立即体验在线编辑",
-              "icon": true,
+              "icon": false,
               "variant": "blue",
-              "size": "small",
+              "size": "medium",
               "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
+              "label": "预约演示",
+              "icon": false,
+              "color": "orange",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            },
+            {
               "label": "npx create-tina-app@latest",
-              "clickedOnText": "**视频:** [NPX 快速上手](/docs/introduction/using-starter)（6 分钟）\n",
+              "clickedOnText": "",
               "_template": "codeButton"
             }
           ],
           "media": [
             {
-              "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
-              "videoEmbedId": "zRkeKSZjlyw",
-              "figureCaption": "视频：TinaCMS 功能演示（4分钟）",
-              "_template": "videoThumbnailToInternalVideo"
+              "src": "/gif/smashingmagazine-tinacms.gif",
+              "_template": "v2Video"
             }
           ],
-          "isFullScreen": true,
+          "isFullScreen": false,
           "isReversed": false,
           "imageBackground": false
         }
