@@ -73,7 +73,7 @@
     "monaco-editor": "^0.52.0",
     "monaco-editor-webpack-plugin": "^7.1.0",
     "negotiator": "^1.0.0",
-    "next": "^14.2.18",
+    "next": "^15.3.0",
     "next-seo": "^4.29.0",
     "next-svgr": "0.0.2",
     "next-tinacms-cloudinary": "^7.1.0",
