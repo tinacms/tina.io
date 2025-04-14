@@ -49,7 +49,7 @@ export const ModalB = ({ items, align = 'left' }) => {
                 key={label}
                 color={color}
                 id={sanitizeLabel(label)}
-                className={`modal-button`}
+                className=""
                 onClick={() => openModal(modal)}
                 data-tina-field={tinaField(item, 'label')}
               >
@@ -67,7 +67,7 @@ export const ModalB = ({ items, align = 'left' }) => {
       </Modal>
       <style jsx>{`
         .actionGroup {
-          margin: 0 -0.75rem -0.5rem -0.75rem;
+          margin: 0 0 -0.5rem 0;
         }
 
         .actionGroupCenter {
