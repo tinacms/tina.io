@@ -1,0 +1,267 @@
+---
+id: /docs/guides/internationalization
+seo:
+  title: 使用TinaCMS实现国际化和多语言内容
+  description: >-
+    本指南涵盖了使用TinaCMS实现国际化的设置、配置和最佳实践，以提供无缝的多语言用户体验
+title: 国际化
+last_edited: '2025-04-14T09:08:52.001Z'
+next: ''
+previous: ''
+---
+
+## 使用TinaCMS实现国际化
+
+管理多语言内容对于全球化传播至关重要。TinaCMS提供了多种灵活的选项来实现这一目标。本指南重点介绍两种主要策略：
+
+* 基于目录的本地化
+* 基于字段的本地化
+
+### 基于目录的本地化
+
+使用基于目录的本地化时，您的内容应以目录为基础进行组织，其中语言环境（例如，en, fr）位于集合根目录（例如，blog, docs）下。例如：
+
+```text
+.
+├── /blog/
+│   ├── /en/
+│   │   └── hello-world.md
+│   └── /fr/
+│       └── hello-world.md
+└── /docs/
+    ├── /en/
+    │   └── my-doc.md
+    └── /fr/
+        └── my-doc.md
+```
+
+#### 实现基于目录的本地化的步骤
+
+在您的config.ts文件中，您可能会有一个集合包含所有语言环境。
+
+```jsx
+export const config = {
+  collections: [
+    {
+      label: 'Blog',
+      name: 'blog',
+      path: 'content/blog',
+      // ...其他设置
+    },
+}
+```
+
+#### 路由和文件结构：
+
+无论您使用的是Next.js还是其他框架，您的路由逻辑都应该更新，以根据URL或用户设置选择正确的语言环境。
+
+```jsx
+// 示例：在NextJS中获取页面列表
+const getStaticPaths = async({ locales }) {
+
+  // ...
+})
+```
+
+使用语言环境，您可以根据路径筛选文档。
+
+```jsx
+// /pages/post/[filename].tsx
+
+// `locale`与`params`一起提供
+const getStaticProps = async({ params, locale }) {
+  const tinaProps = await client.BlogPostQuery({
+    // 组合`relativePath`，其中`locale`是`post`的子文件夹
+    relativePath: `${locale}/${params.filename}.mdx`,
+  });
+
+  return {
+    props: {
+      ...tinaProps
+    }
+  }
+}
+```
+
+> 有关设置NextJS特定实现的路由的更多信息，请参阅[我们的指南](/docs/guides/internationalization/)
+
+#### 内容管理
+
+使用此设置，编辑者将通过文档列表浏览每个集合的语言环境。
+
+![本地化列表](/img/docs/i18n/lang-folders.png)
+
+如果用户希望创建现有文档的新本地化版本，他们可以从文档列表中点击“复制文档”，并在新文档的文件名中添加所需的语言环境前缀。
+
+### 基于字段的本地化
+
+在这种方法中，每个本地化字段包含多个语言的嵌套值。例如，单个Markdown文件可能如下所示：
+
+```json
+{
+  "title": {
+    "en": "Hello",
+    "fr": "Bonjour"
+  }
+}
+```
+
+#### 实现基于字段的本地化的步骤
+
+您需要修改您的TinaCMS架构以包含本地化字段。
+
+```js
+export const pageSchema = {
+  label: 'Page',
+  name: 'page',
+  fields: [
+    {
+      label: 'Title',
+      name: 'title',
+      type: 'object',
+      fields: [
+        {
+          type: 'string',
+          name: 'en',
+          label: 'English',
+        },
+        {
+          type: 'string',
+          name: 'fr',
+          label: 'French',
+        },
+      ],
+    },
+    // ...其他字段
+  ],
+};
+```
+
+> 注意：如果您使用的是markdown/mdx内容，并希望使用markdown正文作为您的内容，您可能更倾向于使用基于目录的本地化方法。
+
+#### 显示本地化内容：
+
+在您的网站组件中，您可以根据当前语言环境选择正确的本地化字段进行显示。
+
+```jsx
+const PageComponent = ({ data, locale }) => {
+  const title = data.title[locale];
+  // ...显示内容
+};
+```
+
+#### 内容管理：
+
+TinaCMS会将所有本地化字段显示为根级字段的子字段。
+
+![本地化字段](/img/docs/i18n/localized-fields.png)
+
+## 使用GitHub Action实现国际化
+
+使用基于目录的本地化时，开发者需要将对应语言的MDX或JSON文件放置在正确的位置，以加载多语言路由。开发者可以选择手动翻译文本内容并将其放置在正确的位置，也可以使用GitHub Action自动化此过程。以下是一个解释有效GitHub Action工作流程的示例：
+
+![自动翻译工作流程](/img/docs/guides-internationalization/Screenshot%202025-04-14%20102942.png)
+
+### 为GitHub Actions设置触发条件
+
+必须为此GitHub Action设置触发条件。通常，当PR成功合并时触发。为了减少令牌消耗，定时触发是一个替代方案。以下示例展示了一个仅在PR合并且指定目录中有更改时激活的GitHub Action。
+
+```yaml
+# 仅在PR成功关闭且包含指定目录中的更改后触发
+on:
+  pull_request:
+    types: [closed] 
+    paths:
+      - 'content/docs/**.mdx'
+
+jobs:
+  translate-mdx:
+    if: github.event.pull_request.merged == true
+```
+
+### &#x20;识别修改的目标文件
+
+为了最大限度地减少令牌使用，识别仅修改的文件进行翻译至关重要。以下是列出所有修改文件的简单示例。
+
+```javascript
+// 识别当前PR下修改的目标文件
+async function getChangedFilesFromApi() {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls/${PR_NUMBER}/files`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+      }
+    );
+    const mdxFiles = response.data
+      .filter(
+        (file) =>
+          file.filename.startsWith('content/docs/') &&
+          file.filename.endsWith('.mdx')
+      )
+      .map((file) => file.filename);
+
+    return mdxFiles;
+  } catch (error) {
+    console.error('Error fetching changed files from API:', error.message);
+    return [];
+  }
+}
+```
+
+### 创建翻译分支
+
+创建一个单独的分支以区分原始分支和新添加的翻译内容至关重要。这种方法便于手动审核。
+
+```yaml
+# 为翻译文件创建单独的分支
+- name: Create translation branch
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          TIMESTAMP=$(date +%s)
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+```
+
+### 通过LLM API调用获取翻译
+
+外部LLM用于自动翻译。翻译质量和格式完整性取决于所选模型和提示。以下是一个将MDX文件翻译成中文的英文提示示例，同时保留文档界面和关键信息。
+
+````
+Please translate the following Markdown content into Chinese, preserving all Markdown formatting, code blocks, and front matter metadata.Only translate the text content, do not modify code, variable names, or other technical content.Do not add ```markdown``` in the newly translated Markdown file.Please note the following special requirements:
+  1. Do not modify URLs, next and preview fields
+  2. Maintain the original format structure, including heading hierarchy, lists, tables, etc.
+  3. Comments in code blocks can be translated, but the code itself and its functionality should not be changed
+  4. Please return the translated markdown source code directly in your reply, without adding any other prompts or explanations
+{{content}}
+````
+
+### 将所有更改提交到新分支并创建PR
+
+由LLM生成的内容不能被完全信任。将所有更改提交到新的PR以进行彻底验证是一种更谨慎和系统的方法。
+
+```javascript
+const prTitle = `Chinese translation for PR #${PR_NUMBER}`;
+const prBody = `This PR contains Chinese translations for the documentation files updated in PR (${SERVER_URL}/${REPO}/pull/${PR_NUMBER}).`;
+
+const response = await axios.post(
+  `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls`,
+  {
+    title: prTitle,
+    body: prBody,
+    head: BRANCH_NAME,
+    base: 'main',
+  },
+  {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+    },
+  }
+);
+```
