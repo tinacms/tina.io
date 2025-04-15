@@ -105,7 +105,14 @@ const NavLevel = ({
   const navLevelElem = React.useRef(null);
   const pathname = usePathname(); // Replace useRouter with usePathname
   const path = pathname || ''; // Get current path
-  const slug = categoryData.slug?.replace(/\/$/, '');
+  let slug = categoryData.slug?.replace(/\/$/, '');
+  const isChinesePath = path.includes('/zh/');
+  if (isChinesePath && slug && !slug.startsWith('/zh/')) {
+    slug = `/zh${slug}`;
+  }
+
+  console.log('slug', slug);
+
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
       hasNestedSlug(categoryData.items, path) ||
@@ -114,6 +121,8 @@ const NavLevel = ({
 
   const selected =
     path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
+
+  console.log('SELECTED', selected);
 
   const childSelected = hasNestedSlug(categoryData.items, path);
 

@@ -8,8 +8,8 @@ export default async function DocsLayout({
 }) {
   // Fetch navigation data that will be shared across all docs pages
   const [navDocData, navLearnData] = await Promise.all([
-    getDocsNav(),
-    getLearnNav(),
+    getDocsNav(false, null, 'zh'),
+    getLearnNav(false, null, 'zh'),
   ]);
 
   return (
