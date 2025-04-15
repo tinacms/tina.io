@@ -111,8 +111,6 @@ const NavLevel = ({
     slug = `/zh${slug}`;
   }
 
-  console.log('slug', slug);
-
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
       hasNestedSlug(categoryData.items, path) ||
@@ -121,8 +119,6 @@ const NavLevel = ({
 
   const selected =
     path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
-
-  console.log('SELECTED', selected);
 
   const childSelected = hasNestedSlug(categoryData.items, path);
 
