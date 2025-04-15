@@ -1,0 +1,76 @@
+---
+seo:
+  title: 集合的命名约定
+  description: >-
+    使用文件命名约定优化您的TinaCMS项目的代码扫描和热重载速度
+title: 集合的命名约定
+last_edited: '2025-04-15T22:38:38.069Z'
+next: ''
+previous: ''
+---
+
+在您的Tina项目中遵循命名约定主要有两个原因：
+
+* **改进热重载**：重建您的架构是一个耗费资源的过程，将架构保存在单独的文件中可以防止重建，从而加快代码更改的速度
+* **改进代码扫描**：当React组件的架构配置文件与组件文件同名时，可以更轻松地找到架构配置
+
+## 命名约定
+
+| 命名约定         | 目的                                                                                               |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| `.schema.tsx`     | 用于集合以及集合之间共享的代码                                                                      |
+| `.template.tsx`   | 用于模板定义，用于[基于区块的渲染](https://tina.io/docs/editing/blocks)                             |
+
+### React组件
+
+通常的约定是将给定React组件的架构添加到一个同名文件中，并使用后缀`schema.tsx`。这确保您的索引仅在数据模型发生更改时重建，而不是组件发生更改时。
+
+```javascript
+src/
+├── app/
+│   ├── components/
+│   │   ├── events-list.schema.tsx
+│   │   ├── events-list.tsx
+```
+
+### 共享字段
+
+在多个集合之间共享的代码，包括字段定义和字段定义列表，通常也存储在以`.schema.tsx`结尾的文件中。在下面的示例中，假设我们在`hero-image`和`image-text-block`组件之间共享`title`字段。
+
+```javascript
+src/
+├── tina/
+│   ├── collections/
+│   │   ├── shared-fields/
+│   │   │   ├── title.schema.tsx
+├── app/
+│   ├── components/
+│   │   ├── blocks/
+│   │   │   ├── hero-image.schema.tsx
+│   │   │   ├── hero-image.tsx
+│   │   │   ├── image-text-block.schema.tsx
+│   │   │   ├── image-text-block.tsx
+
+```
+
+### 区块的命名约定
+
+如果您在多个集合之间重复使用区块组件的模板，最好将该模板分离到一个以`.template.tsx`结尾的文件中。
+
+> `templates`通过[基于区块的编辑](https://tina.io/docs/editing/blocks)传递到现有集合中
+
+在下面的示例中，假设我们在区块渲染器中使用`image-carousel`区块模板。`image-carousel`模板可以在`home`和`about`集合之间共享。
+
+```javascript
+src/
+├── tina/
+│   ├── collections/
+│   │   ├── home.tsx
+│   │   ├── about.tsx
+├── app/
+│   ├── components/
+│   │   ├── blocks/
+│   │   │   ├── image-carousel.tsx
+│   │   │   ├── image-carousel.template.tsx
+│   │   │   ├── blocks-renderer.tsx
+```
