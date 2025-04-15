@@ -308,7 +308,7 @@ const footerLinksEn = [
   },
   {
     link: '/telemetry',
-    label: 'Open Source Telemetry',
+    label: 'Telemetry',
   },
   {
     link: '/terms-of-service',
@@ -316,7 +316,7 @@ const footerLinksEn = [
   },
   {
     link: '/privacy-notice',
-    label: 'Privacy Notice',
+    label: 'Privacy',
   },
   {
     link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
@@ -512,8 +512,7 @@ export function AppFooter() {
                   Join the Herd!
                 </h2>
                 <p className="text-sm font-light text-white/80 pb-1.5">
-                  Become part of our coding comunity and stay updated with the
-                  latest tips and news.
+                  Join our coding community for the latest tips and news.
                 </p>
                 <div className="flex flex-col gap-2.5 w-full">
                   <div className="flex gap-2.5">
