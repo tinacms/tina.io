@@ -4,6 +4,7 @@ import React from 'react'
 import GitHubButton from 'react-github-btn'
 import '../../styles/tailwind.css'
 
+// TODO: Remove after the 18th of April if we choose not to revert the changes
 export function CloudBanner() {
   return (
     <div
