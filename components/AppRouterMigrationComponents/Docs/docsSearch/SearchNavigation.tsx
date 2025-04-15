@@ -2,7 +2,7 @@
 
 import { MobileVersionSelect } from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMobileHeader';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
@@ -221,6 +221,9 @@ export const DocsSearchBarHeader = ({
     }
   };
 
+  const pathName = usePathname();
+  const isZh = pathName.includes('/zh/');
+
   return (
     <div className={`${paddingGlobal} pt-8`}>
       <div className="flex gap-8 max-w-sm">
@@ -230,7 +233,7 @@ export const DocsSearchBarHeader = ({
           } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(false)}
         >
-          Docs
+          {isZh ? '文档' : 'Docs'}
         </h1>
         <h1
           className={`${
@@ -238,7 +241,7 @@ export const DocsSearchBarHeader = ({
           } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(true)}
         >
-          Learn
+          {isZh ? '学习' : 'Learn'}
         </h1>
         <div className="mr-3"></div>
       </div>
