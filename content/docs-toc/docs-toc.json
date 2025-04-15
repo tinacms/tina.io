@@ -27,7 +27,7 @@
           "title": "Supported Frameworks",
           "items": [
             {
-              "title": "Starter Kits",
+              "title": "Use a Starter Template",
               "slug": "content/docs/introduction/using-starter.mdx",
               "_template": "item"
             },
