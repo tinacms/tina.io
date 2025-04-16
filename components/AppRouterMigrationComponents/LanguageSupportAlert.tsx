@@ -4,8 +4,9 @@ import { AlertTriangle, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { isValidPathCheck, SupportedLocales } from 'middleware';
+import { SupportedLocales } from 'middleware';
 import { usePathname } from 'next/navigation';
+import hasChineseVersion from 'utils/hasChineseVersion';
 
 export function LanguageSupportAlert() {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,11 +24,16 @@ export function LanguageSupportAlert() {
     const previousPath = prevPathRef.current;
     prevPathRef.current = pathName;
 
-    if (!isValidPathCheck(pathName) && isLocalesPath(previousPath)) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
+    const checkChineseVersion = async () => {
+      if (isLocalesPath(previousPath)) {
+        const hasZhVersion = await hasChineseVersion('docs', pathName);
+        setIsVisible(!hasZhVersion);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    checkChineseVersion();
   }, [pathName]);
 
   if (!isVisible) return null;
