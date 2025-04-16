@@ -67,7 +67,7 @@ export const EmailForm = (props: EmailFormProps) => {
             Join the Herd! 🦙
           </h1>
           <p className="text-left w-full mt-2 mb-4">
-            Become part of our coding community and stay updated with the latest tips and news. Learn more about the community and get llama-zing content delivered to your inbox!
+            Join our coding community for the latest tips and news. Learn more about the community and get llama-zing content delivered to your inbox!
           </p>
           {message.text && (
             <p className={`font-tuner text-sm mb-4 flex items-center gap-2 ${message.type === 'success' ? 'text-green-500' : message.type === 'warning' ? 'text-orange-500' : 'text-red-500'}`}>

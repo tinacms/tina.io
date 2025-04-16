@@ -7,13 +7,24 @@
   "byLine": "Tina's hitting the road, and you don't want to miss out. Check out our stops and see TinaCMS in action!",
   "cardItems": [
     {
+      "headline": "/NEW",
+      "startDate": "2025-05-28T00:00:00.000Z",
+      "startTime": "2025-04-15T09:00:00.000Z",
+      "endDate": "2025-04-29T00:00:00.000Z",
+      "location": "NEX Newcastle",
+      "image": "/Newcastle_InnerCity.jpg",
+      "link": "https://slashnew.tech/",
+      "markerLAT": -32,
+      "markerLONG": 151
+    },
+    {
       "headline": "NDC Oslo",
       "startDate": "2025-05-19T00:00:00.000Z",
       "startTime": "2025-04-11T09:00:00.000Z",
       "endDate": "2025-05-23T00:00:00.000Z",
       "timezone": 2,
       "location": "Oslo Spektrum",
-      "image": "/tx_ndc_13-3917981318%20(1).png",
+      "image": "/oslo.png",
       "link": "https://ndcoslo.com/",
       "markerLAT": 59,
       "markerLONG": 10
