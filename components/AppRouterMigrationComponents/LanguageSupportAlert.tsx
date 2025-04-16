@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { SupportedLocales } from 'middleware';
 import { usePathname } from 'next/navigation';
-import hasChineseVersion from 'utils/hasChineseVersion';
+import type { PageType } from 'utils/hasChineseVersion';
+import { hasChineseVersion } from 'utils/hasChineseVersion';
 
 export function LanguageSupportAlert() {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,13 +21,25 @@ export function LanguageSupportAlert() {
     );
   };
 
+  const getPageType = (path: string): PageType => {
+    if (!path) return 'pages';
+
+    if (path.startsWith('/docs')) return 'docs';
+    if (path.startsWith('/blog')) return 'blog';
+    if (path.startsWith('/whats-new')) return 'whats-new';
+
+    return 'pages';
+  };
+
   useEffect(() => {
     const previousPath = prevPathRef.current;
     prevPathRef.current = pathName;
 
     const checkChineseVersion = async () => {
       if (isLocalesPath(previousPath) && !isLocalesPath(pathName)) {
-        const hasZhVersion = await hasChineseVersion('docs', pathName);
+        const pageType = getPageType(pathName);
+        console.log('pageType', pageType);
+        const hasZhVersion = await hasChineseVersion(pageType, pathName);
         setIsVisible(!hasZhVersion);
       } else {
         setIsVisible(false);

@@ -1,9 +1,9 @@
 import { SupportedLocales } from '../middleware';
 import { client } from '../tina/__generated__/client';
 
-type PageType = 'normal' | 'docs' | 'blog' | 'whats-new';
+export type PageType = 'pages' | 'docs' | 'blog' | 'whats-new';
 
-export default async function hasChineseVersion(
+export async function hasChineseVersion(
   pageType: PageType,
   currentPath: string
 ): Promise<boolean> {
@@ -23,8 +23,8 @@ export default async function hasChineseVersion(
   }
 
   switch (pageType) {
-    case 'normal':
-      return checkNormalPageChineseVersion(normalizedPath);
+    case 'pages':
+      return checkPagesChineseVersion(normalizedPath);
     case 'docs':
       return checkDocsChineseVersion(normalizedPath);
     case 'blog':
@@ -36,12 +36,13 @@ export default async function hasChineseVersion(
   }
 }
 
-async function checkNormalPageChineseVersion(
+async function checkPagesChineseVersion(
   normalizedPath: string
 ): Promise<boolean> {
   try {
+    var zhPath = normalizedPath === '' ? 'home' : normalizedPath;
     const res = await client.queries.pageWithRecentPosts({
-      relativePath: `zh/${normalizedPath}.json`,
+      relativePath: `zh/${zhPath}.json`,
     });
     return !!res.data.page;
   } catch (error) {
