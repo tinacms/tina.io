@@ -764,8 +764,16 @@ function FormatHeaders({ children, level }) {
     children.props?.content.map((content) => content.text).join('') ?? children
   );
 
-  const currentUrl =
-    typeof window !== 'undefined' ? window.location.pathname : '';
+  const [currentUrl, setCurrentUrl] = useState(
+    typeof window !== 'undefined' ? window.location.pathname : ''
+  );
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.pathname);
+    }
+  }, [typeof window !== 'undefined' ? window.location.pathname : '']);
+
   const linkHref = `${currentUrl}#${id}`;
 
   const styles = {
