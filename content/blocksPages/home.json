@@ -6,37 +6,40 @@
   },
   "blocks": [
     {
-      "blockSettings": {
-        "isFullscreen": true
-      },
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
-          "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
+          "text": "TinaCMS is an open-source, headless CMS that supports Git - with built-in version control.",
           "buttons": [
             {
-              "label": "Try the editor now",
-              "icon": true,
+              "label": "Try the Editor Now",
+              "icon": false,
               "variant": "blue",
-              "size": "small",
+              "size": "medium",
               "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
+              "label": "Book a Demo",
+              "icon": false,
+              "color": "orange",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            },
+            {
               "label": "npx create-tina-app@latest",
-              "clickedOnText": "See [getting started with NPX!](/docs/introduction/using-starter)\n",
+              "clickedOnText": "",
               "_template": "codeButton"
             }
           ],
           "media": [
             {
-              "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
-              "videoEmbedId": "zRkeKSZjlyw",
-              "figureCaption": "Video: TinaCMS Demo (4 min)",
-              "_template": "videoThumbnailToInternalVideo"
+              "src": "/gif/smashingmagazine-tinacms.gif",
+              "_template": "v2Video"
             }
           ],
-          "isFullScreen": true,
+          "isFullScreen": false,
           "isReversed": false,
           "imageBackground": false
         }
@@ -189,7 +192,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
+          "videoSrc": "/video/2024-09-19-key-features-3rd-party-media%20v3.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,

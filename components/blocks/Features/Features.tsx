@@ -11,21 +11,6 @@ import { Container } from '../Container';
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
   const isVideo = data.media && data.media[0] && data.media[0].src;
-  const isOrNeeded = data.buttons && data.buttons.length >= 2;
-
-  const renderButtonsWithOr = (buttons) => {
-    return buttons.reduce((acc, button, index) => {
-      if (index > 0 && isOrNeeded) {
-        acc.push(
-          <span key={`or-${index}`} className="or-text font-tuner">
-            or
-          </span>
-        );
-      }
-      acc.push(<RenderButton key={index} button={button} index={index} />);
-      return acc;
-    }, []);
-  };
 
   return (
     <>
@@ -52,8 +37,17 @@ export function FeatureBlock({ data, index }) {
           >
             {data.text}
           </p>
-          <div className=" flex flex-col lg:flex-row md:justify-center lg:justify-start items-center gap-4">
-            {data.buttons && renderButtonsWithOr(data.buttons)}
+          <div className="flex flex-col items-center lg:items-start">
+            <div className="flex flex-col md:flex-row gap-2">
+              {data.buttons?.slice(0, 2).map((button, index) => (
+                <RenderButton button={button} index={index} />
+              ))}
+            </div>
+            {data.buttons?.length > 2 && (
+              <div className="flex mt-4">
+                <RenderButton button={data.buttons[2]} index={2} />
+              </div>
+            )}
           </div>
         </div>
         <div className="w-full lg:w-1/2">
@@ -69,9 +63,13 @@ export function FeatureBlock({ data, index }) {
 // - "PageBlocksFeaturesFeaturesMediaCode"
 // - "PageBlocksFeaturesFeaturesMediaThumbnailToInternalVideo"
 
-const RenderMedia = ({ data }) => {
+export const RenderMedia = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  if (data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo') {
+  console.log(data);
+  if (
+    data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo' ||
+    data.media[0].__typename === 'PageBlocksHeroMediaVideo'
+  ) {
     return (
       <>
         <div className="relative w-full pb-4 group">
@@ -95,7 +93,10 @@ const RenderMedia = ({ data }) => {
       </>
     );
   }
-  if (data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage') {
+  if (
+    data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage' ||
+    data.media[0].__typename === 'PageBlocksHeroMediaImage'
+  ) {
     return (
       <>
         <Image
@@ -110,7 +111,10 @@ const RenderMedia = ({ data }) => {
       </>
     );
   }
-  if (data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaCode') {
+  if (
+    data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaCode' ||
+    data.media[0].__typename === 'PageBlocksHeroMediaCode'
+  ) {
     return (
       <>
         <div className="flex flex-col justify-start items-start">
@@ -150,7 +154,8 @@ const RenderMedia = ({ data }) => {
   }
   if (
     data.media[0].__typename ===
-    'PageBlocksFeaturesFeaturesMediaThumbnailToInternalVideo'
+      'PageBlocksFeaturesFeaturesMediaThumbnailToInternalVideo' ||
+    data.media[0].__typename === 'PageBlocksHeroMediaThumbnailToInternalVideo'
   ) {
     return (
       <div className="relative w-full pb-4 group">
@@ -193,7 +198,9 @@ const RenderMedia = ({ data }) => {
   }
   if (
     data.media[0].__typename ===
-    'PageBlocksFeaturesFeaturesMediaVideoThumbnailToInternalVideo'
+      'PageBlocksFeaturesFeaturesMediaVideoThumbnailToInternalVideo' ||
+    data.media[0].__typename ===
+      'PageBlocksHeroMediaVideoThumbnailToInternalVideo'
   ) {
     return (
       <div className="relative w-full pb-4 group">
@@ -237,6 +244,20 @@ const RenderMedia = ({ data }) => {
             </span>
           </div>
         )}
+      </div>
+    );
+  }
+  if (
+    data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaV2Video' ||
+    data.media[0].__typename === 'PageBlocksHeroMediaV2Video'
+  ) {
+    return (
+      <div className="relative w-full pb-4">
+        <img
+          src={data.media[0].src}
+          alt={data.headline}
+          className="w-full h-auto rounded-lg"
+        />
       </div>
     );
   }

@@ -17,13 +17,11 @@ export async function POST(request: NextRequest) {
         { email_address, status, merge_fields }
       );
 
-      return NextResponse.json(
-        { success: true, response },
-        { status: 200 }
-      );
+      return NextResponse.json({ success: true, response }, { status: 200 });
     } catch (err: any) {
       const errorStatus = err.response ? err.response.status : 500;
       const errorMessage = err.response ? err.response.text : err.message;
+      console.error('Mailchimp error:', errorMessage);
 
       return NextResponse.json(
         { error: true, message: errorMessage },

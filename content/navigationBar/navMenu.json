@@ -53,12 +53,12 @@
           "href": "/roadmap"
         },
         {
-          "label": "Support",
-          "href": "/docs/support"
-        },
-        {
           "label": "Events",
           "href": "/events"
+        },
+        {
+          "label": "Support",
+          "href": "/docs/support"
         },
         {
           "label": "Awesome TinaCMS",
@@ -86,20 +86,9 @@
       "_template": "stringItem"
     },
     {
-      "label": "Subscribe",
-      "color": "white",
-      "size": "medium",
-      "modal": "EmailForm",
-      "icon2": "MdEmail",
-      "_template": "modalButton"
-    },
-    {
-      "label": "Book a demo",
-      "color": "orange",
-      "size": "medium",
-      "modal": "BookDemo",
-      "icon2": "FaCalendarDay",
-      "_template": "modalButton"
+      "owner": "tinacms",
+      "repo": "tinacms",
+      "_template": "GitHubStarButton"
     }
   ]
 }

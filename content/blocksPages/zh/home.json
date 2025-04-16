@@ -6,9 +6,6 @@
   },
   "blocks": [
     {
-      "blockSettings": {
-        "isFullscreen": true
-      },
       "features": [
         {
           "headline": "网站、文档与羊驼，轻松无碍",
@@ -16,25 +13,33 @@
           "buttons": [
             {
               "label": "立即体验在线编辑",
-              "icon": true,
+              "icon": false,
               "variant": "blue",
-              "size": "small",
+              "size": "medium",
               "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
+              "label": "预约演示",
+              "icon": false,
+              "color": "orange",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            },
+            {
               "label": "npx create-tina-app@latest",
+              "clickedOnText": "",
               "_template": "codeButton"
             }
           ],
           "media": [
             {
-              "src": "/img/docs/introduction/homepage-demo-2.webm",
-              "link": "https://www.youtube.com/watch?v=zRkeKSZjlyw",
-              "_template": "video"
+              "src": "/gif/smashingmagazine-tinacms.gif",
+              "_template": "v2Video"
             }
           ],
-          "isFullScreen": true,
+          "isFullScreen": false,
           "isReversed": false,
           "imageBackground": false
         }
@@ -438,9 +443,10 @@
           ],
           "media": [
             {
-              "src": "/video/create-branch.webm",
-              "link": "https://www.youtube.com/watch?v=gYukiULGqGc",
-              "_template": "video"
+              "thumbnailVideo": "/video/create-branch.webm",
+              "videoEmbedId": "gYukiULGqGc",
+              "figureCaption": "视频：运用编辑流程进行修改（1分钟）",
+              "_template": "videoThumbnailToInternalVideo"
             }
           ]
         },
@@ -449,8 +455,10 @@
           "text": "编辑Markdown、MDX和JSON文件的内容不再繁琐。Tina提供实时预览功能，让用户体验达到全新水平",
           "media": [
             {
-              "src": "/img/docs/introduction/homepage-demo-2.webm",
-              "_template": "video"
+              "thumbnailVideo": "/video/click-to-edit.webm",
+              "videoEmbedId": "CsCQS7HIBv0",
+              "figureCaption": "视频：高效管理内容工作流程（2分钟）",
+              "_template": "videoThumbnailToInternalVideo"
             }
           ],
           "isReversed": true

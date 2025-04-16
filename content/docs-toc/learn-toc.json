@@ -159,6 +159,11 @@
               "title": "Automatic Filenames",
               "slug": "content/docs/extending-tina/filename-customization.mdx",
               "_template": "item"
+            },
+            {
+              "title": "Naming Conventions for Collections",
+              "slug": "content/docs/guides/naming-conventions.mdx",
+              "_template": "item"
             }
           ],
           "_template": "items"
