@@ -24,6 +24,7 @@ interface GiscusProps {
   giscusRepoId: string;
   giscusCategory: string;
   giscusCategoryId: string;
+  giscusThemeUrl: string;
 }
 
 export interface BlogPost {
