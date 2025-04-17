@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import { getExcerpt } from 'utils/getExcerpt';
 import BlogPageClient from './BlogPageClient';
 import { BlogPost } from './BlogType';
-import { getExcerpt } from 'utils/getExcerpt';
 
 export const dynamicParams = false;
 
@@ -104,6 +104,13 @@ export default async function BlogPage({
       prev: fetchedPost.prev ?? null,
       next: fetchedPost.next ?? null,
       body: fetchedPost.body as TinaMarkdownContent,
+      giscusProps: {
+        giscusRepo: `${process.env.GISCUS_ORG}/${process.env.GISCUS_REPO_NAME}`,
+        giscusRepoId: process.env.GISCUS_REPO_ID,
+        giscusCategory: process.env.GISCUS_CATEGORY,
+        giscusCategoryId: process.env.GISCUS_CATEGORY_ID,
+        giscusThemeUrl: process.env.GISCUS_THEME_URL,
+      },
     };
 
     return <BlogPageClient data={{ post }} />;

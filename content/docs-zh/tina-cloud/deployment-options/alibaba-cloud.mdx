@@ -1,0 +1,226 @@
+---
+title: 部署到阿里云
+last_edited: '2025-02-19T10:11:51.539Z'
+next: content/docs/tina-cloud/api-versioning.mdx
+previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
+---
+
+阿里云是中国领先的云服务提供商。由于中国没有像Vercel那样与GitHub无缝集成的云服务，阿里云成为希望在中国大陆部署网站的开发者的首选。
+
+## 阿里云配置
+
+阿里云提供了多种服务器选项。我们通常建议使用 **弹性计算服务 (ECS)** 来部署TinaCMS项目。有关创建和配置服务器的详细说明，请参考 [阿里云官方文档](https://www.alibabacloud.com/help/en/elastic-compute-service)。
+
+### 服务器设置
+
+创建ECS实例后，您需要设置必要的软件来管理您的TinaCMS项目。
+
+#### 安装PM2进行进程管理
+
+PM2是一个用于Node.js应用程序的进程管理工具，可以帮助您的应用程序在生产环境中保持运行。
+
+```
+pnpm install -g pm2
+```
+
+#### 安装和配置Nginx
+
+Nginx将作为您的TinaCMS应用程序的反向代理。
+
+```
+yum install nginx
+```
+
+接下来，启动Nginx并设置为系统启动时自动运行：
+
+```
+systemctl start nginx    # 启动Nginx服务
+systemctl enable nginx   # 配置Nginx在系统启动时自动运行
+systemctl status nginx   # 检查Nginx服务状态
+```
+
+#### 配置Nginx作为反向代理
+
+为您的TinaCMS站点创建一个配置文件：
+
+```
+vim /etc/nginx/conf.d/tinademo.conf
+```
+
+添加以下配置：
+
+```
+server {
+    listen 80;
+    server_name your - domain.com;  # 替换为您的实际域名
+  location / {
+    proxy_pass http://localhost:3000;
+      proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+
+测试您的Nginx配置是否有语法错误：
+
+```
+nginx -t
+```
+
+重新加载Nginx以应用新的配置：
+
+```
+nginx -s reload
+```
+
+### 准备GitHub Actions部署
+
+#### 创建部署目录
+
+首先，在您的服务器上创建一个目录，用于部署您的TinaCMS项目：
+
+```
+mkdir -p /www/tinademo
+cd /www/tinademo
+```
+
+#### 为GitHub Actions生成SSH密钥
+
+在您的阿里云服务器上生成一个SSH密钥对：
+
+```
+ssh -keygen -t ed25519 -C "deploy-key"
+# 按Enter使用默认路径
+# 按Enter留空密码短语
+```
+
+#### 将公钥添加到授权密钥
+
+将生成的公钥添加到authorized\_keys文件中，以允许GitHub Actions进行身份验证：
+
+```
+cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+```
+
+## 配置GitHub Secrets
+
+生成SSH密钥后，您需要将几个Secrets添加到您的GitHub仓库中，以启用安全部署。
+
+### 导航到GitHub Secrets
+
+1. GitHub仓库 → 设置
+2. Secrets和变量 → Actions
+3. 点击“New repository secret”
+
+### 必需的GitHub Secrets
+
+您需要配置以下Secrets：
+
+1. `SSH_PRIVATE_KEY`：在您的服务器上生成的私钥
+   * 使用以下命令查看：`cat ~/.ssh/id_ed25519`
+   * 确保包括整个密钥，包括`-----BEGIN OPENSSH PRIVATE KEY----`和`-----END OPENSSH PRIVATE KEY-----`
+2. `SERVER_HOST`：您的阿里云服务器的IP地址
+   * 这是您的ECS实例的公网IP地址
+3. `SERVER_USERNAME`：连接到您的服务器的用户名
+   * 通常是`root`或您在ECS实例上创建的用户账户
+4. `NEXT_PUBLIC_TINA_BRANCH`：TinaCMS用于内容的分支
+   * 通常是您的主分支（例如，`main`或`master`）
+5. `NEXT_PUBLIC_TINA_CLIENT_ID`：您的TinaCloud客户端ID
+   * 在TinaCloud仪表盘的项目设置中找到
+6. `TINA_TOKEN`：用于身份验证的TinaCloud令牌
+   * 在TinaCloud仪表盘的API访问中生成
+
+## 创建GitHub Actions工作流
+
+在您的仓库中创建一个新文件，路径为`.github/workflows/deploy.yml`，内容如下：
+
+```yaml
+name: Deploy to Alibaba Cloud Server
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.14.0"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Create .env file
+        run: |
+          cat > .env << EOL
+          NEXT_PUBLIC_TINA_CLIENT_ID=${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN=${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH=${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
+          EOL
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH: ${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
+        run: pnpm build
+
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: ".next/,public/,package.json,pnpm-lock.yaml,.env,tina/,next.config.js,.tina/"
+          target: "/tina/tinademo/"
+          rm: true
+
+      - name: Execute Remote SSH Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /tina/tinademo
+            pnpm install
+            pm2 delete tinademo || true
+            pm2 flush tinademo
+            NODE_ENV=production pm2 start "pnpm start" --name tinademo
+
+```
+
+## 配置自定义域名
+
+要在中国使用自定义域名与您的TinaCMS项目：
+
+### 域名设置
+
+1. 从中国的提供商购买域名（例如阿里云、腾讯云）
+2. 添加一个A记录指向您的阿里云服务器的IP地址
+3. 更新您的Nginx配置：
+
+```
+server {
+    listen 80;
+    server_name yourdomain.cn;
+    # 其他配置
+}
+```
+
+### ICP备案
+
+请记住，在中国大陆托管的网站需要进行ICP备案。通过您的域名提供商或阿里云开始此流程。
