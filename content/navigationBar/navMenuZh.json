@@ -3,7 +3,7 @@
   "navItem": [
     {
       "label": "文档",
-      "href": "/docs",
+      "href": "/zh/docs",
       "_template": "stringItem"
     },
     {

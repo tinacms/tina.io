@@ -100,7 +100,7 @@ export default function DocsClient({ props }) {
         {formattedDate && (
           <span className="text-slate-500 text-md">
             {' '}
-            Last Edited: {formattedDate}
+            上次编辑: {formattedDate}
           </span>
         )}
         <DocsPagination prevPage={previousPage} nextPage={nextPage} />

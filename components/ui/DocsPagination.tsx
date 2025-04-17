@@ -1,18 +1,20 @@
-import React from 'react'
-import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { DynamicLink } from '../ui/DynamicLink'
+import React from 'react';
+import RightArrowSvg from '../../public/svg/right-arrow.svg';
+import { DynamicLink } from '../ui/DynamicLink';
 
 interface NextPrevPageProps {
-  title: string
-  slug: string
+  title: string;
+  slug: string;
 }
 
 interface PaginationProps {
-  prevPage?: NextPrevPageProps
-  nextPage?: NextPrevPageProps
+  prevPage?: NextPrevPageProps;
+  nextPage?: NextPrevPageProps;
 }
 
 export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
+  console.log('Previous page', prevPage);
+
   return (
     <div className="mt-8 grid grid-cols-2 gap-4">
       {prevPage && prevPage.slug && (
@@ -21,10 +23,8 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
             className="block p-4 text-left relative transition-all group border border-gray-100 cursor-pointer"
             style={{ backgroundColor: '#FAFAFA' }}
           >
-            <span className="text-sm uppercase opacity-50 pl-10">Previous</span>
-            <h5
-              className="text-base md:text-xl eading-[1.3] m-0 pl transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center"
-            >
+            <span className="text-sm uppercase opacity-50 pl-10">上一页</span>
+            <h5 className="text-base md:text-xl eading-[1.3] m-0 pl transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center">
               <RightArrowSvg className="w-7 h-7 fill-gray-400 transition-all ease-out duration-150 rotate-180 group-hover:fill-orange-500 mr-2" />
               {prevPage.title}
             </h5>
@@ -37,10 +37,10 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
             className="col-start-2 block p-4 text-right relative transition-all group border border-gray-100 cursor-pointer"
             style={{ backgroundColor: '#FAFAFA' }}
           >
-            <span className="text-sm uppercase opacity-50 md:pr-10 pr-6">Next</span>
-            <h5
-              className="text-base md:text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end"
-            >
+            <span className="text-sm uppercase opacity-50 md:pr-10 pr-6">
+              下一页
+            </span>
+            <h5 className="text-base md:text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end">
               {nextPage.title}
               <RightArrowSvg className="w-7 h-7 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 ml-2" />
             </h5>
@@ -48,7 +48,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
         </DynamicLink>
       )}
     </div>
-  )
+  );
 }
 
-export default DocsPagination
+export default DocsPagination;
