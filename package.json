@@ -46,7 +46,7 @@
     "@vercel/postgres": "^0.5.1",
     "algoliasearch": "^4.24.0",
     "autoprefixer": "^10.4.20",
-    "axios": "^0.21.4",
+    "axios": "^1.8.4",
     "btoa": "^1.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
