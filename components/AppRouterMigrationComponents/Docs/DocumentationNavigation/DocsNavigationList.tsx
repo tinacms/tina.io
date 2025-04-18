@@ -2,7 +2,7 @@
 
 import { DynamicLink } from 'components/ui';
 import { usePathname } from 'next/navigation';
-import React, { createContext } from 'react';
+import React from 'react';
 import AnimateHeight from 'react-animate-height';
 import { BiChevronRight } from 'react-icons/bi';
 import styled, { css } from 'styled-components';
@@ -111,16 +111,27 @@ const NavLevel = ({
     slug = `/zh${slug}`;
   }
 
-  const [expanded, setExpanded] = React.useState(
+  const isPathOrChildOfPath =
     matchActualTarget(slug || categoryData.href, path) ||
-      hasNestedSlug(categoryData.items, path) ||
-      level === 0
+    hasNestedSlug(categoryData.items, path);
+
+  const [expanded, setExpanded] = React.useState(
+    isPathOrChildOfPath || level === 0
   );
 
   const selected =
     path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
 
   const childSelected = hasNestedSlug(categoryData.items, path);
+
+  React.useEffect(() => {
+    const shouldExpand =
+      matchActualTarget(slug || categoryData.href, path) ||
+      hasNestedSlug(categoryData.items, path) ||
+      level === 0;
+
+    setExpanded(shouldExpand);
+  }, [path, slug, categoryData.href, categoryData.items, level]);
 
   React.useEffect(() => {
     if (
