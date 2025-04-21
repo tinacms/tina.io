@@ -478,7 +478,7 @@ export function AppFooter() {
     <div>
       {/* Top */}
       <div className=" bg-[url('/svg/orange-bg.svg')] bg-cover bg-center ">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row w-full justify-between items-start py-8 lg:py-16 px-2 lg:px-8">
+        <div className="px-6 md:mx-auto max-w-7xl flex flex-col md:flex-row w-full justify-between items-start py-8 lg:py-16 lg:px-8">
           <div className="max-w-[15%] flex-1 drop-shadow-sm">
             <TinaIcon color="white" />
           </div>
@@ -589,52 +589,51 @@ export function AppFooter() {
       {/* Bottom */}
       <div className=" bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white ">
         <div className="max-w-7xl mx-auto flex justify-between flex-col lg:flex-row w-full lg:items-center py-8 gap-6 px-2 lg:px-8">
-        <div className="flex lg:items-start gap-6 drop-shadow-sm">
-          <SocialLink link="https://github.com/tinacms/tinacms">
-            <GithubIconSvg className="w-7 h-auto fill-current " />{' '}
-          </SocialLink>
-          <SocialLink link="https://x.com/tinacms">
-            <XIconSvg className="w-7 h-auto fill-current " />
-          </SocialLink>
-          <SocialLink link="https://discord.com/invite/zumN63Ybpf">
-            <BsDiscord className="w-7 h-auto fill-current" />{' '}
-          </SocialLink>
-          <SocialLink link="https://www.youtube.com/@TinaCMS">
-            <YoutubeIconSvg className="w-7 h-auto fill-current " />{' '}
-          </SocialLink>
-          <SocialLink link="https://www.linkedin.com/company/tinacms">
-            <LinkedInIconSvg className="w-7 h-auto fill-current " />{' '}
-          </SocialLink>
-        </div>
-        <div className="flex drop-shadow-sm flex-wrap gap-6">
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {currentFooterLinks.map((item) => {
-              const { link, label } = item;
-              return <FooterLink key={label} link={link} label={label} />;
-            })}
+          <div className="flex lg:items-start gap-6 drop-shadow-sm">
+            <SocialLink link="https://github.com/tinacms/tinacms">
+              <GithubIconSvg className="w-7 h-auto fill-current " />{' '}
+            </SocialLink>
+            <SocialLink link="https://x.com/tinacms">
+              <XIconSvg className="w-7 h-auto fill-current " />
+            </SocialLink>
+            <SocialLink link="https://discord.com/invite/zumN63Ybpf">
+              <BsDiscord className="w-7 h-auto fill-current" />{' '}
+            </SocialLink>
+            <SocialLink link="https://www.youtube.com/@TinaCMS">
+              <YoutubeIconSvg className="w-7 h-auto fill-current " />{' '}
+            </SocialLink>
+            <SocialLink link="https://www.linkedin.com/company/tinacms">
+              <LinkedInIconSvg className="w-7 h-auto fill-current " />{' '}
+            </SocialLink>
           </div>
-          <div>
-            <p>
-              &copy; TinaCMS 2019–
-              {new Date().getFullYear()}
-            </p>
-          </div>
-          {isZhPath && (
+          <div className="flex drop-shadow-sm flex-wrap gap-6">
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              {currentFooterLinks.map((item) => {
+                const { link, label } = item;
+                return <FooterLink key={label} link={link} label={label} />;
+              })}
+            </div>
             <div>
               <p>
-                网站备案号:{' '}
-                <a
-                  href="https://beian.miit.gov.cn/#/Integrated/index"
-                  className="transition-all duration-200 hover:underline hover:opacity-100 opacity-80"
-                >
-                  浙ICP备20009588号-5
-                </a>
+                &copy; TinaCMS 2019–
+                {new Date().getFullYear()}
               </p>
             </div>
-          )}
+            {isZhPath && (
+              <div>
+                <p>
+                  网站备案号:{' '}
+                  <a
+                    href="https://beian.miit.gov.cn/#/Integrated/index"
+                    className="transition-all duration-200 hover:underline hover:opacity-100 opacity-80"
+                  >
+                    浙ICP备20009588号-5
+                  </a>
+                </p>
+              </div>
+            )}
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
   );
