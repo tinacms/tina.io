@@ -72,7 +72,7 @@ export default function DocsClient({ props }) {
     <div className="grid grid-cols-1 md:grid-cols-[3fr_0.5fr] xl:grid-cols-[3fr_0.25fr]">
       {/* MIDDLE COLUMN */}
       <div
-        className={`mx-8 max-w-full overflow-hidden break-words px-2 col-span-2 ${
+        className={`mx-1 md:mx-8 max-w-full overflow-hidden break-words px-1 col-span-2 ${
           !DocumentationData?.tocIsHidden ? 'xl:col-span-1' : ''
         }`}
       >
