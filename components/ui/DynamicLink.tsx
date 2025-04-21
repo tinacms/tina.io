@@ -6,21 +6,11 @@ type ExtraProps = Omit<LinkProps, 'as' | 'href'>;
 interface DynamicLinkProps extends ExtraProps {
   href: string;
   children: any;
-  className?: string;
 }
 
-export const DynamicLink = ({
-  children,
-  href,
-  className,
-  ...props
-}: DynamicLinkProps) => {
+export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
   return (
-    <Link
-      href={href}
-      {...props}
-      className={`cursor-pointer ${className || ''}`}
-    >
+    <Link href={href} {...props} className="cursor-pointer">
       {children}
     </Link>
   );

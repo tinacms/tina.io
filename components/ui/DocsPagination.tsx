@@ -38,22 +38,24 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
           </div>
         </DynamicLink>
       )}
-      {nextPage && nextPage.slug && (
-        <DynamicLink href={`${nextPage.slug}`} passHref className="col-start-2">
-          <div
-            className="block p-4 text-right relative transition-all group border border-gray-100 cursor-pointer"
-            style={{ backgroundColor: '#FAFAFA' }}
-          >
-            <span className="text-sm uppercase opacity-50 md:pr-10 pr-6">
-              {nextPageText}
-            </span>
-            <h5 className="text-base md:text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end">
-              {nextPage.title}
-              <RightArrowSvg className="w-7 h-7 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 ml-2" />
-            </h5>
-          </div>
-        </DynamicLink>
-      )}
+      <div className="col-start-2">
+        {nextPage && nextPage.slug && (
+          <DynamicLink href={`${nextPage.slug}`} passHref>
+            <div
+              className="block p-4 text-right relative transition-all group border border-gray-100 cursor-pointer"
+              style={{ backgroundColor: '#FAFAFA' }}
+            >
+              <span className="text-sm uppercase opacity-50 md:pr-10 pr-6">
+                {nextPageText}
+              </span>
+              <h5 className="text-base md:text-xl leading-[1.3] m-0 transition-all ease-out duration-150 text-blue-800 group-hover:text-orange-500 flex items-center justify-end">
+                {nextPage.title}
+                <RightArrowSvg className="w-7 h-7 fill-gray-400 transition-all ease-out duration-150 group-hover:fill-orange-500 ml-2" />
+              </h5>
+            </div>
+          </DynamicLink>
+        )}
+      </div>
     </div>
   );
 }
