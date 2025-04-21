@@ -13,8 +13,6 @@ interface PaginationProps {
 }
 
 export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
-  console.log('Previous page', prevPage);
-
   return (
     <div className="mt-8 grid grid-cols-2 gap-4">
       {prevPage && prevPage.slug && (
