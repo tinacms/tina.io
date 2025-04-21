@@ -56,3 +56,7 @@ function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
     return null;
   }
 }
+
+export function isChineseRoute(pathname: string): boolean {
+  return pathname === '/zh' || pathname.startsWith('/zh/');
+}
