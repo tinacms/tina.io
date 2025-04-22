@@ -189,9 +189,23 @@ export function AppNavBar({ sticky = true }) {
   const [navItems, setNavItems] = useState<NavItem[]>(
     Array.isArray(data.navItem) ? parseNavItems(data.navItem) : []
   );
-  const toggleMenu = () => setOpen((prev) => !prev);
+  const toggleMenu = () => {
+    const newOpenState = !open;
+    setOpen(newOpenState);
+    if (newOpenState) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  };
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   useEffect(() => {
     const matchedLocale = Object.values(SupportedLocales).find((locale) =>
@@ -276,7 +290,7 @@ export function AppNavBar({ sticky = true }) {
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
               open ? 'translate-x-0' : 'translate-x-full'
-            }`}
+            } `}
           >
             <button
               className="absolute top-6 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
@@ -284,100 +298,102 @@ export function AppNavBar({ sticky = true }) {
             >
               <BiMenu
                 className={`h-6 w-auto transition ease-out duration-200 ${
-                  open ? 'rotate-90 opacity-0' : ''
+                  open ? 'opacity-0' : 'opacity-100'
                 }`}
               />
               <IoMdClose
                 className={`absolute h-6 w-auto transition ease-out duration-150 ${
-                  open ? '' : '-rotate-90 opacity-0'
+                  open ? 'opacity-100' : 'opacity-0'
                 }`}
               />
             </button>
 
-            <div className="flex py-4 px-6 relative z-20 justify-between items-center">
-              <div className="pb-4 pt-2">
-                <Link href={'/'}>
-                  <TinaLogoSvg
-                    className={`flex items-center w-36 h-auto fill-orange-500`}
-                  />
-                </Link>
-              </div>
-              <div className="flex items-center">
-                <button
-                  className={`outline-none hover:animate-jelly ${
-                    animateFlag ? 'animate-bounce' : ''
-                  } hidden max-[639px]:block`}
-                  onClick={() => openModal('LanguageSelect')}
-                >
-                  {selectedFlag === 'en' ? (
-                    <EnFlag className="w-8 h-8" />
-                  ) : (
-                    <ZhFlag className="w-8 h-8" />
-                  )}
-                </button>
-              </div>
-            </div>
-            <ul className="flex flex-col py-4 px-6 relative z-20">
-              {navItems.map((item, index) =>
-                'items' in item ? (
-                  (item.items as any[]).map((subItem, subIndex) =>
-                    subItem.href ? (
-                      <li
-                        key={`${index}-${subIndex}`}
-                        className={`group ${navLinkClasses} py-2`}
-                      >
-                        <Link href={subItem.href}>
-                          <span className="">
-                            {subItem.label}
-                            {subItem.href.startsWith('https://') && (
-                              <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
-                            )}
-                          </span>
-                        </Link>
-                      </li>
-                    ) : null
-                  )
-                ) : 'href' in item ? (
-                  <li key={index} className={`group ${navLinkClasses}`}>
-                    <Link href={item.href} className="py-2">
-                      {item.label}
-                    </Link>
-                  </li>
-                ) : item._template === GitHubStarButton ? (
-                  <li
-                    key={index}
-                    className={`group ${navLinkClasses} py-2 flex items-center`}
+            <div className="h-full w-full absolute overflow-y-auto">
+              <div className="flex py-4 px-6 relative z-20 justify-between items-center">
+                <div className="pb-4 pt-2">
+                  <Link href={'/'}>
+                    <TinaLogoSvg
+                      className={`flex items-center w-36 h-auto fill-orange-500`}
+                    />
+                  </Link>
+                </div>
+                <div className="flex items-center">
+                  <button
+                    className={`outline-none hover:animate-jelly ${
+                      animateFlag ? 'animate-bounce' : ''
+                    } hidden max-[639px]:block`}
+                    onClick={() => openModal('LanguageSelect')}
                   >
-                    <Link
-                      href={`https://github.com/${item.owner}/${item.repo}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                      <span className="flex items-center">
-                        <svg
-                          className="w-5 h-5 mr-2"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
+                    {selectedFlag === 'en' ? (
+                      <EnFlag className="w-8 h-8" />
+                    ) : (
+                      <ZhFlag className="w-8 h-8" />
+                    )}
+                  </button>
+                </div>
+              </div>
+              <ul className="flex flex-col py-4 px-6 relative z-20">
+                {navItems.map((item, index) =>
+                  'items' in item ? (
+                    (item.items as any[]).map((subItem, subIndex) =>
+                      subItem.href ? (
+                        <li
+                          key={`${index}-${subIndex}`}
+                          className={`group ${navLinkClasses} py-2`}
                         >
-                          <path
-                            fillRule="evenodd"
-                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        {starCount > 0 && (
-                          <span className="text-sm font-medium">
-                            {starCount.toLocaleString()}
-                          </span>
-                        )}
-                      </span>
-                    </Link>
-                  </li>
-                ) : null
-              )}
-            </ul>
+                          <Link href={subItem.href}>
+                            <span className="">
+                              {subItem.label}
+                              {subItem.href.startsWith('https://') && (
+                                <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
+                              )}
+                            </span>
+                          </Link>
+                        </li>
+                      ) : null
+                    )
+                  ) : 'href' in item ? (
+                    <li key={index} className={`group ${navLinkClasses}`}>
+                      <Link href={item.href} className="py-2">
+                        {item.label}
+                      </Link>
+                    </li>
+                  ) : item._template === GitHubStarButton ? (
+                    <li
+                      key={index}
+                      className={`group ${navLinkClasses} py-2 flex items-center`}
+                    >
+                      <Link
+                        href={`https://github.com/${item.owner}/${item.repo}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                      >
+                        <span className="flex items-center">
+                          <svg
+                            className="w-5 h-5 mr-2"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          {starCount > 0 && (
+                            <span className="text-sm font-medium">
+                              {starCount.toLocaleString()}
+                            </span>
+                          )}
+                        </span>
+                      </Link>
+                    </li>
+                  ) : null
+                )}
+              </ul>
+            </div>
           </div>
 
           <div
