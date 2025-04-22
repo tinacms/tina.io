@@ -15,5 +15,3 @@ export const DynamicLink = ({ children, href, ...props }: DynamicLinkProps) => {
     </Link>
   );
 };
-
-
