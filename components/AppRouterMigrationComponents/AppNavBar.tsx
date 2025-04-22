@@ -205,7 +205,7 @@ export function AppNavBar({ sticky = true }) {
     return () => {
       document.body.style.overflow = '';
     };
-  }, []);
+  }, [pathName]);
 
   useEffect(() => {
     const matchedLocale = Object.values(SupportedLocales).find((locale) =>
