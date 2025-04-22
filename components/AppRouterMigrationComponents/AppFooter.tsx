@@ -503,12 +503,12 @@ export function AppFooter() {
                 </div>
               );
             })}
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-4 md:mt-0">
               <form
                 className="flex flex-col text-left gap-1.5 items-start w-full"
                 onSubmit={handleSubmit}
               >
-                <h2 className="text-xl font-tuner text-white">
+                <h2 className=" md:text-xl font-tuner text-white">
                   Join the Herd!
                 </h2>
                 <p className="text-sm font-light text-white/80 pb-1.5">
@@ -589,7 +589,7 @@ export function AppFooter() {
       {/* Bottom */}
       <div className=" bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white ">
         <div className="max-w-7xl mx-auto flex justify-between flex-col lg:flex-row w-full lg:items-center py-8 gap-6 px-2 lg:px-8">
-          <div className="flex lg:items-start gap-6 drop-shadow-sm">
+          <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0">
             <SocialLink link="https://github.com/tinacms/tinacms">
               <GithubIconSvg className="w-7 h-auto fill-current " />{' '}
             </SocialLink>
@@ -606,7 +606,7 @@ export function AppFooter() {
               <LinkedInIconSvg className="w-7 h-auto fill-current " />{' '}
             </SocialLink>
           </div>
-          <div className="flex drop-shadow-sm flex-wrap gap-6">
+          <div className="ml-5 flex drop-shadow-sm flex-wrap gap-6 md:ml-5">
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               {currentFooterLinks.map((item) => {
                 const { link, label } = item;
