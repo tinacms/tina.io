@@ -88,7 +88,7 @@ export default function DocsClient({ props }) {
         </div>
         <div
           ref={contentRef}
-          className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6"
+          className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6 text-lg"
         >
           {' '}
           <TinaMarkdown
