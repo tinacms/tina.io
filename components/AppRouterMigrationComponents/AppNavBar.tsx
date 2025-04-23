@@ -16,6 +16,7 @@ import 'react-responsive-modal/styles.css';
 import { getGitHubStarCount } from 'utils/github-star-helper';
 import data from '../../content/navigationBar/navMenu.json';
 import zhData from '../../content/navigationBar/navMenuZh.json';
+import TinaCmsPng from '../../public/img/tinacms-logo.png';
 import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 import '../../styles/tailwind.css';
@@ -409,6 +410,9 @@ export function AppNavBar({ sticky = true }) {
               className={`flex items-center w-9 h-auto fill-orange-500`}
             />
           </Link>
+          {pathName.includes('/docs') && (
+            <Image src={TinaCmsPng} alt="TinaCMS Logo" className="w-44" />
+          )}
           <div className="flex space-x-2 gap-2 cursor-pointer">
             {navItems
               .filter((item) => item._template === modalButtonString)
