@@ -8,6 +8,7 @@ import { BsDiscord } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
+import FaceBookLogo from '../../public/svg/facebook-logo.svg';
 import GithubIconSvg from '../../public/svg/github-icon.svg';
 import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg';
 import XIconSvg from '../../public/svg/x-icon.svg';
@@ -604,6 +605,9 @@ export function AppFooter() {
             </SocialLink>
             <SocialLink link="https://www.linkedin.com/company/tinacms">
               <LinkedInIconSvg className="w-7 h-auto fill-current " />{' '}
+            </SocialLink>
+            <SocialLink link="https://www.facebook.com/profile.php?id=61572968406294">
+              <FaceBookLogo className="w-6 h-auto fill-current " />{' '}
             </SocialLink>
           </div>
           <div className="ml-5 flex drop-shadow-sm flex-wrap gap-6 md:ml-5">
