@@ -1,12 +1,11 @@
+import DocsRichText from '@/components/styles/DocsRichText';
+import { Prism } from '@/components/styles/Prism';
+import PlayIcon from '@/public/svg/play-button.svg';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import PlayIcon from '../../../public/svg/play-button.svg';
-import DocsRichText from '../../styles/DocsRichText';
-import { Prism } from '../../styles/Prism';
-import { Container } from '../Container';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
@@ -65,7 +64,6 @@ export function FeatureBlock({ data, index }) {
 
 export const RenderMedia = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  console.log(data);
   if (
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo' ||
     data.media[0].__typename === 'PageBlocksHeroMediaVideo'
