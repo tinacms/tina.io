@@ -25,7 +25,7 @@ const PageLayout = ({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24">
       <div className="flex flex-col">
         <div className="mb-7">
-          <h2 className="font-tuner text-6xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500 inline-block">
+          <h2 className="font-tuner text-6xl leading-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500 inline-block">
             {title}
           </h2>
           <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
