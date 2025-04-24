@@ -230,12 +230,12 @@ export default function CarouselFeatureBlock({ data, index }) {
   return (
     <section
       key={'feature-grid-' + index}
-      className={'relative z-0'}
+      className={'relative z-0 '}
       style={{ overflow: 'visible' }}
     >
       <Container width="wide">
-        <div className="flex flex-col lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20">
-          <div className="flex flex-col order-2 lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible">
+        <div className="flex flex-col h-auto lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20 ">
+          <div className="flex flex-col order-2 min-h-[880px] lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible ">
             <h2
               ref={titleRef}
               className="lg:m-0 pl-3 font-tuner inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
@@ -303,7 +303,7 @@ export default function CarouselFeatureBlock({ data, index }) {
               </button>
             ) : null}
           </div>
-          <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 pt-24 lg:mt-0 justify-center items-center">
+          <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 lg:mt-0 justify-center items-center">
             {renderMedia(hoveredIndex)}
           </div>
         </div>
