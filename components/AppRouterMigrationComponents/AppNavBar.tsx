@@ -453,9 +453,9 @@ export function AppNavBar({ sticky = true }) {
         <div
           className={`absolute ${
             stuck && sticky
-              ? `lg:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
+              ? `xl:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between`}
+          } z-40 w-full lg:px-10 hidden lg:flex items-center justify-between`}
         >
           <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
             <Link href={'/'}>
