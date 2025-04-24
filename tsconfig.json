@@ -3,7 +3,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "lenis/react": ["node_modules/lenis/dist/lenis-react"]
+      "lenis/react": ["node_modules/lenis/dist/lenis-react"],
+      "@/public/*": ["./public/*"],
+      "@/content/*": ["./content/*"],
+      "@/styles/*": ["./styles/*"],
+      "@/utils/*": ["./utils/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

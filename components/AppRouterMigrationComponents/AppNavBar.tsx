@@ -1,5 +1,13 @@
 'use client';
 
+import data from '@/content/navigationBar/navMenu.json';
+import zhData from '@/content/navigationBar/navMenuZh.json';
+import TinaCmsPng from '@/public/img/tinacms-logo.png';
+import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
+import TinaIconSvg from '@/public/svg/tina-icon.svg';
+import '@/styles/tailwind.css';
+import { getGitHubStarCount } from '@/utils/github-star-helper';
+import { saveLocaleToCookie } from '@/utils/locale';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
 import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
@@ -13,14 +21,6 @@ import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import { getGitHubStarCount } from 'utils/github-star-helper';
-import data from '../../content/navigationBar/navMenu.json';
-import zhData from '../../content/navigationBar/navMenuZh.json';
-import TinaCmsPng from '../../public/img/tinacms-logo.png';
-import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
-import TinaIconSvg from '../../public/svg/tina-icon.svg';
-import '../../styles/tailwind.css';
-import { saveLocaleToCookie } from '../../utils/locale';
 import { EmailForm } from '../modals/AppRouterEmailForm';
 import { Button } from '../ui/Button';
 
