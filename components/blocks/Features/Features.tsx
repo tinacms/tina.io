@@ -1,5 +1,5 @@
-import DocsRichText from '@/components/styles/DocsRichText';
-import { Prism } from '@/components/styles/Prism';
+import DocsRichText from '@/component/styles/DocsRichText';
+import { Prism } from '@/component/styles/Prism';
 import PlayIcon from '@/public/svg/play-button.svg';
 import Image from 'next/image';
 import { useState } from 'react';

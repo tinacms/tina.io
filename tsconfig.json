@@ -8,7 +8,8 @@
       "@/content/*": ["./content/*"],
       "@/styles/*": ["./styles/*"],
       "@/utils/*": ["./utils/*"],
-      "@/components/*": ["./components/*"]
+      "@/component/*": ["./components/*"] // The alias '@/components/*' conflicts with the Marquee component in 'Testimonials.tsx'.
+      // To avoid this issue, we are standardizing the import path to '@/component/*' instead.
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
