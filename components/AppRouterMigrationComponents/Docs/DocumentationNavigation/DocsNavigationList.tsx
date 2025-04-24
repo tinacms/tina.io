@@ -115,9 +115,7 @@ const NavLevel = ({
     matchActualTarget(slug || categoryData.href, path) ||
     hasNestedSlug(categoryData.items, path);
 
-  const [expanded, setExpanded] = React.useState(
-    isPathOrChildOfPath || level === 0
-  );
+  const [expanded, setExpanded] = React.useState(isPathOrChildOfPath);
 
   const selected =
     path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
@@ -127,8 +125,7 @@ const NavLevel = ({
   React.useEffect(() => {
     const shouldExpand =
       matchActualTarget(slug || categoryData.href, path) ||
-      hasNestedSlug(categoryData.items, path) ||
-      level === 0;
+      hasNestedSlug(categoryData.items, path);
 
     setExpanded(shouldExpand);
   }, [path, slug, categoryData.href, categoryData.items, level]);
