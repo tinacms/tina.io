@@ -2,7 +2,7 @@
 id: /docs/drafts/draft-fields
 
 title: Draft Fields
-next: content/docs/drafts/editorial-workflow.mdx
+next: content/docs/tina-cloud/editorial-workflow.mdx
 previous: content/docs/drafts/overview.mdx
 ---
 
@@ -35,7 +35,7 @@ const schema = defineSchema({
       ],
     },
   ],
-})
+});
 ```
 
 > Note: It's usually a good practice to make draft fields required. This may require adding the draft field to your existing documents
@@ -48,10 +48,10 @@ You can add a filter to filter out draft documents from your queries:
 // getting production posts
 const req = await client.queries.postConnection({
   filter: { draft: { eq: false } },
-})
+});
 
 // getting all posts
-const req = await client.queries.postConnection()
+const req = await client.queries.postConnection();
 ```
 
 Read more about querying data [here](/docs/data-fetching/overview).
