@@ -86,7 +86,7 @@ export default async function Page({ params }: PageProps) {
       <>
         {/* TODO: Remove once TinaCon is over */}
         {slug[0] === 'home' && (
-          <div className="max-w-[1300px] mx-auto mt-10 px-5 lg:px-10">
+          <div className="max-w-[1300px] mx-auto mt-10 px-5 md:px-10">
             <ExperimentalBanner />
           </div>
         )}

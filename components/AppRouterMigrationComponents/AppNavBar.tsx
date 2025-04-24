@@ -286,7 +286,7 @@ export function AppNavBar({ sticky = true }) {
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>
-        <div className="flex xl:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
+        <div className="flex lg:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           {/* Start of sm and md view */}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
@@ -453,7 +453,7 @@ export function AppNavBar({ sticky = true }) {
         <div
           className={`absolute ${
             stuck && sticky
-              ? `xl:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
+              ? `lg:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
           } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between`}
         >
