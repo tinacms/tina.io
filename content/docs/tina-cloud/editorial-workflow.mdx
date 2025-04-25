@@ -1,8 +1,8 @@
 ---
-id: /docs/drafts/editorial-workflow
-
+id: /docs/tina-cloud/editorial-workflow
 title: Editorial Workflow
-last_edited: '2025-04-18T04:00:00.000Z'
+last_edited: '2025-04-24T06:19:07.233Z'
+next: ''
 previous: content/docs/drafts/drafts-fields.mdx
 ---
 
@@ -33,10 +33,10 @@ After completing the setup, you can access the CMS, and a new branch switcher bu
 
 Once you enter the new branch name, the following actions will occur:
 
-- The new branch will be created.
-- The content of the new branch will be indexed (this process may take a few minutes).
-- The changes will be saved to the new branch.
-- A draft pull request will be created.
+* The new branch will be created.
+* The content of the new branch will be indexed (this process may take a few minutes).
+* The changes will be saved to the new branch.
+* A draft pull request will be created.
 
 ## Publishing Content
 
@@ -64,13 +64,13 @@ export default defineConfig({
   ui: {
     // Eg. If you're deplying to Vercel, and your repo name is 'my-app', Vercel's preview URL would be based on the branch:
     previewUrl: (context) => {
-      const repoName = 'my-app'
+      const repoName = 'my-app';
       // `https://<project-name>-git-<branch-name>.vercel.app`
-      return { url: `https://my-app-git-${context.branch}` }
+      return { url: `https://my-app-git-${context.branch}` };
     },
   },
   //...
-})
+});
 ```
 
 Now you will be able to click on the "View Preview" button in the branch list modal to preview your changes.
