@@ -124,7 +124,7 @@ export default function CarouselFeatureBlock({ data, index }) {
       setIsSmallOrMediumScreen(mediaQuerySmallOrMedium.matches);
       if (!e.matches) {
         clearInterval(intervalRef.current);
-        setHoveredIndex(null);
+        setHoveredIndex(0);
       } else if (mediaQueryLarge.matches && !isUserInteracted) {
         startAutoTicking();
       }
