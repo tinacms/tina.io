@@ -157,6 +157,11 @@ const config = {
         permanent: true,
       },
       {
+        source: '/docs/drafts/editorial-workflow',
+        destination: '/docs/tina-cloud/editorial-workflow',
+        permanent: true,
+      },
+      {
         source: '/cloud/',
         destination: '/',
         permanent: true,

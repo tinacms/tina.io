@@ -109,6 +109,7 @@ export default function CarouselFeatureBlock({ data, index }) {
   const titleRef = useRef(null);
   const isTouchScreen = useMemo(() => checkTouchScreen(), []);
   const [isShowingAll, setIsShowingAll] = useState(false);
+  const sectionRef = useRef(null);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
@@ -123,7 +124,7 @@ export default function CarouselFeatureBlock({ data, index }) {
       setIsSmallOrMediumScreen(mediaQuerySmallOrMedium.matches);
       if (!e.matches) {
         clearInterval(intervalRef.current);
-        setHoveredIndex(null);
+        setHoveredIndex(0);
       } else if (mediaQueryLarge.matches && !isUserInteracted) {
         startAutoTicking();
       }
@@ -138,7 +139,35 @@ export default function CarouselFeatureBlock({ data, index }) {
     };
   }, [data?.items?.length, isUserInteracted]);
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsPaused(false);
+        } else {
+          setIsPaused(true);
+          clearInterval(intervalRef.current);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [sectionRef]);
+
   const startAutoTicking = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
     intervalRef.current = setInterval(() => {
       setHoveredIndex((prevIndex) => {
         if (prevIndex === null || prevIndex >= data.items.length - 1) {
@@ -229,6 +258,7 @@ export default function CarouselFeatureBlock({ data, index }) {
 
   return (
     <section
+      ref={sectionRef}
       key={'feature-grid-' + index}
       className={'relative z-0 '}
       style={{ overflow: 'visible' }}
