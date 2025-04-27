@@ -109,6 +109,7 @@ export default function CarouselFeatureBlock({ data, index }) {
   const titleRef = useRef(null);
   const isTouchScreen = useMemo(() => checkTouchScreen(), []);
   const [isShowingAll, setIsShowingAll] = useState(false);
+  const sectionRef = useRef(null);
 
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
@@ -123,7 +124,7 @@ export default function CarouselFeatureBlock({ data, index }) {
       setIsSmallOrMediumScreen(mediaQuerySmallOrMedium.matches);
       if (!e.matches) {
         clearInterval(intervalRef.current);
-        setHoveredIndex(null);
+        setHoveredIndex(0);
       } else if (mediaQueryLarge.matches && !isUserInteracted) {
         startAutoTicking();
       }
@@ -138,7 +139,35 @@ export default function CarouselFeatureBlock({ data, index }) {
     };
   }, [data?.items?.length, isUserInteracted]);
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsPaused(false);
+        } else {
+          setIsPaused(true);
+          clearInterval(intervalRef.current);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [sectionRef]);
+
   const startAutoTicking = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
     intervalRef.current = setInterval(() => {
       setHoveredIndex((prevIndex) => {
         if (prevIndex === null || prevIndex >= data.items.length - 1) {
@@ -229,13 +258,14 @@ export default function CarouselFeatureBlock({ data, index }) {
 
   return (
     <section
+      ref={sectionRef}
       key={'feature-grid-' + index}
-      className={'relative z-0'}
+      className={'relative z-0 '}
       style={{ overflow: 'visible' }}
     >
       <Container width="wide">
-        <div className="flex flex-col lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20">
-          <div className="flex flex-col order-2 lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible">
+        <div className="flex flex-col h-auto lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20 ">
+          <div className="flex flex-col order-2 min-h-[880px] lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible ">
             <h2
               ref={titleRef}
               className="lg:m-0 pl-3 font-tuner inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
@@ -303,7 +333,7 @@ export default function CarouselFeatureBlock({ data, index }) {
               </button>
             ) : null}
           </div>
-          <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 pt-24 lg:mt-0 justify-center items-center">
+          <div className="hidden lg:flex flex-col order-1 lg:order-2 w-full lg:w-3/5 gap-4 auto-rows-auto rounded-xl overflow-visible mt-10 lg:mt-0 justify-center items-center">
             {renderMedia(hoveredIndex)}
           </div>
         </div>
