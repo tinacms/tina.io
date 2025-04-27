@@ -2,23 +2,23 @@
 title: Tina内容模型
 last_edited: '2025-03-27T01:30:29.329Z'
 tocIsHidden: true
-next: content/docs/introduction/using-starter.mdx
-previous: content/docs/using-tina-editor.mdx
+next: content/docs-zh/introduction/using-starter.mdx
+previous: content/docs-zh/using-tina-editor.mdx
 ---
 
-**Tina schema定义了内容的结构**。
+**Tina schema 定义了内容的结构**。
 
-Tina采用“代码化内容建模”的方法。
+Tina 采用“代码化内容建模”的方法。
 
-* schema是版本控制的
-* 你可以在本地或分支中测试schema的更改。
-* 你可以以有趣的方式扩展schema（自定义验证、自定义UI字段等）。
+- schema 是版本控制的
+- 你可以在本地或分支中测试 schema 的更改。
+- 你可以以有趣的方式扩展 schema（自定义验证、自定义 UI 字段等）。
 
-具体来说，[TinaCMS配置文件](/docs/reference/config)中的`schema`属性决定了内容存储与编辑器之间的数据映射。
+具体来说，[TinaCMS 配置文件](/docs/reference/config)中的`schema`属性决定了内容存储与编辑器之间的数据映射。
 
 `schema.collections`数组中的每个项目代表一种不同的内容结构。
 
-每个项目包含一个`fields`数组，用于控制TinaCMS编辑器中显示的内容。
+每个项目包含一个`fields`数组，用于控制 TinaCMS 编辑器中显示的内容。
 
 ```ts
 // tina/config.{ts,js,tsx}
@@ -27,7 +27,7 @@ import { defineConfig } from 'tinacms'
 export default defineConfig({
   // ...
   schema: {
-    collections: [ 
+    collections: [
       //⤵️ 每个项目代表一种不同的内容结构
       {
         label: '博客文章',

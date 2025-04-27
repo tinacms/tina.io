@@ -3,7 +3,7 @@ id: /docs/drafts/editorial-workflow
 
 title: 编辑工作流程
 last_edited: '2025-04-18T04:00:00.000Z'
-previous: content/docs/drafts/drafts-fields.mdx
+previous: content/docs-zh/drafts/drafts-fields.mdx
 ---
 
 <Youtube embedSrc="https://www.youtube.com/embed/gYukiULGqGc" />
@@ -25,9 +25,9 @@ previous: content/docs/drafts/drafts-fields.mdx
 3. 输入您想要保护的分支名称。
 4. 设置受保护分支后，刷新页面以确保更改生效。
 
-## 访问CMS并保存到受保护分支
+## 访问 CMS 并保存到受保护分支
 
-完成设置后，您可以访问CMS，顶部会出现一个新的分支切换按钮。当您处于受保护分支并点击“保存”时，会弹出一个模态框，提示您输入要保存的新分支名称。
+完成设置后，您可以访问 CMS，顶部会出现一个新的分支切换按钮。当您处于受保护分支并点击“保存”时，会弹出一个模态框，提示您输入要保存的新分支名称。
 
 ![编辑工作流程保存](/img/blog/introducing-editorial-workflow-features-for-your-team/create-branch_bgpgwn.png)
 
@@ -42,7 +42,7 @@ previous: content/docs/drafts/drafts-fields.mdx
 
 当您准备好发布内容时，通过 GitHub 将草稿拉取请求合并到受保护分支（例如 main）。拉取请求成功合并后，更新的内容将可在受保护分支上使用。
 
-## GitHub拉取请求链接
+## GitHub 拉取请求链接
 
 在分支列表模态框中，您可以点击下拉菜单并点击“查看拉取请求”以在 GitHub 上查看拉取请求。这将在浏览器中打开一个新标签页。此链接仅在拉取请求是通过 TinaCMS 创建时出现，而不是手动创建时。
 
@@ -64,13 +64,13 @@ export default defineConfig({
   ui: {
     // 例如，如果您部署到 Vercel，并且您的仓库名称是 'my-app'，Vercel 的预览链接将基于分支：
     previewUrl: (context) => {
-      const repoName = 'my-app'
+      const repoName = 'my-app';
       // `https://<project-name>-git-<branch-name>.vercel.app`
-      return { url: `https://my-app-git-${context.branch}` }
+      return { url: `https://my-app-git-${context.branch}` };
     },
   },
   //...
-})
+});
 ```
 
 现在，您可以在分支列表模态框中点击“查看预览”按钮以预览您的更改。
