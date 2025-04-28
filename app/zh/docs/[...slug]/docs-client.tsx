@@ -31,12 +31,16 @@ export default function DocsClient({ props }) {
   const { activeIds, contentRef } = useTocListener(DocumentationData);
 
   const previousPage = {
-    slug: DocumentationData?.previous?.id.slice(7, -4),
+    slug: DocumentationData?.previous?.id
+      .slice(7, -4)
+      .replace('docs-zh', 'zh/docs'),
     title: DocumentationData?.previous?.title,
   };
 
   const nextPage = {
-    slug: DocumentationData?.next?.id.slice(7, -4),
+    slug: DocumentationData?.next?.id
+      .slice(7, -4)
+      .replace('docs-zh', 'zh/docs'),
     title: DocumentationData?.next?.title,
   };
 
