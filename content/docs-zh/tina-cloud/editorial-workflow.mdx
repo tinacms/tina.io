@@ -1,0 +1,76 @@
+---
+id: /docs/tina-cloud/editorial-workflow
+title: 编辑工作流程
+last_edited: '2025-04-24T06:19:07.233Z'
+next: ''
+previous: content/docs/drafts/drafts-fields.mdx
+---
+
+<Youtube embedSrc="https://www.youtube.com/embed/gYukiULGqGc" />
+
+> 注意：编辑工作流程功能仅适用于某些付费计划。
+
+如果您的内容编辑需要在多个分支上工作，可以使用编辑工作流程功能。与直接将内容保存到受保护的分支（例如 `main`）不同，此功能会创建一个新分支。一个草稿拉取请求将被生成，所有后续编辑都将在这个新分支上进行。当您的内容准备好发布时，可以通过 GitHub 将其合并回受保护的分支（例如 `main`）。
+
+## 设置
+
+可以在 TinaCloud 中启用编辑工作流程。
+
+![编辑工作流程设置](/img/blog/editorial-workflow/enable-editorial-workflow.png)
+
+要设置编辑工作流程，请按照以下步骤操作：
+
+1. 在仪表板中进入项目的“配置”选项卡。
+2. 切换“启用”选项。
+3. 输入您想要保护的分支名称。
+4. 设置受保护分支后，刷新页面以确保更改生效。
+
+## 访问 CMS 并保存到受保护分支
+
+完成设置后，您可以访问 CMS，顶部会出现一个新的分支切换按钮。当您位于受保护分支并点击“保存”时，会弹出一个模态窗口，提示您输入要保存的新分支名称。
+
+![编辑工作流程保存](/img/blog/introducing-editorial-workflow-features-for-your-team/create-branch_bgpgwn.png)
+
+输入新分支名称后，将发生以下操作：
+
+* 新分支将被创建。
+* 新分支的内容将被索引（此过程可能需要几分钟）。
+* 更改将保存到新分支。
+* 一个草稿拉取请求将被创建。
+
+## 发布内容
+
+当您准备好发布内容时，通过 GitHub 将草稿拉取请求合并到受保护分支（例如 main）。拉取请求成功合并后，更新的内容将可用在受保护分支上。
+
+## GitHub 拉取请求链接
+
+在分支列表模态窗口中，您可以点击下拉菜单并选择“查看拉取请求”以在 GitHub 上查看拉取请求。这将在浏览器中打开一个新标签页。此链接仅在拉取请求是通过 TinaCMS 创建时出现，而不是手动创建时。
+
+![拉取请求链接](/img/docs/editorial-workflow/preview-link.png)
+
+## 预览链接
+
+您可以为拉取请求设置预览链接。
+
+![编辑工作流程保存](/img/blog/editorial-workflow/share-btn_xvmxii.png)
+
+这将允许您在将更改合并到受保护分支之前预览内容更改。要设置预览链接，请在配置文件中将 `previewUrl` 函数添加到 `ui` 对象中。此函数将接收分支名称作为参数，并应返回该分支的预览 URL。例如：
+
+```js
+// tina/config.{ts,tsx,js}
+
+export default defineConfig({
+  // ...
+  ui: {
+    // 例如，如果您部署到 Vercel，并且您的仓库名称是 'my-app'，Vercel 的预览 URL 将基于分支：
+    previewUrl: (context) => {
+      const repoName = 'my-app';
+      // `https://<project-name>-git-<branch-name>.vercel.app`
+      return { url: `https://my-app-git-${context.branch}` };
+    },
+  },
+  //...
+});
+```
+
+现在，您可以在分支列表模态窗口中点击“查看预览”按钮以预览您的更改。
