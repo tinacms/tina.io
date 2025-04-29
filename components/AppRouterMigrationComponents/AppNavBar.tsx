@@ -1,5 +1,13 @@
 'use client';
 
+import data from '@/content/navigationBar/navMenu.json';
+import zhData from '@/content/navigationBar/navMenuZh.json';
+import TinaCmsPng from '@/public/img/tinacms-logo.png';
+import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
+import TinaIconSvg from '@/public/svg/tina-icon.svg';
+import '@/styles/tailwind.css';
+import { getGitHubStarCount } from '@/utils/github-star-helper';
+import { saveLocaleToCookie } from '@/utils/locale';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
 import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
@@ -13,14 +21,6 @@ import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import { getGitHubStarCount } from 'utils/github-star-helper';
-import data from '../../content/navigationBar/navMenu.json';
-import zhData from '../../content/navigationBar/navMenuZh.json';
-import TinaCmsPng from '../../public/img/tinacms-logo.png';
-import TinaLogoSvg from '../../public/svg/tina-extended-logo.svg';
-import TinaIconSvg from '../../public/svg/tina-icon.svg';
-import '../../styles/tailwind.css';
-import { saveLocaleToCookie } from '../../utils/locale';
 import { EmailForm } from '../modals/AppRouterEmailForm';
 import { Button } from '../ui/Button';
 
@@ -286,7 +286,7 @@ export function AppNavBar({ sticky = true }) {
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>
-        <div className="flex xl:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
+        <div className="flex lg:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           {/* Start of sm and md view */}
           <div
             className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
@@ -455,7 +455,7 @@ export function AppNavBar({ sticky = true }) {
             stuck && sticky
               ? `xl:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between`}
+          } z-40 w-full lg:px-10 hidden lg:flex items-center justify-between`}
         >
           <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
             <Link href={'/'}>
