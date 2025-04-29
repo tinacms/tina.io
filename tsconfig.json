@@ -3,7 +3,13 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "lenis/react": ["node_modules/lenis/dist/lenis-react"]
+      "lenis/react": ["node_modules/lenis/dist/lenis-react"],
+      "@/public/*": ["./public/*"],
+      "@/content/*": ["./content/*"],
+      "@/styles/*": ["./styles/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/component/*": ["./components/*"] // The alias '@/components/*' conflicts with the Marquee component in 'Testimonials.tsx'.
+      // To avoid this issue, we are standardizing the import path to '@/component/*' instead.
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
