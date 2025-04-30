@@ -24,7 +24,7 @@ export const DEFAULT_SEO: Metadata = {
         url: settings?.defaultOGImage,
         width: 1200,
         height: 630,
-        alt: 'Tina',
+        alt: 'Tina - The Markdown CMS',
       },
     ],
   },
