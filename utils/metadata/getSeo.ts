@@ -8,17 +8,14 @@ export const getSeo = (data: any): Metadata => {
 
   const SEO = {
     title: data.docs.seo?.title || `${DEFAULT_SEO.title} | ${data.docs.title}`,
-    description:
-      data.docs.seo?.description || `${excerpt} || ${DEFAULT_SEO.description}`,
+    description: data.docs.seo?.description || `${excerpt}`,
     alternates: {
       canonical: envUrl(data.docs.seo?.canonicalUrl),
     },
     openGraph: {
       title: data.docs.title || `${DEFAULT_SEO.title} | ${data.docs.title}`,
       url: envUrl(data.docs.seo?.canonicalUrl),
-      description:
-        data.docs.seo?.description ||
-        `${excerpt} || ${DEFAULT_SEO.description}`,
+      description: data.docs.seo?.description || `${excerpt}`,
       images: [
         {
           ...DEFAULT_SEO.openGraph?.images?.[0],
