@@ -5,7 +5,7 @@ import { DEFAULT_SEO } from './defaultSeo';
 
 interface DefaultProps {
   pageTitle: string;
-  body: { children: any[] };
+  body: any;
 }
 
 export const getSeo = (seo: any, data?: DefaultProps): Metadata => {
@@ -18,7 +18,7 @@ export const getSeo = (seo: any, data?: DefaultProps): Metadata => {
       canonical: envUrl(seo?.canonicalUrl),
     },
     openGraph: {
-      title: seo.title || `${DEFAULT_SEO.title} | ${data?.pageTitle}`,
+      title: seo?.title || `${DEFAULT_SEO.title} | ${data?.pageTitle}`,
       url: envUrl(seo?.canonicalUrl),
       description: seo?.description || `${excerpt}`,
       images: [
