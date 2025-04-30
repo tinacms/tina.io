@@ -31,8 +31,13 @@ export async function generateMetadata({
   const slug = params.slug.join('/');
   const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
-  if (data.doc.seo && !data.doc.seo?.canonicalUrl) {
-    data.doc.seo.canonicalUrl = `${settings.siteUrl}/docs/${slug}`;
+  if ((data.doc.seo && !data.doc.seo?.canonicalUrl) || !data.doc.seo) {
+    data.doc.seo = {
+      __typename: 'DocSeo',
+      canonicalUrl: `${settings.siteUrl}/docs${
+        slug === 'index' ? '' : `/${slug}`
+      }`,
+    };
   }
 
   return getSeo(data.doc.seo, {
