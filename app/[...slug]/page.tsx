@@ -28,17 +28,17 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = params;
   const relativePath = `${slug.join('/')}.json`;
+
   const res = await client.queries.pageWithRecentPosts({
     relativePath,
   });
 
   const data = res.data.page;
-
   const { seo } = data;
 
   if (seo && !seo?.canonicalUrl) {
     data.seo.canonicalUrl = `${settings.siteUrl}${
-      slug[0] === 'home' ? '' : '/' + slug
+      slug[0] === 'home' ? '' : '/' + slug.join('/')
     }`;
   }
   return getSeo(seo);
