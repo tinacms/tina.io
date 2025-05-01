@@ -152,7 +152,9 @@ const HeaderBanner = ({
       <h1 className="font-tuner text-4xl pb-4 text-orange-500">
         {tinaData.bannerTitle}
       </h1>
-      <h2 className="text-2xl max-w-4xl text-orange-500 font-tuner pb-4">{tinaData.bannerTagline}</h2>
+      <h2 className="text-2xl max-w-4xl text-orange-500 font-tuner pb-4">
+        {tinaData.bannerTagline}
+      </h2>
       <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
       <div className="flex flex-col md:flex-row py-6 gap-6  md:gap-10">
         <div className="flex gap-2 items-center">
@@ -306,7 +308,6 @@ function formatTime(time: number) {
   return `${formattedHour}:${formattedMinutes} ${ampm}`;
 }
 
-
 function Agenda({
   filteredSessions,
   agendaRef,
@@ -365,21 +366,17 @@ function Agenda({
       </h2>
 
       {/* Desktop view (table) */}
-      <div className="w-full max-w-6xl overflow-x-auto hidden md:block rounded-xl">
+      <div className="w-full max-w-5xl overflow-x-auto hidden md:block rounded-xl">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-blue-100">
               <th className="border p-4 w-1/6 text-left">Time</th>
-              <th className="border p-4 w-2/5 text-center">Talks</th>
-              <th className="border p-4 w-2/5 text-center">Workshops</th>
+              <th className="border p-4 w-4/5 text-center">Talks</th>
             </tr>
           </thead>
           <tbody>
             {timeSlots.map((slot, index) => (
-              <tr
-                key={index}
-                
-              >
+              <tr key={index}>
                 <td className="border p-4 align-top text-left">
                   <div className="font-bold leading-6">
                     {formatTime(slot.timeStart)} -
@@ -389,7 +386,7 @@ function Agenda({
                 </td>
 
                 {slot.breaks.length > 0 ? (
-                  <td colSpan={2} className="border p-4 text-center">
+                  <td className="border p-4 text-center">
                     {slot.breaks.map((breakSession, idx) => (
                       <div key={idx} className="mb-4 last:mb-0">
                         <h3 className="text-lg font-bold">
@@ -402,72 +399,36 @@ function Agenda({
                     ))}
                   </td>
                 ) : (
-                  <>
-                    {/* Talks column */}
-                    <td className="border p-4 align-top text-left">
-                      {slot.talks.map((talk, idx) => (
-                        <div key={idx} className="mb-4 last:mb-0 flex">
-                          <div>
-                            <h3 className="text-lg leading-6 font-bold">
-                              {talk.speechTitle}
-                            </h3>
-                            {talk.talkSpeakerName && (
-                              <div className="flex items-center gap-2 text-gray-600 mt-1">
-                                <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
-                                  <Image
-                                    src={talk.talkSpeakerImage}
-                                    alt={talk.talkSpeakerName || 'Speaker'}
-                                    width={100}
-                                    height={100}
-                                    className="w-full h-full object-cover"
-                                  />
-                                </div>
-                                <span className="text-sm">
-                                  {talk.talkSpeakerName}
-                                </span>
+                  <td className="border p-4 align-top text-left">
+                    {slot.talks.map((talk, idx) => (
+                      <div key={idx} className="mb-4 last:mb-0 flex">
+                        <div>
+                          <h3 className="text-lg leading-6 font-bold">
+                            {talk.speechTitle}
+                          </h3>
+                          {talk.talkSpeakerName && (
+                            <div className="flex items-center gap-2 text-gray-600 mt-1">
+                              <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
+                                <Image
+                                  src={talk.talkSpeakerImage}
+                                  alt={talk.talkSpeakerName || 'Speaker'}
+                                  width={100}
+                                  height={100}
+                                  className="w-full h-full object-cover"
+                                />
                               </div>
-                            )}
-                            <p className="text-gray-600 text-sm pt-2">
-                              {talk.speechDescription}
-                            </p>
-                          </div>
+                              <span className="text-sm">
+                                {talk.talkSpeakerName}
+                              </span>
+                            </div>
+                          )}
+                          <p className="text-gray-600 text-sm pt-2">
+                            {talk.speechDescription}
+                          </p>
                         </div>
-                      ))}
-                    </td>
-
-                    {/* Workshops column */}
-                    <td className="border p-4 align-top text-left">
-                      {slot.workshops.map((workshop, idx) => (
-                        <div key={idx} className="mb-4 last:mb-0 flex">
-                          <div className="mr-3 mt-1"></div>
-                          <div>
-                            <h3 className="text-lg leading-6 font-bold">
-                              {workshop.speechTitle}
-                            </h3>
-                            {workshop.talkSpeakerName && (
-                              <div className="flex items-center gap-2 text-gray-600 mt-1">
-                                <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
-                                  <Image
-                                    src={workshop.talkSpeakerImage}
-                                    alt={workshop.talkSpeakerName || 'Speaker'}
-                                    width={50}
-                                    height={50}
-                                    className="w-full h-full object-cover"
-                                  />
-                                </div>
-                                <span className="text-sm">
-                                  {workshop.talkSpeakerName}
-                                </span>
-                              </div>
-                            )}
-                            <p className="text-gray-600 text-sm pt-2">
-                              {workshop.speechDescription}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </td>
-                  </>
+                      </div>
+                    ))}
+                  </td>
                 )}
               </tr>
             ))}
@@ -505,7 +466,7 @@ function Agenda({
 
             {/* Talks and Workshops */}
             {slot.breaks.length === 0 && (
-              <div className="border border-t-0 p-4  space-y-6">
+              <div className="border border-t-0 p-4 space-y-6">
                 {/* Talks */}
                 {slot.talks.map((talk, idx) => (
                   <div
@@ -515,7 +476,9 @@ function Agenda({
                     <div className="bg-blue-100 text-blue-500 text-sm rounded-full px-2 w-11 mb-2">
                       Talk
                     </div>
-                    <h3 className="text-lg font-bold leading-5">{talk.speechTitle}</h3>
+                    <h3 className="text-lg font-bold leading-5">
+                      {talk.speechTitle}
+                    </h3>
                     {talk.talkSpeakerName && (
                       <div className="flex items-center gap-2 text-gray-600 mt-1">
                         <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
@@ -532,40 +495,6 @@ function Agenda({
                     )}
                     <p className="text-gray-600 text-sm pt-2">
                       {talk.speechDescription}
-                    </p>
-                  </div>
-                ))}
-
-                {/* Workshops */}
-                {slot.workshops.map((workshop, idx) => (
-                  <div
-                    key={`workshop-${idx}`}
-                    className="pb-4 border-b last:border-b-0 last:pb-0"
-                  >
-                    <div className="bg-seafoam-200 text-seafoam-700 text-sm rounded-full px-2 w-[5.5rem] mb-2">
-                      Workshop
-                    </div>
-                    <h3 className="text-lg font-bold leading-5">
-                      {workshop.speechTitle}
-                    </h3>
-                    {workshop.talkSpeakerName && (
-                      <div className="flex items-center gap-2 text-gray-600 mt-1">
-                        <div className="w-6 h-6 overflow-hidden rounded-full flex items-center justify-center">
-                          <Image
-                            src={workshop.talkSpeakerImage}
-                            alt={workshop.talkSpeakerName || 'Speaker'}
-                            width={50}
-                            height={50}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <span className="text-sm">
-                          {workshop.talkSpeakerName}
-                        </span>
-                      </div>
-                    )}
-                    <p className="text-gray-600 text-sm pt-2">
-                      {workshop.speechDescription}
                     </p>
                   </div>
                 ))}
