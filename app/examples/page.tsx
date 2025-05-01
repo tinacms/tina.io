@@ -1,14 +1,18 @@
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { TinaClient } from 'app/tina-client';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import { ExamplesPageClient } from './examples-client';
 
 export async function generateMetadata() {
-  return {
+  const seo = await getSeo({
     title: 'Examples | TinaCMS',
     description:
       'Open-Source Examples of TinaCMS with your Favourite Frameworks',
-  };
+    canonicalUrl: `${settings.siteUrl}/examples`,
+  });
+  return seo;
 }
 
 async function getExamplesPageData() {
