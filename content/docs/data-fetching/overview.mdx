@@ -64,6 +64,20 @@ The following operator types are available for querying
 
 > Only `gt`, `gte`, `lt`, `lte`, `after`, `before` may be used in ternary conditions.
 
+#### Filtering on Filename (\_sys)
+
+There are **two methods **for filtering documents by filename: implementing a **[custom query](/docs/data-fetching/custom-queries/) **or filtering an existing collection of documents **in code**.
+
+For instance, to filter an array of posts to only include the file named `file-name-i-want`, you could use the following:
+
+```js
+const allPosts = posts?.data?.postConnection?.edges.filter(
+  (post) => post.node._sys.filename === "file-name-i-want"
+);
+```
+
+> Note: When using the auto-generated `<collection-name>Connection`, the query will only apply to the document's fields, not the `_sys` properties. Filtering in code as shown above is a suitable alternative.
+
 ### Sorting
 
 Sorting can be added as an option to your `<collection-name>Collection` query.
