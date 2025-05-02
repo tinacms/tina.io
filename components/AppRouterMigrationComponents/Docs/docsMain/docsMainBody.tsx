@@ -20,7 +20,7 @@ const MainDocsBodyHeader = ({
         ></DocsMobileHeader>
       </div>
       <div
-        className={`pt-4 font-tuner text-4xl bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+        className={`pt-4 font-tuner text-4xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
       >
         {DocumentTitle}
       </div>

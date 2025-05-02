@@ -41,7 +41,7 @@ export default function BlogIndexPageClient({
 
   return (
     <div className="p-6">
-      <div className="py-12 lg:py-16 last:pb-20 last:lg:pb-32 max-w-prose mx-auto">
+      <div className="py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose mx-auto">
         {posts.map((post) => (
           <DynamicLink
             key={post.id}
@@ -49,7 +49,7 @@ export default function BlogIndexPageClient({
             passHref
           >
             <div className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
-              <h3 className="font-tuner text-3xl lg:text-4xl lg:leading-tight bg-gradient-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+              <h3 className="font-tuner text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                 {post.title}
               </h3>
               <div className="w-full text-[#241748] ">

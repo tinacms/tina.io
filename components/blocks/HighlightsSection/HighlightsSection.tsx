@@ -49,7 +49,7 @@ const HighlightsSection = ({ data }) => {
   const { highlightColumn } = data || {};
 
   return (
-    <div className="h-fit lg:py-16 md:py-8 bg-gradient-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-screen">
+    <div className="h-fit lg:py-16 md:py-8 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-screen">
       <div className="md:flex justify-center lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0">
         {Array.isArray(highlightColumn) &&
           highlightColumn.map((item, index) => {

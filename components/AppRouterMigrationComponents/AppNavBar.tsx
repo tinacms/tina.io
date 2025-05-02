@@ -289,12 +289,12 @@ export function AppNavBar({ sticky = true }) {
         <div className="flex lg:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           {/* Start of sm and md view */}
           <div
-            className={`fixed top-0 right-0 h-full w-3/4 bg-gradient-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
+            className={`fixed top-0 right-0 h-full w-3/4 bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
               open ? 'translate-x-0' : 'translate-x-full'
             } `}
           >
             <button
-              className="absolute top-6 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-gradient-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
+              className="absolute top-6 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
               onClick={toggleMenu}
             >
               <BiMenu
@@ -320,7 +320,7 @@ export function AppNavBar({ sticky = true }) {
                 </div>
                 <div className="flex items-center">
                   <button
-                    className={`outline-none hover:animate-jelly ${
+                    className={`outline-hidden hover:animate-jelly ${
                       animateFlag ? 'animate-bounce' : ''
                     } hidden max-[639px]:block`}
                     onClick={() => openModal('LanguageSelect')}
@@ -436,7 +436,7 @@ export function AppNavBar({ sticky = true }) {
               )}
 
             <button
-              className={`outline-none hover:animate-jelly ${
+              className={`outline-hidden hover:animate-jelly ${
                 animateFlag ? 'animate-bounce' : ''
               } hidden min-[640px]:block`}
               onClick={() => openModal('LanguageSelect')}
@@ -453,7 +453,7 @@ export function AppNavBar({ sticky = true }) {
         <div
           className={`absolute ${
             stuck && sticky
-              ? `xl:fixed shadow-sm bg-gradient-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur animate-slide-in top-0 p-4`
+              ? `xl:fixed shadow-sm bg-linear-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur-sm animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
           } z-40 w-full lg:px-10 hidden lg:flex items-center justify-between`}
         >
@@ -569,7 +569,7 @@ export function AppNavBar({ sticky = true }) {
                 })}
                 <li className="group flex items-center cursor-pointer">
                   <button
-                    className={`outline-none hover:animate-jelly ${
+                    className={`outline-hidden hover:animate-jelly ${
                       animateFlag ? 'animate-bounce' : ''
                     }`}
                     onClick={() => openModal('LanguageSelect')}
