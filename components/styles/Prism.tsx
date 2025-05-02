@@ -11,35 +11,50 @@ export const Prism = (props: {
   lang?: string;
   theme?: keyof typeof themes;
 }) => {
+  //lets user use // highlight-line to highlight lines
+  const lines = props.value.split('\n');
+  const highlightedLines = lines.map((line) =>
+    line.includes('// highlight-line')
+  );
+
   return (
     <Highlight
       theme={themes[props.theme || 'github']}
       code={props.value}
       language={props.lang || ''}
     >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+      {({ className, tokens, getLineProps, getTokenProps }) => (
         <pre
-          className={className}
-          style={{
-            ...style,
-            width: '100%',
-            border: 'none',
-            marginBottom: 0,
-            borderRadius: '12px',
-          }}
+          className={`${className} w-full border-none mb-0 rounded-xl relative`}
         >
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span
-                  {...getTokenProps({ token, key })}
-                  style={{
-                    paddingRight: key === line.length - 1 ? '3em' : '0px',
-                  }}
-                />
-              ))}
-            </div>
-          ))}
+          {tokens.map((line, i) => {
+            // Remove the highlight comment from the line
+            const lineContent = line.map((token) => {
+              if (token.content.includes('// highlight-line')) {
+                return {
+                  ...token,
+                  content: token.content.replace('// highlight-line', ''),
+                };
+              }
+              return token;
+            });
+
+            return (
+              <div
+                {...getLineProps({ line: lineContent, key: i })}
+                className={`relative ${
+                  highlightedLines[i] ? '-mx-4 px-4 bg-yellow-100/10' : ''
+                }`}
+              >
+                {lineContent.map((token, key) => (
+                  <span
+                    {...getTokenProps({ token, key })}
+                    className={key === lineContent.length - 1 ? 'pr-12' : ''}
+                  />
+                ))}
+              </div>
+            );
+          })}
         </pre>
       )}
     </Highlight>
