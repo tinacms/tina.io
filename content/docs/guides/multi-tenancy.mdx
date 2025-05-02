@@ -1,0 +1,128 @@
+---
+title: 'Multi Tenancy '
+last_edited: '2025-05-02T01:14:20.383Z'
+next: ''
+previous: ''
+---
+
+## Multi-Tenant Setup with TinaCMS
+
+This guide explains how to set up TinaCMS to manage content for multiple tenants, each served under a unique domain, from a single codebase. It's ideal for projects where you want to centrally manage content and UI across brands or clients.
+
+## Overview of the Logic
+
+In a multi-tenant configuration:
+
+* Each tenant is mapped to a unique domain (i.e tenant1.com, tenant2.ai)
+* All tenants share the same Next.js and TinaCMS instance
+* Content is segmentented by tenant and stored under distinct pathes (i.e content/docs/tenant1/intro.mdx and content/docs/tenant2/intro.mdx)
+
+## The Middleware
+
+The brain of multi-tenancy is the middleware, which inspects the domain of the request and dynamically rewrites the path to load the correct tenant content.
+
+When a user visits tenant1.com, the middleware rewrites the request to /tenant1/... internally, allowing a single \[tenant]/\[slug]/page.tsx pattern to serve content for any domain.
+
+## Setup Steps
+
+We need the following
+
+### 1. Define Your Tenant List
+
+In your .env or Vercel environment variables, define the product-domain mapping:
+
+```javascript
+NEXT_PUBLIC_PRODUCT_LIST = [{
+  "product": "tenant1",
+  "domain": "tenant1.com"
+}, {
+  "product": "tenant2",
+    "domain": "tenant2.ai"
+  }]
+
+```
+
+Parse this list inside your middleware to map incoming domains to tenant IDs.
+
+### 2. Create a Middleware File
+
+```javascript
+// middleware.ts
+import { NextRequest, NextResponse } from 'next/server'
+
+const PRODUCT_LIST = JSON.parse(process.env.NEXT_PUBLIC_PRODUCT_LIST || '[]')
+
+const domainToProduct = Object.fromEntries(
+  PRODUCT_LIST.map(({ domain, product }: any) => [domain, product])
+)
+
+export function middleware(request: NextRequest) {
+  const hostname = request.headers.get('host') || ''
+  const product = domainToProduct[hostname]
+
+  if (product && !request.nextUrl.pathname.startsWith(`/${product}`)) {
+    const url = request.nextUrl.clone()
+    url.pathname = `/${product}${url.pathname}`
+    return NextResponse.rewrite(url)
+  }
+
+  return NextResponse.next()
+}
+
+```
+
+Or find a more advanced middleware on the [SSW Products Repository.](https://github.com/SSWConsulting/SSW.Products/blob/main/middleware.ts)
+
+### 3. Set Up Dynamic Routing
+
+Structure your app/ folder like so:
+
+```javascript
+|- app /
+|   |- [tenant] /
+|         |- [slug] /
+|             |- page.tsx
+
+```
+
+Inside page.tsx, load content from the appropriate tenant folder:
+
+```javascript
+const Page = async ({ params }: { params: { tenant: string; slug: string } }) => {
+  const content = await getPageContent(`${params.tenant}/${params.slug}.mdx`)
+  return <PageRenderer data={content} />
+}
+
+```
+
+### 4. Organize Content by Tenant
+
+Create tenant-specific folders in content/:
+
+```javascript
+|- content /
+|     |- docs /
+|         |- tenant1 /
+|         |     |- intro.mdx
+|         |- tenant2 /
+|               |- intro.mdx
+
+```
+
+### 5. Enable Tina Admin Panel Per Domain
+
+Ensure in [TinaCloud](https://app.tina.io) that you add your respective site urls for each domain so that Tina can be used to manage your content!
+
+![](</Screenshot 2025-05-02 at 11.11.43 am.png>)
+
+### 6. Deploy and Add Custom Domains
+
+For example, in Vercel:
+
+1. Add each domain to the project 
+2. Set NEXT\_PUBLIC\_PRODUCT\_LIST as an environment variable 
+3. Ensure content exists in content/docs/\<tenant>/
+
+## Examples
+
+If you want to clone down an example of a multi-tenant site, the [SSW Products repository](https://github.com/SSWConsulting/SSW.Products) on GitHub implements multi-tenancy with TinaCMS.
