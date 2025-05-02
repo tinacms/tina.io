@@ -50,30 +50,7 @@ export async function generateMetadata({
   }
 }
 
-function ExperimentalBanner() {
-  return (
-    <Link href="/conference" className="block w-full">
-      <div className="relative w-full">
-        <Image
-          src="/img/TinaCon-desktop-banner.png"
-          alt="TinaCon Conference Banner"
-          width={1300}
-          height={520}
-          className="w-full h-auto sm:block hidden"
-          priority
-        />
-        <Image
-          src="/img/TinaCon-tablet-banner.png"
-          alt="TinaCon Conference Banner"
-          width={768}
-          height={307}
-          className="w-full h-auto sm:hidden block"
-          priority
-        />
-      </div>
-    </Link>
-  );
-}
+
 
 export default async function Page({ params }: PageProps) {
   const { slug } = params;
@@ -84,12 +61,6 @@ export default async function Page({ params }: PageProps) {
     });
     return (
       <>
-        {/* TODO: Remove once TinaCon is over */}
-        {slug[0] === 'home' && (
-          <div className="max-w-[1300px] mx-auto mt-10 px-5 md:px-10">
-            <ExperimentalBanner />
-          </div>
-        )}
         <ClientPage
           query={res.query}
           data={res.data}
