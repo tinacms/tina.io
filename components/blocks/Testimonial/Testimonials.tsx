@@ -14,8 +14,8 @@ const TestimonialCard = ({ ...data }) => {
       <figure
         className={cn(
           'relative w-96 h-48 cursor-pointer overflow-hidden rounded-xl border p-4 flex flex-col justify-between',
-          'shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),_0_0_1px_1px_rgba(223,219,252,0.5)]',
-          'bg-gradient-to-b from-white to-white/30 hover:to-white/40',
+          'shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),0_0_1px_1px_rgba(223,219,252,0.5)]',
+          'bg-linear-to-b from-white to-white/30 hover:to-white/40',
           'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out'
         )}
       >
@@ -73,7 +73,7 @@ export default function TestimonialsBlock({ data, index }) {
   return (
     <div className="max-w-[1500px] m-auto">
       <h1
-        className={`w-full font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center`}
+        className={`w-full font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center`}
         data-tina-field={tinaField(data, 'title')}
         ref={titleRef}
       >

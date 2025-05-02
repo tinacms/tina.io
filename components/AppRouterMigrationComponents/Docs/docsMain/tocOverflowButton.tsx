@@ -51,7 +51,7 @@ const TocOverflowButton = (tocData) => {
       {tocData.tocData.length !== 0 && (
         <div className="py-6 w-full" ref={containerRef}>
           <div
-            className="py-2 px-4 border-slate-400 bg-gradient-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
+            className="py-2 px-4 border-slate-400 bg-linear-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
             onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
           >
             <span className="flex items-center space-x-2">

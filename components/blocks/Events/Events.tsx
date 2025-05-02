@@ -93,7 +93,7 @@ export const Card = ({ cardItem, onHover }) => {
 
   return (
     <div
-      className="relative px-4 pt-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
+      className="relative px-4 pt-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
       onMouseEnter={() => onHover(cardItem.index)}
       onMouseLeave={() => onHover(null)}
     >
@@ -109,8 +109,8 @@ export const Card = ({ cardItem, onHover }) => {
           </div>
         )}
       </div>
-      <div className="flex-grow flex flex-col pl-4 overflow-hidden py-4">
-        <h3 className="font-tuner text-2xl mb-1 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+      <div className="grow flex flex-col pl-4 overflow-hidden py-4">
+        <h3 className="font-tuner text-2xl mb-1 bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
           {cardItem.headline}
         </h3>
         <div className="flex items-center text-md">
@@ -139,7 +139,7 @@ export const Card = ({ cardItem, onHover }) => {
         </div>
         <p className="text-gray-500 text-md">{cardItem.location}</p>
         <Link href={cardItem.link || '#'}>
-          <p className="font-tuner pt-1 pr-4 text-md bg-gradient-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
+          <p className="font-tuner pt-1 pr-4 text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
             Read more
             <FaChevronRight className="text-md text-blue-700 ml-1 mb-1" />
           </p>
@@ -210,7 +210,7 @@ const EventsBlock = () => {
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-start">
-          <h2 className="pb-6 pl-3 font-tuner inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
+          <h2 className="pb-6 pl-3 font-tuner inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
             {eventsData.title}
           </h2>
           {filteredEvents.map((cardItem, index) => (
@@ -224,7 +224,7 @@ const EventsBlock = () => {
             href="/events"
             className="pt-10 font-bold flex items-center justify-end gap-2"
           >
-            <span className="bg-gradient-to-br text-md from-orange-400 via-orange-500 to-orange-600 hover:from-orange-500 hover:via-orange-700 hover:to-orange-800  bg-clip-text text-transparent">
+            <span className="bg-linear-to-br text-md from-orange-400 via-orange-500 to-orange-600 hover:from-orange-500 hover:via-orange-700 hover:to-orange-800  bg-clip-text text-transparent">
               SEE ALL EVENTS
             </span>
             <FaArrowRight className="text-orange-500" />

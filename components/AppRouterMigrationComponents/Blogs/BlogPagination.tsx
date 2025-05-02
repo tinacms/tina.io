@@ -60,7 +60,7 @@ export default function NewBlogPagination({
             aria-label="Pagination Dropdown"
             value={selectValue}
             onChange={handleSelectChange}
-            className="appearance-none border border-gray-300 rounded-md bg-light pl-2 pr-8 py-1 cursor-pointer text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-300"
+            className="appearance-none border border-gray-300 rounded-md bg-light pl-2 pr-8 py-1 cursor-pointer text-orange-600 focus:outline-hidden focus:ring-2 focus:ring-orange-300"
           >
             {Array.from({ length: numPages }, (_, i) => (
               <option

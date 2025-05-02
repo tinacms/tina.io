@@ -235,6 +235,11 @@
           "title": "Internationalization",
           "slug": "content/docs/guides/internationalization.mdx",
           "_template": "item"
+        },
+        {
+          "title": "Multi-Tenancy ",
+          "slug": "content/docs/guides/multi-tenancy.mdx",
+          "_template": "item"
         }
       ]
     }

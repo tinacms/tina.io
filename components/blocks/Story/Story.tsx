@@ -177,7 +177,7 @@ Message: Update From Tina`,
 const Video = ({ src }) => {
   return (
     <div className="rounded-lg shadow-panel overflow-hidden aspect-w-3 aspect-h-2 w-full">
-      <div className="rounded-lg pointer-events-none absolute w-full h-full bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900 scale-[0.997] origin-center"></div>
+      <div className="rounded-lg pointer-events-none absolute w-full h-full bg-linear-to-br from-blue-800 via-blue-900 to-slate-900 scale-[0.997] origin-center"></div>
       <video
         className="absolute w-full h-full"
         autoPlay={true}
@@ -210,21 +210,21 @@ const Pane = ({ data, position, ...props }) => {
         {data.file && (
           <div className="flex flex-col justify-start items-start">
             {data.file.name && (
-              <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-gradient-to-tl from-blue-800 to-blue-900 px-7 py-3 font-tuner">
+              <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-linear-to-tl from-blue-800 to-blue-900 px-7 py-3 font-tuner">
                 {data.file.name}
               </div>
             )}
             <div
               className={`file relative ${
                 data.file.name ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
-              } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
+              } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
               style={{
                 fontSize:
                   1.25 * (data.file.textScale ? data.file.textScale : 1) + 'em',
               }}
             >
               <CodeWrapper>
-                <div className="[&>pre]:!bg-transparent [&>pre]:!border-none rounded-xl">
+                <div className="[&>pre]:bg-transparent! [&>pre]:border-none! rounded-xl">
                   <Prism
                     lang={
                       data.file.language ? data.file.language : 'javascript'
@@ -417,12 +417,12 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
         </div>
         <div className="drop-shadow-sm flex flex-col gap-6 lg:gap-8" ref={ref}>
           <div className="title-wrapper">
-            <h2 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+            <h2 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
               {item.title}
             </h2>
           </div>
-          <hr className="!my-0" />
-          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-prose">
+          <hr className="my-0!" />
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-2 max-w-prose">
             {item.description}
           </p>
           <div className="-mx-0.5">

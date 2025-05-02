@@ -9591,7 +9591,7 @@ var require_standalone = __commonJS({
               }
             }
             function a(f, h) {
-              return !h && f === "yield" ? false : r(f, h);
+              return h! && f === "yield" ? false : r(f, h);
             }
             function r(f, h) {
               if (h && s(f))
@@ -13676,7 +13676,7 @@ var require_standalone = __commonJS({
             p.source && (p.source.startOffset = r(p, f), p.source.endOffset = u(p, f));
             for (let h in p) {
               let w = p[h];
-              h === "source" || !w || typeof w != "object" || (w.type === "value-root" || w.type === "value-unknown" ? o(w, c(p), w.text || w.value) : i(w, f));
+              h === "source" || w! || typeof w != "object" || (w.type === "value-root" || w.type === "value-unknown" ? o(w, c(p), w.text || w.value) : i(w, f));
             }
           }
           function o(p, f, h) {
@@ -16299,7 +16299,7 @@ var require_standalone = __commonJS({
             let p = m[1].trim().replace(v, ""), f = p.match(c);
             f ? (d.alias = p.replace(c, ""), d.iterator1 = f[1].trim(), f[2] && (d.iterator2 = f[2].trim())) : d.alias = p;
             let h = [d.alias, d.iterator1, d.iterator2];
-            if (!h.some((w, T) => !w && (T === 0 || h.slice(T + 1).some(Boolean))))
+            if (!h.some((w, T) => w! && (T === 0 || h.slice(T + 1).some(Boolean))))
               return { left: h.filter(Boolean).join(","), operator: m[2], right: d.for };
           }
           function r(i, o) {
@@ -19293,7 +19293,7 @@ function factoryLabel(effects, ok3, nok, type, markerType, stringType) {
     return atBreak;
   }
   function atBreak(code2) {
-    if (code2 === null || code2 === 91 || code2 === 93 && !data3 || code2 === 94 && !size && "_hiddenFootnoteSupport" in self2.parser.constructs || size > 999) {
+    if (code2 === null || code2 === 91 || code2 === 93 && !data3 || code2 === 94 && size! && "_hiddenFootnoteSupport" in self2.parser.constructs || size > 999) {
       return nok(code2);
     }
     if (code2 === 93) {

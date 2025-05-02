@@ -1288,7 +1288,7 @@ function z$(e) {
   function h(m, w, E, k) {
     k === void 0 && (k = "&");
     var P = m.replace(BG, ""), R = w && E ? E + " " + w + " { " + P + " }" : P;
-    return t = k, r = w, n = new RegExp("\\" + r + "\\b", "g"), a = new RegExp("(\\" + r + "\\b){2,}"), u(E || !w ? "" : w, R);
+    return t = k, r = w, n = new RegExp("\\" + r + "\\b", "g"), a = new RegExp("(\\" + r + "\\b){2,}"), u(E || w! ? "" : w, R);
   }
   return u.use([].concat(c, [function(m, w, E) {
     m === 2 && E.length && E[0].lastIndexOf(r) > 0 && (E[0] = E[0].replace(n, p));
@@ -12735,7 +12735,7 @@ function X$() {
     }
     return R && (p = c(p)), h = r(
       h.split(/[\\\/]+/),
-      !m
+      m!
     ).join("\\"), p + (m ? "\\" : "") + h || ".";
   }, o.normalize = function(p) {
     var h = l(p), m = h.device, w = h.isUnc, E = h.isAbsolute, k = h.tail, P = /[\\\/]$/.test(k);
@@ -12772,7 +12772,7 @@ function X$() {
     return /^[a-zA-Z]\:\\/.test(h) ? "\\\\?\\" + h : /^\\\\[^?.]/.test(h) ? "\\\\?\\UNC\\" + h.substring(2) : p;
   }, o.dirname = function(p) {
     var h = s(p), m = h[0], w = h[1];
-    return !m && !w ? "." : (w && (w = w.substr(0, w.length - 1)), m + w);
+    return m! && w! ? "." : (w && (w = w.substr(0, w.length - 1)), m + w);
   }, o.basename = function(p, h) {
     var m = s(p)[2];
     return h && m.substr(-1 * h.length) === h && (m = m.substr(0, m.length - h.length)), m;
@@ -12822,11 +12822,11 @@ function X$() {
     }
     return p = r(
       p.split("/"),
-      !h
+      h!
     ).join("/"), (h ? "/" : "") + p || ".";
   }, d.normalize = function(p) {
     var h = d.isAbsolute(p), m = p && p[p.length - 1] === "/";
-    return p = r(p.split("/"), !h).join("/"), !p && !h && (p = "."), p && m && (p += "/"), (h ? "/" : "") + p;
+    return p = r(p.split("/"), !h).join("/"), p! && h! && (p = "."), p && m && (p += "/"), (h ? "/" : "") + p;
   }, d.isAbsolute = function(p) {
     return p.charAt(0) === "/";
   }, d.join = function() {
@@ -12851,7 +12851,7 @@ function X$() {
     return p;
   }, d.dirname = function(p) {
     var h = f(p), m = h[0], w = h[1];
-    return !m && !w ? "." : (w && (w = w.substr(0, w.length - 1)), m + w);
+    return m! && w! ? "." : (w && (w = w.substr(0, w.length - 1)), m + w);
   }, d.basename = function(p, h) {
     var m = f(p)[2];
     return h && m.substr(-1 * h.length) === h && (m = m.substr(0, m.length - h.length)), m;
@@ -13173,7 +13173,7 @@ function fq() {
       C.current && (A.current = ((Q = (G = j.composedPath) == null ? void 0 : G.call(j)) == null ? void 0 : Q[0]) || j.target);
     }, !0), we("click", (j) => {
       !A.current || (O(j, () => A.current), A.current = null);
-    }, !0), we("blur", (j) => O(j, () => window.document.activeElement instanceof HTMLIFrameElement ? window.document.activeElement : null), !0);
+    }, !0), we("blur-sm", (j) => O(j, () => window.document.activeElement instanceof HTMLIFrameElement ? window.document.activeElement : null), !0);
   }
   var Z = M;
   function be(v) {
@@ -15418,7 +15418,7 @@ function pq() {
       C.current && (A.current = ((Q = (G = j.composedPath) == null ? void 0 : G.call(j)) == null ? void 0 : Q[0]) || j.target);
     }, !0), we("click", (j) => {
       !A.current || (O(j, () => A.current), A.current = null);
-    }, !0), we("blur", (j) => O(j, () => window.document.activeElement instanceof HTMLIFrameElement ? window.document.activeElement : null), !0);
+    }, !0), we("blur-sm", (j) => O(j, () => window.document.activeElement instanceof HTMLIFrameElement ? window.document.activeElement : null), !0);
   }
   var Z = M;
   function be(v) {
@@ -19012,7 +19012,7 @@ var Fq = function e(t, r, n, a, i) {
 function ZP(e, t) {
   var r = e.errors, n = e.initialValues, a = e.lastSubmittedValues, i = e.submitErrors, o = e.submitFailed, s = e.submitSucceeded, l = e.submitting, c = e.values, u = t.active, d = t.blur, f = t.change, p = t.data, h = t.focus, m = t.modified, w = t.modifiedSinceLastSubmit, E = t.name, k = t.touched, P = t.validating, R = t.visited, _ = Nn(c, E), z = Nn(r, E);
   z && z[Fp] && (z = z[Fp]);
-  var B = i && Nn(i, E), I = n && Nn(n, E), K = t.isEqual(I, _), ge = !!(a && !t.isEqual(Nn(a, E), _)), de = !z && !B;
+  var B = i && Nn(i, E), I = n && Nn(n, E), K = t.isEqual(I, _), ge = !!(a && !t.isEqual(Nn(a, E), _)), de = z! && !B;
   return {
     active: u,
     blur: d,
@@ -22574,7 +22574,7 @@ function Jce(e, t, r, n, a, i, o) {
   }
   var u = i ? i(s, l, r + "", e, t, o) : void 0, d = u === void 0;
   if (d) {
-    var f = wo(l), p = !f && u0(l), h = !f && !p && gC(l);
+    var f = wo(l), p = !f && u0(l), h = !f && p! && gC(l);
     u = l, f || p || h ? wo(s) ? u = s : Jle(s) ? u = jle(s) : p ? (d = !1, u = $le(l, !0)) : h ? (d = !1, u = Ble(l, !0)) : u = [] : lce(l) || c0(l) ? (u = s, c0(s) ? u = Zce(s) : (!ts(s) || pC(s)) && (u = Wle(l))) : d = !1;
   }
   d && (o.set(l, u), a(u, l, n, i, o), o.delete(l)), JE(e, r, u);
@@ -30518,7 +30518,7 @@ function eve(e) {
     if (l6(o)(t.center))
       return !0;
     var s = i.axis, l = o.center[s.crossAxisLine], c = t[s.crossAxisStart], u = t[s.crossAxisEnd], d = Jo(o[s.crossAxisStart], o[s.crossAxisEnd]), f = d(c), p = d(u);
-    return !f && !p ? !0 : f ? c < l : u > l;
+    return !f && p! ? !0 : f ? c < l : u > l;
   });
   return a.length ? a.length === 1 ? a[0].descriptor.id : Qme({
     pageBorderBox: t,
@@ -32195,7 +32195,7 @@ var dge = function(e, t) {
       var f = i(c.dimensions.droppables[d], u);
       if (!!f) {
         var p = c.viewport, h = o(c.isWindowScrollAllowed, p, f);
-        !h || a(c, h);
+        h! || a(c, h);
       }
     }
   };
@@ -32397,7 +32397,7 @@ function Nge(e) {
   }, [o]), c = pr(function(f) {
     r.current = null;
     var p = document.activeElement;
-    !p || p.getAttribute(Jp.draggableId) === f && (r.current = f);
+    p! || p.getAttribute(Jp.draggableId) === f && (r.current = f);
   }, []);
   yo(function() {
     return a.current = !0, function() {
@@ -32448,11 +32448,11 @@ function Mge() {
     },
     update: function(f, p) {
       var h = e.draggables[p.descriptor.id];
-      !h || h.uniqueId === f.uniqueId && (delete e.draggables[p.descriptor.id], e.draggables[f.descriptor.id] = f);
+      h! || h.uniqueId === f.uniqueId && (delete e.draggables[p.descriptor.id], e.draggables[f.descriptor.id] = f);
     },
     unregister: function(f) {
       var p = f.descriptor.id, h = a(p);
-      !h || f.uniqueId === h.uniqueId && (delete e.draggables[p], n({
+      h! || f.uniqueId === h.uniqueId && (delete e.draggables[p], n({
         type: "REMOVAL",
         value: f
       }));
@@ -32481,7 +32481,7 @@ function Mge() {
     },
     unregister: function(f) {
       var p = s(f.descriptor.id);
-      !p || f.uniqueId === p.uniqueId && delete e.droppables[f.descriptor.id];
+      p! || f.uniqueId === p.uniqueId && delete e.droppables[f.descriptor.id];
     },
     getById: l,
     findById: s,
@@ -32832,7 +32832,7 @@ function N6(e) {
           var f = e.findClosestDraggableId(d);
           if (!!f) {
             var p = e.findOptionsForDraggable(f);
-            !p || p.shouldRespectForcePress || !e.canGetLock(f) || d.preventDefault();
+            p! || p.shouldRespectForcePress || !e.canGetLock(f) || d.preventDefault();
           }
         }
       }
@@ -35381,7 +35381,7 @@ var eye = function(e) {
     var f, p, h, m, w = c & l.F, E = c & l.G, k = c & l.S, P = c & l.P, R = c & l.B, _ = E ? n : k ? n[u] || (n[u] = {}) : (n[u] || {}).prototype, z = E ? a : a[u] || (a[u] = {}), B = z.prototype || (z.prototype = {});
     E && (d = u);
     for (f in d)
-      p = !w && _ && _[f] !== void 0, h = (p ? _ : d)[f], m = R && p ? s(h, n) : P && typeof h == "function" ? s(Function.call, h) : h, _ && o(_, f, h, c & l.U), z[f] != h && i(z, f, m), P && B[f] != h && (B[f] = h);
+      p = w! && _ && _[f] !== void 0, h = (p ? _ : d)[f], m = R && p ? s(h, n) : P && typeof h == "function" ? s(Function.call, h) : h, _ && o(_, f, h, c & l.U), z[f] != h && i(z, f, m), P && B[f] != h && (B[f] = h);
   };
   n.core = a, l.F = 1, l.G = 2, l.S = 4, l.P = 8, l.B = 16, l.W = 32, l.U = 64, l.R = 128, e.exports = l;
 }, function(e, t, r) {
@@ -35820,7 +35820,7 @@ function Q6() {
     });
   }, []), H = $r(function() {
     re({
-      type: "blur"
+      type: "blur-sm"
     });
   }, []), ne = $r(function() {
     z || (iye() ? setTimeout(L, 0) : L());
@@ -35932,7 +35932,7 @@ function hye(e, t) {
       return xs({}, e, {
         isFocused: !0
       });
-    case "blur":
+    case "blur-sm":
       return xs({}, e, {
         isFocused: !1
       });
@@ -38811,7 +38811,7 @@ var i1e = {
             match: n,
             mode: f,
             voids: l,
-            always: !p
+            always: p!
           });
           var h = q.isStart(e, u, u.path);
           Ue.splitNodes(e, {
@@ -38819,7 +38819,7 @@ var i1e = {
             match: n,
             mode: f,
             voids: l,
-            always: !h
+            always: h!
           }), a = c.unref(), r.at == null && Ue.select(e, a);
         }
         for (var [m, w] of q.nodes(e, {
@@ -39359,7 +39359,7 @@ var s1e = {
             match: (N) => q.isBlock(e, N),
             at: i,
             voids: a
-          }), [, p] = f, h = q.isStart(e, i, p), m = q.isEnd(e, i, p), w = h && m, E = !h || h && m, k = !m, [, P] = bt.first({
+          }), [, p] = f, h = q.isStart(e, i, p), m = q.isEnd(e, i, p), w = h && m, E = h! || h && m, k = !m, [, P] = bt.first({
             children: t
           }, []), [, R] = bt.last({
             children: t
@@ -41608,7 +41608,7 @@ var RL = (e) => {
     return document.addEventListener("focus", f, !0), () => document.removeEventListener("focus", f, !0);
   }, []), _s(() => {
     var f = () => d(ht.isFocused(t));
-    return document.addEventListener("blur", f, !0), () => document.removeEventListener("blur", f, !0);
+    return document.addEventListener("blur-sm", f, !0), () => document.removeEventListener("blur-sm", f, !0);
   }, []), /* @__PURE__ */ M.createElement(SL.Provider, {
     value: l
   }, /* @__PURE__ */ M.createElement(DO.Provider, {
@@ -42431,7 +42431,7 @@ const yxe = (e, t) => (r, n, a) => {
     let p = !1;
     const h = a.dispatch;
     a.dispatch = (...m) => {
-      m[0].type === "__setState" && !p && (console.warn('[zustand devtools middleware] "__setState" action type is reserved to set state from the devtools. Avoid using it.'), p = !0), h(...m);
+      m[0].type === "__setState" && p! && (console.warn('[zustand devtools middleware] "__setState" action type is reserved to set state from the devtools. Avoid using it.'), p = !0), h(...m);
     };
   }
   return f;
@@ -45114,7 +45114,7 @@ var u2e = {
             match: n,
             mode: f,
             voids: l,
-            always: !p
+            always: p!
           });
           var h = De.isStart(e, u, u.path);
           kr.splitNodes(e, {
@@ -45122,7 +45122,7 @@ var u2e = {
             match: n,
             mode: f,
             voids: l,
-            always: !h
+            always: h!
           }), a = c.unref(), r.at == null && kr.select(e, a);
         }
         for (var [m, w] of De.nodes(e, {
@@ -45662,7 +45662,7 @@ var f2e = {
             match: (N) => De.isBlock(e, N),
             at: i,
             voids: a
-          }), [, p] = f, h = De.isStart(e, i, p), m = De.isEnd(e, i, p), w = h && m, E = !h || h && m, k = !m, [, P] = ar.first({
+          }), [, p] = f, h = De.isStart(e, i, p), m = De.isEnd(e, i, p), w = h && m, E = h! || h && m, k = !m, [, P] = ar.first({
             children: t
           }, []), [, R] = ar.last({
             children: t
@@ -50345,7 +50345,7 @@ const i1 = ({
         text: ge
       });
     }
-    !p && f && R.current && P.current && N4(e, {
+    p! && f && R.current && P.current && N4(e, {
       at: R.current,
       hanging: !0,
       voids: i
@@ -51006,7 +51006,7 @@ function iRe(e, t, r, n, a, i, o) {
   }
   var u = i ? i(s, l, r + "", e, t, o) : void 0, d = u === void 0;
   if (d) {
-    var f = ui(l), p = !f && Lv(l), h = !f && !p && ik(l);
+    var f = ui(l), p = !f && Lv(l), h = !f && p! && ik(l);
     u = l, f || p || h ? ui(s) ? u = s : tRe(s) ? u = U4(s) : p ? (d = !1, u = V4(l, !0)) : h ? (d = !1, u = q4(l, !0)) : u = [] : e8(l) || Fv(l) ? (u = s, Fv(s) ? u = aRe(s) : (!Is(s) || QO(s)) && (u = Y4(l))) : d = !1;
   }
   d && (o.set(l, u), a(u, l, n, i, o), o.delete(l)), BS(e, r, u);
@@ -51469,7 +51469,7 @@ const p1 = (e, t) => Array.from(t.childNodes).map(Rk(e)).flat(), E8 = (e, t) => 
     getNode: h
   } = i;
   const m = f || o, w = d || s;
-  if (!n && !m || n && !w || p && !p.some(({
+  if (!n && m! || n && w! || p && !p.some(({
     validNodeName: R = "*",
     validStyle: _,
     validClassName: z,
@@ -66779,7 +66779,7 @@ function o9e() {
     const Ye = ({ children: g }) => /* @__PURE__ */ b.createElement("div", {
       className: "fixed inset-0 z-modal w-screen h-screen overflow-y-auto"
     }, g, /* @__PURE__ */ b.createElement("div", {
-      className: "fixed -z-1 inset-0 opacity-80 bg-gradient-to-br from-gray-800 via-gray-900 to-black"
+      className: "fixed -z-1 inset-0 opacity-80 bg-linear-to-br from-gray-800 via-gray-900 to-black"
     })), nr = (g) => {
       const { portalNode: x } = ct();
       return x ? h.createPortal(/* @__PURE__ */ b.createElement(Ye, null, /* @__PURE__ */ b.createElement("div", c({}, g))), x) : null;
@@ -67910,7 +67910,7 @@ function o9e() {
         "children",
         "className"
       ]);
-      const at = "icon-parent border-0 inline-flex items-center font-medium focus:outline-none focus:ring-2 focus:shadow-outline text-center inline-flex justify-center transition-all duration-150 ease-out ", Gt = {
+      const at = "icon-parent border-0 inline-flex items-center font-medium focus:outline-hidden focus:ring-2 focus:shadow-outline text-center inline-flex justify-center transition-all duration-150 ease-out ", Gt = {
         primary: "shadow text-white bg-blue-500 hover:bg-blue-600 focus:ring-blue-500",
         secondary: "shadow text-gray-500 hover:text-blue-500 bg-gray-50 hover:bg-white border border-gray-200",
         white: "shadow text-gray-500 hover:text-blue-500 bg-white hover:bg-gray-50 border border-gray-200",
@@ -67948,7 +67948,7 @@ function o9e() {
         "children",
         "className"
       ]);
-      const Be = "icon-parent inline-flex items-center border border-transparent text-sm font-medium focus:outline-none focus:ring-2 focus:shadow-outline text-center inline-flex justify-center transition-all duration-150 ease-out rounded-full ", it = {
+      const Be = "icon-parent inline-flex items-center border border-transparent text-sm font-medium focus:outline-hidden focus:ring-2 focus:shadow-outline text-center inline-flex justify-center transition-all duration-150 ease-out rounded-full ", it = {
         primary: "shadow text-white bg-blue-500 hover:bg-blue-600 focus:ring-blue-500",
         secondary: "shadow text-gray-500 hover:text-blue-500 bg-gray-50 hover:bg-white border border-gray-200",
         white: "shadow text-gray-500 hover:text-blue-500 bg-white hover:bg-gray-50 border border-gray-200",
@@ -67974,7 +67974,7 @@ function o9e() {
       className: "relative block w-full"
     }, ({ open: x }) => /* @__PURE__ */ V.default.createElement(V.default.Fragment, null, /* @__PURE__ */ V.default.createElement(E.Popover.Button, {
       "data-test": "popoverRichTextButton",
-      className: `cursor-pointer relative w-full justify-center inline-flex border items-center p-3 text-sm font-medium focus:outline-none pointer-events-auto ${x ? "text-blue-400" : "text-gray-300 hover:text-blue-500"}`,
+      className: `cursor-pointer relative w-full justify-center inline-flex border items-center p-3 text-sm font-medium focus:outline-hidden pointer-events-auto ${x ? "text-blue-400" : "text-gray-300 hover:text-blue-500"}`,
       onMouseDown: (T) => {
         T.preventDefault();
       }
@@ -67998,7 +67998,7 @@ function o9e() {
       leaveFrom: "transform opacity-100 scale-100",
       leaveTo: "transform opacity-0 scale-95"
     }, /* @__PURE__ */ V.default.createElement(E.Popover.Panel, null, ({ close: T }) => /* @__PURE__ */ V.default.createElement("div", {
-      className: "z-20 origin-top-right absolute right-0 mt-0 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none py-1"
+      className: "z-20 origin-top-right absolute right-0 mt-0 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden py-1"
     }, g.map((F) => /* @__PURE__ */ V.default.createElement("span", {
       "data-test": `${F.name}OverflowButton`,
       key: F.name,
@@ -68268,7 +68268,7 @@ function o9e() {
       return /* @__PURE__ */ b.createElement(nr, null, /* @__PURE__ */ b.createElement(X, null, /* @__PURE__ */ b.createElement(ds, {
         close: T
       }, x), /* @__PURE__ */ b.createElement(le, null, g)));
-    }, Mi = "shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md", eo = (g) => {
+    }, Mi = "shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-hidden block text-base px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md", eo = (g) => {
       var x = d(g, []);
       return /* @__PURE__ */ b.createElement("input", c({
         type: "text",
@@ -69261,7 +69261,7 @@ function o9e() {
     function vr(g) {
       return gr({ tag: "svg", attr: { viewBox: "0 0 24 24" }, child: [{ tag: "path", attr: { fill: "none", d: "M0 0h24v24H0V0z", opacity: ".87" } }, { tag: "path", attr: { d: "M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z" } }] })(g);
     }
-    const Vn = "shadow appearance-none bg-white text-gray-600 block pl-3 pr-7 py-2 truncate w-full text-base cursor-pointer border-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md", ka = ({ input: g, field: x, options: T }) => {
+    const Vn = "shadow appearance-none bg-white text-gray-600 block pl-3 pr-7 py-2 truncate w-full text-base cursor-pointer border-gray-100 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md", ka = ({ input: g, field: x, options: T }) => {
       const F = T || x.options;
       return /* @__PURE__ */ b.createElement("div", {
         className: "relative group"
@@ -70152,7 +70152,7 @@ function o9e() {
       })), fe.length === 0 && /* @__PURE__ */ b.createElement("span", {
         className: "relative text-center text-xs px-2 py-3 text-gray-300 bg-gray-50 italic"
       }, "No matches found"), fe.length > 0 && fe.map(([$e, Be]) => /* @__PURE__ */ b.createElement("button", {
-        className: "relative text-center text-xs py-2 px-4 border-l-0 border-t-0 border-r-0 border-b border-gray-50 w-full outline-none transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50",
+        className: "relative text-center text-xs py-2 px-4 border-l-0 border-t-0 border-r-0 border-b border-gray-50 w-full outline-hidden transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50",
         key: $e,
         onClick: () => {
           x($e, Be), X(""), Te();
@@ -70202,7 +70202,7 @@ function o9e() {
         className: "block relative group mb-1"
       }, /* @__PURE__ */ b.createElement("input", {
         type: "text",
-        className: "shadow-inner focus:shadow-outline focus:border-blue-400 focus:outline-none block text-sm pl-2.5 pr-8 py-1.5 text-gray-600 w-full bg-white border border-gray-200 focus:text-gray-900 rounded-md placeholder-gray-400 hover:placeholder-gray-600 transition-all ease-out duration-150",
+        className: "shadow-inner focus:shadow-outline focus:border-blue-400 focus:outline-hidden block text-sm pl-2.5 pr-8 py-1.5 text-gray-600 w-full bg-white border border-gray-200 focus:text-gray-900 rounded-md placeholder-gray-400 hover:placeholder-gray-600 transition-all ease-out duration-150",
         onClick: (qt) => {
           qt.stopPropagation(), qt.preventDefault();
         },
@@ -70217,7 +70217,7 @@ function o9e() {
         onClick: () => {
           $e("");
         },
-        className: "outline-none focus:outline-none bg-transparent border-0 p-0 m-0 absolute right-2.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-all ease-out duration-150"
+        className: "outline-hidden focus:outline-hidden bg-transparent border-0 p-0 m-0 absolute right-2.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-all ease-out duration-150"
       }, /* @__PURE__ */ b.createElement(ia, {
         className: "w-5 h-auto text-gray-600"
       }))), Gt.length === 0 && it.length === 0 && /* @__PURE__ */ b.createElement(te, null, "No blocks to display."), Gt.length > 0 && it.length === 0 && /* @__PURE__ */ b.createElement(Q, {
@@ -70266,7 +70266,7 @@ function o9e() {
       className: `w-full mb-1 -mt-2 ${x}`,
       style: { columns: "320px", columnGap: "16px" }
     }, g), J = ({ close: g, name: x, template: T }) => /* @__PURE__ */ b.createElement("button", {
-      className: "mb-2 mt-2 group relative text-xs font-bold border border-gray-100 w-full outline-none transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50 rounded-md bg-white shadow overflow-hidden",
+      className: "mb-2 mt-2 group relative text-xs font-bold border border-gray-100 w-full outline-hidden transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50 rounded-md bg-white shadow overflow-hidden",
       style: { breakInside: "avoid", transform: "translateZ(0)" },
       key: x,
       onClick: () => {
@@ -70626,7 +70626,7 @@ function o9e() {
         as: "div",
         className: "relative inline-block text-left z-20"
       }, /* @__PURE__ */ V.default.createElement("div", null, /* @__PURE__ */ V.default.createElement(E.Menu.Button, {
-        className: "inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+        className: "inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
       }, g, /* @__PURE__ */ V.default.createElement(cr, {
         className: "-mr-1 ml-2 h-4 w-4",
         "aria-hidden": "true"
@@ -70639,7 +70639,7 @@ function o9e() {
         leaveFrom: "transform opacity-100 scale-100",
         leaveTo: "transform opacity-0 scale-95"
       }, /* @__PURE__ */ V.default.createElement(E.Menu.Items, {
-        className: "origin-top-right absolute right-0 mt-2 w-32 h-64 overflow-y-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+        className: "origin-top-right absolute right-0 mt-2 w-32 h-64 overflow-y-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden"
       }, /* @__PURE__ */ V.default.createElement("div", {
         className: "py-1"
       }, x.map((T) => /* @__PURE__ */ V.default.createElement(E.Menu.Item, {
@@ -71115,7 +71115,7 @@ function o9e() {
         className: "absolute inset-0 ring-2 ring-blue-100 ring-inset rounded-md z-10 pointer-events-none"
       }), /* @__PURE__ */ V.default.createElement("span", {
         style: { fontWeight: "inherit" },
-        className: "cursor-pointer relative inline-flex items-center justify-start px-2 py-0.5 rounded-l-md border border-gray-200 bg-white  hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500",
+        className: "cursor-pointer relative inline-flex items-center justify-start px-2 py-0.5 rounded-l-md border border-gray-200 bg-white  hover:bg-gray-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500",
         onMouseDown: $e
       }, at.label || at.name), /* @__PURE__ */ V.default.createElement(S_, {
         onOpen: $e,
@@ -71149,7 +71149,7 @@ function o9e() {
         className: "absolute inset-0 ring-2 ring-blue-100 ring-inset rounded-md z-10 pointer-events-none"
       }), /* @__PURE__ */ V.default.createElement("span", {
         onMouseDown: $e,
-        className: "cursor-pointer w-full relative inline-flex items-center justify-start px-4 py-2 rounded-l-md border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+        className: "cursor-pointer w-full relative inline-flex items-center justify-start px-4 py-2 rounded-l-md border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
       }, at.label || at.name), /* @__PURE__ */ V.default.createElement(S_, {
         onOpen: $e,
         onRemove: Te
@@ -71175,7 +71175,7 @@ function o9e() {
       className: "-ml-px relative block"
     }, /* @__PURE__ */ V.default.createElement(E.Popover.Button, {
       as: "span",
-      className: "cursor-pointer h-full relative inline-flex items-center px-1 py-0.5 rounded-r-md border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+      className: "cursor-pointer h-full relative inline-flex items-center px-1 py-0.5 rounded-r-md border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
     }, /* @__PURE__ */ V.default.createElement($H, {
       title: "Open options"
     })), /* @__PURE__ */ V.default.createElement(E.Transition, {
@@ -71187,7 +71187,7 @@ function o9e() {
       leaveFrom: "transform opacity-100 scale-100",
       leaveTo: "transform opacity-0 scale-95"
     }, /* @__PURE__ */ V.default.createElement(E.Popover.Panel, null, /* @__PURE__ */ V.default.createElement("div", {
-      className: "z-30 origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+      className: "z-30 origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden"
     }, /* @__PURE__ */ V.default.createElement("div", {
       className: "py-1"
     }, /* @__PURE__ */ V.default.createElement("span", {
@@ -71739,7 +71739,7 @@ function o9e() {
           className: "relative z-10 w-full"
         }, /* @__PURE__ */ V.default.createElement(E.Popover.Button, {
           as: "span",
-          className: `cursor-pointer w-full inline-flex justify-center items-center px-2 py-2 rounded-l-md border-l border-b border-t border-gray-200 bg-white text-sm font-medium text-gray-600 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
+          className: `cursor-pointer w-full inline-flex justify-center items-center px-2 py-2 rounded-l-md border-l border-b border-t border-gray-200 bg-white text-sm font-medium text-gray-600 hover:bg-gray-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
           onMouseDown: (yt) => {
             yt.preventDefault();
           }
@@ -71754,7 +71754,7 @@ function o9e() {
           leaveFrom: "transform opacity-100 scale-100",
           leaveTo: "transform opacity-0 scale-95"
         }, /* @__PURE__ */ V.default.createElement(E.Popover.Panel, null, ({ close: yt }) => /* @__PURE__ */ V.default.createElement("div", {
-          className: "origin-top-left absolute left-0 mt-2 -mr-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className: "origin-top-left absolute left-0 mt-2 -mr-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden"
         }, /* @__PURE__ */ V.default.createElement("div", {
           className: "py-2 tina-prose"
         }, /* @__PURE__ */ V.default.createElement("span", {
@@ -71765,7 +71765,7 @@ function o9e() {
           className: "relative"
         }, /* @__PURE__ */ V.default.createElement("span", {
           "data-test": `${pe}Button`,
-          className: `cursor-pointer w-full inline-flex relative justify-center items-center px-2 py-2 border-l border-b border-t border-r-0 border-gray-200 text-sm font-medium  hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 text-blue-500" : "bg-white text-gray-600"} ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
+          className: `cursor-pointer w-full inline-flex relative justify-center items-center px-2 py-2 border-l border-b border-t border-r-0 border-gray-200 text-sm font-medium  hover:bg-gray-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 text-blue-500" : "bg-white text-gray-600"} ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
           style: {
             visibility: g ? "hidden" : "visible",
             pointerEvents: g ? "none" : "auto"
@@ -71784,7 +71784,7 @@ function o9e() {
           className: "relative"
         }, /* @__PURE__ */ V.default.createElement("span", {
           "data-test": `${pe}Button`,
-          className: `cursor-pointer w-full inline-flex relative justify-center items-center px-2 py-2 border-l border-b border-t border-r-0 border-gray-200 text-sm font-medium  hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 text-blue-500" : yt ? "bg-gray-50 text-gray-300" : "bg-white text-gray-600"} ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
+          className: `cursor-pointer w-full inline-flex relative justify-center items-center px-2 py-2 border-l border-b border-t border-r-0 border-gray-200 text-sm font-medium  hover:bg-gray-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 text-blue-500" : yt ? "bg-gray-50 text-gray-300" : "bg-white text-gray-600"} ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
           style: {
             visibility: g ? "hidden" : "visible",
             pointerEvents: g ? "none" : "auto"
@@ -71806,7 +71806,7 @@ function o9e() {
       }
       return /* @__PURE__ */ V.default.createElement("span", {
         "data-test": `${pe}Button`,
-        className: `cursor-pointer w-full inline-flex relative justify-center items-center px-2 py-2 border-l border-b border-t border-r-0 border-gray-200 text-sm font-medium  hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 text-blue-500" : "bg-white text-gray-600"} ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
+        className: `cursor-pointer w-full inline-flex relative justify-center items-center px-2 py-2 border-l border-b border-t border-r-0 border-gray-200 text-sm font-medium  hover:bg-gray-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 text-blue-500" : "bg-white text-gray-600"} ${Te ? "border-r rounded-r-md" : "border-r-0"}`,
         style: {
           visibility: g ? "hidden" : "visible",
           pointerEvents: g ? "none" : "auto"
@@ -71829,7 +71829,7 @@ function o9e() {
       onMouseDown: (F) => {
         F.preventDefault();
       },
-      className: `cursor-pointer relative inline-flex items-center px-2 py-2 rounded-r-md border  text-sm font-medium transition-all ease-out duration-150 hover:bg-blue-500 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 border-gray-200 text-blue-500" : "text-white border-blue-500 bg-blue-500"}`
+      className: `cursor-pointer relative inline-flex items-center px-2 py-2 rounded-r-md border  text-sm font-medium transition-all ease-out duration-150 hover:bg-blue-500 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${T ? "bg-gray-50 border-gray-200 text-blue-500" : "text-white border-blue-500 bg-blue-500"}`
     }, /* @__PURE__ */ V.default.createElement("span", {
       className: "text-sm font-semibold tracking-wide align-baseline mr-1"
     }, "Embed"), /* @__PURE__ */ V.default.createElement(GH, {
@@ -71843,7 +71843,7 @@ function o9e() {
       leaveFrom: "transform opacity-100 scale-100",
       leaveTo: "transform opacity-0 scale-95"
     }, /* @__PURE__ */ V.default.createElement(E.Popover.Panel, null, ({ close: F }) => /* @__PURE__ */ V.default.createElement("div", {
-      className: "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none py-1 max-h-[10rem] overflow-y-auto"
+      className: "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden py-1 max-h-[10rem] overflow-y-auto"
     }, x.map((X) => /* @__PURE__ */ V.default.createElement("span", {
       key: X.name,
       onMouseDown: (fe) => {
@@ -71856,7 +71856,7 @@ function o9e() {
     }, /* @__PURE__ */ b.createElement(E.Popover.Button, {
       "data-test": "popoverRichTextButton",
       as: "span",
-      className: `cursor-pointer relative w-full justify-center inline-flex border border-gray-200 focus:border-blue-500 items-center px-2 py-2 bg-white text-sm font-medium text-gray-600 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 pointer-events-auto ${T ? "rounded-none" : "rounded-r-md"}`,
+      className: `cursor-pointer relative w-full justify-center inline-flex border border-gray-200 focus:border-blue-500 items-center px-2 py-2 bg-white text-sm font-medium text-gray-600 hover:bg-gray-50 focus:z-10 focus:outline-hidden focus:ring-1 focus:ring-blue-500 pointer-events-auto ${T ? "rounded-none" : "rounded-r-md"}`,
       onMouseDown: (F) => {
         F.preventDefault();
       }
@@ -71880,7 +71880,7 @@ function o9e() {
       leaveFrom: "transform opacity-100 scale-100",
       leaveTo: "transform opacity-0 scale-95"
     }, /* @__PURE__ */ b.createElement(E.Popover.Panel, null, ({ close: F }) => /* @__PURE__ */ b.createElement("div", {
-      className: "origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none py-1"
+      className: "origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden py-1"
     }, g.map((X, fe) => fe < x - 1 ? null : /* @__PURE__ */ b.createElement("span", {
       "data-test": `${X.name}OverflowButton`,
       key: X.name,
@@ -72183,7 +72183,7 @@ function o9e() {
       const X = V.default.useRef();
       return $V(X, () => g.onCancel()), /* @__PURE__ */ V.default.createElement("span", {
         ref: X,
-        className: "block w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-[10rem] overflow-y-auto"
+        className: "block w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-hidden max-h-[10rem] overflow-y-auto"
       }, /* @__PURE__ */ V.default.createElement("span", {
         className: "block py-1"
       }, T.activeTemplates.length === 0 && /* @__PURE__ */ V.default.createElement("span", {
@@ -72391,7 +72391,7 @@ function o9e() {
         T.mutators.remove(F.name, X);
       }, [T, F, X]);
       return /* @__PURE__ */ b.createElement("span", c({}, pe), /* @__PURE__ */ b.createElement("span", null, fe), /* @__PURE__ */ b.createElement("button", {
-        className: "text-center flex-shrink-0 border-0 bg-transparent p-2 flex items-center justify-center cursor-pointer",
+        className: "text-center shrink-0 border-0 bg-transparent p-2 flex items-center justify-center cursor-pointer",
         onClick: Te
       }, /* @__PURE__ */ b.createElement(Bt, {
         className: "w-4 h-auto"
@@ -72416,7 +72416,7 @@ function o9e() {
 
   span {
     max-width: calc(var(--tina-sidebar-width) - 50px);
-    flex-shrink: 1;
+    shrink: 1;
     text-overflow: ellipsis;
     overflow: hidden;
   }
@@ -72944,7 +72944,7 @@ function o9e() {
       return gr({ tag: "svg", attr: { viewBox: "0 0 1024 1024" }, child: [{ tag: "path", attr: { d: "M955.7 856l-416-720c-6.2-10.7-16.9-16-27.7-16s-21.6 5.3-27.7 16l-416 720C56 877.4 71.4 904 96 904h832c24.6 0 40-26.6 27.7-48zM480 416c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v184c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V416zm32 352a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z" } }] })(g);
     }
     const rP = () => /* @__PURE__ */ b.createElement("a", {
-      className: "flex-grow-0 flex w-full text-xs items-center py-1 px-4 text-yellow-600 bg-gradient-to-r from-yellow-50 to-yellow-100 border-b border-yellow-200",
+      className: "grow-0 flex w-full text-xs items-center py-1 px-4 text-yellow-600 bg-linear-to-r from-yellow-50 to-yellow-100 border-b border-yellow-200",
       href: "https://tina.io/docs/tina-cloud/",
       target: "_blank"
     }, /* @__PURE__ */ b.createElement(tP, {
@@ -73083,7 +73083,7 @@ function o9e() {
 `, xU = (g) => {
       var x = g, { children: T } = x, F = d(x, ["children"]);
       return /* @__PURE__ */ b.createElement("button", c({
-        className: "relative text-center text-sm p-2 w-full border-b border-gray-50 outline-none transition-all ease-out duration-150 hover:text-blue-500 hover:bg-gray-50"
+        className: "relative text-center text-sm p-2 w-full border-b border-gray-50 outline-hidden transition-all ease-out duration-150 hover:text-blue-500 hover:bg-gray-50"
       }, F), T);
     }, EU = Ce.default.span`
   display: none;
@@ -73405,7 +73405,7 @@ function o9e() {
         onClick: () => {
           Gt(!1);
         },
-        className: "fixed z-menu inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-black"
+        className: "fixed z-menu inset-0 bg-linear-to-br from-gray-800 via-gray-900 to-black"
       })))));
     }, oP = ({
       position: g = "overlay",
@@ -73425,7 +73425,7 @@ function o9e() {
     }, IU = ({ renderNav: g, displayNav: x, isLocalMode: T }) => {
       const { toggleFullscreen: F, displayState: X, setMenuIsOpen: fe, toggleSidebarOpen: pe } = b.useContext(Jl), Te = g && !x;
       return /* @__PURE__ */ b.createElement("div", {
-        className: "flex-grow-0 w-full overflow-visible z-20"
+        className: "grow-0 w-full overflow-visible z-20"
       }, T && /* @__PURE__ */ b.createElement(rP, null), /* @__PURE__ */ b.createElement("div", {
         className: "mt-4 -mb-14 w-full flex items-center justify-between pointer-events-none"
       }, Te && /* @__PURE__ */ b.createElement(Hr, {
@@ -74038,7 +74038,7 @@ function o9e() {
       variant: X = "secondary"
     }) {
       return /* @__PURE__ */ V.default.createElement("div", {
-        className: "w-full flex flex-shrink-0 justify-end gap-2 items-center"
+        className: "w-full flex shrink-0 justify-end gap-2 items-center"
       }, /* @__PURE__ */ V.default.createElement(Hr, {
         variant: X,
         disabled: !F,
@@ -74108,7 +74108,7 @@ function o9e() {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  flex-shrink: 0;
+  shrink: 0;
 
   > img {
     object-fit: cover;
@@ -74123,7 +74123,7 @@ function o9e() {
     fill: var(--tina-color-grey-4);
   }
 `, mW = Ce.default.span`
-  flex-grow: 1;
+  grow: 1;
   font-size: var(--tina-font-size-2);
   overflow: hidden;
   width: 100%;
@@ -74335,7 +74335,7 @@ function o9e() {
         });
       }
       return /* @__PURE__ */ V.default.createElement(xW, null, /* @__PURE__ */ V.default.createElement("div", {
-        className: "flex items-center bg-white border-b border-gray-100 py-3 px-5 shadow-sm flex-shrink-0"
+        className: "flex items-center bg-white border-b border-gray-100 py-3 px-5 shadow-sm shrink-0"
       }, /* @__PURE__ */ V.default.createElement(vW, {
         directory: at,
         setDirectory: Gt
@@ -74372,7 +74372,7 @@ function o9e() {
     }, g), /* @__PURE__ */ V.default.createElement(Va, {
       color: "var(--tina-color-primary)"
     })), xW = ({ children: g }) => /* @__PURE__ */ V.default.createElement("div", {
-      className: "h-full flex-1 text-gray-700 flex flex-col relative bg-gray-50 outline-none active:outline-none focus:outline-none"
+      className: "h-full flex-1 text-gray-700 flex flex-col relative bg-gray-50 outline-hidden active:outline-hidden focus:outline-hidden"
     }, g), EW = (g) => /* @__PURE__ */ V.default.createElement("div", c({
       className: "text-2xl opacity-50 p-12 text-center"
     }, g), "Drag and Drop assets here"), vP = (g) => {
@@ -75743,7 +75743,7 @@ function o9e() {
 .tina-tailwind .max-w-prose {
   max-width: 65ch;
 }
-.tina-tailwind .max-w-screen-xl {
+.tina-tailwind .max-w-(--breakpoint-xl) {
   max-width: 1280px;
 }
 .tina-tailwind .max-w-full {
@@ -75755,17 +75755,17 @@ function o9e() {
 .tina-tailwind .flex-none {
   flex: none;
 }
-.tina-tailwind .flex-shrink {
-  flex-shrink: 1;
+.tina-tailwind .shrink {
+  shrink: 1;
 }
-.tina-tailwind .flex-shrink-0 {
-  flex-shrink: 0;
+.tina-tailwind .shrink-0 {
+  shrink: 0;
 }
-.tina-tailwind .flex-grow {
-  flex-grow: 1;
+.tina-tailwind .grow {
+  grow: 1;
 }
-.tina-tailwind .flex-grow-0 {
-  flex-grow: 0;
+.tina-tailwind .grow-0 {
+  grow: 0;
 }
 .tina-tailwind .origin-top-right {
   transform-origin: top right;
@@ -76100,10 +76100,10 @@ function o9e() {
   --tw-bg-opacity: 1;
   background-color: rgb(225 221 236 / var(--tw-bg-opacity));
 }
-.tina-tailwind .bg-gradient-to-br {
+.tina-tailwind .bg-linear-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
-.tina-tailwind .bg-gradient-to-r {
+.tina-tailwind .bg-linear-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 .tina-tailwind .from-gray-800 {
@@ -76472,7 +76472,7 @@ function o9e() {
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-.tina-tailwind .outline-none {
+.tina-tailwind .outline-hidden {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
@@ -76936,7 +76936,7 @@ function o9e() {
       onCreateBranch: T,
       onChange: F
     }) => {
-      const [X, fe] = b.useState(""), [pe, Te] = b.useState(""), $e = g.filter((Be) => !pe || Be.name.includes(pe));
+      const [X, fe] = b.useState(""), [pe, Te] = b.useState(""), $e = g.filter((Be) => pe! || Be.name.includes(pe));
       return /* @__PURE__ */ b.createElement("div", {
         className: "flex flex-col gap-3"
       }, /* @__PURE__ */ b.createElement("div", {
@@ -76951,7 +76951,7 @@ function o9e() {
         onClick: () => {
           Te("");
         },
-        className: "outline-none focus:outline-none bg-transparent border-0 p-0 m-0 absolute right-2.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-all ease-out duration-150"
+        className: "outline-hidden focus:outline-hidden bg-transparent border-0 p-0 m-0 absolute right-2.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-all ease-out duration-150"
       }, /* @__PURE__ */ b.createElement(ia, {
         className: "w-5 h-auto text-gray-600"
       }))), $e.length === 0 && /* @__PURE__ */ b.createElement("div", {
@@ -76961,7 +76961,7 @@ function o9e() {
       }, $e.map((Be) => {
         const it = Be.name === x;
         return /* @__PURE__ */ b.createElement("div", {
-          className: `cursor-pointer relative text-base py-1.5 px-3 border-l-0 border-t-0 border-r-0 border-b border-gray-50 w-full outline-none transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50 ${it ? "bg-blue-50 text-blue-800 pointer-events-none" : ""}`,
+          className: `cursor-pointer relative text-base py-1.5 px-3 border-l-0 border-t-0 border-r-0 border-b border-gray-50 w-full outline-hidden transition-all ease-out duration-150 hover:text-blue-500 focus:text-blue-500 focus:bg-gray-50 hover:bg-gray-50 ${it ? "bg-blue-50 text-blue-800 pointer-events-none" : ""}`,
           key: Be,
           onClick: () => F(Be.name)
         }, Be.name, it && /* @__PURE__ */ b.createElement("span", {
@@ -87364,8 +87364,8 @@ const u_ = kc({
   const [t, r] = mn(!0);
   return dr(() => {
     const n = () => r(!0), a = () => r(!1);
-    return window.addEventListener("focus", n), window.addEventListener("blur", a), () => {
-      window.removeEventListener("focus", n), window.removeEventListener("blur", a);
+    return window.addEventListener("focus", n), window.addEventListener("blur-sm", a), () => {
+      window.removeEventListener("focus", n), window.removeEventListener("blur-sm", a);
     };
   }, []), /* @__PURE__ */ Ge.createElement(u_.Provider, {
     value: { browserFocused: t }
@@ -87380,7 +87380,7 @@ const pH = () => bn({}, ya(u_)), Ca = Tr.button`
   height: auto;
   border-left: none;
   margin: 0 0 -1px 0;
-  flex-grow: 1;
+  grow: 1;
   max-width: 48px;
   transition: background 150ms ease-out;
 
@@ -91350,7 +91350,7 @@ const Oqe = Tr.div`
     };
   }, [l]), dr(() => {
     const h = c && c.view, m = document.getElementsByClassName("ProseMirror")[0];
-    !h || (m === document.activeElement || m.contains(document.activeElement)) && p || sqe(h, d, r.value);
+    h! || (m === document.activeElement || m.contains(document.activeElement)) && p || sqe(h, d, r.value);
   }, [r.value]), /* @__PURE__ */ Ge.createElement(Ge.Fragment, null, /* @__PURE__ */ Ge.createElement("link", {
     rel: "stylesheet",
     href: "https://codemirror.net/lib/codemirror.css"
