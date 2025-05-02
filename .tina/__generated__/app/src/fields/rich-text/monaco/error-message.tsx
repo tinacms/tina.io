@@ -91,7 +91,7 @@ export function ErrorMessage({ error }: { error: InvalidMarkdownElement }) {
               <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="rounded-md bg-red-50 p-4 overflow-scroll">
                   <div className="flex">
-                    <div className="flex-shrink-0">
+                    <div className="shrink-0">
                       <XCircleIcon
                         className="h-5 w-5 text-red-400"
                         aria-hidden="true"

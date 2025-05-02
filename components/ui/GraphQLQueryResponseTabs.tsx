@@ -10,14 +10,14 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
     ' hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px hover:text-gray-50 opacity-50 hover:opacity-100';
   const overlay = (
     <div
-      className="w-full flex-grow rounded-md"
+      className="w-full grow rounded-md"
       style={{
         backgroundColor: 'rgb(1, 22, 39)',
       }}
     ></div>
   );
   const underlineStyling =
-    'transition-[width] absolute h-1 bottom-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg';
+    'transition-[width] absolute h-1 bottom-0 bg-linear-to-br from-orange-400 to-orange-600 rounded-lg';
   const containerStyling =
     'w-full flex col-start-1 row-start-1 overflow-x-scroll flex-col';
 

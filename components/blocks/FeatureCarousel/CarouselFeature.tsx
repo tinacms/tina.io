@@ -39,7 +39,7 @@ const CarouselItem = ({
     <div
       className={`${
         isHovered && !isSmallOrMediumScreen
-          ? 'group block bg-gradient-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
+          ? 'group block bg-linear-to-br from-white/25 via-white/50 to-white/75 shadow-2xl pl-6 pr-8 md:py-9 md:pr-11 lg:pb-8 lg:pt-8 lg:pr-4 rounded-2xl'
           : ''
       } ${commonStyles}`}
       onClick={() => onClick(index)}
@@ -66,7 +66,7 @@ const CarouselItem = ({
             <h3
               className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-3 ${
                 isHovered && !isSmallOrMediumScreen
-                  ? 'text-transparent lg:text-3xl bg-gradient-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
+                  ? 'text-transparent lg:text-3xl bg-linear-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
                   : 'text-black lg:text-xl'
               }`}
             >
@@ -268,7 +268,7 @@ export default function CarouselFeatureBlock({ data, index }) {
           <div className="flex flex-col order-2 min-h-[880px] lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible ">
             <h2
               ref={titleRef}
-              className="lg:m-0 pl-3 font-tuner inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
+              className="lg:m-0 pl-3 font-tuner inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
             >
               {data.blockHeadline}
             </h2>

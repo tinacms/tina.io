@@ -51,7 +51,7 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
     <>
       <div className="py-10">
         <div className="flex justify-center pb-8">
-          <h1 className="inline-block m-0 min-[640px]:text-3xl min-[540px]:text-2xl lg:leading-tight bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+          <h1 className="inline-block m-0 min-[640px]:text-3xl min-[540px]:text-2xl lg:leading-tight bg-linear-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
             {languageTitles[currentLanguage] || languageTitles['en']}
           </h1>
         </div>
@@ -68,7 +68,7 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
                     selectedLanguage === language.code
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-input bg-background'
-                  } p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700`}
+                  } p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700`}
                 >
                   <Image
                     src={language.flag}
@@ -77,13 +77,13 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
                     width={40}
                     height={40}
                   />
-                  <div className="flex-grow text-left">
+                  <div className="grow text-left">
                     <div className="font-medium text-lg">{language.name}</div>
                     <div className="text-muted-foreground text-xs">
                       {language.nativeName}
                     </div>
                   </div>
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <FaChevronRight className="h-6 w-6 text-muted-foreground" />
                   </div>
                 </button>

@@ -1,42 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-/* This is a hack to override the responsive modal's custom styling */
-.react-responsive-modal-modal {
-  padding: 0 0 0 0 !important;
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  max-height: 100% !important;
-  max-width: 62rem !important;
-  height: 20rem;
-}
+@config '../tailwind.config.js';
 
-.email-and-demo-modal {
-  width: 75% !important;
-  max-width: 1200px !important;
-}
+@layer utilities {
+  /* This is a hack to override the responsive modal's custom styling */
+  .react-responsive-modal-modal {
+    padding: 0 0 0 0 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    max-height: 100% !important;
+    max-width: 62rem !important;
+    height: 20rem;
+  }
 
-.email-form-modal {
-  height: auto !important;
-  min-height: 20rem;
-  max-height: 90vh !important;
-}
+  .email-and-demo-modal {
+    width: 75% !important;
+    max-width: 1200px !important;
+  }
 
-.language-select-modal {
-  width: 100% !important;
-  max-width: 500px !important;
-}
+  .email-form-modal {
+    height: auto !important;
+    min-height: 20rem;
+    max-height: 90vh !important;
+  }
 
-.mobile-language-select-modal {
-  width: 100% !important;
-  max-width: 350px !important;
-}
+  .language-select-modal {
+    width: 100% !important;
+    max-width: 500px !important;
+  }
 
-.react-responsive-modal-closeButton {
-  background-color: white !important;
-  border-radius: 50% !important;
-  opacity: 50% !important;
+  .mobile-language-select-modal {
+    width: 100% !important;
+    max-width: 350px !important;
+  }
+
+  .react-responsive-modal-closeButton {
+    background-color: white !important;
+    border-radius: 50% !important;
+    opacity: 50% !important;
+  }
 }
 
 @layer base {

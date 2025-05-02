@@ -111,7 +111,7 @@ export const RecipeBlock = ({ data }) => {
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
+          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh shrink-0 grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
           ref={instructionBlockRefs}
           style={{
             height:
@@ -121,7 +121,7 @@ export const RecipeBlock = ({ data }) => {
           }}
         >
           <div className={`${isBottomOfInstructions ? 'hidden' : ''}`}>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 lg:rounded-bl-xl pointer-events-none"></div>
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black opacity-60 lg:rounded-bl-xl pointer-events-none"></div>
             <FaChevronCircleDown
               onClick={handleDownArrowClick}
               className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md

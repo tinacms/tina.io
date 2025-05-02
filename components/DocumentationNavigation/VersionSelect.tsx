@@ -74,12 +74,12 @@ export const VersionSelect = () => {
 const SelectWrapper = styled.div`
   display: flex;
   justify-content: flex-end
-  flex-grow: 1;
+  grow: 1;
   position: relative;
 
   @media (min-width: 840px) {
     display: inline-block;
-    flex-grow: 0;
+    grow: 0;
   }
 
 .dropdown-button {
