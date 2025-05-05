@@ -26,7 +26,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <div className="font-tuner text-3xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
+        <div className="font-tuner text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
           Results for "{displayQuery}"
         </div>
         {isExactSearch && (
@@ -122,7 +122,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
 
   return (
     <div className="pt-6 w-full">
-      <div className="max-w-screen-xl mx-auto pb-2">
+      <div className="max-w-(--breakpoint-xl) mx-auto pb-2">
         <div className="flex justify-between items-center">
           {/* Navigation Buttons */}
           <nav className="relative flex gap-16 px-4">
@@ -162,7 +162,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
           </div>
         </div>
         {isLoading && (
-          <div className="pt-10 text-2xl bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
+          <div className="pt-10 text-2xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
             Mustering all the Llamas...
           </div>
         )}
@@ -191,7 +191,7 @@ export const SearchBody = ({
       {bodyItem?.results.map((item: any) => (
         <div key={item.objectID} className="py-4 px-4 border-b group">
           <Link href={`/${activeItem.toLowerCase()}/${item.slug}`}>
-            <h2 className="text-xl font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
+            <h2 className="text-xl font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
             <p className="text-gray-600 group-hover:text-gray-800 text-sm font-light line-clamp-3 break-words">

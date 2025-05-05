@@ -52,7 +52,7 @@ export const SearchResultsOverflowBody = ({
       {bodyItem?.results.slice(0, 10).map((item: any) => (
         <div key={item.objectID} className="py-2 px-4 border-b group">
           <Link href={`/${activeItem.toLowerCase()}/${item.slug}`}>
-            <h2 className="text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
+            <h2 className="text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
             <p className="text-gray-600 group-hover:text-gray-800 text-xs font-light line-clamp-3 break-words">
@@ -67,7 +67,7 @@ export const SearchResultsOverflowBody = ({
             className="underline"
             href={`/search?query=${encodeURIComponent(query)}`}
           >
-            <div className="pt-2 pb-2 px-4 text-md font-inter font-semibold bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent hover:from-orange-300 hover:via-orange-400 hover:to-orange-600">
+            <div className="pt-2 pb-2 px-4 text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent hover:from-orange-300 hover:via-orange-400 hover:to-orange-600">
               See All {numberOfResults} Results
             </div>
           </Link>
@@ -112,7 +112,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
 
   return (
     <div className="pt-2 w-full border-b">
-      <div className="max-w-screen-xl mx-auto pb-2">
+      <div className="max-w-(--breakpoint-xl) mx-auto pb-2">
         <div className="flex justify-between items-center">
           {/* Navigation Buttons */}
           <nav className="relative flex gap-16 px-4">
@@ -147,7 +147,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
           </nav>
         </div>
         {isLoading && (
-          <div className="pt-4 px-4 text-md bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
+          <div className="pt-4 px-4 text-md bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
             Mustering all the Llamas...
           </div>
         )}
@@ -230,7 +230,7 @@ export const DocsSearchBarHeader = ({
         <h1
           className={`${
             !learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-          } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
+          } hover:opacity-100 text-3xl pb-2 font-tuner bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(false)}
         >
           {isZh ? '文档' : 'Docs'}
@@ -238,7 +238,7 @@ export const DocsSearchBarHeader = ({
         <h1
           className={`${
             learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-          } hover:opacity-100 text-3xl pb-2 font-tuner bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
+          } hover:opacity-100 text-3xl pb-2 font-tuner bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(true)}
         >
           {isZh ? '学习' : 'Learn'}
@@ -282,7 +282,7 @@ export const LeftHandSideParentContainer = ({
 }) => {
   return (
     <div className="rounded-2xl shadow-xl w-full bg-white/50 h-5/6 overflow-y-hidden relative">
-      <div className="absolute -bottom-1 left-0 right-0 h-8 bg-gradient-to-t from-white/90 to-transparent pointer-events-none z-40"></div>
+      <div className="absolute -bottom-1 left-0 right-0 h-8 bg-linear-to-t from-white/90 to-transparent pointer-events-none z-40"></div>
       <DocsSearchBarHeader
         paddingGlobal="p-4"
         headerPadding="pl-4"
@@ -301,7 +301,7 @@ export const LeftHandSideParentContainer = ({
             }}
           >
             <div
-              className="w-1/2 flex-shrink-0 h-full"
+              className="w-1/2 shrink-0 h-full"
               style={{
                 opacity: learnActive ? 0.3 : 1,
                 transition: 'opacity 400ms ease-in-out',
@@ -316,7 +316,7 @@ export const LeftHandSideParentContainer = ({
               </div>
             </div>
             <div
-              className="w-1/2 flex-shrink-0 h-full"
+              className="w-1/2 shrink-0 h-full"
               style={{
                 opacity: learnActive ? 1 : 0.3,
                 transition: 'opacity 400ms ease-in-out',

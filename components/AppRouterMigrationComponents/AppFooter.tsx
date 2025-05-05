@@ -588,7 +588,7 @@ export function AppFooter() {
       </div>
 
       {/* Bottom */}
-      <div className=" bg-gradient-to-br from-orange-600 via-orange-800 to-orange-900 text-white ">
+      <div className=" bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white ">
         <div className="max-w-7xl mx-auto flex justify-between flex-col lg:flex-row w-full lg:items-center py-8 gap-6 px-2 lg:px-8">
           <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0">
             <SocialLink link="https://github.com/tinacms/tinacms">

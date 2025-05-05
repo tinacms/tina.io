@@ -225,7 +225,7 @@ export function MarkdownContent({
         'code-snippets': CodeSnippets,
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '') || props.lang;
-          return !inline && match ? (
+          return inline! && match ? (
             <CodeWrapper className="code-wrapper">
               <Prism
                 lang={match[1]}

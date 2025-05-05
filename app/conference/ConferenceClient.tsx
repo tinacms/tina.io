@@ -148,7 +148,7 @@ const HeaderBanner = ({
   scrollToAgenda: () => void;
 }) => {
   return (
-    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-gradient-to-br from-seafoam-100 to-seafoam-200 text-black">
+    <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200 text-black">
       <h1 className="font-tuner text-4xl pb-4 text-orange-500">
         {tinaData.bannerTitle}
       </h1>
@@ -192,19 +192,19 @@ const icons = {
   FaRegStar: (
     <FaRegStar
       size={40}
-      className="text-white bg-gradient-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full"
+      className="text-white bg-linear-to-br from-orange-400 to-orange-600 p-2 mb-4 rounded-full"
     />
   ),
   IoMdBook: (
     <IoMdBook
       size={40}
-      className="text-white bg-gradient-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full"
+      className="text-white bg-linear-to-br from-blue-400 to-blue-600 p-2 mb-4 rounded-full"
     />
   ),
   GoPeople: (
     <GoPeople
       size={40}
-      className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 mb-4 rounded-full"
+      className="text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 mb-4 rounded-full"
     />
   ),
 };
@@ -273,7 +273,7 @@ interface Session {
 const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   return (
     <div className="flex flex-col items-center text-center p-6 md:p-16">
-      <h2 className="text-3xl font-bold py-16 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
+      <h2 className="text-3xl font-bold py-16 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
         Open Source Expert Speakers
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
@@ -360,7 +360,7 @@ function Agenda({
     <div className="flex flex-col items-center" ref={agendaRef}>
       <h2
         id="agenda"
-        className="text-3xl font-bold pt-16 pb-8 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
+        className="text-3xl font-bold pt-16 pb-8 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
       >
         Agenda
       </h2>
@@ -566,7 +566,7 @@ function ConferencePage({
         scrollToAgenda={scrollToAgenda}
       />
       <div className="flex flex-col justify-center items-center text-center p-16">
-        <h2 className="text-3xl font-bold pb-4 bg-gradient-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
+        <h2 className="text-3xl font-bold pb-4 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           {tinaData.data?.conference?.about?.heading}
         </h2>
         <p className="text-lg max-w-4xl">
