@@ -18,13 +18,6 @@ module.exports = {
       '/security',
       '/terms-of-service',
     ];
-    if (path.includes('/home')) {
-      return {
-        loc: path.replace('/home', ''),
-        changefreq: 'weekly',
-        priority: 0.7,
-      };
-    }
     if (listOfMinorPaths.includes(path)) {
       return {
         loc: path,
