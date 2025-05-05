@@ -22,7 +22,7 @@ module.exports = {
       return {
         loc: path.replace('/home', ''),
         changefreq: 'weekly',
-        priority: 1.0,
+        priority: 0.7,
       };
     }
     if (listOfMinorPaths.includes(path)) {
