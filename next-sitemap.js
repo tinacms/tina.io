@@ -24,6 +24,13 @@ module.exports = {
         priority: 0.3,
       };
     }
+    if (path === '/home') {
+      return {
+        loc: '/',
+        changefreq: 'daily',
+        priority: 0.7,
+      };
+    }
     if (path === '/') {
       return {
         loc: path,
