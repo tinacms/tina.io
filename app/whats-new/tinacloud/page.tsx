@@ -1,3 +1,5 @@
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { client } from 'tina/__generated__/client';
 import WhatsNewTinaCloudPageLayout from './WhatsNewTinaCloudPageLayout';
 
@@ -13,25 +15,11 @@ export async function generateMetadata() {
       'Stay updated with the latest improvements and features in TinaCloud.',
   };
 
-  return {
-    title: `${seoData.title} | TinaCloud`,
-    description: seoData.description,
-    openGraph: {
-      title: seoData.title,
-      description: seoData.description,
-      type: 'website',
-      locale: 'en_CA',
-      site_name: 'https://tina.io/tinacloud',
-      images: [
-        {
-          url: 'https://tina.io/img/tina-og.png',
-          width: 1200,
-          height: 628,
-          alt: 'Tina - The Markdown CMS',
-        },
-      ],
-    },
-  };
+  if (seoData && !seoData?.canonicalUrl) {
+    seoData.canonicalUrl = `${settings.siteUrl}/whats-new/tinacloud`;
+  }
+
+  return getSeo(seoData);
 }
 
 export default async function TinaCloudPage() {

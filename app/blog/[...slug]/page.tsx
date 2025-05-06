@@ -1,3 +1,5 @@
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import { TinaMarkdownContent } from 'tinacms/dist/rich-text';
@@ -46,27 +48,18 @@ export async function generateMetadata({
   const slugPath = params.slug.join('/');
   const vars = { relativePath: `${slugPath}.mdx` };
 
-  try {
-    const { data } = await client.queries.getExpandedPostDocument(vars);
-    const excerpt = getExcerpt(data.post.body, 140);
+  const { data } = await client.queries.getExpandedPostDocument(vars);
+  const excerpt = getExcerpt(data.post.body, 140);
 
-    if (!data?.post) {
-      console.warn(`No metadata found for slug: ${slugPath}`);
-      return notFound();
-    }
-
-    return {
-      title: `${data.post.title} | TinaCMS Blog`,
-      description: excerpt,
-      openGraph: {
-        title: data.post.title,
-        description: excerpt,
-      },
-    };
-  } catch (error) {
-    console.error('Error generating metadata:', error);
+  if (!data?.post) {
+    console.warn(`No metadata found for slug: ${slugPath}`);
     return notFound();
   }
+  return getSeo({
+    title: `${data.post.title} | TinaCMS Blog`,
+    description: excerpt,
+    canonicalUrl: `${settings.siteUrl}/blog/${slugPath}`,
+  });
 }
 
 export default async function BlogPage({
