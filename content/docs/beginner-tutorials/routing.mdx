@@ -42,10 +42,11 @@ schema: {
 
 ```typescript
 ui: {
-    router: ({ document }) => {
-    if (document._sys.filename == "Hello-World") {
+    router: ({document}) => {
+      if (document._sys.filename == "Hello-World") {
         return "/";
-    }
+      }
+    },
 },
 ```
 
