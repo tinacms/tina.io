@@ -74,6 +74,11 @@
           "title": "3. The Content Model",
           "items": [
             {
+              "title": "The Content Model",
+              "slug": "content/docs/beginner-tutorials/the-content-model.mdx",
+              "_template": "item"
+            },
+            {
               "title": "Our New Field",
               "slug": "content/docs/beginner-tutorials/new-field.mdx",
               "_template": "item"
