@@ -12,6 +12,11 @@
           "title": "1. Your New TinaCMS Site",
           "items": [
             {
+              "title": "Your New TinaCMS Site",
+              "slug": "content/docs/beginner-tutorials/new-tinacms-site.mdx",
+              "_template": "item"
+            },
+            {
               "title": "NextJS Setup",
               "slug": "content/docs/beginner-tutorials/nextjs-app.mdx",
               "_template": "item"
