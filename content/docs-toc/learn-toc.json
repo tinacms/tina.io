@@ -48,6 +48,11 @@
           "title": "2. Live Editing ",
           "items": [
             {
+              "title": "Live Editing",
+              "slug": "content/docs/beginner-tutorials/live-editing.mdx",
+              "_template": "item"
+            },
+            {
               "title": "Routing to the Editor",
               "slug": "content/docs/beginner-tutorials/routing.mdx",
               "_template": "item"
