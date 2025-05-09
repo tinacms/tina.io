@@ -58,6 +58,10 @@
           "href": "/about"
         },
         {
+          "label": "Videos",
+          "href": "https://www.youtube.com/c/tinacms"
+        },
+        {
           "label": "Blog",
           "href": "/blog"
         },
