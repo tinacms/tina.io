@@ -59,7 +59,6 @@ export default function DocsClient({ props }) {
         filepath
           .substring(7, filepath.length - 4)
           .replace('docs-zh', 'zh/docs') + '/';
-      console.log('slug', slug);
 
       const recurseItems = (items) => {
         items?.forEach((item) => {
