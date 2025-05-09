@@ -235,6 +235,11 @@
           "title": "国际化支持",
           "slug": "content/zh/docs/guides/internationalization.mdx",
           "_template": "item"
+        },
+        {
+          "title": "多租户",
+          "slug": "content/zh/docs/guides/multi-tenancy.mdx",
+          "_template": "item"
         }
       ]
     }

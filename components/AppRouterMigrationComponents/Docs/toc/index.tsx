@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 import { getDocId } from 'utils/docs/getDocIds';
@@ -61,12 +62,18 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
   }
 
   const tocMarkdown = generateMarkdown(tocItems);
+  const isZhPath =
+    typeof window !== 'undefined'
+      ? window.location.pathname.includes('/zh/')
+      : usePathname().includes('/zh/');
 
   return (
     <>
       <TocWrapper>
         <TocContent activeIds={activeIds} isOpen={isOpen}>
-          <TocDesktopHeader>Table of Contents</TocDesktopHeader>
+          <TocDesktopHeader>
+            {isZhPath ? '目录' : 'Table of Contents'}
+          </TocDesktopHeader>
           <TocTitleList
             ref={tocWrapperRef}
             className="max-h-[70vh] 2xl:max-h-[75vh] p-4 overflow-y-auto"
