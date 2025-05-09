@@ -55,7 +55,10 @@ export default function DocsClient({ props }) {
   const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
-      let slug = filepath.substring(7, filepath.length - 4);
+      let slug =
+        filepath
+          .substring(7, filepath.length - 4)
+          .replace('docs-zh', 'zh/docs') + '/';
       console.log('slug', slug);
 
       const recurseItems = (items) => {
