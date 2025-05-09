@@ -56,16 +56,7 @@ export default function DocsClient({ props }) {
     const filepath = DocumentationData?.id;
     if (filepath) {
       let slug = filepath.substring(7, filepath.length - 4);
-
-      if (slug.endsWith('/index')) {
-        slug = slug.substring(0, slug.length - 6);
-      } else {
-        slug = slug + '/';
-      }
-
-      if (!slug.startsWith('/zh/') && slug.startsWith('/')) {
-        slug = `/zh${slug}`;
-      }
+      console.log('slug', slug);
 
       const recurseItems = (items) => {
         items?.forEach((item) => {
