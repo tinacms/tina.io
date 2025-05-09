@@ -8,6 +8,7 @@ import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -19,11 +20,11 @@ export default function DocsClient({ props }) {
     variables: props.variables,
     data: props.data,
   });
-
   // Get the navigation data from context instead of props
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { PageTableOfContents } = props;
   const DocumentationData = data.doc;
+  const pathname = usePathname();
 
   const { learnActive, setLearnActive } = useDocsNavigation();
   const [isLearnDocument, setIsLearnDocument] = useState(learnActive);
@@ -56,14 +57,13 @@ export default function DocsClient({ props }) {
       recurseItems(NavigationLearnData?.data);
     }
   };
-
   useEffect(() => {
     checkLearn(setIsLearnDocument);
   }, []);
 
   useEffect(() => {
     checkLearn(setLearnActive);
-  }, [NavigationLearnData, DocumentationData]);
+  }, [NavigationLearnData, DocumentationData, pathname]);
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
