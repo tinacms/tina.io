@@ -1,0 +1,68 @@
+---
+id: /docs/extending-tina/overview
+title: 扩展Tina
+last_edited: '2025-05-01T01:56:24.122Z'
+next: ''
+previous: ''
+---
+
+Tina具有许多高级功能，可以自定义整个CMS编辑体验。
+
+## 自定义字段
+
+Tina允许通过`ui`属性自定义任何字段。这使得可以为编辑者创建定制化的体验。主要的自定义功能包括：
+
+- 为组件添加[客户端验证](/docs/extending-tina/validation/)，以便在保存之前强制执行所需的格式
+- 自定义渲染的[字段组件](/docs/extending-tina/custom-field-components/)
+- 自定义用户输入的[解析和格式化](/docs/extending-tina/format-and-parse/)
+
+### 示例
+
+```ts
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        name: 'posts',
+        label: '博客文章',
+        path: 'content/posts',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            label: '标题',
+            name: 'title',
+            ui: {
+              validate: (value) => {
+                if (value?.length > 40) {
+                  return '标题不能超过40个字符'
+                }
+              },
+            },
+          },
+          // ... 其他字段
+        ],
+      },
+    ],
+  },
+})
+// ...
+```
+
+## 自定义CMS实例
+
+`tina/config.{ts,js,tsx}`配置文件中有一个可选的`cmsCallback`参数，可以添加用于自定义CMS实例。
+
+```diff
+// ...
+export default defineConfig({
+// ...
++ cmsCallback: (cms) => {
++   cms.sidebar.position = 'overlay'
++   return cms
++ }
+})
+```
+
+`cmsCallback`钩子主要用于注册自定义字段插件。它还可以用于修改Tina的UI、在特定页面动态隐藏侧边栏、接入CMS事件总线等。
