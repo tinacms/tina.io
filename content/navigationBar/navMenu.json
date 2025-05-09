@@ -12,36 +12,6 @@
       "_template": "stringItem"
     },
     {
-      "label": "Resources",
-      "items": [
-        {
-          "label": "About TinaCMS",
-          "href": "/about"
-        },
-        {
-          "label": "Blog",
-          "href": "/blog"
-        },
-        {
-          "label": "Compare Tina",
-          "href": "/compare-tina"
-        },
-        {
-          "label": "Examples",
-          "href": "/examples"
-        },
-        {
-          "label": "Whats New - TinaCMS",
-          "href": "/whats-new/tinacms"
-        },
-        {
-          "label": "Whats New - TinaCloud",
-          "href": "/whats-new/tinacloud"
-        }
-      ],
-      "_template": "groupOfStringItems"
-    },
-    {
       "label": "Community",
       "items": [
         {
@@ -79,6 +49,40 @@
       "label": "Enterprise",
       "href": "/enterprise",
       "_template": "stringItem"
+    },
+    {
+      "label": "About",
+      "items": [
+        {
+          "label": "About TinaCMS",
+          "href": "/about"
+        },
+        {
+          "label": "Videos",
+          "href": "https://www.youtube.com/c/tinacms"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        },
+        {
+          "label": "Compare Tina",
+          "href": "/compare-tina"
+        },
+        {
+          "label": "Examples",
+          "href": "/examples"
+        },
+        {
+          "label": "What's New - TinaCMS",
+          "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "What's New - TinaCloud",
+          "href": "/whats-new/tinacloud"
+        }
+      ],
+      "_template": "groupOfStringItems"
     },
     {
       "label": "My TinaCloud",
