@@ -6,11 +6,12 @@ export function enhancedPathMatching(url1: string, url2: string) {
   }
 
   if (!url1 || !url2) return false;
-
   const normalizeUrl = (url: string) => {
     let normalized = url.replace(/^\/|\/$/g, '');
 
     normalized = normalized.split('#')[0].split('?')[0];
+
+    normalized = normalized.replace(/\/index\/?$/, '');
 
     return normalized;
   };
@@ -30,6 +31,22 @@ export function enhancedPathMatching(url1: string, url2: string) {
   if (
     (normalizedUrl1 === 'docs' && normalizedUrl2 === 'zh/docs') ||
     (normalizedUrl1 === 'zh/docs' && normalizedUrl2 === 'docs')
+  ) {
+    return true;
+  }
+
+  if (
+    (normalizedUrl1 === 'docs' && normalizedUrl2 === 'docs/index') ||
+    (normalizedUrl1 === 'docs/index' && normalizedUrl2 === 'docs') ||
+    (normalizedUrl1 === 'zh/docs' && normalizedUrl2 === 'zh/docs/index') ||
+    (normalizedUrl1 === 'zh/docs/index' && normalizedUrl2 === 'zh/docs')
+  ) {
+    return true;
+  }
+
+  if (
+    (normalizedUrl1 === 'zh/docs/index' && normalizedUrl2 === 'docs/index') ||
+    (normalizedUrl1 === 'docs/index' && normalizedUrl2 === 'zh/docs/index')
   ) {
     return true;
   }

@@ -32,25 +32,37 @@ export default function DocsClient({ props }) {
   const [isLearnDocument, setIsLearnDocument] = useState(learnActive);
 
   const { activeIds, contentRef } = useTocListener(DocumentationData);
+  const processPageLink = (pageId) => {
+    if (!pageId) return '';
+
+    let slug = pageId.slice(7, -4).replace('docs-zh', 'zh/docs');
+
+    if (slug.endsWith('/index')) {
+      return slug.substring(0, slug.length - 6);
+    }
+    return slug;
+  };
 
   const previousPage = {
-    slug: DocumentationData?.previous?.id
-      .slice(7, -4)
-      .replace('docs-zh', 'zh/docs'),
+    slug: processPageLink(DocumentationData?.previous?.id),
     title: DocumentationData?.previous?.title,
   };
 
   const nextPage = {
-    slug: DocumentationData?.next?.id
-      .slice(7, -4)
-      .replace('docs-zh', 'zh/docs'),
+    slug: processPageLink(DocumentationData?.next?.id),
     title: DocumentationData?.next?.title,
   };
-
   const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
-      let slug = filepath.substring(7, filepath.length - 4) + '/';
+      let slug = filepath.substring(7, filepath.length - 4);
+
+      if (slug.endsWith('/index')) {
+        slug = slug.substring(0, slug.length - 6);
+      } else {
+        slug = slug + '/';
+      }
+
       if (!slug.startsWith('/zh/') && slug.startsWith('/')) {
         slug = `/zh${slug}`;
       }
