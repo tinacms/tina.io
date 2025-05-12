@@ -8,9 +8,11 @@ import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { enhancedPathMatching } from 'utils/enhancedPathMatching';
 import { useNavigationData } from '../toc-layout-client';
 
 export default function DocsClient({ props }) {
@@ -24,36 +26,47 @@ export default function DocsClient({ props }) {
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { PageTableOfContents } = props;
   const DocumentationData = data.docZh;
+  const pathname = usePathname();
 
   const { learnActive, setLearnActive } = useDocsNavigation();
   const [isLearnDocument, setIsLearnDocument] = useState(learnActive);
 
   const { activeIds, contentRef } = useTocListener(DocumentationData);
+  const processPageLink = (pageId) => {
+    if (!pageId) return '';
+
+    let slug = pageId.slice(7, -4).replace('docs-zh', 'zh/docs');
+
+    if (slug.endsWith('/index')) {
+      return slug.substring(0, slug.length - 6);
+    }
+    return slug;
+  };
 
   const previousPage = {
-    slug: DocumentationData?.previous?.id
-      .slice(7, -4)
-      .replace('docs-zh', 'zh/docs'),
+    slug: processPageLink(DocumentationData?.previous?.id),
     title: DocumentationData?.previous?.title,
   };
 
   const nextPage = {
-    slug: DocumentationData?.next?.id
-      .slice(7, -4)
-      .replace('docs-zh', 'zh/docs'),
+    slug: processPageLink(DocumentationData?.next?.id),
     title: DocumentationData?.next?.title,
   };
-
   const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
-      const slug = filepath.substring(7, filepath.length - 4) + '/';
+      let slug =
+        filepath
+          .substring(7, filepath.length - 4)
+          .replace('docs-zh', 'zh/docs') + '/';
+
       const recurseItems = (items) => {
         items?.forEach((item) => {
           if (item.items) {
             recurseItems(item.items);
-          } else if (item.slug === slug) {
+          } else if (enhancedPathMatching(item.slug, slug)) {
             callback(true);
+            return true;
           }
         });
       };
@@ -62,12 +75,16 @@ export default function DocsClient({ props }) {
   };
 
   useEffect(() => {
-    checkLearn(setIsLearnDocument);
-  }, []);
+    if (NavigationLearnData?.data) {
+      checkLearn(setIsLearnDocument);
+    }
+  }, [NavigationLearnData]);
 
   useEffect(() => {
-    checkLearn(setLearnActive);
-  }, [NavigationLearnData, DocumentationData]);
+    if (NavigationLearnData?.data && DocumentationData) {
+      checkLearn(setLearnActive);
+    }
+  }, [NavigationLearnData, DocumentationData, pathname]);
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
@@ -89,10 +106,10 @@ export default function DocsClient({ props }) {
         />
         <div className="block xl:hidden">
           <TocOverflowButton tocData={PageTableOfContents} />
-        </div>
+        </div>{' '}
         <div
           ref={contentRef}
-          className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6"
+          className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6 text-lg"
         >
           {' '}
           <TinaMarkdown
@@ -100,7 +117,6 @@ export default function DocsClient({ props }) {
             components={docAndBlogComponents}
           />
         </div>
-
         {formattedDate && (
           <span className="text-slate-500 text-md">
             {' '}
