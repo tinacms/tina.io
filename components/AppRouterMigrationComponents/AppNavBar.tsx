@@ -15,7 +15,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import { BiChevronRight, BiLinkExternal, BiMenu } from 'react-icons/bi';
+import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
@@ -503,8 +503,8 @@ export function AppNavBar({ sticky = true }) {
                           <div className="relative group">
                             <span className="flex items-center cursor-pointer">
                               {item.label}
-                              <BiChevronRight
-                                className={`ml-1 text-blue-200 group-hover:text-blue-400 transition-transform duration-200 group-hover:rotate-90`}
+                              <BiChevronDown
+                                className={`ml-1 text-blue-200 group-hover:text-blue-400`}
                               />
                             </span>
                             <ul
