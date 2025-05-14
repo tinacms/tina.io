@@ -41,7 +41,7 @@ export function CloudBanner() {
         "
       >
         <Link
-          className="pr-2 text-slate-700 flex items-center gap-1 "
+          className="pr-2 text-slate-700 hover:text-slate-950 transition-colors duration-200 flex items-center gap-1 "
           href={`https://github.com/tinacms/tinacms`}
           target="_blank"
           rel="noopener noreferrer"
