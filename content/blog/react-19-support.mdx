@@ -15,11 +15,13 @@ React 19 brings breaking changes and new APIs that many teams want to adopt for 
 
 ## What Does This Mean for You?
 
-* **No breaking changes.**\
-  If your project already works with TinaCMS, upgrading to React 19 is as simple as updating your dependencies.
-* **No new APIs to learn.**\
+- **No breaking changes for React projects.**  
+  If your project already works with TinaCMS and uses React, upgrading to React 19 is as simple as updating your dependencies.
+- **Non-React frameworks require new dependencies.**  
+  If you use TinaCMS with a non-React framework (for example, Hugo or Eleventy), you must now add `react` and `react-dom` as dependencies. This is required for TinaCMS to function, even if your site itself is not built with React.
+- **No new APIs to learn.**  
   The upgrade is seamless. Your existing TinaCMS setup will continue to work as expected.
-* **No migration steps.**\
+- **No migration steps.**  
   You do not need to change any code or configuration.
 
 ## Upgrade Path
@@ -32,23 +34,35 @@ npm install tinacms@latest @tinacms/cli@latest
 yarn add tinacms@latest @tinacms/cli@latest
 ```
 
-TinaCMS now supports `react` and `react-dom` versions `>=18.3.1 <20.0.0`.\
+TinaCMS now supports `react` and `react-dom` versions `>=18.3.1 <20.0.0`.  
 You can run TinaCMS on either React 18 or 19, but we recommend React 19 for the best results.
+
+## Using TinaCMS with Non-React Frameworks
+
+If you are using TinaCMS with a non-React framework (for example, Hugo or Eleventy), you **must** add `react` and `react-dom` as dependencies in your project. TinaCMS requires these packages to function, even if your site itself is not built with React. Install them with:
+
+```bash
+npm install react@^19.0.0 react-dom@^19.0.0
+# or
+yarn add react@^19.0.0 react-dom@^19.0.0
+```
+
+If you omit these dependencies, TinaCMS will fail to load.
 
 ## Technical Details
 
-* **Peer dependencies** for `react` and `react-dom` have been updated to allow React 19. This now means, Tina will use your version of React over its internal version. 
-* **Internal dependencies** and build tooling have been updated for compatibility and performance
-* **Linting and code quality:** All known issues, including hook violations, have been resolved
+- **Peer dependencies** for `react` and `react-dom` have been updated to allow React 19. This now means Tina will use your version of React over its internal version.
+- **Internal dependencies** and build tooling have been updated for compatibility and performance.
+- **Linting and code quality:** All known issues, including hook violations, have been resolved.
 
 ## Stability and Support
 
-This release has been tested across a range of real-world projects and scenarios.\
+This release has been tested across a range of real-world projects and scenarios.  
 If you do run into an edge case or unexpected behaviour, [open a GitHub issue](https://github.com/tinacms/tinacms/issues/new?template=bug-report.yml) with clear reproduction steps. We are committed to a quick turnaround on any problems.
 
 ## Looking Forward
 
 We’re committed to keeping TinaCMS compatible with the latest React versions and removing upgrade friction wherever possible.
 
-Best,\
+Best,  
 The TinaCMS Team 🦙
