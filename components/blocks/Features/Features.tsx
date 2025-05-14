@@ -1,12 +1,11 @@
+import DocsRichText from '@/component/styles/DocsRichText';
+import { Prism } from '@/component/styles/Prism';
+import PlayIcon from '@/public/svg/play-button.svg';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import PlayIcon from '../../../public/svg/play-button.svg';
-import DocsRichText from '../../styles/DocsRichText';
-import { Prism } from '../../styles/Prism';
-import { Container } from '../Container';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
@@ -22,17 +21,17 @@ export function FeatureBlock({ data, index }) {
         <div className="flex flex-col justify-center lg:justify-start w-full lg:w-1/2">
           {data.headline && (
             <h3
-              className="font-tuner inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+              className="font-tuner inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
               data-tina-field={tinaField(data, 'headline')}
             >
               {data.headline}
             </h3>
           )}
           <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-3">
-            <hr className="!my-0 w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
+            <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
           </div>
           <p
-            className="text-lg lg:text-xl lg:leading-normal bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent max-w-60ch text-balance text-center lg:text-left py-4"
+            className="text-lg lg:text-xl lg:leading-normal bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent max-w-60ch text-balance text-center lg:text-left py-4"
             data-tina-field={tinaField(data, 'text')}
           >
             {data.text}
@@ -65,7 +64,6 @@ export function FeatureBlock({ data, index }) {
 
 export const RenderMedia = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  console.log(data);
   if (
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo' ||
     data.media[0].__typename === 'PageBlocksHeroMediaVideo'
@@ -119,14 +117,14 @@ export const RenderMedia = ({ data }) => {
       <>
         <div className="flex flex-col justify-start items-start">
           {data.media[0].file && (
-            <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-gradient-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-tuner">
+            <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-tuner">
               {data.media[0].file}
             </div>
           )}
           <div
             className={`file relative ${
               data.media[0].file ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
-            } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-gradient-to-br from-[#333333] via-[#1a1a1a] to-black ${
+            } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-linear-to-br from-[#333333] via-[#1a1a1a] to-black ${
               data.isBackgroundEnabled ? 'shadow-panel' : ''
             }`}
             style={{
@@ -135,7 +133,7 @@ export const RenderMedia = ({ data }) => {
             }}
           >
             <CodeWrapper>
-              <div className="[&>pre]:!bg-transparent [&>pre]:!border-none rounded-xl">
+              <div className="[&>pre]:bg-transparent! [&>pre]:border-none! rounded-xl">
                 <Prism
                   lang={
                     data.media[0].language

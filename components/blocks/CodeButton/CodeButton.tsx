@@ -66,7 +66,7 @@ export const CodeButton = ({
         </button>
 
         {/* {showTooltip && clickedOnText && (
-          <div className="absolute top-[calc(100%+8px)] left-0 bg-white border border-[#b4f4e0] rounded-md p-3 z-20 shadow-md max-w-[300px] font-[var(--font-tuner)] text-[var(--color-secondary)] text-sm leading-relaxed before:content-[''] before:absolute before:top-[-8px] before:left-4 before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-[#b4f4e0] before:rotate-45 before:transform">
+          <div className="absolute top-[calc(100%+8px)] left-0 bg-white border border-[#b4f4e0] rounded-md p-3 z-20 shadow-md max-w-[300px] font-(--font-tuner) text-(--color-secondary) text-sm leading-relaxed before:content-[''] before:absolute before:top-[-8px] before:left-4 before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-[#b4f4e0] before:rotate-45 before:transform">
             <TinaMarkdown
               content={clickedOnText}
               components={CodeButtonMarkdownStyle}

@@ -160,6 +160,11 @@
                   "title": "对象字段",
                   "slug": "content/zh/docs/reference/types/object.mdx",
                   "_template": "item"
+                },
+                {
+                  "title": "列表自定义渲染 ",
+                  "slug": "content/zh/docs/extending-tina/customize-list-ui.mdx",
+                  "_template": "item"
                 }
               ],
               "_template": "items"

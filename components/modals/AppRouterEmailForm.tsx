@@ -77,7 +77,7 @@ export const EmailForm = (props: EmailFormProps) => {
             props.isFooter ? 'w-auto' : ''
           }`}
         >
-          <h1 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-tuner lg:text-3xl text-2xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h1 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-tuner lg:text-3xl text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
             Join the Herd! 🦙
           </h1>
           <p className="text-left w-full mt-2 mb-4">

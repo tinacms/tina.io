@@ -6,7 +6,7 @@
   "blocks": [
     {
       "blockSettings": {
-        "isFullscreen": true
+        "isFullscreen": false
       },
       "headline": "Plans & Pricing",
       "freeTier": {

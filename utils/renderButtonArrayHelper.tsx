@@ -8,7 +8,7 @@ const RenderButton = ({ button, index }) => {
     return <Actions key={index} items={[button]} />;
   } else if (button.__typename.includes('ModalButton')) {
     return (
-      <div className="lg:-mt-2">
+      <div className="lg:-mt-0.5">
         <ModalB key={index} items={[button]} />
       </div>
     );

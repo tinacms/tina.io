@@ -14,7 +14,7 @@ export function CloudBanner() {
         bg-[linear-gradient(90deg,white,#f2fdfc_33.3%,#e6faf8_100%)] 
         shadow-[0_0_8px_2px_rgba(0,0,0,0.03)] 
         border-b border-[#d1faf6] 
-        text-[var(--color-tina-blue)]
+        text-(--color-tina-blue)
         lg:flex-row lg:pl-8 lg:pr-10
       "
     >

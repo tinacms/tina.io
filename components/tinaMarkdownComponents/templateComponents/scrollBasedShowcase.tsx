@@ -213,7 +213,7 @@ export default function ScrollBasedShowcase(data: {
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <div
-                      className={`bg-gradient-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${
+                      className={`bg-linear-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${
                         isFocused
                           ? 'from-orange-400 via-orange-500 to-orange-600'
                           : 'from-gray-800 to-gray-700'
@@ -229,7 +229,7 @@ export default function ScrollBasedShowcase(data: {
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <h2
-                      className={`bg-gradient-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${
+                      className={`bg-linear-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${
                         isFocused
                           ? 'from-orange-400 via-orange-500 to-orange-600'
                           : 'from-gray-800 to-gray-700'
