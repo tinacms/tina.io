@@ -88,11 +88,6 @@
       "label": "My TinaCloud",
       "href": "https://app.tina.io/signin",
       "_template": "stringItem"
-    },
-    {
-      "owner": "tinacms",
-      "repo": "tinacms",
-      "_template": "GitHubStarButton"
     }
   ]
 }
