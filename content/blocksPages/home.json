@@ -9,7 +9,7 @@
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
-          "text": "TinaCMS is an open-source, headless CMS that supports Git - with built-in version control.",
+          "text": "TinaCMS is an test open-source, headless CMS that supports Git - with built-in version control.",
           "buttons": [
             {
               "label": "Try the Editor Now",
