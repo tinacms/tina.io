@@ -1,7 +1,7 @@
 ---
 id: /docs/features/data-fetching
 title: Content API Overview
-last_edited: '2025-03-26T03:56:47.644Z'
+last_edited: '2025-04-08T00:54:33.051Z'
 next: content/docs/contextual-editing/overview.mdx
 previous: content/docs/schema.mdx
 ---
@@ -59,6 +59,30 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
 ```
 
 > For more information on manually writing queries for your specific schema, check out our ["Writing Custom Queries"](/docs/data-fetching/custom-queries/#writing-inline-queries) docs.
+
+## Fetching Content Across Branches in TinaCMS
+
+For server-rendered pages in TinaCMS, you can dynamically fetch content from the active editorial or preview branch by passing the active branch name stored in the `x-branch` cookie as a header when querying content.
+
+To retrieve cookies in Next.js, refer to the [Next.js cookies documentation](https://nextjs.org/docs/app/api-reference/functions/cookies).
+
+### Example Implementation
+
+```typescript
+const data = await client.queries.post(
+  {
+    relativePath: `${params.filename?.join('/')}.md`,
+  },
+  {
+    fetchOptions: {
+      headers: {
+        /* Retrieve the active branch from cookie */
+        'x-branch': cookieStore.get('x-branch')?.value, 
+      },
+    },
+  }
+);
+```
 
 ## The Local Filesystem-based Content API
 
