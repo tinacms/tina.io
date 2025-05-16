@@ -1,10 +1,7 @@
-import React from 'react';
-import { tinaField } from 'tinacms/dist/react';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
-
-
-
+import React from 'react';
+import { tinaField } from 'tinacms/dist/react';
 
 type YouTubeEmbedProps = {
   src: string;
@@ -12,7 +9,6 @@ type YouTubeEmbedProps = {
 };
 
 export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
-  
   const isValidYoutubeUrl =
     src && (src.includes('youtube.com/embed/') || src.includes('youtu.be/'));
 
@@ -45,7 +41,7 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
 
 interface VideoDisplayProps {
   data: {
-    __typename: string;
+    __typename?: string;
     altText?: string | null;
     title?: string | null;
     externalVideoLink?: string | null;
@@ -58,7 +54,10 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
 
   return (
     <Container className="flex flex-col justify-center mx-auto container py-8">
-      <div className="items-center w-full h-auto text-center" id="home-page-video">
+      <div
+        className="items-center w-full h-auto text-center"
+        id="home-page-video"
+      >
         {title && (
           <h3
             className="font-tuner inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left mb-6"
