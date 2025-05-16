@@ -22,14 +22,14 @@
             {
               "label": "Book a Demo",
               "icon": false,
-              "color": "orange",
+              "color": "blueOutline",
               "size": "medium",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
             },
             {
               "label": "npx create-tina-app@latest",
-              "clickedOnText": "",
+              "infoText": "Run this NPX command, pick a starter template, and have your site live in minutes. [Learn More](/docs/introduction/using-starter)\n",
               "_template": "codeButton"
             }
           ],
@@ -257,6 +257,19 @@
       "_template": "carouselFeature"
     },
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "altText": "Getting Started with NPX",
+      "title": "Tired of Lengthy Set-up Processes?",
+      "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
+      "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
+      "_template": "videoEmbed"
+    },
+    {
+      "_template": "events"
+    },
+    {
       "features": [
         {
           "headline": "Talk to a Tina Expert",
@@ -282,9 +295,6 @@
         }
       ],
       "_template": "features"
-    },
-    {
-      "_template": "events"
     },
     {
       "blockSettings": {

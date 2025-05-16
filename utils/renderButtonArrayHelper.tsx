@@ -19,7 +19,6 @@ const RenderButton = ({ button, index }) => {
           key={index}
           id={button.id}
           label={button.label}
-          clickedOnText={button?.clickedOnText}
         >
           {button.children}
         </CodeButton>
