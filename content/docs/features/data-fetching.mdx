@@ -74,6 +74,29 @@ If you're using SSG, creating a new page in TinaCMS means the content updates in
      * **Other Frameworks:** Look for features like "**generate on demand**," "**incremental builds**," or dynamic routing in your framework's documentation. These allow the framework to build the page when it's first requested or use client-side rendering.
 3. **Incremental Static Regeneration (ISR):**
    * Supported by frameworks like Next.js, ISR allows pages to be generated or updated after the initial build, either on a timer or on the first request, without a full site rebuild.
+## Fetching Content Across Branches in TinaCMS
+
+For server-rendered pages in TinaCMS, you can dynamically fetch content from the active editorial or preview branch by passing the active branch name stored in the `x-branch` cookie as a header when querying content.
+
+To retrieve cookies in Next.js, refer to the [Next.js cookies documentation](https://nextjs.org/docs/app/api-reference/functions/cookies).
+
+### Example Implementation
+
+```typescript
+const data = await client.queries.post(
+  {
+    relativePath: `${params.filename?.join('/')}.md`,
+  },
+  {
+    fetchOptions: {
+      headers: {
+        /* Retrieve the active branch from cookie */
+        'x-branch': cookieStore.get('x-branch')?.value, 
+      },
+    },
+  }
+);
+```
 
 ## The Local Filesystem-based Content API
 
