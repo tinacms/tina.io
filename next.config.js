@@ -137,22 +137,22 @@ const config = {
         permanent: true,
       },
       {
-        source: '/docs/errors/faq/',
+        source: '/docs/errors/faq/:path*',
         destination: '/docs/introduction/faq/#common-tinacloud-errors',
         permanent: true,
       },
       {
-        source: '/faq/',
+        source: '/faq/:path*',
         destination: '/docs/introduction/faq',
         permanent: true,
       },
       {
-        source: '/docs/tina-cloud/faq/',
+        source: '/docs/tina-cloud/faq/:path*',
         destination: '/docs/introduction/faq',
         permanent: true,
       },
       {
-        source: '/docs/tina-cloud/faq',
+        source: '/docs/tina-cloud/faq/:path*',
         destination: '/docs/introduction/faq',
         permanent: true,
       },
@@ -172,8 +172,8 @@ const config = {
         permanent: true,
       },
       {
-        source: '/docs/tina-cloud/alpha-faq/',
-        destination: '/docs/tina-cloud/faq/',
+        source: '/docs/tina-cloud/alpha-faq/:path*',
+        destination: '/docs/tina-cloud/faq',
         permanent: true,
       },
       {
@@ -503,7 +503,7 @@ const config = {
         permanent: true,
       },
       {
-        source: '/docs/tina-cloud/beta-faq/',
+        source: '/docs/tina-cloud/beta-faq/:path*',
         destination: '/docs/tina-cloud/alpha-faq',
         permanent: true,
       },
@@ -718,7 +718,7 @@ const config = {
         permanent: true,
       },
       {
-        source: '/docs/getting-started/faq/',
+        source: '/docs/getting-started/faq/:path*',
         destination: '/docs/tina-cloud/faq/',
         permanent: true,
       },
@@ -849,17 +849,17 @@ const config = {
         permanent: true,
       },
       {
-        source: '/faq/',
+        source: '/faq/:path*',
         destination: '/docs/introduction/faq',
         permanent: true,
       },
       {
-        source: '/guides/',
+        source: '/guides/:path*',
         destination: '/docs/guides/',
         permanent: true,
       },
       {
-        source: '/guides/next-js/internationalization/',
+        source: '/guides/next-js/internationalization/:path*',
         destination: '/docs/guides/nextjs-internationalization',
         permanent: true,
       },
