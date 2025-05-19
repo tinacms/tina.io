@@ -1,7 +1,7 @@
 ---
 id: /docs/features/data-fetching
 title: Content API Overview
-last_edited: '2025-03-26T03:56:47.644Z'
+last_edited: '2025-05-19T01:42:14.730Z'
 next: content/docs/contextual-editing/overview.mdx
 previous: content/docs/schema.mdx
 ---
@@ -60,66 +60,7 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
 
 > For more information on manually writing queries for your specific schema, check out our ["Writing Custom Queries"](/docs/data-fetching/custom-queries/#writing-inline-queries) docs.
 
-Okay, you're right, it can definitely be more concise and to the point. Let's trim it down.
-
-Here's a more direct version of that section:
-
-***
-
-**Introduction**
-With Tina, your content is stored in Git along with your codebase. Tina provides a Content API in front of your repo-based content, so that you can interact with your files as if they're in a database.
-You can:
-
-* Query content for a given collection
-* Apply filters, sorting, pagination, etc
-* Query your content based on relational fields.
-
-To interface with the API, you can use Tina's type-safe client for data-fetching, or manually write custom GraphQL queries and hit the API yourself.
-
-**Making requests with the Tina Client**
-The Tina client is the easiest way to fetch your site's content. The client can be configured the `tina/config.<js|ts>` in the `defineConfig` function.
-
-*Note: `token`, `clientId` and `branch` are not used in local-mode. To setup these values for production see this doc*
-
-```javascript
-// tina/config.{js,ts,tsx}
-export default defineConfig({
-  schema,
-  token: '***', // Not needed in local-mode
-  clientId: '***', // Not needed in local-mode
-  branch: 'main', // Not needed in local-mode
-});
-```
-
-When working locally, the client is built with the local url (`http://localhost:4001/graphql`). When in production mode, `clientId`, `branch` and `token` are used to query TinaCloud.
-
-Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
-
-```javascript
-import { client } from '../[pathToTina]/tina/__generated__/client';
-
-const myPost = await client.queries.post({
-  relativePath: 'HelloWorld.md',
-});
-
-console.log(myPost.data.title);
-```
-
-The above `client.queries.post` query is not built-in to Tina's API. This is an example of a query based on your defined schema, (where you have a "post" collection defined).
-
-On a page that displays a list of posts, you can fetch the posts like so:
-
-```javascript
-const postsResponse = await client.queries.postConnection();
-const posts = postsResponse.data.postConnection.edges.map((post) => {
-  return { slug: post.node._sys.filename };
-});
-// This would return an array like: [ { slug: 'HelloWorld.md'}, /*...*/ ]
-```
-
-For more information on manually writing queries for your specific schema, check out our "Writing Custom Queries" docs.
-
-**Handling New Pages with Static Site Generation (SSG)**
+## Handling New Pages with Static Site Generation (SSG)
 
 If you're using SSG, creating a new page in TinaCMS means the content updates in TinaCloud and your Git repository instantly. However, your live site won't show this new page immediately, often resulting in a 404 error. This is because SSG sites pre-build all pages at deployment time; your server doesn't know about the new page until your site is rebuilt.
 
