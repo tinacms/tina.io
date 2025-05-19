@@ -62,7 +62,7 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
 
 ## Handling New Pages with Static Site Generation (SSG)
 
-If you're using SSG, creating a new page in TinaCMS means the content updates in TinaCloud and your Git repository instantly. However, your live site won't show this new page immediately, often resulting in a 404 error. This is because SSG sites pre-build all pages at deployment time; your server doesn't know about the new page until your site is rebuilt.
+If you're using SSG, creating a new page in TinaCMS means the content updates in TinaCloud and your Git repository instantly. However, your site (based off `main` or another branch) won't show this new page immediately, often resulting in a 404 error. This is because SSG sites pre-build all pages at deployment time; your server doesn't know about the new page until your site is rebuilt.
 
 **Solutions for New SSG Pages:**
 
