@@ -195,8 +195,8 @@ importers:
         specifier: ^4.12.0
         version: 4.12.0(react@18.3.1)
       react-instantsearch-core:
-        specifier: ^7.15.7
-        version: 7.15.7(algoliasearch@4.24.0)(react@18.3.1)
+        specifier: ^6.40.4
+        version: 6.40.4(algoliasearch@4.24.0)(react@18.3.1)
       react-instantsearch-dom:
         specifier: ^6.40.4
         version: 6.40.4(algoliasearch@4.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -3309,9 +3309,6 @@ packages:
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
 
-  '@types/dom-speech-recognition@0.0.1':
-    resolution: {integrity: sha512-udCxb8DvjcDKfk1WTBzDsxFbLgYxmQGKrE/ricoMqHRNjSlSUCcamVTA5lIQqzY10mY5qCY0QDwBfFEwhfoDPw==}
-
   '@types/draco3d@1.4.10':
     resolution: {integrity: sha512-AX22jp8Y7wwaBgAixaSvkoG4M/+PlAcm3Qs4OW8yT9DM4xUpWKeFhLueTAyZF39pviAdcDdeJoACapiAceqNcw==}
 
@@ -3336,9 +3333,6 @@ packages:
   '@types/geojson@7946.0.16':
     resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
 
-  '@types/google.maps@3.58.1':
-    resolution: {integrity: sha512-X9QTSvGJ0nCfMzYOnaVs/k6/4L+7F5uCS+4iUmkLEls6J9S/Phv+m/i3mDeyc49ZBgwab3EFO1HEoBY7k98EGQ==}
-
   '@types/graceful-fs@4.1.9':
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
 
@@ -3347,9 +3341,6 @@ packages:
 
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
-
-  '@types/hogan.js@3.0.5':
-    resolution: {integrity: sha512-/uRaY3HGPWyLqOyhgvW9Aa43BNnLZrNeQxl2p8wqId4UHMfPKolSB+U7BlZyO1ng7MkLnyEAItsBzCG0SDhqrA==}
 
   '@types/hoist-non-react-statics@3.3.6':
     resolution: {integrity: sha512-lPByRJUer/iN/xa4qpyL0qmL11DqNW81iU/IG1S3uvRUq4oKagz8VCxZjiWkumgt66YT3vOdDgZ0o32sGKtCEw==}
@@ -4428,9 +4419,6 @@ packages:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
     deprecated: Use your platform's native atob() and btoa() methods instead
 
-  abbrev@1.1.1:
-    resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
-
   abort-controller@3.0.0:
     resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
     engines: {node: '>=6.5'}
@@ -4513,11 +4501,6 @@ packages:
 
   algoliasearch-helper@3.24.1:
     resolution: {integrity: sha512-knYRACqLH9UpeR+WRUrBzBFR2ulGuOjI2b525k4PNeqZxeFMHJE7YcL7s6Jh12Qza0rtHqZdgHMfeuaaAkf4wA==}
-    peerDependencies:
-      algoliasearch: '>= 3.1 < 6'
-
-  algoliasearch-helper@3.25.0:
-    resolution: {integrity: sha512-vQoK43U6HXA9/euCqLjvyNdM4G2Fiu/VFp4ae0Gau9sZeIKBPvUPnXfLYAe65Bg7PFuw03coeu5K6lTPSXRObw==}
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
 
@@ -6564,18 +6547,11 @@ packages:
   hls.js@1.5.20:
     resolution: {integrity: sha512-uu0VXUK52JhihhnN/MVVo1lvqNNuhoxkonqgO3IpjvQiGpJBdIXMGkofjQb/j9zvV7a1SW8U9g1FslWx/1HOiQ==}
 
-  hogan.js@3.0.2:
-    resolution: {integrity: sha512-RqGs4wavGYJWE07t35JQccByczmNUXQT0E12ZYV1VKYu5UiAU9lsos/yBAcf840+zrUQQxgVduCR5/B8nNtibg==}
-    hasBin: true
-
   hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
 
   hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
-
-  htm@3.1.1:
-    resolution: {integrity: sha512-983Vyg8NwUE7JkZ6NmOqpCZ+sh1bKv2iYTlUkzlWmA5JD2acKoxd4KVxbMmxX/85mtfdnDmTFoNKcg5DGAvxNQ==}
 
   html-encoding-sniffer@1.0.2:
     resolution: {integrity: sha512-71lZziiDnsuabfdYiUeWdCVyKuqwWi23L8YeIgV9jSSZHCtb6wB1BKWooH7L3tn4/FuZJMVWyNaIDr4RGmaSYw==}
@@ -6684,14 +6660,6 @@ packages:
 
   inline-style-prefixer@7.0.1:
     resolution: {integrity: sha512-lhYo5qNTQp3EvSSp3sRvXMbVQTLrvGV6DycRMJ5dm2BLMiJ30wpXKdDdgX+GmJZ5uQMucwRKHamXSst3Sj/Giw==}
-
-  instantsearch-ui-components@0.11.1:
-    resolution: {integrity: sha512-ZqUbJYYgObQ47J08ftXV1KNC1vdEoiD4/49qrkCdW46kRzLxLgYXJGuEuk48DQwK4aBtIoccgTyfbMGfcqNjxg==}
-
-  instantsearch.js@4.78.3:
-    resolution: {integrity: sha512-0i7vyX9jHEIKSfhu+CZHL/ySnbMAe7e98YUJiZX5D7AiXo2WvAPbnV/3CXIPR0whNWOXKGvlv7Ji7Pt4Yrn+Aw==}
-    peerDependencies:
-      algoliasearch: '>= 3.1 < 6'
 
   internal-slot@1.1.0:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
@@ -8081,10 +8049,6 @@ packages:
   mkdirp-classic@0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
 
-  mkdirp@0.3.0:
-    resolution: {integrity: sha512-OHsdUcVAQ6pOtg5JYWpCBo9W/GySVuwvP9hueRMW7UqshC0tbfzLv8wjySTPm3tfUZ/21CE9E1pJagOA91Pxew==}
-    deprecated: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
-
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
@@ -8285,10 +8249,6 @@ packages:
 
   non-layered-tidy-tree-layout@2.0.2:
     resolution: {integrity: sha512-gkXMxRzUH+PB0ax9dUN0yYF0S25BqeAYqhgMaLUFmpXLEk7Fcu8f4emJuOAY0V8kjDICxROIKsTAKsV/v355xw==}
-
-  nopt@1.0.10:
-    resolution: {integrity: sha512-NWmpvLSqUrgrAC9HCuxEvb+PSloHpqVu+FqcO4eeF2h5qYRhA7ev6KvelyQAKtegUbC6RypJnlEOhd8vloNKYg==}
-    hasBin: true
 
   normalize-package-data@2.5.0:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
@@ -8731,9 +8691,6 @@ packages:
   potpack@1.0.2:
     resolution: {integrity: sha512-choctRBIV9EMT9WGAZHn3V7t0Z2pMQyl0EZE6pFc/6ml3ssw7Dlf/oAOvFwjm1HVsqfQN8GfeFyJ+d8tRzqueQ==}
 
-  preact@10.26.6:
-    resolution: {integrity: sha512-5SRRBinwpwkaD+OqlBDeITlRgvd8I8QlxHJw9AxSdMNV6O+LodN9nUyYGpSF7sadHjs6RzeFShMexC6DbtWr9g==}
-
   prebuild-install@7.1.3:
     resolution: {integrity: sha512-8Mf2cbV7x1cXPUILADGI3wuhfqWvtiLA1iclTDbFRZkgRQS0NqsPZphna9V+HyTEadheuPmjaJMsbzKQFOzLug==}
     engines: {node: '>=10'}
@@ -9023,12 +8980,6 @@ packages:
     peerDependencies:
       algoliasearch: '>= 3.1 < 5'
       react: '>= 16.3.0 < 19'
-
-  react-instantsearch-core@7.15.7:
-    resolution: {integrity: sha512-9FOHY66VMD0FnxF1dT9g5eEPmGybeKwVAa/T2JX1AqLJCQMHysjEl6qH4+/F8M82KdCqzBof4mpFosPiAVuruA==}
-    peerDependencies:
-      algoliasearch: '>= 3.1 < 6'
-      react: '>= 16.8.0 < 20'
 
   react-instantsearch-dom@6.40.4:
     resolution: {integrity: sha512-Oy8EKEOg/dfTE8tHc7GZRlzUdbZY4Mxas1x2OtvSNui+YAbIWafIf1g98iOGyVTB2qI5WH91YyUJTLPNfLrs6Q==}
@@ -9527,9 +9478,6 @@ packages:
   search-index@4.0.0:
     resolution: {integrity: sha512-D3MRIWXO5yF5c33B1DLh8yqWvJu4gaH9gaKUNeWIZMkwb/+j2y/wOe1OB1dyoFvBw3aUCxYZQJJDZK02HOGrDQ==}
     engines: {node: '>=12'}
-
-  search-insights@2.17.3:
-    resolution: {integrity: sha512-RQPdCYTa8A68uM2jwxoY842xDhvx3E5LFL1LxvxCNMev4o5mLuokczhzjAgGwUZBAmOKZknArSxLKmXtIi2AxQ==}
 
   section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
@@ -14767,8 +14715,6 @@ snapshots:
     dependencies:
       '@types/ms': 2.1.0
 
-  '@types/dom-speech-recognition@0.0.1': {}
-
   '@types/draco3d@1.4.10': {}
 
   '@types/eslint-scope@3.7.7':
@@ -14803,8 +14749,6 @@ snapshots:
 
   '@types/geojson@7946.0.16': {}
 
-  '@types/google.maps@3.58.1': {}
-
   '@types/graceful-fs@4.1.9':
     dependencies:
       '@types/node': 22.15.19
@@ -14816,8 +14760,6 @@ snapshots:
   '@types/hast@3.0.4':
     dependencies:
       '@types/unist': 3.0.3
-
-  '@types/hogan.js@3.0.5': {}
 
   '@types/hoist-non-react-statics@3.3.6':
     dependencies:
@@ -16105,8 +16047,6 @@ snapshots:
 
   abab@2.0.6: {}
 
-  abbrev@1.1.1: {}
-
   abort-controller@3.0.0:
     dependencies:
       event-target-shim: 5.0.1
@@ -16189,11 +16129,6 @@ snapshots:
       algoliasearch: 4.24.0
 
   algoliasearch-helper@3.24.1(algoliasearch@4.24.0):
-    dependencies:
-      '@algolia/events': 4.0.1
-      algoliasearch: 4.24.0
-
-  algoliasearch-helper@3.25.0(algoliasearch@4.24.0):
     dependencies:
       '@algolia/events': 4.0.1
       algoliasearch: 4.24.0
@@ -18604,18 +18539,11 @@ snapshots:
 
   hls.js@1.5.20: {}
 
-  hogan.js@3.0.2:
-    dependencies:
-      mkdirp: 0.3.0
-      nopt: 1.0.10
-
   hoist-non-react-statics@3.3.2:
     dependencies:
       react-is: 16.13.1
 
   hosted-git-info@2.8.9: {}
-
-  htm@3.1.1: {}
 
   html-encoding-sniffer@1.0.2:
     dependencies:
@@ -18708,26 +18636,6 @@ snapshots:
   inline-style-prefixer@7.0.1:
     dependencies:
       css-in-js-utils: 3.1.0
-
-  instantsearch-ui-components@0.11.1:
-    dependencies:
-      '@babel/runtime': 7.26.7
-
-  instantsearch.js@4.78.3(algoliasearch@4.24.0):
-    dependencies:
-      '@algolia/events': 4.0.1
-      '@types/dom-speech-recognition': 0.0.1
-      '@types/google.maps': 3.58.1
-      '@types/hogan.js': 3.0.5
-      '@types/qs': 6.9.18
-      algoliasearch: 4.24.0
-      algoliasearch-helper: 3.25.0(algoliasearch@4.24.0)
-      hogan.js: 3.0.2
-      htm: 3.1.1
-      instantsearch-ui-components: 0.11.1
-      preact: 10.26.6
-      qs: 6.5.3
-      search-insights: 2.17.3
 
   internal-slot@1.1.0:
     dependencies:
@@ -20630,8 +20538,6 @@ snapshots:
 
   mkdirp-classic@0.5.3: {}
 
-  mkdirp@0.3.0: {}
-
   mkdirp@0.5.6:
     dependencies:
       minimist: 1.2.8
@@ -20848,10 +20754,6 @@ snapshots:
   node-releases@2.0.19: {}
 
   non-layered-tidy-tree-layout@2.0.2: {}
-
-  nopt@1.0.10:
-    dependencies:
-      abbrev: 1.1.1
 
   normalize-package-data@2.5.0:
     dependencies:
@@ -21290,8 +21192,6 @@ snapshots:
 
   potpack@1.0.2: {}
 
-  preact@10.26.6: {}
-
   prebuild-install@7.1.3:
     dependencies:
       detect-libc: 2.0.3
@@ -21643,15 +21543,6 @@ snapshots:
       prop-types: 15.8.1
       react: 18.3.1
       react-fast-compare: 3.2.2
-
-  react-instantsearch-core@7.15.7(algoliasearch@4.24.0)(react@18.3.1):
-    dependencies:
-      '@babel/runtime': 7.26.7
-      algoliasearch: 4.24.0
-      algoliasearch-helper: 3.25.0(algoliasearch@4.24.0)
-      instantsearch.js: 4.78.3(algoliasearch@4.24.0)
-      react: 18.3.1
-      use-sync-external-store: 1.4.0(react@18.3.1)
 
   react-instantsearch-dom@6.40.4(algoliasearch@4.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -22309,8 +22200,6 @@ snapshots:
       term-vector: 1.0.1
     transitivePeerDependencies:
       - abstract-level
-
-  search-insights@2.17.3: {}
 
   section-matter@1.0.0:
     dependencies:
