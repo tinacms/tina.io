@@ -19,6 +19,32 @@ export const docsZhCollection = {
   },
   fields: [
     {
+      name: 'cmsUsageWarning',
+      label: 'CMS Usage Warning',
+      type: 'string',
+      ui: {
+        component: wrapFieldsWithMeta(({ input }) => {
+          return (
+            <div>
+              {input.value && (
+                <div className="bg-red-500/20 text-white p-4 rounded-md m-4">
+                  <p>
+                    ⚠️ This page is included in the CMS application in error
+                    messages.
+                    <br />
+                    Be careful to preserve title fragments, slug and other
+                    metadata when editing this document.
+                    <br />
+                    URL: {input.value}
+                  </p>
+                </div>
+              )}
+            </div>
+          );
+        }),
+      },
+    },
+    {
       ...seoInformation,
       description:
         'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below',
