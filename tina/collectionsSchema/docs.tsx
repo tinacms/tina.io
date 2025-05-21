@@ -1,3 +1,4 @@
+import React from 'react';
 import { Template, wrapFieldsWithMeta } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
@@ -23,25 +24,36 @@ export const docsCollection = {
       label: 'CMS Usage Warning',
       type: 'string',
       ui: {
-        component: wrapFieldsWithMeta(({ input }) => {
+        component: ({ input }) => {
           return (
             <div>
               {input.value && (
-                <div className="bg-red-500/20 text-white p-4 rounded-md m-4">
+                <div className="bg-gradient-to-b from-red-800 to-black text-white p-4 rounded-md my-4 text-wrap wrap-break-word w-full text-xm">
                   <p>
                     ⚠️ This page is included in the CMS application in error
                     messages.
                     <br />
-                    Be careful to preserve title fragments, slug and other
-                    metadata when editing this document.
                     <br />
-                    URL: {input.value}
+                    <div className="opacity-90">
+                      Be careful to preserve <b>title fragments</b>, <b>slug</b>
+                      and other metadata when editing this document.
+                      <br />
+                      URL:{' '}
+                      <a
+                        href={input.value}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-200 underline hover:text-blue-500"
+                      >
+                        GitHub
+                      </a>
+                    </div>
                   </p>
                 </div>
               )}
             </div>
           );
-        }),
+        },
       },
     },
     {
