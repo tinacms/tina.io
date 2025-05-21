@@ -13,13 +13,13 @@ export const docsZhCollection = {
       name: 'next',
       label: 'Next page',
       type: 'reference',
-      collections: ['docZh', 'examples'],
+      collections: ['docZh', 'doc'],
     },
     {
       name: 'previous',
       label: 'Previous page',
       type: 'reference',
-      collections: ['docZh', 'examples'],
+      collections: ['docZh', 'doc'],
     },
   ],
 };
