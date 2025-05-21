@@ -519,7 +519,7 @@ const config = {
       },
       {
         source: '/docs/tina-cloud/client',
-        destination: '/docs/tinacms-context',
+        destination: '/docs/contextual-editing/overview',
         permanent: true,
       },
       {
@@ -599,7 +599,7 @@ const config = {
       },
       {
         source: '/docs/media',
-        destination: '/docs/reference/media',
+        destination: '/docs/reference/media/overview',
         permanent: true,
       },
       {
@@ -769,11 +769,6 @@ const config = {
         permanent: true,
       },
       {
-        source: '/faq/:path*',
-        destination: '/docs/introduction/faq',
-        permanent: true,
-      },
-      {
         source: '/guides/:path*',
         destination: '/docs/guides',
         permanent: true,
@@ -781,6 +776,46 @@ const config = {
       {
         source: '/guides/next-js/internationalization/:path*',
         destination: '/docs/guides/nextjs-internationalization',
+        permanent: true,
+      },
+      {
+        source: '/faq/:path*',
+        destination: '/docs/introduction/faq',
+        permanent: true,
+      },
+      {
+        source: '/docs/editing/mdx',
+        destination: '/docs/editing/markdown',
+        permanent: true,
+      },
+      {
+        source: '/docs/media-dos',
+        destination: '/docs/reference/media/external/do-spaces',
+        permanent: true,
+      },
+      {
+        source: '/docs/media-s3',
+        destination: '/docs/reference/media/external/s3',
+        permanent: true,
+      },
+      {
+        source: '/docs/media',
+        destination: '/docs/reference/media/overview',
+        permanent: true,
+      },
+      {
+        source: '/docs/reference/media/external/azure',
+        destination: '/docs/reference/media/external/s3',
+        permanent: true,
+      },
+      {
+        source: '/docs/reference/media',
+        destination: '/docs/reference/media/overview',
+        permanent: true,
+      },
+      {
+        source: '/docs/tinacms-context',
+        destination: '/docs/contextual-editing/overview',
         permanent: true,
       },
     ];

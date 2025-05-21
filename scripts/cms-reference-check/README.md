@@ -52,7 +52,7 @@ This script checks which documentation URLs found by `find-docs-references.sh` a
 #### Usage
 
 ```bash
-./find-missing-docs.sh
+./scripts/cms-reference-check/find-missing-docs.sh
 ```
 
 #### How it works
@@ -82,7 +82,7 @@ This script adds `cmsUsageWarning` fields to document frontmatter for pages that
 #### Usage
 
 ```bash
-./apply-cms-usage-warnings.sh
+./scripts/cms-reference-check/apply-cms-usage-warnings.sh
 ```
 
 #### How it works

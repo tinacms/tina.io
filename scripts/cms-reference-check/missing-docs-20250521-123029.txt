@@ -1,0 +1,64 @@
+# Missing Documentation Pages
+# Generated on: Wed May 21 12:30:29 AEST 2025
+# Based on references from: docs-references-20250520-145646.txt
+
+The following URLs are referenced in the CMS codebase but don't exist in the docs:
+-----------------------------------------
+
+tina.io/docs/advanced/extending-tina
+REDIRECTED → /docs/extending-tina/overview
+✅ Redirect target exists
+
+tina.io/docs/editing/mdx
+REDIRECTED → /docs/editing/markdown
+✅ Redirect target exists
+
+tina.io/docs/errors/faq
+REDIRECTED → /docs/introduction/faq/
+(Matched by wildcard pattern)
+✅ Redirect target exists
+
+tina.io/docs/media-cloudinary
+REDIRECTED → /docs/reference/media/external/cloudinary
+(Matched by wildcard pattern)
+✅ Redirect target exists
+
+tina.io/docs/media-dos
+REDIRECTED → /docs/reference/media/external/do-spaces
+✅ Redirect target exists
+
+tina.io/docs/media-s3
+REDIRECTED → /docs/reference/media/external/s3
+✅ Redirect target exists
+
+tina.io/docs/media
+REDIRECTED → /docs/reference/media
+❌ Redirect target does not exist
+
+tina.io/docs/plugins/fields
+REDIRECTED → /docs/reference/fields
+✅ Redirect target exists
+
+tina.io/docs/reference/media/external/azure
+REDIRECTED → /docs/reference/media/external/s3
+✅ Redirect target exists
+
+tina.io/docs/tina-cloud/client
+REDIRECTED → /docs/tinacms-context
+❌ Redirect target does not exist
+
+tina.io/docs/tina-cloud/faq
+REDIRECTED → /docs/introduction/faq
+(Matched by wildcard pattern)
+✅ Redirect target exists
+
+-----------------------------------------
+Broken Redirect Details:
+
+-----------------------------------------
+Summary:
+  - Total unique URLs: 47
+  - Found in docs: 36
+  - Redirected in next.config.js: 11
+    - With broken targets: 2
+  - Missing and not redirected: 0
