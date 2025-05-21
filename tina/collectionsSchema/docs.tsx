@@ -35,7 +35,7 @@ export const docsCollection = {
                     <br />
                     <br />
                     <div className="opacity-90">
-                      Be careful to preserve <b>title fragments</b>, <b>slug</b>
+                      Be careful to preserve <b>title fragments</b>, <b>slug</b>{' '}
                       and other metadata when editing this document.
                       <br />
                       URL:{' '}
