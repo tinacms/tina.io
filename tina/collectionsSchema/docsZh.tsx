@@ -5,4 +5,21 @@ export const docsZhCollection = {
   name: 'docZh',
   label: 'Chinese Docs',
   path: 'content/docs-zh',
+  fields: [
+    ...docsCollection.fields.filter(
+      (field) => field.name !== 'next' && field.name !== 'previous'
+    ),
+    {
+      name: 'next',
+      label: 'Next page',
+      type: 'reference',
+      collections: ['docZh', 'examples'],
+    },
+    {
+      name: 'previous',
+      label: 'Previous page',
+      type: 'reference',
+      collections: ['docZh', 'examples'],
+    },
+  ],
 };
