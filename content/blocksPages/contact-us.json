@@ -1,0 +1,12 @@
+{
+  "blocks": [
+    {
+      "items": [
+        {
+          "logo": "/events/Copenhagen-event.webp"
+        }
+      ],
+      "_template": "logoGrid"
+    }
+  ]
+}
