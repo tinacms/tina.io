@@ -29,7 +29,6 @@
             },
             {
               "label": "npx create-tina-app@latest",
-              "infoText": "Run this NPX command, pick a starter template, and have your site live in minutes. [Learn More](/docs/introduction/using-starter)\n",
               "_template": "codeButton"
             }
           ],
@@ -440,7 +439,7 @@
       "features": [
         {
           "headline": "Avoid Mistakes with Editorial Workflow",
-          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
+          "text": "With the editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
           "buttons": [
             {
               "label": "Editorial Workflow",
