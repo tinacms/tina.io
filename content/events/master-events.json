@@ -109,7 +109,9 @@
       "timezone": 10,
       "location": "Newcastle ",
       "image": "/events/newcastle.png",
-      "link": "https://slashnew.tech/"
+      "link": "https://slashnew.tech/",
+      "markerLAT": 151,
+      "markerLONG": 32
     }
   ]
 }
