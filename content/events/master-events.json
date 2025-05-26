@@ -107,7 +107,9 @@
       "startTime": "2025-05-26T09:00:00.000Z",
       "endDate": "2025-05-28T00:00:00.000Z",
       "timezone": 10,
-      "location": "Newcastle "
+      "location": "Newcastle ",
+      "image": "/events/newcastle.png",
+      "link": "https://slashnew.tech/"
     }
   ]
 }
