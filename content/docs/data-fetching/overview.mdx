@@ -1,7 +1,7 @@
 ---
 id: /docs/data-fetching/overview
 title: Common Queries
-last_edited: '2025-03-26T03:56:55.695Z'
+last_edited: '2025-05-01T04:09:18.248Z'
 next: content/docs/data-fetching/custom-queries.mdx
 previous: ''
 ---
@@ -63,6 +63,20 @@ The following operator types are available for querying
 | before     | Before                   | datetime                         |
 
 > Only `gt`, `gte`, `lt`, `lte`, `after`, `before` may be used in ternary conditions.
+
+#### Filtering on Filename (\_sys)
+
+Currently, the only way to filter documents by filename is by filtering an existing collection of documents via **code**.
+
+For instance, to filter an array of posts to only include the file named `file-name-i-want`, you could use the following:
+
+```js
+const allPosts = posts?.data?.postConnection?.edges.filter(
+  (post) => post.node._sys.filename === "file-name-i-want"
+);
+```
+
+> Note: When using the auto-generated `<collection-name>Connection`, the query will only apply to the document's fields, not the `_sys` properties. Filtering in code as shown above is a suitable alternative.
 
 ### Sorting
 
