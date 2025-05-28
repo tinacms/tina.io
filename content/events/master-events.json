@@ -105,13 +105,13 @@
       "headline": "/NEW Newcastle",
       "startDate": "2025-05-28T00:00:00.000Z",
       "startTime": "2025-05-26T09:00:00.000Z",
-      "endDate": "2025-05-28T00:00:00.000Z",
+      "endDate": "2025-05-29T00:00:00.000Z",
       "timezone": 10,
       "location": "Newcastle ",
-      "image": "/events/newcastle.png",
+      "image": "/events/michael-x6b-ITN8ogc-unsplash.jpg",
       "link": "https://slashnew.tech/",
-      "markerLAT": 151,
-      "markerLONG": 32
+      "markerLAT": -27.81015,
+      "markerLONG": 210
     }
   ]
 }
