@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { BsDiscord } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
@@ -407,26 +407,6 @@ const SocialLink = ({ link, children }) => {
   );
 };
 
-// Helper function to get the correct SVG component based on the image path
-const getSocialIcon = (imagePath: string) => {
-  switch (imagePath) {
-    case '/svg/facebook-logo.svg':
-      return <FaceBookLogo className="w-6 h-auto fill-current" />;
-    case '/github-mark-white.svg':
-      return <GithubIconSvg className="w-7 h-auto fill-current" />;
-    case '/logo.svg':
-      return <XIconSvg className="w-7 h-auto fill-current" />;
-    case '/icon_clyde_white_RGB.svg':
-      return <BsDiscord className="w-7 h-auto fill-current" />;
-    case '/youtube-logo-white1.svg':
-      return <YoutubeIconSvg className="w-7 h-auto fill-current" />;
-    case '/LinkedIn_icon-white1.svg':
-      return <LinkedInIconSvg className="w-7 h-auto fill-current" />;
-    default:
-      return null;
-  }
-};
-
 interface FormData {
   firstName: string;
   lastName: string;
@@ -618,7 +598,13 @@ export function AppFooter({ footerData }) {
           <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0">
             {socialLinks.map((socialLink, index) => (
               <SocialLink key={index} link={socialLink.href}>
-                {getSocialIcon(socialLink.image)}
+                <Image
+                  src={socialLink.image}
+                  alt={socialLink.label}
+                  width={14}
+                  height={14}
+                  className="w-6 h-auto !fill-current"
+                />
               </SocialLink>
             ))}
           </div>
