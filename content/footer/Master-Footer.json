@@ -1,5 +1,6 @@
 {
   "Column1": {
+    "header": "Product",
     "footerItem": [
       {
         "label": "Showcase",
@@ -29,6 +30,7 @@
     ]
   },
   "Column2": {
+    "header": "Resources",
     "footerItem": [
       {
         "label": "Blog",
@@ -152,12 +154,6 @@
   "Column4": {
     "footerItem": [
       {
-        "label": "Facebook",
-        "href": "https://www.facebook.com/profile.php?id=61572968406294",
-        "image": "/icons8-facebook-150.png",
-        "_template": "socialLink"
-      },
-      {
         "label": "GitHub",
         "href": "https://github.com/tinacms/tinacms",
         "image": "/github-mark-white.svg",
@@ -185,6 +181,12 @@
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/company/tinacms",
         "image": "/LinkedIn_icon-white1.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/profile.php?id=61572968406294",
+        "image": "/svg/facebook-logo.svg",
         "_template": "socialLink"
       },
       {

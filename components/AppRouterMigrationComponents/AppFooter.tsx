@@ -1,7 +1,7 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { BsDiscord } from 'react-icons/bs';
@@ -370,7 +370,7 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
       <div className="p-4">
         {item.children.map((subItem, index) => (
           <div key={index}>
-            <DynamicLink href={subItem.link} passHref>
+            <DynamicLink href={subItem.link || ''} passHref>
               <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
               </div>
@@ -386,7 +386,7 @@ export const LinkItem = ({ item }) => {
   const { id, link, label } = item;
 
   return (
-    <DynamicLink href={link} passHref>
+    <DynamicLink href={link || ''} passHref>
       <div className="inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px">
         {label}
       </div>
@@ -398,12 +398,33 @@ const SocialLink = ({ link, children }) => {
   return (
     <a
       className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 text-white font-tuner"
-      href={link}
+      href={link || ''}
       target="_blank"
+      rel="noopener noreferrer"
     >
       {children}
     </a>
   );
+};
+
+// Helper function to get the correct SVG component based on the image path
+const getSocialIcon = (imagePath: string) => {
+  switch (imagePath) {
+    case '/svg/facebook-logo.svg':
+      return <FaceBookLogo className="w-6 h-auto fill-current" />;
+    case '/github-mark-white.svg':
+      return <GithubIconSvg className="w-7 h-auto fill-current" />;
+    case '/logo.svg':
+      return <XIconSvg className="w-7 h-auto fill-current" />;
+    case '/icon_clyde_white_RGB.svg':
+      return <BsDiscord className="w-7 h-auto fill-current" />;
+    case '/youtube-logo-white1.svg':
+      return <YoutubeIconSvg className="w-7 h-auto fill-current" />;
+    case '/LinkedIn_icon-white1.svg':
+      return <LinkedInIconSvg className="w-7 h-auto fill-current" />;
+    default:
+      return null;
+  }
 };
 
 interface FormData {
@@ -412,7 +433,7 @@ interface FormData {
   email: string;
 }
 
-export function AppFooter() {
+export function AppFooter({ footerData }) {
   const pathName = usePathname();
   const isZhPath = pathName?.includes('/zh') || false;
   const [formData, setFormData] = useState<FormData>({
@@ -422,6 +443,10 @@ export function AppFooter() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
+  const socialLinks =
+    footerData.Column4.footerItem.filter(
+      (item) => item._template === 'socialLink'
+    ) || [];
 
   const currentFooterNav = isZhPath ? footerNavZh : footerNavEn;
   const currentFooterLinks = isZhPath ? footerLinksZh : footerLinksEn;
@@ -591,24 +616,11 @@ export function AppFooter() {
       <div className=" bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white ">
         <div className="max-w-7xl mx-auto flex justify-between flex-col lg:flex-row w-full lg:items-center py-8 gap-6 px-2 lg:px-8">
           <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0">
-            <SocialLink link="https://github.com/tinacms/tinacms">
-              <GithubIconSvg className="w-7 h-auto fill-current " />{' '}
-            </SocialLink>
-            <SocialLink link="https://x.com/tinacms">
-              <XIconSvg className="w-7 h-auto fill-current " />
-            </SocialLink>
-            <SocialLink link="https://discord.com/invite/zumN63Ybpf">
-              <BsDiscord className="w-7 h-auto fill-current" />{' '}
-            </SocialLink>
-            <SocialLink link="https://www.youtube.com/@TinaCMS">
-              <YoutubeIconSvg className="w-7 h-auto fill-current " />{' '}
-            </SocialLink>
-            <SocialLink link="https://www.linkedin.com/company/tinacms">
-              <LinkedInIconSvg className="w-7 h-auto fill-current " />{' '}
-            </SocialLink>
-            <SocialLink link="https://www.facebook.com/profile.php?id=61572968406294">
-              <FaceBookLogo className="w-6 h-auto fill-current " />{' '}
-            </SocialLink>
+            {socialLinks.map((socialLink, index) => (
+              <SocialLink key={index} link={socialLink.href}>
+                {getSocialIcon(socialLink.image)}
+              </SocialLink>
+            ))}
           </div>
           <div className="ml-5 flex drop-shadow-sm flex-wrap gap-6 md:ml-5">
             <div className="flex flex-wrap gap-x-6 gap-y-2">
@@ -646,7 +658,7 @@ export function AppFooter() {
 const FooterLink = ({ link, label }) => {
   return (
     <Link
-      href={link}
+      href={link || ''}
       className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap"
       passHref
     >

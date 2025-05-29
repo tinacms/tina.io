@@ -1,4 +1,6 @@
+import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import React from 'react';
+import client from 'tina/__generated__/client';
 import { AppFooter } from './AppFooter';
 import { AppNavBar } from './AppNavBar';
 import { LanguageSupportAlert } from './LanguageSupportAlert';
@@ -8,7 +10,21 @@ interface LayoutProps {
   color?: 'white' | 'secondary' | 'seafoam';
   sticky?: boolean;
 }
-export const SiteLayout = ({ children, color, sticky = true }: LayoutProps) => {
+
+const getFooterData = async () => {
+  const previewProps = await getJsonPreviewProps(
+    'content/footer/Master-Footer.json'
+  );
+  return previewProps;
+};
+
+export const SiteLayout = async ({
+  children,
+  color,
+  sticky = true,
+}: LayoutProps) => {
+  const previewProps = await getFooterData();
+  const footerData = previewProps.props.file.data;
   return (
     <>
       <div className="flex flex-col min-h-screen blob-bg font-sans bg-blob-bg bg-[length:100%_100%] bg-top bg-fixed">
@@ -17,7 +33,7 @@ export const SiteLayout = ({ children, color, sticky = true }: LayoutProps) => {
         </div>
         {/* TODO: consult with betty - if we want to add global gutters we can do it here easily */}
         <div className="flex flex-col flex-1">{children}</div>
-        <AppFooter />
+        <AppFooter footerData={footerData} />
         <LanguageSupportAlert />
       </div>
     </>
