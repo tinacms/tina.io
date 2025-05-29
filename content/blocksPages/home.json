@@ -8,7 +8,7 @@
     {
       "features": [
         {
-          "headline": "Sites, Docs and Llamas. No Dramas",
+          "headline": "Sites, Docs and Llamas. No Drama",
           "text": "TinaCMS is an open-source, headless CMS that supports Git - with built-in version control.",
           "buttons": [
             {
@@ -29,7 +29,6 @@
             },
             {
               "label": "npx create-tina-app@latest",
-              "infoText": "Run this NPX command, pick a starter template, and have your site live in minutes. [Learn More](/docs/introduction/using-starter)\n",
               "_template": "codeButton"
             }
           ],
