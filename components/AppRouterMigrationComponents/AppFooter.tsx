@@ -397,7 +397,7 @@ export const LinkItem = ({ item }) => {
 const SocialLink = ({ link, children }) => {
   return (
     <a
-      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 text-white font-tuner"
+      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 font-tuner"
       href={link || ''}
       target="_blank"
       rel="noopener noreferrer"
@@ -593,7 +593,7 @@ export function AppFooter({ footerData }) {
       </div>
 
       {/* Bottom */}
-      <div className=" bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white ">
+      <div className=" bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white">
         <div className="max-w-7xl mx-auto flex justify-between flex-col lg:flex-row w-full lg:items-center py-8 gap-6 px-2 lg:px-8">
           <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0">
             {socialLinks.map((socialLink, index) => (
@@ -603,7 +603,7 @@ export function AppFooter({ footerData }) {
                   alt={socialLink.label}
                   width={14}
                   height={14}
-                  className="w-6 h-auto !fill-current"
+                  className="w-6 h-auto"
                 />
               </SocialLink>
             ))}
