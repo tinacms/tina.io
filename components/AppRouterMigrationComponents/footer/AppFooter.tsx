@@ -8,10 +8,10 @@ import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
 
-import '../../styles/tailwind.css';
-import { addToMailchimp } from '../../utils';
-import { TinaIcon } from '../logo';
-import { DynamicLink } from '../ui';
+import '../../../styles/tailwind.css';
+import { addToMailchimp } from '../../../utils';
+import { TinaIcon } from '../../logo';
+import { DynamicLink } from '../../ui';
 
 const footerNavZh = [
   {

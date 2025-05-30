@@ -1,8 +1,8 @@
 import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import React from 'react';
 import client from 'tina/__generated__/client';
-import { AppFooter } from './AppFooter';
 import { AppNavBar } from './AppNavBar';
+import { AppFooter } from './footer/AppFooter';
 import { LanguageSupportAlert } from './LanguageSupportAlert';
 
 interface LayoutProps {
