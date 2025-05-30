@@ -160,8 +160,8 @@
         "_template": "socialLink"
       },
       {
-        "label": "Twitter",
-        "href": "https://twitter.com/tinacms",
+        "label": "X",
+        "href": "https://x.com/tinacms",
         "image": "/logo.svg",
         "_template": "socialLink"
       },
