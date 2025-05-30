@@ -356,7 +356,7 @@ const footerLinksZh = [
   },
 ];
 
-const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
+const LinkGroup = ({ item }: { item: { items: any[]; label } }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -368,7 +368,7 @@ const LinkGroup = ({ item }: { item: { children: any[]; label } }) => {
         {item.label}
       </summary>
       <div className="p-4">
-        {item.children.map((subItem, index) => (
+        {item.items.map((subItem, index) => (
           <div key={index}>
             <DynamicLink href={subItem.link || ''} passHref>
               <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
@@ -428,7 +428,9 @@ export function AppFooter({ footerData }) {
       (item) => item._template === 'socialLink'
     ) || [];
 
-  const currentFooterNav = isZhPath ? footerNavZh : footerNavEn;
+  const currentFooterNav = isZhPath
+    ? footerNavZh
+    : [footerData.Column1, footerData.Column2, footerData.Column3];
   const currentFooterLinks = isZhPath ? footerLinksZh : footerLinksEn;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -490,17 +492,17 @@ export function AppFooter({ footerData }) {
           </div>
           <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {currentFooterNav.map((item) => {
-              const { label, items } = item;
+              const { header, footerItem } = item;
               return (
                 <div
-                  key={label}
+                  key={header}
                   className="flex flex-col items-stretch justify-start gap-2"
                 >
                   <p className="uppercase text-orange-100 font-bold -mt-1">
-                    {label}
+                    {header}
                   </p>
-                  {items.map((item) => {
-                    return item.children ? (
+                  {footerItem.map((item) => {
+                    return item.items ? (
                       <LinkGroup key={item.label} item={item} />
                     ) : (
                       <LinkItem key={item.label} item={item} />
