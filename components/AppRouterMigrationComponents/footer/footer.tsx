@@ -11,6 +11,7 @@ import { footerLinksZh, footerNavZh } from './constants';
 import { SocialIcon } from './social-icon';
 import { SubscriptionForm } from './subscription-form';
 
+const linkStyles =
   'inline-block drop-shadow-sm relative opacity-90 hover:opacity-100 text-white uppercase text-lg lg:text-xl font-tuner transition duration-150 ease-out hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px';
 
 interface FooterItem {
