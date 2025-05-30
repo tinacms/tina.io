@@ -15,138 +15,138 @@ import { DynamicLink } from '../ui';
 
 const footerNavZh = [
   {
-    label: '产品',
-    items: [
+    header: '产品',
+    footerItem: [
       {
-        link: '/zh/showcase',
+        href: '/zh/showcase',
         label: '案例展示',
       },
       {
-        link: 'https://app.tina.io',
+        href: 'https://app.tina.io',
         label: 'TinaCloud',
       },
       {
-        link: '/docs',
+        href: '/docs',
         label: '产品介绍',
       },
       {
-        link: '/docs/product-tour',
+        href: '/docs/product-tour',
         label: '工作原理',
       },
       {
         label: '产品路线',
-        link: '/zh/roadmap',
+        href: '/zh/roadmap',
       },
     ],
   },
   {
-    label: '资源',
-    items: [
+    header: '资源',
+    footerItem: [
       {
         label: '博客',
-        link: '/blog',
+        href: '/blog',
       },
       {
         label: '示例',
-        link: '/examples',
+        href: '/examples',
       },
       {
         label: '产品对比',
-        link: '/zh/compare-tina',
+        href: '/zh/compare-tina',
       },
       {
         label: '技术支持',
-        link: '/docs/support',
+        href: '/docs/support',
       },
       {
-        link: '/media',
+        href: '/media',
         label: '媒体资源',
       },
     ],
   },
   {
     label: '',
-    items: [
+    footerItem: [
       {
         label: '最新动态',
-        children: [
+        items: [
           {
-            link: '/whats-new/tinacms',
+            href: '/whats-new/tinacms',
             label: 'TinaCMS',
           },
           {
-            link: '/whats-new/tinacloud',
+            href: '/whats-new/tinacloud',
             label: 'TinaCloud',
           },
         ],
       },
       {
         label: '应用场景',
-        children: [
+        items: [
           {
-            link: '/agencies',
+            href: '/agencies',
             label: '开发机构',
           },
           {
-            link: '/documentation',
+            href: '/documentation',
             label: '文档管理',
           },
           {
-            link: '/cms-for-teams',
+            href: '/cms-for-teams',
             label: '团队协作',
           },
           {
-            link: '/jamstack-cms',
+            href: '/jamstack-cms',
             label: 'Jamstack CMS',
           },
         ],
       },
       {
         label: '核心优势',
-        children: [
+        items: [
           {
-            link: '/mdx-cms',
+            href: '/mdx-cms',
             label: 'MDX支持',
           },
           {
-            link: '/markdown-cms',
+            href: '/markdown-cms',
             label: 'Markdown支持',
           },
           {
-            link: '/git-cms',
+            href: '/git-cms',
             label: 'Git集成',
           },
           {
-            link: '/editorial-workflow',
+            href: '/editorial-workflow',
             label: '编辑工作流',
           },
           {
-            link: '/flexible-cms',
+            href: '/flexible-cms',
             label: '高度定制',
           },
           {
-            link: '/seo',
+            href: '/seo',
             label: 'SEO优化',
           },
         ],
       },
       {
         label: '集成方案',
-        children: [
+        items: [
           {
-            link: '/astro',
+            href: '/astro',
             label: 'Astro',
           },
           {
-            link: '/hugo-cms',
+            href: '/hugo-cms',
             label: 'Hugo',
           },
           {
-            link: '/nextjs-cms',
+            href: '/nextjs-cms',
             label: 'NextJS',
           },
           {
-            link: '/jekyll-cms',
+            href: '/jekyll-cms',
             label: 'Jekyll',
           },
         ],
