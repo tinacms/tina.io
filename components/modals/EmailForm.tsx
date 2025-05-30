@@ -9,12 +9,6 @@ import { Button, Input } from '../ui';
 
 interface EmailFormProps {
   isFooter: boolean;
-  modalButton: {
-    label: string;
-    _template: string;
-    size: string;
-    color: string;
-  };
 }
 
 export const EmailForm = (props: EmailFormProps) => {
