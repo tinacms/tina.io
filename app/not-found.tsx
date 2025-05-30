@@ -2,7 +2,7 @@ import NotFoundClient from './not-found-client';
 
 export const metadata = {
   title: '404 - Page Not Found | TinaCMS',
-  description: "Sorry, we couldn't find what you were looking for.",
+  description: "We couldn't find your baby llama, check pen 404.",
 };
 
 export default function NotFound() {
