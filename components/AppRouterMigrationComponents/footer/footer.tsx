@@ -124,7 +124,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
 
   return (
     <div>
-      {/* Top */}
+      {/* Footer Top */}
       <div className="bg-[url('/svg/orange-bg.svg')] bg-cover bg-center">
         <div className="px-6 md:mx-auto max-w-7xl flex flex-col md:flex-row w-full justify-between items-start py-8 lg:py-16 lg:px-8">
           <div className="max-w-[15%] flex-1 drop-shadow-sm">
@@ -158,7 +158,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
         </div>
       </div>
 
-      {/* Bottom */}
+      {/* Footer Bottom */}
       <div className="bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white">
         <div className="max-w-7xl mx-auto flex justify-between flex-col lg:flex-row w-full lg:items-center py-8 gap-6 px-2 lg:px-8">
           <SocialIcon socialLinks={socialLinks} />
