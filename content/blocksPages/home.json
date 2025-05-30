@@ -29,7 +29,6 @@
             },
             {
               "label": "npx create-tina-app@latest",
-              "infoText": "Run this NPX command, pick a starter template, and have your site live in minutes. [Learn More](/docs/introduction/using-starter)\n",
               "_template": "codeButton"
             }
           ],
@@ -155,7 +154,7 @@
           "icon2": "FaClock",
           "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
           "button": {
-            "label": "READ MORE",
+            "label": "READ",
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
