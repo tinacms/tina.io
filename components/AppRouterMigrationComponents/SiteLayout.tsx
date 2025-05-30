@@ -1,4 +1,3 @@
-import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import React from 'react';
 import { AppNavBar } from './AppNavBar';
 import { Footer } from './footer/footer';
@@ -8,22 +7,15 @@ interface LayoutProps {
   children: any | any[];
   color?: 'white' | 'secondary' | 'seafoam';
   sticky?: boolean;
+  footerData: any;
 }
 
-const getFooterData = async () => {
-  const previewProps = await getJsonPreviewProps(
-    'content/footer/Master-Footer.json'
-  );
-  return previewProps;
-};
-
-export const SiteLayout = async ({
+export const SiteLayout = ({
   children,
   color,
   sticky = true,
+  footerData,
 }: LayoutProps) => {
-  const previewProps = await getFooterData();
-  const footerData = previewProps.props.file.data;
   return (
     <>
       <div className="flex flex-col min-h-screen blob-bg font-sans bg-blob-bg bg-[length:100%_100%] bg-top bg-fixed">
