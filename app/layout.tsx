@@ -1,3 +1,4 @@
+import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import { GoogleTagManager } from '@next/third-parties/google';
 import AdminLink from 'components/AppRouterMigrationComponents/AdminLink';
 import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner';
@@ -52,6 +53,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const previewProps = await getJsonPreviewProps(
+    'content/footer/Master-Footer.json'
+  );
+  const footerData = previewProps.props.file.data;
+
   return (
     <html lang="en">
       <head>
@@ -74,7 +80,7 @@ export default async function RootLayout({
           <AdminLink />
           <ConsentBanner />
           <TinaChatBot />
-          <SiteLayout>{children}</SiteLayout>
+          <SiteLayout footerData={footerData}>{children}</SiteLayout>
         </StyledComponentsRegistry>
         <Script
           id="hs-script-loader"
