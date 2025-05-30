@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export const SocialIcon = ({ socialLinks }) => {
   return (
-    <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0">
+    <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0 !items-center">
       {socialLinks.map((socialLink, index) => (
         <SocialLink key={index} link={socialLink.href}>
           <Image
