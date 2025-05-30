@@ -154,6 +154,36 @@
   "Column4": {
     "footerItem": [
       {
+        "label": "Security",
+        "href": "/security",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Telemetry",
+        "href": "/telemetry",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms-of-service",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Privacy",
+        "href": "/privacy-notice",
+        "_template": "stringItem"
+      },
+      {
+        "label": "License",
+        "href": "https://github.com/tinacms/tinacms/blob/master/LICENSE",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Support",
+        "href": "/docs/support",
+        "_template": "stringItem"
+      },
+      {
         "label": "GitHub",
         "href": "https://github.com/tinacms/tinacms",
         "image": "/github-mark-white.svg",

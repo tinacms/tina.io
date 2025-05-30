@@ -155,33 +155,6 @@ const footerNavZh = [
   },
 ] as const;
 
-const footerLinksEn = [
-  {
-    link: '/security',
-    label: 'Security',
-  },
-  {
-    link: '/telemetry',
-    label: 'Telemetry',
-  },
-  {
-    link: '/terms-of-service',
-    label: 'Terms of Service',
-  },
-  {
-    link: '/privacy-notice',
-    label: 'Privacy',
-  },
-  {
-    link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
-    label: 'License',
-  },
-  {
-    link: '/docs/support',
-    label: 'Support',
-  },
-];
-
 const footerLinksZh = [
   {
     link: '/security',
@@ -284,7 +257,11 @@ export function AppFooter({ footerData }) {
   const currentFooterNav = isZhPath
     ? footerNavZh
     : [footerData.Column1, footerData.Column2, footerData.Column3];
-  const currentFooterLinks = isZhPath ? footerLinksZh : footerLinksEn;
+  const currentFooterLinks = isZhPath
+    ? footerLinksZh
+    : footerData.Column4.footerItem.filter(
+        (item) => item._template === 'stringItem'
+      );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -466,8 +443,8 @@ export function AppFooter({ footerData }) {
           <div className="ml-5 flex drop-shadow-sm flex-wrap gap-6 md:ml-5">
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               {currentFooterLinks.map((item) => {
-                const { link, label } = item;
-                return <FooterLink key={label} link={link} label={label} />;
+                const { id, href, label } = item;
+                return <FooterLink key={id} link={href} label={label} />;
               })}
             </div>
             <div>
