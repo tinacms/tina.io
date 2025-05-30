@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -8,176 +7,9 @@ import React from 'react';
 import '../../../styles/tailwind.css';
 import { TinaIcon } from '../../logo';
 import { DynamicLink } from '../../ui';
+import { footerLinksZh, footerNavZh } from './constants';
+import { SocialIcon } from './social-icon';
 import { SubscriptionForm } from './subscription-form';
-
-const footerNavZh = [
-  {
-    header: '产品',
-    footerItem: [
-      {
-        href: '/zh/showcase',
-        label: '案例展示',
-      },
-      {
-        href: 'https://app.tina.io',
-        label: 'TinaCloud',
-      },
-      {
-        href: '/docs',
-        label: '产品介绍',
-      },
-      {
-        href: '/docs/product-tour',
-        label: '工作原理',
-      },
-      {
-        label: '产品路线',
-        href: '/zh/roadmap',
-      },
-    ],
-  },
-  {
-    header: '资源',
-    footerItem: [
-      {
-        label: '博客',
-        href: '/blog',
-      },
-      {
-        label: '示例',
-        href: '/examples',
-      },
-      {
-        label: '产品对比',
-        href: '/zh/compare-tina',
-      },
-      {
-        label: '技术支持',
-        href: '/docs/support',
-      },
-      {
-        href: '/media',
-        label: '媒体资源',
-      },
-    ],
-  },
-  {
-    label: '',
-    footerItem: [
-      {
-        label: '最新动态',
-        items: [
-          {
-            href: '/whats-new/tinacms',
-            label: 'TinaCMS',
-          },
-          {
-            href: '/whats-new/tinacloud',
-            label: 'TinaCloud',
-          },
-        ],
-      },
-      {
-        label: '应用场景',
-        items: [
-          {
-            href: '/agencies',
-            label: '开发机构',
-          },
-          {
-            href: '/documentation',
-            label: '文档管理',
-          },
-          {
-            href: '/cms-for-teams',
-            label: '团队协作',
-          },
-          {
-            href: '/jamstack-cms',
-            label: 'Jamstack CMS',
-          },
-        ],
-      },
-      {
-        label: '核心优势',
-        items: [
-          {
-            href: '/mdx-cms',
-            label: 'MDX支持',
-          },
-          {
-            href: '/markdown-cms',
-            label: 'Markdown支持',
-          },
-          {
-            href: '/git-cms',
-            label: 'Git集成',
-          },
-          {
-            href: '/editorial-workflow',
-            label: '编辑工作流',
-          },
-          {
-            href: '/flexible-cms',
-            label: '高度定制',
-          },
-          {
-            href: '/seo',
-            label: 'SEO优化',
-          },
-        ],
-      },
-      {
-        label: '集成方案',
-        items: [
-          {
-            href: '/astro',
-            label: 'Astro',
-          },
-          {
-            href: '/hugo-cms',
-            label: 'Hugo',
-          },
-          {
-            href: '/nextjs-cms',
-            label: 'NextJS',
-          },
-          {
-            href: '/jekyll-cms',
-            label: 'Jekyll',
-          },
-        ],
-      },
-    ],
-  },
-] as const;
-
-const footerLinksZh = [
-  {
-    href: '/security',
-    label: '安全政策',
-  },
-  {
-    href: '/telemetry',
-    label: '开源遥测',
-  },
-  {
-    href: '/terms-of-service',
-    label: '服务条款',
-  },
-  {
-    href: '/privacy-notice',
-    label: '隐私声明',
-  },
-  {
-    href: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
-    label: '开源许可',
-  },
-  {
-    href: '/docs/support',
-    label: '技术支持',
-  },
-];
 
 const LinkGroup = ({ item }: { item: { items: any[]; label } }) => {
   const [open, setOpen] = React.useState(false);
@@ -217,20 +49,7 @@ export const LinkItem = ({ item }) => {
   );
 };
 
-const SocialLink = ({ link, children }) => {
-  return (
-    <a
-      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 font-tuner"
-      href={link || ''}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {children}
-    </a>
-  );
-};
-
-export function AppFooter({ footerData }) {
+export function Footer({ footerData }) {
   const pathName = usePathname();
   const isZhPath = pathName?.includes('/zh') || false;
 
@@ -291,19 +110,7 @@ export function AppFooter({ footerData }) {
       {/* Bottom */}
       <div className=" bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white">
         <div className="max-w-7xl mx-auto flex justify-between flex-col lg:flex-row w-full lg:items-center py-8 gap-6 px-2 lg:px-8">
-          <div className="flex justify-center md:justify-start md:ml-5 lg:items-start gap-6 drop-shadow-sm lg:ml-0">
-            {socialLinks.map((socialLink, index) => (
-              <SocialLink key={index} link={socialLink.href}>
-                <Image
-                  src={socialLink.image}
-                  alt={socialLink.label}
-                  width={14}
-                  height={14}
-                  className="w-6 h-auto"
-                />
-              </SocialLink>
-            ))}
-          </div>
+          <SocialIcon socialLinks={socialLinks} />
           <div className="ml-5 flex drop-shadow-sm flex-wrap gap-6 md:ml-5">
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               {currentFooterLinks.map((item) => {

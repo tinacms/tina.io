@@ -1,8 +1,7 @@
 import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import React from 'react';
-import client from 'tina/__generated__/client';
 import { AppNavBar } from './AppNavBar';
-import { AppFooter } from './footer/AppFooter';
+import { Footer } from './footer/footer';
 import { LanguageSupportAlert } from './LanguageSupportAlert';
 
 interface LayoutProps {
@@ -33,7 +32,7 @@ export const SiteLayout = async ({
         </div>
         {/* TODO: consult with betty - if we want to add global gutters we can do it here easily */}
         <div className="flex flex-col flex-1">{children}</div>
-        <AppFooter footerData={footerData} />
+        <Footer footerData={footerData} />
         <LanguageSupportAlert />
       </div>
     </>
