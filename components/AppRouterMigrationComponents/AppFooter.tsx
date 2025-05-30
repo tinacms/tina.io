@@ -157,27 +157,27 @@ const footerNavZh = [
 
 const footerLinksZh = [
   {
-    link: '/security',
+    href: '/security',
     label: '安全政策',
   },
   {
-    link: '/telemetry',
+    href: '/telemetry',
     label: '开源遥测',
   },
   {
-    link: '/terms-of-service',
+    href: '/terms-of-service',
     label: '服务条款',
   },
   {
-    link: '/privacy-notice',
+    href: '/privacy-notice',
     label: '隐私声明',
   },
   {
-    link: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
+    href: 'https://github.com/tinacms/tinacms/blob/master/LICENSE',
     label: '开源许可',
   },
   {
-    link: '/docs/support',
+    href: '/docs/support',
     label: '技术支持',
   },
 ];
