@@ -153,11 +153,25 @@ export const settingCollection = {
           name: 'source',
           label: 'Source',
           type: 'string',
+          ui: {
+            validate: (value) => {
+              if (!value?.startsWith('/')) {
+                return 'Source path must start with /';
+              }
+            },
+          },
         },
         {
           name: 'destination',
           label: 'Destination',
           type: 'string',
+          ui: {
+            validate: (value) => {
+              if (!value?.startsWith('/')) {
+                return 'Destination path must start with /';
+              }
+            },
+          },
         },
         {
           name: 'permanent',
