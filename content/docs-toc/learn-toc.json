@@ -203,6 +203,11 @@
                   "title": "Migrating an existing Gatsby blog to TinaCMS",
                   "slug": "content/docs/guides/converting-gatsby-to-tina.mdx",
                   "_template": "item"
+                },
+                {
+                  "title": "Converting Gatsby Markdown to MDX for TinaCMS",
+                  "slug": "content/docs/guides/converting-md-to-mdx.mdx",
+                  "_template": "item"
                 }
               ],
               "_template": "items"

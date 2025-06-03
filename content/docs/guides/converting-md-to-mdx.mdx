@@ -1,0 +1,112 @@
+---
+title: Converting Gatsby Markdown to MDX for TinaCMS
+last_edited: '2025-06-03T13:41:33.510Z'
+next: content/docs/cli-overview.mdx
+previous: content/docs/guides/converting-gatsby-to-tina.mdx
+---
+
+# Converting Gatsby Markdown to MDX for TinaCMS
+
+## Overview
+
+As part of the **SSW Rules Migration** project, we transitioned our site from **Gatsby + Netlify CMS** to **Next.js + TinaCMS**. One of the main technical hurdles was converting a large number of Markdown (`.md`) files into MDX (`.mdx`) to enable interactive components supported by TinaCMS.
+
+To streamline this process, we built a flexible **Python script** that parses Markdown files, identifies custom content blocks, and transforms them into MDX-compatible React components.
+
+This guide walks through the approach we took, and how to use the script.
+
+## Key Migration Challenges
+
+* Many Markdown files used custom content formats (e.g. YouTube, greyboxes, email templates).
+* We relied on Gatsby plugins to render certain elements—those weren’t compatible with MDX out of the box.
+* MDX requires JSX-like syntax, which meant we couldn’t reuse raw HTML or plugin shortcodes directly.
+* Manually converting each file would have been time-consuming and error-prone.
+
+## How We Approached It
+
+We wrote a **modular Python script** that:
+
+* Recursively scans all Markdown files.
+* Uses **regular expressions** to detect custom block formats.
+* Replaces them with the appropriate MDX components.
+* Cleans up legacy tags (like `<!--endintro-->`) and other formatting artifacts.
+* Generates a new .mdx file for each original Markdown file.
+
+## Block Types We Support
+
+Here are the key Markdown patterns our script handles:
+
+| Original Format                   | What It Represents               | Converted To                   |
+| --------------------------------- | -------------------------------- | ------------------------------ |
+| `youtube: URL` + caption          | YouTube video with a description | `<youtubeEmbed />`             |
+| `::: greybox/highlight/...`       | Info or aside boxes              | `<asideEmbed variant="..." />` |
+| Email templates with metadata     | Emails with subject, body, etc.  | `<emailEmbed />`               |
+| `::: good/bad/ok + image`         | Image with a feedback label      | `<imageEmbed />`               |
+| `::: img-small/img-large + image` | Image with size/border variants  | `<imageEmbed size="..." />`    |
+| `![Figure: Caption](src)`         | Standalone images with captions  | `<imageEmbed />`               |
+| `::: good + Caption :::`          | Styled caption text              | `<figureEmbed />`              |
+
+These reflect common patterns we used in the original Markdown content.
+
+## Example Conversion (Before & After)
+
+**Before (Markdown):**
+
+```markdown
+`youtube: https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+**Watch this classic hit**
+
+::: good
+![Figure: Well-structured diagram](diagram.png)
+:::
+```
+
+**After (MDX):**
+
+```jsx
+<youtubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" description="Watch this classic hit" />
+
+<imageEmbed
+  alt="Image"
+  size="large"
+  showBorder={true}
+  figureEmbed={{
+    preset: "goodExample",
+    figure: 'Well-structured diagram',
+    shouldDisplay: true
+  }}
+  src="diagram.png"
+/>
+
+```
+
+## Running the Script
+
+To convert a single file:
+
+```bash
+python convert_md_to_mdx.py path/to/rule.md
+```
+
+To convert all files in your project:
+
+```bash
+python convert_md_to_mdx.py
+```
+
+Once the conversion is done, start your local TinaCMS site and browse the converted pages to make sure that custom blocks (videos, asides, emails, images, etc.) render correctly.
+
+## Customizing the Script
+
+The script is designed to be easy to extend:
+
+* Add support for new content blocks by writing a new regex pattern and replacement function.
+* Modify how specific components are rendered.
+* Adjust how metadata (e.g., image captions or alt text) is parsed and used.
+
+## Final Notes
+
+This script enabled us to migrate over 3,500 Markdown files—many with complex formatting—into clean, structured MDX. If you're planning a similar move to TinaCMS, feel free to adapt our approach for your own use case.
+
+You can check out the full script here:\
+**→ View [convert\_md\_to\_mdx.py](https://github.com/SSWConsulting/SSW.Rules.Content/blob/tina/main/scripts/tina-migration/convert-rule-md-to-mdx.py)**
