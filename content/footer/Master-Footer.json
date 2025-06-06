@@ -1,5 +1,6 @@
 {
   "Column1": {
+    "header": "Product",
     "footerItem": [
       {
         "label": "Showcase",
@@ -29,6 +30,7 @@
     ]
   },
   "Column2": {
+    "header": "Resources",
     "footerItem": [
       {
         "label": "Blog",
@@ -152,10 +154,34 @@
   "Column4": {
     "footerItem": [
       {
-        "label": "Facebook",
-        "href": "https://www.facebook.com/profile.php?id=61572968406294",
-        "image": "/icons8-facebook-150.png",
-        "_template": "socialLink"
+        "label": "Security",
+        "href": "/security",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Telemetry",
+        "href": "/telemetry",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms-of-service",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Privacy",
+        "href": "/privacy-notice",
+        "_template": "stringItem"
+      },
+      {
+        "label": "License",
+        "href": "https://github.com/tinacms/tinacms/blob/master/LICENSE",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Support",
+        "href": "/docs/support",
+        "_template": "stringItem"
       },
       {
         "label": "GitHub",
@@ -164,8 +190,8 @@
         "_template": "socialLink"
       },
       {
-        "label": "Twitter",
-        "href": "https://twitter.com/tinacms",
+        "label": "X",
+        "href": "https://x.com/tinacms",
         "image": "/logo.svg",
         "_template": "socialLink"
       },
@@ -185,6 +211,12 @@
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/company/tinacms",
         "image": "/LinkedIn_icon-white1.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/profile.php?id=61572968406294",
+        "image": "/svg/facebook-logo.svg",
         "_template": "socialLink"
       },
       {

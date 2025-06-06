@@ -29,7 +29,6 @@
             },
             {
               "label": "npx create-tina-app@latest",
-              "infoText": "Run this NPX command, pick a starter template, and have your site live in minutes. [Learn More](/docs/introduction/using-starter)\n",
               "_template": "codeButton"
             }
           ],
@@ -257,6 +256,9 @@
       "_template": "carouselFeature"
     },
     {
+      "_template": "events"
+    },
+    {
       "blockSettings": {
         "isFullscreen": false
       },
@@ -265,9 +267,6 @@
       "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
       "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
       "_template": "videoEmbed"
-    },
-    {
-      "_template": "events"
     },
     {
       "features": [
