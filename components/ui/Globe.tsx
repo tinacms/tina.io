@@ -163,7 +163,12 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
   });
 
   return (
-    <group ref={groupRef} {...props} dispose={null} scale={[0.01, 0.01, 0.01]}>
+    <group
+      ref={groupRef}
+      {...props}
+      dispose={null}
+      scale={[0.012, 0.012, 0.012]}
+    >
       <primitive object={fbx} />
       {markerPositions.map((marker) => (
         <group key={marker.id} position={new THREE.Vector3(...marker.position)}>
