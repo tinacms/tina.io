@@ -7,17 +7,22 @@ const RenderButton = ({ button, index }) => {
   if (button.__typename.includes('Actions')) {
     return <Actions key={index} items={[button]} />;
   } else if (button.__typename.includes('ModalButton')) {
-    return <ModalB key={index} items={[button]} />;
+    return (
+      <div className="lg:-mt-0.5">
+        <ModalB key={index} items={[button]} />
+      </div>
+    );
   } else if (button.__typename.includes('CodeButton')) {
     return (
-      <CodeButton
-        key={index}
-        id={button.id}
-        label={button.label}
-        clickedOnText={button?.clickedOnText}
-      >
-        {button.children}
-      </CodeButton>
+      <div>
+        <CodeButton
+          key={index}
+          id={button.id}
+          label={button.label}
+        >
+          {button.children}
+        </CodeButton>
+      </div>
     );
   } else {
     return null;

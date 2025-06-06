@@ -1,10 +1,10 @@
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import getTableOfContents from 'utils/docs/getTableOfContents';
-import { getExcerpt } from 'utils/getExcerpt';
 import DocsClient from './docs-client';
-
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
@@ -29,22 +29,27 @@ export async function generateMetadata({
   params: { slug: string[] };
 }) {
   const slug = params.slug.join('/');
-  try {
-    const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
-    const excerpt = getExcerpt(data.doc.body, 140);
+  const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
-    return {
-      title: `${data.doc.seo?.title || data.doc.title} | TinaCMS Docs`,
-      description: data.doc.seo?.description || `${excerpt} || TinaCMS Docs`,
-      openGraph: {
-        title: data.doc.title,
-        description: data.doc.seo?.description || `${excerpt} || TinaCMS Docs`,
-      },
+  if (!data.doc.seo) {
+    
+    data.doc.seo = {
+      __typename: 'DocSeo',
+      canonicalUrl: `${settings.siteUrl}/docs${
+        slug === 'index' ? '' : `/${slug}`
+      }`,
     };
-  } catch (error) {
-    console.error('Error generating metadata:', error);
-    return notFound();
+  } else if (!data.doc.seo.canonicalUrl) {
+    
+    data.doc.seo.canonicalUrl = `${settings.siteUrl}/docs${
+      slug === 'index' ? '' : `/${slug}`
+    }`;
   }
+
+  return getSeo(data.doc.seo, {
+    pageTitle: data.doc.title,
+    body: data.doc.body,
+  });
 }
 
 export default async function DocPage({

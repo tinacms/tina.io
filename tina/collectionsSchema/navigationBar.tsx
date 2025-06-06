@@ -22,6 +22,28 @@ export const navigationBarCollection = {
       type: 'object',
       templates: [
         {
+          name: 'GitHubStarButton',
+          label: 'GitHub Star Button',
+          description: 'Values are inserted in a GET request to the GitHub API via api.github.com/repos/{owner}/{repo}',
+          ui: {
+            itemProps: (item) => {
+              return { label: '⭐️ ' + item?.owner + '/' + item?.repo };
+            },
+          },
+          fields: [
+            {
+              name: 'owner',
+              label: 'Project Owner',
+              type: 'string',
+            },
+            {
+              name: 'repo',
+              label: 'Repository Name',
+              type: 'string',
+            },
+          ],
+        },
+        {
           name: 'stringItem',
           label: 'String Item',
           ui: {

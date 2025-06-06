@@ -63,7 +63,7 @@ const DocsMobileHeader = (props) => {
   const { docsData, learnData, learnActive, setLearnActive } = props;
 
   return (
-    <div className="relative pb-20">
+    <div className="relative pb-5">
       <DocsSearchBarHeader
         paddingGlobal="pb-4"
         headerPadding=""

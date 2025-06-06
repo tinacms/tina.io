@@ -1,37 +1,53 @@
 import client from 'tina/__generated__/client';
 import data from '../../content/siteConfig.json';
 
-const docsQuery = `
+const getDocsQuery = (lang?: string) => `
 query {
-    docsTableOfContents(relativePath: "docs-toc.json") {
+    docsTableOfContents(relativePath: "${
+      lang === 'zh' ? 'docs-zh-toc.json' : 'docs-toc.json'
+    }") {
+        _values
+  }
+}
+`;
+
+const learnQuery = (lang?: string) => `
+query {
+    docsTableOfContents(relativePath: "${
+      lang === 'zh' ? 'learn-zh-toc.json' : 'learn-toc.json'
+    }") {
     	_values
   }
 }
 `;
 
-const learnQuery = `
-query {
-    docsTableOfContents(relativePath: "learn-toc.json") {
-    	_values
-  }
-}
-`;
-
-export async function getDocsNav(preview?: boolean, previewData?: any) {
+export async function getDocsNav(
+  preview?: boolean,
+  previewData?: any,
+  lang?: string
+) {
   const docTocData = await client.request(
     {
-      query: docsQuery,
-      variables: { relativePath: 'docs-toc.json' },
+      query: getDocsQuery(lang),
+      variables: {
+        relativePath: `${
+          lang === 'zh' ? 'learn-zh-toc.json' : 'learn-toc.json'
+        }`,
+      },
     },
     {}
   );
   return formatTableofContentsData(docTocData, preview);
 }
 
-export async function getLearnNav(preview?: boolean, previewData?: any) {
+export async function getLearnNav(
+  preview?: boolean,
+  previewData?: any,
+  lang?: string
+) {
   const learnTocData = await client.request(
     {
-      query: learnQuery,
+      query: learnQuery(lang),
       variables: { relativePath: 'learn-toc.json' },
     },
     {}
@@ -46,10 +62,13 @@ const stripReferenceDownToSlug = (tableOfContentsSubset: any) => {
         array[index].items = stripReferenceDownToSlug(obj.items);
       } else {
         //Handles the docs homepage case, as the only docs page with a unique (i.e. no) slug, otherwise reformat
-        array[index].slug =
-          array[index].slug == `content${data.docsHomepage}.mdx`
-            ? '/docs'
-            : obj.slug.replace(/^content\/|\.mdx$/g, '/');
+        if (array[index].slug == `content${data.docsHomepage}.mdx`) {
+          array[index].slug = '/docs';
+        } else if (array[index].slug == `content/zh${data.docsHomepage}.mdx`) {
+          array[index].slug = '/zh/docs';
+        } else {
+          array[index].slug = obj.slug.replace(/^content\/|\.mdx$/g, '/');
+        }
       }
     }
   });

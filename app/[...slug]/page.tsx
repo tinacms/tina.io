@@ -1,3 +1,5 @@
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,54 +28,23 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = params;
   const relativePath = `${slug.join('/')}.json`;
-  try {
-    const res = await client.queries.pageWithRecentPosts({
-      relativePath,
-    });
 
-    const data = res.data.page;
+  const res = await client.queries.pageWithRecentPosts({
+    relativePath,
+  });
 
-    if (!data.seo) {
-      return {};
-    }
+  const data = res.data.page;
+  const { seo } = data;
 
-    return {
-      title: `${data.seo.title} | TinaCMS`,
-      description: data.seo.description,
-      openGraph: {
-        title: data.seo.title,
-        description: data.seo.description,
-      },
-    };
-  } catch (error) {
-    return {};
+  if (seo && !seo?.canonicalUrl) {
+    data.seo.canonicalUrl = `${settings.siteUrl}${
+      slug[0] === 'home' ? '' : '/' + slug.join('/')
+    }`;
   }
+  return getSeo(seo);
 }
 
-function ExperimentalBanner() {
-  return (
-    <Link href="/conference" className="block w-full">
-      <div className="relative w-full">
-        <Image
-          src="/img/TinaCon-desktop-banner.png"
-          alt="TinaCon Conference Banner"
-          width={1300}
-          height={520}
-          className="w-full h-auto sm:block hidden"
-          priority
-        />
-        <Image
-          src="/img/TinaCon-tablet-banner.png"
-          alt="TinaCon Conference Banner"
-          width={768}
-          height={307}
-          className="w-full h-auto sm:hidden block"
-          priority
-        />
-      </div>
-    </Link>
-  );
-}
+
 
 export default async function Page({ params }: PageProps) {
   const { slug } = params;
@@ -84,12 +55,6 @@ export default async function Page({ params }: PageProps) {
     });
     return (
       <>
-        {/* TODO: Remove once TinaCon is over */}
-        {slug[0] === 'home' && (
-          <div className="max-w-[1300px] mx-auto mt-10 px-5 lg:px-10">
-            <ExperimentalBanner />
-          </div>
-        )}
         <ClientPage
           query={res.query}
           data={res.data}

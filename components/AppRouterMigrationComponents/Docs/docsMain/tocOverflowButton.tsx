@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { getDocId } from 'utils/docs/getDocIds';
 
@@ -51,12 +52,14 @@ const TocOverflowButton = (tocData) => {
       {tocData.tocData.length !== 0 && (
         <div className="py-6 w-full" ref={containerRef}>
           <div
-            className="py-2 px-4 border-slate-400 bg-gradient-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
+            className="py-2 px-4 border-slate-400 bg-linear-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
             onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
           >
             <span className="flex items-center space-x-2">
               <MdMenu size={20} className="text-orange-500" />
-              <span className="text-slate-600 py-1">Table of Contents</span>
+              <span className="text-slate-600 py-1">
+                {usePathname().includes('/zh/') ? '目录' : 'Table of Contents'}
+              </span>
             </span>
           </div>
           {isTableOfContentsOpen && (

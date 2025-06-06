@@ -23,22 +23,6 @@ export function HeroBlock({ data, index }) {
 }
 
 export const HeroFeature = ({ item, spacing, children }) => {
-  const isOrNeeded = item.buttons && item.buttons.length >= 2;
-
-  const renderButtonsWithOr = (buttons) => {
-    return buttons.reduce((acc, button, index) => {
-      if (index > 0 && isOrNeeded) {
-        acc.push(
-          <span key={`or-${index}`} className="or-text font-tuner">
-            or
-          </span>
-        );
-      }
-      acc.push(<RenderButton key={index} button={button} index={index} />);
-      return acc;
-    }, []);
-  };
-
   return (
     <>
       <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
@@ -68,8 +52,17 @@ export const HeroFeature = ({ item, spacing, children }) => {
             {item.text}
           </p>
         )}
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-10 pb-10">
-          {item.buttons && renderButtonsWithOr(item.buttons)}
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
+          {item.buttons?.map((button, index) => (
+            <div
+              key={index}
+              className={`flex items-start lg:items-center ${
+                index === 2 ? 'md:col-span-2 md:justify-center' : ''
+              }`}
+            >
+              <RenderButton button={button} index={index} />
+            </div>
+          ))}
         </div>
         {children}
       </div>

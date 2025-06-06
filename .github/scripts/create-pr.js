@@ -37,7 +37,7 @@ async function createPullRequest() {
       try {
         await axios.post(
           `https://api.github.com/repos/${OWNER}/${REPO_NAME}/issues/${response.data.number}/labels`,
-          { labels: ['translation', 'automated-pr'] },
+          { labels: ['Auto-Translation'] },
           {
             headers: {
               Authorization: `token ${GITHUB_TOKEN}`,

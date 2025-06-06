@@ -1,0 +1,95 @@
+---
+id: /docs/extending-tina/customize-list-ui
+title: 自定义列表渲染
+last_edited: '2025-04-27T09:05:12.356Z'
+tocIsHidden: false
+next: content/docs/reference/types/rich-text.mdx
+previous: content/docs/reference/types/object.mdx
+---
+
+如果列表设置为 `true`，默认标签通常对编辑者来说并不太有用。
+
+![列表界面](/img/docs/extending-tina/Extending_Tina_No_List_Props.png)
+
+可以使用 `itemProps` 函数自定义用于列表项的标签。主要的使用场景是根据组件中的数据提供自定义标签。
+
+例如，使用 `title` 字段作为此图片库集合的标签：
+
+```ts
+// ...其他字段
+{
+  label: "图片库",
+  name: "gallery",
+  type: "object",
+  list: true,
+  ui: {
+    itemProps: (item) => {
+      // 字段值通过 item?.<字段名称> 访问
+      return { label: item?.title };
+    },
+  },
+  fields: [
+    {
+      label: "标题",
+      name: "title",
+      type: "string",
+    },
+    { label: "图片", name: "image", type: "image" },
+    {
+      label: "尺寸",
+      name: "size",
+      type: "string",
+      options: ["sm", "med", "lg", "xl"],
+    },
+  ],
+};
+```
+
+渲染结果如下：
+![带标签属性的列表界面](/img/docs/extending-tina/Extending_Tina_Label_List_Props.png)
+
+虽然提供自定义标签是 `itemProps` 的最常见使用场景，但也可以返回 `className` 和 `style` 属性，以允许对列表组件进行自定义样式。
+
+例如：
+
+```ts
+// ...其他字段
+{
+  label: "图片库",
+  name: "gallery",
+  type: "object",
+  list: true,
+  ui: {
+    itemProps: (item) => {
+      if (item?.title === "Dog") {
+        return { label: item?.title, style: { backgroundColor: "blue" } };
+      }
+      // 字段值通过 item?.<字段名称> 访问
+      return { label: item?.title };
+    },
+  },
+  fields: [
+    {
+      label: "标题",
+      name: "title",
+      type: "string",
+    },
+    { label: "图片", name: "image", type: "image" },
+    {
+      label: "尺寸",
+      name: "size",
+      type: "string",
+      options: ["sm", "med", "lg", "xl"],
+    },
+  ],
+}
+```
+
+渲染结果如下：
+![带标签和样式属性的列表界面](/img/docs/extending-tina/Extending_Tina_Style_List_Props.png)
+
+## 视频教程
+
+对于喜欢通过视频学习的人，可以查看我们 ["TinaCMS 深度探讨"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB) 系列中的 "自定义列表项" 片段。
+
+<Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=545&end=727" />

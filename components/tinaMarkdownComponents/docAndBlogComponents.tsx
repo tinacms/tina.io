@@ -236,13 +236,13 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="!my-6 border-l-4 md:py-6 pt-2 pb-4 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className="my-6! border-l-4 md:py-6 pt-2 pb-4 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
     >
       <div className="flex flex-col md:flex-row md:items-center md:gap-2 items-start">
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <AiOutlineBulb
             size={40}
-            className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+            className="text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
           />
         </div>
         <div className="leading-6">
@@ -321,7 +321,7 @@ export const docAndBlogComponents: Components<{
                   : [...openGroups, groupName]
               )
             }
-            className="bg-gradient-to-b from-blue-100/20 to-blue-50/20 w-full flex items-center justify-between px-6 py-4 text-left bg-transparent hover:bg-blue-200/10 transition-colors"
+            className="bg-linear-to-b from-blue-100/20 to-blue-50/20 w-full flex items-center justify-between px-6 py-4 text-left bg-transparent hover:bg-blue-200/10 transition-colors"
           >
             <div>
               {required && (
@@ -442,7 +442,7 @@ export const docAndBlogComponents: Components<{
 
         {props.property?.some((property) => property.required) && (
           <div className=" mx-6 mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
-            <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 flex-shrink-0" />
+            <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 shrink-0" />
             <p className="text-sm text-gray-700">
               All properties marked as{' '}
               <span className="text-[#FF5533] font-medium">REQUIRED</span> must
@@ -587,7 +587,7 @@ export const docAndBlogComponents: Components<{
         <div>
           <AiOutlineWarning
             size={40}
-            className="text-white bg-gradient-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+            className="text-white bg-linear-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
           />
         </div>
         <div className="leading-6">
@@ -681,7 +681,7 @@ export const docAndBlogComponents: Components<{
     };
 
     return (
-      <div className="relative pb-3 word-break white-space overflow-x-hidden !rounded-xl margin-0">
+      <div className="relative pb-3 word-break white-space overflow-x-hidden rounded-xl! margin-0">
         <button
           onClick={handleCopy}
           className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded"
@@ -748,7 +748,7 @@ export const docAndBlogComponents: Components<{
   Button: ({ link, label }) => (
     <div className="w-full flex justify-start my-6">
       <a
-        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
+        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-linear-to-br from-orange-400 to-orange-600"
         href={link}
         target="_blank"
       >
@@ -764,16 +764,24 @@ function FormatHeaders({ children, level }) {
     children.props?.content.map((content) => content.text).join('') ?? children
   );
 
-  const currentUrl =
-    typeof window !== 'undefined' ? window.location.pathname : '';
+  const [currentUrl, setCurrentUrl] = useState(
+    typeof window !== 'undefined' ? window.location.pathname : ''
+  );
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.pathname);
+    }
+  }, [typeof window !== 'undefined' ? window.location.pathname : '']);
+
   const linkHref = `${currentUrl}#${id}`;
 
   const styles = {
-    1: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl !mt-16 mb-4',
-    2: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl !mt-12 mb-2',
-    3: 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium !mt-8 mb-2 !important',
-    4: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium !mt-2 mb-2',
-    5: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium !mt-2 mb-1',
+    1: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl mt-16! mb-4',
+    2: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl mt-12! mb-2',
+    3: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-8! mb-2 !important',
+    4: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2! mb-2',
+    5: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2! mb-1',
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',
   };
 

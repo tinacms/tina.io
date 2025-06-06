@@ -7,7 +7,7 @@ import { useTina } from 'tinacms/dist/react';
 const EventsPageHeader = ({ title, byline }: { title: string; byline: string }) => {
   return (
     <div className="text-center mx-auto py-2">
-      <h1 className="pt-20 pb-5 text-4xl font-tuner bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+      <h1 className="pt-20 pb-5 text-4xl font-tuner bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
         {title}
       </h1>
       <div>
@@ -65,7 +65,7 @@ export default function EventsClient({ query, data, vars }: { query: string; dat
     <div className="mx-auto mb-40">
       <EventsPageHeader title={eventsData.title} byline={eventsData.byLine} />
       <div className="px-10 pt-10">
-        <div className="pb-5 font-bold bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent text-center">
+        <div className="pb-5 font-bold bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent text-center">
           UPCOMING EVENTS
         </div>
         {upComingEvents.map((cardItem, index) => (
@@ -81,7 +81,7 @@ export default function EventsClient({ query, data, vars }: { query: string; dat
         ))}
       </div>
       <div className="px-10 pt-10">
-        <div className="pb-5 font-bold bg-gradient-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent text-center">
+        <div className="pb-5 font-bold bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent text-center">
           PAST EVENTS
         </div>
         {pastEvents.map((cardItem, index) => (

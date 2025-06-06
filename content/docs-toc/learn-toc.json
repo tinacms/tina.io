@@ -12,6 +12,11 @@
           "title": "1. Your New TinaCMS Site",
           "items": [
             {
+              "title": "Your New TinaCMS Site",
+              "slug": "content/docs/beginner-tutorials/new-tinacms-site.mdx",
+              "_template": "item"
+            },
+            {
               "title": "NextJS Setup",
               "slug": "content/docs/beginner-tutorials/nextjs-app.mdx",
               "_template": "item"
@@ -43,6 +48,11 @@
           "title": "2. Live Editing ",
           "items": [
             {
+              "title": "Live Editing",
+              "slug": "content/docs/beginner-tutorials/live-editing.mdx",
+              "_template": "item"
+            },
+            {
               "title": "Routing to the Editor",
               "slug": "content/docs/beginner-tutorials/routing.mdx",
               "_template": "item"
@@ -63,6 +73,11 @@
         {
           "title": "3. The Content Model",
           "items": [
+            {
+              "title": "The Content Model",
+              "slug": "content/docs/beginner-tutorials/the-content-model.mdx",
+              "_template": "item"
+            },
             {
               "title": "Our New Field",
               "slug": "content/docs/beginner-tutorials/new-field.mdx",
@@ -161,7 +176,7 @@
               "_template": "item"
             },
             {
-              "title": "Naming conventions for collections",
+              "title": "Naming Conventions for Collections",
               "slug": "content/docs/guides/naming-conventions.mdx",
               "_template": "item"
             }
@@ -234,6 +249,11 @@
         {
           "title": "Internationalization",
           "slug": "content/docs/guides/internationalization.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Multi-Tenancy",
+          "slug": "content/docs/guides/multi-tenancy.mdx",
           "_template": "item"
         }
       ]

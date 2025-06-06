@@ -2,13 +2,11 @@
 
 import { DynamicLink } from 'components/ui';
 import { usePathname } from 'next/navigation';
-import React, { createContext } from 'react';
+import React from 'react';
 import AnimateHeight from 'react-animate-height';
 import { BiChevronRight } from 'react-icons/bi';
 import styled, { css } from 'styled-components';
-import { matchActualTarget } from 'utils';
-import docsLinks from '../../../../content/docs-navigation.json';
-import data from '../../../../content/siteConfig.json';
+import { enhancedPathMatching } from 'utils/enhancedPathMatching';
 import { DocsNavProps } from './DocumentationNavigation';
 
 interface NavTitleProps {
@@ -79,7 +77,7 @@ const NavTitle = ({
 
 const hasNestedSlug = (navItems = [], slug) => {
   for (let item of navItems) {
-    if (matchActualTarget(item.slug || item.href, slug)) {
+    if (enhancedPathMatching(item.slug || item.href, slug)) {
       return true;
     }
     if (item.items) {
@@ -105,17 +103,30 @@ const NavLevel = ({
   const navLevelElem = React.useRef(null);
   const pathname = usePathname(); // Replace useRouter with usePathname
   const path = pathname || ''; // Get current path
-  const slug = categoryData.slug?.replace(/\/$/, '');
-  const [expanded, setExpanded] = React.useState(
-    matchActualTarget(slug || categoryData.href, path) ||
-      hasNestedSlug(categoryData.items, path) ||
-      level === 0
-  );
+  let slug = categoryData.slug?.replace(/\/$/, '');
+  const isChinesePath = path.includes('/zh/');
+  if (isChinesePath && slug && !slug.startsWith('/zh/')) {
+    slug = `/zh${slug}`;
+  }
+  const isPathOrChildOfPath =
+    enhancedPathMatching(slug || categoryData.href, path) ||
+    hasNestedSlug(categoryData.items, path);
+
+  const [expanded, setExpanded] = React.useState(isPathOrChildOfPath);
 
   const selected =
-    path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
+    enhancedPathMatching(path.split('#')[0], slug) ||
+    (slug === '/docs' && path === '/docs/') ||
+    (slug === '/zh/docs' && path === '/zh/docs/');
 
   const childSelected = hasNestedSlug(categoryData.items, path);
+  React.useEffect(() => {
+    const shouldExpand =
+      enhancedPathMatching(slug || categoryData.href, path) ||
+      hasNestedSlug(categoryData.items, path);
+
+    setExpanded(shouldExpand);
+  }, [path, slug, categoryData.href, categoryData.items, level]);
 
   React.useEffect(() => {
     if (

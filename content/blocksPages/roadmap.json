@@ -58,6 +58,26 @@
               "url": "/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
             }
           ]
+        },
+        {
+          "headline": "☑︎ React 19 Support",
+          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n",
+          "actions": [
+            {
+              "label": "Blogged",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/blog/react-19-support"
+            },
+            {
+              "label": "🚀 Shipped in 2.7.7",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
         }
       ],
       "options": {
@@ -79,27 +99,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/5576"
-            }
-          ]
-        },
-        {
-          "headline": "□ React 19 Support",
-          "status": "",
-          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n",
-          "actions": [
-            {
-              "label": "🧪 Beta version available",
-              "icon": true,
-              "variant": "orange",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/pull/5607"
-            },
-            {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/issues/5244"
             }
           ]
         },

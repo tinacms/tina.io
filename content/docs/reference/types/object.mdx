@@ -1,7 +1,7 @@
 ---
 title: The Object Field
 last_edited: '2025-03-26T05:48:23.867Z'
-next: content/docs/reference/types/rich-text.mdx
+next: content/docs/extending-tina/customize-list-ui.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
 
@@ -16,54 +16,54 @@ This can be used to **create repeated data structures** or **group related data*
 <apiReference
   property={[
     {
-      name: "type",
-      type: "string",
+      name: 'type',
+      type: 'string',
       description: 'Set this to `"object"` to use the Object Field.\n',
-      required: true
+      required: true,
     },
     {
-      name: "name",
-      description: "The name of the field for internal use.\n",
-      type: "string",
-      required: true
+      name: 'name',
+      description: 'The name of the field for internal use.\n',
+      type: 'string',
+      required: true,
     },
     {
-      name: "fields",
-      description: "The fields to display in the object.\n",
-      type: "Field[]"
+      name: 'fields',
+      description: 'The fields to display in the object.\n',
+      type: 'Field[]',
     },
     {
-      name: "templates",
+      name: 'templates',
       description:
-        "The templates to display in the object.\n\nAvailable when list: true.\n",
-      type: "Template[]"
+        'The templates to display in the object.\n\nAvailable when list: true.\n',
+      type: 'Template[]',
     },
     {
-      name: "templatesKey",
-      description: "Choose a different reference key for the templates.\n",
-      type: "string"
+      name: 'templatesKey',
+      description: 'Choose a different reference key for the templates.\n',
+      type: 'string',
     },
     {
-      groupName: "ui",
-      name: "visualSelector",
-      description: "Whether to display a visual selector for the object.\n",
-      type: "boolean",
-      default: "false"
+      groupName: 'ui',
+      name: 'visualSelector',
+      description: 'Whether to display a visual selector for the object.\n',
+      type: 'boolean',
+      default: 'false',
     },
     {
-      groupName: "ui",
-      name: "defaultItem",
+      groupName: 'ui',
+      name: 'defaultItem',
       description:
-        "Pre-populated data when a new object is added.\n\nAvailable when list: true.\n",
-      type: "Record<string, any> | () => Record<string, any>"
+        'Pre-populated data when a new object is added.\n\nAvailable when list: true.\n',
+      type: 'Record<string, any> | () => Record<string, any>',
     },
     {
-      groupName: "ui",
-      name: "itemProps",
+      groupName: 'ui',
+      name: 'itemProps',
       description:
-        "Set a custom label for list elements.\n\nAvailable when list: true.\n",
-      type: "(item: Record<string, any>) => { label?: string }"
-    }
+        'Set a custom label for list elements.\n\nAvailable when list: true.\n',
+      type: '(item: Record<string, any>) => { label?: string }',
+    },
   ]}
 />
 
@@ -109,8 +109,8 @@ By default, object lists label each element with the Template `label` or the obj
 
 If you have a number of objects in the list, this can be customised per element with the `itemProps` function property.
 
-* set this on the object if using `fields`
-* set this on each template if using `templates`
+- set this on the object if using `fields`
+- set this on each template if using `templates`
 
 ![List UI with label prop](/img/docs/extending-tina/Extending_Tina_Label_List_Props.png)
 
@@ -207,9 +207,9 @@ Number, boolean, datetime, reference and rich-text field types can be used as th
 
 This example uses both templates and fields.
 
-* The `featureItem` objects stores an object array `{ headline, description, buttons }`.
-* Each feature item in the list has a unique label, set by the itemProps function.
-* The buttons element of the `featureBlock` array is also an object list, with 3 options to choose from (Templates).
+- The `featureItem` objects stores an object array `{ headline, description, buttons }`.
+- Each feature item in the list has a unique label, set by the itemProps function.
+- The buttons element of the `featureBlock` array is also an object list, with 3 options to choose from (Templates).
 
 ```javascript
 import type { Template, TinaField } from 'tinacms';

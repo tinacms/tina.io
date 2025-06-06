@@ -6,35 +6,44 @@
   },
   "blocks": [
     {
-      "headline": "Sites, Docs and Llamas",
-      "headline2": "No Dramas",
-      "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
-      "media": [
+      "features": [
         {
-          "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
-          "videoEmbedId": "zRkeKSZjlyw",
-          "figureCaption": "Video: TinaCMS Demo (4 min)",
-          "_template": "videoThumbnailToInternalVideo"
+          "headline": "Sites, Docs and Llamas. No Dramas",
+          "text": "TinaCMS is an open-source, headless CMS that supports Git - with built-in version control.",
+          "buttons": [
+            {
+              "label": "Try the Editor Now",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://demo.tina.io/admin#/~",
+              "_template": "actions"
+            },
+            {
+              "label": "Book a Demo",
+              "icon": false,
+              "color": "blueOutline",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            },
+            {
+              "label": "npx create-tina-app@latest",
+              "_template": "codeButton"
+            }
+          ],
+          "media": [
+            {
+              "src": "/gif/smashingmagazine-tinacms.gif",
+              "_template": "v2Video"
+            }
+          ],
+          "isFullScreen": false,
+          "isReversed": false,
+          "imageBackground": false
         }
       ],
-      "margin": "",
-      "spacing": "gap-10",
-      "buttons": [
-        {
-          "label": "Try the editor now",
-          "icon": true,
-          "variant": "blue",
-          "size": "medium",
-          "url": "https://demo.tina.io/admin#/~",
-          "_template": "actions"
-        },
-        {
-          "label": "npx create-tina-app@latest",
-          "clickedOnText": "**Video:** [getting started with NPX!](/docs/introduction/using-starter) (6 min)\n",
-          "_template": "codeButton"
-        }
-      ],
-      "_template": "hero"
+      "_template": "features"
     },
     {
       "blockSettings": {
@@ -247,6 +256,16 @@
       "_template": "carouselFeature"
     },
     {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "altText": "Getting Started with NPX",
+      "title": "Tired of Lengthy Set-up Processes?",
+      "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
+      "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
+      "_template": "videoEmbed"
+    },
+    {
       "features": [
         {
           "headline": "Talk to a Tina Expert",
@@ -272,9 +291,6 @@
         }
       ],
       "_template": "features"
-    },
-    {
-      "_template": "events"
     },
     {
       "blockSettings": {

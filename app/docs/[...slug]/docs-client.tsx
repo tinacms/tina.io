@@ -8,6 +8,7 @@ import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -19,11 +20,11 @@ export default function DocsClient({ props }) {
     variables: props.variables,
     data: props.data,
   });
-
   // Get the navigation data from context instead of props
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { PageTableOfContents } = props;
   const DocumentationData = data.doc;
+  const pathname = usePathname();
 
   const { learnActive, setLearnActive } = useDocsNavigation();
   const [isLearnDocument, setIsLearnDocument] = useState(learnActive);
@@ -56,14 +57,13 @@ export default function DocsClient({ props }) {
       recurseItems(NavigationLearnData?.data);
     }
   };
-
   useEffect(() => {
     checkLearn(setIsLearnDocument);
   }, []);
 
   useEffect(() => {
     checkLearn(setLearnActive);
-  }, [NavigationLearnData, DocumentationData]);
+  }, [NavigationLearnData, DocumentationData, pathname]);
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);
@@ -72,7 +72,7 @@ export default function DocsClient({ props }) {
     <div className="grid grid-cols-1 md:grid-cols-[3fr_0.5fr] xl:grid-cols-[3fr_0.25fr]">
       {/* MIDDLE COLUMN */}
       <div
-        className={`mx-8 max-w-full overflow-hidden break-words px-2 col-span-2 ${
+        className={`mx-1 md:mx-8 max-w-full overflow-hidden break-words px-1 col-span-2 ${
           !DocumentationData?.tocIsHidden ? 'xl:col-span-1' : ''
         }`}
       >
@@ -88,7 +88,7 @@ export default function DocsClient({ props }) {
         </div>
         <div
           ref={contentRef}
-          className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6"
+          className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6 text-lg"
         >
           {' '}
           <TinaMarkdown

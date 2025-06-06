@@ -1,10 +1,11 @@
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import { getExcerpt } from 'utils/getExcerpt';
 import DocsClient from './docs-client';
-
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
@@ -27,25 +28,17 @@ export async function generateMetadata({
   params: { slug: string[] };
 }) {
   const slug = params.slug.join('/');
-  try {
-    const { data } = await client.queries.docZh({
-      relativePath: `${slug}.mdx`,
-    });
-    const excerpt = getExcerpt(data.docZh.body, 140);
-
-    return {
-      title: `${data.docZh.seo?.title || data.docZh.title} | TinaCMS Docs`,
-      description: data.docZh.seo?.description || `${excerpt} || TinaCMS Docs`,
-      openGraph: {
-        title: data.docZh.title,
-        description:
-          data.docZh.seo?.description || `${excerpt} || TinaCMS Docs`,
-      },
-    };
-  } catch (error) {
-    console.error('Error generating metadata:', error);
-    return notFound();
-  }
+  const { data } = await client.queries.docZh({
+    relativePath: `${slug}.mdx`,
+  });
+  const excerpt = getExcerpt(data.docZh.body, 140);
+  return getSeo({
+    title: `${data.docZh.seo?.title || data.docZh.title} | TinaCMS Docs`,
+    description: data.docZh.seo?.description || `${excerpt} || TinaCMS Docs`,
+    canonicalUrl: `${settings.siteUrl}/zh/docs ${
+      slug === 'index' ? '' : `/${slug}`
+    }`,
+  });
 }
 
 export default async function DocPage({
