@@ -6,6 +6,9 @@
   },
   "blocks": [
     {
+      "_template": "events"
+    },
+    {
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
