@@ -20,7 +20,6 @@ export const CodeButtonMarkdownStyle: Components<{}> = {
 
 export const CodeButton = ({ children, label, id, ...props }) => {
   const [copied, setCopied] = useState(false);
-  
 
   const clickEvent = () => {
     setCopied(true);
@@ -59,19 +58,19 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           </span>
         </button>
 
-            <FaVideo
-              size={20}
-              className="text-blue-500 cursor-pointer hover:text-blue-700 transition-colors duration-200"
-              onClick={() => {
-                const videoElement = document.getElementById('home-page-video');
-                if (videoElement) {
-                  videoElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                  });
-                }
-              }}
-            />
+        <FaVideo
+          size={20}
+          className="text-blue-500 cursor-pointer hover:text-blue-700 transition-colors duration-200"
+          onClick={() => {
+            const videoElement = document.getElementById('home-page-video');
+            if (videoElement) {
+              videoElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              });
+            }
+          }}
+        />
       </div>
       <style jsx>{`
         .bash {
@@ -95,7 +94,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           bottom: 0;
           text-align: center;
           color: var(--color-orange);
-          font-family: var(--font-tuner);
+          font-family: var(--font-ibm-plex);
           font-weight: regular;
           font-style: normal;
           background: white;

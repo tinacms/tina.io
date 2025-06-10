@@ -209,7 +209,7 @@ export const docAndBlogComponents: Components<{
           title={props.caption || ''}
         />
         {props.caption && (
-          <div className="text-sm font-tuner text-gray-500">
+          <div className="text-sm font-ibm-plex text-gray-500">
             Figure: {props.caption}
           </div>
         )}
@@ -283,7 +283,7 @@ export const docAndBlogComponents: Components<{
                   </span>
                 )}
               </div>
-              <div className="font-tuner text-blue-500 font-medium break-normal max-w-full inline-block">
+              <div className="font-ibm-plex text-blue-500 font-medium break-normal max-w-full inline-block">
                 {property?.name?.replace(/([A-Z])/g, '\u200B$1')}
               </div>
               <div className="text-gray-500 text-sm">{property.type}</div>
@@ -327,7 +327,7 @@ export const docAndBlogComponents: Components<{
               {required && (
                 <p className="text-orange-500 font-medium text-sm">REQUIRED</p>
               )}
-              <h3 className="text-md font-medium text-blue-500 font-tuner">
+              <h3 className="text-md font-medium text-blue-500 font-ibm-plex">
                 {groupName || 'Object'}
               </h3>
             </div>
@@ -481,7 +481,7 @@ export const docAndBlogComponents: Components<{
                         key={`cell-${rowIndex}-${cellIndex}`}
                         className={`border border-orange-100 px-4 py-2 ${
                           rowIndex === 0
-                            ? 'font-normal bg-white/50 text-left text-orange-500 font-tuner'
+                            ? 'font-normal bg-white/50 text-left text-orange-500 font-ibm-plex'
                             : ''
                         } ${cellIndex === 0 ? 'break-words max-w-xs' : ''}`}
                       >
@@ -533,7 +533,7 @@ export const docAndBlogComponents: Components<{
         ></iframe>
       </div>
       {caption && (
-        <div className="text-sm font-tuner text-gray-500">
+        <div className="text-sm font-ibm-plex text-gray-500">
           Video: {caption} {minutes && `(${minutes} minutes)`}
         </div>
       )}
@@ -748,7 +748,7 @@ export const docAndBlogComponents: Components<{
   Button: ({ link, label }) => (
     <div className="w-full flex justify-start my-6">
       <a
-        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-linear-to-br from-orange-400 to-orange-600"
+        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-ibm-plex whitespace-nowrap focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-linear-to-br from-orange-400 to-orange-600"
         href={link}
         target="_blank"
       >

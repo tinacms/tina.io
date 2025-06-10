@@ -19,7 +19,7 @@ export function ShowcaseBlock({ data, index }) {
       >
         <div className="featureText">
           {data.headline && (
-            <h3 className="text-3xl lg:text-4xl font-tuner lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
+            <h3 className="text-3xl lg:text-4xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
               {data.headline}
             </h3>
           )}

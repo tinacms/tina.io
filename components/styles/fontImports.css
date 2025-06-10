@@ -67,3 +67,12 @@
   src: url('../../public/fonts/Inter-Bold.woff2') format('woff2'),
     url('../../public/fonts/Inter-Bold.woff') format('woff');
 }
+
+/* IBM Plex Sans SemiBold */
+@font-face {
+  font-family: 'IBMPlexSans-SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  font-display: fallback;
+  src: url('../../public/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+}

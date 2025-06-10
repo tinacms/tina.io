@@ -73,7 +73,7 @@ export const SubscriptionForm = ({ props }) => {
         className="flex flex-col text-left gap-1.5 items-start w-full"
         onSubmit={handleSubmit}
       >
-        <h2 className=" md:text-xl font-tuner text-white">Join the Herd!</h2>
+        <h2 className=" md:text-xl font-ibm-plex text-white">Join the Herd!</h2>
         <p className="text-sm font-light text-white/80 pb-1.5">
           Join our coding community for the latest tips and news.
         </p>
@@ -132,7 +132,7 @@ export const SubscriptionForm = ({ props }) => {
           <div className="flex justify-center pt-1">
             <button
               type="submit"
-              className="px-2 py-2 text-sm w-full bg-white text-orange-600 font-tuner shadow-xl hover:bg-white/80 transition-colors duration-200 rounded-full "
+              className="px-2 py-2 text-sm w-full bg-white text-orange-600 font-ibm-plex shadow-xl hover:bg-white/80 transition-colors duration-200 rounded-full "
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Subscribe...' : label}

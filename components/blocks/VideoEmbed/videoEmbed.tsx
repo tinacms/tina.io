@@ -60,7 +60,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
       >
         {title && (
           <h3
-            className="font-tuner inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left mb-6"
+            className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left mb-6"
             data-tina-field={tinaField(data, 'title')}
           >
             {title}

@@ -14,7 +14,7 @@ export const Textarea = styled.textarea`
   width: 100%;
   padding: 0.75rem 1rem;
   transition: all 85ms ease-out;
-  font-family: var(--font-tuner);
+  font-family: var(--font-ibm-plex);
   font-size: 16px;
   ::placeholder {
     opacity: 1;

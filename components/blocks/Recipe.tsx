@@ -101,7 +101,7 @@ export const RecipeBlock = ({ data }) => {
   return (
     <div className="recipe-block-container relative w-full">
       <div className="title-description px-10">
-        <h2 className="font-tuner text-orange-500 text-2xl">
+        <h2 className="font-ibm-plex text-orange-500 text-2xl">
           {title || 'Default Title'}
         </h2>
         <p className="font-light py-2 text-base">
@@ -147,7 +147,7 @@ export const RecipeBlock = ({ data }) => {
                   )
                 }
               >
-                <h5 className="font-tuner">{`${idx + 1}. ${
+                <h5 className="font-ibm-plex">{`${idx + 1}. ${
                   inst.header || 'Default Header'
                 }`}</h5>
                 <div

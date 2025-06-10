@@ -5,6 +5,13 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'IBMPlexSans-SemiBold';
+  src: url('/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
 :root {
   --color-tina-blue-light: #2296fe;
   --color-tina-blue: #2296fe;

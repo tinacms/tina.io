@@ -338,9 +338,10 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
         tuner: ['tuner-medium', ...defaultTheme.fontFamily.sans],
         'tuner-regular': ['tuner-regular', ...defaultTheme.fontFamily.sans],
+        'ibm-plex': ['IBMPlexSans-SemiBold', ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -383,5 +384,5 @@ module.exports = {
     './app/**/**/*.{js,ts,jsx,tsx}', // Nested components in app/
     './src/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: ['font-tuner'],
+  safelist: ['font-tuner', 'font-ibm-plex-semibold'],
 };
