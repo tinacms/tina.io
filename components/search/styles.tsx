@@ -78,7 +78,7 @@ export const SearchContainer = styled.div<SearchContainerProps>`
   position: relative;
   font-size: 1rem;
   padding: 0.625rem 0;
-  font-family: var(--font-tuner);
+  font-family: var(--font-ibm-plex-semibold);
   background-color: white;
   box-shadow: 3px 3px 4px var(--tina-color-grey-2), -4px -4px 6px white;
   color: var(--color-foreground);
@@ -173,7 +173,7 @@ export const HitsWrapper = styled.div<HitsWrapperProps>`
     h3 {
       margin: 0;
       color: var(--color-orange);
-      font-family: var(--font-tuner);
+      font-family: var(--font-ibm-plex-semibold);
       font-weight: bold;
       text-transform: uppercase;
       font-size: 1.125rem;

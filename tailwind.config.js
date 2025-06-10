@@ -339,8 +339,6 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        tuner: ['tuner-medium', ...defaultTheme.fontFamily.sans],
-        'tuner-regular': ['tuner-regular', ...defaultTheme.fontFamily.sans],
         'ibm-plex': ['IBMPlexSans-SemiBold', ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
@@ -384,5 +382,5 @@ module.exports = {
     './app/**/**/*.{js,ts,jsx,tsx}', // Nested components in app/
     './src/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: ['font-tuner', 'font-ibm-plex-semibold'],
+  safelist: ['font-ibm-plex-semibold'],
 };
