@@ -322,7 +322,7 @@ export function AppNavBar({ sticky = true }) {
                   <button
                     className={`outline-hidden hover:animate-jelly ${
                       animateFlag ? 'animate-bounce' : ''
-                    } hidden max-[639px]:block`}
+                    } hidden max-[1023px]:block`}
                     onClick={() => openModal('LanguageSelect')}
                   >
                     {selectedFlag === 'en' ? (
@@ -443,7 +443,7 @@ export function AppNavBar({ sticky = true }) {
             <button
               className={`outline-hidden hover:animate-jelly ${
                 animateFlag ? 'animate-bounce' : ''
-              } hidden min-[640px]:block`}
+              } hidden min-[1024px]:block`}
               onClick={() => openModal('LanguageSelect')}
             >
               {selectedFlag === 'en' ? (
