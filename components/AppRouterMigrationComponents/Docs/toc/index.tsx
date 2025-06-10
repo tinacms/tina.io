@@ -88,11 +88,35 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
                 ),
                 a: ({ children, ...props }) => {
                   const isActive = activeIds.includes(props.href?.slice(1)); // Match href with activeIds
+
+                  const handleClick = (
+                    e: React.MouseEvent<HTMLAnchorElement>
+                  ) => {
+                    e.preventDefault();
+                    const href = props.href;
+                    if (href && href.startsWith('#')) {
+                      const targetId = href.slice(1);
+                      const targetElement = document.getElementById(targetId);
+                      if (targetElement) {
+                        const elementPosition =
+                          targetElement.getBoundingClientRect().top;
+                        const offsetPosition =
+                          elementPosition + window.pageYOffset - 100;
+
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: 'smooth',
+                        });
+                      }
+                    }
+                  };
+
                   return (
                     <a
                       {...props}
+                      onClick={handleClick}
                       className={`
-                        block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150
+                        block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150 cursor-pointer
                         ${
                           isActive
                             ? 'text-orange-500 font-medium no-underline'
