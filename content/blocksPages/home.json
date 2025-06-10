@@ -256,6 +256,9 @@
       "_template": "carouselFeature"
     },
     {
+      "_template": "events"
+    },
+    {
       "blockSettings": {
         "isFullscreen": false
       },

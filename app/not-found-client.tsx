@@ -36,7 +36,7 @@ const PageLayout = ({
         {children}
       </div>
       <div className="max-w-[65vw] mx-auto md:max-w-none">
-        <div className="relative aspect-square rounded-3xl overflow-hidden">
+        <div className="relative rounded-3xl overflow-hidden">
           <Image
             src="/img/rico-replacement.jpg"
             alt={imageAlt}

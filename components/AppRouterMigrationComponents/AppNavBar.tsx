@@ -294,7 +294,7 @@ export function AppNavBar({ sticky = true }) {
             } `}
           >
             <button
-              className="absolute top-6 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
+              className="absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
               onClick={toggleMenu}
             >
               <BiMenu
@@ -322,7 +322,7 @@ export function AppNavBar({ sticky = true }) {
                   <button
                     className={`outline-hidden hover:animate-jelly ${
                       animateFlag ? 'animate-bounce' : ''
-                    } hidden max-[639px]:block`}
+                    } hidden max-[1023px]:block`}
                     onClick={() => openModal('LanguageSelect')}
                   >
                     {selectedFlag === 'en' ? (
@@ -443,7 +443,7 @@ export function AppNavBar({ sticky = true }) {
             <button
               className={`outline-hidden hover:animate-jelly ${
                 animateFlag ? 'animate-bounce' : ''
-              } hidden min-[640px]:block`}
+              } hidden min-[1024px]:block`}
               onClick={() => openModal('LanguageSelect')}
             >
               {selectedFlag === 'en' ? (
