@@ -108,7 +108,10 @@ export default function DocsClient({ props }) {
       {/* RIGHT COLUMN */}
       {DocumentationData?.tocIsHidden ? null : (
         <div className={`sticky top-32 h-[calc(100vh)] hidden xl:block`}>
-          <ToC tocItems={PageTableOfContents} activeIds={activeIds} />
+          <ToC
+            tocItems={PageTableOfContents}
+            activeId={activeIds[activeIds.length - 1] || ''}
+          />
         </div>
       )}
     </div>
