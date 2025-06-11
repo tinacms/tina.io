@@ -91,7 +91,7 @@
       "items": [
         {
           "headline": "□ TinaCloud Performance",
-          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n",
+          "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security, scalability and stability.\n",
           "actions": [
             {
               "label": "Github Discussion 🔗",
