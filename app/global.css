@@ -4,6 +4,13 @@
   font-weight: 600;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'SourceCodePro-Regular';
+  src: url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 :root {
   --color-tina-blue-light: #2296fe;
   --color-tina-blue: #2296fe;

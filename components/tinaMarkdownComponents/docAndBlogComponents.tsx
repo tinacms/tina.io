@@ -160,7 +160,7 @@ export const docAndBlogComponents: Components<{
   },
   code: (props) => (
     <code
-      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded"
+      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded font-source-code-pro"
       {...props}
     />
   ),
@@ -296,7 +296,7 @@ export const docAndBlogComponents: Components<{
               {property.default && (
                 <div className="text-slate-900 text-md">
                   Default is{' '}
-                  <span className="font-mono text-orange-500">
+                  <span className="font-source-code-pro text-orange-500">
                     {property.default}
                   </span>
                   .
@@ -684,7 +684,7 @@ export const docAndBlogComponents: Components<{
       <div className="relative pb-3 word-break white-space overflow-x-hidden rounded-xl! margin-0">
         <button
           onClick={handleCopy}
-          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded"
+          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-source-code-pro"
         >
           {hasCopied ? (
             <CheckIcon className="h-4 w-4" />

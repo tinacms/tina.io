@@ -129,7 +129,6 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: bold;
           font-size: 1rem;
           border-radius: 0.375rem;
           cursor: pointer;
@@ -137,7 +136,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           width: max-content;
           background-color: white;
           color: var(--color-secondary);
-          font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+          font-family: var(--font-source-code-pro);
           padding: 0;
           border: 1px solid #b4f4e0;
           font-weight: regular;

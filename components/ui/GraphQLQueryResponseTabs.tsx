@@ -52,7 +52,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
       </div>
       <div className="h-fit grid grid-cols-1 w-full">
         <div
-          className={`${containerStyling} rounded-b-xl`}
+          className={`${containerStyling} rounded-b-xl font-source-code-pro`}
           style={{
             zIndex: isQuery ? 5 : 1,
           }}

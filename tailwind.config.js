@@ -340,6 +340,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         'ibm-plex': ['IBMPlexSans-SemiBold', ...defaultTheme.fontFamily.sans],
+        'source-code-pro': [
+          'SourceCodePro-Regular',
+          ...defaultTheme.fontFamily.mono,
+        ],
       },
       gridTemplateColumns: {
         'auto-sm': 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -382,5 +386,5 @@ module.exports = {
     './app/**/**/*.{js,ts,jsx,tsx}', // Nested components in app/
     './src/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: ['font-ibm-plex-semibold'],
+  safelist: ['font-ibm-plex-semibold', 'font-source-code-pro'],
 };

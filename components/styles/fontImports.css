@@ -56,3 +56,12 @@
   font-display: fallback;
   src: url('../../public/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
 }
+
+/* Source Code Pro Regular */
+@font-face {
+  font-family: 'SourceCodePro-Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: url('../../public/fonts/SourceCodePro-Regular.ttf') format('truetype');
+}
