@@ -132,15 +132,15 @@ export const Card = ({ cardItem, onHover }) => {
                 } to go`}
           </span>
         )}
-        <h3 className="font-ibm-plex text-2xl mb-1 bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        <h3 className={`font-ibm-plex text-2xl mb-1 ${isLiveOrPastEvent ? 'text-black' : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'}`}>
           {cardItem.headline}
         </h3>
-        <div className="flex items-center text-md">
+        <div className={`flex items-center text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>
           <p className="mr-2">
             {displayDate()} {endYear}
           </p>
         </div>
-        <p className="text-md">{cardItem.location}</p>
+        <p className={`text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>{cardItem.location}</p>
         <Link href={cardItem.link || '#'} className="flex items-center gap-1 pt-1">
           <p className="font-ibm-plex text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
             Read more
