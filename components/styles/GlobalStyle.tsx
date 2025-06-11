@@ -1,5 +1,5 @@
-import { createGlobalStyle, css } from 'styled-components'
-import React from 'react'
+import React from 'react';
+import { createGlobalStyle, css } from 'styled-components';
 
 const CssReset = css`
   html,
@@ -70,7 +70,7 @@ const CssReset = css`
     padding: 0;
     text-align: left;
   }
-`
+`;
 
 // @ts-ignore
 export const GlobalStyle = React.memo(createGlobalStyle`
@@ -229,12 +229,11 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     --container-padding: 2rem;
 
     /* Typography */
-    --font-tuner: 'tuner-regular', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-      "Helvetica Neue", sans-serif;
-    --font-tuner-medium: 'tuner-medium', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    --font-ibm-plex-semibold: 'IBMPlexSans-SemiBold', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
+    --font-source-code-pro: 'SourceCodePro-Regular', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 
+        'source-code-pro', monospace;
 
     * {
       box-sizing: inherit;
@@ -278,4 +277,4 @@ export const GlobalStyle = React.memo(createGlobalStyle`
     width: 100%;
     margin: 2rem 0px;
   }
-`)
+`);

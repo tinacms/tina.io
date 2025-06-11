@@ -29,7 +29,7 @@ export const BlogPagination = styled(
             <DynamicLink href={prevPage}>
               <span
                 onClick={() => setSelectValue(selectValue - 1)}
-                className="font-tuner"
+                className="font-ibm-plex"
               >
                 <span className="font-sans font-bold">←</span> Newer
               </span>
@@ -39,7 +39,7 @@ export const BlogPagination = styled(
             <DynamicLink href={nextPage}>
               <span
                 onClick={() => setSelectValue(selectValue + 1)}
-                className="font-tuner"
+                className="font-ibm-plex"
               >
                 Older <span className="font-sans font-bold">→</span>
               </span>
@@ -77,7 +77,7 @@ export const BlogPagination = styled(
   align-items: center;
   font-size: 1.25rem;
   margin-bottom: 3rem;
-  font-family: var(--font-tuner-medium);
+  font-family: var(--font-ibm-plex-medium);
 
   p {
     color: var(--color-secondary);

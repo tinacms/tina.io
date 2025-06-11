@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronRight } from 'react-icons/fa';
 import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 
 export const DemoForm = () => {
@@ -20,13 +20,16 @@ export const DemoForm = () => {
     <>
       <div className="py-10 h-full flex flex-col">
         <div className="flex justify-center pb-8">
-          <h1 className="inline-block m-0 font-tuner lg:text-3xl md:text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h1 className="inline-block m-0 font-ibm-plex lg:text-3xl md:text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
             Choose your location
           </h1>
         </div>
         <div className="grid lg:grid-cols-3 gap-3 px-6 md:px-0 lg:px-6 grow">
           {meetingPeople.map((person, idx) => (
-            <div key={idx} className="flex justify-center w-full items-center h-full">
+            <div
+              key={idx}
+              className="flex justify-center w-full items-center h-full"
+            >
               <div className="w-full max-w-sm h-full">
                 <Link
                   href={person.url}

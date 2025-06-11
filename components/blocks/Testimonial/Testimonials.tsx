@@ -73,7 +73,7 @@ export default function TestimonialsBlock({ data, index }) {
   return (
     <div className="max-w-[1500px] m-auto">
       <h1
-        className={`w-full font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center`}
+        className={`w-full font-ibm-plex inline-block text-3xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center`}
         data-tina-field={tinaField(data, 'title')}
         ref={titleRef}
       >
