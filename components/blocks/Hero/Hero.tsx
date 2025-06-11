@@ -68,7 +68,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
       </div>
       <style jsx>{`
         .heading {
-          font-family: var(--font-tuner);
+          font-family: var(--font-ibm-plex);
           font-weight: bold;
           font-style: normal;
           font-size: 2.5rem;

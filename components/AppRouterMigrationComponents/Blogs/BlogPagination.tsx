@@ -27,7 +27,7 @@ export default function NewBlogPagination({
   }
 
   return (
-    <div className="flex justify-between items-center mb-12 text-lg font-medium font-tuner">
+    <div className="flex justify-between items-center mb-12 text-lg font-medium font-ibm-plex">
       {/* Pagination Links */}
       <div className="flex gap-4">
         {!isFirst && (

@@ -58,7 +58,7 @@ const HighlightsSection = ({ data }) => {
                 className="text-start grid grid-cols-1 my-16 md:my-0"
                 key={`iconColumn-${index}`}
               >
-                <h4 className="font-tuner text-2xl md:text-3xl mb-4 text-black">
+                <h4 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
                   {item.heading}
                 </h4>
                 {Array.isArray(item.highlights) &&

@@ -1,12 +1,12 @@
-import React, { createContext } from 'react';
-import styled, { css } from 'styled-components';
 import { DocsNavProps } from 'components/DocumentationNavigation';
 import { useRouter } from 'next/router';
+import React, { createContext } from 'react';
+import AnimateHeight from 'react-animate-height';
+import { BiChevronRight } from 'react-icons/bi';
+import styled, { css } from 'styled-components';
 import { matchActualTarget } from 'utils';
 import { DynamicLink } from '../../../../components/ui';
 import docsLinks from '../../../../content/docs-navigation.json';
-import { BiChevronRight } from 'react-icons/bi';
-import AnimateHeight from 'react-animate-height';
 import data from '../../../../content/siteConfig.json';
 
 interface NavTitleProps {
@@ -17,8 +17,6 @@ interface NavTitleProps {
   onClick?: () => void;
 }
 
-
-
 const NavTitle = ({
   children,
   level = 3,
@@ -27,7 +25,7 @@ const NavTitle = ({
   ...props
 }: NavTitleProps) => {
   const headerLevelClasses = {
-    0: 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
+    0: 'opacity-100 font-ibm-plex-light text-orange-500 text-xl pt-2',
     1: {
       default: 'text-base font-sans pt-1 text-gray-800',
       selected: 'text-base font-sans pt-1 font-bold text-blue-500',
@@ -99,7 +97,6 @@ const NavLevel = ({
       level === 0
   );
 
-
   const selected =
     path.split('#')[0] == slug || (slug == '/docs' && path == '/docs/');
 
@@ -159,12 +156,9 @@ const NavLevel = ({
             )}
           </NavTitle>
         )}
-        
+
         {!childSelected && selected && level > 0 && (
-          <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"
-            
-          ></div>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"></div>
         )}
       </NavLabelContainer>
       {categoryData.items && (

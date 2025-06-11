@@ -21,7 +21,7 @@ export const SocialIcon = ({ socialLinks }) => {
 const SocialLink = ({ link, children }) => {
   return (
     <a
-      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 font-tuner"
+      className="transition ease-out duration-150 opacity-80 hover:opacity-100 flex items-center gap-2 font-ibm-plex"
       href={link || ''}
       target="_blank"
       rel="noopener noreferrer"

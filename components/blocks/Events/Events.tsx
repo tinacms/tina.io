@@ -113,7 +113,7 @@ export const Card = ({ cardItem, onHover }) => {
         )}
       </div>
       <div className="grow flex flex-col pl-4 overflow-hidden py-4">
-        <h3 className="font-tuner text-2xl mb-1 bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        <h3 className="font-ibm-plex text-2xl mb-1 bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
           {cardItem.headline}
         </h3>
         <div className="flex items-center text-md">
@@ -142,7 +142,7 @@ export const Card = ({ cardItem, onHover }) => {
         </div>
         <p className="text-gray-500 text-md">{cardItem.location}</p>
         <Link href={cardItem.link || '#'}>
-          <p className="font-tuner pt-1 pr-4 text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
+          <p className="font-ibm-plex pt-1 pr-4 text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
             Read more
             <FaChevronRight className="text-md text-blue-700 ml-1 mb-1" />
           </p>
@@ -214,7 +214,7 @@ const EventsBlock = () => {
           {isGlobeVisible && (
             <Suspense
               fallback={
-                <div className="font-tuner text-2xl">Loading Globe...</div>
+                <div className="font-ibm-plex text-2xl">Loading Globe...</div>
               }
             >
               <LazyGlobe
@@ -225,7 +225,7 @@ const EventsBlock = () => {
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-start">
-          <h2 className="pb-6 pl-3 font-tuner inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
+          <h2 className="pb-6 pl-3 font-ibm-plex inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
             {eventsData.title}
           </h2>
           {filteredEvents.map((cardItem, index) => (

@@ -1,29 +1,27 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { FaYoutube } from 'react-icons/fa'
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { FaYoutube } from 'react-icons/fa';
 
 const VideoGridComponent = ({ data }) => {
-  const {mediaItem, typenames, mobileMaxHeight} = data || {}
+  const { mediaItem, typenames, mobileMaxHeight } = data || {};
 
   const [isPlayingArray, setIsPlayingArray] = useState(
     Array.isArray(mediaItem) ? mediaItem.map(() => false) : []
-  )
+  );
 
   const handlePlayVideo = (index) => {
-    const newIsPlayingArray = [...isPlayingArray]
-    newIsPlayingArray[index] = true
-    setIsPlayingArray(newIsPlayingArray)
-  }
+    const newIsPlayingArray = [...isPlayingArray];
+    newIsPlayingArray[index] = true;
+    setIsPlayingArray(newIsPlayingArray);
+  };
 
   const renderMedia = (media, index) => {
-    const isPlaying = isPlayingArray[index]
+    const isPlaying = isPlayingArray[index];
 
     const sizeClasses =
-      'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]'
+      'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]';
 
-    if (
-      media.__typename === typenames.cloudinary
-    ) {
+    if (media.__typename === typenames.cloudinary) {
       if (media.media && media.media.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
         return (
           <div
@@ -37,7 +35,7 @@ const VideoGridComponent = ({ data }) => {
               className="rounded-lg"
             />
           </div>
-        )
+        );
       } else if (media.media && media.media.match(/\.(mp4|webm|ogg)$/)) {
         return (
           <div
@@ -76,11 +74,9 @@ const VideoGridComponent = ({ data }) => {
               </div>
             )}
           </div>
-        )
+        );
       }
-    } else if (
-      media.__typename === typenames.youtube
-    ) {
+    } else if (media.__typename === typenames.youtube) {
       return (
         <div className={`overflow-hidden rounded-lg shadow-2xl ${sizeClasses}`}>
           <iframe
@@ -93,48 +89,48 @@ const VideoGridComponent = ({ data }) => {
             allowFullScreen
           />
         </div>
-      )
+      );
     }
-    return null
-  }
+    return null;
+  };
 
   const renderMediaList = (mediaList) => {
-    return <>
-      {
-        Array.isArray(mediaList) &&
-        mediaItem.map((item, index) => (
-          <div
-            key={index}
-            className="relative flex justify-center items-center"
-          >
-            {renderMedia(item, index)}
-          </div>
-        ))
-      }
-    </>
-  }
+    return (
+      <>
+        {Array.isArray(mediaList) &&
+          mediaItem.map((item, index) => (
+            <div
+              key={index}
+              className="relative flex justify-center items-center"
+            >
+              {renderMedia(item, index)}
+            </div>
+          ))}
+      </>
+    );
+  };
 
-  return renderMediaList(mediaItem)
-}
+  return renderMediaList(mediaItem);
+};
 
 const MediaComponent = ({ data }) => {
-  const { headline, mediaItem } = data || {}
+  const { headline, mediaItem } = data || {};
 
   const typenames = {
     cloudinary: 'PageBlocksMediaComponentMediaItemCloudinaryMediaComponent',
-    youtube: 'PageBlocksMediaComponentMediaItemYoutubeMedia'
-  }
+    youtube: 'PageBlocksMediaComponentMediaItemYoutubeMedia',
+  };
 
   return (
     <div className="media-component md:px-8 xl:px-8 lg:px-8 px-3 max-w-(--breakpoint-xl) mx-auto pb-4 pt-8">
-      <h2 className="text-center font-tuner text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent pb-10">
+      <h2 className="text-center font-ibm-plex text-3xl sm:pt-10 md:pt-4 lg:pt-0 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent pb-10">
         {headline}
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {VideoGridComponent({ data: { mediaItem, typenames } })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { MediaComponent, VideoGridComponent }
+export { MediaComponent, VideoGridComponent };

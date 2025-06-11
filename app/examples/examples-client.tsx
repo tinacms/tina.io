@@ -4,13 +4,12 @@ import { Container, IconTopRightOnSquare } from 'components/blocks';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { ExamplesExamples } from './examples-types';
 
-
 export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
   const examples = tinaProps?.data?.examples?.examples;
 
   return (
     <Container width="medium">
-      <h1 className="font-tuner inline-block text-3xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20">
+      <h1 className="font-ibm-plex inline-block text-3xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20">
         Examples
       </h1>
       <section
@@ -47,7 +46,7 @@ function Example({ example }: { example: ExamplesExamples }) {
       <div className="px-7 lg:px-8 py-6 lg:py-7">
         <div className="flex gap-4 items-center">
           <div className="flex flex-col">
-            <h4 className="text-lg lg:text-xl font-tuner text-blue-800 font-medium">
+            <h4 className="text-lg lg:text-xl font-ibm-plex text-blue-800 font-medium">
               {example.label}
             </h4>
           </div>

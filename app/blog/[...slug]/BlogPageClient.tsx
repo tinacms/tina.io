@@ -81,7 +81,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
 function BlogPageTitle({ title }: { title: string }) {
   const blogTitleStyling =
     'leading-[1.3] max-w-[9em] bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
-    'text-transparent bg-clip-text font-tuner mx-auto text-4xl md:text-5xl lg:text-6xl';
+    'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl lg:text-6xl';
 
   return (
     <div className="relative z-10 overflow-visible text-center px-8 py-12 lg:py-16">
