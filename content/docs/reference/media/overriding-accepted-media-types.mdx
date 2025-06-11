@@ -1,0 +1,42 @@
+---
+title: Overriding Accepted Media Types
+last_edited: '2025-06-11T02:00:32.510Z'
+next: ''
+previous: ''
+---
+
+Based on the supported types table shown on the [previous page,](/docs/reference/media/repo-based) you can modify the accepted media types.
+
+If you would like to specify your own allowed file types, add the following property to the media property in your defineConfig function. 
+
+```javascript
+//tina/config.{ts, js}
+
+export default defineConfig({
+  //...
+  media: {
+    tina: {
+      //...
+    },
+    accept: ['image/jpeg', 'video/mp4'],
+  },
+})
+```
+
+### accept: List\<String>
+
+This property determines the filetypes that can be uploaded
+
+### next/image
+
+If you are using Next images, you will need to add the following to your next.config.js file to allow access to external images hosted on the Tina media hostname 
+
+```javascript
+//next.config.js
+
+module.exports = {
+  images: {
+    domains: ['assets.tina.io'],
+  },
+}
+```
