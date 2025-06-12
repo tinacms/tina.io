@@ -56,6 +56,26 @@ export function createTocListener(
           )
         : headings[0] ?? {};
     newActiveIds.push(activeHeading.id);
+
+    if (activeHeading.level != 'H2') {
+      const activeHeadingParentCandidates =
+        activeHeadingCandidates.length > 0
+          ? activeHeadingCandidates.filter((heading) => {
+              return heading.level == 'H2';
+            })
+          : [];
+      const activeHeadingParent =
+        activeHeadingParentCandidates.length > 0
+          ? activeHeadingParentCandidates.reduce((prev, current) =>
+              prev.offset > current.offset ? prev : current
+            )
+          : null;
+
+      if (activeHeadingParent?.id) {
+        newActiveIds.push(activeHeadingParent.id);
+      }
+    }
+
     setActiveIds(newActiveIds);
   };
 
