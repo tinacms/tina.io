@@ -29,27 +29,20 @@ export function createTocListener(
   setActiveIds: (activeIds: string[]) => void
 ): () => void {
   let tick = false;
-  const THROTTLE_INTERVAL = 100;
   const headings = createHeadings(contentRef);
-  //Find the maximum pixel value from vertical scroll
   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
 
   const relativePositionHeadingMap = headings.map((heading) => {
     return {
       ...heading,
-      //Find the relative position of the heading based on the page content.
       relativePagePosition: heading.offset / contentRef.current.scrollHeight,
     };
   });
 
-  const throttledScroll = () => {
-    //Find the current vertical scroll pixel value
+  const handleScroll = () => {
     const scrollPos = window.scrollY;
     const newActiveIds = [];
-    //Find the relative position on the page based on the scroll.
     const relativeScrollPosition = scrollPos / maxScrollY;
-    //Find the headings that are above the current scroll position
-    //This is adjusted to account for differences between min/max scroll values and content height
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
       (heading) => {
         return relativeScrollPosition >= heading.relativePagePosition;
@@ -63,37 +56,17 @@ export function createTocListener(
           )
         : headings[0] ?? {};
     newActiveIds.push(activeHeading.id);
-
-    if (activeHeading.level != 'H2') {
-      const activeHeadingParentCandidates =
-        activeHeadingCandidates.length > 0
-          ? activeHeadingCandidates.filter((heading) => {
-              return heading.level == 'H2';
-            })
-          : [];
-      const activeHeadingParent =
-        activeHeadingParentCandidates.length > 0
-          ? activeHeadingParentCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
-            )
-          : null;
-
-      if (activeHeadingParent?.id) {
-        newActiveIds.push(activeHeadingParent.id);
-      }
-    }
-
     setActiveIds(newActiveIds);
   };
 
-  return function onScroll(): void {
+  return () => {
     if (!tick) {
-      setTimeout(function () {
-        throttledScroll();
+      window.requestAnimationFrame(() => {
+        handleScroll();
         tick = false;
-      }, THROTTLE_INTERVAL);
+      });
+      tick = true;
     }
-    tick = true;
   };
 }
 
