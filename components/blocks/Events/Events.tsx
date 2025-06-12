@@ -176,8 +176,6 @@ const EventsBlock = () => {
 
   const now = new Date();
 
-  console.log(eventsData.cardItems);
-
   // Filter and sort the events
   let filteredEvents = eventsData.cardItems
     .filter((event) => {
@@ -192,7 +190,7 @@ const EventsBlock = () => {
       (a, b) =>
         new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
     ) // Sort by start date
-    .slice(0, 3) // Take only the first 3 events
+    .slice(0, 3); // Take only the first 3 events
 
   // If there are no events planned - show last 3
   if (filteredEvents.length === 0 && eventsData?.cardItems?.length > 3) {
@@ -201,8 +199,6 @@ const EventsBlock = () => {
       eventsData?.cardItems?.length
     );
   }
-
-  console.log('filtered', filteredEvents);
 
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
