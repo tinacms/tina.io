@@ -105,6 +105,7 @@ export const Card = ({ cardItem, onHover }) => {
               alt={cardItem.headline}
               className="object-cover"
               fill={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               onError={(e) => {
                 e.currentTarget.src = '/events/default.jpg';
               }}
