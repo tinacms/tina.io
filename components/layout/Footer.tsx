@@ -1,14 +1,8 @@
 import Link from 'next/link';
-import React, { useEffect } from 'react';
-import { BsDiscord } from 'react-icons/bs';
+import React from 'react';
 import { TinaIcon } from '../../components/logo';
 import { DynamicLink } from '../../components/ui';
 import FooterData from '../../content/footer/Master-Footer.json';
-import GithubIconSvg from '../../public/svg/github-icon.svg';
-import LinkedInIconSvg from '../../public/svg/linkedin-icon.svg';
-import TwitterIconSvg from '../../public/svg/twitter-icon.svg';
-import XIconSvg from '../../public/svg/x-icon.svg';
-import YoutubeIconSvg from '../../public/svg/youtube-icon.svg';
 
 const footerLinks = [
   {
@@ -124,7 +118,7 @@ export const Footer = () => {
               const hasHeader = 'header' in column;
               return (
                 <div
-                  key={columnIndex}
+                  key={`footer-column-${columnIndex}`}
                   className="flex flex-col items-stretch justify-start gap-2"
                 >
                   {hasHeader && (
