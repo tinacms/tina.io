@@ -21,6 +21,7 @@ export const TinaBanner = ({ data }) => {
             src={backdrop}
             alt="backdrop"
             fill
+            sizes="100vw"
             style={{
               objectFit: 'cover',
             }}
