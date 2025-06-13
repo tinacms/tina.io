@@ -1,3 +1,4 @@
+import { countryCoordinates } from '@/component/ui/Globe';
 import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
 import Datetime from 'react-datetime';
@@ -8,6 +9,81 @@ import majorTimezones from '../../components/componentSuppliedData/EventsTimezon
 import { seoInformation } from './sharedFields/seoInformation';
 
 type offset = { value: any; label: string };
+
+const LocationField = ({ input, field, form }) => {
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [inputValue, setInputValue] = useState(input.value || '');
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setInputValue(value);
+
+    if (value.trim()) {
+      const filteredSuggestions = countryCoordinates.filter((coord) =>
+        coord.location.toLowerCase().includes(value.toLowerCase())
+      );
+      setSuggestions(filteredSuggestions);
+      setShowSuggestions(true);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSuggestionClick = (location) => {
+    setInputValue(location);
+    setShowSuggestions(false);
+    input.onChange(location);
+
+    const coordinates = countryCoordinates.find(
+      (coord) => coord.location.toLowerCase() === location.toLowerCase()
+    );
+
+    if (coordinates) {
+      const fullPath = input.name;
+      const basePath = fullPath.replace(/\.location$/, '');
+      form.change(`${basePath}.markerLAT`, coordinates.lat);
+      form.change(`${basePath}.markerLONG`, coordinates.lng);
+    }
+  };
+
+  const handleBlur = () => {
+    // Delay hiding suggestions to allow for click events
+    setTimeout(() => {
+      setShowSuggestions(false);
+    }, 200);
+  };
+
+  return (
+    <div className="mb-4 relative z-[999]">
+      <label className="block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2">
+        {field.label}
+      </label>
+      <input
+        type="text"
+        className="shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md"
+        value={inputValue}
+        onChange={handleInputChange}
+        onBlur={handleBlur}
+        placeholder="Enter location"
+      />
+      {showSuggestions && suggestions.length > 0 && (
+        <div className="absolute w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-gray-700"
+              onClick={() => handleSuggestionClick(suggestion.location)}
+            >
+              {suggestion.location}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 //Basically the gist of most of this processing is to create the list of possible GMT offsets...
 //then associate relevant cities to them via the moment-timezone library.
@@ -72,8 +148,10 @@ export const eventsCollection = {
     },
   },
   fields: [
-    {...seoInformation,
-      description: 'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below'
+    {
+      ...seoInformation,
+      description:
+        'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below',
     },
     { name: 'title', label: 'Title', type: 'string' },
     {
@@ -177,7 +255,14 @@ export const eventsCollection = {
             ],
           },
         },
-        { name: 'location', label: 'Location', type: 'string' },
+        {
+          name: 'location',
+          label: 'Location',
+          type: 'string',
+          ui: {
+            component: LocationField,
+          },
+        },
         { name: 'image', label: 'Image', type: 'image' },
         { name: 'link', label: 'URL', type: 'string' },
         {

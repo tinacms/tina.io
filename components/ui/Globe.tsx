@@ -25,7 +25,7 @@ const easeInOutCubic = (t) => {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 };
 
-const countryCoordinates = [
+export const countryCoordinates = [
   { location: 'Copenhagen, Denmark', lat: 0, lng: 0 },
   { location: 'Porto, Portugal', lat: 0, lng: 0 },
   { location: 'London, England', lat: 7, lng: 52 },
