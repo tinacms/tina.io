@@ -31,6 +31,7 @@ const VideoGridComponent = ({ data }) => {
               src={media.media}
               alt="Media"
               layout="fill"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               objectFit="cover"
               className="rounded-lg"
             />
@@ -57,6 +58,7 @@ const VideoGridComponent = ({ data }) => {
                     src={media.thumbnail}
                     alt="Video Thumbnail"
                     layout="fill"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     objectFit="cover"
                     className="rounded-lg"
                   />
