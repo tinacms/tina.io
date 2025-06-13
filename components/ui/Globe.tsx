@@ -25,6 +25,18 @@ const easeInOutCubic = (t) => {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 };
 
+const countryCoordinates = [
+  { country: 'Oslo', lat: 59, lng: 10 },
+  { country: 'Copenhagen', lat: 0, lng: 0 },
+  { country: 'Porto', lat: 0, lng: 0 },
+  { country: 'Melbourne', lat: -26.81015, lng: 225.96399 },
+  { country: 'Oslo', lat: -1, lng: 59 },
+  { country: 'London', lat: 7, lng: 52 },
+  { country: 'Melbourne', lat: -27.81015, lng: 220.9541 },
+  { country: 'Melbourne', lat: -27.81015, lng: 220.9541 },
+  { country: 'Newcastle', lat: -27.81015, lng: 210 },
+];
+
 const Model = ({ activeGlobeId, cardItems, ...props }) => {
   const groupRef = useRef<THREE.Group>(null);
   const fbx = useLoader(FBXLoader, '/lowpoly-earth.fbx');
