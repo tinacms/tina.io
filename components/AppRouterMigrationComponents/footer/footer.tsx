@@ -131,21 +131,27 @@ export function Footer({ footerData }: { footerData: FooterData }) {
             <TinaIcon color="white" />
           </div>
           <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {currentFooterNav.map((item) => {
+            {currentFooterNav.map((item, index) => {
               const { header, footerItem } = item;
               return (
                 <div
-                  key={header}
+                  key={`footer-nav-${header}-${index}`}
                   className="flex flex-col items-stretch justify-start gap-2"
                 >
                   <p className="uppercase text-orange-100 font-bold -mt-1">
                     {header}
                   </p>
-                  {footerItem.map((item) => {
+                  {footerItem.map((item, itemIndex) => {
                     return item.items ? (
-                      <LinkGroup key={item.label} item={item} />
+                      <LinkGroup
+                        key={`link-group-${item.label}-${itemIndex}`}
+                        item={item}
+                      />
                     ) : (
-                      <LinkItem key={item.label} item={item} />
+                      <LinkItem
+                        key={`link-item-${item.label}-${itemIndex}`}
+                        item={item}
+                      />
                     );
                   })}
                 </div>
@@ -164,9 +170,15 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           <SocialIcon socialLinks={socialLinks} />
           <div className="ml-5 flex drop-shadow-sm flex-wrap gap-6 md:ml-5">
             <div className="flex flex-wrap gap-x-6 gap-y-2">
-              {currentFooterLinks.map((item) => {
+              {currentFooterLinks.map((item, index) => {
                 const { id, href, label } = item;
-                return <FooterLink key={id} link={href || ''} label={label} />;
+                return (
+                  <FooterLink
+                    key={`footer-link-${id || index}`}
+                    link={href || ''}
+                    label={label}
+                  />
+                );
               })}
             </div>
             <div>

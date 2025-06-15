@@ -25,7 +25,13 @@ const Logo = ({ data, windowWidth = 1000 }) => {
       }}
     >
       <div className="flex items-center justify-center w-full h-full">
-        <Image src={logoSrc} alt={name} width={150} height={150} />
+        <Image
+          src={logoSrc}
+          alt={name}
+          width={150}
+          height={150}
+          style={{ width: 'auto', height: 'auto' }}
+        />
       </div>
     </a>
   );
