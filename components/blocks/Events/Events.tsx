@@ -13,6 +13,9 @@ import {
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
 export const Card = ({ cardItem, onHover }) => {
+  // By default, dates are shown in the client's timezone.
+  // To display dates in the stored timezone instead, pass `false` as the parameter
+  // i.e  const { startDate, endDate } = calculateEventTimes(cardItem, false);
   const { startDate, endDate } = calculateEventTimes(cardItem);
   const {
     hoursUntilEvent,
@@ -51,6 +54,9 @@ export const Card = ({ cardItem, onHover }) => {
         </h3>
         <div className="flex items-center text-md">
           <p className="mr-2">
+            {/* By default, dates are shown in the client's timezone.
+            To display dates in the stored timezone instead, pass `false` as the parameter 
+            i.e  formatEventDate(cardItem, false) */}
             {formatEventDate(cardItem)} {endYear}
           </p>
           {isLiveEvent ? (
