@@ -267,6 +267,8 @@ export const eventsCollection = {
             ],
           },
         },
+        { name: 'image', label: 'Image', type: 'image' },
+        { name: 'link', label: 'URL', type: 'string' },
         {
           name: 'location',
           label: 'Location',
@@ -275,8 +277,6 @@ export const eventsCollection = {
             component: LocationField,
           },
         },
-        { name: 'image', label: 'Image', type: 'image' },
-        { name: 'link', label: 'URL', type: 'string' },
         {
           name: 'markerLAT',
           label: 'Marker Latitude',
