@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export const countryCoordinates = [
   { location: 'Copenhagen, Denmark', lat: 0, lng: 0 },
@@ -9,8 +9,6 @@ export const countryCoordinates = [
   { location: 'Oslo Spektrum', lat: 59, lng: 10 },
   { location: 'Oslo, Norway', lat: -1, lng: 59 },
 ];
-
-type offset = { value: any; label: string };
 
 export const LocationField = ({
   input,
