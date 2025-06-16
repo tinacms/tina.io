@@ -7,40 +7,40 @@ import eventsData from '../../../content/events/master-events.json';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
+const getOrdinalSuffix = (day) => {
+  if (day > 3 && day < 21) return 'th';
+  switch (day % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
+      return 'th';
+  }
+};
+
+const shortDateFormat = (start, end?): string => {
+  //Gets the start date in the event time, which is "UTC" from how it's stored
+  const startDay = `${
+    new Date(start).getDate() + getOrdinalSuffix(new Date(start).getDate())
+  }`;
+  const startMonth = format(new Date(start), 'MMM');
+  //Gets the end date in the event time, which is "UTC" from how it's stored
+  const endDateAndHyphen = end
+    ? ` - ${
+        new Date(end).getDate() + getOrdinalSuffix(new Date(end).getDate())
+      }`
+    : '';
+  const endMonth = end ? format(new Date(end), 'MMM') : '';
+  //Formats the dates into a single string
+  return `${startDay} ${
+    startMonth == endMonth ? '' : startMonth
+  }${endDateAndHyphen} ${endMonth ?? startMonth}`;
+};
+
 export const Card = ({ cardItem, onHover }) => {
-  const getOrdinalSuffix = (day) => {
-    if (day > 3 && day < 21) return 'th';
-    switch (day % 10) {
-      case 1:
-        return 'st';
-      case 2:
-        return 'nd';
-      case 3:
-        return 'rd';
-      default:
-        return 'th';
-    }
-  };
-
-  const dateFormat = (start, end?): string => {
-    //Gets the start date in the event time, which is "UTC" from how it's stored
-    const startDay = `${
-      new Date(start).getDate() + getOrdinalSuffix(new Date(start).getDate())
-    }`;
-    const startMonth = format(new Date(start), 'MMM');
-    //Gets the end date in the event time, which is "UTC" from how it's stored
-    const endDateAndHyphen = end
-      ? ` - ${
-          new Date(end).getDate() + getOrdinalSuffix(new Date(end).getDate())
-        }`
-      : '';
-    const endMonth = end ? format(new Date(end), 'MMM') : '';
-    //Formats the dates into a single string
-    return `${startDay} ${
-      startMonth == endMonth ? '' : startMonth
-    }${endDateAndHyphen} ${endMonth ?? startMonth}`;
-  };
-
   const displayDate = () => {
     if (cardItem.startDate) {
       let timeString = '';
@@ -118,7 +118,7 @@ export const Card = ({ cardItem, onHover }) => {
       }
 
       return (
-        <>{`${dateFormat(localDateTimeString, localEndDateTimeString)}`}</>
+        <>{`${shortDateFormat(localDateTimeString, localEndDateTimeString)}`}</>
       );
     }
     return '';
