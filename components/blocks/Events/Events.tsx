@@ -93,17 +93,17 @@ export const Card = ({ cardItem, onHover }) => {
 
   return (
     <div
-      className="relative px-4 pt-4 mb-4 rounded-md group flex flex-col lg:flex-row bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
+      className="relative px-4 py-4 rounded-md group flex flex-col lg:gap-8 lg:flex-row bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
       onMouseEnter={() => onHover(cardItem.index)}
       onMouseLeave={() => onHover(null)}
     >
-      <div className="flex flex-col lg:w-1/3">
+      <div className="flex flex-col lg:w-2/5">
         {cardItem.image && (
-          <div className="relative h-36 w-full mb-3">
+          <div className="relative h-40 w-full mb-1.5 rounded-xl">
             <Image
               src={cardItem.image}
               alt={cardItem.headline}
-              className="object-cover"
+              className="object-cover rounded-lg"
               fill={true}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               onError={(e) => {
@@ -113,40 +113,40 @@ export const Card = ({ cardItem, onHover }) => {
           </div>
         )}
       </div>
-      <div className="grow flex flex-col pl-4 overflow-hidden py-4">
-        <h3 className="font-ibm-plex text-2xl mb-1 bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+      <div className="grow flex flex-col overflow-hidden py-2">
+        {isLiveEvent ? (
+          <span className="bg-[#0574E4] px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit ">
+            Event Started
+          </span>
+        ) : isLiveOrPastEvent ? (
+          <span className="bg-slate-500 px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit">
+            Event Finished
+          </span>
+        ) : (
+          <span className="bg-[#0574E4] px-2 mb-1.5 rounded text-sm text-white font-semibold shadow-lg w-fit">
+            {hoursUntilEvent >= 24
+              ? `${Math.floor(hoursUntilEvent / 24)} Day${
+                  hoursUntilEvent >= 48 ? 's' : ''
+                } to go`
+              : `${hoursUntilEvent} Hour${
+                  hoursUntilEvent > 1 ? 's' : ''
+                } to go`}
+          </span>
+        )}
+        <h3 className={`font-ibm-plex text-2xl mb-1 ${isLiveOrPastEvent ? 'text-black' : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'}`}>
           {cardItem.headline}
         </h3>
-        <div className="flex items-center text-md">
+        <div className={`flex items-center text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>
           <p className="mr-2">
             {displayDate()} {endYear}
           </p>
-          {isLiveEvent ? (
-            <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
-              LIVE
-            </span>
-          ) : isLiveOrPastEvent ? (
-            <span className="bg-slate-200 px-2 rounded text-sm text-gray-700 shadow-lg opacity-60">
-              DONE
-            </span>
-          ) : (
-            <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
-              {hoursUntilEvent >= 24
-                ? `${Math.floor(hoursUntilEvent / 24)} DAY${
-                    hoursUntilEvent >= 48 ? 'S' : ''
-                  } TO GO`
-                : `${hoursUntilEvent} HOUR${
-                    hoursUntilEvent > 1 ? 'S' : ''
-                  } TO GO`}
-            </span>
-          )}
         </div>
-        <p className="text-gray-500 text-md">{cardItem.location}</p>
-        <Link href={cardItem.link || '#'}>
-          <p className="font-ibm-plex pt-1 pr-4 text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
+        <p className={`text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>{cardItem.location}</p>
+        <Link href={cardItem.link || '#'} className="flex items-center gap-1 pt-1">
+          <p className="font-ibm-plex text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
             Read more
-            <FaChevronRight className="text-md text-blue-700 ml-1 mb-1" />
           </p>
+          <FaChevronRight className="text-sm text-blue-700" />
         </Link>
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -201,6 +201,7 @@ const EventsBlock = () => {
     );
   }
 
+
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
       <div className="flex flex-col lg:flex-row lg:gap-4">
@@ -225,13 +226,16 @@ const EventsBlock = () => {
           <h2 className="pb-6 pl-3 font-ibm-plex inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
             {eventsData.title}
           </h2>
-          {filteredEvents.map((cardItem, index) => (
-            <Card
-              key={index}
-              cardItem={{ ...cardItem, index }}
-              onHover={setActiveGlobeId}
-            />
-          ))}
+          <div className="flex flex-col gap-4">
+            {filteredEvents.map((cardItem, index) => (
+              <Card
+                key={index}
+                cardItem={{ ...cardItem, index }}
+                onHover={setActiveGlobeId}
+              />
+            ))}
+          </div>
+
           <Link
             href="/events"
             className="pt-10 font-bold flex items-center justify-end gap-2"
