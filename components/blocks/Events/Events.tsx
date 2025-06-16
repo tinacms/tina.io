@@ -46,7 +46,37 @@ export const Card = ({ cardItem, onHover }) => {
 
   const displayDate = () => {
     if (cardItem.startDate) {
-      return dateFormat(cardItem.startDate, cardItem.endDate);
+      let timeString = '';
+
+      if (cardItem.startTime) {
+        // If startTime is a datetime string, extract just the time part
+        if (cardItem.startTime.includes('T')) {
+          const timePart = cardItem.startTime
+            .split('T')[1]
+            .split(':')
+            .slice(0, 2)
+            .join(':');
+          const [hours, minutes] = timePart.split(':').map(Number);
+          const ampm = hours >= 12 ? 'PM' : 'AM';
+          const hours12 = hours % 12 || 12;
+          timeString = `${hours12}:${minutes
+            .toString()
+            .padStart(2, '0')} ${ampm}`;
+        }
+        // If startTime is just a time string (HH:mm)
+        else if (cardItem.startTime.includes(':')) {
+          const [hours, minutes] = cardItem.startTime.split(':').map(Number);
+          const ampm = hours >= 12 ? 'PM' : 'AM';
+          const hours12 = hours % 12 || 12;
+          timeString = `${hours12}:${minutes
+            .toString()
+            .padStart(2, '0')} ${ampm}`;
+        }
+      }
+
+      return `${dateFormat(cardItem.startDate, cardItem.endDate)}${
+        timeString ? ` ${timeString}` : ''
+      }`;
     }
     return '';
   };
