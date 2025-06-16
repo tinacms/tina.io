@@ -217,30 +217,11 @@ const formatEventDate = (
   return shortDateFormat(localDateTimeString, localEndDateTimeString);
 };
 
-const calculateEventYear = (
-  cardItem: any,
-  useLocalTimezone: boolean = true
-): number => {
-  const startDate = new Date(cardItem.startDate);
-  const startYear = startDate.getFullYear();
-
-  if (!cardItem.endDate) {
-    return startYear;
+const calculateEventYear = (startDateUTC: Date, endDateUTC?: Date): number => {
+  if (!endDateUTC) {
+    return new Date(startDateUTC).getFullYear();
   }
-
-  const endDate = new Date(cardItem.endDate);
-
-  if (useLocalTimezone) {
-    // Convert to user's local timezone
-    const userTimezone = getUserTimezoneOffset();
-    const timezoneDiff = userTimezone - cardItem.timezone;
-
-    const localEndDate = new Date(endDate);
-    localEndDate.setHours(localEndDate.getHours() + timezoneDiff);
-    return localEndDate.getFullYear();
-  }
-
-  return endDate.getFullYear();
+  return endDateUTC.getFullYear();
 };
 
 export const Card = ({ cardItem, onHover }) => {
@@ -254,7 +235,7 @@ export const Card = ({ cardItem, onHover }) => {
 
   const startDate = new Date(startDateUTC);
   const startYear = startDate.getFullYear();
-  const endYear = calculateEventYear(cardItem);
+  const endYear = calculateEventYear(startDateUTC, endDateUTC);
 
   return (
     <div
