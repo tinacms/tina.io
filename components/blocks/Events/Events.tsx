@@ -24,17 +24,14 @@ export const Card = ({ cardItem, onHover }) => {
 
   const dateFormat = (start, end?): string => {
     //Gets the start date in the event time, which is "UTC" from how it's stored
-    console.log('🚀 ~ dateFormat ~ start:', start);
     const startDay = `${
-      new Date(start).getUTCDate() +
-      getOrdinalSuffix(new Date(start).getUTCDate())
+      new Date(start).getDate() + getOrdinalSuffix(new Date(start).getDate())
     }`;
     const startMonth = format(new Date(start), 'MMM');
     //Gets the end date in the event time, which is "UTC" from how it's stored
     const endDateAndHyphen = end
       ? ` - ${
-          new Date(end).getUTCDate() +
-          getOrdinalSuffix(new Date(end).getUTCDate())
+          new Date(end).getDate() + getOrdinalSuffix(new Date(end).getDate())
         }`
       : '';
     const endMonth = end ? format(new Date(end), 'MMM') : '';
@@ -121,17 +118,7 @@ export const Card = ({ cardItem, onHover }) => {
       }
 
       return (
-        <>
-          {`${dateFormat(cardItem.startDate, cardItem.endDate)}${
-            timeString ? ` ${timeString}` : ''
-          }`}
-          <div className="text-sm text-gray-500">
-            <div>Local time: {localDateTimeString}</div>
-            {localEndDateTimeString && (
-              <div>Local time: {localEndDateTimeString}</div>
-            )}
-          </div>
-        </>
+        <>{`${dateFormat(localDateTimeString, localEndDateTimeString)}`}</>
       );
     }
     return '';
@@ -280,7 +267,9 @@ const EventsBlock = () => {
   let filteredEvents = eventsData.cardItems
     .filter((event) => {
       const startDate = new Date(event.startDate);
-      const endDate = new Date(event.endDate ?? event.startDate);
+      const endDate = new Date(
+        event.endDate?.split('T')[0] ?? event.startDate.split('T')[0]
+      );
       return (
         startDate >= now || // Upcoming events
         (startDate <= now && endDate >= now) // Currently ongoing events
