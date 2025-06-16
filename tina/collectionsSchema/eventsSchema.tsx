@@ -204,12 +204,15 @@ export const eventsCollection = {
           description:
             "Enter start time in the timezone of the event. E.g. '9:00 AM' if the event starts at 9 in the location it's being held.",
           ui: {
-            format: (value, name, field) =>
-              value && timeFormat.format(new Date(Date.parse(value))),
+            format: (value) => value,
             component: wrapFieldsWithMeta(({ field, input, meta }) => {
               return (
                 <div>
-                  <Datetime dateFormat={false} {...input} utc={true}></Datetime>
+                  <input
+                    type="time"
+                    className="shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md"
+                    {...input}
+                  />
                 </div>
               );
             }),
