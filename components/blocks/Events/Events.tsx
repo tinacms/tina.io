@@ -40,7 +40,77 @@ const shortDateFormat = (start, end?): string => {
   }${endDateAndHyphen} ${endMonth ?? startMonth}`;
 };
 
+const parseStartTime = (startTime: string | number): Date => {
+  let startTimeDate = new Date(startTime);
+
+  if (startTimeDate.toString() === 'Invalid Date') {
+    if (typeof startTime === 'string' && startTime.includes(':')) {
+      const [hours, minutes] = startTime.split(':').map(Number);
+      if (!isNaN(hours) && !isNaN(minutes)) {
+        startTimeDate = new Date();
+        startTimeDate.setHours(hours, minutes, 0, 0);
+      }
+    } else {
+      startTimeDate = new Date(+startTime);
+    }
+  }
+
+  return startTimeDate;
+};
+
+const calculateEventTimes = (cardItem: any) => {
+  const startTimeDate = parseStartTime(cardItem.startTime);
+  const startTime =
+    startTimeDate.getUTCHours() + startTimeDate.getUTCMinutes() / 60;
+
+  // Calculate start date in UTC
+  const startDateUTC = new Date(Date.parse(cardItem.startDate));
+  startDateUTC.setUTCMinutes(
+    startDateUTC.getUTCMinutes() + cardItem.timezone * -60 + startTime * 60
+  );
+
+  // Calculate end date in UTC
+  const endDateUTC = new Date(
+    Date.parse(cardItem.endDate ?? cardItem.startDate)
+  );
+  endDateUTC.setUTCMinutes(
+    endDateUTC.getUTCMinutes() + cardItem.timezone * -60 + 24 * 60
+  );
+
+  return { startDateUTC, endDateUTC };
+};
+
+const calculateEventStatus = (startDateUTC: Date, endDateUTC: Date) => {
+  const hoursUntilEvent = Math.ceil(
+    (startDateUTC.getTime() - new Date().getTime()) / 36e5
+  );
+  const hoursUntilEventEnd = Math.ceil(
+    (endDateUTC.getTime() - new Date().getTime()) / 36e5
+  );
+
+  return {
+    hoursUntilEvent,
+    hoursUntilEventEnd,
+    isLiveOrPastEvent: hoursUntilEvent < 0,
+    isLiveEvent: hoursUntilEvent <= 0 && hoursUntilEventEnd > 0,
+  };
+};
+
 export const Card = ({ cardItem, onHover }) => {
+  const { startDateUTC, endDateUTC } = calculateEventTimes(cardItem);
+  const {
+    hoursUntilEvent,
+    hoursUntilEventEnd,
+    isLiveOrPastEvent,
+    isLiveEvent,
+  } = calculateEventStatus(startDateUTC, endDateUTC);
+
+  const startDate = new Date(cardItem.startDate);
+  const startYear = startDate.getFullYear();
+  const endYear = cardItem.endDate
+    ? new Date(cardItem.endDate).getFullYear()
+    : startYear;
+
   const displayDate = () => {
     if (cardItem.startDate) {
       let timeString = '';
@@ -123,59 +193,6 @@ export const Card = ({ cardItem, onHover }) => {
     }
     return '';
   };
-
-  let startTimeDate = new Date(cardItem.startTime);
-  //This is to debug an issue with interaction between react-datetime (time picker) and tina.
-  //The date is locally stored as a number (timestamp), even when the saved value in /content is the expected (i.e. a string).
-  //This is to handle the local case until the user refreshes.
-  if (startTimeDate.toString() === 'Invalid Date') {
-    // If it's a time string in HH:mm format
-    if (
-      typeof cardItem.startTime === 'string' &&
-      cardItem.startTime.includes(':')
-    ) {
-      const [hours, minutes] = cardItem.startTime.split(':').map(Number);
-      if (!isNaN(hours) && !isNaN(minutes)) {
-        startTimeDate = new Date();
-        startTimeDate.setHours(hours, minutes, 0, 0);
-      }
-    } else {
-      startTimeDate = new Date(+cardItem.startTime);
-    }
-  }
-
-  const startTime =
-    startTimeDate.getUTCHours() + startTimeDate.getUTCMinutes() / 60;
-
-  //Gets the accurate start date-time in UTC, by applying the offset and event start time.
-  //Note that getting UTC minutes is actually getting the time in the event timezone, based on how the values are being stored.
-  const startDateUTC = new Date(Date.parse(cardItem.startDate));
-  startDateUTC.setUTCMinutes(
-    startDateUTC.getUTCMinutes() + cardItem.timezone * -60 + startTime * 60
-  );
-  //Gets the provided end date at midnight in UTC, or for one day events the start date is re-used.
-  const endDateUTC = new Date(
-    Date.parse(cardItem.endDate ?? cardItem.startDate)
-  );
-  endDateUTC.setUTCMinutes(
-    endDateUTC.getUTCMinutes() + cardItem.timezone * -60 + 24 * 60
-  );
-  //Calculate the hours until the event/event end by subtracting start and end dates (in UTC) against the current local time (in UTC).
-  const hoursUntilEvent = Math.ceil(
-    (startDateUTC.getTime() - new Date().getTime()) / 36e5
-  );
-  const hoursUntilEventEnd = Math.ceil(
-    (endDateUTC.getTime() - new Date().getTime()) / 36e5
-  );
-
-  const isLiveOrPastEvent = hoursUntilEvent < 0;
-  const isLiveEvent = hoursUntilEvent <= 0 && hoursUntilEventEnd > 0;
-  const startDate = new Date(cardItem.startDate);
-  const startYear = startDate.getFullYear();
-
-  const endYear = cardItem.endDate
-    ? new Date(cardItem.endDate).getFullYear()
-    : startYear;
 
   return (
     <div
