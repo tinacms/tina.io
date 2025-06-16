@@ -7,13 +7,6 @@
   "byLine": "Tina's hitting the road, and you don't want to miss out. Check out our stops and see TinaCMS in action!",
   "cardItems": [
     {
-      "headline": "test event",
-      "startDate": "2025-06-19T00:00:00.000Z",
-      "startTime": "20:00",
-      "endDate": "2025-06-20T00:00:00.000Z",
-      "timezone": 10
-    },
-    {
       "headline": "NDC Oslo",
       "startDate": "2025-05-19T00:00:00.000Z",
       "startTime": "09:00",
