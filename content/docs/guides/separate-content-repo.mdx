@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-01-15T22:07:55.023Z'
+last_edited: '2025-06-15T23:19:10.250Z'
 next: ''
 previous: ''
 ---
@@ -20,7 +20,7 @@ You might want to do this for a variety of reasons, such as:
 
 <WarningCallout
   body={<>
-    Throughout this guide we'll be referring to a &#x22;website repo&#x22; and a &#x22;content repo&#x22;. The &#x22;website repo&#x22; is where your actual website is running, while the &#x22;content repo&#x22; is where you'll be storing your markdown content
+    Throughout this guide we'll be referring to a "website repo" and a "content repo". The "website repo" is where your actual website is running, while the "content repo" is where you'll be storing your markdown content
   </>}
 />
 
@@ -30,6 +30,7 @@ You might want to do this for a variety of reasons, such as:
 * You must provide the location of your content repo in your Tina config (more about that below).
 * When making changes, you'll need to ensure you've pushed *both* repos to GitHub, with the "content repo"
   changes first
+* When making changes you will need to sync the generated files in `tina/` (such as `tina-lock.json`, `__generated__` files etc) between your website repo and content repo
 
 ## Create the website repository
 
@@ -49,7 +50,7 @@ To set up the "content repo", we'll start with a simple `.mdx` file:
 mkdir -p ../demo-content-repo/content/pages && touch ../demo-content-repo/content/pages/home.mdx && echo "Hello" >> ../demo-content-repo/content/pages/home.mdx
 ```
 
-This command created a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
+This command creats a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
 
 ## Local Development
 
@@ -75,9 +76,9 @@ From here you can add more fields to you content models in `tina/config.js`. [Vi
 
 Next we'll want to create a TinaCloud project from our "content repo"
 
-Initialize Git in your content repo and push it to GitHub. From there [connect to TinaCloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
-
-Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
+1. Initialize Git in your content repo and push it to GitHub. 
+2. From there [connect to TinaCloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
+3. Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
 
 Switch back to your "website repo" and set up an `.env` file to use when connecting to TinaCloud:
 
@@ -89,6 +90,28 @@ When you run `tinacms build`, it will use those credentials to connect to TinaCl
 
 ```sh
 yarn build
+```
+
+## Managing Schema Changes Across Repos
+
+When you modify your Tina schema ( tina/config.{ts/js} )
+
+1. Run tinacms build to regenerate files - Tina will regenerate files such like your tina-lock.json 
+2.  Commit and push these changes to both your website repo and content repo to ensure compatibility across builds
+
+## Path Configuration Considerations
+
+When defining collection paths inside your tina/config.{ts/js}, avoid setting path: '' . As Tina expects a folder-relative path. Using '' can result in errors when creating new documents because Tina prepends a / when saving, causing invalid GitHub paths. 
+
+## Static Site Generator Compatibility
+
+If you are using a static site generate (SSG) other than Next.js, such like Astro. Ensure your content pipeline ignores the tina/ directory inside your content repo. Tina's config files are not content files and this may cause parsing errors.
+
+```javascript
+export default defineCollection) {
+  schema: mySchema,
+  exclude: ['tina/**/*'],
+};
 ```
 
 ## Learn More
