@@ -58,7 +58,10 @@ const parseStartTime = (startTime: string | number): Date => {
   return startTimeDate;
 };
 
-const calculateEventTimes = (cardItem: any) => {
+const calculateEventTimes = (
+  cardItem: any,
+  useLocalTimezone: boolean = true
+) => {
   const startTimeDate = parseStartTime(cardItem.startTime);
   const startTime =
     startTimeDate.getUTCHours() + startTimeDate.getUTCMinutes() / 60;
@@ -77,7 +80,32 @@ const calculateEventTimes = (cardItem: any) => {
     endDateUTC.getUTCMinutes() + cardItem.timezone * -60 + 24 * 60
   );
 
-  return { startDateUTC, endDateUTC };
+  if (useLocalTimezone) {
+    const userTimezone = getUserTimezoneOffset();
+    const timezoneDiff = userTimezone - cardItem.timezone;
+
+    // Convert start date to local timezone
+    const localStartDate = new Date(startDateUTC);
+    localStartDate.setHours(localStartDate.getHours() + timezoneDiff);
+
+    // Convert end date to local timezone
+    const localEndDate = new Date(endDateUTC);
+    localEndDate.setHours(localEndDate.getHours() + timezoneDiff);
+
+    return {
+      startDateUTC: localStartDate,
+      endDateUTC: localEndDate,
+      originalStartDate: startDateUTC,
+      originalEndDate: endDateUTC,
+    };
+  }
+
+  return {
+    startDateUTC,
+    endDateUTC,
+    originalStartDate: startDateUTC,
+    originalEndDate: endDateUTC,
+  };
 };
 
 const calculateEventStatus = (startDateUTC: Date, endDateUTC: Date) => {
@@ -224,7 +252,7 @@ export const Card = ({ cardItem, onHover }) => {
     isLiveEvent,
   } = calculateEventStatus(startDateUTC, endDateUTC);
 
-  const startDate = new Date(cardItem.startDate);
+  const startDate = new Date(startDateUTC);
   const startYear = startDate.getFullYear();
   const endYear = calculateEventYear(cardItem);
 
