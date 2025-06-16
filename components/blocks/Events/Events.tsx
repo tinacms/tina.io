@@ -127,7 +127,23 @@ const formatLocalDateTime = (date: Date, timezone: number): string => {
     .padStart(2, '0')} ${localAmpm}`;
 };
 
-const formatEventDate = (cardItem: any): string => {
+const getUserTimezoneOffset = (): number => {
+  return -new Date().getTimezoneOffset() / 60;
+};
+
+const convertToLocalTimezone = (date: Date, eventTimezone: number): Date => {
+  const userTimezone = getUserTimezoneOffset();
+  const timezoneDiff = userTimezone - eventTimezone;
+
+  const localDate = new Date(date);
+  localDate.setHours(localDate.getHours() + timezoneDiff);
+  return localDate;
+};
+
+const formatEventDate = (
+  cardItem: any,
+  useLocalTimezone: boolean = true
+): string => {
   if (!cardItem.startDate) return '';
 
   let timeString = '';
@@ -145,17 +161,58 @@ const formatEventDate = (cardItem: any): string => {
 
     // Set the time in the event's timezone
     eventDate.setUTCHours(hours - cardItem.timezone, minutes, 0, 0);
-    localDateTimeString = formatLocalDateTime(eventDate, cardItem.timezone);
+
+    // Convert to user's local timezone if requested
+    const displayDate = useLocalTimezone
+      ? convertToLocalTimezone(eventDate, cardItem.timezone)
+      : eventDate;
+
+    localDateTimeString = formatLocalDateTime(displayDate, cardItem.timezone);
 
     // Convert end date to local time if end date exists
     if (cardItem.endDate) {
       const endDate = new Date(cardItem.endDate);
       endDate.setUTCHours(23 - cardItem.timezone, 59, 0, 0);
-      localEndDateTimeString = formatLocalDateTime(endDate, cardItem.timezone);
+
+      // Convert to user's local timezone if requested
+      const displayEndDate = useLocalTimezone
+        ? convertToLocalTimezone(endDate, cardItem.timezone)
+        : endDate;
+
+      localEndDateTimeString = formatLocalDateTime(
+        displayEndDate,
+        cardItem.timezone
+      );
     }
   }
 
   return shortDateFormat(localDateTimeString, localEndDateTimeString);
+};
+
+const calculateEventYear = (
+  cardItem: any,
+  useLocalTimezone: boolean = true
+): number => {
+  const startDate = new Date(cardItem.startDate);
+  const startYear = startDate.getFullYear();
+
+  if (!cardItem.endDate) {
+    return startYear;
+  }
+
+  const endDate = new Date(cardItem.endDate);
+
+  if (useLocalTimezone) {
+    // Convert to user's local timezone
+    const userTimezone = getUserTimezoneOffset();
+    const timezoneDiff = userTimezone - cardItem.timezone;
+
+    const localEndDate = new Date(endDate);
+    localEndDate.setHours(localEndDate.getHours() + timezoneDiff);
+    return localEndDate.getFullYear();
+  }
+
+  return endDate.getFullYear();
 };
 
 export const Card = ({ cardItem, onHover }) => {
@@ -169,9 +226,7 @@ export const Card = ({ cardItem, onHover }) => {
 
   const startDate = new Date(cardItem.startDate);
   const startYear = startDate.getFullYear();
-  const endYear = cardItem.endDate
-    ? new Date(cardItem.endDate).getFullYear()
-    : startYear;
+  const endYear = calculateEventYear(cardItem);
 
   return (
     <div
