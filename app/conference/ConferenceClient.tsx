@@ -571,12 +571,12 @@ function ConferencePage({
         <h2 className="text-3xl font-bold pb-4 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           {tinaData.data?.conference?.about?.heading}
         </h2>
-        <p className="text-lg max-w-4xl">
+        <div className="text-lg max-w-4xl">
           <TinaMarkdown
             content={tinaData.data?.conference?.about?.description}
             components={conferenceMarkdownComponents}
           />
-        </p>
+        </div>
         <KeyHighlights
           highlights={tinaData.data?.conference?.about?.keyHighlights}
         />
