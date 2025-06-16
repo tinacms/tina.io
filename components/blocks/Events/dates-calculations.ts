@@ -59,44 +59,40 @@ const calculateEventTimes = (
   const startTime = startTimeDate.getHours() + startTimeDate.getMinutes() / 60;
 
   // Calculate start date in UTC
-  const startDateUTC = new Date(Date.parse(cardItem.startDate));
-  startDateUTC.setMinutes(
-    startDateUTC.getMinutes() + cardItem.timezone * -60 + startTime * 60
+  const startDate = new Date(Date.parse(cardItem.startDate));
+  startDate.setMinutes(
+    startDate.getMinutes() + cardItem.timezone * -60 + startTime * 60
   );
 
   // Calculate end date in UTC
-  const endDateUTC = new Date(
-    Date.parse(cardItem.endDate ?? cardItem.startDate)
-  );
-  endDateUTC.setMinutes(
-    endDateUTC.getMinutes() + cardItem.timezone * -60 + 24 * 60
-  );
+  const endDate = new Date(Date.parse(cardItem.endDate ?? cardItem.startDate));
+  endDate.setMinutes(endDate.getMinutes() + cardItem.timezone * -60 + 24 * 60);
 
   if (useLocalTimezone) {
     const userTimezone = getUserTimezoneOffset();
     const timezoneDiff = userTimezone - cardItem.timezone;
 
     // Convert start date to local timezone
-    const localStartDate = new Date(startDateUTC);
+    const localStartDate = new Date(startDate);
     localStartDate.setHours(localStartDate.getHours() + timezoneDiff);
 
     // Convert end date to local timezone
-    const localEndDate = new Date(endDateUTC);
+    const localEndDate = new Date(endDate);
     localEndDate.setHours(localEndDate.getHours() + timezoneDiff);
 
     return {
-      startDateUTC: localStartDate,
-      endDateUTC: localEndDate,
-      originalStartDate: startDateUTC,
-      originalEndDate: endDateUTC,
+      startDate: localStartDate,
+      endDate: localEndDate,
+      originalStartDate: startDate,
+      originalEndDate: endDate,
     };
   }
 
   return {
-    startDateUTC,
-    endDateUTC,
-    originalStartDate: startDateUTC,
-    originalEndDate: endDateUTC,
+    startDate: startDate,
+    endDate: endDate,
+    originalStartDate: startDate,
+    originalEndDate: endDate,
   };
 };
 

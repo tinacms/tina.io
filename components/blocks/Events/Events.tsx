@@ -13,17 +13,15 @@ import {
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
 export const Card = ({ cardItem, onHover }) => {
-  const { startDateUTC, endDateUTC } = calculateEventTimes(cardItem);
+  const { startDate, endDate } = calculateEventTimes(cardItem);
   const {
     hoursUntilEvent,
     hoursUntilEventEnd,
     isLiveOrPastEvent,
     isLiveEvent,
-  } = calculateEventStatus(startDateUTC, endDateUTC);
+  } = calculateEventStatus(startDate, endDate);
 
-  const startDate = new Date(startDateUTC);
-  const startYear = startDate.getFullYear();
-  const endYear = calculateEventYear(startDateUTC, endDateUTC);
+  const endYear = calculateEventYear(startDate, endDate);
 
   return (
     <div
