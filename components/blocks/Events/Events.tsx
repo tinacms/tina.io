@@ -24,6 +24,7 @@ export const Card = ({ cardItem, onHover }) => {
 
   const dateFormat = (start, end?): string => {
     //Gets the start date in the event time, which is "UTC" from how it's stored
+    console.log('🚀 ~ dateFormat ~ start:', start);
     const startDay = `${
       new Date(start).getUTCDate() +
       getOrdinalSuffix(new Date(start).getUTCDate())
@@ -55,7 +56,19 @@ export const Card = ({ cardItem, onHover }) => {
   //The date is locally stored as a number (timestamp), even when the saved value in /content is the expected (i.e. a string).
   //This is to handle the local case until the user refreshes.
   if (startTimeDate.toString() === 'Invalid Date') {
-    startTimeDate = new Date(+cardItem.startTime);
+    // If it's a time string in HH:mm format
+    if (
+      typeof cardItem.startTime === 'string' &&
+      cardItem.startTime.includes(':')
+    ) {
+      const [hours, minutes] = cardItem.startTime.split(':').map(Number);
+      if (!isNaN(hours) && !isNaN(minutes)) {
+        startTimeDate = new Date();
+        startTimeDate.setHours(hours, minutes, 0, 0);
+      }
+    } else {
+      startTimeDate = new Date(+cardItem.startTime);
+    }
   }
 
   const startTime =
