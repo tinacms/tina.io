@@ -58,19 +58,6 @@ export const CodeButton = ({ children, label, id, ...props }) => {
           </span>
         </button>
 
-        <FaVideo
-          size={20}
-          className="text-blue-500 cursor-pointer hover:text-blue-700 transition-colors duration-200"
-          onClick={() => {
-            const videoElement = document.getElementById('home-page-video');
-            if (videoElement) {
-              videoElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-              });
-            }
-          }}
-        />
       </div>
       <style jsx>{`
         .bash {
