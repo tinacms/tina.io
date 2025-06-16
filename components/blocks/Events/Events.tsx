@@ -47,6 +47,8 @@ export const Card = ({ cardItem, onHover }) => {
   const displayDate = () => {
     if (cardItem.startDate) {
       let timeString = '';
+      let localDateTimeString = '';
+      let localEndDateTimeString = '';
 
       if (cardItem.startTime) {
         // If startTime is a datetime string, extract just the time part
@@ -72,11 +74,65 @@ export const Card = ({ cardItem, onHover }) => {
             .toString()
             .padStart(2, '0')} ${ampm}`;
         }
+
+        // Convert start time to local time
+        const eventDate = new Date(cardItem.startDate);
+        const [hours, minutes] = cardItem.startTime.includes('T')
+          ? cardItem.startTime.split('T')[1].split(':').map(Number)
+          : cardItem.startTime.split(':').map(Number);
+
+        // Set the time in the event's timezone
+        eventDate.setUTCHours(hours - cardItem.timezone, minutes, 0, 0);
+
+        // Format local start date and time
+        const localDate = eventDate.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+        const localHours = eventDate.getHours();
+        const localMinutes = eventDate.getMinutes();
+        const localAmpm = localHours >= 12 ? 'PM' : 'AM';
+        const localHours12 = localHours % 12 || 12;
+        localDateTimeString = `${localDate} ${localHours12}:${localMinutes
+          .toString()
+          .padStart(2, '0')} ${localAmpm}`;
+
+        // Convert end date to local time if end date exists
+        if (cardItem.endDate) {
+          const endDate = new Date(cardItem.endDate);
+          // Set end time to 23:59 in the event's timezone
+          endDate.setUTCHours(23 - cardItem.timezone, 59, 0, 0);
+
+          // Format local end date and time
+          const localEndDate = endDate.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          });
+          const localEndHours = endDate.getHours();
+          const localEndMinutes = endDate.getMinutes();
+          const localEndAmpm = localEndHours >= 12 ? 'PM' : 'AM';
+          const localEndHours12 = localEndHours % 12 || 12;
+          localEndDateTimeString = `${localEndDate} ${localEndHours12}:${localEndMinutes
+            .toString()
+            .padStart(2, '0')} ${localEndAmpm}`;
+        }
       }
 
-      return `${dateFormat(cardItem.startDate, cardItem.endDate)}${
-        timeString ? ` ${timeString}` : ''
-      }`;
+      return (
+        <>
+          {`${dateFormat(cardItem.startDate, cardItem.endDate)}${
+            timeString ? ` ${timeString}` : ''
+          }`}
+          <div className="text-sm text-gray-500">
+            <div>Local time: {localDateTimeString}</div>
+            {localEndDateTimeString && (
+              <div>Local time: {localEndDateTimeString}</div>
+            )}
+          </div>
+        </>
+      );
     }
     return '';
   };
