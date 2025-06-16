@@ -1,4 +1,3 @@
-import { countryCoordinates } from '@/component/ui/Globe';
 import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
 import Datetime from 'react-datetime';
@@ -7,6 +6,16 @@ import type { Template } from 'tinacms';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
 import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';
 import { seoInformation } from './sharedFields/seoInformation';
+
+export const countryCoordinates = [
+  { location: 'Copenhagen, Denmark', lat: 0, lng: 0 },
+  { location: 'Porto, Portugal', lat: 0, lng: 0 },
+  { location: 'London, England', lat: 7, lng: 52 },
+  { location: 'Melbourne, Australia', lat: -27.81015, lng: 220.9541 },
+  { location: 'Newcastle, Australia', lat: -27.81015, lng: 210 },
+  { location: 'Oslo Spektrum', lat: 59, lng: 10 },
+  { location: 'Oslo, Norway', lat: -1, lng: 59 },
+];
 
 type offset = { value: any; label: string };
 
