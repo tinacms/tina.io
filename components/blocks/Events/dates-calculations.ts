@@ -56,21 +56,20 @@ const calculateEventTimes = (
   useLocalTimezone: boolean = true
 ) => {
   const startTimeDate = parseStartTime(cardItem.startTime);
-  const startTime =
-    startTimeDate.getUTCHours() + startTimeDate.getUTCMinutes() / 60;
+  const startTime = startTimeDate.getHours() + startTimeDate.getMinutes() / 60;
 
   // Calculate start date in UTC
   const startDateUTC = new Date(Date.parse(cardItem.startDate));
-  startDateUTC.setUTCMinutes(
-    startDateUTC.getUTCMinutes() + cardItem.timezone * -60 + startTime * 60
+  startDateUTC.setMinutes(
+    startDateUTC.getMinutes() + cardItem.timezone * -60 + startTime * 60
   );
 
   // Calculate end date in UTC
   const endDateUTC = new Date(
     Date.parse(cardItem.endDate ?? cardItem.startDate)
   );
-  endDateUTC.setUTCMinutes(
-    endDateUTC.getUTCMinutes() + cardItem.timezone * -60 + 24 * 60
+  endDateUTC.setMinutes(
+    endDateUTC.getMinutes() + cardItem.timezone * -60 + 24 * 60
   );
 
   if (useLocalTimezone) {
