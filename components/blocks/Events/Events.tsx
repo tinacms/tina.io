@@ -96,6 +96,68 @@ const calculateEventStatus = (startDateUTC: Date, endDateUTC: Date) => {
   };
 };
 
+const formatTimeString = (timeString: string): string => {
+  if (timeString.includes('T')) {
+    const timePart = timeString.split('T')[1].split(':').slice(0, 2).join(':');
+    const [hours, minutes] = timePart.split(':').map(Number);
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = hours % 12 || 12;
+    return `${hours12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+  } else if (timeString.includes(':')) {
+    const [hours, minutes] = timeString.split(':').map(Number);
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = hours % 12 || 12;
+    return `${hours12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+  }
+  return '';
+};
+
+const formatLocalDateTime = (date: Date, timezone: number): string => {
+  const localDate = date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+  const localHours = date.getHours();
+  const localMinutes = date.getMinutes();
+  const localAmpm = localHours >= 12 ? 'PM' : 'AM';
+  const localHours12 = localHours % 12 || 12;
+  return `${localDate} ${localHours12}:${localMinutes
+    .toString()
+    .padStart(2, '0')} ${localAmpm}`;
+};
+
+const formatEventDate = (cardItem: any): string => {
+  if (!cardItem.startDate) return '';
+
+  let timeString = '';
+  let localDateTimeString = '';
+  let localEndDateTimeString = '';
+
+  if (cardItem.startTime) {
+    timeString = formatTimeString(cardItem.startTime);
+
+    // Convert start time to local time
+    const eventDate = new Date(cardItem.startDate);
+    const [hours, minutes] = cardItem.startTime.includes('T')
+      ? cardItem.startTime.split('T')[1].split(':').map(Number)
+      : cardItem.startTime.split(':').map(Number);
+
+    // Set the time in the event's timezone
+    eventDate.setUTCHours(hours - cardItem.timezone, minutes, 0, 0);
+    localDateTimeString = formatLocalDateTime(eventDate, cardItem.timezone);
+
+    // Convert end date to local time if end date exists
+    if (cardItem.endDate) {
+      const endDate = new Date(cardItem.endDate);
+      endDate.setUTCHours(23 - cardItem.timezone, 59, 0, 0);
+      localEndDateTimeString = formatLocalDateTime(endDate, cardItem.timezone);
+    }
+  }
+
+  return shortDateFormat(localDateTimeString, localEndDateTimeString);
+};
+
 export const Card = ({ cardItem, onHover }) => {
   const { startDateUTC, endDateUTC } = calculateEventTimes(cardItem);
   const {
@@ -110,89 +172,6 @@ export const Card = ({ cardItem, onHover }) => {
   const endYear = cardItem.endDate
     ? new Date(cardItem.endDate).getFullYear()
     : startYear;
-
-  const displayDate = () => {
-    if (cardItem.startDate) {
-      let timeString = '';
-      let localDateTimeString = '';
-      let localEndDateTimeString = '';
-
-      if (cardItem.startTime) {
-        // If startTime is a datetime string, extract just the time part
-        if (cardItem.startTime.includes('T')) {
-          const timePart = cardItem.startTime
-            .split('T')[1]
-            .split(':')
-            .slice(0, 2)
-            .join(':');
-          const [hours, minutes] = timePart.split(':').map(Number);
-          const ampm = hours >= 12 ? 'PM' : 'AM';
-          const hours12 = hours % 12 || 12;
-          timeString = `${hours12}:${minutes
-            .toString()
-            .padStart(2, '0')} ${ampm}`;
-        }
-        // If startTime is just a time string (HH:mm)
-        else if (cardItem.startTime.includes(':')) {
-          const [hours, minutes] = cardItem.startTime.split(':').map(Number);
-          const ampm = hours >= 12 ? 'PM' : 'AM';
-          const hours12 = hours % 12 || 12;
-          timeString = `${hours12}:${minutes
-            .toString()
-            .padStart(2, '0')} ${ampm}`;
-        }
-
-        // Convert start time to local time
-        const eventDate = new Date(cardItem.startDate);
-        const [hours, minutes] = cardItem.startTime.includes('T')
-          ? cardItem.startTime.split('T')[1].split(':').map(Number)
-          : cardItem.startTime.split(':').map(Number);
-
-        // Set the time in the event's timezone
-        eventDate.setUTCHours(hours - cardItem.timezone, minutes, 0, 0);
-
-        // Format local start date and time
-        const localDate = eventDate.toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric',
-        });
-        const localHours = eventDate.getHours();
-        const localMinutes = eventDate.getMinutes();
-        const localAmpm = localHours >= 12 ? 'PM' : 'AM';
-        const localHours12 = localHours % 12 || 12;
-        localDateTimeString = `${localDate} ${localHours12}:${localMinutes
-          .toString()
-          .padStart(2, '0')} ${localAmpm}`;
-
-        // Convert end date to local time if end date exists
-        if (cardItem.endDate) {
-          const endDate = new Date(cardItem.endDate);
-          // Set end time to 23:59 in the event's timezone
-          endDate.setUTCHours(23 - cardItem.timezone, 59, 0, 0);
-
-          // Format local end date and time
-          const localEndDate = endDate.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-          });
-          const localEndHours = endDate.getHours();
-          const localEndMinutes = endDate.getMinutes();
-          const localEndAmpm = localEndHours >= 12 ? 'PM' : 'AM';
-          const localEndHours12 = localEndHours % 12 || 12;
-          localEndDateTimeString = `${localEndDate} ${localEndHours12}:${localEndMinutes
-            .toString()
-            .padStart(2, '0')} ${localEndAmpm}`;
-        }
-      }
-
-      return (
-        <>{`${shortDateFormat(localDateTimeString, localEndDateTimeString)}`}</>
-      );
-    }
-    return '';
-  };
 
   return (
     <div
@@ -222,7 +201,7 @@ export const Card = ({ cardItem, onHover }) => {
         </h3>
         <div className="flex items-center text-md">
           <p className="mr-2">
-            {displayDate()} {endYear}
+            {formatEventDate(cardItem)} {endYear}
           </p>
           {isLiveEvent ? (
             <span className="bg-teal-100 px-2 rounded text-sm text-teal-700 shadow-lg opacity-60">
