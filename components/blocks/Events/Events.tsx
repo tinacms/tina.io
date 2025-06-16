@@ -13,6 +13,7 @@ import {
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
 export const Card = ({ cardItem, onHover }) => {
+  const [formattedDate, setFormattedDate] = useState('');
   // By default, dates are shown in the client's timezone.
   // To display dates in the stored timezone instead, pass `false` as the parameter
   // i.e  const { startDate, endDate } = calculateEventTimes(cardItem, false);
@@ -25,6 +26,10 @@ export const Card = ({ cardItem, onHover }) => {
   } = calculateEventStatus(startDate, endDate);
 
   const endYear = calculateEventYear(startDate, endDate);
+
+  useEffect(() => {
+    setFormattedDate(formatEventDate(cardItem));
+  }, [cardItem]);
 
   return (
     <div
@@ -68,19 +73,35 @@ export const Card = ({ cardItem, onHover }) => {
                 } to go`}
           </span>
         )}
-        <h3 className={`font-ibm-plex text-2xl mb-1 ${isLiveOrPastEvent ? 'text-black' : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'}`}>
+        <h3
+          className={`font-ibm-plex text-2xl mb-1 ${
+            isLiveOrPastEvent
+              ? 'text-black'
+              : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'
+          }`}
+        >
           {cardItem.headline}
         </h3>
-        <div className={`flex items-center text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>
+        <div
+          className={`flex items-center text-md ${
+            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
+          }`}
+        >
           <p className="mr-2">
-            {/* By default, dates are shown in the client's timezone.
-            To display dates in the stored timezone instead, pass `false` as the parameter 
-            i.e  formatEventDate(cardItem, false) */}
-            {formatEventDate(cardItem)} {endYear}
+            {formattedDate} {endYear}
           </p>
         </div>
-        <p className={`text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>{cardItem.location}</p>
-        <Link href={cardItem.link || '#'} className="flex items-center gap-1 pt-1">
+        <p
+          className={`text-md ${
+            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
+          }`}
+        >
+          {cardItem.location}
+        </p>
+        <Link
+          href={cardItem.link || '#'}
+          className="flex items-center gap-1 pt-1"
+        >
           <p className="font-ibm-plex text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
             Read more
           </p>
@@ -140,7 +161,6 @@ const EventsBlock = () => {
       eventsData?.cardItems?.length
     );
   }
-
 
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
