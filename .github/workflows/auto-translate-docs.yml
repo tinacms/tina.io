@@ -49,7 +49,7 @@ jobs:
       - name: Translate changed MDX files
         if: env.HAS_CHANGED_FILES == 'true'
         env:
-          AZURE_AI_API_KEY: ${{ secrets.AZURE_AI_API_KEY }}
+          TINA_OPENAI_API_KEY: ${{ secrets.TINA_OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: node .github/scripts/translate-mdx.js
