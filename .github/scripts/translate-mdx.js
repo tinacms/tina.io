@@ -18,12 +18,13 @@ async function translateMdx(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
     const response = await axios({
       method: 'post',
-      url: `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
+      url: config.API_BASE_URL,
       headers: {
         'Content-Type': 'application/json',
-        'api-key': API_KEY,
+        Authorization: `Bearer ${API_KEY}`,
       },
       data: {
+        model: config.openaiModel || 'gpt-4',
         messages: [
           {
             role: 'system',
