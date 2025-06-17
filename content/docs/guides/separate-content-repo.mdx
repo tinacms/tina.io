@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-06-15T23:19:10.250Z'
+last_edited: '2025-06-17T23:24:14.363Z'
 next: ''
 previous: ''
 ---
@@ -76,7 +76,7 @@ From here you can add more fields to you content models in `tina/config.js`. [Vi
 
 Next we'll want to create a TinaCloud project from our "content repo"
 
-1. Initialize Git in your content repo and push it to GitHub. 
+1. Initialize Git in your content repo and push it to GitHub.
 2. From there [connect to TinaCloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
 3. Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
 
@@ -94,14 +94,14 @@ yarn build
 
 ## Managing Schema Changes Across Repos
 
-When you modify your Tina schema ( tina/config.{ts/js} )
+When you modify your Tina schema ( tina/config.(ts/js) )
 
-1. Run tinacms build to regenerate files - Tina will regenerate files such like your tina-lock.json 
-2.  Commit and push these changes to both your website repo and content repo to ensure compatibility across builds
+1. Run tinacms build to regenerate files - Tina will regenerate files such like your tina-lock.json
+2. Commit and push these changes to both your website repo and content repo to ensure compatibility across builds
 
 ## Path Configuration Considerations
 
-When defining collection paths inside your tina/config.{ts/js}, avoid setting path: '' . As Tina expects a folder-relative path. Using '' can result in errors when creating new documents because Tina prepends a / when saving, causing invalid GitHub paths. 
+When defining collection paths inside your tina/config.(ts/js), avoid setting path: '' . As Tina expects a folder-relative path. Using '' can result in errors when creating new documents because Tina prepends a / when saving, causing invalid GitHub paths.
 
 ## Static Site Generator Compatibility
 
