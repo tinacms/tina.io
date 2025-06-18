@@ -1,0 +1,42 @@
+---
+title: 覆盖接受的媒体类型
+last_edited: '2025-06-11T02:00:32.510Z'
+next: ''
+previous: ''
+---
+
+基于[上一页](/docs/reference/media/repo-based)显示的支持类型表，您可以修改接受的媒体类型。
+
+如果您想指定自己的允许文件类型，请在您的defineConfig函数中的media属性中添加以下属性。
+
+```javascript
+//tina/config.{ts, js}
+
+export default defineConfig({
+  //...
+  media: {
+    tina: {
+      //...
+    },
+    accept: ['image/jpeg', 'video/mp4'],
+  },
+})
+```
+
+### accept: List\<String>
+
+此属性决定可以上传的文件类型
+
+### next/image
+
+如果您正在使用Next图像，您需要在您的next.config.js文件中添加以下内容，以允许访问托管在Tina媒体主机名上的外部图像
+
+```javascript
+//next.config.js
+
+module.exports = {
+  images: {
+    domains: ['assets.tina.io'],
+  },
+}
+```
