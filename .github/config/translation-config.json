@@ -1,8 +1,6 @@
 {
-  "azureApiBase": "https://tinoopenai.openai.azure.com",
-  "azureDeploymentId": "gpt-4o",
-  "azureApiVersion": "2024-10-21",
-  "modelName": "your-model-name",
+  "API_BASE_URL": "https://api.openai.com/v1/chat/completions",
+  "openaiModel": "gpt-4o",
   "promptTemplate": "请将以下Markdown内容翻译成中文，保留所有的Markdown格式、代码块和前置元数据。只翻译文本内容，不要修改代码、变量名等技术内容。不要在新翻译的Markdown文件中添加```markdown ```。请注意以下特殊要求：\n1. 不要修改URL和next以及preview字段\n2. 保持原文的格式结构，包括标题层级、列表、表格等\n\n3. 代码块中的注释可以翻译，但代码本身及其功能不要改变\n\n4. 请在回复中直接返回翻译后的markdown源码，不需要增加任何其他提示词或解释\n\n{{content}}",
   "maxTokens": 5000,
   "temperature": 0.1,
