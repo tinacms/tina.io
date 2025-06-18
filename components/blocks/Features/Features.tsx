@@ -103,11 +103,21 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage' ||
     data.media[0].__typename === 'PageBlocksHeroMediaImage'
   ) {
+    const imageSrc =
+      typeof data.media[0].image === 'string'
+        ? data.media[0].image
+        : data.media[0].image?.src || '';
+
+    if (!imageSrc) {
+      console.warn('No image source provided for media image');
+      return null;
+    }
+
     return (
       <>
         <Image
-          src={data.media[0].image}
-          alt={data.headline}
+          src={imageSrc}
+          alt={data.headline || 'Feature image'}
           className={`w-full h-auto rounded-lg ${
             data.isBackgroundEnabled ? 'shadow-panel' : ''
           } overflow-hidden bg-transparent`}

@@ -1,0 +1,247 @@
+{
+  "blocks": [
+    {
+      "headline": "The Git-Backed Headless CMS for Modern Teams",
+      "text": "Empower your content workflow with TinaCMS—an open-source, Git-powered headless CMS that seamlessly integrates with Markdown, MDX, and JSON. Experience intuitive visual editing, robust version control, and streamlined collaboration.",
+      "media": [
+        {
+          "image": "/Macbook Pro Air Mockup.png",
+          "_template": "image"
+        }
+      ],
+      "buttons": [
+        {
+          "label": "npx create-tina-app@latest",
+          "_template": "codeButton"
+        },
+        {
+          "label": "Try the Editor",
+          "icon": true,
+          "variant": "orangeWithBorder",
+          "size": "medium",
+          "url": "/",
+          "_template": "actions"
+        },
+        {
+          "label": "Book a Demo",
+          "icon": false,
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "hero"
+    },
+    {
+      "items": [
+        {
+          "logo": "/svg/logos/cityoflondon.svg"
+        },
+        {
+          "logo": "/svg/logos/smashing.svg"
+        },
+        {
+          "logo": "/svg/logos/ssw-logo-charcoal.svg"
+        },
+        {
+          "logo": "/svg/logos/shadowlion.svg"
+        },
+        {
+          "logo": "/svg/logos/bunnynet.svg"
+        },
+        {
+          "logo": "/svg/logos/paradisehelicopters.svg"
+        }
+      ],
+      "_template": "logoGrid"
+    },
+    {
+      "blockHeadline": "Key Features",
+      "items": [
+        {
+          "headline": "Visual Editing",
+          "text": "See content changes in real-time as you edit",
+          "icon2": "FaClock",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://demo.tina.io/admin#/"
+          }
+        },
+        {
+          "headline": "Open Source",
+          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
+          "icon2": "FaUnlock",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "https://github.com/tinacms/tinacms"
+          }
+        },
+        {
+          "headline": "Develop Locally",
+          "text": "Easily set up and run Tina locally to talk to your local filesystem",
+          "icon2": "FaCodeBranch",
+          "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/setup-overview/"
+          }
+        },
+        {
+          "headline": "3rd Party Media",
+          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
+          "icon2": "FaCloudDownloadAlt",
+          "videoSrc": "/video/2024-09-19-key-features-3rd-party-media%20v3.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/reference/media/overview"
+          }
+        },
+        {
+          "headline": "Build with Blocks",
+          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
+          "icon2": "FaPuzzlePiece",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/blocks"
+          }
+        },
+        {
+          "headline": "Markdown at Scale",
+          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
+          "icon2": "FaMarkdown",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/editing/overview"
+          }
+        },
+        {
+          "headline": "Git Integration",
+          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
+          "icon2": "FaGithub",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs/drafts/editorial-workflow/"
+          }
+        },
+        {
+          "headline": "Easy Documentation",
+          "text": "Tina's docs run on TinaCMS - check it out!",
+          "icon2": "FaFileAlt",
+          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
+          "button": {
+            "label": "READ MORE",
+            "icon": true,
+            "variant": "ghostBlue",
+            "size": "medium",
+            "url": "/docs"
+          }
+        }
+      ],
+      "_template": "carouselFeature"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "altText": "Getting Started with NPX",
+      "title": "Tired of Lengthy Set-up Processes?",
+      "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
+      "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
+      "_template": "videoEmbed"
+    },
+    {
+      "features": [
+        {
+          "headline": "Talk to a Tina Expert",
+          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": true,
+              "color": "blue",
+              "size": "small",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/TinaExpert.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "features": [
+        {
+          "headline": "Avoid Mistakes with Editorial Workflow",
+          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
+          "buttons": [
+            {
+              "label": "Editorial Workflow",
+              "icon": false,
+              "variant": "blue",
+              "size": "small",
+              "url": "/editorial-workflow",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "thumbnailVideo": "/video/create-branch.webm",
+              "videoEmbedId": "gYukiULGqGc",
+              "figureCaption": "Video: Making a Change with the Editorial Workflow (1 min)",
+              "_template": "videoThumbnailToInternalVideo"
+            }
+          ]
+        },
+        {
+          "headline": "Unbeatable UX",
+          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
+          "media": [
+            {
+              "thumbnailVideo": "/video/click-to-edit.webm",
+              "videoEmbedId": "CsCQS7HIBv0",
+              "figureCaption": "Video: Managing your Content Workflows (2 min)",
+              "_template": "videoThumbnailToInternalVideo"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    }
+  ]
+}
