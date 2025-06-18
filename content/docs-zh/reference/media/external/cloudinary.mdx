@@ -1,0 +1,120 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/next-tinacms-cloudinary/src/errors.ts"
+title: 使用Cloudinary进行媒体管理
+---
+
+在TinaCMS中管理**Cloudinary媒体资产**。
+
+> 以下指南使用NextJS的API功能来验证第三方媒体交互。如果您在Vercel上使用其他框架，此指南仍然适用（需要做一个小调整，即使用`/api/...`而不是`/pages/api`来处理您的无服务器函数）。
+
+## 安装
+
+```bash
+yarn add next-tinacms-cloudinary @tinacms/auth
+```
+
+## 连接Cloudinary
+
+您需要提供Cloudinary凭据以连接到您的媒体库。如果您还没有账户，请在[Cloudinary注册](https://cloudinary.com/users/register/free)，您的账户详细信息会显示在Cloudinary仪表板上。
+
+将以下变量添加到`.env`文件中。
+
+```env
+CLOUDINARY_CLOUD_NAME=<您的Cloudinary云名称>
+
+CLOUDINARY_API_KEY=<您的Cloudinary API密钥>
+
+CLOUDINARY_API_SECRET=<您的Cloudinary API密钥>
+```
+
+## 注册媒体存储
+
+现在，您可以用外部媒体存储替换默认的基于仓库的媒体。您可以通过`loadCustomStore`属性注册Cloudinary媒体存储。
+
+`loadCustomStore`属性可以在`tina/config.{js,ts}`中配置。
+
+```diff
+//tina/config.{ts,js}
+
+export default defineConfig({
+  //...
+  media: {
+-    tina: {
+-      publicFolder: 'public',
+-      mediaRoot: 'uploads',
+-    },
++    loadCustomStore: async () => {
++      const pack = await import("next-tinacms-cloudinary");
++      return pack.TinaCloudCloudinaryMediaStore;
++    },
+  },
+})
+```
+
+## 设置API路由
+
+Tina的“外部媒体提供商”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方式可以设置此处理器：
+
+### “NextJS API路由”
+
+对于使用NextJS的网站，您可以将处理器设置为NextJS服务器函数。为此，在您的项目中创建一个`pages/api/cloudinary/[...media].ts`文件，使用以下实现：
+
+```ts
+// pages/api/cloudinary/[...media].ts
+
+import {
+  mediaHandlerConfig,
+  createMediaHandler,
+} from 'next-tinacms-cloudinary/dist/handlers'
+
+import { isAuthorized } from '@tinacms/auth'
+
+export const config = mediaHandlerConfig
+
+export default createMediaHandler({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  authorized: async (req, _res) => {
+    try {
+      if (process.env.NODE_ENV == 'development') {
+        return true
+      }
+
+      const user = await isAuthorized(req)
+
+      return user && user.verified
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  },
+})
+```
+
+以上代码片段中发生了以下事情：
+
+- 我们调用`createMediaHandler`来设置路由并将您的媒体存储实例连接到您的Cloudinary账户。
+- `authorized`键将确保只有TinaCloud中的授权用户才能上传和编辑媒体。
+
+### 框架无关的实现
+
+在上述示例中，我们展示了如何将后端处理器托管为NextJS API函数。如果您在Vercel上使用其他框架，同样的方法适用（唯一的区别是您需要使用`/api/...`而不是`/pages/api/...`来处理您的处理器）。
+
+您还可以查看我们的[Netlify Functions](/docs/reference/media/external/authentication/#option-3-netlify-functions)实现。
+
+## 更新Schema
+
+现在媒体存储已注册并且媒体的API路由已设置，让我们在您的schema中添加一个图像。
+
+在您的`tina/config.{ts,tsx,js}`中为图像添加一个新字段，例如：
+
+```ts
+ {
+  name: 'hero',
+  type: 'image',
+  label: 'Hero Image',
+ }
+```
+
+现在，当编辑您的网站时，图像字段将允许您通过媒体存储连接到您的Cloudinary账户以管理您的媒体资产。

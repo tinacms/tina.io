@@ -1,0 +1,104 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
+id: templates
+title: 模板
+last_edited: '2025-03-26T01:40:40.668Z'
+next: content/docs/reference/types.mdx
+previous: content/docs/reference/fields.mdx
+---
+
+模板允许您在单个集合或对象中定义多个结构化变体。当您需要在同一父级下具有不同的数据结构时，它们是理想的选择。
+
+> 例如，在一个“页面”集合中，可能需要一个营销页面模板和一个内容页面模板，两个都在“页面”集合下。
+
+## 类型定义
+
+<apiReference
+  property={[
+    {
+      name: "name",
+      description: "模板的名称。\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "",
+      name: "fields",
+      description: "一个[字段](/docs/reference/fields/)的数组。\n",
+      type: "Field[]",
+      required: true
+    },
+    {
+      name: "label",
+      description: "在编辑器中显示的模板名称。\n",
+      type: "string"
+    },
+    {
+      groupName: "ui",
+      name: "itemProps",
+      description: "为编辑器指定自定义标签。\n",
+      type: "( value ) => { label: string }"
+    },
+    {
+      groupName: "ui",
+      name: "defaultItem",
+      description:
+        "一个对象或一个函数，当创建新文档时返回默认数据。\n",
+      type: "object | function"
+    },
+    {
+      name: "previewSrc",
+      description: "此模板的示例图像路径。\n",
+      type: "string",
+      groupName: "ui"
+    }
+  ]}
+/>
+
+## 示例
+
+### 包含两个模板的基本示例
+
+```ts
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        name: 'page',
+        label: '网站的一个页面',
+        path: 'content/pages',
+        format: 'mdx',
+        templates: [
+          {
+            name: 'content',
+            label: '内容页面',
+            fields: [
+              // ... 内容页面字段
+            ],
+          },
+          {
+            name: 'marketing',
+            label: '营销页面',
+            inline: true,
+            fields: [
+              //... 营销页面字段
+            ],
+          },
+        ],
+      },
+    ],
+  },
+})
+```
+
+Tina 使用与模板匹配的文件夹名称来正确组织文件，例如：
+
+```javascript
+/content/pages/marketing/home.md
+/content/pages/content/about.md
+```
+
+## 限制
+
+* 使用模板的集合不能使用“添加文件夹”按钮
