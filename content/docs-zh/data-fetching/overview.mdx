@@ -1,0 +1,119 @@
+---
+id: /docs/data-fetching/overview
+title: 常见查询
+last_edited: '2025-05-01T04:09:18.248Z'
+next: content/docs/data-fetching/custom-queries.mdx
+previous: ''
+---
+
+## 介绍
+
+如[数据获取介绍](/docs/features/data-fetching/)中所述，Tina 提供了一个用于查询内容的客户端。
+
+> 注意，对于高级用例，您还可以手动查询底层的 [GraphQL API](/docs/data-fetching/custom-queries/#writing-inline-queries)。
+
+## 查询单个文档
+
+```js
+import { client } from '../[pathToTina]/tina/__generated__/client';
+
+const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' });
+
+console.log(myPost.title);
+```
+
+在上面的例子中，`post` 是正在查询的集合的名称。可以用您的模式定义的集合名称之一替换它。
+
+## 查询文档列表
+
+```js
+const postsResponse = await client.queries.postConnection();
+const posts = postsResponse.data.postConnection.edges.map((post) => {
+  return { slug: post.node._sys.filename };
+});
+// 这将返回一个数组，如：[ { slug: 'HelloWorld.md'}, /*...*/ ]
+```
+
+`<collection-name>Connection` 可用于查询文档列表（在上面的例子中，我们的集合名称是 `post`）。
+
+### 过滤
+
+可以将过滤器作为选项添加到您的 `<collection-name>Collection` 查询中。
+
+```js
+const postsResponse = await client.queries.postConnection({
+  filter: { title: { startsWith: 'Vote' } },
+});
+
+// ...
+```
+
+以下操作符类型可用于查询
+
+| 键         | 行为                     | 类型                             |
+| :--------- | ------------------------ | -------------------------------- |
+| eq         | 等于                     | string, number, boolean          |
+| in         | 其中之一                 | string\[], number\[], boolean\[] |
+| gt         | 大于                     | string, number                   |
+| gte        | 大于或等于               | string, number                   |
+| lt         | 小于                     | string, number                   |
+| lte        | 小于或等于               | string, number                   |
+| startsWith | 以...开始                | string                           |
+| after      | 之后                     | datetime                         |
+| before     | 之前                     | datetime                         |
+
+> 只有 `gt`、`gte`、`lt`、`lte`、`after`、`before` 可以用于三元条件。
+
+#### 按文件名（\_sys）过滤
+
+目前，按文件名过滤文档的唯一方法是通过**代码**过滤现有的文档集合。
+
+例如，要过滤一个帖子数组以仅包含名为 `file-name-i-want` 的文件，可以使用以下代码：
+
+```js
+const allPosts = posts?.data?.postConnection?.edges.filter(
+  (post) => post.node._sys.filename === 'file-name-i-want'
+);
+```
+
+> 注意：使用自动生成的 `<collection-name>Connection` 时，查询将仅应用于文档的字段，而不是 `_sys` 属性。像上面展示的那样在代码中进行过滤是一个合适的替代方案。
+
+### 排序
+
+可以将排序作为选项添加到您的 `<collection-name>Collection` 查询中。
+
+```js
+const postsResponse = await client.queries.postConnection({
+  sort: 'date',
+});
+
+// ...
+```
+
+#### 按多个字段排序
+
+这里我们将使用 postConnection 查询我们的帖子集合，并使用名为 category-date 的多字段索引首先按类别排序，然后按日期排序结果：
+
+```js
+const postsResponse = await client.queries.postConnection({
+  sort: 'category-date',
+});
+
+// ...
+```
+
+### 分页
+
+Tina 支持基于游标的分页：
+
+```js
+const postsResponse = await client.queries.postConnection({
+  first: 10,
+  after:
+    'cG9zdCNkYXRlIzE2NTUyNzY0MDAwMDAjY29udGVudC9wb3N0cy92b3RlRm9yUGVkcm8uanNvbg==',
+});
+
+// ...
+```
+
+在客户端使用内置查询的一个限制是**您一次只能查询一个根集合**。如果您有一个页面上有多个表单，您可能需要使用[自定义查询](/docs/data-fetching/custom-queries/)。
