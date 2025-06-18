@@ -36,7 +36,7 @@
               "icon": true,
               "variant": "orange",
               "size": "medium",
-              "url": "/",
+              "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
