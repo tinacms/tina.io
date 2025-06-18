@@ -110,7 +110,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "0.0.0-4ddd310-20250618051738",
+    "tinacms": "0.0.0-194dc8c-20250618080413",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
@@ -118,7 +118,6 @@
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/typography": "^0.5.16",
-    "@tinacms/cli": "0.0.0-4ddd310-20250618051738",
     "@types/cookie": "^0.6.0",
     "@types/jest": "^25.2.3",
     "@types/negotiator": "^0.6.3",
@@ -128,6 +127,7 @@
     "@types/styled-components": "^5.1.34",
     "babel-plugin-styled-components": "^1.13.3",
     "jest": "^25.5.4",
+    "@tinacms/cli": "0.0.0-194dc8c-20250618080413",
     "next-sitemap": "^2.5.28",
     "prettier": "^2.8.8",
     "tailwindcss": "^4.1.5",
