@@ -1,95 +1,35 @@
-import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
 import eventsData from '../../../content/events/master-events.json';
+import {
+  calculateEventStatus,
+  calculateEventTimes,
+  calculateEventYear,
+  formatEventDate,
+} from './dates-calculations';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
 export const Card = ({ cardItem, onHover }) => {
-  const getOrdinalSuffix = (day) => {
-    if (day > 3 && day < 21) return 'th';
-    switch (day % 10) {
-      case 1:
-        return 'st';
-      case 2:
-        return 'nd';
-      case 3:
-        return 'rd';
-      default:
-        return 'th';
-    }
-  };
+  const [formattedDate, setFormattedDate] = useState('');
+  // By default, dates are shown in the client's timezone.
+  // To display dates in the stored timezone instead, pass `false` as the parameter
+  // i.e  const { startDate, endDate } = calculateEventTimes(cardItem, false);
+  const { startDate, endDate } = calculateEventTimes(cardItem);
+  const {
+    hoursUntilEvent,
+    hoursUntilEventEnd,
+    isLiveOrPastEvent,
+    isLiveEvent,
+  } = calculateEventStatus(startDate, endDate);
 
-  const dateFormat = (start, end?): string => {
-    //Gets the start date in the event time, which is "UTC" from how it's stored
-    const startDay = `${
-      new Date(start).getUTCDate() +
-      getOrdinalSuffix(new Date(start).getUTCDate())
-    }`;
-    const startMonth = format(new Date(start), 'MMM');
-    //Gets the end date in the event time, which is "UTC" from how it's stored
-    const endDateAndHyphen = end
-      ? ` - ${
-          new Date(end).getUTCDate() +
-          getOrdinalSuffix(new Date(end).getUTCDate())
-        }`
-      : '';
-    const endMonth = end ? format(new Date(end), 'MMM') : '';
-    //Formats the dates into a single string
-    return `${startDay} ${
-      startMonth == endMonth ? '' : startMonth
-    }${endDateAndHyphen} ${endMonth ?? startMonth}`;
-  };
+  const endYear = calculateEventYear(startDate, endDate);
 
-  const displayDate = () => {
-    if (cardItem.startDate) {
-      return dateFormat(cardItem.startDate, cardItem.endDate);
-    }
-    return '';
-  };
-
-  let startTimeDate = new Date(cardItem.startTime);
-  //This is to debug an issue with interaction between react-datetime (time picker) and tina.
-  //The date is locally stored as a number (timestamp), even when the saved value in /content is the expected (i.e. a string).
-  //This is to handle the local case until the user refreshes.
-  if (startTimeDate.toString() === 'Invalid Date') {
-    startTimeDate = new Date(+cardItem.startTime);
-  }
-
-  const startTime =
-    startTimeDate.getUTCHours() + startTimeDate.getUTCMinutes() / 60;
-
-  //Gets the accurate start date-time in UTC, by applying the offset and event start time.
-  //Note that getting UTC minutes is actually getting the time in the event timezone, based on how the values are being stored.
-  const startDateUTC = new Date(Date.parse(cardItem.startDate));
-  startDateUTC.setUTCMinutes(
-    startDateUTC.getUTCMinutes() + cardItem.timezone * -60 + startTime * 60
-  );
-  //Gets the provided end date at midnight in UTC, or for one day events the start date is re-used.
-  const endDateUTC = new Date(
-    Date.parse(cardItem.endDate ?? cardItem.startDate)
-  );
-  endDateUTC.setUTCMinutes(
-    endDateUTC.getUTCMinutes() + cardItem.timezone * -60 + 24 * 60
-  );
-  //Calculate the hours until the event/event end by subtracting start and end dates (in UTC) against the current local time (in UTC).
-  const hoursUntilEvent = Math.ceil(
-    (startDateUTC.getTime() - new Date().getTime()) / 36e5
-  );
-  const hoursUntilEventEnd = Math.ceil(
-    (endDateUTC.getTime() - new Date().getTime()) / 36e5
-  );
-
-  const isLiveOrPastEvent = hoursUntilEvent < 0;
-  const isLiveEvent = hoursUntilEvent <= 0 && hoursUntilEventEnd > 0;
-  const startDate = new Date(cardItem.startDate);
-  const startYear = startDate.getFullYear();
-
-  const endYear = cardItem.endDate
-    ? new Date(cardItem.endDate).getFullYear()
-    : startYear;
+  useEffect(() => {
+    setFormattedDate(formatEventDate(cardItem));
+  }, [cardItem]);
 
   return (
     <div
@@ -133,16 +73,35 @@ export const Card = ({ cardItem, onHover }) => {
                 } to go`}
           </span>
         )}
-        <h3 className={`font-ibm-plex text-2xl mb-1 ${isLiveOrPastEvent ? 'text-black' : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'}`}>
+        <h3
+          className={`font-ibm-plex text-2xl mb-1 ${
+            isLiveOrPastEvent
+              ? 'text-black'
+              : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'
+          }`}
+        >
           {cardItem.headline}
         </h3>
-        <div className={`flex items-center text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>
+        <div
+          className={`flex items-center text-md ${
+            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
+          }`}
+        >
           <p className="mr-2">
-            {displayDate()} {endYear}
+            {formattedDate} {endYear}
           </p>
         </div>
-        <p className={`text-md ${isLiveOrPastEvent ? 'text-gray-500' : 'text-black'}`}>{cardItem.location}</p>
-        <Link href={cardItem.link || '#'} className="flex items-center gap-1 pt-1">
+        <p
+          className={`text-md ${
+            isLiveOrPastEvent ? 'text-gray-500' : 'text-black'
+          }`}
+        >
+          {cardItem.location}
+        </p>
+        <Link
+          href={cardItem.link || '#'}
+          className="flex items-center gap-1 pt-1"
+        >
           <p className="font-ibm-plex text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
             Read more
           </p>
@@ -181,7 +140,9 @@ const EventsBlock = () => {
   let filteredEvents = eventsData.cardItems
     .filter((event) => {
       const startDate = new Date(event.startDate);
-      const endDate = new Date(event.endDate ?? event.startDate);
+      const endDate = new Date(
+        event.endDate?.split('T')[0] ?? event.startDate.split('T')[0]
+      );
       return (
         startDate >= now || // Upcoming events
         (startDate <= now && endDate >= now) // Currently ongoing events
@@ -200,7 +161,6 @@ const EventsBlock = () => {
       eventsData?.cardItems?.length
     );
   }
-
 
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
