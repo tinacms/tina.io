@@ -118,7 +118,7 @@
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/typography": "^0.5.16",
-    "@tinacms/cli": "0.0.0-194dc8c-20250618080413",
+    "@tinacms/cli": "0.0.0-48b963a-20250618233435",
     "@types/cookie": "^0.6.0",
     "@types/jest": "^25.2.3",
     "@types/negotiator": "^0.6.3",
