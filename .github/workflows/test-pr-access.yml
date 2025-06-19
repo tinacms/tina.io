@@ -15,11 +15,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug variables
+        run: |
+          echo "GH_APP_ID from vars: ${{ vars.GH_APP_ID }}"
+          echo "GH_APP_ID from secrets: ${{ secrets.GH_APP_ID }}"
+          echo "Repository owner: ${{ github.repository_owner }}"
+          echo "Repository name: ${{ github.event.repository.name }}"
+
       - name: Get GitHub App Token
         uses: actions/create-github-app-token@v2
         id: get-app-token
         with:
-          app-id: ${{ vars.GH_APP_ID }}
+          app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: ${{ github.event.repository.name }}
