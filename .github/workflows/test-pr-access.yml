@@ -20,7 +20,6 @@ jobs:
           echo "GH_APP_ID from vars: ${{ vars.GH_APP_ID }}"
           echo "GH_APP_ID from secrets: ${{ secrets.GH_APP_ID }}"
           echo "Repository owner: ${{ github.repository_owner }}"
-          echo "Repository name: ${{ github.event.repository.name }}"
 
       - name: Get GitHub App Token
         uses: actions/create-github-app-token@v2
