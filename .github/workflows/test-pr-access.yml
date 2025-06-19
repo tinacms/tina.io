@@ -2,7 +2,7 @@ name: Test PR Access
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 env:
   PR_NUMBER: '3448'
