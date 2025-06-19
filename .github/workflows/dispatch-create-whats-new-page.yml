@@ -51,8 +51,15 @@ jobs:
           add-paths: |
             content/*
 
+      - name: Get GitHub App Token
+        uses: actions/create-github-app-token@v2
+        id: get-app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_KEY }}
+
       - name: Enable Auto-Merge
         if: ${{ steps.create-pull-request.outputs.pull-request-number }}
         run: gh pr merge -s --auto ${{ steps.create-pull-request.outputs.pull-request-number }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.get-app-token.outputs.token }}
