@@ -57,6 +57,8 @@ jobs:
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
+          owner: ${{ github.repository_owner }}
+          repository: ${{ github.repository }}
 
       - name: Enable Auto-Merge
         if: ${{ steps.create-pull-request.outputs.pull-request-number }}
