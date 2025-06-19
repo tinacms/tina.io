@@ -22,7 +22,7 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
           owner: ${{ github.repository_owner }}
-          repositories: ${{ github.repository }}
+          repositories: ${{ github.event.repository.name }}
 
       - name: Enable Auto-Merge
         if: ${{ env.PR_NUMBER }}
