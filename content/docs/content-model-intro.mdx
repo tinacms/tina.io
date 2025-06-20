@@ -1,12 +1,12 @@
 ---
 title: The Tina Content Model
-last_edited: '2025-03-27T01:30:29.329Z'
+last_edited: '2025-06-17T00:08:49.390Z'
 tocIsHidden: true
 next: content/docs/introduction/using-starter.mdx
 previous: content/docs/using-tina-editor.mdx
 ---
 
-The **Tina schema defines the shape of your content**. 
+The **Tina schema defines the shape of your content**.
 
 Tina uses a "content-modeling as code" approach.
 
@@ -21,36 +21,4 @@ Each item in the `schema.collections` array represents a different content struc
 Each of these contains an array of `fields` to control what appears in the TinaCMS editor.
 
 ```ts
-// tina/config.{ts,js,tsx}
-import { defineConfig } from 'tinacms'
-
-export default defineConfig({
-  // ...
-  schema: {
-    collections: [ 
-      //⤵️ each item is a different content structure
-      {
-        label: 'Blog Posts',
-        name: 'post',
-        path: 'content/posts',
-        fields: [ //⤵️ each item is a new field in the editor
-          {
-            type: 'string',
-            label: 'Title',
-            name: 'title',
-          },
-          {
-            type: 'string',
-            label: 'Post Body',
-            name: 'body',
-            isBody: true,
-          },
-        ],
-      },
-      {
-        ...
-      }
-    ],
-  },
-})
 ```
