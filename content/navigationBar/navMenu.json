@@ -15,6 +15,10 @@
       "label": "Community",
       "items": [
         {
+          "label": "badge",
+          "href": "/badge"
+        },
+        {
           "label": "Showcase",
           "href": "/showcase"
         },
