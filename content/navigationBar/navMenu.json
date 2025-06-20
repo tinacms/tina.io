@@ -15,10 +15,6 @@
       "label": "Community",
       "items": [
         {
-          "label": "Certifications",
-          "href": "/certifications"
-        },
-        {
           "label": "Showcase",
           "href": "/showcase"
         },
@@ -33,6 +29,10 @@
         {
           "label": "Support",
           "href": "/docs/support"
+        },
+        {
+          "label": "Certifications",
+          "href": "/certifications"
         },
         {
           "label": "Awesome TinaCMS",
