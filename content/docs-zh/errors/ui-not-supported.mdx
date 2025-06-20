@@ -1,0 +1,56 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/graphql/src/builder/index.ts"
+title: '警告：{type}的用户界面不支持`list: true`'
+last_edited: '2021-09-17T14:50:37.760Z'
+---
+
+我们已经扩展了graphql API的功能，为每个字段提供了[`list`属性](/docs/schema/#the-list-property)选项。这意味着graphql响应将返回该字段的[`type`](/docs/schema/#the-type-property)数组。这在我们的后端是支持的，但我们尚未为这些字段实现前端用户界面。[这是相关的跟踪问题](https://github.com/tinacms/tinacms/issues/2081)。目前有两个解决此问题的变通方法。
+
+## 1. 包装在对象字段中
+
+包装在[`object`字段](/docs/schema/#the-object-property)中。如果你的字段看起来像这样
+
+```js
+{
+    type: "image",
+    name: "images",
+    label: "Images",
+    list: true,
+}
+```
+
+可以改为使用
+
+```js
+{
+    type: "object",
+    name: "images",
+    label: "Images",
+    list: true,
+    fields: [
+        {
+            type: "image",
+            name: "image",
+            label: "A single image",
+        }
+    ]
+}
+```
+
+现在你将能够在列表中添加和删除新图像。
+
+## 2. 创建你自己的自定义UI
+
+你可以通过添加[自定义字段](/docs/extending-tina/custom-field-components)来创建你自己的自定义用户界面。你需要制作一个符合模式中该类型的组件。完成后，你的字段可能看起来像这样。
+
+```js
+{
+    type: "image",
+    name: "images",
+    label: "Images",
+    list: true,
+    ui: {
+        component: "MyCustomImageListingField",
+    }
+}
+```

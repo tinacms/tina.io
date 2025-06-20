@@ -1,0 +1,68 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/printFinalMessage.ts"
+title: 将Tina添加到现有站点
+id: /docs/introduction/tina-init/
+last_edited: '2022-02-04T15:51:56.737Z'
+---
+
+> 注意：本文档假设您已经有一个正在运行的站点。如果没有，您可以快速开始使用我们的[NextJS入门项目](/docs/introduction/using-starter/)。
+
+## 添加Tina
+
+我们创建了一种快速启动Tina应用程序的方法，以展示可视化编辑的强大功能；在终端中输入以下命令：
+
+```bash
+npx @tinacms/cli@latest init
+```
+
+_有关非NextJS站点的提示帮助，请参阅[本指南](/docs/frameworks/other/)。_
+
+此命令将询问您几个问题，并在您的应用程序中设置Tina样板：
+
+1. 安装Tina所需的所有依赖项。
+2. 在`tina`目录中定义一个基本的内容架构。
+3. 在demo目录中创建示例内容。
+4. **（仅限NextJS）**：编辑`package.json`以使`dev`、`build`和`start`脚本运行tina GraphQL API。
+
+### 更新您的构建脚本
+
+根据您的框架，`tina init`可能会尝试更新您的`package.json`脚本。
+
+#### NextJS示例
+
+```json
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start"
+  }
+```
+
+#### Hugo示例
+
+```json
+  "scripts": {
+    "dev": "tinacms dev -c \"hugo server -D\"",
+    "build": "tinacms build && hugo"
+  }
+```
+
+如果CLI没有设置这些，您需要手动应用。
+
+### 快速测试
+
+现在我们已经设置了一个基本的Tina样板，您可以使用以下命令启动您的应用程序：
+
+```bash
+yarn dev
+```
+
+当Tina在NextJS站点上初始化时，会创建一个"/admin/index.html"页面，允许编辑者登录并开始进行内容更改。
+
+现在，如果您导航到`http://localhost:3000/admin/index.html`（假设您的站点运行在端口3000），您应该会看到一个新的CMS登录页面已添加到您的站点！
+
+> 注意，许多框架提供了一种将`/admin/index.html`重定向到`/admin`的方法。
+
+![Tina登录页面](/img/tina-login.png)
+
+接下来，我们将向您展示如何使用CMS并开始编辑一些内容！

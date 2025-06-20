@@ -1,0 +1,50 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/apply.ts"
+id: /docs/self-hosted/querying-data
+
+title: 在自托管后端查询内容
+next: content/docs/self-hosted/user-management.mdx
+previous: content/docs/self-hosted/migrating-from-tina-cloud.mdx
+---
+
+## 概述
+
+使用 TinaCloud 时，通常会使用 [TinaCMS 客户端](/docs/data-fetching/overview/) 来查询内容。
+
+```js
+import { client } from '../[pathToTina]/tina/__generated__/client'
+
+const myPost = await client.queries.blogPost({
+  relativePath: 'HelloWorld.md',
+})
+
+console.log(myPost.title)
+```
+
+在底层，这使用 fetch API 从 TinaCloud 请求数据。
+
+当自托管时，由于数据库内容完全限定于您的项目，您可以直接与数据库通信。我们提供了一个单独的 `databaseClient`，可以用来从数据库中查询数据。
+
+```diff
+- import { client } from '../[pathToTina]/tina/__generated__/client'
++ import { client } from '../[pathToTina]/tina/__generated__/databaseClient'
+
+// ...
+```
+
+在服务器上查询数据时应使用这个 `databaseClient`。例如：`getStaticProps`、`getServerSideProps`，或使用 React 服务器组件等。
+
+## 它是如何工作的？
+
+`databaseClient` 使用导出的数据库在您的 `database.{ts,js}` 中。它创建了一个使用数据库从数据库中检索数据的 GraphQL 解析器。
+
+## 用法
+
+`databaseClient` 具有与 [TinaCMS 客户端](/docs/data-fetching/overview/) 相同的接口。这意味着您可以像使用 [TinaCMS 客户端](/docs/data-fetching/overview/) 一样使用它。
+
+```ts
+import databaseClient from '../tina/__generated__/databaseClient'
+
+//...
+const res = await databaseClient.queries.postConnection()
+```

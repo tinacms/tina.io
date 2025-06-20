@@ -1,0 +1,179 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/forestry-migrate/index.ts"
+id: /docs/forestry/common-errors/
+title: 迁移时的常见错误
+last_edited: '2024-08-30T06:09:45.267Z'
+---
+
+以下是从Forestry迁移到TinaCMS时可能遇到的常见问题列表。
+
+## 迁移包含非字母数字字符的字段
+
+在TinaCMS中，所有字段只能包含字母数字字符或下划线。而在Forestry中，你可以使用包含非字母数字字符的字段，例如`my-field-name`或`my field name`。
+
+TinaCMS提供了一个`nameOverride`属性，允许你指定如何输出包含特殊字符的字段。
+
+例如：
+
+```js
+// 集合字段
+{
+  name: `my_field_name`,
+  nameOverride: `my-field-name`
+}
+```
+
+> 当导入你的模板时，Forestry迁移工具（`npx @tinacms/cli init`）应该会自动应用nameOverride。
+
+## 迁移块
+
+### \_template vs template
+
+在Forestry中使用[块作为字段类型的概念](https://forestry.io/docs/settings/fields/blocks/)在TinaCMS中被支持为[在对象字段中提供模板](/docs/editing/blocks/)。在迁移过程中，迁移工具会将你的块转换为模板。
+
+> 在TinaCMS中，我们默认使用`_template`而不是`template`键。Forestry迁移工具会自动处理这一点，为Forestry站点设置`templateKey`为"template"，但需要注意这一点。
+
+### 在块名称中使用连字符
+
+在TinaCMS中，前置元数据模板中通常会在名称中包含`-`。TinaCMS本身不支持字段名称中使用连字符，但支持使用`nameOverride`属性来处理这种情况。
+
+例如，如果你有一个前置元数据模板如下所示。
+
+```yaml
+---
+label: landing-page
+fields:
+  - type: blocks
+    name: sections
+    label: Sections
+    template_types:
+      - call-to-action
+      - feature
+      - hero
+```
+
+以及如下所示的内容
+
+```yaml
+sections:
+  - template: call-to-action
+  #   ...
+  - template: feature
+  #   ...
+```
+
+那么在Tina中，你的块字段将如下所示：
+
+```js
+// ...
+{
+  type: "object",
+  list: true,
+  name: "sections",
+  label: "sections",
+  templateKey: 'template',
+  templates: [
+    {
+      name: 'call-to-action',
+      nameOverride: 'call_to_action',
+      fields: [
+        //...
+      ]
+    },
+    // ...
+  ]
+}
+```
+
+你的输出内容将继续如下所示：
+
+```yaml
+- template: call-to-action
+#   ...
+# 这假设你的块字段上设置了templateKey: 'template'。
+- template: feature
+#   ...
+```
+
+## 常见错误信息及其修复方法
+
+### 错误：块模板"TemplateName"未为字段"FieldName"定义
+
+在Forestry中，你可能有一个块字段，其模板未在前置元数据模板中定义。在TinaCMS中，这是不允许的。你需要将Forestry中的模板添加到块字段的模板列表中，并为该模板定义字段。
+
+> [在这里查看更深入的视频解释](https://www.loom.com/share/6dee678048314f7d9afaa6fd8fa59154)
+
+### 在管理界面获取内容时的错误
+
+```
+[Error] GetCollection failed: Unable to fetch, errors: Error querying file <File> from collection pages. Please run "tinacms audit" or add the --verbose option for more info
+```
+
+![](/img/docs/forestry-migration/Screen-Shot-Error-Messager.png)
+
+这可能由于多种原因发生。一些常见原因是你尝试获取的数据
+
+* 格式不正确
+* 缺少必填字段
+* 缺少`_template`键。
+  如果查看终端中的错误信息，你应该能看到导致问题的确切错误。
+
+例如，如果你缺少`_template`，你将看到如下错误
+
+```
+Error: Unable to determine template for item at hugo/content/about.md, no template name provided for collection with multiple templates
+    at TinaSchema.getCollectionAndTemplateByFullPath (/Users/logananderson-forestry-mac/dev/forestry.io/forestry.io/node_modules/@tinacms/schema-tools/dist/index.js:224:19)
+```
+
+这可以通过在文件的前置元数据中添加`_template`键来修复。
+
+```md
+---
+# ...
+_template: my_template
+---
+```
+
+..其中"my_template"是文件所属集合中的模板名称。
+
+## 错误 `YAMLException: duplicated mapping key`
+
+当你的Markdown文件的前置元数据中有两个相同的键时会发生这种情况。在Forestry中，这是允许的，但在TinaCMS中不允许。你需要删除其中一个键。
+
+例如，如果你有一个文件如下所示
+
+```md
+---
+date: 2021-01-01
+date: 2021-01-02
+---
+```
+
+需要更改为
+
+```md
+---
+date: 2021-01-02
+---
+```
+
+## 信息：Match被转换为newMatch
+
+在TinaCMS中，match属性的工作方式与在Forestry中略有不同。在Forestry中，match属性是一个包含文件扩展名的glob模式。在TinaCMS中，match属性是一个不包含文件扩展名的glob模式。
+
+在TinaCMS中，match属性为每个集合设置并嵌套。
+
+```js
+{
+  label: 'Pages',
+  name: 'pages',
+  match: {
+    include: "{foo,ba}/**/*"
+  }
+  //..
+}
+```
+
+查看[match属性文档](/docs/reference/collections/#matchinclude)以获取更多信息。
+
+由于此迁移工具是从Forestry转换到TinaCMS，它将自动将match属性转换为TinaCMS格式。最好仔细检查它是否匹配正确。

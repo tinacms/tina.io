@@ -1,0 +1,264 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/toolkit/core/media.ts"
+title: 后端媒体处理器
+last_edited: '2025-03-26T22:28:07.754Z'
+next: ''
+previous: ''
+---
+
+Tina支持使用外部媒体提供商，但需要用户设置/托管一个轻量级的后端媒体处理器。Tina提供了一些帮助工具来简化这一过程，适用于`cloudinary`、`s3`和`dos`（"Digital Ocean Spaces"）。
+
+你还需要定义自己的授权函数，以检查用户是否被允许访问处理器。
+
+## 安装
+
+```bash
+yarn add @tinacms/auth
+```
+
+根据你的网站框架和托管提供商，有多种方式来托管媒体处理器。
+
+> 在以下示例中，将`<YOUR_MEDIA_STORE_NAME>`替换为`cloudinary`、`s3`或`dos`。
+
+### 选项1) Next.js API 路由（仅限NextJS）
+
+在你的Next.js应用的`pages`目录下设置一个新的API路由，路径为`pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`。
+
+然后通过调用你的媒体存储库的createMediaHandler方法添加一个新的全捕获API路由。
+
+从["@tinacms/auth"](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth)导入`isAuthorized`。
+
+`authorized`键将使得只有TinaCloud内的授权用户才能上传和编辑媒体。
+
+```ts
+// pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts
+
+import { createMediaHandler } from 'next-tinacms-<YOUR_MEDIA_STORE_NAME>/dist/handlers'
+
+import { isAuthorized } from '@tinacms/auth'
+
+export default createMediaHandler({
+  // ...
+  authorized: async (req, _res) => {
+    try {
+      if (process.env.NODE_ENV == 'development') {
+        return true
+      }
+
+      const user = await isAuthorized(req)
+
+      return user && user.verified
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  },
+})
+```
+
+### 选项2) Vercel API 路由
+
+Vercel支持通过在项目根目录创建一个`/api`目录来创建无服务器函数。要设置此项，请遵循上述[NextJS特定说明](/docs/reference/media/external/authentication/#option-1-nextjs-api-routes-nextjs-only)，但使用`/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`而不是`/pages/api/<YOUR_MEDIA_STORE_NAME>/[...media].ts`
+
+> 注意：你可能会注意到包名可能包含"next"（例如：`next-tinacms-cloudinary`）。你仍然可以将这些包用于其他框架。
+
+### 选项3) Netlify Functions
+
+如果你的网站托管在Netlify上，你可以使用["Netlify Functions"](https://docs.netlify.com/functions/overview/)来托管你的媒体处理器。
+
+首先，你必须设置重定向，以便所有请求到`/api/*`可以重定向到Netlify Functions。你可以在`netlify.toml`中设置重定向。我们还将使用[esbuild](https://docs.netlify.com/configure-builds/file-based-configuration/#functions)来构建我们的函数，因此我们也将在`netlify.toml`中设置这一点。
+
+在项目根目录的`netlify.toml`文件中添加以下内容。
+
+```text
+[[redirects]]
+    from = '/api/*'
+    to = '/.netlify/functions/api/:splat'
+    status = 200
+
+[functions]
+    node_bundler = 'esbuild'
+```
+
+接下来，你必须为媒体处理器设置API路由。
+
+安装以下依赖项。
+
+```bash
+yarn add serverless-http express @tinacms/auth next-tinacms-<YOUR_MEDIA_STORE_NAME>
+```
+
+创建一个名为`netlify/functions/api/api.js`的新文件，并添加以下代码。
+
+> 注意：如果你使用不同的[函数目录](https://docs.netlify.com/configure-builds/file-based-configuration/#functions)，文件路径可能会有所不同。
+
+```js
+import ServerlessHttp from 'serverless-http'
+import express, { Router } from 'express'
+import { isAuthorized } from '@tinacms/auth'
+import { createMediaHandler } from 'next-tinacms-<YOUR_MEDIA_STORE_NAME>/dist/handlers'
+
+const app = express()
+
+const router = Router()
+
+const mediaHandler = createMediaHandler({
+  // ...
+  // 有关createMediaHandler中内容的更多详细信息，请参见下一节
+  authorized: async (req, _res) => {
+    try {
+      if (process.env.NODE_ENV == 'development') {
+        return true
+      }
+
+      const user = await isAuthorized(req)
+
+      return user && user.verified
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  },
+})
+
+router.get('/cloudinary/media', mediaHandler)
+
+router.post('/cloudinary/media', mediaHandler)
+
+router.delete('/cloudinary/media/:media', (req, res) => {
+  req.query.media = ['media', req.params.media]
+  return mediaHandler(req, res)
+})
+
+app.use('/api/', router)
+app.use('/.netlify/functions/api/', router)
+
+export const handler = ServerlessHttp(app)
+```
+
+### 选项3) AWS Lambda
+
+如果你的网站托管在AWS上，你可以使用[AWS Lambda](https://aws.amazon.com/lambda/)来托管你的媒体处理器。以下示例
+使用S3媒体处理器，但你可以使用任何媒体处理器。
+
+#### 前提条件
+
+`npm install express @vendia/serverless-express @tinacms/auth body-parser`
+
+#### Lambda 函数
+
+1. 要将TinaCMS端点连接到AWS服务，你需要在Node 14.x中创建一个Lambda函数。以下是你需要的代码：
+
+```ts
+// index.ts
+import express, { Router } from 'express'
+import serverlessExpress from '@vendia/serverless-express'
+import { isAuthorized } from '@tinacms/auth'
+import { createMediaHandler } from 'next-tinacms-s3/dist/handlers'
+import bodyParser from 'body-parser'
+
+// 配置TinaCMS
+const mediaHandler = createMediaHandler({
+  config: {
+    credentials: {
+      accessKeyId: process.env.TINA_AWS_ACCESS_KEY_ID || '',
+      secretAccessKey: process.env.TINA_AWS_SECRET_ACCESS_KEY || '',
+    },
+    region: process.env.TINA_AWS_REGION,
+  },
+  bucket: process.env.TINA_AWS_BUCKET_NAME || '',
+  authorized: async (req, _res): Promise<any> => {
+    if (process.env.NODE_ENV === 'development') {
+      return true
+    }
+    try {
+      const user = await isAuthorized(req)
+      return user && user.verified
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  },
+})
+
+// 设置express应用和路由器
+const app = express()
+const router = Router()
+app.use(bodyParser.json())
+
+// 定义媒体处理的路由
+router.get('/s3/media', mediaHandler)
+router.post('/s3/media', mediaHandler)
+router.delete('/s3/media/:media', (req, res) => {
+  req.query.media = ['media', req.params.media]
+  return mediaHandler(req, res)
+})
+
+// 将路由器挂载到应用上
+app.use('/api/', router)
+
+// 导出处理函数
+exports.handler = serverlessExpress({ app })
+```
+
+1. 确保配置必要的环境变量：
+
+```yaml
+TINA_AWS_ACCESS_KEY_ID=******************
+TINA_AWS_BUCKET_NAME=******************
+TINA_AWS_REGION=********
+TINA_AWS_SECRET_ACCESS_KEY=******************
+```
+
+#### API Gateway
+
+1. 有了Lambda函数后，你可以继续创建一个API Gateway：
+   1. 点击**`Create API`**
+   2. 选择**REST API**
+2. 一旦API创建完成，在根路径下创建一个名为**`/api`**的资源，方法是进入*Resources*并选择*Create Resource*
+3. 接下来，创建一个嵌套的子路径，使用**`{proxy+}`**特殊语法来获取所有**`/api`**子路径。确保勾选***Configure as proxy resource.***
+
+   在设置ANY方法时，传递处理TinaCMS媒体管理器逻辑的Lambda函数。
+
+   点击**`save`**并允许API Gateway向Lambda函数添加权限
+4. 通过点击*Action*下拉菜单并选择Deploy API来部署你的API
+   1. 为Deployment Stage选择**`[New Stage]`**并输入*Stage name*
+   2. 一旦API部署完成，你可以通过点击你创建的阶段在*Stages*菜单中看到*Invoke URL*
+5. 通过进入*Settings*菜单并添加**`/*`**通配符来配置**Binary Media Types**
+
+#### CloudFront
+
+1. 为了完成连接，使用刚创建的API Gateway的*Invocation URL*为CloudFront创建一个新的**Origin**。将Origin Path设置为API部署的阶段名称。
+2. 为CloudFront创建一个新的**Behaviour**，它将拦截带有**`/api/s3/media*`**路径的请求，并使用刚创建的API Gateway origin。确保允许以下HTTP方法：**`GET`**、**`HEAD`**、**`OPTIONS`**、**`PUT`**、**`POST`**、**`PATCH`**和**`DELETE`**。
+   1. 在**Cache key and origin requests**部分，选择*Cache policy and origin request policy*选项。对于*Cache policy*，选择**CachingDisabled**。对于*Origin request policy*，选择**AllViewerExceptHostHeader**。
+3. 重复上述过程以创建另一个行为，拦截带有**`/api/s3/media/*`**路径的请求。
+
+## 在前端注册媒体存储
+
+现在，你可以用外部媒体存储替换默认的基于仓库的媒体。你可以通过`loadCustomStore`属性注册一个媒体存储。
+
+`loadCustomStore`属性可以在`tina/config`文件中配置。
+
+```diff
+// tina/config.{ts,js,jsx}
+
+// ...
+
+export default defineConfig({
+    // ...
+    media: {
+-      tina: {
+-        publicFolder: "",
+-        mediaRoot: ""
+-      },
++      loadCustomStore: async () => {
++        const pack = await import("next-tinacms-<YOUR_MEDIA_STORE_NAME>");
++        return pack.TinaCloud<YOUR_MEDIA_STORE>;
++      },
+    }
+})
+```
+
+> 确保在推送到TinaCloud生产环境时同时提交对配置和[`tina-lock.json`](/docs/tina-folder/overview/#tina-lockjson)文件的更改，否则你的资产仍将以`https://assets.tina.io`为前缀，就像你[仍在使用基于仓库的媒体](/docs/reference/media/repo-based/)一样。
+
+现在你可以在TinaCMS中管理外部媒体存储。要详细了解每个媒体存储，请参考下一节。

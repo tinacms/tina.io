@@ -1,0 +1,31 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/prompts/index.ts"
+title: 框架
+---
+
+## Tina支持哪些框架？
+
+Tina的默认“基本编辑器”适用于多种框架。它读取/写入基于文件的内容（Markdown, MDX, JSON等）。
+
+![基本编辑器](/img/docs/basic-editor.png)
+
+> Tina还支持["可视化编辑"](/docs/contextual-editing/overview/)，编辑者可以在进行更改时实时查看页面的更新。可视化编辑目前仅限于基于React的框架（NextJS, React等）。
+
+## 为每个框架配置Tina
+
+在配置Tina时，系统会提示您在tina配置中提供一个`publicFolder`。以下是一些常见框架的默认值：
+
+| **框架**                     | **公共资源目录**           |
+| ---------------------------- | --------------------------- |
+| NextJS                       | public                      |
+| Astro                        | public                      |
+| Create React App             | public                      |
+| Hugo                         | static                      |
+| Jekyll                       | ./                          |
+| Gatsby                       | static                      |
+| Nuxt v3                      | public                      |
+| Nuxt v2                      | static                      |
+| Remix                        | public                      |
+| Vue                          | public                      |
+| Eleventy                     | 每个项目配置                |
+| 纯HTML站点（使用JSON）       | ./                          |

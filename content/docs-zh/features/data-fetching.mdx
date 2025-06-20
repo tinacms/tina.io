@@ -1,0 +1,121 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/tina-cms.tsx"
+id: /docs/features/data-fetching
+title: 内容API概述
+last_edited: '2025-05-19T01:42:14.730Z'
+next: content/docs/contextual-editing/overview.mdx
+previous: content/docs/schema.mdx
+---
+
+## 介绍
+
+使用 Tina，您的内容与代码库一起存储在 Git 中。Tina 在基于仓库的内容前提供了一个内容 API，使您可以像在数据库中一样与文件交互。
+
+您可以：
+
+* 查询给定集合的内容
+* 应用过滤器、排序、分页等
+* 基于关系字段查询您的内容。
+
+要与 API 接口交互，您可以使用 Tina 的类型安全客户端进行数据获取，或者手动编写自定义 GraphQL 查询并自行访问 API。
+
+## 使用 Tina 客户端发起请求
+
+Tina 客户端是获取网站内容的最简单方式。可以在 `tina/config.<js|ts>` 中的 `defineConfig` 函数中配置客户端。
+
+> 注意：token、clientId 和 branch 在[本地模式](/docs/tina-cloud/#local-mode)下**不**使用。要为生产环境设置这些值，请参阅[此文档](/docs/tina-cloud/overview)
+
+```js
+// tina/config.{js,ts,tsx}
+export default defineConfig({
+  schema,
+  token: '***',
+  clientId: '***',
+  branch: 'main',
+});
+```
+
+在本地工作时，客户端使用本地 URL (`http://localhost:4001/graphql`) 构建。在[生产模式](/docs/tina-cloud/#prod-mode)下，`clientId`、`branch` 和 `token` 用于查询 TinaCloud。
+
+Tina 客户端提供了一个类型安全的查询构建器，该构建器是根据您网站的架构自动生成的：
+
+```js
+import { client } from '../[pathToTina]/tina/__generated__/client';
+
+const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' });
+
+console.log(myPost.data.title);
+```
+
+上述 `client.queries.post` 查询不是 Tina 的 API 内置的。这是基于*您*定义的架构的查询示例（其中您定义了一个“post”集合）。
+
+在显示帖子列表的页面上，您可以这样获取帖子：
+
+```js
+const postsResponse = await client.queries.postConnection();
+const posts = postsResponse.data.postConnection.edges.map((post) => {
+  return { slug: post.node._sys.filename };
+});
+// 这将返回一个数组，如：[ { slug: 'HelloWorld.md'}, /*...*/ ]
+```
+
+> 有关为您的特定架构手动编写查询的更多信息，请查看我们的["编写自定义查询"](/docs/data-fetching/custom-queries/#writing-inline-queries)文档。
+
+## 使用静态站点生成（SSG）处理新页面
+
+如果您使用 SSG，在 TinaCMS 中创建新页面意味着内容会立即更新到 TinaCloud 和您的 Git 仓库中。然而，您的网站（基于 `main` 或其他分支）不会立即显示此新页面，通常会导致 404 错误。这是因为 SSG 网站在部署时预先构建所有页面；您的服务器在网站重建之前不知道新页面。
+
+**新 SSG 页面解决方案：**
+
+1. **触发重建：**
+   * 最简单的解决方案是重建并重新部署您的网站。大多数托管平台可以在 Git 提交时自动执行此操作。在新页面上线之前会有一个构建时间延迟。
+2. **特定框架的回退/动态路由：**
+   * 现代 SSG 框架（如 Next.js、Nuxt.js、SvelteKit、Gatsby、Eleventy）提供了处理未在构建时生成的页面请求的方法。
+     * **Next.js：** 在 `getStaticPaths` 中使用 `fallback: true` 或 `fallback: 'blocking'` 来按需生成页面。
+     * **其他框架：** 在框架文档中查找“**按需生成**”、“**增量构建**”或动态路由等功能。这些允许框架在首次请求时构建页面或使用客户端渲染。
+3. **增量静态再生（ISR）：**
+   * 由 Next.js 等框架支持，ISR 允许页面在初始构建后生成或更新，可以是定时器触发或首次请求时触发，而无需完全重建网站。
+
+## 在 TinaCMS 中跨分支获取内容
+
+对于 TinaCMS 中的服务器渲染页面，您可以通过在查询内容时将存储在 `x-branch` cookie 中的活动分支名称作为标头传递，动态获取来自活动编辑或预览分支的内容。
+
+要在 Next.js 中检索 cookie，请参阅 [Next.js cookies 文档](https://nextjs.org/docs/app/api-reference/functions/cookies)。
+
+### 示例实现
+
+```typescript
+const data = await client.queries.post(
+  {
+    relativePath: `${params.filename?.join('/')}.md`,
+  },
+  {
+    fetchOptions: {
+      headers: {
+        /* 从 cookie 中检索活动分支 */
+        'x-branch': cookieStore.get('x-branch')?.value, 
+      },
+    },
+  }
+);
+```
+
+## 基于本地文件系统的内容 API
+
+在本地开发时，与其与托管内容 API 通信，不如与本地文件系统上的内容通信更有利。Tina 提供了一个 CLI 工具，允许您在网站旁边本地运行内容 API。这使得在开发过程中，所有内容都可以通过相同的表达式 GraphQL API 获得。
+
+> 如果您通过 `@tinacms/cli init` 设置了 Tina，或使用了我们的入门模板，这应该是默认设置的。（在[这里](/docs/graphql/cli/)阅读有关 CLI 的信息。）
+
+## 视频教程
+
+对于那些更喜欢通过视频学习的人，可以查看我们 ["TinaCMS 深入探讨"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) 系列中的“数据获取”片段。
+
+<Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=403&end=534" />
+
+## 总结
+
+* Tina 提供了一个用于查询基于 git 的内容的 GraphQL API。
+* Tina 提供了一个客户端，允许您对内容 API 进行类型安全的请求。
+* 客户端的“queries”属性是根据*您的*架构生成的。
+* 可以使用内容 API 的本地版本进行本地开发。
+* 使用 SSG，新页面需要重建或特定框架的处理（如回退或 ISR）以避免 404 错误。

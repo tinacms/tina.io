@@ -1,0 +1,82 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/graphql/src/database/util.ts"
+title: '文件属于多个集合错误'
+---
+
+当一个文件位于多个集合中时，会发生此错误。这通常是由于集合中的路径重叠或[匹配属性](/docs/reference/collections#matchinclude)中的错误导致的。
+
+常见的解决方法是更新或添加[匹配属性](/docs/reference/collections#matchinclude)以排除或包含某些文件。
+
+## 使用排除的示例
+
+```ts
+// tina/schema.ts
+export default defineConfig({
+  collections: [
+    {
+      label: '博客文章',
+      name: 'posts',
+      path: 'content/posts',
+      // ..
+    },
+    {
+      label: '精选文章',
+      name: 'featuredPosts',
+      path: 'content/posts/featured',
+      // ...
+    },
+    //..
+  ],
+  // ...
+})
+```
+
+上面的示例配置会导致重叠，因为博客文章集合将包含精选文章集合中的所有文件。可以通过更新博客文章集合上的[`match.exclude`属性](/docs/reference/collections#matchexclude)来排除精选文章集合中的所有文件，从而解决此问题。
+
+```ts
+// tina/schema.ts
+export default defineConfig({
+  collections: [
+    {
+      label: '博客文章',
+      name: 'posts',
+      path: 'content/posts',
+      match: {
+        exclude: 'featured/**/**',
+      },
+      // ..
+    },
+    {
+      label: '精选文章',
+      name: 'featuredPosts',
+      path: 'content/posts/featured',
+      // ...
+    },
+    //..
+  ],
+  // ...
+})
+```
+
+## 使用包含的示例
+
+包含的一个示例可能是如果您只想包含具有特定名称的文件。例如，如果您想包含`content/posts`目录中所有名称为`index`的文件。
+
+```ts
+// tina/schema.ts
+export default defineConfig({
+  collections: [
+    {
+      label: '博客文章',
+      name: 'posts',
+      path: 'content/posts',
+      match: {
+        include: '**/**/index',
+      },
+      // ..
+    },
+    //..
+  ],
+  // ...
+})
+```

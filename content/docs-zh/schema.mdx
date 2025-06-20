@@ -1,0 +1,112 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/toolkit/react-sidebar/components/nav.tsx"
+id: /docs/schema/
+title: 使用TinaCMS进行内容建模
+last_edited: '2025-03-11T22:39:21.344Z'
+next: content/docs/features/data-fetching.mdx
+previous: ''
+---
+
+## 定义“集合”
+
+`collections`数组中的每个项目代表其自身的实体。在上面的例子中，我们定义了一个`post`集合，并将其路径设置为`content/posts`，这对应于我们网站仓库中的一个目录。每个集合包含一个`fields`数组，每个字段都有一个定义的`type`。
+
+```md
+---
+title: 这是我的标题
+---
+
+这是我的主要文章内容。
+```
+
+> 注意：`isBody`属性用于将给定字段输出到markdown主体，而不是其前置元数据。
+
+一旦我们定义了一个集合，我们可以通过Tina UI编辑其字段，或者使用Tina内容API[查询其内容](/docs/graphql/overview/)。
+
+## 将属性分组为“对象”
+
+对象类型接受`fields`或`templates`属性（就像`collections`定义一样）。最简单的`object`类型是具有`fields`的对象：
+
+```js
+// ...
+fields: [
+  {
+    label: '推荐',
+    name: 'testimonial',
+    type: 'object',
+    fields: [
+      {
+        label: '作者',
+        name: 'author',
+        type: 'string',
+      },
+      {
+        label: '角色',
+        name: 'role',
+        type: 'string',
+      },
+      {
+        label: '引用',
+        name: 'quote',
+        type: 'string',
+        ui: {
+          component: 'textarea',
+        },
+      },
+    ],
+  },
+]
+// ...
+```
+
+设置`list: true`会将值转换为数组。
+
+> 可以通过使用[`templates`](/docs/reference/types/object/#with-multiple-templates)属性构建更复杂的结构。这允许您的编辑者使用预定义的块构建页面。
+
+## 引用另一个文档
+
+`reference`字段将一个文档连接到另一个文档，并且只需要在关系的一侧定义。您可以指定任意数量的集合进行连接：
+
+```js
+// ...
+fields: [
+  // ...
+  {
+    label: '作者',
+    name: 'author',
+    type: 'reference',
+    collections: ['author'], // 指向名称为"author"的集合
+  },
+]
+// ...
+```
+
+## 可用的数据类型
+
+集合中的每个字段可以是以下`type`之一：
+
+### *标量类型*
+
+* [string](/docs/reference/types/string/)
+* [datetime](/docs/reference/types/datetime/)
+* [boolean](/docs/reference/types/boolean/)
+* [image](/docs/reference/types/image/)
+* [number](/docs/reference/types/number/)
+
+### *非标量类型*
+
+* [reference](/docs/reference/types/reference/)
+* [object](/docs/reference/types/object/)
+* [rich-text](/docs/reference/types/rich-text/)
+
+## 视频教程
+
+对于那些喜欢通过视频学习的人，可以查看我们["TinaCMS深度探讨"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB)系列中的媒体片段。
+
+<Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=554&end=777" />
+
+## 总结
+
+* 您的内容在仓库中的`tina/config.{ts,js,tsx}`中使用`defineConfig`进行建模。
+* 您的内容模型包含一个“集合”数组。“集合”将内容类型映射到仓库中的一个目录。
+* 一个“集合”包含多个字段，这些字段可以是多种标量或非标量数据类型。
