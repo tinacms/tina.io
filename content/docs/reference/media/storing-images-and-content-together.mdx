@@ -1,6 +1,53 @@
 ---
 title: Storing Images And Content Together
+last_edited: '2025-06-23T15:03:53.708Z'
 next: ''
 previous: ''
 ---
 
+By default, TinaCMS expects:
+
+* Markdown files in content/
+* Images in public/uploads/
+
+This separation works in many modern web frameworks (like Next.js, Astro, etc.) where static assets are served from a public directory, but it breaks self-containment — your content and its assets live in different locations. This adds friction when managing, duplicating, or migrating content.
+
+## Solution: Moving Your Content In The Media Folder
+
+With this approach, both markdown and images are stored in public/uploads. The Tina Media Manager is configured to use this folder (it's the default), and each content item lives in its own subfolder.
+
+Say you want to build a blog with posts, your file structure for the content would then look like this:
+
+```
+public/
+└── uploads/
+    └── posts/
+        ├── post-a/
+        │   ├── index.md
+        │   └── image.png
+```
+
+> Note: public/uploads is the default Media folder, you can change it to be whatever suits your project.\
+> See this for more information: [Repo-based Media](https://tina.io/docs/reference/media/repo-based#configuration)
+
+The only thing required to make this work is to update the `path` in your Collection file to point to the Media folder.
+
+### Considerations
+
+* Markdown files live inside the Media folder - this is unconventional
+* Content is publicly readable (like any static asset), so don't store sensitive information
+
+### Conclusion
+
+For projects using TinaCMS with modern frontend frameworks, keeping markdown and media together simplifies everything from authoring to deployment.
+
+With the approach described here you get:
+
+* ✅ No extra dev work
+* ✅ Minimal config
+* ✅ Media Manager works as expected
+* ✅ Clean structure and great developer ergonomics
+
+If you want to see other viable options, have a look at that video:
+
+<Youtube embedSrc="https://www.youtube.com/watch?v=bmf1uNFyNKg" minutes="5" caption="The 3 options for storing markdown in GitHub for TinaCMS (Images and content)" />
