@@ -58,7 +58,7 @@ importers:
         version: 0.10.0
       algoliasearch:
         specifier: ^4.24.0
-        version: 4.24.0
+        version: 4.25.0
       axios:
         specifier: ^1.9.0
         version: 1.10.0
@@ -124,7 +124,7 @@ importers:
         version: 1.2.0
       mermaid:
         specifier: ^11.6.0
-        version: 11.6.0
+        version: 11.7.0
       moment:
         specifier: ^2.30.1
         version: 2.30.1
@@ -154,7 +154,7 @@ importers:
         version: 0.0.2
       next-tinacms-cloudinary:
         specifier: ^7.1.0
-        version: 7.1.0(tinacms@0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1)))
+        version: 7.1.0(tinacms@0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1)))
       postcss:
         specifier: ^8.4.49
         version: 8.5.6
@@ -196,10 +196,10 @@ importers:
         version: 4.12.0(react@18.3.1)
       react-instantsearch-core:
         specifier: ^6.40.4
-        version: 6.40.4(algoliasearch@4.24.0)(react@18.3.1)
+        version: 6.40.4(algoliasearch@4.25.0)(react@18.3.1)
       react-instantsearch-dom:
         specifier: ^6.40.4
-        version: 6.40.4(algoliasearch@4.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.40.4(algoliasearch@4.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-intersection-observer:
         specifier: ^9.13.1
         version: 9.16.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -214,7 +214,7 @@ importers:
         version: 0.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-tinacms-editor:
         specifier: ^0.53.26
-        version: 0.53.26(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(tinacms@0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1)))
+        version: 0.53.26(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(tinacms@0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1)))
       rehype-raw:
         specifier: ^6.1.1
         version: 6.1.1
@@ -255,8 +255,8 @@ importers:
         specifier: ^0.165.0
         version: 0.165.0
       tinacms:
-        specifier: 0.0.0-48b963a-20250618233435
-        version: 0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))
+        specifier: 0.0.0-8f7f815-20250623000754
+        version: 0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))
       webpack:
         specifier: ^5.99.9
         version: 5.99.9
@@ -274,8 +274,8 @@ importers:
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.1.10)
       '@tinacms/cli':
-        specifier: 0.0.0-48b963a-20250618233435
-        version: 0.0.0-48b963a-20250618233435(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(lightningcss@1.30.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@3.29.5)(sass@1.89.2)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(terser@5.43.0)(use-sync-external-store@1.5.0(react@18.3.1))
+        specifier: 0.0.0-8f7f815-20250623000754
+        version: 0.0.0-8f7f815-20250623000754(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(lightningcss@1.30.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@3.29.5)(sass@1.89.2)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(terser@5.43.1)(use-sync-external-store@1.5.0(react@18.3.1))
       '@types/cookie':
         specifier: ^0.6.0
         version: 0.6.0
@@ -293,7 +293,7 @@ importers:
         version: 16.14.65
       '@types/react-instantsearch-dom':
         specifier: ^5.2.6
-        version: 5.2.6(algoliasearch@4.24.0)(react@18.3.1)
+        version: 5.2.6(algoliasearch@4.25.0)(react@18.3.1)
       '@types/styled-components':
         specifier: ^5.1.34
         version: 5.1.34
@@ -327,53 +327,53 @@ importers:
 
 packages:
 
-  '@algolia/cache-browser-local-storage@4.24.0':
-    resolution: {integrity: sha512-t63W9BnoXVrGy9iYHBgObNXqYXM3tYXCjDSHeNwnsc324r4o5UiVKUiAB4THQ5z9U5hTj6qUvwg/Ez43ZD85ww==}
+  '@algolia/cache-browser-local-storage@4.25.0':
+    resolution: {integrity: sha512-UoxeKjM36cLlUH99oNI9ayHaeMFvHqIBzHG3I6eJPDcgejm2+/71/Q/q57rR6d2hV3DXrsiR6JTDQHKq4GXKjg==}
 
-  '@algolia/cache-common@4.24.0':
-    resolution: {integrity: sha512-emi+v+DmVLpMGhp0V9q9h5CdkURsNmFC+cOS6uK9ndeJm9J4TiqSvPYVu+THUP8P/S08rxf5x2P+p3CfID0Y4g==}
+  '@algolia/cache-common@4.25.0':
+    resolution: {integrity: sha512-Pjg6X0YntFbkhJdDFFodJc9zP/Em50g4bAxOI73y/qXH7pgi2aAZTfO5HEq2QCvJNTI2hInZnFtiuRi+PrwgMQ==}
 
-  '@algolia/cache-in-memory@4.24.0':
-    resolution: {integrity: sha512-gDrt2so19jW26jY3/MkFg5mEypFIPbPoXsQGQWAi6TrCPsNOSEYepBMPlucqWigsmEy/prp5ug2jy/N3PVG/8w==}
+  '@algolia/cache-in-memory@4.25.0':
+    resolution: {integrity: sha512-ORgBXhy8iBTyuSDih3mJOsK+5zeqNGmR7BAMgPNjBAZmm/QRW/tjqpKBxXvoIDYqJxwLTmZIjHnN3jxBMbq+6A==}
 
-  '@algolia/client-account@4.24.0':
-    resolution: {integrity: sha512-adcvyJ3KjPZFDybxlqnf+5KgxJtBjwTPTeyG2aOyoJvx0Y8dUQAEOEVOJ/GBxX0WWNbmaSrhDURMhc+QeevDsA==}
+  '@algolia/client-account@4.25.0':
+    resolution: {integrity: sha512-olZeralZ9PqmS5FC1hIAdKHysI6/G0J9yM/OjoWXLEtIkscP3BRq5TNNiyZTtmJ/cMd2rqzU68lNJ8aSGENDOQ==}
 
-  '@algolia/client-analytics@4.24.0':
-    resolution: {integrity: sha512-y8jOZt1OjwWU4N2qr8G4AxXAzaa8DBvyHTWlHzX/7Me1LX8OayfgHexqrsL4vSBcoMmVw2XnVW9MhL+Y2ZDJXg==}
+  '@algolia/client-analytics@4.25.0':
+    resolution: {integrity: sha512-nkl3ygoYi5piswSulIhKxTK2O8jsMM41QFg1hIfz7CL3reWEMuZ80axoJEi3wERP6mZm8Se/bx+MuExMWPXeOQ==}
 
-  '@algolia/client-common@4.24.0':
-    resolution: {integrity: sha512-bc2ROsNL6w6rqpl5jj/UywlIYC21TwSSoFHKl01lYirGMW+9Eek6r02Tocg4gZ8HAw3iBvu6XQiM3BEbmEMoiA==}
+  '@algolia/client-common@4.25.0':
+    resolution: {integrity: sha512-BQphN6EF9O3dIsKHy3U0IE/bebUrMgkZrZJmlH14/x7ohjkCqbJYLibdIbhNGo+e+ID/VuiL9wyKHBHipzi5mg==}
 
-  '@algolia/client-personalization@4.24.0':
-    resolution: {integrity: sha512-l5FRFm/yngztweU0HdUzz1rC4yoWCFo3IF+dVIVTfEPg906eZg5BOd1k0K6rZx5JzyyoP4LdmOikfkfGsKVE9w==}
+  '@algolia/client-personalization@4.25.0':
+    resolution: {integrity: sha512-7DFmyujLc+b8hNkRmMZg0YfRDKSP3yC6v+QnMixTMf/eZaFb+dVlp6K5u6ayxJsaMcrpEnao6txX1H/RQbSzCA==}
 
-  '@algolia/client-search@4.24.0':
-    resolution: {integrity: sha512-uRW6EpNapmLAD0mW47OXqTP8eiIx5F6qN9/x/7HHO6owL3N1IXqydGwW5nhDFBrV+ldouro2W1VX3XlcUXEFCA==}
+  '@algolia/client-search@4.25.0':
+    resolution: {integrity: sha512-qnX/+lOS6IEJS1chirYBpE5S+YG6yKmX8mXANEeO37kVjtxEV8QmCfHS8RbCw6adqII9iI3OzMZBIH8Ahd/J+A==}
 
   '@algolia/events@4.0.1':
     resolution: {integrity: sha512-FQzvOCgoFXAbf5Y6mYozw2aj5KCJoA3m4heImceldzPSMbdyS4atVjJzXKMsfX3wnZTFYwkkt8/z8UesLHlSBQ==}
 
-  '@algolia/logger-common@4.24.0':
-    resolution: {integrity: sha512-LLUNjkahj9KtKYrQhFKCzMx0BY3RnNP4FEtO+sBybCjJ73E8jNdaKJ/Dd8A/VA4imVHP5tADZ8pn5B8Ga/wTMA==}
+  '@algolia/logger-common@4.25.0':
+    resolution: {integrity: sha512-r7JpDeVXzUAObueHWihoJ1pjWyTtl49Je2Ns+ABtUa08d8BZG04bYclrm3mdUa668yyy92AXgS5Kh4mIpji1Gw==}
 
-  '@algolia/logger-console@4.24.0':
-    resolution: {integrity: sha512-X4C8IoHgHfiUROfoRCV+lzSy+LHMgkoEEU1BbKcsfnV0i0S20zyy0NLww9dwVHUWNfPPxdMU+/wKmLGYf96yTg==}
+  '@algolia/logger-console@4.25.0':
+    resolution: {integrity: sha512-j7zIWXB+sAhfdtf+09y85LFraVJnh+jsQqtHhhd27xnBUsAo1IpmihcCqFJQbqDKN4r/h/oPk400SP2yvOFVlg==}
 
-  '@algolia/recommend@4.24.0':
-    resolution: {integrity: sha512-P9kcgerfVBpfYHDfVZDvvdJv0lEoCvzNlOy2nykyt5bK8TyieYyiD0lguIJdRZZYGre03WIAFf14pgE+V+IBlw==}
+  '@algolia/recommend@4.25.0':
+    resolution: {integrity: sha512-V1nqW5FIVXCxe8I+b5COq24eBMZTKgVfp9VtCMIrgwXLRH+GQlKd9e/gK6ut5dIBnv06y1J38y1wR6hidkHzyA==}
 
-  '@algolia/requester-browser-xhr@4.24.0':
-    resolution: {integrity: sha512-Z2NxZMb6+nVXSjF13YpjYTdvV3032YTBSGm2vnYvYPA6mMxzM3v5rsCiSspndn9rzIW4Qp1lPHBvuoKJV6jnAA==}
+  '@algolia/requester-browser-xhr@4.25.0':
+    resolution: {integrity: sha512-1ZZyFnjtwNzYsF9I4G8lXNiodMIRP65P2DtYO8uXz1kYiUH7LR4T8Cax0AK/GTho4dc6obra2/7pMpiLcjgNFg==}
 
-  '@algolia/requester-common@4.24.0':
-    resolution: {integrity: sha512-k3CXJ2OVnvgE3HMwcojpvY6d9kgKMPRxs/kVohrwF5WMr2fnqojnycZkxPoEg+bXm8fi5BBfFmOqgYztRtHsQA==}
+  '@algolia/requester-common@4.25.0':
+    resolution: {integrity: sha512-reVatqXhzTvAMMrbCi4mLYTfvdtelIGhtuopH4hCzlLsHv0ekxEYMxqcDzd0rrB63i7zHONqD+DKul2wvrut2g==}
 
-  '@algolia/requester-node-http@4.24.0':
-    resolution: {integrity: sha512-JF18yTjNOVYvU/L3UosRcvbPMGT9B+/GQWNWnenIImglzNVGpyzChkXLnrSf6uxwVNO6ESGu6oN8MqcGQcjQJw==}
+  '@algolia/requester-node-http@4.25.0':
+    resolution: {integrity: sha512-JnDwKfJfy6jRYZq/EoyDwWHWqP5VHvfkLLICTJ/7wdVprRojWgzw3bldDGzjHTjstlmm9/YqjqfUsBuzDiX5NQ==}
 
-  '@algolia/transporter@4.24.0':
-    resolution: {integrity: sha512-86nI7w6NzWxd1Zp9q3413dRshDqAzSbsQjhcDhPIatEFiZrL1/TjnHL8S7jVKFePlIMzDsZWXAXwXzcok9c5oA==}
+  '@algolia/transporter@4.25.0':
+    resolution: {integrity: sha512-4hJxS7M5bxLRWAq7qq+86LCKJ9jNxPIiZ1MITyHV2QIKO6Wiz92X8udMk+E9Eo7DJJDLsv5l5Gujpm1lT/xp9A==}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -1870,8 +1870,8 @@ packages:
   '@mediapipe/tasks-vision@0.10.17':
     resolution: {integrity: sha512-CZWV/q6TTe8ta61cZXjfnnHsfWIdFhms03M9T7Cnd5y2mdpylJM0rF1qRq+wsQVRMLz1OYPVEBU9ph2Bx8cxrg==}
 
-  '@mermaid-js/parser@0.4.0':
-    resolution: {integrity: sha512-wla8XOWvQAwuqy+gxiZqY+c7FokraOTHRWMsbB4AgRx9Sy7zKslNyejy7E+a77qHfey5GXw/ik3IXv/NHMJgaA==}
+  '@mermaid-js/parser@0.5.0':
+    resolution: {integrity: sha512-AiaN7+VjXC+3BYE+GwNezkpjIcCI2qIMB/K4S2/vMWe0q/XJCBbx5+K7iteuz7VyltX9iAK4FmVTvGc9kjOV4w==}
 
   '@monaco-editor/loader@1.5.0':
     resolution: {integrity: sha512-hKoGSM+7aAc7eRTRjpqAZucPmoNOC4UUbknb/VNoTkEIkCPhqV8LfbsgM1webRM7S/z21eHEx9Fkwx8Z/C/+Xw==}
@@ -2953,8 +2953,8 @@ packages:
   '@tanstack/virtual-core@3.13.10':
     resolution: {integrity: sha512-sPEDhXREou5HyZYqSWIqdU580rsF6FGeN7vpzijmP3KTiOGjOMZASz4Y6+QKjiFQwhWrR58OP8izYaNGVxvViA==}
 
-  '@tinacms/app@0.0.0-48b963a-20250618233435':
-    resolution: {integrity: sha512-2iuuqMI8ebcY4JpSR+J/BnXld3UzxsEYeFZf/hPaKC7qE3OTTkc8/LJGFisXS/cK8GZY2Ym2A+lTGZrb62rpTA==}
+  '@tinacms/app@0.0.0-8f7f815-20250623000754':
+    resolution: {integrity: sha512-GTVW3JXjiKhhPmH7kpEUNv0lILNvl/iAg54xujkCqyROyzcdSPv9UAuJe8YG+2GekXZFYWnOxjR2wHOVEB2g/g==}
     peerDependencies:
       react: '>=18.3.1 <20.0.0'
       react-dom: '>=18.3.1 <20.0.0'
@@ -2962,32 +2962,32 @@ packages:
   '@tinacms/auth@1.0.6':
     resolution: {integrity: sha512-1GcSkQo8MgZNt+b/TVZx06YhvyJ6nhCvRCDD/EGzBRDOoAqTFiw5g6zrf+acjRkSEUyt9moTtxBotW+DHLNVyw==}
 
-  '@tinacms/cli@0.0.0-48b963a-20250618233435':
-    resolution: {integrity: sha512-tCT44286DHQUtzmx8jbMtWOH0D3nsbsIc/BG1r99ftRMM3synfeb6sF4PNax54YVqzQE9iLKd06mvdeuRf7LFw==}
+  '@tinacms/cli@0.0.0-8f7f815-20250623000754':
+    resolution: {integrity: sha512-OHxzpnTIYP14LAnH7ycm7tWFS6kJ9r/E+j09c9G95SlkiyErxEXGi5sofQhO5CYEEQcrHPf37+d/rWXRZQEtoA==}
     hasBin: true
     peerDependencies:
       react: '>=18.3.1 <20.0.0'
       react-dom: '>=18.3.1 <20.0.0'
 
-  '@tinacms/graphql@0.0.0-48b963a-20250618233435':
-    resolution: {integrity: sha512-6RIn4ELjneEzoUrMwXfAIwH3C4XjywwR/OVd0IaLO9zGcZoi/Ij6BGu2+jrJd5/Gq7MRGh8d24VyR1LzPicyKw==}
+  '@tinacms/graphql@0.0.0-8f7f815-20250623000754':
+    resolution: {integrity: sha512-LZaIM9H2iTAHraMfK1bq7lJ/yhnUAgIRFC0NiZ7ZjTD86qDLEQ/lzAR24yTog3YwqLFMjVpcYnqnE6YGsV6FiQ==}
 
-  '@tinacms/mdx@0.0.0-48b963a-20250618233435':
-    resolution: {integrity: sha512-7tQy69qOAT8ZN07BSqUT2sf3v+IhQs0Yt84Xi0QthU4b9UqNTFN8Xe66l/Cex4qcHHlmD88Qn4kMBkLef+GSAw==}
+  '@tinacms/mdx@0.0.0-8f7f815-20250623000754':
+    resolution: {integrity: sha512-fACbo13ZHmXvAktyhrhbWDvxwZRpzIp4mFac5PgH1AxRKW9LeMkzsFiXe3kro7y+XmSM1gxy5EKoL6mXZguyjg==}
 
-  '@tinacms/metrics@0.0.0-48b963a-20250618233435':
-    resolution: {integrity: sha512-/EdHWlJwFo1dy6Rlky4ofWokSa4lf9VOBoNx3fgzu+HdtsMDq4VcN86MFXRGplbqyrTl2QOfiKA4tz1oOkIUIw==}
+  '@tinacms/metrics@0.0.0-8f7f815-20250623000754':
+    resolution: {integrity: sha512-3H4QKXY5yNgLuakDtL70BojEB/NqkMg7+cno3jA+3tzk5nOgK/4XlomRAlwi8KCqssxMzsG8Se10eZ9ub2pCRg==}
     peerDependencies:
       fs-extra: ^9.0.1
 
-  '@tinacms/schema-tools@0.0.0-48b963a-20250618233435':
-    resolution: {integrity: sha512-5nuE5BqNt3UNDFd/tcJ/Ld+hKd6K8YfoLr0u5adJpYlFdkqp/qKoIXUr6Ox6kL/oGcXj+QyjESplbXNrmXNhjw==}
+  '@tinacms/schema-tools@0.0.0-8f7f815-20250623000754':
+    resolution: {integrity: sha512-qa4KJZoK5Yfxkp7dVZfexfJA/JuReP72fo2w8TGBJBEzinL12OwnUDWImXGjjrxeZANmxbEdTSVDX8npMeoTcg==}
     peerDependencies:
       react: '>=16.14.0'
       yup: ^0.32.0
 
-  '@tinacms/search@0.0.0-48b963a-20250618233435':
-    resolution: {integrity: sha512-ZnNoQVJDV8qpdudN6uqw7/jEm6gZ+TxoYfQzinKnFBviv3nYxvmTkLUWlx7k+uvH73hJZEtG2dyE+6H8WK7LKQ==}
+  '@tinacms/search@0.0.0-8f7f815-20250623000754':
+    resolution: {integrity: sha512-Xvemcsx/88iPdtmt16iRRuit4meTu5zqCg0KivyUisRBm2iy24j2XqnedeOTawXppLs/otCEWbW/TvecWByVnA==}
 
   '@tinacms/sharedctx@0.1.1':
     resolution: {integrity: sha512-+23d5EWdj34p/fYTYn+R2QOt8hn5qqirH7/o2cWYhY1ywCi/gZbCjzRXyi7PxBMh4fH1lFZuO5zseZrIWgmodA==}
@@ -4005,8 +4005,8 @@ packages:
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
 
-  algoliasearch@4.24.0:
-    resolution: {integrity: sha512-bf0QV/9jVejssFBmz2HQLxUadxk574t4iwjCKp5E7NBzwKkrDEhKPISIIjAU/p6K5qDx3qoeh4+26zWN1jmw3g==}
+  algoliasearch@4.25.0:
+    resolution: {integrity: sha512-3sZ9L4qo8njDHu/UOR+3WbZPLmGtHrASUaIMy0jxIhvsNsrkySlyEtE0po11ndrid2LIqtjhE9FlV3fBPtY0fw==}
 
   altair-express-middleware@7.3.6:
     resolution: {integrity: sha512-VxllMZT67KvS51HvCkvKKT6r+asj0HbbRpK1n39hQiKKVatSoB/HFmyVm8PFSm+spgxMriuXo0xHkI+/X14qUA==}
@@ -4415,8 +4415,8 @@ packages:
     peerDependencies:
       three: '>=0.126.1'
 
-  caniuse-lite@1.0.30001723:
-    resolution: {integrity: sha512-1R/elMjtehrFejxwmexeXAtae5UO9iSyFn6G/I806CYC/BLyyBk1EPhrKBkWhy6wM6Xnm47dSJQec+tLJ39WHw==}
+  caniuse-lite@1.0.30001724:
+    resolution: {integrity: sha512-WqJo7p0TbHDOythNTqYujmaJTvtYRZrjpP8TCvH6Vb9CYJerJNKamKzIWOM4BkQatWj9H2lYulpdAQNBe7QhNA==}
 
   capital-case@1.0.4:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
@@ -5277,8 +5277,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  electron-to-chromium@1.5.170:
-    resolution: {integrity: sha512-GP+M7aeluQo9uAyiTCxgIj/j+PrWhMlY7LFVj8prlsPljd0Fdg9AprlfUi+OCSFWy9Y5/2D/Jrj9HS8Z4rpKWA==}
+  electron-to-chromium@1.5.171:
+    resolution: {integrity: sha512-scWpzXEJEMrGJa4Y6m/tVotb0WuvNmasv3wWVzUAeCgKU0ToFOhUW6Z+xWnRQANMYGxN4ngJXIThgBJOqzVPCQ==}
 
   email-validator@2.0.4:
     resolution: {integrity: sha512-gYCwo7kh5S3IDyZPLZf6hSS0MnZT8QmJFqYvbqlDZSbwdZlY6QZWxJ4i/6UhITOJ4XzyI647Bm2MXKCLqnJ4nQ==}
@@ -5530,8 +5530,8 @@ packages:
     resolution: {integrity: sha512-28HqgMZAmih1Czt9ny7qr6ek2qddF4FclbMzwhCREB6OFfH+rXAnuNCwo1/wFvrtbgsQDb4kSbX9de9lFbrXnA==}
     engines: {node: '>= 0.10.0'}
 
-  exsolve@1.0.6:
-    resolution: {integrity: sha512-Q05uIdxhPBVBwK29gcPsl2K220xSBy52TZQPdeYWE0zOs8jM+yJ6y5h7jm6cpAo1p+OOMZRIj/Ftku4EQQBLnQ==}
+  exsolve@1.0.7:
+    resolution: {integrity: sha512-VO5fQUzZtI6C+vx4w/4BWJpg3s/5l+6pRQEHzFRM8WFi4XffSP1Z+4qi7GbjWbvRQEbdIco5mIMq+zX4rPuLrw==}
 
   extend-shallow@2.0.1:
     resolution: {integrity: sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug==}
@@ -7261,8 +7261,8 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  mermaid@11.6.0:
-    resolution: {integrity: sha512-PE8hGUy1LDlWIHWBP05SFdqUHGmRcCcK4IzpOKPE35eOw+G9zZgcnMpyunJVUEOgb//KBORPjysKndw8bFLuRg==}
+  mermaid@11.7.0:
+    resolution: {integrity: sha512-/1/5R0rt0Z1Ak0CuznAnCF3HtQgayRXUz6SguzOwN4L+DuCobz0UxnQ+ZdTSZ3AugKVVh78tiVmsHpHWV25TCw==}
 
   mermaid@9.3.0:
     resolution: {integrity: sha512-mGl0BM19TD/HbU/LmlaZbjBi//tojelg8P/mxD6pPZTAYaI+VawcyBdqRsoUHSc7j71PrMdJ3HBadoQNdvP5cg==}
@@ -8016,8 +8016,8 @@ packages:
     resolution: {integrity: sha512-BM/Thnrw5jm2kKLE5uJkXqqExRUY/toLHda65XgFTBTFYZyopbKjBe29Ii3RbkvlsMoFwD+tHeGaCjjv0gHlyw==}
     engines: {node: '>=4'}
 
-  pg-protocol@1.10.1:
-    resolution: {integrity: sha512-9YS3ZonDj0Lxny//aF0ITPdfrEPgKWCJvONsSXAaIUhgpzlzl5JgaZNlbTFxvYNfm2terGEnHeOSUlF6qRGBzw==}
+  pg-protocol@1.10.2:
+    resolution: {integrity: sha512-Ci7jy8PbaWxfsck2dwZdERcDG2A0MG8JoQILs+uZNjABFuBuItAZCWUNz8sXRDMoui24rJw7WlXqgpMdBSN/vQ==}
 
   pg-types@4.0.2:
     resolution: {integrity: sha512-cRL3JpS3lKMGsKaWndugWQoLOCoP+Cic8oseVcbr0qhPzYD5DWXK+RZ9LY9wxRf7RQia4SCwQlXk0q6FCPrVng==}
@@ -9552,8 +9552,8 @@ packages:
       uglify-js:
         optional: true
 
-  terser@5.43.0:
-    resolution: {integrity: sha512-CqNNxKSGKSZCunSvwKLTs8u8sGGlp27sxNZ4quGh0QeNuyHM0JSEM/clM9Mf4zUp6J+tO2gUXhgXT2YMMkwfKQ==}
+  terser@5.43.1:
+    resolution: {integrity: sha512-+6erLbBm0+LROX2sPXlUYx/ux5PyE9K/a92Wrt6oA+WDAoFTdpHE5tCYCI5PNzq2y8df4rA+QgHLJuR4jNymsg==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -9598,8 +9598,8 @@ packages:
   through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
 
-  tinacms@0.0.0-48b963a-20250618233435:
-    resolution: {integrity: sha512-y1IHkH5CIWboAxP2HASXyiKgwpbBwRZTrE0BvxDdiaZzaYIUPyZf7pL4O+qQ3J/mNCw/6LWEpLpDM4HtVOynJg==}
+  tinacms@0.0.0-8f7f815-20250623000754:
+    resolution: {integrity: sha512-JXsjf2b+kKAOq7+UDnsVJAtuBA0QX4i2cA3VSH2mQ/E60wN7rf+pbDw+8uNaqASKZ9CErOdRzAi599CM3gT7Ew==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
@@ -10226,8 +10226,8 @@ packages:
     engines: {node: '>= 10.13.0'}
     hasBin: true
 
-  webpack-sources@3.3.2:
-    resolution: {integrity: sha512-ykKKus8lqlgXX/1WjudpIEjqsafjOTcOJqxnAbMLAu/KCsDCJ6GBtvscewvTkrn24HsnvFwrSCbenFrhtcCsAA==}
+  webpack-sources@3.3.3:
+    resolution: {integrity: sha512-yd1RBzSGanHkitROoPFd6qsrxt+oFhg/129YzheDGqeustzX0vTZJZsSsQjVQC4yzBQ56K55XU8gaNCtIzOnTg==}
     engines: {node: '>=10.13.0'}
 
   webpack@5.99.9:
@@ -10441,83 +10441,83 @@ packages:
 
 snapshots:
 
-  '@algolia/cache-browser-local-storage@4.24.0':
+  '@algolia/cache-browser-local-storage@4.25.0':
     dependencies:
-      '@algolia/cache-common': 4.24.0
+      '@algolia/cache-common': 4.25.0
 
-  '@algolia/cache-common@4.24.0': {}
+  '@algolia/cache-common@4.25.0': {}
 
-  '@algolia/cache-in-memory@4.24.0':
+  '@algolia/cache-in-memory@4.25.0':
     dependencies:
-      '@algolia/cache-common': 4.24.0
+      '@algolia/cache-common': 4.25.0
 
-  '@algolia/client-account@4.24.0':
+  '@algolia/client-account@4.25.0':
     dependencies:
-      '@algolia/client-common': 4.24.0
-      '@algolia/client-search': 4.24.0
-      '@algolia/transporter': 4.24.0
+      '@algolia/client-common': 4.25.0
+      '@algolia/client-search': 4.25.0
+      '@algolia/transporter': 4.25.0
 
-  '@algolia/client-analytics@4.24.0':
+  '@algolia/client-analytics@4.25.0':
     dependencies:
-      '@algolia/client-common': 4.24.0
-      '@algolia/client-search': 4.24.0
-      '@algolia/requester-common': 4.24.0
-      '@algolia/transporter': 4.24.0
+      '@algolia/client-common': 4.25.0
+      '@algolia/client-search': 4.25.0
+      '@algolia/requester-common': 4.25.0
+      '@algolia/transporter': 4.25.0
 
-  '@algolia/client-common@4.24.0':
+  '@algolia/client-common@4.25.0':
     dependencies:
-      '@algolia/requester-common': 4.24.0
-      '@algolia/transporter': 4.24.0
+      '@algolia/requester-common': 4.25.0
+      '@algolia/transporter': 4.25.0
 
-  '@algolia/client-personalization@4.24.0':
+  '@algolia/client-personalization@4.25.0':
     dependencies:
-      '@algolia/client-common': 4.24.0
-      '@algolia/requester-common': 4.24.0
-      '@algolia/transporter': 4.24.0
+      '@algolia/client-common': 4.25.0
+      '@algolia/requester-common': 4.25.0
+      '@algolia/transporter': 4.25.0
 
-  '@algolia/client-search@4.24.0':
+  '@algolia/client-search@4.25.0':
     dependencies:
-      '@algolia/client-common': 4.24.0
-      '@algolia/requester-common': 4.24.0
-      '@algolia/transporter': 4.24.0
+      '@algolia/client-common': 4.25.0
+      '@algolia/requester-common': 4.25.0
+      '@algolia/transporter': 4.25.0
 
   '@algolia/events@4.0.1': {}
 
-  '@algolia/logger-common@4.24.0': {}
+  '@algolia/logger-common@4.25.0': {}
 
-  '@algolia/logger-console@4.24.0':
+  '@algolia/logger-console@4.25.0':
     dependencies:
-      '@algolia/logger-common': 4.24.0
+      '@algolia/logger-common': 4.25.0
 
-  '@algolia/recommend@4.24.0':
+  '@algolia/recommend@4.25.0':
     dependencies:
-      '@algolia/cache-browser-local-storage': 4.24.0
-      '@algolia/cache-common': 4.24.0
-      '@algolia/cache-in-memory': 4.24.0
-      '@algolia/client-common': 4.24.0
-      '@algolia/client-search': 4.24.0
-      '@algolia/logger-common': 4.24.0
-      '@algolia/logger-console': 4.24.0
-      '@algolia/requester-browser-xhr': 4.24.0
-      '@algolia/requester-common': 4.24.0
-      '@algolia/requester-node-http': 4.24.0
-      '@algolia/transporter': 4.24.0
+      '@algolia/cache-browser-local-storage': 4.25.0
+      '@algolia/cache-common': 4.25.0
+      '@algolia/cache-in-memory': 4.25.0
+      '@algolia/client-common': 4.25.0
+      '@algolia/client-search': 4.25.0
+      '@algolia/logger-common': 4.25.0
+      '@algolia/logger-console': 4.25.0
+      '@algolia/requester-browser-xhr': 4.25.0
+      '@algolia/requester-common': 4.25.0
+      '@algolia/requester-node-http': 4.25.0
+      '@algolia/transporter': 4.25.0
 
-  '@algolia/requester-browser-xhr@4.24.0':
+  '@algolia/requester-browser-xhr@4.25.0':
     dependencies:
-      '@algolia/requester-common': 4.24.0
+      '@algolia/requester-common': 4.25.0
 
-  '@algolia/requester-common@4.24.0': {}
+  '@algolia/requester-common@4.25.0': {}
 
-  '@algolia/requester-node-http@4.24.0':
+  '@algolia/requester-node-http@4.25.0':
     dependencies:
-      '@algolia/requester-common': 4.24.0
+      '@algolia/requester-common': 4.25.0
 
-  '@algolia/transporter@4.24.0':
+  '@algolia/transporter@4.25.0':
     dependencies:
-      '@algolia/cache-common': 4.24.0
-      '@algolia/logger-common': 4.24.0
-      '@algolia/requester-common': 4.24.0
+      '@algolia/cache-common': 4.25.0
+      '@algolia/logger-common': 4.25.0
+      '@algolia/requester-common': 4.25.0
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -11812,7 +11812,7 @@ snapshots:
     dependencies:
       '@graphql-tools/utils': 9.2.1(graphql@15.10.1)
       graphql: 15.10.1
-      tslib: 2.4.1
+      tslib: 2.8.1
 
   '@graphql-tools/optimize@2.0.0(graphql@15.10.1)':
     dependencies:
@@ -11833,7 +11833,7 @@ snapshots:
       '@graphql-tools/merge': 8.4.2(graphql@15.10.1)
       '@graphql-tools/utils': 9.2.1(graphql@15.10.1)
       graphql: 15.10.1
-      tslib: 2.4.1
+      tslib: 2.8.1
       value-or-promise: 1.0.12
 
   '@graphql-tools/utils@10.8.6(graphql@15.10.1)':
@@ -11849,7 +11849,7 @@ snapshots:
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
       graphql: 15.10.1
-      tslib: 2.4.1
+      tslib: 2.8.1
 
   '@graphql-typed-document-node/core@3.2.0(graphql@15.10.1)':
     dependencies:
@@ -12253,7 +12253,7 @@ snapshots:
 
   '@mediapipe/tasks-vision@0.10.17': {}
 
-  '@mermaid-js/parser@0.4.0':
+  '@mermaid-js/parser@0.5.0':
     dependencies:
       langium: 3.3.1
 
@@ -13364,13 +13364,13 @@ snapshots:
 
   '@tanstack/virtual-core@3.13.10': {}
 
-  '@tinacms/app@0.0.0-48b963a-20250618233435(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(use-sync-external-store@1.5.0(react@18.3.1))(yup@1.6.1)':
+  '@tinacms/app@0.0.0-8f7f815-20250623000754(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(use-sync-external-store@1.5.0(react@18.3.1))(yup@1.6.1)':
     dependencies:
       '@graphiql/toolkit': 0.8.4(@types/node@22.15.32)(graphql@15.10.1)
       '@headlessui/react': 2.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroicons/react': 1.0.6(react@18.3.1)
       '@monaco-editor/react': 4.4.5(monaco-editor@0.31.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@tinacms/mdx': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)(yup@1.6.1)
+      '@tinacms/mdx': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)(yup@1.6.1)
       final-form: 4.20.10
       graphiql: 3.0.0-alpha.1(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(graphql@15.10.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       graphql: 15.10.1
@@ -13378,7 +13378,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-router-dom: 6.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      tinacms: 0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@5.8.3)(use-sync-external-store@1.5.0(react@18.3.1))
+      tinacms: 0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@5.8.3)(use-sync-external-store@1.5.0(react@18.3.1))
       typescript: 5.8.3
       zod: 3.25.67
     transitivePeerDependencies:
@@ -13406,7 +13406,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@tinacms/cli@0.0.0-48b963a-20250618233435(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(lightningcss@1.30.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@3.29.5)(sass@1.89.2)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(terser@5.43.0)(use-sync-external-store@1.5.0(react@18.3.1))':
+  '@tinacms/cli@0.0.0-8f7f815-20250623000754(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(lightningcss@1.30.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@3.29.5)(sass@1.89.2)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(terser@5.43.1)(use-sync-external-store@1.5.0(react@18.3.1))':
     dependencies:
       '@graphql-codegen/core': 2.6.8(graphql@15.10.1)
       '@graphql-codegen/plugin-helpers': 5.1.1(graphql@15.10.1)
@@ -13421,12 +13421,12 @@ snapshots:
       '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.4.17)
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.4.17)
       '@tailwindcss/typography': 0.5.16(tailwindcss@3.4.17)
-      '@tinacms/app': 0.0.0-48b963a-20250618233435(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(use-sync-external-store@1.5.0(react@18.3.1))(yup@1.6.1)
-      '@tinacms/graphql': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)
-      '@tinacms/metrics': 0.0.0-48b963a-20250618233435(fs-extra@11.3.0)
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)
-      '@tinacms/search': 0.0.0-48b963a-20250618233435(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@5.8.3)(yup@1.6.1)
-      '@vitejs/plugin-react': 3.1.0(vite@4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.0))
+      '@tinacms/app': 0.0.0-8f7f815-20250623000754(@codemirror/language@6.0.0)(@types/node@22.15.32)(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(use-sync-external-store@1.5.0(react@18.3.1))(yup@1.6.1)
+      '@tinacms/graphql': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)
+      '@tinacms/metrics': 0.0.0-8f7f815-20250623000754(fs-extra@11.3.0)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)
+      '@tinacms/search': 0.0.0-8f7f815-20250623000754(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@5.8.3)(yup@1.6.1)
+      '@vitejs/plugin-react': 3.1.0(vite@4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1))
       altair-express-middleware: 7.3.6
       async-lock: 1.4.1
       auto-bind: 4.0.0
@@ -13455,10 +13455,10 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       readable-stream: 4.7.0
       tailwindcss: 3.4.17
-      tinacms: 0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@5.8.3)(use-sync-external-store@1.5.0(react@18.3.1))
+      tinacms: 0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@5.8.3)(use-sync-external-store@1.5.0(react@18.3.1))
       typanion: 3.13.0
       typescript: 5.8.3
-      vite: 4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.0)
+      vite: 4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1)
       yup: 1.6.1
       zod: 3.25.67
     transitivePeerDependencies:
@@ -13489,11 +13489,11 @@ snapshots:
       - ts-node
       - use-sync-external-store
 
-  '@tinacms/graphql@0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@4.9.5)':
+  '@tinacms/graphql@0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@4.9.5)':
     dependencies:
       '@iarna/toml': 2.2.5
-      '@tinacms/mdx': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@4.9.5)(yup@0.32.11)
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@0.32.11)
+      '@tinacms/mdx': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@4.9.5)(yup@0.32.11)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@0.32.11)
       abstract-level: 1.0.4
       date-fns: 2.30.0
       fast-glob: 3.3.3
@@ -13519,11 +13519,11 @@ snapshots:
       - supports-color
       - typescript
 
-  '@tinacms/graphql@0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)':
+  '@tinacms/graphql@0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)':
     dependencies:
       '@iarna/toml': 2.2.5
-      '@tinacms/mdx': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)(yup@0.32.11)
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@0.32.11)
+      '@tinacms/mdx': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)(yup@0.32.11)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@0.32.11)
       abstract-level: 1.0.4
       date-fns: 2.30.0
       fast-glob: 3.3.3
@@ -13549,9 +13549,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@tinacms/mdx@0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@4.9.5)(yup@0.32.11)':
+  '@tinacms/mdx@0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@4.9.5)(yup@0.32.11)':
     dependencies:
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@0.32.11)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@0.32.11)
       acorn: 8.8.2
       ccount: 2.0.1
       estree-util-is-identifier-name: 2.1.0
@@ -13587,9 +13587,9 @@ snapshots:
       - typescript
       - yup
 
-  '@tinacms/mdx@0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@4.9.5)(yup@1.6.1)':
+  '@tinacms/mdx@0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@4.9.5)(yup@1.6.1)':
     dependencies:
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)
       acorn: 8.8.2
       ccount: 2.0.1
       estree-util-is-identifier-name: 2.1.0
@@ -13625,9 +13625,9 @@ snapshots:
       - typescript
       - yup
 
-  '@tinacms/mdx@0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)(yup@0.32.11)':
+  '@tinacms/mdx@0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)(yup@0.32.11)':
     dependencies:
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@0.32.11)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@0.32.11)
       acorn: 8.8.2
       ccount: 2.0.1
       estree-util-is-identifier-name: 2.1.0
@@ -13663,9 +13663,9 @@ snapshots:
       - typescript
       - yup
 
-  '@tinacms/mdx@0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)(yup@1.6.1)':
+  '@tinacms/mdx@0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)(yup@1.6.1)':
     dependencies:
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)
       acorn: 8.8.2
       ccount: 2.0.1
       estree-util-is-identifier-name: 2.1.0
@@ -13701,14 +13701,14 @@ snapshots:
       - typescript
       - yup
 
-  '@tinacms/metrics@0.0.0-48b963a-20250618233435(fs-extra@11.3.0)':
+  '@tinacms/metrics@0.0.0-8f7f815-20250623000754(fs-extra@11.3.0)':
     dependencies:
       fs-extra: 11.3.0
       isomorphic-fetch: 3.0.0
     transitivePeerDependencies:
       - encoding
 
-  '@tinacms/schema-tools@0.0.0-48b963a-20250618233435(react@18.3.1)(yup@0.32.11)':
+  '@tinacms/schema-tools@0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@0.32.11)':
     dependencies:
       picomatch-browser: 2.2.6
       react: 18.3.1
@@ -13716,7 +13716,7 @@ snapshots:
       yup: 0.32.11
       zod: 3.25.67
 
-  '@tinacms/schema-tools@0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)':
+  '@tinacms/schema-tools@0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)':
     dependencies:
       picomatch-browser: 2.2.6
       react: 18.3.1
@@ -13724,10 +13724,10 @@ snapshots:
       yup: 1.6.1
       zod: 3.25.67
 
-  '@tinacms/search@0.0.0-48b963a-20250618233435(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@4.9.5)(yup@1.6.1)':
+  '@tinacms/search@0.0.0-8f7f815-20250623000754(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@4.9.5)(yup@1.6.1)':
     dependencies:
-      '@tinacms/graphql': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@4.9.5)
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)
+      '@tinacms/graphql': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@4.9.5)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)
       memory-level: 1.0.0
       search-index: 4.0.0(abstract-level@1.0.4)
       sqlite-level: 1.2.1(sucrase@3.35.0)
@@ -13740,10 +13740,10 @@ snapshots:
       - typescript
       - yup
 
-  '@tinacms/search@0.0.0-48b963a-20250618233435(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@5.8.3)(yup@1.6.1)':
+  '@tinacms/search@0.0.0-8f7f815-20250623000754(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@5.8.3)(yup@1.6.1)':
     dependencies:
-      '@tinacms/graphql': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)
+      '@tinacms/graphql': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)
       memory-level: 1.0.0
       search-index: 4.0.0(abstract-level@1.0.4)
       sqlite-level: 1.2.1(sucrase@3.35.0)
@@ -14118,7 +14118,7 @@ snapshots:
   '@types/pg@8.11.6':
     dependencies:
       '@types/node': 22.15.32
-      pg-protocol: 1.10.1
+      pg-protocol: 1.10.2
       pg-types: 4.0.2
 
   '@types/prettier@1.19.1': {}
@@ -14133,17 +14133,17 @@ snapshots:
 
   '@types/range-parser@1.2.7': {}
 
-  '@types/react-instantsearch-core@7.0.0(algoliasearch@4.24.0)(react@18.3.1)':
+  '@types/react-instantsearch-core@7.0.0(algoliasearch@4.25.0)(react@18.3.1)':
     dependencies:
-      react-instantsearch-core: 6.40.4(algoliasearch@4.24.0)(react@18.3.1)
+      react-instantsearch-core: 6.40.4(algoliasearch@4.25.0)(react@18.3.1)
     transitivePeerDependencies:
       - algoliasearch
       - react
 
-  '@types/react-instantsearch-dom@5.2.6(algoliasearch@4.24.0)(react@18.3.1)':
+  '@types/react-instantsearch-dom@5.2.6(algoliasearch@4.25.0)(react@18.3.1)':
     dependencies:
       '@types/react': 16.14.65
-      '@types/react-instantsearch-core': 7.0.0(algoliasearch@4.24.0)(react@18.3.1)
+      '@types/react-instantsearch-core': 7.0.0(algoliasearch@4.25.0)(react@18.3.1)
     transitivePeerDependencies:
       - algoliasearch
       - react
@@ -14862,14 +14862,14 @@ snapshots:
     transitivePeerDependencies:
       - utf-8-validate
 
-  '@vitejs/plugin-react@3.1.0(vite@4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.0))':
+  '@vitejs/plugin-react@3.1.0(vite@4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1))':
     dependencies:
       '@babel/core': 7.27.4
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.27.4)
       '@babel/plugin-transform-react-jsx-source': 7.27.1(@babel/core@7.27.4)
       magic-string: 0.27.0
       react-refresh: 0.14.2
-      vite: 4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.0)
+      vite: 4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -15053,28 +15053,28 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
-  algoliasearch-helper@3.14.0(algoliasearch@4.24.0):
+  algoliasearch-helper@3.14.0(algoliasearch@4.25.0):
     dependencies:
       '@algolia/events': 4.0.1
-      algoliasearch: 4.24.0
+      algoliasearch: 4.25.0
 
-  algoliasearch@4.24.0:
+  algoliasearch@4.25.0:
     dependencies:
-      '@algolia/cache-browser-local-storage': 4.24.0
-      '@algolia/cache-common': 4.24.0
-      '@algolia/cache-in-memory': 4.24.0
-      '@algolia/client-account': 4.24.0
-      '@algolia/client-analytics': 4.24.0
-      '@algolia/client-common': 4.24.0
-      '@algolia/client-personalization': 4.24.0
-      '@algolia/client-search': 4.24.0
-      '@algolia/logger-common': 4.24.0
-      '@algolia/logger-console': 4.24.0
-      '@algolia/recommend': 4.24.0
-      '@algolia/requester-browser-xhr': 4.24.0
-      '@algolia/requester-common': 4.24.0
-      '@algolia/requester-node-http': 4.24.0
-      '@algolia/transporter': 4.24.0
+      '@algolia/cache-browser-local-storage': 4.25.0
+      '@algolia/cache-common': 4.25.0
+      '@algolia/cache-in-memory': 4.25.0
+      '@algolia/client-account': 4.25.0
+      '@algolia/client-analytics': 4.25.0
+      '@algolia/client-common': 4.25.0
+      '@algolia/client-personalization': 4.25.0
+      '@algolia/client-search': 4.25.0
+      '@algolia/logger-common': 4.25.0
+      '@algolia/logger-console': 4.25.0
+      '@algolia/recommend': 4.25.0
+      '@algolia/requester-browser-xhr': 4.25.0
+      '@algolia/requester-common': 4.25.0
+      '@algolia/requester-node-http': 4.25.0
+      '@algolia/transporter': 4.25.0
 
   altair-express-middleware@7.3.6:
     dependencies:
@@ -15440,8 +15440,8 @@ snapshots:
 
   browserslist@4.25.0:
     dependencies:
-      caniuse-lite: 1.0.30001723
-      electron-to-chromium: 1.5.170
+      caniuse-lite: 1.0.30001724
+      electron-to-chromium: 1.5.171
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.0)
 
@@ -15546,7 +15546,7 @@ snapshots:
     dependencies:
       three: 0.165.0
 
-  caniuse-lite@1.0.30001723: {}
+  caniuse-lite@1.0.30001724: {}
 
   capital-case@1.0.4:
     dependencies:
@@ -16424,7 +16424,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  electron-to-chromium@1.5.170: {}
+  electron-to-chromium@1.5.171: {}
 
   email-validator@2.0.4: {}
 
@@ -16835,7 +16835,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  exsolve@1.0.6: {}
+  exsolve@1.0.7: {}
 
   extend-shallow@2.0.1:
     dependencies:
@@ -18941,11 +18941,11 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  mermaid@11.6.0:
+  mermaid@11.7.0:
     dependencies:
       '@braintree/sanitize-url': 7.1.1
       '@iconify/utils': 2.3.0
-      '@mermaid-js/parser': 0.4.0
+      '@mermaid-js/parser': 0.5.0
       '@types/d3': 7.4.3
       cytoscape: 3.32.0
       cytoscape-cose-bilkent: 4.1.0(cytoscape@3.32.0)
@@ -19545,18 +19545,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-tinacms-cloudinary@7.1.0(tinacms@0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))):
+  next-tinacms-cloudinary@7.1.0(tinacms@0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))):
     dependencies:
       cloudinary: 1.41.3
       multer: 1.4.5-lts.1
-      tinacms: 0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))
+      tinacms: 0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))
 
   next@14.2.30(@babel/core@7.27.4)(@playwright/test@1.53.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2):
     dependencies:
       '@next/env': 14.2.30
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001723
+      caniuse-lite: 1.0.30001724
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.3.1
@@ -19585,7 +19585,7 @@ snapshots:
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   node-abi@3.75.0:
     dependencies:
@@ -19905,7 +19905,7 @@ snapshots:
 
   pg-numeric@1.0.2: {}
 
-  pg-protocol@1.10.1: {}
+  pg-protocol@1.10.2: {}
 
   pg-types@4.0.2:
     dependencies:
@@ -19944,7 +19944,7 @@ snapshots:
   pkg-types@2.1.0:
     dependencies:
       confbox: 0.2.2
-      exsolve: 1.0.6
+      exsolve: 1.0.7
       pathe: 2.0.3
 
   playwright-core@1.53.1: {}
@@ -20404,26 +20404,26 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  react-instantsearch-core@6.40.4(algoliasearch@4.24.0)(react@18.3.1):
+  react-instantsearch-core@6.40.4(algoliasearch@4.25.0)(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.27.6
-      algoliasearch: 4.24.0
-      algoliasearch-helper: 3.14.0(algoliasearch@4.24.0)
+      algoliasearch: 4.25.0
+      algoliasearch-helper: 3.14.0(algoliasearch@4.25.0)
       prop-types: 15.8.1
       react: 18.3.1
       react-fast-compare: 3.2.2
 
-  react-instantsearch-dom@6.40.4(algoliasearch@4.24.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-instantsearch-dom@6.40.4(algoliasearch@4.25.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.27.6
-      algoliasearch: 4.24.0
-      algoliasearch-helper: 3.14.0(algoliasearch@4.24.0)
+      algoliasearch: 4.25.0
+      algoliasearch-helper: 3.14.0(algoliasearch@4.25.0)
       classnames: 2.5.1
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-fast-compare: 3.2.2
-      react-instantsearch-core: 6.40.4(algoliasearch@4.24.0)(react@18.3.1)
+      react-instantsearch-core: 6.40.4(algoliasearch@4.25.0)(react@18.3.1)
 
   react-intersection-observer@9.16.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -20548,7 +20548,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 16.14.65
 
-  react-tinacms-editor@0.53.26(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(tinacms@0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))):
+  react-tinacms-editor@0.53.26(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(tinacms@0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))):
     dependencies:
       '@tinacms/toolkit': 0.56.34(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       codemirror: 5.65.19
@@ -20571,7 +20571,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       styled-components: 6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      tinacms: 0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))
+      tinacms: 0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1))
     transitivePeerDependencies:
       - '@types/react'
       - react-is
@@ -21820,10 +21820,10 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.3.2
       serialize-javascript: 6.0.2
-      terser: 5.43.0
+      terser: 5.43.1
       webpack: 5.99.9
 
-  terser@5.43.0:
+  terser@5.43.1:
     dependencies:
       '@jridgewell/source-map': 0.3.6
       acorn: 8.15.0
@@ -21873,7 +21873,7 @@ snapshots:
       readable-stream: 2.3.8
       xtend: 4.0.2
 
-  tinacms@0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1)):
+  tinacms@0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@4.9.5)(use-sync-external-store@1.5.0(react@18.3.1)):
     dependencies:
       '@ariakit/react': 0.4.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@floating-ui/dom': 1.7.1
@@ -21891,9 +21891,9 @@ snapshots:
       '@radix-ui/react-toolbar': 1.1.10(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-tooltip': 1.2.7(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-hook/window-size': 3.1.1(react@18.3.1)
-      '@tinacms/mdx': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@4.9.5)(yup@1.6.1)
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)
-      '@tinacms/search': 0.0.0-48b963a-20250618233435(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@4.9.5)(yup@1.6.1)
+      '@tinacms/mdx': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@4.9.5)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)
+      '@tinacms/search': 0.0.0-8f7f815-20250623000754(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@4.9.5)(yup@1.6.1)
       '@udecode/cmdk': 0.2.1(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@udecode/cn': 48.0.3(@types/react@16.14.65)(class-variance-authority@0.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-merge@2.6.0)
       '@udecode/plate': 48.0.5(@types/react@16.14.65)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.5.0(react@18.3.1))
@@ -21969,7 +21969,7 @@ snapshots:
       - typescript
       - use-sync-external-store
 
-  tinacms@0.0.0-48b963a-20250618233435(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@5.8.3)(use-sync-external-store@1.5.0(react@18.3.1)):
+  tinacms@0.0.0-8f7f815-20250623000754(@types/react@16.14.65)(abstract-level@1.0.4)(immer@10.1.1)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.32)(@types/react@16.14.65)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.0)(typescript@5.8.3)(use-sync-external-store@1.5.0(react@18.3.1)):
     dependencies:
       '@ariakit/react': 0.4.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@floating-ui/dom': 1.7.1
@@ -21987,9 +21987,9 @@ snapshots:
       '@radix-ui/react-toolbar': 1.1.10(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-tooltip': 1.2.7(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-hook/window-size': 3.1.1(react@18.3.1)
-      '@tinacms/mdx': 0.0.0-48b963a-20250618233435(react@18.3.1)(typescript@5.8.3)(yup@1.6.1)
-      '@tinacms/schema-tools': 0.0.0-48b963a-20250618233435(react@18.3.1)(yup@1.6.1)
-      '@tinacms/search': 0.0.0-48b963a-20250618233435(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@5.8.3)(yup@1.6.1)
+      '@tinacms/mdx': 0.0.0-8f7f815-20250623000754(react@18.3.1)(typescript@5.8.3)(yup@1.6.1)
+      '@tinacms/schema-tools': 0.0.0-8f7f815-20250623000754(react@18.3.1)(yup@1.6.1)
+      '@tinacms/search': 0.0.0-8f7f815-20250623000754(abstract-level@1.0.4)(react@18.3.1)(sucrase@3.35.0)(typescript@5.8.3)(yup@1.6.1)
       '@udecode/cmdk': 0.2.1(@types/react@16.14.65)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@udecode/cn': 48.0.3(@types/react@16.14.65)(class-variance-authority@0.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-merge@2.6.0)
       '@udecode/plate': 48.0.5(@types/react@16.14.65)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(use-sync-external-store@1.5.0(react@18.3.1))
@@ -22612,7 +22612,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.0):
+  vite@4.5.14(@types/node@22.15.32)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1):
     dependencies:
       esbuild: 0.18.20
       postcss: 8.5.6
@@ -22622,7 +22622,7 @@ snapshots:
       fsevents: 2.3.3
       lightningcss: 1.30.1
       sass: 1.89.2
-      terser: 5.43.0
+      terser: 5.43.1
 
   vscode-jsonrpc@8.2.0: {}
 
@@ -22697,7 +22697,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-sources@3.3.2: {}
+  webpack-sources@3.3.3: {}
 
   webpack@5.99.9:
     dependencies:
@@ -22724,7 +22724,7 @@ snapshots:
       tapable: 2.2.2
       terser-webpack-plugin: 5.3.14(webpack@5.99.9)
       watchpack: 2.4.4
-      webpack-sources: 3.3.2
+      webpack-sources: 3.3.3
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
