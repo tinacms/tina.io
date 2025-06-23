@@ -223,6 +223,11 @@
           "title": "Media Storage",
           "items": [
             {
+              "title": "Storing Images And Content Together",
+              "slug": "content/docs/reference/media/storing-images-and-content-together.mdx",
+              "_template": "item"
+            },
+            {
               "title": "Repo-based Media",
               "slug": "content/docs/reference/media/repo-based.mdx",
               "_template": "item"
