@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The Click-To-Edit API
-last_edited: '2025-06-23T00:44:20.832Z'
+last_edited: '2025-06-23T00:50:16.575Z'
 next: ''
 previous: ''
 ---
@@ -63,6 +63,8 @@ Notice that the `<a>` tag's data attribute only needs access to the `link` data 
 ## Example: Using `tinaField` inside `TinaMarkdown`
 
 Here's a slightly more advanced example showing how the tinaField can be used to expose fields within rich text content, even inside custom components:
+
+> The props object that the custom `DataTime` component passes has the metadata stored under `_content_source` which is automagically applied when in edit mode (using tinacms).
 
 ```javascript
 import { useTina, tinaField } from 'tinacms/dist/react';
@@ -140,7 +142,7 @@ When Tina is in edit mode, it enhances the data with metadata for each editable 
 
 ```
 
-The tinaField helper reads this \_content\_source metadata to construct the correct path for the editor UI to connect the field with the form.
+The `tinaField` helper reads this `_content_source` metadata to construct the correct path for the editor UI to connect the field with the form.
 
 ## Custom Components and \[data-tina-field]
 
