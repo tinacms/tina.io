@@ -10,7 +10,7 @@ Tina's "click to edit" feature allows editors to select the **HTML element** the
 
 We can implement this with the `data-tina-field` API.
 
-> `[data-tina-field]` cannot be applied directly to React components, such as [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown).
+> `[data-tina-field]` must be applied to HTML elements, not React components like [TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown).
 
 ## API Reference
 
@@ -32,6 +32,8 @@ We can implement this with the `data-tina-field` API.
 />
 
 > **Note**: The `object` property only needs to contain the nearest ancestor of the field you're trying to access.
+
+## Basic Usage
 
 ```jsx
 // components/blocks/hero
@@ -58,15 +60,111 @@ export const HeroComponent = (props) => {
 
 Notice that the `<a>` tag's data attribute only needs access to the `link` data object.
 
+## Example: Using tinaField inside TinaMarkdown
+
+Here's a slightly more advanced example showing how the tinaField can be used to expose fields within rich text content, even inside custom components:
+
+```javascript
+import { useTina, tinaField } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+
+export default function Post(props) {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
+
+  return (
+    <div data-tina-field={tinaField(data.post, 'body')}>
+      <TinaMarkdown
+        content={data.post.body}
+        components={{
+          DateTime: (props) => {
+            return (
+              <div data-tina-field={tinaField(props)}>
+                <TestComp {...props} />
+              </div>
+            );
+          },
+        }}
+      />
+      <code>
+        <pre>{JSON.stringify(data.post, null, 2)}</pre>
+      </code>
+    </div>
+  );
+}
+
+const TestComp = (props) => {
+  return (
+    <>
+      <div data-tina-field={tinaField(props, 'format')}>
+        Date Time Format: {props.format}
+      </div>
+      <div data-tina-field={tinaField(props, 'stringTest')}>
+        <TinaMarkdown content={props.stringTest} />
+      </div>
+    </>
+  );
+};
+
+```
+
+This way editors can click any nested field inside custom components and go straight to that templates field.
+
+## Metadata Structure
+
+When Tina is in edit mode, it enhances the data with metadata for each editable field. For example, a rich text template field like  might look like:
+
+```json
+{
+  "type": "root",
+    "children": [
+      {
+        "type": "DateTime",
+        "format": "MMM yyyy",
+        "stringTest": "...",
+        "_content_source": { // metadata
+          "queryId": "6rix9",
+          "path": [
+            "post",
+            "body",
+            "children",
+            0
+          ]
+        }
+      }
+    ]
+}
+
+```
+
+The tinaField helper reads this \_content\_source metadata to construct the correct path for the editor UI to connect the field with the form. 
+
+## Custom Components and \[data-tina-field]
+
+React components can't take arbitary HTML attributes like data-tina-field. To work around this, define a prop (e.g. tinaField) and pass it down to an HTML element inside the component:\
+ 
+
+```javascript
+const Section = ({ children, tinaField }) => {
+  return <section data-tina-field={tinaField}>{children}</section>;
+};
+
+<Section tinaField={tinaField(data, 'body')}>
+  <TinaMarkdown content={data.body} />
+</Section>
+
+```
+
 ## Styling the visual editing interface
 
 <WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
 
-When Tina finds an element with the `[data-tina-field]` attribute, it will attach some CSS to it when in edit mode, clicking on the element triggers
-the Tina form to open and focus the matching field.
+When edit mode is active, Tina automatically applies outlines to any `[data-tina-field]`element. 
 
-Since Tina uses CSS to achieve the interface, it's possible for styles to collide. Overriding and customizing Tina's
-styles are encouraged. Here's an example of overriding the outline color to red:
+You can override these styles if needed:
 
 ```css
 .__tina-quick-editing-enabled [data-tina-field] {
@@ -75,117 +173,4 @@ styles are encouraged. Here's an example of overriding the outline color to red:
 .__tina-quick-editing-enabled [data-tina-field]:hover {
   outline: 2px dashed rgba(254, 34, 56, 1);
 }
-```
-
-## How does the `tinaField` helper work?
-
-In order for this to work, Tina needs to know what document and field the
-element is associated with. Tina makes this easy with the `tinaField` helper
-function. Using this function, developers can add the appropriate metadata
-to the `[data-tina-field]` attribute.
-
-```jsx
-import { useTina, tinaField } from 'tinacms/dist/react';
-
-const Page = (props) => {
-  const { data } = useTina(props);
-  return (
-    <div>
-      <h1 data-tina-field={tinaField(data, 'title')}>{data.title}</h1>
-    </div>
-  );
-};
-```
-
-Now, when you open the Tina sidebar you'll see editing overlays on any element
-that's been configured.
-
-> "Click to edit" will work for any field in your query, this means you can also click on fields from references as well.
-
-The `tinaField` function used above is a *type-safe* helper designed to pluck the metadata out of the data object for the given
-property to be used on the `[data-tina-field]` attribute:
-
-```js
-// Get metadata for the 'object' field
-tinaField(data);
-// Get metadata for the `data.title` field
-tinaField(data, 'title');
-```
-
-When not in edit-mode, the `data` returned by the `useTina` hook might look like this:
-
-```js
-{
-  page: {
-    title: 'Hello, world',
-    blocks: [{
-      __typename: 'PageBlocksHero',
-      heading: 'Hi, again!',
-      description: 'Some description'
-      links: [{
-        label: "About Us",
-        url: '/about=us'
-      }]
-    }]
-  }
-}
-```
-
-Once edit-mode is enabled, Tina will update each nested object with `_tina_metadata`:
-
-```js
-{
-  page: {
-    title: 'Hello, world',
-    blocks: [{
-      __typename: 'PageBlocksHero',
-      heading: 'Hi, again!',
-      description: 'Some description'
-      links: [{
-        label: "About Us",
-        url: '/about=us',
-        _tina_metadata: {
-          formId: "content/pages/hello-world.md",
-          fields: {
-            // tinaField(link, 'label') -> `023nsk-page.blocks.0.links.0.label`
-            label: "page.blocks.0.links.0.label",
-            url: "page.blocks.0.links.0.link",
-          }
-        }
-      }],
-      _tina_metadata: {...}
-    }],
-    _tina_metadata: {...}
-  }
-}
-```
-
-The `tinaField` helper simply plucks out the appropriate information from the `_tina_metadata` object.
-
-## Using `tinaField` with custom React components
-
-The `[data-tina-field]` attribute can only be applied directly to HTML elements. This makes it tricky to use with React components because attribute names need to have kebab case. Instead we can define a prop on our React component allowing us to pass `tinaField` in.
-
-```js
-import { useTina, tinaField } from 'tinacms/dist/react';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
-
-const Page = (props) => {
-  const { data } = useTina(props);
-  return (
-    <Section tinaField={tinaField(data, 'body')}>
-      <TinaMarkdown content={data.body} />
-    </Section>
-  );
-};
-
-type SectionProps = {
-  children?: React.ReactNode,
-  tinaField?: string,
-};
-// defining a tinaField property (the name is arbitrary)
-const Section = ({ children, tinaField }: SectionProps) => {
-  //passing the tina field information to our html element
-  return <section data-tina-field={tinaField}>{children}</section>;
-};
 ```
