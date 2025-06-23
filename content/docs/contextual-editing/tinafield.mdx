@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The Click-To-Edit API
-last_edited: '2025-06-23T01:01:47.825Z'
+last_edited: '2025-06-23T01:04:01.734Z'
 next: ''
 previous: ''
 ---
@@ -58,6 +58,23 @@ export const HeroComponent = (props) => {
 };
 ```
 
+## Custom Components and \[data-tina-field]
+
+React components can't take arbitrary HTML attributes like `data-tina-field`. To work around this, define a prop (e.g. *tinaField*) and pass it down to an HTML element inside the component:
+
+```javascript
+const Section = ({ children, tinaField }) => {
+  return <section data-tina-field={tinaField}>{children}</section>;
+};
+
+<Section tinaField={tinaField(data, 'body')}>
+  <TinaMarkdown content={data.body} />
+</Section>
+
+```
+
+## TinaMarkdown + tinaField
+
 When using `TinaMarkdown` with custom components, the `props` object passed into each component already includes the `_content_source` metadata. This metadata is **automatically injected in edit mode** via Tina's `useTina` hook.
 
 To make a component editable, all you need to do is pass the `props` object directly into the `tinaField` helper:
@@ -81,7 +98,7 @@ If you want to **target a specific field** inside the component. For example, on
 
 This gives Tina a more precise mapping to the field, based on the template definition defined in your collection.
 
-## Example: Using `tinaField` inside `TinaMarkdown`
+## Example: Using tinaField inside TinaMarkdown
 
 Here's a slightly more advanced example showing how the `tinaField` can be used to expose fields within **rich text** content, even inside custom components:
 
@@ -162,21 +179,6 @@ When Tina is in edit mode, it enhances the data with metadata for each editable 
 ```
 
 The `tinaField` helper reads this `_content_source` metadata to construct the correct path for the editor UI to connect the field with the form.
-
-## Custom Components and \[data-tina-field]
-
-React components can't take arbitrary HTML attributes like `data-tina-field`. To work around this, define a prop (e.g. *tinaField*) and pass it down to an HTML element inside the component:
-
-```javascript
-const Section = ({ children, tinaField }) => {
-  return <section data-tina-field={tinaField}>{children}</section>;
-};
-
-<Section tinaField={tinaField(data, 'body')}>
-  <TinaMarkdown content={data.body} />
-</Section>
-
-```
 
 ## Styling the visual editing interface
 
