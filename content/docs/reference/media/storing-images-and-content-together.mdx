@@ -1,6 +1,6 @@
 ---
 title: Storing Images And Content Together
-last_edited: '2025-06-23T15:04:19.586Z'
+last_edited: '2025-06-23T15:13:09.207Z'
 next: ''
 previous: ''
 ---
@@ -8,9 +8,13 @@ previous: ''
 By default, TinaCMS expects:
 
 * Markdown files in content/
-* Images in public/uploads/
+* Images in public/uploads/\
 
-This separation works in many modern web frameworks (like Next.js, Astro, etc.) where static assets are served from a public directory, but it breaks self-containment — your content and its assets live in different locations. This adds friction when managing, duplicating, or migrating content.
+
+This separation works in many modern web frameworks (like Next.js, Astro, etc.) where static assets are served from a public directory, but it breaks **self-containment** — your content and its assets live in different locations. \
+
+
+This adds friction when managing, duplicating, or migrating content.
 
 ## Solution: Moving Your Content In The Media Folder
 
@@ -27,7 +31,7 @@ public/
         │   └── image.png
 ```
 
-> Note: public/uploads is the default Media folder, you can change it to be whatever suits your project.\
+> Note: `public/uploads` is the default Media folder, you can change it to be whatever suits your project.\
 > See this for more information: [Repo-based Media](https://tina.io/docs/reference/media/repo-based#configuration)
 
 The only thing required to make this work is to update the `path` in your Collection file to point to the Media folder.
