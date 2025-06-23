@@ -1,7 +1,7 @@
 ---
 id: /docs/contextual-editing/tinafield
 title: The Click-To-Edit API
-last_edited: '2025-03-26T01:49:29.241Z'
+last_edited: '2025-06-23T00:44:20.832Z'
 next: ''
 previous: ''
 ---
@@ -60,7 +60,7 @@ export const HeroComponent = (props) => {
 
 Notice that the `<a>` tag's data attribute only needs access to the `link` data object.
 
-## Example: Using tinaField inside TinaMarkdown
+## Example: Using `tinaField` inside `TinaMarkdown`
 
 Here's a slightly more advanced example showing how the tinaField can be used to expose fields within rich text content, even inside custom components:
 
@@ -140,12 +140,11 @@ When Tina is in edit mode, it enhances the data with metadata for each editable 
 
 ```
 
-The tinaField helper reads this \_content\_source metadata to construct the correct path for the editor UI to connect the field with the form. 
+The tinaField helper reads this \_content\_source metadata to construct the correct path for the editor UI to connect the field with the form.
 
 ## Custom Components and \[data-tina-field]
 
-React components can't take arbitary HTML attributes like data-tina-field. To work around this, define a prop (e.g. tinaField) and pass it down to an HTML element inside the component:\
- 
+React components can't take arbitary HTML attributes like data-tina-field. To work around this, define a prop (e.g. tinaField) and pass it down to an HTML element inside the component:\\
 
 ```javascript
 const Section = ({ children, tinaField }) => {
@@ -162,7 +161,7 @@ const Section = ({ children, tinaField }) => {
 
 <WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
 
-When edit mode is active, Tina automatically applies outlines to any `[data-tina-field]`element. 
+When edit mode is active, Tina automatically applies outlines to any `[data-tina-field]`element.
 
 You can override these styles if needed:
 
