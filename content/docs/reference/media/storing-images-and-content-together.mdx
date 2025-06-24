@@ -1,6 +1,6 @@
 ---
 title: Storing Images And Content Together
-last_edited: '2025-06-24T08:43:26.092Z'
+last_edited: '2025-06-24T09:07:12.997Z'
 next: ''
 previous: ''
 ---
@@ -33,6 +33,20 @@ public/
 > See this for more information: [Repo-based Media](https://tina.io/docs/reference/media/repo-based#configuration)
 
 The only thing required to make this work is to update the `path` in your Collection file to point to the Media folder.
+
+```javascript
+//tina/collections/post.ts
+
+const Post: Collection = {
+  label: "Posts",
+  name: "post",
+  path: "public/uploads/posts",
+  fields: [
+    //...
+  ],
+  //...
+};
+```
 
 ### Considerations
 
