@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-06-17T23:24:14.363Z'
+last_edited: '2025-06-24T14:23:47.957Z'
 next: ''
 previous: ''
 ---
@@ -34,7 +34,7 @@ You might want to do this for a variety of reasons, such as:
 
 ## Create the website repository
 
-We have deployed a basic starting "website repo", which you can clone to get started.
+We have deployed a basic starting "[website repo](https://github.com/tinacms/separate-website-repo)", which you can clone to get started.
 
 ```sh
 git clone git@github.com:tinacms/separate-website-repo.git
@@ -96,27 +96,29 @@ yarn build
 
 When you modify your Tina schema ( tina/config.(ts/js) )
 
-1. Run tinacms build to regenerate files - Tina will regenerate files such like your tina-lock.json
-2. Commit and push these changes to both your website repo and content repo to ensure compatibility across builds
+1. Run `tinacms build` to regenerate files - Tina will regenerate files such like your `tina-lock.json`
+2. Commit and push these changes to \*\*both \*\*your website repo and content repo to ensure compatibility across builds
 
 ## Path Configuration Considerations
 
-When defining collection paths inside your tina/config.(ts/js), avoid setting path: '' . As Tina expects a folder-relative path. Using '' can result in errors when creating new documents because Tina prepends a / when saving, causing invalid GitHub paths.
+When defining collection paths inside your tina/config.(ts/js), avoid setting \`path: '' . As Tina expects a folder-relative path. Using an empty string `''` can result in errors when creating new documents because Tina prepends a `/` when saving, which can lead to invalid GitHub paths and creation errors.
 
 ## Static Site Generator Compatibility
 
-If you are using a static site generate (SSG) other than Next.js, such like Astro. Ensure your content pipeline ignores the tina/ directory inside your content repo. Tina's config files are not content files and this may cause parsing errors.
+If you are using a static site generate (SSG) other than Next.js, such like Astro. Ensure your content pipeline ignores the `tina/` directory inside your content repo. Tina's config files are not content files and this may cause parsing errors.
+
+Here's an example of how to exclude the \`tina/\` directory:
 
 ```javascript
-export default defineCollection) {
+export default defineCollection({
   schema: mySchema,
   exclude: ['tina/**/*'],
-};
+});
 ```
 
 ## Triggering Website Builds from the Content Repo
 
-When using a separate content repo, you may want content updates (e.g. from TinaCMS UI) to automatically trigger a build of your website. This is especially useful when deploying with **Azure Static Web Apps** or other CI/CD systems where your frontend is hosted separately from your content.
+When using a separate content repo, you may want content updates (e.g. from TinaCMS UI) to automatically trigger a build of your website. This is especially useful when deploying with Azure Static Web Apps or other CI/CD systems where your frontend is hosted separately from your content.
 
 Below is an example of how to do this using **GitHub Actions** in the content repo. It uses a GitHub App token to trigger a workflow in your website repo.
 
@@ -164,7 +166,7 @@ jobs:
 This setup requires:
 
 * A GitHub App with access to both repos
-* A build workflow file (\`build-and-deploy.yml\`) in your website repo 
+* A build workflow file (\`build-and-deploy.yml\`) in your website repo
 * Token and app secrets saved in GitHub repo settings
 
 ### When to Use This
@@ -182,7 +184,6 @@ To learn more about Tina, take a look at the following resources:
 * [Tina Docs](https://tina.io/docs)
 
 You can check out [Tina GitHub repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
-
 
 ## Learn More
 
