@@ -114,6 +114,76 @@ export default defineCollection) {
 };
 ```
 
+## Triggering Website Builds from the Content Repo
+
+When using a separate content repo, you may want content updates (e.g. from TinaCMS UI) to automatically trigger a build of your website. This is especially useful when deploying with **Azure Static Web Apps** or other CI/CD systems where your frontend is hosted separately from your content.
+
+Below is an example of how to do this using **GitHub Actions** in the content repo. It uses a GitHub App token to trigger a workflow in your website repo.
+
+### Example Workflow
+
+Create a workflow file in your content repo (e.g. `.github/workflows/trigger-website-build.yml`):
+
+```yaml
+name: Trigger Website Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'your-org'
+
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.MY_APP_ID }}
+          private-key: ${{ secrets.MY_APP_PRIVATE_KEY }}
+          owner: your-org
+          repositories: your-website-repo
+
+      - name: Trigger website deploy
+        run: |
+          gh workflow run build-and-deploy.yml \
+            --repo your-org/your-website-repo \
+            --ref main \
+            --field run_id="$GITHUB_RUN_ID" \
+            --field branch_name="${GITHUB_REF#refs/heads/}"
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+```
+
+### Prerequisites
+
+This setup requires:
+
+* A GitHub App with access to both repos
+* A build workflow file (\`build-and-deploy.yml\`) in your website repo 
+* Token and app secrets saved in GitHub repo settings
+
+### When to Use This
+
+Use this approach if:
+
+* Your content and website live in separate repos
+* You're using Azure or other platforms that don't automatically detect cross-repo content changes
+* You want a reliable CI/CD flow triggered from content edits
+
+## Learn More
+
+To learn more about Tina, take a look at the following resources:
+
+* [Tina Docs](https://tina.io/docs)
+
+You can check out [Tina GitHub repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
+
+
 ## Learn More
 
 To learn more about Tina, take a look at the following resources:
