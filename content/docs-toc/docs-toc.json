@@ -657,6 +657,11 @@
       "title": "Advanced",
       "items": [
         {
+          "title": "How to Update Your Tina Version With Dependabot",
+          "slug": "content/docs/how-to-update-your-tina-version-with-dependabot.mdx",
+          "_template": "item"
+        },
+        {
           "title": "The TinaCMS CLI",
           "slug": "content/docs/cli-overview.mdx",
           "_template": "item"
