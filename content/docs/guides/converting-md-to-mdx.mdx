@@ -1,6 +1,6 @@
 ---
 title: Converting Gatsby Markdown to MDX for TinaCMS
-last_edited: '2025-06-03T14:17:35.558Z'
+last_edited: '2025-06-24T16:04:02.886Z'
 next: content/docs/cli-overview.mdx
 previous: content/docs/guides/converting-gatsby-to-tina.mdx
 ---
@@ -36,13 +36,13 @@ Here are the key Markdown patterns our script handles:
 
 | Original Format                   | What It Represents               | Converted To                   |
 | --------------------------------- | -------------------------------- | ------------------------------ |
-| `youtube: URL` + caption          | YouTube video with a description | `<youtubeEmbed />`             |
 | `::: greybox/highlight/...`       | Info or aside boxes              | `<asideEmbed variant="..." />` |
 | Email templates with metadata     | Emails with subject, body, etc.  | `<emailEmbed />`               |
 | `::: good/bad/ok + image`         | Image with a feedback label      | `<imageEmbed />`               |
 | `::: img-small/img-large + image` | Image with size/border variants  | `<imageEmbed size="..." />`    |
 | `![Figure: Caption](src)`         | Standalone images with captions  | `<imageEmbed />`               |
 | `::: good + Caption :::`          | Styled caption text              | `<figureEmbed />`              |
+| `youtube: URL` + caption          | YouTube video with a description | `<youtubeEmbed />`             |
 
 These reflect common patterns we used in the original Markdown content.
 
@@ -50,19 +50,55 @@ These reflect common patterns we used in the original Markdown content.
 
 **Before (Markdown):**
 
-```markdown
-`youtube: https://www.youtube.com/watch?v=dQw4w9WgXcQ`
-**Watch this classic hit**
+```
+::: email-template  
+| | |
+| -------- | --- |
+| To: | XXX |
+| Cc: | YYY |
+| Bcc: | ZZZ |
+| Subject: | {{ EMAIL SUBJECT }} |  
+::: email-content
+### Hi XXX,
+{{ EMAIL CONTENT }}
+:::  
+:::  
+::: good  
+Figure: Good example - Nice email template  
+:::
+
+
 
 ::: good
 ![Figure: Well-structured diagram](diagram.png)
 :::
+
+`youtube: https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+**Watch this classic hit**
+
 ```
 
 **After (MDX):**
 
 ```jsx
-<youtubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" description="Watch this classic hit" />
+
+<emailEmbed
+  from=""
+  to="XXX"
+  cc="YYY"
+  bcc="ZZZ"
+  subject="&#123;&#123; EMAIL SUBJECT &#125;&#125;"
+  body={<>
+    ## Hi XXX,
+&#123;&#123; EMAIL CONTENT &#125;&#125;
+  </>}
+  figureEmbed={{
+    preset: "goodExample",
+    figure: "Good example - Nice email template",
+    shouldDisplay: true
+  }}
+/>
+
 
 <imageEmbed
   alt="Image"
@@ -75,6 +111,9 @@ These reflect common patterns we used in the original Markdown content.
   }}
   src="diagram.png"
 />
+
+<youtubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" description="Watch this classic hit" />
+
 
 ```
 
