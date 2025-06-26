@@ -5,9 +5,12 @@ next: ''
 previous: content/docs/drafts/drafts-fields.mdx
 ---
 
-> Note: The webhooks feature is available on select paid plans.
-
-If you need to automate tasks or trigger external processes when your content is updated, you can leverage the new webhooks feature. When content is pushed or modified to your desired branch, TinaCMS can send a notification to your own server. This payload includes the paths of the modified files, allowing you to automatically trigger actions like rebuilding your site, populating a search index, or sending a Slack notification, creating powerful, event-driven workflows.
+If you need to automate tasks or trigger external processes when your content
+is updated, you can leverage the new webhooks feature. When content is pushed
+or modified to your desired branch, TinaCMS can send a notification to your own
+server. This payload includes the paths of the modified files, allowing you to
+automatically trigger actions like rebuilding your site or populating a search
+index, creating powerful, event-driven workflows.
 
 ## Setting Up
 
@@ -20,4 +23,35 @@ To create a webhook, follow these steps:
 1. Go to a project.
 2. Go to the "Webhooks" tab within your project.
 3. Press the "Add Webhook" button.
-4. Give your webhook a name, server url, branches you'd like the webhook to fire on, and additional headers to be sent to the your server.
+4. Give your webhook a name, server url, branches you'd like the webhook to
+fire on, and additional headers to be sent to the your server.
+
+# Webhook Logs
+
+Webhook logs can be found within **Webhooks | Logs**.
+
+![webhook logs](/img/docs/tina-cloud/webhooks/webhook-logs.png)
+
+The logs include the following information:
+- **Date**: The date and time the webhook request was sent.
+- **Status**: The status code of the webhook request.
+- **Request**: The webhook request payload. More information on its format can
+  be found below under the "Requests" header.
+- **Response**: The response body from your server.
+
+## Requests
+
+Below is an example webhook request payload:
+
+```
+{
+    clientId: "276...",
+    branch: "main",
+    paths: ["content/authors/bob", ...],
+    type: "content.modified",
+    eventId: "472..."
+}
+```
+
+> Note: The payload `type` can be of either `['content.modified' |
+> 'content.removed' | 'content.added']`
