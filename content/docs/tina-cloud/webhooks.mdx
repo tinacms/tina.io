@@ -5,9 +5,7 @@ next: ''
 previous: content/docs/drafts/drafts-fields.mdx
 ---
 
-<Youtube embedSrc="https://www.youtube.com/embed/gYukiULGqGc" />
-
-> Note: The editorial workflow feature is available on select paid plans.
+> Note: The webhooks feature is available on select paid plans.
 
 If you need to automate tasks or trigger external processes when your content is updated, you can leverage the new webhooks feature. When content is pushed or modified to your desired branch, TinaCMS can send a notification to your own server. This payload includes the paths of the modified files, allowing you to automatically trigger actions like rebuilding your site, populating a search index, or sending a Slack notification, creating powerful, event-driven workflows.
 
@@ -15,11 +13,12 @@ If you need to automate tasks or trigger external processes when your content is
 
 Webhooks can be created via the "Webhooks" tab within a project.
 
-![webhooks dashboard](/img/blog/editorial-workflow/enable-editorial-workflow.png)
+![webhook dashboard](https://assets.tina.io/06bcd49e-f919-4e53-a2c4-77f656491c7d/img/blog/editorial-workflow/enable-editorial-workflow.png)
+![webhook dashboard](/img/docs/tina-cloud/webhooks/webhooks-dashboard.png)
 
-To set up the Editorial Workflow, follow these steps:
+To create a webhook, follow these steps:
 
-1. Go to the "Configuration" tab of your project in the dashboard.
-2. Toggle the "Enable" option.
-3. Enter the names of the branches you want to protect.
-4. After setting up the protected branches, refresh your page to ensure the changes take effect.
+1. Go to a project.
+2. Go to the "Webhooks" tab within your project.
+3. Press the "Add Webhook" button.
+4. Give your webhook a name, server url, branches you'd like the webhook to fire on, and additional headers to be sent to the your server.
