@@ -665,11 +665,6 @@
           "title": "Tina's Edit State",
           "slug": "content/docs/extending-tina/edit-state.mdx",
           "_template": "item"
-        },
-        {
-          "title": "Configuring Dependabot for TinaCMS",
-          "slug": "content/docs/how-to-update-your-tina-version-with-dependabot.mdx",
-          "_template": "item"
         }
       ]
     }
