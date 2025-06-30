@@ -44,7 +44,6 @@ By default, Dependabot opens a separate PR for each package.
 
 Since TinaCMS packages often rely on each other, merging PRs individually can result in package.json versions that appear mismatched—even if the correct versions are resolved in the lockfile. This can prevent Dependabot from detecting actual code changes, leading to missed or incomplete updates.
 
-
 To fix this, update your dependabot.yml config to group TinaCMS packages into a single PR.
 
 Add this at the end:
