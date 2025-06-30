@@ -667,7 +667,7 @@
           "_template": "item"
         },
         {
-          "title": "How to Update Your Tina Version With Dependabot",
+          "title": "Configuring Dependabot for TinaCMS",
           "slug": "content/docs/how-to-update-your-tina-version-with-dependabot.mdx",
           "_template": "item"
         }

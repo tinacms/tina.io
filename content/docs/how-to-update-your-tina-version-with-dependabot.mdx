@@ -1,5 +1,5 @@
 ---
-title: How To Update Your Tina Version With Dependabot
+title: Configuring Dependabot for TinaCMS
 last_edited: '2025-06-24T15:41:58.484Z'
 next: ''
 previous: ''
@@ -27,28 +27,25 @@ updates:
       interval: "daily"
     allow:
       - dependency-name: "tinacms"
-      - dependency-name: "@tinacms*"
+      - dependency-name: "@tinacms/*"
 ```
 
-> Note: You can find more information about the dependabot config here: [Dependabot options reference](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference#about-the-dependabotyml-file)
+> Note: You can find more information about the Dependabot config here: [Dependabot options reference](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference#about-the-dependabotyml-file)
 
-By doing this, dependabot will create Pull Requests whenever one package is to be updated.
+This will tell Dependabot to create pull requests whenever any of those packages need to be updated.
 
 ## How to manage the Pull Requests
 
-Now that you have your PRs you have 2 options
+Now that you have your PR, you have 2 options
 
-### Individual PRs
+### Grouping updates in a single PR
 
-By default, dependabot opens a separate PR for each package.
+By default, Dependabot opens a separate PR for each package.
 
-As both TinaCMS packages depend on eachother this will lead to conflicts and potential mistakes when merging the PRs one by one.
+Since TinaCMS packages often rely on each other, merging PRs individually can result in package.json versions that appear mismatched—even if the correct versions are resolved in the lockfile. This can prevent Dependabot from detecting actual code changes, leading to missed or incomplete updates.
 
-<Youtube caption="❌ Bad Example - Merging PRs one by one" embedSrc="https://www.youtube.com/embed/iDTZmTAczvA" />
 
-### Grouped PRs (recommended)
-
-You can go the extra mile and updated your dependabot.yml config file to group Tina packages together in the same PR.
+To fix this, update your dependabot.yml config to group TinaCMS packages into a single PR.
 
 Add this at the end:
 
