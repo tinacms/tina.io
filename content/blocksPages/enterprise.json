@@ -8,7 +8,7 @@
       "features": [
         {
           "headline": "Tina for Enterprise",
-          "text": "Reduce costs. Increase security & performance",
+          "text": "Reduce costs. Increase security & performance.",
           "buttons": [
             {
               "label": "Request 1-Pager",
@@ -27,6 +27,7 @@
               "_template": "modalButton"
             }
           ],
+          "alignCenter": true,
           "media": [
             {
               "image": "/uploads/tina-enterprise-hero.png",
