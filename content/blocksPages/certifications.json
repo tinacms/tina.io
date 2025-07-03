@@ -57,6 +57,10 @@
       ],
       "color": "seafoam",
       "_template": "faq"
+    },
+    {
+      "spacingPx": 10,
+      "_template": "spacer"
     }
   ]
 }
