@@ -29,6 +29,9 @@
       "_template": "hero"
     },
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "title": "Frequently Asked Questions",
       "intro": "test\n",
       "questions": [
