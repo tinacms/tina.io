@@ -5,19 +5,20 @@ next: ''
 previous: ''
 ---
 
+> Note: This approach is not officially supported by the core team. It reflects how some teams are currently achieving grouped content and media. Use at your own discretion.
 
 By default, TinaCMS expects:
 
 * Markdown files in `content/`
 * Images in `public/uploads/`
 
-This setup works in many modern web frameworks (like Next.js, Astro, etc.) where static assets are served from a public directory, but it breaks **self-containment** — your content and related assets live in different locations.
+This setup works in many modern web frameworks (like Next.js, Astro, etc.) where static assets are served from a public directory, but it breaks **co-location** — your content and related assets live in different locations.
 
 This adds friction when managing, duplicating, or migrating content.
 
 ## Solution: Moving Your Content In The Media Folder
 
-The best way to solve the issue is to store both markdown and static assets in `public/uploads`.
+The current way to solve the issue is to store both markdown and static assets in `public/uploads`.
 
 Say you want to build a blog with posts, your file structure for the content would then look like this:
 
@@ -53,6 +54,8 @@ const Post: Collection = {
 
 * Markdown files live inside the Media folder - this is unconventional
 * Content is publicly readable (like any other static assets), so don't store sensitive information
+* Every file in `public` gets copied to your build output
+* Could impact build performance, potentially increasing build times
 
 ### Conclusion
 
