@@ -15,7 +15,7 @@
     },
     {
       "headline": "TinaCMS developer certifications",
-      "text": "We encourage developers to get verified by running TinaCMS and completing the basics before implementing it on a real project.",
+      "text": "We encourage all developers to earn their “TinaCMS badge” by getting TinaCMS up and running and complete the basics before implementing TinaCMS on a real project. This is essential to prove that you can effectively use TinaCMS!",
       "buttons": [
         {
           "label": "Get certified",
@@ -32,8 +32,8 @@
       "blockSettings": {
         "isFullscreen": false
       },
-      "title": "Frequently Asked Questions",
-      "intro": "test\n",
+      "title": "🧑‍🎓 TinaCMS Dev Badge",
+      "intro": "Here are the steps to complete your journey:\n",
       "questions": [
         {
           "question": "Step 1",
