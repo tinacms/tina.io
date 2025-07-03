@@ -14,7 +14,9 @@
               "src": "/TinaCMS-Dev-Credly-Badge.png",
               "_template": "v2Video"
             }
-          ]
+          ],
+          "isReversed": false,
+          "imageBackground": false
         }
       ],
       "_template": "features"
