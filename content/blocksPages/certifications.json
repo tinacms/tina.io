@@ -6,7 +6,10 @@
   "blocks": [
     {
       "features": [
-        {}
+        {
+          "headline": "headline",
+          "text": "text"
+        }
       ],
       "_template": "features"
     },
