@@ -16,23 +16,13 @@
     {
       "headline": "TinaCMS developer certifications",
       "text": "We encourage all developers to earn their “TinaCMS badge” by getting TinaCMS up and running and complete the basics before implementing TinaCMS on a real project. This is essential to prove that you can effectively use TinaCMS!",
-      "buttons": [
-        {
-          "label": "Get certified",
-          "icon": false,
-          "variant": "blue",
-          "size": "large",
-          "url": "https://github.com/tinacms/tinacms/blob/main/_docs/dev-badge.md",
-          "_template": "actions"
-        }
-      ],
       "_template": "hero"
     },
     {
       "blockSettings": {
         "isFullscreen": false
       },
-      "title": "🧑‍🎓 TinaCMS Dev Badge",
+      "title": "",
       "intro": "Here are the steps to complete your journey:\n",
       "questions": [
         {
@@ -45,7 +35,7 @@
         },
         {
           "question": "Step 3",
-          "answer": "3\\. Record a \\[Done Video]\\(https\\://www\\.ssw\\.com.au/rules/record-a-quick-and-dirty-done-video/) explaining how Tina works\n\n   Here's what we're looking for:\n\n   \\- Who you are\n\n   \\- Why you are using TinaCMS\n\n   \\- Something you like about TinaCMS\n\n   \\- Any feedback or suggestions you have from your initial tryout  \n\n     Tip: Have each suggestion's discussion or issue open in a separate tab\n"
+          "answer": "Record a [Done Video](https://www.ssw.com.au/rules/record-a-quick-and-dirty-done-video/) explaining how Tina works. Here's what we're looking for:\n\n* Who you are\n* Why you are using TinaCMS\n* Something you like about TinaCMS\n* Any feedback or suggestions you have from your initial tryout\n\nTip: Have each suggestion's discussion or issue open in a separate tab\n"
         },
         {
           "question": "Step 4",
