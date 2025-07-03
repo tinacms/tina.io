@@ -33,8 +33,8 @@
       "intro": "test\n",
       "questions": [
         {
-          "question": "What is Tina?",
-          "answer": "test\n"
+          "question": "Step 1",
+          "answer": "Join [Tina's Discord channel](https://discord.com/invite/zumN63Ybpf) - You can leave a message on the \\`#introductions' channel:\n\n*  Hi, I am trying out TinaCMS with {{ TECH eg. NextJS }}  \n* After I have evaluated TinaCMS, I plan to use it to build {{ BLOG, PORTFOLIO, DOCUMENTATION SITE, ETC }}  \n* Previous CMSs I have used include {{ FILL IN }}\n"
         }
       ],
       "color": "seafoam",
