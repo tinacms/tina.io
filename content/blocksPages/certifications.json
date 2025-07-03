@@ -30,7 +30,7 @@
     },
     {
       "blockSettings": {
-        "isFullscreen": true
+        "isFullscreen": false
       },
       "title": "Frequently Asked Questions",
       "intro": "test\n",
