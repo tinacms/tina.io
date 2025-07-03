@@ -18,7 +18,11 @@ export function FeatureBlock({ data, index }) {
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
-        <div className="flex flex-col justify-center lg:justify-start w-full lg:w-1/2">
+        <div
+          className={`flex flex-col justify-center lg:justify-start w-full lg:w-1/2 ${
+            data.alignCenter ? 'items-center self-center' : ''
+          }`}
+        >
           {data.headline && (
             <h3
               className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
