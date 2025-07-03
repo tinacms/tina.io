@@ -9,8 +9,9 @@ previous: ''
 
 By default, TinaCMS expects:
 
-* Markdown files in `content/`
-* Images in `public/uploads/`
+* Markdown files in a dedicated content directory, e.g. `content/`
+* Images in a dedicated static directory, e.g. `public/uploads/`
+
 
 This setup works in many modern web frameworks (like Next.js, Astro, etc.) where static assets are served from a public directory, but it breaks **co-location** — your content and related assets live in different locations.
 
