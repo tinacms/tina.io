@@ -22,7 +22,7 @@
       "questions": [
         {
           "question": "Step 1",
-          "answer": "Join [Tina's Discord channel](https://discord.com/invite/zumN63Ybpf) - You can leave a message on the \\`#introductions' channel:\n\n*  Hi, I am trying out TinaCMS with {{ TECH eg. NextJS }}  \n* After I have evaluated TinaCMS, I plan to use it to build {{ BLOG, PORTFOLIO, DOCUMENTATION SITE, ETC }}  \n* Previous CMSs I have used include {{ FILL IN }}\n"
+          "answer": "Join Tina's Discord channel - You can leave a message on the 'introductions' channel:\n\n* Hi, I am trying out TinaCMS with {{ TECH eg. NextJS }}\n* After I have evaluated TinaCMS, I plan to use it to build {{ BLOG, PORTFOLIO, DOCUMENTATION SITE, ETC }}\n* Previous CMSs I have used include {{ FILL IN }}\n"
         },
         {
           "question": "Step 2",
@@ -42,11 +42,11 @@
         },
         {
           "question": "Step 6",
-          "answer": "Email us at badge\\@tina.io. Include links to:\n\n* Your video\n* Your social media posts (if applicable)\n"
+          "answer": "Email us at [badge@tina.io](mailto\\:badge@tina.io). Include links to:\n\n* Your video\n* Your social media posts (if applicable)\n"
         },
         {
           "question": "Step 7",
-          "answer": "The Tina team will review your video and issue you a LinkedIn badge (via \\[Credly]\\(https\\://info.credly.com/)).\n"
+          "answer": "The Tina team will review your video and issue you a LinkedIn badge (via \\[Credly]\\([https://info.credly.com/](https://info.credly.com/))).\n"
         }
       ],
       "color": "seafoam",
