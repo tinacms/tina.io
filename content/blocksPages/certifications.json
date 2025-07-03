@@ -5,6 +5,9 @@
   },
   "blocks": [
     {
+      "features": [
+        {}
+      ],
       "_template": "features"
     },
     {
