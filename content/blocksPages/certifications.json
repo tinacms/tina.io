@@ -7,16 +7,11 @@
     {
       "features": [
         {
-          "headline": "headline",
-          "text": "text"
+          "headline": "TinaCMS developer certifications",
+          "text": "We encourage all developers to earn their TinaCMS developer certification by getting TinaCMS up and running and completing the basics before implementing TinaCMS. This is essential to prove that you can effectively use TinaCMS on a real project!"
         }
       ],
       "_template": "features"
-    },
-    {
-      "headline": "TinaCMS developer certifications",
-      "text": "We encourage all developers to earn their “TinaCMS badge” by getting TinaCMS up and running and complete the basics before implementing TinaCMS on a real project. This is essential to prove that you can effectively use TinaCMS!",
-      "_template": "hero"
     },
     {
       "blockSettings": {
