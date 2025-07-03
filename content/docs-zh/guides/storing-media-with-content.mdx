@@ -1,0 +1,77 @@
+---
+title: 将媒体与内容存储在一起
+last_edited: '2025-07-03T14:31:58.321Z'
+next: ''
+previous: ''
+---
+
+> **注意：** 这种方法并未得到核心团队的官方支持。这反映了一些团队当前如何实现内容和媒体的分组。请自行斟酌使用。
+
+默认情况下，TinaCMS 期望：
+
+* Markdown 文件位于专用的内容目录中，例如 `content/`
+* 图片位于专用的静态目录中，例如 `public/uploads/`
+
+这种设置在许多现代 Web 框架（如 Next.js、Astro 等）中有效，因为静态资源是从公共目录提供的，但它破坏了**共址**——您的内容和相关资源位于不同的位置。
+
+这在管理、复制或迁移内容时增加了摩擦。
+
+## 解决方案：将内容移动到媒体文件夹
+
+目前解决此问题的方法是将 Markdown 和静态资源都存储在 `public/uploads` 中。
+
+假设您想要构建一个带有文章的博客，那么您的内容文件结构将如下所示：
+
+```
+public/
+└── uploads/
+    └── posts/
+        ├── post-a/
+        │   ├── index.md
+        │   └── image.png
+```
+
+> **注意：** `public/uploads` 是默认的媒体文件夹，您可以根据项目需要更改它。\
+> 有关更多信息，请参见：[基于仓库的媒体](https://tina.io/docs/reference/media/repo-based#configuration)
+
+要使其工作，唯一需要做的就是在您的 Collection 文件中更新 `path` 以指向媒体文件夹。
+
+```javascript
+//tina/collections/post.ts
+
+const Post: Collection = {
+  label: "Posts",
+  name: "post",
+  path: "public/uploads/posts",
+  fields: [
+    //...
+  ],
+  //...
+};
+```
+
+### 注意事项
+
+* Markdown 文件位于媒体文件夹内——这不常见
+* 内容是公开可读的（像任何其他静态资源一样），所以不要存储敏感信息
+* `public` 中的每个文件都会被复制到您的构建输出中
+* 可能影响构建性能，潜在地增加构建时间
+
+### 结论
+
+对于使用 TinaCMS 的现代前端框架项目，将 Markdown 和媒体放在一起简化了从创作到部署的所有过程。
+
+**✅ 优点：**
+
+* 无需额外的开发工作
+* 配置最少
+* 媒体管理器按预期工作
+* 结构清晰，开发者体验良好
+
+如果您想了解其他可行的选项，请观看此视频：
+
+<Youtube embedSrc="https://www.youtube.com/embed/JX90jbgAvRw" minutes="5" caption="在 GitHub 中存储 Markdown 的 3 种选项，适用于 TinaCMS" />
+
+---
+
+有其他适合您的设置吗？请告诉我们！
