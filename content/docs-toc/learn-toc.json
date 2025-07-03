@@ -260,6 +260,11 @@
           "title": "Multi-Tenancy",
           "slug": "content/docs/guides/multi-tenancy.mdx",
           "_template": "item"
+        },
+        {
+          "title": "Configuring Dependabot for TinaCMS",
+          "slug": "content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx",
+          "_template": "item"
         }
       ]
     }
