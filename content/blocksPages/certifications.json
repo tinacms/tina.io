@@ -5,6 +5,9 @@
   },
   "blocks": [
     {
+      "_template": "features"
+    },
+    {
       "headline": "TinaCMS developer certifications",
       "text": "We encourage developers to get verified by running TinaCMS and completing the basics before implementing it on a real project.",
       "buttons": [
