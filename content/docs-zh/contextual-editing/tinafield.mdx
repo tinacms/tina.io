@@ -1,0 +1,198 @@
+---
+id: /docs/contextual-editing/tinafield
+title: 点击编辑API
+last_edited: '2025-06-23T01:04:27.246Z'
+next: ''
+previous: ''
+---
+
+Tina的“点击编辑”功能允许编辑者选择他们想要在页面上点击的**HTML元素**，以便在侧边栏中查看相应的字段。
+
+我们可以通过`data-tina-field` API来实现这一点。
+
+> `[data-tina-field]`必须应用于HTML元素，而不是像[TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown)这样的React组件。
+
+## API参考
+
+<apiReference
+  property={[
+    {
+      name: "object",
+      description: "包含您正在访问的字段的对象。\n",
+      type: "object",
+      required: true
+    },
+    {
+      description:
+        "您正在访问的对象中的属性，省略此项将返回对象字段的元数据。\n",
+      name: "property",
+      type: "string"
+    }
+  ]}
+/>
+
+> **注意**: `object`属性只需要包含您尝试访问的字段的最近祖先。
+
+## 基本用法
+
+```jsx
+// components/blocks/hero
+import { tinaField } from 'tinacms/dist/react';
+
+export const HeroComponent = (props) => {
+  return (
+    <div>
+      <h4 data-tina-field={tinaField(props, 'heading')}>{props.heading}</h4>
+      <p data-tina-field={tinaField(props, 'message')}>{props.message}</p>
+      <ul data-tina-field={tinaField(props, 'links')}>
+        {props.links.map((link) => (
+          <li>
+            <a data-tina-field={tinaField(link)} href={link.url}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+```
+
+## 自定义组件和\[data-tina-field]
+
+React组件不能接受任意的HTML属性，如`data-tina-field`。为了解决这个问题，定义一个属性（例如*tinaField*）并将其传递给组件内部的HTML元素：
+
+```javascript
+const Section = ({ children, tinaField }) => {
+  return <section data-tina-field={tinaField}>{children}</section>;
+};
+
+<Section tinaField={tinaField(data, 'body')}>
+  <TinaMarkdown content={data.body} />
+</Section>
+
+```
+
+## TinaMarkdown和tinaField
+
+当使用`TinaMarkdown`与自定义组件时，传递给每个组件的`props`对象已经包含了`_content_source`元数据。这个元数据通过Tina的`useTina`钩子**在编辑模式下自动注入**。
+
+要使组件可编辑，您只需将`props`对象直接传递给`tinaField`助手：
+
+```javascript
+<div data-tina-field={tinaField(props)}>
+  <MyComponent {...props} />
+</div>
+
+```
+
+这会链接到TinaCMS中的模板组件，但**不会定位到特定字段**。
+
+如果您想要**定位组件内的特定字段**。例如，仅`format`属性而不是整个块。使用`tinaField`的第二个参数来指定字段名称：
+
+```javascript
+<div data-tina-field={tinaField(props, 'format')}>
+  Format: {props.format}
+</div>
+```
+
+这为Tina提供了一个更精确的字段映射，基于您在集合中定义的模板定义。
+
+## 示例：在TinaMarkdown中使用tinaField
+
+这是一个稍微高级一点的示例，展示了如何使用`tinaField`在**富文本**内容中暴露字段，甚至在自定义组件内：
+
+```javascript
+import { useTina, tinaField } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+
+export default function Post(props) {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
+
+  return (
+    <div data-tina-field={tinaField(data.post, 'body')}>
+      <TinaMarkdown
+        content={data.post.body}
+        components={{
+          DateTime: (props) => {
+            return (
+              <div data-tina-field={tinaField(props)}>
+                <TestComp {...props} />
+              </div>
+            );
+          },
+        }}
+      />
+      <code>
+        <pre>{JSON.stringify(data.post, null, 2)}</pre>
+      </code>
+    </div>
+  );
+}
+
+const TestComp = (props) => {
+  return (
+    <>
+      <div data-tina-field={tinaField(props, 'format')}>
+        Date Time Format: {props.format}
+      </div>
+      <div data-tina-field={tinaField(props, 'stringTest')}>
+        <TinaMarkdown content={props.stringTest} />
+      </div>
+    </>
+  );
+};
+
+```
+
+这样编辑者可以点击自定义组件内的任何嵌套字段，并直接跳转到该模板字段。
+
+## 元数据结构
+
+当Tina处于编辑模式时，它会为每个可编辑字段增强数据的元数据。例如，一个富文本模板字段可能看起来像：
+
+```json
+{
+  "type": "root",
+    "children": [
+      {
+        "type": "DateTime",
+        "format": "MMM yyyy",
+        "stringTest": "...",
+        "_content_source": { // 元数据
+          "queryId": "6rix9",
+          "path": [
+            "post",
+            "body",
+            "children",
+            0
+          ]
+        }
+      }
+    ]
+}
+
+```
+
+`tinaField`助手读取这个`_content_source`元数据，以构建正确的路径，使编辑器UI能够将字段与表单连接。
+
+## 样式化可视化编辑界面
+
+<WebmEmbed embedSrc="/video/quick-edit-demo.webm" />
+
+当编辑模式激活时，Tina会自动为任何`[data-tina-field]`元素应用轮廓。
+
+如果需要，您可以覆盖这些样式：
+
+```css
+.__tina-quick-editing-enabled [data-tina-field] {
+  outline: 2px dashed rgba(254, 34, 56, 0.5);
+}
+.__tina-quick-editing-enabled [data-tina-field]:hover {
+  outline: 2px dashed rgba(254, 34, 56, 1);
+}
+```
