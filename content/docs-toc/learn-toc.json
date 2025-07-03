@@ -255,6 +255,11 @@
           "title": "Multi-Tenancy",
           "slug": "content/docs/guides/multi-tenancy.mdx",
           "_template": "item"
+        },
+        {
+          "title": "Grouping Media With Content",
+          "slug": "content/docs/guides/grouping-media-with-content.mdx",
+          "_template": "item"
         }
       ]
     }
