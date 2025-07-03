@@ -35,6 +35,13 @@
         {
           "question": "Step 1",
           "answer": "Join [Tina's Discord channel](https://discord.com/invite/zumN63Ybpf) - You can leave a message on the \\`#introductions' channel:\n\n*  Hi, I am trying out TinaCMS with {{ TECH eg. NextJS }}  \n* After I have evaluated TinaCMS, I plan to use it to build {{ BLOG, PORTFOLIO, DOCUMENTATION SITE, ETC }}  \n* Previous CMSs I have used include {{ FILL IN }}\n"
+        },
+        {
+          "question": "Step 2",
+          "answer": "Get TinaCMS running and deploy a site using [tina.io](https://tina.io) and [TinaCloud.](https://app.tina.io/signin)\n\n* Feel free to start with one of the starter templates\n* This can be a personal site or one you’ve built for work\n"
+        },
+        {
+          "question": "Step 3"
         }
       ],
       "color": "seafoam",
