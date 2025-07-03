@@ -27,6 +27,18 @@
         }
       ],
       "_template": "hero"
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "intro": "test\n",
+      "questions": [
+        {
+          "question": "What is Tina?",
+          "answer": "test\n"
+        }
+      ],
+      "color": "seafoam",
+      "_template": "faq"
     }
   ]
 }
