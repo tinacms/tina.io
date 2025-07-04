@@ -31,6 +31,7 @@ import { SpacerComponent } from './Spacer/Spacer';
 import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
+import VideoDisplay from './VideoEmbed/videoEmbed';
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
   { ssr: false }
@@ -103,6 +104,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <HighlightsSection data={block} />;
     case 'PageBlocksSpacer':
       return <SpacerComponent data={block} />;
+    case 'PageBlocksVideoEmbed':
+      return <VideoDisplay data={block} />;
     default:
       return null;
   }

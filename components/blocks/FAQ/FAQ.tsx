@@ -15,7 +15,7 @@ export function FaqBlock({ data, index }) {
           <div className="faq-wrapper">
             <div className="mb-10">
               {data.title && (
-                <h3 className="font-tuner text-3xl text-orange-500 mb-8">
+                <h3 className="font-ibm-plex text-3xl text-orange-500 mb-8">
                   {data.title}
                 </h3>
               )}

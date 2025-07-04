@@ -1,7 +1,8 @@
 ---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/tina-cms.tsx"
 id: /docs/features/data-fetching
 title: Content API Overview
-last_edited: '2025-03-26T03:56:47.644Z'
+last_edited: '2025-05-19T01:42:14.730Z'
 next: content/docs/contextual-editing/overview.mdx
 previous: content/docs/schema.mdx
 ---
@@ -60,6 +61,44 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
 
 > For more information on manually writing queries for your specific schema, check out our ["Writing Custom Queries"](/docs/data-fetching/custom-queries/#writing-inline-queries) docs.
 
+## Handling New Pages with Static Site Generation (SSG)
+
+If you're using SSG, creating a new page in TinaCMS means the content updates in TinaCloud and your Git repository instantly. However, your site (based off `main` or another branch) won't show this new page immediately, often resulting in a 404 error. This is because SSG sites pre-build all pages at deployment time; your server doesn't know about the new page until your site is rebuilt.
+
+**Solutions for New SSG Pages:**
+
+1. **Trigger Rebuilds:**
+   * The simplest solution is to rebuild and redeploy your site. Most hosting platforms can automate this on Git commits. There will be a build-time delay before the new page is live.
+2. **Framework-Specific Fallbacks / Dynamic Routes:**
+   * Modern SSG frameworks (like Next.js, Nuxt.js, SvelteKit, Gatsby, Eleventy) offer ways to handle requests for pages not generated at build time.
+     * **Next.js:** Use `fallback: true` or `fallback: 'blocking'` in `getStaticPaths` to generate pages on demand.
+     * **Other Frameworks:** Look for features like "**generate on demand**," "**incremental builds**," or dynamic routing in your framework's documentation. These allow the framework to build the page when it's first requested or use client-side rendering.
+3. **Incremental Static Regeneration (ISR):**
+   * Supported by frameworks like Next.js, ISR allows pages to be generated or updated after the initial build, either on a timer or on the first request, without a full site rebuild.
+## Fetching Content Across Branches in TinaCMS
+
+For server-rendered pages in TinaCMS, you can dynamically fetch content from the active editorial or preview branch by passing the active branch name stored in the `x-branch` cookie as a header when querying content.
+
+To retrieve cookies in Next.js, refer to the [Next.js cookies documentation](https://nextjs.org/docs/app/api-reference/functions/cookies).
+
+### Example Implementation
+
+```typescript
+const data = await client.queries.post(
+  {
+    relativePath: `${params.filename?.join('/')}.md`,
+  },
+  {
+    fetchOptions: {
+      headers: {
+        /* Retrieve the active branch from cookie */
+        'x-branch': cookieStore.get('x-branch')?.value, 
+      },
+    },
+  }
+);
+```
+
 ## The Local Filesystem-based Content API
 
 When developing locally, it's often beneficial to talk to the content on your local file-system, rather than talk to the hosted content API. Tina provides a CLI tool that lets you run the Content API locally next to your site. This allows all of your content to be made available through the same expressive GraphQL API during development.
@@ -78,3 +117,4 @@ For those who prefer to learn from video, you can check out a snippet on "Data F
 * Tina provides a client that allows you to make type-safe requests to the Content API.
 * The client's "queries" property is generated based on *your* schema.
 * A local version of the Content API can be used for local development.
+* With SSG, new pages require a rebuild or framework-specific handling (like fallbacks or ISR) to avoid 404s.

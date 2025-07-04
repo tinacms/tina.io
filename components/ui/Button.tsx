@@ -11,7 +11,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClasses =
-  'transition duration-150 ease-out rounded-full flex items-center font-tuner whitespace-nowrap leading-snug focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight';
+  'transition duration-150 ease-out rounded-full flex items-center font-ibm-plex whitespace-nowrap leading-snug focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight';
 
 const raisedButtonClasses = 'hover:shadow active:shadow-none';
 
@@ -32,6 +32,8 @@ const colorClasses = {
   orangeWithBorder:
     'text-orange-500 hover:text-orange-400 border border-orange-500 bg-white',
   ghostBlue: 'text-blue-800 hover:text-blue-800',
+  blueOutline:
+    'text-blue-600 hover:text-blue-600 border-2 border-blue-600 cursor-pointer',
 };
 
 const sizeClasses = {

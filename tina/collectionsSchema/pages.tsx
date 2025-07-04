@@ -30,6 +30,7 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
+import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
@@ -74,6 +75,7 @@ const templates = [
   textAndMediaColumnsComponentTemplate as Template,
   tinaBannerTemplate as Template,
   storyTemplate as Template,
+  videoEmbedTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {

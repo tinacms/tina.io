@@ -228,6 +228,11 @@
               "_template": "item"
             },
             {
+              "title": "Overriding Default Media Types",
+              "slug": "content/docs/reference/media/overriding-accepted-media-types.mdx",
+              "_template": "item"
+            },
+            {
               "title": "External Media Providers",
               "items": [
                 {

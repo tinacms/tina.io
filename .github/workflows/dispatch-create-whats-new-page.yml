@@ -50,9 +50,3 @@ jobs:
           # We only expect changes to these folders
           add-paths: |
             content/*
-
-      - name: Enable Auto-Merge
-        if: ${{ steps.create-pull-request.outputs.pull-request-number }}
-        run: gh pr merge -s --auto ${{ steps.create-pull-request.outputs.pull-request-number }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

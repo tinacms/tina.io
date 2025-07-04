@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
+import { FaVideo } from 'react-icons/fa6';
 import 'react-responsive-modal/styles.css';
-import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import { Components } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
@@ -17,15 +18,8 @@ export const CodeButtonMarkdownStyle: Components<{}> = {
   },
 };
 
-export const CodeButton = ({
-  children,
-  label,
-  id,
-  clickedOnText,
-  ...props
-}) => {
+export const CodeButton = ({ children, label, id, ...props }) => {
   const [copied, setCopied] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(true);
 
   const clickEvent = () => {
     setCopied(true);
@@ -33,14 +27,13 @@ export const CodeButton = ({
     setTimeout(() => {
       setCopied(false);
     }, 2000);
-  
   };
 
   const buttonId = id || sanitizeLabel(label);
 
   return (
     <>
-      <div className="relative w-max">
+      <div className="relative w-max flex items-center gap-2">
         <button
           className="code-button event-cmd-button"
           onClick={clickEvent}
@@ -65,14 +58,19 @@ export const CodeButton = ({
           </span>
         </button>
 
-        {/* {showTooltip && clickedOnText && (
-          <div className="absolute top-[calc(100%+8px)] left-0 bg-white border border-[#b4f4e0] rounded-md p-3 z-20 shadow-md max-w-[300px] font-(--font-tuner) text-(--color-secondary) text-sm leading-relaxed before:content-[''] before:absolute before:top-[-8px] before:left-4 before:w-4 before:h-4 before:bg-white before:border-t before:border-l before:border-[#b4f4e0] before:rotate-45 before:transform">
-            <TinaMarkdown
-              content={clickedOnText}
-              components={CodeButtonMarkdownStyle}
-            />
-          </div>
-        )} */}
+        <FaVideo
+          size={20}
+          className="text-blue-500 cursor-pointer hover:text-blue-700 transition-colors duration-200"
+          onClick={() => {
+            const videoElement = document.getElementById('home-page-video');
+            if (videoElement) {
+              videoElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              });
+            }
+          }}
+        />
       </div>
       <style jsx>{`
         .bash {
@@ -96,7 +94,7 @@ export const CodeButton = ({
           bottom: 0;
           text-align: center;
           color: var(--color-orange);
-          font-family: var(--font-tuner);
+          font-family: var(--font-ibm-plex);
           font-weight: regular;
           font-style: normal;
           background: white;
@@ -131,7 +129,6 @@ export const CodeButton = ({
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: bold;
           font-size: 1rem;
           border-radius: 0.375rem;
           cursor: pointer;
@@ -139,7 +136,7 @@ export const CodeButton = ({
           width: max-content;
           background-color: white;
           color: var(--color-secondary);
-          font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+          font-family: var(--font-source-code-pro);
           padding: 0;
           border: 1px solid #b4f4e0;
           font-weight: regular;

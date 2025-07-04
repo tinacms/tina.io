@@ -1,8 +1,7 @@
 import moment from 'moment-timezone';
-import React, { useEffect, useState } from 'react';
-import Datetime from 'react-datetime';
+import React from 'react';
 import 'react-datetime/css/react-datetime.css';
-import type { Template } from 'tinacms';
+import { LocationField } from 'tina/customTinaFormFields/locationField';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
 import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';
 import { seoInformation } from './sharedFields/seoInformation';
@@ -72,8 +71,10 @@ export const eventsCollection = {
     },
   },
   fields: [
-    {...seoInformation,
-      description: 'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below'
+    {
+      ...seoInformation,
+      description:
+        'Meta Information – if not set, the meta description will be set to the body content and title to "Title | TinaCMS Docs" as per the field below',
     },
     { name: 'title', label: 'Title', type: 'string' },
     {
@@ -117,12 +118,15 @@ export const eventsCollection = {
           description:
             "Enter start time in the timezone of the event. E.g. '9:00 AM' if the event starts at 9 in the location it's being held.",
           ui: {
-            format: (value, name, field) =>
-              value && timeFormat.format(new Date(Date.parse(value))),
+            format: (value) => value,
             component: wrapFieldsWithMeta(({ field, input, meta }) => {
               return (
                 <div>
-                  <Datetime dateFormat={false} {...input} utc={true}></Datetime>
+                  <input
+                    type="time"
+                    className="shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md"
+                    {...input}
+                  />
                 </div>
               );
             }),
@@ -177,9 +181,16 @@ export const eventsCollection = {
             ],
           },
         },
-        { name: 'location', label: 'Location', type: 'string' },
         { name: 'image', label: 'Image', type: 'image' },
         { name: 'link', label: 'URL', type: 'string' },
+        {
+          name: 'location',
+          label: 'Location',
+          type: 'string',
+          ui: {
+            component: LocationField,
+          },
+        },
         {
           name: 'markerLAT',
           label: 'Marker Latitude',

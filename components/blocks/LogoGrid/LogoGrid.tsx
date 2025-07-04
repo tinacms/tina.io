@@ -25,7 +25,13 @@ const Logo = ({ data, windowWidth = 1000 }) => {
       }}
     >
       <div className="flex items-center justify-center w-full h-full">
-        <Image src={logoSrc} alt={name} width={150} height={150} />
+        <Image
+          src={logoSrc}
+          alt={name}
+          width={150}
+          height={150}
+          style={{ width: 'auto', height: 'auto' }}
+        />
       </div>
     </a>
   );
@@ -43,7 +49,7 @@ export function LogoGridBlock({ data, index }) {
       className="relative z-10 w-full overflow-hidden max-w-[1500px] m-auto"
     >
       <div className="flex flex-col items-center w-full justify-center">
-        <h1 className="pl-3 font-tuner inline w-fit m-auto text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
+        <h1 className="pl-3 font-ibm-plex inline w-fit m-auto text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
           {data.title || 'Trusted By'}
         </h1>
         <div className="w-full pt-10">

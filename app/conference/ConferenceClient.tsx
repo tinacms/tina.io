@@ -44,13 +44,15 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
             />
           </div>
           <div className="w-[40%] text-white mt-6">
-            <div className="font-tuner text-4xl">
+            <div className="font-ibm-plex text-4xl">
               <span className="font-bold">tina</span>con 2025
             </div>
-            <div className="font-tuner text-2xl mt-4">Herding the Future</div>
+            <div className="font-ibm-plex text-2xl mt-4">
+              Herding the Future
+            </div>
           </div>
           <div className="w-[50%] text-white">
-            <div className="flex flex-wrap justify-center items-center gap-4 font-tuner text-lg mt-6 ml-8">
+            <div className="flex flex-wrap justify-center items-center gap-4 font-ibm-plex text-lg mt-6 ml-8">
               <span>May 2</span>
               <span>|</span>
               <span>9AM - 6PM</span>
@@ -86,10 +88,10 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
               />
             </div>
             <div className="w-[85%] text-white">
-              <div className="font-tuner text-2xl text-left">
+              <div className="font-ibm-plex text-2xl text-left">
                 <span className="font-bold">tina</span>con 2025
               </div>
-              <div className="font-tuner text-xl text-left">
+              <div className="font-ibm-plex text-xl text-left">
                 Herding the Future
               </div>
             </div>
@@ -103,7 +105,7 @@ const TopBanner = ({ tinaData }: { tinaData: any }) => {
             }}
           ></div>
           <div className="relative px-6 py-4 text-white">
-            <div className="flex items-center gap-4 font-tuner text-base mb-2">
+            <div className="flex items-center gap-4 font-ibm-plex text-base mb-2">
               <span>May 2</span>
               <span>|</span>
               <span>9AM - 6PM</span>
@@ -149,10 +151,10 @@ const HeaderBanner = ({
 }) => {
   return (
     <div className="flex flex-col justify-center items-center text-center lg:p-16 p-10 bg-linear-to-br from-seafoam-100 to-seafoam-200 text-black">
-      <h1 className="font-tuner text-4xl pb-4 text-orange-500">
+      <h1 className="font-ibm-plex text-4xl pb-4 text-orange-500">
         {tinaData.bannerTitle}
       </h1>
-      <h2 className="text-2xl max-w-4xl text-orange-500 font-tuner pb-4">
+      <h2 className="text-2xl max-w-4xl text-orange-500 font-ibm-plex pb-4">
         {tinaData.bannerTagline}
       </h2>
       <h3 className="text-2xl max-w-4xl">{tinaData.bannerDescription}</h3>
@@ -569,12 +571,12 @@ function ConferencePage({
         <h2 className="text-3xl font-bold pb-4 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text">
           {tinaData.data?.conference?.about?.heading}
         </h2>
-        <p className="text-lg max-w-4xl">
+        <div className="text-lg max-w-4xl">
           <TinaMarkdown
             content={tinaData.data?.conference?.about?.description}
             components={conferenceMarkdownComponents}
           />
-        </p>
+        </div>
         <KeyHighlights
           highlights={tinaData.data?.conference?.about?.keyHighlights}
         />

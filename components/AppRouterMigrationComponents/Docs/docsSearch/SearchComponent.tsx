@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
 import { highlightText } from './SearchNavigation';
 
@@ -26,7 +26,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <div className="font-tuner text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
+        <div className="font-ibm-plex text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
           Results for "{displayQuery}"
         </div>
         {isExactSearch && (
@@ -162,7 +162,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
           </div>
         </div>
         {isLoading && (
-          <div className="pt-10 text-2xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
+          <div className="pt-10 text-2xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-ibm-plex">
             Mustering all the Llamas...
           </div>
         )}

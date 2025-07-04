@@ -1,7 +1,13 @@
 ---
 id: /docs/contextual-editing/react
+seo:
+  title: 'Visual Editing Setup in TinaCMS '
+  description: >-
+    Learn how to set up Visual Editing in TinaCMS with React and Next.js. Use
+    the useTina hook for live content editing, re-hydration, and advanced form
+    selection for multiple queries.
 title: Visual Editing Setup
-last_edited: '2025-03-26T06:07:44.067Z'
+last_edited: '2025-06-16T00:16:18.006Z'
 next: content/docs/contextual-editing/vue.mdx
 previous: content/docs/contextual-editing/overview.mdx
 ---
@@ -11,13 +17,11 @@ When you define a collection, TinaCMS gives you access to a full-page editor win
 Tina also allows for "Visual Editing" when used with React. This is a setup that allows your **website and editor window to sit side-by-side**, showing your changes in real-time.
 
 <WarningCallout
-  body={
-    <>
-      **Visual Editing Requirements** – before a page can be setup with visual
-      editing, it first needs to be using [Tina's
-      data-fetching](/docs/features/data-fetching/).
-    </>
-  }
+  body={<>
+    **Visual Editing Requirements** – before a page can be setup with visual
+    editing, it first needs to be using [Tina's
+    data-fetching](/docs/features/data-fetching/).
+  </>}
 />
 
 ![](/img/docs/contextual-editing/hello-world.png)
@@ -32,8 +36,8 @@ In production, this hook will only pass through its initial data value.
 
 `useTina` should be provided three parameters:
 
-- `query` and `variables`: These are the same values that you used for [backend data-fetching](/docs/features/data-fetching/). The query must be for an **individual document only**.
-- `data`: This is the GraphQL response you received from the Tina API.
+* `query` and `variables`: These are the same values that you used for [backend data-fetching](/docs/features/data-fetching/). The query must be for an **individual document only**.
+* `data`: This is the GraphQL response you received from the Tina API.
 
 > If you used the Tina client functions for data fetching, the three return values can be plugged directly into the `useTina` hook.
 

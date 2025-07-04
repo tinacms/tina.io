@@ -47,11 +47,11 @@ const FreeTier = ({ data }) => (
     <div className="shadow-xl rounded-xl w-full p-10 transform transition-transform duration-300 border border-transparent hover:scale-[1.03] hover:bg-linear-to-br from-transparent via-cyan-50/40 to-cyan-100">
       {data.freeTier && (
         <div className="flex flex-col sm:flex-row justify-between pb-2">
-          <h2 className="font-tuner text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+          <h2 className="font-ibm-plex text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
             {data.freeTier?.name}
           </h2>
           <div className="flex items-baseline mt-2 sm:mt-0">
-            <h2 className="font-tuner text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+            <h2 className="font-ibm-plex text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
               {data.freeTier?.price}
             </h2>
             <span className="text-lg ml-2 bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
@@ -91,7 +91,7 @@ const PaidTier = ({ data, isMonthly }) => {
           </div>
         )}
         <h2
-          className={`font-tuner text-3xl bg-linear-to-br bg-clip-text text-transparent ${
+          className={`font-ibm-plex text-3xl bg-linear-to-br bg-clip-text text-transparent ${
             data.isStarred
               ? 'from-orange-400 via-orange-600 to-orange-800'
               : 'from-blue-600 via-blue-800 to-blue-1000'
@@ -104,7 +104,7 @@ const PaidTier = ({ data, isMonthly }) => {
           components={pricingComponents}
         />
         <div className="pt-10">
-          <span className="text-3xl font-tuner bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
+          <span className="text-3xl font-ibm-plex bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent">
             {isMonthly ? data.price : data.annualPrice}
           </span>
           {data.interval && (
@@ -225,7 +225,7 @@ export function PillSwitch({
   return (
     <div className="flex justify-center md:justify-start pt-10">
       <div className="flex flex-col sm:space-y-4 md:flex-row md:items-center">
-        <div className="bg-linear-to-br font-tuner from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
+        <div className="bg-linear-to-br font-ibm-plex from-white/25 via-white/50 to-white/75 shadow-md rounded-full gap-16 relative w-max">
           <div
             className={`absolute top-0 left-0 w-1/2 h-full bg-linear-to-br from-blue-300 via-blue-500 to-blue-700 rounded-full transition-transform duration-500 ease-in-out border-4 border-white  ${
               isMonthly
@@ -278,7 +278,7 @@ export function PricingBlock({ data }) {
 
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">
-      <h1 className="text-center justify-center font-tuner text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+      <h1 className="text-center justify-center font-ibm-plex text-4xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
         {data.headline}
       </h1>
 

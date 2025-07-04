@@ -12,7 +12,7 @@ prev: content/blog/evolution-of-inline-editing.mdx
 next: content/blog/announcement-tina-cloud-is-officially-in-alpha.mdx
 ---
 
-Next.js is **our default choice** when it comes to managing static content, and it works perfectly with our new headless CMS [TinaCloud](/cloud/).
+Next.js is **our default choice** when it comes to managing static content, and it works perfectly with our new headless CMS [TinaCloud](https://app.tina.io).
 
 We jumped on the Next.js bandwagon as soon as we realized this would be a perfect companion for Tina, especially because Next.js is a rather unopinionated React framework, that gives you great flexibility when it comes to working with data at build time or at run time.
 
@@ -31,7 +31,7 @@ During the build step, we have access to the file system, so we can source our c
 
 Another powerful feature from Next.s is [server-side rendering](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (SSR): this time the React component is rendered on the server and then sent to the client. This is roughly the same process as static site generation but it happens *every time the page is requested*. SSR is useful when you have dynamic content that changes often.  For example, the stock count on an e-commerce product page or user-specific data.
 
-With [TinaCloud](/cloud/), our headless API that talks to GitHub handles the authentication for you, editable content is fetched from GitHub directly from the browser. That’s the approach we take in the [TinaCloud Starter](https://github.com/tinacms/tina-cloud-starter). This doesn't mean you are limited to only using `getStaticProps` or you're unable to use SSR, just means that we handle the complex authentication for you with TinaCloud.
+With [TinaCloud](https://app.tina.io), our headless API that talks to GitHub handles the authentication for you, editable content is fetched from GitHub directly from the browser. That’s the approach we take in the [TinaCloud Starter](https://github.com/tinacms/tina-cloud-starter). This doesn't mean you are limited to only using `getStaticProps` or you're unable to use SSR, just means that we handle the complex authentication for you with TinaCloud.
 
 ## Next.js: a Natural fit for TinaCloud
 
@@ -43,7 +43,7 @@ Next.js allows you to serve a static blazing-fast™ website while fetching and 
 
 ![Real-time editing with TinaCMS and TinaCloud](/img/blog/edit_demo.gif "Real-time editing with TinaCMS and TinaCloud")
 
-[TinaCloud](/cloud/) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](/blog/using-graphql-with-the-filesystem/)
+[TinaCloud](https://app.tina.io) gives you instant editing previews by fetching the data dynamically in the browser from GitHub, loading and passing it as props to your page components. As the data is wrapped in React state, when you change the data in the content forms, it’s immediately reflected on your site preview. When your site is built for production use, the files are fetched from the file system using our [local GraphQL server.](/blog/using-graphql-with-the-filesystem/)
 
 ```js
 const TinaWrapper = (props) => {

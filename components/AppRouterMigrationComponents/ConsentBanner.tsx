@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 
 const ConsentBanner = () => {
@@ -55,7 +55,9 @@ const ConsentBanner = () => {
       analytics_storage: false,
       ad_user_data: false,
     };
-    Cookies.set('consentGiven', JSON.stringify(deniedConsent), { expires: 365 });
+    Cookies.set('consentGiven', JSON.stringify(deniedConsent), {
+      expires: 365,
+    });
     setIsVisible(false);
   };
 
@@ -74,7 +76,8 @@ const ConsentBanner = () => {
       {isVisible && (
         <div className="fixed bottom-0 w-full bg-linear-to-br from-orange-400 to-orange-600 text-white p-6 text-center z-50">
           <p className="pb-2">
-            We use cookies to improve your experience. By continuing, you agree to our use of cookies.{' '}
+            We use cookies to improve your experience. By continuing, you agree
+            to our use of cookies.{' '}
             <Link href="/privacy-notice" className="text-white underline">
               Learn More
             </Link>
@@ -82,18 +85,18 @@ const ConsentBanner = () => {
           <div className="flex justify-center mt-2">
             <button
               onClick={handleAcceptAll}
-              className="font-tuner text-sm mx-2 px-4 py-2 bg-white text-[#ea6d43] rounded-3xl hover:bg-gray-200"
+              className="font-ibm-plex text-sm mx-2 px-4 py-2 bg-white text-[#ea6d43] rounded-3xl hover:bg-gray-200"
             >
               Accept All
             </button>
             <button
               onClick={handleDeclineAll}
-              className="mx-2 px-4 py-2 font-tuner text-sm border-2 border-white rounded-3xl hover:bg-orange-600"
+              className="mx-2 px-4 py-2 font-ibm-plex text-sm border-2 border-white rounded-3xl hover:bg-orange-600"
             >
               Reject All
             </button>
             <button
-              className="text-[#ea6d43] bg-white font-tuner rounded-3xl text-sm px-5 py-2.5 text-center inline-flex items-center mx-2 hover:bg-gray-200"
+              className="text-[#ea6d43] bg-white font-ibm-plex rounded-3xl text-sm px-5 py-2.5 text-center inline-flex items-center mx-2 hover:bg-gray-200"
               onClick={openModal}
             >
               Customize
@@ -106,7 +109,7 @@ const ConsentBanner = () => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3">
-            <h2 className="text-xl md:text-xl lg:text-3xl text-orange-600 font-tuner mb-4 text-center">
+            <h2 className="text-xl md:text-xl lg:text-3xl text-orange-600 font-ibm-plex mb-4 text-center">
               Customize your Consent Preferences
             </h2>
             <div className="lg:flex lg:justify-center lg:ml-auto lg:mr-auto">
@@ -183,7 +186,7 @@ const ConsentBanner = () => {
             </div>
             <button
               onClick={closeModal}
-              className="mt-4 px-4 py-2 bg-orange-600 text-white font-tuner rounded-3xl mx-auto block"
+              className="mt-4 px-4 py-2 bg-orange-600 text-white font-ibm-plex rounded-3xl mx-auto block"
             >
               Save my Preferences
             </button>

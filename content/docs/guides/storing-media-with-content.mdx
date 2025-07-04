@@ -1,0 +1,77 @@
+---
+title: Storing Media with Content
+last_edited: '2025-07-03T14:31:58.321Z'
+next: ''
+previous: ''
+---
+
+> **Note:** This approach is not officially supported by the core team. It reflects how some teams are currently achieving grouped content and media. Use at your own discretion.
+
+By default, TinaCMS expects:
+
+* Markdown files in a dedicated content directory, e.g. `content/`
+* Images in a dedicated static directory, e.g. `public/uploads/`
+
+This setup works in many modern web frameworks (like Next.js, Astro, etc.) where static assets are served from a public directory, but it breaks **co-location** — your content and related assets live in different locations.
+
+This adds friction when managing, duplicating, or migrating content.
+
+## Solution: Move the content to the media folder
+
+The current way to solve the issue is to store both Markdown and static assets in `public/uploads`.
+
+Say you want to build a blog with posts, your file structure for the content would then look like this:
+
+```
+public/
+└── uploads/
+    └── posts/
+        ├── post-a/
+        │   ├── index.md
+        │   └── image.png
+```
+
+> **Note:** `public/uploads` is the default Media folder, you can change it to be whatever suits your project.\
+> See this for more information: [Repo-based Media](https://tina.io/docs/reference/media/repo-based#configuration)
+
+The only thing required to make this work is to update the `path` in your Collection file to point to the Media folder.
+
+```javascript
+//tina/collections/post.ts
+
+const Post: Collection = {
+  label: "Posts",
+  name: "post",
+  path: "public/uploads/posts",
+  fields: [
+    //...
+  ],
+  //...
+};
+```
+
+### Considerations
+
+* Markdown files live inside the Media folder - this is unconventional
+* Content is publicly readable (like any other static assets), so don't store sensitive information
+* Every file in `public` gets copied to your build output
+* Could impact build performance, potentially increasing build times
+
+### Conclusion
+
+For projects using TinaCMS with modern frontend frameworks, keeping Markdown and media together simplifies everything from authoring to deployment.
+
+**✅ Benefits:**
+
+* No extra dev work
+* Minimal config
+* Media Manager works as expected
+* Clean structure and great developer experience
+
+If you want to see other viable options, have a look at this video:
+
+<Youtube embedSrc="https://www.youtube.com/embed/JX90jbgAvRw" minutes="5" caption="The 3 options for storing Markdown in GitHub for TinaCMS" />
+
+---
+
+Got a different setup that works for you? Let us know!

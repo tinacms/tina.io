@@ -1,8 +1,14 @@
 @font-face {
-  font-family: 'tuner-medium';
-  src: url('/fonts/tuner-medium.woff2') format('woff2'),
-    url('/fonts/tuner-medium.woff') format('woff');
-  font-weight: normal;
+  font-family: 'IBMPlexSans-SemiBold';
+  src: url('/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceCodePro-Regular';
+  src: url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
 }
 :root {
@@ -59,7 +65,7 @@ h4 {
 }
 
 .headingLarge {
-  font-family: var(--font-tuner);
+  font-family: var(--font-ibm-plex-semibold);
   font-weight: bold;
   line-height: 1.4;
   margin-bottom: 1rem;

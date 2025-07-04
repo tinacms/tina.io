@@ -18,10 +18,14 @@ export function FeatureBlock({ data, index }) {
           isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }`}
       >
-        <div className="flex flex-col justify-center lg:justify-start w-full lg:w-1/2">
+        <div
+          className={`flex flex-col justify-center lg:justify-start w-full lg:w-1/2 ${
+            data.alignCenter ? 'items-center self-center' : ''
+          }`}
+        >
           {data.headline && (
             <h3
-              className="font-tuner inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+              className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
               data-tina-field={tinaField(data, 'headline')}
             >
               {data.headline}
@@ -39,12 +43,20 @@ export function FeatureBlock({ data, index }) {
           <div className="flex flex-col items-center lg:items-start">
             <div className="flex flex-col md:flex-row gap-2">
               {data.buttons?.slice(0, 2).map((button, index) => (
-                <RenderButton button={button} index={index} />
+                <RenderButton
+                  key={`button-${index}`}
+                  button={button}
+                  index={index}
+                />
               ))}
             </div>
             {data.buttons?.length > 2 && (
               <div className="flex mt-4">
-                <RenderButton button={data.buttons[2]} index={2} />
+                <RenderButton
+                  key="button-2"
+                  button={data.buttons[2]}
+                  index={2}
+                />
               </div>
             )}
           </div>
@@ -117,7 +129,7 @@ export const RenderMedia = ({ data }) => {
       <>
         <div className="flex flex-col justify-start items-start">
           {data.media[0].file && (
-            <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-tuner">
+            <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-ibm-plex">
               {data.media[0].file}
             </div>
           )}
@@ -160,7 +172,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-[#777777] text-left text-base font-tuner">
+            <span className="text-[#777777] text-left text-base font-ibm-plex">
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -186,7 +198,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-[#777777] text-left text-base font-tuner mt-2">
+            <span className="text-[#777777] text-left text-base font-ibm-plex mt-2">
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -205,7 +217,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-[#777777] text-left text-base font-tuner">
+            <span className="text-[#777777] text-left text-base font-ibm-plex">
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -237,7 +249,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-[#777777] text-left text-base font-tuner mt-2">
+            <span className="text-[#777777] text-left text-base font-ibm-plex mt-2">
               {data.media[0].figureCaption}
             </span>
           </div>
