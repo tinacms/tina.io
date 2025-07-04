@@ -8,7 +8,7 @@
       "features": [
         {
           "headline": "TinaCMS developer certifications",
-          "text": "We encourage all developers to earn a badge by demonstrating their knowledge and ability to answer questions and solve problems for their team. As a reward, each developer will, upon successful completion, receive 1 month of TinaCloud Teams Plus (valued at $49) for free.",
+          "text": "We encourage all developers to earn a badge by demonstrating their knowledge and ability to answer questions and solve problems for their team. As a reward, each developer will, upon successful completion, receive 1 month of TinaCloud Teams Plus (valued at $49) for free. ",
           "media": [
             {
               "src": "/TinaCMS-Dev-Credly-Badge.png",
@@ -34,7 +34,7 @@
         },
         {
           "question": "Step 2",
-          "answer": "Get TinaCMS running and deploy a site using a starter template and [TinaCloud.](https://app.tina.io/signin)\n\n* This can be a personal site or one you’ve built for work\n"
+          "answer": "Get TinaCMS running and deploy a site using a starter template and [TinaCloud.](https://app.tina.io/signin)\n\n* This can be a personal site or one you’ve built for work\n* Tip: Check out the TinaCMS editor best practices\n"
         },
         {
           "question": "Step 3",
