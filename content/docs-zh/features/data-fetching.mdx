@@ -63,7 +63,7 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
 
 ## 使用静态站点生成（SSG）处理新页面
 
-如果您使用 SSG，在 TinaCMS 中创建新页面意味着内容会立即更新到 TinaCloud 和您的 Git 仓库中。然而，您的网站（基于 `main` 或其他分支）不会立即显示此新页面，通常会导致 404 错误。这是因为 SSG 网站在部署时预构建所有页面；您的服务器在网站重建之前不知道新页面。
+如果您使用 SSG，在 TinaCMS 中创建新页面意味着内容会立即更新到 TinaCloud 和您的 Git 仓库中。然而，您的网站（基于 `main` 或其他分支）不会立即显示此新页面，通常会导致 404 错误。这是因为 SSG 网站在部署时预先构建所有页面；您的服务器在网站重建之前不知道新页面。
 
 **新 SSG 页面解决方案：**
 
@@ -71,8 +71,8 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
    * 最简单的解决方案是重建并重新部署您的网站。大多数托管平台可以在 Git 提交时自动执行此操作。在新页面上线之前会有一个构建时间延迟。
 2. **特定框架的回退/动态路由：**
    * 现代 SSG 框架（如 Next.js、Nuxt.js、SvelteKit、Gatsby、Eleventy）提供了处理未在构建时生成的页面请求的方法。
-     * **Next.js：** 在 `getStaticPaths` 中使用 `fallback: true` 或 `fallback: 'blocking'` 以按需生成页面。
-     * **其他框架：** 在框架文档中查找类似“**按需生成**”、“**增量构建**”或动态路由的功能。这些允许框架在首次请求时构建页面或使用客户端渲染。
+     * **Next.js：** 在 `getStaticPaths` 中使用 `fallback: true` 或 `fallback: 'blocking'` 来按需生成页面。
+     * **其他框架：** 在框架文档中查找“**按需生成**”、“**增量构建**”或动态路由等功能。这些允许框架在首次请求时构建页面或使用客户端渲染。
 3. **增量静态再生（ISR）：**
    * 由 Next.js 等框架支持，ISR 允许页面在初始构建后生成或更新，可以是定时器触发或首次请求时触发，而无需完全重建网站。
 
@@ -104,11 +104,11 @@ const data = await client.queries.post(
 
 在本地开发时，与其与托管内容 API 通信，不如与本地文件系统上的内容通信更有利。Tina 提供了一个 CLI 工具，允许您在网站旁边本地运行内容 API。这使得在开发过程中，所有内容都可以通过相同的表达式 GraphQL API 获得。
 
-> 如果您通过 `@tinacms/cli init` 设置了 Tina，或者使用了我们的入门项目，这应该是默认设置的。（在[这里](/docs/graphql/cli/)阅读有关 CLI 的信息。）
+> 如果您通过 `@tinacms/cli init` 设置了 Tina，或使用了我们的入门模板，这应该是默认设置的。（在[这里](/docs/graphql/cli/)阅读有关 CLI 的信息。）
 
 ## 视频教程
 
-对于那些更喜欢通过视频学习的人，可以查看我们["TinaCMS 深入探讨"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB)系列中的“数据获取”片段。
+对于那些更喜欢通过视频学习的人，可以查看我们 ["TinaCMS 深入探讨"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) 系列中的“数据获取”片段。
 
 <Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=403&end=534" />
 
@@ -117,5 +117,5 @@ const data = await client.queries.post(
 * Tina 提供了一个用于查询基于 git 的内容的 GraphQL API。
 * Tina 提供了一个客户端，允许您对内容 API 进行类型安全的请求。
 * 客户端的“queries”属性是根据*您的*架构生成的。
-* 本地版本的内容 API 可用于本地开发。
+* 可以使用内容 API 的本地版本进行本地开发。
 * 使用 SSG，新页面需要重建或特定框架的处理（如回退或 ISR）以避免 404 错误。

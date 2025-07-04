@@ -1,0 +1,86 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/app/src/Playground.tsx"
+id: /docs/data-fetching/custom-queries
+title: 自定义查询
+last_edited: '2025-03-26T03:57:00.112Z'
+next: ''
+previous: content/docs/data-fetching/overview.mdx
+---
+
+对于大多数简单的情况，你应该能够利用Tina客户端生成的查询来进行数据获取：
+
+```ts
+const myPost = await client.queries.post(
+  { relativePath: 'HelloWorld.md' })
+```
+
+在更高级的情况下，你可能希望对底层的GraphQL查询有更多的控制。在这些情况下，你有两个选择：
+
+* 通过编写自定义查询来扩展自动生成的`client.queries`。
+* 使用`client.request`，并编写内联查询。
+
+## 扩展自动生成的`client.queries`
+
+可以通过向`tina/queries`目录添加查询来扩展客户端以执行更高级的查询（包括一次查询多个根集合）。在此目录中以`gql`或`graphql`结尾的所有文件都将被添加到客户端中。
+
+Tina生成自定义的[GraphQL片段](https://graphql.org/learn/queries/#fragments)以用于自定义查询，这样当模式更新时查询就不需要更新。
+
+> 注意：这些片段可以在`tina/__generated__/frags.gql`中看到
+
+`tina/queries/postWithNav.gql`的示例：
+
+```ts
+query postWithNav($relativePath: String!) {
+  nav(relativePath: "nav.json") {
+    ...NavParts
+  }
+  post(relativePath: $relativePath) {
+    ...PostParts
+  }
+}
+```
+
+要在你的GraphQL文件中获得自动补全功能，请添加一个指向`tina/__generated__/schema.gql`和`tina/__generated__/frags.gql`的[`graphql.config.js`](https://github.com/tinacms/tina-cloud-starter/blob/main/graphql.config.js)。
+
+> 注意：片段的命名是使用集合名称（首字母大写）后跟“Parts”
+
+我们在这里使用了`PostParts`和`NavParts`片段。对于每个集合，此片段在模式更新时生成并更新。你可以在`/tina/__generated__/frags.gql`中查看你的模式的任何可用片段。
+
+一旦查询被添加，客户端将更新其类型，以便可以用来请求新的查询。
+
+```js
+import { client } from '../[pathToTina]/tina/__generated__/client'
+
+// 使用客户端进行数据获取
+// 在这里，它获取一个单独的“post”项目
+const myPost = await client.queries.postWithNav({
+  relativePath: 'HelloWorld.md',
+})
+
+console.log(myPost.title)
+console.log(myPost.nav.items)
+```
+
+## 编写内联查询
+
+如果你想完全避免在客户端上使用类型，你也可以使用`client.request`函数编写一个内联查询。
+
+```js
+import { client } from '../[pathToTina]/tina/__generated__/client'
+
+// 使用客户端进行数据获取
+// 在这里，它获取一个单独的“post”项目
+const myPost = await client.request({
+  query: `query getPost($relativePath: String!) {
+      post(relativePath: $relativePath) {
+        title
+        body
+      }
+    `,
+  variables: { relativePath: 'hello-world.md' },
+})
+
+console.log(myPost.title)
+```
+
+有关编写自定义查询的更多信息，请查看[查询参考文档](/docs/graphql/queries/)。

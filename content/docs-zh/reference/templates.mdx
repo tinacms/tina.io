@@ -1,4 +1,5 @@
 ---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
 id: templates
 title: 模板
 last_edited: '2025-03-26T01:40:40.668Z'
@@ -6,9 +7,9 @@ next: content/docs/reference/types.mdx
 previous: content/docs/reference/fields.mdx
 ---
 
-模板允许您在单个集合或对象中定义多个结构化的变体。当您需要在同一父级下具有不同的数据结构时，它们非常理想。
+模板允许您在单个集合或对象中定义多个结构化变体。当您需要在同一父级下具有不同的数据结构时，它们是理想的选择。
 
-> 例如，在一个“页面”集合中，可能需要一个营销页面模板和一个内容页面模板，它们都属于“页面”集合。
+> 例如，在一个“页面”集合中，可能需要一个营销页面模板和一个内容页面模板，两个都在“页面”集合下。
 
 ## 类型定义
 
@@ -47,7 +48,7 @@ previous: content/docs/reference/fields.mdx
     },
     {
       name: "previewSrc",
-      description: "此模板的示例图片路径。\n",
+      description: "此模板的示例图像路径。\n",
       type: "string",
       groupName: "ui"
     }
@@ -100,4 +101,4 @@ Tina 使用与模板匹配的文件夹名称来正确组织文件，例如：
 
 ## 限制
 
-* 使用模板的集合无法使用“添加文件夹”按钮
+* 使用模板的集合不能使用“添加文件夹”按钮
