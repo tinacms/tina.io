@@ -42,7 +42,7 @@
         },
         {
           "question": "Step 4",
-          "answer": "Record a [Done Video](https://www.ssw.com.au/rules/record-a-quick-and-dirty-done-video/) explaining how Tina works. Use your device's screen recording tool or use [YakShaver](https://yakshaver.ai/). In your recording, explain to us:\n\n* What feature helps hide GitHub from your site users, and how does it work?\n* How can you improve the markdown capabilities of your site?\n* Any feedback or suggestions you have from your initial tryout\n\nTip: Have a separate tab open for each answer\n"
+          "answer": "Record a [Done Video](https://www.ssw.com.au/rules/record-a-quick-and-dirty-done-video/) explaining how Tina works. Use your device's screen recording tool or use [YakShaver](https://yakshaver.ai/). In your recording, explain to us:\n\n* Explain editorial workflow\n* Configure branch preview\n* What is the cause of a schema mismatch error and how do you resolve it?\n* Your tina /config file - what changes have you made and why?\n* How can you improve the markdown capabilities of your site?\n* Any feedback or suggestions you have from your initial tryout\n\nTip: Have a separate tab open for each answer\n"
         },
         {
           "question": "Step 5",
