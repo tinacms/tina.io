@@ -38,7 +38,7 @@
         },
         {
           "question": "Step 3",
-          "answer": "Send an email to [badge@tina.io](mailto\\:badge@tina.io). Answer these questions with supporting screenshots:\n\n* Explain the pull request workflow on your site.\n* How do you configure branch previews?\n* What is the cause of a schema mismatch error and how do you resolve it?\n* Your tina /config file - what changes have you made and why?\n"
+          "answer": "Send an email to [badge@tina.io](mailto\\:badge@tina.io). Answer these questions with supporting screenshots:\n\n* On your site, how does the pull request workflow work?\n* How do you configure branch previews?\n* What is the cause of a schema mismatch error and how do you resolve it?\n* Your tina /config file - what changes have you made and why?\n"
         },
         {
           "question": "Step 4",
