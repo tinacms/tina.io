@@ -22,7 +22,7 @@ const myPost = await client.queries.post({ relativePath: 'HelloWorld.md' });
 console.log(myPost.title);
 ```
 
-在上面的例子中，`post` 是正在查询的集合的名称。可以用您的模式定义的集合名称之一替换它。
+在上面的例子中，`post` 是正在查询的集合的名称。可以用您架构中定义的集合名称之一替换它。
 
 ## 查询文档列表
 
@@ -38,7 +38,7 @@ const posts = postsResponse.data.postConnection.edges.map((post) => {
 
 ### 过滤
 
-可以将过滤器作为选项添加到您的 `<collection-name>Collection` 查询中。
+可以将过滤器作为选项添加到 `<collection-name>Collection` 查询中。
 
 ```js
 const postsResponse = await client.queries.postConnection({
@@ -76,11 +76,11 @@ const allPosts = posts?.data?.postConnection?.edges.filter(
 );
 ```
 
-> 注意：使用自动生成的 `<collection-name>Connection` 时，查询将仅应用于文档的字段，而不是 `_sys` 属性。像上面展示的那样在代码中进行过滤是一个合适的替代方案。
+> 注意：使用自动生成的 `<collection-name>Connection` 时，查询将仅应用于文档的字段，而不是 `_sys` 属性。如上所示的代码过滤是一个合适的替代方案。
 
 ### 排序
 
-可以将排序作为选项添加到您的 `<collection-name>Collection` 查询中。
+可以将排序作为选项添加到 `<collection-name>Collection` 查询中。
 
 ```js
 const postsResponse = await client.queries.postConnection({
@@ -116,4 +116,4 @@ const postsResponse = await client.queries.postConnection({
 // ...
 ```
 
-在客户端使用内置查询的一个限制是**您一次只能查询一个根集合**。如果您有一个页面上有多个表单，您可能需要使用[自定义查询](/docs/data-fetching/custom-queries/)。
+在客户端使用内置查询的一个注意事项是**您一次只能查询一个根集合**。如果您有一个页面上有多个表单，您可能需要使用[自定义查询](/docs/data-fetching/custom-queries/)。
