@@ -1,0 +1,428 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/experimental-examples/kitchen-sink/README.md"
+title: 引用字段
+last_edited: '2025-03-26T05:27:39.833Z'
+next: ''
+previous: ''
+---
+
+`reference`字段允许“父”文档连接到不同集合中的另一个文档。这种关系只需要在*一侧*定义。
+
+一旦定义，*引用*文档的值将可用于父文档。
+
+## 类型定义
+
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: '将此设置为`"reference"`以使用引用字段。\n',
+      required: true
+    },
+    {
+      name: "collections",
+      type: "string[]",
+      description: "要引用的集合。\n",
+      required: true
+    },
+    {
+      name: "name",
+      description: "供内部使用的字段名称。\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "collectionFilter",
+      description:
+        "基于引用集合中的属性过滤显示的引用。\n",
+      type: "any"
+    },
+    {
+      groupName: "ui",
+      name: "optionComponent",
+      description:
+        "为引用选择器中的每个选项返回一个自定义组件。\n",
+      type: "function"
+    }
+  ]}
+/>
+
+### 理解引用类型
+
+给定以下模式...
+
+```ts
+schema: {
+  collections: [
+    {
+      label: 'Post',
+      name: 'post',
+      path: 'posts',
+      fields: [
+        {
+          label: 'Author',
+          name: 'author',
+          type: 'reference',
+          collections: ['author'],
+        },
+      ],
+    },
+    {
+      label: 'Author',
+      name: 'author',
+      path: 'authors',
+      fields: [
+        {
+          label: 'Name',
+          name: 'name',
+          type: 'string',
+        },
+      ],
+    },
+  ],
+}
+```
+
+`post`集合有一个指向`author`集合的`reference`字段。
+
+在Tina中编辑时，用户将能够为`author`的值选择`author`集合中的一个文档。
+
+![](/img/docs/reference/reference_field_example_tszsxd.png)
+
+通过客户端或原始GraphQL查询`post`文档时，响应中的`author`键将包含*引用*的`author`文档的值：
+
+<GraphQLCodeBlock
+  query="{
+  ##post(relativePath:#&#x22;edgar.md&#x22;)#{
+  ####title
+  ####author#{
+  ######...#on#Author#{
+  ########name
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;author&#x22;:#{
+  ########&#x22;name&#x22;:#&#x22;Edgar#Allama#Poe&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>
+
+## 搜索引用
+
+您可以根据文档文件路径搜索引用。
+
+![](/img/docs/reference/search_reference_p5w3ce.png)
+
+## 过滤引用
+
+如果您有一个很长的引用项目列表，可以使用`ui.collectionFilter`字段在模式中使用引用集合中的属性来过滤它们。
+
+<WarningCallout
+  body={<>
+    当前的`collectionFilter`仅支持字符串类型的属性，并且是**区分大小写**的。
+  </>}
+/>
+
+仅显示位置设置为“澳大利亚”的作者：
+
+```typescript
+const referenceField = {
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: 'Australia',
+      },
+    },
+  },
+  collections: ['author'],
+};
+```
+
+## 自定义文档标签
+
+默认情况下，引用选择器显示文档文件名。这可以通过`ui.optionComponent`设置为**自定义react组件**。
+
+`optionComponent`函数为您提供两个参数：`props`和`_internalSys`。
+
+* `props`代表引用集合中的字段。
+* `_internalSys`包含各种有用的信息供您在自定义组件中使用，例如`文件名`和`路径`。
+
+![](/img/docs/reference/custom-reference-field-ui_ojtrlx.png)
+
+<WarningCallout
+  body={<>
+    如果您的应用程序需要严格的类型，您需要提前手动声明`optionComponent`的`props`类型。请参见下面的示例。
+  </>}
+/>
+
+> 由于这取决于您的模式，运行`console.log(props)`或`console.log(_internalSys)`以获取可访问的完整值列表。
+
+## 示例
+
+### 简单字段
+
+```javascript
+{
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  collections: ['author'],
+},
+```
+
+![](/img/docs/reference/reference_field_example_tszsxd.png)
+
+### 按多个值过滤的字段
+
+位置设置为“澳大利亚”或“美国”的作者集合成员将被包括在内。
+
+```typescript
+{
+  label: 'Author',
+  name: 'author',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: ['Australia', 'United States']
+      }
+    },
+  },
+  collections: ['author'],
+}
+```
+
+### 具有多个集合和过滤的字段
+
+根据各自的过滤条件，将包括作者和帖子集合的成员。
+
+```javascript
+{
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: {
+      author: {
+        location: ['Australia', 'United States']
+      },
+      post: {
+        status: 'published',
+      },
+    },
+  },
+  collections: ['author', 'post'],
+}
+```
+
+### 具有动态过滤条件的字段
+
+使用`ui.collectionFilter`的函数进行动态渲染，在运行时触发。
+
+```typescript
+const getLocation = () => {
+  const url = new URL('https://bob-northwind-sydney.com');
+  const hostname = url.hostname;
+  return hostname;
+};
+
+const referenceField = {
+  label: 'Author & Post',
+  name: 'author and post',
+  type: 'reference',
+  ui: {
+    collectionFilter: () => {
+      const location = getLocation();
+      return {
+        author: {
+          location: location,
+        },
+      };
+    },
+  },
+  collections: ['author'],
+};
+```
+
+<WarningCallout
+  body={<>
+    如果您传入一个函数，它应该作为可执行的传递。直接在回调中运行类似`const url = new URL('https://bob-northwind-sydney.com')`的操作是不允许的。
+  </>}
+/>
+
+### 具有简单自定义标签的字段
+
+使用`optionComponent`进行自定义引用标签的简单示例。
+
+`ProfilePicture`是一个自定义组件，未在示例中包含。
+
+```javascript
+{
+  type: "reference",
+  name: "presenter",
+  label: "Presenter",
+  collections: ["presenter"],
+  ui: {
+  optionComponent: (
+    props: {
+      presenter: { name?: string };
+      profileImg: string
+    },
+    _internalSys: { path: string }
+  ) => {
+    const presenter = props.presenter;
+    if (!presenter.name) return _internalSys.path;
+
+    return (
+      <p className="flex min-h-8 items-center gap-4">
+        {props.profileImg && (
+          <ProfilePicture
+            src={props.profileImg}
+            alt={`${presenter.name} Profile`}
+          />
+        )}
+        {presenter.name}{" "}
+      </p>
+    );
+  }
+}
+```
+
+![](/img/docs/reference/reference_custom_field.png)
+
+### 具有多个集合和自定义标签的字段（高级）
+
+下面的示例显示了一个名为`reference`的集合，与作者和帖子集合都关联，并具有一个引用字段。`ui.optionComponent`属性定义了每个文档在UI中的标签显示方式。
+
+`AuthorCollectionCustomReference`和`PostCollectionCustomReference`是未在示例中包含的自定义组件。
+
+```ts
+collections: [
+  //collection 1 - authors
+  {
+    label: 'Authors',
+    name: 'author',
+    path: 'content/author',
+    format: 'md',
+    fields: [
+      {
+        type: 'string',
+        label: 'Name',
+        name: 'name',
+        required: true,
+      },
+      {
+        type: 'string',
+        label: 'description',
+        name: 'description',
+        required: true,
+      },
+    ],
+  },
+  //collection 2 - posts
+  {
+    label: 'Posts',
+    name: 'post',
+    path: 'content/posts',
+    format: 'md',
+    fields: [
+      {
+        type: 'string',
+        label: 'title',
+        name: 'Title',
+        required: true,
+      },
+    ],
+  },
+  //collection 3 - reference collection
+  {
+    label: 'Author and Post',
+    name: 'reference',
+    path: 'content/references',
+    fields: [
+      {
+        label: 'Author',
+        name: 'author',
+        type: 'reference',
+        collections: ['author', 'post'],
+        ui: {
+          //custom reference label
+          optionComponent: (
+            props: CollectionProps,
+            _internalSys: InternalSys
+          ) => {
+            //choosing component based on collection type
+            switch (props._collection) {
+              case COLLECTIONS.AUTHOR:
+                return (
+                  //imported react component
+                  <AuthorCollectionCustomReference
+                    name={props.name}
+                    description={props.description}
+                  />
+                )
+              case COLLECTIONS.POST:
+                return (
+                  <PostCollectionCustomReference
+                    title={props.title}
+                  />
+                )
+              default:
+                return _internalSys.path
+            }
+          },
+        },
+      },
+    ]
+  }
+],
+```
+
+我们还需要根据需要自行定义预期类型。
+
+使用`AuthorProps`接口作为示例，`optionComponent`函数可以期望我们从props输入中使用的名称和描述。
+
+`_collection`字段由系统提供，用于表示特定集合（在此情况下为作者或帖子）。
+
+```ts
+// 您应该为作者集合中的字段定义类型以确保类型安全
+export interface AuthorProps {
+  name: string;
+  description: string;
+  _collection: 'author';
+}
+
+// 您应该为帖子集合中的字段定义类型以确保类型安全
+export interface PostProps {
+  title: string;
+  excerpt: string;
+  _collection: 'post';
+}
+
+// 您应该定义引用中使用的集合列表以确保类型安全
+export enum COLLECTIONS {
+  AUTHOR = 'author',
+  POST = 'post',
+}
+
+// InternalSys来自tinacms，它提供了许多有用的信息供用户自定义他们的自定义组件
+export interface InternalSys {
+  filename: string;
+  path: string;
+}
+
+export type CollectionProps = AuthorProps | PostProps;
+```

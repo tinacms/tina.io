@@ -1,0 +1,46 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
+id: /docs/reference/schema/
+
+title: 架构
+last_edited: '2022-06-15T15:51:56.737Z'
+next: content/docs/reference/collections.mdx
+previous: content/docs/reference/config.mdx
+---
+
+架构位于 `tina/config.{ts,tsx,js,jsx}` 中，用于定义内容的结构。
+
+## 定义
+
+| 属性              | 描述                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| `collections`     | 一个[集合](/docs/reference/collections/)的数组。                                           |
+| `config`          | tinaCMS的配置                                                                              |
+| `config.branch`   | 将用于在TinaCloud上查询内容的分支。（在本地模式中不使用）                                  |
+| `config.clientId` | [在TinaCloud上生成的](/docs/tina-cloud/dashboard/)客户端ID                                 |
+| `config.token`    | [在TinaCloud上生成的](/docs/tina-cloud/dashboard/projects/#api-tokens)只读令牌             |
+| `config.media`    | 外部和git支持的[媒体配置](/docs/reference/media/overview/)                                 |
+
+## 示例
+
+```ts
+const branch =
+  process.env.NEXT_PUBLIC_TINA_BRANCH ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD ||
+  ''
+
+export default defineConfig({
+  //...
+  branch,
+  token: '<Your Read Only Token>', // 在 app.tina.io 上生成
+  clientId: '<Your Client ID>', // 在 app.tina.io 上生成
+  schema: {
+    collections: [
+      //..集合数组
+    ],
+  },
+})
+```
+
+欲了解更多信息，请[查看内容建模部分](/docs/schema/)

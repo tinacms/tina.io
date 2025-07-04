@@ -1,0 +1,59 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/toolkit/components/media/media-manager.tsx"
+title: 媒体概述
+last_edited: '2024-11-12T22:59:50.498Z'
+next: ''
+previous: ''
+---
+
+TinaCMS 提供多种管理媒体的选项。
+
+![media-manager-image](/img/media-manager-ui.png)
+
+所有的媒体配置都在 `config.media` 下的 `defineConfig` 函数中完成。
+
+示例：
+
+```ts
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      // 集合数组
+    ],
+  },
+  media: {
+    // 媒体配置
+    tina: {
+      // 基于仓库的媒体配置
+    },
+    // 加载媒体存储的函数
+    loadCustomStore: async () => {},
+  },
+  //.. 其他配置
+})
+```
+
+> 注意：只能配置基于仓库的媒体或外部媒体提供商，但**不能同时配置两者**
+
+## 基于仓库的媒体（默认）
+
+使用内置的基于仓库的媒体选项，媒体存储在网站的仓库中。
+
+基于仓库的媒体将您的资产与内容放在一起，便于跟踪更改和回滚代码和媒体的版本。
+
+这种方法通过消除对外部媒体服务器的需求简化了工作流程，因为所有更新都在一个统一的系统中进行。
+
+[在此处阅读有关基于仓库的媒体的更多信息](/docs/reference/media/repo-based)
+
+## 外部媒体提供商
+
+TinaCMS 还支持可插拔的外部媒体提供商。
+
+[在此处阅读有关外部媒体存储实现的更多信息](/docs/reference/media/external/authentication)
+
+## 视频教程
+
+对于那些喜欢通过视频学习的人，可以查看我们 ["TinaCMS 深入探讨"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) 系列中的媒体片段。
+
+<Youtube embedSrc="https://www.youtube.com/embed/x0ACBQeNcts?start=388&end=469" />
