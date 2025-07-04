@@ -37,19 +37,15 @@
           "answer": "Get TinaCMS running and deploy a site using [tina.io](https://tina.io) and [TinaCloud.](https://app.tina.io/signin)\n\n* This can be a personal site or one you’ve built for work\n"
         },
         {
+          "question": "Step 3",
+          "answer": "Send an email to [badge@tina.io](mailto\\:badge@tina.io). Answer these questions with supporting screenshots:\n\n* Explain the pull request workflow on your site.\n* How do you configure branch previews?\n* What is the cause of a schema mismatch error and how do you resolve it?\n* Your tina /config file - what changes have you made and why?\n"
+        },
+        {
           "question": "Step 4",
-          "answer": "Record a [Done Video](https://www.ssw.com.au/rules/record-a-quick-and-dirty-done-video/) explaining how Tina works. Use your device's screen recording tool or use [YakShaver](https://yakshaver.ai/). In your recording, explain to us:\n\n* Explain editorial workflow\n* Configure branch preview\n* What is the cause of a schema mismatch error and how do you resolve it?\n* Your tina /config file - what changes have you made and why?\n* How can you improve the markdown capabilities of your site?\n* Any feedback or suggestions you have from your initial tryout\n\nTip: Have a separate tab open for each answer\n"
-        },
-        {
-          "question": "Step 7",
-          "answer": "Email us at [badge@tina.io](mailto\\:badge@tina.io). Include links to:\n\n* Your video\n* Your social media posts (if applicable)\n"
-        },
-        {
-          "question": "Step 8",
           "answer": "We will review your email and if successful, you will receive a badge from [Credly](https://info.credly.com/).\n"
         },
         {
-          "question": "Step 9",
+          "question": "Step 5",
           "answer": "Accept and share the badge on LinkedIn.\n"
         },
         {
@@ -63,6 +59,10 @@
         {
           "question": "zzStep 3",
           "answer": "Read the [Tina editor best practices](https://tina.io/docs/using-tina-editor).\n"
+        },
+        {
+          "question": "zzStep 7",
+          "answer": "Email us at [badge@tina.io](mailto\\:badge@tina.io). Include links to:\n\n* Your video\n* Your social media posts (if applicable)\n"
         }
       ],
       "color": "seafoam",
