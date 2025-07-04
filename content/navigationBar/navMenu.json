@@ -31,6 +31,10 @@
           "href": "/docs/support"
         },
         {
+          "label": "Certifications",
+          "href": "/certifications"
+        },
+        {
           "label": "Awesome TinaCMS",
           "href": "https://github.com/tinacms/awesome-tinacms"
         },

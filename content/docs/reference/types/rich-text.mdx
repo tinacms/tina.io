@@ -14,40 +14,38 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
 <apiReference
   property={[
     {
-      name: 'type',
-      type: 'string',
+      name: "type",
+      type: "string",
       description: 'Set this to `"rich-text"` to use the Rich-Text Field.\n',
-      required: true,
+      required: true
     },
     {
-      name: 'name',
-      description: 'The name of the field for internal use.\n',
-      type: 'string',
-      required: true,
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
     },
     {
-      name: 'toolbarOverride',
-      description: 'Select specific toolbar options to display.\n',
-      type: 'string[]',
+      name: "toolbarOverride",
+      description: "Select specific toolbar options to display.\n",
+      type: "string[]"
     },
     {
-      name: 'templates',
+      name: "templates",
       description:
         'MDX support. The "embed" option in the editor to inject custom React components.\n',
-      type: 'Template[]',
-    },
+      type: "Template[]"
+    }
   ]}
 />
 
 > The `templates` property is for `mdx` support.
 
 <WarningCallout
-  body={
-    <>
-      `"children"` should not be used as the `name` for rich-text fields, as it
-      conflicts with other parts of the application.
-    </>
-  }
+  body={<>
+    `"children"` should not be used as the `name` for rich-text fields, as it
+    conflicts with other parts of the application.
+  </>}
 />
 
 ## Toolbar Customisation
@@ -79,18 +77,22 @@ toolbarOverride: [
 
 To insert a line break into an empty line in TinaCMS Rich Text:
 
-- Press Shift + Enter to create the line break
-- If the line break is not followed by a line with text, it will render as a \ in the final output.\
+* Press Shift + Enter to create the line break
+* If the line break is not followed by a line with text, it will render as a \ in the final output.\
   This can be fixed by deleting and re-creating the line\
   Ensure that the line break precedes text content to avoid this issue
 
 > This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
 
-## Markdown Tables
+## Tables
 
 Check out this video on how to use Table in rich text editor:
 
 <Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
+
+> Multi-line cells are not supported because content is serialized as Markdown. Tables only support single-line rows and cells. Use lists or separate fields if you need to represent multiple lines of content.
+
+***
 
 ## Examples
 
@@ -155,36 +157,36 @@ Custom components can be embedded in rich-text blocks.
 <GraphQLCodeBlock
   query="This#is#some#text
 
-<Cta#heading=&#x22;Welcome&#x22;#/>"
-response="{
-##&#x22;data&#x22;:#{
-####&#x22;post&#x22;:#{
-######&#x22;body&#x22;:#{
-########&#x22;type&#x22;:#&#x22;root&#x22;,
-##########{
-############&#x22;type&#x22;:#&#x22;p&#x22;,
-############&#x22;children&#x22;:#[
-##############{
-################&#x22;type&#x22;:#&#x22;text&#x22;,
-################&#x22;text&#x22;:#&#x22;This#is#some#text&#x22;
-##############}
-############]
-##########},
-##########{
-############&#x22;type&#x22;:#&#x22;mdxJsxFlowElement&#x22;,
-############&#x22;name&#x22;:#&#x22;Cta&#x22;,
-############&#x22;props&#x22;:#{
-##############&#x22;heading&#x22;:#&#x22;Welcome&#x22;
-############}
-##########}
-########]
-######}
-####}
-##}
-}"
-preselectResponse={true}
-customQueryName="Markdown"
-customResponseName="Parsed AST"
+  <Cta#heading=&#x22;Welcome&#x22;#/>"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;body&#x22;:#{
+  ########&#x22;type&#x22;:#&#x22;root&#x22;,
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;p&#x22;,
+  ############&#x22;children&#x22;:#[
+  ##############{
+  ################&#x22;type&#x22;:#&#x22;text&#x22;,
+  ################&#x22;text&#x22;:#&#x22;This#is#some#text&#x22;
+  ##############}
+  ############]
+  ##########},
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;mdxJsxFlowElement&#x22;,
+  ############&#x22;name&#x22;:#&#x22;Cta&#x22;,
+  ############&#x22;props&#x22;:#{
+  ##############&#x22;heading&#x22;:#&#x22;Welcome&#x22;
+  ############}
+  ##########}
+  ########]
+  ######}
+  ####}
+  ##}
+  }"
+  preselectResponse={true}
+  customQueryName="Markdown"
+  customResponseName="Parsed AST"
 />
 
 ### Collection with default rich-text value
