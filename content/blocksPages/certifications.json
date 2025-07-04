@@ -38,7 +38,7 @@
         },
         {
           "question": "Step 3",
-          "answer": "Send an email to [badge@tina.io](mailto\\:badge@tina.io). Answer these questions with supporting screenshots:\n\n* On your site, how does the pull request workflow work?\n* How do you configure branch previews?\n* Scenario: A user uses TinaCMS to make a content change. GitHub says that the commit was made by tina-cloud-bot instead of the user. How do you fix this so the user gets credit for their commits?\n* Scenario: You open the editor and see the below error. What steps would you take to resolve it?\n\n![](/schema-mismatch.jpg)\n"
+          "answer": "Send an email to [badge@tina.io](mailto\\:badge@tina.io). Answer these questions with supporting screenshots:\n\n* On your site, how does the pull request workflow work?\n* How do you configure branch previews?\n* Scenario A: A user uses TinaCMS to make a content change. GitHub says that the commit was made by tina-cloud-bot instead of the user. How do you fix this so the user gets credit for their commits?\n* Scenario B: You open the editor and see the below error. What steps would you take to resolve it?\n\n![](/schema-mismatch.jpg)Figure: GraphQL Schema Mismatch error\n"
         },
         {
           "question": "Step 4",
