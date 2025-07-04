@@ -37,16 +37,12 @@
           "answer": "Get TinaCMS running and deploy a site using [tina.io](https://tina.io) and [TinaCloud.](https://app.tina.io/signin)\n\n* This can be a personal site or one you’ve built for work\n"
         },
         {
-          "question": "Step 3",
+          "question": "zzStep 3",
           "answer": "Read the [Tina editor best practices](https://tina.io/docs/using-tina-editor).\n"
         },
         {
           "question": "Step 4",
           "answer": "Record a [Done Video](https://www.ssw.com.au/rules/record-a-quick-and-dirty-done-video/) explaining how Tina works. Use your device's screen recording tool or use [YakShaver](https://yakshaver.ai/). In your recording, explain to us:\n\n* Explain editorial workflow\n* Configure branch preview\n* What is the cause of a schema mismatch error and how do you resolve it?\n* Your tina /config file - what changes have you made and why?\n* How can you improve the markdown capabilities of your site?\n* Any feedback or suggestions you have from your initial tryout\n\nTip: Have a separate tab open for each answer\n"
-        },
-        {
-          "question": "zzStep 6",
-          "answer": "Optional - Post your video on social media (e.g., LinkedIn, Discord, X...).\n"
         },
         {
           "question": "Step 7",
@@ -63,6 +59,10 @@
         {
           "question": "zzStep 5",
           "answer": "Post the video to YouTube (or another video platform) - make sure that it is public.\n"
+        },
+        {
+          "question": "zzStep 6",
+          "answer": "Optional - Post your video on social media (e.g., LinkedIn, Discord, X...).\n"
         }
       ],
       "color": "seafoam",
