@@ -1,0 +1,72 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/prompts/gitProvider.ts"
+id: /docs/self-hosted/existing-site
+title: 在Next.js站点上自托管设置
+last_edited: '2024-08-20T00:35:12.579Z'
+next: content/docs/self-hosted/manual-setup.mdx
+previous: content/docs/self-hosted/starters/nextjs-vercel.mdx
+---
+
+如果你想自托管Tina后端，并且不想使用我们的[预配置入门](/docs/self-hosted/starters/nextjs-vercel/)，你可以按照以下步骤进行。
+
+我们提供了一个CLI初始化工具，可以快速在Next.js站点上设置后端，或者如果你使用的是其他框架，可以采用[手动设置方法](/docs/self-hosted/manual-setup/)。
+
+> 更喜欢视频教程？查看这个视频：
+
+<Youtube embedSrc="https://www.youtube.com/embed/Jq5yWF1c0aM" />
+
+## 设置
+
+如果你的项目中已经设置了Tina，请确保所有tina包都是最新版本。
+
+在终端中运行：
+
+```bash
+npx @tinacms/cli@latest init backend
+```
+
+这将设置TinaCMS（如果尚未安装）并添加自托管所需的后端部分。
+
+这将提示你回答一些问题：
+
+### GitHub个人访问令牌
+
+可以在[GitHub账户设置](https://github.com/settings/personal-access-tokens/new)中创建GitHub个人访问令牌。
+
+确保为你的新仓库分配`repo`访问权限，并具有对内容的读/写访问权限。
+
+### 选择数据库适配器
+
+TinaCMS在初始化工作流中提供了两个数据库适配器：“Redis”（VercelKV）和“MongoDB”。在[这里](/docs/reference/self-hosted/database-adapter/overview/)了解更多关于数据库适配器的信息。
+
+### 初始化命令的作用
+
+初始化命令执行以下操作：
+
+* 设置页面`/tina/[...routes].{ts, js}`以处理TinaCMS GraphQL和身份验证请求
+* 设置`tina/database.{ts, js}`以处理数据库
+  * 配置GitHub Git提供者
+  * 配置数据库适配器
+* 配置TinaCMS Auth.js身份验证提供者
+* 安装所选Git提供者、数据库适配器和身份验证提供者所需的任何依赖项
+
+## 初始化命令之后
+
+一旦初始化命令完成，**确保复制**在终端中打印的环境变量。你还需要将这些添加到你的托管提供者中。
+
+更新所有后端数据获取以使用新的数据库客户端
+
+```diff
+-import client from '../tina/__generated__/client'
++import client from '../tina/__generated__/databaseClient'
+```
+
+查看[此页面](/docs/self-hosted/querying-data)以获取更多信息。
+
+完成这些步骤后，`dev`和`build`命令应该可以使用。
+
+## 下一步
+
+* [查询数据](/docs/self-hosted/querying-data)
+* 如果你想更改Git提供者、数据库适配器或身份验证提供者，请查看[参考](/docs/reference/self-hosted/overview/)。
+* 有问题吗？欢迎在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中提问。
