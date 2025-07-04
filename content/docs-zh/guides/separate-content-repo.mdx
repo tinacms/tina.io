@@ -8,31 +8,31 @@ previous: ''
 
 ## 介绍
 
-Tina支持从一个独立的Git仓库获取内容。通过这种方法，你可以继续在你的“网站仓库”中定义Tina配置，但文档将会保存在其他地方。
+Tina支持从一个独立的Git仓库获取内容。通过这种方式，您可以继续在“网站仓库”中定义您的Tina配置，但文档将保存在其他地方。
 
 ### 为什么？
 
-你可能出于多种原因想要这样做，例如：
+您可能出于多种原因想要这样做，例如：
 
-* 将你的网站代码与内容文件解耦，这样你的提交历史就不会混合内容更新和代码更新
-* 避免必须给予TinaCloud对你网站代码的写入权限（只需给予对内容仓库的访问权限）
+* 将您的网站代码与内容文件解耦，这样您的提交历史就不会混合内容更新和代码更新
+* 避免必须给予TinaCloud对您网站代码的写入权限（只需给予对您的内容仓库的访问权限）
 
 <WarningCallout
   body={<>
-    在本指南中，我们将提到“网站仓库”和“内容仓库”。“网站仓库”是你实际运行网站的地方，而“内容仓库”是你存储Markdown内容的地方
+    在本指南中，我们将提到“网站仓库”和“内容仓库”。“网站仓库”是您实际运行网站的地方，而“内容仓库”是您存储Markdown内容的地方
   </>}
 />
 
 ### 要求
 
-* 你必须在本地机器上同时检出“内容仓库”和“网站仓库”。
-* 你必须在Tina配置中提供内容仓库的位置（下面会详细介绍）。
-* 在进行更改时，你需要确保已将*两个*仓库推送到GitHub，且“内容仓库”的更改优先
-* 在进行更改时，你需要在网站仓库和内容仓库之间同步`tina/`中的生成文件（如`tina-lock.json`、`__generated__`文件等）
+* 您必须在本地机器上同时检出“内容仓库”和“网站仓库”。
+* 您必须在Tina配置中提供内容仓库的位置（下面会详细介绍）。
+* 在进行更改时，您需要确保已将*两个*仓库推送到GitHub，并且“内容仓库”的更改优先。
+* 在进行更改时，您需要在网站仓库和内容仓库之间同步`tina/`中的生成文件（例如`tina-lock.json`、`__generated__`文件等）
 
 ## 创建网站仓库
 
-我们已经部署了一个基本的起始“网站仓库”，你可以克隆它以开始。
+我们已经部署了一个基本的起始“网站仓库”，您可以克隆它以开始使用。
 
 ```sh
 git clone git@github.com:tinacms/separate-website-repo.git
@@ -48,7 +48,7 @@ git clone git@github.com:tinacms/separate-website-repo.git
 mkdir -p ../demo-content-repo/content/pages && touch ../demo-content-repo/content/pages/home.mdx && echo "Hello" >> ../demo-content-repo/content/pages/home.mdx
 ```
 
-此命令创建了一个文件夹（`demo-content-repo`）并在`content/pages`目录中添加了一个MDX文件，我们将在Tina配置中使用该目录定义`page`集合。
+此命令创建了一个文件夹（`demo-content-repo`）并在`content/pages`目录中添加了一个单独的MDX文件，我们将在Tina配置中为`page`集合使用该目录。
 
 ## 本地开发
 
@@ -68,23 +68,23 @@ yarn dev
 
 打开`http://localhost:3000/admin/index.html`。
 
-从这里你可以在`tina/config.js`中为你的内容模型添加更多字段。[访问文档](https://tina.io/docs/schema/)以了解更多关于内容建模的信息。
+从这里，您可以在`tina/config.js`中为您的内容模型添加更多字段。[访问文档](https://tina.io/docs/schema/)以了解更多关于内容建模的信息。
 
-## 部署你的内容仓库
+## 部署您的内容仓库
 
 接下来，我们将从“内容仓库”创建一个TinaCloud项目
 
-1. 在你的内容仓库中初始化Git并推送到GitHub。
+1. 在您的内容仓库中初始化Git并将其推送到GitHub。
 2. 从那里[连接到TinaCloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
 3. 完成后，为`main`分支[创建一个令牌](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens)，或使用`*`允许所有分支。
 
-切换回你的“网站仓库”并设置一个`.env`文件以在连接到TinaCloud时使用：
+切换回您的“网站仓库”并设置一个`.env`文件以在连接到TinaCloud时使用：
 
 ```
 cp .env.example .env
 ```
 
-当你运行`tinacms build`时，它将使用这些凭据连接到TinaCloud而不是本地服务器：
+当您运行`tinacms build`时，它将使用这些凭据连接到TinaCloud而不是本地服务器：
 
 ```sh
 yarn build
@@ -92,18 +92,18 @@ yarn build
 
 ## 管理跨仓库的架构更改
 
-当你修改Tina架构（tina/config.(ts/js)）
+当您修改Tina架构（tina/config.(ts/js)）
 
-1. 运行tinacms build以重新生成文件 - Tina将重新生成文件，如你的tina-lock.json
-2. 提交并推送这些更改到你的网站仓库和内容仓库，以确保跨构建的兼容性
+1. 运行tinacms build以重新生成文件 - Tina将重新生成文件，如您的tina-lock.json
+2. 提交并推送这些更改到您的网站仓库和内容仓库，以确保跨构建的兼容性
 
 ## 路径配置注意事项
 
-在你的tina/config.(ts/js)中定义集合路径时，避免设置path: ''。因为Tina期望一个相对于文件夹的路径。使用''可能会导致在创建新文档时出现错误，因为Tina在保存时会添加一个/，导致无效的GitHub路径。
+在您的tina/config.(ts/js)中定义集合路径时，避免设置path: ''。因为Tina期望一个相对于文件夹的路径。使用''可能会导致创建新文档时出现错误，因为Tina在保存时会添加一个/，导致无效的GitHub路径。
 
 ## 静态网站生成器兼容性
 
-如果你使用的是Next.js以外的静态网站生成器（SSG），如Astro。确保你的内容管道忽略内容仓库中的tina/目录。Tina的配置文件不是内容文件，这可能会导致解析错误。
+如果您使用的是Next.js以外的静态网站生成器（SSG），例如Astro。确保您的内容管道忽略内容仓库中的tina/目录。Tina的配置文件不是内容文件，这可能会导致解析错误。
 
 ```javascript
 export default defineCollection) {
@@ -118,4 +118,4 @@ export default defineCollection) {
 
 * [Tina 文档](https://tina.io/docs)
 
-你可以查看[Tina GitHub 仓库](https://github.com/tinacms/tinacms) - 欢迎你的反馈和贡献！
+您可以查看[Tina GitHub 仓库](https://github.com/tinacms/tinacms) - 欢迎您的反馈和贡献！
