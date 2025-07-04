@@ -1,0 +1,23 @@
+{
+  "seo": {
+    "title": "TinaCMS developer certifications",
+    "description": "Earn a TinaCMS Developer Credly Badge for LinkedIn. The badge shows that you're a TinaCMS certified developer!"
+  },
+  "blocks": [
+    {
+      "headline": "TinaCMS developer certifications",
+      "text": "We encourage developers to get verified by running TinaCMS and completing the basics before implementing it on a real project.",
+      "buttons": [
+        {
+          "label": "Get certified",
+          "icon": false,
+          "variant": "blue",
+          "size": "large",
+          "url": "https://github.com/tinacms/tinacms/blob/main/_docs/dev-badge.md",
+          "_template": "actions"
+        }
+      ],
+      "_template": "hero"
+    }
+  ]
+}
