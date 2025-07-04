@@ -59,6 +59,10 @@
         {
           "question": "Step 8",
           "answer": "We will review your video and if successful, you will receive a badge from [Credly](https://info.credly.com/).\n"
+        },
+        {
+          "question": "Step 9",
+          "answer": "Accept and share the badge on LinkedIn.\n"
         }
       ],
       "color": "seafoam",
