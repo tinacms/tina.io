@@ -34,11 +34,11 @@
         },
         {
           "question": "Step 2",
-          "answer": "Get TinaCMS running and deploy a site using [tina.io](https://tina.io) and [TinaCloud.](https://app.tina.io/signin)\n\n* This can be a personal site or one you’ve built for work\n"
+          "answer": "Get TinaCMS running and deploy a site using a starter template and [TinaCloud.](https://app.tina.io/signin)\n\n* This can be a personal site or one you’ve built for work\n"
         },
         {
           "question": "Step 3",
-          "answer": "Send an email to [badge@tina.io](mailto\\:badge@tina.io). Answer these questions with supporting screenshots:\n\n* On your site, how does the pull request workflow work?\n* How do you configure branch previews?\n* What is the cause of a schema mismatch error and how do you resolve it?\n* Your tina /config file - what changes have you made and why?\n"
+          "answer": "Send an email to [badge@tina.io](mailto\\:badge@tina.io). Answer these questions with supporting screenshots:\n\n* On your site, how does the pull request workflow work?\n* How do you configure branch previews?\n* What is the cause of a schema mismatch error and how do you resolve it?\n"
         },
         {
           "question": "Step 4",
