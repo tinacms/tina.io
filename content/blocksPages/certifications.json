@@ -30,7 +30,7 @@
       "questions": [
         {
           "question": "Step 1",
-          "answer": "Join Tina's Discord channel - You can leave a message on the 'introductions' channel:\n\n* Hi, I am trying out TinaCMS with NextJS, Astro, etc.\n* After I have evaluated TinaCMS, I plan to use it to build a blog, portfolio, documentation site, etc.\n* Previous CMSs I have used include...\n"
+          "answer": "Join Tina's Discord channel - You can leave a message on the 'introductions' channel:\n\n* Hi, I am trying out TinaCMS with NextJS, Astro, etc. to build a blog, portfolio, documentation site, etc.\n* Previous CMSs I have used include...\n"
         },
         {
           "question": "Step 2",
