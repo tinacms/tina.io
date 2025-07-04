@@ -1,4 +1,5 @@
 ---
+cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
 last_edited: '2025-02-21T00:25:47.105Z'
 next: ''
@@ -24,11 +25,15 @@ For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
 
 Check out our communities at [tina.io/community](https://tina.io/community).
 
-## 3. What versions of Node are supported?
+## 3. Do I need a certified person to use Tina?
+
+Anyone can start using Tina right away but it is designed for developers to setup and customize. A [certified developer](https://www.credly.com/org/superior-software-for-windows-ssw/badge/tinacms-developer) can accelerate the setup, fine-tune the configuration, and ensure best-practice architecture.
+
+## 4. What versions of Node are supported?
 
 TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.
 
-## 4. What is Tina's tech stack?
+## 5. What is Tina's tech stack?
 
 ### TinaCloud
 
@@ -40,7 +45,7 @@ TinaCMS is supported on currently maintained LTS versions of Node.js and works w
 
 * CMS - **React 18**
 
-## 5. What features are unavailable in self-hosted Tina compared to TinaCloud?
+## 6. What features are unavailable in self-hosted Tina compared to TinaCloud?
 
 When comparing TinaCloud with self-hosting Tina, there are specific features unique to TinaCloud. These include:
 
@@ -66,7 +71,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 The self-hosted backend does not currently have endpoints to support search functionality.
 
-## 5. How to enable co-author on Git commits?
+## 7. How to enable co-author on Git commits?
 
 By default when using TinaCloud, the author on Git commits is the [TinaCloud GitHub app](https://github.com/apps/tina-cloud-app). Some users prefer to know who made the change.
 
@@ -85,13 +90,13 @@ Follow these steps to set it up:
 
 Find out more about [Git Co-Authoring](/docs/tina-cloud/git-co-authoring).
 
-## 6. Why do I need a database when using markdown?
+## 8. Why do I need a database when using markdown?
 
-A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations. 
+A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations.
 
 Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by TinaCloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.
 
-## 7. What is "Local Mode" vs "Prod Mode"?
+## 9. What is "Local Mode" vs "Prod Mode"?
 
 ### Local Mode
 
@@ -99,13 +104,11 @@ When developers are developing locally, it's often convenient to load/save conte
 
 When in local-mode, you **will not** need to login to enter edit-mode.
 
-
 <WarningCallout
   body={<>
     **Note:** Local-mode is meant for developing locally, and will not work when your site is hosted on production. When in local-mode, Tina tries to hit `http://localhost:4001`, which isn't available at runtime on your production site (and neither is the underlying filesystem content).
   </>}
 />
-
 
 ### Prod Mode
 
@@ -113,11 +116,11 @@ Once you are ready to host your site in production and put editing behind authen
 
 Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using [TinaCloud](/docs/tina-cloud/dashboard/), Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Any changes that are saved by your editors will be committed to the configured branch in your GitHub repository.
 
-## 8. Does TinaCloud only work with GitHub repositories?
+## 10. Does TinaCloud only work with GitHub repositories?
 
 Currently yes, the first Git provider that TinaCloud integrates with is GitHub. Other Git providers may be available in the future.
 
-## 9. Does TinaCloud work with Monorepos?
+## 11. Does TinaCloud work with Monorepos?
 
 It does! TinaCloud can work with sites inside monorepos by specifying the path to your `tina` folder in your project configuration.
 
@@ -133,7 +136,7 @@ Here's an example monorepo structure that works with TinaCloud:
 
 See [Path To Tina](/docs/tina-cloud/dashboard/projects/#path-to-tina) for more information.
 
-## 10. Why does Tina.io login window doesn't close when logging in from a site?
+## 12. Why does Tina.io login window doesn't close when logging in from a site?
 
 When a user logs in from your site, we will pop open a login window. When login is complete, we will attempt to send a message back to the main window.
 
@@ -149,7 +152,7 @@ The most common reasons for this issue are:
 
 There is a known limitation where TinaCMS doesn't load assets correctly when the admin is deployed to a sub-path: (`https://jamespohalloran.github.io/my-site-root/admin/` for example). To resolve the issue, in your [Tina config file](/docs/reference/config/), set the `build.basePath` property to value of the sub-path (e.g. `my-site-root`).
 
-## 11. How do I resolve "Failed loading TinaCMS assets" error?
+## 13. How do I resolve "Failed loading TinaCMS assets" error?
 
 This error means that the TinaCMS admin HTML file failed to load the JavaScript bundle. This generally happens for a few reasons:
 
@@ -165,7 +168,7 @@ If your site is served at a sub-directory, ensure that your `build.basePath` is 
 
 **Video: FAQ - Setting a base path for TinaCMS (3 min)**
 
-## 12. What are the common TinaCloud errors?
+## 14. What are the common TinaCloud errors?
 
 ### 1. How do I resolve the `Unable to find record 'tina/__generated__/_graphql.json'` error?
 
@@ -243,7 +246,7 @@ The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overvi
 
 ### 8. How do I resolve `Invalid ` errors?
 
-When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud Site URLs. 
+When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud Site URLs.
 
 To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
 
@@ -253,7 +256,7 @@ To resolve this, ensure that one of the URLs specified in your TinaCloud Site UR
 ![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)\
 **Figure: TinaCloud Site URLs settings**
 
-## 13. How to to access local GraphQL server when it's not running or in prod?
+## 15. How to to access local GraphQL server when it's not running or in prod?
 
 ### In production
 
@@ -263,7 +266,7 @@ Make sure your API URL isn't set to point at your local GraphQL server when in p
 
 If you are working locally, make sure your [GraphQL server is running](/docs/graphql/cli/).
 
-## 14. Vercel Deployment Issues -  What are the common issues when deploying starter templates?
+## 16. Vercel Deployment Issues -  What are the common issues when deploying starter templates?
 
 ### 1. Popup blocker prevents Vercel from installing their GitHub app
 
@@ -273,3 +276,7 @@ After choosing which starter template to deploy and being redirected to Vercel, 
 **Figure: Popup blocked**
 
 To fix, check your browser's address bar for blocked popups, allow them, and retry.
+
+## 17. Do you support Git LFS?
+
+Unfortunately we do not support Git LFS at this time due to limitations with the GitHub API.

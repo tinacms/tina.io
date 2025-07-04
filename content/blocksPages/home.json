@@ -2,6 +2,7 @@
   "seo": {
     "title": "TinaCMS – Headless CMS with GitHub & Markdown Support",
     "description": "Combine the power of GitHub and Markdown with TinaCMS for seamless content management. Empower developers and creators to edit, preview, and manage static and dynamic sites effortlessly.",
+    "canonicalUrl": "https://tina.io",
     "hasCustomSuffix": true
   },
   "blocks": [
@@ -29,7 +30,6 @@
             },
             {
               "label": "npx create-tina-app@latest",
-              "infoText": "Run this NPX command, pick a starter template, and have your site live in minutes. [Learn More](/docs/introduction/using-starter)\n",
               "_template": "codeButton"
             }
           ],
@@ -257,6 +257,9 @@
       "_template": "carouselFeature"
     },
     {
+      "_template": "events"
+    },
+    {
       "blockSettings": {
         "isFullscreen": false
       },
@@ -265,9 +268,6 @@
       "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
       "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
       "_template": "videoEmbed"
-    },
-    {
-      "_template": "events"
     },
     {
       "features": [

@@ -1,4 +1,4 @@
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy } from 'react-icons/md';
 
 export const CodeToolbar = ({
   lang,
@@ -10,7 +10,7 @@ export const CodeToolbar = ({
   tooltipVisible: boolean;
 }) => (
   <div className="code-toolbar bg-gray-800 text-white px-4 py-2 lg:rounded-t-xl text-sm font-semibold flex justify-between items-center">
-    <span className="font-tuner">{lang || 'Unknown'}</span>
+    <span className="font-ibm-plex">{lang || 'Unknown'}</span>
     <div className="flex items-center ml-4 space-x-4 relative overflow-visible">
       <button
         onClick={onCopy}

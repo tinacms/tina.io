@@ -97,14 +97,14 @@ function createListener(
     setActiveIds(newActiveIds);
   };
 
-  return function onScroll() {
+  return () => {
     if (!tick) {
-      setTimeout(() => {
+      window.requestAnimationFrame(() => {
         throttledScroll();
         tick = false;
-      }, THROTTLE_INTERVAL);
+      });
+      tick = true;
     }
-    tick = true;
   };
 }
 
@@ -163,14 +163,10 @@ export default function ScrollBasedShowcase(data: {
   /** Throttled scroll event */
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const activeTocListener = createListener(
-      componentRef,
-      headings,
-      setActiveIds
-    );
-    window.addEventListener('scroll', activeTocListener);
-    return () => window.removeEventListener('scroll', activeTocListener);
-  }, [headings, windowSize]);
+    const listener = createListener(componentRef, headings, setActiveIds);
+    window.addEventListener('scroll', listener, { passive: true });
+    return () => window.removeEventListener('scroll', listener);
+  }, [headings]);
 
   /** Update active image when activeIds change */
   useEffect(() => {

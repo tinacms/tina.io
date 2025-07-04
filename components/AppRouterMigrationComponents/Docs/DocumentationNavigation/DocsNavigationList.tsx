@@ -29,8 +29,8 @@ const NavTitle = ({
   const headerLevelClasses = {
     0:
       color === 'blue'
-        ? 'opacity-100 font-tuner-light text-blue-700 text-xl pt-2'
-        : 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
+        ? 'opacity-100 font-ibm-plex-light text-blue-700 text-xl pt-2'
+        : 'opacity-100 font-ibm-plex-light text-orange-500 text-xl pt-2',
     1: {
       default: 'text-base font-sans pt-1 text-gray-800',
       selected: 'text-base font-sans pt-1 font-bold',

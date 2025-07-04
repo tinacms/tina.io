@@ -1,6 +1,6 @@
 ---
 title: Image Fields
-last_edited: '2025-03-13T04:53:47.012Z'
+last_edited: '2025-06-11T02:03:24.455Z'
 next: ''
 previous: ''
 ---
@@ -11,6 +11,8 @@ It supports [external media library integration](http://localhost:3000/docs/refe
 
 Images can be uploaded to the image component with drag-and-drop actions, or with the dedicated media manager that comes with the CMS.
 
+> To modify which types of files can be uploaded to the media manager, find the [list of supported file types](/docs/reference/media/repo-based#supported-media-types) and [how to override the default accepted media types](/docs/reference/media/overriding-accepted-media-types)
+
 ![](/img/docs/reference/SCR-20250313-nzft.png)
 
 ## Type Definition
@@ -20,17 +22,17 @@ Images can be uploaded to the image component with drag-and-drop actions, or wit
 <apiReference
   property={[
     {
-      name: 'type',
-      type: 'string',
+      name: "type",
+      type: "string",
       description: 'Set this to `"image"` to use the Image Field.\n',
-      required: true,
+      required: true
     },
     {
-      name: 'name',
-      description: 'The name of the field for internal use.\n',
-      type: 'string',
-      required: true,
-    },
+      name: "name",
+      description: "The name of the field for internal use.\n",
+      type: "string",
+      required: true
+    }
   ]}
 />
 

@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
 
-const API_KEY = process.env.AZURE_AI_API_KEY;
+const API_KEY = process.env.TINA_OPENAI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
   f.trim()
 );
@@ -18,12 +18,13 @@ async function translateMdx(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
     const response = await axios({
       method: 'post',
-      url: `${config.azureApiBase}/openai/deployments/${config.azureDeploymentId}/chat/completions?api-version=${config.azureApiVersion}`,
+      url: config.API_BASE_URL,
       headers: {
         'Content-Type': 'application/json',
-        'api-key': API_KEY,
+        Authorization: `Bearer ${API_KEY}`,
       },
       data: {
+        model: config.openaiModel || 'gpt-4',
         messages: [
           {
             role: 'system',

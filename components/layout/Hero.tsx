@@ -14,7 +14,7 @@ export const Hero = ({ narrow = false, children }) => {
 export const HeroTitle = styled(({ narrow, children, ...styleProps }) => {
   return <h2 {...styleProps}>{children}</h2>
 })`
-  font-family: var(--font-tuner);
+  font-family: var(--font-ibm-plex);
   font-weight: bold;
   font-style: normal;
   font-size: 2.5rem;

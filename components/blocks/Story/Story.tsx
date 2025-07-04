@@ -210,7 +210,7 @@ const Pane = ({ data, position, ...props }) => {
         {data.file && (
           <div className="flex flex-col justify-start items-start">
             {data.file.name && (
-              <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-linear-to-tl from-blue-800 to-blue-900 px-7 py-3 font-tuner">
+              <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-blue-800 bg-linear-to-tl from-blue-800 to-blue-900 px-7 py-3 font-ibm-plex">
                 {data.file.name}
               </div>
             )}
@@ -417,7 +417,7 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
         </div>
         <div className="drop-shadow-sm flex flex-col gap-6 lg:gap-8" ref={ref}>
           <div className="title-wrapper">
-            <h2 className="font-tuner inline-block text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+            <h2 className="font-ibm-plex inline-block text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
               {item.title}
             </h2>
           </div>

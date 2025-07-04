@@ -19,13 +19,13 @@ const Roadmap = ({ data, last = false, index }) => {
       </div>
       <div className="flex-1 pt-10 pb-4 flex flex-col items-start gap-4">
         {data.headline && (
-          <h3 className="text-2xl lg:text-3xl font-tuner lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent">
+          <h3 className="text-2xl lg:text-3xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent">
             {data.headline}
           </h3>
         )}
         {data.content && <TinaMarkdown content={data.content} />}
         {data.status && (
-          <span className="rounded-full w-auto grow-0 flex items-center font-tuner whitespace-nowrap leading-snug text-blue-800 px-4 pt-[7px] pb-[5px] text-sm font-medium border border-blue-100 bg-linear-to-br from-white to-blue-50">
+          <span className="rounded-full w-auto grow-0 flex items-center font-ibm-plex whitespace-nowrap leading-snug text-blue-800 px-4 pt-[7px] pb-[5px] text-sm font-medium border border-blue-100 bg-linear-to-br from-white to-blue-50">
             {data.status}
           </span>
         )}
@@ -39,7 +39,7 @@ export function RoadmapGridBlock({ data, index }) {
   return (
     <section key={'roadmap-grid-' + index} className={`w-full`}>
       <Container width="narrow">
-        <h3 className="font-tuner inline-block text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4">
+        <h3 className="font-ibm-plex inline-block text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4">
           {data.headline}
         </h3>
         <div className="">

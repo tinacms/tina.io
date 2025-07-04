@@ -1,13 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { Card } from 'components/blocks/Events/Events';
+import { useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 
-const EventsPageHeader = ({ title, byline }: { title: string; byline: string }) => {
+const EventsPageHeader = ({
+  title,
+  byline,
+}: {
+  title: string;
+  byline: string;
+}) => {
   return (
     <div className="text-center mx-auto py-2">
-      <h1 className="pt-20 pb-5 text-4xl font-tuner bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+      <h1 className="pt-20 pb-5 text-4xl font-ibm-plex bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
         {title}
       </h1>
       <div>
@@ -17,7 +23,15 @@ const EventsPageHeader = ({ title, byline }: { title: string; byline: string }) 
   );
 };
 
-export default function EventsClient({ query, data, vars }: { query: string; data: any; vars: any }) {
+export default function EventsClient({
+  query,
+  data,
+  vars,
+}: {
+  query: string;
+  data: any;
+  vars: any;
+}) {
   const tinaData = useTina({
     query,
     data,
@@ -27,18 +41,26 @@ export default function EventsClient({ query, data, vars }: { query: string; dat
   const now = new Date();
 
   // Extract events data
-  const events = tinaData.data.eventsConnection.edges.map((edge: any) => edge.node);
+  const events = tinaData.data.eventsConnection.edges.map(
+    (edge: any) => edge.node
+  );
   const eventsData = events[0];
 
   // Filter and sort upcoming events
   const upComingEvents = eventsData.cardItems
     .filter((event) => new Date(event.startDate).getTime() >= now.getTime())
-    .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+    .sort(
+      (a, b) =>
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    );
 
   // Filter and sort past events
   const pastEvents = eventsData.cardItems
     .filter((event) => new Date(event.startDate).getTime() < now.getTime())
-    .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+    .sort(
+      (a, b) =>
+        new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+    );
 
   const [visibleCards, setVisibleCards] = useState<string[]>([]);
 
@@ -54,7 +76,9 @@ export default function EventsClient({ query, data, vars }: { query: string; dat
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.2 });
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.2,
+    });
     const cards = document.querySelectorAll('.event-card');
     cards.forEach((card) => observer.observe(card));
 
@@ -73,7 +97,9 @@ export default function EventsClient({ query, data, vars }: { query: string; dat
             key={index}
             data-id={`upcoming-${index}`}
             className={`event-card transform transition duration-500 ${
-              visibleCards.includes(`upcoming-${index}`) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              visibleCards.includes(`upcoming-${index}`)
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-10'
             }`}
           >
             <Card cardItem={{ ...cardItem }} onHover={() => {}} />
@@ -89,7 +115,9 @@ export default function EventsClient({ query, data, vars }: { query: string; dat
             key={index}
             data-id={`past-${index}`}
             className={`event-card transform transition duration-500 ${
-              visibleCards.includes(`past-${index}`) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              visibleCards.includes(`past-${index}`)
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-10'
             }`}
           >
             <Card cardItem={{ ...cardItem }} onHover={() => {}} />

@@ -1,5 +1,5 @@
-import React from 'react'
 import Link from 'next/link'
+import React from 'react'
 import TinaIconSvg from '../../public/svg/tina-icon.svg'
 
 export const TinaIcon = ({
@@ -18,7 +18,7 @@ export const TinaIcon = ({
           />
           {children && (
             <span
-              className={`text-2xl leading-tight mt-2.5 ml-2 font-tuner ${
+              className={`text-2xl leading-tight mt-2.5 ml-2 font-ibm-plex ${
                 color === 'orange' ? 'text-orange-500' : 'text-white'
               }`}
             >

@@ -294,7 +294,7 @@ export function AppNavBar({ sticky = true }) {
             } `}
           >
             <button
-              className="absolute top-6 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-tuner whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
+              className="absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
               onClick={toggleMenu}
             >
               <BiMenu
@@ -322,7 +322,7 @@ export function AppNavBar({ sticky = true }) {
                   <button
                     className={`outline-hidden hover:animate-jelly ${
                       animateFlag ? 'animate-bounce' : ''
-                    } hidden max-[639px]:block`}
+                    } hidden max-[1023px]:block`}
                     onClick={() => openModal('LanguageSelect')}
                   >
                     {selectedFlag === 'en' ? (
@@ -342,7 +342,7 @@ export function AppNavBar({ sticky = true }) {
                           key={`${index}-${subIndex}`}
                           className={`group ${navLinkClasses} py-2`}
                         >
-                          <Link href={subItem.href}>
+                          <Link href={subItem.href} onClick={toggleMenu}>
                             <span className="">
                               {subItem.label}
                               {subItem.href.startsWith('https://') && (
@@ -355,7 +355,11 @@ export function AppNavBar({ sticky = true }) {
                     )
                   ) : 'href' in item ? (
                     <li key={index} className={`group ${navLinkClasses}`}>
-                      <Link href={item.href} className="py-2">
+                      <Link
+                        href={item.href}
+                        className="py-2"
+                        onClick={toggleMenu}
+                      >
                         {item.label}
                       </Link>
                     </li>
@@ -369,6 +373,7 @@ export function AppNavBar({ sticky = true }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center"
+                        onClick={toggleMenu}
                       >
                         <span className="flex items-center">
                           <svg
@@ -438,7 +443,7 @@ export function AppNavBar({ sticky = true }) {
             <button
               className={`outline-hidden hover:animate-jelly ${
                 animateFlag ? 'animate-bounce' : ''
-              } hidden min-[640px]:block`}
+              } hidden min-[1024px]:block`}
               onClick={() => openModal('LanguageSelect')}
             >
               {selectedFlag === 'en' ? (
@@ -492,7 +497,11 @@ export function AppNavBar({ sticky = true }) {
                     case stringItemString:
                       return (
                         <li key={index} className={`group ${navLinkClasses}`}>
-                          <Link href={item.href} className="py-2 w-max">
+                          <Link
+                            href={item.href}
+                            className="py-2 w-max"
+                            onClick={toggleMenu}
+                          >
                             {item.label}
                           </Link>
                         </li>
@@ -501,7 +510,10 @@ export function AppNavBar({ sticky = true }) {
                       return (
                         <li key={index} className={`group ${navLinkClasses}`}>
                           <div className="relative group">
-                            <span className="flex items-center cursor-pointer">
+                            <span
+                              className="flex items-center cursor-pointer"
+                              onClick={toggleMenu}
+                            >
                               {item.label}
                               <BiChevronDown
                                 className={`ml-1 text-blue-200 group-hover:text-blue-400`}
@@ -515,7 +527,10 @@ export function AppNavBar({ sticky = true }) {
                                   key={subIndex}
                                   className="py-2 px-2 flex items-center"
                                 >
-                                  <Link href={subItem.href}>
+                                  <Link
+                                    href={subItem.href}
+                                    onClick={toggleMenu}
+                                  >
                                     <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                                       {subItem.label}
                                       {subItem.href.startsWith('https://') && (
@@ -540,6 +555,7 @@ export function AppNavBar({ sticky = true }) {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center"
+                            onClick={toggleMenu}
                           >
                             <span className="flex items-center">
                               <svg

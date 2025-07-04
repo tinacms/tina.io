@@ -19,7 +19,7 @@ export function FlyingBlock({ data, index }) {
           <div className="learnImageWrapper">
             <Image
               className="learnImage"
-              src="/img/flyingTina.png"
+              src="/img/3d-flying-llama.png"
               alt="Tina learning"
               width={600}
               height={600}
@@ -109,7 +109,7 @@ export function FlyingBlock({ data, index }) {
         }
 
         .title {
-          font-family: var(--font-tuner);
+          font-family: var(--font-ibm-plex);
           font-weight: bold;
           line-height: 1.4;
           margin-bottom: 1.5rem;

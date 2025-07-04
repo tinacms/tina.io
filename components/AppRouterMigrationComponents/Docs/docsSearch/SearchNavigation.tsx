@@ -147,7 +147,7 @@ export const SearchResultsOverflowTabs = ({ query }) => {
           </nav>
         </div>
         {isLoading && (
-          <div className="pt-4 px-4 text-md bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-tuner">
+          <div className="pt-4 px-4 text-md bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent font-ibm-plex">
             Mustering all the Llamas...
           </div>
         )}
@@ -230,7 +230,7 @@ export const DocsSearchBarHeader = ({
         <h1
           className={`${
             !learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-          } hover:opacity-100 text-3xl pb-2 font-tuner bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
+          } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(false)}
         >
           {isZh ? '文档' : 'Docs'}
@@ -238,7 +238,7 @@ export const DocsSearchBarHeader = ({
         <h1
           className={`${
             learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
-          } hover:opacity-100 text-3xl pb-2 font-tuner bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
+          } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
           onClick={() => setLearnActive(true)}
         >
           {isZh ? '学习' : 'Learn'}

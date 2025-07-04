@@ -51,13 +51,13 @@ export function useTocListener(data: any) {
   React.useEffect(() => {
     if (!contentRef.current) return;
     const tocListener = createTocListener(contentRef, setActiveIds);
-    const handleScroll = () => tocListener(); // Define scroll handler
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initialize active IDs on mount
+    // Use passive event listener for better scroll performance
+    window.addEventListener('scroll', tocListener, { passive: true });
+    tocListener(); // Initialize active IDs on mount
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', tocListener);
     };
   }, [data]);
 

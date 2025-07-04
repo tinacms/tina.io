@@ -64,7 +64,7 @@ const CarouselItem = ({
           )}
           {headline && (
             <h3
-              className={` md:text-3xl text-2xl font-tuner leading-tight cursor-pointer pl-3 ${
+              className={` md:text-3xl text-2xl font-ibm-plex leading-tight cursor-pointer pl-3 ${
                 isHovered && !isSmallOrMediumScreen
                   ? 'text-transparent lg:text-3xl bg-linear-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
                   : 'text-black lg:text-xl'
@@ -268,7 +268,7 @@ export default function CarouselFeatureBlock({ data, index }) {
           <div className="flex flex-col order-2 min-h-[880px] lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible ">
             <h2
               ref={titleRef}
-              className="lg:m-0 pl-3 font-tuner inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
+              className="lg:m-0 pl-3 font-ibm-plex inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
             >
               {data.blockHeadline}
             </h2>
@@ -313,7 +313,7 @@ export default function CarouselFeatureBlock({ data, index }) {
               )}
             {!isShowingAll && isTouchScreen ? (
               <button
-                className="text-blue-500 text-lg font-tuner cursor-pointer"
+                className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
                 onClick={() => setIsShowingAll(true)}
               >
                 See all
@@ -321,7 +321,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             ) : null}
             {isShowingAll && isTouchScreen ? (
               <button
-                className="text-blue-500 text-lg font-tuner cursor-pointer"
+                className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
                 onClick={() => {
                   setTimeout(() => {
                     setIsShowingAll(false);

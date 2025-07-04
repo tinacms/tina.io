@@ -9,7 +9,7 @@ export const CardGrid = ({ props }) => {
           href={card.link}
           className="flex flex-col justify-between p-6 bg-transparent hover:bg-seafoam-100 transition-all ease-out duration-150 rounded-lg group"
         >
-          <h2 className="bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 group-hover:from-blue-700 group-hover:via-blue-600  group-hover:to-blue-500 bg-clip-text text-transparent font-bold text-2xl leading-snug font-tuner transition-all ease-out duration-150">
+          <h2 className="bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 group-hover:from-blue-700 group-hover:via-blue-600  group-hover:to-blue-500 bg-clip-text text-transparent font-bold text-2xl leading-snug font-ibm-plex transition-all ease-out duration-150">
             {card.title}
           </h2>
 
