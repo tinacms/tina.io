@@ -1,0 +1,110 @@
+---
+id: /docs/graphql/queries
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/graphql/README.md
+seo:
+  title: TinaCMS中的特定模式查询
+  description: >-
+    了解TinaCMS如何根据您的内容模式生成特定模式的GraphQL查询。查看集合和文档的可用查询、变更和示例。
+title: 概述
+last_edited: '2025-06-16T00:13:24.269Z'
+next: ''
+previous: ''
+---
+
+## 特定模式查询
+
+当您[定义一个模式](/docs/schema)时，TinaCMS将生成一个GraphQL API，将您的本地文件系统视为数据库。您可以通过[CLI](/docs/graphql/cli)在本地提供此模式，或者从TinaCloud中使用它。
+
+GraphQL API将生成特定于您定义的模式的查询。
+
+**可用查询**：
+
+* `<collection>`
+* `<collection>Connection`
+
+**可用变更**
+
+* `update<collection>`
+* `addPendingDocument`
+
+对于给定的集合，其`name`将用于生成`<collection>`和`<collection>Connection`查询，以及`update<collection>`变更。
+
+### 通用查询
+
+作为特定模式查询的替代，GraphQL API还提供以下通用查询：
+
+* document
+* collection
+* collections
+* addPendingDocument
+* updateDocument
+
+## 示例模式
+
+使用以下模式，我们将向您展示如何使用每个特定模式的查询/变更。
+
+```ts
+import { defineConfig } from 'tinacms'
+
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        label: '博客文章',
+        name: 'post',
+        path: 'content/posts',
+        format: 'json',
+        fields: [
+          {
+            type: 'string',
+            label: '标题',
+            name: 'title',
+          },
+          {
+            type: 'string',
+            label: '类别',
+            name: 'category',
+          },
+          {
+            type: 'datetime',
+            label: '日期',
+            name: 'date',
+          },
+          {
+            type: 'reference',
+            label: '作者',
+            name: 'author',
+            collections: ['author'],
+          },
+        ],
+        indexes: [
+          {
+            name: 'category-date',
+            fields: [{ name: 'category' }, { name: 'date' }],
+          },
+        ],
+      },
+      {
+        label: '作者',
+        name: 'author',
+        format: 'json',
+        path: 'content/authors',
+        fields: [
+          {
+            type: 'string',
+            label: '姓名',
+            name: 'name',
+          },
+          {
+            type: 'string',
+            label: '头像',
+            name: 'avatar',
+          },
+        ],
+      },
+    ],
+  },
+})
+```
