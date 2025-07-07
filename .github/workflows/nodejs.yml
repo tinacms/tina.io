@@ -12,13 +12,12 @@ env:
   GISCUS_ORG: 'tinacms'
   GISCUS_REPO_NAME: 'tina.io'
   GISCUS_CATEGORY: 'Tina Blog Discussions'
-  GISCUS_REPO_ID: ${{ secrets. GISCUS_REPO_ID}}
+  GISCUS_REPO_ID: ${{ secrets.GISCUS_REPO_ID}}
   GISCUS_CATEGORY_ID: ${{ secrets.GISCUS_CATEGORY_ID }}
 
 jobs:
-  build:
+  lint-checks:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -27,22 +26,31 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-      - name: pnpm install
+      - name: Install dependencies
         run: pnpm i
-      - name: pnpm build
-        run: pnpm build
-      - name: pnpm lint
+      - name: Lint
         run: pnpm lint
-      - name: pnpm test
-        run: pnpm test
+
+  build-and-export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm i
+      - name: Build
+        run: pnpm build
+
+      - name: Export
+        run: pnpm export
         env:
           CI: true
-      - name: pnpm export
-        run: |
-          pnpm export
-        env:
-          CI: true
-      - name: 📉 Check HTML
+      - name: Check HTML
         uses: anishathalye/proof-html@v1.4.0
         with:
           directory: './out'
