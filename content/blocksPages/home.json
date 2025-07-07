@@ -7,9 +7,6 @@
   },
   "blocks": [
     {
-      "_template": "features"
-    },
-    {
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
