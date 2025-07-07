@@ -28,6 +28,7 @@ import { pagesCollection } from './collectionsSchema/pages';
 import { settingCollection } from './collectionsSchema/settings';
 import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud';
+import { testCollection } from './collectionsSchema/test';
 
 export const schema = defineSchema({
   collections: [
@@ -44,6 +45,7 @@ export const schema = defineSchema({
     footerCollection as Collection,
     conferenceTinaCMSCollection as Collection,
     settingCollection as Collection,
+    testCollection as Collection,
     {
       name: 'docsTableOfContents',
       label: 'Docs - Table of Contents',
