@@ -28,6 +28,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm i
+      - name: Generate Tina client
+        run: tinacms build
       - name: Lint
         run: pnpm lint
 
