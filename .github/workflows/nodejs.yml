@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pnpm i
       - name: Generate Tina client
-        run: tinacms build
+        run: pnpm tinacms build
       - name: Lint
         run: pnpm lint
 
