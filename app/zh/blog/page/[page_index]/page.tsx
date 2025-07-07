@@ -50,11 +50,11 @@ export default async function BlogPaginationPage({
 
   let postResponse = null;
   try {
-    postResponse = await client.queries.postConnection({
-      //TODO: 名字是约定俗称的，这里查询需要替换为postZh
+    postResponse = await client.queries.postZhConnection({
       first: posts.length,
       sort: 'date',
     });
+    console.log('Fetched postConnection:', postResponse);
   } catch (err) {
     console.error('Error fetching postConnection:', err);
     notFound();
@@ -62,7 +62,7 @@ export default async function BlogPaginationPage({
 
   let reversedPosts = [];
   try {
-    reversedPosts = postResponse?.data?.postConnection?.edges
+    reversedPosts = postResponse?.data?.postZhConnection?.edges
       ?.map((edge) => edge?.node)
       ?.filter(Boolean)
       ?.reverse();
@@ -77,7 +77,6 @@ export default async function BlogPaginationPage({
   );
 
   return (
-    //Better to refer to the same component
     <>
       <BlogIndexPageClient
         currentPageIndexNumber={pageIndex}

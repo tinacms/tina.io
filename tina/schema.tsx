@@ -16,6 +16,7 @@ import { defineSchema } from 'tinacms';
 import { itemTemplate } from '../components/toc/toc-item.template';
 import { submenuTemplate } from '../components/toc/toc-submenu.template';
 import { blogsCollection } from './collectionsSchema/blogs';
+import { blogsZhCollection } from './collectionsSchema/blogsZh';
 import { conferenceTinaCMSCollection } from './collectionsSchema/conference';
 import { docsCollection } from './collectionsSchema/docs';
 import { docsZhCollection } from './collectionsSchema/docsZh';
@@ -35,6 +36,7 @@ export const schema = defineSchema({
     docsCollection as Collection,
     docsZhCollection as Collection,
     blogsCollection as Collection,
+    blogsZhCollection as Collection,
     examplesCollection as Collection,
     meetingLinksCollection as Collection,
     whatsNewTinaCMSCollection as Collection,
