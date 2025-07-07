@@ -58,7 +58,6 @@ async function checkDocsChineseVersion(
     if (zhPath === 'docs') {
       zhPath = 'index';
     }
-    console.log('zhPath', zhPath);
     const res = await client.queries.docZh({
       relativePath: `${zhPath}.mdx`,
     });
