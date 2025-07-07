@@ -1,13 +1,13 @@
 {
   "seo": {
-    "title": "TinaCMS developer certifications",
-    "description": "Earn a TinaCMS Developer Credly Badge for LinkedIn. The badge shows that you're a TinaCMS certified developer!"
+    "title": "Professional TinaCMS certification",
+    "description": "Earn a Professional TinaCMS certification Badge for LinkedIn. The badge shows that you're a TinaCMS certified developer!"
   },
   "blocks": [
     {
       "features": [
         {
-          "headline": "TinaCMS developer certifications",
+          "headline": "Professional TinaCMS certification",
           "text": "We encourage all developers to earn a badge by demonstrating their knowledge and ability to answer questions and solve problems for their team. As a reward, each developer will, upon successful completion, receive 1 month of TinaCloud Teams Plus (valued at $49) for free. ",
           "media": [
             {
@@ -46,26 +46,6 @@
         },
         {
           "question": "That's it! You will receive your free TinaCloud coupon via email."
-        },
-        {
-          "question": "zzStep 5",
-          "answer": "Accept and share the badge on LinkedIn. Send us another email with a link to your LinkedIn.\n"
-        },
-        {
-          "question": "zzStep 5",
-          "answer": "Post the video to YouTube (or another video platform) - make sure that it is public.\n"
-        },
-        {
-          "question": "zzStep 6",
-          "answer": "Optional - Post your video on social media (e.g., LinkedIn, Discord, X...).\n"
-        },
-        {
-          "question": "zzStep 3",
-          "answer": "Read the [Tina editor best practices](https://tina.io/docs/using-tina-editor).\n"
-        },
-        {
-          "question": "zzStep 7",
-          "answer": "Email us at [badge@tina.io](mailto\\:badge@tina.io). Include links to:\n\n* Your video\n* Your social media posts (if applicable)\n"
         }
       ],
       "color": "seafoam",
