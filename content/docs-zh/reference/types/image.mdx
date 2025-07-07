@@ -1,0 +1,73 @@
+---
+title: 图片字段
+last_edited: '2025-06-11T02:03:24.455Z'
+next: ''
+previous: ''
+---
+
+一个专用的文件输入，用于存储上传图片的URL或路径。
+
+它支持[外部媒体库集成](http://localhost:3000/docs/reference/media/overview#external-media-providers)，也支持[基于仓库的媒体配置](http://localhost:3000/docs/reference/media/repo-based)。
+
+可以通过拖放操作将图片上传到图片组件，或者使用CMS附带的专用媒体管理器。
+
+> 要修改可以上传到媒体管理器的文件类型，请查找[支持的文件类型列表](/docs/reference/media/repo-based#supported-media-types)和[如何覆盖默认接受的媒体类型](/docs/reference/media/overriding-accepted-media-types)
+
+![](/img/docs/reference/SCR-20250313-nzft.png)
+
+## 类型定义
+
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: '将此设置为 `"image"` 以使用图片字段。\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "供内部使用的字段名称。\n",
+      type: "string",
+      required: true
+    }
+  ]}
+/>
+
+## 示例
+
+### 简单字段
+
+```ts
+{
+  type: 'image',
+  label: '主图',
+  name: 'imgSrc',
+}
+```
+
+![](/img/docs/reference/SCR-20250313-nzau.png)
+
+### 带有图片路径格式化的字段
+
+如果需要自定义图片在字段中的格式，可以使用 `format` 和 `parse` 选项。
+
+```js
+{
+  type: "image",
+  name: "heroImg",
+  label: "主图",
+  ui: {
+    format(value) {
+      //如果值不存在前导斜杠，则添加
+      return value.startsWith("/") ? value : `/${value}`;
+    },
+    parse(value) {
+      //如果存在前导斜杠，则移除
+      return value.startsWith("/") ? value.slice(1) : value;
+    },
+  }
+}
+```
