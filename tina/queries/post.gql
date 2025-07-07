@@ -33,6 +33,49 @@ query getExpandedPostDocument($relativePath: String!) {
   }
 }
 
+query getExpandedPostZhDocument($relativePath: String!) {
+  postZh(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    title
+    date
+    last_edited
+    author
+    seo {
+      title
+      description
+    }
+    prev {
+      ... on PostZh {
+        id
+        title
+      }
+      ... on Post {
+        id
+        title
+      }
+    }
+    next {
+      ... on PostZh {
+        id
+        title
+      }
+      ... on Post {
+        id
+        title
+      }
+    }
+    body
+  }
+}
+
 query pageWithRecentPosts($relativePath: String!) {
   page(relativePath: $relativePath) {
     ... on Document {
@@ -66,7 +109,7 @@ query pageWithRecentPosts($relativePath: String!) {
 }
 
 query getAllDocs {
-  docConnection(first: 1000) { 
+  docConnection(first: 1000) {
     edges {
       cursor
       node {

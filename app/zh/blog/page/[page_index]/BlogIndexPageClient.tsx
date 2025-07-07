@@ -43,7 +43,7 @@ export default function BlogIndexPageClient({
         {posts.map((post) => (
           <DynamicLink
             key={post.id}
-            href={`/blog/${post._sys.filename}`}
+            href={`/zh/blog/${post._sys.filename}`}
             passHref
           >
             <div className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
