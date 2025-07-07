@@ -1,0 +1,48 @@
+---
+title: Webhooks
+last_edited: '2025-04-24T06:19:07.233Z'
+next: ''
+previous: content/docs/drafts/drafts-fields.mdx
+---
+
+如果您需要在内容更新时自动化任务或触发外部进程，可以利用webhooks功能。当内容被推送或修改到特定分支时，TinaCMS会向您的服务器发送通知。负载包括修改文件的路径，从而实现事件驱动的操作，如重建您的网站或填充搜索索引。
+
+## 设置
+
+可以通过项目中的“Webhooks”标签创建webhooks。
+
+![webhook dashboard](/img/docs/tina-cloud/webhooks/webhooks-dashboard.png)
+
+要创建一个webhook，请按照以下步骤操作：
+
+1. 进入项目。
+2. 点击 Webhooks | Add Webhook
+3. 输入名称、服务器URL、目标分支以及要发送到服务器的附加头信息。
+
+# Webhook 日志
+
+Webhook日志可以在 **Webhooks | Logs** 中找到。
+
+![webhook logs](/img/docs/tina-cloud/webhooks/webhook-logs.png)
+
+每个日志条目包括：
+- **日期**：webhook请求的时间戳。
+- **状态**：返回的HTTP状态码。
+- **请求**：发送的负载（参见请求）
+- **响应**：从您的服务器返回的主体。
+
+## 请求
+
+下面是一个webhook请求负载的示例：
+
+```
+{
+    clientId: "276...",
+    branch: "main",
+    paths: ["content/authors/bob", ...],
+    type: "content.modified",
+    eventId: "472..."
+}
+```
+
+> 注意：负载 `type` 可以是 `['content.modified' | 'content.removed' | 'content.added']` 之一。
