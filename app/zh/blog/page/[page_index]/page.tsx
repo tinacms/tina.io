@@ -54,7 +54,6 @@ export default async function BlogPaginationPage({
       first: posts.length,
       sort: 'date',
     });
-    console.log('Fetched postConnection:', postResponse);
   } catch (err) {
     console.error('Error fetching postConnection:', err);
     notFound();
