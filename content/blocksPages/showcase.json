@@ -15,14 +15,6 @@
       },
       "items": [
         {
-          "headline": "Kunai",
-          "text": "Kunai, a boutique innovation agency focused on financial institutions, leveraged TinaCMS to power their website, marking the first time the Qwik framework was used with TinaCMS. They build full-stack technology solutions for banks, credit, and payment networks, helping clients modernize and capitalize on emerging trends.",
-          "url": "https://kunaico.com/",
-          "media": {
-            "src": "/Kunai%20OG%20Video%20GIF%20from%20ezgif.gif"
-          }
-        },
-        {
           "headline": "NDC Conferences",
           "text": "[NDC Conferences](https://ndcconferences.com/) hosts global software development events, blending large-scale conferences with specialized workshops. They leverage TinaCMS for their website content management, ensuring a seamless digital experience for their audience. \nThese conferences bring together tech professionals to learn, network, and share insights across international communities.",
           "url": "https://ndcconferences.com/",
@@ -36,6 +28,14 @@
           "url": "https://www.ssw.com.au/",
           "media": {
             "src": "/img/tina-showcase/ssw-website-screenshot.jpg"
+          }
+        },
+        {
+          "headline": "Kunai",
+          "text": "[Kunai](https://kunaico.com/), a boutique innovation agency focused on financial institutions, leveraged TinaCMS to power their website, marking the first time the [Qwik](https://qwik.dev/) framework was used with TinaCMS. They build full-stack technology solutions for banks, credit, and payment networks, helping clients modernize and capitalize on emerging trends.",
+          "url": "https://kunaico.com/",
+          "media": {
+            "src": "/Kunai%20OG%20Video%20GIF%20from%20ezgif.gif"
           }
         },
         {
