@@ -43,9 +43,17 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm i
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-
       - name: Build
         run: pnpm build
-
       - name: Export
         run: pnpm export
         env:
