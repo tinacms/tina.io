@@ -3,15 +3,16 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "parserOptions": {
-    "ecmaVersion": 2020,
+    "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "./tsconfig.json"
   },
   "env": {
     "browser": true,
-    "es6": true,
+    "es2022": true,
     "node": true
   },
   "rules": {
@@ -30,6 +31,8 @@
     "build/",
     "dist/",
     "*.config.js",
-    "*.config.ts"
+    "*.config.ts",
+    "indices/out/",
+    "rss/out/"
   ]
 }

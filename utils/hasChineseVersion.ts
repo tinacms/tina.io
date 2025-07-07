@@ -40,7 +40,7 @@ async function checkPagesChineseVersion(
   normalizedPath: string
 ): Promise<boolean> {
   try {
-    var zhPath = normalizedPath === '' ? 'home' : normalizedPath;
+    const zhPath = normalizedPath === '' ? 'home' : normalizedPath;
     const res = await client.queries.pageWithRecentPosts({
       relativePath: `zh/${zhPath}.json`,
     });
@@ -55,7 +55,7 @@ async function checkDocsChineseVersion(
 ): Promise<boolean> {
   try {
     console.log('normalizedPath', normalizedPath);
-    var zhPath = normalizedPath.replace(/^docs\//, '');
+    let zhPath = normalizedPath.replace(/^docs\//, '');
     console.log('zhPath', zhPath);
     if (zhPath === 'docs') {
       zhPath = 'index';

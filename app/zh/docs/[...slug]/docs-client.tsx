@@ -35,7 +35,7 @@ export default function DocsClient({ props }) {
   const processPageLink = (pageId) => {
     if (!pageId) return '';
 
-    let slug = pageId.slice(7, -4).replace('docs-zh', 'zh/docs');
+    const slug = pageId.slice(7, -4).replace('docs-zh', 'zh/docs');
 
     if (slug.endsWith('/index')) {
       return slug.substring(0, slug.length - 6);
@@ -55,7 +55,7 @@ export default function DocsClient({ props }) {
   const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
-      let slug =
+      const slug =
         filepath
           .substring(7, filepath.length - 4)
           .replace('docs-zh', 'zh/docs') + '/';

@@ -1,7 +1,7 @@
 import matter from 'gray-matter'
 const fg = require('fast-glob')
-var fs = require('fs')
-var path = require('path')
+const fs = require('fs')
+const path = require('path')
 
 export async function fetchBlogs() {
   const directory = path.resolve('./content/blog')

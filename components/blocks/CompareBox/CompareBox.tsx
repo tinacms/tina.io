@@ -11,9 +11,9 @@ import { splitOneAndJoin } from './CompareBox.template';
 
 //Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 

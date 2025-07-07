@@ -9,7 +9,7 @@ const formatTitle = title => title.replace(/&/g, '&amp;').replace(/</g, '&lt;').
 
 const blogPostsRssXml = async blogPosts => {
   let rssItemsXml = ''
-  for (let post of blogPosts) {
+  for (const post of blogPosts) {
     const postDate = new Date(post.data.date).toUTCString();
     const excerpt = await formatExcerpt(post.content, 1000, '…')
     const title = formatTitle(post.data.title);

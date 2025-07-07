@@ -85,7 +85,7 @@ function WithHeadings({ children, level }) {
         child?.props?.value || child?.props?.children[0]?.props?.value || child
     )
     .join('');
-  var slugger = new GithubSlugger();
+  const slugger = new GithubSlugger();
   const slug = slugger.slug(value);
 
   return (

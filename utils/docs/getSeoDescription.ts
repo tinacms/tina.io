@@ -1,5 +1,5 @@
 export function getSeoDescription(body) {
-  let textSegments = []
+  const textSegments = []
 
   function extractText(node) {
     if (node.type === 'text') {

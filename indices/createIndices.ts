@@ -60,8 +60,8 @@ const saveIndex = async (
 }
 
 const cleanupIndex = async (index: SearchIndex, currentData: any) => {
-  let currentObjects: Set<string> = new Set()
-  let objectsToDelete: Set<string> = new Set()
+  const currentObjects: Set<string> = new Set()
+  const objectsToDelete: Set<string> = new Set()
   let numRemoved = 0
   currentData.map(item => {
     currentObjects.add(item.objectID)

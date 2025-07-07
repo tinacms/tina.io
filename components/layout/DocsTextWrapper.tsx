@@ -9,22 +9,22 @@ export const DocsTextWrapper = ({ children }) => {
   React.useEffect(() => {
     /* https://codepen.io/chriscoyier/pen/YzXeXjK */
 
-    var players = ['iframe[src*="youtube.com"]', 'iframe[src*="vimeo.com"]'];
-    var fitVids = document.querySelectorAll(players.join(','));
+    const players = ['iframe[src*="youtube.com"]', 'iframe[src*="vimeo.com"]'];
+    const fitVids = document.querySelectorAll(players.join(','));
 
     if (fitVids.length) {
       // Loop through videos
-      for (var i = 0; i < fitVids.length; i++) {
+      for (let i = 0; i < fitVids.length; i++) {
         // Get Video Information
-        var fitVid = fitVids[i];
-        var width = fitVid.getAttribute('width');
-        var height = fitVid.getAttribute('height');
+        const fitVid = fitVids[i];
+        const width = fitVid.getAttribute('width');
+        const height = fitVid.getAttribute('height');
         // @ts-ignore
-        var aspectRatio = height / width;
-        var parentDiv = fitVid.parentNode;
+        const aspectRatio = height / width;
+        const parentDiv = fitVid.parentNode;
 
         // Wrap it in a DIV
-        var div = document.createElement('div');
+        const div = document.createElement('div');
         div.className = 'fitVids-wrapper';
         div.style.paddingBottom = aspectRatio * 100 + '%';
         parentDiv.insertBefore(div, fitVid);

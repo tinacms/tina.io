@@ -76,7 +76,7 @@ const NavTitle = ({
 };
 
 const hasNestedSlug = (navItems = [], slug) => {
-  for (let item of navItems) {
+  for (const item of navItems) {
     if (enhancedPathMatching(item.slug || item.href, slug)) {
       return true;
     }

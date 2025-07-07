@@ -78,9 +78,9 @@ function removeEndingPunctuation(content: string): string {
 }
 
 function truncateAtWordBoundary(content: string, length: Number): string {
-  let truncatedLength = 0
+  const truncatedLength = 0
   let truncatedContent = ''
-  for (let word of content.split(/\s+/)) {
+  for (const word of content.split(/\s+/)) {
     if (truncatedContent.length + word.length < length) {
       truncatedContent += ` ${word}`
     } else {
@@ -108,7 +108,7 @@ export async function formatExcerpt(
 }
 
 export function formatDate(fullDate) {
-  let date = new Date(fullDate)
+  const date = new Date(fullDate)
   // normalizes UTC with local timezone
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset())
   const dateOptions: Intl.DateTimeFormatOptions = {
