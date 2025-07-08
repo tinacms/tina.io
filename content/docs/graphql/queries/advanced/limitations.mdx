@@ -39,4 +39,3 @@ A multi-field index may not be usable depending on the `filter` parameter and th
 For example, if the filter for a query specifies a range condition (i.e. `gt`) on one field and another range condition on a different field, then it is impossible to construct a single contiguous range covering both conditions. When such a filter is used the entire collection must be scanned in order to provide consistent sorting and pagination.
 
 Because of this, when defining a multi-field index, discrete value fields (`boolean` or `string`) should be ordered before any continuous value field (like `datetime` or `numeric` types). This is obviously constrained by use-case and the desired sort order, but is important to keep in mind when considering query performance.
-
