@@ -29,7 +29,7 @@ export const footerNavZh = [
     footerItem: [
       {
         label: '博客',
-        href: '/blog',
+        href: '/zh/blog',
       },
       {
         label: '示例',
