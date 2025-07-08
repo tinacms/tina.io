@@ -8,8 +8,15 @@ const API_KEY = process.env.TINA_OPENAI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
   f.trim()
 );
-const SOURCE_PATH = config.sourcePath || 'content/docs';
-const TARGET_PATH = config.targetPath || 'content/docs-zh';
+
+function getTargetPath(sourceFilePath) {
+  if (sourceFilePath.startsWith('content/docs/')) {
+    return sourceFilePath.replace('content/docs/', 'content/docs-zh/');
+  } else if (sourceFilePath.startsWith('content/blog/')) {
+    return sourceFilePath.replace('content/blog/', 'content/blog-zh/');
+  }
+  return sourceFilePath.replace('content/docs/', 'content/docs-zh/');
+}
 
 async function translateMdx(filePath) {
   console.log(`Processing file: ${filePath}`);
@@ -45,8 +52,7 @@ async function translateMdx(filePath) {
 
     const translatedContent = response.data.choices[0].message.content.trim();
 
-    const relativePath = filePath.replace(`${SOURCE_PATH}/`, '');
-    const targetPath = path.join(TARGET_PATH, relativePath);
+    const targetPath = getTargetPath(filePath);
 
     const targetDir = path.dirname(targetPath);
     if (!fs.existsSync(targetDir)) {
