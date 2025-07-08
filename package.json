@@ -31,7 +31,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",
     "@giscus/react": "^3.1.0",
-    "@headlessui/react": "^2.2.0",
+    "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^14.2.18",
@@ -121,7 +121,7 @@
     "@tinacms/cli": "1.9.10",
     "@types/cookie": "^0.6.0",
     "@types/jest": "^25.2.3",
-    "@types/negotiator": "^0.6.3",
+    "@types/negotiator": "^0.6.4",
     "@types/node": "^22.15.19",
     "@types/react": "^16.14.62",
     "@types/react-instantsearch-dom": "^5.2.6",
