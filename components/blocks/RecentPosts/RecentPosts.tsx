@@ -4,13 +4,13 @@ import { formatDate } from 'utils/blog_helpers';
 import { getExcerpt } from 'utils/getExcerpt';
 import { Container } from '../Container';
 
-export const RecentPostsBlock = ({ data, index, recentPosts }) => {
-  const getPostHref = (path) => {
-    let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
-    processedPath = processedPath.replace('/blog-zh', '/zh/blog');
-    return processedPath;
-  };
+const getPostHref = (path) => {
+  let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
+  processedPath = processedPath.replace('/blog-zh', '/zh/blog');
+  return processedPath;
+};
 
+export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   return (
     <section
       key={'recent-posts-' + index}
