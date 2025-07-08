@@ -48,6 +48,8 @@ jobs:
             ${{ runner.os }}-nextjs-
       - name: pnpm install
         run: pnpm i
+      - name: Rebuild native modules
+        run: pnpm rebuild
       - name: pnpm build
         run: pnpm build
       - name: pnpm lint
