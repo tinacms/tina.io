@@ -54,13 +54,10 @@ async function checkDocsChineseVersion(
   normalizedPath: string
 ): Promise<boolean> {
   try {
-    console.log('normalizedPath', normalizedPath);
     var zhPath = normalizedPath.replace(/^docs\//, '');
-    console.log('zhPath', zhPath);
     if (zhPath === 'docs') {
       zhPath = 'index';
     }
-    console.log('zhPath', zhPath);
     const res = await client.queries.docZh({
       relativePath: `${zhPath}.mdx`,
     });
@@ -73,7 +70,18 @@ async function checkDocsChineseVersion(
 async function checkBlogChineseVersion(
   normalizedPath: string
 ): Promise<boolean> {
-  return false;
+  try {
+    const zhPath = normalizedPath.replace(/^blog\//, '');
+    if (zhPath === 'blog' || /^page\/\d+$/.test(zhPath)) {
+      return true;
+    }
+    const res = await client.queries.postZh({
+      relativePath: `${zhPath}.mdx`,
+    });
+    return !!res.data.postZh;
+  } catch (error) {
+    return false;
+  }
 }
 
 async function checkWhatsNewChineseVersion(
