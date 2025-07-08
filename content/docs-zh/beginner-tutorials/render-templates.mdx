@@ -1,0 +1,64 @@
+---
+title: 渲染您的模板
+last_edited: '2025-03-28T01:06:18.826Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/website-builder-experience.mdx
+previous: content/docs-zh/beginner-tutorials/linking-to-model.mdx
+---
+
+现在我们已经完成了大部分的基础工作，最后一步是让 `app/awesome-content.tsx` 组件将块渲染到我们的视图中。
+
+> 记住……块的强大之处在于它使非开发人员能够决定内容在页面上显示的顺序，所以我们不能再硬编码内容了。
+
+1\. 导航到 `app/awesome-content.tsx` 并进行以下更改：
+
+```typescript
+  const awesomeTitle = pageData.data.my_first_collection.title;
+  const incredibleBody = pageData.data.my_first_collection.body;
+  const beautifulImage = pageData.data.my_first_collection.beautifulImage;
+  const blocks = pageData.data.my_first_collection.blocks;
+  console.log(blocks); // TODO: 稍后移除 🙃
+```
+
+我们不再提取特定的值，而是提取 **块的数组**。
+为了查看我们正在处理的内容，我们在组件中添加了一行 `console.log`，以便检查数据的结构。
+
+要更新我们的模板，我们需要：
+
+* 遍历块
+* 检查我们正在查看的块的*类型*
+* 为该特定块渲染适当的HTML
+
+我们可以通过几种方式来实现这一点，但现在我们将采用快速而简单的解决方案。
+
+2\. 将 `app/awesome-content.tsx` 更改为以下内容：
+
+```typescript
+
+  //const awesomeTitle = pageData.data.my_first_collection.title;
+  //const incredibleBody = pageData.data.my_first_collection.body;
+  //const beautifulImage = pageData.data.my_first_collection.beautifulImage;
+  const blocks = pageData.data.my_first_collection.blocks;
+  console.log(blocks);
+
+  return (
+    <>
+    {blocks?.map((block, index) => {
+      switch (block.__typename) {
+        case "My_first_collectionBlocksTitleBlock":
+          return <h1 key={index}>{block.title}</h1>;
+        case "My_first_collectionBlocksBodyBlock":
+          return <TinaMarkdown key={index} content={block.body} />;
+        case "My_first_collectionBlocksImageBlock":
+          return <img key={index} src={block.image} />;
+      }
+    })}
+    </>
+  );
+```
+
+> `blocks` 数组的顺序由 Tina 保持，因此它尊重用户在通过可视化编辑器构建内容时选择的顺序，因此只需要一个简单的 `map` + `switch` 语句来渲染适当的HTML片段。
+
+尝试使用可视化编辑器重新排序您的模板，甚至添加更多！您可以根据需要拥有任意多个模板实例！
+
+![](</gif/Screen Recording 2025-03-19 at 11.35.03 am.gif>)

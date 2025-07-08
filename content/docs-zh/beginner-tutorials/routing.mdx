@@ -1,0 +1,71 @@
+---
+title: 路由到编辑器
+last_edited: '2025-05-08T08:12:04.284Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/wiring-content.mdx
+previous: content/docs-zh/beginner-tutorials/live-editing.mdx
+---
+
+现在，如果我们想编辑我们惊人的标题，我们必须进入Tina编辑器，找到我们的集合，然后编辑集合中的记录，才能查看我们的更改。😮‍💨
+
+如果我们可以直接在页面上编辑标题并查看更改，不是很酷吗？**让我们现在就这样做**！
+
+1\. 取消注释`tina/config.ts`中的`ui`部分
+
+```typescript
+schema: {
+    collections: [
+      {
+        name: "my_first_collection",
+        label: "我的第一个集合",
+        path: "content/first",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "标题",
+            isTitle: true,
+            required: true,
+          }
+        ],
+        ui: {
+          // 这是一个演示路由器。您可以将其删除以适应您的网站
+          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+        },
+      }
+    ],
+  },
+});
+```
+
+2\. 编辑`ui`部分，并将其替换为以下内容：
+
+```typescript
+ui: {
+    router: ({document}) => {
+      if (document._sys.filename == "Hello-World") {
+        return "/";
+      }
+    },
+},
+```
+
+那么这里发生了什么...
+
+首先，这个特定的路由器仅用于Tina可视化编辑器。它不控制您实际网站的任何路由——这仍然由我们的NextJS应用路由器控制。
+
+其次，我们在这里有点作弊，通过将`"Hello-World"`文件名直接硬编码到主页路由。
+
+也可以以编程方式定义此路由，但现在我们就这样做吧。
+
+> 将此与内容目录中的文件名匹配，如果您将标题设置为“Hello World!”以外的内容，文件名可能会有所不同。
+
+3\. 通过访问`http://localhost:3000`打开您的应用，您应该会看到您很棒的“Hello World!”标题。
+
+4\. 现在再次通过访问`http://localhost:3000/admin/index.html`打开可视化编辑器
+
+**OMG**！我们可以在编辑器中看到我们的主页！🎉
+
+> 路由器让Tina知道哪些页面将用于实时编辑，同时也从集合列表中创建到可视化编辑器页面的链接。
+
+![](</gif/Untitled video - Made with Clipchamp (9).gif>)

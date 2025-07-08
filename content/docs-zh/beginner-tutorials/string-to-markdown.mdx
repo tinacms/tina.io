@@ -1,0 +1,33 @@
+---
+title: "从字符串到Markdown \U0001F31F"
+last_edited: '2025-03-18T07:11:43.147Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/rendering-markdown.mdx
+previous: content/docs-zh/beginner-tutorials/new-field.mdx
+---
+
+我们刚刚添加了一个新字段，但这个字段只是一个普通的输入框——对于你将要撰写的发人深省的博客来说，这不是最好的用户体验。
+
+让我们将这个字段更改为一个**富文本编辑器**，这样你就可以用*高大上*的文本来惊艳你的观众。
+
+幸运的是，这只需要在我们的模式中进行一行更改！
+
+1. 用下面的字段替换你旧的body字段：
+
+```typescript
+{
+  type: "rich-text", // 高大上
+  name: "body",
+  label: "Body",
+  isBody: true,
+  required: true,
+}
+```
+
+现在已经更改了，继续刷新你的页面，然后…… 💥
+
+哦哦，出了点问题。发生了什么？
+
+我们现在尝试在屏幕上渲染**markdown**内容。Markdown可以包含各种奇怪而精彩的内容，比如标题、表格、列表等。我们可怜的旧`<p>`标签已经不够用了。
+
+是时候升级了！

@@ -1,0 +1,110 @@
+---
+id: /docs/extending-tina/filename-customization
+
+title: 文件名自定义
+next: content/docs-zh/extending-tina/before-submit.mdx
+previous: content/docs-zh/extending-tina/format-and-parse.mdx
+---
+
+文件名自定义API允许您根据文档的内容自定义其文件名。当您不希望编辑者担心文档的文件名时，这非常有用。
+
+在自定义文件名时需要注意几点：
+
+- 文件名不能包含空格
+- 文件名只能包含 a-z, A-Z, 0-9, -, \_, ., 或 /
+- 文件名在集合中必须是唯一的
+- 如果文件名以 `/` 开头，它将被视为相对于集合根目录的绝对路径
+  - 例如：`/foo/bar/blog-post` 将被保存为 `<MyCollectionPath>/post/blog-post.md`
+- 如果文件名不以 `/` 开头，它将被视为相对于您当前文件夹的路径
+  - 例如：`bar/blog-post` 将被保存为 `<MyCollectionPath>/<CurrentDirectory>/bar/blog-post.md`
+
+## 定义
+
+| 属性                    | 描述                                                                      |
+| ---------------------- | ------------------------------------------------------------------------ |
+| `ui.filename.readonly` | 禁止编辑器编辑文件名                                                      |
+| `ui.filename.slugify`  | 一个函数，接收表单的值并返回文件名                                        |
+
+## 用法
+
+要使用文件名自定义API，您需要传递一个 `slugify` 函数，该函数允许您根据文档的内容自定义其文件名。
+
+### 使用slugify和禁用的示例
+
+```ts
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: '博客文章',
+        name: 'post',
+        path: 'content/post',
+        format: 'md',
+        ui: {
+          filename: {
+            // 如果禁用，编辑器将无法编辑文件名
+            readonly: true,
+            // 使用自定义slugify函数的示例
+            slugify: (values) => {
+              // Values是一个包含表单所有值的对象。在此情况下，它是 {title?: string, topic?: string}
+              return `${values?.topic || 'no-topic'}-${values?.title
+                ?.toLowerCase()
+                .replace(/ /g, '-')}`
+            },
+          },
+        },
+        fields: [
+          {
+            type: 'string',
+            label: '标题',
+            name: 'title',
+          },
+          {
+            type: 'string',
+            label: '主题',
+            name: 'topic',
+            options: ['programming', 'blacksmithing'],
+          },
+        ],
+      },
+    ],
+  },
+})
+```
+
+### 使用默认slugify的示例
+
+如果没有提供slugify函数，并且有一个字段设置了 `isTitle: true`。将使用默认的slugify函数，该函数会去除所有非字母数字字符并将空格替换为短横线。
+
+```ts
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: '博客文章',
+        name: 'post',
+        path: 'content/post',
+        format: 'md',
+        fields: [
+          {
+            type: 'string',
+            label: '标题',
+            name: 'title',
+            // 如果没有提供slugify函数，则默认情况下将使用“title”字段生成文件名
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'string',
+            label: '主题',
+            name: 'topic',
+            options: ['programming', 'blacksmithing'],
+          },
+        ],
+      },
+    ],
+  },
+})
+```

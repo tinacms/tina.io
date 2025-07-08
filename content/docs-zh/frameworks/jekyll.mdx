@@ -1,0 +1,57 @@
+---
+id: /docs/frameworks/jekyll
+
+title: Jekyll + TinaCMS 设置指南
+next: content/docs-zh/frameworks/remix.mdx
+previous: content/docs-zh/frameworks/gatsby.mdx
+---
+
+## 介绍
+
+TinaCMS 可以本地添加到您的 Jekyll 站点。在本文档中，我们将指导您完成本地设置，以及在生产站点上的编辑。
+
+## 入门
+
+在您的站点目录中，运行：
+
+```bash
+ npx @tinacms/cli@latest init
+```
+
+这将询问您一些设置问题。
+
+当被询问“**公共资产目录**”时，输入：“**./**”。
+
+> 如果您是从 Forestry.io CMS 导入站点，某些模型和配置将自动导入。
+
+## 建模您的内容
+
+要在 Tina 中编辑站点内容，您可以在 tina/config.ts 文件中建模您的内容。
+
+在[这里](/docs/schema/)了解更多关于内容建模的信息
+
+## 启动 TinaCMS
+
+您可以通过以下命令启动 TinaCMS：
+
+```bash
+npx tinacms dev -c "jekyll serve"
+```
+
+> `jekyll serve` 可以替换为您站点的自定义开发命令。
+
+在 TinaCMS 运行时，导航到 `http://localhost:4000/admin/index.html`
+
+> ^ 上述默认端口可能会根据您的框架而有所不同。
+
+> 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
+
+此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并看到更改已持久化到您的本地 markdown 文件中。
+
+![](/img/hugo-tina-admin-screenshot.png)
+
+## 下一步
+
+- [查看内容建模文档](/docs/schema/)
+- [了解如何查询您的内容](/docs/features/data-fetching/)
+- [部署您的站点](/docs/tina-cloud)
