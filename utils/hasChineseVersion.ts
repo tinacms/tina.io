@@ -71,7 +71,7 @@ async function checkBlogChineseVersion(
   normalizedPath: string
 ): Promise<boolean> {
   try {
-    var zhPath = normalizedPath.replace(/^blog\//, '');
+    const zhPath = normalizedPath.replace(/^blog\//, '');
     if (zhPath === 'blog' || /^page\/\d+$/.test(zhPath)) {
       return true;
     }
