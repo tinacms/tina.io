@@ -68,7 +68,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
               emitMetadata="0"
               inputPosition="top"
               theme={blogPostData.giscusProps.giscusThemeUrl}
-              lang="en"
+              lang="zh-CN"
               loading="lazy"
             />
           </div>
