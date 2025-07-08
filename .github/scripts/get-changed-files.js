@@ -4,15 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
-// 从环境变量获取配置
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const PR_NUMBER = process.env.PR_NUMBER;
 const REPO = process.env.GITHUB_REPOSITORY;
 const [OWNER, REPO_NAME] = REPO.split('/');
 
-/**
- * 从GitHub API获取PR中变更的文件
- */
 async function getChangedFilesFromApi() {
   try {
     const response = await axios.get(
@@ -28,7 +24,8 @@ async function getChangedFilesFromApi() {
     const mdxFiles = response.data
       .filter(
         (file) =>
-          file.filename.startsWith('content/docs/') &&
+          (file.filename.startsWith('content/docs/') ||
+            file.filename.startsWith('content/blog/')) &&
           file.filename.endsWith('.mdx')
       )
       .map((file) => file.filename);
