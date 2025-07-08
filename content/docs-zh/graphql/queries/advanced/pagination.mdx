@@ -1,0 +1,116 @@
+---
+id: /docs/graphql/queries/advanced/pagination
+title: 查询分页
+last_edited: '2025-03-26T03:58:23.396Z'
+next: ''
+previous: ''
+---
+
+集合查询实现了基于游标的分页。客户端指定一个结果限制参数（使用 `first` 或 `last`）和一个对应的游标参数（使用 `after` 或 `before`），该游标是指向上一页结果中最后一项的指针。
+
+这两个参数都是可选的。如果省略结果限制，将返回最多 `10` 个结果。如果省略游标，结果将从第一个匹配项开始。
+
+## 页面信息
+
+一个 `pageInfo` 对象可用于集合查询，并可用于正向和反向分页。
+
+> 除了 `pageInfo`，查询结果中的每个边缘都提供一个 `cursor` 字段，也可以用于分页。
+
+下表描述了 `pageInfo` 对象上可用的属性：
+
+| 字段            | 类型    | 描述                                                                         |
+| --------------- | ------- | ---------------------------------------------------------------------------- |
+| hasNextPage     | boolean | 在正向分页时，指示是否有另一页的结果可用。                                   |
+| hasPreviousPage | boolean | 在反向分页时，指示是否有另一页的结果可用。                                   |
+| startCursor     | string  | 结果集中第一项的游标。                                                       |
+| endCursor       | string  | 结果集中最后一项的游标。                                                     |
+
+## 正向分页
+
+要在正向方向上分页查询结果，使用 `first` 和 `after` 参数，结合 `PageInfo` 的 endCursor。
+
+### 示例
+
+这里我们将查询我们的 `post` 集合，使用 `postConnection`，将页面大小限制为 `1`，并从第二项开始：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;date&#x22;,#first:#1,#after:#&#x22;cG9zdCNkYXRlIzE2NTUyNzY0MDAwMDAjY29udGVudC9wb3N0cy92b3RlRm9yUGVkcm8uanNvbg==&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########date
+  ######}
+  ####}
+  ####pageInfo#{
+  ######hasNextPage
+  ######endCursor
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######],
+  ######&#x22;pageInfo&#x22;:#{
+  ########&#x22;hasNextPage&#x22;:#true,
+  ########&#x22;endCursor&#x22;:#&#x22;cG9zdCNkYXRlIzE2NTc4Njg0MDAwMDAjY29udGVudC9wb3N0cy9hbm90aGVyUG9zdC5qc29u&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>
+
+## 反向分页
+
+要在反向方向上分页查询结果，使用 `last` 和 `before` 参数，结合 `PageInfo` 的 startCursor。
+
+### 示例
+
+这里我们将查询我们的 `post` 集合，使用 `postConnection`，将页面大小限制为 `1`，并从第一项开始：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;date&#x22;,#last:#1,#before:#&#x22;cG9zdCNkYXRlIzE2NTc4Njg0MDAwMDAjY29udGVudC9wb3N0cy9hbm90aGVyUG9zdC5qc29u&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########date
+  ######}
+  ####}
+  ####pageInfo#{
+  ######hasPreviousPage
+  ######endCursor
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######],
+  ######&#x22;pageInfo&#x22;:#{
+  ########&#x22;hasPreviousPage&#x22;:#false,
+  ########&#x22;endCursor&#x22;:#&#x22;cG9zdCNkYXRlIzE2NTUyNzY0MDAwMDAjY29udGVudC9wb3N0cy92b3RlRm9yUGVkcm8uanNvbg==&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>

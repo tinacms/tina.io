@@ -1,0 +1,226 @@
+---
+title: 迁移WordPress内容
+last_edited: '2024-11-08T05:20:16.628Z'
+next: ''
+previous: ''
+---
+
+## 介绍
+
+![](/wordpress-to-tina.png)
+
+本指南是使用**WordPress到Markdown转换器**的操作指南，推荐用于大多数希望将内容从WordPress迁移到Tina的用例。
+
+本指南专注于仅传输内容和媒体，不包括页面样式。
+
+本指南未涵盖的其他转换选项包括：
+
+* 使用WordPress Rest API - 最适合以JSON格式提取页面或帖子内容的纯HTML
+* 使用WPGraphQL插件 - 最适合需要查询和提取特定数据和内容的情况
+
+## 先决条件
+
+* 已安装[Node.js](https://nodejs.org/)
+* 您已设置[Tina入门](https://tina.io/docs/introduction/using-starter)
+* 对使用[Tina编辑器](https://tina.io/docs/using-tina-editor)和[架构](https://tina.io/docs/schema)有基本了解
+* 对[React](https://react.dev/learn)有基本了解
+
+## 开始
+
+### 将WordPress转换为Markdown
+
+1\. 通过访问[https://wordpress.com/export/](https://wordpress.com/export/)导出您的WordPress内容，并选择**导出全部**
+
+> 将其命名为**export.xml**，以便在下一步中更容易操作
+
+使用[wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown)将您的WordPress内容转换为Markdown。
+
+2\. 在保存导出文件**export.xml**的文件夹中，运行：
+
+```powershell
+npx wordpress-export-to-markdown --post-folders=false --include-other-types=true
+```
+
+3\. 当提示时，确保文件名正确，并对其他提示使用默认值。
+
+这将创建一个`output`文件夹，将您的帖子和页面分组到单独的文件夹中。
+
+### 将数据导入TinaCMS
+
+#### 迁移图片
+
+1\. 在输出文件夹中，将图像文件夹`output/post/images`和`output/page/images`拖到您的Tina应用的`public/uploads`文件夹中。
+
+> 您可以在拖动之前重命名文件夹，以防止重复的图像名称被替换
+
+> 您还可以使用您喜欢的媒体管理器设置替代托管。
+
+#### 迁移帖子
+
+1\. 导航到输出的帖子文件夹`output/post`，并在终端中运行：
+
+对于MacOS/Linux：
+
+```powershell
+for file in *.md; do mv "$file" "${file%.md}.mdx"; done
+```
+
+对于Windows：
+
+```powershell
+ren *.md *.mdx
+```
+
+这将把您的文件从Markdown转换为MDX。
+
+2\. 将`output/post`中的所有MDX文件拖到您的Tina应用的`content/posts`文件夹中，现在您的帖子已迁移到Tina！
+
+> 为了方便使用，Tina入门帖子的格式与WordPress使用的格式匹配。
+
+#### 迁移页面
+
+<WarningCallout
+  body={<>
+    如果您在此步骤遇到困难，请随时通过我们的[社区Discord服务器](https://discord.com/invite/zumN63Ybpf)联系开发人员寻求帮助。
+  </>}
+/>
+
+1\. 在您的Tina应用的`content`文件夹中创建一个名为`wp-pages`的新文件夹。
+
+2\. 在您的Tina应用的`tina/collection`文件夹中创建一个名为`wp-page.ts`的新文件，并使用下面的模板，您可以稍后更改以更好地适应您的页面架构。
+
+```javascript
+import type { Collection } from 'tinacms';
+
+const WpPage: Collection = {
+  label: '迁移的WordPress页面',
+  name: 'wppage',
+  path: 'content/wp-pages',
+  format: 'md',
+  fields: [
+    {
+      type: 'string',
+      label: '标题',
+      name: 'title',
+      isTitle: true,
+      required: true,
+    },
+    {
+      type: 'rich-text',
+      label: '正文',
+      name: '_body',
+      isBody: true,
+    },
+  ],
+};
+
+export default WpPage;
+```
+
+3\. 将您创建的集合导入`tina/config.tsx`中的[架构](https://tina.io/docs/reference/schema)。
+
+```typescript
+
+import WpPage from "./collection/wp-page";
+...
+
+schema: {
+  collections: [Page, Post, ..., WpPage],
+},
+```
+
+### 查看和编辑您的迁移内容
+
+1\. 在您的Tina应用的根目录下，运行：
+
+```powershell
+npm run dev
+```
+
+2\. 访问`localhost:3000/admin`
+
+3\. 进入迁移的WordPress页面和博客帖子集合，然后进入媒体管理器。您现在可以查看和编辑您的迁移帖子、页面和图片！
+
+您会注意到您的页面不会正确显示您的媒体，让我们来修复它！
+
+### 在帖子上显示媒体示例
+
+我们可以通过两种方法来实现，不幸的是，它们都需要一些手动工作。
+
+* 选项1 - 将每个帖子的英雄图像更新为封面图像 - 如果英雄组件符合您的需求而无需太多更改，推荐使用
+* 选项2 - 更新架构以匹配Markdown - 推荐用于更新您的架构以匹配以前的样子
+
+#### 选项1：手动更新帖子的图像
+
+使用[Tina编辑器](https://tina.io/docs/using-tina-editor)，您可以更新每个帖子的英雄图像。
+
+#### 选项2：更新架构以匹配Markdown
+
+查看您的某个帖子的Markdown文件，它可能看起来像这样：
+
+```markdown
+---
+title: 您的帖子标题
+coverImage: picture_post_1.png
+---
+
+{{ Content }}
+```
+
+1\. 更新`coverImage`字段，以便可以正确获取，通过在图像URL前添加`/uploads/`。
+
+```markdown
+---
+title: 您的帖子标题
+coverImage: /uploads/picture_post_1.png
+---
+
+{{ Content }}
+```
+
+2\. 在`tina/collection/post.ts`中，添加一个名为`coverImage`的新字段。
+
+```typescript
+fields: [
+  {
+    type: 'image',
+    name: 'coverImage',
+    label: '封面图像',
+  },
+  // 您的其他字段
+];
+```
+
+3\. 在`app/posts/[...filename]/client-page.tsx`中，添加`coverImage`字段，以便可以使用[TinaMarkdown](https://tina.io/docs/editing/markdown#rendering-content-with-tinamarkdown)进行渲染。
+
+> 您还可以复制或重命名`heroImg`代码片段并编辑以满足您的需求
+
+```typescript
+return (
+  // .... 您的标题和作者组件
+  // 示例封面图像渲染
+  {
+    post.coverImage && (
+      <div className="w-full">
+        <div data-tina-field={tinaField(post, "coverImage")}>
+          <Image
+            src={post.coverImage}
+            alt={post.title}
+            width={500}
+            height={500}
+            className="mx-auto"
+          />
+        </div>
+      </div>
+    )
+  }
+  // ... 您的正文组件
+);
+```
+
+4\. 现在，当您查看您的帖子时，您会看到您的图像将显示在页面上！
+
+## 下一步
+
+* 对主题进行更改以及导出器中缺少的任何功能
+* 利用[npm包](https://www.npmjs.com/)替换WordPress插件功能

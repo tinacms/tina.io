@@ -1,0 +1,259 @@
+---
+id: /docs/reference/self-hosted/auth-provider/authjs
+
+title: 默认 (Auth.js) 认证提供者
+---
+
+默认的 (Auth.js) 认证提供者使用 [Auth.js](https://authjs.dev/) 和一个用户集合来对您的 TinaCMS 实例进行用户认证和授权。
+
+## 入门
+
+> 注意：如果您尚未设置自托管，我们建议使用 `init backend` 命令。有关更多信息，请参阅[入门文档](/docs/self-hosted/existing-site/)。
+
+要开始，您需要安装以下依赖项：
+
+```bash
+yarn add next-auth tinacms-authjs
+```
+
+> 提示：在继续之前，请确保您已设置[数据库适配器](/docs/reference/self-hosted/database-adapter/overview/)。
+
+### 更新您的 Tina 配置
+
+我们需要在 `tina/config.{ts,js}` 文件中添加认证提供者和一个用户集合。
+
+`TinaUserCollection` 是一个特殊的集合，用于存储用户信息。此集合将从 `content/users/index.json` 文件中初始化，但当用户集合更新时，该文件不会被更新。这可以防止诸如密码等敏感信息被写入 Git 仓库。
+
+```ts
+import {
+  TinaUserCollection,
+  UsernamePasswordAuthJSProvider,
+} from 'tinacms-authjs/dist/tinacms'
+
+// ...
+
+export default defineConfig({
+  // 当 isLocal 为 true 时，CMS 将不需要认证
+  authProvider: isLocal
+    ? new LocalAuthProvider()
+    : new UsernamePasswordAuthJSProvider(),
+  schema: {
+    collections: [
+      TinaUserCollection,
+      // ...
+    ],
+  },
+})
+```
+
+### 添加种子数据
+
+创建一个名为 `content/users/index.json` 的文件，其中包含初始种子用户：
+
+```json
+{
+  "users": [
+    {
+      "name": "Tina User",
+      "email": "user@tina.io",
+      "username": "admin",
+      "password": "admin"
+    }
+  ]
+}
+```
+
+> 登录后，您可以更新用户名和密码
+
+### 更新 Tina 后端
+
+更新您的 `/api/tina/[...routes].{ts,js}` 文件以使用 Auth.js 后端。
+
+```ts
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // 如果需要，可以在这里修改请求
+  return handler(req, res)
+}
+```
+
+## 测试
+
+现在您已经设置了 Auth.js 认证提供者，您可以进行测试。
+
+### 本地测试认证
+
+在您的 package.json 文件中添加以下脚本。
+
+```json
+"dev:prod": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"",
+```
+
+这将允许您在本地测试认证流程。
+
+```bash
+yarn dev:prod
+```
+
+现在您可以打开浏览器并导航到 `http://localhost:3000/admin/index.html`，您应该会被重定向到登录页面。
+
+## 更新您的密码
+
+登录后，系统会提示您更新密码。这样做是为了防止密码以明文形式存储在您的仓库中。
+
+## 管理用户
+
+要添加其他用户，请导航到侧边栏中的用户集合以添加或编辑用户。有关更多详细信息，请参阅[用户管理](/docs/self-hosted/user-management/)。
+
+## 配置其他 Auth.js 登录提供者
+
+Auth.js 支持许多不同的[登录提供者](https://authjs.dev/getting-started/providers)。在自托管时，可以通过一些配置更改来使用这些提供者中的任何一个。用户集合仍将用于授权，但登录流程将由登录提供者处理。
+
+例如，我们可以配置 Discord OAuth 登录提供者。
+
+### 更新您的 Tina 配置
+
+在这里，我们从 `UsernamePasswordAuthJSProvider` 切换到 `DefaultAuthJSProvider`。我们还重新定义了用户集合以移除密码字段，因为它不再需要。
+
+```ts
+import {
+  TinaUserCollection,
+  DefaultAuthJSProvider,
+} from 'tinacms-authjs/dist/tinacms'
+
+// ...
+
+export default defineConfig({
+  // 当 isLocal 为 true 时，CMS 将不需要认证
+  authProvider: isLocal ? new LocalAuthProvider() : new DefaultAuthJSProvider(),
+  schema: {
+    collections: [
+      {
+        ...TinaUserCollection,
+        fields: [
+          {
+            ...TinaUserCollection.fields[0],
+            fields: [
+              {
+                type: 'string',
+                label: '用户名',
+                name: 'username',
+                uid: true,
+                required: true,
+              },
+              {
+                type: 'string',
+                label: '姓名',
+                name: 'name',
+              },
+              {
+                type: 'string',
+                label: '电子邮件',
+                name: 'email',
+              },
+            ],
+          },
+        ],
+      } as Collection,
+      // ...
+    ],
+  },
+})
+```
+
+### 更新种子数据
+
+从种子数据中移除密码字段。
+
+```json
+{
+  "users": [
+    {
+      "name": "Tina Discord User",
+      "email": "user@tina.io",
+      "username": "mydiscorduser"
+    }
+  ]
+}
+```
+
+> 请注意，如果您的数据库中已经有用户，您也需要从中移除密码字段。
+
+### 配置 Discord 登录提供者
+
+我们需要将后端拆分为一个单独的端点，并在两者之间共享 AuthJS 选项。因此，在 `/pages/api/tina/[...routes].{ts,js}` 中，我们将有：
+
+```ts
+export const NextAuthOptions = TinaAuthJSOptions({
+  databaseClient: databaseClient,
+  debug: process.env.DEBUG === 'true',
+  secret: process.env.NEXTAUTH_SECRET,
+  uidProp: 'name',
+  providers: [
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
+    }),
+  ],
+})
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({ authOptions: NextAuthOptions }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  return handler(req, res)
+}
+```
+
+在这里，我们指定了 DiscordProvider。此外，请注意我们在选项中添加了一个 `uidProp`。这用于告诉 Tina Discord 认证对象上的哪个属性具有用户的唯一标识符。如果您不确定这应该是什么，可以启用调试模式以查看认证对象。
+
+接下来，我们需要为后端创建一个单独的端点。在 `/pages/api/auth/[...nextauth].{ts,js}` 中，我们将有：
+
+```ts
+import NextAuth from 'next-auth'
+import { NextAuthOptions } from '../tina/[...routes]'
+
+export default (req, res) => {
+  return NextAuth(NextAuthOptions)(req, res)
+}
+```
+
+请注意，这是从另一个端点导入 NextAuthOptions。
+
+### 配置 Discord OAuth 应用程序
+
+要配置 Discord OAuth 应用程序，您需要在 [Discord 开发者门户](https://discord.com/developers/applications) 中创建一个新应用程序。
+
+应用程序创建后，转到 OAuth2 选项卡并复制客户端 ID 和客户端密钥。这些将用作环境变量。为本地主机 `http://localhost:3000/api/auth/callback/discord` 和您的生产域添加重定向。
+
+添加以下环境变量：
+
+```
+DISCORD_CLIENT_ID=<您的 Discord 客户端 ID>
+DISCORD_CLIENT_SECRET=<您的 Discord 客户端密钥>
+```
+
+运行 `yarn dev:prod` 以在本地测试登录。

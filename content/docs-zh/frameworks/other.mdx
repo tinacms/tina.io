@@ -1,0 +1,91 @@
+---
+id: /docs/frameworks/other
+prev: /docs-zh/setup-overview
+title: 与框架无关的TinaCMS设置指南
+last_edited: '2025-03-26T04:37:04.901Z'
+next: ''
+previous: ''
+---
+
+## 介绍
+
+大多数情况下，TinaCMS与框架无关。除非你使用“可视化编辑”，否则设置过程在不同网站框架中基本相同。
+
+#### 希望支持你的框架？
+
+通过[GitHub讨论](https://github.com/tinacms/tinacms/discussions "GitHub discussions")让我们知道：
+
+* [Nuxt](https://github.com/tinacms/tinacms/discussions/3460 "Vue + Nuxt discussion")
+* [Angular](https://github.com/tinacms/tinacms/issues/4824)
+
+> 可以从[Google趋势](https://trends.google.com/trends/explore?q=nuxt%20web,hugo%20web,astro%20web,Gatsby%20web,11ty%20web\&hl=en "google trends frameworks")中看到受欢迎程度
+
+## 入门
+
+在你网站的目录中运行：
+
+```bash
+ npx @tinacms/cli@latest init
+```
+
+这将询问你一些设置问题。
+
+当被询问“**公共资产目录**”时，请参阅我们的[框架列表](/docs/integration/frameworks/)以获得帮助。
+
+## 更新你的构建脚本
+
+根据你的框架，`tina init`可能会尝试更新你的`package.json`脚本。
+
+```json
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start"
+  }
+```
+
+如果CLI没有设置这些脚本，你需要手动应用。
+
+## 建模你的内容
+
+要在Tina中编辑你网站的内容，你可以在tina/config.ts文件中建模你的内容。
+
+在[这里](/docs/schema/)了解更多关于内容建模的信息。
+
+## 启动TinaCMS
+
+你可以通过以下命令启动TinaCMS：
+
+```bash
+npx tinacms dev -c "<your-dev-process>"
+```
+
+> `<your-dev-process>`可以替换为你网站的自定义开发命令。
+
+在TinaCMS运行时，导航到`http://localhost:3000/admin/index.html`
+
+> 上述默认端口可能会根据你的框架而有所不同。
+
+<WarningCallout
+  body={<>
+    如果运行此命令时出现错误，请查看[常见错误](/docs/forestry/common-errors)页面。
+  </>}
+/>
+
+此时，你应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改持久化到你的本地markdown文件中。
+
+![](/img/hugo-tina-admin-screenshot.png)
+
+## 设置可视化编辑（可选）
+
+如果你希望使用TinaCMS的API为你的页面提供支持，并且你使用的是基于React的框架，你可能可以利用TinaCMS的可视化编辑功能。
+
+![基于块的编辑可视化](/gif/blocks.gif)
+
+阅读更多关于[数据获取](/docs/features/data-fetching/)和[可视化编辑](/docs/contextual-editing/overview/)的信息。
+
+## 下一步
+
+* [查看内容建模文档](/docs/schema/)
+* [了解如何查询你的内容](/docs/features/data-fetching/)
+* [部署你的网站](/docs/tina-cloud)
