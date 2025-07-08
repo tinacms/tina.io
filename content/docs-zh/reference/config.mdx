@@ -1,0 +1,317 @@
+---
+id: /docs/reference/config/
+title: 配置参考
+last_edited: '2025-03-26T00:00:43.096Z'
+tocIsHidden: false
+next: content/docs-zh/reference/schema.mdx
+previous: content/docs-zh/reference/overview.mdx
+---
+
+从 `tina/config.{ts,tsx,js,jsx}` 导出的 `defineConfig` 函数的结果定义了你的 TinaCMS 设置。
+
+注意，它**必须是**默认导出。
+
+> 配置文件的位置之前在 `.tina/config.{ts,tsx,js,jsx}`
+
+## 选项
+
+<apiReference
+  title=""
+  property={[
+    {
+      groupName: "",
+      name: "schema",
+      type: "Schema",
+      description: "定义你的**内容模型**。\n",
+      required: true
+    },
+    {
+      groupName: "build",
+      name: "publicFolder",
+      type: "string",
+      required: true,
+      description: '应用程序资产文件夹路径。\n\n通常为 `"public"`。\n'
+    },
+    {
+      groupName: "build",
+      name: "outputFolder",
+      type: "string",
+      required: true,
+      description:
+        'TinaCMS 构建路径（编辑器路由）。\n\n通常为 `"admin"`。\n\n这将在 `[url]/admin/index.html` 查看。\n'
+    },
+    {
+      groupName: "build",
+      name: "host",
+      type: "string | boolean",
+      description: "vite 配置的主机选项。\n"
+    },
+    {
+      groupName: "build",
+      name: "basePath",
+      type: "string",
+      description:
+        '如果在子路径上提供服务，则设置。\n\n对于 `[url]/my-site`，设置为 `"my-site"`。\n'
+    },
+    {
+      groupName: "",
+      name: "branch",
+      type: "string | null",
+      description:
+        "用于拉取内容的基础分支。对于 **TinaCloud** 是必需的。\n"
+    },
+    {
+      groupName: "",
+      name: "clientId",
+      type: "string | null",
+      description: "来自 TinaCloud 的 `clientId`。对于 **TinaCloud** 是必需的。\n"
+    },
+    {
+      groupName: "",
+      name: "token",
+      type: "string | null",
+      description:
+        "来自 TinaCloud 的只读令牌。对于 **TinaCloud** 是必需的。\n"
+    },
+    {
+      groupName: "",
+      name: "localContentPath",
+      type: "string",
+      description:
+        "本地开发中单独内容仓库的相对路径。\n"
+    },
+    {
+      groupName: "",
+      name: "authProvider",
+      type: "AuthProvider",
+      description:
+        "设置[自定义认证](/docs/reference/self-hosted/auth-provider/overview)。\n"
+    },
+    {
+      groupName: "admin",
+      name: "authHooks",
+      type: "AuthHooks",
+      description: "用于在认证事件上运行逻辑。\n"
+    },
+    {
+      groupName: "ui",
+      name: "previewUrl",
+      type: "function -- context: { branch: string } => { url: string }",
+      description:
+        "识别特定分支的 URL 模式，例如用于预览部署，并通过编辑器链接到它们。\n\n![](/img/docs/share-btn_xvmxii.png)\n"
+    },
+    {
+      groupName: "client",
+      name: "skip",
+      type: "boolean",
+      description: "跳过构建自动生成的 GraphQL 客户端。\n"
+    },
+    {
+      groupName: "client",
+      name: "referenceDepth",
+      type: "number",
+      description:
+        "生成的查询将遍历引用到给定深度。\n",
+      default: "2"
+    },
+    {
+      groupName: "client",
+      name: "errorPolicy",
+      type: "'throw' | 'include'",
+      description:
+        "设置客户端错误处理。'throw' 将在查询失败时抛出错误，'include' 将在查询响应中返回错误。\n",
+      default: "throw"
+    },
+    {
+      groupName: "media",
+      name: "loadCustomStore",
+      type: "() => Promise<Store>",
+      description:
+        "加载自定义媒体存储，如 Cloudinary。\n\n**要么设置此属性，要么设置** `media.tina` **对象，不能同时设置。**\n"
+    },
+    {
+      groupName: "media",
+      name: "accept",
+      type: "string | string[]",
+      description:
+        '允许的媒体类型。\n\n例如 `["image/png", "image/jpeg"]` 或 `"image/*"`。\n'
+    },
+    {
+      groupName: "media.tina",
+      name: "publicFolder",
+      type: "string",
+      description: "你的资产文件路径。\n"
+    },
+    {
+      groupName: "media.tina",
+      name: "mediaRoot",
+      description:
+        "媒体的根文件夹（公共文件夹的子目录）。\n",
+      type: "string"
+    },
+    {
+      groupName: "media.tina",
+      name: "static",
+      description: "指示编辑者是否可以管理媒体。\n",
+      default: "false",
+      type: "boolean"
+    },
+    {
+      groupName: "search",
+      name: "indexBatchSize",
+      type: "number",
+      description: "每个 PUT 请求要索引的文档数量。\n"
+    },
+    {
+      groupName: "search",
+      name: "maxSearchIndexFieldLength",
+      type: "number",
+      description:
+        "将被索引用于搜索的字符串字段的最大长度。\n"
+    },
+    {
+      groupName: "search",
+      name: "searchClient",
+      type: "SearchClient",
+      description:
+        "自定义搜索客户端的实例，如 Algolia。\n\n**要么设置此属性，要么设置** `search.tina` **对象，不能同时设置。**\n"
+    },
+    {
+      groupName: "search.tina",
+      name: "indexerToken",
+      type: "string",
+      description:
+        "具有写入搜索索引权限的搜索索引令牌。仅由 CLI 使用。\n"
+    },
+    {
+      groupName: "search.tina",
+      name: "stopwordLanguages",
+      type: "string[]",
+      description: "要使用的停用词语言。\n",
+      default: '["eng"]'
+    },
+    {
+      groupName: "search.tina",
+      name: "tokenSplitRegex",
+      type: "string",
+      description: "用于拆分标记的正则表达式。\n",
+      default: "/[\\p{L}\\d_]+/"
+    },
+    {
+      groupName: "",
+      name: "contentApiUrlOverride",
+      type: "string",
+      description: "覆盖默认的内容 API URL。\n",
+      experimental: true
+    }
+  ]}
+/>
+
+## 示例
+
+### Vercel 和 TinaCloud 配置
+
+这是一个使用 TinaCloud 托管数据层的标准配置，以及内置的 Tina 媒体和搜索功能。
+
+```ts
+const branch =
+  process.env.NEXT_PUBLIC_TINA_BRANCH ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD ||
+  'main';
+
+export default defineConfig({
+  branch,
+  // 由 TinaCloud 生成
+  token: '<Your Read Only Token>',
+  // 由 TinaCloud 生成
+  clientId: '<Your Client ID>',
+  build: {
+    publicFolder: 'public',
+    outputFolder: 'admin',
+  },
+  schema: {
+    //内容模型定义在这里...
+  },
+  ui: {
+    previewUrl: (context) => {
+      // 基于分支名称使用 Vercel 预览部署
+      return { url: `https://my-app-git-${context.branch}.vercel.app` };
+    },
+  },
+  media: {
+    tina: {
+      publicFolder: 'public',
+      mediaRoot: 'uploads',
+    },
+  },
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_SEARCH_TOKEN,
+    },
+  },
+});
+```
+
+### Cloudinary 媒体存储
+
+Tina 支持 Git 支持的媒体和特定的外部媒体提供商：
+
+```ts
+export default defineConfig({
+  // ... 其他配置选项
+  media: {
+    loadCustomStore: async () => {
+      const pack = await import('next-tinacms-cloudinary');
+      return pack.TinaCloudCloudinaryMediaStore;
+    },
+    accept: 'image/*',
+  },
+});
+```
+
+### TinaCloud 搜索选项
+
+Tina 通过 TinaCloud 提供内置的搜索功能。
+
+```ts
+// Tina Cloud 搜索
+export default defineConfig({
+  // ... 其他配置选项
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_SEARCH_TOKEN,
+      stopwordLanguages: ['eng', 'fra'],
+      tokenSplitRegex: '/[p{L}d_]+/',
+    },
+  },
+});
+```
+
+### 使用 TypeScript 路径别名的导入
+
+TinaCMS 支持在 `tina/config.{ts,js,tsx}` 文件和集合中使用 TypeScript 路径别名。
+
+确保 `tsconfig.json` 存在于项目的根目录。 在 `compilerOptions` 部分定义你的别名。
+
+```javascript
+//tsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
+```
+
+你现在可以使用别名导入工具或其他模块。
+
+```typescript
+import { someUtility } from '@/lib/utils';
+
+export default defineConfig({
+  //...
+});
+```
