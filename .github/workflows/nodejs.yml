@@ -12,7 +12,7 @@ env:
   GISCUS_ORG: 'tinacms'
   GISCUS_REPO_NAME: 'tina.io'
   GISCUS_CATEGORY: 'Tina Blog Discussions'
-  GISCUS_REPO_ID: ${{ secrets. GISCUS_REPO_ID}}
+  GISCUS_REPO_ID: ${{ secrets.GISCUS_REPO_ID}}
   GISCUS_CATEGORY_ID: ${{ secrets.GISCUS_CATEGORY_ID }}
 
 jobs:
@@ -27,6 +27,25 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pnpm-store
+            node_modules
+            .pnpm
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-
       - name: pnpm install
         run: pnpm i
       - name: pnpm build
