@@ -108,6 +108,38 @@ query pageWithRecentPosts($relativePath: String!) {
   }
 }
 
+query pageZhWithRecentPosts($relativePath: String!) {
+  page(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...PageParts
+  }
+  recentPosts: postZhConnection(sort: "date", last: 2) {
+    edges {
+      node {
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...PostZhParts
+      }
+    }
+  }
+}
+
 query getAllDocs {
   docConnection(first: 1000) {
     edges {
