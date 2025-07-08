@@ -1,0 +1,298 @@
+---
+seo:
+  description: >-
+    学习如何在Next.js应用路由中使用TinaCMS，包括设置、配置和最佳实践，以获得流畅的编辑体验。
+title: Next.js 应用路由
+last_edited: '2025-03-10T01:28:03.399Z'
+next: content/docs-zh/frameworks/next/pages-router.mdx
+previous: content/docs-zh/introduction/using-starter.mdx
+---
+
+> 👆本指南假设您正在使用**[Next.js应用路由。](https://nextjs.org/docs/app)**
+
+## 视频指南
+
+<Youtube embedSrc="https://www.youtube.com/embed/0oYSzT1DDLg" />
+
+## 安装依赖
+
+在您网站的目录中运行：
+
+```bash
+npx @tinacms/cli@latest init
+```
+
+这将询问您一些设置问题。当提示输入**公共资产目录**时，输入：**public**。
+
+## 更新构建脚本
+
+`tina init` 应该已经更新了您的 `package.json` 脚本。
+
+```json
+"scripts": {
+  "dev": "tinacms dev -c \"next dev\"",
+  "build": "tinacms build && next build",
+  "start": "tinacms build && next start"
+}
+```
+
+如果这些没有被CLI设置，您需要手动应用。
+
+## 启动TinaCMS
+
+您可以通过以下命令启动TinaCMS：
+
+```bash
+pnpm dev
+```
+
+**我们推荐使用pnpm。**
+
+TinaCMS运行后，导航到 `http://localhost:3000/admin/index.html`。
+
+> ❓ 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
+
+此时，您应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改持久化到您的本地Markdown文件中。
+
+![TinaCMS 管理界面截图](/img/hugo-tina-admin-screenshot.png)
+
+## TinaCMS 配置文件
+
+运行 `tina init` 命令后，创建了一些文件以帮助您快速入门。其中之一是 `tina/config.ts` 文件。这是一个必需的配置文件，定义了所有的tina模式。
+
+它看起来如下：
+
+```ts
+import { defineConfig } from 'tinacms';
+
+// 您的托管提供商可能将其作为环境变量公开
+const branch =
+  process.env.GITHUB_BRANCH ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD ||
+  'main';
+
+export default defineConfig({
+  branch,
+
+  // 从tina.io获取
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  // 从tina.io获取
+  token: process.env.TINA_TOKEN,
+
+  build: {
+    outputFolder: 'admin',
+    publicFolder: 'public',
+  },
+  media: {
+    tina: {
+      mediaRoot: '',
+      publicFolder: 'public',
+    },
+  },
+  schema: {
+    collections: [
+      {
+        name: 'post',
+        label: 'Posts',
+        path: 'content/posts',
+        fields: [
+          {
+            type: 'string',
+            name: 'title',
+            label: 'Title',
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Body',
+            isBody: true,
+          },
+        ],
+      },
+    ],
+  },
+});
+```
+
+**有关配置的更详细概述，请参阅[使用TinaCMS进行内容建模](/docs/extending-tina/overview/)**
+
+> 💡 如果您按照本指南使用 `tina init` 命令，您可能已经注意到创建了一个 `content` 和一个 `pages` 文件夹：
+
+```bash
+Adding file at content/posts/hello-world.md... ✅
+Adding file at pages/demo/blog/[filename].tsx... ✅
+```
+
+> 这些可以用作快速参考，但可以安全删除。
+
+## 创建新帖子
+
+> 💡 如 `tina/config.ts` 文件中定义的，我们有一个名为 `post` 的集合，它将被TinaCMS拾取并映射到您在TinaCMS管理页面中看到的内容。
+
+1. 前往 `/admin/index.html`
+
+2. 点击 Posts
+
+3. 点击 Create
+
+4. 输入必填字段
+
+5. 保存
+
+现在，让我们回去检查创建了什么。您将看到一个 `/content` 文件夹，其中保存了您的新帖子作为 `.md` 文件。此路径在 `tina/config.ts` 文件的post集合中定义！
+
+```bash
+content
+    └── posts
+        └── hello-world.md
+```
+
+## 渲染帖子集合
+
+让我们从创建一个 `/posts` 文件夹开始。这里的页面将列出我们所有的帖子。
+
+**文件：** `app/posts/page.tsx`
+
+```tsx
+import PostList from './client-page';
+import { client } from '../../tina/__generated__/client';
+
+export default async function Page() {
+  const { data } = await client.queries.postConnection();
+
+  return (
+    <>
+      <h1>Posts</h1>
+      <div>
+        {data.postConnection.edges.map((post) => (
+          <div key={post.node.id}>
+            <Link href={`/posts/${post.node._sys.filename}`}>
+              {post.node._sys.filename}
+            </Link>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+```
+
+您可能已经注意到这是一个服务器渲染的页面。根据此页面的生成方式，Next将会：
+
+- **A. 将其构建为动态/服务器渲染页面**
+- **B. 将其构建为静态页面。**
+
+这取决于您希望如何渲染此页面。
+
+## 渲染单个帖子
+
+为了使其与TinaCMS可视化编辑器一起工作，我们将其分为两个组件。一个将在构建时构建页面。另一个将是一个可以与TinaCMS交互并工作的客户端渲染页面。
+
+**文件：** `app/posts/[...filename].tsx`
+
+```tsx
+import Post from './client-page';
+import client from '../../../tina/__generated__/client';
+
+export async function generateStaticParams() {
+  const pages = await client.queries.postConnection();
+  const paths = pages.data?.postConnection?.edges?.map((edge) => ({
+    filename: edge?.node?._sys.breadcrumbs,
+  }));
+
+  return paths || [];
+}
+
+export default async function PostPage({
+  params,
+}: {
+  params: { filename: string[] };
+}) {
+  const data = await client.queries.post({
+    relativePath: `${params.filename}.md`,
+  });
+
+  return <Post {...data}></Post>;
+}
+```
+
+在这里，我们使用 [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params) 将这些页面构建为SSG。您可以根据需要随意更改。
+
+现在，为了使可视化编辑器工作，我们将创建一个新的“客户端页面”：
+
+**文件：** `app/posts/[...filename]/client-page.tsx`
+
+```tsx
+'use client';
+import { useTina } from 'tinacms/dist/react';
+import { PostQuery } from '../../../tina/__generated__/types';
+
+interface ClientPageProps {
+  query: string;
+  variables: {
+    relativePath: string;
+  };
+  data: PostQuery;
+}
+
+export default function Post(props: ClientPageProps) {
+  // 数据在生产模式下传递，并在编辑模式下更新为侧边栏数据
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
+  return (
+    <code>
+      <pre
+        style={{
+          backgroundColor: 'lightgray',
+        }}
+      >
+        {JSON.stringify(data.post, null, 2)}
+      </pre>
+    </code>
+  );
+}
+```
+
+## 常见问题
+
+### 页面上的更新未正确反映
+
+在使用应用路由的Next.js项目中使用TinaCMS时，您可能会遇到Vercel过于积极地缓存内容，导致某些更新未正确反映的情况。
+
+根本原因是 [Vercel数据缓存](https://vercel.com/docs/data-cache) 正在缓存来自TinaCloud内容API的响应。这可以通过查询GraphQL API并查找更新的内容，或检查[Vercel中缓存的使用情况](https://vercel.com/docs/data-cache/manage-data-cache)来确认。
+
+有两种方法可以修改您的站点以最佳方式使用Vercel数据缓存：
+
+1. 手动更新路由段的默认重新验证时间。这将导致增量静态生成在运行时重新验证缓存的内容API响应时重建页面并更新内容。更多信息请参见：[https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
+2. 向您的查询（TinaCMS生成的）添加一个额外的参数，例如\
+   `const response = await client.queries.page({ relativePath: 'pages/home.mdx'}, { fetchOptions: { next: { revalidate: 60 } })})`\
+   这将传递给底层的 `fetch` 请求。有关Next.js如何扩展 `fetch` 的更多信息，请参见：[https://nextjs.org/docs/app/api-reference/functions/fetch](https://nextjs.org/docs/app/api-reference/functions/fetch)
+
+### 新创建的内容项未出现在页面上
+
+在使用应用路由的Next.js项目中使用TinaCMS时，您可能会遇到新创建的内容项未立即出现在相应页面上的情况。这种行为通常是由Next.js和浏览器使用的积极缓存机制引起的。
+
+为了确保在本地开发期间看到最新的内容，您可以在浏览器的开发者工具中禁用浏览器缓存：
+
+1. 在浏览器中打开开发者工具（例如，Chrome，Firefox）。
+2. 导航到网络选项卡。
+3. 勾选禁用缓存选项（此设置在开发者工具打开时有效）。
+
+\
+![在开发者工具中禁用缓存](/img/docs/frameworks/next/app-router/devtools-disabling-cache.png)
+
+\
+有关Next.js中缓存的更详细信息，请参阅Next.js官方文档：
+[Next.js 缓存文档](https://nextjs.org/docs/app/building-your-application/caching)
+
+## 下一步
+
+- [查看内容建模文档](/docs/schema/)
+- [了解如何查询您的内容](/docs/features/data-fetching/)
+- [部署您的站点](/docs/tina-cloud)
