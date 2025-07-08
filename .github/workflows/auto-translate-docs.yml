@@ -63,6 +63,10 @@ jobs:
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: node .github/scripts/translate-mdx.js
 
+      - name: Fix translation paths
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: node .github/scripts/fix-translation-paths.js
+
       - name: Commit and push changes
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
