@@ -2,6 +2,7 @@
   "seo": {
     "title": "TinaCMS – 集成GitHub和Markdown的无头CMS",
     "description": "将Github和Markdown的强大功能与TinaCMS集成，实现无缝内容管理。让开发者和创作者能够轻松地编辑、预览和管理静态及动态网站",
+    "canonicalUrl": "https://tina.io/zh",
     "hasCustomSuffix": true
   },
   "blocks": [
@@ -22,14 +23,13 @@
             {
               "label": "预约演示",
               "icon": false,
-              "color": "orange",
+              "color": "blueOutline",
               "size": "medium",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
             },
             {
               "label": "npx create-tina-app@latest",
-              "clickedOnText": "",
               "_template": "codeButton"
             }
           ],
@@ -257,6 +257,19 @@
       "_template": "carouselFeature"
     },
     {
+      "_template": "events"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "altText": "NPX 入门指南",
+      "title": "厌倦了冗长的配置过程？",
+      "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
+      "figureCaption": "视频：使用 NPX 开始使用 TinaCMS（2 分钟）",
+      "_template": "videoEmbed"
+    },
+    {
       "features": [
         {
           "headline": "与Tina专家对话",
@@ -284,14 +297,11 @@
       "_template": "features"
     },
     {
-      "_template": "events"
-    },
-    {
       "blockSettings": {
         "isFullscreen": false
       },
-      "title2": "\"Tina彻底革新了Unity的文档管理方式\"",
-      "subtext": "Anton Iancu，AI与文档产品工程经理",
+      "title2": "\"Tina 正在改变我们在 Unity 处理文档的方式\"",
+      "subtext": "Anton Iancu，AI 和文档产品工程经理",
       "logo": "/img/logos/unity-logo.png",
       "_template": "quote"
     },
