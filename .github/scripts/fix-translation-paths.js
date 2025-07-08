@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
 
 function fixPathsInFile(filePath) {
   try {
@@ -39,25 +37,6 @@ function fixPathsInFile(filePath) {
   }
 }
 
-function fixAllTranslationPaths() {
-  console.log('Starting path fixes for translated files...');
-
-  const files = [
-    ...glob.sync('content/docs-zh/**/*.mdx'),
-    ...glob.sync('content/blog-zh/**/*.mdx'),
-  ];
-  const fixedCount = files.filter(fixPathsInFile).length;
-
-  console.log(
-    `\n✅ Path fixing completed. Fixed ${fixedCount} of ${files.length} files.`
-  );
-}
-
-if (require.main === module) {
-  fixAllTranslationPaths();
-}
-
 module.exports = {
   fixPathsInFile,
-  fixAllTranslationPaths,
 };
