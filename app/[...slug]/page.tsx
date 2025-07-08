@@ -44,13 +44,16 @@ export async function generateMetadata({
   return getSeo(seo);
 }
 
-
-
 export default async function Page({ params }: PageProps) {
   const { slug } = params;
   const relativePath = `${slug.join('/')}.json`;
   try {
-    const res = await client.queries.pageWithRecentPosts({
+    const isZhPath = relativePath.startsWith('zh/');
+    const queryFunction = isZhPath
+      ? client.queries.pageZhWithRecentPosts
+      : client.queries.pageWithRecentPosts;
+
+    const res = await queryFunction({
       relativePath: relativePath,
     });
     return (

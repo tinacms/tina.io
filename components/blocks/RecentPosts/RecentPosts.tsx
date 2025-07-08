@@ -4,6 +4,12 @@ import { formatDate } from 'utils/blog_helpers';
 import { getExcerpt } from 'utils/getExcerpt';
 import { Container } from '../Container';
 
+const getPostHref = (path) => {
+  let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
+  processedPath = processedPath.replace('/blog-zh', '/zh/blog');
+  return processedPath;
+};
+
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   return (
     <section
@@ -22,8 +28,9 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         <div className="flex flex-wrap gap-12 lg:gap-16">
           {recentPosts.edges.map(({ node: post }) => {
             const slug = post._sys.filename;
+            const href = getPostHref(post._sys.path);
             return (
-              <DynamicLink key={slug} href={`/blog/${slug}`} passHref>
+              <DynamicLink key={slug} href={href} passHref>
                 <div className="group flex-1 flex flex-col gap-6 items-start min-w-[20rem]">
                   <h3 className="font-ibm-plex inline-block text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                     {post.title}
