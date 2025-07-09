@@ -1,0 +1,120 @@
+---
+opengraph:
+  image:
+    url: /img/blog/tinacms-2022/tinacms-2022-vision.png
+    width: '1920,'
+    height: '1080,'
+    alt: TinaCMS in 2022
+seo:
+  title: 'TinaCMS 2022: 年度回顾 | TinaCMS 博客'
+  description: >-
+    回顾 TinaCMS 在 2022 年的里程碑，包括主要版本发布、新功能和社区增长，我们将继续发展内容管理。
+title: 2022 年的 TinaCMS
+date: '2022-02-22T00:00:00-04:00'
+last_edited: '2022-02-22T00:00:00-04:00'
+author: Scott Gallant
+prev: content/blog-zh/syntax-highlighting-with-tina.mdx
+next: content/blog-zh/tina-cms-get-started.mdx
+---
+
+Tina 团队在这一年开始了激动人心的旅程。我们的使命是通过打造全球最具可定制性的 CMS 来重新定义网页发布，让开发者对其网站的编辑体验拥有完全的控制权。
+
+Tina 与其他传统 CMS 的两个独特区别在于：
+
+1. **Git -** 我们坚信使用文件（Markdown、MDX、JSON 等）和 Git 进行内容存储
+2. **可视化编辑 -** 最佳的编辑体验是上下文相关的，您的内容编辑者可以实时看到他们的更改在网站上的反映
+
+使用 Git 存储您的内容是梦想成真。当您的内容在 Markdown 和 JSON 文件中时，它简化了您的技术栈。您无需数据库即可享受结构化内容的好处。您拥有 *您* 的仓库中的内容，以开放格式存储，而不是在第三方数据库中租用空间或管理后端服务器。使用文件系统 + Git 进行内容管理，您可以获得版本控制（历史记录、回滚等）和 CI/CD 友好的工作流程。最重要的是，您获得了可移植性，不会被锁定在任何一个系统中。使用 Git，您可以控制您的网站：代码和内容。
+
+您的内容创建者不需要知道 Tina 在底层是由 Git 驱动的。编辑体验在您的网站上下文中实时显示您的内容更改。这是市场上每个 B2C 网站构建工具的情况，现在使用现代框架（如基于 React、Vue 和 Svelte 构建的框架）也可以实现开发者优先的无头 CMS。我们才刚刚开始探索可能性，我们看到团队正在构建平台，为他们的团队提供完全的创意控制，同时为开发者提供对代码和 CMS 指导轨的完全控制。话虽如此，Tina 还将为未在视图中呈现的内容提供基本的编辑模式（如下所述）。
+
+以下是 2022 年即将推出的内容摘要，下面有更多详细信息。
+
+![Tina 推出版本 1。更多框架（Remix、Nuxt、SvelteKit 等）。在您的 Git 内容之上的无头 API。大规模 Markdown。新 UI。更加开放和可扩展](/img/blog/tinacms-2022/tinacms-2022-vision.png)
+
+## Tina 进入 1.0
+
+Tina 目前处于 Beta 阶段，但我们正在稳步推进 1.0。我们预计这将很快发生，因为我们每天都看到越来越多的人尝试并爱上 Tina ❤️。
+
+![来自 Leroy 的社区反馈](/img/blog/tinacms-2022/tinacms-community-feedback-leroy.png)
+![来自 Jason Mason 的社区反馈](/img/blog/tinacms-2022/tinacms-community-feedback-jason.png)
+
+随着 Tina 接近 1.0，您会看到一些粗糙的边缘被抚平，比如媒体管理的用户体验和在 CMS 中加载内容时的性能改进。此外，由于我们一直专注于首先解决最困难的问题（如将 Git 扩展到数千页），您可能已经注意到某些功能缺失，比如简单的页面删除。在 1.0 之前，这些功能将到位，Tina 将成为一个成熟的 CMS。
+
+## 更多框架（Remix、Nuxt、SvelteKit 等）
+
+![next.js, remix, nuxt, hugo, eleventy](/img/blog/tinacms-2022/SSG-logos.png)
+
+Tina 在 Beta 阶段专注于 Next.js。这减少了我们的维护“表面积”，同时我们将产品做得更好。在 1.0 之前，我们将 Tina 开放给其他框架。第一阶段将包括现代的、与数据无关的 JavaScript 框架，如 Remix、Nuxt 和 SvelteKit。第二阶段将包括所有 JAMstack 框架（Jekyll、Hugo、11ty 等）。
+
+> 有关支持框架的最新详细信息，请参阅[我们的框架特定指南]()
+
+## 在您的 Git 内容之上的无头 API
+
+如上所述，我们坚信使用 Markdown、MDX 和 JSON 文件（在 Git 版本控制下）进行内容管理。您可以从中获得很多好处：
+
+* 您的内容不需要数据库
+* 可移植性和无锁定
+* Git 历史记录、回滚等
+* CI/CD 友好的工作流程
+* 使用开放格式，如 Markdown、MDX 和 JSON
+
+然而，使用 Git 作为内容存储有其局限性。通常，像 Markdown 这样的文件仅在构建时查询，适用于静态生成的页面，而不用于具有服务器端渲染（SSR）的动态页面。为了允许使用 Git 支持的内容进行 SSR，Tina 将扩展其 GraphQL API 以允许公共访问（使用只读令牌），这样您就可以像使用任何其他 API 优先的无头 CMS 一样查询您的 Git 支持的内容。这为您提供了两全其美的选择：使用开放、可靠的格式和版本控制进行内容管理的能力，以及在需要时动态查询数据的灵活性（即在 [Next.js](https://nextjs.org/) 中使用 getStaticProps 或在 [Remix](https://remix.run/) 中使用 useLoaderData）。
+
+Tina 的无头 API 将允许您对内容使用高级查询（即排序、过滤、分页和关系），我们将在下一节中介绍。
+
+## 大规模 Markdown
+
+使用 Markdown 管理数千页的网站在像 [增量静态生成](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)（ISR）这样的工具的帮助下变得更加轻松。现在，您可以在不需要预先编译每个页面的情况下，享受将内容存储在 Markdown 文件中的可靠性，从而缩短构建时间。今年，我们将改进管理所有这些数千个 Markdown、MDX 或 JSON 文件的体验。这包括：
+
+* TinaCMS CLI 中的迁移和审核功能，以确保根据您的 Tina Schema 文件在所有文件中保持数据一致性
+* 使用 [GraphQL API](https://tina.io/docs/graphql/overview/) 改进查询 - 支持对内容的高级查询（即排序、过滤、分页）以及跨多个文件的关系数据（即如果您的 Markdown 博客文章有一个关联的作者，查询作者姓名、简介等）
+* 支持本地和云开发的工作流程
+
+我们正在使 Markdown 的体验更像是与数据库一起工作，以便 Git 可以扩展到极大的站点。
+
+## 新 UI
+
+我们正在对 Tina 的 UI 进行重大改进。具体来说：
+
+### 1. 改进的 UI
+
+Tina 的 UI 将提供更传统的 CMS 体验，用于浏览您网站上的内容。这样，您可以浏览和编辑与视图无关的内容，例如下面示例中的作者，并且只有在特定页面上连接“可视化编辑”时，您才会获得丰富的站点预览。
+
+<Youtube embedSrc="https://youtube.com/embed/GMe8F7vyUa0" />
+
+### 2. 基于 Tailwind
+
+Tina 的编辑 UI 正在迁移到 [Tailwind](https://tailwindcss.com/)，以便更容易定制和扩展。![tailwind css logo](/img/blog/tinacms-2022/tailwindcss.jpg)
+
+### 3. 块 UI
+
+Tina 将拥有改进的块选择体验，以便用户可以在将块添加到页面之前获得其视觉预览。
+
+<Youtube embedSrc="https://youtube.com/embed/iiJo8mBE9Oo" />
+
+### 4. 富文本编辑和 MDX
+
+Tina 的富文本编辑（带有可嵌入的 [MDX](https://mdxjs.com/) 组件）体验将得到重大改进。撰写长篇内容（如博客文章或文档）的内容创建者将会喜欢新的富文本字段
+
+<Youtube embedSrc="https://youtube.com/embed/rZG_HxT-2Bc" />
+
+## 更加开放和可扩展的 Tina
+
+在我人生的前一个阶段，我是一名自由职业者和代理开发者，我从使用开源 WordPress 中受益匪浅。我曾是所谓的“WordPress 经济”的一部分。现在有了 TinaCMS，我们希望允许其他人利用我们的开源软件。
+
+目前，大多数 Tina 是开源的，但在生产站点中编辑内容时需要 TinaCloud。TinaCloud 代理请求通过 GitHub API，这使我们能够确保编辑体验的优越性。例如，您不需要 GitHub 帐户即可编辑内容，不会受到 GitHub API 的速率限制，并且我们可以防止多人同时编辑同一内容时覆盖彼此的更改。然而，将来我们希望确保 TinaCloud 是可选的而不是锁定的。我们目前正在研究我们的选项，以提供不需要 TinaCloud 的路径。
+
+我们不仅希望 Tina 是开源的，还希望它成为全球最具可定制性的 CMS，让开发者对为其团队和客户定制编辑体验拥有完全的控制权。目前，在某些特定方面扩展和定制 Tina 可能比较繁琐。预计在扩展 Tina 方面会有重大改进。如果您对其中一些架构感兴趣，请参阅此 [GitHub 讨论](https://github.com/tinacms/tinacms/discussions/2402)。
+
+最后，我们正在使 [TinaCMS Schema](https://tina.io/docs/schema/) 更加模块化。这样，您可以拆分您的架构，并将其与 React 组件保持紧密联系，以提高可移植性。
+
+## 结论
+
+我希望这能让您了解我们今年想要实现的目标。我们已经看到人们用 TinaCMS 构建了很棒的东西。今年将充满升级、新功能，以及为开发者和内容创建者提供的全方位惊人的 CMS 体验。我们将向世界展示使用 Git + JAMstack 时的可能性。
+
+如果您还没有机会尝试 Tina，请在 TinaCloud 上或使用命令行启动一个入门站点，并分享您的反馈。
+
+<CreateAppCta ctaText="尝试入门" cliText="npx create-tina-app@latest" />
+
+我们的 [Discord 社区](https://discord.com/invite/zumN63Ybpf) 充满了构建下一代网站的开发者，我们出色的团队总是乐于提供帮助。您也可以随时通过 [Twitter 联系我](https://twitter.com/scottgallant)。
