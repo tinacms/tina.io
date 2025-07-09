@@ -1,0 +1,43 @@
+---
+title: Vercel KV 数据库适配器 (Upstash Redis)
+id: '/docs/reference/self-hosted/database-adapter/vercel-kv'
+---
+
+Vercel KV 数据库适配器允许您在 Tina 中使用 [Vercel KV](https://vercel.com/docs/storage/vercel-kv) 数据库。此适配器使用 [Upstash Redis 客户端](https://www.npmjs.com/package/@upstash/redis)，因此也可以与 [Upstash Redis](https://docs.upstash.com/redis) 一起使用。
+
+> 在寻找代码吗？查看 [GitHub 仓库](https://github.com/tinacms/upstash-redis-level)。
+
+要开始使用，您需要设置一些环境变量。
+
+首先从 Vercel 或 Upstash 仪表板复制您的值。
+
+![Vercel 仪表板](/img/docs/self-hosted/Screenshot_2023-08-02_at_1.29.58_PM.png)
+
+然后将以下环境变量添加到您的项目中：
+
+```env
+KV_REST_API_URL=***
+KV_REST_API_TOKEN=***
+```
+
+## 创建数据库适配器
+
+```ts
+//...
+import { RedisLevel } from 'upstash-redis-level'
+
+export default isLocal
+  ? createLocalDatabase()
+  : createDatabase({
+      // ...
+
+      databaseAdapter: new RedisLevel({
+        namespace: branch,
+        redis: {
+          url: process.env.KV_REST_API_URL || 'http://localhost:8079',
+          token: process.env.KV_REST_API_TOKEN || 'example_token',
+        },
+        debug: process.env.DEBUG === 'true' || false,
+      }),
+    })
+```

@@ -1,0 +1,66 @@
+---
+title: TinaCloud 认证提供者
+id: '/docs/reference/self-hosted/auth-provider/tina-cloud'
+---
+
+您可以使用 TinaCloud 进行身份验证和授权，并自行托管内容 API。如果您还没有账户，可以在 [app.tina.io](https://app.tina.io) 创建一个，然后创建一个新项目。
+
+创建项目后，您需要添加以下环境变量：
+
+```env
+NEXT_PUBLIC_TINA_CLIENT_ID=***
+```
+
+## 配置认证提供者
+
+要启用 TinaCloud 进行认证，请确保在您的 Tina 配置中将 `clientId` 属性设置为 `NEXT_PUBLIC_TINA_CLIENT_ID` 环境变量。
+
+`tina/config.{ts,js}`
+
+```ts
+//...
+export default defineConfig({
+  // 确保此项指向您的 graphql 端点
+  contentApiUrlOverride: '/api/tina/gql',
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
+  //...
+  admin: {
+    auth: {
+      useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === 'true',
+    },
+  },
+})
+```
+
+## 更新 Tina 后端
+
+首先安装 `@tinacms/auth` 包：
+
+```bash
+yarn add @tinacms/auth
+```
+
+接下来，您可以更新您的 Tina 后端以使用 `TinaCloudBackendAuthProvider` 类。
+
+`/pages/api/tina/[...routes].{ts,js}`
+
+```ts
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaCloudBackendAuthProvider } from '@tinacms/auth'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : TinaCloudBackendAuthProvider(),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // 如果需要，可以在此处修改请求
+  return handler(req, res)
+}
+```

@@ -1,0 +1,201 @@
+---
+title: 插件组件
+last_edited: '2025-03-17T05:20:14.331Z'
+tocIsHidden: true
+next: ''
+previous: ''
+---
+
+TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.component` 属性使用。
+
+将该属性设置为插件名称的字符串。
+
+**这只会修改编辑器** – 存储的底层数据取决于使用的字段类型。
+
+```javascript
+{
+  type: 'string',
+  label: '背景颜色',
+  name: 'color',
+  ui: {
+    component: "color",
+    colorFormat: "rgb"
+  }
+}
+```
+
+> 你可以通过 `ui` 传入额外的插件配置 – 例如上例中的 `colorFormat`。
+
+### 插件库
+
+<ImageAndText
+  image="/img/fields/text.png"
+  docText={<>
+    字符串字段的默认输入类型。
+    
+    要使用，设置 `ui.compontent` 为 `"text"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/text/)。
+  </>}
+  heading="文本输入"
+/>
+
+<ImageAndText
+  image="/img/fields/textarea.png"
+  docText={<>
+    多行文本。
+    
+    要使用，设置 `ui.compontent` 为 `"textarea"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/textarea/)。
+  </>}
+  heading="文本区域输入"
+/>
+
+<ImageAndText
+  image="/img/fields/number-field.png"
+  docText={<>
+    数字字段类型的默认输入类型。
+    
+    要使用，设置 `ui.compontent` 为 `"number"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/number/)。
+  </>}
+  heading="数字输入"
+/>
+
+<ImageAndText
+  image="/img/fields/image.png"
+  docText={<>
+    图像字段类型的默认输入。
+    
+    要使用，设置 `ui.compontent` 为 `"image"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/image/)。
+  </>}
+  heading="图像输入"
+/>
+
+<ImageAndText
+  image="/img/fields/color.jpg"
+  docText={<>
+    提供一个颜色选择器，返回 RGB 或十六进制值。
+    
+    要使用，设置 `ui.compontent` 为 `"color"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/color/)。
+  </>}
+  heading="颜色输入"
+/>
+
+<ImageAndText
+  image="/img/fields/toggle.png"
+  docText={<>
+    布尔字段类型的默认输入类型。
+    
+    要使用，设置 `ui.compontent` 为 `"toggle"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/toggle/)。
+  </>}
+  heading="切换输入"
+/>
+
+<ImageAndText
+  image="/img/fields/radio-group-field-horizontal-radio.gif"
+  docText={<>
+    要使用，设置 `ui.compontent` 为 `"radio-group"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/radio-group/)。
+  </>}
+  heading="单选组输入"
+/>
+
+<ImageAndText
+  image="/img/fields/select-field.png"
+  docText={<>
+    默认用于定义了选项属性的标量类型。
+    
+    要使用，设置 `ui.compontent` 为 `"select"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/select/)。
+  </>}
+  heading="选择输入"
+/>
+
+<ImageAndText
+  image="/img/fields/tags-field.png"
+  docText={<>
+    要使用，设置 `ui.compontent` 为 `"tags"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/tags/)。
+  </>}
+  heading="标签输入"
+/>
+
+<ImageAndText
+  image="/img/fields/list-field.png"
+  docText={<>
+    管理 `list: true` 字段类型的默认输入类型。
+    
+    要使用，设置 `ui.compontent` 为 `"list"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/list/)。
+  </>}
+  heading="列表输入"
+/>
+
+<ImageAndText
+  image="/img/fields/group.gif"
+  docText={<>
+    要使用，设置 `ui.compontent` 为 `"group"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/group/)。
+  </>}
+  heading="组输入"
+/>
+
+<ImageAndText
+  image="/img/blocks.gif"
+  docText={<>
+    要使用，设置 `ui.compontent` 为 `"group-list"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/group-list/)。
+  </>}
+  heading="组列表输入"
+/>
+
+<ImageAndText
+  image="/img/fields/date.jpg"
+  docText={<>
+    使用日期选择器选择日期的默认输入类型。
+    
+    要使用，设置 `ui.compontent` 为 `"date"`。
+    
+    [插件详情](/docs/reference/toolkit/fields/date/)。
+  </>}
+  heading="日期输入"
+/>
+
+<ImageAndText
+  image="/img/fields/markdown.png"
+  docText={<>
+    使用富文本编辑器编辑 Markdown 内容的默认输入类型。
+    
+    需要额外设置 – 从额外的包中导入和注册。
+    
+    [插件详情](/docs/reference/toolkit/fields/markdown/)。
+  </>}
+  heading="Markdown 输入"
+/>
+
+<ImageAndText
+  image="/img/image.png"
+  docText={<>
+    使用富文本编辑器编辑 HTML 内容的默认输入类型。
+    
+    需要额外设置 – 从额外的包中导入和注册。
+    
+    [插件详情](/docs/reference/toolkit/fields/html/)。
+  </>}
+  heading="HTML 输入"
+/>

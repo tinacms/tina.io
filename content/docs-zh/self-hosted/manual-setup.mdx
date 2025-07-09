@@ -1,0 +1,141 @@
+---
+id: /docs/self-hosted/manual-setup
+title: 自托管手动设置
+last_edited: '2024-11-19T00:56:06.271Z'
+next: content/docs-zh/self-hosted/migrating-from-tina-cloud.mdx
+previous: content/docs-zh/self-hosted/existing-site.mdx
+---
+
+## 1. 选择一个Git提供商、数据库适配器和认证提供商
+
+您需要选择一个[Git提供商](/docs/reference/self-hosted/git-provider/overview/)、[数据库适配器](/docs/reference/self-hosted/database-adapter/overview/)和[认证提供商](/docs/reference/self-hosted/auth-provider/overview/)。您可以使用我们创建的任何提供商，或者您可以创建自己的。在下面的示例中，我们将使用GitHub、Vercel KV和TinaCMS Auth.js提供商。
+
+如果您需要的Git提供商、数据库适配器或认证提供商不可用，您可以选择创建自己的。有关此过程的帮助，请参阅自托管解决方案的文档，其中提供了详细的指导。
+
+## 2. 安装依赖项
+
+```bash
+yarn add tinacms @tinacms/datalayer
+```
+
+```bash
+yarn add --dev @tinacms/cli
+```
+
+安装您选择的git提供商、数据库适配器和认证提供商的任何依赖项（这可能会根据您的选择有所不同）
+
+```bash
+yarn add tinacms-gitprovider-github tinacms-authjs upstash-redis-level @upstash/redis
+```
+
+## 3. 创建一个数据库文件
+
+在项目的`tina`文件夹中创建一个名为`database.{js,ts}`的文件。此文件将用于创建数据库。
+
+`tina/database.{ts,js}`
+
+```ts
+import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
+
+// 更改为您选择的git提供商
+import { GitHubProvider } from 'tinacms-gitprovider-github'
+
+// 更改为您选择的数据库适配器
+import { Redis } from '@upstash/redis'
+import { RedisLevel } from 'upstash-redis-level'
+
+// 在您的CI/CD管道中管理此标志，并确保在生产环境中将其设置为false
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const branch =
+  process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || 'main'
+
+if (!branch) {
+  throw new Error(
+    '未找到分支。请确保已设置GITHUB_BRANCH或process.env.VERCEL_GIT_COMMIT_REF环境变量。'
+  )
+}
+
+export default isLocal
+  ? // 如果我们在本地运行，使用一个在内存中存储数据并在保存时写入本地文件系统的本地数据库
+    createLocalDatabase()
+  : // 如果我们不在本地运行，使用一个在redis中存储数据并将数据保存到github的数据库
+    createDatabase({
+      // 可能会根据您的git提供商有所不同
+      gitProvider: new GitHubProvider({
+        repo: process.env.GITHUB_REPO || process.env.VERCEL_GIT_REPO_SLUG,
+        owner: process.env.GITHUB_OWNER || process.env.VERCEL_GIT_REPO_OWNER,
+        token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+        branch,
+      }),
+      // 可能会根据您的数据库适配器有所不同
+      databaseAdapter: new RedisLevel<string, Record<string, any>>({
+        redis: new Redis({
+          url:
+            (process.env.KV_REST_API_URL as string) || 'http://localhost:8079',
+          token: (process.env.KV_REST_API_TOKEN as string) || 'example_token',
+        }),
+        debug: process.env.DEBUG === 'true' || false,
+        namespace: branch,
+      }),
+    })
+```
+
+## 4. 托管Tina后端
+
+您将需要一个[后端端点](/docs/reference/self-hosted/tina-backend/nextjs)来托管GraphQL和认证API端点。
+
+在此示例中，我们将展示如何在Vercel上托管GraphQL API。您可以使用任何您想要的托管提供商（代码可能需要根据您选择的框架进行调整）。
+
+```js
+// pages/api/tina/[...routes].{ts,js}
+
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : AuthJsBackendAuthentication({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // 如果需要，可以在这里修改请求
+  return handler(req, res)
+}
+```
+
+> 更多信息请参见[后端托管](/docs/reference/self-hosted/tina-backend/nextjs)
+
+## 5. 更新TinaCMS配置
+
+更新TinaCMS配置以使用您在上一步中创建的GraphQL API。
+
+```js
+// tina/config.{js,ts}
+
+export default defineConfig({
+  // 确保将此设置为您的GraphQL API的URL
+  contentApiUrlOverride: '/api/tina/gql',
+  authProvider:  // 添加您的认证提供商。请参阅您选择的认证提供商的文档。
+  //...
+})
+```
+
+现在您应该能够运行您的站点并使用TinaCMS编辑您的内容。有关如何自托管TinaCMS的更多信息，请参阅[配置组件](/docs/reference/self-hosted/overview)的文档。
+
+## 下一步
+
+* [查询数据](/docs/self-hosted/querying-data)
+* 如果您想更改您的Git提供商、数据库适配器或认证提供商，请查看[参考](/docs/reference/self-hosted/overview/)。
+* 有问题吗？请在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中询问。
