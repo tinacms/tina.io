@@ -1,0 +1,20 @@
+---
+id: /docs/tina-cloud/deployment-options/netlify
+title: 部署到Netlify
+next: content/docs-zh/tina-cloud/deployment-options/github-pages.mdx
+previous: content/docs-zh/tina-cloud/deployment-options/vercel.mdx
+---
+
+## 构建配置
+
+在Netlify中，您可以在 **Settings** > **Build & Deploy** > **Build Command** 更新您的构建配置。
+
+![Netlify构建配置](/img/docs/tina-cloud-deployment-options/build-settings.png 'Netlify构建配置')
+
+> 如果您的package.json中有一个类似于 `tinacms build && <your-site-build-cmd>` 的“build”脚本，这可能不需要更改。如果您的Netlify配置没有运行自定义构建脚本（例如 `next build`），您需要将其更改为 `tinacms build && next build`
+
+> 如果您的项目有一个设置了构建命令的 `netlify.toml`，它将优先于上述构建命令UI
+
+## 环境变量
+
+假设您的Tina `clientID` 和 `token` 已设置为环境变量，您需要将这些添加到您的项目的Netlify UI中。您可以在[这里](https://docs.netlify.com/environment-variables/overview/?_ga=2.128850127.213489666.1674607241-1149277376.1674150726 'netlify environment variables')了解更多关于环境变量的信息。

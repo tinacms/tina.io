@@ -1,0 +1,87 @@
+---
+seo:
+  title: 设置GitHub Enterprise与TinaCloud的集成
+  description: >-
+    逐步指南，安全高效地将GitHub Enterprise（服务器或云）与TinaCloud连接
+title: 设置GitHub Enterprise与TinaCloud的集成
+last_edited: '2025-03-24T03:16:31.390Z'
+next: ''
+previous: ''
+---
+
+<WarningCallout
+  body={<>
+    这是一个TinaCloud企业功能
+  </>}
+/>
+
+本指南提供了将GitHub Enterprise（GHE）实例与TinaCloud集成的逐步说明。此集成支持GitHub Enterprise Server（自托管）和GitHub Enterprise Cloud（GitHub托管），但需要注意的是GitHub Enterprise Server必须可被TinaCloud访问。
+
+## 先决条件
+
+1. 一个GitHub Enterprise实例（无论是GitHub Enterprise Server还是GitHub Enterprise Cloud）。
+2. 管理访问权限以在您的GitHub组织中配置GitHub应用。
+3. 如果自托管GitHub Enterprise Server，请确保它可被TinaCloud访问。
+
+## 第一步：在GitHub Enterprise中配置GitHub应用
+
+### 创建GitHub应用
+
+1. 进入您的GitHub组织，导航到设置 > 开发者设置 > GitHub应用。
+2. 点击新建GitHub应用。
+3. 提供以下详细信息：
+   1. 应用名称：为您的应用选择一个名称（例如，“TinaCloud集成”）。
+   2. 描述：为应用添加描述（例如，“用于TinaCloud管理内容和拉取请求的集成”）。
+   3. 主页URL：输入应用的URL（例如，[https://tina.io](https://tina.io/)）。
+4. 在回调URL下，输入：[https://app.tina.io/github-authenticating](https://app.tina.io/github-authenticating)。
+5. 保持以下选项未选中：
+   1. 安装期间请求用户授权（OAuth）
+   2. 启用设备流
+6. 在安装后配置中，设置以下内容：
+   1. 设置URL：输入[https://app.tina.io/github-installed](https://app.tina.io/github-installed)。
+   2. 勾选更新时重定向的选项。
+7. Webhook URL：此集成不需要Webhook URL。
+8. 权限：为GitHub应用配置以下权限：
+   1. 内容：读 + 写
+   2. 元数据：读
+   3. 拉取请求：读 + 写
+   4. Webhooks：读 + 写
+9. 在“此GitHub应用可以安装在哪里？”下，选择任何账户。
+
+### 生成凭据
+
+1. 创建应用后，导航到应用设置页面的常规选项卡。
+2. 记下此页面上显示的应用ID和客户端ID。
+3. 点击生成新的客户端密钥以生成客户端密钥。
+4. 点击生成私钥以生成私钥。安全地保存.pem文件。
+
+## 第二步：在TinaCloud中配置GitHub Enterprise Server
+
+1. 导航到TinaCloud GitHub主机配置页面：[https://app.tina.io/githosts/new](https://app.tina.io/githosts/new)。
+2. 输入以下详细信息：
+3. 服务器名称：为您的GitHub Enterprise实例命名（例如，“我的GitHub Enterprise”）。
+4. 主机名：您的GitHub Enterprise实例的URL。
+5. 应用ID：从GitHub应用设置中获取的应用ID。
+6. 客户端ID：从GitHub应用设置中获取的客户端ID。
+7. 客户端密钥：在GitHub应用设置中生成的客户端密钥。
+8. 私钥：上传在GitHub应用设置中生成的.pem文件。
+9. 点击验证按钮以验证配置。如果验证成功，继续保存配置。
+
+一旦服务器配置成功，用户将在TinaCloud中创建新项目时能够选择它。
+
+## 第三步：验证集成
+
+1. 配置GitHub应用和GitHub Enterprise Server后，返回TinaCloud。
+2. 创建一个新项目并选择配置的GitHub Enterprise实例。
+3. 如果集成成功，您将看到GitHub Enterprise实例上可用的存储库列表。
+
+## 故障排除
+
+* GitHub Enterprise Server无法访问：确保您的GitHub Enterprise Server可被TinaCloud访问。检查防火墙规则和网络配置。
+* 权限问题：验证GitHub应用是否具有上述正确的权限。
+* 配置错误：仔细检查GitHub应用设置期间输入的URL、凭据和设置。
+* 验证失败：如果验证失败，请确保所有凭据（应用ID、客户端ID、客户端密钥和私钥）输入正确并与GitHub应用设置匹配。
+
+## 支持
+
+如需更多帮助，请联系TinaCloud支持。
