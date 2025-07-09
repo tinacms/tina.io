@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
+const { fixPathsInFile } = require('./fix-translation-paths');
 
 const API_KEY = process.env.TINA_OPENAI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
@@ -62,6 +63,8 @@ async function translateMdx(filePath) {
     fs.writeFileSync(targetPath, translatedContent);
     console.log(`Translated and saved to: ${targetPath}`);
 
+    fixPathsInFile(targetPath);
+
     return targetPath;
   } catch (error) {
     console.error(`Error processing ${filePath}: ${error.message}`);
@@ -83,7 +86,9 @@ async function main() {
   }
 
   if (translatedFiles.length > 0) {
-    console.log(`Successfully translated ${translatedFiles.length} files.`);
+    console.log(
+      `Successfully translated and fixed paths for ${translatedFiles.length} files.`
+    );
   } else {
     console.log('No files were translated.');
   }

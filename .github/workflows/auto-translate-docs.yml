@@ -55,7 +55,7 @@ jobs:
           git checkout -b $BRANCH_NAME
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
-      - name: Translate changed MDX files
+      - name: Translate changed MDX files and fix paths
         if: env.HAS_CHANGED_FILES == 'true'
         env:
           TINA_OPENAI_API_KEY: ${{ secrets.TINA_OPENAI_API_KEY }}
