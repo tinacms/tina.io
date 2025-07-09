@@ -26,3 +26,4 @@ We previously settled on solution 1 in order to maximize compatibility with any 
 The main issue with solution 1 is that, while middleware is a convenient way to "plug in" server code in the absence of a proper plugin system, these middleware "plugins" could only control *other plugins*. There is no way, in this system, to attach middleware that could exert any control over the website itself. We were originally OK with this limitation, but when strategizing about possible **access control** features, we decided this solution was inadequate.
 
 Ultimately, solution 2 is both simpler and more robust. Although it requires more work on the end of the developer using Tina, this is often a side effect of software that properly [inverts control](https://kentcdodds.com/blog/inversion-of-control/).
+
