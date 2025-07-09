@@ -1,0 +1,56 @@
+---
+title: Markdown表格
+last_edited: '2025-02-10T06:36:03.141Z'
+next: content/docs-zh/reference/rich-text-usage/mermaid.mdx
+previous: ''
+---
+
+## Usage
+
+<WarningCallout
+  body={<>
+       这是旧版本功能，不再维护。富文本编辑器现在原生支持表格。
+  </>}
+/>
+
+表格通过从`tinacms`导出的自定义模板来支持。要使用它，导入它并将其作为`template`提供给你的`rich-text`字段：
+
+```ts
+import { tinaTableTemplate } from 'tinacms'
+
+{
+  type: 'rich-text',
+  label: 'Body',
+  name: '_body',
+  templates: [
+    tinaTableTemplate,
+  ]
+}
+```
+在`<TinaMarkdown>`中使用`table`组件来渲染它。注意表格单元格的`value`是一个富文本元素，所以应该使用嵌套的`<TinaMarkdown>`组件来渲染：
+
+```tsx
+const MyTable = props => <table>
+    {props.tableRows?.map((tableRow, i) => (
+      <tbody key={i}>
+        <tr>
+          {tableRow.tableCells?.map((tableCell, j) => (
+            <td key={j}>
+              <TinaMarkdown content={tableCell.value} />
+            </td>
+          ))}
+        </tr>
+      </tbody>
+    ))}
+  </table>
+
+<TinaMarkdown content={data.page._body} components={{ table: (props) => <MyTable {...props} /> }} />
+```
+
+## 展示
+
+<WebmEmbed embedSrc="/img/docs/reference/cells-and-rows.webm" />
+
+## 已知问题
+
+表格只能在创建后立即添加单元格数据时保存，在离开CMS子窗口之前。这个问题只会在表格初次创建时发生。
