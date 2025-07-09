@@ -1,0 +1,69 @@
+---
+seo:
+  title: 内联编辑的演变 | TinaCMS 博客
+  description: >-
+    探索Tina中内联编辑的演变，从早期阶段到当前版本，直接在页面上简化内容更新
+title: 内联编辑的演变
+date: '2021-05-05T10:00:00.000Z'
+last_edited: '2021-05-05T10:00:00.000Z'
+author: Mitch MacKenzie & DJ Walker
+prev: content/blog-zh/using-graphql-with-the-filesystem.mdx
+next: content/blog-zh/tina-cloud-and-nextjs-the-perfect-match.mdx
+---
+
+内联编辑消除了内容编辑者在使用传统解耦CMS表单时面临的许多可用性障碍。编辑者可以立即在其实际网站的上下文中看到内容更改。但开发者们一直在与我们分享当前内联编辑实现的权衡。
+
+我们正在继续从我们的开发社区中学习，并寻找更好的方法来整合内联编辑赋予的超能力。
+
+在这个讨论中，我们不能忘记侧边栏编辑！内联编辑的吸引力往往掩盖了我们通过侧边栏编辑获得的灵活设置和可用性优势。**我们建议从[侧边栏编辑](/docs/using-tina-editor)开始，以快速启动和运行。**
+
+## 原始方法的回顾
+
+让我们来看一个简单的[内联编辑](/docs/contextual-editing/overview)场景，在这里我们使页面的标题可编辑。
+
+我们用TinaCMS的`InlineForm`组件包装我们的页面，以便我们的子组件表现得像一个表单。我们可以使用`InlineText`组件注入一个文本输入来编辑标题值。
+
+<Codesandbox embedSrc="https://codesandbox.io/embed/tina-inline-editing-y28os?fontsize=14&hidenavigation=1&theme=dark&view=split&editorsize=65" title="tina-inline-editing" />
+
+通过这种方法，我们作为开发者获得了很多控制权。内联编辑组件与您的布局组件共存，并且表现得几乎如您所期望的那样。
+
+但这种方法有[一些权衡](/blog/more-changes-coming-to-inline-editing/)：
+
+* 像`InlineText`这样的组件添加了标记和行为，这可能会干扰您期望的布局和样式。您现在有一个`input`元素和包裹的`divs`，而通常您只会渲染文本。
+* 侧边栏编辑表单是由一个单一的配置对象构建的。内联编辑带来了不同的开发者体验和另一组需要理解的概念。
+
+将内联编辑与您的组件耦合的另一个副作用是，您现在将TinaCMS与您的组件一起带到了各处。
+
+我们可以尝试有条件地添加内联编辑组件，但很明显，包含内联编辑所需的逻辑现在与我们的页面和组件耦合在一起。现在更难以维护、共享或重用这些组件。
+
+根据您的用例，内联编辑的可用性优势可能会超过这些顾虑。但我们正在寻找更少权衡的解决方案。
+
+## 替代方法
+
+### 基于引用的内联编辑
+
+`useFieldRef`是一个实验性新API的第一部分，用于在Tina中创建基于引用的内联编辑体验。使用`useFieldRef`，内联编辑组件在表单配置中定义，您可以在布局中将一个[ref](https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom)分配给字段应附加到的组件。
+
+以这种方式创建的内联字段绝对定位在引用组件的顶部，并符合其尺寸。基于引用的内联编辑使字段看起来像是在DOM中替换布局组件，而不改变标记。
+
+与我们的第一个示例相比，我们在表单配置对象中定义一个`inlineComponent`键。我们以设置侧边栏编辑的相同方式添加内联编辑组件！
+
+然后我们调用`useFieldRef`来获取将附加到我们标题元素的ref。
+
+<Codesandbox embedSrc="https://codesandbox.io/embed/tina-ref-based-inline-editing-p8kx4?fontsize=14&hidenavigation=1&theme=dark&view=split&editorsize=65" title="tina-inline-editing" />
+
+### 编辑路由
+
+如果您担心TinaCMS与您的网站捆绑在一起的性能影响，您可以创建特定于编辑的路由。像[Next.js](https://nextjs.org)这样的框架优化了Javascript包，以便TinaCMS*不*包含在不需要的路由中。
+
+这种方法的缺点是，您需要在正常的仅查看路由和包含TinaCMS的路由之间复制网站组件的某些方面。
+
+## 接下来是什么？
+
+> 以下部分可能不再准确，请参阅[官方路线图](https://tina.io/roadmap/ "Roadmap")和[GitHub](https://github.com/tinacms)页面以获取最新的开发信息
+
+我们在文档和指南中明确指出，**原始内联编辑方法和基于引用的内联编辑仍然是实验性的**。
+
+侧边栏编辑避免了大多数集成内联编辑的摩擦，并提供了许多相同的可用性优势。此外，[TinaCloud](https://app.tina.io)根据您的内容架构自动生成侧边栏表单，并代表我们当前推荐的最佳实践。
+
+请[分享想法、约束或设计模式](https://github.com/tinacms/tinacms/issues)，以便在不牺牲代码库的情况下为Jamstack带来更好的视觉编辑体验，这是我们需要与社区进行的讨论。

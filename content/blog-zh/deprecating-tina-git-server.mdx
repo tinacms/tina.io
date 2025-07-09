@@ -1,0 +1,27 @@
+---
+draft: false
+seo:
+  title: 弃用Tina-Git-Server | TinaCMS博客
+  description: >-
+    了解TinaCMS中Tina-Git-Server的弃用及其对项目的影响，以及内容管理的替代解决方案
+title: 更新的Next.js文档 + 弃用tina-git-server
+date: '2019-12-06T07:00:00.000Z'
+author: DJ Walker
+prev: content/blog-zh/using-tinacms-with-nextjs.mdx
+next: content/blog-zh/dynamic-plugin-system.mdx
+---
+
+我们更改了在Next.js网站中使用Tina的Git后端的推荐方法。查看[Tina的Next.js文档](/docs/reference/self-hosted/tina-backend/nextjs)了解详情。
+
+为了便于使用Tina的后端插件，它们被设计为Express中间件。这些中间件可以通过实现Gatsby的`onCreateDevServer`方法并添加几行连接代码，轻松附加到Gatsby的开发服务器上。我们认为可以将相同的中间件附加到其他框架的开发服务器上，从而无需为我们打算支持的每个框架重写后端代码。
+
+在Next.js中，由于缺乏插件系统，开发者需要编写更多代码才能与Tina一起工作。为了在Next.js网站中使用Express中间件，开发者可以采取以下两种方法之一：
+
+1. 创建一个独立的Express应用程序来使用中间件，或
+2. 编写一个[自定义服务器](https://nextjs.org/docs#custom-server-and-routing)来运行网站，在此过程中创建一个Express服务器并附加中间件。
+
+我们之前选择了解决方案1，以最大限度地兼容任何现有的Next.js网站；否则，任何已经使用自定义服务器而不使用Express的Next.js用户可能会更难将两者结合在一起。这导致了`tina-git-server`命令的创建。
+
+解决方案1的主要问题在于，虽然中间件是在没有适当插件系统的情况下“插入”服务器代码的便捷方式，但这些中间件“插件”只能控制*其他插件*。在这个系统中，没有办法附加可以对网站本身施加任何控制的中间件。我们最初对这一限制感到满意，但在策划可能的**访问控制**功能时，我们决定这个解决方案是不够的。
+
+最终，解决方案2既简单又更健壮。虽然这需要使用Tina的开发者付出更多努力，但这通常是正确[反转控制](https://kentcdodds.com/blog/inversion-of-control/)的软件的副作用。

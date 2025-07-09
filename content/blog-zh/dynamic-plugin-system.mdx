@@ -1,0 +1,66 @@
+---
+draft: false
+consumes:
+  - file: /packages/@tinacms/src/plugins.ts
+    details: 高层次讨论插件管理器
+  - file: /packages/gatsby-tinacms-remark/src/remark-creator-plugin.ts
+    details: 展示RemarkCreatorPlugin的使用示例
+seo:
+  title: 动态插件系统 | TinaCMS博客
+  description: >-
+    TinaCMS的动态插件系统允许您通过灵活、可重用的插件扩展功能并自定义内容管理体验。
+title: TinaCMS中的动态插件
+date: '2019-12-09T07:00:00.000Z'
+author: Nolan Phillips
+prev: content/blog-zh/deprecating-tina-git-server.mdx
+next: content/blog-zh/add-and-delete-files.mdx
+---
+
+TinaCMS最重要的方面之一是其动态插件系统。
+
+通常，插件系统是静态的。我们在配置中列出所有需要的插件，并在应用程序运行时使用它们。TinaCMS并非如此。相反，我们在应用程序的生命周期中添加和移除CMS中的插件。
+
+以下定义的postCreatorPlugin会在侧边栏添加一个按钮，以便您可以创建新的博客文章：
+
+```js
+import slugify from 'slugify';
+
+const postCreatorPlugin = new RemarkCreatorPlugin({
+  label: 'Post',
+  fields: [{ name: 'title', label: 'Post', component: 'text' }],
+  filename({ title }) {
+    return `content/posts/${slugify(title).toLowerCase()}.md}`;
+  },
+  frontmatter({ title }) {
+    return { title };
+  },
+});
+```
+
+在大多数系统中，我们会在启动时添加插件，并在整个会话期间保持不变。无论您在网站的哪个位置，您都可以创建一个“Post”。（注意：您可以通过让插件隐藏自身来解决这个问题，但增加的责任会使API复杂化。）
+
+在TinaCMS中，我们可以通过编程方式添加和移除插件。这一特性赋予开发者很大的权力——他们可以根据上下文决定如何从CMS中添加和移除功能。
+
+usePlugins钩子是React网站可用的API，仅在BlogIndex渲染时注册postCreatorPlugin：
+
+```js
+import { usePlugins } from "tinacms"
+import { postCreatorPlugin } from "./post-creator-plugin"
+
+function BlogIndex(props) {
+
+  usePlugins(postCreatorPlugin)
+
+  return ( ... )
+}
+```
+
+您的网站是多语言的吗？如果有人在浏览法语版本，让CMS将新页面添加到法语网站，而不是英语网站。
+
+您有文章和活动吗？仅在/blog中提供创建文章的功能，而仅在/events中提供创建活动的功能。
+
+这个插件系统展示了控制反转原则如何影响TinaCMS。决定何时启用CMS的某些功能是一项复杂的责任。静态插件系统将其交给系统本身或插件开发者。TinaCMS将这一责任交给插件用户。
+
+这种方法对双方都有利：插件作者不必担心实现复杂的配置方案，开发者可以在简单和复杂的用例中应用插件，而无需使用变通方法。
+
+有兴趣创建自己的插件吗？请查看贡献[指南](https://tinacms.org/docs/contributing/guidelines)。欢迎在[Tina Discord](https://discord.com/invite/zumN63Ybpf)上提出任何问题或评论。

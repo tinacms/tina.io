@@ -1,0 +1,558 @@
+---
+draft: false
+consumes:
+  - file: /packages/gatsby-tinacms-remark/src/remark-creator-plugin.ts
+    details: 演示RemarkCreatorPlugin的使用
+  - file: /packages/gatsby-tinacms-remark/src/remarkFormHoc.tsx
+    details: 展示如何使用inlineRemarkForm HOC
+  - file: /packages/@tinacms/fields/src/Wysiwyg/Wysiwyg.tsx
+    details: TinaField使用Wysiwyg组件进行内联编辑
+warningMessage: >-
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)来获得更流畅的解决方案。
+seo:
+  title: Gatsby + Tina 101 | TinaCMS博客
+  description: >-
+    在本指南中学习将Gatsby与TinaCMS集成的基础知识，并开始使用强大的内容管理设置构建快速、动态的网站。
+title: Gatsby + Tina 101
+date: '2020-02-25T07:00:00.000Z'
+author: Madelyn Eriksen
+prev: content/blog-zh/custom-field-plugins.mdx
+next: content/blog-zh/introducing-visual-open-authoring.mdx
+---
+
+像[Gatsby](https://www.gatsbyjs.org/)这样的静态网站生成器对开发者来说是一个巨大的胜利。它们为我们提供了自动化部署、更快的开发周期和减少的安全负担。
+
+尽管在技术上取得了进步，**静态网站的内容编辑故事可能会受到阻碍。** 那些对Git和Markdown感到舒适的人可能会直接编辑文件。但内容作者需要一个更好的解决方案来进行编辑。
+
+[TinaCMS](https://tinacms.org/docs/getting-started/introduction)是一个*可扩展的*工具包，可以帮助满足这些需求。Tina允许开发者使用我们喜爱的格式，如Markdown和JSON，同时为内容作者提供流畅的体验。
+
+为了更好地理解Tina的工作原理，我决定将其添加到现有网站中，我的[Gatsby starter, *Tyra*](https://github.com/madelyneriksen/gatsby-starter-tyra/)。以下是我的过程演练。请随意*将其用作将TinaCMS添加到现有Gatsby网站的参考！*
+
+> **赶时间？** 在[GitHub](https://github.com/madelyneriksen/gatsby-starter-tyra/tree/feature/add-tyra)上查看代码
+
+## Tina入门
+
+Tina是一个非侵入性的库，你可以用它为你的网站添加编辑功能。所有的**页面生成逻辑可以保持完全不变**，这使得“插入”动态内容编辑变得更容易。
+
+你需要安装并注册一系列插件到Gatsby中，以便将Tina添加到你的网站。让我们现在就来做这件事。
+
+### 安装Tina
+
+像JavaScript世界中的大多数东西一样，我们可以用`npm`或`yarn`安装我们需要的包。使用与你的项目相关的包管理器。
+
+```bash
+# 使用npm
+npm i --save gatsby-plugin-tinacms gatsby-tinacms-git gatsby-tinacms-remark styled-components
+
+# 或使用Yarn
+yarn add gatsby-plugin-tinacms gatsby-tinacms-git gatsby-tinacms-remark styled-components
+```
+
+此命令添加了Tina本身的Gatsby插件，以便与Git接口，并支持Markdown文件（通过Remark）。由于*Tyra*已经安装了`gatsby-transformer-remark`插件和所有相关依赖项，我只需要安装特定于TinaCMS的插件。
+
+如果你是从头开始，你需要安装用于加载Markdown文件的Gatsby插件。[Gatsby文档](https://www.gatsbyjs.org/docs/adding-markdown-pages/)有一个关于在Gatsby中使用Markdown的优秀指南！
+
+### 配置Tina
+
+要在Gatsby中添加新的或复杂的功能，你可以使用插件。Tina在这方面没有什么不同。我们需要在`gatsby-config.js`文件中为Tina添加相关条目。
+
+```javascript
+# gatsby-config.js
+
+module.exports = {
+  siteMetadata: {
+    // ...省略
+  },
+  plugins: [
+    {
+      resolve: `gatsby-plugin-tinacms`,
+      options: {
+        plugins: [
+          `gatsby-tinacms-git`,
+          `gatsby-tinacms-remark`,
+        ],
+      },
+    },
+    // ... 其他插件在下面！！
+  ]
+}
+```
+
+*Tyra*使用Markdown作为内容，但TinaCMS也通过[gatsby-tinacms-json](/docs/guides/converting-gatsby-to-tina)支持JSON文件。我发现JSON非常适合页面内容和[块](https://tinacms.org/blog/what-are-blocks/)。但对于简单的博客文章，Markdown效果很好。
+
+由于*Tyra*的内容是基于Git的，所有的编辑都需要提交回存储库。`gatsby-tinacms-git`跟踪内容更改并处理新提交的创建。默认情况下，更改会推送到远程分支，但插件是可配置的。
+
+## Tina驱动的编辑
+
+在*Tyra Starter*中，功能性`Post`模板创建了所有博客文章。`Post`渲染Markdown内容、以SEO为重点的元数据以及每篇文章的主图。
+
+为了启用编辑，我们可以将`Post`组件包装在Tina提供的高阶组件中——`inlineRemarkForm`。
+
+这就是它的样子：
+
+```javascript
+// src/blog/post.js
+
+import React from 'react'
+import Layout from '../common/layouts'
+import Hero from './components/hero.js'
+import Body from './components/body.js'
+import Seo from './seo.js'
+import MetaSeo from '../common/seo'
+import { graphql } from 'gatsby'
+// 新的Tina导入！
+import { inlineRemarkForm } from 'gatsby-tinacms-remark'
+
+const Post = ({ location, data }) => {
+  const {
+    category,
+    date,
+    dateOriginal,
+    author,
+    title,
+    slug,
+    metaDescription,
+  } = data.post.frontmatter
+  const content = data.post.html
+  return (
+    <Layout>
+      <Seo
+        slug={slug}
+        title={title}
+        date={dateOriginal}
+        description={metaDescription}
+        author={author}
+        image={data.post.frontmatter.postImage.childImageSharp.original.src}
+      />
+      <MetaSeo title={title} description={metaDescription} />
+      <Hero author={author} date={date} category={category} title={title} />
+      <Body
+        content={content}
+        description={metaDescription}
+        image={data.post.frontmatter.postImage.childImageSharp.original.src}
+        location={location}
+      />
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query($slug: String!) {
+    post: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        date(formatString: "MMM Do, YYYY")
+        dateOriginal: date
+        category
+        author
+        title
+        metaDescription
+        slug
+        postImage {
+          childImageSharp {
+            original {
+              src
+            }
+            fluid(maxWidth: 1080) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+      # Tina使用额外的、专门的查询数据。
+      # 使用此GraphQL片段添加所需的数据。
+      ...TinaRemark
+    }
+    date: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      frontmatter {
+        date
+      }
+    }
+  }
+`
+
+// 传入要包装的组件和配置对象
+export default inlineRemarkForm(Post, { queryName: 'post' })
+```
+
+`inlineRemarkForm`将我们的`Post`组件作为参数，并**返回一个用Tina管道包装的组件。** [高阶组件](https://reactjs.org/docs/higher-order-components.html)将自定义逻辑注入到现有的React组件中。
+
+在我们的GraphQL查询中，我们添加了一个片段，`TinaRemark`，它提取出额外的数据供Tina编辑文件。我还为我的帖子数据使用了一个非标准的查询名称（`post`）。幸运的是，通过将配置对象传递给`inlineRemarkForm`，可以很容易地更改Tina使用的数据。
+
+此时，如果我们启动我们的应用程序，我们可以跳转到[localhost:8000](http://localhost:8000/)并看到Tina正在工作！
+
+```bash
+# 启动开发服务器
+npm start
+```
+
+导航到博客文章并点击左下角的“铅笔”图标。Tina侧边栏应该会出现，并让你编辑你的Markdown文章。
+
+![哇哦！Markdown编辑正在工作！](/img/blog/gatsby-tina-101/madalyn_blog_1.png)
+
+很棒吧？在这里，我将作者从“Jane Doe”更改为“Madelyn Eriksen”。我也可以在Tina侧边栏中保存这些更改。这个过程会在`git`中触发一个自动提交，并推送到远程分支。
+
+**Tina与Git的交互是完全可配置的。** 可以更改提交消息，禁用自动提交，甚至更改Git用户。
+
+```diff
+//gatsby-config.js
+
+module.exports = {
+  // ...省略
+  plugins: [
+    {
+      resolve: `gatsby-plugin-tinacms`,
+      options: {
+        plugins: [
+          `gatsby-tinacms-remark`,
+-         `gatsby-tinacms-git`
++         {
++           resolve: `gatsby-tinacms-git`,
++           options: {
++             defaultCommitMessage: `自定义提交消息`, // 改变这个！
++             pushOnCommit: false,
++           },
++        },
+        ],
+      },
+    },
+    // ...省略
+  ],
+}
+```
+
+### 友好的表单字段
+
+现在我们的侧边栏编辑表单“还可以”，但还有改进的空间。如果表单字段没有标记为`rawFrontmatter.title`这样的东西，那就好多了。我们的内容作者可能不太欣赏这样的标签！
+
+还有一些*Tyra*使用的字段应该是“私有的”，不应该在侧边栏中可编辑。例如，用于识别帖子的`type`前置元数据值。
+
+我们可以通过将`FormConfig`对象传递给Tina来配置侧边栏表单。[使用Tina自定义表单](/docs/guides/converting-gatsby-to-tina)很简单。我们需要定义一个JavaScript对象来声明Tina要渲染的所需表单字段。
+
+回到`src/blog/post.js`，我们可以添加这个配置对象：
+
+```js
+// ...省略
+
+const FormConfig = {
+  label: `博客文章`,
+  queryName: `post`,
+  fields: [
+    {
+      label: `标题`,
+      name: `rawFrontmatter.title`,
+      description: `你的文章标题。`,
+      component: `text`, // 一个简单的文本输入
+    },
+    {
+      label: `文章图片`,
+      name: `rawFrontmatter.postImage`,
+      component: `image`,
+      // 将上传的图像转换为文件路径。
+      parse: filename => `./img/${filename}`,
+      // 创建一个文件路径来预览缩略图。
+      previewSrc: (formValues, { input }) => {
+        const [_, field] = input.name.split('.')
+        const node = formValues.frontmatter[field]
+        const result = node ? node.childImageSharp.fluid.src : ''
+        return result
+      },
+      uploadDir: () => `/content/posts/img/`,
+    },
+    {
+      label: `作者`,
+      name: `rawFrontmatter.author`,
+      description: `你的全名。`,
+      component: `text`,
+    },
+    {
+      label: `发布日期`,
+      name: `rawFrontmatter.date`,
+      description: `你的文章的发布日期。`,
+      component: `date`,
+      dateFormat: `YYYY-MM-DD`,
+      timeFormat: false,
+    },
+    {
+      label: `类别`,
+      name: `rawFrontmatter.category`,
+      description: `你的文章的类别。`,
+      component: `text`,
+    },
+    {
+      label: `文章URL`,
+      name: `rawFrontmatter.slug`,
+      description: `你的文章将显示的URL。`,
+      component: `text`,
+    },
+    {
+      label: `SEO描述`,
+      name: `rawFrontmatter.metaDescription`,
+      description: `用于搜索引擎结果的描述。`,
+      component: `text`,
+    },
+    {
+      label: `内容`,
+      name: `rawMarkdownContent`,
+      description: `在这里写你的博客文章！`,
+      component: `markdown`,
+    },
+  ],
+}
+
+// 传入FormConfig
+export default inlineRemarkForm(Post, FormConfig)
+```
+
+在`FormConfig`中，我们使用`text`、`markdown`、`date`，甚至`image`字段来使文章创作体验更好。Tina有[很多](https://tinacms.org/docs/plugins/fields/)内置字段，甚至允许你[添加自己的](https://tinacms.org/docs/plugins/fields/custom-fields)。
+
+`image`字段的配置可能比较棘手。对于*文章图片*，我们需要Tina处理图像上传以及更新预览。要配置上传，你需要声明上传目录并从上传的图像中解析出预览缩略图。
+
+```javascript
+{
+  label: `文章图片`,
+  name: `rawFrontmatter.postImage`,
+  component: `image`,
+  // 函数用于转换上传的图像。
+  parse: filename => `./img/${filename}`,
+  previewSrc: (formValues, { input }) => {
+    // 创建一个用于查看预览的函数。
+    const [_, field] = input.name.split(".");
+    const node = formValues.frontmatter[field];
+    const result = node ? node.childImageSharp.fluid.src : "";
+    return result;
+  },
+  uploadDir: () => `/content/posts/img/`,
+}
+```
+
+将所有这些放在一起，我们的侧边栏看起来*更*吸引人且更易于使用。
+
+![我们有一个不错的侧边栏！](/img/blog/gatsby-tina-101/madalyn_blog_2.png)
+
+> **注意：** 在编辑时，可能会有一些字段没有值或未填写。在这种情况下，确保你的网站能够处理空字段值而不会“崩溃”是很重要的。
+
+即使有了漂亮的侧边栏，能够直接在页面上编辑内容会更好。
+
+## 内联WYSIWYG编辑
+
+内联编辑意味着**直接在页面上更改页面内容**。而不是使用不同的创作屏幕，你可以点击页面开始进行编辑。这是一种直观的网页内容编辑方式。
+
+幸运的是，Tina支持使用“所见即所得”（WYSIWYG）编辑器进行Markdown的内联编辑！添加内联编辑器只需要对我们的Tina配置代码进行一些更改。
+
+### 添加编辑属性
+
+`inlineRemarkForm`传递了两个我们尚未使用的属性：`isEditing`和`setIsEditing`。你可以**使用这些属性在代码中切换和观察“编辑模式”**。我们可以从属性中访问这些值：
+
+```js
+// src/blog/post.js
+
+// ...省略
+const Post = ({ location, data, isEditing, setIsEditing }) => {
+  // ...省略
+}
+```
+
+我们可以通过一个简单的按钮来切换“编辑模式”，该按钮显示在文章的正上方。也就是说，切换可以是任何你想要的东西！更高级的选项可能看起来像是使用[React Portals](https://reactjs.org/docs/portals.html)在DOM的其他地方渲染按钮，或者监听点击或键盘事件。
+
+通过标准的“属性传递”，我将编辑状态传递给我的`Body`组件：
+
+```js
+// src/blog/post.js
+
+const Post = ({ location, data, isEditing, setIsEditing }) => {
+// ...省略
+  return (
+    // ...省略
+    <Body
+      content={content}
+      description={metaDescription}
+      image={data.post.frontmatter.postImage.childImageSharp.original.src}
+      location={location}
+      isEditing={isEditing}
+      setIsEditing={setIsEditing}
+    />
+    // ...省略
+  );
+```
+
+在`Body`中，我添加了一个仅在`development`模式下渲染的按钮：
+
+```javascript
+// src/blog/components/body.js
+
+import React from 'react'
+import Sidebar from './sidebar.js'
+import Suggested from './suggested.js'
+
+import 'tachyons'
+
+import '../../common/styles/custom.tachyons.css'
+import '../styles/grid.css'
+
+const buttonStyles = `
+db pv3 ph5 mb3 tracked ttu b bg-dark-gray
+near-white sans-serif no-underline
+hover-gray b--dark-gray
+`
+
+export default ({
+  isEditing,
+  setIsEditing,
+  content,
+  image,
+  description,
+  location,
+}) => (
+  <div className="min-vh-100 blog__grid">
+    <div style={{ gridArea: 'header' }} />
+    <section
+      className="mw8 serive f4 lh-copy center pa2 article__container"
+      style={{ gridArea: 'content' }}
+    >
+      {/* 仅在开发模式下显示编辑按钮！ */}
+      {process.env.NODE_ENV === 'development' && (
+        <button className={buttonStyles} onClick={() => setIsEditing(p => !p)}>
+          {isEditing ? '预览' : '编辑'}
+        </button>
+      )}
+      <div dangerouslySetInnerHTML={{ __html: content }} />
+    </section>
+    <Sidebar img={image} desc={description} location={location} />
+    <Suggested />
+  </div>
+)
+```
+
+这增加了一个大按钮，供我们的内容作者用来打开编辑器。在页面上，它最终看起来像这样：
+
+![](/img/blog/gatsby-tina-101/madalyn_blog_3.png)
+
+很整洁！现在我们已经配置了编辑模式，我们需要添加内联编辑支持本身。
+
+### 添加内联编辑
+
+现在是复杂的部分——添加内联编辑。我说复杂了吗？实际上只需要四行代码！🥳
+
+```javascript
+// src/blog/components/body.js
+
+// ...省略
+
+import { Wysiwyg } from '@tinacms/fields'
+import { TinaField } from '@tinacms/form-builder'
+
+export default (
+  {
+    // ...省略
+  }
+) => (
+  <div className="min-vh-100 blog__grid">
+    <div style={{ gridArea: 'header' }} />
+    <section
+      className="mw8 serive f4 lh-copy center pa2 article__container"
+      style={{ gridArea: 'content' }}
+    >
+      {process.env.NODE_ENV === 'development' && (
+        <button className={buttonStyles} onClick={() => setIsEditing(p => !p)}>
+          {isEditing ? '预览' : '编辑'}
+        </button>
+      )}
+      {/* 用WYSIWYG编辑器包装内容 */}
+      <TinaField name="rawMarkdownBody" Component={Wysiwyg}>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </TinaField>
+    </section>
+    <Sidebar img={image} desc={description} location={location} />
+    <Suggested />
+  </div>
+)
+```
+
+在添加内联编辑器之前，我们有一个渲染内部HTML的`div`。要将其转换为WYSIWYG编辑器，我们只需将其包装在`TinaField`组件中：
+
+```javascript
+<TinaField name="rawMarkdownBody" Component={Wysiwyg}>
+  <div dangerouslySetInnerHTML={{ __html: content }} />
+</TinaField>
+```
+
+由于它包装的是Markdown正文，我们将`name`属性赋值为`rawMarkdownBody`。为了渲染WYSIWYG编辑器，我们将`@tinacms/fields`中的`Wysiwyg`组件作为属性传递。**Tina在“编辑模式”激活时渲染此组件。**
+
+当然，我们还必须导入相关的Tina组件才能*使用*它们：
+
+```javascript
+import { Wysiwyg } from '@tinacms/fields'
+import { TinaField } from '@tinacms/form-builder'
+```
+
+添加这些代码片段后，我们实际上可以使用内联编辑器来更改博客文章！
+
+![哇哦！这真是太棒了。](/img/blog/gatsby-tina-101/madalyn_blog_4.png)
+
+为了完成我们的编辑体验，我们真正需要的是能够使用Tina添加新文章！
+
+## 创作新文章
+
+Tina有一种用于创建内容的插件，恰当地命名为[内容创建者插件](/docs/plugins/content-creators)。内容创建者就像创建文件对象的工厂，除了它们是“插入”到你的React网站中的。
+
+让我们制作一个*内容创建者插件*来创作新的博客文章。我们将在一个名为“plugins”的新目录中添加它——`src/blog/plugins/postCreator.js`：
+
+```javascript
+// src/blog/plugins/postCreator.js
+
+import { RemarkCreatorPlugin } from 'gatsby-tinacms-remark'
+
+// 将URL slug转换为文件名
+const slugToFilename = str => str.replace(`/`, `-`) + `.md`
+
+// 将日期转换为YYYY-MM-DD格式的字符串
+const YYYYMMDD = date => date.toISOString().split('T')[0]
+
+const defaultFrontmatter = form => ({
+  title: form.title,
+  slug: form.slug,
+  author: form.author,
+  category: form.category,
+  date: YYYYMMDD(new Date()),
+  postImage: `./img/flatlay.jpg`,
+  metaDescription: ``,
+  type: `post`,
+})
+
+const CreatePostPlugin = new RemarkCreatorPlugin({
+  label: `新博客文章`,
+  filename: form => `content/posts/${slugToFilename(form.slug)}`,
+  frontmatter: defaultFrontmatter,
+  fields: [
+    {
+      label: `标题`,
+      name: `title`,
+      description: `你的文章标题。`,
+      component: `text`,
+    },
+    {
+      label: `作者`,
+      name: `author`,
+      description: `你的全名。`,
+      component: `text`,
+    },
+    {
+      label: `类别`,
+      name: `category`,
+      description: `你的文章的类别。`,
+      component: `text`,
+    },
+    {
+      label: `文章URL`,
+      name: `slug`,
+      description: `你的文章将显示的URL。`,
+      component: `text`,
+    },
+  ],
+})
+
+export default CreatePostPlugin
+```
+
+`gatsby-tinacms-remark`

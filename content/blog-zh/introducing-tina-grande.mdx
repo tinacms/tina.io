@@ -1,0 +1,52 @@
+---
+draft: false
+warningMessage: >-
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)来获得更少摩擦的解决方案。
+seo:
+  title: 介绍 Tina Grande | TinaCMS 博客
+  description: >-
+    发现 Tina Grande，这是一项新功能，为现代网络应用中的大规模内容管理提供了增强的可扩展性和灵活性。
+title: "介绍 Tina Grande \U0001F389"
+date: '2019-11-21T14:58:24.451Z'
+author: Scott Byrne
+prev: content/blog-zh/simple-markdown-blog-nextjs.mdx
+next: content/blog-zh/using-tinacms-with-nextjs.mdx
+---
+
+[Tina Grande](https://github.com/tinacms/tina-starter-grande "Tina Grande Repo") 是一个内置 TinaCMS 集成的 Gatsby 启动模板。*Grande* 的构建旨在提供一个涵盖多种用例的 Tina 参考实现。即使对于那些不需要启动模板的人，我们也希望 Grande 能够成为设计师和开发人员使用 TinaCMS 的有用参考。
+
+[在 Netlify 上查看 Grande 的预览。](https://tina-starter-grande.netlify.com/ "Tina Grande Preview - Netlify")
+
+![tina-starter-grande](/img/blog/announcing-tina-grande/Blog_image.png)
+
+## 细分
+
+### 🧱 内容结构
+
+所有网站内容都存储在项目根目录的 `/content` 文件夹中。在这里你会找到图片、页面、帖子和设置。**帖子**使用 markdown，而**页面**和**设置**使用 JSON。你会注意到有 `dummy.json` 和 `dummy.md` 文件；这些文件的添加是为了确保即使所有网站内容被移除，graphql 查询仍然可以正常工作。
+
+Gatsby 页面通常存储在 `/pages` 中，但你不会在 *Grande* 中找到它。由于所有页面都是动态的，请查看 `/content/pages` 文件夹以查看将生成哪些页面。
+
+### 🎨 主题
+
+*Grande* 具有完全可定制的主题。你可以编辑网站颜色、标题样式、英雄样式等。通过侧边栏，选择 **Theme** 表单来编辑全局主题设置。请注意，**Hero** 设置可以被单个页面覆盖。
+
+当你自定义 *Grande* 的颜色时，主题会根据所选的主题颜色智能选择前景色，这意味着你可以选择任何颜色而不会导致对比问题。一些元素——例如链接——会根据哪个选项提供更好的对比度在主色和次色之间进行选择。更新的颜色将在网站上实时反映，但 Tina UI *(和网站元颜色)* 不会更新，直到 Gatsby 服务器重新启动。
+
+目前，要自定义网站徽标，你需要修改两个文件：`src/components/header.js` 和 `content/images/icon.png`。标题徽标是一个 [styled-icon](https://styled-icons.js.org/)，允许轻松进行主题化。
+
+### 📄 页面
+
+页面使用一个基于块的系统，可以扩展以添加你想要的任何块。在撰写本文时，你可以选择 **title**、**form** 或 ***content*** 块。
+
+**form** 块是一个简单的表单构建器，集成了 **[Formspree.io](https://formspree.io/ "Formspree.io")**。你可以选择预制输入或创建自定义输入。每个输入都有一个 **label**、**type** 和 **autocomplete** 属性。第一次从新域使用你的表单时需要确认，因此发送一条测试消息，你将收到来自 Formspree 的确认提示。
+
+在 *page* 侧边栏表单中，你可以选择 *hero* 来为你的页面添加一个英雄部分。如果英雄包含 **headline**、**textline** 或至少一个 **action**，它将被渲染在你的内容上方。默认的英雄图片通过主题设置，但可以在每个页面（或帖子）基础上进行自定义。切换 **large** 以在英雄部分添加额外的垂直间距。
+
+### 📝 帖子
+
+你可以通过侧边栏右上角的 *+* 按钮在 Tina 中创建帖子。帖子默认创建为草稿，不会与您的实时网站一起发布。你可以在侧边栏中编辑帖子，或者通过点击帖子左上角的 *edit* 按钮使用页面内编辑器撰写博客文章。
+
+# ✨
+
+感谢阅读！跳转到[仓库](https://github.com/tinacms/tina-starter-grande)查看我们接下来要添加的内容或报告错误。Grande 正在积极开发中，欢迎任何形式的贡献。
