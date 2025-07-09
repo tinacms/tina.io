@@ -1,0 +1,49 @@
+---
+id: /docs/extending-tina/edit-state
+title: 手动编辑Tina的编辑状态
+---
+
+## 通过 `useEditState` 手动切换
+
+你可以通过使用 `useEditState` 钩子手动进入和退出编辑模式。你应该**始终**有一个 [`/pages/admin.{js,tsx}` 文件](/docs/contextual-editing/overview)，但在某些情况下，你可能希望在不访问 `/admin` 或 `/admin#/logout` 路由的情况下进入编辑模式。
+
+在这种情况下，你可以使用 `useEditState` 钩子。这将使你进入编辑模式（如果适用，还会触发 TinaCloud 登录）。
+
+例如，你可能希望为编辑者提供一个按钮，以便在不必导航到 `/admin` 和 `/admin#/logout` 的情况下登录和注销。
+
+```tsx
+import { useEditState } from 'tinacms/dist/edit-state'
+
+const MyEditButton = () => {
+  const { edit, setEdit } = useEditState()
+
+  return (
+    <button
+      onClick={() => {
+        setEdit((editState) => !editState)
+      }}
+    >
+      {edit ? '退出编辑模式' : '进入编辑模式'}
+    </button>
+  )
+}
+```
+
+另一个例子是，你可能在页面上有一些UI，只希望编辑者看到。
+
+```tsx
+import { useEditState } from 'tinacms/dist/edit-state'
+
+const MyPublicPage = () => {
+  const { edit } = useEditState()
+
+  return (
+    <div>
+      <main>公共内容....</main>
+      {edit && <EditorOnlyUI />}
+    </div>
+  )
+}
+```
+
+请注意，使用这种模式时，`tinacms/dist/edit-state (>2kb)` 代码 _将_ 包含在你的生产包中。
