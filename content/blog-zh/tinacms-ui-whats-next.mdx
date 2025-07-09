@@ -1,0 +1,64 @@
+---
+seo:
+  title: "TinaCMS UI: 接下来是什么 | TinaCMS 博客"
+  description: >-
+    了解TinaCMS UI的未来发展，关注即将到来的更新，这些更新将提升可用性、灵活性和整体用户体验
+title: "TinaCMS UI: 接下来是什么？"
+date: '2020-03-13T00:00:00.000Z'
+author: Nolan Phillips
+prev: content/blog-zh/introducing-visual-open-authoring.mdx
+next: content/blog-zh/designing-an-extensible-styling-system.mdx
+---
+
+本周，我们在TinaCMS网站上部署了[Visual Open Authoring](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring')，让我们自己和所有社区成员的编辑体验变得非常棒！
+
+你可能已经注意到，[tinacms.org](http://tinacms.org)上的编辑界面与我们的视频中以及你在本地运行的界面不同。这个新的工具栏是我们在[tinacms.org 仓库](https://github.com/tinacms/tinacms.org 'GitHub: tinacms.org')中直接进行的一个实验。在这篇文章中，我将讨论我们为什么采取这种方法以及如何让Tina工具栏对所有人开放的下一步。
+
+![TinaCMS UI 选项](/img/blog/tinacms-ui-whats-next/sidebar-toolbar.jpg)
+
+## Tina不是一个CMS
+
+它不是一个应用程序。它并不是一个一体化的解决方案。它是一个工具包，用于将内容管理直接构建到你的应用程序和网站中。这种理念对TinaCMS代码库的架构有着巨大的影响。例如，我们提供的用户界面只是_默认选项_。
+
+为了为[tinacms.org](http://tinacms.org/)创建一个惊人的内联编辑体验，我们决定创建一个实验性的UI。我们隐藏了侧边栏，并用屏幕顶部的持久工具栏替代。这个新的UI立刻在我们的团队中大受欢迎！工具栏让我们更容易访问常见操作，而无需打开和关闭侧边栏。我们仍然喜欢侧边栏，它更容易设置，并且在你不想或不需要内联编辑时非常棒，但它并不总是最佳体验。
+
+不幸的是，你需要稍等一段时间才能使用新的工具栏。工具栏的创建对我们来说是一个令人兴奋的项目。我们能够完全重新构想TinaCMS的用户体验，而无需更改主仓库中的任何代码。这使我们能够快速实验界面，而不必考虑它如何适应整个项目。因此，只用了几天时间就让它准备好投入生产。这个项目通过展示我们可以在TinaCMS之上进行实验和创新，而无需拆解它，验证了我们的许多代码设计决策。
+
+现在，[tinacms.org](http://tinacms.org/)的开放创作已经发布，我们正准备让它对所有人开放。Kendall已经转移了[新的内联编辑组件](https://github.com/tinacms/tinacms/pull/871)。接下来是弄清楚工具栏如何适应TinaCMS生态系统。这篇文章列出了实现这一目标的计划。
+
+## _tinacms_ 作为快速启动包
+
+目前，`tinacms`包直接实现了许多功能。侧边栏、模态框、警报和屏幕插件都是直接在这里定义的。更改后，`tinacms`将仅仅是希望快速开始使用Tina的开发者的“快速启动”包。`tinacms`包的唯一目的是提供一个预配置的CMS实例，以及一些简单的组件，这些组件将CMS、警报、模态框、屏幕以及侧边栏或工具栏添加到网站中。此更改将使Tina的新手能够快速入门，同时也使其他开发者能够优化和修改Tina以满足他们的需求。
+
+`tinacms`的一个大问题是它对开发者网站的包大小的影响。当我们开始向工具栏添加更多功能时，这个问题将变得更糟。通过将这些部分分开，开发者可以通过在他们的应用程序中利用动态导入和代码拆分来解决这个问题。
+
+这种分离将使开发者能够选择退出预定义的UI并自行开发。这将使开发者能够将CMS深度集成到他们的网站中，并为Tina带来出色的UI/UX创新的可能性。
+
+## 即将推出的包
+
+在此过程中将引入以下包：
+
+- `@tinacms/media`: 用于与[CMS媒体存储](https://tinacms.org/docs/media)交互的API – [#878](https://github.com/tinacms/tinacms/pull/878 'feat: introduce @tinacms/media')
+- `@tinacms/alerts`: 用于创建[CMS警报](https://tinacms.org/docs/ui/alerts)的API – [#883](https://github.com/tinacms/tinacms/pull/883)
+- `@tinacms/react-alerts`: 用于渲染CMS _警报_ 的组件 – [#883](https://github.com/tinacms/tinacms/pull/883)
+- `@tinacms/react-forms`: 用于自动构建_表单_的组件
+- `@tinacms/react-modals`: 用于创建CMS _模态框_ 的组件 – [#911](https://github.com/tinacms/tinacms/pull/911)
+- `@tinacms/react-sidebar`: 侧边栏组件
+- `@tinacms/react-toolbar`: 工具栏组件
+- `@tinacms/react-fields`: 原始字段插件，即文本、文本区域、选择、数字、切换、块、组、组列表
+- `react-tinacms-color`: 颜色字段插件
+- `react-tinacms-date`: 日期字段插件
+- `react-tinacms-editor`: HTML和Markdown字段插件 + Wysiwyg本身
+- `react-tinacms-image`: 图片插件
+
+### 为什么分离 _alerts_ 和 _react-alerts_
+
+TinaCMS被设计为与框架无关。我们从React作为主要实现开始，因为这是团队最熟悉的框架。这种分离允许我们将领域与视图库分开，以便TinaCMS可以适用于更多的用例。
+
+### 为什么有些包被限定为 _@tinacms_ ？
+
+当包是内容管理的基本部分时，它们会被限定为`@tinacms`。关于这一点的规则尚未明确定义。
+
+## 想要参与吗？
+
+如果你有任何问题或意见，或者想参与TinaCMS的开发，请加入[TinaCMS Discord服务器](https://discord.com/invite/zumN63Ybpf)。
