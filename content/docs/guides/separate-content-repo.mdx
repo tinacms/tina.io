@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-06-24T14:23:47.957Z'
+last_edited: '2025-07-09T14:11:28.314Z'
 next: ''
 previous: ''
 ---
@@ -116,13 +116,22 @@ export default defineCollection({
 });
 ```
 
-## Triggering Website Builds from the Content Repo
+## Triggering Website Builds from the Content Repo (Optional)
 
-When using a separate content repo, you may want content updates (e.g. from TinaCMS UI) to automatically trigger a build of your website. This is especially useful when deploying with Azure Static Web Apps or other CI/CD systems where your frontend is hosted separately from your content.
+When using a separate content repo, you may want content updates (e.g. from TinaCMS UI) to automatically trigger a build of your website. TinaCloud supports this out of the box using webhooks.
 
-Below is an example of how to do this using **GitHub Actions** in the content repo. It uses a GitHub App token to trigger a workflow in your website repo.
+### Using TinaCloud Webhooks (Recommended)
 
-### Example Workflow
+TinaCloud can be configured to send a POST request to a webhook endpoint whenever content changes are committed. This is the recommended way to trigger a rebuild of your website.
+
+👉 Check out the [webhook functionality](https://tina.io/docs/tina-cloud/webhooks) for more details
+
+### Triggering Builds with GitHub Actions
+
+As an alternative to using webhooks, you can trigger website builds with GitHub Actions.\
+This is useful if your platform doesn’t support build webhooks, or if you want more control over the build process.
+
+#### Example Workflow
 
 Create a workflow file in your content repo (e.g. `.github/workflows/trigger-website-build.yml`):
 
@@ -161,34 +170,10 @@ jobs:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 ```
 
-### Prerequisites
+#### Prerequisites
 
 This setup requires:
 
 * A GitHub App with access to both repos
 * A build workflow file (\`build-and-deploy.yml\`) in your website repo
 * Token and app secrets saved in GitHub repo settings
-
-### When to Use This
-
-Use this approach if:
-
-* Your content and website live in separate repos
-* You're using Azure or other platforms that don't automatically detect cross-repo content changes
-* You want a reliable CI/CD flow triggered from content edits
-
-## Learn More
-
-To learn more about Tina, take a look at the following resources:
-
-* [Tina Docs](https://tina.io/docs)
-
-You can check out [Tina GitHub repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
-
-## Learn More
-
-To learn more about Tina, take a look at the following resources:
-
-* [Tina Docs](https://tina.io/docs)
-
-You can check out [Tina GitHub repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
