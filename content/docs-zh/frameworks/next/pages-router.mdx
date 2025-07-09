@@ -1,0 +1,263 @@
+---
+seo:
+  description: >-
+    使用Next.js Pages Router设置TinaCMS。了解配置步骤、最佳实践以及如何实现流畅的编辑体验。
+title: Next.js Pages Router
+last_edited: '2025-03-27T01:38:32.349Z'
+next: content/docs-zh/frameworks/astro.mdx
+previous: content/docs-zh/frameworks/next/app-router.mdx
+---
+
+> ☝️ 本指南假设您正在使用 **Next.js pages router**。
+
+## 视频指南
+
+<Youtube embedSrc="https://www.youtube.com/embed/0oYSzT1DDLg" />
+
+## 安装依赖
+
+在您网站的目录中运行：
+
+```bash
+npx @tinacms/cli@latest init
+```
+
+这将询问您一些设置问题。当提示输入 **公共资产目录** 时，输入：**public**。
+
+## 更新构建脚本
+
+`tina init` 应该已经更新了您的 `package.json` 脚本。
+
+```javascript
+"scripts": {
+  "dev": "tinacms dev -c \"next dev\"",
+  "build": "tinacms build && next build",
+  "start": "tinacms build && next start"
+}
+```
+
+如果这些没有被CLI设置，您需要手动应用。
+
+## 启动TinaCMS
+
+您可以通过以下命令启动TinaCMS：
+
+```bash
+pnpm dev
+```
+
+**我们推荐使用pnpm。**
+
+在TinaCMS运行时，导航到 `http://localhost:3000/admin/index.html`。
+
+> ❓ 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
+
+此时，您应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改已持久化到您的本地markdown文件中。
+
+![TinaCMS 管理界面截图](/img/hugo-tina-admin-screenshot.png)
+
+## TinaCMS 配置文件
+
+运行 `tina init` 命令后，创建了一些文件以帮助您快速入门。其中之一是 `tina/config.ts` 文件。这是一个必需的配置文件，定义了所有的tina模式。
+
+它看起来如下：
+
+```ts
+import { defineConfig } from 'tinacms'
+
+// 您的托管服务提供商可能将其作为环境变量公开
+const branch =
+  process.env.GITHUB_BRANCH ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD ||
+  'main'
+
+export default defineConfig({
+  branch,
+
+  // 从tina.io获取
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  // 从tina.io获取
+  token: process.env.TINA_TOKEN,
+
+  build: {
+    outputFolder: 'admin',
+    publicFolder: 'public',
+  },
+  media: {
+    tina: {
+      mediaRoot: '',
+      publicFolder: 'public',
+    },
+  },
+  schema: {
+    collections: [
+      {
+        name: 'post',
+        label: 'Posts',
+        path: 'content/posts',
+        fields: [
+          {
+            type: 'string',
+            name: 'title',
+            label: 'Title',
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Body',
+            isBody: true,
+          },
+        ],
+      },
+    ],
+  },
+})
+```
+
+**有关配置的更详细概述，请参阅[TinaCMS内容建模](/docs/extending-tina/overview/)**
+
+> 💡 如果您按照本指南使用 `tina init` 命令，您可能已经注意到创建了一个 `content` 和一个 `pages` 文件夹：
+
+```bash
+ Adding file at content/posts/hello-world.md... ✅
+ Adding file at pages/demo/blog/[filename].tsx... ✅
+```
+
+> 这些可以用作快速参考，但可以安全删除。
+
+## 创建新帖子
+
+> 💡 如 `tina/config.ts` 文件中定义的，我们有一个名为 `post` 的集合，它将被TinaCMS拾取并映射到您在TinaCMS管理页面中看到的内容。
+
+1. 前往 `/admin/index.html`
+
+2. 点击 Posts
+
+3. 点击 Create
+
+4. 输入必填字段
+
+5. 保存
+
+现在，让我们回去检查创建了什么。您将看到一个 `/content` 文件夹，其中保存了您的新帖子作为 `.md` 文件。此路径在 `tina/config.ts` 文件的post集合中定义！
+
+```bash
+content
+    └── posts
+        └── hello-world.md
+```
+
+## 渲染帖子集合
+
+让我们从创建一个 `/posts` 文件夹开始。这里的索引将列出我们所有的帖子。
+
+**文件：** `pages/posts/index.tsx`
+
+```tsx
+import Link from 'next/link'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
+
+export default function PostList(props) {
+  // 数据在生产模式下传递，并在编辑模式下更新为侧边栏数据
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  })
+  const postsList = data.postConnection.edges
+  return (
+    <>
+      <h1>Posts</h1>
+      <div>
+        {postsList.map((post) => (
+          <div key={post.node.id}>
+            <Link href={`/posts/${post.node._sys.filename}`}>
+              {post.node._sys.filename}
+            </Link>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+export const getStaticProps = async () => {
+  const { data, query, variables } = await client.queries.postConnection()
+
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    },
+  }
+}
+```
+
+## 渲染单个帖子
+
+**文件：** `pages/posts/[slug].tsx`
+
+```tsx
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
+
+export default function Home(props) {
+  // 数据在生产模式下传递，并在编辑模式下更新为侧边栏数据
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  })
+
+  return (
+    <>
+      <code>
+        <pre
+          style={{
+            backgroundColor: 'lightgray',
+          }}
+        >
+          {JSON.stringify(data.post, null, 2)}
+        </pre>
+      </code>
+    </>
+  )
+}
+
+export const getStaticPaths = async () => {
+  const { data } = await client.queries.postConnection()
+  const paths = data.postConnection.edges.map((x) => {
+    return { params: { slug: x.node._sys.filename } }
+  })
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps = async (ctx) => {
+  const { data, query, variables } = await client.queries.post({
+    relativePath: ctx.params.slug + '.md',
+  })
+
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    },
+  }
+}
+```
+
+## 下一步
+
+* [查看内容建模文档](/docs/schema/)
+* [了解如何查询您的内容](/docs/features/data-fetching/)
+* [部署您的网站](/docs/tina-cloud)

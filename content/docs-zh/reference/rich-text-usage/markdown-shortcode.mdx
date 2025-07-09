@@ -1,0 +1,162 @@
+---
+title: 自定义Markdown语法
+last_edited: '2025-03-27T04:57:08.395Z'
+next: ''
+previous: ''
+---
+
+<WarningCallout
+  body={<>
+    我们不再持续开发此功能。
+    
+    如果您需要此功能，我们建议使用[mdx](/docs/reference/types/rendering-markdown#mdx-and-custom-elements)功能。
+  </>}
+/>
+
+## 处理Markdown短代码
+
+如果您的markdown中有一些自定义**短代码**逻辑，您可以在`templates`属性中指定它，Tina会将其处理为`jsx`元素：
+
+以下代码片段在解析时会抛出错误，因为Tina不知道如何处理`{{}}`：
+
+```markdown
+{{ WarningCallout content="这是一个实验性功能，API可能会更改。有任何想法吗？请在聊天中告诉我们，或通过我们的[社区渠道](/community/)！" }}
+```
+
+但您可以通过`template`告诉Tina如何处理它：
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'WarningCallout',
+        label: 'WarningCallout',
+        match: {
+          start: '{{',
+          end: '}}',
+        },
+        fields: [
+          {
+            name: 'content',
+            label: '内容',
+            type: 'string',
+            required: true,
+            ui: {
+              component: 'textarea',
+            },
+          },
+        ],
+      },
+    ],
+  },
+];
+```
+
+### 原始字符串短代码
+
+某些框架支持具有原始字符串值的短代码：
+
+```
+{{  myshortcode "这是一些原始文本" }}
+```
+
+在Tina中，这可以通过特殊的`_value`字段支持。
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'myshortcode',
+        label: 'myshortcode',
+        match: {
+          start: '{{',
+          end: '}}',
+        },
+        fields: [
+          {
+            name: '_value',
+            label: '值',
+            type: 'string',
+            required: true,
+          },
+        ],
+      },
+    ],
+  },
+];
+```
+
+### 嵌套内容短代码
+
+短代码可以提供一个`children`字段，允许内容嵌套在短代码中。
+
+```md
+{{% shortcode %}}
+你好！
+{{% /shortcode %}}
+```
+
+您的字段模板定义看起来像这样：
+
+```javascript
+{
+  name: "pull_quote2",
+  label: "pull_quote2",
+  match: {
+    name: "shortcode",
+    start: "{{%",
+    end: "%}}"
+  },
+  fields: [
+    {
+      name: "children",
+      type: "rich-text"
+    }
+  ]
+}
+```
+
+> children类型需要是`rich-text`类型。
+
+### 带有连字符的短代码名称
+
+有时您的短代码会包含Tina的内容建模中不支持的字符
+
+```md
+{{ my-shortcode }}
+```
+
+您可以在`match`对象上提供一个`name`来处理这个问题。
+
+```ts
+fields: [
+  {
+    type: 'rich-text',
+    name: 'body',
+    templates: [
+      {
+        name: 'myshortcode',
+        label: 'myshortcode',
+        match: {
+          start: '{{',
+          end: '}}',
+          name: 'my-shortcode',
+        },
+        // ...
+      },
+    ],
+  },
+];
+```
+
+## CMS中的短代码
+
+短代码在CMS中显示为任何其他自定义markdown嵌入。要在CMS中检查短代码，请在编辑器中使用原始markdown选项。
+
+![](/img/docs/reference/rtf-toolbar.png)
