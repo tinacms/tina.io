@@ -1,6 +1,6 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-07-10T08:17:27.140Z'
+last_edited: '2025-07-10T08:23:15.006Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
@@ -99,7 +99,15 @@ mkdir -p /www/tinademo
 cd /www/tinademo
 ```
 
-#### Generate SSH Keys for GitHub Actions
+#### Create a Tina Project
+
+Use the template to create a basic Tina project.
+
+```plaintext
+npx create-tina-app@latest
+```
+
+#### &#xA;Generate SSH Keys for GitHub Actions
 
 Generate an SSH key pair on your Alibaba Cloud server:
 
