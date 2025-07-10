@@ -1,0 +1,39 @@
+---
+seo:
+  title: 点击编辑功能加入可视化编辑 | TinaCMS 博客
+  description: >-
+    Tina引入了可视化编辑的点击编辑功能，现在您可以直接在页面上实时更改内容，享受无缝的编辑体验。
+title: 点击编辑功能加入可视化编辑
+date: '2023-05-17T03:00:00.000Z'
+author: Scott Gallant
+prev: content/blog-zh/TinaCMS-Version-1-5.mdx
+next: content/blog-zh/TinaCMS-Version-1-5-9.mdx
+---
+
+我很高兴地分享，Tina 的可视化编辑用户体验通过点击编辑功能变得更好了。
+
+当您点击页面上的可编辑元素时，这会在正确的位置弹出 Tina 侧边栏。在[roev.com](https://www.roev.com/)上查看其实际效果：
+
+<WebmEmbed embedSrc="/video/click-to-edit.webm" />
+
+我们的目标是让可视化编辑成为最直观的编辑体验，同时*不*影响开发者的体验和代码质量。点击编辑是一个很大的用户体验提升，并且易于在您的网站上实现。
+
+## 演示
+
+如果您想体验一下用户体验，请尝试此演示（无需登录）。
+
+<Button link="https://demo.tina.io/admin" label="试用演示" />
+
+## 入门
+
+如果您已经在使用可视化编辑，可以通过向 DOM 元素添加 `data-tina-field` 属性来启用点击编辑，这使得 Tina 能够将页面上的可编辑元素映射到正确的 CMS 字段。我们提供了一个帮助程序，使得在具有复杂数据结构的页面上添加此功能变得容易。
+
+<Button link="https://tina.io/docs/contextual-editing/react/#click-to-edit-experimental" label="查看文档" />
+
+请注意，`data-tina-field` 属性与我们的[活动字段指示器](https://github.com/tinacms/tina.io/blob/2edf55f664e41d40ca99b5fc9ee6e689890e411a/content/docs/editing/active-field-indicator.md)使用的 `data-tinafield` 属性不同（后者将在未来逐步淘汰）。
+
+## 不再回头
+
+我们已经在内部使用这个功能有一段时间了，这是一个让您感到“我们之前是怎么做到的？”的功能。回到旧的方式，在 Tina 的侧边栏中遍历嵌套表单以找到正确字段的方式感觉非常繁琐。
+
+我们很想听听您对点击编辑的看法。如果您有反馈，请加入我们的[Discord 服务器](https://discord.com/invite/zumN63Ybpf)。

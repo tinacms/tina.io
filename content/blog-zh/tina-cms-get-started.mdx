@@ -1,0 +1,282 @@
+---
+seo:
+  title: 开始使用 TinaCMS | TinaCMS 博客
+  description: >-
+    TinaCMS 的初学者指南，涵盖安装、基本配置以及有效管理网站内容的技巧。
+title: Tina CMS - 开始使用
+date: '2022-03-04T08:00:00-04:00'
+author: James Perkins
+prev: content/blog-zh/tinacms-2022.mdx
+next: content/blog-zh/from-cms-to-contextual.mdx
+---
+
+到目前为止，作为 Tina 的用户，当你与内容互动时，你已经享受到了可视化编辑。我们知道，虽然这种体验对你的内容团队来说是顶级的，但将 Tina 与可视化编辑集成到你的应用程序中所需的时间比你在测试新 CMS 时可能愿意投入的时间要长。
+
+## 以传统方式使用 Tina 作为 CMS
+
+为了给所有用户提供最佳体验，Tina 现在提供了两种编辑内容的方式：可视化编辑和更传统的 CMS。除了我们的传统 CMS，我们仍然由 Markdown、JSON 或 MDX 提供支持，并由 Git 备份。以下是它在已部署网站上实现时的快速 GIF：
+
+<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/example.webm" />
+
+### 如何实现 Tina？
+
+当我们在 alpha 版本中推出 Tina + Cloud 时，你需要执行以下步骤来集成 Tina，并且我们仅支持可视化编辑：
+
+1. 使用 `npx @tinacms/cli init` 添加 Tina
+2. 为你的 Markdown 创建架构
+3. 实现你的查询，用于 `getStaticPaths` 和 `getStaticProps`
+4. 处理 props 以使你的内容可编辑。
+
+这些步骤现在减少了一半。当你仅使用 Tina 作为 CMS 而不进行可视化编辑时，你只需要：
+
+1. 使用 `npx @tinacms/cli init` 添加 Tina
+2. 为你的 Markdown 创建架构
+
+话虽如此，让我们使用 Next.js 启动器来创建一个仅使用 CMS 的可编辑博客。
+
+第一步是创建博客启动器并初始化 Tina
+
+```bash
+# 创建你的博客
+npx create-next-app --example blog-starter tina-cms-blog
+
+# 进入你的新博客
+cd tina-cms-blog
+
+# 初始化 Tina
+npx @tinacms/cli@latest init
+
+```
+
+那么 Tina CLI 做了什么？它在你的 Next.js 应用程序中做了很多事情：
+
+1. 安装了 Tina 所需的所有依赖项。
+2. 在 `.tina` 目录中定义了一个基本内容架构。
+3. 在 demo 目录中创建示例内容。
+4. 编辑 `package.json` 以添加启动 tina 的脚本（tina-dev、tina-build、tina-start）。
+
+### 测试时间
+
+现在你已经设置了 Tina，可以使用以下命令启动你的应用程序：
+
+`yarn tina-dev`
+
+现在，如果你导航到 [http://localhost:3000/admin](http://localhost:3000/admin)，你将看到一个新页面。继续点击“Edit with Tina”按钮。
+
+![](/img/blog/getting-started-tina-admin/login-example.webp)
+你将进入一个看起来像这样的页面：
+
+![](/img/blog/getting-started-tina-admin/landing-example.webp)
+
+### 编辑内容
+
+如果你在屏幕左侧选择“Blog Posts”，它将显示所有可供编辑的帖子，你可能会注意到 Tina 为你放置了一个名为“Hello World”的博客帖子。继续点击它，你将看到一个可编辑的表单。随意更改标题或正文并点击保存按钮。
+
+![使用 Tina 编辑的示例](/img/blog/getting-started-tina-admin/editing-example.jpg)
+
+### 发生了什么？
+
+当你点击保存时，Tina 的 GraphQL 层将这些更改直接保存到位于 content/posts 目录中的 Markdown 文件“HelloWorld.md”中。继续，打开它，查看你的新更改。
+
+> 当你在生产环境中执行此操作时，Tina 将直接为你提交到 GitHub！
+
+## 使启动博客可编辑
+
+现在你已经看到了 Tina 编辑的实际操作，让我们使 Next.js 启动器内容可编辑。第一步是定义我们内容的形状。你将看到一个名为 `.tina` 的文件夹，其中包含一个 `schema.ts` 文件。此文件允许你指示 Tina 的内容 API 查找哪种内容类型、如何标记它等等！
+
+### 集合
+
+架构中的顶级键是一个*集合*数组，`collection` 告诉 API *在哪里*保存内容。在我们的指南中将有一个 `posts` 集合，但你也可以有 `author` 和 `pages` 集合，例如。
+
+### 字段
+
+“fields”属性指示内容 API 期望的内容类型。例如，`text`，以及可查询的名称和显示给你的内容团队的名称。字段是集合的子对象数组。我们使用它来从 Markdown 或 JSON 文件中检索内容。这些字段应映射到你的*frontmatter*，我们还使用它来创建用于编辑的 UI 元素。
+
+```ts
+fields: [
+    {
+      type: "string",
+      label: "Title",
+      name: "title"
+    },
+    {
+      type: "string",
+      label: "Blog Post Body",
+      name: "body",
+      isBody: true,
+    },
+    ...
+]
+```
+
+### 引用
+
+我们还有 `reference` 字段。这是一个重要的概念，当你*引用*另一个集合时，你实际上是在说：“这个文档*属于*那个文档”。使用引用的一个很好的例子是*author*，因为每个帖子都会有一个作者，你可以有多个作者，但你需要将特定的作者引用到帖子。
+
+```ts
+{
+  "label": "Author",
+  "name": "author",
+  "type": "reference",
+  "collections": ["author"]
+}
+```
+
+> 在我们继续之前，你可以在我们的文档中阅读更多关于内容建模的信息。
+
+## 创建我们的内容架构
+
+Next.js 博客启动器附带了三个示例博客帖子，你可以用来在我们的架构中塑造内容。你可以在 `_posts` 目录中的任何博客帖子中找到。让我们看看 `preview.md` 的前言。
+
+```markdown
+--
+title: 静态生成的预览模式
+excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
+coverImage: '/assets/blog/preview/cover.jpg'
+date: '2020-03-16T05:35:07.322Z'
+author: name: Joe Haddad picture: '/assets/blog/authors/joe.jpeg'
+ogImage: **url: '/assets/blog/preview/cover.jpg'
+---**
+Lorem ipsum dolor sit amet, ...
+```
+
+如你所见，除了博客帖子的正文外，你还有相当多的字段希望你的内容团队能够编辑。
+
+### 对架构进行更改
+
+打开位于 `/.tina/schema.ts` 的 Tina `schema.ts` 文件。首先在提供的对象下方，你需要用你想要的内容替换当前的集合：
+
+```diff
+{
+  label: "Blog Posts",
+  name: "post",
+-  path: "content/posts"
++  path: '_posts',
+  fields: [
+    {
+      type: "string",
+      label: "Title",
+      name: "title"
+    },
+    {
+      type: "string",
+      label: "Blog Post Body",
+      name: "body",
+      isBody: true,
+    },
+  ]
+}
+```
+
+到目前为止，你只替换了一行，即将 `path` 更新为启动博客内容的正确位置。
+
+现在你需要处理我们帖子的前言的每个字段，下面是完成的文件：
+
+```ts
+// 上面的导入
+
+export default defineSchema({
+  collections: [
+    {
+      label: 'Blog Posts',
+      name: 'post',
+      path: '_posts',
+      fields: [
+        {
+          type: 'string',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: 'Excerpt',
+          name: 'excerpt',
+        },
+        {
+          type: 'string',
+          label: 'Cover Image',
+          name: 'coverImage',
+        },
+        {
+          type: 'string',
+          label: 'Date',
+          name: 'date',
+        },
+        {
+          type: 'object',
+          label: 'Author',
+          name: 'author',
+          fields: [
+            {
+              type: 'string',
+              label: 'Name',
+              name: 'name',
+            },
+            {
+              type: 'string',
+              label: 'Picture',
+              name: 'picture',
+            },
+          ],
+        },
+        {
+          type: 'object',
+          label: 'OG Image',
+          name: 'ogImage',
+          fields: [
+            {
+              type: 'string',
+              label: 'Url',
+              name: 'url',
+            },
+          ],
+        },
+        {
+          type: 'string',
+          label: 'Body',
+          name: 'body',
+	        ui: {
+	            component: "textarea"
+	            }
+          isBody: true,
+        },
+      ],
+    },
+  ],
+});
+
+// 下面的配置代码
+```
+
+你可能会注意到一些事情。首先，有一个名为 `object` 的 `type`，这是一种将字段组合在一起的方法。在你将来会看到的 UI 上，它允许你点击并编辑每个单独的字段。
+
+其次，有一个名为 `body` 的 `string` 字段，`isBody` 设置为 true。通过将 `isBody` 设置为 true，我们声明此字段负责 Markdown 文件的主要*正文*。只能有一个字段具有 `isBody: true` 属性。
+
+## 最后一次测试
+
+现在新的架构已经准备好了，继续使用 `yarn tina-dev` 重启你的服务器并导航到 [http://localhost:3000/admin](http://localhost:3000/admin)。你将看到如果你在左侧导航中选择博客帖子，你现在拥有来自 Next.js 的所有三个帖子。
+
+![](/img/blog/getting-started-tina-admin/post-list-example.webp)
+
+如果你选择第一篇帖子“动态路由”，你将看到我们在架构中定义的所有字段，这些字段与所有前言匹配。继续编辑一些字段，如标题或正文并点击保存。现在如果你导航到 `http://localhost:3000/posts/dynamic-routing` 你将看到这些更改！
+
+## 你可以在哪里尝试或跟进 Tina？
+
+如果你还没有机会尝试 Tina，并且没有时间遵循本教程，请在 TinaCloud 或命令行上启动一个启动站点并分享你的反馈。
+
+<CreateAppCta ctaText="尝试一个启动器" cliText="npx create-tina-app@latest" />
+
+你知道你会想成为这个充满创造力、创新性、支持性的开发者社区的一部分（甚至还有一些编辑和设计师），他们每天都在尝试和实施 Tina。
+
+### Tina 社区 Discord
+
+Tina 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 Tina 爱好者。当你加入时，你会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的 Tina 新闻和抢先预览
+* 与 Tina 社区分享你的项目，并谈论你的经验
+* 聊天关于 Jamstack
+
+### Tina Twitter
+
+我们的 Twitter 账号 ([@tinacms](https://twitter.com/tinacms)) 宣布了 Tina 的最新功能、改进和抢先体验。如果你在项目中标记我们，我们也会很高兴。

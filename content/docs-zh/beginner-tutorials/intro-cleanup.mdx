@@ -1,0 +1,29 @@
+---
+title: 清理你的项目
+last_edited: '2025-03-28T00:57:15.532Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/install-tinacms.mdx
+previous: content/docs-zh/beginner-tutorials/nextjs-app.mdx
+---
+
+让我们为集成TinaCMS准备我们的项目。
+
+这只是为了让接下来的步骤更简单。
+
+1. 在你喜欢的IDE中打开项目。
+2. 删除NextJS `app/page.tsx` 文件中的内容。
+3. 添加一个“Hello world”标题！
+
+你应该得到以下内容：
+
+```typescript
+export default function Home() {
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-(family-name:--font-geist-sans)">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <h1>Hello World!</h1>
+      </main>
+    </div>
+  );
+}
+```

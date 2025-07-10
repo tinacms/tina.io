@@ -1,0 +1,51 @@
+---
+title: 创建一个新模板
+last_edited: '2025-03-21T01:44:01.771Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/linking-to-model.mdx
+previous: content/docs-zh/beginner-tutorials/what-are-blocks.mdx
+---
+
+1\. 创建一个 `app/amazing-header/` 文件夹
+
+2\. 在该文件夹中添加一个 `amazing-header.template.tsx` 文件
+
+3\. 将以下代码添加到 `amazing-header.template.tsx` 文件中：
+
+> 文件名是任意的，但Tina团队使用（并推荐）`.template.tsx` 后缀以保持清晰。
+
+```typescript
+import { Template } from "tinacms";
+
+export const amazingTitleBlock: Template = {
+    name: 'titleBlock',
+    label: 'Amazing title',
+    fields: [
+      {
+        type: 'string',
+        label: 'Title',
+        name: 'title',
+      }
+    ],
+  }
+```
+
+我们的块现在非常基础 - 我们只有1个字段。但你可以看到，在实际应用中，在一个块中定义许多字段会非常有用！
+
+**想象一个英雄横幅，它可能需要一个背景图像，一个CTA，甚至可能还有一个按钮链接。**
+
+4\. 现在为美丽的图像和令人难以置信的正文重复此操作！
+
+你应该得到如下结构：
+
+```
+src/
+├── app/
+│   ├── amazing-header/
+│   │   ├── amazing-header.template.tsx
+│   ├── beautiful-image/
+│   │   ├── beautiful-image.template.tsx
+│   ├── incredible-body/
+│   │   ├── incredible-body.template.tsx
+│   ├── ...etc.
+```

@@ -1,0 +1,22 @@
+---
+title: 选择一个Git提供商
+id: '/docs/reference/self-hosted/git-provider/overview'
+---
+
+Git提供商负责将内容保存到Git托管提供商。它被设置为传递给`createDatabase` [函数](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function)的配置中的一个属性。默认情况下，我们支持[GitHub Git提供商](/docs/reference/self-hosted/git-provider/github)。如果你不使用GitHub，你可以[创建自己的](/docs/reference/self-hosted/git-provider/make-your-own)。
+
+## 添加一个Git提供商
+
+```ts
+// database.{ts,js}
+//...
+
+export default isLocal ? createLocalDatabase() : createDatabase({
+    gitProvider: new SomeGitProvider(),
+    // ...
+})
+```
+
+其中`SomeGitProvider`是一个实现了[`GitProvider`]()接口的类。
+
+请阅读[GitHub Git提供商](/docs/reference/self-hosted/git-provider/github)以了解如何设置与GitHub的交互。

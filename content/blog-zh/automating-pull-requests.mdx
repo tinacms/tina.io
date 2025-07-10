@@ -1,0 +1,101 @@
+---
+seo:
+  title: 自动化拉取请求 | TinaCMS 博客
+  description: >-
+    了解如何在 TinaCMS 中自动化拉取请求，简化内容更新并改善开发人员与内容团队之间的协作。
+title: 自动化拉取请求
+date: '2022-04-14T07:00:00.000Z'
+author: James Perkins
+prev: content/blog-zh/read-only-tokens-content-anytime.mdx
+next: content/blog-zh/announcing-extending-tina.mdx
+---
+
+在处理基于 git 的网站时，通常不希望直接在主分支上工作。理想情况下，你希望能够完成你的文章或网站更新，检查其外观是否良好，并安排发布。在这篇文章中，我们将介绍两种不同的选项来自动化你的 PR，以便更轻松地安排内容。
+
+## PR 调度器
+
+PR 调度器是一个可以直接安装在你的 GitHub 仓库中的 GitHub 集成工具。它由 [Tom Kadwill](https://tomkadwill.com/) 构建，旨在简化拉取请求的调度。PR 调度器允许开发人员在特定时间安排合并 PR。你无需编写自己的 GitHub 操作，只需在你的拉取请求中写一条评论，应用程序就会为你处理。
+
+### 如何安装
+
+1. 打开 [PR 调度器的 GitHub 应用页面](https://github.com/apps/pr-scheduler)。
+2. 点击“安装”按钮
+3. 选择是在所有仓库上安装 PR 调度器还是仅在特定仓库上安装。然后点击“安装”。
+
+### 如何安排拉取请求
+
+现在，PR 调度器可以用于安排你的任何拉取请求。要开始，请执行以下操作：
+
+1. 打开你想要安排的拉取请求。
+2. 添加一条新评论，格式为 DD/MM/YYYTHH\:MM，例如 `@prscheduler 05/04/2022T14:00`
+3. PR 调度器会回复你，告诉你它已准备好。
+
+![PR 调度示例图片](/img/blog/automating-pull-requests/pr-scheduler.png)
+
+就是这样！现在，当时间到来时，你的 PR 将被合并。如果你在时间或日期上出错，只需运行相同的命令，它将重新安排。
+
+## GitHub Actions
+
+GitHub Actions 是一种强大而灵活的方式，允许你运行各种 DevOps 工作流，而无需单独的工具。GitHub Actions 使用 YAML 来定义工作流。这是一个很好的选择，可以在你希望最大限度控制的情况下安排你的拉取请求。
+
+### 创建你的 GitHub Action
+
+在你的项目中创建一个名为 `.github/workflows/scheduler.yml` 的文件。我们将使用它来创建我们的操作。
+
+GitHub Actions 有很多选项。我在多个个人项目中使用了 **merge-schedule-action**，它具有很好的自定义功能且易于使用。此操作接受几个不同的参数，并使用日期来安排你的 PR：
+
+```
+name: Merge Schedule
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+  schedule:
+    # 每小时检查一次。
+    - cron: 0 * * * *
+
+jobs:
+  merge_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gr2m/merge-schedule-action@v1
+        with:
+          merge_method: merge
+          # 使用的时区。默认是 UTC。
+          time_zone: "America/New_York"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+让我们来分解一下发生了什么。我们给这个作业命名为 Merge Schedule。它只会在打开、编辑或同步的拉取请求上触发。每小时我们运行一个名为 `merge_schedule` 的作业，感谢 cronjob `0 * * * *`
+
+作业部分中的步骤是最重要的，它告诉 GitHub 在计划运行时该做什么。首先，作业需要使用 `gr2m/merge-schedule-action@v1` 并告诉它使用的合并方法。我将其设置为合并，但如果你愿意，可以使用 squash。`time_zone` 默认设置为 UTC，但可以是你需要的任何时区。
+
+`GITHUB_TOKEN` 不需要设置，因为 GitHub 会检索一个 `GITHUB_TOKEN` 供账户使用。
+
+> 如果你想了解更多关于触发 GitHub actions 的信息，请查看他们的文档 [https://docs.github.com/en/github-ae@latest/actions/using-workflows/events-that-trigger-workflows](https://docs.github.com/en/github-ae@latest/actions/using-workflows/events-that-trigger-workflows)
+
+### 如何运行操作
+
+现在我们已经创建了操作，当你创建拉取请求时，你需要在拉取请求描述中添加 `/schedule YYYY-MM-DD`。此 GitHub Action 将根据 cron 语句中定义的计划运行，并检查日期匹配的 PR，然后部署代码。如果你需要精确的部署，可以使用 `/schedule 2019-12-31T00:00:00.000Z.`
+
+## 如何保持与 Tina 的同步？
+
+保持与 Tina 同步的最佳方式是订阅我们的新闻通讯，我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、你可能错过的博客文章等等！
+
+你可以通过以下链接订阅并输入你的电子邮件：[https://tina.io/community/](https://tina.io/community/)
+
+### Tina 社区 Discord
+
+Tina 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 Tina 爱好者。加入后你会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的 Tina 新闻和抢先预览
+* 与 Tina 社区分享你的项目，并谈论你的经验
+* 聊天关于 Jamstack
+
+### Tina Twitter
+
+我们的 Twitter 账号 ([@tina\_cms](https://twitter.com/tina_cms)) 宣布最新的功能、改进和 Tina 的抢先预览。如果你在构建的项目中标记我们，我们也会很高兴。

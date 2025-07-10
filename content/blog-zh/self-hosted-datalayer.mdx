@@ -1,0 +1,60 @@
+---
+seo:
+  title: 自托管数据层 | TinaCMS 博客
+  description: >-
+    了解如何使用 TinaCMS 设置自托管的数据层，让您完全控制数据，同时提高可扩展性和性能。
+title: 自托管 Tina 数据层
+date: '2023-01-31T04:00:00.000Z'
+last_edited: '2023-11-14T05:00:00.000Z'
+author: Scott Gallant & James O'Halloran
+prev: content/blog-zh/tina-v-1.1.3.mdx
+next: content/blog-zh/tina-v-1.1.4.mdx
+---
+
+今天我们很高兴地宣布 TinaCMS 的自托管数据层的第一个版本。请在[这里](https://github.com/tinacms/tinacms/discussions/3589)查看详细的演练和演示。
+
+由于多种原因，这是一个[备受期待的功能](https://github.com/tinacms/tinacms/discussions/3096)。我们听到的一些反馈包括：
+
+* “我们希望将来能够灵活地从 TinaCloud 中退出”
+* “我们需要将内容存储在本地”
+* “我们需要在特定区域托管服务器”
+* “我们想使用 TinaCloud 不支持的自定义身份验证”
+* “我们希望自定义/扩展 TinaCloud 中使用的行为”
+
+通过自托管 Tina 数据层，您可以在不依赖 TinaCloud 的情况下运行 TinaCMS。
+
+我们很高兴能将其交到社区手中，以便我们学习、迭代并完善自托管体验。
+
+## 什么是 Tina 数据层
+
+Tina 数据层提供了一个 GraphQL API，用于服务由数据库支持的 Markdown 和 JSON 文件。您可以将数据库视为一种临时缓存，因为您的内容的唯一真实来源实际上是您的 Markdown/JSON 文件。
+
+![TinaCMS GraphQL 数据层](/img/docs/tinacms-data-layer_geyrv8.png "TinaCMS 数据层")
+
+## 为什么当我将内容存储在 Markdown 文件中时 TinaCMS 仍然需要数据层？
+
+如上所述，您的 Markdown 文件是事实的来源，但 TinaCMS 仍然需要数据层来执行搜索、分页、Markdown 文件之间的引用等操作。
+
+此外，由于数据层提供了一个 API，您可以像使用传统无头 CMS 一样获取您的内容。
+
+## 为什么我不知道有数据层？
+
+当您在本地开发站点时，数据层不需要配置，只是在后台运行。如果您在生产中使用 TinaCloud，它会为您运行 Tina 数据层并与 GitHub 同步。现在，您可以托管自己的数据层，作为使用 TinaCloud 的替代方案。
+
+## 数据层中的索引何时发生？
+
+如果您的站点在生产中使用 TinaCloud，每次关联的 GitHub 仓库发生更改时，数据层都会使用 webhooks 进行索引。当自托管时，索引仅在您的站点构建时发生。使用 Tina 进行的任何内容更新将立即反映在数据层中，但直接在 Tina 之外对 GitHub 仓库进行的任何编辑在站点重建之前都不会可见。
+
+## Tina 数据层是开源的吗？
+
+是的，TinaCMS 是在 Apache 2.0 许可证下开源的。
+
+## 我可以在哪里托管它？
+
+我们设计了数据层，使其可以作为无服务器函数与您的站点一起托管（例如使用 Vercel/Netlify 函数）。您也可以在任何您喜欢的地方单独托管它！
+
+如果您是自托管，您也需要负责托管自己的数据库（我们的自托管入门使用 MongoDB）。
+
+## 试试看！
+
+要了解有关自托管数据层的更多信息，请查看 [GitHub 讨论](https://github.com/tinacms/tinacms/discussions/3589)。

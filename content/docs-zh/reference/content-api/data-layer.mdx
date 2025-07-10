@@ -1,0 +1,38 @@
+---
+title: 数据层
+last_edited: '2022-06-15T15:51:56.737Z'
+---
+
+TinaCMS 在 Tina GraphQL API 和底层 Git 仓库之间实现了一个数据库层。这个数据层在 TinaCloud 和 GitHub 之间缓冲请求，从而提高了 TinaCMS 的编辑性能。它还支持其他功能，例如：
+
+- [排序](/docs/graphql/queries/advanced/sorting/)
+- [过滤](/docs/graphql/queries/advanced/filter-documents/)
+- [分页](/docs/graphql/queries/advanced/pagination/)
+- 参照完整性
+
+# 索引
+
+TinaCloud 会自动在我们的安全云数据库中维护您的仓库的同步副本。我们将此同步过程称为索引。它涉及从您的 GitHub 远程仓库中获取每个项目，并在数据库中存储一个副本。在初始索引过程之后，TinaCloud 只会索引已更新的内容。在某些情况下，可能需要进行完整的重新索引。一些示例场景包括：
+
+- 对 `tina/config.{ts,js}` 的更改
+- 对 [tina 路径](/docs/tina-cloud/dashboard/projects/#path-to-tina) 的更改
+- 对配置的 [仓库](/docs/tina-cloud/dashboard/projects/#changing-the-repository) 的更改
+- GitHub 中的新分支
+
+## 同步问题
+
+### Webhook 失败
+
+在极少数情况下，连接您的仓库到 TinaCloud 的 GitHub webhook 可能会中断。如果 webhook 未执行，TinaCloud 可能会与您的 GitHub 仓库不同步。
+
+使用 [刷新 Webhooks](/docs/tina-cloud/dashboard/projects/#refresh-webhooks) 按钮重新初始化 webhook。
+
+### 外部更新未同步
+
+在某些情况下，TinaCloud 的仓库缓存可能会与您的 GitHub 仓库不同步，这可能导致更改存在于您的仓库中但不在 TinaCMS 中。通常，这只会在 GitHub webhook 出现问题时发生。如果发生这种情况，您可以重新索引不同步的分支，将其恢复到您仓库的当前状态。这将丢弃 TinaCloud 中尚未推送到您仓库的分支中的任何更新。
+
+使用 [刷新 Webhooks](/docs/tina-cloud/dashboard/projects/#refresh-webhooks) 按钮重新初始化 webhook。
+
+### 导出分支
+
+在分支上使用“重新索引”将丢弃 TinaCloud 中尚未推送到您仓库的该分支的任何更改。如果您需要从 TinaCloud 导出未保存的内容，可以使用 [导出分支](/docs/tina-cloud/dashboard/projects/#export-branch) 按钮将您仓库的当前状态导出到一个新分支。

@@ -1,0 +1,133 @@
+---
+seo:
+  title: Tina进入Beta阶段 | TinaCMS博客
+  description: >-
+    TinaCMS达到了Beta阶段！了解这一里程碑对平台的意义，以及它如何为即将推出的功能和改进铺平道路。
+title: Tina进入Beta阶段
+date: '2021-08-18T20:00:00-04:00'
+last_edited: '2021-08-18T10:00:06.367Z'
+author: James Perkins
+prev: content/blog-zh/manage-your-media-with-cloudinary.mdx
+next: content/blog-zh/who-is-logan-anderson.mdx
+---
+
+自6月2日我们推出TinaCloud alpha以来，Tina团队一直在努力工作。我们收集了所有的反馈和想法，并进行了迭代，以大幅改进产品。alpha版本包含了核心产品，但我们知道有一些功能我们希望立即添加，包括简化的集成路径。
+
+我们很高兴地宣布，Tina已进入beta阶段，所有核心功能都已就位，您的团队可以在Next.js网站上获得出色的内容编辑体验！如果您和我们一样兴奋，可以通过[注册](https://app.tina.io/register)开始使用。但首先，我希望您能继续阅读，了解团队的愿景、所学的经验以及我们添加的内容。如果您是Tina的新手，这里有一个快速演示：
+
+<WebmEmbed embedSrc="/img/blog/tina-is-in-beta/Beta_Launch_Demo.webm" />
+
+## 来自我们CEO Scott的简短信息
+
+Tina Beta是一个重要的里程碑！所有核心功能都已就位，团队可以在他们的Next.js网站上编辑内容。当您将出色的内容编辑体验添加到存储在Git仓库中的内容时，我们只是触及了可能性的表面。我们的目标是为开发者和内容编辑者提供10倍的体验。
+
+## 所学的经验
+
+在alpha阶段，我们学到了很多，这使我们能够推动产品向前发展。
+
+* 用户使用Tina进行首次提交所需的时间比我们预期的要长得多。起初平均超过8小时。这向我们表明，即使是我们的入门也需要太长时间来设置。
+* 使用我们的入门后，您有很多问题，主要围绕内容建模，而我们的文档没有回答这些问题。
+* Tina可以在大型网站上用于生产环境，开发者和内容作者都很喜欢它。
+* 创建一个[Discord](https://discord.gg/njvZZYHj2Q)使我们能够进行实时反馈，这使我们能够快速添加功能、修复错误并帮助人们解决问题。
+
+## Beta对您的意义是什么？
+
+我们相信我们的产品将出色的开发者和内容创作者体验结合到一个产品中。从alpha到beta的更新如此之大，我想为每个部分写一个简短的段落。以下是每个更新的列表，您可以随意点击以查看详细更新：
+
+* [更好的文档](#better-documentation)
+* [CLI中的新初始化命令](#a-new-initialize-command-in-the-cli)
+* [改进和添加指南](#improving-and-adding-guides)
+* [改进我们的Tina入门](#improving-our-tina-starter)
+* [媒体管理器](#media-manager)
+* [缓存改进](#caching-improvements)
+* [创建@tinacms/toolkit](#creating-tinacmstoolkit)
+* [Vercel集成](#vercel-integration)
+* [仪表板大修](#dashboard-overhaul)
+* [内容建模的变化](#changes-to-content-modeling)
+
+<Callout title="准备好开始了吗？" description="快速使用TinaCloud运行一个网站！" url="/docs/setup-overview/" buttonText="快速入门指南" />
+
+## 开始使用Tina
+
+我们希望加快Tina的启动和运行，无论这是一个新启动的Next.js应用程序还是您的生产应用程序。我们引入了几项改进：
+
+* 更好的文档
+* 一个tina init命令
+* 新的和改进的指南
+
+### 更好的文档
+
+Tina的文档是我们希望尽可能改进的东西，我们发现人们对Tina的概念不太确定，因为我们没有在文档中清楚地解释它们。我们花时间编写文档，使任何经验的开发者都能更好地理解Tina的每个部分，它们如何协同工作以及如何完成特定任务。
+
+我们还移动并创建了新的导航菜单，以更好地传达文档的意图，例如，如果您正在寻找Next.js API，我们有一个专门的部分。
+
+### CLI中的新初始化命令
+
+Tina init是我最喜欢的Tina体验新增功能。一个命令可以在Next.js应用程序上启动Tina，并为您完成所有繁重的工作。团队花了相当多的时间来完善它，以达到最佳效果。命令`npx @tinacms/cli init`目前执行以下操作：
+
+1. 安装应用程序的所有依赖项
+2. 将更新的Tina命令添加到您的package.json中（`dev`、`build`、`start`）
+3. 将您的`app.js` / `app.tsx`包装在我们的`TinaEditProvider`中
+4. 创建演示数据，您可以用它来测试Tina。
+5. 创建一个管理路由，允许人们编辑，并提供退出的方法。
+6. 创建一个模式文件，准备好让您塑造内容
+
+这使您可以快速体验Tina，而无需编写任何代码。然后，当您准备好时，您可以轻松扩展它以使用您现有网站的部分内容。
+
+### 改进和添加指南
+
+当我们推出Tina时，我们有一个指南可以让您使用我们的TinaCloud入门快速启动。这是用户体验Tina的好方法，但我们发现人们错过了一些Tina的关键概念。
+
+我重新设计了一个新指南，将Next.js入门博客与Tina和TinaCloud结合在一起，同时在过程中解释每个概念。这似乎是展示Tina、学习如何使用Tina的完美方式，许多用户都熟悉这一点。
+
+我们还删除了不再推广Tina最佳实践的旧指南，并将我们的一些其他指南移到了实验部分。对我们来说，实验意味着我们不能保证使用的包不会有错误或问题。
+
+## 改进我们的Tina入门
+
+Tina入门最初是为了展示“Tina的力量”而构建的，虽然它做到了这一点，但我们觉得它没有展示一个真实世界的例子。所以我们重新设计了我们的新[Tina入门](/docs/introduction/using-starter)，其中包括一个着陆页、博客和关于页面。您可以编辑和重新排列内容，我们使用TailwindCSS对其进行样式化，使其更加出色！以下是您可以完成的一些工作的示例：
+
+<WebmEmbed embedSrc="/img/blog/tinacms-is-in-beta/edit-alongside-content.webm" />
+
+## 媒体管理器
+
+媒体管理器是我们为TinaCloud所需的最重要功能之一。我们的[Cloudinary媒体管理器](/docs/reference/media/external/cloudinary/)允许您更改图像、上传新图像以及删除不再需要的图像，而无需离开Tina编辑体验。
+
+我写了一篇[博客文章宣布它](/blog/manage-your-media-with-cloudinary/)以及如何将其实现到您的应用程序中。
+
+## 缓存改进
+
+速度和性能是我们一直在积极改进的东西。我们在幕后引入了一些改进，以改善我们检索网站数据的方式。Tina是精心构建的，考虑到了性能，现在更快了！
+
+## 创建`@tinacms/toolkit`
+
+TinaCMS是用小型模块化包构建的，这意味着我们严重依赖于React上下文。过度模块化我们的工具包导致的依赖不匹配，导致许多与缺少上下文相关的错误。
+
+我们的开源团队创建了`@tinacms/toolkit`，将Tina的基本要素整合在一起。这简化了您作为用户和Tina作为产品的一切。
+
+您可以在我们的固定[GitHub问题](https://github.com/tinacms/tinacms/issues/1898)中阅读所有更新以及我们决定进行更改的原因。
+
+## Vercel集成
+
+我们希望在测试TinaCMS时将摩擦降到几乎为零，因此我们致力于添加Vercel集成。这意味着如果您注册一个帐户，您可以一键部署并在几分钟内开始使用我们的入门来玩转TinaCMS和TinaCloud。未来我们将添加在TinaCloud中部署任何应用程序到Vercel的能力！
+
+## 仪表板大修
+
+在alpha阶段使用TinaCloud时，我们的仪表板用户体验不是一流的，有时可能会令人困惑。我们完全大修了仪表板，使其更容易、更快捷地将应用程序添加到云中、邀请用户并找到重要信息，如网站URL或客户端ID。
+
+如果您使用过alpha版本，您将需要重新注册，因为我们在后端处理用户注册的方式上进行了重大更改。
+
+## 内容建模的变化
+
+内容建模是您与TinaCMS交互以及检索内容的核心。我们决定做出一个重要的改变，更加基于原始类型。
+
+这允许简单的查询，不需要消歧义，我们相信这将使您作为开发者能够轻松地编写查询。
+
+如果您使用过Tina的alpha版本，您可能想阅读这篇文章，团队编写了这篇文章来解释所有[变化以及如何迁移](/docs/tina-cloud/migration-overview/)。
+
+## 给我们反馈！
+
+整个团队对进入beta阶段感到非常兴奋，并希望您能查看并给我们诚实的反馈。我们想听听您的项目，或者让我们知道TinaCloud如何帮助您的团队取得进展。
+
+要随时了解Tina的动态，请务必在Twitter上关注[@tinacms](https://twitter.com/tinacms)。想与团队聊天？加入[Discord](https://discord.gg/njvZZYHj2Q)
+
+敬请期待更多改进、功能、社区构建的项目等！

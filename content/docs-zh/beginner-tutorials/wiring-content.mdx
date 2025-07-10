@@ -1,0 +1,60 @@
+---
+title: 将内容连接到编辑器
+last_edited: '2025-03-28T01:01:59.294Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/loading-content.mdx
+previous: content/docs-zh/beginner-tutorials/routing.mdx
+---
+
+如你所见，我们无法从此页面编辑我们惊人的标题。我们仍然需要导航到我们的集合，然后到我们的文件，以便更改标题。让我们来解决这个问题！
+
+1\. 将 `app/page.tsx` 更改为以下代码：
+
+```typescript
+"use client";
+import { useState, useEffect } from "react";
+import { client } from "../tina/__generated__/client";
+import { useTina } from "tinacms/dist/react";
+
+export default function Home() {
+
+  const[graphQLresponse, setGraphQLresponse] = useState<any>();
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      const result = await client.queries.my_first_collection({
+        relativePath: "Hello-World.md",
+      });
+      setGraphQLresponse(result);
+    };
+
+    fetchContent();
+    
+  }, []);
+
+  const pageData = useTina({
+    data: graphQLresponse?.data,
+    query: graphQLresponse?.query,
+    variables: graphQLresponse?.variables,
+  });
+
+  const amazingTitle = pageData?.data?.my_first_collection?.title;
+
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-(family-name:--font-geist-sans)">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <h1>{amazingTitle}</h1>
+      </main>
+    </div>
+  );
+}
+```
+
+这里有一些小但重要的变化。让我们来看看它们。
+
+* 我们将 `setAmazingTitle` 状态设置器更换为新的 `setGraphQLresponse` 状态设置器。这是为了让我们可以访问视觉编辑器的整个 GraphQL 对象。
+* 我们引入了 `useTina` 方法，这是 Tina 如何将我们在页面上看到的内容与视觉编辑器中的输入连接起来的方式。`useTina` 接受一个包含我们 GraphQL 响应中几个属性的对象，以便 Tina 的视觉编辑器可以用相同的值填充其输入。
+
+我们还没有完全完成。如果你打开浏览器的开发工具并导航到 `http://localhost:3000/admin/index.html`，你会在控制台中看到一个错误。
+
+这实际上是由于 NextJS 的工作方式导致的——继续操作以启动你的视觉编辑器。

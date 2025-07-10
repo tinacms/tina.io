@@ -1,0 +1,117 @@
+---
+id: /docs/tina-folder/overview/
+title: /tina 文件夹
+last_edited: '2025-03-25T02:03:15.196Z'
+next: ''
+previous: ''
+---
+
+`/tina` 文件夹是你配置 **内容模型**、**数据层**（托管）、**内容仓库**、**查询**以及其他 TinaCMS 重要设置的地方。
+
+> 它通常位于你的仓库根目录，但也有[其他选项](/docs/tina-cloud/dashboard/projects#path-to-tina)可用。
+
+## 文件结构
+
+```markdown
+tina/
+├── config.{ts,tsx,js}
+├── queries/ <!--可选-->
+├── ߺߺgeneratedߺߺ/ <!--在运行时创建-->
+│ ├── ߺgraphql.json
+│ ├── ߺlookup.json
+│ ├── ߺschema.json
+│ ├── frags.gql
+│ ├── queries.gql
+│ └── schema.gql
+└── tina-lock.json <!--在运行时创建-->
+```
+
+<WarningCallout
+  body={<>
+    `tina-lock.json` 必须被**提交到源代码管理并推送到你的仓库**。它包含一个用于解析内容文档的编译模式。在本地运行 `tinacms dev` 以触发此文件的更新。
+  </>}
+/>
+
+### 配置文件
+
+`config.{ts,tsx,js}` 包含 [schema](/docs/schema)（**内容模型**），以及 Tina 配置对象。更多细节请参见 [配置文档](/docs/reference/config)。
+
+### 查询文件夹
+
+`queries/` 文件夹是可选的，由 [客户端](/docs/data-fetching/overview/) 用于检索数据。大多数数据获取情况将由 TinaCMS 自动生成的查询覆盖。
+
+在这里定义的额外查询将与 `__generated__/queries.gql` 中的查询附加到同一个查询对象。
+
+### 生成的文件
+
+在构建过程中，Tina 会在 `__generated__/` 中生成一些文件。
+
+对此目录所做的更改将不会被保留。
+
+<WarningCallout
+  body={<>
+    你应该在 git 仓库中忽略此目录。
+  </>}
+/>
+
+<ImageAndText
+  heading="_graphql.json"
+  docText={<>
+    Graphql AST（以 JSON 表示）。
+  </>}
+/>
+
+<ImageAndText
+  heading="_lookup.json"
+  docText={<>
+    这是一个用于解析文档名称的查找文件。
+  </>}
+/>
+
+<ImageAndText
+  heading="_schema.json"
+  docText={<>
+    Graphql Schema AST（以 JSON 表示）。
+  </>}
+/>
+
+<ImageAndText
+  heading="types.{js,ts}"
+  docText={<>
+    存储你的模式的所有生成类型。
+    
+    导入此文件以在项目中使用严格类型。
+  </>}
+/>
+
+<ImageAndText
+  heading="client.{js,ts}"
+  docText={<>
+    生成的 **数据获取** 客户端。
+    
+    这个轻量级客户端可以在后端和前端使用。
+    
+    客户端的使用说明可以在[查询内容](/docs/features/data-fetching)部分找到。
+  </>}
+/>
+
+<ImageAndText
+  heading="frags.gql"
+  docText={<>
+    包含 **数据获取** 客户端使用的原始 GraphQL 片段。
+  </>}
+/>
+
+<ImageAndText
+  heading="queries.gql"
+  docText={<>
+    包含 **数据获取** 客户端使用的原始 GraphQL 查询。
+  </>}
+/>
+
+<ImageAndText
+  heading="schema.gql"
+  docText={<>
+    包含你的模式的 GraphQL 变体。
+  </>}
+/>

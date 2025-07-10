@@ -1,0 +1,177 @@
+---
+id: /docs/guides/nextjs-internationalization
+title: 使用NextJS+Tina进行国际化
+---
+
+## 概述
+
+![本地化列表](/img/docs/i18n/lang-folders.png)
+
+在Tina，我们仍在开发内置的解决方案来实现网站的国际化。
+
+然而，对于那些需要简单解决方案并愿意克服一些障碍的用户，我们确实有一个潜在的解决方法，可以利用内容子文件夹。
+
+## 先决条件
+
+对于这个解决方案，我们将利用Next.js提供的一个高级功能：国际化路由。
+
+[https://nextjs.org/docs/advanced-features/i18n-routing](https://nextjs.org/docs/advanced-features/i18n-routing)
+
+虽然我们的解决方案中使用了Next.js，但只要其他框架提供类似的功能，也可以替换使用。
+
+## 本指南中包含的内容
+
+* 更新`next.config.json`以支持`i18n`语言环境
+* 修改`getStaticPaths`以构建支持`locale`的路径
+* 修改`getStaticProps`以在`relativePath`中包含`locale`
+* 在CMS中创建支持`locale`的文档
+
+## 更新`next.config.js`
+
+首先，我们需要在`next.config.js`中添加`i18n`部分，并包含`locales`和一个`defaultLocale`：
+
+[https://nextjs.org/docs/advanced-features/i18n-routing#getting-started](https://nextjs.org/docs/advanced-features/i18n-routing#getting-started)
+
+> 注意：`defaultLocale`为任何不支持的语言环境提供回退。
+
+```js
+/**
+ * next.config.js
+ */
+
+module.exports = {
+  ...
+  i18n: {
+    locales: ['en-US', 'fr', 'nl-NL'],
+    defaultLocale: 'en-US'
+  }
+  ...
+}
+```
+
+## 修改`getStaticPaths()`
+
+鉴于我们正在为`post`集合添加`i18n`支持，我们将在`/pages/post/[filename].tsx`中更新`getStaticPaths`。
+
+```js
+/**
+ * /pages/post/[filename].tsx
+ */
+import { client } from '../[pathToTina]/tina/__generated__/client'
+
+// ...
+
+// `locales`被提供给`getStaticPaths`并与`config`中的`locales`匹配
+const getStaticPaths = async ({ locales }) => {
+  const postConnection = await client.postConnection();
+  const paths = [];
+
+  // 对于每个`post`文档...
+  postConnection.data.edges.map((post) => {
+    // 确保为每个`locale`创建一个`path`
+    locales.map((locale) => {
+      paths.push({
+        params: { filename: post.node._sys.filename },
+        locale,
+      });
+    });
+  });
+
+  return {
+    paths,
+    fallback: true,
+  }
+}
+```
+
+## 修改`getStaticProps()`
+
+接下来，我们需要更新`getStaticProps`以将`locale`作为`relativePath`的一部分。
+
+```js
+/**
+ * /pages/post/[filename].tsx
+ */
+
+// `locale`与`params`一起提供
+const getStaticProps = async({ params, locale }) {
+  const tinaProps = await client.BlogPostQuery({
+    // 组合`relativePath`，其中`locale`是`post`的子文件夹
+    relativePath: `${locale}/${params.filename}.mdx`,
+  });
+
+  return {
+    props: {
+      ...tinaProps
+    }
+  }
+}
+```
+
+## 创建支持语言环境的文档
+
+![创建语言环境文档](/img/docs/nextjs-internationalization/subfolder-create-new.png)
+
+现在，我们将通过全局导航或直接通过`/admin`进入CMS。
+
+在我们的示例中，我们希望通过修改`filename`字段以包含每个`locale`作为子文件夹，在我们的`post`集合中创建三个版本：
+
+* `en-US/hello-world`用于我们的“英语（美国）”版本
+* `fr/hello-world`用于我们的“法语”版本
+* `nl-NL/hello-world`用于我们的“荷兰语”版本
+
+## 测试
+
+![编辑英语](/img/docs/nextjs-internationalization/subfolder-edit-en.png)
+
+创建文档后，我们可以通过在`getStaticProps`中添加`console.log`来确认根据用户的`locale`加载了正确的文档：
+
+```js
+/**
+ * /pages/post/[filename].tsx
+ */
+
+// `locale`与`params`一起提供
+const getStaticProps = async({ params, locale }) {
+  // 输出`locale`
+  console.log('locale', locale)
+
+  // 组合`relativePath`，其中`locale`是`post`的子文件夹
+  const relativePath = `${locale}/${params.filename}.mdx`
+
+  const tinaProps = await client.BlogPostQuery({
+    relativePath,
+  });
+
+  return {
+    props: {
+      ...tinaProps
+    }
+  }
+}
+```
+
+输出将显示在CLI控制台中：
+
+* 访问`http://localhost:3000/post/hello-world`
+
+```bash
+locale en-US
+```
+
+* 访问`http://localhost:3000/fr/post/hello-world`
+
+```bash
+locale fr
+```
+
+![编辑法语](/img/docs/fr/subfolder-edit-fr.png)
+
+## 下一步
+
+从这一点开始，我们可以探索Next.js提供的更多功能，包括：
+
+[https://nextjs.org/docs/advanced-features/i18n-routing#accessing-the-locale-information](https://nextjs.org/docs/advanced-features/i18n-routing#accessing-the-locale-information)
+
+* 使用`useRouter()`将`locale`信息附加到应用程序
+* 使用带有`locale`属性的`next/link`来影响导航到某个`locale`

@@ -1,0 +1,49 @@
+---
+seo:
+  title: TinaCMS 版本 1.5.9 | TinaCMS 博客
+  description: >-
+    TinaCMS 版本 1.5.9 带来了性能增强和错误修复，改善了开发者和团队的整体内容管理体验。
+title: TinaCMS 版本 1.5.9
+date: '2023-06-13T03:00:00.000Z'
+last_edited: '2023-06-13T03:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/Click-to-Edit-Comes-to-Visual-Editing.mdx
+next: content/blog-zh/Introducing-Editorial-Workflow-Features-for-your-Team.mdx
+---
+
+今天我们很高兴发布 `tinacms@1.5.9` 和 `@tinacms/clil@1.5.18`。完整的更改列表可以在[更改集 PR](https://github.com/tinacms/tinacms/pull/3995 "In the changeset PR")中找到。
+
+## 改进的搜索
+
+现在在 TinaCMS 中查找文档比以往任何时候都更容易。TinaCMS 的搜索之前仅限于特定字段的过滤，搜索是区分大小写的，编辑者在不知道字段的确切值时很难使用。现在编辑者可以在文档的任何字段中进行搜索。
+
+![](/img/blog/TinaCMS-Version-1-5-9/search_uxd1di.png)
+
+设置搜索需要一些简单的配置。了解更多关于搜索设置的信息，请参阅[文档](/docs/reference/search/overview/ "in the docs")。
+
+## 最近更新
+
+自从我们上次的[更新日志文章](/blog/TinaCMS-Version-1-5/ "Changelog post")以来，Tina 有了几项改进
+
+### 媒体同步
+
+当项目中设置了基于仓库的媒体时，我们需要在项目配置的资产目录上触发初始同步。之前这是在 CMS 的媒体管理器中完成的，但其用户体验引起了一些混淆。在使用哪个分支作为媒体的真实来源方面也有些不透明。\
+\
+我们已经在 TinaCloud 仪表板中添加了一个“媒体”选项卡，以改善这种体验。
+
+![](/img/blog/TinaCMS-Version-1-5-9/media-dashboard_qjwkr2.png)
+
+当新项目设置时，可以从此选项卡启用 Tina 媒体。\
+我们计划在未来为此选项卡添加配置，并希望在此期间改善初始媒体设置。
+
+### 点击编辑
+
+我们最近宣布了一些对可视化编辑的改进，推出了新的“点击编辑”功能。
+
+<WebmEmbed embedSrc="/video/click-to-edit.webm" />
+
+在[这里](/blog/Click-to-Edit-Comes-to-Visual-Editing/ "here")阅读更多关于该公告的信息。
+
+### 错误修复和其他改进
+
+查看我们的[更改集 PRs](https://github.com/tinacms/tinacms/issues?q=created%3A%222023-04-28+..+2023-06-13%22+author%3Aapp%2Fgithub-actions "changeset PRs")以获取完整详情。

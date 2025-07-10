@@ -1,0 +1,30 @@
+---
+seo:
+  title: TinaCMS 版本 1.0.0 到 1.0.9 的安全警报
+title: 'TinaCMS 安全警报：适用于版本 >= 1.0.0, < 1.0.9 的信息'
+date: '2023-02-06T04:00:00.000Z'
+last_edited: '2023-02-06T04:00:00.000Z'
+author: TinaCMS 团队
+prev: content/blog-zh/tina-v-1.1.4.mdx
+next: content/blog-zh/tinasaurus-docusaurus-starter.mdx
+---
+
+我们在我们的开源库中发现了一个最近的安全漏洞。
+
+为了解决这个问题，请将 @tinacms/cli 更新到最新的补丁 1.0.9。如果您使用的是 1.0.0 之前的版本，则此漏洞不会影响您。
+
+该漏洞暴露了在构建管道中使用的环境变量，这些变量泄露到在线网站上可公开访问的 index.js 文件中。此问题被评估为高严重性，因为泄露的信息可能包括敏感数据，如密码或密钥。
+
+我们强烈建议您立即采取行动来解决此问题：
+
+* 请更新 @tinacms/cli 库到包含此漏洞修复的最新版本 (@tinacms/cli >= 1.0.9)
+* 旋转与您的项目相关的任何敏感密钥。
+
+Tina 凭证如 API 令牌不被认为特别容易受到攻击，因为它们仅用于只读访问。尽管如此，更新它们可能是个好主意。更重要的是，如果您的 Tina 启用网站有其他凭证（例如 Algolia 或 Cloudinary API 密钥），您应该立即旋转这些密钥。
+
+如果您有任何问题或疑虑，请随时通过 [support@tina.io](mailto:support@tina.io) 联系我们的安全团队。
+
+感谢您对这一问题的关注。
+
+此致，
+TinaCMS 团队
