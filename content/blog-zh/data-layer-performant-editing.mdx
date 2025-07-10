@@ -1,0 +1,74 @@
+---
+seo:
+  title: 数据层用于高效编辑 | TinaCMS 博客
+  description: >-
+    探索 TinaCMS 的数据层如何通过优化数据获取和减少内容更新期间的加载时间来提高编辑性能。
+title: 'Tina 数据层：高效编辑'
+date: '2022-03-24T07:00:00.000Z'
+author: James Perkins
+prev: content/blog-zh/from-cms-to-contextual.mdx
+next: content/blog-zh/read-only-tokens-content-anytime.mdx
+---
+
+Tina 一直基于直接与 Tina 的 GraphQL API 和 GitHub 的 API 进行交互的前提进行工作。虽然这是一个完全可接受的选项，但由于每次都以“新”的方式发送和检索数据的性质，这会稍微降低性能。
+
+Tina 团队最近引入了一个新的可选数据层，它位于 Tina 和 GitHub 之间。未来，一旦它脱离实验阶段，这将成为我们的默认提供。我们的数据层缓冲了 Tina 和 GitHub 之间的请求，提高了编辑内容时的性能。这篇博客文章将解释它如何工作、它的功能以及我们对未来的计划！
+
+<WebmEmbed embedSrc="/video/before-data-layer.webm" />
+
+## 如何在项目中启用数据层
+
+我们使启用和使用数据层所需的开发工作量最小化。实际上，你可以通过传递 `--experimentalData` 作为命令行标志来启用数据层。确保这一点的最简单方法是编辑你的 `package.json` 脚本。
+
+```jsx
+"scripts": {
+    "dev": "yarn tinacms server:start -c \"next dev\"",
+    "build": "yarn tinacms server:start -c \"next build\"",
+    "start": "yarn tinacms server:start -c \"next start\" --experimentalData",
+  },
+```
+
+一旦添加了标志并运行了 CLI，Tina 将更新生成的模式，让 Tina 知道你想使用数据层。
+
+> 一旦你生成了模式，你需要将更改提交到 GitHub，以便它在项目中开始工作。
+
+## 数据层如何提高性能？
+
+一旦在项目中启用了数据层，我们将自动将你的存储库副本与我们的安全云数据库同步。在 Tina 完成对你的存储库的初始索引后，Tina 将自动索引新的或更新的内容。这是在后台完成的，你不会注意到我们在做这件事，除了在编辑时性能的提升。
+
+### 何时可能进行完整的重新索引
+
+在某些情况下，我们可能需要对你的项目进行完整的重新索引。这通常发生在项目的模式发生变化时。例如：
+
+* 对 `.tina\schema.ts` 的更改
+* 对 [.tina](/docs/introduction/faq#does-tinacloud-work-with-monorepos) 路径的更改
+* 对配置的 [repository](https://tina.io/docs/tina-cloud/dashboard/projects/#changing-the-repository) 的更改
+* GitHub 中的新分支
+
+### 一些需要注意的事项
+
+这仍然是一个实验性功能，在启用它之前应考虑以下事项：
+
+1\. 索引过程对最终用户不可见，这意味着在索引过程中进行的查询可能会返回不完整的结果。
+
+2\. GitHub 对每个存储库每小时有 5000 个请求的 API 请求限制。如果你的项目非常大，你可能会达到这个速率限制。如果你的存储库中有超过 1500 个项目，请不要激活此功能。
+
+## 未来
+
+> 以下部分可能不再准确，请参阅[官方路线图](https://tina.io/roadmap/ "Roadmap")和[GitHub](https://github.com/tinacms)页面以获取最新的开发信息
+
+随着数据层从实验阶段成熟，Tina 团队计划推出以下备受期待的功能。事实上，我们已经开始着手开发下面提到的一些功能，请继续关注！
+
+### 更复杂和高级的查询
+
+数据层使我们的 GraphQL 层更加强大，未来 Tina 计划提供：
+
+1. 分页
+2. 过滤
+3. 排序
+
+这意味着如果你不需要完整的数据集，你将能够减少一些调用。一个很好的例子是你只需要 3 篇博客文章用于特色部分。在当前的 Tina 集成中，你需要检索所有文章并在事后进行过滤。未来你将不需要这样做。
+
+### 引用完整性
+
+随着数据层的引入，我们现在可以提供引用完整性。这将防止内容作者意外更改可能破坏其他内容或整个站点的内容。对内容用户的最大好处是能够重命名文件甚至删除内容而不会破坏任何现有引用。
