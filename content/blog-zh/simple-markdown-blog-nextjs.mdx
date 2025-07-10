@@ -513,3 +513,79 @@ function reformatDate(fullDate) {
 
 const BlogList = ({ allBlogs }) => {
   return (
+    <ul>
+      {allBlogs &&
+        allBlogs.length >= 1 &&
+        allBlogs.map((post) => (
+          <li key={post.slug}>
+            <Link
+              href={{ pathname: `/blog/${post.slug}` }}
+              className={styles.blog__link}
+            <Link href={{ pathname: `/blog/${post.slug}` }} className={styles.blog__link}>
+                <Image
+                  width={384}
+                  height={288}
+                  src={post.frontmatter.hero_image}
+                  alt={post.frontmatter.hero_image}
+                />
+              </div>
+              <div className={styles.blog__info}>
+                <h2>{post.frontmatter.title}</h2>
+                <h3>{reformatDate(post.frontmatter.date)}</h3>
+                <ReactMarkdown disallowedElements={['a']}>
+                <ReactMarkdown disallowedElements={["a"]}>{truncateSummary(post.markdownBody)}</ReactMarkdown>
+            </Link>
+          </li>
+        ))}
+    </ul>
+  );
+  )
+}
+export default BlogList
+````mdx
+如果您的开发服务器正在运行，您现在应该能够通过 `http://localhost:3000` 访问您的 Next.js Markdown 博客应用。否则，请使用以下命令启动应用：
+
+```shell
+npm run dev
+````
+
+请注意，**您可能需要重新加载博客主页才能看到博文**。
+
+恭喜！您刚刚学会了如何使用 Next.js 构建一个 Markdown 博客！
+
+如果您想查看最终结果，随时可以**查看这个基于 Markdown 的博客网站的[代码仓库](https://github.com/tinalabs/brevifolia-next-2023)**。
+
+使用以下命令克隆它：
+
+```shell
+git clone [https://github.com/tinalabs/brevifolia-next-2023](https://github.com/tinalabs/brevifolia-next-2023)
+```
+
+进入项目文件夹，并执行以下命令来安装依赖并启动这个基于 Markdown 的 Next.js 博客应用：
+
+```shell
+cd brevifolia-next-2023
+npm install
+npm run dev
+```
+
+在您的浏览器中访问 [`http://localhost:3000`](http://localhost:3000)，现在您应该能看到这个基于 Markdown 的博客应用正在运行。
+
+## 结论与后续步骤
+
+在本文中，您从零开始学习了如何使用 Next.js 构建一个基于 Markdown 的博客应用。正如您所见，这并不需要大量的代码。具体来说，您可以轻松配置 Next.js 从文件系统中读取 Markdown 文件。然后，您可以将这些文件用作您博文的来源。
+
+在搭建好基于 Markdown 的博客网站之后，您很可能需要一个 CMS（[内容管理系统](https://en.wikipedia.org/wiki/Content_management_system)）来让编辑和更新您的文章或数据变得更加容易。敬请期待**下一篇关于如何使用 TinaCMS 配置此入门项目的博客**。在此期间，您可以查阅我们的[文档](https://tina.io/docs)，或者[尝试一个入门项目](https://tina.io/docs/introduction/using-starter/)来立即开始体验 TinaCMS。
+
+## 您可以在哪里了解 Tina 的最新动态？
+
+您知道您想成为这个富有创造力、创新精神和支持氛围的开发者社区的一员（甚至还有一些编辑和设计师），他们每天都在试验和实施 Tina。
+
+在 [https://tina.io/community/](https://tina.io/community/) 查看 Tina 的社区。
+
+有关在 Next.js 中提供静态文件的更多信息，请查看[静态文件服务文档](https://nextjs.org/docs/app/building-your-application/optimizing/static-assets)。
+
+有关 Next.js 中静态导出的更多信息，请查看[静态导出文档](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)。
+
+```
+```
