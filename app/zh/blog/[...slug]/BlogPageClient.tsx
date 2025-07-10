@@ -18,14 +18,14 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
 
   const previousPage = blogPostData.prev
     ? {
-        slug: blogPostData.prev.id.slice(7, -4).replace('blog', 'zh/blog'),
+        slug: blogPostData.prev.id.slice(7, -4).replace('blog-zh', 'zh/blog'),
         title: blogPostData.prev.title,
       }
     : null;
 
   const nextPage = blogPostData.next
     ? {
-        slug: blogPostData.next.id.slice(7, -4).replace('blog', 'zh/blog'),
+        slug: blogPostData.next.id.slice(7, -4).replace('blog-zh', 'zh/blog'),
         title: blogPostData.next.title,
       }
     : null;
