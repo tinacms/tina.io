@@ -1,0 +1,64 @@
+---
+seo:
+  title: TinaCMS 1.4 | TinaCMS 博客
+  description: >-
+    TinaCMS 1.4 带来了新的增强功能，提高了平台的性能，并扩展了功能，使内容管理更加高效。
+title: TinaCMS 版本 1.4
+date: '2023-03-24T04:00:00.000Z'
+last_edited: '2023-03-24T04:00:00.000Z'
+author: Logan Anderson
+prev: content/blog-zh/tina-v-1.3.2.mdx
+next: content/blog-zh/tina-config-rearrangements.mdx
+---
+
+今天我们很高兴发布 `tinacms@1.4.0` 和 `@tinacms/clil@1.4.0`。这些新版本添加了一个 `match` 属性（用于包含/排除文档的子集），对我们的 CLI 进行了大规模更新，以及各种错误修复和其他改进。完整的更改列表可以在[更改集 PR](https://github.com/tinacms/tinacms/pull/3706 "更改集拉取请求")中找到。
+
+## 集合中的 `match` 属性
+
+match 属性允许您仅在集合中包含文档的一个子集。
+
+例如，
+
+```typescript
+import { defineConfig } from 'tinacms'
+
+export default defineConfig({
+  schema: {
+    collections: [
+      {
+        path: 'content/posts',
+        match: {
+          include: '*',
+        },
+        format: 'md',
+      },
+    ],
+  },
+})
+```
+
+这不会匹配子目录。它将匹配 `collections/posts/foo.md`，但不会匹配 `collections/posts/nested/bar.md`。查看[文档以获取更多信息](/docs/reference/collections/#matchinclude "匹配文档")。
+
+## CLI 更新
+
+GraphQL playground 现在托管在 `<YourDevUrl>/admin/index.html#/graphql`（之前与本地 GraphQL 服务器在同一端口）。这允许在生产中使用 playground，并为我们未来的更多自定义提供了机会。
+
+## 其他更新
+
+### 默认在 .md 文件上使用 Markdown 解析器
+
+如果使用格式：'md'，我们现在将默认使用 markdown 解析器。这意味着如果您使用包含模板的 markdown 文件，您将需要通过以下方式在每个字段上打开 mdx 解析器：
+
+```typescript
+{
+  type: 'rich-text',
+  parser: {
+      type: 'mdx',
+  },
+  //...
+}
+```
+
+### 新的内容 API 端点
+
+我们已将端点迁移到版本化端点。除非您使用[自定义数据获取](/docs/reference/content-api/content-delivery/ "自定义数据获取文档")，否则这可能不需要任何操作。如果您使用自定义数据获取，您将需要将 URL 从 `/content/<ClientID>/github/<branch>` 更新为 `/<TinaGraphQLVersion>/content/<ClientID>/github/<branch>`，其中 TinaGraphQL 版本是 @tinacms/graphql 包的 `"\<major\>.\<minor\>"` 版本。因此，如果您使用 Tina `1.4.3`，版本将是 `1.4`。
