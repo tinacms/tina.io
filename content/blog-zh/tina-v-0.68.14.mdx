@@ -1,0 +1,169 @@
+---
+seo:
+  title: Tina v0.68.14 | TinaCMS 博客
+  description: >-
+    TinaCMS v0.68.14 修复了内容预览的问题并提高了性能，实现了更快的页面加载，为用户提供了更灵敏的体验。
+title: TinaCMS V0.68.14
+date: '2022-07-21T04:00:00.000Z'
+last_edited: '2022-07-21T04:00:00.000Z'
+author: Logan Anderson
+prev: content/blog-zh/tina-next-i18n.mdx
+next: content/blog-zh/tina-v-0.69.7.mdx
+---
+
+TinaCMS 版本 `0.68.14` 为 Tina 带来了一些广泛的改进。以下是一些主要功能的简要列表：
+
+1. 新的统一客户端，可用于前端和后端。
+2. 数据层默认启用
+3. 更好地支持只读令牌
+4. 在 CI 中使用 TinaCMS 的方式更清晰和简洁
+
+要更新到最新版本，请运行：
+
+```bash
+yarn add tinacms@latest
+yarn add --dev @tinacms/cli@latest
+```
+
+## 新的统一客户端
+
+TinaCMS 一直缺少一种“统一的方式”来查询和获取内容。以前，有 `StaticRequest`、“只读令牌客户端”、“实验性生成客户端”和“仅使用 fetch”。现在，这些都简化为一个可以在前端和后端使用的客户端。
+
+为了更新，只需进行一些小的更改。
+
+### `.tina/schema.{ts,js}` 中的更新
+
+现在不再将 `apiURL` 传递给 `defineConfig`，而是在 schema 中配置 clientId、branch 和只读令牌（新）。生成的 `client` 必须传递给 `defineConfig`。
+
+不再需要将 localhost 配置为 `apiURL`，本地 graphql api 现在默认使用 `yarn dev`。
+
+这需要对 schema 和脚本进行更改：
+
+```diff
+// .tina/schema.ts
++ import { client } from "./__generated__/client";
+// ...
+const schema = defineSchema({
++    config: {
++        branch: "***",
++        clientId: "***",
++        token: "***",
+    },
+    collections: [
+        // ...
+    ]
+})
+// ...
+- const branch = "***"
+- const clientId = "***"
+- const apiURL =
+-   process.env.NODE_ENV == 'development'
+-     ? 'http://localhost:4001/graphql'
+-    : `https://content.tinajs.io/content/${clientId}/github/${branch}`
+export const tinaConfig = defineConfig({
++  client,
+-  apiURl,
+  schema,
+  // ...
+})
+export default schema
+```
+
+令牌必须是通配符令牌 (`*`)，可以从 Tina 仪表板生成。有关只读令牌的更多信息，请参阅[此处](https://tina.io/blog/read-only-tokens-content-anytime)。
+
+有关获取这些值的更多信息，请参阅[“进入生产环境”](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms)文档。
+
+### package.json 中脚本的更新
+
+我们现在建议在 CI 中使用内容 API，并使用我们的新 `dev` 和 `build` 命令。`dev` 命令启动本地 GraphQL 服务器并运行您的子脚本（`next dev`）。`build` 命令使用生产 URL 编译客户端并构建 GraphQL schema。
+
+脚本应如下所示：
+
+```json
+{
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build"
+    // ... 其他脚本
+  }
+}
+```
+
+在开发时，运行 `yarn dev`，这将在同一个终端中启动开发服务器和 next dev 进程。
+
+### 生成文件的更新（可选）
+
+我们现在建议忽略大多数生成的文件。这是因为 `client.ts` 和 `types.ts` 将在 CI 中运行 `tinacms build` 时生成。
+
+要将它们从您的存储库中移除，请运行 `git rm --cached .tina/__generated__/*`，然后运行 `yarn tinacms build` 以更新需要保留的生成文件。
+
+完成这些更新后，新客户端应已配置并准备好用于查询。
+
+## 数据获取迁移
+
+要迁移数据获取，所有使用 `staticRequest` 或 `GetExperimentalClient` 的地方可以分别替换为 `client.request` 或 `client.queries.<QueryName>`。
+
+例如，要迁移 `staticRequest` 函数的使用：
+
+```diff
+// pages/home.js
+- import { staticRequest } from 'tinacms'
++ import { client } from '../[pathToTina]/.tina/__generated__/client'
+
+const getStaticProps = async () => {
+  const query = `
+      query Post($relativePath: String!) {
+        post(relativePath: $relativePath) {
+          title
+        }
+      }
+    `
+  const variables = {
+    relativePath: 'hello-world.md',
+  }
+
+  let data = {}
+  try {
+-    data = await staticRequest({
+-      query,
+-      variables,
+-    })
+
++    data = await client.request({
++      query,
++      variables,
++    })
+
+  } catch {
+    // 忽略与文档创建相关的错误
+  }
+
+  return {
+    props: {
+      query,
+      variables,
+      data,
+      //myOtherProp: 'some-other-data',
+    },
+  }
+}
+```
+
+除了 `client.request`，您还可以使用客户端自动生成的 `queries` 属性请求内容。
+
+```tsx
+// 获取帖子，无需编写 GraphQL
+const { data, query, variables } = await client.queries.post({
+  relativePath: 'home.mdx',
+})
+```
+
+有关更多信息，请参阅新的[数据获取](/docs/features/data-fetching)文档。
+
+## 数据层默认启用
+
+[数据层](/docs/reference/content-api/data-layer/)现在默认启用。通过此功能，您的存储库被缓存，允许在不使用 GitHub API 的情况下查询内容。这使得数据获取更快，并且还允许我们绕过 GitHub 的[API 限制](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps)。
+
+除了更新到最新版本的 `@tinacms/cli` 外，此更改不需要任何操作。
+
+有关完整的更改集，请参阅此版本的[变更日志](https://github.com/tinacms/tinacms/pull/3041)。

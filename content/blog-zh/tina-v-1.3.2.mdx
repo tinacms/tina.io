@@ -1,0 +1,63 @@
+---
+seo:
+  title: TinaCMS 1.3.2 | TinaCMS Blog
+  description: >-
+    TinaCMS 1.3.2 引入了改进的API性能、增强的错误处理，以及对自定义字段的更好支持。
+title: TinaCMS V1.3.2
+date: '2023-03-10T04:00:00.000Z'
+last_edited: '2023-03-10T04:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/tinasaurus-docusaurus-starter.mdx
+next: content/blog-zh/tinacms-1.4.mdx
+---
+
+TinaCMS 版本 `1.3.2`（以及 `@tinacms/cli@1.3.2`）改进了媒体功能，增加了对字段名称中特殊字符的支持，以及其他一些修复和改进。
+
+## 使用带有特殊字符的字段名称（使用 nameOverride）
+
+Tina 现在通过使用 `nameOverride` 属性支持带有特殊字符的字段。
+
+```
+// fields
+{
+  name: 'my_field',
+  nameOverride: 'my-field',
+  type: 'string'
+}
+```
+
+你还可以使用 nameOverride 来使用特殊的受限字段名称，如 `id`
+
+```
+// fields
+{
+  name: 'custom_id',
+  nameOverride: 'id',
+  type: 'string'
+}
+```
+
+上述字段将读写到 frontmatter 键 `id`，这在以前是不可能的。
+
+## 媒体管理器更新
+
+编辑者现在可以通过网格视图浏览媒体库中的媒体。侧边栏会滑出以显示一些图像元数据：文件名、图像URL（即将推出）。
+
+![媒体网格视图](/img/blog/tina-v-1.3.2/media-manager_uuaotf.png "媒体网格视图")
+
+编辑者还可以轻松地从媒体库中复制绝对图像URL。
+
+## PDF 上传
+
+编辑者现在可以将一些非图像文件类型上传到媒体库。当插入到富文本字段中时，文件将作为链接插入，而图像将作为Markdown图像插入。
+
+[查看拉取请求](https://github.com/tinacms/tinacms/pull/3655)
+
+## 其他修复和改进
+
+* 修复：改进当索引尚未完成且构建被触发时的错误信息。
+* 修复：当当前分支不存在时，更优雅地处理错误。
+* 移除关于 TinaProvider 被弃用的警告。
+* 安全：更新一些第三方依赖。
+* 功能：在 create-tina-app CLI 中添加 docusaurus starter。
+* 修复：Tina MediaManager 中的“上一个目录”链接（感谢 @coreyaus）！

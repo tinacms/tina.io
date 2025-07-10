@@ -1,0 +1,330 @@
+---
+draft: false
+consumes:
+  - file: /packages/gatsby-tinacms-remark/src/remark-creator-plugin.ts
+    details: 演示RemarkCreatorPlugin的使用
+  - file: /packages/gatsby-tinacms-json/src/create-json-plugin.ts
+    details: 演示jsonCreatorPlugin的使用
+  - file: /packages/gatsby-tinacms-remark/src/form-actions/delete-action.tsx
+    details: 展示如何添加删除操作
+  - file: /packages/tinacms/src/components/CreateContent.tsx
+    details: 包含创建表单外观的图片
+warningMessage: >-
+  **更新：** 本文中的示例引用了过时的Gatsby实现。我们建议使用[Next.js](/docs/setup-overview/)以获得更流畅的解决方案。
+seo:
+  title: 添加和删除文件 | TinaCMS博客
+  description: >-
+    学习如何在TinaCMS中轻松添加和删除文件，通过直接在项目中简化文件处理来简化内容管理。
+title: 如何使用TinaCMS添加和删除文件
+date: '2019-12-10T07:00:00.000Z'
+author: Kendall Strautman
+prev: content/blog-zh/dynamic-plugin-system.mdx
+next: content/blog-zh/jamstack-denver-talk.mdx
+---
+
+[创建](https://tinacms.org/blog/add-and-delete-files/#creating-new-files)和[删除](https://tinacms.org/blog/add-and-delete-files/#deleting-files)内容——CMS的两个基本方面。本文将介绍如何在[Gatsby](https://www.gatsbyjs.org/)网站上使用TinaCMS设置此功能。但首先，先来个概述。
+
+![tinacms-add-new-file-gif](/gif/add-new-blog.gif)
+
+### Tina概述——侧边栏、表单、插件
+
+安装Tina后，您将立即获得一个**侧边栏**。这个侧边栏是使用Tina编辑和管理内容的主要界面。
+
+要使网站上的内容可编辑，您需要向Tina注册一个表单。表单出现在侧边栏中，显示[字段](https://tinacms.org/docs/plugins/fields)，您可以在页面上编辑内容。
+
+插件扩展了核心CMS的功能。在幕后，插件在Tina中做了一些重要的工作。它们注册表单，创建新的屏幕视图，并允许我们添加新内容。如果您有兴趣了解更多，请阅读Tina的[动态插件系统](https://tinacms.org/blog/dynamic-plugin-system/)这篇文章。
+
+## 创建新文件
+
+### 步骤 🚶‍♀️
+
+这些步骤将是我们在[Gatsby](https://www.gatsbyjs.org/)网站中设置内容创建功能的路线图。
+
+1. [设置一个`content-creator`插件](https://tinacms.org/blog/add-and-delete-files#step-1-set-up-a-content-creator-plugin)
+2. [在Tina中注册插件](https://tinacms.org/blog/add-and-delete-files#2-register-the-plugin-with-the-sidebar)
+3. [自定义`create-form`](https://tinacms.org/blog/add-and-delete-files#3-customize-the-create-form)
+4. [为新文件配置默认数据](https://tinacms.org/blog/add-and-delete-files#4-configure-defaults)
+
+### 在哪里添加插件
+
+在我们进入步骤之前，我们需要放大视野，考虑我们网站中的编辑过程。作为开发者，您可以决定编辑者何时可以创建新内容。
+
+更具体地说，**您可以在网站的任何组件上注册`content-creator`插件**。当该组件渲染时，编辑者将能够创建新内容。
+
+您可能只想在博客列表页面上创建新博客。为此，您将在列表组件上注册插件。
+
+如果您始终希望能够创建新博客，您将插件注册在始终渲染的组件上。这样的例子可以是`Layout`或`Root`组件。
+
+**在深入代码之前考虑体验。** Tina的一个令人难以置信的特点是您拥有这种有限的控制，所以请好好利用它。
+
+## 步骤1：设置一个content-creator插件
+
+好的，让我们开始吧。在这一步中，我们将创建一个`content-creator`插件👩‍🎨。
+
+有不同的插件用于创建新的markdown或JSON文件。在本教程中，我们将使用`RemarkCreatorPlugin`来处理markdown文件。请随意阅读[文档](/docs/guides/converting-gatsby-to-tina)中的`JsonCreatorPlugin`。
+
+前往您想要添加此插件的组件文件。本例将使用`Layout`组件。这样，**编辑者始终可以创建新帖子。**
+
+下面的示例展示了如何创建一个`RemarkCreatorPlugin`实例。插件需要的基本信息是标签、文件名和字段数组。
+
+```javascript
+/*
+ ** Layout.js
+ */
+
+/*
+ ** 1. 导入RemarkCreatorPlugin以
+ **    构建一个`content-creator`插件。
+ */
+import { RemarkCreatorPlugin } from 'gatsby-tinacms-remark';
+
+/*
+ ** 2. 使用标签、文件名和字段实例化RemarkCreatorPlugin。
+ */
+const CreatePostPlugin = new RemarkCreatorPlugin({
+  /*
+   ** LABEL: 当编辑者与侧边栏中的+按钮交互时显示的简单操作标签。
+   */
+  label: 'New Blog Post',
+
+  /*
+   ** FILENAME: 一个函数，其返回值应为新文件的路径。
+   */
+  filename: (form) => {
+    return form.filename;
+  },
+
+  /*
+   ** FIELDS: 定义创建新文件时要填写的表单结构的字段对象数组。
+   */
+  fields: [
+    {
+      name: 'filename',
+      component: 'text',
+      label: 'Filename',
+      placeholder: 'content/blog/hello-world/index.md',
+      description:
+        '新markdown文件的完整路径，相对于存储库根目录。',
+    },
+  ],
+});
+```
+
+### 格式化新文件的路径
+
+您可以设置`filename`返回值的方式有很多。一个有用的模式是硬编码目录路径，然后对标题进行“slugify”。您可以手动使用正则表达式来实现，也可以使用一个恰当命名的包[`slugify`](https://www.npmjs.com/package/slugify)。
+
+```javascript
+const CreatePostPlugin = new RemarkCreatorPlugin({
+  //...
+  filename: (form) => {
+    // 'form'保存了由'create-form'输入的数据
+    const slug = form.title.replace(/\s+/, '-').toLowerCase();
+
+    return `content/blog/${slug}.md`;
+  },
+});
+```
+
+注意如何使用`create-form`提交的数据。当创建新文件时，您可以让编辑者输入一个标题，然后所有的**`create-form`数据都会传递给`filename`函数**。
+
+您可以使用`create-form`的数据来创造性地生成新文件路径或填充默认数据（稍后会详细介绍）。总体而言，格式化`filename`取决于您的项目结构。选择一个对您有意义的简单解决方案，或者在[这里](/docs/reference/self-hosted/git-provider/github)查看更多示例。
+
+## 2. 在侧边栏中注册插件
+
+在上一步中，我们创建了插件，现在我们实际上需要将其添加到侧边栏（和cms）中。
+
+如果您还没有安装`tinacms`包。
+
+```bash
+$ yarn add tinacms || npm install tinacms
+```
+
+然后从`tinacms`中导入`withPlugin`。`withPlugin`是一个[高阶组件](https://reactjs.org/docs/higher-order-components.html)，用于向CMS添加插件。
+
+使用`withPlugin`导出组件和插件，您现在应该能够从Tina侧边栏添加新帖子。新文件的位置将基于`filename`函数的返回值。
+
+```javascript
+// 1. 导入withPlugin
+import { withPlugin } from 'tinacms'
+import { RemarkCreatorPlugin } from 'gatsby-tinacms-remark'
+
+function Layout(props) {
+  return (
+      /*
+      ** 实际组件中没有任何更改
+      ** 来注册`content-creator`插件
+      */
+    )
+  }
+
+// 2. 创建`RemarkCreatorPlugin`实例
+const CreateBlogPlugin = new RemarkCreatorPlugin( {
+  label: 'Add New Blog',
+  filename: form => {
+    const slug = form.title.replace(/\s+/g, '-').toLowerCase()
+    return `content/posts/${slug}.md`
+  },
+  fields: [
+    {
+      label: 'Title',
+      name: 'title',
+      component: 'text',
+      required: true
+    },
+  ],
+})
+
+// 3. 导出组件和`content-creator`插件
+export default withPlugin(Layout, CreateBlogPlugin)
+```
+
+启动您的开发服务器（`gatsby develop`），您应该会在侧边栏的顶部菜单中看到一个蓝色加号（+）图标。点击它，您将看到在插件配置中设置的`label`。尝试创建一个新文件！看看会发生什么。
+
+> **故障排除提示：** 如果您没有看到图标，请检查您添加插件的组件是否正在渲染。
+
+## 3. 自定义创建表单
+
+![tinacms-create-content-form](/img/content-creator-ex.jpg)
+
+在我们的初始示例中，`create-form`只捕获了一个标题。我们可以添加更多字段来捕获将填充新文件的数据，例如日期和作者。
+
+```javascript
+const CreatePostPlugin = new RemarkCreatorPlugin({
+  label: 'Create Post',
+  fields: [
+    {
+      name: 'title',
+      component: 'text',
+      label: 'Title',
+      description: '新帖子的标题',
+      required: true
+    },
+    {
+     name: 'date',
+     component: 'date',
+     label: 'Date',
+     description: '默认将是今天'
+   },
+   {
+     name: 'author',
+     component: 'text'
+     label: 'Author',
+     description: '谁写的？',
+   }
+  ],
+  filename: form => {
+    const slug = form.title.replace(/\s+/, '-').toLowerCase()
+    return `content/blog/${slug}.md`
+  },
+})
+
+```
+
+注意在`title`字段上使用了`required`属性。使用此属性可确保您获得创建新文件所需的所有必要数据。
+
+## 4. 配置默认值
+
+`RemarkCreatorPlugin`可以接受附加信息以将默认数据填充到新创建的文件中。对于markdown，我们可以添加默认的frontmatter值和markdown正文——请参见下面的示例。
+
+```javascript
+const CreateBlogButton = new RemarkCreatorPlugin( {
+ label: 'Add New Post',
+
+ filename: form => {
+     const slug = form.title.replace(/\s+/g, '-').toLowerCase()
+     return `content/posts/${slug}.md`
+ },
+
+ fields: [
+   {
+     label: 'Title',
+     name: 'title',
+     component: 'text',
+     required: true
+   },
+   {
+     label: 'Date',
+     name: 'date',
+     component: 'date',
+     description: '默认将是今天'
+   },
+   {
+     label: 'Author',
+     description: '谁写的？',
+     name: 'author',
+     component: 'text'
+   }
+ ],
+
+ /*
+ ** 1. 使用通过`create-form`中的字段输入的数据添加默认frontmatter
+ */
+ frontmatter: postInfo => ({
+   title: postInfo.title,
+   date: postInfo.date ? postInfo.date : new Date(),
+   author: postInfo.author ? postInfo.author: ‘Kurt Vonnegut’
+ }),
+
+ // 2. 添加默认markdown正文
+ body: postInfo => `New post, who dis?`
+})
+```
+
+frontmatter和body函数都接收由`create-form`中的字段捕获的数据。使用输入的值填充新文件，或者如果没有输入任何内容，则设置默认值。
+
+## 删除文件
+
+有了创建的能力，就有了删除的能力🧙‍♀️。我向您保证这一步要简单得多。
+
+我们不需要添加一个“删除”插件，只需将`delete-action`传递给主表单选项即可。
+前往您在项目中配置了Tina表单的文件。这通常是生成多个帖子、案例研究等的模板文件。如果您的项目中没有配置Tina表单，请在[这里](/docs/guides/converting-gatsby-to-tina)了解有关使用Gatsby+Tina创建表单的更多信息。
+
+您不希望编辑者有权删除他们不应该删除的文件。因此，请考虑您希望此操作可用的位置。对于博客之类的东西，将`delete-action`添加到博客模板表单中是有意义的。但将`delete-action`添加到编辑全局站点配置的表单中可能就没有意义了。
+
+下面是一个添加了`delete-action`的博客模板示例：
+
+```javascript
+// 1. 导入`DeleteAction`
+import { remarkForm, DeleteAction } from 'gatsby-tinacms-remark';
+
+function BlogTemplate(props) {
+  return (
+    <>
+      <h1>{props.markdownRemark.frontmatter.title}</h1>
+      <p>{props.markdownRemark.frontmatter.description}</p>
+    </>
+  );
+}
+
+// 2. 将`DeleteAction`添加到表单中
+let BlogFormOptions = {
+  actions: [DeleteAction],
+  fields: [
+    {
+      label: 'Title',
+      name: 'frontmatter.title',
+      description: '在此输入帖子的标题',
+      component: 'text',
+    },
+    {
+      label: 'Description',
+      name: 'frontmatter.description',
+      description: '输入帖子描述',
+      component: 'textarea',
+    },
+  ],
+};
+
+export default remarkForm(BlogTemplate, BlogForm);
+```
+
+您可以从`gatsby-tinacms-remark`或`gatsby-tinacms-json`导入`DeleteAction`，具体取决于您的文件类型。然后在您的表单选项定义中添加操作，就是这样！
+
+您现在可以通过保存按钮附近的三点图标访问此`delete-action`。试试看！但请确保您不会删除您需要的文件，或者如果您删除了它，可以轻松恢复🧞‍♂️。
+
+## 快乐创建（和删除）！👩‍🎤
+
+希望本教程为您提供了一些关于使用Tina + Gatsby设置两个核心CMS功能的见解。
+
+对TinaCMS感到兴奋吗？请在[GitHub](https://github.com/tinacms/tinacms)上给我们⭐️，或者在[Tweet us](https://twitter.com/Tina_cms)🐦上展示您的Tina项目。

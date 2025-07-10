@@ -1,0 +1,56 @@
+---
+seo:
+  title: Tina 配置重组 | TinaCMS 博客
+  description: >-
+    对 Tina 配置的重要重组，提升了自定义能力并简化了设置过程，为开发者提供了更好的体验。
+title: Tina 配置重组
+date: '2023-03-27T07:00:00.000Z'
+last_edited: '2023-03-27T07:00:00.000Z'
+author: Jeff See
+prev: content/blog-zh/tinacms-1.4.mdx
+next: content/blog-zh/TinaCMS-Version-1-5.mdx
+---
+
+Tina 的最新版本增加了对 `<root>/tina` 新配置文件夹的支持。
+
+## 简要说明
+
+* Tina 配置现在位于 `tina/config.{ts,tsx,js,jsx}`。`.tina` 配置仍然可以使用。
+* 你可以使用代码转换工具迁移你的配置：`tinacms codemod move-tina-folder`
+* 当你运行 `tinacms build` 或 `tinacms dev` 时，会生成一个 `tina-lock.json` 文件。这个文件应该提交到你的代码库中。
+* 整个 `tina/__generated__` 文件夹可以安全地被 Git 忽略。当你使用代码转换工具时，会自动创建一个 `tina/.gitignore` 文件。
+* 你需要手动更新代码库中的任何客户端或类型导入。例如：`import { client } from '../tina/__generated__/client'`
+
+### 为什么要更改？
+
+之前，这个文件夹位于 `<root>/.tina`，但这存在一些问题。以点开头的文件夹通常会被文件管理器自动隐藏，并且一些构建工具如 `eslint` 默认会忽略它们。
+
+此外，关于哪些文件需要提交到 Git，哪些应该被忽略，常常会引起混淆。之前，`.tina/__generated__` 文件夹中有 3 个文件需要提交到你的 Git 仓库：`_schema.json`、`_lookup.json` 和 `_graphql.json`。这些文件以及整个 `tina/__generated__` 文件夹现在可以安全地被忽略。相反，当你运行 `tinacms dev` 或 `tinacms build` 时，你会看到生成的 `tina/tina-lock.json` 文件。**这个文件应该提交到 git**。
+
+之前的配置：
+
+```
+- .tina
+  - __generated__
+    - _graphql.json // 需要提交到 Git
+    - _lookup.json  // 需要提交到 Git
+    - _schema.json  // 需要提交到 Git
+    - ...           // 其他可以被 Git 忽略的文件
+  - config.ts
+  - queries
+      - frags.gql   // 自定义片段
+      - queries.gql // 自定义查询
+```
+
+更新后的配置
+
+```
+- tina
+  - .gitignore
+  - __generated__   // 被 git 忽略
+  - config.ts
+  - tina-lock.json  // 替代 _schema, _lookup, _graphql
+  - queries
+      - frags.gql   // 自定义片段
+      - queries.gql // 自定义查询
+```

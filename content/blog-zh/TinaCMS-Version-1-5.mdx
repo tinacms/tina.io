@@ -1,0 +1,44 @@
+---
+seo:
+  title: TinaCMS 版本 1.5 | TinaCMS 博客
+  description: >-
+    TinaCMS 版本 1.5 引入了新功能和改进，增强了平台的灵活性和性能。
+title: TinaCMS 版本 1.5
+date: '2023-04-27T03:00:00.000Z'
+last_edited: '2023-04-27T03:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/tina-config-rearrangements.mdx
+next: content/blog-zh/Click-to-Edit-Comes-to-Visual-Editing.mdx
+---
+
+今天我们很高兴发布 `tinacms@1.5.1` 和 `@tinacms/clil@1.5.8`。完整的更改列表可以在[更改集 PR](https://github.com/tinacms/tinacms/pull/3819 "changesets PR")中找到。
+
+## 文档列表中的目录
+
+集合的文档列表视图现在将文档嵌套在目录中，而不是在根目录列出所有文档为一个平面列表。
+
+![文档列表](/img/blog/TinaCMS-Version-1-5/directories.png)
+
+## 复制文档
+
+在文档列表中，编辑者现在可以复制文档。
+
+![复制](/img/blog/TinaCMS-Version-1-5/duplicate.png)
+
+## 支持根目录下的集合
+
+Tina 现在允许通过在集合上设置路径：'/' 来在根目录下配置集合。这对于从 Forestry 迁移的网站很常见，这些网站希望允许在其根级配置文件上进行编辑。
+
+## 提交信息显示作者姓名
+
+当您的用户在 Tina 中保存时，提交信息现在包括作者的姓名（或电子邮件）。
+
+![](/img/blog/TinaCMS-Version-1-5/commit_message.png)
+
+## 错误修复和其他改进
+
+* 修复了未明确定义宽度的 SVG 在图像字段中无法渲染的问题。
+* 修复了某些 Gatsby 版本的构建因 GraphQL 不匹配而失败的问题。
+* 自托管修复
+* 添加了 UI 标签以告知用户关于非必需字段的排序
+* 查看我们的[更改集 PR](https://github.com/tinacms/tinacms/pull/3819 "Changeset PR")以获取完整详细信息。

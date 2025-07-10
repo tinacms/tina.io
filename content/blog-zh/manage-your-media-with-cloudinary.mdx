@@ -1,0 +1,154 @@
+---
+seo:
+  title: 使用Cloudinary管理您的媒体 | TinaCMS博客
+  description: >-
+    学习如何将Cloudinary与TinaCMS集成，以高效管理和优化您的媒体文件，提高图像传输和存储效率。
+title: 使用Cloudinary管理您的媒体
+date: '2021-07-09T08:34:47-04:00'
+last_edited: '2021-07-09T13:35:07.608Z'
+author: James Perkins
+prev: content/blog-zh/structure-your-content-with-graphql-in-tina.mdx
+next: content/blog-zh/tina-is-in-beta.mdx
+---
+
+# Tina现在支持Cloudinary作为媒体管理器
+
+我们在一个多月前发布了公开的alpha版本，在我们收集的反馈中，有一个需求是使用Tina的媒体管理器。这是一个核心功能，允许内容创作者轻松拖放或替换图像。我们决定从Cloudinary开始，以便用户可以保持他们的GitHub仓库轻量化。
+
+### 为什么我们从Cloudinary开始？
+
+为网络提供图像不仅仅是上传一个特定格式和分辨率的文件，这比这要复杂得多。[Cloudinary](https://cloudinary.com/)拥有强大的媒体API，可以返回优化后的图像。它可以与[Next Image](https://nextjs.org/docs/api-reference/next/image)和Next图像优化一起使用，配置非常简单。
+
+### 支持哪些格式？
+
+Cloudinary支持的所有图像格式都被Tina支持，包括以下格式：
+
+JPG, PNG, GIF, BMP, TIFF, ICO, PDF, EPS, PSD, SVG, WebP, JXR, 和 WDP。
+
+### 如何开始？
+
+您需要安装我们的新[Cloudinary包](https://www.npmjs.com/package/next-tinacms-cloudinary)。这个包处理添加、检索、更新和删除图像，无需任何额外代码。
+
+```other
+yarn add next-tinacms-cloudinary
+or
+npm install next-tinacms-cloudinary
+```
+
+您还需要将您的Cloudinary云名称、API密钥和API密钥从您的Cloudinary账户添加到您的`.env`文件中，您可以在Cloudinary仪表板中找到这些信息。
+
+```other
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+
+NEXT_PUBLIC_CLOUDINARY_API_KEY=
+
+CLOUDINARY_API_SECRET=
+```
+
+### 将Cloudinary添加到您的应用程序
+
+现在您已经安装了Tina Cloudinary包，我们需要对我们的Tina应用程序进行一些更改以添加对图像的支持。首先，您需要更新您的Tina客户端以包含Cloudinary包：
+
+```js
+//其他导入
+
+...
+import { TinaCloudCloudinaryMediaStore } from 'next-tinacms-cloudinary'
+
+
+....
+const TinaWrapper = (props) => {
+  const cms = React.useMemo(() => {
+    return new TinaCMS({
+      apis: {
+        tina: client,
+      },
+      sidebar: {
+        placeholder: SidebarPlaceholder,
+      },
+      enabled: true,
+    })
+  }, [])
+
+  cms.media.store = new TinaCloudCloudinaryMediaStore(client)
+
+  return (
+    <TinaCloudAuthWall cms={cms}>
+      <Inner {...props} />
+    </TinaCloudAuthWall>
+  )
+}
+....
+// 移除其他代码
+```
+
+然后我们需要更新我们的模式，以使用图像而不是URL的文本字段。下面包含了一个更新后的模式来处理图像，我们已经移除了其他模板：
+
+```js
+import { defineSchema } from 'tina-graphql-gateway-cli'
+
+export default defineSchema({
+  collections: [
+    {
+      label: '博客文章',
+      name: 'post',
+      path: 'content/posts',
+      templates: [
+        {
+          label: '文章',
+          name: 'article',
+          fields: [
+            {
+              type: 'text',
+              label: '标题',
+              name: 'title',
+            },
+            {
+              name: 'hero',
+              type: 'image',
+              label: '主图',
+            },
+            {
+              type: 'reference',
+              label: '作者',
+              name: 'author',
+              collection: 'author',
+            },
+          ],
+        },
+      ],
+    },
+....
+```
+
+Cloudinary集成的最后一部分是一个API路由，用于检查用户是否有权使用API路由，然后处理正确的api方法。
+
+```js
+import {
+  mediaHandlerConfig,
+  createMediaHandler,
+} from 'next-tinacms-cloudinary/dist/handlers'
+
+import { isAuthorized } from 'tina-cloud-next'
+
+export const config = mediaHandlerConfig
+
+export default createMediaHandler({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  authorized: async (req, _res) => {
+    try {
+      const user = await isAuthorized(req)
+      return user && user.verified
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  },
+})
+```
+
+现在，当您启动您的应用程序时，您将在侧边栏中看到一个变化，允许您访问媒体管理器：
+
+请注意，开发人员可以[向媒体存储传递一个`pageSize`选项](https://github.com/tinacms/tina-graphql-gateway/blob/main/packages/next-tinacms-cloudinary/README.md)，以决定在管理器中每页显示多少媒体。我们将继续改进Cloudinary集成，并在以后研究媒体缓存，目前，我们认为这已经是一个巨大的进步，确保您的内容团队可以像专业人士一样在Tina中管理媒体。

@@ -1,0 +1,50 @@
+---
+seo:
+  title: 在Next.js中使用Vercel数据缓存管理TinaCMS缓存
+  description: >-
+    学习如何在使用Next.js和Vercel的数据缓存时管理TinaCMS的缓存和重新验证。通过ISR和查询参数确保内容的新鲜度。
+title: 使用Next.js和Vercel数据缓存优化TinaCMS
+date: '2025-03-12T14:00:00.000Z'
+last_edited: '2025-03-18T13:00:00.000Z'
+author: Brook Jeynes
+prev: content/blog-zh/2024-12-tinacloud-public-disclosure-security-breach.mdx
+next: ''
+---
+
+**更新 2025年3月19日：** 添加了一个视频，演示Vercel数据缓存如何影响您的网站，以及如何调整Next.js以更好地使用缓存。
+
+**更新 2025年3月31日：** 添加了一些图片，提供有关启用Vercel数据缓存和可能问题的额外信息。
+
+<Youtube embedSrc="https://youtube.com/embed/gz9Lxlj5RDU" caption="TinaCMS - 使用nextjs和vercel数据缓存" minutes="6" />
+
+在2024年12月，随着`tinacms@2.5.2`和`@tinacms/cli@1.7.0`的发布，TinaCMS过渡到使用Node.js的原生fetch函数，消除了对fetch-ponyfill依赖的需求。这一变化减少了依赖性，提高了安全性和性能。它还使我们能够支持**Vercel数据缓存**。
+
+当将TinaCMS与Next.js集成并部署在Vercel上时，了解Vercel的数据缓存机制是至关重要的，因为它无缝运行。此缓存系统存储API响应，减少冗余请求并提高页面加载时间。然而，Vercel默认情况下会长时间缓存TinaCloud的API响应，这可能导致内容陈旧。
+
+![](/img/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache/one-year-caching.png "我们使用Tina的一个网站由于1年默认缓存导致内容更新延迟")
+
+为了管理重新验证并确保内容的新鲜度，请考虑以下方法：
+
+1. **调整重新验证时间**\
+   修改路由段的`revalidate`设置，以控制Vercel检查更新的频率。这使增量静态再生（ISR）能够用新数据刷新页面。更多详情请参阅[路由段配置 - revalidate](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)。
+2. **使用查询参数进行新鲜获取**\
+   在您的TinaCMS GraphQL查询中添加一个`revalidate`参数，确保Next.js的fetch请求在设定的时间间隔内更新：
+   `const response = await client.queries.page(`
+   `   { relativePath: 'pages/home.mdx' },`
+   `   { fetchOptions: { next: { revalidate: 60 } } }`
+   `);`
+   这种方法确保数据每60秒重新验证一次。
+   更多详情请参阅[Next.js fetch扩展](https://nextjs.org/docs/app/api-reference/functions/fetch)。
+
+还值得注意的是，在**Next.js 14**中，诸如fetch()和GET路由处理程序等缓存机制默认自动启用，开发人员需要在需要动态行为时选择退出。相比之下，**Next.js 15**引入了一个重大变化，不再默认缓存这些机制，使开发人员能够更明确地控制缓存策略，按需选择加入。
+
+![](/img/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache/use-cache-nextjs.png "如果您使用的是Next.js 15，您可以选择加入缓存以获得更好的性能")
+
+更多详情请参阅[使用缓存指令](https://nextjs.org/docs/app/api-reference/directives/use-cache)。
+
+通过实施这些策略，您可以优化TinaCMS与Next.js和Vercel的集成，确保高效的数据缓存和最新的内容交付。
+
+您可以在TinaCMS文档中找到更多信息 [tina.io/docs/frameworks/next/overview](https://tina.io/docs/frameworks/next/overview#updates-not-reflecting-correctly-on-page)
+
+祝好,\
+TinaCMS团队 🦙
