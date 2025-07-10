@@ -1,0 +1,29 @@
+---
+id: /docs/tina-cloud/dashboard/organizations
+
+title: 组织
+next: content/docs-zh/tina-cloud/deployment-options/vercel.mdx
+previous: content/docs-zh/tina-cloud/dashboard/users.mdx
+---
+
+组织使得在多个项目中管理用户变得简单。
+
+每个用户可以属于多个组织。可以通过左上角的下拉菜单切换组织。
+
+![tina-cloud-dropdown](/img/docs/tina-cloud/orgs.png)
+
+组织中的每个用户可以拥有以下组织级别的角色之一：
+
+- 编辑者
+- 管理员
+
+以下角色/权限适用于“组织管理员”和“组织编辑者”：
+
+| 操作                              | 组织管理员 | 组织编辑者 |
+| --------------------------------- | ---------- | ---------- |
+| 创建新项目                        | ✔️         | ✔️         |
+| 列出**所有**组织项目              | ✔️         | ❌         |
+| 管理项目协作者                    | ✔️         | ❌         |
+| 编辑项目内容                      | ❌         | ❌         |
+
+为了登录项目并通过 TinaCMS 进行编辑，组织用户需要被明确添加到指定项目中。

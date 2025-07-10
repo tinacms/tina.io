@@ -1,0 +1,30 @@
+---
+id: /docs/graphql/queries/add-document
+title: 添加文档
+last_edited: '2025-03-26T03:57:55.697Z'
+next: ''
+previous: ''
+---
+
+## 使用 `addPendingDocument` 添加文档
+
+`addPendingDocument` 变更将接收集合名称作为参数，以及新的相对路径。
+
+> 注意：`addPendingDocument` 当前不支持任何类型的字段，只是创建记录。
+
+<GraphQLCodeBlock
+  query="mutation#{
+  ##addPendingDocument(collection:#&#x22;post&#x22;,#relativePath:#&#x22;pedro.json&#x22;)#{
+  ####__typename
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;addPendingDocument&#x22;:#{
+  ######&#x22;__typename&#x22;:#&#x22;Post&#x22;
+  ####}
+  ##}
+  }"
+/>
+
+> 准备好使用您的特定模式尝试一些这些查询了吗？尝试[运行 Tina CLI](/docs/graphql/cli/)并使用 Altair 客户端进行测试。

@@ -1,0 +1,78 @@
+---
+id: /docs/guides/nextjs-data-fetching
+title: 在Nextjs中查询Tina内容
+---
+
+## 在NextJS中查询Tina内容
+
+在NextJS中，可以在构建时静态查询内容，也可以在运行时动态查询内容（使用[SSR](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props)或[CSR](https://nextjs.org/docs/basic-features/data-fetching/client-side)）。
+
+### 为静态页面获取内容
+
+#### 示例：通过getStaticProps获取内容
+
+```tsx
+// pages/home.js
+import { client } from '../[pathToTina]/tina/__generated__/client'
+const getStaticProps = async () => {
+  let postResponse = {}
+  try {
+    postResponse = await client.queries.post({ relativePath: 'HelloWorld.md' })
+  } catch {
+    // 吞掉与文档创建相关的错误
+  }
+  return {
+    props: {
+      data: postResponse.data,
+      query: postResponse.query,
+      variables: postResponse.variables,
+    },
+  }
+}
+```
+
+#### 示例：通过getStaticPaths获取内容
+
+您可能希望为[动态路由](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#getstaticpaths)查询Tina的内容API。
+
+```js
+export const getStaticPaths = async () => {
+  const postListResponse = await client.queries.postConnection()
+  return {
+    paths: postListResponse.data.postConnection.edges.map((page) => ({
+      params: { filename: page.node._sys.filename },
+    })),
+    fallback: 'blocking',
+  }
+}
+```
+
+#### Next.js `fallback: "blocking"`
+
+在Next.js中，可以指定[`fallback: "blocking"`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking)，这允许`getStaticProps`在请求时在服务器端运行，当用户访问`getStaticPaths`中未指定的页面时。这允许文档创建与Tina一起工作，以及高级的NextJS功能如ISR。
+
+有关Tina + NextJS的完整工作示例，请查看我们的["Barebones Starter"](https://github.com/tinacms/tina-barebones-starter)。
+
+### 为SSR页面获取内容
+
+#### 示例：通过getServerSideProps获取内容
+
+```tsx
+// pages/home.js
+import { client } from '../[pathToTina]/tina/__generated__/client'
+const getServerSideProps = async () => {
+  let postResponse = {}
+  try {
+    postResponse = await client.queries.post({ relativePath: 'HelloWorld.md' })
+  } catch {
+    // 吞掉与文档创建相关的错误
+  }
+  return {
+    props: {
+      data: postResponse.data,
+      query: postResponse.query,
+      variables: postResponse.variables,
+    },
+  }
+}
+```

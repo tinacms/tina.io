@@ -1,0 +1,86 @@
+---
+id: /docs/frameworks/astro
+title: Astro + Tina 设置指南
+last_edited: '2025-03-24T06:10:09.941Z'
+next: content/docs-zh/frameworks/hugo.mdx
+previous: content/docs-zh/frameworks/next/pages-router.mdx
+---
+
+\
+TinaCMS 可以本地添加到您的 Astro 网站中，实现无缝的内容管理和编辑。本指南将引导您完成本地设置、配置内容模型、运行 TinaCMS 以及启用可视化编辑。
+
+## 入门
+
+### 1. 在您的 Astro 网站中初始化 TinaCMS
+
+在您网站的根目录中，运行以下命令以初始化 TinaCMS：
+
+```bash
+npx @tinacms/cli@latest init
+```
+
+此命令将提示您进行一些设置问题。当询问 **公共资产目录** 时，输入：
+
+```
+public
+```
+
+或者，您可以通过运行以下命令使用 TinaCMS 启动模板：
+
+```bash
+npx create-tina-app@latest --template tina-astro-starter
+```
+
+这将设置一个博客就绪的 [Astro 启动模板](https://github.com/tinacms/tina-astro-starter)，并预先配置 TinaCMS。
+
+## 建模您的内容
+
+要使用 TinaCMS 编辑您网站的内容，请在 `tina/config.ts` 文件中定义您的内容模型。
+
+在[这里](/docs/schema/)了解更多关于内容建模的信息。
+
+## 运行 TinaCMS
+
+您可以使用以下命令启动 TinaCMS：
+
+```bash
+npx tinacms dev -c "astro dev"
+```
+
+> 注意：可以在 `astro dev` 后添加 `--port 8080` 以指定自定义端口。
+
+一旦 TinaCMS 运行，导航到：
+
+```
+http://localhost:<port>/admin/index.html
+或
+/admin （如果使用 Tina Astro Starter，它会重定向您到 /admin/index.html）
+```
+
+> **提示：** 如果遇到错误，请查看[常见错误](/docs/forestry/common-errors)页面。
+
+此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并观察更新持久化到您的本地 markdown 文件中。
+
+![TinaCMS 管理](/img/hugo-tina-admin-screenshot.png)
+
+## 启用可视化编辑（可选）
+
+如果您想利用 TinaCMS 的 API 进行实时编辑，可以启用可视化编辑。要使用 TinaCMS 启用可视化编辑，我们需要使用 React 组件和一个新的 client:tinaDirective。
+
+> 注意：在 [Astro 启动模板](https://github.com/tinacms/tina-astro-starter) 中，这已经启用！
+
+![可视化编辑](/gif/blocks.gif)
+
+阅读更多关于[数据获取](/docs/features/data-fetching/)和[可视化编辑](/docs/contextual-editing/overview/)的信息。
+
+> **注意：** Astro 的可视化编辑目前是实验性的。[查看讨论](https://github.com/tinacms/tinacms/discussions/3399)。
+
+## 下一步
+
+* [查看内容建模文档](/docs/schema/)
+* [了解如何查询您的内容](/docs/features/data-fetching/)
+* [部署您的网站](/docs/tina-cloud)
+
+欲了解更多详情，请访问官方 [TinaCMS 文档](https://tina.io/docs/)和 [Astro 文档](https://astro.build/docs/)。
+
+加入 [TinaCMS Discord](https://discord.gg/suurtdwX) 以获得社区支持。

@@ -1,0 +1,133 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/tina-cms.tsx"
+id: /docs/tina-cloud/overview
+seo:
+  title: '概述：使用 TinaCloud 进行生产部署'
+  description: >-
+    学习如何使用 TinaCloud 将 Tina 站点部署到生产环境。按照我们的分步指南，在 Vercel、Netlify 或 GitHub Pages 上进行设置和部署
+title: 使用 TinaCloud 进行生产部署
+last_edited: '2025-03-26T00:28:19.375Z'
+next: content/docs-zh/tina-cloud/dashboard.mdx
+previous: content/docs-zh/tina-cloud.mdx
+---
+
+> 更喜欢观看视频？
+
+<Youtube embedSrc="https://www.youtube.com/embed/sTVd8CYtXrA?si=DmnS-45aXkmCq8Fa" />
+
+要将您的站点部署到生产环境，您需要将 Tina 连接到托管的后端。本文档将引导您完成从[本地运行到生产运行](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode)的步骤。
+
+## 前提条件
+
+* 确保您的站点在 Github 上，并且所有更改都已推送（包括 `tina/tina-lock.json`）。
+* 确保您有一个 [TinaCloud](https://app.tina.io) 账户。
+  * 查看 [TinaCloud 仪表板](/docs/tina-cloud/dashboard) 文档以获取更多信息。
+
+## 创建一个 TinaCloud 项目
+
+前往 [app.tina.io](https://app.tina.io) 并创建一个新的[项目](/docs/tina-cloud/dashboard/projects/)。系统会要求您连接您的 Github 账户并选择要连接到 TinaCloud 的存储库。
+
+## 运行后端初始化命令
+
+下一步是连接您的站点。一旦连接，您的项目编辑者将能够直接从站点内将内容保存到其 GitHub 存储库中。
+
+```bash
+npx @tinacms/cli init backend
+```
+
+这将会：
+
+* 要求您提供 ClientId：可以在项目的“概述”选项卡中找到。
+* 要求您提供只读令牌：可以在项目的“令牌”选项卡中找到。
+* 用连接到 TinaCloud 所需的环境变量填充您的 `.env` 文件。
+  * 如果您使用不同的环境变量文件，或者您已有一个 .env 文件，您需要手动复制这些变量。
+
+## 确保 ClientId 和 Token 被传递到配置中
+
+在您的 tina/config 文件中，确保 `clientId` 和 `token` 被传递到配置中。
+
+```tsx
+// tina/config.ts
+//...
+export default defineConfig({
+  //...
+  token:  process.env.TINA_TOKEN, // 这应该与您的 .env 文件中的值匹配
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID // 这应该与您的 .env 文件中的值匹配
+  branch,
+  schema: {
+    collections: [
+    //...
+    // 查看 https://tina.io/docs/schema/ 以获取有关“collections”的更多信息
+  ]}
+})
+```
+
+<WarningCallout
+  body={<>
+    注意：如果您从本地环境文件加载您的架构配置值，Tina 的构建过程只会拾取 `.env` 文件（而不是 `.env.local` 或 `.env.development`）。
+  </>}
+/>
+
+## 配置分支
+
+这可能已经在初始化过程中设置，但您应该确保分支被传递到配置中。
+
+通常，您会希望使用与您的站点一起部署的分支。这将根据您的主机而有所不同，但大多数会提供某种环境变量供您使用。
+
+```diff
+// tina/config.ts
+//...
++ const branch =
++  process.env.NEXT_PUBLIC_TINA_BRANCH ||
++  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
++  process.env.HEAD ||
++  ''
+export default defineConfig({
+  //...
+  token: '<Your Read Only Token>' // 在 app.tina.io 上生成
+  clientId: '<Your Client ID>', // 在 app.tina.io 上生成
+  branch,
+  schema: {
+    collections: [
+    //...
+    // 查看 https://tina.io/docs/schema/ 以获取有关“collections”的更多信息
+  ]}
+})
+```
+
+> `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` 是 Vercel 的[系统环境变量](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables)，表示进行部署提交的分支。
+> `HEAD` 是 [Netlify](https://docs.netlify.com/configure-builds/environment-variables/#git-metadata) 使用的等效系统环境变量。
+
+您完全配置的 `tina/config.{js,ts}` 应如下所示：
+
+```ts
+import {  defineConfig } from 'tinacms'
+
+const branch =
+  process.env.NEXT_PUBLIC_TINA_BRANCH ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD
+
+export default defineConfig({
+  token: '<Your Read Only Token>' // 在 app.tina.io 上生成
+  clientId: '<Your Client ID>', // 在 app.tina.io 上生成
+  branch,
+  schema: {
+    // ...
+  },
+})
+```
+
+apiURL 被配置为在开发中使用本地内容 API（查询您的本地文件），在生产中使用托管内容 API（带身份验证）。
+
+## 部署您的站点（使用 TinaCMS 管理）
+
+下一步是更新您的部署配置，以便 TinaCMS 管理与您的站点一起构建。这允许您的编辑者通过 `<your-site>/admin`（或 `your-site/admin/index.html`）进入 CMS。
+
+通常，您需要确保您的构建命令在站点的构建命令之前运行 `tinacms build`。这将使 TinaCMS 管理与您的站点一起构建。您还需要确保您的 Tina `NEXT_PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN` 被设置为主机上的环境变量。
+
+我们为一些流行的部署选项提供了文档：
+
+* [Vercel](/docs/tina-cloud/deployment-options/vercel)
+* [Netlify](/docs/tina-cloud/deployment-options/netlify)
+* [GitHub Pages](/docs/tina-cloud/deployment-options/github-pages)

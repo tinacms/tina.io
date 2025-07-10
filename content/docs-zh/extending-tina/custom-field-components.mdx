@@ -1,0 +1,184 @@
+---
+id: /docs/extending-tina/custom-field-components
+title: React 组件
+last_edited: '2025-04-01T06:32:03.368Z'
+next: content/docs-zh/extending-tina/customize-list-ui.mdx
+previous: ''
+---
+
+可以通过在字段上设置 `ui.component` 属性来传递和渲染自定义组件。
+
+这个组件完全覆盖了原始组件，提供给用户完全自定义字段的能力。
+
+## `ui.component` 属性
+
+这应该设置为一个有效的 React 组件，该组件最多接受四个属性：
+
+* `field`: 当前字段的[字段定义](https://tinacms.org/docs/reference/toolkit/fields)。
+* `input`: 制作输入所需的数据和回调。
+* `meta`: 表单中关于字段的元数据。（例如 `dirty`，`valid`）。
+* `form`: CMS 表单，用于检索和更新同一集合中的其他字段。
+
+> 查看 [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) 文档以获取 `input` 和 `meta` 属性的更详细描述。
+
+### 保留元数据
+
+要在自定义组件上保留相同的标签、描述、验证和其他元设置，可以使用包装函数 `wrapFieldsWithMeta`。
+
+### 表单管理
+
+`form` 属性可用于控制其他字段中的表单值。
+
+集合中的任何字段都可以使用 `form.change` 更新 – `form.change(name: string, value: any) => void`，使用字段的 `name` 属性。
+
+集合中的任何字段都可以使用 `form.getFieldState(name: string)?.value` 访问，使用字段的 `name` 属性。
+
+> 可以从 [react-final-form FormAPI 文档](https://final-form.org/docs/final-form/types/FormApi) 中推断出更多的使用模式。
+
+### 隐藏字段
+
+将 `component.ui` 设置为值 `"hidden"` 会将字段从编辑器中移除。
+
+该字段仍然在后台存在，并可以通过其他方式访问。
+
+## 示例
+
+### 滑块组件
+
+这是一个用于调整图像饱和度的自定义滑块组件。
+
+![一个基本的滑块自定义组件](/img/docs/extending-tina/image-saturation.png)
+
+```tsx
+{
+  label: "图像饱和度",
+  name: "saturation",
+  type: "number",
+  description: "我的自定义饱和度字段",
+  ui: {
+    parse: (val) => Number(val),
+    component: wrapFieldsWithMeta(({ field, input, meta }) => {
+      return (
+        <div>
+          <input
+            name="saturation"
+            id="saturation"
+            type="range"
+            min="0"
+            max="10"
+            step=".1"
+            // 传递 props.input.onChange
+            {...input}
+          />
+          <br />
+          值: {input.value}
+        </div>
+      )
+    })
+  }
+}
+```
+
+### 带有隐藏元字段的图像组件
+
+NextJS 和其他框架能够在提前知道图像宽度和高度的情况下提高性能。
+
+**TinaCMS 可以用于在上传时确定并存储这些信息**。
+
+我们可以传递现有的 TinaCMS 图像组件，并使用 `useEffect` 拦截对它的更改，以更新我们的宽度和高度字段。
+
+```javascript
+
+import { ImageField } from 'tinacms';
+
+const CustomImageField = (props) => {
+
+  const loadImage = async (url) => {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    return img;
+  };
+  const { form, input } = props;
+
+  useEffect(() => {
+    loadImage(input.value).then((img) => {
+      form.change("imgWidth", img.naturalWidth);
+      form.change("imgHeight", img.naturalHeight);
+    });
+  }, [form, input]);
+  
+  return ImageField(props);
+};
+```
+
+在内容模型中，我们还需要两个额外的字段用于高度和宽度，这些字段设置为 `"hidden"`，因此它们不会出现在编辑器中。
+
+```javascript
+{
+  type: 'image',
+  label: '主图像',
+  name: 'imgSrc',
+  ui: {
+    component: CustomImageField,
+  },
+},
+{
+  type: "number",
+  name: "imgWidth",
+  ui: {
+    component: "hidden",
+  },
+},
+{
+  type: "number",
+  name: "imgHeight",
+  ui: {
+    component: "hidden",
+  },
+}
+```
+
+这在编辑器中显示为一个单一的图像输入，但每次更新时将保存 3 个值（图像来源、高度和宽度）。
+
+![](/img/docs/reference/SCR-20250317-mtnf.png)
+
+```markdown
+imgSrc: /uploads/llama - 2.avif
+imgWidth: 987
+imgHeight: 1480
+```
+
+### 条件组件
+
+可以通过检查其他表单字段的值来创建条件字段。
+
+> 使用这种方法，隐藏的条件字段将保留在隐藏之前保存的任何值。
+
+![](</gif/Screen Recording 2025-03-17 at 3.21.09 pm.gif>)
+
+```javascript
+{
+  type: "boolean",
+  name: "imageEnabled",
+  label: "启用图像",
+},
+{
+  type: 'image',
+  label: '主图像',
+  name: 'imgSrc',
+  ui: {
+  component: (props) => {
+    const { form } = props;
+    return form.getFieldState("imageEnabled")?.value ?
+      ImageField(props) : null;
+    },
+  },
+},
+```
+
+### 图标选择器组件（视频）
+
+下面的教程包括一个关于使用自定义字段组件创建自定义图标选择器的部分。
+
+<Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />

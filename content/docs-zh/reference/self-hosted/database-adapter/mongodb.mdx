@@ -1,0 +1,34 @@
+---
+id: /docs/reference/self-hosted/database-adapter/mongodb
+
+title: MongoDB 数据库适配器
+---
+
+MongoDB 数据库适配器允许您将数据存储在 [MongoDB](https://www.mongodb.com/) 数据库中。此适配器使用 [MongoDB Node.js 驱动](https://www.npmjs.com/package/mongodb)，因此可以在任何 MongoDB 数据库上运行。
+
+> 想要查看代码？请访问 [GitHub 仓库](https://github.com/tinacms/mongodb-level)。
+
+要开始使用，您需要在项目中添加以下环境变量：
+
+```env
+MONGODB_URI=***
+```
+
+## 创建数据库适配器
+
+```ts
+import { MongodbLevel } from 'mongodb-level'
+//...
+
+export default isLocal
+  ? createLocalDatabase()
+  : createDatabase({
+      // ...
+      databaseAdapter: new MongodbLevel<string, Record<string, any>>({
+        // 如果您不使用分支，可以传递一个静态的集合名称。例如："tinacms"
+        collectionName: `tinacms-${branchName}`,
+        dbName: 'tinacms',
+        mongoUri: process.env.MONGODB_URI as string,
+      }),
+    })
+```
