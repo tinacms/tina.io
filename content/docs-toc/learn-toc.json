@@ -138,10 +138,6 @@
       "title": "Technical Guides",
       "items": [
         {
-          "title": "Globalization",
-          "_template": "items"
-        },
-        {
           "title": "What is Markdown?",
           "slug": "content/docs/editing/markdown.mdx",
           "_template": "item"
@@ -254,6 +250,17 @@
           "title": "Separate Content Repo",
           "slug": "content/docs/guides/separate-content-repo.mdx",
           "_template": "item"
+        },
+        {
+          "title": "Globalization",
+          "items": [
+            {
+              "title": "Internationalization",
+              "slug": "",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
         },
         {
           "title": "Internationalization",
