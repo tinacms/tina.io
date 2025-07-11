@@ -93,6 +93,7 @@ export default async function RootLayout({
         <Script
           id="hotjar"
           strategy="afterInteractive"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <TODO>
           dangerouslySetInnerHTML={{
             __html: `
               (function(h,o,t,j,a,r){
@@ -109,6 +110,7 @@ export default async function RootLayout({
 
         <script
           type="text/javascript"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <TODO>
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){

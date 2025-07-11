@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
 import type { SVGProps } from 'react';
 
 export const IconRight = () => {

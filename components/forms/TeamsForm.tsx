@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noLabelWithoutControl: <TODO> */
 import type React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';

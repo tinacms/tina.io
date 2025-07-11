@@ -49,8 +49,8 @@ const LinkGroup = React.memo(
           {item.label}
         </summary>
         <div className="p-4">
-          {item.items.map((subItem, index) => (
-            <div key={index}>
+          {item.items.map((subItem) => (
+            <div key={subItem.id}>
               <DynamicLink href={subItem.href || ''} passHref>
                 <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                   {subItem.label}
@@ -131,11 +131,11 @@ export function Footer({ footerData }: { footerData: FooterData }) {
             <TinaIcon color="white" />
           </div>
           <div className="flex-1 flex flex-col py-2 lg:py-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {currentFooterNav.map((item, index) => {
+            {currentFooterNav.map((item, _index) => {
               const { header, footerItem } = item;
               return (
                 <div
-                  key={`footer-nav-${header}-${index}`}
+                  key={`footer-nav-${header}-${item.id}`}
                   className="flex flex-col items-stretch justify-start gap-2"
                 >
                   <p className="uppercase text-orange-100 font-bold -mt-1">

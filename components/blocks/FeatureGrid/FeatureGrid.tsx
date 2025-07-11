@@ -5,7 +5,7 @@ import GradGlow from '../../../public/svg/grad-glow.svg';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
-const Feature = ({ data, index, id }) => {
+const Feature = ({ data, id }) => {
   const { headline, text, actions, url } = data;
 
   const formattedUrl =
@@ -77,12 +77,11 @@ export function FeatureGridBlock({ data, index }) {
               : 'grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg'
           } auto-rows-auto w-full rounded-xl overflow-visible shadow border border-blue-50/50 bg-linear-to-br from-seafoam-200/30 to-blue-100/30`}
         >
-          {data.items?.map((data, index) => {
+          {data.items?.map((data) => {
             return (
               <Feature
                 key={Object.values(data).join('')}
                 data={data}
-                index={index}
                 id={sanitizeLabel(data.headline)}
               />
             );

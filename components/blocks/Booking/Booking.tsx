@@ -43,7 +43,7 @@ const BookingCard = ({ cardItem }) => {
   );
 };
 
-const BookingBlock = ({ data, index }) => {
+const BookingBlock = ({ data }) => {
   const [meetingPeople, setMeetingPeople] = useState<BookingItem[]>([]);
 
   useEffect(() => {
@@ -91,8 +91,8 @@ const BookingBlock = ({ data, index }) => {
           <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
             {data.description}
           </h3>
-          {meetingPeople.map((cardItem, idx) => (
-            <BookingCard key={idx} cardItem={cardItem} />
+          {meetingPeople.map((cardItem) => (
+            <BookingCard key={cardItem.name} cardItem={cardItem} />
           ))}
         </div>
       </div>

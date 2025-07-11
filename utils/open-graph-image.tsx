@@ -3,7 +3,7 @@ export function openGraphImage(
   altSuffix: string = '',
   subtitle?: string,
 ) {
-  let url;
+  let url: string;
   //cloudinary can't handle url encoded slashes
   const encodedTitle = encodeURIComponent(title.replace('/', ' '));
   const encodedSubtitle = subtitle && encodeURIComponent(subtitle);

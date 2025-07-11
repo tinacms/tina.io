@@ -79,12 +79,14 @@ export default function DocsClient({ props }) {
     if (NavigationLearnData?.data) {
       checkLearn(setIsLearnDocument);
     }
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
   }, [NavigationLearnData, checkLearn]);
 
   useEffect(() => {
     if (NavigationLearnData?.data && DocumentationData) {
       checkLearn(setLearnActive);
     }
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
   }, [NavigationLearnData, DocumentationData, checkLearn, setLearnActive]);
 
   const lastEdited = DocumentationData?.last_edited;

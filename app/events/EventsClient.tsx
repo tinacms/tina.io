@@ -83,6 +83,7 @@ export default function EventsClient({
     cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
   }, [handleIntersection]);
 
   return (

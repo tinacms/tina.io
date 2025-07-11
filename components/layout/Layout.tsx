@@ -10,7 +10,7 @@ interface LayoutProps {
   sticky?: boolean;
 }
 
-export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
   const pathname = usePathname();
 
   return (

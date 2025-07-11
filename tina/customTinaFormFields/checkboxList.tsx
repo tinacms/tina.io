@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
 import { Checkbox, Field, Label } from '@headlessui/react';
 
 export interface CheckboxListProps {
@@ -10,9 +11,9 @@ export interface CheckboxListProps {
 export const checkboxList = (onChange, criteriaSatisfaction) => {
   return (
     <div className="flex flex-col gap-2">
-      {criteriaSatisfaction?.map((entry, idx) => {
+      {criteriaSatisfaction?.map((entry) => {
         return (
-          <div key={`${idx}-satisfaction`}>
+          <div key={`${entry.criteria}-satisfaction`}>
             <Field className="flex items-center gap-2">
               <Checkbox
                 checked={entry.satisfied}

@@ -230,9 +230,9 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
         ['headerLeft', 'descriptionLeft', 'iconLeft'],
         ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
         ['headerRight', 'descriptionRight', 'iconRight'],
-      ].map(([header, description, icon], index) => (
+      ].map(([header, description, icon]) => (
         <div
-          key={index}
+          key={header}
           className="flex flex-col gap-2 items-center w-full md:w-1/3"
         >
           {icons[highlights[icon as keyof typeof highlights]]}
@@ -278,8 +278,11 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
         Open Source Expert Speakers
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
-        {speakers.map((speaker, index) => (
-          <div key={index} className="col-span-1 flex flex-col items-center">
+        {speakers.map((speaker) => (
+          <div
+            key={speaker.name}
+            className="col-span-1 flex flex-col items-center"
+          >
             <Link href={speaker.socialLink} target="_blank">
               <Image
                 src={speaker.image}
@@ -376,8 +379,8 @@ function Agenda({
             </tr>
           </thead>
           <tbody>
-            {timeSlots.map((slot, index) => (
-              <tr key={index}>
+            {timeSlots.map((slot) => (
+              <tr key={slot.timeStart}>
                 <td className="border p-4 align-top text-left">
                   <div className="font-bold leading-6">
                     {formatTime(slot.timeStart)} -
@@ -388,8 +391,11 @@ function Agenda({
 
                 {slot.breaks.length > 0 ? (
                   <td className="border p-4 text-center">
-                    {slot.breaks.map((breakSession, idx) => (
-                      <div key={idx} className="mb-4 last:mb-0">
+                    {slot.breaks.map((breakSession) => (
+                      <div
+                        key={breakSession.speechTitle}
+                        className="mb-4 last:mb-0"
+                      >
                         <h3 className="text-lg font-bold">
                           {breakSession.speechTitle}
                         </h3>
@@ -401,8 +407,11 @@ function Agenda({
                   </td>
                 ) : (
                   <td className="border p-4 align-top text-left">
-                    {slot.talks.map((talk, idx) => (
-                      <div key={idx} className="mb-4 last:mb-0 flex">
+                    {slot.talks.map((talk) => (
+                      <div
+                        key={talk.speechTitle}
+                        className="mb-4 last:mb-0 flex"
+                      >
                         <div>
                           <h3 className="text-lg leading-6 font-bold">
                             {talk.speechTitle}
@@ -439,8 +448,8 @@ function Agenda({
 
       {/* Mobile view (cards) */}
       <div className="w-full max-w-6xl md:hidden text-left">
-        {timeSlots.map((slot, slotIndex) => (
-          <div key={slotIndex} className="mb-8">
+        {timeSlots.map((slot, _slotIndex) => (
+          <div key={slot.timeStart} className="mb-8">
             <div className="bg-blue-100 py-3 px-4 rounded-t-lg font-bold">
               {formatTime(slot.timeStart)} -{' '}
               {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
@@ -449,8 +458,11 @@ function Agenda({
             {/* Break sessions */}
             {slot.breaks.length > 0 && (
               <div className="border border-t-0 p-4">
-                {slot.breaks.map((breakSession, idx) => (
-                  <div key={idx} className="mb-4 last:mb-0">
+                {slot.breaks.map((breakSession) => (
+                  <div
+                    key={breakSession.speechTitle}
+                    className="mb-4 last:mb-0"
+                  >
                     <div className="bg-orange-100 text-orange-500 text-sm rounded-full px-2 w-14 mb-2">
                       Break
                     </div>
@@ -469,9 +481,9 @@ function Agenda({
             {slot.breaks.length === 0 && (
               <div className="border border-t-0 p-4 space-y-6">
                 {/* Talks */}
-                {slot.talks.map((talk, idx) => (
+                {slot.talks.map((talk) => (
                   <div
-                    key={`talk-${idx}`}
+                    key={talk.speechTitle}
                     className="pb-4 border-b last:border-b-0 last:pb-0"
                   >
                     <div className="bg-blue-100 text-blue-500 text-sm rounded-full px-2 w-11 mb-2">

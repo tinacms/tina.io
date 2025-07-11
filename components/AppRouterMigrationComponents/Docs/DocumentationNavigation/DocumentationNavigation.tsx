@@ -9,6 +9,7 @@ export interface DocsNavProps {
   color: string;
 }
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 export function DocumentationNavigation({ navItems }: DocsNavProps) {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
   return (

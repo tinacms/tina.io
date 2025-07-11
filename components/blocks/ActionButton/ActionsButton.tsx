@@ -27,7 +27,7 @@ export const Actions = ({
           .join(' ')}
       >
         {items?.map((item) => {
-          const { variant, label, icon, url, buttonType } = item;
+          const { variant, label, icon, url } = item;
           {
             const externalUrlPattern = /^((http|https|ftp):\/\/)/;
             const external = externalUrlPattern.test(url);

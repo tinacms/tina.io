@@ -56,6 +56,7 @@ export function LanguageSupportAlert() {
     };
 
     checkChineseVersion();
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
   }, [pathName, getPageType, isLocalesPath]);
 
   if (!isVisible) {
@@ -78,6 +79,7 @@ export function LanguageSupportAlert() {
           <p>Current page only supports English version.</p>
         </AlertDescription>
         <button
+          type="button"
           className="absolute top-2 right-2 rounded-full hover:bg-yellow-200 flex items-center justify-center"
           onClick={(e) => {
             e.stopPropagation();

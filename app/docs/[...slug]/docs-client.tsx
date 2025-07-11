@@ -59,10 +59,12 @@ export default function DocsClient({ props }) {
   };
   useEffect(() => {
     checkLearn(setIsLearnDocument);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
   }, [checkLearn]);
 
   useEffect(() => {
     checkLearn(setLearnActive);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
   }, [checkLearn, setLearnActive]);
 
   const lastEdited = DocumentationData?.last_edited;

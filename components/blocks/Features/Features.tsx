@@ -41,9 +41,9 @@ export function FeatureBlock({ data, index }) {
         </p>
         <div className="flex flex-col items-center lg:items-start">
           <div className="flex flex-col md:flex-row gap-2">
-            {data.buttons?.slice(0, 2).map((button, index) => (
+            {data.buttons?.slice(0, 2).map((button) => (
               <RenderButton
-                key={`button-${index}`}
+                key={`button-${button.id}`}
                 button={button}
                 index={index}
               />
@@ -164,6 +164,7 @@ export const RenderMedia = ({ data }) => {
         ) : (
           <div className="flex flex-col">
             <button
+              type="button"
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
@@ -209,6 +210,7 @@ export const RenderMedia = ({ data }) => {
         ) : (
           <div className="flex flex-col">
             <button
+              type="button"
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
@@ -248,6 +250,7 @@ export const RenderMedia = ({ data }) => {
   ) {
     return (
       <div className="relative w-full pb-4">
+        {/** biome-ignore lint/performance/noImgElement: <TODO> */}
         <img
           src={data.media[0].src}
           alt={data.headline}
@@ -267,7 +270,7 @@ export function FeaturesBlock({ data, index }) {
         {data.features?.map((featureData, featureIndex) => {
           return (
             <FeatureBlock
-              key={`feature-${featureIndex}`}
+              key={`feature-${featureData.id}`}
               data={featureData}
               index={featureIndex}
             />

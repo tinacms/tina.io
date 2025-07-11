@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import { Container } from '../Container';
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 export const QuoteBlock = ({ data, index }) => {
   return (
     <section className="w-full relative z-10 py-16 lg:py-24 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center text-black">

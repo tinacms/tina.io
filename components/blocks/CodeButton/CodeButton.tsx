@@ -6,6 +6,7 @@ import type { Components } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 
+// biome-ignore lint/complexity/noBannedTypes: <TODO>
 export const CodeButtonMarkdownStyle: Components<{}> = {
   a: (props) => {
     return (

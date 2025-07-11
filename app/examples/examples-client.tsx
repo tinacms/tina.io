@@ -36,6 +36,7 @@ function Example({ example }: { example: ExamplesExamples }) {
       </div>
       {example.image && (
         <div className="w-full">
+          {/** biome-ignore lint/performance/noImgElement: <TODO> */}
           <img
             src={example.image}
             alt={example.label}

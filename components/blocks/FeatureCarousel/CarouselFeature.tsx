@@ -1,8 +1,9 @@
+/** biome-ignore-all lint/correctness/noInvalidUseBeforeDeclaration: <TODO> */
+/** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
 import checkTouchScreen from 'components/util/touchscreenDetection';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { sanitizeLabel } from 'utils/sanitizeLabel';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -12,13 +13,12 @@ import { CarouselFeatureMobile } from './CarouselFeature.mobile';
 const CarouselItem = ({
   data,
   index,
-  id,
   isHovered,
   onClick,
   isSmallOrMediumScreen,
   renderMedia,
 }) => {
-  const { headline, text, button, icon2, videoSrc } = data || {};
+  const { headline, text, button, icon2 } = data || {};
 
   const IconComponent = icons[icon2] || null;
 
@@ -292,7 +292,6 @@ export default function CarouselFeatureBlock({ data, index }) {
                       <CarouselItem
                         data={item}
                         index={index}
-                        id={sanitizeLabel(item.headline)}
                         isHovered={hoveredIndex === index}
                         onClick={handleItemClick}
                         isSmallOrMediumScreen={isSmallOrMediumScreen}
@@ -311,7 +310,6 @@ export default function CarouselFeatureBlock({ data, index }) {
                         <CarouselItem
                           data={item}
                           index={index}
-                          id={sanitizeLabel(item.headline)}
                           isHovered={hoveredIndex === index}
                           onClick={handleItemClick}
                           isSmallOrMediumScreen={isSmallOrMediumScreen}
@@ -323,6 +321,7 @@ export default function CarouselFeatureBlock({ data, index }) {
               )}
             {!isShowingAll && isTouchScreen ? (
               <button
+                type="button"
                 className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
                 onClick={() => setIsShowingAll(true)}
               >
@@ -331,6 +330,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             ) : null}
             {isShowingAll && isTouchScreen ? (
               <button
+                type="button"
                 className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
                 onClick={() => {
                   setTimeout(() => {

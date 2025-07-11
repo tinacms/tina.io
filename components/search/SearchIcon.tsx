@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
 export const SearchIcon = () => (
   <svg
     width="32"

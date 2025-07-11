@@ -14,7 +14,8 @@ export const highlightText = (text: string) => {
   const segments = [];
   let lastIndex = 0;
 
-  let match;
+  let match: RegExpExecArray | null;
+  // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) {
       segments.push(text.substring(lastIndex, match.index));
@@ -117,6 +118,8 @@ export const SearchResultsOverflowTabs = ({ query }) => {
           {/* Navigation Buttons */}
           <nav className="relative flex gap-16 px-4">
             <button
+              type="button"
+              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
               ref={(el) => (tabRefs.current[0] = el)}
               className={`font-inter font-semibold text-sm ${
                 activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
@@ -126,6 +129,8 @@ export const SearchResultsOverflowTabs = ({ query }) => {
               DOCS ({algoliaSearchResults?.docs?.count})
             </button>
             <button
+              type="button"
+              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
               ref={(el) => (tabRefs.current[1] = el)}
               className={`font-inter font-semibold text-sm ${
                 activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'

@@ -58,8 +58,11 @@ export function LogoGridBlock({ data, index }) {
           <Slider
             speed={1}
             slidesToShow={slidesToShow}
-            items={data.items.map((item, idx) => (
-              <div key={idx} className="flex items-center justify-center h-40">
+            items={data.items.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-center h-40"
+              >
                 <Logo data={item} windowWidth={windowSize.width} />
               </div>
             ))}

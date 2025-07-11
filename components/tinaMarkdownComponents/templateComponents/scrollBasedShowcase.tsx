@@ -10,9 +10,6 @@ const docAndBlogComponents = {
 
 /** UseWindowSize Hook */
 function useWindowSize() {
-  if (typeof window !== 'undefined') {
-    return { width: 1200, height: 800 };
-  }
   const [windowSize, setWindowSize] = useState<{
     width: number;
     height: number;
@@ -26,6 +23,9 @@ function useWindowSize() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  if (typeof window !== 'undefined') {
+    return { width: 1200, height: 800 };
+  }
   return windowSize;
 }
 
@@ -198,7 +198,7 @@ export default function ScrollBasedShowcase(data: {
 
             return (
               <div
-                key={`showcase-item-${index}`}
+                key={`showcase-item-${item.title}`}
                 // If active => full opacity + orange border + text color
                 // If not => half opacity + gray border
                 className={`mt-0 md:mt-8 transition-all duration-300 ease-in-out
@@ -213,6 +213,7 @@ export default function ScrollBasedShowcase(data: {
                   <div
                     id={itemId}
                     className="pointer-events-none"
+                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <div
@@ -229,6 +230,7 @@ export default function ScrollBasedShowcase(data: {
                   <div
                     id={itemId}
                     className="pointer-events-none"
+                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <h2
@@ -258,6 +260,7 @@ export default function ScrollBasedShowcase(data: {
 
                 {/* This image is only shown on mobile (md:hidden).
                     On larger screens, the separate container is used. */}
+                {/** biome-ignore lint/performance/noImgElement: <TODO> */}
                 <img
                   src={item.image}
                   alt={item.title}
@@ -270,6 +273,7 @@ export default function ScrollBasedShowcase(data: {
 
         {/* This image container is only displayed on md+ */}
         <div className="relative w-full flex-1 hidden md:block overflow-hidden">
+          {/** biome-ignore lint/performance/noImgElement: <TODO> */}
           <img
             ref={activeImg}
             src={headings[0]?.src || ''}

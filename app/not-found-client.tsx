@@ -327,10 +327,6 @@ export default function NotFoundClient() {
   const pathInfo = parsePath(pathname, localeList);
   const content = localeContent[pathInfo.locale] || localeContent.en;
 
-  if (!pathInfo.needsQuery) {
-    return <NotFoundContent content={content} />;
-  }
-
   useEffect(() => {
     async function checkPageExists() {
       try {
@@ -349,6 +345,10 @@ export default function NotFoundClient() {
 
     checkPageExists();
   }, [pathInfo]);
+
+  if (!pathInfo.needsQuery) {
+    return <NotFoundContent content={content} />;
+  }
 
   if (loading) {
     return <LoadingPage content={content} />;

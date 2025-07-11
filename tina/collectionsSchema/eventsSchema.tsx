@@ -118,7 +118,7 @@ export const eventsCollection = {
             "Enter start time in the timezone of the event. E.g. '9:00 AM' if the event starts at 9 in the location it's being held.",
           ui: {
             format: (value) => value,
-            component: wrapFieldsWithMeta(({ field, input, meta }) => {
+            component: wrapFieldsWithMeta(({ input }) => {
               return (
                 <div>
                   <input

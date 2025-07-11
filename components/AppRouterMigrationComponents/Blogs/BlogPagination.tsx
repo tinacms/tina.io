@@ -68,7 +68,7 @@ export default function NewBlogPagination({
                 aria-label={`Go to Page ${i + 1}`}
                 aria-current={i + 1 === currentPage ? 'true' : 'false'}
                 value={i + 1}
-                key={`page-${i}`}
+                key={`page-${i + 1}`}
               >
                 {i + 1}
               </option>

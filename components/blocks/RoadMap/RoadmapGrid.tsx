@@ -2,6 +2,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 const Roadmap = ({ data, last = false, index }) => {
   return (
     <div className="px-6 flex items-stretch w-full gap-8">
@@ -45,7 +46,14 @@ export function RoadmapGridBlock({ data, index }) {
         <div className="">
           {data.items?.map((itemData, index) => {
             const last = data.items.length - 1 === index;
-            return <Roadmap data={itemData} last={last} index={index} />;
+            return (
+              <Roadmap
+                data={itemData}
+                last={last}
+                key={itemData.id}
+                index={index}
+              />
+            );
           })}
         </div>
       </Container>

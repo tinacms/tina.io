@@ -163,7 +163,7 @@ const NavLevel = ({
         <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
           <NavLevelChildContainer level={level}>
             {(categoryData.items || []).map((item) => (
-              <div>
+              <div key={item.id}>
                 <NavLevel
                   key={item.slug ? item.slug + level : item.title + level}
                   navListElem={navListElem}

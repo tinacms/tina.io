@@ -4,7 +4,7 @@ import { DocsTextWrapper } from '../../layout/DocsTextWrapper';
 import { Section } from '../../layout/Section';
 import { Container } from '../Container';
 
-export function ContentBlock({ data, index }) {
+export function ContentBlock({ data }) {
   return (
     <Section color={data.options?.color || 'white'}>
       <DocsTextWrapper>

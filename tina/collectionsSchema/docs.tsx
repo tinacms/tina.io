@@ -10,7 +10,7 @@ export const docsCollection = {
   path: 'content/docs',
   format: 'mdx',
   ui: {
-    beforeSubmit: async ({ values, cms, form }) => {
+    beforeSubmit: async ({ values }) => {
       return {
         ...values,
         last_edited: new Date().toISOString(),

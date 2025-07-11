@@ -24,7 +24,7 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
 
   const locale = url.searchParams.get('setLocale') || getLocale(request);
-  let response;
+  let response: NextResponse;
 
   if (url.searchParams.has('setLocale')) {
     url.searchParams.delete('setLocale');

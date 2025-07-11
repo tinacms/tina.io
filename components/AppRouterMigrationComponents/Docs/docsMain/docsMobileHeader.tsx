@@ -44,9 +44,9 @@ export const MobileVersionSelect = () => {
       {/* VERSION SELECT OVERFLOW */}
       {isOverflowOpen && (
         <div className="absolute bg-white shadow-lg mt-2 right-1 rounded-lg w-full z-10 animate-fade-down animate-duration-300">
-          {versions.map((version, index) => (
+          {versions.map((version) => (
             <div
-              key={index}
+              key={version[0]}
               className="px-4 py-2 hover:bg-stone-100 cursor-pointer text-stone-600"
               onClick={() => handleVersionClick(version)}
             >

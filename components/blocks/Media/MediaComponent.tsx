@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
 const VideoGridComponent = ({ data }) => {
-  const { mediaItem, typenames, mobileMaxHeight } = data || {};
+  const { mediaItem, typenames } = data || {};
 
   const [isPlayingArray, setIsPlayingArray] = useState(
     Array.isArray(mediaItem) ? mediaItem.map(() => false) : [],
@@ -44,6 +44,7 @@ const VideoGridComponent = ({ data }) => {
             onClick={() => handlePlayVideo(index)}
           >
             {isPlaying ? (
+              // biome-ignore lint/a11y/useMediaCaption: <TODO>
               <video
                 src={media.media}
                 controls
@@ -64,7 +65,10 @@ const VideoGridComponent = ({ data }) => {
                   />
                 )}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="relative text-7xl text-orange-500">
+                  <button
+                    type="button"
+                    className="relative text-7xl text-orange-500"
+                  >
                     <div className="relative inline-block">
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="bg-white w-5 h-5"></div>
@@ -102,7 +106,7 @@ const VideoGridComponent = ({ data }) => {
         {Array.isArray(mediaList) &&
           mediaItem.map((item, index) => (
             <div
-              key={index}
+              key={item.id}
               className="relative flex justify-center items-center"
             >
               {renderMedia(item, index)}

@@ -27,7 +27,7 @@ export function FaqBlock({ data, index }) {
             <RichTextWrapper>
               {data.questions?.map((item, index) => {
                 return (
-                  <div key={index}>
+                  <div key={item.id}>
                     {item.question && <h4>{item.question}</h4>}
                     {item.answer && <TinaMarkdown content={item.answer} />}
                     {index < data.questions.length - 1 && <hr />}

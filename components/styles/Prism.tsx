@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/correctness/useJsxKeyInIterable: <TODO> */
 import { Highlight, Prism as rootPrism, themes } from 'prism-react-renderer';
 
 (typeof global !== 'undefined' ? global : window).Prism = rootPrism;

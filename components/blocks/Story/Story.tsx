@@ -376,7 +376,7 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
     return item.id in pane.positions;
   });
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     rootMargin: '-100px 0px',
   });
 
@@ -440,7 +440,7 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
   );
 };
 
-export function StoryBlock({ data, index }) {
+export function StoryBlock({ index }) {
   const [activeId, setActiveId] = React.useState(features[0].id);
 
   return (

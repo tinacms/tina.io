@@ -2,6 +2,7 @@ import debounce from 'lodash/debounce';
 import { useEffect, useRef, useState } from 'react';
 import { wrapFieldsWithMeta } from 'tinacms';
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 const MonacoCodeEditor = wrapFieldsWithMeta(({ field, input, meta }) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const monacoInstance = useRef(null);

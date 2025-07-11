@@ -30,7 +30,11 @@ const AdminLink = () => {
           >
             Edit This Page
           </a>
-          <button onClick={handleDismiss} className="ml-2 text-sm">
+          <button
+            type="button"
+            onClick={handleDismiss}
+            className="ml-2 text-sm"
+          >
             <RxCross1 />
           </button>
         </div>

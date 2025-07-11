@@ -142,7 +142,7 @@ export function ShowcaseItemsBlock({ data, index }) {
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}
         {data.items?.map((data, index) => {
-          return <ShowcaseBlock data={data} index={index} />;
+          return <ShowcaseBlock data={data} key={data.id} index={index} />;
         })}
       </Container>
     </section>

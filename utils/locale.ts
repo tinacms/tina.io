@@ -12,6 +12,7 @@ export function saveLocaleToCookie(locale: string) {
   const expiryDate = new Date();
   expiryDate.setFullYear(expiryDate.getFullYear() + 1);
 
+  // biome-ignore lint/suspicious/noDocumentCookie: <TODO>
   document.cookie = `NEXT_LOCALE=${locale}; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
   console.log(`Saved locale to cookie: ${locale}`);
 }
@@ -47,6 +48,7 @@ function getLocaleFromCookie(request: NextRequest): string | null {
 
 function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
   const negotiatorHeaders: Record<string, string> = {};
+  // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages();

@@ -36,6 +36,7 @@ export const VersionSelect = () => {
   return (
     <SelectWrapper>
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="dropdown-button"
         aria-label="Version"
@@ -49,6 +50,7 @@ export const VersionSelect = () => {
           {VERSIONS.map((version) => (
             <li key={version.id}>
               <button
+                type="button"
                 onClick={() => {
                   setSelectedVersion(version);
                   setIsOpen(false);

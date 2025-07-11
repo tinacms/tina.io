@@ -11,7 +11,6 @@ interface LayoutProps {
 
 export const SiteLayout = ({
   children,
-  color,
   sticky = true,
   footerData,
 }: LayoutProps) => {

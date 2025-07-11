@@ -93,7 +93,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
         const isEasternHemisphere = activeMarker.lng > 0;
 
         // X-axis offset (vertical tilt) - depends on hemisphere
-        let viewingOffsetX;
+        let viewingOffsetX: number;
         if (isNorthernHemisphere) {
           // For northern hemisphere, tilt down to show the pin better
           viewingOffsetX = THREE.MathUtils.degToRad(20);
@@ -106,7 +106,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
         }
 
         // Y-axis offset (horizontal rotation) - slight adjustment for depth
-        let viewingOffsetY;
+        let viewingOffsetY: number;
         if (isEasternHemisphere) {
           // Eastern hemisphere - rotate slightly west for better angle
           viewingOffsetY = THREE.MathUtils.degToRad(-5);
@@ -177,7 +177,6 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
       {markerPositions.map((marker) => (
         <group key={marker.id} position={new THREE.Vector3(...marker.position)}>
           <Marker
-            index={marker.id}
             isActive={marker.id === activeGlobeId}
             chunkyLlamaObject={chunkyLlamaFbx}
             greyLlamaObject={greyLlamaFbx}
@@ -190,7 +189,6 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
 };
 
 const Marker = ({
-  index,
   isActive,
   chunkyLlamaObject,
   greyLlamaObject,

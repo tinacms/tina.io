@@ -110,10 +110,6 @@ export function useHookWithRefCallback() {
 }
 
 export function useWindowSize() {
-  if (typeof window !== 'undefined') {
-    return { width: 1200, height: 800 };
-  }
-
   const [windowSize, setWindowSize] = React.useState<{
     width: number;
     height: number;
@@ -124,6 +120,10 @@ export function useWindowSize() {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     });
   }, []);
+
+  if (typeof window !== 'undefined') {
+    return { width: 1200, height: 800 };
+  }
 
   return windowSize;
 }

@@ -74,6 +74,7 @@ const IconSelector = ({ input }) => {
   return (
     <div>
       <button
+        type="button"
         onClick={toggleMinimize}
         className={`${TinaButtonClasses} bg-white hover:bg-gray-50`}
       >

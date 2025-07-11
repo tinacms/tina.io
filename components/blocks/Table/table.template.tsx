@@ -114,7 +114,7 @@ export const tableTemplate: Template = {
               return (
                 <div>
                   {valueMap.map((cell, index) => (
-                    <div className="mb-2" key={index}>
+                    <div className="mb-2" key={cell.id}>
                       <div className="flex mb-1">
                         <span className="mr-3 font-bold">
                           {cell.columnHeader}:

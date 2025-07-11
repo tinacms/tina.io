@@ -84,18 +84,21 @@ const ConsentBanner = () => {
           </p>
           <div className="flex justify-center mt-2">
             <button
+              type="button"
               onClick={handleAcceptAll}
               className="font-ibm-plex text-sm mx-2 px-4 py-2 bg-white text-[#ea6d43] rounded-3xl hover:bg-gray-200"
             >
               Accept All
             </button>
             <button
+              type="button"
               onClick={handleDeclineAll}
               className="mx-2 px-4 py-2 font-ibm-plex text-sm border-2 border-white rounded-3xl hover:bg-orange-600"
             >
               Reject All
             </button>
             <button
+              type="button"
               className="text-[#ea6d43] bg-white font-ibm-plex rounded-3xl text-sm px-5 py-2.5 text-center inline-flex items-center mx-2 hover:bg-gray-200"
               onClick={openModal}
             >
@@ -185,6 +188,7 @@ const ConsentBanner = () => {
               </ul>
             </div>
             <button
+              type="button"
               onClick={closeModal}
               className="mt-4 px-4 py-2 bg-orange-600 text-white font-ibm-plex rounded-3xl mx-auto block"
             >

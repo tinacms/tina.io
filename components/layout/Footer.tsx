@@ -55,8 +55,8 @@ const LinkGroup = ({
         {item.label}
       </summary>
       <div className="p-4">
-        {item.children.map((subItem, index) => (
-          <div key={index}>
+        {item.children.map((subItem) => (
+          <div key={subItem.label}>
             <DynamicLink href={subItem.link} passHref>
               <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                 {subItem.label}
@@ -118,7 +118,7 @@ export const Footer = () => {
               const hasHeader = 'header' in column;
               return (
                 <div
-                  key={`footer-column-${columnIndex}`}
+                  key={`footer-column-${column}`}
                   className="flex flex-col items-stretch justify-start gap-2"
                 >
                   {hasHeader && (
@@ -129,7 +129,7 @@ export const Footer = () => {
                   {column.footerItem.map((item, idx) => {
                     return item.items ? (
                       <LinkGroup
-                        key={`column-${columnIndex}-group-${idx}`}
+                        key={`column-${columnIndex}-group-${item.label}`}
                         item={{
                           label: item.label,
                           children: item.items.map((subItem) => ({
@@ -142,7 +142,7 @@ export const Footer = () => {
                       />
                     ) : (
                       <LinkItem
-                        key={`column-${columnIndex}-item-${idx}`}
+                        key={`column-${columnIndex}-item-${item.label}`}
                         item={{
                           label: item.label,
                           link: item.href,
@@ -157,9 +157,13 @@ export const Footer = () => {
           {/* Social links column */}
           <div className="flex flex-col lg:items-center">
             <div className="flex flex-col lg:items-start gap-4 drop-shadow-sm">
-              {FooterData.Column4.footerItem.map((socialItem, idx) => (
-                <SocialLink key={`social-${idx}`} link={socialItem.href}>
+              {FooterData.Column4.footerItem.map((socialItem) => (
+                <SocialLink
+                  key={`social-${socialItem.label}`}
+                  link={socialItem.href}
+                >
                   {socialItem.image ? (
+                    // biome-ignore lint/performance/noImgElement: <TODO>
                     <img
                       src={socialItem.image}
                       alt={socialItem.label}
@@ -178,10 +182,14 @@ export const Footer = () => {
       <div className="flex justify-end flex-col lg:flex-row w-full lg:items-center bg-linear-to-br from-orange-600 via-orange-800 to-orange-900 text-white px-6 py-8 lg:px-18 gap-6">
         <div className="flex drop-shadow-sm flex-wrap gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {footerLinks.map((item, idx) => {
+            {footerLinks.map((item, _idx) => {
               const { link, label } = item;
               return (
-                <FooterLink key={`${label}-${idx}`} link={link} label={label} />
+                <FooterLink
+                  key={`${label}-${item.link}`}
+                  link={link}
+                  label={label}
+                />
               );
             })}
           </div>

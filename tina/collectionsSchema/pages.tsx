@@ -102,8 +102,6 @@ export const pagesCollection = {
     },
     beforeSubmit: async ({
       values,
-      cms,
-      form,
     }: {
       form: Form;
       cms: TinaCMS;

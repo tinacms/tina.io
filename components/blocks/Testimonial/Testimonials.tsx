@@ -31,6 +31,7 @@ const TestimonialCard = ({ ...data }) => {
             data.rhsImage ? 'flex-row-reverse justify-between' : 'flex-row',
           )}
         >
+          {/** biome-ignore lint/performance/noImgElement: <TODO> */}
           <img
             className={cn(
               'w-12 h-12',
@@ -63,7 +64,7 @@ const TestimonialCard = ({ ...data }) => {
   );
 };
 
-export default function TestimonialsBlock({ data, index }) {
+export default function TestimonialsBlock({ data }) {
   const [_isShowingAll, _setIsShowingAll] = useState(false);
   const titleRef = useRef(null);
   const firstRow = data.testimonials.slice(0, data.testimonials.length / 2);
@@ -81,15 +82,15 @@ export default function TestimonialsBlock({ data, index }) {
 
       <div className="mask-horizontal-fade relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
         <Marquee pauseOnHover className="[--duration:40s]">
-          {firstRow.map((review, index) => (
-            <div key={index} className="mr-4">
+          {firstRow.map((review) => (
+            <div key={review.id} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:40s]">
-          {secondRow.map((review, index) => (
-            <div key={index} className="mr-4">
+          {secondRow.map((review) => (
+            <div key={review.id} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>
           ))}

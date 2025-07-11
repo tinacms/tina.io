@@ -64,7 +64,8 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
   const isZhPath =
     typeof window !== 'undefined'
       ? window.location.pathname.includes('/zh/')
-      : usePathname().includes('/zh/');
+      : // biome-ignore lint/correctness/useHookAtTopLevel: <TODO>
+        usePathname().includes('/zh/');
 
   return (
     <TocWrapper>
@@ -111,7 +112,9 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
 
                 return (
                   <a
+                    type="button"
                     {...props}
+                    // biome-ignore lint/a11y/useValidAnchor: <TODO>
                     onClick={handleClick}
                     className={`
                         block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150 cursor-pointer

@@ -25,7 +25,7 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
   }, []);
 
   useEffect(() => {
-    let rafId;
+    let rafId: number;
 
     function tick() {
       if (!isPaused && oneSetWidth && sliderRef.current) {
@@ -64,9 +64,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ref={sliderRef}
         className="flex whitespace-nowrap subpixel-antialiased backface-hidden"
       >
-        {items.map((item, i) => (
+        {items.map((item) => (
           <div
-            key={i}
+            key={item.id}
             // Ensure each item is exactly 1/5 or 1/3 of the container for even horiz spacing
             className={`flex-none box-border px-2 ${widthClass}`}
           >
@@ -75,9 +75,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ))}
 
         {/* Duplicate items for the seamless loop */}
-        {items.map((item, i) => (
+        {items.map((item) => (
           <div
-            key={`clone-${i}`}
+            key={`clone-${item.id}`}
             className={`flex-none box-border px-2 ${widthClass}`}
           >
             {item}

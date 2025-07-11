@@ -1,3 +1,8 @@
+/** biome-ignore-all lint/performance/noImgElement: <TODO> */
+/** biome-ignore-all lint/a11y/noRedundantAlt: <TODO> */
+/** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: <TODO> */
 import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
@@ -54,6 +59,7 @@ export const docAndBlogComponents: Components<{
   Codesandbox: { embedSrc: string; title: string };
   Diagram: { alt: string; src: string };
   WideImage: { alt: string; src: string };
+  // biome-ignore lint/complexity/noBannedTypes: <TODO>
   CustomFieldComponentDemo: {};
   CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
@@ -176,6 +182,7 @@ export const docAndBlogComponents: Components<{
       <div>
         <hr></hr>
         <button
+          type="button"
           className="flex w-full items-start justify-between text-left text-gray-900"
           onClick={handleToggle}
         >
@@ -260,7 +267,12 @@ export const docAndBlogComponents: Components<{
   Iframe: ({ iframeSrc, height }) => {
     return (
       <div>
-        <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+        <iframe
+          width="100%"
+          height={`${height}px`}
+          src={iframeSrc}
+          title="Iframe"
+        />
       </div>
     );
   },
@@ -314,6 +326,7 @@ export const docAndBlogComponents: Components<{
       return (
         <div className=" my-4 overflow-hidden group">
           <button
+            type="button"
             onClick={() =>
               setOpenGroups(
                 openGroups.includes(groupName)
@@ -685,6 +698,7 @@ export const docAndBlogComponents: Components<{
     return (
       <div className="relative pb-3 word-break white-space overflow-x-hidden rounded-xl! margin-0">
         <button
+          type="button"
           onClick={handleCopy}
           className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-source-code-pro"
         >

@@ -18,12 +18,8 @@ export const Card = ({ cardItem, onHover }) => {
   // To display dates in the stored timezone instead, pass `false` as the parameter
   // i.e  const { startDate, endDate } = calculateEventTimes(cardItem, false);
   const { startDate, endDate } = calculateEventTimes(cardItem);
-  const {
-    hoursUntilEvent,
-    hoursUntilEventEnd,
-    isLiveOrPastEvent,
-    isLiveEvent,
-  } = calculateEventStatus(startDate, endDate);
+  const { hoursUntilEvent, isLiveOrPastEvent, isLiveEvent } =
+    calculateEventStatus(startDate, endDate);
 
   const endYear = calculateEventYear(startDate, endDate);
 
@@ -191,7 +187,7 @@ const EventsBlock = () => {
           <div className="flex flex-col gap-4">
             {filteredEvents.map((cardItem, index) => (
               <Card
-                key={index}
+                key={cardItem.headline}
                 cardItem={{ ...cardItem, index }}
                 onHover={setActiveGlobeId}
               />

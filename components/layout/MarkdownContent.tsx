@@ -183,11 +183,7 @@ const CodeSnippet = (props) => {
   );
 };
 
-export function MarkdownContent({
-  content,
-  escapeHtml,
-  skipHtml,
-}: MarkdownContentProps) {
+export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
   /*
   There's an issue with referential integrity in DOM nodes when ReactMarkdown renders HTML.
   Rendering an empty tree in between updates seems to avoid the issue:

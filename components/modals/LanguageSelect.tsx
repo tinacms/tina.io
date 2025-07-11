@@ -62,6 +62,7 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
           >
             <div className="w-full max-w-md h-full">
               <button
+                type="button"
                 onClick={() => handleLanguageSelect(language.code)}
                 className={`flex flex-row w-full h-full items-center justify-between rounded-lg border ${
                   selectedLanguage === language.code
