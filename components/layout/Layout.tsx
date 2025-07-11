@@ -1,10 +1,9 @@
 'use client';
 
-import { DefaultSeo } from 'next-seo';
 import { usePathname } from 'next/navigation';
+import { DefaultSeo } from 'next-seo';
 import React from 'react';
 import { Footer } from './Footer';
-
 
 interface LayoutProps {
   children: any | any[];
@@ -23,9 +22,7 @@ export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
             url: 'https://tina.io' + pathname,
           }}
         />
-        <div className="pb-0 lg:pb-20">
-          
-        </div>
+        <div className="pb-0 lg:pb-20"></div>
         <div className="flex flex-col flex-1">{children}</div>
         <Footer />
       </div>

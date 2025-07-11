@@ -126,7 +126,7 @@ const EventsBlock = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (globeContainerRef.current) observer.observe(globeContainerRef.current);
@@ -141,7 +141,7 @@ const EventsBlock = () => {
     .filter((event) => {
       const startDate = new Date(event.startDate);
       const endDate = new Date(
-        event.endDate?.split('T')[0] ?? event.startDate.split('T')[0]
+        event.endDate?.split('T')[0] ?? event.startDate.split('T')[0],
       );
       return (
         startDate >= now || // Upcoming events
@@ -150,7 +150,7 @@ const EventsBlock = () => {
     })
     .sort(
       (a, b) =>
-        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
     ) // Sort by start date
     .slice(0, 3); // Take only the first 3 events
 
@@ -158,7 +158,7 @@ const EventsBlock = () => {
   if (filteredEvents.length === 0 && eventsData?.cardItems?.length > 3) {
     filteredEvents = eventsData.cardItems.slice(
       eventsData?.cardItems?.length - 3,
-      eventsData?.cardItems?.length
+      eventsData?.cardItems?.length,
     );
   }
 

@@ -22,7 +22,7 @@ export const highlightText = (text: string) => {
     segments.push(
       <span key={match.index} className="bg-orange-200 text-black font-bold">
         {match[1]}
-      </span>
+      </span>,
     );
     lastIndex = regex.lastIndex;
   }

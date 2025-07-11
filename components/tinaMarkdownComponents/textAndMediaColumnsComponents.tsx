@@ -1,4 +1,4 @@
-import { Components } from 'tinacms/dist/rich-text';
+import type { Components } from 'tinacms/dist/rich-text';
 
 export const textAndMediaColumnsComponent: Components<{}> = {
   p: (props) => (

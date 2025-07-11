@@ -29,7 +29,7 @@ export async function getSearchPageData() {
         query,
         variables: { relativePath: 'docs-toc.json' },
       },
-      {}
+      {},
     );
     formatted = formatTableofContentsData(docTocData, null);
   } catch (e) {
@@ -49,7 +49,7 @@ export async function getSearchPageData() {
         query,
         variables: { relativePath: 'learn-toc.json' },
       },
-      {}
+      {},
     );
     formattedLearn = formatTableofContentsData(learnTocData, null);
   } catch (e) {

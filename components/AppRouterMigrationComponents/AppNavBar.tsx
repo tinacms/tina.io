@@ -6,8 +6,6 @@ import TinaCmsPng from '@/public/img/tinacms-logo.png';
 import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '@/public/svg/tina-icon.svg';
 import '@/styles/tailwind.css';
-import { getGitHubStarCount } from '@/utils/github-star-helper';
-import { saveLocaleToCookie } from '@/utils/locale';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
 import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
@@ -20,6 +18,8 @@ import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
+import { getGitHubStarCount } from '@/utils/github-star-helper';
+import { saveLocaleToCookie } from '@/utils/locale';
 import 'react-responsive-modal/styles.css';
 import { EmailForm } from '../modals/AppRouterEmailForm';
 import { Button } from '../ui/Button';
@@ -129,7 +129,7 @@ function parseNavItems(items: any[]): NavItem[] {
 
     // Default case for any other template type
     console.warn(
-      `Unknown nav item template: ${item._template}. Falling back to string item.`
+      `Unknown nav item template: ${item._template}. Falling back to string item.`,
     );
     return {
       _template: stringItemString,
@@ -176,7 +176,7 @@ export function AppNavBar({ sticky = true }) {
       setModalClass(
         window.innerWidth < 540
           ? 'mobile-language-select-modal'
-          : 'language-select-modal'
+          : 'language-select-modal',
       );
     };
 
@@ -188,7 +188,7 @@ export function AppNavBar({ sticky = true }) {
   }, []);
 
   const [navItems, setNavItems] = useState<NavItem[]>(
-    Array.isArray(data.navItem) ? parseNavItems(data.navItem) : []
+    Array.isArray(data.navItem) ? parseNavItems(data.navItem) : [],
   );
   const toggleMenu = () => {
     const newOpenState = !open;
@@ -210,7 +210,7 @@ export function AppNavBar({ sticky = true }) {
 
   useEffect(() => {
     const matchedLocale = Object.values(SupportedLocales).find((locale) =>
-      pathName.startsWith(`/${locale}`)
+      pathName.startsWith(`/${locale}`),
     );
     setSelectedFlag(matchedLocale || SupportedLocales.EN);
   }, [pathName]);
@@ -222,20 +222,20 @@ export function AppNavBar({ sticky = true }) {
           ? parseNavItems(zhData.navItem)
           : []
         : data && Array.isArray(data.navItem)
-        ? parseNavItems(data.navItem)
-        : []
+          ? parseNavItems(data.navItem)
+          : [],
     );
   }, [pathName, selectedFlag]);
 
   useEffect(() => {
     const fetchStarCount = async () => {
       const githubButton = navItems.find(
-        (item) => item._template === GitHubStarButton
+        (item) => item._template === GitHubStarButton,
       );
       if (githubButton && isGitHubStarButton(githubButton)) {
         const count = await getGitHubStarCount(
           githubButton.owner,
-          githubButton.repo
+          githubButton.repo,
         );
         setStarCount(count);
       }
@@ -255,7 +255,7 @@ export function AppNavBar({ sticky = true }) {
     }, 20);
 
     const localePattern = new RegExp(
-      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`,
     );
     const isRootOrLocale =
       pathName === '/' ||
@@ -273,7 +273,7 @@ export function AppNavBar({ sticky = true }) {
     if (hasLocalePrefix) {
       newPath = isEnglish
         ? pathName.replace(localePattern, (_, __, slash) =>
-            slash === '/' ? '/' : ''
+            slash === '/' ? '/' : '',
           )
         : pathName.replace(localePattern, `/${code}$2`);
     } else {
@@ -351,7 +351,7 @@ export function AppNavBar({ sticky = true }) {
                             </span>
                           </Link>
                         </li>
-                      ) : null
+                      ) : null,
                     )
                   ) : 'href' in item ? (
                     <li key={index} className={`group ${navLinkClasses}`}>
@@ -396,7 +396,7 @@ export function AppNavBar({ sticky = true }) {
                         </span>
                       </Link>
                     </li>
-                  ) : null
+                  ) : null,
                 )}
               </ul>
             </div>
@@ -437,7 +437,7 @@ export function AppNavBar({ sticky = true }) {
                       )}
                       {item.label}
                     </Button>
-                  )
+                  ),
               )}
 
             <button

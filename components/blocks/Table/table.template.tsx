@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { wrapFieldsWithMeta, type Template } from 'tinacms';
+import { type Template, wrapFieldsWithMeta } from 'tinacms';
 import { checkboxList } from '../../../tina/customTinaFormFields/checkboxList';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
 import { codeButtonTemplate } from '../CodeButton/CodeButton.template';
@@ -95,7 +95,7 @@ export const tableTemplate: Template = {
 
                 setValueMap(updatedValueMap);
                 const stringifiedValue = updatedValueMap.map((item) =>
-                  JSON.stringify(item)
+                  JSON.stringify(item),
                 );
                 setValue(stringifiedValue);
                 input.onChange(stringifiedValue);
@@ -107,7 +107,7 @@ export const tableTemplate: Template = {
 
                 setValueMap(updatedValueMap);
                 const stringifiedValue = updatedValueMap.map((item) =>
-                  JSON.stringify(item)
+                  JSON.stringify(item),
                 );
                 setValue(stringifiedValue);
                 input.onChange(stringifiedValue);

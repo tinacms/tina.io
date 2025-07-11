@@ -7,11 +7,11 @@ interface Heading {
 }
 
 function createHeadings(
-  contentRef: React.RefObject<HTMLDivElement>
+  contentRef: React.RefObject<HTMLDivElement>,
 ): Heading[] {
   const headings: Heading[] = [];
   const htmlElements = contentRef.current?.querySelectorAll(
-    'h1, h2, h3, h4, h5, h6'
+    'h1, h2, h3, h4, h5, h6',
   );
 
   htmlElements?.forEach((heading: HTMLHeadingElement) => {
@@ -26,7 +26,7 @@ function createHeadings(
 
 export function createTocListener(
   contentRef: React.RefObject<HTMLDivElement>,
-  setActiveIds: (activeIds: string[]) => void
+  setActiveIds: (activeIds: string[]) => void,
 ): () => void {
   const headings = createHeadings(contentRef);
 

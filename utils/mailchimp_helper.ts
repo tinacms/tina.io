@@ -1,20 +1,20 @@
-import { validate } from 'email-validator'
+import { validate } from 'email-validator';
 
 interface SubscriptionResult {
-  result: 'success' | 'error'
-  message: string
+  result: 'success' | 'error';
+  message: string;
 }
 
 export async function addToMailchimp(
   email: string,
   firstName?: string,
-  lastName?: string
+  lastName?: string,
 ): Promise<SubscriptionResult> {
   if (!validate(email)) {
     return {
       result: 'error',
       message: 'The email you entered is not valid.',
-    }
+    };
   }
 
   const mergeFields: { FNAME?: string; LNAME?: string } = {};
@@ -30,20 +30,20 @@ export async function addToMailchimp(
         status: 'subscribed',
         merge_fields: mergeFields,
       }),
-    })
+    });
 
-    const data = await response.json()
+    const data = await response.json();
     if (!response.ok) {
-      throw new Error(data.message || 'Failed to add email to the list.')
+      throw new Error(data.message || 'Failed to add email to the list.');
     }
     return {
       result: 'success',
       message: 'Email successfully added to the list.',
-    }
+    };
   } catch (error) {
     return {
       result: 'error',
       message: error.message || 'Failed to add email to the list.',
-    }
+    };
   }
 }

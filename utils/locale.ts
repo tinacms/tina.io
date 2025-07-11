@@ -1,6 +1,6 @@
 import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
-import { NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
 
 export function saveLocaleToCookie(locale: string) {
@@ -49,7 +49,7 @@ function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
   try {
     return match(languages, SUPPORTED_LOCALES, DEFAULT_LOCALE);
   } catch (error) {

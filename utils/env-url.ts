@@ -1,4 +1,5 @@
 import settings from '@/content/settings/config.json';
+
 const isDev = process.env.NODE_ENV === 'development';
 
 export const envUrl = (url: string | URL | null | undefined) => {

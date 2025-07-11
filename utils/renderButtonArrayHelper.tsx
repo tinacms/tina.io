@@ -15,11 +15,7 @@ const RenderButton = ({ button, index }) => {
   } else if (button.__typename.includes('CodeButton')) {
     return (
       <div>
-        <CodeButton
-          key={index}
-          id={button.id}
-          label={button.label}
-        >
+        <CodeButton key={index} id={button.id} label={button.label}>
           {button.children}
         </CodeButton>
       </div>

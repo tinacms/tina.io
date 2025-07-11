@@ -1,11 +1,11 @@
-import DocsRichText from '@/component/styles/DocsRichText';
-import { Prism } from '@/component/styles/Prism';
-import PlayIcon from '@/public/svg/play-button.svg';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import DocsRichText from '@/component/styles/DocsRichText';
+import { Prism } from '@/component/styles/Prism';
+import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;

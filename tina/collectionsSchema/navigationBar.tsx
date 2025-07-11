@@ -24,7 +24,8 @@ export const navigationBarCollection = {
         {
           name: 'GitHubStarButton',
           label: 'GitHub Star Button',
-          description: 'Values are inserted in a GET request to the GitHub API via api.github.com/repos/{owner}/{repo}',
+          description:
+            'Values are inserted in a GET request to the GitHub API via api.github.com/repos/{owner}/{repo}',
           ui: {
             itemProps: (item) => {
               return { label: '⭐️ ' + item?.owner + '/' + item?.repo };

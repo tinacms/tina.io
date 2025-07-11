@@ -6,7 +6,7 @@ import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBl
 import { DocsPagination } from 'components/ui';
 import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { BlogPageClientProps } from './BlogType';
+import type { BlogPageClientProps } from './BlogType';
 
 const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
   const blogPostData = data.post;

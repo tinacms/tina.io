@@ -10,15 +10,16 @@ import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
-import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { Prism } from '../styles/Prism';
 import MermaidElement from './mermaid';
+
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
   {
     ssr: false,
-  }
+  },
 );
 
 export const docAndBlogComponents: Components<{
@@ -318,7 +319,7 @@ export const docAndBlogComponents: Components<{
               setOpenGroups(
                 openGroups.includes(groupName)
                   ? openGroups.filter((group) => group !== groupName)
-                  : [...openGroups, groupName]
+                  : [...openGroups, groupName],
               )
             }
             className="bg-linear-to-b from-blue-100/20 to-blue-50/20 w-full flex items-center justify-between px-6 py-4 text-left bg-transparent hover:bg-blue-200/10 transition-colors"
@@ -385,14 +386,14 @@ export const docAndBlogComponents: Components<{
                 result.push(
                   <React.Fragment key={`group-${result.length}`}>
                     {group(currentGroup, currentGroupProperties)}
-                  </React.Fragment>
+                  </React.Fragment>,
                 );
                 currentGroup = null;
                 currentGroupProperties = [];
               } else {
                 if (index !== 0) {
                   result.push(
-                    <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg" />
+                    <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg" />,
                   );
                 }
               }
@@ -401,7 +402,7 @@ export const docAndBlogComponents: Components<{
               result.push(
                 <React.Fragment key={`ind-${index}`}>
                   {propertyItem(property)}
-                </React.Fragment>
+                </React.Fragment>,
               );
             }
             // If property has a groupName
@@ -417,7 +418,7 @@ export const docAndBlogComponents: Components<{
                   result.push(
                     <React.Fragment key={`group-${result.length}`}>
                       {group(currentGroup, currentGroupProperties)}
-                    </React.Fragment>
+                    </React.Fragment>,
                   );
                 }
 
@@ -433,7 +434,7 @@ export const docAndBlogComponents: Components<{
             result.push(
               <React.Fragment key={`group-${result.length}`}>
                 {group(currentGroup, currentGroupProperties)}
-              </React.Fragment>
+              </React.Fragment>,
             );
           }
 
@@ -761,11 +762,11 @@ export const docAndBlogComponents: Components<{
 function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any;
   const id = getDocId(
-    children.props?.content.map((content) => content.text).join('') ?? children
+    children.props?.content.map((content) => content.text).join('') ?? children,
   );
 
   const [currentUrl, setCurrentUrl] = useState(
-    typeof window !== 'undefined' ? window.location.pathname : ''
+    typeof window !== 'undefined' ? window.location.pathname : '',
   );
 
   useEffect(() => {

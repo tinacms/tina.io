@@ -18,7 +18,7 @@ async function getChangedFilesFromApi() {
           Authorization: `token ${GITHUB_TOKEN}`,
           Accept: 'application/vnd.github.v3+json',
         },
-      }
+      },
     );
 
     const mdxFiles = response.data
@@ -26,7 +26,7 @@ async function getChangedFilesFromApi() {
         (file) =>
           (file.filename.startsWith('content/docs/') ||
             file.filename.startsWith('content/blog/')) &&
-          file.filename.endsWith('.mdx')
+          file.filename.endsWith('.mdx'),
       )
       .map((file) => file.filename);
 
@@ -46,7 +46,7 @@ async function main() {
     fs.appendFileSync(process.env.GITHUB_ENV, `HAS_CHANGED_FILES=true\n`);
     fs.appendFileSync(
       process.env.GITHUB_ENV,
-      `CHANGED_FILES<<EOF\n${changedFiles.join('\n')}\nEOF\n`
+      `CHANGED_FILES<<EOF\n${changedFiles.join('\n')}\nEOF\n`,
     );
   } else {
     fs.appendFileSync(process.env.GITHUB_ENV, `HAS_CHANGED_FILES=false\n`);

@@ -1,17 +1,18 @@
-require('dotenv').config()
+require('dotenv').config();
 
-import { fetchRelevantBlogs } from '../data-api/fetchBlogs'
-import { formatExcerpt, orderPosts } from '../utils/blog_helpers'
-const fs = require('fs')
+import { fetchRelevantBlogs } from '../data-api/fetchBlogs';
+import { formatExcerpt, orderPosts } from '../utils/blog_helpers';
 
-const formatTitle = title => title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const fs = require('fs');
 
+const formatTitle = (title) =>
+  title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-const blogPostsRssXml = async blogPosts => {
-  let rssItemsXml = ''
-  for (let post of blogPosts) {
+const blogPostsRssXml = async (blogPosts) => {
+  let rssItemsXml = '';
+  for (const post of blogPosts) {
     const postDate = new Date(post.data.date).toUTCString();
-    const excerpt = await formatExcerpt(post.content, 1000, '…')
+    const excerpt = await formatExcerpt(post.content, 1000, '…');
     const title = formatTitle(post.data.title);
     rssItemsXml += `<item>
       <title>${title}</title>
@@ -20,13 +21,13 @@ const blogPostsRssXml = async blogPosts => {
       <pubDate>${postDate}</pubDate>
       <description><![CDATA[${excerpt}]]>
       </description>
-    </item>\n`
+    </item>\n`;
   }
-  return rssItemsXml
-}
+  return rssItemsXml;
+};
 
-const getRssXml = async blogPosts => {
-  const rssItemsXml = await blogPostsRssXml(blogPosts)
+const getRssXml = async (blogPosts) => {
+  const rssItemsXml = await blogPostsRssXml(blogPosts);
   const now = new Date().toUTCString();
 
   return `<?xml version="1.0" encoding="UTF-8" ?>
@@ -40,17 +41,20 @@ const getRssXml = async blogPosts => {
       <atom:link href="https://tina.io/rss.xml" rel="self" type="application/rss+xml" />
       ${rssItemsXml}
     </channel>
-  </rss>`
-}
+  </rss>`;
+};
 
 const geerateRss = async () => {
-  const relevantPosts = await fetchRelevantBlogs()
-  fs.writeFileSync('public/rss.xml', await getRssXml(orderPosts(relevantPosts)))
-}
+  const relevantPosts = await fetchRelevantBlogs();
+  fs.writeFileSync(
+    'public/rss.xml',
+    await getRssXml(orderPosts(relevantPosts)),
+  );
+};
 
 try {
-  geerateRss()
+  geerateRss();
 } catch (e) {
-  console.error(e)
-  process.kill(1)
+  console.error(e);
+  process.kill(1);
 }

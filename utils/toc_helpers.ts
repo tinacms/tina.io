@@ -7,14 +7,14 @@ interface Heading {
 }
 
 function createHeadings(
-  contentRef: React.RefObject<HTMLDivElement>
+  contentRef: React.RefObject<HTMLDivElement>,
 ): Heading[] {
   const headings = [];
   const htmlElements = contentRef.current.querySelectorAll(
-    'h1, h2, h3, h4, h5, h6'
+    'h1, h2, h3, h4, h5, h6',
   );
 
-  htmlElements.forEach(function (heading: HTMLHeadingElement) {
+  htmlElements.forEach((heading: HTMLHeadingElement) => {
     headings.push({
       id: heading.id,
       offset: heading.offsetTop,
@@ -26,7 +26,7 @@ function createHeadings(
 
 export function createTocListener(
   contentRef: React.RefObject<HTMLDivElement>,
-  setActiveIds: (activeIds: string[]) => void
+  setActiveIds: (activeIds: string[]) => void,
 ): () => void {
   let tick = false;
   const headings = createHeadings(contentRef);
@@ -46,15 +46,15 @@ export function createTocListener(
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
       (heading) => {
         return relativeScrollPosition >= heading.relativePagePosition;
-      }
+      },
     );
 
     const activeHeading =
       activeHeadingCandidates.length > 0
         ? activeHeadingCandidates.reduce((prev, current) =>
-            prev.offset > current.offset ? prev : current
+            prev.offset > current.offset ? prev : current,
           )
-        : headings[0] ?? {};
+        : (headings[0] ?? {});
     newActiveIds.push(activeHeading.id);
 
     if (activeHeading.level != 'H2') {
@@ -67,7 +67,7 @@ export function createTocListener(
       const activeHeadingParent =
         activeHeadingParentCandidates.length > 0
           ? activeHeadingParentCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
+              prev.offset > current.offset ? prev : current,
             )
           : null;
 

@@ -1,9 +1,9 @@
 'use client';
 
-import { getGitHubStarCount } from '@/utils/github-star-helper';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
+import { getGitHubStarCount } from '@/utils/github-star-helper';
 import '../../styles/tailwind.css';
 
 const formatStarCount = (count: number) => {

@@ -61,7 +61,7 @@ const LinkGroup = React.memo(
         </div>
       </details>
     );
-  }
+  },
 );
 
 LinkGroup.displayName = 'LinkGroup';
@@ -89,7 +89,7 @@ const FooterLink = React.memo(
         {label}
       </Link>
     );
-  }
+  },
 );
 
 FooterLink.displayName = 'FooterLink';
@@ -102,7 +102,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
     useMemo(() => {
       const socialLinks =
         footerData.Column4.footerItem.filter(
-          (item) => item._template === 'socialLink'
+          (item) => item._template === 'socialLink',
         ) || [];
 
       const currentFooterNav = isZhPath
@@ -112,11 +112,11 @@ export function Footer({ footerData }: { footerData: FooterData }) {
       const currentFooterLinks = isZhPath
         ? footerLinksZh
         : footerData.Column4.footerItem.filter(
-            (item) => item._template === 'stringItem'
+            (item) => item._template === 'stringItem',
           );
 
       const modalButton = footerData.Column4.footerItem.find(
-        (item) => item._template === 'modalButton'
+        (item) => item._template === 'modalButton',
       );
 
       return { socialLinks, currentFooterNav, currentFooterLinks, modalButton };

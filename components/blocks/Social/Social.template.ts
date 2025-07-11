@@ -31,4 +31,4 @@ export const socialTemplate = {
       label: 'Twitter',
     },
   ],
-}
+};

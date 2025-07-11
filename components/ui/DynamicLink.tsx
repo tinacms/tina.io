@@ -1,4 +1,4 @@
-import Link, { LinkProps } from 'next/link';
+import Link, { type LinkProps } from 'next/link';
 import { getDynamicPath } from '../../utils/getDynamicPath';
 
 type ExtraProps = Omit<LinkProps, 'as' | 'href'>;

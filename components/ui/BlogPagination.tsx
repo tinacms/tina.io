@@ -70,7 +70,7 @@ export const BlogPagination = styled(
         </div>
       </div>
     );
-  }
+  },
 )`
   display: flex;
   justify-content: space-between;

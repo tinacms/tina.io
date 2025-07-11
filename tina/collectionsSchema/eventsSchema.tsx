@@ -28,7 +28,7 @@ const positiveTimezoneList = Array.from(Array(29).keys())
   .map((value) => value / 2)
   .reverse();
 const negativeTimezoneList = Array.from(Array(24).keys()).map(
-  (value) => (value / 2 + 0.5) * -1
+  (value) => (value / 2 + 0.5) * -1,
 );
 
 const addCitiesAndPrefix = (offsets: number[], prefix = '+'): offset[] => {
@@ -40,7 +40,7 @@ const addCitiesAndPrefix = (offsets: number[], prefix = '+'): offset[] => {
       zone,
       cityTimezoneMap.get(zone)
         ? `${cityTimezoneMap.get(zone)}, ${cityOffset.city}`
-        : cityOffset.city
+        : cityOffset.city,
     );
   });
   //Concat the city names to the offset array

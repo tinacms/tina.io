@@ -32,9 +32,10 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import VideoDisplay from './VideoEmbed/videoEmbed';
+
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
-  { ssr: false }
+  { ssr: false },
 );
 const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
   ssr: false,

@@ -1,6 +1,7 @@
 import { SupportedLocales } from 'middleware';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 
 interface Language {

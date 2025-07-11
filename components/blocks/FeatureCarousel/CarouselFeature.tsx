@@ -151,7 +151,7 @@ export default function CarouselFeatureBlock({ data, index }) {
           clearInterval(intervalRef.current);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(sectionRef.current);
@@ -309,7 +309,7 @@ export default function CarouselFeatureBlock({ data, index }) {
                         />
                       </div>
                     </div>
-                  ))
+                  )),
               )}
             {!isShowingAll && isTouchScreen ? (
               <button

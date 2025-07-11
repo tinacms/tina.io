@@ -27,8 +27,8 @@ import { meetingLinksCollection } from './collectionsSchema/meetingLinks';
 import { navigationBarCollection } from './collectionsSchema/navigationBar';
 import { pagesCollection } from './collectionsSchema/pages';
 import { settingCollection } from './collectionsSchema/settings';
-import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud';
+import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 
 export const schema = defineSchema({
   collections: [

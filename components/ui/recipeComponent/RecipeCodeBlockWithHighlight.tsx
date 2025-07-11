@@ -1,5 +1,6 @@
 import Prism from 'prismjs';
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
@@ -10,7 +11,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
 import { CodeToolbar } from './RecipeCodeToolBar';
 
 interface CodeBlockProps {
-  value?: string; 
+  value?: string;
   lang?: string;
   children?: React.ReactNode;
   highlightLines: string;
@@ -41,7 +42,7 @@ const CodeBlockWithHighlightLines = ({
       },
       (err) => {
         console.error('Failed to copy code:', err);
-      }
+      },
     );
   };
 
@@ -65,10 +66,7 @@ const CodeBlockWithHighlightLines = ({
           wordBreak: 'break-word',
         }}
       >
-        <code className={`language-${lang}`}>
-          
-          {value || children}
-        </code>
+        <code className={`language-${lang}`}>{value || children}</code>
       </pre>
     </div>
   );

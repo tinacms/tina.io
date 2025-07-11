@@ -16,8 +16,8 @@ export function enhancedPathMatching(url1: string, url2: string) {
     return normalized;
   };
 
-  let normalizedUrl1 = normalizeUrl(url1);
-  let normalizedUrl2 = normalizeUrl(url2);
+  const normalizedUrl1 = normalizeUrl(url1);
+  const normalizedUrl2 = normalizeUrl(url2);
 
   if (normalizedUrl1.startsWith('zh/') && !normalizedUrl2.startsWith('zh/')) {
     return normalizedUrl1.substring(3) === normalizedUrl2;

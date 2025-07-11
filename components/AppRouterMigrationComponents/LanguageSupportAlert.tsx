@@ -1,13 +1,12 @@
 'use client';
 
 import { AlertTriangle, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { SupportedLocales } from 'middleware';
 import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import type { PageType } from 'utils/hasChineseVersion';
 import { hasChineseVersion } from 'utils/hasChineseVersion';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function LanguageSupportAlert() {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +16,7 @@ export function LanguageSupportAlert() {
   const isLocalesPath = (path) => {
     if (!path) return false;
     return Object.values(SupportedLocales).some(
-      (locale) => path === `/${locale}` || path.startsWith(`/${locale}/`)
+      (locale) => path === `/${locale}` || path.startsWith(`/${locale}/`),
     );
   };
 

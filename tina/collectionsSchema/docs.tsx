@@ -1,5 +1,5 @@
 import React from 'react';
-import { Template, wrapFieldsWithMeta } from 'tinacms';
+import { type Template, wrapFieldsWithMeta } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';

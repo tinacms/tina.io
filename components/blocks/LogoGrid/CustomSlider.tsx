@@ -1,11 +1,9 @@
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
   const sliderRef = useRef(null);
 
   const [isPaused, setIsPaused] = useState(false);
-
-  
 
   // Current scroll position in pixels (negative means moving left).
   const scrollPosition = useRef(0);
@@ -17,7 +15,7 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
 
     const measureId = requestAnimationFrame(() => {
       const totalWidth = sliderRef.current.scrollWidth;
-      
+
       setOneSetWidth(totalWidth / 2);
     });
 
@@ -60,7 +58,10 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div ref={sliderRef} className="flex whitespace-nowrap subpixel-antialiased backface-hidden">
+      <div
+        ref={sliderRef}
+        className="flex whitespace-nowrap subpixel-antialiased backface-hidden"
+      >
         {items.map((item, i) => (
           <div
             key={i}

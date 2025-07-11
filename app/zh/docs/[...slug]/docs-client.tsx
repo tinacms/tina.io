@@ -1,8 +1,8 @@
 'use client';
 
+import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMainBody';
 import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
-import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
 import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
@@ -35,7 +35,7 @@ export default function DocsClient({ props }) {
   const processPageLink = (pageId) => {
     if (!pageId) return '';
 
-    let slug = pageId.slice(7, -4).replace('docs-zh', 'zh/docs');
+    const slug = pageId.slice(7, -4).replace('docs-zh', 'zh/docs');
 
     if (slug.endsWith('/index')) {
       return slug.substring(0, slug.length - 6);
@@ -55,7 +55,7 @@ export default function DocsClient({ props }) {
   const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
-      let slug =
+      const slug =
         filepath
           .substring(7, filepath.length - 4)
           .replace('docs-zh', 'zh/docs') + '/';

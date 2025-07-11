@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import TinaWordmarkSvg from '../../public/svg/tina-wordmark.svg'
+import React from 'react';
+import styled from 'styled-components';
+import TinaWordmarkSvg from '../../public/svg/tina-wordmark.svg';
 
 export const TinaWordmark = styled(({ ...styleProps }) => {
   return (
@@ -9,7 +9,7 @@ export const TinaWordmark = styled(({ ...styleProps }) => {
         <TinaWordmarkSvg />
       </h1>
     </a>
-  )
+  );
 })`
   text-decoration: none;
 
@@ -23,4 +23,4 @@ export const TinaWordmark = styled(({ ...styleProps }) => {
     width: auto;
     fill: inherit;
   }
-`
+`;

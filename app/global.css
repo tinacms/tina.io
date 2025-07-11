@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'IBMPlexSans-SemiBold';
-  src: url('/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+  font-family: "IBMPlexSans-SemiBold";
+  src: url("/fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SourceCodePro-Regular';
-  src: url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+  font-family: "SourceCodePro-Regular";
+  src: url("/fonts/SourceCodePro-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }

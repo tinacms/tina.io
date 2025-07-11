@@ -1,6 +1,6 @@
+import debounce from 'lodash/debounce';
 import React, { useEffect, useRef, useState } from 'react';
 import { wrapFieldsWithMeta } from 'tinacms';
-import debounce from 'lodash/debounce';
 
 const MonacoCodeEditor = wrapFieldsWithMeta(({ field, input, meta }) => {
   const editorRef = useRef<HTMLDivElement | null>(null);

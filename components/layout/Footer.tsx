@@ -152,7 +152,7 @@ export const Footer = () => {
                   })}
                 </div>
               );
-            }
+            },
           )}
           {/* Social links column */}
           <div className="flex flex-col lg:items-center">

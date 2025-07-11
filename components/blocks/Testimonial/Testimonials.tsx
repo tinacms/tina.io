@@ -1,9 +1,9 @@
-import Marquee from '@/components/ui/marquee';
-import { cn } from '@/lib/utils';
 import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
+import Marquee from '@/components/ui/marquee';
+import { cn } from '@/lib/utils';
 import { Container } from '../Container';
 
 const TestimonialCard = ({ ...data }) => {
@@ -16,7 +16,7 @@ const TestimonialCard = ({ ...data }) => {
           'relative w-96 h-48 cursor-pointer overflow-hidden rounded-xl border p-4 flex flex-col justify-between',
           'shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),0_0_1px_1px_rgba(223,219,252,0.5)]',
           'bg-linear-to-b from-white to-white/30 hover:to-white/40',
-          'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out'
+          'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out',
         )}
       >
         <blockquote className="text-sm text-gray-700 leading-relaxed">
@@ -29,13 +29,13 @@ const TestimonialCard = ({ ...data }) => {
         <div
           className={cn(
             'flex items-center gap-3',
-            data.rhsImage ? 'flex-row-reverse justify-between' : 'flex-row'
+            data.rhsImage ? 'flex-row-reverse justify-between' : 'flex-row',
           )}
         >
           <img
             className={cn(
               'w-12 h-12',
-              data.imageBorder ? 'rounded-full' : 'rounded-sm'
+              data.imageBorder ? 'rounded-full' : 'rounded-sm',
             )}
             alt="Testimonial avatar"
             width={48}

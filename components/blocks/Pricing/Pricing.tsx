@@ -156,7 +156,7 @@ const PaidTier = ({ data, isMonthly }) => {
                         {item.description && (
                           <div className="my-1 ml-5 text-md text-gray-600/70">
                             {!isMonthly
-                              ? item.annualDescription ?? item.description
+                              ? (item.annualDescription ?? item.description)
                               : item.description}
                           </div>
                         )}
@@ -181,7 +181,7 @@ const PaidTier = ({ data, isMonthly }) => {
                       {item.description && (
                         <div className="my-1 ml-5 text-sm text-gray-600/70">
                           {!isMonthly
-                            ? item.annualDescription ?? item.description
+                            ? (item.annualDescription ?? item.description)
                             : item.description}
                         </div>
                       )}

@@ -1,4 +1,4 @@
-import { DocsNavProps } from 'components/DocumentationNavigation';
+import type { DocsNavProps } from 'components/DocumentationNavigation';
 import { useRouter } from 'next/router';
 import React, { createContext } from 'react';
 import AnimateHeight from 'react-animate-height';
@@ -47,8 +47,8 @@ const NavTitle = ({
   const selectedClass = selected
     ? 'selected'
     : childSelected
-    ? 'childSelected'
-    : 'default';
+      ? 'childSelected'
+      : 'default';
   const classes =
     level < 1
       ? headerLevelClasses[headerLevel]
@@ -65,7 +65,7 @@ const NavTitle = ({
 };
 
 const hasNestedSlug = (navItems = [], slug) => {
-  for (let item of navItems) {
+  for (const item of navItems) {
     if (matchActualTarget(item.slug || item.href, slug)) {
       return true;
     }
@@ -94,7 +94,7 @@ const NavLevel = ({
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
       hasNestedSlug(categoryData.items, path) ||
-      level === 0
+      level === 0,
   );
 
   const selected =

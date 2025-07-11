@@ -255,7 +255,7 @@ const parsePath = (pathname: string, localeList: string[]) => {
   })(routeType, segments);
 
   console.log(
-    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`
+    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`,
   );
 
   return {

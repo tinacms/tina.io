@@ -53,7 +53,7 @@ const parseStartTime = (startTime: string | number): Date => {
 
 const calculateEventTimes = (
   cardItem: any,
-  useLocalTimezone: boolean = true
+  useLocalTimezone: boolean = true,
 ) => {
   const startTimeDate = parseStartTime(cardItem.startTime);
   const startTime = startTimeDate.getHours() + startTimeDate.getMinutes() / 60;
@@ -61,7 +61,7 @@ const calculateEventTimes = (
   // Calculate start date in UTC
   const startDate = new Date(Date.parse(cardItem.startDate));
   startDate.setMinutes(
-    startDate.getMinutes() + cardItem.timezone * -60 + startTime * 60
+    startDate.getMinutes() + cardItem.timezone * -60 + startTime * 60,
   );
 
   // Calculate end date in UTC
@@ -98,10 +98,10 @@ const calculateEventTimes = (
 
 const calculateEventStatus = (startDateUTC: Date, endDateUTC: Date) => {
   const hoursUntilEvent = Math.ceil(
-    (startDateUTC.getTime() - new Date().getTime()) / 36e5
+    (startDateUTC.getTime() - new Date().getTime()) / 36e5,
   );
   const hoursUntilEventEnd = Math.ceil(
-    (endDateUTC.getTime() - new Date().getTime()) / 36e5
+    (endDateUTC.getTime() - new Date().getTime()) / 36e5,
   );
 
   return {
@@ -158,7 +158,7 @@ const convertToLocalTimezone = (date: Date, eventTimezone: number): Date => {
 
 const formatEventDate = (
   cardItem: any,
-  useLocalTimezone: boolean = true
+  useLocalTimezone: boolean = true,
 ): string => {
   if (!cardItem.startDate) return '';
 
@@ -197,7 +197,7 @@ const formatEventDate = (
 
       localEndDateTimeString = formatLocalDateTime(
         displayEndDate,
-        cardItem.timezone
+        cardItem.timezone,
       );
     }
   }

@@ -11,9 +11,9 @@ import { splitOneAndJoin } from './CompareBox.template';
 
 //Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
@@ -92,7 +92,7 @@ const CriteriaCard = ({ criteriaItems }) => {
 
 const CompanyCard = ({ company, criteria }) => {
   const criterias = company.satisfiedCriteria?.map((item) =>
-    splitOneAndJoin(item, '-')
+    splitOneAndJoin(item, '-'),
   );
   const baseColor = company.backgroundColor || '#000000';
   return (
@@ -103,10 +103,10 @@ const CompanyCard = ({ company, criteria }) => {
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(
             baseColor,
-            0.8
+            0.8,
           )} 0%, ${hexToRgba(baseColor, 0.9)} 50%, ${hexToRgba(
             baseColor,
-            1
+            1,
           )} 100%)`,
         }}
       >
@@ -127,7 +127,7 @@ const CompanyCard = ({ company, criteria }) => {
       <div className="w-full">
         {Array.from({ length: criteria?.length ?? 0 }, (_, idx) => {
           const satisfied = criterias?.find(
-            (item) => item[1] === criteria[idx].criteria
+            (item) => item[1] === criteria[idx].criteria,
           );
 
           return (
@@ -229,7 +229,8 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
 
       if (!company.active && activeCompaniesCount >= maxActive) {
         const firstActiveIdx = prevCompanies.findIndex(
-          (comp) => comp.active && !comp.isHidden && comp.headline !== 'TinaCMS'
+          (comp) =>
+            comp.active && !comp.isHidden && comp.headline !== 'TinaCMS',
         );
         if (firstActiveIdx !== -1) {
           prevCompanies[firstActiveIdx].active = false;
@@ -237,7 +238,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
       }
 
       return prevCompanies.map((company, idx) =>
-        idx === companyIdx ? { ...company, active: !company.active } : company
+        idx === companyIdx ? { ...company, active: !company.active } : company,
       );
     });
   };
@@ -313,7 +314,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
                       onClick={() => toggleActive(companyIdx)}
                     />
                   </div>
-                )
+                ),
             )}
           </Slider>
         </div>

@@ -24,7 +24,7 @@ query {
 export async function getDocsNav(
   preview?: boolean,
   previewData?: any,
-  lang?: string
+  lang?: string,
 ) {
   const docTocData = await client.request(
     {
@@ -35,7 +35,7 @@ export async function getDocsNav(
         }`,
       },
     },
-    {}
+    {},
   );
   return formatTableofContentsData(docTocData, preview);
 }
@@ -43,14 +43,14 @@ export async function getDocsNav(
 export async function getLearnNav(
   preview?: boolean,
   previewData?: any,
-  lang?: string
+  lang?: string,
 ) {
   const learnTocData = await client.request(
     {
       query: learnQuery(lang),
       variables: { relativePath: 'learn-toc.json' },
     },
-    {}
+    {},
   );
   return formatTableofContentsData(learnTocData, preview);
 }
@@ -77,13 +77,13 @@ const stripReferenceDownToSlug = (tableOfContentsSubset: any) => {
 
 export const formatTableofContentsData = (
   tableOfContentsData: any,
-  preview: boolean
+  preview: boolean,
 ) => {
   const exposedTOCData =
     tableOfContentsData.data.docsTableOfContents._values.supermenuGroup;
   exposedTOCData.forEach(
     (obj, index, array) =>
-      (array[index].items = stripReferenceDownToSlug(obj.items))
+      (array[index].items = stripReferenceDownToSlug(obj.items)),
   );
 
   return {

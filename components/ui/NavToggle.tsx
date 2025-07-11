@@ -1,5 +1,5 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 export const NavToggle = styled(({ open, ...styleProps }) => {
   return (
@@ -8,7 +8,7 @@ export const NavToggle = styled(({ open, ...styleProps }) => {
       <span></span>
       <span></span>
     </button>
-  )
+  );
 })`
   background: transparent;
   border: none;
@@ -44,7 +44,7 @@ export const NavToggle = styled(({ open, ...styleProps }) => {
     }
   }
 
-  ${props =>
+  ${(props) =>
     props.open &&
     css`
       span {
@@ -60,4 +60,4 @@ export const NavToggle = styled(({ open, ...styleProps }) => {
         }
       }
     `};
-`
+`;

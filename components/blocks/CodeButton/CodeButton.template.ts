@@ -8,9 +8,7 @@ export const codeButtonTemplate = {
   ui: {
     itemProps: (item) => {
       return { label: item?.label };
-    }
+    },
   },
-  fields: [
-    { name: 'label', label: 'Label', type: 'string' },
-  ],
+  fields: [{ name: 'label', label: 'Label', type: 'string' }],
 };

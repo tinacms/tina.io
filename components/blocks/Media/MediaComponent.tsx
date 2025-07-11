@@ -6,7 +6,7 @@ const VideoGridComponent = ({ data }) => {
   const { mediaItem, typenames, mobileMaxHeight } = data || {};
 
   const [isPlayingArray, setIsPlayingArray] = useState(
-    Array.isArray(mediaItem) ? mediaItem.map(() => false) : []
+    Array.isArray(mediaItem) ? mediaItem.map(() => false) : [],
   );
 
   const handlePlayVideo = (index) => {

@@ -12,7 +12,7 @@ interface TocProps {
 }
 
 export const generateMarkdown = (
-  tocItems: Array<{ type: string; text: string }>
+  tocItems: Array<{ type: string; text: string }>,
 ) => {
   return tocItems
     .map((item) => {
@@ -89,7 +89,7 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
                   const isActive = activeId === props.href?.slice(1); // Match href with activeId
 
                   const handleClick = (
-                    e: React.MouseEvent<HTMLAnchorElement>
+                    e: React.MouseEvent<HTMLAnchorElement>,
                   ) => {
                     e.preventDefault();
                     const href = props.href;

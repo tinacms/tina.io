@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 /** Minimal inline docAndBlogComponents for headings only */
@@ -32,7 +33,7 @@ function useWindowSize() {
 function createListener(
   componentRef: React.RefObject<HTMLDivElement>,
   headings: Item[],
-  setActiveIds: (activeIds: string[]) => void
+  setActiveIds: (activeIds: string[]) => void,
 ) {
   let tick = false;
   const THROTTLE_INTERVAL = 100;
@@ -66,15 +67,15 @@ function createListener(
       scrollPos / componentRef.current.scrollHeight;
 
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
-      (heading) => relativeScrollPosition >= heading.relativePagePosition
+      (heading) => relativeScrollPosition >= heading.relativePagePosition,
     );
 
     const activeHeading =
       activeHeadingCandidates.length > 0
         ? activeHeadingCandidates.reduce((prev, current) =>
-            prev.offset > current.offset ? prev : current
+            prev.offset > current.offset ? prev : current,
           )
-        : headings[0] ?? {};
+        : (headings[0] ?? {});
 
     newActiveIds.push(activeHeading.id);
 
@@ -86,7 +87,7 @@ function createListener(
       const activeHeadingParent =
         activeHeadingParentCandidates.length > 0
           ? activeHeadingParentCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
+              prev.offset > current.offset ? prev : current,
             )
           : null;
 
@@ -279,7 +280,7 @@ export default function ScrollBasedShowcase(data: {
                     ? activeImg.current?.scrollHeight
                     : activeImg.current?.scrollHeight / 1.2) +
                   (activeIds.length - 1) * 32,
-                0
+                0,
               ),
             }}
           />

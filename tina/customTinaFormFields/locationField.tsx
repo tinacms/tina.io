@@ -29,7 +29,7 @@ export const LocationField = ({
 
     if (value.trim()) {
       const filteredSuggestions = countryCoordinates.filter((coord) =>
-        coord.location.toLowerCase().includes(value.toLowerCase())
+        coord.location.toLowerCase().includes(value.toLowerCase()),
       );
       setSuggestions(filteredSuggestions);
       setShowSuggestions(true);
@@ -45,7 +45,7 @@ export const LocationField = ({
     input.onChange(location);
 
     const coordinates = countryCoordinates.find(
-      (coord) => coord.location.toLowerCase() === location.toLowerCase()
+      (coord) => coord.location.toLowerCase() === location.toLowerCase(),
     );
 
     if (coordinates) {

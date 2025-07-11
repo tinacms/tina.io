@@ -2,7 +2,7 @@
 
 import { Container, IconTopRightOnSquare } from 'components/blocks';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { ExamplesExamples } from './examples-types';
+import type { ExamplesExamples } from './examples-types';
 
 export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
   const examples = tinaProps?.data?.examples?.examples;

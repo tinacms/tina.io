@@ -1,12 +1,13 @@
-import settings from '@/content/settings/config.json';
-import { getSeo } from '@/utils/metadata/getSeo';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { client } from '../../tina/__generated__/client';
 import ClientPage from './client-page';
+
 const fg = require('fast-glob');
 export const dynamicParams = false;
 

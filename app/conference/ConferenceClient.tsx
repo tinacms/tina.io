@@ -1,15 +1,14 @@
 'use client';
+
+import { Button } from 'components/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { FaRegCalendar, FaRegMap, FaRegUser } from 'react-icons/fa';
+import { FaRegCalendar, FaRegMap, FaRegStar, FaRegUser } from 'react-icons/fa';
 import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
 import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
-
-import { Button } from 'components/ui';
-import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 //TODO: Remove once TinaCon is over
@@ -350,12 +349,12 @@ function Agenda({
         workshops: Session[];
         breaks: Session[];
       }
-    >
+    >,
   );
 
   // Sort by time
   const timeSlots = Object.values(sessionsByTime).sort(
-    (a, b) => a.timeStart - b.timeStart
+    (a, b) => a.timeStart - b.timeStart,
   );
 
   return (

@@ -1,9 +1,9 @@
 'use client';
 
-import { EmblaOptionsType } from 'embla-carousel';
+import type { EmblaOptionsType } from 'embla-carousel';
 import ClassNames from 'embla-carousel-class-names';
 import useEmblaCarousel from 'embla-carousel-react';
-import React from 'react';
+import type React from 'react';
 
 type PropType = {
   slides: number[];

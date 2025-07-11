@@ -1,5 +1,5 @@
 import mailchimp from '@mailchimp/mailchimp_marketing';
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     try {
       const response = await mailchimp.lists.addListMember(
         process.env.MAILCHIMP_AUDIENCE_ID!,
-        { email_address, status, merge_fields }
+        { email_address, status, merge_fields },
       );
 
       return NextResponse.json({ success: true, response }, { status: 200 });
@@ -25,13 +25,13 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json(
         { error: true, message: errorMessage },
-        { status: errorStatus }
+        { status: errorStatus },
       );
     }
   } catch (err) {
     return NextResponse.json(
       { error: true, message: 'Invalid request body' },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

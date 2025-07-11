@@ -1,4 +1,5 @@
-import { Form, Template, TinaCMS } from 'tinacms';
+import type { Form, Template, TinaCMS } from 'tinacms';
+import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -30,7 +31,6 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
-import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 
 const extendedSeoInformation = {
   ...seoInformation,

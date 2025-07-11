@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 export const Textarea = styled.textarea`
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
@@ -38,4 +38,4 @@ export const Textarea = styled.textarea`
       transition: opacity 200ms ease;
     }
   }
-`
+`;

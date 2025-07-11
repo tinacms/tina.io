@@ -1,6 +1,5 @@
-import Image from 'next/image';
-
 import { useWindowSize } from 'components/hooks/UseWindowSize';
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { Slider } from './CustomSlider';
 

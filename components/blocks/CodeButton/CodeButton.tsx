@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
 import { FaVideo } from 'react-icons/fa6';
 import 'react-responsive-modal/styles.css';
-import { Components } from 'tinacms/dist/rich-text';
+import type { Components } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { copyToClipboard } from '../../layout/MarkdownContent';
 

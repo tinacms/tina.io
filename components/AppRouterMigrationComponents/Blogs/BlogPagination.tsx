@@ -2,7 +2,8 @@
 
 import { DynamicLink } from 'components/ui';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
 interface BlogPaginationProps {
   currentPage: number;

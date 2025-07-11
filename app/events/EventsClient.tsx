@@ -42,7 +42,7 @@ export default function EventsClient({
 
   // Extract events data
   const events = tinaData.data.eventsConnection.edges.map(
-    (edge: any) => edge.node
+    (edge: any) => edge.node,
   );
   const eventsData = events[0];
 
@@ -51,7 +51,7 @@ export default function EventsClient({
     .filter((event) => new Date(event.startDate).getTime() >= now.getTime())
     .sort(
       (a, b) =>
-        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
     );
 
   // Filter and sort past events
@@ -59,7 +59,7 @@ export default function EventsClient({
     .filter((event) => new Date(event.startDate).getTime() < now.getTime())
     .sort(
       (a, b) =>
-        new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+        new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
     );
 
   const [visibleCards, setVisibleCards] = useState<string[]>([]);

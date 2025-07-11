@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
+import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
+import { BiBadge, BiSupport } from 'react-icons/bi';
+import { CgCrown } from 'react-icons/cg';
 import {
-  FaClock,
-  FaUnlock,
-  FaCodeBranch,
-  FaCloudDownloadAlt,
-  FaPuzzlePiece,
-  FaMarkdown,
-  FaGithub,
-  FaFileAlt,
-  FaHandPointer,
-  FaDatabase,
-  FaShare,
-  FaDesktop,
-  FaLockOpen,
-  FaArrowDown,
   FaAngleDown,
   FaAngleUp,
+  FaArrowDown,
+  FaClock,
+  FaCloudDownloadAlt,
+  FaCodeBranch,
+  FaDatabase,
+  FaDesktop,
+  FaFileAlt,
+  FaGithub,
+  FaHandPointer,
+  FaLockOpen,
+  FaMarkdown,
+  FaPuzzlePiece,
+  FaRegStar,
+  FaShare,
+  FaUnlock,
 } from 'react-icons/fa';
-import { AiOutlineUser } from 'react-icons/ai';
-import { BiBadge, BiSupport } from 'react-icons/bi';
-import { AiOutlineUsergroupAdd } from 'react-icons/ai';
-import { CgCrown } from 'react-icons/cg';
-import { HiOutlineSparkles } from 'react-icons/hi2';
-import { TbPlugConnected } from 'react-icons/tb';
-import { SlLock } from 'react-icons/sl';
-import { ImCross } from 'react-icons/im';
-import { FaRegStar } from 'react-icons/fa';
-import { IoMdBook } from 'react-icons/io';
 import { GoPeople } from 'react-icons/go';
+import { HiOutlineSparkles } from 'react-icons/hi2';
+import { ImCross } from 'react-icons/im';
+import { IoMdBook } from 'react-icons/io';
+import { SlLock } from 'react-icons/sl';
+import { TbPlugConnected } from 'react-icons/tb';
 
 const icons = {
   FaClock,
@@ -94,7 +93,7 @@ const IconSelector = ({ input }) => {
       {!isMinimized && (
         <div className="grid grid-cols-2 gap-2">
           <div
-            onClick={() => handleIconChange('')}  
+            onClick={() => handleIconChange('')}
             className={`${TinaButtonClasses} flex items-center cursor-pointer p-2 ${
               selectedIcon === '' ? 'bg-blue-200' : 'bg-white'
             }`}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { wrapFieldsWithMeta, type Template } from 'tinacms';
+import { type Template, wrapFieldsWithMeta } from 'tinacms';
 import { checkboxList } from '../../../tina/customTinaFormFields/checkboxList';
 
 //This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
@@ -19,7 +19,7 @@ export const criteriaMapping = (values) => {
           // Get current satisfied criteria list for the company
           const oldCriteria =
             company.satisfiedCriteria?.map(
-              (item) => splitOneAndJoin(item, '-')[1]
+              (item) => splitOneAndJoin(item, '-')[1],
             ) ?? [];
           const updatedCriteriaSatisfaction: string[] = [];
           // Populate the satisfied criteria list to match the criteria list, adding new criteria if needed and re-using old criteria if possible
@@ -27,7 +27,7 @@ export const criteriaMapping = (values) => {
             if (oldCriteria.includes(item)) {
               const satisfaction: string | undefined =
                 company.satisfiedCriteria.find(
-                  (criteria) => splitOneAndJoin(criteria, '-')[1] === item
+                  (criteria) => splitOneAndJoin(criteria, '-')[1] === item,
                 );
               updatedCriteriaSatisfaction.push(satisfaction || '');
             } else {
@@ -225,7 +225,7 @@ export const compareBoxTemplate: Template = {
 
               return checkboxList((criteria: string, satisfied: boolean) => {
                 const index = value.findIndex(
-                  (item) => splitOneAndJoin(item, '-')[1] === criteria
+                  (item) => splitOneAndJoin(item, '-')[1] === criteria,
                 );
                 value[index] = `${satisfied}-${criteria}`;
                 setValue([...value]);

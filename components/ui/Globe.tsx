@@ -22,7 +22,7 @@ const cartesianToGeographic = (x, y, z, radius = 1) => {
 
 // Smooth easing function for natural animation
 const easeInOutCubic = (t) => {
-  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 };
 
 const Model = ({ activeGlobeId, cardItems, ...props }) => {
@@ -44,7 +44,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
     const position = geographicToCartesian(
       item.markerLAT,
       item.markerLONG,
-      110
+      110,
     );
     return { id: index, position, lat: item.markerLAT, lng: item.markerLONG };
   });
@@ -58,7 +58,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
       (marker, index) =>
         index !== currentIndex &&
         Math.abs(marker.lat - currentMarker.lat) < 0.001 && // Very small tolerance for "same" location
-        Math.abs(marker.lng - currentMarker.lng) < 0.001
+        Math.abs(marker.lng - currentMarker.lng) < 0.001,
     );
   };
 
@@ -119,7 +119,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
         targetRotationX = THREE.MathUtils.clamp(
           targetRotationX,
           -Math.PI / 2 + 0.3,
-          Math.PI / 2 - 0.3
+          Math.PI / 2 - 0.3,
         );
 
         targetRotation.current.set(targetRotationX, targetRotationY, 0);
@@ -132,7 +132,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
     if (isAnimating.current) {
       animationProgress.current += animationSpeed;
       const easedProgress = easeInOutCubic(
-        Math.min(animationProgress.current, 1)
+        Math.min(animationProgress.current, 1),
       );
 
       // Smooth interpolation between start and target rotation on both X and Y axes
@@ -142,14 +142,14 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
       currentRotation.x = THREE.MathUtils.lerp(
         startRotation.current.x,
         targetRotation.current.x,
-        easedProgress
+        easedProgress,
       );
 
       // Animate Y-axis rotation (longitude/horizontal positioning)
       currentRotation.y = THREE.MathUtils.lerp(
         startRotation.current.y,
         targetRotation.current.y,
-        easedProgress
+        easedProgress,
       );
 
       groupRef.current.rotation.copy(currentRotation);
@@ -208,14 +208,14 @@ const Marker = ({
           const forwardOffset = 0.15;
           const direction = ref.current.position.clone().normalize();
           ref.current.position.copy(
-            direction.multiplyScalar(110 + forwardOffset)
+            direction.multiplyScalar(110 + forwardOffset),
           );
         } else {
           // Move inactive markers slightly back when there's an active collision
           const backwardOffset = -0.05;
           const direction = ref.current.position.clone().normalize();
           ref.current.position.copy(
-            direction.multiplyScalar(110 + backwardOffset)
+            direction.multiplyScalar(110 + backwardOffset),
           );
         }
       } else {

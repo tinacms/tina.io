@@ -1,4 +1,5 @@
-import { modalButtonTemplateFields } from "components/blocks/ModalButton/ModalButton.template";
+import { modalButtonTemplateFields } from 'components/blocks/ModalButton/ModalButton.template';
+
 const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
 export const footerCollection = {
@@ -488,8 +489,6 @@ export const footerCollection = {
         },
       ],
     },
-
-
 
     // Column1 - Only an image (logo)
     // Column2 - Has title and items (Product)

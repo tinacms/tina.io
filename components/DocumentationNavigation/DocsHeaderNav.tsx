@@ -1,7 +1,7 @@
-import React from 'react'
-import data from '../../content/docs-navigation.json'
-import { LinkButton } from '../ui'
-import { DynamicLink } from '../ui/DynamicLink'
+import React from 'react';
+import data from '../../content/docs-navigation.json';
+import { LinkButton } from '../ui';
+import { DynamicLink } from '../ui/DynamicLink';
 
 export const DocsHeaderNav = () => {
   return (
@@ -17,7 +17,7 @@ export const DocsHeaderNav = () => {
                   </div>
                 </DynamicLink>
               </li>
-            )
+            );
           })}
       </ul>
       <div className="flex justify-start items-center gap-4">
@@ -37,5 +37,5 @@ export const DocsHeaderNav = () => {
         </LinkButton>
       </div>
     </nav>
-  )
-}
+  );
+};

@@ -7,7 +7,7 @@ import { matchActualTarget } from 'utils';
 import { DynamicLink } from '../../components/ui';
 import docsLinks from '../../content/docs-navigation.json';
 import data from '../../content/siteConfig.json';
-import { DocsNavProps } from './DocumentationNavigation';
+import type { DocsNavProps } from './DocumentationNavigation';
 
 interface NavTitleProps {
   level: number;
@@ -47,8 +47,8 @@ const NavTitle = ({
   const selectedClass = selected
     ? 'selected'
     : childSelected
-    ? 'childSelected'
-    : 'default';
+      ? 'childSelected'
+      : 'default';
   const classes =
     level < 1
       ? headerLevelClasses[headerLevel]
@@ -65,7 +65,7 @@ const NavTitle = ({
 };
 
 const hasNestedSlug = (navItems = [], slug) => {
-  for (let item of navItems) {
+  for (const item of navItems) {
     if (matchActualTarget(item.slug || item.href, slug)) {
       return true;
     }
@@ -93,7 +93,7 @@ const NavLevel = ({
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, pathname) ||
       hasNestedSlug(categoryData.items, pathname) ||
-      level === 0
+      level === 0,
   );
 
   const selected =

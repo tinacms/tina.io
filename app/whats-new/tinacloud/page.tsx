@@ -1,13 +1,13 @@
+import { client } from 'tina/__generated__/client';
 import settings from '@/content/settings/config.json';
 import { getSeo } from '@/utils/metadata/getSeo';
-import { client } from 'tina/__generated__/client';
 import WhatsNewTinaCloudPageLayout from './WhatsNewTinaCloudPageLayout';
 
 export async function generateMetadata() {
   const vars = { last: 10, sort: 'dateReleased' };
   const { data } = await fetchTinaCloudData(vars);
   const nodesData = data.WhatsNewTinaCloudConnection.edges.map(
-    (edge) => edge.node
+    (edge) => edge.node,
   );
   const seoData = (nodesData[0] as { seo?: any })?.seo || {
     title: "What's New in TinaCloud",
