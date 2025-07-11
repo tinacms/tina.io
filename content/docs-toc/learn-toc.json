@@ -256,7 +256,7 @@
           "items": [
             {
               "title": "Internationalization",
-              "slug": "",
+              "slug": "content/docs/guides/internationalization.mdx",
               "_template": "item"
             }
           ],
