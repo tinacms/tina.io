@@ -1,28 +1,29 @@
-import matter from 'gray-matter'
-const fg = require('fast-glob')
-var fs = require('fs')
-var path = require('path')
+import matter from 'gray-matter';
+
+const fg = require('fast-glob');
+var fs = require('node:fs');
+var path = require('node:path');
 
 export default async function fetchSearchableDocs() {
-  const directory = path.resolve('./content/docs')
+  const directory = path.resolve('./content/docs');
   const files = await fg(
-    directory + '(?!/reference/toolkit)(?!/releases/)/**/*.mdx'
-  )
+    `${directory}(?!/reference/toolkit)(?!/releases/)/**/*.mdx`,
+  );
 
-  return files.map(fileName => {
-    const fullPath = path.resolve(directory, fileName)
+  return files.map((fileName) => {
+    const fullPath = path.resolve(directory, fileName);
 
     const slug = fullPath
-      .match(new RegExp(`.+?\/docs\/(.+?)$`))[1]
+      .match(/.+?\/docs\/(.+?)$/)[1]
       .split('.')
       .slice(0, -1)
-      .join('.')
+      .join('.');
 
-    const file = fs.readFileSync(fullPath)
-    const doc = matter(file)
+    const file = fs.readFileSync(fullPath);
+    const doc = matter(file);
     return {
       data: { ...doc.data, slug },
       content: doc.content,
-    }
-  })
+    };
+  });
 }

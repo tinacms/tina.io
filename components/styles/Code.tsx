@@ -187,4 +187,4 @@ export default {
   italic: {
     fontStyle: 'italic',
   },
-}
+};

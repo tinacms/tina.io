@@ -1,32 +1,19 @@
-import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface VideoProps {
-  src: string
-  autoPlay?: boolean
+  src: string;
+  autoPlay?: boolean;
 }
 
 export const Video = styled(({ src, autoPlay, ...styleProps }: VideoProps) => {
   return (
     <div {...styleProps}>
-      <video
-        autoPlay={autoPlay}
-        loop
-        muted
-        playsInline
-        poster={`${src}`}
-      >
-        <source
-          src={`${src}`}
-          type="video/webm"
-        />
-        <source
-          src={`${src}`}
-          type="video/mp4"
-        />
+      <video autoPlay={autoPlay} loop muted playsInline poster={`${src}`}>
+        <source src={`${src}`} type="video/webm" />
+        <source src={`${src}`} type="video/mp4" />
       </video>
     </div>
-  )
+  );
 })`
   display: block;
   margin: 0 auto;
@@ -40,4 +27,4 @@ export const Video = styled(({ src, autoPlay, ...styleProps }: VideoProps) => {
     max-width: 934px;
     width: 100%;
   }
-`
+`;

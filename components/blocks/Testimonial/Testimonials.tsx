@@ -1,10 +1,9 @@
-import Marquee from '@/components/ui/marquee';
-import { cn } from '@/lib/utils';
 import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
-import { Container } from '../Container';
+import Marquee from '@/components/ui/marquee';
+import { cn } from '@/lib/utils';
 
 const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';
@@ -16,7 +15,7 @@ const TestimonialCard = ({ ...data }) => {
           'relative w-96 h-48 cursor-pointer overflow-hidden rounded-xl border p-4 flex flex-col justify-between',
           'shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),0_0_1px_1px_rgba(223,219,252,0.5)]',
           'bg-linear-to-b from-white to-white/30 hover:to-white/40',
-          'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out'
+          'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out',
         )}
       >
         <blockquote className="text-sm text-gray-700 leading-relaxed">
@@ -29,13 +28,14 @@ const TestimonialCard = ({ ...data }) => {
         <div
           className={cn(
             'flex items-center gap-3',
-            data.rhsImage ? 'flex-row-reverse justify-between' : 'flex-row'
+            data.rhsImage ? 'flex-row-reverse justify-between' : 'flex-row',
           )}
         >
+          {/** biome-ignore lint/performance/noImgElement: <TODO> */}
           <img
             className={cn(
               'w-12 h-12',
-              data.imageBorder ? 'rounded-full' : 'rounded-sm'
+              data.imageBorder ? 'rounded-full' : 'rounded-sm',
             )}
             alt="Testimonial avatar"
             width={48}
@@ -64,8 +64,8 @@ const TestimonialCard = ({ ...data }) => {
   );
 };
 
-export default function TestimonialsBlock({ data, index }) {
-  const [isShowingAll, setIsShowingAll] = useState(false);
+export default function TestimonialsBlock({ data }) {
+  const [_isShowingAll, _setIsShowingAll] = useState(false);
   const titleRef = useRef(null);
   const firstRow = data.testimonials.slice(0, data.testimonials.length / 2);
   const secondRow = data.testimonials.slice(data.testimonials.length / 2);
@@ -82,15 +82,15 @@ export default function TestimonialsBlock({ data, index }) {
 
       <div className="mask-horizontal-fade relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
         <Marquee pauseOnHover className="[--duration:40s]">
-          {firstRow.map((review, index) => (
-            <div key={index} className="mr-4">
+          {firstRow.map((review) => (
+            <div key={review.id} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:40s]">
-          {secondRow.map((review, index) => (
-            <div key={index} className="mr-4">
+          {secondRow.map((review) => (
+            <div key={review.id} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>
           ))}

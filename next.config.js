@@ -10,7 +10,7 @@ const isStatic = process.env.EXPORT_MODE === 'static';
 /**
  * @type {import('next').NextConfig}
  */
-let extraConfig = {};
+const extraConfig = {};
 
 if (isStatic) {
   console.log('Exporting static site');
@@ -131,7 +131,7 @@ const config = {
       new MonacoWebpackPlugin({
         languages: ['javascript', 'typescript', 'html', 'css', 'json'],
         filename: 'static/[name].worker.js',
-      })
+      }),
     );
 
     return config;

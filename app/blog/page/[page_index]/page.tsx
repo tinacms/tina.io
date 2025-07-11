@@ -72,16 +72,14 @@ export default async function BlogPaginationPage({
 
   const finalisedPostData = reversedPosts.slice(
     startIndex,
-    startIndex + POSTS_PER_PAGE
+    startIndex + POSTS_PER_PAGE,
   );
 
   return (
-    <>
-      <BlogIndexPageClient
-        currentPageIndexNumber={pageIndex}
-        postsForPageIndex={finalisedPostData}
-        numberOfPages={numPages}
-      />
-    </>
+    <BlogIndexPageClient
+      currentPageIndexNumber={pageIndex}
+      postsForPageIndex={finalisedPostData}
+      numberOfPages={numPages}
+    />
   );
 }

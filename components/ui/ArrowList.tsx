@@ -1,8 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ArrowList = styled(({ children, ...styleProps }) => {
-  return <ul {...styleProps}>{children}</ul>
+  return <ul {...styleProps}>{children}</ul>;
 })`
   margin: 0;
   list-style: none !important;
@@ -25,4 +24,4 @@ export const ArrowList = styled(({ children, ...styleProps }) => {
       color: var(--color-orange, #ec4815);
     }
   }
-`
+`;

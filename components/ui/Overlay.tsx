@@ -1,8 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 interface Overlay {
-  open: boolean
+  open: boolean;
 }
 
 export const Overlay = styled.div<Overlay>`
@@ -18,10 +17,10 @@ export const Overlay = styled.div<Overlay>`
   opacity: 0;
   z-index: 37;
 
-  ${props =>
+  ${(props) =>
     props.open &&
     css`
       opacity: 0.7;
       pointer-events: all;
     `};
-`
+`;

@@ -13,6 +13,7 @@ export const CodeToolbar = ({
     <span className="font-ibm-plex">{lang || 'Unknown'}</span>
     <div className="flex items-center ml-4 space-x-4 relative overflow-visible">
       <button
+        type="button"
         onClick={onCopy}
         className={`flex items-center px-2 py-1 bg-gray-800  rounded-md text-sm transition-colors duration-200 space-x-1 relative ${
           tooltipVisible

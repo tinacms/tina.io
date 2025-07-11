@@ -1,17 +1,16 @@
 'use client';
 
-import Script from 'next/script';
-import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
+import Script from 'next/script';
+import { useEffect } from 'react';
 
 export default function HotjarScript() {
   useEffect(() => {
     const consentGiven = Cookies.get('consentGiven');
-    if(consentGiven){
-      const consentState = JSON.parse(consentGiven);
+    if (consentGiven) {
+      const _consentState = JSON.parse(consentGiven);
     }
-
-  })
+  });
   return (
     <Script id="hotjar" strategy="lazyOnload">
       {`

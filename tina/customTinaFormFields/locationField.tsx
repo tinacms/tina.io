@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const countryCoordinates = [
   { location: 'Copenhagen, Denmark', lat: 0, lng: 0 },
@@ -29,7 +29,7 @@ export const LocationField = ({
 
     if (value.trim()) {
       const filteredSuggestions = countryCoordinates.filter((coord) =>
-        coord.location.toLowerCase().includes(value.toLowerCase())
+        coord.location.toLowerCase().includes(value.toLowerCase()),
       );
       setSuggestions(filteredSuggestions);
       setShowSuggestions(true);
@@ -45,7 +45,7 @@ export const LocationField = ({
     input.onChange(location);
 
     const coordinates = countryCoordinates.find(
-      (coord) => coord.location.toLowerCase() === location.toLowerCase()
+      (coord) => coord.location.toLowerCase() === location.toLowerCase(),
     );
 
     if (coordinates) {
@@ -65,6 +65,7 @@ export const LocationField = ({
 
   return (
     <div className="mb-4 relative z-[999]">
+      {/** biome-ignore lint/a11y/noLabelWithoutControl: <TODO> */}
       <label className="block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2">
         {field.label}
       </label>
@@ -78,9 +79,9 @@ export const LocationField = ({
       />
       {showSuggestions && suggestions.length > 0 && (
         <div className="absolute w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
-          {suggestions.map((suggestion, index) => (
+          {suggestions.map((suggestion) => (
             <div
-              key={index}
+              key={suggestion.location}
               className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-gray-700"
               onClick={() => handleSuggestionClick(suggestion.location)}
             >

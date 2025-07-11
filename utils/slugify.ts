@@ -9,5 +9,5 @@ export function slugify(str) {
       .replace(/\s+/g, '-')
       // Collapse dashes
       .replace(/-+/g, '-')
-  )
+  );
 }

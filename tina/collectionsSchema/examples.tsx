@@ -29,8 +29,7 @@ export const examplesCollection = {
               },
             ],
           },
-          image:
-            '/img/docs/your-blocks.webm',
+          image: '/img/docs/your-blocks.webm',
           link: 'https://github.com/tinacms/tina-cloud-starter',
         },
         itemProps: (item) => {

@@ -7,7 +7,7 @@ import AnimateHeight from 'react-animate-height';
 import { BiChevronRight } from 'react-icons/bi';
 import styled, { css } from 'styled-components';
 import { enhancedPathMatching } from 'utils/enhancedPathMatching';
-import { DocsNavProps } from './DocumentationNavigation';
+import type { DocsNavProps } from './DocumentationNavigation';
 
 interface NavTitleProps {
   level: number;
@@ -52,8 +52,8 @@ const NavTitle = ({
   const selectedClass = selected
     ? 'selected'
     : childSelected
-    ? 'childSelected'
-    : 'default';
+      ? 'childSelected'
+      : 'default';
   const classes =
     level < 1
       ? headerLevelClasses[headerLevel]
@@ -76,7 +76,7 @@ const NavTitle = ({
 };
 
 const hasNestedSlug = (navItems = [], slug) => {
-  for (let item of navItems) {
+  for (const item of navItems) {
     if (enhancedPathMatching(item.slug || item.href, slug)) {
       return true;
     }
@@ -126,7 +126,7 @@ const NavLevel = ({
       hasNestedSlug(categoryData.items, path);
 
     setExpanded(shouldExpand);
-  }, [path, slug, categoryData.href, categoryData.items, level]);
+  }, [path, slug, categoryData.href, categoryData.items]);
 
   React.useEffect(() => {
     if (
@@ -150,7 +150,7 @@ const NavLevel = ({
         });
       }
     }
-  }, [navLevelElem.current, navListElem, selected]);
+  }, [navListElem, selected]);
 
   return (
     <>
@@ -314,7 +314,7 @@ const DocsNavigationContainer = styled.div`
   }
 `;
 
-const AnchorIcon = styled.span`
+const _AnchorIcon = styled.span`
   display: inline-block;
   position: relative;
   transform: translate3d(0, 0, 0);

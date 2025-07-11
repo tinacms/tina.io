@@ -8,5 +8,5 @@ export function formatDate(fullDate) {
       })
     : '';
 
-    return formattedDate;
+  return formattedDate;
 }

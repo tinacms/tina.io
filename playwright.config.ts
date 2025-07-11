@@ -40,9 +40,9 @@ export default defineConfig({
       use: {
         browserName: 'chromium',
         launchOptions: {
-            args: ['--ignore-certificate-errors']
-        }
-    }
+          args: ['--ignore-certificate-errors'],
+        },
+      },
     },
 
     // {

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 export const DocsLeftSidebar = styled.div<{ open: boolean }>`
   line-height: 1.25;
@@ -36,7 +36,7 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
     background-size: 100% 1rem, 100% 1rem;
   }
 
-  ${props =>
+  ${(props) =>
     props.open
       ? css`
           transition: all 240ms ease-out;
@@ -65,4 +65,4 @@ export const DocsLeftSidebar = styled.div<{ open: boolean }>`
     padding: 0; 
     
   }
-`
+`;

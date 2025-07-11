@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import styled from 'styled-components';
 
@@ -29,28 +29,28 @@ export const VersionSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedVersion, setSelectedVersion] = useState(
     VERSIONS.find(
-      (v) => typeof window !== 'undefined' && v.url === window.location.origin
-    ) || VERSIONS[0]
+      (v) => typeof window !== 'undefined' && v.url === window.location.origin,
+    ) || VERSIONS[0],
   );
 
   return (
     <SelectWrapper>
-      
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="dropdown-button"
         aria-label="Version"
       >
         {selectedVersion.label}
-        <FaChevronDown className='pl-1'/>
+        <FaChevronDown className="pl-1" />
       </button>
 
-      
       {isOpen && (
         <DropdownList>
           {VERSIONS.map((version) => (
             <li key={version.id}>
               <button
+                type="button"
                 onClick={() => {
                   setSelectedVersion(version);
                   setIsOpen(false);

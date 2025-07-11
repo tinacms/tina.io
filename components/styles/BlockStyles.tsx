@@ -1,5 +1,5 @@
 /* styles.js */
-import css from 'styled-jsx/css'
+import css from 'styled-jsx/css';
 
 export const GlobalStyles = css.global`
   :root {
@@ -138,4 +138,4 @@ export const GlobalStyles = css.global`
     background: var(--color-white);
     color: var(--color-blue);
   }
-`
+`;

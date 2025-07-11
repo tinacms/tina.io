@@ -1,7 +1,4 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import RightArrowSvg from '../../public/svg/right-arrow.svg'
-import { DynamicLink } from './DynamicLink'
+import styled from 'styled-components';
 
 export const CardGrid = styled.div`
   display: grid;
@@ -9,7 +6,7 @@ export const CardGrid = styled.div`
   grid-auto-rows: auto;
   grid-gap: 2rem;
   margin-top: 2rem;
-`
+`;
 
 export const Card = styled.a`
   border-radius: 5px;
@@ -56,4 +53,4 @@ export const Card = styled.a`
       fill: var(--color-orange);
     }
   }
-`
+`;

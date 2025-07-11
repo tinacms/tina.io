@@ -1,4 +1,4 @@
-import { Template } from 'tinacms';
+import type { Template } from 'tinacms';
 
 const ScrollBasedShowcase: Template = {
   label: 'Scroll Based Showcase',

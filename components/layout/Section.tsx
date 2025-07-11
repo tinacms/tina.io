@@ -1,5 +1,3 @@
-import styled, { css } from 'styled-components';
-
 interface SectionProps {
   children: any | any[];
   color?: 'seafoam' | 'white';

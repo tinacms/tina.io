@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components';
 
 /* Styles rich text (markdown output).
    Use the RichTextWrapper component to easily apply these styles,
@@ -270,6 +270,6 @@ const RichText = css`
   td {
     border-bottom: 1px solid var(--color-light-dark);
   }
-`
+`;
 
-export default RichText
+export default RichText;

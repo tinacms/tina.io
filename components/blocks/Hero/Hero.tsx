@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
 
@@ -55,7 +53,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
         <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
           {item.buttons?.map((button, index) => (
             <div
-              key={index}
+              key={button.id}
               className={`flex items-start lg:items-center ${
                 index === 2 ? 'md:col-span-2 md:justify-center' : ''
               }`}

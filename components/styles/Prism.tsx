@@ -1,5 +1,6 @@
+/** biome-ignore-all lint/correctness/useJsxKeyInIterable: <TODO> */
 import { Highlight, Prism as rootPrism, themes } from 'prism-react-renderer';
-import React from 'react';
+
 (typeof global !== 'undefined' ? global : window).Prism = rootPrism;
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-diff');

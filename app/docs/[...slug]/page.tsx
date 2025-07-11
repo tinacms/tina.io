@@ -1,9 +1,9 @@
-import settings from '@/content/settings/config.json';
-import { getSeo } from '@/utils/metadata/getSeo';
 import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import getTableOfContents from 'utils/docs/getTableOfContents';
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import DocsClient from './docs-client';
 export const dynamicParams = false;
 
@@ -32,7 +32,6 @@ export async function generateMetadata({
   const { data } = await client.queries.doc({ relativePath: `${slug}.mdx` });
 
   if (!data.doc.seo) {
-    
     data.doc.seo = {
       __typename: 'DocSeo',
       canonicalUrl: `${settings.siteUrl}/docs${
@@ -40,7 +39,6 @@ export async function generateMetadata({
       }`,
     };
   } else if (!data.doc.seo.canonicalUrl) {
-    
     data.doc.seo.canonicalUrl = `${settings.siteUrl}/docs${
       slug === 'index' ? '' : `/${slug}`
     }`;

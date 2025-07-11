@@ -1,12 +1,12 @@
-import path from 'path'
-import matter from 'gray-matter'
-import { readFile } from './readFile'
-import { formatExcerpt } from '.'
-import { slugifyTocHeading as slugify } from './docs/slugifyToc'
-import getTocContent from './getTocContent'
+import path from 'node:path';
+import matter from 'gray-matter';
+import { formatExcerpt } from '.';
+import { slugifyTocHeading as slugify } from './docs/slugifyToc';
+import getTocContent from './getTocContent';
+import { readFile } from './readFile';
 
 export const readMarkdownFile = async (filePath: string) => {
-  const doc = matter(await readFile(path.resolve(`${filePath}`)))
+  const doc = matter(await readFile(path.resolve(`${filePath}`)));
   return {
     fileRelativePath: filePath,
     data: {
@@ -14,24 +14,24 @@ export const readMarkdownFile = async (filePath: string) => {
       excerpt: await formatExcerpt(doc.content),
       markdownBody: doc.content,
     },
-  }
-}
+  };
+};
 
 export const getMarkdownPreviewProps = async (
   fileRelativePath: string,
   preview: boolean,
-  previewData: any
+  previewData: any,
 ) => {
-  let file = null
-  let error = null
-  let tocItems = null
+  let file = null;
+  let error = null;
+  let tocItems = null;
 
   try {
-    file = await getMarkdownFile(fileRelativePath, preview, previewData)
-    file.data.excerpt = await formatExcerpt(file.data.markdownBody)
-    tocItems = getTocContent(file.data.markdownBody, { slugify })
+    file = await getMarkdownFile(fileRelativePath, preview, previewData);
+    file.data.excerpt = await formatExcerpt(file.data.markdownBody);
+    tocItems = getTocContent(file.data.markdownBody, { slugify });
   } catch (e) {
-    error = e
+    error = e;
   }
 
   return {
@@ -41,15 +41,15 @@ export const getMarkdownPreviewProps = async (
       file,
       tocItems,
     },
-  }
-}
+  };
+};
 
 export async function getMarkdownFile(
   fileRelativePath: string,
-  preview: boolean,
-  previewData: any
+  _preview: boolean,
+  _previewData: any,
 ): Promise<any> {
-  const file = await readMarkdownFile(fileRelativePath)
+  const file = await readMarkdownFile(fileRelativePath);
 
-  return { sha: '', ...file }
+  return { sha: '', ...file };
 }

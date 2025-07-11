@@ -1,6 +1,5 @@
 'use client';
 import dynamic from 'next/dynamic';
-import React from 'react';
 import type {
   PageBlocks,
   PostConnection,
@@ -32,9 +31,10 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import VideoDisplay from './VideoEmbed/videoEmbed';
+
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
-  { ssr: false }
+  { ssr: false },
 );
 const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
   ssr: false,
@@ -118,7 +118,9 @@ export const Blocks = ({
   blocks: PageBlocks[];
   recentPosts: PostConnection;
 }) => {
-  if (!blocks) return null;
+  if (!blocks) {
+    return null;
+  }
 
   return blocks.map((block, index) => {
     // console.log(block.__typename); // Debugging log

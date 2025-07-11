@@ -5,7 +5,6 @@ import { extractTextFromBody } from 'components/AppRouterMigrationComponents/uti
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { MarkdownContent } from 'components/layout';
 import { DynamicLink } from 'components/ui';
-import React from 'react';
 
 interface Post {
   id: string;

@@ -1,13 +1,13 @@
 // .github/scripts/translate-mdx.js
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
 const { fixPathsInFile } = require('./fix-translation-paths');
 
 const API_KEY = process.env.TINA_OPENAI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
-  f.trim()
+  f.trim(),
 );
 
 function getTargetPath(sourceFilePath) {
@@ -87,7 +87,7 @@ async function main() {
 
   if (translatedFiles.length > 0) {
     console.log(
-      `Successfully translated and fixed paths for ${translatedFiles.length} files.`
+      `Successfully translated and fixed paths for ${translatedFiles.length} files.`,
     );
   } else {
     console.log('No files were translated.');

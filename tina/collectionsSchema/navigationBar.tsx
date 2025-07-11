@@ -1,4 +1,4 @@
-const modals = ['BookDemo', 'EmailForm'];
+const _modals = ['BookDemo', 'EmailForm'];
 const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
 import { modalButtonTemplateFields } from '../../components/blocks/ModalButton/ModalButton.template';
@@ -24,10 +24,11 @@ export const navigationBarCollection = {
         {
           name: 'GitHubStarButton',
           label: 'GitHub Star Button',
-          description: 'Values are inserted in a GET request to the GitHub API via api.github.com/repos/{owner}/{repo}',
+          description:
+            'Values are inserted in a GET request to the GitHub API via api.github.com/repos/{owner}/{repo}',
           ui: {
             itemProps: (item) => {
-              return { label: '⭐️ ' + item?.owner + '/' + item?.repo };
+              return { label: `⭐️ ${item?.owner}/${item?.repo}` };
             },
           },
           fields: [
@@ -48,7 +49,7 @@ export const navigationBarCollection = {
           label: 'String Item',
           ui: {
             itemProps: (item) => {
-              return { label: '🔗 ' + item?.label };
+              return { label: `🔗 ${item?.label}` };
             },
           },
           fields: [
@@ -71,7 +72,7 @@ export const navigationBarCollection = {
           type: 'object',
           ui: {
             itemProps: (item) => {
-              return { label: '🗂️ ' + item?.label };
+              return { label: `🗂️ ${item?.label}` };
             },
           },
           fields: [
@@ -111,7 +112,7 @@ export const navigationBarCollection = {
           type: 'object',
           ui: {
             itemProps: (item) => {
-              return { label: '🍌 ' + item?.label };
+              return { label: `🍌 ${item?.label}` };
             },
             defaultItem: {
               variant: 'default',

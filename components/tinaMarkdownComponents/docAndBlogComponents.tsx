@@ -1,24 +1,29 @@
+/** biome-ignore-all lint/performance/noImgElement: <TODO> */
+/** biome-ignore-all lint/a11y/noRedundantAlt: <TODO> */
+/** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: <TODO> */
 import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
-import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { Prism } from '../styles/Prism';
 import MermaidElement from './mermaid';
+
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
   {
     ssr: false,
-  }
+  },
 );
 
 export const docAndBlogComponents: Components<{
@@ -54,6 +59,7 @@ export const docAndBlogComponents: Components<{
   Codesandbox: { embedSrc: string; title: string };
   Diagram: { alt: string; src: string };
   WideImage: { alt: string; src: string };
+  // biome-ignore lint/complexity/noBannedTypes: <TODO>
   CustomFieldComponentDemo: {};
   CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
@@ -176,6 +182,7 @@ export const docAndBlogComponents: Components<{
       <div>
         <hr></hr>
         <button
+          type="button"
           className="flex w-full items-start justify-between text-left text-gray-900"
           onClick={handleToggle}
         >
@@ -260,7 +267,12 @@ export const docAndBlogComponents: Components<{
   Iframe: ({ iframeSrc, height }) => {
     return (
       <div>
-        <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+        <iframe
+          width="100%"
+          height={`${height}px`}
+          src={iframeSrc}
+          title="Iframe"
+        />
       </div>
     );
   },
@@ -314,11 +326,12 @@ export const docAndBlogComponents: Components<{
       return (
         <div className=" my-4 overflow-hidden group">
           <button
+            type="button"
             onClick={() =>
               setOpenGroups(
                 openGroups.includes(groupName)
                   ? openGroups.filter((group) => group !== groupName)
-                  : [...openGroups, groupName]
+                  : [...openGroups, groupName],
               )
             }
             className="bg-linear-to-b from-blue-100/20 to-blue-50/20 w-full flex items-center justify-between px-6 py-4 text-left bg-transparent hover:bg-blue-200/10 transition-colors"
@@ -347,7 +360,7 @@ export const docAndBlogComponents: Components<{
                       <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg -my-0.5" />
                     )}
                     <div className="mx-2 border-l-2 border-solid border-orange-400">
-                      <React.Fragment>{propertyItem(property)}</React.Fragment>
+                      {propertyItem(property)}
                     </div>
                   </div>
                 );
@@ -370,7 +383,9 @@ export const docAndBlogComponents: Components<{
 
         {/* Process properties in order, grouping only adjacent items with same groupName */}
         {(() => {
-          if (!props.property?.length) return null;
+          if (!props.property?.length) {
+            return null;
+          }
 
           const result = [];
           let currentGroup = null;
@@ -385,14 +400,14 @@ export const docAndBlogComponents: Components<{
                 result.push(
                   <React.Fragment key={`group-${result.length}`}>
                     {group(currentGroup, currentGroupProperties)}
-                  </React.Fragment>
+                  </React.Fragment>,
                 );
                 currentGroup = null;
                 currentGroupProperties = [];
               } else {
                 if (index !== 0) {
                   result.push(
-                    <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg" />
+                    <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg" />,
                   );
                 }
               }
@@ -401,7 +416,7 @@ export const docAndBlogComponents: Components<{
               result.push(
                 <React.Fragment key={`ind-${index}`}>
                   {propertyItem(property)}
-                </React.Fragment>
+                </React.Fragment>,
               );
             }
             // If property has a groupName
@@ -417,7 +432,7 @@ export const docAndBlogComponents: Components<{
                   result.push(
                     <React.Fragment key={`group-${result.length}`}>
                       {group(currentGroup, currentGroupProperties)}
-                    </React.Fragment>
+                    </React.Fragment>,
                   );
                 }
 
@@ -433,7 +448,7 @@ export const docAndBlogComponents: Components<{
             result.push(
               <React.Fragment key={`group-${result.length}`}>
                 {group(currentGroup, currentGroupProperties)}
-              </React.Fragment>
+              </React.Fragment>,
             );
           }
 
@@ -683,6 +698,7 @@ export const docAndBlogComponents: Components<{
     return (
       <div className="relative pb-3 word-break white-space overflow-x-hidden rounded-xl! margin-0">
         <button
+          type="button"
           onClick={handleCopy}
           className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-source-code-pro"
         >
@@ -741,8 +757,8 @@ export const docAndBlogComponents: Components<{
   ),
   CloudinaryVideo: ({ src }) => (
     <video className="video my-6" autoPlay loop muted playsInline>
-      <source src={src + `.webm`} type="video/webm" />
-      <source src={src + `.mp4`} type="video/mp4" />
+      <source src={`${src}.webm`} type="video/webm" />
+      <source src={`${src}.mp4`} type="video/mp4" />
     </video>
   ),
   Button: ({ link, label }) => (
@@ -761,18 +777,18 @@ export const docAndBlogComponents: Components<{
 function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any;
   const id = getDocId(
-    children.props?.content.map((content) => content.text).join('') ?? children
+    children.props?.content.map((content) => content.text).join('') ?? children,
   );
 
   const [currentUrl, setCurrentUrl] = useState(
-    typeof window !== 'undefined' ? window.location.pathname : ''
+    typeof window !== 'undefined' ? window.location.pathname : '',
   );
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentUrl(window.location.pathname);
     }
-  }, [typeof window !== 'undefined' ? window.location.pathname : '']);
+  }, []);
 
   const linkHref = `${currentUrl}#${id}`;
 
@@ -821,7 +837,7 @@ function FormatHeaders({ children, level }) {
       scrollToElement(hash);
     }
     //this is used for when you get sent a link with a hash (i.e link to a header)
-  }, []);
+  }, [scrollToElement]);
 
   return (
     <HeadingTag

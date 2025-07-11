@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 /** Minimal inline docAndBlogComponents for headings only */
@@ -9,9 +10,6 @@ const docAndBlogComponents = {
 
 /** UseWindowSize Hook */
 function useWindowSize() {
-  if (typeof window !== 'undefined') {
-    return { width: 1200, height: 800 };
-  }
   const [windowSize, setWindowSize] = useState<{
     width: number;
     height: number;
@@ -25,6 +23,9 @@ function useWindowSize() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  if (typeof window !== 'undefined') {
+    return { width: 1200, height: 800 };
+  }
   return windowSize;
 }
 
@@ -32,10 +33,10 @@ function useWindowSize() {
 function createListener(
   componentRef: React.RefObject<HTMLDivElement>,
   headings: Item[],
-  setActiveIds: (activeIds: string[]) => void
+  setActiveIds: (activeIds: string[]) => void,
 ) {
   let tick = false;
-  const THROTTLE_INTERVAL = 100;
+  const _THROTTLE_INTERVAL = 100;
   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
 
   const maxScrollYRelative =
@@ -58,7 +59,9 @@ function createListener(
   });
 
   const throttledScroll = () => {
-    if (!componentRef.current) return;
+    if (!componentRef.current) {
+      return;
+    }
     const scrollPos =
       window.scrollY - componentRef.current.offsetTop + window.innerHeight / 6;
     const newActiveIds: string[] = [];
@@ -66,15 +69,15 @@ function createListener(
       scrollPos / componentRef.current.scrollHeight;
 
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
-      (heading) => relativeScrollPosition >= heading.relativePagePosition
+      (heading) => relativeScrollPosition >= heading.relativePagePosition,
     );
 
     const activeHeading =
       activeHeadingCandidates.length > 0
         ? activeHeadingCandidates.reduce((prev, current) =>
-            prev.offset > current.offset ? prev : current
+            prev.offset > current.offset ? prev : current,
           )
-        : headings[0] ?? {};
+        : (headings[0] ?? {});
 
     newActiveIds.push(activeHeading.id);
 
@@ -86,7 +89,7 @@ function createListener(
       const activeHeadingParent =
         activeHeadingParentCandidates.length > 0
           ? activeHeadingParentCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
+              prev.offset > current.offset ? prev : current,
             )
           : null;
 
@@ -130,7 +133,7 @@ export default function ScrollBasedShowcase(data: {
   const headingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
   const [activeIds, setActiveIds] = useState<string[]>([]);
 
-  const windowSize = useWindowSize();
+  const _windowSize = useWindowSize();
 
   /** Build headings array on mount */
   useEffect(() => {
@@ -162,7 +165,9 @@ export default function ScrollBasedShowcase(data: {
 
   /** Throttled scroll event */
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {
+      return;
+    }
     const listener = createListener(componentRef, headings, setActiveIds);
     window.addEventListener('scroll', listener, { passive: true });
     return () => window.removeEventListener('scroll', listener);
@@ -170,7 +175,9 @@ export default function ScrollBasedShowcase(data: {
 
   /** Update active image when activeIds change */
   useEffect(() => {
-    if (!activeIds.length) return;
+    if (!activeIds.length) {
+      return;
+    }
     const heading = headings.find((h) => h.id === activeIds[0]);
     if (activeImg.current) {
       activeImg.current.src = heading?.src || '';
@@ -191,7 +198,7 @@ export default function ScrollBasedShowcase(data: {
 
             return (
               <div
-                key={`showcase-item-${index}`}
+                key={`showcase-item-${item.title}`}
                 // If active => full opacity + orange border + text color
                 // If not => half opacity + gray border
                 className={`mt-0 md:mt-8 transition-all duration-300 ease-in-out
@@ -206,6 +213,7 @@ export default function ScrollBasedShowcase(data: {
                   <div
                     id={itemId}
                     className="pointer-events-none"
+                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <div
@@ -222,6 +230,7 @@ export default function ScrollBasedShowcase(data: {
                   <div
                     id={itemId}
                     className="pointer-events-none"
+                    // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <h2
@@ -251,6 +260,7 @@ export default function ScrollBasedShowcase(data: {
 
                 {/* This image is only shown on mobile (md:hidden).
                     On larger screens, the separate container is used. */}
+                {/** biome-ignore lint/performance/noImgElement: <TODO> */}
                 <img
                   src={item.image}
                   alt={item.title}
@@ -263,6 +273,7 @@ export default function ScrollBasedShowcase(data: {
 
         {/* This image container is only displayed on md+ */}
         <div className="relative w-full flex-1 hidden md:block overflow-hidden">
+          {/** biome-ignore lint/performance/noImgElement: <TODO> */}
           <img
             ref={activeImg}
             src={headings[0]?.src || ''}
@@ -279,7 +290,7 @@ export default function ScrollBasedShowcase(data: {
                     ? activeImg.current?.scrollHeight
                     : activeImg.current?.scrollHeight / 1.2) +
                   (activeIds.length - 1) * 32,
-                0
+                0,
               ),
             }}
           />

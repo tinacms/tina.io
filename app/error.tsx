@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function GlobalError({ error }: { error: Error }) {
   const router = useRouter();
@@ -11,5 +11,5 @@ export default function GlobalError({ error }: { error: Error }) {
     router.replace('/not-found');
   }, [error, router]);
 
-  return null; 
+  return null;
 }

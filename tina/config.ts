@@ -1,5 +1,5 @@
-import { defineConfig } from 'tinacms'
-import { schema } from './schema'
+import { defineConfig } from 'tinacms';
+import { schema } from './schema';
 
 const tinaConfig = defineConfig({
   schema,
@@ -18,16 +18,16 @@ const tinaConfig = defineConfig({
     tina: {
       publicFolder: 'public',
       mediaRoot: '',
-    }
+    },
   },
 
   build: { outputFolder: 'admin', publicFolder: 'public' },
   cmsCallback: (cms) => {
     import('react-tinacms-editor').then(({ MarkdownFieldPlugin }) => {
-      cms.plugins.add(MarkdownFieldPlugin)
-    })
-    return cms
+      cms.plugins.add(MarkdownFieldPlugin);
+    });
+    return cms;
   },
-})
+});
 
-export default tinaConfig
+export default tinaConfig;

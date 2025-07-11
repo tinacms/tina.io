@@ -1,9 +1,12 @@
-export function extractTextFromBody(body: any, maxLength: number = 200): string {
+export function extractTextFromBody(
+  body: any,
+  maxLength: number = 200,
+): string {
   let textContent = '';
 
   function traverse(node: any) {
     if (node.type === 'text' && node.text) {
-      textContent += node.text + ' ';
+      textContent += `${node.text} `;
     }
 
     if (node.children && Array.isArray(node.children)) {

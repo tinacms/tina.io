@@ -1,5 +1,4 @@
-import React from 'react'
-import GitHubButton from 'react-github-btn'
+import GitHubButton from 'react-github-btn';
 
 export function CloudBanner() {
   return (
@@ -8,7 +7,11 @@ export function CloudBanner() {
         <div className="banner-content">
           <span className="mobile pr-2">
             Loving Tina? ⭐️ us on{' '}
-            <a href="https://github.com/tinacms/tinacms" target="_blank">
+            <a
+              href="https://github.com/tinacms/tinacms"
+              target="_blank"
+              rel="noopener"
+            >
               GitHub
             </a>
           </span>
@@ -138,5 +141,5 @@ export function CloudBanner() {
         }
       `}</style>
     </>
-  )
+  );
 }

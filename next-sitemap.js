@@ -12,7 +12,7 @@ module.exports = {
   },
   exclude: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
   sitemapSize: 7000,
-  transform: async (config, path) => {
+  transform: async (_config, path) => {
     const listOfMinorPaths = [
       '/privacy-notice',
       '/security',

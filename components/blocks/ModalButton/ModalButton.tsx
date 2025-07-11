@@ -1,6 +1,6 @@
 import { EmailForm } from 'components/forms';
 import { DemoForm } from 'components/modals/BookDemo';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
@@ -40,26 +40,25 @@ export const ModalB = ({ items, align = 'left' }) => {
           .filter(Boolean)
           .join(' ')}
       >
-        {items &&
-          items.map((item) => {
-            const { color, label, icon, modal } = item;
+        {items?.map((item) => {
+          const { color, label, icon, modal } = item;
 
-            return (
-              <ModalButton
-                key={label}
-                color={color}
-                id={sanitizeLabel(label)}
-                className=""
-                onClick={() => openModal(modal)}
-                data-tina-field={tinaField(item, 'label')}
-              >
-                {label}
-                {icon && (
-                  <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
-                )}
-              </ModalButton>
-            );
-          })}
+          return (
+            <ModalButton
+              key={label}
+              color={color}
+              id={sanitizeLabel(label)}
+              className=""
+              onClick={() => openModal(modal)}
+              data-tina-field={tinaField(item, 'label')}
+            >
+              {label}
+              {icon && (
+                <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
+              )}
+            </ModalButton>
+          );
+        })}
       </div>
 
       <Modal open={open} onClose={closeModal} center>

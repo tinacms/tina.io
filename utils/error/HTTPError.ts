@@ -1,3 +1,3 @@
 export class HTTPError extends Error {
-  public code = 500
+  public code = 500;
 }

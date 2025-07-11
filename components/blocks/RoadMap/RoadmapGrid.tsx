@@ -2,6 +2,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 const Roadmap = ({ data, last = false, index }) => {
   return (
     <div className="px-6 flex items-stretch w-full gap-8">
@@ -37,17 +38,23 @@ const Roadmap = ({ data, last = false, index }) => {
 
 export function RoadmapGridBlock({ data, index }) {
   return (
-    <section key={'roadmap-grid-' + index} className={`w-full`}>
+    <section key={`roadmap-grid-${index}`} className={`w-full`}>
       <Container width="narrow">
         <h3 className="font-ibm-plex inline-block text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4">
           {data.headline}
         </h3>
         <div className="">
-          {data.items &&
-            data.items.map((itemData, index) => {
-              const last = data.items.length - 1 === index;
-              return <Roadmap data={itemData} last={last} index={index} />;
-            })}
+          {data.items?.map((itemData, index) => {
+            const last = data.items.length - 1 === index;
+            return (
+              <Roadmap
+                data={itemData}
+                last={last}
+                key={itemData.id}
+                index={index}
+              />
+            );
+          })}
         </div>
       </Container>
       {/* <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1" /> */}

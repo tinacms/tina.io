@@ -66,10 +66,9 @@ const FreeTier = ({ data }) => (
           components={pricingComponents}
         />
         <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
-          {data.freeTier?.buttons &&
-            data.freeTier?.buttons.map((button, index) => (
-              <RenderButton key={index} button={button} index={index} />
-            ))}
+          {data.freeTier?.buttons?.map((button, index) => (
+            <RenderButton key={button.id} button={button} index={index} />
+          ))}
         </div>
       </div>
     </div>
@@ -123,10 +122,9 @@ const PaidTier = ({ data, isMonthly }) => {
           {data.annualDescription}{' '}
         </div>
         <div className="pt-3 flex">
-          {data.buttons &&
-            data.buttons.map((button, index) => (
-              <RenderButton key={index} button={button} index={index} />
-            ))}
+          {data.buttons?.map((button, index) => (
+            <RenderButton key={button.id} button={button} index={index} />
+          ))}
         </div>
         <div className="pt-6">
           <div className="accordion-content">
@@ -141,53 +139,51 @@ const PaidTier = ({ data, isMonthly }) => {
             </div>
             {isAccordionOpen && (
               <div className="pl-2">
-                {data.cardItem &&
-                  data.cardItem.map((item, index) => {
-                    const Icon = icons[item.icon];
-                    return (
-                      <div
-                        key={index}
-                        className="flex flex-col items-start mt-2"
-                      >
-                        <div className="flex items-center text-lg">
-                          {Icon && <Icon className="mr-2" />}
-                          <span>{item.name}</span>
-                        </div>
-                        {item.description && (
-                          <div className="my-1 ml-5 text-md text-gray-600/70">
-                            {!isMonthly
-                              ? item.annualDescription ?? item.description
-                              : item.description}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-              </div>
-            )}
-          </div>
-          <div className="non-accordion-content">
-            <p className="font-semibold">Includes:</p>
-            <div className="pl-2">
-              {data.cardItem &&
-                data.cardItem.map((item, index) => {
+                {data.cardItem?.map((item) => {
                   const Icon = icons[item.icon];
                   return (
-                    <div key={index} className="flex flex-col items-start mt-2">
-                      <div className="flex items-center">
+                    <div
+                      key={item.id}
+                      className="flex flex-col items-start mt-2"
+                    >
+                      <div className="flex items-center text-lg">
                         {Icon && <Icon className="mr-2" />}
                         <span>{item.name}</span>
                       </div>
                       {item.description && (
-                        <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        <div className="my-1 ml-5 text-md text-gray-600/70">
                           {!isMonthly
-                            ? item.annualDescription ?? item.description
+                            ? (item.annualDescription ?? item.description)
                             : item.description}
                         </div>
                       )}
                     </div>
                   );
                 })}
+              </div>
+            )}
+          </div>
+          <div className="non-accordion-content">
+            <p className="font-semibold">Includes:</p>
+            <div className="pl-2">
+              {data.cardItem?.map((item) => {
+                const Icon = icons[item.icon];
+                return (
+                  <div key={item.id} className="flex flex-col items-start mt-2">
+                    <div className="flex items-center">
+                      {Icon && <Icon className="mr-2" />}
+                      <span>{item.name}</span>
+                    </div>
+                    {item.description && (
+                      <div className="my-1 ml-5 text-sm text-gray-600/70">
+                        {!isMonthly
+                          ? (item.annualDescription ?? item.description)
+                          : item.description}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -235,6 +231,7 @@ export function PillSwitch({
           ></div>
           <div className="relative leading-none flex z-10">
             <button
+              type="button"
               className={`px-10 py-4 w-1/2 z-20 transition-colors  duration-500 ${
                 isMonthly ? 'text-white' : 'text-blue-500'
               }`}
@@ -243,6 +240,7 @@ export function PillSwitch({
               Monthly
             </button>
             <button
+              type="button"
               className={`px-10 py-2 w-1/2 z-20 transition-colors  duration-500 ${
                 !isMonthly ? 'text-white' : 'text-blue-500'
               }`}
@@ -292,12 +290,11 @@ export function PricingBlock({ data }) {
         toggleText={data.pillSwitchToggleText}
       />
       <div className="responsive-grid">
-        {data.plans &&
-          data.plans.map((plan, index) => (
-            <div key={index} className="flex flex-col">
-              <PaidTier data={plan} isMonthly={isMonthly} />
-            </div>
-          ))}
+        {data.plans?.map((plan, _index) => (
+          <div key={plan.id} className="flex flex-col">
+            <PaidTier data={plan} isMonthly={isMonthly} />
+          </div>
+        ))}
       </div>
       <style jsx>{`
         .responsive-grid {

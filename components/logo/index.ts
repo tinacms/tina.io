@@ -1,2 +1,2 @@
-export * from './TinaIcon'
-export * from './TinaWordmark'
+export * from './TinaIcon';
+export * from './TinaWordmark';

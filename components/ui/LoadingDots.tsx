@@ -16,16 +16,15 @@ limitations under the License.
 
 */
 
-import * as React from 'react'
-import styled, { keyframes, css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components';
 
 interface LoadingDotsProps {
-  dotSize?: number
-  color?: string
+  dotSize?: number;
+  color?: string;
 }
 interface SingleDotProps {
-  dotSize: number
-  color: string
+  dotSize: number;
+  color: string;
 }
 
 export const LoadingDots = styled(
@@ -36,20 +35,20 @@ export const LoadingDots = styled(
         <SingleDot dotSize={dotSize} color={color} />
         <SingleDot dotSize={dotSize} color={color} />
       </div>
-    )
-  }
+    );
+  },
 )`
   margin: 0 4px;
   display: flex;
   align-items: center;
-`
+`;
 
 const scaleUpAndDown = keyframes`
   0% { transform: scale(0.1); }
   50% { transform: scale(1); }
   90% { transform: scale(0.1); }
   100% { transform: scale(0.1); }
-`
+`;
 
 const SingleDot = styled.span<SingleDotProps>`
   animation: ${scaleUpAndDown} 2s linear infinite;
@@ -68,4 +67,4 @@ const SingleDot = styled.span<SingleDotProps>`
       height: ${dotSize}px;
       border-radius: ${dotSize}px;
     `}
-`
+`;

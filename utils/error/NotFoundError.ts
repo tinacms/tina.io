@@ -1,4 +1,4 @@
-import { HTTPError } from './HTTPError'
+import { HTTPError } from './HTTPError';
 export class NotFoundError extends HTTPError {
-  public code = 404
+  public code = 404;
 }

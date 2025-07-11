@@ -1,4 +1,5 @@
-import { modalButtonTemplateFields } from "components/blocks/ModalButton/ModalButton.template";
+import { modalButtonTemplateFields } from 'components/blocks/ModalButton/ModalButton.template';
+
 const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
 export const footerCollection = {
@@ -32,7 +33,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -55,7 +56,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -94,7 +95,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -121,7 +122,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🍌 ' + item?.label };
+                  return { label: `🍌 ${item?.label}` };
                 },
                 defaultItem: {
                   variant: 'default',
@@ -164,7 +165,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -187,7 +188,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -226,7 +227,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -269,7 +270,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -292,7 +293,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -331,7 +332,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -374,7 +375,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -397,7 +398,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -436,7 +437,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -463,7 +464,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🍌 ' + item?.label };
+                  return { label: `🍌 ${item?.label}` };
                 },
                 defaultItem: {
                   variant: 'default',
@@ -488,8 +489,6 @@ export const footerCollection = {
         },
       ],
     },
-
-
 
     // Column1 - Only an image (logo)
     // Column2 - Has title and items (Product)

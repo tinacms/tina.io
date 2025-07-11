@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 import Slider from 'react-slick';
@@ -11,9 +11,9 @@ import { splitOneAndJoin } from './CompareBox.template';
 
 //Function to use alpha values to create a background gradient with any input hex colour
 function hexToRgba(hex, alpha) {
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
@@ -63,8 +63,12 @@ const CriteriaCard = ({ criteriaItems }) => {
   return (
     <div className="criteria-card rounded-lg relative">
       <div key={0} className="py-3 flex" style={commonHeightStyle} />
-      {criteriaItems?.map((item, idx) => (
-        <div key={idx} className="py-3 flex relative" style={commonHeightStyle}>
+      {criteriaItems?.map((item, _idx) => (
+        <div
+          key={item.criteria}
+          className="py-3 flex relative"
+          style={commonHeightStyle}
+        >
           <h3
             data-tina-field={tinaField(item, 'criteria')}
             className="sm:leading-[10px] md:font-semibold lg:font-semibold sm:font-normal lg:text-lg md:text-sm sm:text-xs flex items-center"
@@ -74,10 +78,10 @@ const CriteriaCard = ({ criteriaItems }) => {
           <div className="relative content-center ml-auto lg:ml-0">
             <IoMdInformationCircleOutline
               className="ml-1 text-orange-500 text-xl"
-              onMouseEnter={() => setHoveredItem(idx)}
+              onMouseEnter={() => setHoveredItem(_idx)}
               onMouseLeave={() => setHoveredItem(null)}
             />
-            {hoveredItem === idx && (
+            {hoveredItem === _idx && (
               <div className="ml-0.5 shadow-[0px_0px_25px_10px_rgba(0,0,0,0.1)] absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white text-sm p-2 rounded-lg z-10 xl:w-[300px] w-[150px] break-words text-center">
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white"></div>
                 {item.description}
@@ -92,7 +96,7 @@ const CriteriaCard = ({ criteriaItems }) => {
 
 const CompanyCard = ({ company, criteria }) => {
   const criterias = company.satisfiedCriteria?.map((item) =>
-    splitOneAndJoin(item, '-')
+    splitOneAndJoin(item, '-'),
   );
   const baseColor = company.backgroundColor || '#000000';
   return (
@@ -103,10 +107,10 @@ const CompanyCard = ({ company, criteria }) => {
           ...commonHeightStyle,
           background: `linear-gradient(225deg, ${hexToRgba(
             baseColor,
-            0.8
+            0.8,
           )} 0%, ${hexToRgba(baseColor, 0.9)} 50%, ${hexToRgba(
             baseColor,
-            1
+            1,
           )} 100%)`,
         }}
       >
@@ -127,11 +131,14 @@ const CompanyCard = ({ company, criteria }) => {
       <div className="w-full">
         {Array.from({ length: criteria?.length ?? 0 }, (_, idx) => {
           const satisfied = criterias?.find(
-            (item) => item[1] === criteria[idx].criteria
+            (item) => item[1] === criteria[idx].criteria,
           );
 
           return (
-            <div key={idx} className="flex flex-col items-center w-full">
+            <div
+              key={criteria[idx].criteria}
+              className="flex flex-col items-center w-full"
+            >
               <div
                 className="flex items-center justify-center w-full"
                 style={{
@@ -165,7 +172,7 @@ interface CompareBoxBlockProps {
   index: number;
 }
 
-export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
+export function CompareBoxBlock({ data }: CompareBoxBlockProps) {
   const [companies, setCompanies] = useState([]);
   const [userInteracted, setUserInteracted] = useState(false);
   const [maxActive, setMaxActive] = useState(4);
@@ -176,7 +183,9 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
   }, [data]);
 
   useEffect(() => {
-    if (userInteracted) return;
+    if (userInteracted) {
+      return;
+    }
 
     let currentIndex = 1;
     const interval = setInterval(() => {
@@ -189,7 +198,9 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
           sliderRef.current.slickGoTo(currentIndex - 1);
         }
         currentIndex = (currentIndex + 1) % (prevCompanies?.length ?? 1);
-        if (currentIndex === 0) currentIndex = 1;
+        if (currentIndex === 0) {
+          currentIndex = 1;
+        }
         return newCompanies;
       });
     }, 3000);
@@ -229,7 +240,8 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
 
       if (!company.active && activeCompaniesCount >= maxActive) {
         const firstActiveIdx = prevCompanies.findIndex(
-          (comp) => comp.active && !comp.isHidden && comp.headline !== 'TinaCMS'
+          (comp) =>
+            comp.active && !comp.isHidden && comp.headline !== 'TinaCMS',
         );
         if (firstActiveIdx !== -1) {
           prevCompanies[firstActiveIdx].active = false;
@@ -237,7 +249,7 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
       }
 
       return prevCompanies.map((company, idx) =>
-        idx === companyIdx ? { ...company, active: !company.active } : company
+        idx === companyIdx ? { ...company, active: !company.active } : company,
       );
     });
   };
@@ -307,13 +319,13 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             {companies?.map(
               (company, companyIdx) =>
                 !company.isHidden && (
-                  <div key={`company-${companyIdx}`}>
+                  <div key={`company-${company.id}`}>
                     <CompanyItem
                       company={company}
                       onClick={() => toggleActive(companyIdx)}
                     />
                   </div>
-                )
+                ),
             )}
           </Slider>
         </div>
@@ -333,9 +345,9 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
             </div>
             {companies
               ?.filter((company) => company.active)
-              .map((company, idx) => (
+              .map((company, _idx) => (
                 <CompanyCard
-                  key={`company-card-${idx}`}
+                  key={`company-card-${company.id}`}
                   company={company}
                   criteria={data.criteriaItems}
                 />

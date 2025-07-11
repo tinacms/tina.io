@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
-import RightArrowSvg from '../../public/svg/right-arrow.svg';
 import { getDocId } from 'utils/docs/getDocIds';
+import RightArrowSvg from '../../public/svg/right-arrow.svg';
 
 interface TocProps {
   tocItems: Array<{ type: string; text: string }>;
   activeIds: string[];
 }
 
-export const generateMarkdown = (tocItems: Array<{ type: string; text: string }>) => {
+export const generateMarkdown = (
+  tocItems: Array<{ type: string; text: string }>,
+) => {
   return tocItems
     .map((item) => {
       const anchor = getDocId(item.text);
@@ -40,7 +42,6 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
   }
 
   const tocMarkdown = generateMarkdown(tocItems);
-
 
   return (
     <TocWrapper>
@@ -168,15 +169,14 @@ export const TocContent = styled.div<TocContentProps>`
   transition: all 400ms ease-out;
 
   ${(props) =>
-    props.activeIds &&
-    props.activeIds.map(
+    props.activeIds?.map(
       (id) =>
         css`
           a[href='#${id}'] {
             color: var(--color-orange);
             text-decoration: none;
           }
-        `
+        `,
     )}
 
   ${(props) =>

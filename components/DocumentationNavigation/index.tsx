@@ -1,1 +1,1 @@
-export * from './DocumentationNavigation'
+export * from './DocumentationNavigation';
