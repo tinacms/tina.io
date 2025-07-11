@@ -1,7 +1,7 @@
 ---
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
-last_edited: '2025-02-21T00:25:47.105Z'
+last_edited: '2025-05-03T00:23:50.688Z'
 next: ''
 previous: ''
 ---
@@ -174,8 +174,8 @@ If your site is served at a sub-directory, ensure that your `build.basePath` is 
 
 TinaCloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
 
-* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote
-  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it
+* The `tina` folder and `tina-lock.json` is not in your GitHub repository remote
+  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it.
 * Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder
   * The referenced branch should be created and should contain the `tina` folder
 * The apiURL prop is misconfigured on the TinaCMS component
