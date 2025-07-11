@@ -255,12 +255,12 @@
           "title": "Globalization",
           "items": [
             {
-              "title": "Internationalization",
+              "title": "TinaCMS Availability in China",
               "slug": "content/docs/guides/internationalization.mdx",
               "_template": "item"
             },
             {
-              "title": "TinaCMS Availability in China",
+              "title": "Internationalization",
               "slug": "content/docs/guides/internationalization.mdx",
               "_template": "item"
             }
