@@ -1,0 +1,47 @@
+---
+title: TinaCMS Availability in China
+last_edited: '2025-07-11T06:30:16.676Z'
+next: content/docs/guides/internationalization.mdx
+previous: ''
+---
+
+### TinaCMS Availability in China
+
+This document evaluates the accessibility of key TinaCMS services and tools when developing and deploying projects from China without VPN.
+
+### Quick Overview
+
+| Service                        | Status       | Notes                          |
+| ------------------------------ | ------------ | ------------------------------ |
+| TinaCMS CLI                    | ✅ Accessible | Full functionality             |
+| TinaCloud                      | ✅ Accessible | Full functionality             |
+| GitHub                         | ⚠️ Slow      | Accessible but slow            |
+| Tina.io                        | ✅ Accessible | Full functionality             |
+|  Static Site Hosting Platforms | ❌ Not usable | Deployed instances unreachable |
+
+### Service Availability Assessment
+
+1. TinaCMS CLI Installation
+   * Command: `npx create-tina-app@latest`
+   * Status: ✅ Accessible - The npm registry and TinaCMS CLI can be accessed without issues. 
+2. TinaCloud Service
+   * Service: TinaCloud Dashboard and API
+   * Status: ✅ Accessible - Both the TinaCloud dashboard and API services are fully accessible from China.
+3. GitHub
+   * Service: GitHub repository hosting
+   * Status: ⚠️ Accessible but slow - GitHub is accessible but with reduced performance and occasional connectivity issues.
+4. Tina.io and Documentation
+   * Service: Tina.io documentation website
+   * Status: ✅ Accessible - The official TinaCMS documentation is fully accessible.
+5.  Static Site Hosting Platforms
+   * Services: Vercel, Netlify, GitHub Pages
+   * Status: ❌ Not usable - Platform websites are accessible, but deployed instances cannot be reached from China due to the DNS issue.
+
+### Summary
+
+TinaCMS is generally available and usable in mainland China. The main obstacle is the inaccessibility of static site hosting platforms, and there are no direct Chinese alternatives to these services. However, you can achieve similar functionality by combining Alibaba Cloud servers with GitHub Actions for automated deployment.
+
+For detailed implementation guidance:
+
+* [Deploying to Alibaba Cloud](https://tina.io/docs/tina-cloud/deployment-options/alibaba-cloud) - Learn how to set up TinaCMS with Alibaba Cloud infrastructure
+* [Internationalization](https://tina.io/docs/guides/internationalization) - Add multi-language support for Tina project
