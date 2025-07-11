@@ -1,21 +1,25 @@
 ---
 title: Deploying to Alibaba Cloud
-last_edited: '2025-07-10T08:23:15.006Z'
+last_edited: '2025-07-11T07:03:10.826Z'
 next: content/docs/tina-cloud/api-versioning.mdx
 previous: content/docs/tina-cloud/deployment-options/github-pages.mdx
 ---
 
 ## Alternative Deployment for Chinese Users
 
-TinaCMS primarily implements automatic content repository updates through GitHub and Vercel integration, but **Vercel is blocked in mainland China**. Therefore, Chinese users can choose to deploy their projects to Chinese service providers' servers as an alternative.
+TinaCMS primarily implements automatic content repository updates through GitHub and static hosting platform integration, but **static hosting platforms like Vercel, Netlify, and GitHub Pages are not accessible in mainland China** and lack direct Chinese alternatives. 
 
-Based on our current testing (as of July 10, 2025), here is the accessibility status of TinaCMS-related services in mainland China without VPN:
+Chinese users can choose to deploy their projects to Alibaba Cloud servers combined with GitHub Actions as an alternative solution.
+
+Here is the accessibility status of TinaCMS-related services in mainland China without VPN:
 
 * **`npx create-tina-app@latest`** **command**: ✅ Works
 * **TinaCloud**: ✅ Accessible
 * **Tina.io**: ✅ Accessible
 * **GitHub**: ⚠️ Accessible but slow
 * **Vercel**: ❌ Not accessible
+
+> The above test results are current as of **`July 10, 2025`**, and accessibility status may change over time
 
 Given these limitations, this guide will walk you through deploying your TinaCMS project to **Alibaba Cloud**. As the leading cloud service provider in China, Alibaba Cloud offers reliable performance for Chinese users. While no Chinese cloud service currently provides the same seamless GitHub integration as Vercel, Alibaba Cloud remains the go-to option for developers who want to deploy their websites within mainland China.
 
