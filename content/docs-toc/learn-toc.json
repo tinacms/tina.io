@@ -255,17 +255,15 @@
           "title": "Globalization",
           "items": [
             {
-              "title": "Internationalization",
+              "_template": "item"
+            },
+            {
+              "title": "TinaCMS Availability in China",
               "slug": "content/docs/guides/internationalization.mdx",
               "_template": "item"
             }
           ],
           "_template": "items"
-        },
-        {
-          "title": "Internationalization",
-          "slug": "content/docs/guides/internationalization.mdx",
-          "_template": "item"
         },
         {
           "title": "Multi-Tenancy",
