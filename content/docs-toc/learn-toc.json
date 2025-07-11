@@ -138,6 +138,10 @@
       "title": "Technical Guides",
       "items": [
         {
+          "title": "Globalization",
+          "_template": "items"
+        },
+        {
           "title": "What is Markdown?",
           "slug": "content/docs/editing/markdown.mdx",
           "_template": "item"
