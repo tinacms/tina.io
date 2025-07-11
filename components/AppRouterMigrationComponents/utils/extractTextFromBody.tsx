@@ -6,7 +6,7 @@ export function extractTextFromBody(
 
   function traverse(node: any) {
     if (node.type === 'text' && node.text) {
-      textContent += node.text + ' ';
+      textContent += `${node.text} `;
     }
 
     if (node.children && Array.isArray(node.children)) {

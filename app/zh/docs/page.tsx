@@ -27,7 +27,7 @@ export default async function DocsPage() {
         }}
       />
     );
-  } catch (error) {
+  } catch (_error) {
     notFound();
   }
 }

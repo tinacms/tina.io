@@ -14,18 +14,28 @@ export function LanguageSupportAlert() {
   const prevPathRef = useRef('');
 
   const isLocalesPath = (path) => {
-    if (!path) return false;
+    if (!path) {
+      return false;
+    }
     return Object.values(SupportedLocales).some(
       (locale) => path === `/${locale}` || path.startsWith(`/${locale}/`),
     );
   };
 
   const getPageType = (path: string): PageType => {
-    if (!path) return 'pages';
+    if (!path) {
+      return 'pages';
+    }
 
-    if (path.startsWith('/docs')) return 'docs';
-    if (path.startsWith('/blog')) return 'blog';
-    if (path.startsWith('/whats-new')) return 'whats-new';
+    if (path.startsWith('/docs')) {
+      return 'docs';
+    }
+    if (path.startsWith('/blog')) {
+      return 'blog';
+    }
+    if (path.startsWith('/whats-new')) {
+      return 'whats-new';
+    }
 
     return 'pages';
   };
@@ -46,9 +56,11 @@ export function LanguageSupportAlert() {
     };
 
     checkChineseVersion();
-  }, [pathName]);
+  }, [pathName, getPageType, isLocalesPath]);
 
-  if (!isVisible) return null;
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-3 left-3 z-50 max-w-md">

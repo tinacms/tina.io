@@ -23,7 +23,7 @@ query {
 
 export async function getDocsNav(
   preview?: boolean,
-  previewData?: any,
+  _previewData?: any,
   lang?: string,
 ) {
   const docTocData = await client.request(
@@ -42,7 +42,7 @@ export async function getDocsNav(
 
 export async function getLearnNav(
   preview?: boolean,
-  previewData?: any,
+  _previewData?: any,
   lang?: string,
 ) {
   const learnTocData = await client.request(
@@ -62,9 +62,9 @@ const stripReferenceDownToSlug = (tableOfContentsSubset: any) => {
         array[index].items = stripReferenceDownToSlug(obj.items);
       } else {
         //Handles the docs homepage case, as the only docs page with a unique (i.e. no) slug, otherwise reformat
-        if (array[index].slug == `content${data.docsHomepage}.mdx`) {
+        if (array[index].slug === `content${data.docsHomepage}.mdx`) {
           array[index].slug = '/docs';
-        } else if (array[index].slug == `content/zh${data.docsHomepage}.mdx`) {
+        } else if (array[index].slug === `content/zh${data.docsHomepage}.mdx`) {
           array[index].slug = '/zh/docs';
         } else {
           array[index].slug = obj.slug.replace(/^content\/|\.mdx$/g, '/');
@@ -81,10 +81,9 @@ export const formatTableofContentsData = (
 ) => {
   const exposedTOCData =
     tableOfContentsData.data.docsTableOfContents._values.supermenuGroup;
-  exposedTOCData.forEach(
-    (obj, index, array) =>
-      (array[index].items = stripReferenceDownToSlug(obj.items)),
-  );
+  exposedTOCData.forEach((obj, index, array) => {
+    array[index].items = stripReferenceDownToSlug(obj.items);
+  });
 
   return {
     data: exposedTOCData,

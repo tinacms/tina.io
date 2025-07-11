@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const countryCoordinates = [
   { location: 'Copenhagen, Denmark', lat: 0, lng: 0 },

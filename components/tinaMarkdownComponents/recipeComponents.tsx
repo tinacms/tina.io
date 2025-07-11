@@ -1,5 +1,5 @@
 import Prism from 'prismjs';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import 'prism-themes/themes/prism-night-owl.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';

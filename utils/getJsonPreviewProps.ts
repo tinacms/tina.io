@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { readFile } from './readFile';
 
 export const getJsonPreviewProps = async (
@@ -24,10 +24,10 @@ export const getJsonPreviewProps = async (
   };
 };
 
-export async function getJsonFile<T = any>(
+export async function getJsonFile<_T = any>(
   fileRelativePath: string,
-  preview: boolean,
-  previewData: any,
+  _preview: boolean,
+  _previewData: any,
 ): Promise<any> {
   return {
     sha: '',

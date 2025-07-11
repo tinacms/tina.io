@@ -1,6 +1,5 @@
 //ripped out from SSW's Website 😳
 
-import React from 'react';
 import { wrapFieldsWithMeta } from 'tinacms';
 
 export const TextInputWithCount = (max: number, isTextArea: boolean = false) =>

@@ -6,7 +6,7 @@ const uiAndLabelling: any = {
   name: 'items',
   ui: {
     itemProps: (item) => {
-      return { label: '🗂️ ' + (item?.title ?? 'Unnamed Menu Group') };
+      return { label: `🗂️ ${item?.title ?? 'Unnamed Menu Group'}` };
     },
   },
 };

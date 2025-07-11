@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 

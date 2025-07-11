@@ -21,15 +21,17 @@
       "recommended": true,
       "correctness": {
         "noUnusedVariables": "error",
-        "useExhaustiveDependencies": "error"
+        "useExhaustiveDependencies": "error",
+        "noInnerDeclarations": "off"
       },
       "suspicious": {
-        "noExplicitAny": "warn",
+        "noExplicitAny": "off",
         "noArrayIndexKey": "error"
       },
       "style": {
         "useConst": "error",
-        "useBlockStatements": "error"
+        "useBlockStatements": "error",
+        "noNonNullAssertion": "off"
       },
       "complexity": {
         "noForEach": "off",

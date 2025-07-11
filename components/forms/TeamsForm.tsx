@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Button, Input, Textarea } from '../ui';
 
-export function TeamsForm(props: any) {
+export function TeamsForm(_props: any) {
   const [firstName, setFirstName] = useState('');
   const [surname, setSurname] = useState('');
   const [technology, setTechnology] = useState('');

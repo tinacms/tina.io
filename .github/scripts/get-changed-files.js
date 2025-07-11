@@ -1,7 +1,6 @@
 // .github/scripts/get-changed-files.js
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const _path = require('node:path');
 const axios = require('axios');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;

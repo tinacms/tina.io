@@ -6,7 +6,7 @@ import { Actions } from '../ActionButton/ActionsButton';
 function CarouselFeatureMobileItem(data) {
   const { headline, text, button, icon2, videoSrc } = data.data || {};
 
-  const IconComponent = icons[icon2] || null;
+  const _IconComponent = icons[icon2] || null;
 
   const actionsArray = button ? [button] : [];
 

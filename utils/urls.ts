@@ -12,7 +12,9 @@ const everythingExceptTheTrailingSlash = /(.*)\/$/;
 
 function createReplacer(expr: RegExp) {
   return (url: string) => {
-    if (!url) return url;
+    if (!url) {
+      return url;
+    }
     return url.replace(expr, '$1');
   };
 }

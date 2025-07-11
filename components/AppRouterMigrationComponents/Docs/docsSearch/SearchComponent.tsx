@@ -8,14 +8,14 @@ export const SearchHeader = ({ query }: { query: string }) => {
   const [isSortOpen, setIsSortOpen] = useState(false);
 
   const filterOptions = ['FilterOp1', 'FilterOp2', 'FilterOp3'];
-  const sortOptions = ['Relevance', 'Newest First', 'Oldest First'];
+  const _sortOptions = ['Relevance', 'Newest First', 'Oldest First'];
 
-  const toggleFilterDropdown = () => {
+  const _toggleFilterDropdown = () => {
     setIsFilterOpen(!isFilterOpen);
     setIsSortOpen(false);
   };
 
-  const toggleSortDropdown = () => {
+  const _toggleSortDropdown = () => {
     setIsSortOpen(!isSortOpen);
     setIsFilterOpen(false);
   };
@@ -167,7 +167,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
           </div>
         )}
         <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
-        {numberOfResults == 0 && isLoading == false && (
+        {numberOfResults === 0 && isLoading === false && (
           <div className="font-inter font-semibold text-gray-500 text-xl">
             No Results Found...
           </div>

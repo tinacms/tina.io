@@ -16,7 +16,7 @@ export const EmailForm = (props: EmailFormProps) => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [isEntering, setIsEntering] = useState(false);
+  const [_isEntering, setIsEntering] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 

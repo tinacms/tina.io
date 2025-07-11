@@ -1,5 +1,5 @@
 import debounce from 'lodash/debounce';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { wrapFieldsWithMeta } from 'tinacms';
 
 const MonacoCodeEditor = wrapFieldsWithMeta(({ field, input, meta }) => {
@@ -37,14 +37,14 @@ const MonacoCodeEditor = wrapFieldsWithMeta(({ field, input, meta }) => {
     return () => {
       monacoInstance.current?.dispose();
     };
-  }, []);
+  }, [localValue, updateTinaValue]);
 
   useEffect(() => {
     if (monacoInstance.current && input.value !== localValue) {
       monacoInstance.current.setValue(input.value || '');
       setLocalValue(input.value || '');
     }
-  }, [input.value]);
+  }, [input.value, localValue]);
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
-import { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import type { TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import { getExcerpt } from 'utils/getExcerpt';
 import settings from '@/content/settings/config.json';
 import { getSeo } from '@/utils/metadata/getSeo';

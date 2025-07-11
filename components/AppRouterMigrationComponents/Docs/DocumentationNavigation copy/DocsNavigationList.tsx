@@ -1,13 +1,11 @@
 import type { DocsNavProps } from 'components/DocumentationNavigation';
 import { useRouter } from 'next/router';
-import React, { createContext } from 'react';
+import React from 'react';
 import AnimateHeight from 'react-animate-height';
 import { BiChevronRight } from 'react-icons/bi';
 import styled, { css } from 'styled-components';
 import { matchActualTarget } from 'utils';
 import { DynamicLink } from '../../../../components/ui';
-import docsLinks from '../../../../content/docs-navigation.json';
-import data from '../../../../content/siteConfig.json';
 
 interface NavTitleProps {
   level: number;
@@ -98,7 +96,7 @@ const NavLevel = ({
   );
 
   const selected =
-    path.split('#')[0] == slug || (slug == '/docs' && path == '/docs/');
+    path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
 
   const childSelected = hasNestedSlug(categoryData.items, router.asPath);
   React.useEffect(() => {
@@ -123,7 +121,7 @@ const NavLevel = ({
         });
       }
     }
-  }, [navLevelElem.current, navListElem, selected]);
+  }, [navListElem, selected]);
   return (
     <>
       <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
@@ -239,20 +237,18 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   const navListElem = React.useRef(null);
 
   return (
-    <>
-      <DocsNavigationContainer ref={navListElem}>
-        {navItems?.map((categoryData) => (
-          <NavLevel
-            key={
-              'mobile-' +
-              (categoryData.slug ? categoryData.slug : categoryData.title)
-            }
-            navListElem={navListElem}
-            categoryData={categoryData}
-          />
-        ))}
-      </DocsNavigationContainer>
-    </>
+    <DocsNavigationContainer ref={navListElem}>
+      {navItems?.map((categoryData) => (
+        <NavLevel
+          key={
+            'mobile-' +
+            (categoryData.slug ? categoryData.slug : categoryData.title)
+          }
+          navListElem={navListElem}
+          categoryData={categoryData}
+        />
+      ))}
+    </DocsNavigationContainer>
   );
 };
 
@@ -280,7 +276,7 @@ const DocsNavigationContainer = styled.div`
   }
 `;
 
-const AnchorIcon = styled.span`
+const _AnchorIcon = styled.span`
   display: inline-block;
   position: relative;
   transform: translate3d(0, 0, 0);

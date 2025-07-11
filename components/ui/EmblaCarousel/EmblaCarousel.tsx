@@ -15,7 +15,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const options: EmblaOptionsType = {
     loop: true,
   };
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [ClassNames()]);
+  const [emblaRef, _emblaApi] = useEmblaCarousel(options, [ClassNames()]);
 
   return (
     <section

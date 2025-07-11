@@ -36,7 +36,7 @@ function createListener(
   setActiveIds: (activeIds: string[]) => void,
 ) {
   let tick = false;
-  const THROTTLE_INTERVAL = 100;
+  const _THROTTLE_INTERVAL = 100;
   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
 
   const maxScrollYRelative =
@@ -59,7 +59,9 @@ function createListener(
   });
 
   const throttledScroll = () => {
-    if (!componentRef.current) return;
+    if (!componentRef.current) {
+      return;
+    }
     const scrollPos =
       window.scrollY - componentRef.current.offsetTop + window.innerHeight / 6;
     const newActiveIds: string[] = [];
@@ -131,7 +133,7 @@ export default function ScrollBasedShowcase(data: {
   const headingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
   const [activeIds, setActiveIds] = useState<string[]>([]);
 
-  const windowSize = useWindowSize();
+  const _windowSize = useWindowSize();
 
   /** Build headings array on mount */
   useEffect(() => {
@@ -163,7 +165,9 @@ export default function ScrollBasedShowcase(data: {
 
   /** Throttled scroll event */
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {
+      return;
+    }
     const listener = createListener(componentRef, headings, setActiveIds);
     window.addEventListener('scroll', listener, { passive: true });
     return () => window.removeEventListener('scroll', listener);
@@ -171,7 +175,9 @@ export default function ScrollBasedShowcase(data: {
 
   /** Update active image when activeIds change */
   useEffect(() => {
-    if (!activeIds.length) return;
+    if (!activeIds.length) {
+      return;
+    }
     const heading = headings.find((h) => h.id === activeIds[0]);
     if (activeImg.current) {
       activeImg.current.src = heading?.src || '';

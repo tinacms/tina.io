@@ -1,9 +1,8 @@
+import crypto from 'node:crypto';
 import axios from 'axios';
-import crypto from 'crypto';
 // @ts-ignore
 import * as debounce from 'lodash/debounce';
 import router from 'next/router';
-import React from 'react';
 import { connectSearchBox } from 'react-instantsearch-dom';
 import { SearchIcon } from './SearchIcon';
 import { IconWrapper, Input, SearchContainer } from './styles';

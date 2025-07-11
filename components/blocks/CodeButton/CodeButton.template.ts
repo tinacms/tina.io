@@ -1,4 +1,4 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
+const _modals = ['BookDemo.tsx', 'EmailForm.tsx'];
 
 export const codeButtonTemplate = {
   label: 'Code Button',

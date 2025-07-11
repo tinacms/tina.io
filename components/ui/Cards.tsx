@@ -1,7 +1,4 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import RightArrowSvg from '../../public/svg/right-arrow.svg';
-import { DynamicLink } from './DynamicLink';
+import styled from 'styled-components';
 
 export const CardGrid = styled.div`
   display: grid;

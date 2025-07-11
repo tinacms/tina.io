@@ -12,7 +12,7 @@ import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
@@ -169,7 +169,7 @@ export function AppNavBar({ sticky = true }) {
         window.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [sticky]);
+  }, [sticky, handleScroll]);
 
   useEffect(() => {
     const updateModalClass = () => {
@@ -206,7 +206,7 @@ export function AppNavBar({ sticky = true }) {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [pathName]);
+  }, []);
 
   useEffect(() => {
     const matchedLocale = Object.values(SupportedLocales).find((locale) =>
@@ -225,7 +225,7 @@ export function AppNavBar({ sticky = true }) {
           ? parseNavItems(data.navItem)
           : [],
     );
-  }, [pathName, selectedFlag]);
+  }, [selectedFlag]);
 
   useEffect(() => {
     const fetchStarCount = async () => {

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiBadge, BiSupport } from 'react-icons/bi';
 import { CgCrown } from 'react-icons/cg';
 import {
   FaAngleDown,
   FaAngleUp,
-  FaArrowDown,
   FaClock,
   FaCloudDownloadAlt,
   FaCodeBranch,

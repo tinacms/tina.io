@@ -19,7 +19,7 @@ export function getSeoDescription(body) {
   let description = textSegments.join(' ');
 
   if (description.length > 160) {
-    description = description.substring(0, 157) + '...';
+    description = `${description.substring(0, 157)}...`;
   }
 
   return description;

@@ -70,6 +70,7 @@ export default async function RootLayout({
           <meta name="robots" content="index,follow" />
           <noscript>
             <iframe
+              title="Google Tag Manager"
               src={`https://www.googletagmanager.com/ns.html?id=${process.env.SSW_GTM_ID}`}
               height="0"
               width="0"

@@ -5,7 +5,7 @@ import getTableOfContents from 'utils/docs/getTableOfContents';
 
 export async function getSearchPageData() {
   const slug = 'index';
-  let tableOfContents, formatted, formattedLearn;
+  let tableOfContents: any, formatted: any, formattedLearn: any;
 
   try {
     const results = await client.queries.doc({ relativePath: `${slug}.mdx` });

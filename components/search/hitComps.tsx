@@ -1,8 +1,6 @@
-import path from 'path';
-import React from 'react';
+import path from 'node:path';
 import type { Hit } from 'react-instantsearch-core';
 import { Highlight, Snippet } from 'react-instantsearch-dom';
-import styled from 'styled-components';
 import { formatDate } from '../../utils';
 import { DynamicLink } from '../ui/DynamicLink';
 
@@ -14,7 +12,7 @@ const DocHit =
         <h4>
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </h4>
-        {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
+        {hit._highlightResult.excerpt.matchLevel !== 'none' && (
           <Snippet attribute="excerpt" hit={hit} tagName="mark" />
         )}
       </div>
@@ -30,7 +28,7 @@ const BlogHit =
           <h4>
             <Highlight attribute="title" hit={hit} tagName="mark" />
           </h4>
-          {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
+          {hit._highlightResult.excerpt.matchLevel !== 'none' && (
             <Snippet attribute="excerpt" hit={hit} tagName="mark" />
           )}
           <div>{formatDate(hit.date)}</div>
@@ -48,7 +46,7 @@ const PackageHit =
           <h4>
             <Highlight attribute="package" hit={hit} tagName="mark" />
           </h4>
-          {hit['_highlightResult'].excerpt.matchLevel !== 'none' && (
+          {hit._highlightResult.excerpt.matchLevel !== 'none' && (
             <Snippet attribute="excerpt" hit={hit} tagName="mark" />
           )}
         </div>
@@ -57,7 +55,7 @@ const PackageHit =
   };
 
 export const hitComponents = {
-  ['DocHit']: DocHit,
-  ['BlogHit']: BlogHit,
-  ['PackageHit']: PackageHit,
+  DocHit: DocHit,
+  BlogHit: BlogHit,
+  PackageHit: PackageHit,
 };

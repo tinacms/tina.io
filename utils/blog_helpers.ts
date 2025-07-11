@@ -77,7 +77,7 @@ function removeEndingPunctuation(content: string): string {
 }
 
 function truncateAtWordBoundary(content: string, length: number): string {
-  const truncatedLength = 0;
+  const _truncatedLength = 0;
   let truncatedContent = '';
   for (const word of content.split(/\s+/)) {
     if (truncatedContent.length + word.length < length) {

@@ -15,7 +15,7 @@ describe('getExcerpt', () => {
     };
 
     it('returns the text', () => {
-      const text = 'This is a short text';
+      const _text = 'This is a short text';
       expect(getExcerpt(body, 300)).toEqual('This is a paragraph.');
     });
   });
@@ -40,7 +40,7 @@ describe('getExcerpt', () => {
     };
 
     it('returns the truncated text', () => {
-      const text = 'This is a short text';
+      const _text = 'This is a short text';
       expect(getExcerpt(body, 100)).toEqual(
         'Heres some text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci...',
       );

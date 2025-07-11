@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
 import { FaVideo } from 'react-icons/fa6';
 import 'react-responsive-modal/styles.css';

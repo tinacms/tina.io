@@ -2,13 +2,13 @@
 
 import Cookies from 'js-cookie';
 import Script from 'next/script';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function HotjarScript() {
   useEffect(() => {
     const consentGiven = Cookies.get('consentGiven');
     if (consentGiven) {
-      const consentState = JSON.parse(consentGiven);
+      const _consentState = JSON.parse(consentGiven);
     }
   });
   return (

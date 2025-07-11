@@ -18,8 +18,12 @@ export async function addToMailchimp(
   }
 
   const mergeFields: { FNAME?: string; LNAME?: string } = {};
-  if (firstName) mergeFields.FNAME = firstName;
-  if (lastName) mergeFields.LNAME = lastName;
+  if (firstName) {
+    mergeFields.FNAME = firstName;
+  }
+  if (lastName) {
+    mergeFields.LNAME = lastName;
+  }
 
   try {
     const response = await fetch('/api/mailchimp', {

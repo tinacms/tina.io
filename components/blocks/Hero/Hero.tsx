@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
 

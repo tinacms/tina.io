@@ -52,7 +52,7 @@ function getLocaleFromAcceptLanguage(request: NextRequest): string | null {
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
   try {
     return match(languages, SUPPORTED_LOCALES, DEFAULT_LOCALE);
-  } catch (error) {
+  } catch (_error) {
     return null;
   }
 }

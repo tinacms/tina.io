@@ -14,7 +14,7 @@ export const RecipeBlock = ({ data }) => {
   );
   //LHSheight is the height used for the instructions block when the screen is >= 1024px
   const [LHSheight, setLHSheight] = useState<string | null>(null);
-  const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
+  const [_CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
   const [isBottomOfInstructions, setIsBottomOfInstructions] =
     useState<boolean>(false);
 
@@ -30,7 +30,7 @@ export const RecipeBlock = ({ data }) => {
     return () => {
       document.head.removeChild(style);
     };
-  }, [highlightLines]);
+  }, []);
 
   useEffect(() => {
     setLHSheight(`${codeblockRef.current?.offsetHeight}`);

@@ -1,4 +1,3 @@
-import { Layout } from 'components/layout';
 import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
 import Link from 'next/link';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';

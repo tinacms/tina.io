@@ -76,12 +76,10 @@ export default async function BlogPaginationPage({
   );
 
   return (
-    <>
-      <BlogIndexPageClient
-        currentPageIndexNumber={pageIndex}
-        postsForPageIndex={finalisedPostData}
-        numberOfPages={numPages}
-      />
-    </>
+    <BlogIndexPageClient
+      currentPageIndexNumber={pageIndex}
+      postsForPageIndex={finalisedPostData}
+      numberOfPages={numPages}
+    />
   );
 }

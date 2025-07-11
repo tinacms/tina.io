@@ -4,15 +4,15 @@ import { Button } from 'components/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { FaRegCalendar, FaRegMap, FaRegStar, FaRegUser } from 'react-icons/fa';
-import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
+import { FaRegCalendar, FaRegMap, FaRegStar } from 'react-icons/fa';
+import { FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
-import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
+import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 //TODO: Remove once TinaCon is over
-const TopBanner = ({ tinaData }: { tinaData: any }) => {
+const _TopBanner = ({ tinaData }: { tinaData: any }) => {
   return (
     <div className="w-full flex justify-center relative px-10 lg:h-52">
       <div className="absolute left-[38%] -top-11 z-10 hidden lg:block">
@@ -541,7 +541,7 @@ function ConferencePage({
       (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
   }));
 
-  const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
+  const [filter, _setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
   const filteredSessions = speakerSchedule
     .filter((session) => filter === 'all' || session.sessionType === filter)
     .sort((a, b) => a.talkTimeStart - b.talkTimeStart);

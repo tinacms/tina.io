@@ -4,7 +4,6 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
-import { Container } from '../Container';
 
 const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';
@@ -65,7 +64,7 @@ const TestimonialCard = ({ ...data }) => {
 };
 
 export default function TestimonialsBlock({ data, index }) {
-  const [isShowingAll, setIsShowingAll] = useState(false);
+  const [_isShowingAll, _setIsShowingAll] = useState(false);
   const titleRef = useRef(null);
   const firstRow = data.testimonials.slice(0, data.testimonials.length / 2);
   const secondRow = data.testimonials.slice(data.testimonials.length / 2);

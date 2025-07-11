@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
 import settings from '@/content/settings/config.json';
@@ -39,7 +37,7 @@ export async function generateMetadata({
 
   if (seo && !seo?.canonicalUrl) {
     data.seo.canonicalUrl = `${settings.siteUrl}${
-      slug[0] === 'home' ? '' : '/' + slug.join('/')
+      slug[0] === 'home' ? '' : `/${slug.join('/')}`
     }`;
   }
   return getSeo(seo);
@@ -58,13 +56,11 @@ export default async function Page({ params }: PageProps) {
       relativePath: relativePath,
     });
     return (
-      <>
-        <ClientPage
-          query={res.query}
-          data={res.data}
-          variables={{ relativePath }}
-        />
-      </>
+      <ClientPage
+        query={res.query}
+        data={res.data}
+        variables={{ relativePath }}
+      />
     );
   } catch {
     return notFound();

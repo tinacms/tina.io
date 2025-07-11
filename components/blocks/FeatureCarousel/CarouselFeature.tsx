@@ -1,6 +1,6 @@
 import checkTouchScreen from 'components/util/touchscreenDetection';
 import Image from 'next/image';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import GradGlow from '../../../public/svg/grad-glow.svg';
@@ -49,9 +49,7 @@ const CarouselItem = ({
         data-tina-field={tinaField(data, 'headline')}
         className="flex flex-col"
       >
-        <div className="block lg:hidden pb-5">
-          {renderMedia && renderMedia(index)}
-        </div>
+        <div className="block lg:hidden pb-5">{renderMedia?.(index)}</div>
         <div className="flex items-center mb-2 pl-1">
           {IconComponent && (
             <IconComponent
@@ -137,10 +135,12 @@ export default function CarouselFeatureBlock({ data, index }) {
       mediaQueryLarge.removeEventListener('change', handleMediaChange);
       mediaQuerySmallOrMedium.removeEventListener('change', handleMediaChange);
     };
-  }, [data?.items?.length, isUserInteracted]);
+  }, [isUserInteracted, startAutoTicking]);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -161,7 +161,7 @@ export default function CarouselFeatureBlock({ data, index }) {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, [sectionRef]);
+  }, []);
 
   const startAutoTicking = () => {
     if (intervalRef.current) {
@@ -188,7 +188,13 @@ export default function CarouselFeatureBlock({ data, index }) {
       startAutoTicking();
     }
     return () => clearInterval(intervalRef.current);
-  }, [isPaused, isLargeScreen, data?.items?.length, isUserInteracted]);
+  }, [
+    isPaused,
+    isLargeScreen,
+    data?.items?.length,
+    isUserInteracted,
+    startAutoTicking,
+  ]);
 
   const handleItemClick = (index) => {
     setHoveredIndex(index);
@@ -197,10 +203,14 @@ export default function CarouselFeatureBlock({ data, index }) {
   };
 
   const renderMedia = (index) => {
-    if (index === null) return null;
+    if (index === null) {
+      return null;
+    }
 
     const item = data?.items?.[index];
-    if (!item || !item.videoSrc) return null;
+    if (!item || !item.videoSrc) {
+      return null;
+    }
 
     const fullVideoUrl = item.videoSrc;
     if (isTouchScreen) {
@@ -259,7 +269,7 @@ export default function CarouselFeatureBlock({ data, index }) {
   return (
     <section
       ref={sectionRef}
-      key={'feature-grid-' + index}
+      key={`feature-grid-${index}`}
       className={'relative z-0 '}
       style={{ overflow: 'visible' }}
     >

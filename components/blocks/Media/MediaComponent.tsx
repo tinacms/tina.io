@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
 const VideoGridComponent = ({ data }) => {
@@ -22,7 +22,7 @@ const VideoGridComponent = ({ data }) => {
       'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]';
 
     if (media.__typename === typenames.cloudinary) {
-      if (media.media && media.media.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
+      if (media.media?.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
         return (
           <div
             className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}
@@ -37,7 +37,7 @@ const VideoGridComponent = ({ data }) => {
             />
           </div>
         );
-      } else if (media.media && media.media.match(/\.(mp4|webm|ogg)$/)) {
+      } else if (media.media?.match(/\.(mp4|webm|ogg)$/)) {
         return (
           <div
             className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}

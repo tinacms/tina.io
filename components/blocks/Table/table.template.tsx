@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { type Template, wrapFieldsWithMeta } from 'tinacms';
-import { checkboxList } from '../../../tina/customTinaFormFields/checkboxList';
-import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
-import { codeButtonTemplate } from '../CodeButton/CodeButton.template';
-import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
 
 //This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
 export const splitOneAndJoin = (item, separator) => {
@@ -74,7 +70,9 @@ export const tableTemplate: Template = {
               const [valueMap, setValueMap] = useState([]);
 
               useEffect(() => {
-                if (!value) return;
+                if (!value) {
+                  return;
+                }
                 const parsedValue = value.map((item) => {
                   try {
                     return JSON.parse(item);

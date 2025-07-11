@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import GradGlow from '../../../public/svg/grad-glow.svg';
@@ -13,7 +12,7 @@ const Feature = ({ data, index, id }) => {
     url && !url.match(/^https?:\/\//) && !url.startsWith('/')
       ? `http://${url}`
       : url;
-  const isInternalLink = formattedUrl && formattedUrl.startsWith('/');
+  const isInternalLink = formattedUrl?.startsWith('/');
 
   return !isInternalLink ? (
     <a
@@ -66,7 +65,7 @@ export function FeatureGridBlock({ data, index }) {
   const isMoreThanSix = data.items && data.items.length > 6;
   return (
     <section
-      key={'feature-grid-' + index}
+      key={`feature-grid-${index}`}
       className={'relative z-0 w-full pb-20'}
       style={{ overflow: 'visible' }}
     >
@@ -78,17 +77,16 @@ export function FeatureGridBlock({ data, index }) {
               : 'grid-flow-row grid-cols-auto-sm md:grid-cols-auto-lg'
           } auto-rows-auto w-full rounded-xl overflow-visible shadow border border-blue-50/50 bg-linear-to-br from-seafoam-200/30 to-blue-100/30`}
         >
-          {data.items &&
-            data.items.map((data, index) => {
-              return (
-                <Feature
-                  key={Object.values(data).join('')}
-                  data={data}
-                  index={index}
-                  id={sanitizeLabel(data.headline)}
-                />
-              );
-            })}
+          {data.items?.map((data, index) => {
+            return (
+              <Feature
+                key={Object.values(data).join('')}
+                data={data}
+                index={index}
+                id={sanitizeLabel(data.headline)}
+              />
+            );
+          })}
         </div>
       </Container>
       <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1" />

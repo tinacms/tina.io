@@ -3,7 +3,7 @@ require('dotenv').config();
 import { fetchRelevantBlogs } from '../data-api/fetchBlogs';
 import { formatExcerpt, orderPosts } from '../utils/blog_helpers';
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 const formatTitle = (title) =>
   title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

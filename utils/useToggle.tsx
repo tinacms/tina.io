@@ -1,4 +1,4 @@
-import { Reducer, useReducer } from 'react';
+import { type Reducer, useReducer } from 'react';
 
 const toggleReducer = (state: boolean, nextValue?: any) =>
   typeof nextValue === 'boolean' ? nextValue : !state;

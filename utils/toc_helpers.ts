@@ -57,11 +57,11 @@ export function createTocListener(
         : (headings[0] ?? {});
     newActiveIds.push(activeHeading.id);
 
-    if (activeHeading.level != 'H2') {
+    if (activeHeading.level !== 'H2') {
       const activeHeadingParentCandidates =
         activeHeadingCandidates.length > 0
           ? activeHeadingCandidates.filter((heading) => {
-              return heading.level == 'H2';
+              return heading.level === 'H2';
             })
           : [];
       const activeHeadingParent =
@@ -128,11 +128,11 @@ export function useWindowSize() {
   return windowSize;
 }
 
-export function useTocListener(data) {
+export function useTocListener(_data) {
   const [activeIds, setActiveIds] = React.useState([]);
   const [setRef, ref] = useHookWithRefCallback();
 
-  const windowSize = useWindowSize();
+  const _windowSize = useWindowSize();
 
   React.useEffect(() => {
     if (typeof window === `undefined` || !(ref as any).current) {
@@ -143,7 +143,7 @@ export function useTocListener(data) {
     window.addEventListener('scroll', activeTocListener);
 
     return () => window.removeEventListener('scroll', activeTocListener);
-  }, [(ref as any).current, data, windowSize]);
+  }, [ref]);
 
   return { contentRef: setRef, activeIds };
 }

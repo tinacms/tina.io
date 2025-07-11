@@ -1,6 +1,5 @@
 'use client';
 import dynamic from 'next/dynamic';
-import React from 'react';
 import type {
   PageBlocks,
   PostConnection,
@@ -119,7 +118,9 @@ export const Blocks = ({
   blocks: PageBlocks[];
   recentPosts: PostConnection;
 }) => {
-  if (!blocks) return null;
+  if (!blocks) {
+    return null;
+  }
 
   return blocks.map((block, index) => {
     // console.log(block.__typename); // Debugging log

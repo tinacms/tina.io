@@ -1,7 +1,4 @@
 import { Checkbox, Field, Label } from '@headlessui/react';
-import { on } from 'events';
-import React, { useState } from 'react';
-import { wrapFieldsWithMeta } from 'tinacms';
 
 export interface CheckboxListProps {
   criteriaSatisfaction: {

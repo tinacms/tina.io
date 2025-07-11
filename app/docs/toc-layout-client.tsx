@@ -5,7 +5,8 @@ import {
   useDocsNavigation,
 } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
-import React, { createContext, useContext } from 'react';
+import type React from 'react';
+import { createContext, useContext } from 'react';
 
 // Create a context for the navigation data
 type NavigationDataContextType = {

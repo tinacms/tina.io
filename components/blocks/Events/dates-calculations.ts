@@ -1,7 +1,9 @@
 import { format } from 'date-fns';
 
 const getOrdinalSuffix = (day) => {
-  if (day > 3 && day < 21) return 'th';
+  if (day > 3 && day < 21) {
+    return 'th';
+  }
   switch (day % 10) {
     case 1:
       return 'st';
@@ -29,7 +31,7 @@ const shortDateFormat = (start, end?): string => {
   const endMonth = end ? format(new Date(end), 'MMM') : '';
   //Formats the dates into a single string
   return `${startDay} ${
-    startMonth == endMonth ? '' : startMonth
+    startMonth === endMonth ? '' : startMonth
   }${endDateAndHyphen} ${endMonth ?? startMonth}`;
 };
 
@@ -39,7 +41,7 @@ const parseStartTime = (startTime: string | number): Date => {
   if (startTimeDate.toString() === 'Invalid Date') {
     if (typeof startTime === 'string' && startTime.includes(':')) {
       const [hours, minutes] = startTime.split(':').map(Number);
-      if (!isNaN(hours) && !isNaN(minutes)) {
+      if (!Number.isNaN(hours) && !Number.isNaN(minutes)) {
         startTimeDate = new Date();
         startTimeDate.setHours(hours, minutes, 0, 0);
       }
@@ -98,10 +100,10 @@ const calculateEventTimes = (
 
 const calculateEventStatus = (startDateUTC: Date, endDateUTC: Date) => {
   const hoursUntilEvent = Math.ceil(
-    (startDateUTC.getTime() - new Date().getTime()) / 36e5,
+    (startDateUTC.getTime() - Date.now()) / 36e5,
   );
   const hoursUntilEventEnd = Math.ceil(
-    (endDateUTC.getTime() - new Date().getTime()) / 36e5,
+    (endDateUTC.getTime() - Date.now()) / 36e5,
   );
 
   return {
@@ -128,7 +130,7 @@ const formatTimeString = (timeString: string): string => {
   return '';
 };
 
-const formatLocalDateTime = (date: Date, timezone: number): string => {
+const formatLocalDateTime = (date: Date, _timezone: number): string => {
   const localDate = date.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -160,14 +162,16 @@ const formatEventDate = (
   cardItem: any,
   useLocalTimezone: boolean = true,
 ): string => {
-  if (!cardItem.startDate) return '';
+  if (!cardItem.startDate) {
+    return '';
+  }
 
-  let timeString = '';
+  let _timeString = '';
   let localDateTimeString = '';
   let localEndDateTimeString = '';
 
   if (cardItem.startTime) {
-    timeString = formatTimeString(cardItem.startTime);
+    _timeString = formatTimeString(cardItem.startTime);
 
     // Convert start time to local time
     const eventDate = new Date(cardItem.startDate);

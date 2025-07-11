@@ -67,73 +67,71 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
       : usePathname().includes('/zh/');
 
   return (
-    <>
-      <TocWrapper>
-        <TocContent activeId={activeId} isOpen={isOpen}>
-          <TocDesktopHeader>
-            {isZhPath ? '目录' : 'Table of Contents'}
-          </TocDesktopHeader>
-          <TocTitleList
-            ref={tocWrapperRef}
-            className="max-h-[70vh] 2xl:max-h-[75vh] p-4 overflow-y-auto"
-          >
-            <ReactMarkdown
-              components={{
-                ul: ({ children }) => (
-                  <ul className="space-y-1 pt-1">{children}</ul>
-                ),
-                li: ({ children }) => (
-                  <li className="leading-relaxed">{children}</li>
-                ),
-                a: ({ children, ...props }) => {
-                  const isActive = activeId === props.href?.slice(1); // Match href with activeId
+    <TocWrapper>
+      <TocContent activeId={activeId} isOpen={isOpen}>
+        <TocDesktopHeader>
+          {isZhPath ? '目录' : 'Table of Contents'}
+        </TocDesktopHeader>
+        <TocTitleList
+          ref={tocWrapperRef}
+          className="max-h-[70vh] 2xl:max-h-[75vh] p-4 overflow-y-auto"
+        >
+          <ReactMarkdown
+            components={{
+              ul: ({ children }) => (
+                <ul className="space-y-1 pt-1">{children}</ul>
+              ),
+              li: ({ children }) => (
+                <li className="leading-relaxed">{children}</li>
+              ),
+              a: ({ children, ...props }) => {
+                const isActive = activeId === props.href?.slice(1); // Match href with activeId
 
-                  const handleClick = (
-                    e: React.MouseEvent<HTMLAnchorElement>,
-                  ) => {
-                    e.preventDefault();
-                    const href = props.href;
-                    if (href && href.startsWith('#')) {
-                      const targetId = href.slice(1);
-                      const targetElement = document.getElementById(targetId);
-                      if (targetElement) {
-                        const elementPosition =
-                          targetElement.getBoundingClientRect().top;
-                        const offsetPosition =
-                          elementPosition + window.pageYOffset - 100;
+                const handleClick = (
+                  e: React.MouseEvent<HTMLAnchorElement>,
+                ) => {
+                  e.preventDefault();
+                  const href = props.href;
+                  if (href?.startsWith('#')) {
+                    const targetId = href.slice(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                      const elementPosition =
+                        targetElement.getBoundingClientRect().top;
+                      const offsetPosition =
+                        elementPosition + window.pageYOffset - 100;
 
-                        window.scrollTo({
-                          top: offsetPosition,
-                          behavior: 'smooth',
-                        });
-                      }
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth',
+                      });
                     }
-                  };
+                  }
+                };
 
-                  return (
-                    <a
-                      {...props}
-                      onClick={handleClick}
-                      className={`
+                return (
+                  <a
+                    {...props}
+                    onClick={handleClick}
+                    className={`
                         block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150 cursor-pointer
                         ${
                           isActive
                             ? 'text-orange-500 font-medium no-underline'
                             : 'text-gray-600 hover:text-orange-500'
                         }`}
-                    >
-                      {children}
-                    </a>
-                  );
-                },
-              }}
-            >
-              {tocMarkdown}
-            </ReactMarkdown>
-          </TocTitleList>
-        </TocContent>
-      </TocWrapper>
-    </>
+                  >
+                    {children}
+                  </a>
+                );
+              },
+            }}
+          >
+            {tocMarkdown}
+          </ReactMarkdown>
+        </TocTitleList>
+      </TocContent>
+    </TocWrapper>
   );
 };
 

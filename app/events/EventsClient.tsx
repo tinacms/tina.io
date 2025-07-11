@@ -83,7 +83,7 @@ export default function EventsClient({
     cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
-  }, [visibleCards]);
+  }, [handleIntersection]);
 
   return (
     <div className="mx-auto mb-40">
@@ -94,7 +94,7 @@ export default function EventsClient({
         </div>
         {upComingEvents.map((cardItem, index) => (
           <div
-            key={index}
+            key={cardItem.title}
             data-id={`upcoming-${index}`}
             className={`event-card transform transition duration-500 ${
               visibleCards.includes(`upcoming-${index}`)
@@ -112,7 +112,7 @@ export default function EventsClient({
         </div>
         {pastEvents.map((cardItem, index) => (
           <div
-            key={index}
+            key={cardItem.title}
             data-id={`past-${index}`}
             className={`event-card transform transition duration-500 ${
               visibleCards.includes(`past-${index}`)

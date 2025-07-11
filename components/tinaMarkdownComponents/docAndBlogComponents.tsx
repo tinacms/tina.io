@@ -4,7 +4,6 @@ import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
@@ -348,7 +347,7 @@ export const docAndBlogComponents: Components<{
                       <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg -my-0.5" />
                     )}
                     <div className="mx-2 border-l-2 border-solid border-orange-400">
-                      <React.Fragment>{propertyItem(property)}</React.Fragment>
+                      {propertyItem(property)}
                     </div>
                   </div>
                 );
@@ -371,7 +370,9 @@ export const docAndBlogComponents: Components<{
 
         {/* Process properties in order, grouping only adjacent items with same groupName */}
         {(() => {
-          if (!props.property?.length) return null;
+          if (!props.property?.length) {
+            return null;
+          }
 
           const result = [];
           let currentGroup = null;
@@ -742,8 +743,8 @@ export const docAndBlogComponents: Components<{
   ),
   CloudinaryVideo: ({ src }) => (
     <video className="video my-6" autoPlay loop muted playsInline>
-      <source src={src + `.webm`} type="video/webm" />
-      <source src={src + `.mp4`} type="video/mp4" />
+      <source src={`${src}.webm`} type="video/webm" />
+      <source src={`${src}.mp4`} type="video/mp4" />
     </video>
   ),
   Button: ({ link, label }) => (
@@ -773,7 +774,7 @@ function FormatHeaders({ children, level }) {
     if (typeof window !== 'undefined') {
       setCurrentUrl(window.location.pathname);
     }
-  }, [typeof window !== 'undefined' ? window.location.pathname : '']);
+  }, []);
 
   const linkHref = `${currentUrl}#${id}`;
 
@@ -822,7 +823,7 @@ function FormatHeaders({ children, level }) {
       scrollToElement(hash);
     }
     //this is used for when you get sent a link with a hash (i.e link to a header)
-  }, []);
+  }, [scrollToElement]);
 
   return (
     <HeadingTag

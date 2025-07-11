@@ -1,6 +1,6 @@
 // .github/scripts/translate-mdx.js
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
 const { fixPathsInFile } = require('./fix-translation-paths');

@@ -26,14 +26,16 @@ export default function DocsClient({ props }) {
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { PageTableOfContents } = props;
   const DocumentationData = data.docZh;
-  const pathname = usePathname();
+  const _pathname = usePathname();
 
   const { learnActive, setLearnActive } = useDocsNavigation();
-  const [isLearnDocument, setIsLearnDocument] = useState(learnActive);
+  const [_isLearnDocument, setIsLearnDocument] = useState(learnActive);
 
   const { activeIds, contentRef } = useTocListener(DocumentationData);
   const processPageLink = (pageId) => {
-    if (!pageId) return '';
+    if (!pageId) {
+      return '';
+    }
 
     const slug = pageId.slice(7, -4).replace('docs-zh', 'zh/docs');
 
@@ -55,10 +57,9 @@ export default function DocsClient({ props }) {
   const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
-      const slug =
-        filepath
-          .substring(7, filepath.length - 4)
-          .replace('docs-zh', 'zh/docs') + '/';
+      const slug = `${filepath
+        .substring(7, filepath.length - 4)
+        .replace('docs-zh', 'zh/docs')}/`;
 
       const recurseItems = (items) => {
         items?.forEach((item) => {
@@ -78,13 +79,13 @@ export default function DocsClient({ props }) {
     if (NavigationLearnData?.data) {
       checkLearn(setIsLearnDocument);
     }
-  }, [NavigationLearnData]);
+  }, [NavigationLearnData, checkLearn]);
 
   useEffect(() => {
     if (NavigationLearnData?.data && DocumentationData) {
       checkLearn(setLearnActive);
     }
-  }, [NavigationLearnData, DocumentationData, pathname]);
+  }, [NavigationLearnData, DocumentationData, checkLearn, setLearnActive]);
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);

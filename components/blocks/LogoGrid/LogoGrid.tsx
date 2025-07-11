@@ -1,10 +1,11 @@
 import { useWindowSize } from 'components/hooks/UseWindowSize';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
 import { Slider } from './CustomSlider';
 
 const Logo = ({ data, windowWidth = 1000 }) => {
-  if (!data) return null;
+  if (!data) {
+    return null;
+  }
 
   const scaleFactor = windowWidth > 1200 ? 1 : windowWidth > 600 ? 1 : 1;
   const logoSrc = data.logo ? data.logo : '/images/unknown-logo.png';
@@ -40,7 +41,9 @@ export function LogoGridBlock({ data, index }) {
   const windowSize = useWindowSize();
   const slidesToShow = windowSize.width > 1024 ? 5 : 3;
 
-  if (!data || !data.items) return null;
+  if (!data || !data.items) {
+    return null;
+  }
 
   return (
     <section

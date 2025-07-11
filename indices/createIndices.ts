@@ -32,7 +32,7 @@ const mapContentToIndex = async ({
         return {
           ...obj.data,
           excerpt,
-          objectID: obj.data.slug + `_${i}`,
+          objectID: `${obj.data.slug}_${i}`,
         };
       }
     }),

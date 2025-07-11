@@ -1,5 +1,5 @@
 import algoliasearch from 'algoliasearch/lite';
-import React, { createRef, useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { Dismissible, type Props as DismissibleProps } from 'react-dismissible';
 import {
   connectStateResults,
@@ -38,15 +38,19 @@ const IndexStats = connectStateResults(({ searchResults: res }) => {
 });
 
 const useClickOutside = (ref: any, handler: any, events?: any) => {
-  if (!events) events = [`mousedown`, `touchstart`];
+  if (!events) {
+    events = [`mousedown`, `touchstart`];
+  }
   const detectClickOutside = (event: any) =>
     ref.current && !ref.current.contains(event.target) && handler();
   useEffect(() => {
-    for (const event of events)
+    for (const event of events) {
       document.addEventListener(event, detectClickOutside);
+    }
     return () => {
-      for (const event of events)
+      for (const event of events) {
         document.removeEventListener(event, detectClickOutside);
+      }
     };
   });
 };

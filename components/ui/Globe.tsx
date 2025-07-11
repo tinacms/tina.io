@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
@@ -12,7 +12,7 @@ const geographicToCartesian = (latitude, longitude, radius = 1) => {
   return [x, y, z];
 };
 
-const cartesianToGeographic = (x, y, z, radius = 1) => {
+const _cartesianToGeographic = (x, y, z, radius = 1) => {
   const latRad = Math.asin(z / radius);
   const lonRad = Math.atan2(y, x);
   const latitude = (latRad * 180) / Math.PI;
@@ -52,7 +52,9 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
   // Check for markers at the same location
   const getMarkersAtSameLocation = (currentIndex) => {
     const currentMarker = markerPositions[currentIndex];
-    if (!currentMarker) return [];
+    if (!currentMarker) {
+      return [];
+    }
 
     return markerPositions.filter(
       (marker, index) =>
@@ -63,7 +65,9 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
   };
 
   useFrame(() => {
-    if (!groupRef.current) return;
+    if (!groupRef.current) {
+      return;
+    }
 
     // Check if we need to start a new animation
     if (activeGlobeId !== previousActiveId.current && activeGlobeId !== null) {

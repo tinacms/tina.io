@@ -6,11 +6,9 @@ import { TinaEditProvider } from 'tinacms/dist/edit-state';
 
 const DynamicTina = ({ children }) => {
   return (
-    <>
-      <TinaEditProvider editMode={<TinaProvider>{children}</TinaProvider>}>
-        {children}
-      </TinaEditProvider>
-    </>
+    <TinaEditProvider editMode={<TinaProvider>{children}</TinaProvider>}>
+      {children}
+    </TinaEditProvider>
   );
 };
 

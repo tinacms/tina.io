@@ -1,5 +1,4 @@
-import React from 'react';
-import { type Template, wrapFieldsWithMeta } from 'tinacms';
+import type { Template } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
@@ -205,8 +204,8 @@ export const docsCollection = {
               ui: {
                 /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                 component: 'textarea',
-                format: (val?: string) => val && val.replaceAll('#', ' '),
-                parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                format: (val?: string) => val?.replaceAll('#', ' '),
+                parse: (val?: string) => val?.replaceAll(' ', '#'),
               },
             },
             {
@@ -218,8 +217,8 @@ export const docsCollection = {
               ui: {
                 /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                 component: 'textarea',
-                format: (val?: string) => val && val.replaceAll('#', ' '),
-                parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                format: (val?: string) => val?.replaceAll('#', ' '),
+                parse: (val?: string) => val?.replaceAll(' ', '#'),
               },
             },
             {

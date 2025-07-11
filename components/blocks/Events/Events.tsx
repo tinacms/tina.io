@@ -129,7 +129,9 @@ const EventsBlock = () => {
       { threshold: 0.1 },
     );
 
-    if (globeContainerRef.current) observer.observe(globeContainerRef.current);
+    if (globeContainerRef.current) {
+      observer.observe(globeContainerRef.current);
+    }
 
     return () => observer.disconnect();
   }, []);

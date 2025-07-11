@@ -51,7 +51,7 @@ export const criteriaMapping = (values) => {
             try {
               const parsedCell = JSON.parse(cell);
               return parsedCell.columnHeader === item;
-            } catch (e) {
+            } catch (_e) {
               return false;
             }
           });
@@ -210,10 +210,12 @@ export const compareBoxTemplate: Template = {
                 if (input.value !== value) {
                   setValue(input.value);
                 }
-              }, [input.value]);
+              }, [input.value, value, valueFlag]);
 
               useEffect(() => {
-                if (!value) return;
+                if (!value) {
+                  return;
+                }
                 const mapping = value?.map((item: string) => {
                   return {
                     criteria: splitOneAndJoin(item, '-')[1],

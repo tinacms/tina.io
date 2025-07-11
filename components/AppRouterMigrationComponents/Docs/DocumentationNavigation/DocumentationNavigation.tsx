@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import styled from 'styled-components';
 import { HitsWrapper } from '../../../../components/search/styles';
@@ -42,7 +42,7 @@ const MobileNavToggle = ({
   );
 };
 
-const CloseButton = styled.button<{ mobileNavIsOpen: boolean }>`
+const _CloseButton = styled.button<{ mobileNavIsOpen: boolean }>`
   position: absolute;
   top: 20px;
   right: 20px;
@@ -92,14 +92,14 @@ const ToggleWrapper = styled.button<{ open: boolean }>`
   }
 `;
 
-const DocsSidebarHeader = styled.div`
+const _DocsSidebarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 `;
 
-const DocsSidebarHeaderWrapper = styled.div`
+const _DocsSidebarHeaderWrapper = styled.div`
   flex: 0 0 auto;
   background-color: transparent;
   z-index: 500;

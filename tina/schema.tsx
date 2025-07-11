@@ -59,7 +59,7 @@ export const schema = defineSchema({
           list: true,
           ui: {
             itemProps: (item) => {
-              return { label: '🗂️ ' + (item?.title ?? 'Unnamed Menu Group') };
+              return { label: `🗂️ ${item?.title ?? 'Unnamed Menu Group'}` };
             },
           },
           fields: [

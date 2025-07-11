@@ -33,7 +33,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -56,7 +56,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -95,7 +95,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -122,7 +122,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🍌 ' + item?.label };
+                  return { label: `🍌 ${item?.label}` };
                 },
                 defaultItem: {
                   variant: 'default',
@@ -165,7 +165,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -188,7 +188,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -227,7 +227,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -270,7 +270,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -293,7 +293,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -332,7 +332,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -375,7 +375,7 @@ export const footerCollection = {
               label: 'String Item',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🔗 ' + item?.label };
+                  return { label: `🔗 ${item?.label}` };
                 },
               },
               fields: [
@@ -398,7 +398,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🗂️ ' + item?.label };
+                  return { label: `🗂️ ${item?.label}` };
                 },
               },
               fields: [
@@ -437,7 +437,7 @@ export const footerCollection = {
               label: 'Social Link',
               ui: {
                 itemProps: (item) => {
-                  return { label: '👤 ' + item?.label };
+                  return { label: `👤 ${item?.label}` };
                 },
               },
               fields: [
@@ -464,7 +464,7 @@ export const footerCollection = {
               type: 'object',
               ui: {
                 itemProps: (item) => {
-                  return { label: '🍌 ' + item?.label };
+                  return { label: `🍌 ${item?.label}` };
                 },
                 defaultItem: {
                   variant: 'default',

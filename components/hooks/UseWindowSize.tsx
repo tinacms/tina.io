@@ -4,7 +4,9 @@ export function useWindowSize() {
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {
+      return;
+    }
 
     function handleResize() {
       setSize({

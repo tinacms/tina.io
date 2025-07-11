@@ -18,7 +18,7 @@ export const getDocId = (label) => {
       hash = (hash << 5) - hash + char;
       hash = hash & hash;
     }
-    return 'heading-' + Math.abs(hash).toString(16).substring(0, 8);
+    return `heading-${Math.abs(hash).toString(16).substring(0, 8)}`;
   }
 
   return cleanId;

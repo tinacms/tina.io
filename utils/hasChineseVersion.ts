@@ -45,7 +45,7 @@ async function checkPagesChineseVersion(
       relativePath: `zh/${zhPath}.json`,
     });
     return !!res.data.page;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 }
@@ -62,7 +62,7 @@ async function checkDocsChineseVersion(
       relativePath: `${zhPath}.mdx`,
     });
     return !!res.data.docZh;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 }
@@ -79,13 +79,13 @@ async function checkBlogChineseVersion(
       relativePath: `${zhPath}.mdx`,
     });
     return !!res.data.postZh;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 }
 
 async function checkWhatsNewChineseVersion(
-  normalizedPath: string,
+  _normalizedPath: string,
 ): Promise<boolean> {
   return false;
 }

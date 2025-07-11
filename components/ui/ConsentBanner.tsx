@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 
 const ConsentBanner = () => {

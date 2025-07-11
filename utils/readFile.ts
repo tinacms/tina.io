@@ -1,4 +1,4 @@
-var fs = require('fs');
+var fs = require('node:fs');
 
 export const readFile = async (filePath: string): Promise<any> => {
   return new Promise((resolve, reject) => {

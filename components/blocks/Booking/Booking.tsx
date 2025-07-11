@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 
@@ -55,7 +55,9 @@ const BookingBlock = ({ data, index }) => {
     fetchData();
   }, []);
 
-  if (!meetingPeople.length) return null;
+  if (!meetingPeople.length) {
+    return null;
+  }
 
   return (
     <div className="flex justify-center w-full">

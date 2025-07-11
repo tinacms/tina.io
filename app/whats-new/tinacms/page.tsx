@@ -24,7 +24,7 @@ export async function generateMetadata() {
 export default async function TinaCMSPage() {
   const vars = { last: 10, sort: 'dateReleased' };
 
-  const { data, query } = await fetchWhatsNewData(vars);
+  const { data } = await fetchWhatsNewData(vars);
 
   return <WhatsNewTinaCMSPageLayout data={data} />;
 }

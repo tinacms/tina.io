@@ -16,8 +16,8 @@ export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
         className="relative px-8 py-12 lg:py-16 columns-xs gap-6"
         style={{ columnFill: 'balance-all' }}
       >
-        {examples.map((example, index) => (
-          <Example key={index} example={example} />
+        {examples.map((example) => (
+          <Example key={example.label} example={example} />
         ))}
       </section>
     </Container>
@@ -38,7 +38,7 @@ function Example({ example }: { example: ExamplesExamples }) {
         <div className="w-full">
           <img
             src={example.image}
-            alt="Example Image"
+            alt={example.label}
             className="w-full rounded-t-md object-cover object-top"
           />
         </div>

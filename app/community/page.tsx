@@ -26,10 +26,8 @@ export default async function CommunityPage() {
   const cleanData = data.props.file.data;
 
   return (
-    <>
-      <div>
-        <CommunityPageClient {...cleanData} />
-      </div>
-    </>
+    <div>
+      <CommunityPageClient {...cleanData} />
+    </div>
   );
 }

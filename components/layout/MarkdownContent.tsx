@@ -32,7 +32,7 @@ interface copyButtonProps {
   value?: string;
 }
 
-const CopyCodeButton = ({ value }: copyButtonProps) => {
+const _CopyCodeButton = ({ value }: copyButtonProps) => {
   const [copied, setCopied] = React.useState(false);
 
   const clickEvent = () => {

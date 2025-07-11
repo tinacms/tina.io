@@ -4,7 +4,7 @@ import enLocale from 'content/not-found/en.json';
 import zhLocale from 'content/not-found/zh.json';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
@@ -247,10 +247,16 @@ const parsePath = (pathname: string, localeList: string[]) => {
   const isBlogRoot = routeType === 'blog' && segments.length === 2;
 
   const routeKey = isBlogPagination || isBlogRoot ? 'blog/page' : routeType;
-  const pathWithoutPrefix = ((type: string, segs: string[]) => {
-    if (isBlogPagination) return segs.slice(2).join('/');
-    if (isBlogRoot) return 'page/1';
-    if (segs.length === 2) return '';
+  const pathWithoutPrefix = ((_type: string, segs: string[]) => {
+    if (isBlogPagination) {
+      return segs.slice(2).join('/');
+    }
+    if (isBlogRoot) {
+      return 'page/1';
+    }
+    if (segs.length === 2) {
+      return '';
+    }
     return segs.slice(2).join('/');
   })(routeType, segments);
 
@@ -272,7 +278,7 @@ const queryPage = async (pathInfo: {
 }) => {
   try {
     const { routeKey, pathWithoutPrefix } = pathInfo;
-    const config = routeConfig[routeKey] || routeConfig['default'];
+    const config = routeConfig[routeKey] || routeConfig.default;
     const isDefaultRoute = config.type === 'page';
 
     try {

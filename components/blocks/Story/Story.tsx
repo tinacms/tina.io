@@ -202,8 +202,8 @@ const Pane = ({ data, position, ...props }) => {
           data.basePosition ? data.basePosition : ''
         } ${position}`}
         style={{
-          width: data.width + '%',
-          height: data.height === 'auto' ? 'auto' : data.height + '%',
+          width: `${data.width}%`,
+          height: data.height === 'auto' ? 'auto' : `${data.height}%`,
         }}
       >
         {data.video && <Video src={data.video} />}
@@ -219,8 +219,7 @@ const Pane = ({ data, position, ...props }) => {
                 data.file.name ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
               } overflow-hidden w-full text-blue-50 border-2 border-blue-800 bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 shadow-panel`}
               style={{
-                fontSize:
-                  1.25 * (data.file.textScale ? data.file.textScale : 1) + 'em',
+                fontSize: `${1.25 * (data.file.textScale ? data.file.textScale : 1)}em`,
               }}
             >
               <CodeWrapper>
@@ -387,13 +386,13 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
     } else if (activeId === item.id) {
       setActiveId(null);
     }
-  }, [inView]);
+  }, [inView, activeId, item.id, setActiveId]);
 
   React.useEffect(() => {
     if (!activeId && inView) {
       setActiveId(item.id);
     }
-  }, [activeId]);
+  }, [activeId, inView, item.id, setActiveId]);
 
   return (
     <>
@@ -405,14 +404,13 @@ const Feature = ({ activeId, setActiveId, item, ...props }) => {
       >
         <div className="lg:hidden w-full aspect-w-9 aspect-h-6 relative mt-6 mb-24">
           <div className="absolute w-full h-full pane-container">
-            {featurePanes &&
-              featurePanes.map((pane) => (
-                <Pane
-                  key={pane.name + '-mobile'}
-                  data={pane}
-                  position={pane.positions[item.id]}
-                />
-              ))}
+            {featurePanes?.map((pane) => (
+              <Pane
+                key={`${pane.name}-mobile`}
+                data={pane}
+                position={pane.positions[item.id]}
+              />
+            ))}
           </div>
         </div>
         <div className="drop-shadow-sm flex flex-col gap-6 lg:gap-8" ref={ref}>
@@ -468,7 +466,7 @@ export function StoryBlock({ data, index }) {
                 <div className="absolute w-full h-full right">
                   {panes.map((pane) => (
                     <Pane
-                      key={pane.name + '-desktop'}
+                      key={`${pane.name}-desktop`}
                       data={pane}
                       position={
                         pane.positions[activeId]

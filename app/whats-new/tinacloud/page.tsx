@@ -24,7 +24,7 @@ export async function generateMetadata() {
 
 export default async function TinaCloudPage() {
   const vars = { last: 10, sort: 'dateReleased' };
-  const { data, query } = await fetchTinaCloudData(vars);
+  const { data } = await fetchTinaCloudData(vars);
 
   return <WhatsNewTinaCloudPageLayout data={data} />;
 }

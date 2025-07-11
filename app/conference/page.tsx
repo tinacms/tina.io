@@ -18,7 +18,7 @@ export default async function ConferencePage() {
   return <ConferenceClient query={query} data={data} vars={vars} />;
 }
 
-const fetchConference = async (vars = {}) => {
+const fetchConference = async (_vars = {}) => {
   const res = await client.queries.conference({
     relativePath: 'TinaCon2025.mdx',
   });

@@ -11,7 +11,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
   // The width of one “set” of items. We render 2 sets total in a row.
   const [oneSetWidth, setOneSetWidth] = useState(0);
   useEffect(() => {
-    if (!sliderRef.current) return;
+    if (!sliderRef.current) {
+      return;
+    }
 
     const measureId = requestAnimationFrame(() => {
       const totalWidth = sliderRef.current.scrollWidth;
@@ -20,7 +22,7 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
     });
 
     return () => cancelAnimationFrame(measureId);
-  }, [items, slidesToShow]);
+  }, []);
 
   useEffect(() => {
     let rafId;

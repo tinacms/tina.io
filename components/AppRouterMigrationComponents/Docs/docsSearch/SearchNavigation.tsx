@@ -179,11 +179,11 @@ export const DocsSearchBarHeader = ({
   searchMargin,
   searchBarPadding,
   learnActive = false,
-  setLearnActive = (value: boolean) => {},
+  setLearnActive = (_value: boolean) => {},
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [_searchResults, setSearchResults] = useState<any>(null);
+  const [_isLoading, setIsLoading] = useState(false);
   const [userHasTyped, setUserHasTyped] = useState(false);
   const [searchOverFlowOpen, setSearchOverflowOpen] = useState(false);
   const router = useRouter();

@@ -169,8 +169,7 @@ export const TocContent = styled.div<TocContentProps>`
   transition: all 400ms ease-out;
 
   ${(props) =>
-    props.activeIds &&
-    props.activeIds.map(
+    props.activeIds?.map(
       (id) =>
         css`
           a[href='#${id}'] {

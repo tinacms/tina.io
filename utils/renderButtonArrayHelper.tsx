@@ -1,7 +1,6 @@
 import { Actions } from 'components/blocks/ActionButton/ActionsButton';
 import { CodeButton } from 'components/blocks/CodeButton/CodeButton';
 import { ModalB } from 'components/blocks/ModalButton/ModalButton';
-import React from 'react';
 
 const RenderButton = ({ button, index }) => {
   if (button.__typename.includes('Actions')) {

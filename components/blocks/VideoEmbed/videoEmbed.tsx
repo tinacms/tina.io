@@ -1,4 +1,3 @@
-import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';

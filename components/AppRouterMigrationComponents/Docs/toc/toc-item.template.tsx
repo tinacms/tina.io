@@ -5,7 +5,7 @@ export const itemTemplate: Template = {
   name: 'item',
   ui: {
     itemProps: (item) => {
-      return { label: '🔗 ' + (item?.title ?? 'Unnamed Menu Item') };
+      return { label: `🔗 ${item?.title ?? 'Unnamed Menu Item'}` };
     },
   },
   fields: [

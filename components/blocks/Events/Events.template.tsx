@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 import 'react-datetime/css/react-datetime.css';
 import type { Template } from 'tinacms';
 

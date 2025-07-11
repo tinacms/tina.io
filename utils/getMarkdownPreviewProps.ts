@@ -1,5 +1,5 @@
+import path from 'node:path';
 import matter from 'gray-matter';
-import path from 'path';
 import { formatExcerpt } from '.';
 import { slugifyTocHeading as slugify } from './docs/slugifyToc';
 import getTocContent from './getTocContent';
@@ -46,8 +46,8 @@ export const getMarkdownPreviewProps = async (
 
 export async function getMarkdownFile(
   fileRelativePath: string,
-  preview: boolean,
-  previewData: any,
+  _preview: boolean,
+  _previewData: any,
 ): Promise<any> {
   const file = await readMarkdownFile(fileRelativePath);
 

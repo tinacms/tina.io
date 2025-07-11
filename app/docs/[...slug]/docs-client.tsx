@@ -24,10 +24,10 @@ export default function DocsClient({ props }) {
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { PageTableOfContents } = props;
   const DocumentationData = data.doc;
-  const pathname = usePathname();
+  const _pathname = usePathname();
 
   const { learnActive, setLearnActive } = useDocsNavigation();
-  const [isLearnDocument, setIsLearnDocument] = useState(learnActive);
+  const [_isLearnDocument, setIsLearnDocument] = useState(learnActive);
 
   const { activeIds, contentRef } = useTocListener(DocumentationData);
 
@@ -44,7 +44,7 @@ export default function DocsClient({ props }) {
   const checkLearn = (callback) => {
     const filepath = DocumentationData?.id;
     if (filepath) {
-      const slug = filepath.substring(7, filepath.length - 4) + '/';
+      const slug = `${filepath.substring(7, filepath.length - 4)}/`;
       const recurseItems = (items) => {
         items?.forEach((item) => {
           if (item.items) {
@@ -59,11 +59,11 @@ export default function DocsClient({ props }) {
   };
   useEffect(() => {
     checkLearn(setIsLearnDocument);
-  }, []);
+  }, [checkLearn]);
 
   useEffect(() => {
     checkLearn(setLearnActive);
-  }, [NavigationLearnData, DocumentationData, pathname]);
+  }, [checkLearn, setLearnActive]);
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);

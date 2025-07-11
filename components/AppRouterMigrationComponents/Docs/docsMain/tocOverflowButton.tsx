@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
-import { getDocId } from 'utils/docs/getDocIds';
 
 const TocOverflow = ({ tocData }) => {
   return (

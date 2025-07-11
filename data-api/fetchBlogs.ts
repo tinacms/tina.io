@@ -1,12 +1,12 @@
 import matter from 'gray-matter';
 
 const fg = require('fast-glob');
-var fs = require('fs');
-var path = require('path');
+var fs = require('node:fs');
+var path = require('node:path');
 
 export async function fetchBlogs() {
   const directory = path.resolve('./content/blog');
-  const files = await fg(directory + '/**/*.mdx');
+  const files = await fg(`${directory}/**/*.mdx`);
 
   return files.map((fileName) => {
     const fullPath = path.resolve(directory, fileName);

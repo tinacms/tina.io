@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 import Slider from 'react-slick';
@@ -176,7 +176,9 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
   }, [data]);
 
   useEffect(() => {
-    if (userInteracted) return;
+    if (userInteracted) {
+      return;
+    }
 
     let currentIndex = 1;
     const interval = setInterval(() => {
@@ -189,7 +191,9 @@ export function CompareBoxBlock({ data, index }: CompareBoxBlockProps) {
           sliderRef.current.slickGoTo(currentIndex - 1);
         }
         currentIndex = (currentIndex + 1) % (prevCompanies?.length ?? 1);
-        if (currentIndex === 0) currentIndex = 1;
+        if (currentIndex === 0) {
+          currentIndex = 1;
+        }
         return newCompanies;
       });
     }, 3000);

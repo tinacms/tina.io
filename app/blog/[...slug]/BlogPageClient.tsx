@@ -4,7 +4,7 @@ import Giscus from '@giscus/react';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
-import React from 'react';
+import type React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import type { BlogPageClientProps } from './BlogType';
 

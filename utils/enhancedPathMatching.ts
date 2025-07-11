@@ -5,7 +5,9 @@ export function enhancedPathMatching(url1: string, url2: string) {
     return true;
   }
 
-  if (!url1 || !url2) return false;
+  if (!url1 || !url2) {
+    return false;
+  }
   const normalizeUrl = (url: string) => {
     let normalized = url.replace(/^\/|\/$/g, '');
 

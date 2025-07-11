@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 
 export const TinaIcon = ({

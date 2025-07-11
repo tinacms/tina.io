@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import { DynamicLink } from './DynamicLink';
@@ -57,7 +57,7 @@ export const BlogPagination = styled(
               {Array.from({ length: numPages }, (_, i) => (
                 <option
                   arial-label={`Go to Page ${i + 1}`}
-                  aria-current={i + 1 === currentPage ? true : false}
+                  aria-current={i + 1 === currentPage}
                   value={i + 1}
                   key={`page-${i}`}
                 >

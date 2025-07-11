@@ -1,6 +1,5 @@
 'use client';
 
-import { Layout } from '../layout';
 import { Blocks } from './Blocks';
 
 export const BlocksPage = ({ data, recentPosts }) => {

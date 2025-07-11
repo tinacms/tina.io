@@ -44,12 +44,14 @@ export function createTocListener(
   };
 }
 
-export function useTocListener(data: any) {
+export function useTocListener(_data: any) {
   const [activeIds, setActiveIds] = React.useState<string[]>([]);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (!contentRef.current) return;
+    if (!contentRef.current) {
+      return;
+    }
     const tocListener = createTocListener(contentRef, setActiveIds);
 
     // Use passive event listener for better scroll performance
@@ -59,7 +61,7 @@ export function useTocListener(data: any) {
     return () => {
       window.removeEventListener('scroll', tocListener);
     };
-  }, [data]);
+  }, []);
 
   return { contentRef, activeIds };
 }
