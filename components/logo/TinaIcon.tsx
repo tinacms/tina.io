@@ -1,4 +1,6 @@
 import Link from 'next/link';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import TinaIconSvg from '../../public/svg/tina-icon.svg';
 
 export const TinaIcon = ({

@@ -1,5 +1,7 @@
 import { useWindowSize } from 'components/hooks/UseWindowSize';
 import Image from 'next/image';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { Slider } from './CustomSlider';
 
 const Logo = ({ data, windowWidth = 1000 }) => {

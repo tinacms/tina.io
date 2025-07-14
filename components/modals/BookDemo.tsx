@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 

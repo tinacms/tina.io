@@ -1,3 +1,5 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import GitHubButton from 'react-github-btn';
 
 export function CloudBanner() {

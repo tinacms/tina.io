@@ -1,3 +1,5 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { AppNavBar } from './AppNavBar';
 import { Footer } from './footer/footer';
 import { LanguageSupportAlert } from './LanguageSupportAlert';

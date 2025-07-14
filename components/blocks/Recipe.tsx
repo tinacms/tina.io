@@ -1,5 +1,5 @@
-import type React from 'react';
-import { useEffect, useRef, useState } from 'react';
+// biome-ignore lint/style/useImportType: <TODO>
+import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { customHighlightCSS } from '../styles/RecipeCSS';

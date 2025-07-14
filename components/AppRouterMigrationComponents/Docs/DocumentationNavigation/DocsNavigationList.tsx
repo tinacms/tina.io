@@ -313,10 +313,3 @@ const DocsNavigationContainer = styled.div`
     padding: 1rem 1rem 2rem 1rem;
   }
 `;
-
-const _AnchorIcon = styled.span`
-  display: inline-block;
-  position: relative;
-  transform: translate3d(0, 0, 0);
-  transition: all 150ms ease-out;
-`;

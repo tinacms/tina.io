@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 import { DefaultSeo } from 'next-seo';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { Footer } from './Footer';
 
 interface LayoutProps {
@@ -10,7 +12,8 @@ interface LayoutProps {
   sticky?: boolean;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+// biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
+export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
   const pathname = usePathname();
 
   return (

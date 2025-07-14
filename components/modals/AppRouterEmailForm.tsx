@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
-import type React from 'react';
-import { useState } from 'react';
+// biome-ignore lint/style/useImportType: <TODO>
+import React, { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';

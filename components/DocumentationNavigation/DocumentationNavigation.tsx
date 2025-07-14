@@ -1,7 +1,7 @@
-import { useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import styled from 'styled-components';
-import { HitsWrapper } from '../../components/search/styles';
 import { Overlay } from '../ui/Overlay';
 
 export interface DocsNavProps {
@@ -42,27 +42,6 @@ const MobileNavToggle = ({
   );
 };
 
-const _CloseButton = styled.button<{ mobileNavIsOpen: boolean }>`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-
-  .icon {
-    font-size: 1.75rem;
-    transition: transform 0.3s ease;
-  }
-
-  @media (min-width: 840px) {
-    display: none;
-  }
-
-  display: ${(props) => (props.mobileNavIsOpen ? 'block' : 'none')};
-`;
-
 const ToggleWrapper = styled.button<{ open: boolean }>`
   position: fixed;
   top: 20px;
@@ -89,30 +68,5 @@ const ToggleWrapper = styled.button<{ open: boolean }>`
 
   @media (min-width: 840px) {
     display: none;
-  }
-`;
-
-const _DocsSidebarHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-`;
-
-const _DocsSidebarHeaderWrapper = styled.div`
-  flex: 0 0 auto;
-  background-color: transparent;
-  z-index: 500;
-  padding: 1rem 1rem 1.25rem 1rem;
-  position: relative;
-
-  ${HitsWrapper} {
-    right: auto;
-    left: 1.25rem;
-    margin-top: -1.625rem;
-  }
-
-  @media (min-width: 1600px) {
-    padding: 1rem 1.75rem 1.5rem 1.75rem;
   }
 `;

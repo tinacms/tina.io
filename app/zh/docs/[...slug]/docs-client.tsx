@@ -9,10 +9,9 @@ import { formatDate } from 'components/AppRouterMigrationComponents/utils/format
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { enhancedPathMatching } from 'utils/enhancedPathMatching';
 import { useNavigationData } from '../toc-layout-client';
 
 export default function DocsClient({ props }) {
@@ -54,40 +53,33 @@ export default function DocsClient({ props }) {
     slug: processPageLink(DocumentationData?.next?.id),
     title: DocumentationData?.next?.title,
   };
-  const checkLearn = (callback) => {
-    const filepath = DocumentationData?.id;
-    if (filepath) {
-      const slug = `${filepath
-        .substring(7, filepath.length - 4)
-        .replace('docs-zh', 'zh/docs')}/`;
-
-      const recurseItems = (items) => {
-        items?.forEach((item) => {
-          if (item.items) {
-            recurseItems(item.items);
-          } else if (enhancedPathMatching(item.slug, slug)) {
-            callback(true);
-            return true;
-          }
-        });
-      };
-      recurseItems(NavigationLearnData?.data);
-    }
-  };
-
-  useEffect(() => {
-    if (NavigationLearnData?.data) {
-      checkLearn(setIsLearnDocument);
-    }
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
-  }, [NavigationLearnData, checkLearn]);
+  const checkLearn = useCallback(
+    (callback: (value: boolean) => void) => {
+      const filepath = DocumentationData?.id;
+      if (filepath) {
+        const slug = `${filepath.substring(7, filepath.length - 4)}/`;
+        const recurseItems = (items: any[]) => {
+          items?.forEach((item) => {
+            if (item.items) {
+              recurseItems(item.items);
+            } else if (item.slug === slug) {
+              callback(true);
+            }
+          });
+        };
+        recurseItems(NavigationLearnData?.data);
+      }
+    },
+    [DocumentationData?.id, NavigationLearnData?.data],
+  );
 
   useEffect(() => {
-    if (NavigationLearnData?.data && DocumentationData) {
-      checkLearn(setLearnActive);
-    }
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
-  }, [NavigationLearnData, DocumentationData, checkLearn, setLearnActive]);
+    checkLearn(setIsLearnDocument);
+  }, [checkLearn]);
+
+  useEffect(() => {
+    checkLearn(setLearnActive);
+  }, [checkLearn, setLearnActive]);
 
   const lastEdited = DocumentationData?.last_edited;
   const formattedDate = formatDate(lastEdited);

@@ -2,7 +2,8 @@
 /** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
 import checkTouchScreen from 'components/util/touchscreenDetection';
 import Image from 'next/image';
-import { useEffect, useMemo, useRef, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';

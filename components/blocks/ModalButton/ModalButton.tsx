@@ -1,6 +1,7 @@
 import { EmailForm } from 'components/forms';
 import { DemoForm } from 'components/modals/BookDemo';
-import { useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';

@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
 const VideoGridComponent = ({ data }) => {

@@ -2,7 +2,8 @@
 
 import Cookies from 'js-cookie';
 import Script from 'next/script';
-import { useEffect } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect } from 'react';
 
 export default function HotjarScript() {
   useEffect(() => {

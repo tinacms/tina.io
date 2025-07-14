@@ -1,4 +1,6 @@
 import Image from 'next/image';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';

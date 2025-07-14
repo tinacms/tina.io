@@ -1,4 +1,6 @@
 import { contentComponents } from 'components/tinaMarkdownComponents/contentComponents';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { DocsTextWrapper } from '../../layout/DocsTextWrapper';
 import { Section } from '../../layout/Section';

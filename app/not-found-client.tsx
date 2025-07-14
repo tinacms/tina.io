@@ -4,7 +4,8 @@ import enLocale from 'content/not-found/en.json';
 import zhLocale from 'content/not-found/zh.json';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect, useState } from 'react';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';

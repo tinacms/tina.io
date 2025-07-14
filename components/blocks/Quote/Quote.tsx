@@ -1,4 +1,6 @@
 import Image from 'next/image';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { Container } from '../Container';
 

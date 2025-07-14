@@ -1,5 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import type {
   PageBlocks,
   PostConnection,

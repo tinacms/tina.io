@@ -1,4 +1,6 @@
 import 'react-datetime/css/react-datetime.css';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import type { Template } from 'tinacms';
 
 export const eventsTemplate: Template = {

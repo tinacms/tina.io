@@ -1,5 +1,6 @@
 import debounce from 'lodash/debounce';
-import { useEffect, useRef, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect, useRef, useState } from 'react';
 import { wrapFieldsWithMeta } from 'tinacms';
 
 // biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>

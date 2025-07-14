@@ -1,3 +1,5 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import styled from 'styled-components';
 import TinaWordmarkSvg from '../../public/svg/tina-wordmark.svg';
 

@@ -1,7 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { DynamicLink } from './DynamicLink';
@@ -59,7 +60,7 @@ export const BlogPagination = styled(
                   arial-label={`Go to Page ${i + 1}`}
                   aria-current={i + 1 === currentPage}
                   value={i + 1}
-                  key={`page-${i + 1}`}
+                  key={`page-${i + 1}-${i}`}
                 >
                   {i + 1}
                 </option>

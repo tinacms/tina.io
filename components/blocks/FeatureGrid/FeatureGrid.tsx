@@ -1,4 +1,6 @@
 import Link from 'next/link';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import GradGlow from '../../../public/svg/grad-glow.svg';

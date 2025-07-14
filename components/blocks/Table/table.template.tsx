@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect, useState } from 'react';
 import { type Template, wrapFieldsWithMeta } from 'tinacms';
 
 //This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
