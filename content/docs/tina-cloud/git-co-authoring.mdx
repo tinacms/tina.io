@@ -1,6 +1,6 @@
 ---
 title: Git Co-Authoring and GitHub Authoring - What is it and how do we use it?
-last_edited: '2025-07-14T01:06:54.114Z'
+last_edited: '2025-07-14T01:23:40.975Z'
 next: ''
 previous: ''
 ---
@@ -28,7 +28,7 @@ You can choose between two levels of GitHub integration:
 
 This method provides perfect attribution by using your GitHub account to perform all actions. Commits, branches, and pull requests will appear in your repository's history exactly as if you had made them from your own computer.
 
-![A commit clearly showing the user's avatar and name as the author.](/tina-cloud-app-good-example.png "With authorship configured, contributions are clearly attributed.")
+![A commit authored solely by the user, making it clear who made the change.](/img/docs/tina-cloud/github-authoring/github-authoring-commit-example.png "The commit and PR is created by the user, not the bot.")
 
 ### How Permissions Are Secured 🔐
 
@@ -65,6 +65,8 @@ If you initiate an action that your personal GitHub account does not have permis
 If you prefer not to grant the application permission to act on your behalf, co-authoring provides a lighter-weight way to get attribution.
 
 With this option, the `tina-cloud-app` still performs all Git actions, but it adds a `Co-authored-by:` trailer to the end of each commit message, crediting you for the work.
+
+![A commit clearly showing the user's avatar and name as the co-author.](/tina-cloud-app-good-example.png "With co-authorship configured, contributions are attributed with the bot.")
 
 ### How to Enable Co-authoring
 
