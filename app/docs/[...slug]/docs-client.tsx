@@ -8,7 +8,6 @@ import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
-import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -24,7 +23,6 @@ export default function DocsClient({ props }) {
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { PageTableOfContents } = props;
   const DocumentationData = data.doc;
-  const _pathname = usePathname();
 
   const { learnActive, setLearnActive } = useDocsNavigation();
   const [_isLearnDocument, setIsLearnDocument] = useState(learnActive);
