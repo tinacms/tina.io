@@ -1,6 +1,6 @@
 ---
 title: Git Co-Authoring and GitHub Authoring - What is it and how do we use it?
-last_edited: '2025-07-14T01:23:40.975Z'
+last_edited: '2025-07-14T03:59:06.804Z'
 next: ''
 previous: ''
 ---
@@ -32,7 +32,7 @@ This method provides perfect attribution by using your GitHub account to perform
 
 ### How Permissions Are Secured 🔐
 
-This feature operates on a **dual-permission system**, meaning an action is only successful if **both** the TinaCMS application and **your personal user account** have the required permissions.
+An action is only allowed if **both** **your personal user account and the bot** have the required permissions.
 
 * **The Application's Permissions:** Our bot is granted a specific set of permissions to interact with your repository:
   * `Code` (Read & Write)
@@ -40,8 +40,6 @@ This feature operates on a **dual-permission system**, meaning an action is only
   * `Repository Hooks` (Read & Write)
   * `Metadata` (Read-only)
 * **Your Personal Permissions:** For every action, GitHub also checks if your personal account has the right to perform that action.
-
-This means the application **cannot** access a repository you don't have access to, nor can it perform an action (like merging to a protected branch) that you aren't allowed to do. Enabling this feature will not grant you or the bot any new permissions.
 
 You can find more information in the [Authenticating with a GitHub App on behalf of a user docs](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-with-a-github-app-on-behalf-of-a-user)
 
@@ -84,9 +82,9 @@ With this option, the `tina-cloud-app` still performs all Git actions, but it ad
 
 ### Quick Comparison
 
-| Feature                    | Act as You (Recommended)                                                                      | Co-authoring                                                                   |
-| -------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| **Attribution Method**     | Commits are made directly by your user identity.                                              | Commits are made by the bot, with your name added as a `Co-authored-by:` line. |
-| **Security & Permissions** | Secure dual-permission model. Actions are limited by both the app's and your own permissions. | No extra permissions required. Relies only on the bot's permissions.           |
-| **Setup**                  | One-time GitHub OAuth authorization.                                                          | Manual entry of your name and email.                                           |
-| **Best For**               | Teams wanting seamless, accurate attribution and a clear commit history.                      | Users who want attribution without authorizing the app to act on their behalf. |
+| Feature                    | Act as You (Recommended)                                                 | Co-authoring                                                                   |
+| -------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| **Attribution Method**     | Commits are made directly by your user identity.                         | Commits are made by the bot, with your name added as a `Co-authored-by:` line. |
+| **Security & Permissions** | Actions are limited by both the app's and your own permissions.          | No extra permissions required. Relies only on the bot's permissions.           |
+| **Setup**                  | One-time GitHub OAuth authorization.                                     | Manual entry of your name and email.                                           |
+| **Best For**               | Teams wanting seamless, accurate attribution and a clear commit history. | Users who want attribution without authorizing the app to act on their behalf. |
