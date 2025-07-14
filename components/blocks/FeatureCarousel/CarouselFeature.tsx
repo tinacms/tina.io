@@ -109,6 +109,20 @@ export default function CarouselFeatureBlock({ data, index }) {
   const [isShowingAll, setIsShowingAll] = useState(false);
   const sectionRef = useRef(null);
 
+  const startAutoTicking = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    intervalRef.current = setInterval(() => {
+      setHoveredIndex((prevIndex) => {
+        if (prevIndex === null || prevIndex >= data.items.length - 1) {
+          return 0;
+        }
+        return prevIndex + 1;
+      });
+    }, 6000);
+  };
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
     const mediaQueryLarge = window.matchMedia('(min-width: 1024px)');
@@ -162,21 +176,6 @@ export default function CarouselFeatureBlock({ data, index }) {
       }
     };
   }, []);
-
-  const startAutoTicking = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    intervalRef.current = setInterval(() => {
-      setHoveredIndex((prevIndex) => {
-        if (prevIndex === null || prevIndex >= data.items.length - 1) {
-          return 0;
-        }
-        return prevIndex + 1;
-      });
-    }, 6000);
-  };
 
   useEffect(() => {
     if (
