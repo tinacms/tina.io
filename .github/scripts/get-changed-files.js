@@ -1,6 +1,5 @@
 // .github/scripts/get-changed-files.js
 const fs = require('node:fs');
-const _path = require('node:path');
 const axios = require('axios');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
