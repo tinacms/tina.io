@@ -1,0 +1,45 @@
+---
+id: /docs/reference/self-hosted/database-adapter/overview
+title: 选择数据库适配器
+---
+
+## 概述
+
+数据库适配器在Tina数据库和底层数据库实现之间提供了一个接口。它实现了排序键值存储所需的有限功能子集，这几乎可以由任何数据库实现提供。目前我们有以下数据库实现的数据库适配器：
+
+* [Vercel KV](/docs/reference/self-hosted/database-adapter/vercel-kv)
+* [MongoDB](/docs/reference/self-hosted/database-adapter/mongodb)
+
+我们正在考虑未来支持更多的数据库适配器，如果您对此感兴趣，请通过[GitHub discussions](https://github.com/tinacms/tinacms/discussions "GitHub discussions")告诉我们。
+
+可以在`database.{ts,js}`文件中通过传递给`createDatabase`函数来配置数据库适配器。
+
+```ts
+// ...
+
+export isLocal ? createLocalDatabase() : createDatabase({
+    // ...
+    databaseAdapter: new DatabaseAdapter()
+})
+```
+
+## createDatabase 函数
+
+这是一个工厂函数，用于创建一个新的TinaCMS数据库实例。它需要一个[`databaseAdapter`](/docs/reference/self-hosted/database-adapter/overview/)和一个[`gitProvider`](/docs/reference/self-hosted/git-provider/overview/)。
+
+| 参数                   | 描述                                                                                                                                                                                                                                                                                    |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `databaseAdapter`     | 要使用的[数据库适配器](/docs/reference/self-hosted/database-adapter/overview)。（必需）                                                                                                                                                                                               |
+| `gitProvider`         | 要使用的[git提供者](/docs/reference/self-hosted/git-provider/overview)。（必需）                                                                                                                                                                                                       |
+| `tinaDirectory`       | 用于存储tina文件的目录。默认为`tina`（可选）                                                                                                                                                                                                                          |
+| `bridge`              | 用于将内容索引到数据库适配器的桥接器。默认为文件系统。如果您想从文件系统以外的其他来源进行索引，`bridge`是一个更高级的用例。请[在Discord上联系我们](https://discord.gg/zumN63Ybpf)以获得进一步的帮助。 |
+| `indexStatusCallback` | 用于报告当前索引操作状态的异步函数。（可选）                                                                                                                                                                                                       |
+| `namespace`           | 指定当前索引内容的命名空间。如果指定，这通常是一个包含当前分支名称的环境变量。                                                                                                                                       |
+
+## createLocalDatabase 函数
+
+这是一个工厂函数，用于创建一个可以用于本地开发或[静态构建](/docs/cli-overview/#examples)的数据库。
+
+它使用本地内存数据库适配器和一个文件系统Git提供者，该提供者仅将更改写入文件系统而不提交它们。
+
+(*不需要任何参数*)

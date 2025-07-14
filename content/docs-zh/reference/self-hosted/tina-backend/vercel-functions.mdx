@@ -1,0 +1,76 @@
+---
+title: 使用Vercel Functions托管Tina后端
+id: '/docs/reference/self-hosted/tina-backend/vercel-functions'
+---
+
+如果您没有使用Next.js，但使用Vercel来托管您的网站，您可以将Tina后端部署为[Vercel Function](https://vercel.com/docs/functions/serverless-functions)。这个函数将负责处理所有TinaCMS请求，包括GraphQL API、身份验证和授权。
+
+如果您想查看Vercel Functions的实际应用，请查看[演示仓库](https://github.com/tinacms/tina-self-hosted-static-demo)
+
+## 配置
+
+创建一个名为`api/tina/backend.{ts,js}`的文件，并添加以下代码：
+
+```ts
+// `api/tina/backend.{ts,js}`
+
+import { TinaNodeBackend, LocalBackendAuthentication } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthentication } from 'tinacms-authjs'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authentication: isLocal
+    ? LocalBackendAuthentication()
+    : AuthJsBackendAuthentication({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // 如果需要，可以在这里修改请求
+  return handler(req, res)
+}
+```
+
+由于Vercel Functions不支持捕获所有路由，您需要在`vercel.json`文件中添加以下内容。
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/api/tina/:path*",
+      "destination": "/api/tina/backend"
+    }
+  ]
+}
+```
+
+接下来，确保更新您的TinaCMS配置以使用新的端点。
+
+```js
+// tina/config.{js,ts}
+export default defineConfig({
+  // 这是您的graphql端点的URL
+  contentApiUrlOverride: '/api/tina/gql',
+  //...
+})
+```
+
+接下来，确保更新您的开发命令以传递正确的端口，以便后端和前端在同一端口上运行。
+
+```json
+{
+  "scripts": {
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \" <Your Dev Command> --port $PORT\""
+  }
+}
+```
+
+现在，您可以使用`vercel dev`命令在本地运行您的网站。

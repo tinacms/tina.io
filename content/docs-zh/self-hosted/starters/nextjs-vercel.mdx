@@ -1,0 +1,118 @@
+---
+id: /docs/self-hosted/starters/nextjs-vercel
+
+title: 使用 Next.js Vercel 示例
+last_edited: '2023-07-07T04:00:00.000Z'
+next: content/docs-zh/self-hosted/existing-site.mdx
+previous: content/docs-zh/self-hosted/overview.mdx
+---
+
+## 介绍
+
+本文档将指导您设置我们预配置的自托管示例存储库。此实现使用：
+
+- [NextJS](https://nextjs.org/)
+- 用于[数据库适配器](/docs/reference/self-hosted/database-adapter/overview)的 [Vercel](/docs/reference/self-hosted/database-adapter/vercel-kv) KV
+- 用于其[认证提供者](/docs/reference/self-hosted/auth-provider/overview)的 [NextAuth](/docs/reference/self-hosted/auth-provider/authjs)
+
+## 部署入门模板
+
+<Youtube embedSrc="https://www.youtube.com/embed/DAJpnjkLBbM" />
+
+您可以使用[我们预配置的 Vercel 模板](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Ftree%2Fmain&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=NEXTAUTH_SECRET%20can%20be%20generated%20with%3A%20%60openssl%20rand%20-hex%2016%60%20and%20the%20github%20token%20can%20be%20created%20here%3A%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D)部署[自托管入门](https://github.com/tinacms/tina-self-hosted-demo)：
+
+这将：
+
+- 在您的 GitHub 账户中创建自托管入门[存储库](https://github.com/tinacms/tina-self-hosted-demo)的副本
+- 使用入门代码创建一个新的 Vercel 项目
+- 为项目创建一个新的 Vercel KV 存储
+
+### 设置 Vercel KV 存储
+
+在初始 Vercel 项目设置中，您将被提示设置 Vercel KV 存储。使用默认的 `KV_` 环境变量前缀。
+
+### 设置环境变量
+
+您将被提示输入以下环境变量的值：
+
+#### `GITHUB_PERSONAL_ACCESS_TOKEN`
+
+可以在您的 [GitHub 开发者设置](https://github.com/settings/personal-access-tokens/new)中生成 GitHub 个人访问令牌。确保为新存储库分配 `repo` 访问权限，并具有对内容的读/写访问权限。
+
+您可能希望将到期日期更改为超过 30 天（最大为 1 年）。
+
+![Github 认证设置](/img/docs/self-hosted/personal-access-token.png)
+
+#### `NEXTAUTH_SECRET`
+
+NextAuth.js 用于 JWT 加密的随机字符串。
+
+可以使用以下命令生成：
+
+```shell
+openssl rand -hex 16
+```
+
+### 测试部署
+
+此时，您应该能够看到已部署的入门站点。如果您在 URL 后添加 `/admin`，您将被提示登录。您可以使用默认用户名 `tinauser` 和密码 `tinarocks` 登录。登录后，系统会提示您更改密码。
+
+![TinaCMS 用户名和密码](/img/docs/self-hosted/tina-login-screen2.png)
+
+## 添加其他用户
+
+查看 [用户管理文档](/docs/self-hosted/user-management/)以了解如何添加其他用户的信息。
+
+> 注意：当您在本地测试 TinaCMS 时，您无需登录即可访问 CMS。
+
+## 本地开发
+
+### 克隆存储库
+
+（将 URL 替换为您新分叉的存储库）
+
+```shell
+git clone <YourGitUrl>
+```
+
+安装项目的依赖项：
+
+```shell
+yarn install
+```
+
+### 配置开发环境
+
+设置 .env 文件：
+
+```shell
+cp .env.example .env
+```
+
+在本地使用与之前在 Vercel 项目中设置的相同环境变量。
+您还需要添加一些在 Vercel 中自动应用于您的 [Vercel KV 存储](https://vercel.com/dashboard/stores) 的环境变量。
+
+```env
+# Github 凭证用于 onPut 和 onDelete
+GITHUB_PERSONAL_ACCESS_TOKEN=
+
+# 本地构建时必需
+GITHUB_OWNER=
+GITHUB_REPO=
+GITHUB_BRANCH=
+
+# NextAuth.js 用于加密 JWT
+NEXTAUTH_SECRET=changeme
+
+# Vercel KV 使用（可以在 vercel 仪表板中找到）
+KV_REST_API_URL=
+KV_REST_API_TOKEN=
+```
+
+### 本地运行项目
+
+```shell
+yarn dev
+```
+
+您将能够在 `http://localhost:3000` 查看您的入门项目。要使用 TinaCMS 编辑内容，请访问 `http://localhost:3000/admin`。

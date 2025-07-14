@@ -1,0 +1,164 @@
+---
+seo:
+  title: 宣布新的扩展Tina | TinaCMS博客
+  description: >-
+    了解如何通过自定义插件和功能扩展TinaCMS，为您的独特项目需求提供量身定制的内容管理解决方案。
+title: 宣布新的“扩展Tina”
+date: '2022-04-28T03:00:00.000Z'
+last_edited: '2022-04-28T03:00:00.000Z'
+author: Logan Anderson
+prev: content/blog-zh/automating-pull-requests.mdx
+next: content/blog-zh/basics-of-graphql.mdx
+---
+
+> **注意：** 本文已过时。有关最新的Tina使用，请[查看我们的文档](/docs)。
+
+最新的更新使开发人员能够将`validation`、`component`和`parse`函数直接放入架构中。
+
+## 如何更新
+
+> 如果您想开始使用tina，请查看[这个入门指南](/docs/setup-overview/)
+
+要更新，请执行以下操作，
+
+### 1. 更新`.tina/schema.{ts,tsx,js}`文件中的导入
+
+我们将在后端和前端使用`schema`文件（以前仅在前端使用），因此所有从`@tinacms/cli`的导入都需要更改为`tinacms`。
+
+### 2. 将`defineConfig`添加到架构中
+
+我们现在建议将您的配置与包装组件分开，并放置在`schema.{ts,tsx,js}`中或其单独的文件夹中。
+
+所以以前，架构文件看起来像这样。
+
+```ts
+export default defineSchema({
+  // schema here
+});
+```
+
+必须更改为
+
+```ts
+import { defineConfig } from 'tinacms';
+
+export default defineConfig({
+  // 将schema和apiUrl传递给配置（必需）（这是如何传递给前端的）
+  schema: schema,
+  apiUrl: apiUrl,
+  // 添加其他以前在<TinaCMS>组件中的_app.{js,tsx}文件中的配置。
+  cmsCallback: (cms) => {
+    //...
+  },
+  mediaStore: async () => {
+    //...
+  },
+  collections: [
+    // ...
+  ],
+});
+export default schema;
+```
+
+您应该在`.tina/components`文件夹中添加以下两个文件。
+
+### 3. 添加`.tina/components/TinaProvider.js`
+
+此文件处理Tina配置和tina提供者组件，并且仅在编辑模式下加载，下面是一个示例。
+
+```js
+import TinaCMS from 'tinacms';
+import { tinaConfig } from '../schema.ts';
+
+// 直接将TinaProvider导入到您的页面中会导致Tina被添加到生产包中。
+// 相反，导入tina/provider/index默认导出以在编辑模式下动态导入
+/**
+ *
+ * @private 请不要直接导入此文件，请改为导入动态提供者
+ */
+const TinaProvider = ({ children }) => {
+  return <TinaCMS {...tinaConfig}>{children}</TinaCMS>;
+};
+```
+
+### 4. 添加`.tina/components/TinaDynamicProvider.js`
+
+`TinaDynamicProvider.js`处理在“编辑模式”下加载TinaProvider。请参见下面提供的示例
+
+```js
+import dynamic from 'next/dynamic';
+const TinaProvider = dynamic(() => import('./TinaProvider'), { ssr: false });
+import { TinaEditProvider } from 'tinacms/dist/edit-state';
+
+const DynamicTina = ({ children }) => {
+  return (
+    <>
+      <TinaEditProvider editMode={<TinaProvider>{children}</TinaProvider>}>
+        {children}
+      </TinaEditProvider>
+    </>
+  );
+};
+
+export default DynamicTina;
+```
+
+> 在我们的参考文档中[阅读更多](/docs/tina-folder/overview/#tinadynamicproviderjs)关于这两个文件的信息
+
+### 5. 更新您的`_app.{js,tsx}`
+
+最后一步是更新您的`_app.{js,tsx}`。由于配置和提供者在单独的文件中，这将比以前的代码更少。
+
+`_app.{js,tsx}` 之前：
+
+```js
+import dynamic from 'next/dynamic';
+import { TinaEditProvider } from 'tinacms/dist/edit-state';
+//...
+
+const App = ({ Component, pageProps }) => {
+  return (
+    <>
+      <TinaEditProvider
+        showEditButton={true}
+        editMode={
+          <TinaCMS
+            cmsCallback={(cms) => {
+              //...
+            }}
+            apiURL={apiURL}
+          >
+            <Component {...pageProps} />
+          </TinaCMS>
+        }
+      >
+        <Component {...pageProps} />
+      </TinaEditProvider>
+    </>
+  );
+};
+export default App;
+```
+
+`_app.{js,tsx}` 之后：
+
+```js
+import DynamicTina from '../.tina/components/TinaDynamicProvider';
+
+const App = ({ Component, pageProps }) => {
+  return (
+    <DynamicTina>
+      <Component {...pageProps} />
+    </DynamicTina>
+  );
+};
+export default App;
+```
+
+将配置分离到另一个文件中使其更加简洁易懂。此外，架构现在作为配置的一部分并在前端使用，将允许传递和使用函数。这也将使我们能够减少网络请求，因为我们拥有更多的信息。
+
+## 结束语
+
+我们在本文中讨论的新功能只是可能性的冰山一角，请[阅读文档](/docs/)以了解更多信息。
+
+如果您遇到任何问题，请[通过Discord联系我们](https://discord.com/invite/zumN63Ybpf)或创建一个[GitHub问题](https://github.com/tinacms/tinacms/issues/new/choose)。

@@ -1,0 +1,73 @@
+---
+id: /docs/reference/self-hosted/auth-provider/overview
+title: 自托管认证提供者概述
+last_edited: '2024-11-07T04:15:54.388Z'
+next: ''
+previous: ''
+---
+
+“认证提供者”一词指的是TinaCMS组件，用于处理自托管时用户的身份验证和授权。
+
+Tina推荐的认证提供者基于[Auth.js](https://authjs.dev/)。它利用数据库中的用户集合来存储用户信息，并使用Auth.js API来处理身份验证和授权。通过利用Auth.js，你还可以轻松添加对任何Auth.js [登录提供者](https://authjs.dev/getting-started/providers)的支持，如Auth0、GitHub、Google等。
+
+在自托管时，认证提供者在两个地方进行配置：
+
+* Tina配置
+* Tina后端
+
+## 1. Tina配置 (tina/config.ts,tsx,js)
+
+这是通过在`defineConfig`中的`authProvider`选项提供一个[认证提供者](/docs/reference/self-hosted/auth-provider/bring-your-own#)来完成的。
+
+示例：
+
+```ts
+import { UsernamePasswordAuthJSProvider } from 'tinacms-authjs/dist/tinacms'
+import { LocalAuthProvider } from 'tinacms'
+
+export default defineConfig({
+  authProvider: isLocal
+    ? new LocalAuthProvider()
+    : new UsernamePasswordAuthJSProvider(),
+  //...
+})
+```
+
+## 2. Tina后端
+
+`/api/tina/[...routes].{ts,js}`
+
+```ts
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // 如果需要，可以在这里修改请求
+  return handler(req, res)
+}
+```
+
+## 预构建的认证提供者
+
+* [默认 (Auth.js)](/docs/reference/self-hosted/auth-provider/authjs)
+* [TinaCloud](/docs/reference/self-hosted/auth-provider/tina-cloud)
+* [Clerk](/docs/reference/self-hosted/auth-provider/clerk-auth)
+
+## 实现一个认证提供者
+
+有关如何实现自己的认证提供者的更多信息，请参见[自定义认证提供者](/docs/reference/self-hosted/auth-provider/bring-your-own)。

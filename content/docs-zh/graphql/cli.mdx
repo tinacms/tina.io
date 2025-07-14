@@ -1,0 +1,64 @@
+---
+title: 运行本地 GraphQL API
+---
+
+_TinaCMS CLI_ 可以用于设置您的项目，配置 TinaCMS 架构，并运行 TinaCMS GraphQL API 的本地版本（使用文件系统的内容）。要查看实际应用的示例，请查看 [TinaCloud Starter](https://github.com/tinacms/tina-cloud-starter)。
+
+## 安装
+
+使用 [tina init](/docs/setup-overview/#manual-setup-on-an-existing-site) 命令，`@tinacms/cli` 包将作为开发依赖安装。
+
+```bash
+npx @tinacms/cli init
+```
+
+这将在您的站点中设置一个示例 `tina/config.{js,ts}`，并安装任何所需的 Tina 依赖项。
+
+## 运行 GraphQL API
+
+`tinacms dev` 将把架构编译成静态文件，为您生成 TypeScript 类型以在项目中使用，并在 [http://localhost:4001](http://localhost:4001) 启动一个 GraphQL 服务器。
+
+此命令还接受一个参数 (`-c`)，允许您将命令作为子进程运行。这对于运行开发服务器和构建您的 next.js 应用非常有帮助。您的 package.json 的 scripts 部分应如下所示。
+
+```json
+"scripts": {
+  "dev": "tinacms dev -c \"next dev\"",
+  "build": "tinacms build && next build",
+  "start": "tinacms build && next start",
+  ...
+},
+```
+
+我们希望与站点一起运行 GraphQL API 的原因是：
+
+- 当我们的静态页面在 CI 中构建时，它们可以使用 GraphQL API 从本地文件中获取内容。
+- 在开发中，我们可以使用本地文件测试 Tina。
+
+现在，如果您运行更新后的 `dev` 脚本：
+
+```bash
+npm run dev
+```
+
+或
+
+```bash
+yarn dev
+```
+
+您的实时站点将运行，同时也会运行 GraphQL 内容 API 的本地版本。
+
+您的控制台可能会显示如下内容：
+
+```sh
+> yarn dev
+
+Started Filesystem GraphQL server on port: 4001
+Visit the playground at http://localhost:3000/admin/index.html#/graphql
+Generating Tina config
+...
+```
+
+一旦 graphql 服务器运行，您可以通过 Altair 客户端在 `http://localhost:3000/admin/index.html#/graphql` 开始探索您的 graphQL 内容。
+
+<WebmEmbed embedSrc="/img/docs/altair_doc.webm"/>

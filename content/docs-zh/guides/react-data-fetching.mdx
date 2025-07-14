@@ -1,0 +1,46 @@
+---
+id: /docs/guides/react-data-fetching/
+title: 在客户端运行时查询Tina内容
+---
+
+## 客户端获取数据
+
+> 在服务器上（SSR）或构建时（SSG）获取内容是首选且更快，但在某些情况下，您可能仍希望在客户端运行时获取数据。
+
+以下是在React站点上客户端获取数据的示例：
+
+```jsx
+import { useState, useEffect } from 'react'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../[pathToTina]/tina/__generated__/client'
+
+
+// GraphQL查询中使用的变量；
+const variables = {
+  relativePath: 'HelloWorld.md',
+}
+
+export default function BlogPostPage() {
+  const [postQuery, setPostQuery] = useState(null)
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      setLoading(true)
+      const postResponse = await client.queries.post({
+        relativePath: 'HelloWorld.md',
+      })
+      setPostQuery(postResponse)
+      setLoading(false)
+    }
+    fetchContent()
+  }, [query, JSON.stringify(variables)])
+
+  const { data } = useTina({ postQuery?.query, postQuery?.variables, data: postQuery?.data })
+
+  if (isLoading) return <p>加载中...</p>
+  if (!data) return <p>无数据</p>
+
+  return <div>{JSON.stringify(data)}</div>
+}
+```

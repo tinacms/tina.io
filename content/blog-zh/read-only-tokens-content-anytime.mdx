@@ -1,0 +1,249 @@
+---
+seo:
+  title: '只读令牌：随时访问内容 | TinaCMS 博客'
+  description: >-
+    了解如何在 TinaCMS 中使用只读令牌，以便在没有完整编辑权限的情况下安全地访问和显示内容。
+title: 只读令牌 - 随时查询请求
+date: '2022-04-05T07:00:00.000Z'
+author: James Perkins
+prev: content/blog-zh/data-layer-performant-editing.mdx
+next: content/blog-zh/automating-pull-requests.mdx
+---
+
+只读令牌允许您在应用程序的任何位置查询项目中的数据，无论是在服务器端还是客户端。在只读令牌出现之前，Tina 的所有操作都是通过 `getStaticProps` 或 `getStaticPaths` 完成的。这在大多数情况下可以处理使用无头 CMS 和 SSG 的情况。然而，随着我们向 TinaCMS 的 1.0 版本迈进，我们希望能够支持更多的框架，包括 React、Remix 和 Gatsby。
+
+## 只读令牌的一些使用场景
+
+以下是只读令牌的一些使用场景
+
+* 服务器端渲染
+* 客户端获取
+* 运行时服务器逻辑
+
+## 如何使用只读令牌？
+
+在开始使用只读令牌之前，您需要确保所使用的存储库已启用数据层。这是只读令牌正常工作并保持高效的必要条件。
+
+### 从仪表板创建令牌
+
+导航到 [TinaCloud](https://app.tina.io) 并点击您希望添加令牌的项目，点击“令牌”选项卡
+
+![TinaCloud 令牌选项卡](/img/graphql-docs/token-tab.png)
+
+接下来，点击“新建令牌”并填写所需字段。令牌名称用于标识令牌，“Git 分支”是用逗号分隔的分支列表，令牌可以访问这些分支。
+
+![在 TinaCloud 中创建新令牌](/img/graphql-docs/create-new-token.png)
+
+最后，点击“创建令牌”。
+
+![在 TinaCloud 中成功创建令牌](/img/graphql-docs/final-token-page.png)
+
+### 准备好请求
+
+此时，您已经准备好使用只读令牌进行请求。我整理了一些不同使用场景的示例，包括 SSR、CSR、带回退的 SSG，这应该可以满足大多数 Tina 的使用场景。
+
+### SSR - 服务器端渲染内容
+
+在大多数情况下，您的内容将在构建时静态生成，但有时您可能需要在 Tina 驱动的应用程序中使用 SSR。可能是一个不是由 Tina 驱动的页面，但您正在使用我们的 graphQL 层来驱动整个应用程序。
+
+```javascript
+const query = `
+    post(relativePath: "example.md") {
+      title
+      body
+  }
+  `
+
+export async function getServerSideProps(context) {
+  let data
+  const res = await fetch(
+    'https://content.tinajs.io/<VersionOfTina>/content/<CLIENT_ID>/github/<BRANCH>',
+    {
+      method: 'POST',
+      body: JSON.stringify({ query, variables }),
+      headers: {
+        'X-API-KEY': 'API_KEY',
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+  const jsonData = await res.json()
+  data = jsonData.data
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    }, // 将作为 props 传递给页面组件
+  }
+}
+```
+
+每次用户返回此页面时，他们将收到一个新鲜的页面，其中包含来自 Tina 的最新内容。
+
+### CSR - 客户端渲染
+
+客户端渲染可以是保持页面内容更新的好方法，每次有人访问页面时。可以使用您喜欢的 http 客户端（如 fetch 或 axios）来检索 Tina 内容。
+
+```javascript
+import { useState, useEffect } from 'react'
+import { useTina } from 'tinacms/dist/edit-state'
+// 这是您想要的查询。
+const query = `
+query ContentQuery($relativePath: String!) {
+  <collection.name>(relativePath: $relativePath) {
+    body
+    title
+  }
+}
+`
+
+// GraphQL 查询中使用的变量；
+const variables = {
+  relativePath: 'HelloWorld.md',
+}
+
+function BlogPostPage() {
+  const [initalData, setData] = useState(null)
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch(
+      'https://content.tinajs.io/<VersionOfTina>/content/<ClientId>/github/<Branch>',
+      {
+        method: 'POST',
+        body: JSON.stringify({ query, variables }),
+        headers: {
+          'X-API-KEY': '<ReadOnlyToken>',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log({ data })
+        setData(data)
+        setLoading(false)
+      })
+      .catch((e) => {
+        console.error(e)
+      })
+  }, [query, JSON.stringify(variables)])
+
+  const { data } = useTina({ query, variables, data: initalData })
+
+  if (isLoading) return <p>加载中...</p>
+  if (!data) return <p>无数据</p>
+
+  return <div>{JSON.stringify(data)}</div>
+}
+export default BlogPostPage
+```
+
+如您所见，在此示例中我们使用 useEffect 从 Tina 获取数据，使用我们的只读令牌。您看到的 URL 是由您的 `clientId` 和选择的 GitHub 分支提供的。然后我们将数据设置为使用 `useTina` 并通过 UI 展示数据。
+
+### 带回退的 SSG
+
+到目前为止，大多数 Tina 用户使用 `fallback: blocking` 来创建新的 Tina 页面。
+
+这带来了问题：
+
+1. 默认情况下，您不再有回退页面（404 页面），任何导航都会被提供，即使是空白页面。
+2. 您需要一种方法来处理有数据、无数据或无页面的情况。
+
+使用只读令牌，这减少了开发者的摩擦并提供了更好的用户体验，我们可以将 getStaticsProps 代码分为三条路径。
+
+1. 返回数据（这是您之前的代码）
+2. 数据未返回，因此使用只读令牌获取它。如果存在，则返回。
+3. 数据未返回，使用只读令牌未返回数据，因此返回回退页面。
+
+```javascript
+import { staticRequest } from 'tinacms'
+
+const query = `query PostQuery($relativePath: String!) {
+    post(relativePath: $relativePath) {
+      title
+      body
+    }
+  }
+  `
+
+export const getStaticProps = async (ctx) => {
+  const variables = {
+    relativePath: ctx.params.slug + '.md',
+  }
+  let data
+  let error
+  error = false
+
+  try {
+    // 在构建时使用本地客户端
+    data = await staticRequest({
+      query,
+      variables,
+    })
+  } catch (error) {
+    // 忽略与文档创建相关的错误
+  }
+  // 如果没有数据，则设置错误标志
+  if (!data) {
+    error = true
+  }
+  if (error) {
+    // 使用只读令牌获取实时数据
+    const res = await fetch(
+      'https://content.tinajs.io/<VersionOfTina>/content/<CLIENT_ID>/github/<BRANCH>',
+      {
+        method: 'POST',
+        body: JSON.stringify({ query, variables }),
+        headers: {
+          'X-API-KEY': 'API_KEY',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    const jsonData = await res.json()
+    data = jsonData.data
+    // 如果没有数据，则设置 notFound 为 true（这将返回 404）
+    if (!data) {
+      return {
+        notFound: true,
+      }
+    }
+  }
+
+  return {
+    props: {
+      data,
+      query,
+      variables,
+    },
+  }
+}
+```
+
+上面的代码做了很多不同的事情，所以让我们将其分解为前面提到的部分：
+
+1. 原始请求产生数据，将返回数据、查询和变量。
+2. 如果没有返回数据，我们将错误标志设置为 true。如果错误标志为 true，我们尝试使用只读令牌检索您的数据并返回以显示给用户或内容编辑器。
+3. 如果没有返回数据，并且只读令牌未返回数据，我们返回 `notFound: true`（这是 Next.js 的一个特殊标志）。此标志将返回您的 404 错误页面以及状态代码中的 `404`。
+
+## 如何保持与 Tina 的同步？
+
+保持与 Tina 同步的最佳方式是订阅我们的新闻通讯，我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、您可能错过的博客文章等等！
+
+您可以通过访问此链接并输入您的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
+
+### Tina 社区 Discord
+
+Tina 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 Tina 爱好者。加入后，您会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的 Tina 新闻和抢先预览
+* 与 Tina 社区分享您的项目，并讨论您的经验
+* 聊聊 Jamstack
+
+### Tina Twitter
+
+我们的 Twitter 账号 ([@tinacms](https://twitter.com/tinacms)) 宣布了 Tina 的最新功能、改进和抢先体验。如果您在构建的项目中标记我们，我们也会非常高兴。

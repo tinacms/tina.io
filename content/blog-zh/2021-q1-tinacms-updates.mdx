@@ -1,0 +1,78 @@
+---
+seo:
+  title: 2021 Q1 TinaCMS 更新 | TinaCMS 博客
+  description: >-
+    查看 2021 年第一季度 TinaCMS 的更新，包括改进、错误修复和增强平台性能和可用性的新功能。
+title: 2021 Q1 Tina 更新
+date: '2021-04-14T13:59:53+02:00'
+last_edited: '2021-04-15T07:46:05.497Z'
+author: Frank Taillandier
+prev: content/blog-zh/more-changes-coming-to-inline-editing.mdx
+next: content/blog-zh/tina-cloud-a-headless-cms-backed-by-git.mdx
+---
+
+我们正在定期改进 Tina，以提供有效的开发者体验*和*独特的视觉内容编辑体验。最新的添加是倾听社区反馈以及解决我们自身需求的结果。
+
+让我们仔细看看 Tina 核心库中一些最具影响力的近期变化。
+
+## 单选组字段 🆕
+
+编辑者现在可以从选项列表中选择，[单选组字段](/docs/plugins/fields/radio-group/)有两种形式：`radio` 和 `button`，默认情况下水平显示，您可以选择垂直变体。
+
+![水平方向的单选组字段（默认）](/img/fields/radio-group-field-horizontal-radio.gif)
+![单选组字段按钮变体（水平）](/img/fields/radio-group-field-horizontal-button.gif)
+
+## 搜索和过滤块 🆕
+
+当您的页面模板提供超过 10 个组件可供选择时，编辑者可以输入并[从块菜单列表中过滤](https://github.com/tinacms/tinacms/pull/1772)。我们计划使选择块成为更具视觉体验的过程。
+
+## 复制块 🆕
+
+对于内联编辑来说，这是一个小但重要的胜利，您现在可以通过单击复制一个块。
+
+![使用 Tina 内联块时，点击复制图标以在下方插入相同的块。](/img/blog/duplicate-block-tinacms.gif)
+
+## 重新思考内联编辑 🤔
+
+我们开始重新评估 Tina 如何进行内联编辑的方法。我们重构了代码以利用[事件和引用](https://github.com/tinacms/tinacms/pull/1749)提供[新 API](https://github.com/tinacms/tinacms/blob/master/packages/react-tinacms-inline/README.md#usefieldref-ref-based-inline-editing)。这项工作还远未完成，目前仅通过功能标志提供，因为这将会有更多变化。
+我们将在即将发布的文章中分享我们对 Tina 内联编辑未来的看法，从开发者的角度来看。
+
+与此更改相关，我们决定暂时移除内联块的拖放功能。有些情况下它会产生问题，但我们可能会在拥有更好的内联编辑时重新考虑此功能。现在，您可以通过上下块控件在页面上移动块，这在大多数情况下不需要太多点击。
+
+您很快就可以根据需要[调整侧边栏的大小](https://github.com/tinacms/tinacms/pull/1795#issue-615395547)。
+这使得在 WYSIWYG 编辑器中编写长格式内容的体验更加愉快。↔️
+
+## Next.js 和 Tailwind 演示 👀
+
+我们的默认演示基于 Next.js 和 Tailwind CSS。它目前展示了如何设置 Tina 以提供：主题颜色、组件变体、暗模式、响应式块等。在不久的将来，我们将专门撰写一篇文章介绍我们如何构建此演示，以便您可以深入了解并从中学习。现在，请随意尝试并[告诉我们您的反馈](https://github.com/tinacms/tina-tailwind-inline-demo/issues)。
+
+## Contentful 插件 🔌
+
+我们的主页非常明确地表明 Tina 可以与任何后端一起工作。我们还尝试了 Contentful 并发布了一个[Tina 插件](https://github.com/tinalabs/tinacms-contentful)，以便与从其内容 API 获取的内容一起工作。如果您正在使用 Contentful，请随意测试该插件并[留下反馈](https://github.com/tinalabs/tinacms-contentful/issues)。
+
+## 社区 💜
+
+### 新核心团队成员
+
+[Jeff](https://github.com/jeffsee55)、[Chris](https://github.com/Enigmatical) 和 [Jack](https://github.com/jbevis) 加入了核心团队。我们非常高兴欢迎他们加入，帮助我们释放 Tina 的潜力。
+
+### 一些统计数据 📈
+
+我们的社区活动现在在 [Orbit](https://orbit.love/) 💜 中跟踪，以帮助我们更好地与您建立更好的关系。感谢 Orbit 团队的 [Nicolas](https://github.com/phacks/) 帮助设置。
+
+![2021 Q1 Tina 社区成员活动在 Orbit 中](/img/blog/orbit-members-2021-q1.png)Orbit 使得反映社区活动变得容易，您可以轻松看到何时登上 Hacker News 的首页 😊。
+
+向 2021 年第一季度我们最活跃的社区成员致敬：[Joe Innes](https://github.com/joeinnes) 👏、[Matthew Francis Brunetti](https://github.com/zenflow) 👏、[Austin Condiff](https://github.com/austincondiff) 👏、[Hirvin Faria](https://github.com/hirvin-faria) 👏 和 [Chadd Poggenpoel](https://github.com/Chizzah) 👏。
+
+我们的开源项目达到了新的里程碑：
+
+* [Tina](https://github.com/tinacms/tinacms) 在 GitHub 上被超过 **6K** 人加星 🌟
+* [tinacms 核心包](https://www.npmjs.com/package/tinacms) 已被下载超过 250K 次 📦
+
+🙏 感谢您的关注，我们才刚刚开始！
+
+## 还有一件事... ⏳
+
+为了增强 Tina 生态系统，我们的团队目前正在开发一个新的开源工具，以简化结构化内容管理的方式，同时保持对 Git 仓库中内容的控制。下周会有更多信息！
+
+[订阅我们的博客](/rss.xml)或[新闻通讯](https://gmail.us20.list-manage.com/subscribe?u=1fea337bee20e7270d025ea8a\&id=c1062536a1)，以便第一时间了解我们所有新的和令人兴奋的发展。

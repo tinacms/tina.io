@@ -1,0 +1,105 @@
+---
+draft: false
+seo:
+  title: 什么是Blocks？ | TinaCMS博客
+  description: >-
+    了解TinaCMS中的Blocks，一种灵活的内容结构，允许您创建可重用、可定制的组件，用于动态内容管理
+title: 什么是Blocks？
+date: '2019-12-18T03:15:26.426Z'
+author: DJ Walker
+prev: content/blog-zh/jamstack-denver-talk.mdx
+next: content/blog-zh/editing-on-the-cloud.mdx
+---
+
+> “计算机科学中只有两个难题：缓存失效和命名事物。”
+
+这个[归因于Phil Karlton](http://www.tbray.org/ongoing/When/200x/2005/12/23/UPI)的公理，与任何花时间从事软件工作的人都有共鸣。您正在阅读的这篇文章在某种程度上是关于后一个问题的。
+
+我们急于向Tina介绍的一个概念是我们称之为**Blocks字段**的东西。我们首先在[Forestry中引入了这个概念](https://forestry.io/blog/sawmill-layout-composer-for-hugo-and-forestry/)，我们认为这是一个强大的想法。Blocks的挑战在于它是一种抽象的概念，因此被标记为一个同样抽象的名称。
+
+**什么是Blocks？** 简而言之，Blocks指的是由*不相同对象的数组*组成的数据结构。如果您不太理解，请继续阅读，我会尽力解释为什么我们将Blocks概念引入Tina以及它与其他类型字段的关系。
+
+## 简单字段和复合字段
+
+我们在Tina中实现的字段类型可以大致分为两类：**简单字段**和**复合字段**。字段是简单还是复合的指定与字段表示的数据类型有关。
+
+**简单字段**是可以表示为单个值的数据字段，如字符串或数字。在计算机科学术语中，这些被称为[标量值](https://softwareengineering.stackexchange.com/questions/238033/what-does-it-mean-when-data-is-scalar)。Tina中的简单字段示例包括文本字段、颜色字段或切换。即使是[markdown WYSIWYG](/docs/editing/markdown)也可以被视为简单字段，尽管其前端行为复杂，因为它导出的值只是一个大块文本。
+
+**复合字段**是不能用单个值表示的字段。复合字段导出的数据是*结构化的*。保存时，复合字段的数据将由非标量数据类型表示，如数组或对象。复合字段是**由其他字段组成的字段**。Tina中的复合字段包括Group、Group List和Blocks。
+
+## 组和组列表
+
+Tina的**Group**字段是**简单字段**的集合。组成Group字段的字段可以是相同类型，也可以是不同类型。Group字段适合表示由较小数据片段组成的单个*实体*。
+
+考虑在JSON中存储名称的两种方式。我们可以将全名存储为一个简单的字符串：
+
+```json
+{
+  "name": "DJ Walker"
+}
+```
+
+或者，我们可以设计一个简单的数据结构，以更语义化的方式存储名称：
+
+```json
+{
+  "name": {
+    "first": "DJ",
+    "last": "Walker"
+  }
+}
+```
+
+在第一种情况下，我们可能会使用一个简单的文本字段，而在第二种情况下使用两个文本字段的**Group**。
+
+### 组列表
+
+<Diagram alt="链接圆圈的图示" src="/img/blog/fig-group-grouplist.svg" />
+
+**Group List**类似于**Group**字段类型，但增加了一个维度。Group字段表示单个实体，而Group List表示*多个实体*。
+
+假设我们不是存储单个名称，而是存储一个名称列表，如下所示：
+
+```json
+{
+  "subscribers": [
+    {
+      "first": "DJ",
+      "last": "Walker"
+    },
+    {
+      "first": "Nolan",
+      "last": "Phillips"
+    }
+  ]
+}
+```
+
+我们可以在这里使用**Group List**。Group List中的所有实体具有相同的**形状**；换句话说，数组中的每个对象将具有相同的键。这使得Group List类似于二维数据结构，如电子表格或数据库表：
+
+| **first** | **last** |
+| --------- | -------- |
+| DJ        | Walker   |
+| Nolan     | Phillips |
+
+## Blocks：像组列表，但不同
+
+<Diagram alt="链接不同形状的图示" src="/img/blog/fig-blocks.svg" />
+
+与**Group List**类似，**Blocks**结构表示多个实体。Group List和Blocks之间的区别在于Blocks结构支持具有*潜在不同形状*的多个实体。这使得Blocks结构中实体之间的关系比Group List更松散。
+
+### Blocks有什么用？
+
+在实践中，有几个用例特别适合Blocks。
+
+Blocks风格数据结构的主要动机是促进页面构建器体验。在我们的[Tina Grande starter](https://github.com/tinacms/tina-starter-grande)中，可以通过向Blocks字段添加不同的实体来串联页面，每个实体包含配置页面不同部分的字段。
+
+Grande使用Blocks的另一种方式是在其嵌入式表单构建器中。与页面构建器类似，Grande将表单视为一系列松散相关的复杂组件（在这种情况下是表单字段）。
+
+## 给Blocks一个机会
+
+到现在，您应该对我们在Tina中谈论Blocks时的意思有了更好的理解。
+
+如果您想看看基于Blocks的内容策略可以做些什么，请fork [Tina Grande](https://github.com/tinacms/tina-starter-grande)并试一试。
+
+如果您仍然不太确定Blocks字段如何工作，或者想分享一些使用Blocks的想法，请访问[我们的社区论坛](https://community.tinacms.org/)并发表帖子！

@@ -1,0 +1,156 @@
+---
+id: /docs/guides/docusaurus
+title: 使用 TinaCMS 与 Docusaurus
+---
+
+Docusaurus 是一个强大的基于 React 的静态网站生成器，能够轻松创建漂亮的文档网站。由于它主要为文档维护者设计，用户体验围绕文件系统工作并直接编辑文件。它是一个非常灵活的系统，利用多种文件类型、元文件配置、包含硬编码内容的 JavaScript 文件和自动生成。使用 Tina，你可以通过一个简单但灵活的编辑界面利用 Docusaurus 的强大功能。
+
+本指南基于将 [Docusaurus Classic 示例](https://github.com/facebook/docusaurus/tree/main/examples/classic) 适配为与 Tina 的基本编辑功能一起使用。[你可以在这里找到完整的 Tina + Docusaurus 启动器。](https://github.com/tinacms/tinasaurus)
+
+<Youtube embedSrc="https://www.youtube.com/embed/2bHBwM54UB8" />
+
+## 设置
+
+首先，我们需要使数据更加一致，以便与我们将要编写的架构对齐。文档和博客内容是 `.md` 和 `.mdx` 文件的混合，旁边还有一些 `.json` 元文件用于描述文件夹如何在“文档”侧边栏中显示。我们将删除元文件，因为我们将为侧边栏编写一个由编辑器手动控制的架构，并将所有 `.md` 文件迁移到 `.mdx`。对于博客，我们将提取嵌入在文件名中的日期到 MDX 前置数据中，并将作者内联，因为 Tina 的引用系统基于单个文件引用，而不是像 `authors.yml` 这样的单一数据文件。
+
+```md
+// Authors.yml 键引用
+authors: [endi]
+
+// 内联作者
+authors:
+
+- name: Endilie Yacop Sucipto
+  title: Docusaurus 维护者
+  url: "https://github.com/endiliey"
+  image_url: "https://github.com/endiliey.png"
+```
+
+为了使用 Tina 管理图像，你需要一个用于存放所有图像的中央文件夹，可以根据需要包含 `docs` 或 `blog` 特定图像的子文件夹。将所有共置图像移动到 `static` 文件夹，并在 `.mdx` 文件中根据需要更新它们。
+
+```md
+// 共置图像
+![Locale Dropdown](./img/localeDropdown.png)
+
+// 集中存放的图像
+![Locale Dropdown](/img/docs/localeDropdown.png)
+```
+
+Docusaurus 支持全局注册的 `.mdx` 组件，因此你不必在本地导入它们。我们将注册所有希望与 Tina 一起设置编辑的组件，以便可以从富文本编辑器中添加它们。
+
+```js
+import MDXComponents from '@theme-original/MDXComponents'
+import CodeBlock from '@theme-original/CodeBlock'
+import Details from '@theme/Details'
+import Tabs from '@theme-original/Tabs'
+import TabItem from '@theme-original/TabItem'
+import DocCardList from '@theme-original/DocCardList'
+
+export default {
+  ...MDXComponents,
+  Details: Details,
+  CodeBlock: CodeBlock,
+  Tabs: Tabs,
+  TabItem: TabItem,
+  Admonition: MDXComponents.admonition,
+  DocCardList: DocCardList,
+}
+```
+
+接下来，我们需要修改 `sidebar.js`、`docusaurus.config.js` 和 `pages/index.js` 以从 `.json` 文件中提取数据，以便内容可以在 Tina 中编辑。默认情况下，Docusaurus 的侧边栏是自动生成的，因此这也意味着复制现有的侧边栏数据，并设置侧边栏以从我们的数据手动生成。Docusaurus 很灵活，但仍然需要数据具有一定的形状，因此你需要编写一个解析函数以根据需要塑造它。
+
+```js
+const sidebarData = require('./config/sidebar/index.json')
+
+const getItem = (item) => {
+  /* 为 Docusaurus 使用塑造数据 */
+}
+
+const sidebars = {
+  tutorialSidebar: sidebarData.items.map((item) => {
+    return getItem(item)
+  }),
+}
+```
+
+现在我们的数据已准备好，是时候编写一个 [Tina 架构](/docs/schema/) 了。在这里，你可以创建你想要的编辑体验。在 Tina 中，内容包含在集合中，以下是文档集合架构的示例：
+
+```js
+{
+  name: "doc",
+  label: "文档",
+  path: "docs",
+  format: "mdx",
+  fields: [
+    {
+      type: "string",
+      name: "title",
+      label: "标题",
+      isTitle: true,
+      required: true,
+    },
+    {
+      type: "string",
+      name: "description",
+      label: "描述",
+    },
+    {
+      label: "标签",
+      name: "tags",
+      type: "string",
+      list: true,
+      ui: {
+        component: "tags",
+      },
+    },
+    {
+      type: "rich-text",
+      name: "body",
+      label: "正文",
+      isBody: true,
+      templates: [...MDXTemplates],
+    },
+  ],
+}
+```
+
+你可以看到你可以控制数据的外观、哪些字段是必需的、使用什么 UI、内容的位置、格式等等。由于你的架构是 JavaScript，你可以渲染任何你想要的东西，包括一个自定义警告组件：
+
+```js
+// 自定义组件
+const Warning = () => {
+  return (
+    <p>
+      <WarningIcon />
+      这是一个自定义警告提示。
+    </p>
+  );
+};
+
+// 自定义字段
+{
+  type: "string",
+  name: "_warning",
+  ui: {
+    component: () => {
+      return <Warning />;
+    },
+  },
+},
+```
+
+## 编辑
+
+一旦我们编写了架构并将所有内容连接起来，我们就可以从 Tina 的 UI 中进行编辑。
+
+使用 Tina 编辑基于块的主页：
+
+![编辑主页](/img/docs/docusaurus/tinasaurus-home-editing.png "在 Tina 中编辑 Docusaurus 示例主页")
+
+使用 Tina 编辑 MDX 页面：
+
+![MDX 编辑](/img/docs/docusaurus/tinasaurus-doc-editing.png "在 TinaCMS 中编辑 MDX Docusaurus 页面")
+
+## 注意
+
+这只是你可以使用 Docusaurus 和 Tina 做的事情的冰山一角；要了解更多关于 Docusaurus 的信息，[请查看他们的文档](https://docusaurus.io/docs)。
