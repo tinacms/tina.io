@@ -1,7 +1,6 @@
 import Prism from 'prismjs';
-import type React from 'react';
-import { useEffect, useRef, useState } from 'react';
-
+// biome-ignore lint/style/useImportType: <TODO>
+import React, { useEffect, useRef, useState } from 'react';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prism-themes/themes/prism-night-owl.css';

@@ -1,5 +1,8 @@
 /** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
+
 import { Checkbox, Field, Label } from '@headlessui/react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 
 export interface CheckboxListProps {
   criteriaSatisfaction: {

@@ -1,3 +1,5 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import type { Template } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';

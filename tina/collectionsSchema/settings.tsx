@@ -1,3 +1,5 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 const RedirectItem = ({ source, destination, permanent }) => {

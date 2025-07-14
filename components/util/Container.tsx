@@ -1,4 +1,5 @@
-import type React from 'react';
+// biome-ignore lint/style/useImportType: <TODO>
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 type ContainerProps = {

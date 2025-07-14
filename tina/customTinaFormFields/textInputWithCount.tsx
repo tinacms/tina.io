@@ -1,5 +1,7 @@
 //ripped out from SSW's Website 😳
 
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
 import { wrapFieldsWithMeta } from 'tinacms';
 
 export const TextInputWithCount = (max: number, isTextArea: boolean = false) =>
