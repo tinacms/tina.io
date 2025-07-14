@@ -1,7 +1,7 @@
 ---
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
-last_edited: '2025-07-07T03:06:20.339Z'
+last_edited: '2025-07-14T04:01:09.573Z'
 next: ''
 previous: ''
 ---
@@ -71,7 +71,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 The self-hosted backend does not currently have endpoints to support search functionality.
 
-## 7. How to enable author on Git commits?
+## 7. How to enable co-author on Git commits?
 
 By default when using TinaCloud, the author on Git commits is the [TinaCloud GitHub app](https://github.com/apps/tina-cloud-app). Some users prefer to know who made the change.
 
@@ -80,32 +80,7 @@ For this use case, Tina allows two different methods:
 1. GitHub authoring in order to attribute actions to a GitHub account.
 2. [Co-author](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git commits in order to attribute the commit to an additional user.
 
-Both of these can be enabled per-user in the TinaCloud account settings.
-
-### GitHub Authoring
-
-By connecting your GitHub account, Git actions will be done on behalf of your GitHub account.
-
-Follow these steps to set it up:
-
-1. Go to your [TinaCloud account settings](https://app.tina.io/account/settings)
-2. Click `Enable GitHub Authoring`
-3. Authenticate via the GitHub popup
-
-### Co-authoring
-
-By default, the name and email of the co-author is configured according to your TinaCloud account, but they can be set to any valid name and email address.
-
-Follow these steps to set it up:
-
-1. Go to your [TinaCloud account settings](https://app.tina.io/account/settings)
-2. Fill out the git co-author name and email
-3. Click `Enable co-authoring`
-4. Click `Save`
-
-> **Note:** The co-author email is publicly viewable on GitHub. If you want to hide your email, GitHub provides an anonymous email address for each user. You can find your anonymous email address in the [GitHub email settings](https://github.com/settings/emails). This email address can then be configured in TinaCloud as the co-author.
-
-Find out more about [Git Co-Authoring](/docs/tina-cloud/git-co-authoring).
+Both of these can be enabled per-user in the TinaCloud account settings. Find out more about [Git Authoring](/docs/tina-cloud/git-co-authoring).
 
 ## 8. Why do I need a database when using markdown?
 
