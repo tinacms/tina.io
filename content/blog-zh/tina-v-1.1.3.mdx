@@ -1,0 +1,68 @@
+---
+seo:
+  title: TinaCMS 1.1.3 | TinaCMS 博客
+  description: >-
+    TinaCMS 1.1.3 引入了错误修复和性能增强，提高了稳定性并简化了开发者的内容管理流程。
+title: TinaCMS V1.1.3
+date: '2023-01-11T22:00:00.000Z'
+last_edited: '2023-01-11T22:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/simple-markdown-blog-nextjs.mdx
+next: content/blog-zh/self-hosted-datalayer.mdx
+---
+
+TinaCMS 版本 `1.1.3`（以及 `@tinacms/cli@1.0.6`）为各种框架带来了一些改进，并改进了列表字段。
+
+## 改进的短代码支持
+
+用户现在可以这样建模一个短代码：
+
+```
+    name: "rimg",
+    label: "rimg",
+    match: {
+      start: "{{<",
+      end: ">}}",
+    },
+    fields: [
+      {
+        name: "myprop",
+        label: "my prop",
+        type: "string",
+      },
+    ],
+```
+
+输出 `<<% rimg myprop="" %>>`
+
+以前，这会匹配 `{{<` 和 `>}}` 之间的任何内容。现在，这将仅在短代码名称也匹配时才匹配。
+
+编辑者还可以单独编辑短代码中的字段，而不是通过全局 `text` 字段。
+
+![短代码界面](/img/blog/tina-v-1.1.3/shortcodes.png)
+
+查看更多信息请参见[这里](https://tina.io/docs/reference/types/rich-text/#custom-shortcode-syntax)。
+
+## 列表字段中的最小/最大支持
+
+当字段为 `list: true` 时，字段 UI 对象现在接受 `min` 和 `max`。如果列表/组列表/块字段达到最大或最小值，添加或删除按钮将被禁用。
+
+![最小最大](/img/blog/tina-v-1.1.3/minmax.png)
+
+## TOML 和 YML 支持
+
+### 可自定义的前置格式更新
+
+集合现在可以指定 `{ frontmatterFormat: 'toml' | 'yaml' | 'json' }` 和 `{frontmatterDelimiters: string | [string, string] }`。
+
+这使用户可以更好地控制其前置内容的解析方式。
+
+### `yaml` 和 `toml` 文档格式
+
+在集合中，`format` 现在可以是 `yaml` 或 `toml`。
+
+## 其他改进和修复
+
+* 列表字段上的错误现在显示在字段下方
+* 错误样式更新
+* 小的表单样式修复

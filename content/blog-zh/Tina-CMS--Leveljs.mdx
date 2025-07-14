@@ -1,0 +1,89 @@
+---
+seo:
+  title: Tina CMS & Level.js | TinaCMS 博客
+  description: >-
+    了解TinaCMS如何与Level.js集成，以改善您的内容管理，为开发人员提供强大的工具，实现可扩展和高效的解决方案
+title: TinaCMS & Level.js
+date: '2023-10-17T04:00:00.000Z'
+last_edited: '2023-10-17T04:00:00.000Z'
+author: Kelly Davis
+prev: content/blog-zh/Supercharge-Your-Markdown-Blog-with-AI.mdx
+next: content/blog-zh/Tinacms-is-now-fully-open-source.mdx
+---
+
+TinaCMS 是一个开源的、基于Git的无头内容管理系统（CMS），在内容存储和检索方面有着独特的方法。在本文中，我们将深入探讨其架构，并发现Level.js如何在Tina所需的简单性和功能性之间取得完美平衡。
+
+<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/homepage-demo-2b_lmoaj8.webm" />
+
+# 在Git上构建CMS的挑战
+
+TinaCMS的一个关键特性是，它不是将内容写入数据库，而是存储在Git仓库中。通过使用Git，Tina获得了内置的版本控制，并启用了基于Git的协作工作流程。与其他无头CMS产品类似，内容通过一个可查询的API进行渲染，该API是使用开发人员定义的模式生成的。
+
+![](/img/docs/tinacms-data-layer_geyrv8.png)
+
+如果Tina的API直接查询文件系统以获取内容，访问内容将会非常慢，尤其是随着内容量的增加。访问单个文档和列出特定文件夹中的文件是简单的。然而，如果我们想找到特定类别的所有博客文章，我们必须将它们全部加载到内存中，然后在返回结果之前进行过滤。另一个常见的用例是按撰写日期对文章进行排序。除非我们使用包含日期字段的文件命名方案，否则按日期排序文章又需要将所有文章加载到内存中，然后在返回排序列表之前进行排序。这些解决方案可能适用于小型网站，但显然不可扩展。
+
+对于典型的无头CMS，解决此问题的方法是引入数据库。数据库提供了长期的数据存储和复杂的可扩展查询功能。使用数据库，查找给定类别中的所有博客文章就像在文章表的查询中添加类别字段的过滤器一样简单。通过识别要排序的字段并指定排序方向，可以轻松完成排序。典型的数据库也可以轻松扩展到即使是最大的网站所需的文档数量。
+
+因此，很明显，Tina的内容API不能仅仅依赖于Git文件系统。需要某种混合解决方案，结合数据库的可扩展查询能力和Git的存储和版本控制。在我们为Tina寻找合适的数据库解决方案时，我们有三个指导我们的约束条件：
+
+* 在本地开发或自托管时，开发人员应该能够使用他们喜欢的任何数据库
+* 应该易于启动和运行
+* 本地开发和生产环境之间的行为应该绝对一致
+
+# 发现Level.js
+
+## 简史
+
+2010年，Mozilla反对由[Apple](https://www.cnet.com/news/consensus-emerges-for-key-web-app-standard/)开发的[Web SQL Database](https://www.w3.org/TR/webdatabase/)标准。正如Arun Ranganathan所[论述](https://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/)的：
+
+> 我们认为它不是一个适合暴露给一般网页内容的API基础，尤其是因为没有一个可信的、广泛接受的标准可以以有用的方式子集化SQL。此外，我们不希望SQLite的更改在以后影响网页，也不认为将主要浏览器版本（和网页标准）与SQLite绑定是明智的。
+
+Mozilla转而支持更简单的[Indexed Database API](https://en.wikipedia.org/wiki/Indexed_Database_API)标准（IndexedDB）。该标准为开发人员提供了一个比Web SQL更简单和更稳定的API。它在NoSQL数据库上公开了一个Javascript API。它还提供了比现有[Web存储](https://en.wikipedia.org/wiki/Web_storage)标准更多的存储。
+
+随后在2011年，谷歌的多产工程师发布了[LevelDB](https://github.com/google/leveldb)库，几乎没有引起轰动。这个开源项目是谷歌[BigTable](https://en.wikipedia.org/wiki/Bigtable)的一个子集的重新实现，特别是排序字符串表（SSTable）和[日志结构合并树](https://en.wikipedia.org/wiki/Log-structured_merge-tree)（LSM树）概念。Dean & Ghemawat将新发布的库贡献给了Chromium项目，从那时起，它被用于Chrome浏览器的IndexedDB实现\[2]\[3]。
+
+## LevelDB的突出之处是什么？
+
+LevelDB是一个排序的键值存储。键按顺序写入磁盘，允许快速的顺序读取，使范围查询非常快。还可以快速迭代数据库中任意位置开始和结束的键范围。键和值都是任意字节数组，因此任何数据类型都可以用于其中之一。LSM树架构还允许随机和顺序写入，其性能优于其他嵌入式数据库，如这些[基准测试](http://www.lmdb.tech/bench/microbench/benchmark.html)所示。
+
+虽然任何本地存储数据的应用程序都可能受益于使用LevelDB，但其独特的特性使其非常适合需要快速高效的数据存储、检索和管理的应用程序，特别是那些具有高读写需求、需要排序数据或需要低延迟访问键值对以实现最佳功能的应用程序。需要高效离线数据功能的移动和桌面应用程序是LevelDB的一个很好的用例。
+
+然而，可能比LevelDB实现的性能更重要的是，由于需要为网页提供标准化数据API而形成的简单排序键值设计。这个简单而优雅的API使其不仅仅是另一个嵌入式数据库库。一方面，小型API函数集具有欺骗性的多功能性，使用少量原语实现复杂的数据库功能。另一方面，简单的排序键/值设计意味着几乎任何现有数据库都可以轻松实现它。例如，在SQL数据库中实现它只需要一个具有主键和一个值列的两列表。只要键可以排序并且可以执行范围查询，就可以支持LevelDB API。由于功能集有限，这种设计有可能成为一个强大的通用数据库接口。
+
+## Level.js和Node.js：哲学上的和谐
+
+2012年8月，[Rodd Vagg](https://r.va.gg/)发布了LevelUP库的[第一个](https://www.npmjs.com/package/levelup/v/0.0.0)版本，这是一个Node.js的LevelDB包装器，以Node.js友好的方式公开了LevelDB的功能。键和值被视为Buffer对象，读取和写入通过流进行。次年初，LevelDB绑定代码被提取到LevelDOWN库中，作为一个独立的后端存储，然后通过抽象的leveldown库启用了对其他存储的支持。这很快导致了由Redis、MySQL和DynamoDB等知名数据库技术支持的其他存储的激增。这个社区和生态系统最终演变成现在被称为Level.js的东西。
+
+除了可用的众多存储之外，还有大量模块扩展了LevelDB的核心，以提供更完整数据库中常见的功能。例如，由于LevelDB是嵌入式的，它不提供跨进程或通过网络共享其数据的任何手段。开发人员没有将该功能添加到LevelDB核心，而是编写了添加该功能的库，例如Julian Gruber的[multilevel](https://github.com/juliangruber/multilevel)库。
+
+这种开发方法与Node.js的哲学非常一致，即拥有一小部分核心功能，并将其余功能留作核心之外的模块生态系统。由于这种哲学，Level.js生态系统在很大程度上反映了更大的Node.js社区，出现了大量围绕有限功能的稳定核心构建的提供复杂功能的小模块。
+
+# 为什么Level.js是Tina的正确选择
+
+通过Level.js，Tina在本地开发中获得了嵌入式数据库的好处，使其非常容易启动和运行，而无需设置数据库的努力。由于简单的API设计，Tina还可以支持几乎任何具有Level.js存储实现的托管数据库，同时提供绝对一致的功能集。Level.js还提供了大量的灵活性，可以在不影响开发人员或最终用户体验的情况下分层添加额外功能。其原因在于其遵循Node.js哲学，即紧凑稳定的核心，附加功能在用户空间中提供。
+
+例如，为了提供超越默认文件名排序的排序，Tina实现了从内容元数据派生的数据库索引。这些索引使用Level.js的一个名为子级的功能与内容数据分开\[4]。如果我们使用的是传统数据库，添加新索引只需执行一些DDL以识别被索引的字段，并让数据库处理其余部分。由于Level.js索引是在代码中实现的，因此Tina中的此功能需要更多的初始开发工作。然而，一旦添加了此功能，它就可以用于将来可能使用的任何Level.js存储实现。
+
+此时，一些读者可能会想知道Tina如何处理给定此索引功能的模式迁移。如果从Tina模式中删除了一个被索引的字段，数据库会发生什么？这正是Tina数据库的混合性质真正闪耀的地方。因为Tina最终将内容读写到Git仓库，并且不依赖于数据库进行长期存储，所以内容和索引数据可以被视为临时的。如果模式发生变化（或者用于索引数据的逻辑发生变化），我们可以简单地删除现有数据并从真实来源（Git）重建它。这为我们提供了极大的灵活性，使我们能够继续迭代和改进数据层，并允许开发人员轻松进行模式更新。
+
+# 超越数据库：Tina中的搜索与Level.js
+
+在Tina中使用Level.js的好处不仅仅是为Tina API提供支持。我们最近添加了一个搜索功能，允许编辑器执行全文搜索以定位内容。
+
+<WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/search-demo.webm" />
+
+最初，我们计划提供与现有解决方案（如Algolia）的某种集成，但我们再次希望在保持本地开发和托管生产站点之间一致性的同时，启用简单的本地开发体验。解决方案在[Fergus McDowall](https://github.com/fergiemcdowall)的[search-index](https://www.npmjs.com/package/search-index)库中呈现。该库提供了一个可嵌入的全文搜索引擎，并建立在Level.js之上。由于它使用Level.js，因此可以与任何具有Level.js存储实现的数据库一起使用。使用此库，Tina能够在本地开发和生产托管站点中提供功能齐全的搜索，并具有完全的功能一致性。
+
+# 结论
+
+LevelDB的出现是由于需要一个能够支持网页数据存储标准化API的嵌入式数据库，恰逢Node.js社区的兴起。值得注意的是，尽管缺乏强大的营销活动，前瞻性的Node.js开发人员认识到其潜力，并将其培育成我们今天看到的繁荣的Level.js生态系统。凭借其紧凑而强大的核心功能及其生态系统的丰富多样性，Level.js即使在最初发布十年后，仍然成为Tina内容API的基石。如果您发现自己正在启动一个没有明确数据库解决方案的新项目，我们全心全意地推荐探索Level.js。其优雅的简单性为Tina提供了无与伦比的灵活性和未来创新的坚实基础。深入了解Level.js的功能，请访问[leveljs.org](https://leveljs.org/)并解锁一个充满可能性的世界。
+
+### 脚注
+
+1. \[1] Web SQL目前计划于2023年11月从Chrome中移除：[https://developer.chrome.com/blog/deprecating-web-sql/](https://developer.chrome.com/blog/deprecating-web-sql/)
+2. \[2] 参见[chrome://credits/]()
+3. \[3] 有些讽刺的是，Mozilla Firefox仍在使用SQLite实现IndexedDB。
+4. \[4] 在旧版本的Level.js中，此功能由一个[模块](https://github.com/dominictarr/level-sublevel)提供，但已被合并到核心库中。
+
+LevelDB由谷歌的[Sanjay Ghemawat](https://research.google/people/sanjayghemawat/?\&type=google)和[Jeff Dean](https://research.google/people/jeff/)创建。

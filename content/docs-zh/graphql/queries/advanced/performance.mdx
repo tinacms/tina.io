@@ -1,0 +1,25 @@
+---
+id: /docs/graphql/queries/advanced/performance
+title: 查询性能
+last_edited: '2025-03-26T03:58:17.112Z'
+next: ''
+previous: ''
+---
+
+GraphQL API在集合字段上建立索引，以便在使用`sort`参数时提供排序结果。如果指定了`filter`，索引的存在会对查询执行速度产生很大影响。
+
+关于索引需要注意的事项：
+
+* 默认情况下，集合上的所有主字段都会被索引。
+* 文本字段的索引限制为前`100`个字符。
+* 集合上的对象字段始终不被索引。
+
+## 提高过滤性能
+
+GraphQL API在执行查询时总是尝试使用适当的索引。然而，`sort`参数优先于过滤器，这意味着按一个字段排序并按另一个字段过滤可能导致查询执行速度较慢。
+
+为了在这种情况下提高查询性能，建议使用多字段索引（如[此处](/docs/graphql/queries/advanced/sorting/#sorting-on-multiple-fields)所述）。例如，如果我们只想获取特定类别的文档，并按日期排序，则应定义一个多字段索引，其中类别为第一个字段，日期为第二个字段。
+
+重要的是要记住，必须指定`sort`字段才能使用索引。如果没有指定`sort`，则会扫描集合中的所有项目（按文件名顺序）。
+
+> 并非所有查询都能利用索引。有关更多详细信息，请参见[限制](/docs/graphql/queries/advanced/limitations/#indexing)。

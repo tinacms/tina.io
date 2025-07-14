@@ -1,0 +1,62 @@
+---
+title: 将其链接到您的模型
+last_edited: '2025-03-21T01:43:55.471Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/render-templates.mdx
+previous: content/docs-zh/beginner-tutorials/new-template.mdx
+---
+
+1\. 返回到我们的 `tina/config.ts` 文件。
+
+2\. 用一个新的**对象**类型字段替换旧的模式，以释放我们模板的强大功能 💪
+
+```typescript
+import { amazingTitleBlock } from "@/app/amazing-header/amazing-header.template";
+import { beautifulImageBlock } from "@/app/beautiful-image/beautiful-image.template";
+import { incredibleBodyBlock } from "@/app/incredible-body/incredible-body";
+// 在文件顶部 ⤴️
+
+
+//...
+collections: [
+      {
+        name: "my_first_collection",
+        label: "我的第一个集合",
+        path: "content/first",
+        fields: [
+          {
+            type: "object", // <--- 哇哦，真不错。
+            name: "blocks",
+            label: "块",
+            list: true,
+            templates: [amazingTitleBlock, beautifulImageBlock, incredibleBodyBlock], // 模板多多！
+          }
+        ],
+        ui: {
+          router: ({ document }) => {
+            if (document._sys.filename == "Hello-World") {
+              return "/";
+            }
+          },
+        },
+      }
+    ],
+```
+
+<WarningCallout
+  body={<>
+    我们已经更改了 `my_first_collection` 对象的模式，但 `Hello-World.md` 文件仍在使用旧模式。**请注意，如果不更新内容以匹配模式更改，您可能会轻易破坏您的页面/网站。**
+  </>}
+/>
+
+3\. 现在，让我们手动打开 `Hello-World.md` 并**删除**该文件的内容。
+
+4\. 为了帮助我们构建 React 组件的更改，让我们通过打开可视化编辑器（`http://localhost:3000/admin/index.html` 并导航到我们的 `my_first_collection` 列表，通过编辑器编辑 `Hello-World` 内容）向 `Hello-World.md` 文件添加一些新内容。
+
+> 注意可视化编辑器现在有一个名为 **Blocks** 的字段。这是我们在 `tina/config.ts` 文件中声明的高级 `object` 字段。看看它如何给我们一个神奇的 + 按钮。点击它！
+
+5\. 添加一个惊人的标题、一张美丽的图片和一个不可思议的正文！
+
+6\. 在您的 IDE 中检查 `Hello-World.md` 文件。您会看到它的结构已经改变，我们的模板/内容现在都存储在前置元数据中。
+
+> TinaCMS 可以配置为将内容保存为其他格式，例如 JSON，这对于这种数据非常有用。

@@ -1,0 +1,400 @@
+---
+draft: true
+seo:
+  title: 使用GraphQL与文件系统 | TinaCMS博客
+  description: >-
+    学习如何在TinaCMS中将GraphQL与文件系统集成，从而为基于文件的项目实现高效的内容查询和管理。
+title: 用GraphQL增强基于文件的内容
+date: '2021-04-29T10:00:00.000Z'
+last_edited: '2021-04-29T15:31:22.309Z'
+author: Jeff See
+prev: content/blog-zh/tina-cloud-a-headless-cms-backed-by-git.mdx
+next: content/blog-zh/evolution-of-inline-editing.mdx
+---
+
+今天我们想向您介绍Tina GraphQL网关，它为基于Git的内容管理带来了可靠性。这是提供强大结构化内容的关键部分，同时您的内容仍然完全可移植。
+
+## 克服文件系统的限制
+
+多年来，使用文件系统进行网站内容管理一直是Web开发生态系统的支柱。能够一次性发布整个网站，并通过Git轻松回滚任何更改，使其成为一种流行且高效的工作方式。
+
+另一方面，使用文件进行内容管理的开放性可能会导致头疼。内容管理系统（CMS）总是以另一种方式提供信心——知道您的内容结构不会在您不知情的情况下发生变化。使用文件系统的可怕（且强大）之处在于，没有层来确保您获得期望的内容。这是一种权衡，有许多有效的用例，但也有许多潜在的陷阱。
+
+## 让我们举个例子
+
+我们将使用[Next.js博客启动器](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)来演示基于文件的内容的一些问题以及我们希望如何解决它们。如果您想跟随，可以[分叉此仓库](https://github.com/tinacms/next-blog-starter-graphql)并从名为[`start`](https://github.com/tinacms/next-blog-starter-graphql/tree/start)的分支开始。要跳到最终解决方案，请查看[`add-tina-gql`](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql)分支。
+
+### 我们的内容结构
+
+这个应用程序从一个名为`_posts`的文件夹中的Markdown文件中获取内容：
+
+* \_posts
+  * dynamic-routing.md
+  * hello-world.md
+  * preview\.md
+* pages
+  * index.js # 列出博客文章
+  * posts
+    * \[slug].js # 动态显示相应的博客文章
+
+在主页上，我们从`_posts`目录中获取每篇文章，并在显示之前按日期排序，使用我们的`getAllPosts`函数：
+
+```js
+export function getAllPosts(fields = []) {
+  const slugs = getPostSlugs()
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // 按日期降序排序文章
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+  return posts
+}
+```
+
+结果如下：
+
+![](/img/blog/using-graphql-with-the-filesystem/next-demo-home_kcnyv5.png)
+
+> 演示：➡️ [开始跟随](https://github.com/tinacms/next-blog-starter-graphql/tree/start)
+
+#### 基于文件的内容很简单
+
+到目前为止，我们的内容管理很好，因为我们的更改存储在Git中，我们知道如果犯了错误，可以轻松回滚到以前的版本。但随着内容复杂性的增加，事情变得不那么简单。
+
+为了演示这一点，让我们首先看看我们的内容是如何结构化的。"动态路由和静态生成"博客文章看起来像这样：
+
+```markdown
+---
+title: '动态路由和静态生成'
+excerpt: 'Lorem  ...'
+coverImage: '/assets/blog/dynamic-routing/cover.jpg'
+date: '2020-03-16T05:35:07.322Z'
+author:
+  name: JJ Kasper
+  picture: '/assets/blog/authors/jj.jpeg'
+ogImage:
+  url: '/assets/blog/dynamic-routing/cover.jpg'
+---
+
+Lorem ipsum dolor sit amet ...
+```
+
+让我们通过添加在主页上显示哪些博客文章的过滤功能来扩展此结构。为此，我们为每篇文章添加一个新的`boolean`值，称为`featured`。
+
+```markdown
+---
+title: '动态路由和静态生成'
+excerpt: 'Lorem  ...'
+coverImage: '/assets/blog/dynamic-routing/cover.jpg'
+date: '2020-03-16T05:35:07.322Z'
+author:
+  name: JJ Kasper
+  picture: '/assets/blog/authors/jj.jpeg'
+ogImage:
+  url: '/assets/blog/dynamic-routing/cover.jpg'
+featured: true
+---
+
+Lorem ipsum dolor sit amet ...
+```
+
+现在我们可以相应地更新我们的`getAllPosts`函数：
+
+```diff
+export function getAllPosts(fields = []) {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // 按日期降序排序文章
+   .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
++  .filter((post) => post.featured);
+  return posts
+}
+```
+
+让我们添加一篇新文章来测试一下，这篇文章*不会*被推荐：
+
+```markdown
+---
+title: '为什么Tina很棒'
+excerpt: 'Lorem  ...'
+coverImage: '/assets/blog/dynamic-routing/cover.jpg'
+date: '2021-04-25T05:35:07.322Z'
+author:
+  name: JJ Kasper
+  picture: '/assets/blog/authors/jj.jpeg'
+ogImage:
+  url: '/assets/blog/dynamic-routing/cover.jpg'
+featured: 'false'
+---
+
+Lorem ipsum dolor sit amet ...
+```
+
+哎呀，看看谁出现在我们的主页上：
+
+![](/img/blog/using-graphql-with-the-filesystem/llama-woops_cchyel.png)
+
+你能发现问题吗？我们不小心将`featured`设置为`"false"`而不是`false`！我们把它设成了`string`，而不是`boolean`。
+
+> 演示：👀 [发现我们的错误](https://github.com/tinacms/next-blog-starter-graphql/compare/start..featured-tag-mistake)。
+
+如果我们使用的是CMS，这种情况可能不会发生。大多数CMS要求您的内容结构是明确定义的。虽然这些问题很痛苦，但CMS为我们提供的还有很多是文件系统无法提供的——您可能已经注意到我们的内容结构中有些地方感觉不太对劲……
+
+### 关系：这很复杂
+
+让我们再看看我们新博客文章中的数据：
+
+***
+
+title: "为什么Tina很棒"
+excerpt: "Lorem ..."
+coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+date: "2021-04-25T05:35:07.322Z"
+author:
+name: JJ Kasper
+picture: "/assets/blog/authors/jj.jpeg"
+ogImage:
+url: "/assets/blog/dynamic-routing/cover.jpg"
+featured: "false"
+
+***
+
+Lorem ipsum dolor sit amet…
+
+`author`内容在"动态路由和静态生成"文章中是相同的。如果JJ想要更改他的`picture`，他需要在他写的每篇文章中更新它。这听起来像是CMS可以通过内容*关系*解决的问题，理想情况下，JJ应该是一个*拥有许多*文章的作者。要用我们的基于文件的内容解决这个问题，我们可以将作者数据拆分到自己的文件中，并在`post`结构中放置对该作者文件名的引用：
+
+author: \_authors/jj.md
+
+但现在我们必须更新我们的数据获取逻辑，以便每当它遇到文章中的`author`字段时，它知道要为*该*数据发出额外的请求。这相当麻烦，而且随着复杂性的增加，这种逻辑很快变得不可行。使用CMS SDK或GraphQL API，我们可以轻松地做到这一点，并且我们可以确信如果一个文档被另一个文档引用，它就不能被删除。
+
+> 演示：[查看差异](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake..split-author-data)，看看我们是如何笨拙地利用一个单独的`author`文件的。
+
+### 内容管理系统：可靠？是的。可移植？不。
+
+无头CMS是保持对前端代码的完全控制的好方法，同时将上述问题转移到更强大的内容层。但当您将内容交给CMS时，您就失去了文件系统内置的Git的强大功能。
+
+使用CMS，当您更改内容的结构时，您还需要*协调*新结构与您的代码，并且您需要确保所有现有内容都已相应更新。
+
+大多数CMS已经想出各种方法来帮助解决这个问题：单独的沙箱环境、预览API和迁移SDK脚本——所有这些都有自己的一套麻烦。使用基于文件的内容，这些都不是必需的，*一切都一起移动和改变*。那么如果我们能将无头CMS的强大功能带到您的本地文件系统，会是什么样子？
+
+## 认识Tina内容API
+
+今天我们介绍一种工具，它结合了无头CMS的强大功能和基于文件的内容的便利性和可移植性。**Tina内容API是一个从本地文件系统获取内容的GraphQL服务**。它将很快通过[TinaCloud](https://app.tina.io)提供，该服务连接到您的GitHub仓库，提供相同的基于云的无头API。
+
+为了了解其工作原理，让我们对博客演示进行一些调整。
+
+首先安装Tina CLI：
+
+```sh
+yarn add tina-graphql-gateway-cli
+```
+
+现在让我们添加一个模式，以便API确切知道为您的内容构建什么样的结构：
+
+```sh
+mkdir .tina && touch .tina/schema.ts
+```
+
+```ts
+// `.tina/schema.ts`
+import { defineSchema } from 'tina-graphql-gateway-cli'
+
+export default defineSchema({
+  collections: [
+    {
+      label: '文章',
+      name: 'post',
+      /*
+       * 指示保存此类内容的位置（例如"_posts"文件夹）
+       */
+      path: '_posts',
+      templates: [
+        {
+          label: '简单',
+          name: 'simple_post',
+          fields: [
+            {
+              type: 'text',
+              label: '标题',
+              name: 'title',
+            },
+            {
+              type: 'text',
+              label: '摘要',
+              name: 'excerpt',
+            },
+            {
+              type: 'text',
+              label: '封面图片',
+              name: 'coverImage',
+            },
+            {
+              type: 'text',
+              label: '日期',
+              name: 'date',
+            },
+            {
+              // 我们指示作者是对另一个文档的"引用"
+              type: 'reference',
+              name: 'author',
+              label: '作者',
+              collection: 'author',
+            },
+            {
+              type: 'group',
+              name: 'ogImage',
+              label: '开放图像',
+              fields: [
+                {
+                  type: 'text',
+                  label: 'URL',
+                  name: 'url',
+                },
+              ],
+            },
+            {
+              type: 'toggle',
+              label: '推荐',
+              name: 'featured',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'author',
+      label: '作者',
+      path: '_authors',
+      templates: [
+        {
+          label: '作者',
+          name: 'author',
+          fields: [
+            {
+              type: 'text',
+              label: '姓名',
+              name: 'name',
+            },
+
+            {
+              name: 'picture',
+              label: '图片',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+})
+```
+
+注意我们在`post.author`字段中引用了`authors`部分
+
+接下来，我们替换`dev`命令以便与我们的Next.js应用程序一起启动GraphQL服务器：
+
+```json
+  "scripts": {
+    "dev": "yarn tina-gql server:start -c \"next dev\"",
+    ...
+  },
+```
+
+> 演示：[这是](https://github.com/tinacms/next-blog-starter-graphql/compare/featured-tag-mistake...add-tina-gql)我们到目前为止所做的更改。查看[`add-tina-graphql`](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql)分支以从此点开始。
+
+运行`dev`命令，您可以看到我们现在有一个本地GraphQL服务器在端口4001上监听，并提供一些关于自动生成的配置文件的信息：
+
+```sh
+Started Filesystem GraphQL server on port: 4001
+Generating Tina config
+Tina config ======> /.tina/__generated__/config
+Typescript types => /.tina/__generated__/types.ts
+GraphQL types ====> /.tina/__generated__/schema.gql
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+```
+
+让我们测试一下：
+
+> 💡提示：如果您有像[Altair](https://altair.sirmuel.design/)这样的GraphQL客户端，您可以通过指向[http://localhost:4001/graphql](http://localhost:4001/graphql)来探索API
+
+```graphql
+# 将您的请求指向http://localhost:4001/graphql
+{
+  getPostList {
+    data {
+      ... on SimplePost_Doc_Data {
+        title
+      }
+    }
+  }
+}
+```
+
+结果如下：
+
+```json
+{
+  "errors": [
+    {
+      "message": "Unexpected value of type string for boolean value",
+      "path": ["getPostList"]
+    }
+  ],
+  ...
+}
+```
+
+这个错误来自我们的老朋友`featured: "false"`。这正是您从CMS获得的那种保证，但没有任何开销。在修复问题后，我们得到了预期的结果：
+
+```json
+{
+  "data": {
+    "getPostList": [
+      {
+        "data": {
+          "title": "动态路由和静态生成"
+        }
+      },
+      ... # 截断
+    ]
+  }
+}
+```
+
+我们可以使用GraphQL替换我们所有定制的文件系统数据获取逻辑，并确信我们得到的数据将是我们期望的。
+
+```graphql
+query BlogPostQuery($relativePath: String!) {
+  getPostDocument(relativePath: $relativePath) {
+    data {
+      ... on SimplePost_Doc_Data {
+        title
+        excerpt
+        date
+        coverImage
+        author {
+          data {
+            ... on Author_Doc_Data {
+              name
+              picture
+            }
+          }
+        }
+        ogImage {
+          url
+        }
+        featured
+        _body
+      }
+    }
+  }
+}
+```
+
+> 演示：[查看更改](https://github.com/tinacms/next-blog-starter-graphql/compare/split-author-data..add-tina-gql)我们所做的以添加Tina GraphQL
+
+## 未完待续
+
+能够在本地使用GraphQL是帮助我们将完整CMS的功能带到文件系统的第一步。TinaCloud将通过托管的无头API提供相同的出色体验。在接下来的几周里，我们将继续分享更多关于这个API如何与TinaCMS一起工作，以最小的开销将可视化内容管理带到您的网站。
+
+> 看看我们刚刚经历的[演示](https://github.com/tinacms/next-blog-starter-graphql/tree/add-tina-gql)，看看您是否可以扩展它，并与我们分享您的进展！

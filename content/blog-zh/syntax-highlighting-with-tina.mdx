@@ -1,0 +1,207 @@
+---
+opengraph:
+  image:
+    url: /img/blog/syntax-highlighting-with-tina/syntax-highlight-cover.png
+    width: '1920,'
+    height: '1080,'
+    alt: 使用Tina进行语法高亮
+seo:
+  title: 使用TinaMarkdown进行语法高亮 | TinaCMS博客
+  description: >-
+    了解如何在TinaCMS中添加语法高亮，以增强代码片段的可读性并改善开发人员的内容呈现。
+title: 如何使用TinaMarkdown进行语法高亮
+date: '2022-01-20T00:00:00-04:00'
+last_edited: '2022-01-20T00:00:00Z'
+author: James Perkins
+prev: content/blog-zh/new-year-new-cms.mdx
+next: content/blog-zh/tinacms-2022.mdx
+---
+
+👋 你好，欢迎来到这里。今天我们将带你了解如何使用TinaMarkdown进行语法高亮。通过一个非常基础的设置和示例，我们将指导你添加语法高亮，让你的编辑们会爱上你（或者至少非常欣赏你）。
+
+更喜欢通过视频学习？查看我们关于语法高亮的视频：
+
+<Youtube embedSrc="https://www.youtube.com/embed/Qp-7YlGisBM" />
+
+## 设置
+
+我为本教程创建的起始点包含了一个非常基础的Tina实现，其中包括一个博客。它使用了我们的`rich-text`编辑器和我们的`TinaMarkdown`组件。
+
+```bash
+# 克隆仓库
+git clone https://github.com/tinacms/examples.git tina-examples
+cd tina-examples
+
+# 起始提交
+git checkout 7753363ad1e967524359131565f13791d3a378eb
+
+# 进入目录
+cd syntax-highlighting
+
+# 安装依赖
+yarn
+
+# 启动Tina + Next.js
+yarn dev
+```
+
+一旦我们的Next.js应用程序运行起来，你可以导航到[http://localhost:3000/post/HelloWorld](http://localhost:3000/post/HelloWorld)。在那里你会看到一篇博客文章，其中的代码块看起来很像普通文本。当它在段落中时，你或你的编辑可能很难分辨代码和普通文本之间的区别。添加语法高亮将轻松解决这个问题！
+
+![之前的图片](/img/blog/syntax-highlighting-with-tina/before-image.webp)
+
+## 添加语法高亮
+
+### 安装我们的包
+
+在本教程中，我们将使用`react-syntax-highlighter`。如果你更喜欢其他包，一旦你完成本教程并了解其工作原理，你可以使用你喜欢的包，它将同样有效。
+
+```bash
+# 安装语法高亮包
+yarn add react-syntax-highlighter
+```
+
+现在我们已经安装了语法高亮器，我们可以创建一个组件来传递我们的`props`。
+
+### 创建我们的组件
+
+首先，我们需要在`components`文件夹中创建一个名为`Codeblock.js`的新文件。
+
+```bash
+# 在components目录中创建文件
+touch  ./components/Codeblock.js
+```
+
+[需要比较你的代码，请点击这里查看提交](https://github.com/tinacms/examples/commit/cdfbe238aa5510ec699f4b5066daf3dfc5fcb5ae)
+
+在我们新创建的`Codeblock.js`文件中，我们需要导入一个主题和Prism。我将使用我最喜欢的主题`atomOneDark`，但你喜欢的主题也会和我的一样好用。
+
+```jsx
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/prism/material-dark';
+```
+
+我们正在创建的组件将接收两个props：`children`和`language`。children props包含我们在代码块中输入的所有代码，language将是编辑内容时选择的语言，例如javascript。
+
+```jsx
+const Codeblock = ({ children, language }) => {};
+```
+
+现在我们有了组件的框架，我们可以返回我们的`SyntaxHighlighter`并传入`children`和`language`。`SyntaxHighlighter`将接收三个不同的props：`code`、`language`和`style`，例如：
+
+```jsx
+<SyntaxHighlighter
+  code={YOUR_CODE}
+  language={YOUR_LANGUAGE}
+  style={YOUR_THEME}
+/>
+```
+
+因此，对于我们的组件，我们将`children`传递给`code` prop，`language`传递给`language` prop，`atomOneDark`传递给`style` prop。现在它应该看起来像这样：
+
+```jsx
+const Codeblock = ({ children, language }) => {
+  return (
+    <SyntaxHighlighter
+      code={children || ''}
+      language={language || 'jsx'}
+      style={atomOneDark}
+    />
+  );
+};
+```
+
+你可能注意到我在我们传递的props中包含了一个*或*语句。这将确保当我们创建一个新的空代码块时，Prism不会出错。
+
+最后，我们需要导出我们的组件以便在我们的`[slug].js`文件中使用。我们可以通过在文件底部添加`export {Codeblock}`来实现。我们的组件文件现在完成了，应该看起来像这样：
+
+```jsx
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/prism/material-dark';
+
+const Codeblock = ({ children, language }) => {
+  return (
+    <SyntaxHighlighter
+      code={children || ''}
+      language={language || 'jsx'}
+      style={atomOneDark}
+    />
+  );
+};
+
+export { Codeblock };
+```
+
+[在此提交中查看完整的组件](https://github.com/tinacms/examples/commit/983d80dd7fa07e29fb0d6802d989e40f260fb95d)
+
+[![加入我们的Discord](/img/join-discord.png)](https://discord.com/invite/zumN63Ybpf)
+
+### 在`[slug].js`中使用我们的组件
+
+现在，我们将把刚刚创建的组件导入到`[slug].js`文件中。
+
+```jsx
+import { Codeblock } from '../../components/Codeblock';
+```
+
+这使我们可以访问该组件，并且我们可以创建一个名为`components`的变量。这个`components`变量可以包含我们希望`TinaMarkdown`使用的所有不同组件。在我们的示例中，我们是覆盖一个元素而不是创建一个新组件。
+
+```jsx
+const components = {};
+```
+
+我们将覆盖`code_block`元素，如果你想知道可以覆盖哪些元素，你可以在我们的[tinacms](https://github.com/tinacms/tinacms)包中找到它们。
+
+在我们的组件变量中，我们可以放置一个名为`code_block`的属性，然后我们可以用它来覆盖原始样式：
+
+```jsx
+const components = {
+    code_block:
+}
+```
+
+现在我们将使用从我们的`TinaMarkdown`传递的props，并将它们传递给我们创建的组件并返回它
+
+```jsx
+code_block: (props) => {
+  return <Codeblock children={props.children} language={props.lang} />;
+};
+```
+
+我们的`components`对象现在完成了，应该看起来像这样：
+
+```jsx
+const components = {
+  code_block: (props) => {
+    return <Codeblock children={props.children} language={props.lang} />;
+  },
+};
+```
+
+最后一步是在我们的`TinaMarkdown`中使用这些`components`。为此，我们将我们的组件对象传递给组件的prop `components={components}`，我们的`TinaMarkdown`将如下所示：
+
+```jsx
+<TinaMarkdown content={props.data.post.body} components={components} />
+```
+
+现在，你可以使用`yarn dev`启动并导航回[http://localhost:3000/post/HelloWorld](http://localhost:3000/post/HelloWorld)。你会看到我们的代码块现在有了Prism语法高亮。
+
+![之后](/img/blog/syntax-highlighting-with-tina/after-image.webp)
+
+你可以在我们的[GitHub示例仓库](https://github.com/tinacms/tinacms/tree/main/examples)中找到完整的代码
+
+## 你可以在哪里了解Tina的最新动态？
+
+你知道你会想成为这个充满创造力、创新性、支持性的开发者社区（甚至还有一些编辑和设计师）的一部分，他们每天都在实验和实施Tina。
+
+### Tina社区Discord
+
+Tina有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和Tina爱好者。加入后你会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的Tina新闻和抢先预览
+* 与Tina社区分享你的项目，并谈论你的经验
+* 聊聊Jamstack
+
+### Tina Twitter
+
+我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布Tina的最新功能、改进和抢先预览。如果你在你构建的项目中标记我们，我们也会非常兴奋。

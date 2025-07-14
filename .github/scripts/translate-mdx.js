@@ -3,13 +3,21 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config/translation-config.json');
+const { fixPathsInFile } = require('./fix-translation-paths');
 
 const API_KEY = process.env.TINA_OPENAI_API_KEY;
 const CHANGED_FILES = process.env.CHANGED_FILES.split('\n').filter((f) =>
   f.trim()
 );
-const SOURCE_PATH = config.sourcePath || 'content/docs';
-const TARGET_PATH = config.targetPath || 'content/docs-zh';
+
+function getTargetPath(sourceFilePath) {
+  if (sourceFilePath.startsWith('content/docs/')) {
+    return sourceFilePath.replace('content/docs/', 'content/docs-zh/');
+  } else if (sourceFilePath.startsWith('content/blog/')) {
+    return sourceFilePath.replace('content/blog/', 'content/blog-zh/');
+  }
+  return sourceFilePath.replace('content/docs/', 'content/docs-zh/');
+}
 
 async function translateMdx(filePath) {
   console.log(`Processing file: ${filePath}`);
@@ -45,8 +53,7 @@ async function translateMdx(filePath) {
 
     const translatedContent = response.data.choices[0].message.content.trim();
 
-    const relativePath = filePath.replace(`${SOURCE_PATH}/`, '');
-    const targetPath = path.join(TARGET_PATH, relativePath);
+    const targetPath = getTargetPath(filePath);
 
     const targetDir = path.dirname(targetPath);
     if (!fs.existsSync(targetDir)) {
@@ -55,6 +62,8 @@ async function translateMdx(filePath) {
 
     fs.writeFileSync(targetPath, translatedContent);
     console.log(`Translated and saved to: ${targetPath}`);
+
+    fixPathsInFile(targetPath);
 
     return targetPath;
   } catch (error) {
@@ -77,7 +86,9 @@ async function main() {
   }
 
   if (translatedFiles.length > 0) {
-    console.log(`Successfully translated ${translatedFiles.length} files.`);
+    console.log(
+      `Successfully translated and fixed paths for ${translatedFiles.length} files.`
+    );
   } else {
     console.log('No files were translated.');
   }

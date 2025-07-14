@@ -1,0 +1,46 @@
+---
+title: 数字字段
+last_edited: '2025-03-26T00:57:30.031Z'
+next: ''
+previous: ''
+---
+
+用于存储数值的输入字段。
+
+## 类型定义
+
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: '将此设置为 `"number"` 以使用数字字段。\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: '供内部使用的字段名称。\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
+
+## 示例
+
+Tina 将根据提供的配置生成适当的组件。
+
+### 简单字段
+
+```javascript
+{
+  type: 'number',
+  name: 'count',
+  label: '计数',
+  description:'一个示例数字字段。'
+}
+```
+
+![](/img/docs/reference/count-field.png)

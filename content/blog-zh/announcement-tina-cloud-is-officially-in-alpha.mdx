@@ -1,0 +1,70 @@
+---
+seo:
+  title: Tina Cloud 正式进入 Alpha 阶段 | TinaCMS 博客
+  description: >-
+    Tina Cloud 进入其 alpha 阶段！了解这一激动人心的里程碑，以及它如何为 TinaCMS 引入基于云的内容管理。
+title: TinaCloud 公开 Alpha 阶段
+date: '2021-06-01T20:00:00-04:00'
+last_edited: '2021-06-17T12:45:15.979Z'
+author: James Perkins
+prev: content/blog-zh/tina-cloud-and-nextjs-the-perfect-match.mdx
+next: content/blog-zh/structure-your-content-with-graphql-in-tina.mdx
+---
+
+Tina 团队很高兴地宣布 [TinaCloud](/) 正式进入公开 Alpha 阶段。我们鼓励大家在我们基于 GitHub 的无头 CMS 上[注册一个免费账户](https://app.tina.io/register)并开始提交。我们在幕后付出了巨大的努力，以便将我们的愿景交到开发者和内容团队的手中。
+
+TinaCloud 将 Tina 的开源内容编辑器的强大功能与[允许您与存储在仓库中的 Markdown 文件交互的 GraphQL API](/blog/using-graphql-with-the-filesystem/)结合在一起。此外，通过 TinaCloud，您可以允许*任何*团队成员编辑内容——即使他们没有 GitHub 账户。
+
+当我们[推出 TinaCMS](https://www.youtube.com/watch?v=iPDCmbaEF0Y)时，它主要是一个用于可视化编辑网站的开源 Javascript UI。
+
+![使用 Tina 的侧边栏实时编辑 Next.js + Tailwind CSS 网站。](/img/blog/tina-cms-visual-editing.gif "使用 Tina 的侧边栏实时编辑 Next.js + Tailwind CSS 网站。")
+
+当时，TinaCMS 是一个只有 3 个月的开源项目，我们依赖开发者自行解决用户管理、身份验证、角色、内容存储等问题。但我们很快了解到，开发者需要更多开箱即用的功能来让他们的团队取得成功。通过 TinaCloud，我们坚持**基于 Git 的内容管理**的愿景，但提供了一个包含所有功能的体验。
+
+## TinaCloud Alpha 期望是什么？
+
+TinaCloud 仍在积极开发中，我们相信您可以在其中获得良好的体验。您可能会遇到我们尚未发现的问题，或者需要更新到最新版本，因为我们改进了 API。
+
+TinaCloud 尚未完成，一些关键功能正在完善中：
+
+* 媒体管理解决方案
+* 多分支工作流
+* 我们的 GraphQL API 的只读令牌。这意味着它仅在您编辑内容时使用。
+
+## TinaCloud 应该使用什么技术栈
+
+* **Next.js**: [Next.js 是 Tina 的完美搭档](/blog/tina-cloud-and-nextjs-the-perfect-match/)，是我们团队的默认选择。
+* **GitHub**: GitHub 是必需的，因为它是我们目前在 TinaCloud 上支持的唯一 Git 提供商。如果您希望我们支持其他 Git 提供商，请告诉我们。
+* **静态、基于文件的构建**: 当您构建我们的 TinaCloud 产品时，它会收集您的文件系统内容，将来，您将能够在构建时从我们的云 API 获取数据。
+
+## 我该如何开始？
+
+首先要做的是[注册 TinaCloud](https://app.tina.io/register)，一旦注册，我们有几种方法可以让您快速入门并在几分钟内运行。
+
+* [TinaCloud Starter](https://github.com/tinacms/tina-cloud-starter): 一个基本的 TinaCloud 实现，旨在让您在几分钟内启动并运行。
+* [TinaCloud Next.js 博客入门](/guides/tina-cloud/existing-site/overview/) - 一个指南，帮助您在默认的 Next.js 博客入门上添加 TinaCloud，并直接通过我们的 CMS 工作。
+
+您还可以查看我制作的视频，了解如何在不到 10 分钟内开始使用 TinaCloud，它为您提供了我们的 TinaCloud 入门概述，并为您提供了一些入门提示。
+
+<Youtube embedSrc="https://www.youtube.com/embed/Y-fG7qzoHKw" />
+
+## 我可以在哪里提供反馈或获得帮助？
+
+我们有几个渠道供您联系、提供反馈或获得帮助，以解决您可能遇到的任何挑战。
+
+* 深入了解涵盖实现的新 [TinaCloud 文档](/docs/tina-cloud/)。
+* [加入我们的 Discord](https://discord.gg/zumN63Ybpf)。
+* [给我们发邮件](mailto\:support@tina.io) 如果您想与我们的团队安排通话并分享更多关于您的背景信息。
+* 通过您的 TinaCloud 仪表板获得支持（屏幕左侧底部有一个聊天小部件）。
+
+## 关于定价？
+
+我们仍在决定对选择使用 TinaCloud 的人来说公平的定价。在 Alpha 阶段，**TinaCloud 对于小团队是免费的**，如果我们认为您的用例最终可能适合我们的后 Beta 付费计划，我们会与您联系。
+
+## 请联系我们
+
+整个团队对进入公开 Alpha 阶段感到非常兴奋，希望您能查看并给我们诚实的反馈。我们想听听您的项目，告诉我们 TinaCloud 如何帮助您的团队取得进展。
+
+要了解 Tina 的最新动态，请务必关注 Twitter 上的 [@tinacms](https://twitter.com/tinacms)。
+
+敬请期待更多改进、功能、社区构建项目等！

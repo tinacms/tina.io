@@ -1,0 +1,235 @@
+---
+seo:
+  title: 使用MDX的强大功能与Tina | TinaCMS博客
+  description: >-
+    了解如何在TinaCMS中利用MDX，将Markdown与React组件结合，实现更动态和可定制的内容管理。
+title: 使用MDX的强大功能与Tina
+date: '2021-12-09T12:09:32-04:00'
+last_edited: '2021-12-09T12:09:32-04:00'
+author: James Perkins
+prev: content/blog-zh/mdx-powered-docs.mdx
+next: content/blog-zh/2021-a-year-in-review.mdx
+---
+
+# 使用MDX的强大功能与Tina
+
+Tina允许内容团队和开发人员以快速的节奏工作，并消除了静态网站与编辑内容之间的摩擦。通过发布我们的MDX支持，我们将这种方法更进一步，使开发人员能够创建可重用的组件，而内容团队可以在需要时使用它们。这篇博客文章将向您展示如何将Tina添加到您的网站，然后如何创建和使用Tina的组件。
+
+### 项目设置
+
+步骤1：创建一个带有tailwind的项目
+
+```bash
+npx create-next-app -e with-tailwindcss tina-demo
+cd tina-demo
+```
+
+步骤2：将Tina添加到项目中
+
+在项目内部使用以下命令添加所有Tina依赖项并包装应用程序，准备好使用。
+
+```bash
+npx @tinacms/cli@latest init
+```
+
+当被问及是否要替换您的`_app.js`文件时，选择Y，因为我们希望初始化命令负责添加Tina特定的代码。
+步骤3：测试Tina
+
+从项目目录运行`yarn dev`并导航到[http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld)，然后可以通过导航到[http://localhost:3000/admin](http://localhost:3000/admin)进入编辑模式。
+
+## 使用Tina富文本编辑器
+
+要首先使用MDX组件，我们需要使用Tina的富文本编辑器，这将允许我们渲染组件并仍然拥有直观的markdown编辑器的功能。关闭本地服务器，我们可以开始添加更改。
+
+### 更新我们的Tina Schema
+
+打开`.tina/schema.ts`文件并编辑body部分，从以下内容
+
+```typescript
+{
+  type: "string",
+  label: "Blog Post Body",
+  name: "body",
+  isBody: true,
+  ui: {
+    component: "textarea"
+  },
+ },
+```
+
+更改为
+
+```typescript
+  {
+    type: 'rich-text',
+    label: "Blog Post Body",
+    name: "body",
+    templates: [],
+    isBody: true,
+  },
+```
+
+我们稍后将在`templates`部分填入所有组件，我们只是用我们的富文本编辑器替换`textArea`，这允许我们使用markdown和MDX组件。
+
+### 更新我们的\[filename].js
+
+首先，我们需要删除所有不再需要的代码。让我们继续删除标签中的所有代码，包括标签本身：
+
+要删除的代码
+
+```html
+<head>
+  {/* Tailwind CDN */}
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css"
+    integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  {/* Marked CDN */}
+  <script
+    type="text/javascript"
+    crossorigin="anonymous"
+    src="https://cdn.jsdelivr.net/npm/marked@3.0.8/lib/marked.min.js"
+  />
+</head>
+```
+
+现在您已经删除了未使用代码的第一部分，我们可以导入`TinaMarkdown`来处理markdown解析，并在将来处理我们的组件。
+
+在文件顶部，您的导入部分现在应如下所示：
+
+```javascript
+import { staticRequest, gql, getStaticPropsForTina } from 'tinacms'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { createGlobalStyle } from 'styled-components'
+```
+
+### 用`TinaMarkdown`替换marked
+
+现在我们正在添加我们的富文本编辑器，我们不再需要使用marked来解析HTML。我们可以删除以下内容：
+
+```diff
+- {typeof window !== "undefined" && (
+-   <ContentSection content={window.marked.parse(props.data.post.body)}>
++   <ContentSection content={props.data.post.body}>
+</ContentSection>
+- )}
+```
+
+然后在第234行，我们可以用我们的TinaMarkdown组件替换持有解析markdown的div。
+
+```diff
+- <div dangerouslySetInnerHTML={{ __html: content }}></div>
++ <TinaMarkdown content={content} />
+```
+
+继续运行`yarn dev`并导航回[http://localhost:3000/demo/blog/HelloWorld](http://localhost:3000/demo/blog/HelloWorld)，您会注意到编辑体验发生了变化，可以插入markdown，并有一个名为“Embed”的新按钮。
+
+![Tina Markdown 示例](/img/blog/using-the-power-of-mdx-with-tina/Tina-markdown-demo.png)
+
+## 添加一个MDX组件
+
+向Tina添加组件需要以下步骤：
+
+1. 一个由props驱动的组件
+2. 添加组件和可编辑字段
+3. 将其添加到`TinaMarkdown`组件中
+
+对于这篇博客文章，让我们创建一个根据选择更改的自定义提示。我们可以有一个“默认”、“警告”、“错误”。为了节省时间，我已经为您创建了组件，继续在项目根目录创建一个名为`components`的新文件夹，并创建一个名为`Callout.js`的文件，并粘贴以下代码：
+
+```javascript
+const backgroundColor = {
+  warning: 'bg-yellow-200',
+  error: 'bg-red-600',
+  default: 'bg-gray-200',
+}
+
+const textColor = {
+  warning: 'text-gray-600',
+  error: 'text-white	',
+  default: 'text-gray-600',
+}
+
+const Callout = ({ callout }) => {
+  const background = backgroundColor[callout.type]
+  const color = textColor[callout.type]
+
+  return (
+    <div className={`${background} ${color} flex rounded-lg mt-6 p-6`}>
+      <div className="">{callout.text}</div>
+    </div>
+  )
+}
+
+export default Callout
+```
+
+在我们继续之前，让我们谈谈这个组件。它接收一个名为“callout”的prop，该prop提供提示类型和提示文本。提示类型将更改文本颜色和背景颜色。
+
+### 更新tina schema
+
+在我们的`schema.ts`中，当我们创建富文本body部分时，它有一个空的templates数组。我们将添加一个包含我们的Callout组件的对象，这将驱动我们的可编辑体验。
+
+需要注意的重要一点是名称需要与我们的组件名称匹配，所以我们的示例是Callout。然后字段将是我们希望可编辑的部分；所以我们将命名它们为type和text，这将由我们的用户编辑。
+
+为了使体验更愉快，我们将添加一个UI对象来保存默认值。当有人添加我们的Callout时，它将自动具有内容。以下内容放在我们的templates数组中。
+
+```typescript
+{
+  name: "Callout",
+  label: "Callout",
+  ui: {
+    defaultItem: {
+      type: "default",
+      text: "Lorem ipsum dolor sit amet.",
+    },
+  },
+  fields: [
+    {
+      name: "type",
+      label: "Type",
+      type: "string",
+      options: ["default", "warning", "error"],
+    },
+    {
+      name: "text",
+      label: "Text",
+      type: "string",
+    },
+  ],
+},
+```
+
+### 在前端注册我们的组件
+
+这部分是将组件注册到我们的`TinaMarkdown`中。再次打开`[filename].js`文件。首先，我们需要导入我们的组件，因此将以下内容添加到文件顶部：
+
+```javascript
+import Callout from '../../../components/Callout'
+```
+
+为了代码清晰，我们可以创建一个包含所有不同Tina驱动组件的对象。我们将通过props传递给我们的组件，因此我们可以在这里定义。
+
+```javascript
+const components = {
+  Callout: (props) => {
+    return <Callout callout={props} />
+  },
+}
+```
+
+最后，我们可以更新您的`TinaMarkdown`组件，以便为我们的用户传递组件。
+
+```javascript
+<TinaMarkdown content={content} components={components} />
+```
+
+现在重新启动您的应用程序并导航回可编辑页面，然后点击“Embed”按钮，您将看到“Callout”作为一个选项。您将在可编辑UI中看到一个按钮，并在页面上出现一个新的提示。
+
+![Callout](/img/blog/using-the-power-of-mdx-with-tina/Callout.png)
+
+然后当您选择按钮时，您将有选项来切换类型和编辑文本。
+
+![Warning](/img/blog/using-the-power-of-mdx-with-tina/warning.png)

@@ -1,0 +1,146 @@
+---
+id: /docs/graphql/queries/advanced/sorting
+title: 排序查询结果
+last_edited: '2025-03-26T03:58:31.164Z'
+next: ''
+previous: ''
+---
+
+要通过集合字段对集合结果进行排序，请将 `sort` 参数传递给 `<collection>Connection` 查询，值对应于要排序的集合字段。结果将按升序返回。
+
+> 请参阅[反向分页](/docs/graphql/queries/advanced/pagination/)以了解如何以降序检索结果。
+
+## 多字段排序
+
+要通过多个字段对集合结果进行排序，我们需要在模式中定义一个多字段“索引”。索引定义决定了集合中哪些字段包含在索引中以及排序结果时字段的顺序。
+
+> 除了决定查询结果的排序顺序外，索引还会影响查询的[性能](/docs/graphql/queries/advanced/performance/)。
+
+以下是我们的帖子集合的索引定义示例：
+
+```ts
+{
+  collections: [
+    {
+      label: "博客文章",
+      name: "post",
+      path: "content/posts",
+      format: "mdx",
+      fields: [...],
+      indexes: [{
+        name: "category-date",
+        fields: [
+          { name:"category" },
+          { name:"date" }
+        ]
+      }]
+    }
+  ]
+}
+```
+
+索引定义中的 `name` 属性在 `sort` 参数中引用时使用。`fields` 属性是集合中应被索引的字段的有序列表，通过字段 `name` 标识。使用此示例的关联排序返回的结果将首先按 `category` 排序，然后按 `date` 排序。
+
+## 默认排序顺序
+
+如果查询中未指定 `sort` 参数，结果将根据默认文件名顺序返回。
+
+## 示例
+
+### 按单个字段排序
+
+在这里，我们将使用 `postConnection` 查询我们的 `post` 集合，并按 `date` 字段对结果进行排序：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;date&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########date
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### 按多个字段排序
+
+在这里，我们将使用 `postConnection` 查询我们的 `post` 集合，并使用名为 `category-date` 的多字段索引首先按 `category` 然后按 `date` 对结果进行排序：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(sort:#&#x22;category-date&#x22;)#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ########date
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-07-15T07:00:00.000Z&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;,
+  ############&#x22;date&#x22;:#&#x22;2022-06-15T07:00:00.000Z&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>

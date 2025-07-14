@@ -1,0 +1,45 @@
+---
+title: GitHub Git 提供者
+id: '/docs/reference/self-hosted/git-provider/github'
+---
+
+GitHub Git 提供者负责将内容保存和删除到托管在 GitHub 上的 Git 仓库中。它被配置为 `createDatabase` [函数](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function)的一个参数。
+
+> 在寻找代码吗？查看 [GitHub 仓库](https://github.com/tinacms/tinacms/tree/main/packages/tinacms-gitprovider-github)。
+
+## 添加 GitHub Git 提供者
+
+```ts
+import { GitHubProvider } from 'tinacms-gitprovider-github'
+// database.{ts,js}
+//...
+
+export default isLocal ? createLocalDatabase() ? createDatabase({
+    gitProvider: new GitHubProvider({
+        branch: process.env.GITHUB_BRANCH,
+        owner: process.env.GITHUB_OWNER,
+        repo: process.env.GITHUB_REPO,
+        token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+      }),
+    // ...
+})
+```
+
+## GitHub Git 提供者选项
+
+### 必需参数
+
+| 选项     | 描述                                                                                       |
+| -------- | ----------------------------------------------------------------------------------------- |
+| `branch` | 要保存内容的分支。                                                                        |
+| `owner`  | 仓库的所有者。                                                                            |
+| `repo`   | 要保存内容的仓库。                                                                        |
+| `token`  | 一个 [Github 个人访问令牌](https://github.com/settings/personal-access-tokens/new)。      |
+
+### 可选参数
+
+| 选项             | 描述                                                                                                                |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `commitMessage`  | 保存内容时使用的提交信息。默认为 `Edited with TinaCMS`。                                                           |
+| `rootPath`       | 此路径将作为所有路径的前缀。通常仅在 monorepos 中使用。可选。                                                      |
+| `octokitOptions` | 传递给 [Octokit 构造函数](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) 的选项。 |

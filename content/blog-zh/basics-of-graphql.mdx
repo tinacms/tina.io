@@ -1,0 +1,230 @@
+---
+seo:
+  title: GraphQL基础 | TinaCMS博客
+  description: >-
+    学习GraphQL的基础知识，包括查询、变更，以及TinaCMS如何利用GraphQL提供灵活高效的内容管理。
+title: GraphQL基础
+date: '2022-05-12T07:00:00.000Z'
+author: James Perkins
+prev: content/blog-zh/announcing-extending-tina.mdx
+next: content/blog-zh/a-b-test-with-tina.mdx
+---
+
+​​
+Tina团队非常喜欢GraphQL，它是我们项目的核心组件之一。原因之一是它允许开发者仅检索所需的数据，并使API的演变更加容易。本文将介绍GraphQL的基础知识。
+
+## 查询
+
+查询是从服务器检索数据的手段。如果你以前使用过REST，这相当于一个`GET`请求，但使用GraphQL，你有更多的控制权。你可以根据需要请求多（或少）量的数据，使GraphQL成为一个强大的开发工具。下面是一个GraphQL查询的示例：
+
+```graphql
+query MyAwesomeQuery(){
+	# 在这里进行我们的查询
+}
+```
+
+### 字段
+
+字段是你希望从GraphQL中检索的数据。字段描述了服务器在响应中应返回的内容的形状。例如：
+
+```graphql
+query MyAwesomeQuery(){
+	user{
+		name
+  }
+}
+
+# 响应
+
+{
+  "data": {
+    "user": {
+      "name": "James"
+    }
+  }
+}
+```
+
+你可以看到查询和结果的形状是相同的。GraphQL很强大，因为你总是知道从服务器返回的内容是什么，服务器也知道客户端请求了哪些字段。
+
+你还可以请求*子选择字段*。GraphQL查询可以遍历相关对象和字段，让客户端在单个请求中获取相关数据。例如，如果我们需要用户写的所有博客文章，我们可以请求它们，服务器将返回所有这些文章。
+
+```graphql
+query MyAwesomeQuery(){
+	user{
+		name
+		posts{
+			title
+		}
+  }
+}
+
+# 返回的内容
+
+{
+  "data": {
+    "user": {
+      "name": "James"
+			"posts": [
+        {
+          "title": "Tina in 2022"
+        },
+        {
+          "title": "From Contextual to CMS"
+        },
+        {
+          "title": "How to automate PRs."
+        }
+      ]
+    }
+  }
+}
+```
+
+## 参数
+
+GraphQL也支持参数，就像REST一样。与REST不同的是，你只能发送一组参数，可能需要进行多次请求。GraphQL支持每个字段或对象的参数。你可以指定所需的确切数据，服务器将只返回这些数据。参数可以帮助你处理大量数据或避免不必要的数据加载到应用程序中。
+
+你还可以使用参数来控制数据的结构。例如，你可能想要获取某个特定作者的所有文章，但只包括标题和发布日期字段。你可以通过向GraphQL传递一个参数来指定哪个作者以及你希望返回的标题和正文字段来实现这一点。
+
+```jsx
+{
+  posts(author: "James Perkins") {
+    title
+    published_date
+  }
+}
+
+{
+  "data": {
+			"posts": [
+        {
+          "title": "From Contextual to CMS"
+					"published_date": "2022-01-22T05:00:00.000Z"
+        },
+        {
+          "title": "How to automate PRs"
+					"published_date": "2022-01-22T05:00:00.000Z"
+        }
+      ]
+    }
+  }
+}
+```
+
+## **片段**
+
+GraphQL片段是一种将GraphQL查询分解为更小、更易管理的部分的方法。当你试图弄清楚复杂查询中发生了什么，或者只需要从较大的数据集中获取一小部分数据时，片段会很有帮助。片段还可以在你可能需要定义的数据的任何地方重用。
+
+要创建一个片段，首先定义一个新类型。这个类型将表示你想从查询中提取的数据。一旦定义了类型，你就可以像使用其他类型一样在查询中使用它。以下是一个作者片段的示例，它是从我们的作者类型创建的：
+
+```graphql
+
+// 作者的简化版本
+type Author {
+  title: String
+  email: String
+  name: String
+  twitter: String
+  github: String
+  linkedin: String
+  bio: String
+  image: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+// 重要部分的片段，用于简介。
+fragment AuthorParts on Author {
+  email
+  name
+  twitter
+  bio
+  image
+}
+```
+
+## 变量
+
+变量替换是GraphQL中的一个关键概念。当你指定一个字段时，你可以选择提供一个变量列表作为该字段的输入。例如，以下查询指定了John的name变量：
+
+```graphql
+query {
+  person(name: "John") {
+    age
+  }
+}
+```
+
+这个查询将返回给定名称的人的age字段。这不是很好，因为我们硬编码了`John`的名字。这就是我们开始使用变量的地方。要使用变量，你需要三件事：
+
+1. 用`$variableName`替换硬编码的值。因此在这里，我们将使用`$name`而不是硬编码的`John`。
+2. 将变量声明为查询中接受的变量之一，并指定类型。在这种情况下，name变量的类型为`String`。
+3. 在查询中包含`variableName: value`：
+
+```graphql
+query getAge($name: String) {
+  person(name: $name) {
+    age
+  }
+}
+
+variables:
+{
+  "name": "john"
+}
+```
+
+### 默认值变量
+
+你还可以有一个默认值变量。当查询中的所有变量都提供了默认值时，你可以在没有变量的情况下调用查询，并返回数据。例如：
+
+```graphql
+query getAge($name: String = "John') {
+  person(name: $name) {
+    age
+  }
+}
+```
+
+如果没有提供变量，它将使用`John`并返回他的年龄。如果你有更多的变量，你可以在查询中混合使用默认值和发送的变量。
+
+## 变更
+
+GraphQL中的变更用于更改应用程序中的数据，类似于REST中的`PUT`或`POST`请求。与查询一样，如果返回的数据是对象类型，你可以只请求嵌套字段。这意味着你可以只返回所需的数据，而不是返回所有数据并解析所需的部分：
+
+```graphql
+mutation createNewAuthor(
+  $name: String
+  $bio: String
+  $twitter: String
+  $image: String
+) {
+  creatAuthor(name: $name, bio: $bio, twitter: $twitter, image: $image) {
+    id
+    name
+  }
+}
+```
+
+在这个例子中，我们创建了一个新的作者，并在成功创建时仅返回作者的id和name。
+
+## **如何跟上Tina的最新动态？**
+
+跟上Tina的最佳方式是订阅我们的新闻通讯。我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、你可能错过的博客文章等等！
+
+你可以通过访问此链接并输入你的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
+
+### Tina社区Discord
+
+Tina有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和Tina爱好者。加入后，你会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的Tina新闻和抢先预览
+* 与Tina社区分享你的项目，并讨论你的经验
+* 聊聊Jamstack
+
+### Tina Twitter
+
+我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布Tina的最新功能、改进和抢先预览。如果你在项目中标记了我们，我们也会非常兴奋。

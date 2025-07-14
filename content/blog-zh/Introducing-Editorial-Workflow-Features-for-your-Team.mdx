@@ -1,0 +1,50 @@
+---
+seo:
+  title: 为您的团队介绍编辑工作流程功能 | TinaCMS 博客
+  description: >-
+    了解TinaCMS中的新编辑工作流程功能，旨在简化协作并提高团队在内容管理方面的效率。
+title: 为您的团队介绍编辑工作流程功能！
+date: '2023-07-10T03:00:00.000Z'
+last_edited: '2023-07-06T03:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/TinaCMS-Version-1-5-9.mdx
+next: content/blog-zh/Introducing-the-Deep-Dive-Video-Series.mdx
+---
+
+我们很高兴为TinaCloud的商业和企业计划团队推出一些新的[编辑工作流程功能](https://tina.io/editorial-workflow/)! 在项目中启用编辑工作流程功能允许编辑者在分支上工作并进行PR，而无需登录GitHub。
+
+<Youtube embedSrc="https://www.youtube.com/embed/gYukiULGqGc" />
+
+我们理解Git概念对许多内容编辑者来说是新的，因此TinaCMS编辑工作流程提供了一种易于接近的用户体验，使Git变得简单。
+
+## 受保护的分支
+
+在TinaCloud中，您可以指定一个“受保护的分支”。
+
+![](/img/blog/editorial-workflow/enable-editorial-workflow.png)
+
+如果编辑者尝试在受保护的分支上进行更改，他们将被提示创建一个新分支以应用这些更改。
+
+![](/img/blog/introducing-editorial-workflow-features-for-your-team/create-branch_bgpgwn.png)
+
+## 共享预览
+
+在分支上时，编辑者现在可以访问一个可配置的预览链接。这使编辑者能够轻松地与其他利益相关者分享他们的网站预览。
+
+![](/img/blog/editorial-workflow/share-btn_xvmxii.png)
+
+## 利用GitHub的审查
+
+当编辑者进行更改时，提交和拉取请求会在后台提交到GitHub。审查者可以使用他们熟悉的Git工作流程来审查更改。这也使团队能够确保在将任何内容更新合并到主分支之前，他们的CI/CD工作流程全部通过。
+
+![](/img/blog/editorial-workflow/github-pr.png)
+
+## 改进的分支UI
+
+如果您过去使用过我们的实验性分支插件，分支UI可能会有些复杂。新的编辑工作流程分支UI包含了一些生活质量的改进，比如默认只显示内容分支，允许您排除开发者或Dependabot的分支。
+
+<Youtube embedSrc="https://www.youtube.com/embed/LvMgC6D6Sms" />
+
+要了解更多关于为您的团队设置编辑工作流程功能的信息，请查看[我们的文档](/docs/drafts/editorial-workflow/)。
+
+<Callout title="请求演示" description="想看看编辑工作流程功能的实际演示吗？让我们聊聊！" buttonText="请求演示" url="mailto:demo@tina.io" />
