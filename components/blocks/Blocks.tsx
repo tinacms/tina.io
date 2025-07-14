@@ -59,7 +59,7 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
     case 'PageBlocksMediaComponent':
       return <MediaComponent data={block} />;
     case 'PageBlocksBooking':
-      return <BookingBlock data={block} index={index} />;
+      return <BookingBlock data={block} />;
     case 'PageBlocksHero':
       return <HeroBlock data={block} index={index} />;
     case 'PageBlocksPricing':
@@ -67,15 +67,15 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
     case 'PageBlocksFaq':
       return <FaqBlock data={block} index={index} />;
     case 'PageBlocksContent':
-      return <ContentBlock data={block} index={index} />;
+      return <ContentBlock data={block} />;
     case 'PageBlocksColumns':
-      return <ColumnsBlock data={block} index={index} />;
+      return <ColumnsBlock data={block} />;
     case 'PageBlocksRecipeBlock':
       return <RecipeBlock data={block} />;
     case 'PageBlocksShowcase':
       return <ShowcaseItemsBlock data={block} index={index} />;
     case 'PageBlocksStory':
-      return <StoryBlock data={block} index={index} />;
+      return <StoryBlock index={index} />;
     case 'PageBlocksFeatureGrid':
       return <FeatureGridBlock data={block} index={index} />;
     case 'PageBlocksLogoGrid':
@@ -93,7 +93,7 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
         />
       );
     case 'PageBlocksTestimonials':
-      return <TestimonialsBlock data={block} index={index} />;
+      return <TestimonialsBlock data={block} />;
     case 'PageBlocksQuote':
       return <QuoteBlock data={block} index={index} />;
     case 'PageBlocksTextMediaColumnComponent':
