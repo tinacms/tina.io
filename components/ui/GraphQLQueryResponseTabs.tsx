@@ -30,6 +30,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
         }}
       >
         <button
+          type="button"
           onClick={() => setIsQuery(true)}
           className={buttonStyling + (isQuery ? '' : activeButtonStyling)}
           disabled={isQuery}
@@ -40,6 +41,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
           ></div>
         </button>
         <button
+          type="button"
           onClick={() => setIsQuery(false)}
           className={buttonStyling + (isQuery ? activeButtonStyling : '')}
           disabled={!isQuery}

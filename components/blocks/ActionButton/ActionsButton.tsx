@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { BiArrowBack } from 'react-icons/bi';
 import 'react-responsive-modal/styles.css';
 import { tinaField } from 'tinacms/dist/react';
@@ -27,32 +26,31 @@ export const Actions = ({
           .filter(Boolean)
           .join(' ')}
       >
-        {items &&
-          items.map((item) => {
-            const { variant, label, icon, url, buttonType } = item;
-            {
-              const externalUrlPattern = /^((http|https|ftp):\/\/)/;
-              const external = externalUrlPattern.test(url);
-              const link = url || '#';
-              return (
-                <ActionButton
-                  key={label}
-                  id={sanitizeLabel(label)}
-                  size={item.size ? item.size : 'medium'}
-                  link={link}
-                  target={external ? '_blank' : '_self'}
-                  color={variant}
-                  data-tina-field={tinaField(item, 'label')}
-                  className={className}
-                >
-                  {label}
-                  {icon && (
-                    <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
-                  )}
-                </ActionButton>
-              );
-            }
-          })}
+        {items?.map((item) => {
+          const { variant, label, icon, url } = item;
+          {
+            const externalUrlPattern = /^((http|https|ftp):\/\/)/;
+            const external = externalUrlPattern.test(url);
+            const link = url || '#';
+            return (
+              <ActionButton
+                key={label}
+                id={sanitizeLabel(label)}
+                size={item.size ? item.size : 'medium'}
+                link={link}
+                target={external ? '_blank' : '_self'}
+                color={variant}
+                data-tina-field={tinaField(item, 'label')}
+                className={className}
+              >
+                {label}
+                {icon && (
+                  <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
+                )}
+              </ActionButton>
+            );
+          }
+        })}
       </div>
       <style jsx>{`
         .or-text {

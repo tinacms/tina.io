@@ -5,7 +5,7 @@ import getTableOfContents from 'utils/docs/getTableOfContents';
 
 export async function getSearchPageData() {
   const slug = 'index';
-  let tableOfContents, formatted, formattedLearn;
+  let tableOfContents: any, formatted: any, formattedLearn: any;
 
   try {
     const results = await client.queries.doc({ relativePath: `${slug}.mdx` });
@@ -29,7 +29,7 @@ export async function getSearchPageData() {
         query,
         variables: { relativePath: 'docs-toc.json' },
       },
-      {}
+      {},
     );
     formatted = formatTableofContentsData(docTocData, null);
   } catch (e) {
@@ -49,7 +49,7 @@ export async function getSearchPageData() {
         query,
         variables: { relativePath: 'learn-toc.json' },
       },
-      {}
+      {},
     );
     formattedLearn = formatTableofContentsData(learnTocData, null);
   } catch (e) {

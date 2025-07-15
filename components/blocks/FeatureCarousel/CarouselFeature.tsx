@@ -1,8 +1,10 @@
+/** biome-ignore-all lint/correctness/noInvalidUseBeforeDeclaration: <TODO> */
+/** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
 import checkTouchScreen from 'components/util/touchscreenDetection';
 import Image from 'next/image';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { sanitizeLabel } from 'utils/sanitizeLabel';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -12,13 +14,12 @@ import { CarouselFeatureMobile } from './CarouselFeature.mobile';
 const CarouselItem = ({
   data,
   index,
-  id,
   isHovered,
   onClick,
   isSmallOrMediumScreen,
   renderMedia,
 }) => {
-  const { headline, text, button, icon2, videoSrc } = data || {};
+  const { headline, text, button, icon2 } = data || {};
 
   const IconComponent = icons[icon2] || null;
 
@@ -49,9 +50,7 @@ const CarouselItem = ({
         data-tina-field={tinaField(data, 'headline')}
         className="flex flex-col"
       >
-        <div className="block lg:hidden pb-5">
-          {renderMedia && renderMedia(index)}
-        </div>
+        <div className="block lg:hidden pb-5">{renderMedia?.(index)}</div>
         <div className="flex items-center mb-2 pl-1">
           {IconComponent && (
             <IconComponent
@@ -111,6 +110,20 @@ export default function CarouselFeatureBlock({ data, index }) {
   const [isShowingAll, setIsShowingAll] = useState(false);
   const sectionRef = useRef(null);
 
+  const startAutoTicking = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    intervalRef.current = setInterval(() => {
+      setHoveredIndex((prevIndex) => {
+        if (prevIndex === null || prevIndex >= data.items.length - 1) {
+          return 0;
+        }
+        return prevIndex + 1;
+      });
+    }, 6000);
+  };
   // Set up media queries to detect screen size changes and adjust carousel behavior accordingly.
   useEffect(() => {
     const mediaQueryLarge = window.matchMedia('(min-width: 1024px)');
@@ -137,10 +150,12 @@ export default function CarouselFeatureBlock({ data, index }) {
       mediaQueryLarge.removeEventListener('change', handleMediaChange);
       mediaQuerySmallOrMedium.removeEventListener('change', handleMediaChange);
     };
-  }, [data?.items?.length, isUserInteracted]);
+  }, [isUserInteracted, startAutoTicking]);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -151,7 +166,7 @@ export default function CarouselFeatureBlock({ data, index }) {
           clearInterval(intervalRef.current);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(sectionRef.current);
@@ -161,22 +176,7 @@ export default function CarouselFeatureBlock({ data, index }) {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, [sectionRef]);
-
-  const startAutoTicking = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    intervalRef.current = setInterval(() => {
-      setHoveredIndex((prevIndex) => {
-        if (prevIndex === null || prevIndex >= data.items.length - 1) {
-          return 0;
-        }
-        return prevIndex + 1;
-      });
-    }, 6000);
-  };
+  }, []);
 
   useEffect(() => {
     if (
@@ -188,7 +188,13 @@ export default function CarouselFeatureBlock({ data, index }) {
       startAutoTicking();
     }
     return () => clearInterval(intervalRef.current);
-  }, [isPaused, isLargeScreen, data?.items?.length, isUserInteracted]);
+  }, [
+    isPaused,
+    isLargeScreen,
+    data?.items?.length,
+    isUserInteracted,
+    startAutoTicking,
+  ]);
 
   const handleItemClick = (index) => {
     setHoveredIndex(index);
@@ -197,10 +203,14 @@ export default function CarouselFeatureBlock({ data, index }) {
   };
 
   const renderMedia = (index) => {
-    if (index === null) return null;
+    if (index === null) {
+      return null;
+    }
 
     const item = data?.items?.[index];
-    if (!item || !item.videoSrc) return null;
+    if (!item || !item.videoSrc) {
+      return null;
+    }
 
     const fullVideoUrl = item.videoSrc;
     if (isTouchScreen) {
@@ -259,7 +269,7 @@ export default function CarouselFeatureBlock({ data, index }) {
   return (
     <section
       ref={sectionRef}
-      key={'feature-grid-' + index}
+      key={`feature-grid-${index}`}
       className={'relative z-0 '}
       style={{ overflow: 'visible' }}
     >
@@ -282,7 +292,6 @@ export default function CarouselFeatureBlock({ data, index }) {
                       <CarouselItem
                         data={item}
                         index={index}
-                        id={sanitizeLabel(item.headline)}
                         isHovered={hoveredIndex === index}
                         onClick={handleItemClick}
                         isSmallOrMediumScreen={isSmallOrMediumScreen}
@@ -301,7 +310,6 @@ export default function CarouselFeatureBlock({ data, index }) {
                         <CarouselItem
                           data={item}
                           index={index}
-                          id={sanitizeLabel(item.headline)}
                           isHovered={hoveredIndex === index}
                           onClick={handleItemClick}
                           isSmallOrMediumScreen={isSmallOrMediumScreen}
@@ -309,10 +317,11 @@ export default function CarouselFeatureBlock({ data, index }) {
                         />
                       </div>
                     </div>
-                  ))
+                  )),
               )}
             {!isShowingAll && isTouchScreen ? (
               <button
+                type="button"
                 className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
                 onClick={() => setIsShowingAll(true)}
               >
@@ -321,6 +330,7 @@ export default function CarouselFeatureBlock({ data, index }) {
             ) : null}
             {isShowingAll && isTouchScreen ? (
               <button
+                type="button"
                 className="text-blue-500 text-lg font-ibm-plex cursor-pointer"
                 onClick={() => {
                   setTimeout(() => {

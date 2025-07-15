@@ -1,12 +1,13 @@
 import Image from 'next/image';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
 const VideoGridComponent = ({ data }) => {
-  const { mediaItem, typenames, mobileMaxHeight } = data || {};
+  const { mediaItem, typenames } = data || {};
 
   const [isPlayingArray, setIsPlayingArray] = useState(
-    Array.isArray(mediaItem) ? mediaItem.map(() => false) : []
+    Array.isArray(mediaItem) ? mediaItem.map(() => false) : [],
   );
 
   const handlePlayVideo = (index) => {
@@ -22,7 +23,7 @@ const VideoGridComponent = ({ data }) => {
       'w-[500px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[320px] lg:w-[600px] lg:h-[340px] xl:w-[600px] xl:h-[340px]';
 
     if (media.__typename === typenames.cloudinary) {
-      if (media.media && media.media.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
+      if (media.media?.match(/\.(jpeg|jpg|gif|png|svg|webp)$/)) {
         return (
           <div
             className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}
@@ -37,13 +38,14 @@ const VideoGridComponent = ({ data }) => {
             />
           </div>
         );
-      } else if (media.media && media.media.match(/\.(mp4|webm|ogg)$/)) {
+      } else if (media.media?.match(/\.(mp4|webm|ogg)$/)) {
         return (
           <div
             className={`relative rounded-lg shadow-2xl ${sizeClasses} overflow-hidden`}
             onClick={() => handlePlayVideo(index)}
           >
             {isPlaying ? (
+              // biome-ignore lint/a11y/useMediaCaption: <TODO>
               <video
                 src={media.media}
                 controls
@@ -64,7 +66,10 @@ const VideoGridComponent = ({ data }) => {
                   />
                 )}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="relative text-7xl text-orange-500">
+                  <button
+                    type="button"
+                    className="relative text-7xl text-orange-500"
+                  >
                     <div className="relative inline-block">
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="bg-white w-5 h-5"></div>
@@ -102,7 +107,7 @@ const VideoGridComponent = ({ data }) => {
         {Array.isArray(mediaList) &&
           mediaItem.map((item, index) => (
             <div
-              key={index}
+              key={item.id}
               className="relative flex justify-center items-center"
             >
               {renderMedia(item, index)}

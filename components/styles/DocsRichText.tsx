@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components';
 
 /* Styles rich text (markdown output).
    Use the RichTextWrapper component to easily apply these styles,
@@ -400,6 +400,6 @@ const DocsRichText = css`
       margin-left: 0.75rem;
     }
   }
-`
+`;
 
-export default DocsRichText
+export default DocsRichText;

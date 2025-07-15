@@ -1,13 +1,12 @@
 'use client';
 
 import { AlertTriangle, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { SupportedLocales } from 'middleware';
 import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import type { PageType } from 'utils/hasChineseVersion';
 import { hasChineseVersion } from 'utils/hasChineseVersion';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function LanguageSupportAlert() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,18 +14,28 @@ export function LanguageSupportAlert() {
   const prevPathRef = useRef('');
 
   const isLocalesPath = (path) => {
-    if (!path) return false;
+    if (!path) {
+      return false;
+    }
     return Object.values(SupportedLocales).some(
-      (locale) => path === `/${locale}` || path.startsWith(`/${locale}/`)
+      (locale) => path === `/${locale}` || path.startsWith(`/${locale}/`),
     );
   };
 
   const getPageType = (path: string): PageType => {
-    if (!path) return 'pages';
+    if (!path) {
+      return 'pages';
+    }
 
-    if (path.startsWith('/docs')) return 'docs';
-    if (path.startsWith('/blog')) return 'blog';
-    if (path.startsWith('/whats-new')) return 'whats-new';
+    if (path.startsWith('/docs')) {
+      return 'docs';
+    }
+    if (path.startsWith('/blog')) {
+      return 'blog';
+    }
+    if (path.startsWith('/whats-new')) {
+      return 'whats-new';
+    }
 
     return 'pages';
   };
@@ -47,9 +56,12 @@ export function LanguageSupportAlert() {
     };
 
     checkChineseVersion();
-  }, [pathName]);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
+  }, [pathName, getPageType, isLocalesPath]);
 
-  if (!isVisible) return null;
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-3 left-3 z-50 max-w-md">
@@ -67,6 +79,7 @@ export function LanguageSupportAlert() {
           <p>Current page only supports English version.</p>
         </AlertDescription>
         <button
+          type="button"
           className="absolute top-2 right-2 rounded-full hover:bg-yellow-200 flex items-center justify-center"
           onClick={(e) => {
             e.stopPropagation();

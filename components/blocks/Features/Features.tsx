@@ -1,71 +1,65 @@
-import DocsRichText from '@/component/styles/DocsRichText';
-import { Prism } from '@/component/styles/Prism';
-import PlayIcon from '@/public/svg/play-button.svg';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import DocsRichText from '@/component/styles/DocsRichText';
+import { Prism } from '@/component/styles/Prism';
+import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data, index }) {
   const isReversed = data.isReversed;
-  const isVideo = data.media && data.media[0] && data.media[0].src;
+  const _isVideo = data.media?.[0]?.src;
 
   return (
-    <>
+    <div
+      className={`flex flex-col-reverse w-full px-10 lg:gap-8 ${
+        isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+      }`}
+    >
       <div
-        className={`flex flex-col-reverse w-full px-10 lg:gap-8 ${
-          isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
+        className={`flex flex-col justify-center lg:justify-start w-full lg:w-1/2 ${
+          data.alignCenter ? 'items-center self-center' : ''
         }`}
       >
-        <div
-          className={`flex flex-col justify-center lg:justify-start w-full lg:w-1/2 ${
-            data.alignCenter ? 'items-center self-center' : ''
-          }`}
-        >
-          {data.headline && (
-            <h3
-              className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
-              data-tina-field={tinaField(data, 'headline')}
-            >
-              {data.headline}
-            </h3>
-          )}
-          <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-3">
-            <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
-          </div>
-          <p
-            className="text-lg lg:text-xl lg:leading-normal bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent max-w-60ch text-balance text-center lg:text-left py-4"
-            data-tina-field={tinaField(data, 'text')}
+        {data.headline && (
+          <h3
+            className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+            data-tina-field={tinaField(data, 'headline')}
           >
-            {data.text}
-          </p>
-          <div className="flex flex-col items-center lg:items-start">
-            <div className="flex flex-col md:flex-row gap-2">
-              {data.buttons?.slice(0, 2).map((button, index) => (
-                <RenderButton
-                  key={`button-${index}`}
-                  button={button}
-                  index={index}
-                />
-              ))}
-            </div>
-            {data.buttons?.length > 2 && (
-              <div className="flex mt-4">
-                <RenderButton
-                  key="button-2"
-                  button={data.buttons[2]}
-                  index={2}
-                />
-              </div>
-            )}
-          </div>
+            {data.headline}
+          </h3>
+        )}
+        <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-3">
+          <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
         </div>
-        <div className="w-full lg:w-1/2">
-          {data.media && <RenderMedia data={data} />}
+        <p
+          className="text-lg lg:text-xl lg:leading-normal bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent max-w-60ch text-balance text-center lg:text-left py-4"
+          data-tina-field={tinaField(data, 'text')}
+        >
+          {data.text}
+        </p>
+        <div className="flex flex-col items-center lg:items-start">
+          <div className="flex flex-col md:flex-row gap-2">
+            {data.buttons?.slice(0, 2).map((button, index) => (
+              <RenderButton
+                key={`button-${button.id ?? index}`}
+                button={button}
+                index={index}
+              />
+            ))}
+          </div>
+          {data.buttons?.length > 2 && (
+            <div className="flex mt-4">
+              <RenderButton key="button-2" button={data.buttons[2]} index={2} />
+            </div>
+          )}
         </div>
       </div>
-    </>
+      <div className="w-full lg:w-1/2">
+        {data.media && <RenderMedia data={data} />}
+      </div>
+    </div>
   );
 }
 
@@ -81,26 +75,24 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksHeroMediaVideo'
   ) {
     return (
-      <>
-        <div className="relative w-full pb-4 group">
-          <a
-            href={data.media[0].link ?? 'https://www.youtube.com/@TinaCMS'}
-            target="_blank"
-            rel="noopener noreferrer"
-            id="play-button-overlay"
-            className="relative block"
-          >
-            <FeatureVideo
-              className="w-full h-auto rounded-lg"
-              src={data.media[0].src}
-            />
-            <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
-            </div>
-          </a>
-        </div>
-      </>
+      <div className="relative w-full pb-4 group">
+        <a
+          href={data.media[0].link ?? 'https://www.youtube.com/@TinaCMS'}
+          target="_blank"
+          rel="noopener noreferrer"
+          id="play-button-overlay"
+          className="relative block"
+        >
+          <FeatureVideo
+            className="w-full h-auto rounded-lg"
+            src={data.media[0].src}
+          />
+          <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <PlayIcon className="h-36 w-36 transition-transform duration-300 group-hover:scale-125" />
+          </div>
+        </a>
+      </div>
     );
   }
   if (
@@ -108,17 +100,15 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksHeroMediaImage'
   ) {
     return (
-      <>
-        <Image
-          src={data.media[0].image}
-          alt={data.headline}
-          className={`w-full h-auto rounded-lg ${
-            data.isBackgroundEnabled ? 'shadow-panel' : ''
-          } overflow-hidden bg-transparent`}
-          width={1200}
-          height={1200}
-        />
-      </>
+      <Image
+        src={data.media[0].image}
+        alt={data.headline}
+        className={`w-full h-auto rounded-lg ${
+          data.isBackgroundEnabled ? 'shadow-panel' : ''
+        } overflow-hidden bg-transparent`}
+        width={1200}
+        height={1200}
+      />
     );
   }
   if (
@@ -126,40 +116,35 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksHeroMediaCode'
   ) {
     return (
-      <>
-        <div className="flex flex-col justify-start items-start">
-          {data.media[0].file && (
-            <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-ibm-plex">
-              {data.media[0].file}
-            </div>
-          )}
-          <div
-            className={`file relative ${
-              data.media[0].file ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
-            } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-linear-to-br from-[#333333] via-[#1a1a1a] to-black ${
-              data.isBackgroundEnabled ? 'shadow-panel' : ''
-            }`}
-            style={{
-              fontSize:
-                1.25 * (data.media[0].scale ? data.media[0].scale : 1) + 'em',
-            }}
-          >
-            <CodeWrapper>
-              <div className="[&>pre]:bg-transparent! [&>pre]:border-none! rounded-xl">
-                <Prism
-                  lang={
-                    data.media[0].language
-                      ? data.media[0].language
-                      : 'javascript'
-                  }
-                  theme="nightOwl"
-                  value={data.media[0].code}
-                />
-              </div>
-            </CodeWrapper>
+      <div className="flex flex-col justify-start items-start">
+        {data.media[0].file && (
+          <div className="inline-block rounded-t-lg overflow-hidden text-white border-2 border-b-0 border-gray-700 bg-linear-to-tl from-[#333333] to-[#1a1a1a] px-7 py-3 font-ibm-plex">
+            {data.media[0].file}
           </div>
+        )}
+        <div
+          className={`file relative ${
+            data.media[0].file ? 'rounded-lg rounded-tl-none' : 'rounded-lg'
+          } overflow-hidden w-full text-blue-50 border-2 border-gray-700 bg-linear-to-br from-[#333333] via-[#1a1a1a] to-black ${
+            data.isBackgroundEnabled ? 'shadow-panel' : ''
+          }`}
+          style={{
+            fontSize: `${1.25 * (data.media[0].scale ? data.media[0].scale : 1)}em`,
+          }}
+        >
+          <CodeWrapper>
+            <div className="[&>pre]:bg-transparent! [&>pre]:border-none! rounded-xl">
+              <Prism
+                lang={
+                  data.media[0].language ? data.media[0].language : 'javascript'
+                }
+                theme="nightOwl"
+                value={data.media[0].code}
+              />
+            </div>
+          </CodeWrapper>
         </div>
-      </>
+      </div>
     );
   }
   if (
@@ -179,6 +164,7 @@ export const RenderMedia = ({ data }) => {
         ) : (
           <div className="flex flex-col">
             <button
+              type="button"
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
@@ -224,6 +210,7 @@ export const RenderMedia = ({ data }) => {
         ) : (
           <div className="flex flex-col">
             <button
+              type="button"
               onClick={() => setIsPlaying(true)}
               className="relative block w-full"
               id="play-button-overlay"
@@ -263,6 +250,7 @@ export const RenderMedia = ({ data }) => {
   ) {
     return (
       <div className="relative w-full pb-4">
+        {/** biome-ignore lint/performance/noImgElement: <TODO> */}
         <img
           src={data.media[0].src}
           alt={data.headline}
@@ -275,20 +263,19 @@ export const RenderMedia = ({ data }) => {
 
 export function FeaturesBlock({ data, index }) {
   return (
-    <section key={'features-' + index} className="w-full">
+    <section key={`features-${index}`} className="w-full">
       <div className="flex flex-col gap-32 lg:gap-48 max-w-7xl mx-auto w-full">
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}
-        {data.features &&
-          data.features.map((featureData, featureIndex) => {
-            return (
-              <FeatureBlock
-                key={'feature-' + featureIndex}
-                data={featureData}
-                index={featureIndex}
-              />
-            );
-          })}
+        {data.features?.map((featureData, featureIndex) => {
+          return (
+            <FeatureBlock
+              key={`feature-${featureData.id ?? featureIndex}`}
+              data={featureData}
+              index={featureIndex}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { WhatsNewFields } from "./sharedFields/whatsNewFields";
+import { WhatsNewFields } from './sharedFields/whatsNewFields';
 
 export const whatsNewTinaCMSCollection = {
   name: 'WhatsNewTinaCMS',

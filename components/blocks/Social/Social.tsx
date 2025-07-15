@@ -1,3 +1,4 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import TinaIconSvg from '../../../public/svg/tina-icon.svg';

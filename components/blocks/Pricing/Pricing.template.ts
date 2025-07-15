@@ -1,4 +1,4 @@
-import { wrapFieldsWithMeta, type Template } from 'tinacms';
+import { type Template, wrapFieldsWithMeta } from 'tinacms';
 
 import IconSelector from '../../forms/IconSelector';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';

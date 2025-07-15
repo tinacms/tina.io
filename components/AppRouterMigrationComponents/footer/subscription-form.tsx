@@ -1,8 +1,8 @@
-import { addToMailchimp } from '@/utils/mailchimp_helper';
 import { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
+import { addToMailchimp } from '@/utils/mailchimp_helper';
 
 interface FormData {
   firstName: string;
@@ -36,7 +36,7 @@ export const SubscriptionForm = ({ props }) => {
       const result = await addToMailchimp(
         formData.email,
         formData.firstName,
-        formData.lastName
+        formData.lastName,
       );
 
       if (result.result === 'success') {
@@ -117,8 +117,8 @@ export const SubscriptionForm = ({ props }) => {
                 message.type === 'success'
                   ? 'text-green-300'
                   : message.type === 'warning'
-                  ? 'text-white'
-                  : 'text-white'
+                    ? 'text-white'
+                    : 'text-white'
               }`}
             >
               {message.type === 'success' && <TiTick className="w-3 h-3" />}

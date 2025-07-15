@@ -1,4 +1,5 @@
 import { textAndMediaColumnsComponent } from 'components/tinaMarkdownComponents/textAndMediaColumnsComponents';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { VideoGridComponent } from '../Media/MediaComponent';

@@ -1,4 +1,4 @@
-import { Maybe, Scalars } from "tina/__generated__/types";
+import type { Maybe, Scalars } from 'tina/__generated__/types';
 
 export type ExamplesExamples = {
   __typename?: 'ExamplesExamples';

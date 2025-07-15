@@ -11,4 +11,4 @@ export const whatsNewMDComponents = {
   ul: (props) => <ul className="list-disc ml-5 mb-4" {...props} />,
   ol: (props) => <ol className="list-decimal ml-5 mb-4" {...props} />,
   li: (props) => <li className="mb-2" {...props} />,
-}
+};
