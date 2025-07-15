@@ -46,11 +46,14 @@ const useClickOutside = (ref: any, handler: any, events?: any) => {
     ref.current && !ref.current.contains(event.target) && handler();
   useEffect(() => {
     for (const event of events) {
-      document.addEventListener(event, detectClickOutside);
+      // Use passive option for touchstart to avoid scroll-blocking warnings
+      const options = event === 'touchstart' ? { passive: true } : undefined;
+      document.addEventListener(event, detectClickOutside, options);
     }
     return () => {
       for (const event of events) {
-        document.removeEventListener(event, detectClickOutside);
+        const options = event === 'touchstart' ? { passive: true } : undefined;
+        document.removeEventListener(event, detectClickOutside, options);
       }
     };
   });

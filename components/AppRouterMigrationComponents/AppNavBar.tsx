@@ -165,7 +165,7 @@ export function AppNavBar({ sticky = true }) {
 
   useEffect(() => {
     if (sticky) {
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', handleScroll, { passive: true });
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
@@ -183,7 +183,7 @@ export function AppNavBar({ sticky = true }) {
     };
 
     updateModalClass();
-    window.addEventListener('resize', updateModalClass);
+    window.addEventListener('resize', updateModalClass, { passive: true });
     return () => {
       window.removeEventListener('resize', updateModalClass);
     };
@@ -199,6 +199,13 @@ export function AppNavBar({ sticky = true }) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+    }
+  };
+
+  // New function to handle navigation link clicks - only close mobile menu if it's open
+  const handleNavLinkClick = () => {
+    if (open) {
+      toggleMenu();
     }
   };
   const openModal = (modal) => setModalType(modal);
@@ -346,7 +353,10 @@ export function AppNavBar({ sticky = true }) {
                           key={`${index}-${subIndex}-${subItem.href}`}
                           className={`group ${navLinkClasses} py-2`}
                         >
-                          <Link href={subItem.href} onClick={toggleMenu}>
+                          <Link
+                            href={subItem.href}
+                            onClick={handleNavLinkClick}
+                          >
                             <span className="">
                               {subItem.label}
                               {subItem.href.startsWith('https://') && (
@@ -365,7 +375,7 @@ export function AppNavBar({ sticky = true }) {
                       <Link
                         href={item.href}
                         className="py-2"
-                        onClick={toggleMenu}
+                        onClick={handleNavLinkClick}
                       >
                         {item.label}
                       </Link>
@@ -380,7 +390,7 @@ export function AppNavBar({ sticky = true }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center"
-                        onClick={toggleMenu}
+                        onClick={handleNavLinkClick}
                       >
                         <span className="flex items-center">
                           <svg
@@ -511,7 +521,7 @@ export function AppNavBar({ sticky = true }) {
                           <Link
                             href={item.href}
                             className="py-2 w-max"
-                            onClick={toggleMenu}
+                            onClick={handleNavLinkClick}
                           >
                             {item.label}
                           </Link>
@@ -526,7 +536,7 @@ export function AppNavBar({ sticky = true }) {
                           <div className="relative group">
                             <span
                               className="flex items-center cursor-pointer"
-                              onClick={toggleMenu}
+                              onClick={handleNavLinkClick}
                             >
                               {item.label}
                               <BiChevronDown
@@ -543,7 +553,7 @@ export function AppNavBar({ sticky = true }) {
                                 >
                                   <Link
                                     href={subItem.href}
-                                    onClick={toggleMenu}
+                                    onClick={handleNavLinkClick}
                                   >
                                     <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                                       {subItem.label}
@@ -569,7 +579,7 @@ export function AppNavBar({ sticky = true }) {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center"
-                            onClick={toggleMenu}
+                            onClick={handleNavLinkClick}
                           >
                             <span className="flex items-center">
                               <svg

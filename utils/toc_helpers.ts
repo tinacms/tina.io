@@ -140,7 +140,7 @@ export function useTocListener(_data) {
     }
 
     const activeTocListener = createTocListener(ref as any, setActiveIds);
-    window.addEventListener('scroll', activeTocListener);
+    window.addEventListener('scroll', activeTocListener, { passive: true });
 
     return () => window.removeEventListener('scroll', activeTocListener);
   }, [ref]);
