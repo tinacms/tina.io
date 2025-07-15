@@ -1,5 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import GithubSlugger from 'github-slugger';
+import Image from 'next/image';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -7,14 +9,9 @@ import remarkDirective from 'remark-directive';
 import remarkDirectiveRehype from 'remark-directive-rehype';
 // Need this to render tables
 import remarkGfm from 'remark-gfm';
-
-import { Prism } from '../styles/Prism';
-
 import styled from 'styled-components';
 import LinkSvg from '../../public/svg/link.svg';
-
-import GithubSlugger from 'github-slugger';
-import Image from 'next/image';
+import { Prism } from '../styles/Prism';
 
 interface MarkdownContentProps {
   content: string;
@@ -35,7 +32,7 @@ interface copyButtonProps {
   value?: string;
 }
 
-const CopyCodeButton = ({ value }: copyButtonProps) => {
+const _CopyCodeButton = ({ value }: copyButtonProps) => {
   const [copied, setCopied] = React.useState(false);
 
   const clickEvent = () => {
@@ -82,7 +79,7 @@ function WithHeadings({ children, level }) {
   const value = children
     .map(
       (child) =>
-        child?.props?.value || child?.props?.children[0]?.props?.value || child
+        child?.props?.value || child?.props?.children[0]?.props?.value || child,
     )
     .join('');
   var slugger = new GithubSlugger();
@@ -136,13 +133,13 @@ const CodeSnippets = (props) => {
 };
 const CodeSnippet = (props) => {
   const headingIndex = props.node.children.findIndex(
-    (child) => child.tagName === 'h3'
+    (child) => child.tagName === 'h3',
   );
   const descriptionIndex = props.node.children.findIndex(
-    (child) => child.tagName === 'p'
+    (child) => child.tagName === 'p',
   );
   const codeIndex = props.node.children.findIndex(
-    (child) => child.tagName === 'pre'
+    (child) => child.tagName === 'pre',
   );
   return (
     <Disclosure defaultOpen={props.open} as="div" className="pt-6">
@@ -186,11 +183,7 @@ const CodeSnippet = (props) => {
   );
 };
 
-export function MarkdownContent({
-  content,
-  escapeHtml,
-  skipHtml,
-}: MarkdownContentProps) {
+export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
   /*
   There's an issue with referential integrity in DOM nodes when ReactMarkdown renders HTML.
   Rendering an empty tree in between updates seems to avoid the issue:

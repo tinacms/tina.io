@@ -9,7 +9,7 @@ export const getDocId = (label) => {
     .replace(/^\s*"|"\s*$/g, '-')
     .replace(/^-*|-*$/g, '')
     .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9\-]/g, '');
+    .replace(/[^a-z0-9-]/g, '');
 
   if (cleanId === '' || cleanId === '-') {
     let hash = 0;
@@ -18,7 +18,7 @@ export const getDocId = (label) => {
       hash = (hash << 5) - hash + char;
       hash = hash & hash;
     }
-    return 'heading-' + Math.abs(hash).toString(16).substring(0, 8);
+    return `heading-${Math.abs(hash).toString(16).substring(0, 8)}`;
   }
 
   return cleanId;

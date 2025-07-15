@@ -1,5 +1,3 @@
-import { act } from '@react-three/fiber';
-import { ModalButton } from 'components/ui';
 import type { Template, TinaField } from 'tinacms';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
 import { codeButtonTemplate } from '../CodeButton/CodeButton.template';

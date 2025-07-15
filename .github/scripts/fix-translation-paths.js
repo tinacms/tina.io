@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 function fixPathsInFile(filePath) {
   try {
@@ -10,19 +10,19 @@ function fixPathsInFile(filePath) {
     content = content
       .replace(
         /(\s*(?:next|prev|previous):\s*['"]*)(\/docs\/)([^'"\s]*)/g,
-        '$1/docs-zh/$3'
+        '$1/docs-zh/$3',
       )
       .replace(
         /(\s*(?:next|prev|previous):\s*['"]*)(\/blog\/)([^'"\s]*)/g,
-        '$1/blog-zh/$3'
+        '$1/blog-zh/$3',
       )
       .replace(
         /(\s*(?:next|prev|previous):\s*['"]*)(content\/docs\/)([^'"\s]*)/g,
-        '$1content/docs-zh/$3'
+        '$1content/docs-zh/$3',
       )
       .replace(
         /(\s*(?:next|prev|previous):\s*['"]*)(content\/blog\/)([^'"\s]*)/g,
-        '$1content/blog-zh/$3'
+        '$1content/blog-zh/$3',
       );
 
     if (content !== originalContent) {

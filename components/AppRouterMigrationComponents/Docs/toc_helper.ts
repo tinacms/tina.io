@@ -7,11 +7,11 @@ interface Heading {
 }
 
 function createHeadings(
-  contentRef: React.RefObject<HTMLDivElement>
+  contentRef: React.RefObject<HTMLDivElement>,
 ): Heading[] {
   const headings: Heading[] = [];
   const htmlElements = contentRef.current?.querySelectorAll(
-    'h1, h2, h3, h4, h5, h6'
+    'h1, h2, h3, h4, h5, h6',
   );
 
   htmlElements?.forEach((heading: HTMLHeadingElement) => {
@@ -26,7 +26,7 @@ function createHeadings(
 
 export function createTocListener(
   contentRef: React.RefObject<HTMLDivElement>,
-  setActiveIds: (activeIds: string[]) => void
+  setActiveIds: (activeIds: string[]) => void,
 ): () => void {
   const headings = createHeadings(contentRef);
 
@@ -44,12 +44,14 @@ export function createTocListener(
   };
 }
 
-export function useTocListener(data: any) {
+export function useTocListener(_data: any) {
   const [activeIds, setActiveIds] = React.useState<string[]>([]);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (!contentRef.current) return;
+    if (!contentRef.current) {
+      return;
+    }
     const tocListener = createTocListener(contentRef, setActiveIds);
 
     // Use passive event listener for better scroll performance
@@ -59,7 +61,7 @@ export function useTocListener(data: any) {
     return () => {
       window.removeEventListener('scroll', tocListener);
     };
-  }, [data]);
+  }, []);
 
   return { contentRef, activeIds };
 }

@@ -1,6 +1,6 @@
+import { client } from 'tina/__generated__/client';
 import settings from '@/content/settings/config.json';
 import { getSeo } from '@/utils/metadata/getSeo';
-import { client } from 'tina/__generated__/client';
 import EventsClient from './EventsClient';
 
 export async function generateMetadata() {

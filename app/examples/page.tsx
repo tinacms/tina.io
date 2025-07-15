@@ -1,8 +1,8 @@
-import settings from '@/content/settings/config.json';
-import { getSeo } from '@/utils/metadata/getSeo';
 import { TinaClient } from 'app/tina-client';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import { ExamplesPageClient } from './examples-client';
 
 export async function generateMetadata() {

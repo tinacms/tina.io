@@ -1,5 +1,6 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
-import { Template, wrapFieldsWithMeta } from 'tinacms';
+import type { Template } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
@@ -11,7 +12,7 @@ export const docsCollection = {
   path: 'content/docs',
   format: 'mdx',
   ui: {
-    beforeSubmit: async ({ values, cms, form }) => {
+    beforeSubmit: async ({ values }) => {
       return {
         ...values,
         last_edited: new Date().toISOString(),
@@ -205,8 +206,8 @@ export const docsCollection = {
               ui: {
                 /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                 component: 'textarea',
-                format: (val?: string) => val && val.replaceAll('#', ' '),
-                parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                format: (val?: string) => val?.replaceAll('#', ' '),
+                parse: (val?: string) => val?.replaceAll(' ', '#'),
               },
             },
             {
@@ -218,8 +219,8 @@ export const docsCollection = {
               ui: {
                 /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                 component: 'textarea',
-                format: (val?: string) => val && val.replaceAll('#', ' '),
-                parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                format: (val?: string) => val?.replaceAll('#', ' '),
+                parse: (val?: string) => val?.replaceAll(' ', '#'),
               },
             },
             {

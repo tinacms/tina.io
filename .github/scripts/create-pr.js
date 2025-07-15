@@ -26,11 +26,11 @@ async function createPullRequest() {
           Authorization: `token ${GITHUB_TOKEN}`,
           Accept: 'application/vnd.github.v3+json',
         },
-      }
+      },
     );
 
     console.log(
-      `Successfully created PR #${response.data.number}: ${response.data.html_url}`
+      `Successfully created PR #${response.data.number}: ${response.data.html_url}`,
     );
 
     if (response.data.number) {
@@ -43,7 +43,7 @@ async function createPullRequest() {
               Authorization: `token ${GITHUB_TOKEN}`,
               Accept: 'application/vnd.github.v3+json',
             },
-          }
+          },
         );
         console.log(`Added labels to PR #${response.data.number}`);
       } catch (labelError) {

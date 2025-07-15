@@ -8,14 +8,14 @@ export const SearchHeader = ({ query }: { query: string }) => {
   const [isSortOpen, setIsSortOpen] = useState(false);
 
   const filterOptions = ['FilterOp1', 'FilterOp2', 'FilterOp3'];
-  const sortOptions = ['Relevance', 'Newest First', 'Oldest First'];
+  const _sortOptions = ['Relevance', 'Newest First', 'Oldest First'];
 
-  const toggleFilterDropdown = () => {
+  const _toggleFilterDropdown = () => {
     setIsFilterOpen(!isFilterOpen);
     setIsSortOpen(false);
   };
 
-  const toggleSortDropdown = () => {
+  const _toggleSortDropdown = () => {
     setIsSortOpen(!isSortOpen);
     setIsFilterOpen(false);
   };
@@ -127,6 +127,8 @@ export const SearchTabs = ({ query }: { query: string }) => {
           {/* Navigation Buttons */}
           <nav className="relative flex gap-16 px-4">
             <button
+              type="button"
+              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
               ref={(el) => (tabRefs.current[0] = el)}
               className={`font-inter text-lg ${
                 activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
@@ -136,6 +138,8 @@ export const SearchTabs = ({ query }: { query: string }) => {
               DOCS ({algoliaSearchResults?.docs?.count})
             </button>
             <button
+              type="button"
+              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
               ref={(el) => (tabRefs.current[1] = el)}
               className={`font-inter text-lg ${
                 activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
@@ -167,7 +171,7 @@ export const SearchTabs = ({ query }: { query: string }) => {
           </div>
         )}
         <SearchBody results={algoliaSearchResults} activeItem={activeTab} />
-        {numberOfResults == 0 && isLoading == false && (
+        {numberOfResults === 0 && isLoading === false && (
           <div className="font-inter font-semibold text-gray-500 text-xl">
             No Results Found...
           </div>

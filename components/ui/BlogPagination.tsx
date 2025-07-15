@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -57,9 +58,9 @@ export const BlogPagination = styled(
               {Array.from({ length: numPages }, (_, i) => (
                 <option
                   arial-label={`Go to Page ${i + 1}`}
-                  aria-current={i + 1 === currentPage ? true : false}
+                  aria-current={i + 1 === currentPage}
                   value={i + 1}
-                  key={`page-${i}`}
+                  key={`page-${i + 1}-${i}`}
                 >
                   {i + 1}
                 </option>
@@ -70,7 +71,7 @@ export const BlogPagination = styled(
         </div>
       </div>
     );
-  }
+  },
 )`
   display: flex;
   justify-content: space-between;

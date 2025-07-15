@@ -1,7 +1,8 @@
 'use client';
 
-import { useTina } from 'tinacms/dist/react';
+// biome-ignore lint/style/useImportType: <TODO>
 import React from 'react';
+import { useTina } from 'tinacms/dist/react';
 
 export type UseTinaProps = {
   query: string;

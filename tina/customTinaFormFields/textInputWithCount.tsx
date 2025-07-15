@@ -1,7 +1,8 @@
 //ripped out from SSW's Website 😳
 
-import React from "react";
-import { wrapFieldsWithMeta } from "tinacms";
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
+import { wrapFieldsWithMeta } from 'tinacms';
 
 export const TextInputWithCount = (max: number, isTextArea: boolean = false) =>
   wrapFieldsWithMeta(({ input }) => (
@@ -18,7 +19,7 @@ export const TextInputWithCount = (max: number, isTextArea: boolean = false) =>
         />
       )}
       <p
-        className={input.value.length > max ? "text-red-500": "text-gray-500"}
+        className={input.value.length > max ? 'text-red-500' : 'text-gray-500'}
       >
         {input.value.length}/{max}
       </p>

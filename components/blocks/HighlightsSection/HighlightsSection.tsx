@@ -1,3 +1,4 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiBadge, BiSupport } from 'react-icons/bi';
@@ -52,11 +53,11 @@ const HighlightsSection = ({ data }) => {
     <div className="h-fit lg:py-16 md:py-8 bg-linear-to-r from-teal-100/60 to-cyan-100/60 bg-cover bg-center w-screen">
       <div className="md:flex justify-center lg:gap-36 md:gap-16 w-fit md:w-full mx-auto md:mx-0">
         {Array.isArray(highlightColumn) &&
-          highlightColumn.map((item, index) => {
+          highlightColumn.map((item) => {
             return (
               <div
                 className="text-start grid grid-cols-1 my-16 md:my-0"
-                key={`iconColumn-${index}`}
+                key={`iconColumn-${item.id}`}
               >
                 <h4 className="font-ibm-plex text-2xl md:text-3xl mb-4 text-black">
                   {item.heading}
@@ -67,7 +68,7 @@ const HighlightsSection = ({ data }) => {
                     return (
                       <div
                         className="flex mb-4"
-                        key={`iconColumns-${index}-${iconIndex}`}
+                        key={`iconColumns-${item.id}-${iconIndex}`}
                       >
                         {Icon && (
                           <Icon className="text-3xl mr-2 text-black inline" />

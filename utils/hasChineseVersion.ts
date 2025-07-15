@@ -5,7 +5,7 @@ export type PageType = 'pages' | 'docs' | 'blog' | 'whats-new';
 
 export async function hasChineseVersion(
   pageType: PageType,
-  currentPath: string
+  currentPath: string,
 ): Promise<boolean> {
   let normalizedPath = currentPath;
   if (normalizedPath.startsWith('/')) {
@@ -13,7 +13,7 @@ export async function hasChineseVersion(
   }
 
   const localeRegex = new RegExp(
-    `^(${Object.values(SupportedLocales).join('|')})/`
+    `^(${Object.values(SupportedLocales).join('|')})/`,
   );
   const match = normalizedPath.match(localeRegex);
 
@@ -37,7 +37,7 @@ export async function hasChineseVersion(
 }
 
 async function checkPagesChineseVersion(
-  normalizedPath: string
+  normalizedPath: string,
 ): Promise<boolean> {
   try {
     var zhPath = normalizedPath === '' ? 'home' : normalizedPath;
@@ -45,13 +45,13 @@ async function checkPagesChineseVersion(
       relativePath: `zh/${zhPath}.json`,
     });
     return !!res.data.page;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 }
 
 async function checkDocsChineseVersion(
-  normalizedPath: string
+  normalizedPath: string,
 ): Promise<boolean> {
   try {
     var zhPath = normalizedPath.replace(/^docs\//, '');
@@ -62,13 +62,13 @@ async function checkDocsChineseVersion(
       relativePath: `${zhPath}.mdx`,
     });
     return !!res.data.docZh;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 }
 
 async function checkBlogChineseVersion(
-  normalizedPath: string
+  normalizedPath: string,
 ): Promise<boolean> {
   try {
     const zhPath = normalizedPath.replace(/^blog\//, '');
@@ -79,13 +79,13 @@ async function checkBlogChineseVersion(
       relativePath: `${zhPath}.mdx`,
     });
     return !!res.data.postZh;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 }
 
 async function checkWhatsNewChineseVersion(
-  normalizedPath: string
+  _normalizedPath: string,
 ): Promise<boolean> {
   return false;
 }

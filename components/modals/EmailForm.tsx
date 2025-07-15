@@ -1,4 +1,5 @@
 import Image from 'next/image';
+// biome-ignore lint/style/useImportType: <TODO>
 import React, { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
@@ -15,7 +16,7 @@ export const EmailForm = (props: EmailFormProps) => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [isEntering, setIsEntering] = useState(false);
+  const [_isEntering, setIsEntering] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -90,8 +91,8 @@ export const EmailForm = (props: EmailFormProps) => {
                 message.type === 'success'
                   ? 'text-green-500'
                   : message.type === 'warning'
-                  ? 'text-orange-500'
-                  : 'text-red-500'
+                    ? 'text-orange-500'
+                    : 'text-red-500'
               }`}
             >
               {message.type === 'success' && <TiTick />}

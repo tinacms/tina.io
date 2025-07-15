@@ -1,4 +1,5 @@
 import Link from 'next/link';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -17,8 +18,8 @@ const TableHeader = ({ data, scrollData }) => {
         )}
       </div>
       {/* Remaining Columns Titles */}
-      {data.columnItems?.map((headerItem, index) => (
-        <div key={index}>
+      {data.columnItems?.map((headerItem) => (
+        <div key={headerItem.id}>
           <div
             className={`text-center font-bold ${
               headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
@@ -82,7 +83,7 @@ const TableBox = ({ data, index }) => {
             >
               {data.rowItems?.map((row, rowIndex) => (
                 <div
-                  key={rowIndex}
+                  key={row.id}
                   className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
                 >
                   <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
@@ -112,7 +113,7 @@ const TableBox = ({ data, index }) => {
                     )}
                   </div>
 
-                  {row.rowCells?.map((cell, cellIndex) => {
+                  {row.rowCells?.map((cell, _cellIndex) => {
                     let cellData = {
                       columnHeader: '',
                       cellValue: '',
@@ -127,7 +128,7 @@ const TableBox = ({ data, index }) => {
 
                     return (
                       <div
-                        key={cellIndex}
+                        key={cell.id}
                         className="text-center flex items-center justify-center snap-start"
                       >
                         {cellData.isTicked ? (

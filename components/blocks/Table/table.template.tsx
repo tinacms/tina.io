@@ -1,9 +1,6 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
-import { wrapFieldsWithMeta, type Template } from 'tinacms';
-import { checkboxList } from '../../../tina/customTinaFormFields/checkboxList';
-import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
-import { codeButtonTemplate } from '../CodeButton/CodeButton.template';
-import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
+import { type Template, wrapFieldsWithMeta } from 'tinacms';
 
 //This is used to get the "boolean"  and criteria (string) values from the company x criteria strings
 export const splitOneAndJoin = (item, separator) => {
@@ -74,7 +71,9 @@ export const tableTemplate: Template = {
               const [valueMap, setValueMap] = useState([]);
 
               useEffect(() => {
-                if (!value) return;
+                if (!value) {
+                  return;
+                }
                 const parsedValue = value.map((item) => {
                   try {
                     return JSON.parse(item);
@@ -95,7 +94,7 @@ export const tableTemplate: Template = {
 
                 setValueMap(updatedValueMap);
                 const stringifiedValue = updatedValueMap.map((item) =>
-                  JSON.stringify(item)
+                  JSON.stringify(item),
                 );
                 setValue(stringifiedValue);
                 input.onChange(stringifiedValue);
@@ -107,7 +106,7 @@ export const tableTemplate: Template = {
 
                 setValueMap(updatedValueMap);
                 const stringifiedValue = updatedValueMap.map((item) =>
-                  JSON.stringify(item)
+                  JSON.stringify(item),
                 );
                 setValue(stringifiedValue);
                 input.onChange(stringifiedValue);
@@ -116,7 +115,7 @@ export const tableTemplate: Template = {
               return (
                 <div>
                   {valueMap.map((cell, index) => (
-                    <div className="mb-2" key={index}>
+                    <div className="mb-2" key={cell.id}>
                       <div className="flex mb-1">
                         <span className="mr-3 font-bold">
                           {cell.columnHeader}:
