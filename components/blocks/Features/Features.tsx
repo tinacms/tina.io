@@ -41,9 +41,9 @@ export function FeatureBlock({ data, index }) {
         </p>
         <div className="flex flex-col items-center lg:items-start">
           <div className="flex flex-col md:flex-row gap-2">
-            {data.buttons?.slice(0, 2).map((button) => (
+            {data.buttons?.slice(0, 2).map((button, index) => (
               <RenderButton
-                key={`button-${button.id}`}
+                key={`button-${button.id ?? index}`}
                 button={button}
                 index={index}
               />
@@ -270,7 +270,7 @@ export function FeaturesBlock({ data, index }) {
         {data.features?.map((featureData, featureIndex) => {
           return (
             <FeatureBlock
-              key={`feature-${featureData.id}`}
+              key={`feature-${featureData.id ?? featureIndex}`}
               data={featureData}
               index={featureIndex}
             />

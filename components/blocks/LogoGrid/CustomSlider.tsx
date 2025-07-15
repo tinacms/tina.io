@@ -75,9 +75,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ))}
 
         {/* Duplicate items for the seamless loop */}
-        {items.map((item) => (
+        {items.map((item, index) => (
           <div
-            key={`clone-${item.id}`}
+            key={`clone-${item.id ?? index}`}
             className={`flex-none box-border px-2 ${widthClass}`}
           >
             {item}
