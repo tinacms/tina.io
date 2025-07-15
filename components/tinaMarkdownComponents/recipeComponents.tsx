@@ -1,5 +1,6 @@
 import Prism from 'prismjs';
-import { useEffect } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect } from 'react';
 import 'prism-themes/themes/prism-night-owl.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';

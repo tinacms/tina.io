@@ -3,7 +3,8 @@
 import type { EmblaOptionsType } from 'embla-carousel';
 import ClassNames from 'embla-carousel-class-names';
 import useEmblaCarousel from 'embla-carousel-react';
-import type React from 'react';
+// biome-ignore lint/style/useImportType: <TODO>
+import React from 'react';
 
 type PropType = {
   slides: number[];

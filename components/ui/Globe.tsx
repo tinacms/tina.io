@@ -1,5 +1,6 @@
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { useEffect, useRef, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 

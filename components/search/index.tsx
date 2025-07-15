@@ -1,5 +1,6 @@
 import algoliasearch from 'algoliasearch/lite';
-import { createRef, useEffect, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { createRef, useEffect, useState } from 'react';
 import { Dismissible, type Props as DismissibleProps } from 'react-dismissible';
 import {
   connectStateResults,

@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React, { useEffect, useState } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 
 const ConsentBanner = () => {

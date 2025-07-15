@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import type React from 'react';
-import { useState } from 'react';
+
+// biome-ignore lint/style/useImportType: <TODO>
+import React, { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 
 interface Language {

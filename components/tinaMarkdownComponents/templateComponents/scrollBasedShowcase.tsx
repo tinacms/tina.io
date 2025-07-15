@@ -1,5 +1,5 @@
-import type React from 'react';
-import { useEffect, useRef, useState } from 'react';
+// biome-ignore lint/style/useImportType: <TODO>
+import React, { useEffect, useRef, useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 /** Minimal inline docAndBlogComponents for headings only */
@@ -9,7 +9,7 @@ const docAndBlogComponents = {
 };
 
 /** UseWindowSize Hook */
-function useWindowSize() {
+function _useWindowSize() {
   const [windowSize, setWindowSize] = useState<{
     width: number;
     height: number;
@@ -36,7 +36,6 @@ function createListener(
   setActiveIds: (activeIds: string[]) => void,
 ) {
   let tick = false;
-  const _THROTTLE_INTERVAL = 100;
   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
 
   const maxScrollYRelative =
@@ -132,8 +131,6 @@ export default function ScrollBasedShowcase(data: {
   const activeImg = useRef<HTMLImageElement>(null);
   const headingRefs = useRef<(HTMLHeadingElement | null)[]>([]);
   const [activeIds, setActiveIds] = useState<string[]>([]);
-
-  const _windowSize = useWindowSize();
 
   /** Build headings array on mount */
   useEffect(() => {
