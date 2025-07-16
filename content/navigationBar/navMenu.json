@@ -7,6 +7,11 @@
       "_template": "stringItem"
     },
     {
+      "label": "TinaDocs",
+      "href": "https://tina-docs-git-poc-tinaio-repo-tinacms.vercel.app/",
+      "_template": "stringItem"
+    },
+    {
       "label": "Cloud Pricing",
       "href": "/pricing",
       "_template": "stringItem"
