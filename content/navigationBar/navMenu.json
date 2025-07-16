@@ -8,7 +8,7 @@
     },
     {
       "label": "TinaDocs",
-      "href": "https://tina-docs-git-poc-tinaio-repo-tinacms.vercel.app/",
+      "href": "/tinadocs",
       "_template": "stringItem"
     },
     {
