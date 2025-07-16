@@ -73,11 +73,11 @@ const config = {
       },
       {
         source: '/tinadocs/admin/:path*',
-        destination: 'https://tina-docs-red.vercel.app/docs/admin/:path*',
+        destination: 'https://tina-docs-red.vercel.app/admin/:path*',
       },
       {
         source: '/tinadocs/:path*',
-        destination: 'https://tina-docs-red.vercel.app/docs/:path*',
+        destination: 'https://tina-docs-red.vercel.app/:path*',
       },
     ];
   },
