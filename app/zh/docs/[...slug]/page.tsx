@@ -1,10 +1,10 @@
-import settings from '@/content/settings/config.json';
-import { getSeo } from '@/utils/metadata/getSeo';
 import { glob } from 'fast-glob';
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import getTableOfContents from 'utils/docs/getTableOfContents';
 import { getExcerpt } from 'utils/getExcerpt';
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import DocsClient from './docs-client';
 export const dynamicParams = false;
 

@@ -1,4 +1,3 @@
-import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import { GoogleTagManager } from '@next/third-parties/google';
 import AdminLink from 'components/AppRouterMigrationComponents/AdminLink';
 import { CloudBanner } from 'components/AppRouterMigrationComponents/CloudBanner';
@@ -6,6 +5,7 @@ import ConsentBanner from 'components/AppRouterMigrationComponents/ConsentBanner
 import { SiteLayout } from 'components/AppRouterMigrationComponents/SiteLayout';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
+import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import data from '../content/siteConfig.json';
 import StyledComponentsRegistry from '../lib/registry';
 import '../styles/tailwind.css';
@@ -15,7 +15,7 @@ const TinaChatBot = dynamic(
   () => import('../components/AppRouterMigrationComponents/TinaChatBot'),
   {
     ssr: false,
-  }
+  },
 );
 
 export const metadata = {
@@ -54,7 +54,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const previewProps = await getJsonPreviewProps(
-    'content/footer/Master-Footer.json'
+    'content/footer/Master-Footer.json',
   );
   const footerData = previewProps.props.file.data;
 
@@ -70,6 +70,7 @@ export default async function RootLayout({
           <meta name="robots" content="index,follow" />
           <noscript>
             <iframe
+              title="Google Tag Manager"
               src={`https://www.googletagmanager.com/ns.html?id=${process.env.SSW_GTM_ID}`}
               height="0"
               width="0"
@@ -92,6 +93,7 @@ export default async function RootLayout({
         <Script
           id="hotjar"
           strategy="afterInteractive"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <TODO>
           dangerouslySetInnerHTML={{
             __html: `
               (function(h,o,t,j,a,r){
@@ -108,6 +110,7 @@ export default async function RootLayout({
 
         <script
           type="text/javascript"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <TODO>
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){

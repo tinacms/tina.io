@@ -4,6 +4,7 @@ import enLocale from 'content/not-found/en.json';
 import zhLocale from 'content/not-found/zh.json';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
@@ -247,15 +248,21 @@ const parsePath = (pathname: string, localeList: string[]) => {
   const isBlogRoot = routeType === 'blog' && segments.length === 2;
 
   const routeKey = isBlogPagination || isBlogRoot ? 'blog/page' : routeType;
-  const pathWithoutPrefix = ((type: string, segs: string[]) => {
-    if (isBlogPagination) return segs.slice(2).join('/');
-    if (isBlogRoot) return 'page/1';
-    if (segs.length === 2) return '';
+  const pathWithoutPrefix = ((_type: string, segs: string[]) => {
+    if (isBlogPagination) {
+      return segs.slice(2).join('/');
+    }
+    if (isBlogRoot) {
+      return 'page/1';
+    }
+    if (segs.length === 2) {
+      return '';
+    }
     return segs.slice(2).join('/');
   })(routeType, segments);
 
   console.log(
-    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`
+    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`,
   );
 
   return {
@@ -272,7 +279,7 @@ const queryPage = async (pathInfo: {
 }) => {
   try {
     const { routeKey, pathWithoutPrefix } = pathInfo;
-    const config = routeConfig[routeKey] || routeConfig['default'];
+    const config = routeConfig[routeKey] || routeConfig.default;
     const isDefaultRoute = config.type === 'page';
 
     try {
@@ -321,10 +328,6 @@ export default function NotFoundClient() {
   const pathInfo = parsePath(pathname, localeList);
   const content = localeContent[pathInfo.locale] || localeContent.en;
 
-  if (!pathInfo.needsQuery) {
-    return <NotFoundContent content={content} />;
-  }
-
   useEffect(() => {
     async function checkPageExists() {
       try {
@@ -343,6 +346,10 @@ export default function NotFoundClient() {
 
     checkPageExists();
   }, [pathInfo]);
+
+  if (!pathInfo.needsQuery) {
+    return <NotFoundContent content={content} />;
+  }
 
   if (loading) {
     return <LoadingPage content={content} />;

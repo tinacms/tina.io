@@ -1,5 +1,4 @@
 import moment from 'moment-timezone';
-import React from 'react';
 import 'react-datetime/css/react-datetime.css';
 import { LocationField } from 'tina/customTinaFormFields/locationField';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
@@ -18,7 +17,7 @@ const dateFormat = Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
 });
 
-const timeFormat = Intl.DateTimeFormat('en-US', {
+const _timeFormat = Intl.DateTimeFormat('en-US', {
   hour: 'numeric',
   minute: 'numeric',
   timeZone: 'UTC',
@@ -28,10 +27,10 @@ const positiveTimezoneList = Array.from(Array(29).keys())
   .map((value) => value / 2)
   .reverse();
 const negativeTimezoneList = Array.from(Array(24).keys()).map(
-  (value) => (value / 2 + 0.5) * -1
+  (value) => (value / 2 + 0.5) * -1,
 );
 
-const addCitiesAndPrefix = (offsets: number[], prefix = '+'): offset[] => {
+const addCitiesAndPrefix = (offsets: number[], _prefix = '+'): offset[] => {
   const cityTimezoneMap = new Map();
   //Get the timezones of major cities
   majorTimezones.forEach((cityOffset) => {
@@ -40,7 +39,7 @@ const addCitiesAndPrefix = (offsets: number[], prefix = '+'): offset[] => {
       zone,
       cityTimezoneMap.get(zone)
         ? `${cityTimezoneMap.get(zone)}, ${cityOffset.city}`
-        : cityOffset.city
+        : cityOffset.city,
     );
   });
   //Concat the city names to the offset array
@@ -107,7 +106,7 @@ export const eventsCollection = {
             //@ts-ignore https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
             // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
             utc: true,
-            format: (value, name, field) =>
+            format: (value, _name, _field) =>
               value && dateFormat.format(new Date(Date.parse(value))),
           },
         },
@@ -119,7 +118,7 @@ export const eventsCollection = {
             "Enter start time in the timezone of the event. E.g. '9:00 AM' if the event starts at 9 in the location it's being held.",
           ui: {
             format: (value) => value,
-            component: wrapFieldsWithMeta(({ field, input, meta }) => {
+            component: wrapFieldsWithMeta(({ input }) => {
               return (
                 <div>
                   <input
@@ -142,7 +141,7 @@ export const eventsCollection = {
             //@ts-ignore https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
             // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
             utc: true,
-            format: (value, name, field) =>
+            format: (value, _name, _field) =>
               value && dateFormat.format(new Date(Date.parse(value))),
           },
         },
@@ -154,7 +153,7 @@ export const eventsCollection = {
           description:
             'This is locked to midnight on the end date of the event.',
           ui: {
-            format: (value) => '11:59 PM',
+            format: (_value) => '11:59 PM',
             component: (props) => {
               return (
                 <div className="mb-4 relative">

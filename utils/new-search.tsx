@@ -6,7 +6,7 @@ const DEFAULT_ALGOLIA_SEARCH_KEY = 'f13c10ad814c92b85f380deadc2db2dc';
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID || DEFAULT_ALGOLIA_APP_ID,
   (process.env.GATSBY_ALGOLIA_SEARCH_KEY ||
-    DEFAULT_ALGOLIA_SEARCH_KEY) as string
+    DEFAULT_ALGOLIA_SEARCH_KEY) as string,
 );
 
 interface SearchResults {
@@ -15,7 +15,7 @@ interface SearchResults {
 }
 
 export const fetchAlgoliaSearchResults = async (
-  query: string
+  query: string,
 ): Promise<SearchResults> => {
   try {
     const searchParams = {

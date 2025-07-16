@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   if (!owner || !repo) {
     return NextResponse.json(
       { error: 'Missing owner or repo' },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -17,11 +17,11 @@ export async function GET(request: Request) {
       `https://api.github.com/repos/${owner}/${repo}`,
       {
         headers: {
-          // Token 
+          // Token
           Authorization: `Bearer ${process.env.GITHUB_STAR_TOKEN}`,
           Accept: 'application/vnd.github.v3+json',
         },
-      }
+      },
     );
 
     if (!response.ok) {
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
     console.error('Error fetching GitHub stars:', error);
     return NextResponse.json(
       { error: 'Failed to fetch star count' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

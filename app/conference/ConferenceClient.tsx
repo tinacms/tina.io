@@ -1,146 +1,15 @@
 'use client';
+
+import { Button } from 'components/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { FaRegCalendar, FaRegMap, FaRegUser } from 'react-icons/fa';
-import { FaLocationDot, FaRegClock } from 'react-icons/fa6';
+import { FaRegCalendar, FaRegMap, FaRegStar } from 'react-icons/fa';
+import { FaRegClock } from 'react-icons/fa6';
 import { GoPeople } from 'react-icons/go';
-import { IoIosInformationCircleOutline, IoMdBook } from 'react-icons/io';
+import { IoMdBook } from 'react-icons/io';
 import { useTina } from 'tinacms/dist/react';
-
-import { Button } from 'components/ui';
-import { FaRegStar } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-
-//TODO: Remove once TinaCon is over
-const TopBanner = ({ tinaData }: { tinaData: any }) => {
-  return (
-    <div className="w-full flex justify-center relative px-10 lg:h-52">
-      <div className="absolute left-[38%] -top-11 z-10 hidden lg:block">
-        <Image
-          src="/svg/llama-mic.svg"
-          alt="Microphone Icon"
-          width={200}
-          height={200}
-          className="text-white"
-        />
-      </div>
-      <div className="w-full relative rounded-t-xl overflow-hidden">
-        <div className="absolute inset-0 bg-orange-500"></div>
-        <div
-          className="absolute inset-0 bg-blue-900 hidden lg:block"
-          style={{
-            clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 35% 100%)',
-          }}
-        ></div>
-        <div className="relative hidden lg:flex items-center justify-between px-8 py-6 lg:h-52">
-          <div className="w-[4rem]">
-            <Image
-              src="/svg/logos/tina-white.svg"
-              alt="Tina Logo"
-              width={100}
-              height={100}
-              className="w-[100px] h-auto"
-            />
-          </div>
-          <div className="w-[40%] text-white mt-6">
-            <div className="font-ibm-plex text-4xl">
-              <span className="font-bold">tina</span>con 2025
-            </div>
-            <div className="font-ibm-plex text-2xl mt-4">
-              Herding the Future
-            </div>
-          </div>
-          <div className="w-[50%] text-white">
-            <div className="flex flex-wrap justify-center items-center gap-4 font-ibm-plex text-lg mt-6 ml-8">
-              <span>May 2</span>
-              <span>|</span>
-              <span>9AM - 6PM</span>
-              <span>|</span>
-              <Link
-                href="https://www.ssw.com.au/offices/melbourne"
-                target="_blank"
-                className="underline"
-              >
-                SSW Melbourne, Australia
-              </Link>
-            </div>
-            <div className="mt-4 flex justify-center items-center">
-              <Link href={tinaData?.rightButton?.link} target="_blank">
-                <Button color="blue" size="medium">
-                  <span className="mr-2">Join us</span>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Layout */}
-        <div className="relative lg:hidden">
-          <div className="flex items-center justify-between px-6 py-4">
-            <div className="w-[2rem]">
-              <Image
-                src="/svg/logos/tina-white.svg"
-                alt="Tina Logo"
-                width={100}
-                height={100}
-                className="w-full h-auto"
-              />
-            </div>
-            <div className="w-[85%] text-white">
-              <div className="font-ibm-plex text-2xl text-left">
-                <span className="font-bold">tina</span>con 2025
-              </div>
-              <div className="font-ibm-plex text-xl text-left">
-                Herding the Future
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="absolute inset-0 bg-blue-900"
-            style={{
-              clipPath: 'polygon(0% 35%, 100% 45%, 100% 100%, 0% 100%)',
-              borderRadius: '0 0 0.75rem 0.75rem',
-            }}
-          ></div>
-          <div className="relative px-6 py-4 text-white">
-            <div className="flex items-center gap-4 font-ibm-plex text-base mb-2">
-              <span>May 2</span>
-              <span>|</span>
-              <span>9AM - 6PM</span>
-            </div>
-            <div className="mb-4">
-              <Link
-                href="https://www.ssw.com.au/offices/melbourne"
-                target="_blank"
-                className="underline"
-              >
-                SSW Melbourne, Australia
-              </Link>
-            </div>
-            <div>
-              <Link href={tinaData?.rightButton?.link} target="_blank">
-                <Button color="blue" size="medium">
-                  <span className="mr-2">Join us</span>
-                </Button>
-              </Link>
-            </div>
-          </div>
-          <div className="absolute right-2 bottom-3 w-[17%]">
-            <Image
-              src="/svg/llama-mic.svg"
-              alt="Microphone Icon"
-              width={200}
-              height={200}
-              className="text-white"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const HeaderBanner = ({
   tinaData,
@@ -231,9 +100,9 @@ const KeyHighlights = ({ highlights }: KeyHighlightsProps) => {
         ['headerLeft', 'descriptionLeft', 'iconLeft'],
         ['headerMiddle', 'descriptionMiddle', 'iconMiddle'],
         ['headerRight', 'descriptionRight', 'iconRight'],
-      ].map(([header, description, icon], index) => (
+      ].map(([header, description, icon]) => (
         <div
-          key={index}
+          key={header}
           className="flex flex-col gap-2 items-center w-full md:w-1/3"
         >
           {icons[highlights[icon as keyof typeof highlights]]}
@@ -279,8 +148,11 @@ const OpenSourceExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
         Open Source Expert Speakers
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-14">
-        {speakers.map((speaker, index) => (
-          <div key={index} className="col-span-1 flex flex-col items-center">
+        {speakers.map((speaker) => (
+          <div
+            key={speaker.name}
+            className="col-span-1 flex flex-col items-center"
+          >
             <Link href={speaker.socialLink} target="_blank">
               <Image
                 src={speaker.image}
@@ -350,12 +222,12 @@ function Agenda({
         workshops: Session[];
         breaks: Session[];
       }
-    >
+    >,
   );
 
   // Sort by time
   const timeSlots = Object.values(sessionsByTime).sort(
-    (a, b) => a.timeStart - b.timeStart
+    (a, b) => a.timeStart - b.timeStart,
   );
 
   return (
@@ -377,8 +249,8 @@ function Agenda({
             </tr>
           </thead>
           <tbody>
-            {timeSlots.map((slot, index) => (
-              <tr key={index}>
+            {timeSlots.map((slot) => (
+              <tr key={slot.timeStart}>
                 <td className="border p-4 align-top text-left">
                   <div className="font-bold leading-6">
                     {formatTime(slot.timeStart)} -
@@ -389,8 +261,11 @@ function Agenda({
 
                 {slot.breaks.length > 0 ? (
                   <td className="border p-4 text-center">
-                    {slot.breaks.map((breakSession, idx) => (
-                      <div key={idx} className="mb-4 last:mb-0">
+                    {slot.breaks.map((breakSession) => (
+                      <div
+                        key={breakSession.speechTitle}
+                        className="mb-4 last:mb-0"
+                      >
                         <h3 className="text-lg font-bold">
                           {breakSession.speechTitle}
                         </h3>
@@ -402,8 +277,11 @@ function Agenda({
                   </td>
                 ) : (
                   <td className="border p-4 align-top text-left">
-                    {slot.talks.map((talk, idx) => (
-                      <div key={idx} className="mb-4 last:mb-0 flex">
+                    {slot.talks.map((talk) => (
+                      <div
+                        key={talk.speechTitle}
+                        className="mb-4 last:mb-0 flex"
+                      >
                         <div>
                           <h3 className="text-lg leading-6 font-bold">
                             {talk.speechTitle}
@@ -440,8 +318,8 @@ function Agenda({
 
       {/* Mobile view (cards) */}
       <div className="w-full max-w-6xl md:hidden text-left">
-        {timeSlots.map((slot, slotIndex) => (
-          <div key={slotIndex} className="mb-8">
+        {timeSlots.map((slot, _slotIndex) => (
+          <div key={slot.timeStart} className="mb-8">
             <div className="bg-blue-100 py-3 px-4 rounded-t-lg font-bold">
               {formatTime(slot.timeStart)} -{' '}
               {slot.timeEnd ? formatTime(slot.timeEnd) : ''}
@@ -450,8 +328,11 @@ function Agenda({
             {/* Break sessions */}
             {slot.breaks.length > 0 && (
               <div className="border border-t-0 p-4">
-                {slot.breaks.map((breakSession, idx) => (
-                  <div key={idx} className="mb-4 last:mb-0">
+                {slot.breaks.map((breakSession) => (
+                  <div
+                    key={breakSession.speechTitle}
+                    className="mb-4 last:mb-0"
+                  >
                     <div className="bg-orange-100 text-orange-500 text-sm rounded-full px-2 w-14 mb-2">
                       Break
                     </div>
@@ -470,9 +351,9 @@ function Agenda({
             {slot.breaks.length === 0 && (
               <div className="border border-t-0 p-4 space-y-6">
                 {/* Talks */}
-                {slot.talks.map((talk, idx) => (
+                {slot.talks.map((talk) => (
                   <div
-                    key={`talk-${idx}`}
+                    key={talk.speechTitle}
                     className="pb-4 border-b last:border-b-0 last:pb-0"
                   >
                     <div className="bg-blue-100 text-blue-500 text-sm rounded-full px-2 w-11 mb-2">
@@ -542,7 +423,7 @@ function ConferencePage({
       (session.sessionType as 'Talk' | 'Workshop' | 'Break') || 'Break',
   }));
 
-  const [filter, setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
+  const [filter, _setFilter] = useState<'all' | 'Talk' | 'Workshop'>('all');
   const filteredSessions = speakerSchedule
     .filter((session) => filter === 'all' || session.sessionType === filter)
     .sort((a, b) => a.talkTimeStart - b.talkTimeStart);

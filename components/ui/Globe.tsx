@@ -1,4 +1,5 @@
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
@@ -12,7 +13,7 @@ const geographicToCartesian = (latitude, longitude, radius = 1) => {
   return [x, y, z];
 };
 
-const cartesianToGeographic = (x, y, z, radius = 1) => {
+const _cartesianToGeographic = (x, y, z, radius = 1) => {
   const latRad = Math.asin(z / radius);
   const lonRad = Math.atan2(y, x);
   const latitude = (latRad * 180) / Math.PI;
@@ -22,7 +23,7 @@ const cartesianToGeographic = (x, y, z, radius = 1) => {
 
 // Smooth easing function for natural animation
 const easeInOutCubic = (t) => {
-  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 };
 
 const Model = ({ activeGlobeId, cardItems, ...props }) => {
@@ -44,7 +45,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
     const position = geographicToCartesian(
       item.markerLAT,
       item.markerLONG,
-      110
+      110,
     );
     return { id: index, position, lat: item.markerLAT, lng: item.markerLONG };
   });
@@ -52,18 +53,22 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
   // Check for markers at the same location
   const getMarkersAtSameLocation = (currentIndex) => {
     const currentMarker = markerPositions[currentIndex];
-    if (!currentMarker) return [];
+    if (!currentMarker) {
+      return [];
+    }
 
     return markerPositions.filter(
       (marker, index) =>
         index !== currentIndex &&
         Math.abs(marker.lat - currentMarker.lat) < 0.001 && // Very small tolerance for "same" location
-        Math.abs(marker.lng - currentMarker.lng) < 0.001
+        Math.abs(marker.lng - currentMarker.lng) < 0.001,
     );
   };
 
   useFrame(() => {
-    if (!groupRef.current) return;
+    if (!groupRef.current) {
+      return;
+    }
 
     // Check if we need to start a new animation
     if (activeGlobeId !== previousActiveId.current && activeGlobeId !== null) {
@@ -89,7 +94,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
         const isEasternHemisphere = activeMarker.lng > 0;
 
         // X-axis offset (vertical tilt) - depends on hemisphere
-        let viewingOffsetX;
+        let viewingOffsetX: number;
         if (isNorthernHemisphere) {
           // For northern hemisphere, tilt down to show the pin better
           viewingOffsetX = THREE.MathUtils.degToRad(20);
@@ -102,7 +107,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
         }
 
         // Y-axis offset (horizontal rotation) - slight adjustment for depth
-        let viewingOffsetY;
+        let viewingOffsetY: number;
         if (isEasternHemisphere) {
           // Eastern hemisphere - rotate slightly west for better angle
           viewingOffsetY = THREE.MathUtils.degToRad(-5);
@@ -119,7 +124,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
         targetRotationX = THREE.MathUtils.clamp(
           targetRotationX,
           -Math.PI / 2 + 0.3,
-          Math.PI / 2 - 0.3
+          Math.PI / 2 - 0.3,
         );
 
         targetRotation.current.set(targetRotationX, targetRotationY, 0);
@@ -132,7 +137,7 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
     if (isAnimating.current) {
       animationProgress.current += animationSpeed;
       const easedProgress = easeInOutCubic(
-        Math.min(animationProgress.current, 1)
+        Math.min(animationProgress.current, 1),
       );
 
       // Smooth interpolation between start and target rotation on both X and Y axes
@@ -142,14 +147,14 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
       currentRotation.x = THREE.MathUtils.lerp(
         startRotation.current.x,
         targetRotation.current.x,
-        easedProgress
+        easedProgress,
       );
 
       // Animate Y-axis rotation (longitude/horizontal positioning)
       currentRotation.y = THREE.MathUtils.lerp(
         startRotation.current.y,
         targetRotation.current.y,
-        easedProgress
+        easedProgress,
       );
 
       groupRef.current.rotation.copy(currentRotation);
@@ -173,7 +178,6 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
       {markerPositions.map((marker) => (
         <group key={marker.id} position={new THREE.Vector3(...marker.position)}>
           <Marker
-            index={marker.id}
             isActive={marker.id === activeGlobeId}
             chunkyLlamaObject={chunkyLlamaFbx}
             greyLlamaObject={greyLlamaFbx}
@@ -186,7 +190,6 @@ const Model = ({ activeGlobeId, cardItems, ...props }) => {
 };
 
 const Marker = ({
-  index,
   isActive,
   chunkyLlamaObject,
   greyLlamaObject,
@@ -208,14 +211,14 @@ const Marker = ({
           const forwardOffset = 0.15;
           const direction = ref.current.position.clone().normalize();
           ref.current.position.copy(
-            direction.multiplyScalar(110 + forwardOffset)
+            direction.multiplyScalar(110 + forwardOffset),
           );
         } else {
           // Move inactive markers slightly back when there's an active collision
           const backwardOffset = -0.05;
           const direction = ref.current.position.clone().normalize();
           ref.current.position.copy(
-            direction.multiplyScalar(110 + backwardOffset)
+            direction.multiplyScalar(110 + backwardOffset),
           );
         }
       } else {

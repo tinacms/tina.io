@@ -14,7 +14,8 @@ export const highlightText = (text: string) => {
   const segments = [];
   let lastIndex = 0;
 
-  let match;
+  let match: RegExpExecArray | null;
+  // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) {
       segments.push(text.substring(lastIndex, match.index));
@@ -22,7 +23,7 @@ export const highlightText = (text: string) => {
     segments.push(
       <span key={match.index} className="bg-orange-200 text-black font-bold">
         {match[1]}
-      </span>
+      </span>,
     );
     lastIndex = regex.lastIndex;
   }
@@ -117,6 +118,8 @@ export const SearchResultsOverflowTabs = ({ query }) => {
           {/* Navigation Buttons */}
           <nav className="relative flex gap-16 px-4">
             <button
+              type="button"
+              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
               ref={(el) => (tabRefs.current[0] = el)}
               className={`font-inter font-semibold text-sm ${
                 activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
@@ -126,6 +129,8 @@ export const SearchResultsOverflowTabs = ({ query }) => {
               DOCS ({algoliaSearchResults?.docs?.count})
             </button>
             <button
+              type="button"
+              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
               ref={(el) => (tabRefs.current[1] = el)}
               className={`font-inter font-semibold text-sm ${
                 activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
@@ -179,11 +184,11 @@ export const DocsSearchBarHeader = ({
   searchMargin,
   searchBarPadding,
   learnActive = false,
-  setLearnActive = (value: boolean) => {},
+  setLearnActive = (_value: boolean) => {},
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [_searchResults, setSearchResults] = useState<any>(null);
+  const [_isLoading, setIsLoading] = useState(false);
   const [userHasTyped, setUserHasTyped] = useState(false);
   const [searchOverFlowOpen, setSearchOverflowOpen] = useState(false);
   const router = useRouter();

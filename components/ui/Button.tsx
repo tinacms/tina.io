@@ -53,9 +53,9 @@ export const Button = ({
   return (
     <button
       className={`${baseClasses} ${
-        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+        colorClasses[color] ? colorClasses[color] : colorClasses.seafoam
       } ${
-        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium
       } ${className}`}
       {...props}
     >
@@ -77,9 +77,9 @@ export const LinkButton = ({
       href={link}
       passHref
       className={`${baseClasses} ${
-        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+        colorClasses[color] ? colorClasses[color] : colorClasses.seafoam
       } ${
-        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium
       } ${className}`}
       {...props}
     >
@@ -101,7 +101,7 @@ export const FlushButton = ({
       href={link}
       passHref
       className={`${baseClasses} ${
-        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+        colorClasses[color] ? colorClasses[color] : colorClasses.seafoam
       } ${'bg-none border-none hover:shadow-none py-2 px-2 hover:inner-link hover:translate-x-0 hover:translate-y-0'} ${className}`}
       {...props}
     >
@@ -120,9 +120,9 @@ export const ModalButton = ({
   return (
     <button
       className={`${baseClasses} ${
-        colorClasses[color] ? colorClasses[color] : colorClasses['seafoam']
+        colorClasses[color] ? colorClasses[color] : colorClasses.seafoam
       } ${
-        sizeClasses[size] ? sizeClasses[size] : sizeClasses['medium']
+        sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium
       } ${className}`}
       {...props}
     >

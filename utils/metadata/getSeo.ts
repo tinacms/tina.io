@@ -12,13 +12,13 @@ export const getSeo = (seo: any, data?: DefaultProps): Metadata => {
   const excerpt = data ? getExcerpt(data.body, 140) : '';
 
   const SEO = {
-    title: seo?.title || data?.pageTitle + ' | TinaCMS',
+    title: seo?.title || `${data?.pageTitle} | TinaCMS`,
     description: seo?.description || `${excerpt}`,
     alternates: {
       canonical: envUrl(seo?.canonicalUrl),
     },
     openGraph: {
-      title: seo?.title || data?.pageTitle + ' | TinaCMS',
+      title: seo?.title || `${data?.pageTitle} | TinaCMS`,
       url: envUrl(seo?.canonicalUrl),
       description: seo?.description || `${excerpt}`,
       images: [

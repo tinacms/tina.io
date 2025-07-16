@@ -23,8 +23,8 @@ query {
 
 export async function getDocsNav(
   preview?: boolean,
-  previewData?: any,
-  lang?: string
+  _previewData?: any,
+  lang?: string,
 ) {
   const docTocData = await client.request(
     {
@@ -35,22 +35,22 @@ export async function getDocsNav(
         }`,
       },
     },
-    {}
+    {},
   );
   return formatTableofContentsData(docTocData, preview);
 }
 
 export async function getLearnNav(
   preview?: boolean,
-  previewData?: any,
-  lang?: string
+  _previewData?: any,
+  lang?: string,
 ) {
   const learnTocData = await client.request(
     {
       query: learnQuery(lang),
       variables: { relativePath: 'learn-toc.json' },
     },
-    {}
+    {},
   );
   return formatTableofContentsData(learnTocData, preview);
 }
@@ -62,9 +62,9 @@ const stripReferenceDownToSlug = (tableOfContentsSubset: any) => {
         array[index].items = stripReferenceDownToSlug(obj.items);
       } else {
         //Handles the docs homepage case, as the only docs page with a unique (i.e. no) slug, otherwise reformat
-        if (array[index].slug == `content${data.docsHomepage}.mdx`) {
+        if (array[index].slug === `content${data.docsHomepage}.mdx`) {
           array[index].slug = '/docs';
-        } else if (array[index].slug == `content/zh${data.docsHomepage}.mdx`) {
+        } else if (array[index].slug === `content/zh${data.docsHomepage}.mdx`) {
           array[index].slug = '/zh/docs';
         } else {
           array[index].slug = obj.slug.replace(/^content\/|\.mdx$/g, '/');
@@ -77,14 +77,13 @@ const stripReferenceDownToSlug = (tableOfContentsSubset: any) => {
 
 export const formatTableofContentsData = (
   tableOfContentsData: any,
-  preview: boolean
+  preview: boolean,
 ) => {
   const exposedTOCData =
     tableOfContentsData.data.docsTableOfContents._values.supermenuGroup;
-  exposedTOCData.forEach(
-    (obj, index, array) =>
-      (array[index].items = stripReferenceDownToSlug(obj.items))
-  );
+  exposedTOCData.forEach((obj, index, array) => {
+    array[index].items = stripReferenceDownToSlug(obj.items);
+  });
 
   return {
     data: exposedTOCData,

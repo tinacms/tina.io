@@ -42,7 +42,7 @@ export default function EventsClient({
 
   // Extract events data
   const events = tinaData.data.eventsConnection.edges.map(
-    (edge: any) => edge.node
+    (edge: any) => edge.node,
   );
   const eventsData = events[0];
 
@@ -51,7 +51,7 @@ export default function EventsClient({
     .filter((event) => new Date(event.startDate).getTime() >= now.getTime())
     .sort(
       (a, b) =>
-        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
     );
 
   // Filter and sort past events
@@ -59,7 +59,7 @@ export default function EventsClient({
     .filter((event) => new Date(event.startDate).getTime() < now.getTime())
     .sort(
       (a, b) =>
-        new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+        new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
     );
 
   const [visibleCards, setVisibleCards] = useState<string[]>([]);
@@ -83,7 +83,8 @@ export default function EventsClient({
     cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
-  }, [visibleCards]);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
+  }, [handleIntersection]);
 
   return (
     <div className="mx-auto mb-40">
@@ -94,7 +95,7 @@ export default function EventsClient({
         </div>
         {upComingEvents.map((cardItem, index) => (
           <div
-            key={index}
+            key={cardItem.title}
             data-id={`upcoming-${index}`}
             className={`event-card transform transition duration-500 ${
               visibleCards.includes(`upcoming-${index}`)
@@ -112,7 +113,7 @@ export default function EventsClient({
         </div>
         {pastEvents.map((cardItem, index) => (
           <div
-            key={index}
+            key={cardItem.title}
             data-id={`past-${index}`}
             className={`event-card transform transition duration-500 ${
               visibleCards.includes(`past-${index}`)

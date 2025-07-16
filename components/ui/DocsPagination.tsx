@@ -1,5 +1,4 @@
 import { usePathname } from 'next/navigation';
-import React from 'react';
 import RightArrowSvg from '../../public/svg/right-arrow.svg';
 import { isChineseRoute } from '../../utils/locale';
 import { DynamicLink } from '../ui/DynamicLink';
@@ -22,7 +21,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
   const nextPageText = isZh ? '下一页' : 'Next Page';
   return (
     <div className="mt-8 grid grid-cols-2 gap-4">
-      {prevPage && prevPage.slug && (
+      {prevPage?.slug && (
         <DynamicLink href={`${prevPage.slug}`} passHref>
           <div
             className="block p-4 text-left relative transition-all group border border-gray-100 cursor-pointer"
@@ -39,7 +38,7 @@ export function DocsPagination({ prevPage, nextPage }: PaginationProps) {
         </DynamicLink>
       )}
       <div className="col-start-2">
-        {nextPage && nextPage.slug && (
+        {nextPage?.slug && (
           <DynamicLink href={`${nextPage.slug}`} passHref>
             <div
               className="block p-4 text-right relative transition-all group border border-gray-100 cursor-pointer"
