@@ -77,7 +77,7 @@ const config = {
       },
       {
         source: '/tinadocs/:path*',
-        destination: 'https://tina-docs-red.vercel.app/:path*',
+        destination: 'https://tina-docs-red.vercel.app/docs/:path*',
       },
     ];
   },
