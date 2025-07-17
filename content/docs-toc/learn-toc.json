@@ -205,7 +205,7 @@
                   "_template": "item"
                 },
                 {
-                  "title": "Converting Gatsby Markdown to MDX for TinaCMS",
+                  "title": "Markdown to MDX migration guide",
                   "slug": "content/docs/guides/converting-md-to-mdx.mdx",
                   "_template": "item"
                 }
