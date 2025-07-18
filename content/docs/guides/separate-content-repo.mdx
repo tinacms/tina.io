@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-06-17T23:24:14.363Z'
+last_edited: '2025-07-09T14:11:28.314Z'
 next: ''
 previous: ''
 ---
@@ -34,7 +34,7 @@ You might want to do this for a variety of reasons, such as:
 
 ## Create the website repository
 
-We have deployed a basic starting "website repo", which you can clone to get started.
+We have deployed a basic starting "[website repo](https://github.com/tinacms/separate-website-repo)", which you can clone to get started.
 
 ```sh
 git clone git@github.com:tinacms/separate-website-repo.git
@@ -96,28 +96,83 @@ yarn build
 
 When you modify your Tina schema ( tina/config.(ts/js) )
 
-1. Run tinacms build to regenerate files - Tina will regenerate files such like your tina-lock.json
-2. Commit and push these changes to both your website repo and content repo to ensure compatibility across builds
+1. Run `tinacms build` to regenerate files - Tina will regenerate files such like your `tina-lock.json`
+2. Commit and push these changes to \*\*both \*\*your website repo and content repo to ensure compatibility across builds
 
 ## Path Configuration Considerations
 
-When defining collection paths inside your tina/config.(ts/js), avoid setting path: '' . As Tina expects a folder-relative path. Using '' can result in errors when creating new documents because Tina prepends a / when saving, causing invalid GitHub paths.
+When defining collection paths inside your tina/config.(ts/js), avoid setting \`path: '' . As Tina expects a folder-relative path. Using an empty string `''` can result in errors when creating new documents because Tina prepends a `/` when saving, which can lead to invalid GitHub paths and creation errors.
 
 ## Static Site Generator Compatibility
 
-If you are using a static site generate (SSG) other than Next.js, such like Astro. Ensure your content pipeline ignores the tina/ directory inside your content repo. Tina's config files are not content files and this may cause parsing errors.
+If you are using a static site generate (SSG) other than Next.js, such like Astro. Ensure your content pipeline ignores the `tina/` directory inside your content repo. Tina's config files are not content files and this may cause parsing errors.
+
+Here's an example of how to exclude the \`tina/\` directory:
 
 ```javascript
-export default defineCollection) {
+export default defineCollection({
   schema: mySchema,
   exclude: ['tina/**/*'],
-};
+});
 ```
 
-## Learn More
+## Triggering Website Builds from the Content Repo (Optional)
 
-To learn more about Tina, take a look at the following resources:
+When using a separate content repo, you may want content updates (e.g. from TinaCMS UI) to automatically trigger a build of your website. TinaCloud supports this out of the box using webhooks.
 
-* [Tina Docs](https://tina.io/docs)
+### Using TinaCloud Webhooks (Recommended)
 
-You can check out [Tina GitHub repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
+TinaCloud can be configured to send a POST request to a webhook endpoint whenever content changes are committed. This is the recommended way to trigger a rebuild of your website.
+
+👉 Check out the [webhook functionality](https://tina.io/docs/tina-cloud/webhooks) for more details
+
+### Triggering Builds with GitHub Actions
+
+As an alternative to using webhooks, you can trigger website builds with GitHub Actions.\
+This is useful if your platform doesn’t support build webhooks, or if you want more control over the build process.
+
+#### Example Workflow
+
+Create a workflow file in your content repo (e.g. `.github/workflows/trigger-website-build.yml`):
+
+```yaml
+name: Trigger Website Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'your-org'
+
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.MY_APP_ID }}
+          private-key: ${{ secrets.MY_APP_PRIVATE_KEY }}
+          owner: your-org
+          repositories: your-website-repo
+
+      - name: Trigger website deploy
+        run: |
+          gh workflow run build-and-deploy.yml \
+            --repo your-org/your-website-repo \
+            --ref main \
+            --field run_id="$GITHUB_RUN_ID" \
+            --field branch_name="${GITHUB_REF#refs/heads/}"
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+```
+
+#### Prerequisites
+
+This setup requires:
+
+* A GitHub App with access to both repos
+* Token and app secrets saved in GitHub repo settings
