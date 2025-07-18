@@ -7,6 +7,11 @@
       "_template": "stringItem"
     },
     {
+      "label": "TinaDocs",
+      "href": "/tinadocs",
+      "_template": "stringItem"
+    },
+    {
       "label": "Cloud Pricing",
       "href": "/pricing",
       "_template": "stringItem"
