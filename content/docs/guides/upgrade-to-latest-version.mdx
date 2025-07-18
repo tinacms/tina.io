@@ -1,0 +1,53 @@
+---
+title: Upgrade to Latest Version
+last_edited: '2025-07-11T08:01:15.663Z'
+next: content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx
+previous: content/docs/beginner-tutorials/tutorial-overview.mdx
+---
+
+To see which version of TinaCMS you’re currently using, check your package.json file:
+
+```json
+"dependencies": {
+  "@tinacms/cli": "^1.x.x",
+  "tinacms": "^1.x.x"
+}
+```
+
+🔍 How to Find Available Versions
+
+> Note: Always update both tinacms and @tinacms/cli to the latest version together to get the latest feature and avoid compatibility issues.
+
+You can view all published versions of TinaCMS packages on npmjs.com:
+
+[tinacms on npm](https://www.npmjs.com/package/tinacms)
+
+[@tinacms/cli on npm](https://www.npmjs.com/package/@tinacms/cli)
+
+Use your preferred package manager to upgrade TinaCMS to the latest version:
+
+With npm:
+
+```bash
+npm install tinacms @tinacms/cli@latest
+```
+
+With pnpm:
+
+```bash
+pnpm add tinacms @tinacms/cli@latest
+```
+
+With yarn:
+
+```bash
+yarn add tinacms @tinacms/cli@latest
+```
+
+Example of Installing a Specific Version of TinaCMS with npm
+
+With npm:
+
+```bash
+npm install tinacms@2.8.0 @tinacms/cli@1.10.0
+```
