@@ -64,23 +64,23 @@ const config = {
         destination: '/admin/index.html',
       },
       {
-        source: '/tinadocs/:path*',
+        source: '/docs/:path*',
         destination: 'https://tina-docs-red.vercel.app/docs:path*',
       },
       {
-        source: '/tinadocs/_next/:path*',
+        source: '/docs/_next/:path*',
         destination: 'https://tina-docs-red.vercel.app/_next/:path*',
       },
       {
-        source: '/tinadocs/images/:path*',
+        source: '/docs/images/:path*',
         destination: 'https://tina-docs-red.vercel.app/images/:path*',
       },
       {
-        source: '/tinadocs/static/:path*',
+        source: '/docs/static/:path*',
         destination: 'https://tina-docs-red.vercel.app/static/:path*',
       },
       {
-        source: '/tinadocs/favicon.ico',
+        source: '/docs/favicon.ico',
         destination: 'https://tina-docs-red.vercel.app/favicon.ico',
       },
     ];
