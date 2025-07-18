@@ -65,23 +65,28 @@ const config = {
       },
       {
         source: '/docs/:path*',
-        destination: 'https://tina-docs-red.vercel.app/docs:path*',
+        destination:
+          'https://tina-docs-git-poc-tinaio-repo-tinacms.vercel.app/docs:path*',
       },
       {
         source: '/docs/_next/:path*',
-        destination: 'https://tina-docs-red.vercel.app/_next/:path*',
+        destination:
+          'https://tina-docs-git-poc-tinaio-repo-tinacms.vercel.app/_next/:path*',
       },
       {
         source: '/docs/images/:path*',
-        destination: 'https://tina-docs-red.vercel.app/images/:path*',
+        destination:
+          'https://tina-docs-git-poc-tinaio-repo-tinacms.vercel.app/images/:path*',
       },
       {
         source: '/docs/static/:path*',
-        destination: 'https://tina-docs-red.vercel.app/static/:path*',
+        destination:
+          'https://tina-docs-git-poc-tinaio-repo-tinacms.vercel.app/static/:path*',
       },
       {
         source: '/docs/favicon.ico',
-        destination: 'https://tina-docs-red.vercel.app/favicon.ico',
+        destination:
+          'https://tina-docs-git-poc-tinaio-repo-tinacms.vercel.app/favicon.ico',
       },
     ];
   },
