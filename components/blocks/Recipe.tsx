@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useImportType: <TODO>
 import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -9,11 +10,11 @@ export const RecipeBlock = ({ data }) => {
 
   const [highlightLines, setHighlightLines] = useState('');
   const [clickedInstruction, setClickedInstruction] = useState<number | null>(
-    null
+    null,
   );
   //LHSheight is the height used for the instructions block when the screen is >= 1024px
   const [LHSheight, setLHSheight] = useState<string | null>(null);
-  const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
+  const [_CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
   const [isBottomOfInstructions, setIsBottomOfInstructions] =
     useState<boolean>(false);
 
@@ -29,7 +30,7 @@ export const RecipeBlock = ({ data }) => {
     return () => {
       document.head.removeChild(style);
     };
-  }, [highlightLines]);
+  }, []);
 
   useEffect(() => {
     setLHSheight(`${codeblockRef.current?.offsetHeight}`);
@@ -44,7 +45,7 @@ export const RecipeBlock = ({ data }) => {
   const handleInstructionClick = (
     index: number,
     codeLineStart?: number,
-    codeLineEnd?: number
+    codeLineEnd?: number,
   ) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
@@ -135,7 +136,8 @@ export const RecipeBlock = ({ data }) => {
           >
             {instruction?.map((inst, idx) => (
               <div
-                key={idx}
+                key={inst.id}
+                // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
                 ref={(el) => (instructionRefs.current[idx] = el)}
                 className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''}`}
@@ -143,7 +145,7 @@ export const RecipeBlock = ({ data }) => {
                   handleInstructionClick(
                     idx,
                     inst.codeLineStart,
-                    inst.codeLineEnd
+                    inst.codeLineEnd,
                   )
                 }
               >

@@ -1,12 +1,12 @@
 import { contentComponents } from 'components/tinaMarkdownComponents/contentComponents';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { DocsTextWrapper } from '../../layout/DocsTextWrapper';
 import { Section } from '../../layout/Section';
 import { Container } from '../Container';
 
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
-
-export function ContentBlock({ data, index }) {
+export function ContentBlock({ data }) {
   return (
     <Section color={data.options?.color || 'white'}>
       <DocsTextWrapper>
@@ -15,8 +15,8 @@ export function ContentBlock({ data, index }) {
             data.options?.align === 'center'
               ? 'text-center'
               : data.options?.align === 'right'
-              ? 'text-right'
-              : 'text-left'
+                ? 'text-right'
+                : 'text-left'
           }
         >
           <Container width={data.options?.narrow ? 'narrow' : 'medium'}>

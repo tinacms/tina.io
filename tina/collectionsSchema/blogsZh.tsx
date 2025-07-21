@@ -6,7 +6,7 @@ export const blogsZhCollection = {
   path: 'content/blog-zh',
   fields: [
     ...blogsCollection.fields.filter(
-      (field) => field.name !== 'next' && field.name !== 'prev'
+      (field) => field.name !== 'next' && field.name !== 'prev',
     ),
     {
       name: 'next',

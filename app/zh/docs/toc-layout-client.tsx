@@ -5,6 +5,7 @@ import {
   useDocsNavigation,
 } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
 import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
+// biome-ignore lint/style/useImportType: <TODO>
 import React, { createContext, useContext } from 'react';
 
 // Create a context for the navigation data

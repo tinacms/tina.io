@@ -1,4 +1,4 @@
-import { Template } from 'tinacms';
+import type { Template } from 'tinacms';
 
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
 import { newsletterTemplate } from '../NewsLetter/Newsletter.template';

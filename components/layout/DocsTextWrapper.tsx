@@ -26,7 +26,7 @@ export const DocsTextWrapper = ({ children }) => {
         // Wrap it in a DIV
         var div = document.createElement('div');
         div.className = 'fitVids-wrapper';
-        div.style.paddingBottom = aspectRatio * 100 + '%';
+        div.style.paddingBottom = `${aspectRatio * 100}%`;
         parentDiv.insertBefore(div, fitVid);
         fitVid.remove();
         div.appendChild(fitVid);
