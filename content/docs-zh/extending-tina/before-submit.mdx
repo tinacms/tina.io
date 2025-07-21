@@ -1,0 +1,129 @@
+---
+id: /docs/extending-tina/before-submit
+
+title: 提交前函数
+previous: content/docs-zh/extending-tina/filename-customization.mdx
+---
+
+提交前函数允许你在表单提交到后端之前在前端运行一个函数，并可以选择性地修改文档的值。
+
+## 定义
+
+```ts
+import { TinaCMS, Form } from 'tinacms'
+
+type BeforeSubmitFunction = (args: {
+  values: Record<string, unknown>
+  cms: TinaCMS
+  form: Form
+}) => Promise<void | Record<string, unknown>>
+```
+
+## 示例
+
+### 添加最后更新字段
+
+```js
+// tina/config.{ts.js}
+
+export default defineConfig({
+  schema: {
+    collections: [
+      {
+        ui: {
+          // 提交前的示例
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            return {
+              ...values,
+              lastUpdated: new Date().toISOString(),
+            }
+          },
+          //...
+        },
+        //...
+      },
+      //...
+    ],
+  },
+  //...
+})
+```
+
+### 添加创建时间字段
+
+```js
+export default defineConfig({
+  schema: {
+    collections: [
+      {
+        ui: {
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            if (form.crudType === 'create') {
+              return {
+                ...values,
+                createdAt: new Date().toISOString(),
+              }
+            }
+          },
+          //...
+        },
+        //...
+      },
+      //...
+    ],
+  },
+  //...
+})
+```
+
+### 添加slug字段
+
+```js
+export default defineConfig({
+  schema: {
+    collections: [
+      {
+        ui: {
+          beforeSubmit: async ({
+            form,
+            cms,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            return {
+              ...values,
+              slug: values.title
+                .toLowerCase()
+                .replace(/ /g, '-')
+                .replace(/[^\w-]+/g, ''),
+            }
+          },
+          //...
+        },
+        //...
+      },
+      //...
+    ],
+  },
+  //...
+})
+```

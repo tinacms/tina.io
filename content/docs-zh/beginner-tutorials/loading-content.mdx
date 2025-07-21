@@ -1,0 +1,87 @@
+---
+title: 加载您的内容
+last_edited: '2025-05-08T08:12:37.416Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/the-content-model.mdx
+previous: content/docs-zh/beginner-tutorials/wiring-content.mdx
+---
+
+在上一步中，我们看到我们的实现抛出了一个错误。
+
+这是因为在`fetchContent`完成之前，`useTina`回调就被调用了……而且这一切都是在客户端完成的！
+
+为了解决这个问题，我们需要稍微改变一下方法，以便在我们的异步数据获取完成后再调用`useTina`方法。
+
+我们将通过创建一个新的子组件来实现这一点，并且只有在我们有一些数据时才渲染该组件（这是React解决异步数据获取的典型方法）。
+
+1\. 创建一个新组件 `app/awesome-content.tsx`
+
+2\. 向其中添加以下代码：
+
+```typescript
+"use client";
+import { useTina } from "tinacms/dist/react";
+
+export default function AwesomeContent({data}) {
+  const pageData = useTina({
+    data: data.data,
+    query: data.query,
+    variables: data.variables,
+  });
+
+  const amazingTitle = pageData.data.my_first_collection.title;
+
+  return (
+    <>
+    <h1>{amazingTitle}</h1>
+    </>
+  );
+}
+```
+
+3\. 重构 `app/page.tsx` 以有条件地显示 `<AwesomeContent />`，仅当我们有数据时：
+
+```typescript
+"use client";
+import { useState, useEffect } from "react";
+import { client } from "../tina/__generated__/client";
+import AwesomeContent from "./awesome-content";
+
+export default function Home() {
+
+  const[graphQLresponse, setGraphQLresponse] = useState<any>();
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      const result = await client.queries.my_first_collection({
+        relativePath: "Hello-World.md",
+      });
+      setGraphQLresponse(result);
+    };
+
+    fetchContent();
+    
+  }, []);
+
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-(family-name:--font-geist-sans)">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        {!graphQLresponse && <p>加载中...</p>}
+        {graphQLresponse && <AwesomeContent data={graphQLresponse} />}
+      </main>
+    </div>
+  );
+}
+```
+
+就是这样！
+
+现在让我们检查一下它是否有效！
+
+4\. 导航到 `http://localhost/admin/index.html` 并编辑您惊人的标题，看看更改如何立即反映在HTML中。
+
+5\. 点击“保存”，然后导航回 `http://localhost:3000` 查看您的更改如何在您的“生产”站点上持久化。
+
+> **奖励**：在您的IDE中检查您的 `Hello-World.md` 文件，看看底层内容如何随着您的新更改被保存。
+
+![](</gif/Screen Recording 2025-03-19 at 11.08.18 am.gif>)

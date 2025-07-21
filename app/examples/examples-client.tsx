@@ -2,7 +2,7 @@
 
 import { Container, IconTopRightOnSquare } from 'components/blocks';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { ExamplesExamples } from './examples-types';
+import type { ExamplesExamples } from './examples-types';
 
 export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
   const examples = tinaProps?.data?.examples?.examples;
@@ -16,8 +16,8 @@ export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
         className="relative px-8 py-12 lg:py-16 columns-xs gap-6"
         style={{ columnFill: 'balance-all' }}
       >
-        {examples.map((example, index) => (
-          <Example key={index} example={example} />
+        {examples.map((example) => (
+          <Example key={example.label} example={example} />
         ))}
       </section>
     </Container>
@@ -36,9 +36,10 @@ function Example({ example }: { example: ExamplesExamples }) {
       </div>
       {example.image && (
         <div className="w-full">
+          {/** biome-ignore lint/performance/noImgElement: <TODO> */}
           <img
             src={example.image}
-            alt="Example Image"
+            alt={example.label}
             className="w-full rounded-t-md object-cover object-top"
           />
         </div>

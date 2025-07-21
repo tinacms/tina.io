@@ -8,7 +8,7 @@ export const metadata = {
 export default function NotFound() {
   return (
     <div className="container mx-auto px-4">
-      <NotFoundClient /> 
+      <NotFoundClient />
     </div>
   );
 }

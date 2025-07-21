@@ -7,7 +7,7 @@ export const docsZhCollection = {
   path: 'content/docs-zh',
   fields: [
     ...docsCollection.fields.filter(
-      (field) => field.name !== 'next' && field.name !== 'previous'
+      (field) => field.name !== 'next' && field.name !== 'previous',
     ),
     {
       name: 'next',

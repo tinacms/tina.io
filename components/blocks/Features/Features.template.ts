@@ -1,5 +1,3 @@
-import { act } from '@react-three/fiber';
-import { ModalButton } from 'components/ui';
 import type { Template, TinaField } from 'tinacms';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
 import { codeButtonTemplate } from '../CodeButton/CodeButton.template';
@@ -48,6 +46,12 @@ export const featuresTemplate: Template = {
           ],
         },
         {
+          name: 'alignCenter',
+          label: 'Align Center',
+          type: 'boolean',
+          default: false,
+        },
+        {
           name: 'media',
           label: 'Media',
           type: 'object',
@@ -91,7 +95,8 @@ export const featuresTemplate: Template = {
               name: 'v2Video',
               label: 'v2Video',
               type: 'object',
-              description: 'This is so that we dont ruin sources using the old video object',
+              description:
+                'This is so that we dont ruin sources using the old video object',
               fields: [
                 {
                   name: 'src',

@@ -1,7 +1,8 @@
-import Container from '@/component/util/Container';
-import { cn } from '@/lib/utils';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
+import Container from '@/component/util/Container';
+import { cn } from '@/lib/utils';
 
 type YouTubeEmbedProps = {
   src: string;
@@ -18,7 +19,7 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
       <div
         className={cn(
           'relative w-full bg-gray-200 flex items-center justify-center h-[400px]',
-          className
+          className,
         )}
       >
         <p className="text-gray-500">Video URL is invalid or missing</p>

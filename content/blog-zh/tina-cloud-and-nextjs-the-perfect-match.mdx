@@ -1,0 +1,110 @@
+---
+seo:
+  title: 'Tina Cloud 和 Next.js：完美搭配 | TinaCMS 博客'
+  description: >-
+    了解 Tina Cloud 如何与 Next.js 集成，为构建具有灵活内容管理的动态网站提供强大的解决方案。
+title: 'TinaCloud 和 Next.js：完美搭配'
+date: '2021-05-13T14:34:20+02:00'
+last_edited: '2021-05-13T14:33:22.066Z'
+author: Logan Anderson & Frank Taillandier
+prev: content/blog-zh/evolution-of-inline-editing.mdx
+next: content/blog-zh/announcement-tina-cloud-is-officially-in-alpha.mdx
+---
+
+Next.js 是我们在管理静态内容时的**默认选择**，它与我们的新无头 CMS [TinaCloud](https://app.tina.io) 完美结合。
+
+我们一发现 Next.js 是 Tina 的完美搭档，就立刻加入了 Next.js 的行列，尤其是因为 Next.js 是一个相对不具约束性的 React 框架，在构建时或运行时处理数据时提供了极大的灵活性。
+
+TinaCloud 是一个基于 Git 的 CMS，Next.js 正是我们所需的，用于交付快速的静态网站，您可以在上下文中进行可视化编辑。
+
+让我们看看 Next.js 如何让 Tina 开发者的工作更轻松。
+
+## Next.js：不仅仅是一个静态网站生成器
+
+Next.js 是一个流行的开源元框架，迅速成为[新 React 项目的标准](https://www.npmtrends.com/next-vs-gatsby)。其混合特性意味着它既可以用于静态网站生成 (SSG)，也可以用于服务器端渲染 (SSR)。
+
+Next.js 提供了一种非常方便的方法来进行[静态网站生成](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)，通过 `getStaticProps` 函数：您的内容在构建时被获取，输出是一个传统的静态 HTML 文件。
+在 Next.js 的静态模式下，React 代码在服务器上渲染，然后作为 HTML 提供。这个静态 HTML 文件在下次构建之前不会改变。
+
+在构建步骤中，我们可以访问文件系统，因此我们可以从 Markdown 和 JSON 文件中获取内容，或者通过像 **TinaCloud** 这样的无头 CMS。我们只在构建时获取内容，而不是每次有人访问网站时，这就是静态网站如此快速的原因。
+
+Next.js 的另一个强大功能是[服务器端渲染](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (SSR)：这次 React 组件在服务器上渲染，然后发送到客户端。这与静态网站生成的过程大致相同，但它发生在*每次请求页面时*。SSR 在您有经常变化的动态内容时非常有用。例如，电子商务产品页面上的库存数量或用户特定数据。
+
+通过 [TinaCloud](https://app.tina.io)，我们的无头 API 与 GitHub 通信，为您处理身份验证，可编辑内容直接从浏览器中从 GitHub 获取。这就是我们在 [TinaCloud Starter](https://github.com/tinacms/tina-cloud-starter) 中采用的方法。这并不意味着您只能使用 `getStaticProps` 或无法使用 SSR，只是意味着我们通过 TinaCloud 为您处理复杂的身份验证。
+
+## Next.js：TinaCloud 的自然契合
+
+虽然 TinaCMS 的某些部分是框架无关的，但大部分核心代码是用 React 构建的。例如，TinaCMS 用户界面确实依赖于 React，但没有对 Next.js 的依赖。作为 React 框架的 Next.js 为我们提供了更好的开发者体验，并优雅地解决了一些问题。
+
+Next.js 允许您在编辑模式下从 GitHub 获取和更新远程数据的同时，提供一个静态的极速™网站。通过 TinaCloud，您可以在文件系统之上获得强大的 GraphQL 内容 API、自动生成的 TinaCMS 表单和用户身份验证。
+
+> Gatsby，另一个流行的 React 静态网站生成器选择，也曾在我们的考虑范围内，但我们最终决定它不太合适，因为[**它使用构建时插件来解析和转换 Markdown 文件**。](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem) 这意味着开发服务器必须运行或网站必须重建才能预览网站——这不是我们针对实时编辑所追求的用户体验。Gatsby 对如何获取文件有很强的意见，并强制您使用其 [GraphQL 数据层](https://www.gatsbyjs.com/docs/how-to/sourcing-data/sourcing-from-the-filesystem#using-gatsby-source-filesystem)。我们可以选择不使用这个，但这会对现有的 Gatsby 用户造成摩擦。我们决定采用一种更不具约束性和更灵活的方法，类似于 Next.js。
+
+![使用 TinaCMS 和 TinaCloud 进行实时编辑](/img/blog/edit_demo.gif "使用 TinaCMS 和 TinaCloud 进行实时编辑")
+
+[TinaCloud](https://app.tina.io) 通过从浏览器中动态地从 GitHub 获取数据，加载并将其作为 props 传递给您的页面组件，为您提供即时编辑预览。由于数据被包裹在 React 状态中，当您在内容表单中更改数据时，它会立即反映在您的网站预览中。当您的网站为生产用途构建时，文件将通过我们的[本地 GraphQL 服务器](/blog/using-graphql-with-the-filesystem/)从文件系统中获取。
+
+```js
+const TinaWrapper = (props) => {
+  // 从 TinaCloud 获取动态数据
+  const [payload, isLoading] = useGraphqlForms({
+    query: (gql) => gql(props.query),
+    variables: props.variables || {},
+  })
+  return (
+    <>
+      {isLoading ? (
+        <>
+          <LoadingPage />
+          // 使用静态 Props 返回子组件
+          {props.children(props)}
+        </>
+      ) : (
+        // 将新的编辑状态数据传递给子组件，
+        // payload 是 React 状态，当表单数据更新时会更新
+        props.children({ ...props, data: payload })
+      )}
+    </>
+  )
+}
+```
+
+我们需要一个**静态生成**的解决方案，因为每次请求时从 GitHub 获取所有数据会减慢您的网站速度。我们需要在构建时一次性获取我们的静态数据。由于网站是静态生成的，生产网站可以是静态的，而编辑网站可以直接或通过我们的 TinaCloud 内容 API 从 GitHub 动态加载数据。
+
+目前，**我们建议在您的 Next.js 项目中使用 TinaCloud**，因为这是最快的启动方式。使用 `getStaticProps` 允许您在生产构建中获取静态文件，并使用 TinaCloud 获取动态数据表单来编辑您的网站。
+
+## 动态导入：仅在需要时加载 TinaCMS
+
+鉴于它都是 React，加载 TinaCMS 到您的 Next.js 网站上并结束一天的工作是很诱人的。请记住，由于其客户端特性，TinaCMS 带有一些 JS 包，并需要支付性能代价。通常这取决于您的上下文，对于一个您更关心为团队提供更好编辑体验而不是完美 Lighthouse 分数的内部项目来说，这可能完全没问题。然而，在一个面向公众的网站上，TinaCMS 应该仅在您处于编辑模式时加载，以免增加您的生产包。您的访问者不应该支付任何性能费用。
+
+在编辑模式下，您的网站被一个使用 React 状态的 `TinaProvider` 组件包裹，以实时更新您的网站。这消除了等待构建步骤的需要，并解锁了即时预览。
+
+这通过 [Next.js 动态导入](https://nextjs.org/docs/advanced-features/dynamic-import#basic-usage) 变得简单，当不在编辑模式时将代码分割出 `TinaWrapper`。
+
+在您的 Next.js `_app.js` 文件中，您可以这样写：
+
+```js
+function InnerApp({ Component, pageProps }) {
+  const {edit} = useEditState()
+  if (edit) {
+    // 在编辑模式下动态加载 TinaCMS
+    const TinaWrapper = dynamic(() => import("../components/tina-wrapper"));
+    return {
+        <TinaWrapper {...pageProps}>
+          {(props) => <Component {...props} />}
+        </TinaWrapper>
+    );
+  }
+  // 不在生产环境中加载 TinaCMS
+  return (
+      <Component {...pageProps} />
+  );
+```
+
+## Next.js 带给我们的专注
+
+使用单一框架帮助我们快速迭代并专注于正确的问题。我们计划稍后扩展到其他框架和其他静态网站生成器，但目前，我们对与 Next.js 的合作感到满意。
+
+专注于单一框架有助于使开发尽可能无瑕疵。一旦我们对开发者和用户体验感到满意，我们将更有信心扩展到其他工具，无论是 Vue 应用程序还是非 React 网站。Tina 不是一个 CMS，它是一个开源工具包，用于在您的网站上构建客户端编辑，并可以移植到其他用例。
+
+> 有关支持框架的最新详细信息，请参阅[我们的框架特定指南]()

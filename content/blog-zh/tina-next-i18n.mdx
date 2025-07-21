@@ -1,0 +1,182 @@
+---
+seo:
+  title: 国际化 + Next.js i18n | TinaCMS 博客
+  description: >-
+    学习如何使用 TinaCMS 和 Next.js i18n 来管理多语言内容，包括国际化网站的设置技巧和最佳实践。
+title: 使用 Tina 实现国际化
+date: '2022-06-16T14:00:00.000Z'
+author: James Perkins
+prev: content/blog-zh/a-b-test-with-tina.mdx
+next: content/blog-zh/tina-v-0.68.14.mdx
+---
+
+在开发网站时，你可能需要引入国际化，也称为 i18n。虽然 Tina 目前没有提供插件或原生支持，但我们可以利用 Next.js 的 i18n 功能来创建一个支持国际化的网站。
+
+## 创建一个新项目
+
+要创建我们的项目，我们可以使用 `create-tina-app`，它将使用我们的一种启动模板。在这篇博客文章中，我们将使用最基础的启动模板。
+
+```bash
+npx create-tina-app@latest tina-internationalization
+
+✔ 你想使用哪个包管理器？› Yarn
+✔ 你想使用哪个启动代码？› Bare bones starter
+```
+
+现在我们有了一个基本的项目设置，我们将进行以下操作以使 i18n 工作：
+
+* 添加一个包含我们想支持的所有语言环境的 `next.config.js` 文件。
+* 更新我们的 `getStaticPaths` 和 `getStaticProps`
+* 为语言环境变体创建文件
+
+## 将我们的语言环境添加到 `next.config.js`
+
+`next.config.js` 允许你为你的 Next.js 网站创建高级配置，包括你想在网站上支持的语言环境。
+
+为了支持不同的语言环境，我们需要将 `i18n` 对象添加到配置中：
+
+```json
+(module.exports = {
+  "i18n": {}
+})
+```
+
+然后在 i18n 对象中，我们需要添加两样东西，一个 `locales` 数组和一个 `defaultLocale`。如果有人访问你不支持的语言环境，将使用 `defaultLocale`。在我们的示例中，我们将支持 `en-US` 和 `fr`
+
+```json
+(module.exports = {
+  "i18n": {
+    "locales": ["en-US", "fr"],
+    "defaultLocale": "en-US"
+  }
+})
+```
+
+## 更新 `getStaticPaths`
+
+现在我们已经配置了我们的 Next.js 应用程序以使用语言环境，我们现在需要更新我们的 `getStaticPaths` 以使用它们。打开位于 `pages/posts/[slug].js` 下的博客文章文件，在文件底部你会看到以下内容：
+
+```jsx
+export const getStaticPaths = async () => {
+  const postsResponse = await staticRequest({
+    query: `{
+        postConnection {
+          edges {
+            node {
+              _sys {
+                filename
+              }
+            }
+          }
+        }
+      }`,
+    variables: {},
+  });
+  const paths = postsResponse.postConnection.edges.map((x) => {
+    return { params: { slug: x.node._sys.filename } };
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+```
+
+我们可以将语言环境作为一个属性传递给 `getStaticPaths` 函数，Next.js 将发送所有配置的语言环境数组。我们还可以将路径更新为从一个空数组开始：
+
+```jsx
+export const getStaticPaths = async ({locales}) => {
+const paths = [];
+...
+```
+
+现在我们有能力访问每个语言环境，我们需要更新我们的 `paths` 变量以包含 `locale`。我们需要遍历每个语言环境，以便为每个语言环境创建一个路径。
+
+```jsx
+postsResponse.postConnection.edges.map((post) => {
+  // 确保为每个 `locale` 创建一个 `path`
+  locales.map((locale) => {
+    paths.push({
+      params: { slug: post.node._sys.filename },
+      locale,
+    });
+  });
+});
+```
+
+完成的 `getStaticPaths` 应如下所示：
+
+```jsx
+export const getStaticPaths = async ({ locales }) => {
+  const paths = [];
+  const postsResponse = await staticRequest({
+    query: `{
+        postConnection {
+          edges {
+            node {
+              _sys {
+                filename
+              }
+            }
+          }
+        }
+      }`,
+    variables: {},
+  });
+  postsResponse.postConnection.edges.map((post) => {
+    // 确保为每个 `locale` 创建一个 `path`
+    locales.map((locale) => {
+      paths.push({
+        params: { slug: post.node._sys.filename },
+        locale,
+      });
+    });
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+```
+
+## 更新 `getStaticProps`
+
+我们需要对我们的 `getStaticProps` 函数进行一个小改动，以查找语言环境并将其添加到相对路径中，以便我们编辑正确的文件。
+
+```jsx
+++ relativePath: `${ctx.locale}/${ctx.params.slug}.md`,
+-- relativePath: `${ctx.params.slug}.md`,
+```
+
+通过此更改，我们现在可以打开任何支持的语言环境 URL。我们的应用程序现在已准备好支持我们的语言环境，但我们如何为每个语言环境创建新文件呢？
+
+## 使用 Tina 为每个语言环境创建文件
+
+为了创建我们的文件，我们将利用 `<locale>/posname` 的文件名结构，语言环境将由 Next.js 处理。因此，文件名 `fr/bonjour` 将在你的 Next.js 应用程序中被视为 `<domain>/fr/another-post`。
+
+下面是文件结构的示例。
+
+![在 Tina 中创建新文件时使用的文件结构示例](/img/blog/i18n/test-blog-post.png)
+
+## 如何跟上 Tina 的更新？
+
+跟上 Tina 的最佳方式是订阅我们的新闻通讯。我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、你可能错过的博客文章等等！
+
+你可以通过点击此链接并输入你的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
+
+### Tina 社区 Discord
+
+Tina 有一个社区 [Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了 Jamstack 爱好者和 Tina 爱好者。加入后，你会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的 Tina 新闻和抢先预览
+* 与 Tina 社区分享你的项目，并谈论你的经验
+* 聊聊 Jamstack
+
+### Tina Twitter
+
+我们的 Twitter 账号 ([@tinacms](https://twitter.com/tinacms)) 宣布最新的功能、改进和 Tina 的抢先预览。如果你在项目中标记我们，我们也会很高兴。
+
+有关 Next.js 配置的更多信息，请查看 [Next.js 配置文档](https://nextjs.org/docs/app/api-reference/next-config-js)。

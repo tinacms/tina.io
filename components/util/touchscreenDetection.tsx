@@ -1,5 +1,3 @@
-import { check } from 'prettier';
-
 const checkTouchScreen = () => {
   let hasTouchScreen = false;
   if ('maxTouchPoints' in navigator) {

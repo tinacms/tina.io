@@ -1,0 +1,51 @@
+---
+title: 在Next.js上托管Tina后端
+id: '/docs/reference/self-hosted/tina-backend/nextjs'
+---
+
+Tina后端托管在一个负责处理所有TinaCMS请求的单一端点上。这包括GraphQL API、身份验证和授权。
+
+可以使用`TinaNodeBackend`函数创建处理程序。此函数接受一个`TinaNodeBackendOptions`对象作为参数。
+
+## 配置
+
+您需要创建一个可以处理POST请求的端点。在这个例子中，我们将使用Next.js的API路由，但您可以使用任何您想要的框架。
+
+```js
+// pages/api/tina/[...routes].{ts,js}
+
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from 'tinacms-authjs'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : AuthJsBackendAuthProvider({
+        authOptions: TinaAuthJSOptions({
+          databaseClient: databaseClient,
+          secret: process.env.NEXTAUTH_SECRET,
+        }),
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // 如果需要，可以在这里修改请求
+  return handler(req, res)
+}
+```
+
+接下来，确保更新您的TinaCMS配置以使用新的端点。
+
+```js
+// tina/config.{js,ts}
+export default defineConfig({
+  // 这是您的graphql端点的URL
+  contentApiUrlOverride: '/api/tina/gql',
+  //...
+})
+```

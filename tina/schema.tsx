@@ -16,6 +16,7 @@ import { defineSchema } from 'tinacms';
 import { itemTemplate } from '../components/toc/toc-item.template';
 import { submenuTemplate } from '../components/toc/toc-submenu.template';
 import { blogsCollection } from './collectionsSchema/blogs';
+import { blogsZhCollection } from './collectionsSchema/blogsZh';
 import { conferenceTinaCMSCollection } from './collectionsSchema/conference';
 import { docsCollection } from './collectionsSchema/docs';
 import { docsZhCollection } from './collectionsSchema/docsZh';
@@ -26,8 +27,8 @@ import { meetingLinksCollection } from './collectionsSchema/meetingLinks';
 import { navigationBarCollection } from './collectionsSchema/navigationBar';
 import { pagesCollection } from './collectionsSchema/pages';
 import { settingCollection } from './collectionsSchema/settings';
-import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud';
+import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 
 export const schema = defineSchema({
   collections: [
@@ -35,6 +36,7 @@ export const schema = defineSchema({
     docsCollection as Collection,
     docsZhCollection as Collection,
     blogsCollection as Collection,
+    blogsZhCollection as Collection,
     examplesCollection as Collection,
     meetingLinksCollection as Collection,
     whatsNewTinaCMSCollection as Collection,
@@ -57,7 +59,7 @@ export const schema = defineSchema({
           list: true,
           ui: {
             itemProps: (item) => {
-              return { label: '🗂️ ' + (item?.title ?? 'Unnamed Menu Group') };
+              return { label: `🗂️ ${item?.title ?? 'Unnamed Menu Group'}` };
             },
           },
           fields: [

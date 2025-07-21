@@ -1,0 +1,281 @@
+---
+id: /docs/guides/contextual-drafts
+title: '使用草稿进行可视化编辑'
+---
+
+> 以下指南需要 tinacms: 1.0.2 或更高版本。
+
+> 想直接查看最终结果？[查看最终结果](https://github.com/tinacms/tina-barebones-starter-preview-mode)
+
+## 使用草稿进行可视化编辑
+
+在大多数情况下，您不希望在生产站点上为草稿文档创建页面。这使得[处理草稿](/docs/drafts/overview/)在可视化编辑中成为一个挑战。在这个示例中，我们将展示如何使用 [Next.js 预览模式](https://nextjs.org/docs/advanced-features/preview-mode)为草稿文档添加可视化编辑。
+
+在预览模式下，`getStaticProps` 将在每次请求时被调用。这意味着我们可以在预览模式下有条件地获取草稿文档，并将它们排除在生产站点之外。
+
+“预览模式”可以通过几个步骤添加：
+
+## 1. 添加预览模式 API 处理程序
+
+> 注意：如果您尚未安装 `@tinacms/auth`，可以通过运行 `yarn add @tinacms/auth` 或 `npm install @tinacms/auth` 来安装
+
+创建一个名为 `pages/api/preview/enter.{ts,js}` 的文件，这将处理进入预览模式的请求。该文件应如下所示：
+
+```ts
+import { isUserAuthorized } from '@tinacms/auth'
+
+const handler = async (req, res) => {
+  if (process.env.NODE_ENV === 'development') {
+    // 在本地开发中进入预览模式
+    res.setPreviewData({})
+    return res.redirect(req.query.slug)
+  }
+
+  // 检查 TinaCloud 令牌
+  const isAuthorizedRes = await isUserAuthorized({
+    token: `Bearer ${req.query.token}`,
+    clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  })
+
+  if (isAuthorizedRes) {
+    res.setPreviewData({})
+    return res.redirect(req.query.slug)
+  }
+
+  return res.status(401).json({ message: '无效的令牌' })
+}
+
+export default handler
+```
+
+此处理程序验证（通过 TinaCloud）令牌是否有效，然后重定向到我们想要编辑的文档。
+
+接下来，创建一个名为 `pages/api/preview/exit.{ts,js}` 的文件，这将处理退出预览模式的请求。该文件应如下所示：
+
+```ts
+const handler = (req, res) => {
+  res.clearPreviewData()
+  res.redirect(req.query.slug)
+}
+
+export default handler
+```
+
+这两个文件基于 [Next.js 预览模式 API 处理程序](https://nextjs.org/docs/advanced-features/preview-mode#step-1-create-and-access-a-preview-api-route)。
+
+## 2. 更新 `tina/config`
+
+```ts
+export default defineConfig({
+  // ...
+  // 将此添加到您的配置中
+  admin: {
+    auth: {
+      onLogin: async ({ token }) => {
+        // 当用户登录时进入预览模式
+        location.href =
+          `/api/preview/enter?token=${token.id_token}&slug=` + location
+      },
+      onLogout: async () => {
+        // 当用户注销时退出预览模式
+        location.href = `/api/preview/exit?slug=` + location
+      },
+    },
+  },
+  // ...
+})
+```
+
+## 3. 更新数据获取
+
+### 更新 getStaticPaths
+
+我们现在将更新我们的 `getStaticPaths`，以便在生产站点中排除草稿页面。
+
+```ts
+const req = await client.queries.postConnection()
+```
+
+```diff
+export const getStaticPaths = async () => {
+- const req = await client.queries.postConnection()
++ const req = await client.queries.postConnection({
++   filter: { draft: { eq: false } },
++ })
+
+  // ...
+}
+```
+
+根据您的用例，您也可以安全地使用任何 `fallback` 值。
+
+### 更新 getStaticProps
+
+#### 列表页面
+
+首先，我们将创建一个实用函数，根据我们是否处于预览模式，返回所有文档或仅返回生产文档。
+
+_`util/getPosts.{ts,js}`_
+
+```ts
+import { client } from '../<PathToTina>/tina/__generated__/client'
+
+export const getPosts = async ({ preview }) => {
+  // 默认获取非草稿帖子
+  let filter = { draft: { eq: false } }
+
+  // 如果启用了预览模式，获取所有帖子
+  if (preview) {
+    filter = {}
+  }
+  return client.queries.postConnection({
+    filter,
+  })
+}
+```
+
+在您获取帖子列表的任何地方使用此函数（帖子索引页面）。
+
+```ts
+import { getPosts } from '../util/getPosts'
+//...
+
+export const getStaticProps = async ({ preview = false }) => {
+  const { data, query, variables } = await getPosts({
+    preview,
+  })
+
+  return {
+    props: {
+      preview,
+      data,
+      query,
+      variables,
+      //myOtherProp: 'some-other-data',
+    },
+  }
+}
+```
+
+#### Slug 页面（_可选_）
+
+在使用 SSR 或“增量静态再生”（ISR）的页面上，您的 `getStaticProps` 函数将在每次请求时被调用。这意味着当文档是草稿且我们不在预览模式时，我们需要返回 404。
+
+```ts
+export const getStaticProps = async ({ params, preview = false }) => {
+  const { data, query, variables } = await client.queries.post({
+    relativePath: params.slug + '.md',
+  })
+
+  return {
+    // 如果帖子是草稿且预览为 false，则未找到帖子
+    notFound: data?.post?.draft && !preview,
+    props: {
+      preview,
+      data,
+      query,
+      variables,
+    },
+  }
+}
+```
+
+## 4. 添加退出预览按钮
+
+为了帮助退出预览模式，我们可以在站点顶部添加一个按钮。该按钮将显示在 `getStaticProps` 返回 `preview: true` 的任何页面中。
+
+在 `pages/_app.{ts,js}` 中添加以下内容：
+
+```tsx
+const App = ({ Component, pageProps }) => {
+  const slug = typeof window !== 'undefined' ? window.location.pathname : '/'
+  return (
+    <>
+      {/* 随意添加您自己的样式！ */}
+      {pageProps.preview && (
+        <div>
+          您处于预览模式
+          {/* 此链接将注销 Tina 并退出预览模式 */}
+          <a
+            href={`/admin/index.html#/logout?slug=/api/preview/exit?slug=${slug}`}
+          >
+            点击这里
+          </a>{' '}
+          退出
+        </div>
+      )}
+
+      <Component {...pageProps} />
+    </>
+  )
+}
+
+export default App
+```
+
+现在，当编辑者登录时，他们将进入预览模式，并能够上下文编辑草稿文档。
+
+您可以查看[最终结果](https://github.com/tinacms/tina-barebones-starter-preview-mode)，如果您想了解更多关于预览模式的信息，请参阅 [Next.js 文档](https://nextjs.org/docs/advanced-features/preview-mode)。
+
+## 使用编辑工作流
+
+如果您正在使用[编辑工作流](https://tina.io/docs/drafts/editorial-workflow/)，您可能希望确保预览数据从您正在编辑的分支中获取内容。为此，通过配置中的 `cmsCallback` 函数订阅 `branch:change` 事件：
+
+```ts
+// tina/config.ts
+import { defineConfig } from 'tinacms'
+
+export default defineConfig({
+  // ...
+  cmsCallback: (cms) => {
+    cms.events.subscribe('branch:change', async ({ branchName }) => {
+      console.log(`检测到分支更改。设置分支为 ${branchName}`)
+      return fetch(`/api/preview/change-branch?branchName=${branchName}`)
+    })
+    return cms
+  },
+})
+```
+
+在 `/api/preview/change-branch` 添加另一个 API 端点，仅在我们处于预览模式时更新分支数据：
+
+```ts
+// api/preview/change-branch
+export default function handler(req, res) {
+  if (req.preview && req.query?.branchName) {
+    res.setPreviewData({ branch: req.query.branchName })
+    return res.status(200).json({ message: '成功' })
+  }
+  return res.status(403).json({ message: '未授权' })
+}
+```
+
+更新我们的请求以在 `getStaticProps` 中包含分支（如果提供）：
+
+```ts
+export const getStaticProps = async ({
+  params,
+  preview = false,
+  previewData = {},
+}) => {
+  const { data, query, variables } = await client.queries.post(
+    {
+      relativePath: params.slug + '.md',
+    },
+    {
+      branch: preview && previewData?.branch,
+    }
+  )
+
+  return {
+    // 如果帖子是草稿且预览为 false，则未找到帖子
+    notFound: data?.post?.draft && !preview,
+    props: {
+      preview,
+      data,
+      query,
+      variables,
+    },
+  }
+}
+```

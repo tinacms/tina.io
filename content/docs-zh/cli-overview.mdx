@@ -1,0 +1,142 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/README.md"
+title: TinaCMS CLI
+next: content/docs-zh/reference/media/overview.mdx
+---
+
+## 可用命令
+
+```sh
+  $ tinacms <command>
+
+  命令:
+
+  dev [options]          构建 Tina 并启动开发服务器
+  build [options]        构建 CMS 和自动生成的模块以用于 TinaCloud
+  init [options]         将 TinaCloud 添加到现有项目
+  audit [options]        审核你的架构和文件以检查错误
+  search-index [options] 构建 TinaCMS 搜索索引并上传到 TinaCloud
+  help [command]         显示命令的帮助信息
+```
+
+## 常用选项
+
+以下是一些可以在 `tinacms dev` 和 `tinacms build` 中使用的常用选项
+
+| 参数                      | 描述                                                                                                                                                                  |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-c`                      | `-c` 允许你选择性地将命令作为子进程运行。例如，你可以在 graphQL 服务器旁边运行你的 Next.js 项目 `yarn tinacms dev -c next dev`。                                        |
+| `--port <port>`           | 指定运行服务器的端口。（默认 4001）                                                                                                                                   |
+| `--datalayer-port <port>` | 指定运行本地级别服务器的端口。（默认 9000）                                                                                                                          |
+| `--noWatch`               | 不在文件更改时重新生成配置。此选项适合在 CI 中构建时添加，或者如果你不想监视文件系统的更改。                                                                           |
+| `--noSDK`                 | 不生成生成的客户端 SDK。有关 SDK 的更多详细信息，请[阅读此处](/docs/graphql/cli/)。                                                                                   |
+| `-v`,`--verbose`          | 增加日志输出的详细程度（默认：false）                                                                                                                                 |
+| `--rootPath`              | 指定运行 CLI 的根目录（默认为当前工作目录）                                                                                                                           |
+| `--noTelemetry`           | 不报告匿名遥测数据                                                                                                                                                     |
+
+## 基本用法：
+
+### "tinacms dev"
+
+> 要运行此命令，你必须有一个有效的 `tina/config.{ts,tsx,js,jsx}` 文件。
+
+`dev` 将架构编译为静态文件，为你的项目生成 TypeScript 类型，并在 [http://localhost:4001](http://localhost:4001) 上启动一个 graphQL 服务器。
+
+此命令接受在[常用选项](#common-options)中列出的参数
+
+#### NextJS 示例：
+
+```bash
+tinacms dev -c \"next dev\"
+```
+
+#### 其他 SSG 框架示例
+
+```bash
+tinacms dev -c \"<Yor Dev Command>\"
+```
+
+### "tinacms build"
+
+此命令编译和验证架构，并生成客户端和类型。它还将确保你的内容已完成索引。
+
+#### 选项
+
+此命令接受所有常用的[选项](#common-options)以及其他一些选项：
+
+| 参数                      | 描述                                                                                                                    |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `--tina-graphql-version`  | 指定后端将使用的 `@tinacms/graphql` 版本。（仅在高级情况下需要）                                                        |
+| `--local`                 | 将启动本地 Graphql 服务器并生成本地客户端。这对于静态构建很有用，但不适用于 SSR                                         |
+| `--skip-cloud-checks`     | 跳过 TinaCloud 检查（危险且不推荐）                                                                                     |
+| `--skip-search-indexing`  | 跳过搜索索引                                                                                                            |
+| `--no-client-build-cache` | 禁用本地客户端的查询自动缓存                                                                                            |
+
+#### 示例：
+
+**使用 TinaCloud 进行数据获取的生产构建**
+
+```bash
+tinacms build && next build
+```
+
+**使用 SSG 的生产构建**
+
+```bash
+tinacms build && <Your SSG build command>
+```
+
+**使用本地客户端和本地 graphql 服务器**
+
+```bash
+tinacms build --local -c "next build"
+```
+
+这将会：
+
+* 启动本地 graphql 服务器
+* 生成将查询本地文件系统的本地 TinaCMS 客户端
+* 生成本地图像路径
+* 构建生产 SPA
+* 运行 Next 构建
+
+### "npx @tinacms/cli\@latest init"
+
+> init 命令必须在现有项目内运行（例如 NextJS 项目、Hugo、Jekyll 等）。
+
+```bash
+npx @tinacms/cli init
+```
+
+这将会：
+
+* 安装 Tina 所需的所有依赖项。
+* 在 `tina` 目录中定义一个基本内容架构。
+* 在演示目录中创建示例内容。
+* 编辑 `package.json` 以使 `dev`、`build` 和 `start` 脚本运行 tina GraphQL API。
+
+#### 选项
+
+| 参数            | 描述                      |
+| --------------- | ------------------------- |
+| `--noTelemetry` | 禁用开源遥测              |
+
+### "tinacms audit"
+
+`audit` 命令用于检查文件中的错误。它目前执行两项操作。
+
+* 检查文件是否具有正确的扩展名
+* 提交每个文件作为 Graphql 变更并检查 Graphql 错误
+
+默认情况下，变更不会更改文件的内容。
+
+#### 选项
+
+| 参数             | 描述                                                                                                                                                                                                                                                                |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--clean`        | 使用此标志时，它会将实际的 Graphql 变更提交到文件系统。这意味着它将清除架构中未定义的任何字段。最好在执行此操作之前进行 `git commit`，以便可以轻松撤销意外更改。                                                                                                         |
+| `-v`,`--verbose` | 增加日志输出的详细程度（默认：false）                                                                                                                                                                                                                               |
+
+### "tinacms search-index"
+
+此命令使用存储库中的内容构建搜索索引并将其上传到 TinaCloud。

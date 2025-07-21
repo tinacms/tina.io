@@ -1,0 +1,36 @@
+---
+seo:
+  title: Mermaid图表与TinaCMS的进展更新 | TinaCMS博客
+  description: >-
+    在TinaCMS中直接创建和嵌入Mermaid图表。了解这一新功能如何增强内容可视化并改善您的编辑工作流程
+title: '进展更新：TinaCMS + Mermaid'
+date: '2024-10-09T14:00:00.000Z'
+last_edited: '2024-10-09T14:00:00.000Z'
+author: Jack Pettit
+prev: content/blog-zh/Pricing-Updates-its-now-cheaper-to-use-Tinas-best-feature-.mdx
+next: content/blog-zh/annual-billing.mdx
+---
+
+在TinaCMS中集成和管理Mermaid图表的功能即将到来，为使用流程图、时序图等视觉表现的内容创作者提供了更多的灵活性。以下是该功能的现状以及接下来的计划。
+
+### 第1部分：Plate.js集成（已完成）
+
+Mermaid图表现已完全集成到**Plate编辑器**中。使用`mermaid`包，可以在编辑器中直接编辑和渲染图表。
+
+![](/img/blog/mermaid-progress.gif "在富文本编辑器中编辑/渲染Mermaid图表")
+
+### 第2部分：解析和保存Mermaid图表（进行中）
+
+下一阶段的重点是**解析和保存**这些图表。由于TinaCMS使用定制的`mdast`，挑战在于确保Mermaid语法能够被正确解析、保存并重新加载而不出现问题。
+
+### 接下来是什么？
+
+接下来的步骤包括完善解析和保存过程，并推出最终部署。这将在`tinacms`的2.3.0版本中推出。完成后，您将能够在TinaCMS中完全集成、编辑和保存Mermaid图表 🦙
+
+同时，欢迎您在[https://github.com/tinacms/tinacms/issues/4734](https://github.com/tinacms/tinacms/issues/4734)上探索开发进展
+
+感谢您一直以来的支持和反馈！
+
+最好的祝福，
+
+TinaCMS团队 🦙

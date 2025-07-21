@@ -1,0 +1,66 @@
+---
+id: /docs/self-hosted/user-management
+
+title: 用户管理
+last_edited: '2023-11-02T04:00:00.000Z'
+previous: content/docs-zh/self-hosted/querying-data.mdx
+---
+
+# 用户集合
+
+在使用默认的自托管认证时，登录名和密码存储在名为“User”的集合中。这个集合可以像其他集合一样从集合菜单中访问。该集合由一个包含用户对象列表的文档组成。
+
+> 注意：用户集合不会存储在您的Git仓库中。对集合的所有更改都会持久化到自托管数据库中。
+
+![](/img/docs/self-hosted/user_management_users_collection_small_gjxgld.png)
+
+# 添加新用户
+
+点击加号按钮添加新用户。分配一个唯一的用户名并设置初始密码，然后点击保存按钮。
+
+![](/img/docs/self-hosted/user_management_list_users_woxeve.png)
+
+# 编辑用户
+
+点击要编辑的用户。更新用户的任何详细信息并点击保存按钮。
+
+![](/img/docs/self-hosted/user_management_edit_user_mhebwp.png)
+
+# 重置密码
+
+点击用户。更新密码并点击“下次登录时要求更改密码”切换按钮。点击保存。
+
+# 自定义用户集合
+
+默认的用户集合包含以下字段：
+
+- 用户名
+- 姓名
+- 邮箱
+- 密码
+
+用户集合唯一必需的字段是一个密码类型字段（`required: true`）和一个标记为`uid: true, required: true`的字符串类型字段，以指示它是用户名。可以根据需要添加其他字段。
+
+```js
+import { TinaUserCollection } from 'tinacms-authjs'
+
+const config = defineStaticConfig({
+  ...
+  schema: {
+    collections: [
+      ...,
+      {
+        ...TinaUserCollection,
+        fields: [
+          ...TinaUserCollection.fields,
+          // 将电话号码添加到现有字段
+          {
+            type: 'string',
+            label: 'Phone',
+            name: 'phone'
+          },
+        ]
+      }
+    ]
+  }
+```

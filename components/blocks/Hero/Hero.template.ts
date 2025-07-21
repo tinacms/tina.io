@@ -29,7 +29,13 @@ export const heroTemplate: Template = {
   },
   fields: [
     { name: 'headline', label: 'Headline', type: 'string' },
-    { name: 'headline2', label: 'Headline 2', type: 'string', description: 'This is the second headline, it will be displayed below the first headline.' },
+    {
+      name: 'headline2',
+      label: 'Headline 2',
+      type: 'string',
+      description:
+        'This is the second headline, it will be displayed below the first headline.',
+    },
     { name: 'text', label: 'Text', type: 'string' },
     {
       name: 'media',

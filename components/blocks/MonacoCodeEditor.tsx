@@ -1,7 +1,9 @@
+import debounce from 'lodash/debounce';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useRef, useState } from 'react';
 import { wrapFieldsWithMeta } from 'tinacms';
-import debounce from 'lodash/debounce';
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 const MonacoCodeEditor = wrapFieldsWithMeta(({ field, input, meta }) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const monacoInstance = useRef(null);
@@ -37,14 +39,14 @@ const MonacoCodeEditor = wrapFieldsWithMeta(({ field, input, meta }) => {
     return () => {
       monacoInstance.current?.dispose();
     };
-  }, []);
+  }, [localValue, updateTinaValue]);
 
   useEffect(() => {
     if (monacoInstance.current && input.value !== localValue) {
       monacoInstance.current.setValue(input.value || '');
       setLocalValue(input.value || '');
     }
-  }, [input.value]);
+  }, [input.value, localValue]);
 
   return (
     <div>

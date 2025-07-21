@@ -1,0 +1,358 @@
+---
+id: /docs/editing/blocks
+title: 使用Tina作为网站构建器
+last_edited: '2025-03-26T06:39:19.507Z'
+next: content/docs-zh/editing/single-document-collections.mdx
+previous: content/docs-zh/editing/markdown.mdx
+---
+
+Tina支持基于块的编辑，因此您的编辑者可以使用您预定义的块（即**页面部分**）构建完整的页面。
+
+<WebmEmbed embedSrc="/img/docs/your-blocks.webm" />
+
+假设您希望编辑者构建一个页面，并且您有3种主要的“块”类型可以开始：
+
+- 一个“Hero”块
+- 一个“Feature”块
+- 一个“Main Content”块
+
+我们希望允许编辑者在每个页面上使用各种块。
+
+## 定义我们的模式
+
+我们将使用[`object`类型](/docs/schema/#grouping-properties-within-an-object)，并提供一个`templates`列表，其中每个“模板”代表一个独特的块类型。
+
+```typescript
+import { defineConfig } from 'tinacms';
+import type { Template } from 'tinacms';
+
+const heroBlock: Template = {
+  name: 'hero',
+  label: 'Hero',
+  fields: [
+    {
+      type: 'string',
+      label: '标语',
+      name: 'tagline',
+    },
+    {
+      type: 'string',
+      label: '标题',
+      name: 'headline',
+    },
+    {
+      type: 'string',
+      label: '文本',
+      name: 'text',
+      ui: {
+        component: 'textarea',
+      },
+    },
+  ],
+};
+
+const featureBlock: Template = {
+  name: 'features',
+  label: '功能',
+  fields: [
+    {
+      type: 'object',
+      label: '功能项',
+      name: 'items',
+      list: true,
+      fields: [
+        {
+          type: 'string',
+          label: '标题',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: '文本',
+          name: 'text',
+        },
+      ],
+    },
+  ],
+};
+
+const contentBlock: Template = {
+  name: 'content',
+  label: '内容',
+  fields: [
+    {
+      type: 'string',
+      ui: {
+        component: 'textarea',
+      },
+      label: '正文',
+      name: 'body',
+    },
+  ],
+};
+
+export default defineConfig({
+  // ...
+  schema: {
+    collections: [
+      {
+        // ...
+        fields: [
+          {
+            type: 'object',
+            list: true,
+            name: 'blocks',
+            label: '部分',
+            templates: [heroBlock, featureBlock, contentBlock],
+          },
+        ],
+      },
+    ],
+  },
+});
+```
+
+我们已经定义了3个块（`content`、`features`、`hero`）的结构，以及我们的主要块字段：`blocks`。
+
+## 查询块数据
+
+因为块列表中的每个项目可以有一个独特的模式，查询这些数据不像其他类型的字段那么简单。我们需要使用GraphQL的片段语法来查询每个块类型的适当数据结构。
+
+片段名称是根据集合名称和父字段名称自动生成的。例如，如果集合是`pages`，字段是`blocks`，块的名称是`hero`，则片段将命名为`PagesBlocksHero`。
+
+<GraphQLCodeBlock
+  query="{
+  ##pages(relativePath:#&#x22;turbo.json&#x22;)#{
+  ####blocks#{
+  ######__typename
+  ######...#on#PagesBlocksHero#{
+  ########__typename
+  ########tagline
+  ########headline
+  ########text
+  ######}
+  ######...#on#PagesBlocksFeatures#{
+  ########__typename
+  ########items#{
+  ##########title
+  ##########text
+  ########}
+  ######}
+  ######...#on#PagesBlocksContent#{
+  ########__typename
+  ########body
+  ######}
+  ####}
+  ##}"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;pages&#x22;:#{
+  ######&#x22;blocks&#x22;:#[
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksHero&#x22;,
+  ##########&#x22;tagline&#x22;:#&#x22;Turbo#means#good&#x22;,
+  ##########&#x22;headline&#x22;:#&#x22;The#All-New#Turbo#Model&#x22;,
+  ##########&#x22;text&#x22;:#&#x22;Think#fast.#Think#Turbo.&#x22;
+  ########},
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksFeatures&#x22;,
+  ##########&#x22;items&#x22;:#[
+  ############{
+  ##############&#x22;title&#x22;:#&#x22;10%#Faster&#x22;,
+  ##############&#x22;text&#x22;:#&#x22;Than#our#slow#one&#x22;
+  ############},
+  ############{
+  ##############&#x22;title&#x22;:#&#x22;Safer#Than#Ever&#x22;,
+  ##############&#x22;text&#x22;:#&#x22;We#settled#the#lawsuits#out#of#court&#x22;
+  ############}
+  ##########]
+  ########},
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksHero&#x22;,
+  ##########&#x22;tagline&#x22;:#null,
+  ##########&#x22;headline&#x22;:#&#x22;Our#Story&#x22;,
+  ##########&#x22;text&#x22;:#&#x22;Read#about#the#history#of#Turbo&#x22;
+  ########},
+  ########{
+  ##########&#x22;__typename&#x22;:#&#x22;PagesBlocksContent&#x22;,
+  ##########&#x22;body&#x22;:#&#x22;Lorem#ipsum#dolor#sit#amet&#x22;
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+  preselectResponse={false}
+/>
+
+> 有关如何使用Tina的GraphQL API查询数据的更多信息，请查看[查询文档](https://tina.io/docs/graphql/queries/)
+
+## 渲染我们的块
+
+我们可以通过创建一个新的`Blocks`组件来渲染页面上的块，该组件将在switch语句中有条件地渲染每种块类型。
+
+```tsx
+// Blocks.tsx
+
+import React from 'react';
+import type { Pages } from '../tina/__generated__/types';
+import { Content } from './blocks/content';
+import { Features } from './blocks/features';
+import { Hero } from './blocks/hero';
+import { Testimonial } from './blocks/testimonial';
+
+export const Blocks = (props: Pages) => {
+  return (
+    <>
+      {props.blocks
+        ? props.blocks.map(function (block, i) {
+            switch (block.__typename) {
+              case 'PagesBlocksContent':
+                return (
+                  <React.Fragment key={i + block.__typename}>
+                    <Content data={block} />
+                  </React.Fragment>
+                );
+              case 'PagesBlocksHero':
+                return (
+                  <React.Fragment key={i + block.__typename}>
+                    <Hero data={block} />
+                  </React.Fragment>
+                );
+              case 'PagesBlocksFeatures':
+                return (
+                  <React.Fragment key={i + block.__typename}>
+                    <Features data={block} />
+                  </React.Fragment>
+                );
+              default:
+                return null;
+            }
+          })
+        : null}
+    </>
+  );
+};
+```
+
+请注意，每个博客上的`__typename`是`{CollectionName}{FieldName}{BlockTemplateName}`。
+
+在我们的例子中：
+
+- CollectionName: "Pages"
+- FieldName: "Blocks"
+- BlockTemplateName: "Content" | "Hero" | "Features"
+
+## 添加可视化块选择器（实验性）
+
+<WebmEmbed embedSrc="/img/docs/editing/visual-selector-preview.webm" />
+
+<WarningCallout
+  body={
+    <>
+      这是一个实验性功能，API可能会发生变化。有任何想法吗？请在聊天中告诉我们，或通过我们的社区渠道之一
+    </>
+  }
+/>
+
+这个可视化块选择器允许编辑者从一组图像中选择块，而不是文本。
+
+首先，要启用可视化块选择器，UI键中的`visualSelector`属性必须设置为true。
+
+```diff
+...
+export default defineConfig({
+  // ...
+  schema: {
+  collections: [
+    {
+      // ...
+      fields: [
+        {
+          type: 'object',
+          list: true,
+          name: 'blocks',
+          label: '部分',
++         ui: {
++           visualSelector: true,
++         },
+          templates: [heroBlock, featureBlock, contentBlock],
+        },
+      ],
+    },
+  ]}
+})
+...
+```
+
+要设置块选择器，必须为每个您希望有预览图像的块提供预览图像。每个块的基本结构如下所示。
+
+```diff
+const featureBlock = {
+  name: 'features',
+  label: '功能',
++  ui: {
++    previewSrc: "https://...",
++  },
+  fields: [
+    {
+      type: 'object',
+      label: '功能项',
+      name: 'items',
+      list: true,
+      fields: [
+        {
+          type: 'string',
+          label: '标题',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: '文本',
+          name: 'text',
+        },
+      ],
+    },
+  ],
+}
+```
+
+`previewSrc`是将在可视化选择器中渲染的图像URL。如果没有提供预览，块仍然可以通过点击标题使用，只是不会显示预览图像。
+
+_可选地_ 可以提供一个`category`，允许块分组到不同的类别中。
+
+```diff
+const featureBlock = {
+  name: 'features',
+  label: '功能',
+  ui: {
++    category: "页面部分",
+    previewSrc: "https://...",
+  },
+  fields: [
+    {
+      type: 'object',
+      label: '功能项',
+      name: 'items',
+      list: true,
+      fields: [
+        {
+          type: 'string',
+          label: '标题',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: '文本',
+          name: 'text',
+        },
+      ],
+    },
+  ],
+}
+```
+
+## 视频教程
+
+对于那些喜欢从视频中学习的人，可以查看我们["TinaCMS 深入探讨"](https://www.youtube.com/watch?v=PcgnJDILv4w&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB&pp=iAQB)系列中的“设置块”片段。
+
+<Youtube embedSrc="https://www.youtube.com/embed/PcgnJDILv4w?start=555&end=727" />

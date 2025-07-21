@@ -1,4 +1,5 @@
 import Image from 'next/image';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Actions } from '../ActionButton/ActionsButton';
@@ -8,13 +9,13 @@ export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1;
   const id = data.headline
     ? data.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-    : 'showcase-' + index;
+    : `showcase-${index}`;
 
   return (
     <>
       <div
         id={id}
-        key={'showcase-' + index}
+        key={`showcase-${index}`}
         className={`feature ${isReversed ? 'featureReverse' : ''}`}
       >
         <div className="featureText">
@@ -31,7 +32,7 @@ export function ShowcaseBlock({ data, index }) {
           )}
           {data.actions && <Actions items={data.actions} />}
         </div>
-        {data.media && data.media.src && (
+        {data.media?.src && (
           <div className="featureImage">
             <a href={data.url} target="_blank">
               {data.media.src.endsWith('.webm') ? (
@@ -138,14 +139,13 @@ export function ShowcaseBlock({ data, index }) {
 
 export function ShowcaseItemsBlock({ data, index }) {
   return (
-    <section key={'features-' + index} className="w-full">
+    <section key={`features-${index}`} className="w-full">
       <Container>
         {/* TODO: why is there a type error here */}
         {/* @ts-ignore */}
-        {data.items &&
-          data.items.map((data, index) => {
-            return <ShowcaseBlock data={data} index={index} />;
-          })}
+        {data.items?.map((data, index) => {
+          return <ShowcaseBlock data={data} key={data.id} index={index} />;
+        })}
       </Container>
     </section>
   );

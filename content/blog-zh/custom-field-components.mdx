@@ -1,0 +1,353 @@
+---
+draft: false
+consumes:
+  - file: /packages/next-tinacms-json/src/use-local-json-form.ts
+    details: 示例展示了useLocalJsonForm的使用
+  - file: /packages/next-tinacms-json/src/use-json-form.ts
+    details: 示例展示了useLocalJsonForm的使用
+  - file: /packages/@tinacms/forms/src/form.ts
+    details: 依赖于Field接口
+  - file: /packages/@tinacms/form-builder/src/field-plugin.tsx
+    details: 依赖于FieldPlugin接口
+seo:
+  title: 自定义字段组件 | TinaCMS博客
+  description: >-
+    学习如何在TinaCMS中构建自定义字段组件，以通过个性化、灵活的字段来增强内容编辑，适应您的项目需求。
+title: 如何制作自定义字段组件
+date: '2020-01-20T07:00:00.000Z'
+author: Kendall Strautman
+prev: content/blog-zh/exporting-wordpress-content-to-gatsby.mdx
+next: content/blog-zh/custom-field-plugins.mdx
+---
+
+表单字段是任何CMS的核心功能。虽然Tina提供了一套强大的“开箱即用”字段，但您也可以创建自己的字段。本文将向您展示如何创建自定义字段组件并在Tina侧边栏中使用它们的基本概念。
+
+**先决条件 👩‍🏫**
+
+在整篇文章中，我将提到一些TinaCMS的核心概念，如[表单](https://tinacms.org/docs/plugins/forms)、侧边栏和[字段](https://tinacms.org/docs/plugins/fields)。在阅读之前，了解一些关于**[TinaCMS如何工作](https://tinacms.org/docs/getting-started/introduction)**的基本知识会很有帮助。
+
+## 为什么要创建自定义字段？
+
+Tina旨在完全可定制和可扩展。创建**自定义字段可以提供对侧边栏配置和样式的精确控制**，并实现独特的字段功能。
+
+<WebmEmbed embedSrc="/img/blog/custom-field-components/saturate-custom-field.webm" />
+
+> 想要提前了解？可以查看上面gif中自定义范围输入字段的**[完成版本](https://github.com/kendallstrautman/llama-filters)**，或者看看Tina Grande仓库中更复杂的[*Authors*字段插件](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js)。
+
+## 两种方法——让我们从简单开始
+
+有两种方法可以将[自定义字段](https://tinacms.org/docs/plugins/fields/custom-fields)添加到Tina。第一种方法是定义一个React组件，并将其传递给字段定义的`component`属性。Tina团队称之为**内联字段组件**。这种方法更简单；这将是本文的重点。
+
+第二种方法是定义一个自定义组件，然后将该组件注册为CMS的[字段插件](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins)。Tina提供的所有[核心字段](https://tinacms.org/docs/plugins/fields)都是作为插件使用的。
+
+创建插件与内联字段相比有一些优势——主要是可重用性和访问解析、验证等附加功能。但**对于简单的情况**，当您只需要在一个表单中使用自定义字段或不需要验证时，内联字段组件就足够了👌。
+
+## 创建自定义内联字段
+
+假设我们为*关于我*页面设置了一个[Tina表单](https://tinacms.org/docs/plugins/forms)：
+
+> *注意：*以下示例将参考Next.js设置，但这种方法也可以应用于Gatsby。
+
+```js
+const formOptions = {
+  label: '关于我页面',
+  fields: [
+    {
+      label: '姓名',
+      name: 'name',
+      component: 'text',
+    },
+    {
+      label: '家乡',
+      name: 'hometown',
+      component: 'text',
+    },
+    {
+      label: '颜色',
+      name: 'background_color',
+      description: '背景颜色',
+      component: 'color',
+    },
+  ],
+}
+```
+
+我们可以添加一个自定义内联字段组件来进一步组织侧边栏：
+
+```js
+const formOptions = {
+  label: '信息页面',
+  fields: [
+    {
+      label: '姓名',
+      name: 'name',
+      component: 'text',
+    },
+    {
+      label: '家乡',
+      name: 'hometown',
+      component: 'text',
+    },
+    // 这是我们的自定义内联字段 👀
+    {
+      name: '_',
+      component: () => <h4>页面样式</h4>,
+    },
+    {
+      label: '颜色',
+      name: 'background_color',
+      description: '背景颜色',
+      component: 'color',
+    },
+  ],
+}
+```
+
+*很酷吧？* 🤩
+
+注意在所有其他字段对象中，`component`属性引用的是Tina字段插件，而**在我们的自定义内联字段中，我们传递的是一个React组件。**
+
+![侧边栏中的自定义内联字段](/img/blog/custom-field-inline.png)
+
+现在这个示例组件非常简单——一个美化的标签。这种类型的组件可以帮助组织或自定义侧边栏，但*我们可以进一步传递更复杂的字段*。
+
+## 自定义范围滑块 🎨
+
+假设我们在*关于我*页面上有一张图片，我们希望能够控制该图片上的一些[CSS滤镜](https://css-tricks.com/almanac/properties/f/filter/)。下面的笔展示了我们可以使用的所有CSS滤镜。
+
+<CustomFieldComponentDemo />
+
+我们可以创建一个自定义输入字段来提供对这些视觉滤镜的编辑控制。**让我们制作一个控制图像饱和度的自定义字段。**
+
+> **提示：**摄影中的饱和度与图像中特定颜色的*强度*有关。高度饱和的图像会非常明亮，颜色接近霓虹灯。低饱和度的图像则显得柔和和灰暗。
+
+### 1. 创建输入字段组件
+
+要创建自定义输入字段，我们需要制作一个**React组件，该组件接受输入并在输入更改时更新数据**。在这个例子中，我们将制作一个[范围输入字段](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range)，它处理饱和度值的状态，并在范围控件滑动时更新该状态。
+
+```jsx
+// 自定义范围字段组件的示例
+function RangeInput(props) {
+  return (
+    <>
+      <div>
+        <label htmlFor="saturation">图像饱和度</label>
+      </div>
+      <div>
+        <input
+          name="saturation"
+          id="saturation"
+          type="range"
+          min="0"
+          max="10"
+          step=".1"
+          /*
+           ** 这个特殊的输入对象
+           ** 设置了必要的输入属性：
+           ** value, onChange, onFocus等。
+           */
+          {...props.input}
+        />
+      </div>
+    </>
+  )
+}
+```
+
+#### 👽 仔细看看——Props：
+
+注意这一行，`{...props.input}`。您可能想知道这个包含所有必要输入属性的神奇对象来自哪里？
+
+当自定义字段在Tina中注册时，这个**输入对象**作为一个prop传递给字段。这个对象包含输入正常工作所需的数据和回调：[`value`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputvalue)，[`name`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputname)，[`onChange`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonchange)，[`onFocus`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonfocus)，[`onBlur`](https://final-form.org/docs/react-final-form/types/FieldRenderProps#inputonblur)。
+
+> 如果您的自定义组件不是标准的[HTML输入元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)，您将需要手动传递必要的输入属性，而不是使用[扩展运算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)。
+
+**传递给字段组件的所有props**是：
+
+* `field` — 对[字段定义](https://tinacms.org/docs/plugins/fields)的引用。
+* `input` — 包含字段设置和更新数据所需的数据和回调的对象。*如上所述* ☝️。
+* `meta` — 提供有关字段状态的[元数据](https://final-form.org/docs/react-final-form/types/FieldRenderProps#metaactive)。
+* `tinaForm` — 对注册此字段的表单的引用。
+
+[react-final-form文档](https://final-form.org/docs/react-final-form/api/Field#3-connect-the-callbacks-to-your-input)非常好地描述了`input`和`meta` props。在创建自定义字段时，您通常会访问`field`和`input` props。
+
+#### 自定义字段应该放在哪里？
+
+正如我们在第一个示例中看到的，我们可以通过`component`属性直接传入自定义字段组件——`component: () => <p>Hi<p>`。但当我们创建更复杂的字段时，我们很可能希望将字段提取到自己的函数中。
+
+在上面的示例中，`RangeInput`可以在设置Tina表单的`AboutMe`组件旁边定义：
+
+```jsx
+/*
+** 自定义字段定义在使用Tina表单的组件旁边
+*/
+import { useLocalJsonForm, JsonFile } from "next-tinacms-json";
+
+export default function AboutMe(props) {
+  // Tina表单配置
+  const [data] = useLocalJsonForm(props.data, formOptions)
+  return (
+    //...
+  )
+}
+
+function RangeInput(props) {
+  //...
+}
+
+const formOptions = {
+  /*
+  ** RangeInput将在自定义字段定义中引用
+  */
+}
+
+AboutMe.getInitialProps = async function() {
+  //...
+}
+```
+
+它也可以在自己的文件中定义，并导入到配置Tina表单选项的文件中：
+
+```jsx
+/*
+** 自定义字段定义保存在单独的文件中并导入
+*/
+import { useLocalJsonForm, JsonFile } from "next-tinacms-json";
+import RangeInput from '../components/RangeInput';
+
+export default function AboutMe(props) {
+  // Tina表单配置
+  const [data] = useLocalJsonForm(props.data, formOptions)
+  return (
+    //...
+  )
+}
+
+const formOptions = {
+  /*
+  ** RangeInput将在自定义字段定义中引用
+  */
+}
+
+AboutMe.getInitialProps = async function() {
+  //...
+}
+```
+
+正如开发中的许多事情一样，答案**取决于您的用例** 😉。可以参考这个[演示仓库](https://github.com/kendallstrautman/llama-filters/blob/master/pages/Index.js)来查看Next.js的工作示例结构。
+
+### 2. 将值添加到源数据
+
+现在自定义输入字段已定义，我们需要将`image_saturation`值添加到我们的源数据中。源数据可以是Markdown或JSON文件。如果您已经设置了Tina表单，它应该与数据源链接，因此请前往该文件。
+
+对于我们的示例，假设我们有一个名为`about.json`的本地JSON文件。这个文件包含*关于我*页面中使用的数据。在其中我们可以添加`image_saturation`值。
+
+该值可以是存在于我们`RangeInput`组件中定义的范围内的任何整数或浮点数——0到10，步长为0.1（意味着范围的每个“滑动步”将值增加或减少0.1）。作为饱和度值，**零将是完全灰度**或无色，因此我们可以填入类似3的值以获得更“正常”的外观。
+
+```JSON
+// 关于我页面源数据示例 --> about.json
+{
+ “name”: “Koba Weasley”,
+ “hometown”: “Bend, Oregon”,
+ "background_color": "#B1BCBC",
+ "image_saturation": 3,
+}
+```
+
+> 如果您使用的是Gatsby，您将**需要更新您的GraphQL查询**以获取此新数据。将`image_saturation`字段添加到您的查询中。
+
+现在我们有一个可以连接到自定义输入字段的源值。这样，**Tina可以同步更新源文件中的值**，与`RangeInput`组件检测到的更改保持一致。
+
+### 3. 将自定义字段添加到Tina表单
+
+我们来把这个自定义字段连接到Tina吧？🎊
+
+在这一步中，我们需要创建自定义字段定义并内联传入`RangeInput`组件。我们将回到我们的*关于我*页面[表单选项](/docs/guides/converting-gatsby-to-tina)：
+
+```jsx
+const formOptions = {
+  label: '关于我页面',
+  fields: [
+    {
+      label: '姓名',
+      name: 'name',
+      component: 'text',
+    },
+    {
+      label: '家乡',
+      name: 'hometown',
+      component: 'text',
+    },
+    {
+      name: '',
+      component: () => <h4>页面样式</h4>,
+    },
+    // 将`RangeInput`传递给`component`属性
+    {
+      label: '图像饱和度',
+      name: 'image_saturation',
+      component: RangeInput,
+    },
+    {
+      label: '颜色',
+      name: 'background_color',
+      description: '背景颜色',
+      component: 'color',
+    },
+  ],
+}
+```
+
+启动开发服务器，您应该会在侧边栏中看到自定义的`RangeInput`字段。如果您滑动它，您应该会看到`about.json`中的值正在更新。
+
+### 4. 动态设置CSS滤镜
+
+如果一切顺利，我们的自定义输入字段应该已经连接好了，但还有最后一件事要做。我们还没有将*饱和度值*与CSS滤镜连接起来，以实际在图像上看到效果。
+
+为此，您需要使用一个*[CSS-in-JS](https://css-tricks.com/bridging-the-gap-between-css-and-javascript-css-in-js/)*框架，以便我们可以通过组件props动态更新滤镜值。如果您使用的是Next.js，`styled-jsx`开箱即用，非常棒。下面是一个使用`styled-jsx`将*饱和度值*连接到CSS滤镜的示例：
+
+```jsx
+/*
+ **  Next.js中关于我页面的示例组件
+ */
+import { useLocalJsonForm } from 'next-tinacms-json'
+
+function AboutMe(props) {
+  const [data] = useLocalJsonForm(props.data, formOptions)
+  return (
+    <Layout bgColor={data.background_color}>
+      <section>
+        <h1>嗨 👩‍🎤 我的名字是 {data.name}</h1>
+        <p>目前在 {data.hometown} 游荡</p>
+        {/* 这是将要处理的图像 */}
+        <img
+          alt="random-unsplash"
+          src="https://source.unsplash.com/random/800x600"
+        />
+      </section>
+      {/* 传入image_saturation值 */}
+      <style jsx>{`
+        img {
+          filter: saturate(${data.image_saturation});
+        }
+      `}</style>
+    </Layout>
+  )
+}
+```
+
+其他一些很棒的*CSS-in-JS*框架示例有[styled-components](https://www.styled-components.com/)和[emotion.js](https://emotion.sh/docs/introduction)。请注意，对于这些替代框架，上述实现会略有不同。
+
+### 下一步
+
+一个好的下一步是*为自定义`RangeInput`组件添加样式*。您可以使用[`@tinacms/styles`](https://tinacms.org/docs/plugins/fields/custom-fields#using-tina-styles)来适应其他Tina字段的风格✌️。或者您可以随心所欲地装饰侧边栏🤠。
+
+如果我们想在整个网站中重用这个组件，我们可以更进一步，将其制作成一个[字段插件](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins)。请继续关注后续文章，深入探讨创建自定义字段插件，或者访问[文档](https://tinacms.org/docs/plugins/fields/custom-fields#2-creating-field-plugins)以抢先了解。
+
+> 可以查看这个自定义范围输入字段的[完成版本](https://github.com/kendallstrautman/llama-filters)，或者看看Tina Grande仓库中更复杂的[*Authors*字段插件](https://github.com/tinacms/tina-starter-grande/blob/master/src/fields/authors.js)。
+
+### 收获 🕺🏻
+
+为TinaCMS制作自定义字段组件非常令人兴奋！希望这篇文章能激发您的创意齿轮，探索内容编辑体验中的众多变量。
+
+我认为从这次对自定义字段的简短探索中最大的收获是**您可以将任何React组件放入侧边栏**。这种灵活性非常强大；它为您根据项目的独特需求自定义编辑控件打开了大门。虽然创建自定义组件可能并不总是必要的，但知道这是一个选项是令人安心的，甚至是鼓舞人心的。

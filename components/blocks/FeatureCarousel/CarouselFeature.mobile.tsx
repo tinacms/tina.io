@@ -1,12 +1,9 @@
 import EmblaCarousel from 'components/ui/EmblaCarousel/EmblaCarousel';
 import { tinaField } from 'tinacms/dist/react';
-import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 
 function CarouselFeatureMobileItem(data) {
-  const { headline, text, button, icon2, videoSrc } = data.data || {};
-
-  const IconComponent = icons[icon2] || null;
+  const { headline, text, button } = data.data || {};
 
   const actionsArray = button ? [button] : [];
 
@@ -46,8 +43,11 @@ interface CarouselFeatureMobileProps {
 
 export function CarouselFeatureMobile(props: CarouselFeatureMobileProps) {
   const { data } = props;
-  const items = data.items.map((item, index) => (
-    <CarouselFeatureMobileItem data={item} key={`carousel-feature-${index}`} />
+  const items = data.items.map((item, _index) => (
+    <CarouselFeatureMobileItem
+      data={item}
+      key={`carousel-feature-${item.id}`}
+    />
   ));
   return items.length > 0 ? (
     <>

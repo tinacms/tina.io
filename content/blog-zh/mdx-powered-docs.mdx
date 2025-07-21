@@ -1,0 +1,84 @@
+---
+seo:
+  title: MDX 驱动的文档 | TinaCMS 博客
+  description: >-
+    了解如何在 Tina 中使用 MDX 创建动态、交互式文档，将 Markdown 内容与 React 组件结合以增强灵活性
+title: 介绍由 MDX 驱动的文档入门。
+date: '2021-11-02T08:00:00-04:00'
+last_edited: '2021-11-02T08:00:00-04:00'
+author: James Perkins
+prev: content/blog-zh/tina-supports-mdx.mdx
+next: content/blog-zh/using-the-power-of-mdx-with-tina.mdx
+---
+
+当我们发布 MDX 支持时，我们希望创建一个展示 Tina 和 MDX 强大功能的实际应用。我们知道文档对团队的重要性，而市场上现有的产品缺乏能够促进协作的功能。
+
+<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/Docs_Starter_Example.webm" />
+
+# 我们的文档入门背后的技术
+
+创建一个文档入门需要一些研究。我们希望有一个起点，可以让我们添加所有我们认为对文档重要的功能，比如无需使用 iframes 或提示框就能轻松添加视频。因此，我们决定 Smooth Doc 是完美的起点。
+
+## Smooth Doc
+
+[Smooth Doc](https://smooth-doc.com/) 是由 [Greg Bergé](https://twitter.com/neoziro) 创建的，他还创建了 xstyled 组件，并花费大量时间创建产品。他需要一个可以反复使用的优秀文档网站。原始的 Smooth Doc 是基于 Gatsby 构建的，并在底层使用 MDX 来驱动整个网站，另一个开源创建者将 Smooth Doc 转变为一个 Next 网站。
+
+Smooth Doc 有很多功能，但我们移除了一些，比如碳广告，以便为我们的入门产品提供一个精简的产品。
+
+## MDX
+
+我们非常喜欢 markdown，并刚刚引入了支持 MDX 的功能。这使我们能够创建可以在整个文档网站中轻松使用的组件，我们包括：
+
+### [Hero](https://github.com/tinacms/tina-docs-starter/blob/main/blocks/hero-block.js)
+
+![带有 MDX 的文档](/img/blog/mdx-powered-docs/docs-w-mdx.png)
+
+### [Button](https://github.com/tinacms/tina-docs-starter/blob/main/components/Button.js)
+
+![了解更多](/img/blog/mdx-powered-docs/learn-more.png)
+
+### 视频播放器
+
+![团队视频的 MDX 强大功能](/img/blog/mdx-powered-docs/the-power-of-mdx-for-teams.png)
+
+### [Features](https://github.com/tinacms/tina-docs-starter/blob/5c2448a63dea0b178eaf6b6c17ec10417c3fda78/blocks/features-block.js#L10)
+
+![酷炫的 TinaCMS 功能](/img/blog/mdx-powered-docs/cool-tina-images.png)
+
+### [Callouts](https://github.com/tinacms/tina-docs-starter/blob/5c2448a63dea0b178eaf6b6c17ec10417c3fda78/blocks/callout-block.js)
+
+![Lorem Ipsum](/img/blog/mdx-powered-docs/lorem-ipsum.png)
+
+这些组件中的每一个都可以由没有开发经验的内容团队轻松编辑。我们还为开发人员提供了为其内容团队创建自己的组件的能力，例如新闻通讯注册。
+
+## Tina
+
+由 MDX 驱动的 Tina 为开发人员和内容团队提供了一流的体验。我们允许您通过解锁可视化编辑体验来轻松创建新文档，而不是传统的 CMS。
+
+## 团队的工作流程
+
+一旦您克隆了存储库，您就可以立即开始创建文档。在使用 Tina 时，有几个场景需要覆盖。
+
+### 编辑内容
+
+编辑内容时，用户只需在被邀请加入组织后通过 /admin 登录。一旦进入编辑模式，他们可以添加、删除或编辑页面上的任何内容。
+
+### 添加新组件
+
+1. 在 `components` 文件夹中创建一个新组件
+2. 将组件导入到 `[slug].js` 文件并将其添加到组件对象中。
+3. 将可编辑组件添加到 `schema.ts` 文件中
+4. 组件现在可以使用了。
+
+### 创建新的文档页面
+
+使用 Tina 的一个好处是您可以在不离开网站的情况下创建新页面，这使团队能够快速行动。要向您的文档网站添加新页面，只需：
+
+1. 确保用户处于编辑模式。
+2. 选择侧边栏顶部角落的大蓝色 + 号
+3. 输入文件名并从集合中选择文档
+4. 新页面已创建并可以编辑。
+
+我们希望您喜欢这个文档入门，并能释放您团队的生产力。如果您有任何问题或问题，请务必加入 [Discord](https://discord.gg/njvZZYHj2Q) 或使用我们的 [GitHub Discussions](https://github.com/tinacms/tinacms/discussions)。
+
+要了解 Tina 的最新动态，请务必关注 Twitter 上的 [@tinacms](https://twitter.com/tinacms)。

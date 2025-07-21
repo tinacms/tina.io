@@ -1,0 +1,772 @@
+---
+title: 将现有的Gatsby项目转换为TinaCMS
+last_edited: '2024-11-11T00:11:37.036Z'
+next: content/docs-zh/cli-overview.mdx
+previous: content/docs-zh/contextual-editing/overview.mdx
+---
+
+<WarningCallout
+  body={<>
+    TinaCMS官方不支持Gatsby。我们建议将您的Gatsby站点迁移到一个支持良好的框架，如Next.JS。
+  </>}
+/>
+
+## 介绍
+
+在本教程中，我们将指导您将现有的Gatsby MDX博客转换为TinaCMS。我们提供了一个入门仓库供您跟随，这是官方[Gatsby MD博客入门](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)的一个分支。
+
+## 限制
+
+本指南中概述的方法有一些限制。
+
+- 失去Gatsby的图像优化功能
+- Gatsby使用GitHub风格的Markdown，而TinaCMS不完全支持
+
+## 开始
+
+首先，克隆我们的示例Gatsby项目。然后您需要进入博客的目录。
+
+```powershell
+git clone https://github.com/tinacms/gatsby-mdx-example-blog
+cd gatsby-mdx-example-blog
+```
+
+## 添加Tina
+
+太好了！您已设置完毕，可以开始添加TinaCMS。您可以使用以下命令初始化它。
+
+```powershell
+npx @tinacms/cli@latest init
+```
+
+运行上述命令后，您将收到一些提示：
+
+1. 当提示选择框架时，选择`other`
+2. 选择`yarn`作为您的包管理器
+3. 当被问及是否使用Typescript时，选择`yes`
+4. 将公共资产位置设置为`public`
+
+## 为Tina设置Gatsby
+
+现在我们已经将Tina添加到项目中，还有一些步骤需要将其与Gatsby集成。首先在`tina/config.js`的顶部添加以下行：
+
+```diff
+export default defineConfig({
++  client: { skip: true },
+// ...
+```
+
+接下来，我们将使用Express设置可视化编辑器的URL。
+
+```diff
++ import express from "express";
+//...
++ const onCreateDevServer: GatsbyNode["onCreateDevServer"]  = ({ app }) => {
++   app.use("/admin", express.static("public/admin"));
++ };
+//...
+- export { createPages, createSchemaCustomization, onCreateNode }
++ export { createPages, createSchemaCustomization, onCreateNode, onCreateDevServer }
+```
+
+为了确保Tina在应用程序处于开发模式时运行，请在`package.json`中更新启动命令如下：
+
+```diff
+  "scripts": {
+    "build": "gatsby build",
+-   "develop": "gatsby develop",
++   "develop": "npx tinacms dev -c \"gatsby develop\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  }
+```
+
+为了解决与节点模块内的GraphQL版本冲突相关的任何错误，我们还将在package.json中强制Gatsby使用与TinaCMS相同的版本。
+
+添加以下内容：
+
+```diff
+{
+  //...
++  "resolutions": {
++    "graphql": "^15.8.0",
++    "**/graphql": "^15.8.0"
++ }
+}
+```
+
+## 配置我们的Schema
+
+首先，我们将配置图像的存储位置并更新schema，以便我们准备好处理markdown文件。打开`tina/config.ts`并进行以下更改。
+
+> 通过将我们的图像移动到`static`，我们确保它们将在git中被跟踪并在运行时打包。
+
+```diff
+export default defineConfig({
+  branch,
+
+  client: { skip: true },
+
+  // 从tina.io获取
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  // 从tina.io获取
+  token: process.env.TINA_TOKEN,
+
+  build: {
+    outputFolder: "admin",
+    publicFolder: "public",
+  },
+  media: {
+    tina: {
+-      mediaRoot: "",
++      mediaRoot: "images"
+-     publicFolder: "public",
++     publicFolder: "static",
+
+    },
+// ...
+```
+
+接下来，我们将现有的frontmatter字段添加到我们的schema中。我们还将更改`path`以指向我们现有的博客。
+
+```diff
+schema: {
+    collections: [
+      {
+        ui: {
+          router: ({ document }) => {
+            return document._sys.breadcrumbs[0]
+          },
+        },
+        name: "post",
+        label: "Posts",
+        format: "mdx",
+-       path: "content/posts",
++       path: "content/blog",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
++          {
++            type: "datetime",
++            name: "date",
++            label: "Date",
++          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
++          {
++            type: "string",
++            name: "description",
++            label: "Description",
++          },
+
+        ],
+
+```
+
+## 更新您的图像
+
+您需要重新上传您的图像以匹配我们的新媒体目录。
+
+TinaCMS目前不支持相对图像目录（例如原始博客使用的那些）。您可以通过重新上传图像或更改URL以匹配我们的媒体文件夹来移植您的图像。
+
+例如，`content/blog/hello-world/index.mdx`中的新图像将如下所示。
+
+```diff
+- ![Chinese duck egg](./salty_egg.jpg)
++ ![Chinese duck egg](/images/salty_egg.jpg)
+```
+
+您还需要将现有图像移动到我们定义的新文件夹中。
+
+```bash
+  mkdir static/images/
+  cp content/blog/hello-world/salty_egg.jpg static/images/salty_egg.jpg
+```
+
+## 重新格式化您的markdown
+
+由于hello world示例使用了TinaCMS不支持的列表类型，我们将手动更新列表以支持的格式。对`content/blog/hello-world/index.mdx`进行以下更改。
+
+> 注意：您可能需要更新网站上的其他元素。对于Tina不支持的markdown元素，请参阅[我们的指南](https://tina.io/docs/reference/types/rich-text/?#unsupported-elements)。
+
+````diff
+- - Red
++ * Red
+
+- - Green
++ * Green
+
+- - Blue
++ * Blue
+
+
+
+* Red
+
+* Green
+
+* Blue
+
+
+
+- - Red
++ * Red
+
+- - Green
++* Green
+
+- - Blue
++* Blue
+
+
+
+```markdown
+
++ * Red
+
+- - Green
++ * Green
+
+- - Blue
++ * Blue
+
+
+
+* Red
+
+* Green
+
+* Blue
+
+- - Red
++ * Red
+
+- - Green
++* Green
+
+- - Blue
++* Blue
+
+```
+````
+
+我们现在应该能够在TinaCMS中读取和编辑现有页面。
+
+## 样式
+
+我们将添加一些CSS来修复文章中的图像，因为它们不再由Gatsby处理。
+
+在`src/style.css`的顶部添加以下内容。这将调整我们博客中任何图像的大小。
+
+```diff
++ img {
++  max-width: 630px;
++ }
+```
+
+恭喜！您的Gatsby MDX博客现在已设置为使用Tina。运行`yarn develop`来测试一下。
+
+## （推荐）添加可视化编辑
+
+<WarningCallout
+  body={<>
+    警告 - 如果您决定添加可视化编辑，您将需要替换您正在使用的任何自定义MDX插件
+  </>}
+/>
+
+到目前为止，我们只将TinaCMS设置为我们的markdown文件的编辑器。显示逻辑仍由Gatsby的插件处理。
+
+使用Gatsby的MDX插件而不是Tina的有一些优缺点。
+
+优点：
+
+- 您可以使用现有的markdown插件
+
+缺点：
+
+- 您将无法在markdown文件中使用React组件
+- 在编辑markdown文件时，您将无法获得上下文编辑
+
+通常，我们建议使用Tina的GraphQL API来加载您的页面，我们现在就来做。
+
+因为我们将使用Tina的graphql客户端进行这种方法，所以我们不再需要跳过它。实际上，我们需要它来检索可视化编辑所需的GraphQL查询。
+
+```diff
+export default defineConfig({
+-  client: { skip: true },
+// ...
+```
+
+### 生成页面
+
+首先，我们将为Tina的GraphQL API的响应定义新的类型，并移除现有的类型。在`src/types.ts`中修改类型以反映我们将从Tina的API获取的新数据。
+
+```diff
+- type PageData = {
+-   id: string
+-   internal: {
+-     contentFilePath: string
+-   }
+-   fields: {
+-     slug: string
+-   }
+- }
+-
+- export { AllPageData, PageData }
+
++ import client from "../tina/__generated__/client"
++ import { Post } from "../tina/__generated__/types"
++
++ type PostResponse = Awaited<ReturnType<typeof client.queries.post>>
++ type AllPostResponse = Awaited<ReturnType<typeof client.queries.postConnection>>
++ type BlogPost = Partial<Post> & {
++   slug: string
++   relativePath: string
++ }
++
++ export { AllPostResponse, BlogPost, PostResponse }
+```
+
+使用这些类型，我们将添加一个助手来映射Tina的GraphQL API的响应。这将使页面数据的格式类似于我们正在替换的GraphQL查询的响应。
+
+```diff
++ import { AllPostResponse, BlogPost } from "./src/types"
+
++ const mapResponse = (postResponse: AllPostResponse): BlogPost[] => {
++  const mappedResponse = postResponse.data.postConnection.edges.map(edge => {
++    const {
++      title,
++      body,
++      _sys: { breadcrumbs, relativePath },
++    } = edge.node
++    return {
++      relativePath,
++      title,
++      body,
++      slug: breadcrumbs[0],
++    }
++  })
++  return mappedResponse
++ }
+
+```
+
+接下来，我们将更新`createPages`函数以使用Tina的GraphQL API生成页面，并移除现有的调用。
+
+```diff
+
+- import { AllPageData } from "./src/types"
+import { AllPostResponse, BlogPost } from "./src/types"
++ import client from "./tina/__generated__/client"
+
+//...
+
+
+export const createPages: GatsbyNode["createPages"] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
+  const { createPage } = actions
+
+  const result = await client.queries.postConnection()
+  const posts: BlogPost[] = mapResponse(result)
+
+
++  const result = await client.queries.postConnection()
++  const posts: BlogPost[] = mapResponse(result)
+
++ // 获取按日期排序的所有markdown博客文章
+
+- const result = await graphql<mdxResponse>(`
+
+-   {
+-     allMdx(sort: { frontmatter: { date: ASC } }, limit: 1000) {
+-       nodes {
+-         id
+-         internal {
+-           contentFilePath: string
+-         }
+-         fields {
+-           slug: string
+-         }
+-       }
+-     }
+-   }
+- `)
+
+- if (result.errors) {
+-   reporter.panicOnBuild(
+-     `加载博客文章时出错`,
+-     result.errors
+-   )
+-   return
+- }
+- const posts = result!.data!.allMdx.nodes
+```
+
+使用Tina的GraphQL API的响应，我们将更改页面生成的方式
+
+```diff
+
+- if (posts.length > 0) {
+-   posts.forEach((post, index) => {
+-     const previousPostId = index === 0 ? null : posts[index - 1].id
+-     const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+
+-     createPage({
+-       path: post.fields.slug,
+-       component: `${blogPost}?__contentFilePath=${post.internal.contentFilePath}`,
+-       context: {
+-         id: post.id,
+-         previousPostId,
+-         nextPostId,
+-       },
+-     })
+-   })
+- }
++  posts.map((post, index) => {
++    if (posts.length > 0) {
++      const previousPostPath =
++        index === 0 ? null : posts[index - 1].relativePath
++      const nextPostPath =
++        index === posts.length - 1 ? null : posts[index + 1].id
++      createPage({
++        path: post.slug,
++        component: blogPost,
++        context: {
++          relativePath: post.relativePath,
++          previousPostPath,
++          nextPostPath,
++        },
++      })
++    }
++  })
+
+```
+
+### 更新博客文章页面
+
+首先，我们将在`src/types.ts`中定义我们的类型。
+
+```diff
+
++ type BlogPostPageProps = {
++   pageContext: BlogPostPageContext
++ }
++
++ type BlogPostPageContext = {
++   relativePath: string
++   previousPostPath: string
++   nextPostPath: string
++ }
+
+- export { AllPostResponse, BlogPost, PostResponse }
++ export { AllPostResponse, BlogPost, PostResponse, BlogPostPageContext, BlogPostPageProps }
+
+
+```
+
+接下来，我们将使用静态查询来获取博客文章页面模板的数据。
+
+添加一个静态查询以使用Tina获取页面的数据。
+
+```diff
++ import { Post } from "../../tina/__generated__/types"
++ import { BlogPostPageProps, PostResponse } from "../types"
+
+//...
+
++ const mapToPostLinkData = (
++   response: PostResponse
++ ): Partial<Post> & { slug: string; title: string } => {
++   return {
++     title: response.data.post.title,
++     slug: response.data.post._sys.breadcrumbs[0],
++   }
++ }
+
++ const getPostLinkData = async (path: string) => {
++   if (!path) return null
++   const post = await client.queries.post({
++     relativePath: path,
++   })
++   return mapToPostLinkData(post)
++ }
+
++ export async function getServerData({ pageContext }: BlogPostPageProps) {
++   const { relativePath, nextPostPath, previousPostPath } = pageContext
++   const { data, query, variables }: PostResponse = await client.queries.post({
++     relativePath: relativePath,
++   })
++   const nextPageData = await getPostLinkData(nextPostPath)
++   const previousPageData = await getPostLinkData(previousPostPath)
++
++   return {
++     props: {
++       query,
++       data,
++       variables,
++       nextPageData,
++       previousPageData,
++     },
++   }
++ }
+```
+
+我们还将更新页面查询以排除markdown，因为我们将使用TinaCMS来填充页面。
+
+```diff
+export const pageQuery = graphql`
+-  query BlogPostBySlug(
+-    $id: String!
+-    $previousPostId: String
+-    $nextPostId: String
+-  ) {
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+-    mdx(id: { eq: $id }) {
+-      id
+-      frontmatter {
+-        title
+-        date(formatString: "MMMM DD, YYYY")
+-        description
+-      }
+-    }
+-    previous: mdx(id: { eq: $previousPostId }) {
+-      fields {
+-        slug
+-      }
+-      frontmatter {
+-        title
+-      }
+-    }
+-    next: mdx(id: { eq: $nextPostId }) {
+-      fields {
+-        slug
+-      }
+      frontmatter {
+        title
+      }
+    }
+  }
+`
+```
+
+现在我们已经配置了一个新的数据源，我们可以使用`useTina`钩子来实现可视化编辑。
+
+首先更新`BlogPostTemplate`的页面属性。我们将添加我们的服务器获取的数据，并使用`useTina`钩子引入。
+
+```diff
+
++ import { useTina } from 'tinacms/dist/react'
+//...
+
+- const BlogPostTemplate = ({
+- data: { previous, next, site, mdx: post },
+-  location,
+-  children,
+-}) => {
++ const BlogPostTemplate = ({
++   serverData,
++  data: { site },
++  location
++  }) => {
+
++ const { query, variables, nextPageData, previousPageData } = serverData
++ const { data: tinaData } = useTina({
++   data: serverData.data,
++   query,
++   variables,
++ })
+//...
+```
+
+然后我们将用Tina返回的数据替换所有现有数据。注意`tinaField`属性的添加，它用于为每个字段添加上下文编辑。
+
+```diff
++ import {useTina } from 'tinacms/dist/react'
++ import { TinaMarkdown } from "tinacms/dist/rich-text";
+
+
+//...
+<header>
+-  <h1 itemProp="headline">{post.frontmatter.title}</h1>-
+-  </p>{post.frontmatter.date}<<p>
++  <h1 data-tina-field={tinaField(tinaData.post, 'title')} itemProp="headline">{tinaData.post.title}</h1>
++  <p data-tina-field={tinaField(tinaData.post, 'date')}>{tinaData.date}</p>
+</header>
+- {children}
++ <main data-tina-field={tinaField(tinaData.post, "body")}>
++   <TinaMarkdown content={tinaData.post.body} />
++ </main>
+<hr />
+<footer>
+  <Bio />
+</footer>
+</article>
+<nav className="blog-post-nav">
+<ul
+  style={{
+    display: `flex`,
+    flexWrap: `wrap`,
+    justifyContent: `space-between`,
+    listStyle: `none`,
+    padding: 0,}}>
+  <li>
+-  {previous && (
+-    <Link to={previous.fields.slug} rel="prev">
+-      ← {previous.frontmatter.title}
++  {previousPageData && (
++    <Link to={previousPageData.slug} rel="prev">
++      ← {previousPageData.title}
+        </Link>
+      )}
+    </li>
+    <li>
+
+- {next && (
+-   <Link to={next.fields.slug} rel="next">
+-                {next.frontmatter.title} →
++ {nextPageData && (
++   <Link to={nextPageData.slug} rel="next">
++               {nextPageData.title} →
+```
+
+不要忘记使用服务器数据更新Head组件。
+
+```diff
+- export const Head = ({ data: { mdx: post } }) => {
++ export const Head = ({ serverData }) => {
+  return (
+    <Seo
+-      title={post.title}
++      title={serverData.data.post.title}
+-      description={post.description}
++      description={serverData.data.description}
+    />
+  )
+}
+```
+
+还有一个步骤我们需要做。不幸的是，我们的日期没有通过graphql查询进行格式化。为了解决这个问题，我们将使用一个库来格式化我们的日期。
+
+```bash
+yarn add dateformat
+```
+
+然后我们将添加一个`useEffect`来在日期更改时更新日期。我们在这里使用`useEffect`是为了在使用可视化编辑器时重新计算日期。使用`useState`将导致数据源更改时更新日期。
+
+```diff
+
++ import dateFormat from "dateformat"
+//...
+const BlogPostTemplate = ({ serverData, data: { site }, location }) => {
+  const { query, variables, nextPageData, previousPageData } = serverData
+  const { data: tinaData } = useTina({
+    data: serverData.data,
+    query,
+    variables,
+  })
+  const siteTitle = site.siteMetadata?.title || `Title`
++  const [formattedDate, setFormattedDate] = React.useState(
++    dateFormat(tinaData.post.date, "mmmm dd, yyyy")
++  )
++  React.useEffect(() => {
++    setFormattedDate(dateFormat(tinaData.post.date, "mmmm dd, yyyy"))
++  }, [tinaData.post.date])
+  return (
+    <Layout location={location} title={siteTitle}>
+      <article
+        className="blog-post"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
+        <header>
+         <h1 data-tina-field={tinaField(tinaData.post, "title")} itemProp="headline">{tinaData.post.title}</h1>
+-          <p data-tina-field={tinaField(tinaData.post, "date")}>{post.frontmatter.date}</p>
++          <p data-tina-field={tinaField(tinaData.post, "date")}>{formattedDate}</p>
+
+//...
+
+```
+
+![使用可视化编辑器编辑文章日期](</live preview date changes.gif> '文章日期实时更新')
+
+### 更新主页
+
+我们还需要更新主页以反映内容更改，因为它以前是使用`gatsby-mdx`填充的。对`src/pages/index.tsx`进行以下更新：
+
+```diff
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+- allMdx(sort: { frontmatter: { date: DESC } }) {
+-       nodes {
+-         fields {
+-           slug
+-         }
+-         frontmatter {
+-           date(formatString: "MMMM DD, YYYY")
+-            title
+-            description
+-          }
+-        }
+-      }
+   }
+`
+}
+```
+
+在主页上，我们需要实现一个服务器端获取，以通过TinaCMS检索完整的文章列表。
+
+```diff
++ import client from "../../tina/__generated__/client"
+
+//...
+
++ export async function getServerData() {
++   const posts = await client.queries.postConnection()
++   return {
++     props: {
++       posts: posts.data.postConnection.edges.map(edge => {
++         const {
++           title,
++           body,
++           date,
++           _sys: { breadcrumbs },
++           description,
++         } = edge.node
++         return { title, body, date, slug: breadcrumbs[0], description }
++       }),
++     },
++   }
++ }
+```
+
+然后我们将服务器端数据添加到组件中。
+
+```diff
+-  const BlogIndex = ({ data, location }) => {
++  const

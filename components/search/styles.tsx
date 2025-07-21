@@ -1,11 +1,12 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 export const Root = styled.div`
   position: relative;
   display: grid;
   grid-gap: 1em;
-`
+`;
 
 export const IconWrapper = styled.div`
   position: absolute;
@@ -23,11 +24,11 @@ export const IconWrapper = styled.div`
     width: 1.5rem;
     height: auto;
   }
-`
+`;
 
 interface InputProps {
-  focus?: boolean
-  expanded?: boolean
+  focus?: boolean;
+  expanded?: boolean;
 }
 
 export const Input = styled.input<InputProps>`
@@ -68,10 +69,10 @@ export const Input = styled.input<InputProps>`
       cursor: text;
       padding: 0 2.25rem 0 1rem;
     `};
-`
+`;
 
 interface SearchContainerProps {
-  expanded?: boolean
+  expanded?: boolean;
 }
 
 export const SearchContainer = styled.div<SearchContainerProps>`
@@ -107,24 +108,24 @@ export const SearchContainer = styled.div<SearchContainerProps>`
             border: 1px solid var(--color-light-dark);
           }
         `};
-`
+`;
 
 export const IndexContainer = styled.div`
   flex: 1 0 auto;
   overflow-y: auto;
   overflow-x: auto;
   padding: 1rem 1.25rem 0 1.5rem;
-`
+`;
 
 export const HitsResults = styled.div`
   height: 100%;
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-`
+`;
 
 interface HitsWrapperProps {
-  show: boolean
+  show: boolean;
 }
 
 export const HitsWrapper = styled.div<HitsWrapperProps>`
@@ -203,13 +204,12 @@ a:hover {
 }
 `;
 
-
 export const NoResultsLabel = styled.div`
   padding: 1rem 1.25rem 0 1.5rem;
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--color-orange);
-`
+`;
 
 export const PoweredBy = styled(({ ...styleProps }) => (
   <span {...styleProps}>
@@ -222,4 +222,4 @@ export const PoweredBy = styled(({ ...styleProps }) => (
   padding: 0;
   display: block;
   padding: 0.5rem 1.25rem 0.5rem 1.5rem;
-`
+`;

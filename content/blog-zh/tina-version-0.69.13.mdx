@@ -1,0 +1,118 @@
+---
+seo:
+  title: Tina 版本 0.69.13 | TinaCMS 博客
+  description: >-
+    TinaCMS 版本 0.69.13 包含错误修复和性能更新，使其更加可靠并提高内容管理的稳定性。
+title: TinaCMS V0.69.13
+date: '2022-09-27T04:00:00.000Z'
+last_edited: '2022-09-27T04:00:00.000Z'
+author: Logan Anderson
+prev: content/blog-zh/getting-started-with-tinacms-part-2.mdx
+next: content/blog-zh/upgrading-to-iframe.mdx
+---
+
+# 宣布 TinaCMS 0.69.12
+
+今天，我们发布了 Tinacms 的新版本。此版本增加了几个改进，包括：
+
+* 新的默认值行为
+* 文件名自定义
+
+## 新的默认值行为
+
+首先，我们正在弃用 `defaultValue` 的使用，这个值会表现不当，并在某些情况下使得值难以或无法被置空。
+
+现在可以在集合级别提供 `defaultItem`。这将在**文档创建时**作为表单的默认值。这是一个重大变化，并将在下一个主要版本中被移除。
+
+### 使用 defaultItem 的示例
+
+```ts
+const schema = defineSchema({
+  collections: [
+    {
+      name: 'posts',
+      label: '博客文章',
+      path: 'content/posts',
+      format: 'mdx',
+      defaultItem: () => {
+        return {
+          // 返回一个默认标题和当前日期作为默认日期
+          title: 'new post',
+          date: new Date().toISOString(),
+        }
+      },
+      fields: [
+        {
+          label: '标题',
+          name: 'title',
+          type: 'string',
+        },
+        {
+          label: '日期',
+          name: 'date',
+          type: 'date',
+        },
+      ],
+    },
+  ],
+})
+
+// ...
+
+export default schema
+```
+
+当创建一个新文档时，默认值将用于填充表单。
+
+更多信息请[查看文档](/docs/reference/collections/#definition "集合文档参考")。
+
+## 文件名自定义
+
+在这个新版本中，可以通过 schema 中的 ui.filename 属性自定义文件名。通过这个属性，你可以提供一个 slugify 函数来生成文件名，并可以选择性地禁用编辑器中的文件名输入。
+
+以下是如何使用 slugify 函数生成格式为 `${topic}-${title}` 的文件名的示例。
+
+### 示例
+
+```typescript
+const schema = defineSchema({
+  config: {
+    //...
+  },
+  collections: [
+    {
+      label: '博客文章',
+      name: 'post',
+      path: 'content/post',
+      format: 'md',
+      ui: {
+        filename: {
+          // 如果是只读的，编辑器无法编辑文件名
+          readonly: true,
+          // 使用自定义 slugify 函数的示例
+          slugify: values => {
+            // Values 是一个包含表单所有值的对象。在这种情况下，它是 {title?: string, topic?: string}
+            return `${values?.topic ||
+              'no-topic'}-${values?.title?.toLowerCase().replace(/ /g, '-')}`
+          },
+        },
+      },
+      fields: [
+        {
+          type: 'string',
+          label: '标题',
+          name: 'title',
+        },
+        {
+          type: 'string',
+          label: '主题',
+          name: 'topic',
+          options: ['programming', 'blacksmithing'],
+        },
+      ],
+    },
+  ],
+})
+```
+
+更多信息请[查看文档](/docs/extending-tina/filename-customization/ "文档文件名自定义")。

@@ -409,6 +409,11 @@
               "_template": "item"
             },
             {
+              "title": "Webhooks",
+              "slug": "content/docs/tina-cloud/webhooks.mdx",
+              "_template": "item"
+            },
+            {
               "title": "Content Search",
               "slug": "content/docs/reference/search/overview.mdx",
               "_template": "item"

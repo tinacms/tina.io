@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+/** biome-ignore-all lint/a11y/noLabelWithoutControl: <TODO> */
+// biome-ignore lint/style/useImportType: <TODO>
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import { Input, Button, Textarea } from '../ui'
+import { Button, Input, Textarea } from '../ui';
 
-export function TeamsForm(props: any) {
-  const [firstName, setFirstName] = useState('')
-  const [surname, setSurname] = useState('')
-  const [technology, setTechnology] = useState('')
-  const [projectDetails, setProjectDetails] = useState('')
-  const [email, setEmail] = useState('')
-  const [company, setCompany] = useState('')
+export function TeamsForm(_props: any) {
+  const [firstName, setFirstName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [technology, setTechnology] = useState('');
+  const [projectDetails, setProjectDetails] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
 
   async function postForm(data: any) {
-    const hubspotFormID = process.env.HUBSPOT_TEAMS_FORM_ID
-    const hubspotPortalID = process.env.HUBSPOT_PORTAL_ID
+    const hubspotFormID = process.env.HUBSPOT_TEAMS_FORM_ID;
+    const hubspotPortalID = process.env.HUBSPOT_PORTAL_ID;
 
     if (hubspotFormID && hubspotPortalID) {
-      const url = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalID}/${hubspotFormID}`
+      const url = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalID}/${hubspotFormID}`;
       try {
         const rawResponse = await fetch(url, {
           method: 'POST',
@@ -25,42 +27,42 @@ export function TeamsForm(props: any) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
-        })
-        const response = await rawResponse.json()
-        const message = response.inlineMessage.replace(/<[^>]*>/g, '').trim()
-        alert(message)
+        });
+        const response = await rawResponse.json();
+        const message = response.inlineMessage.replace(/<[^>]*>/g, '').trim();
+        alert(message);
       } catch (e) {
-        alert('Looks like an error, please email support@forestry.io')
-        console.error(e)
+        alert('Looks like an error, please email support@forestry.io');
+        console.error(e);
       }
     } else {
-      console.error('Teams Form: Environment variables missing')
+      console.error('Teams Form: Environment variables missing');
     }
   }
 
   function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setFirstName(e.target.value)
+    setFirstName(e.target.value);
   }
   function handleSurnameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setSurname(e.target.value)
+    setSurname(e.target.value);
   }
   function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   }
   function handleProjectDetailsChange(
-    e: React.ChangeEvent<HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLTextAreaElement>,
   ) {
-    setProjectDetails(e.target.value)
+    setProjectDetails(e.target.value);
   }
   function handleTechnologyChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setTechnology(e.target.value)
+    setTechnology(e.target.value);
   }
   function handleCompanyChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setCompany(e.target.value)
+    setCompany(e.target.value);
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+    e.preventDefault();
     const formData = {
       fields: [
         {
@@ -88,11 +90,11 @@ export function TeamsForm(props: any) {
           value: company,
         },
       ],
-    }
+    };
     if (process.env.NODE_ENV === 'production') {
-      postForm(formData)
+      postForm(formData);
     } else {
-      console.error('Teams form only posts in production')
+      console.error('Teams form only posts in production');
     }
   }
 
@@ -166,7 +168,7 @@ export function TeamsForm(props: any) {
         Request Access
       </Button>
     </StyledForm>
-  )
+  );
 }
 
 const StyledForm = styled.form`
@@ -180,4 +182,4 @@ const StyledForm = styled.form`
     color: var(--color-seafoam-dark) !important;
     margin: 1rem 0 0.5rem 0 !important;
   }
-`
+`;

@@ -1,0 +1,48 @@
+---
+seo:
+  title: 设计一个可扩展的样式系统 | TinaCMS 博客
+  description: >-
+    探索如何在 TinaCMS 中设计一个灵活且可扩展的样式系统，实现内容管理的无缝定制和轻松主题化。
+title: 设计一个可扩展的样式系统
+date: '2020-03-23T00:00:00.000Z'
+author: Scott Byrne
+prev: content/blog-zh/tinacms-ui-whats-next.mdx
+next: content/blog-zh/screen-plugins.mdx
+---
+
+## 编写一个适应性强的UI是困难的。
+
+当你为一个快速变化的项目编写代码时，你希望这些代码是廉价且可替换的。[Styled Components](https://styled-components.com/) 允许我们在组件旁边直接编写样式。它让我们可以轻松地移动组件，或者完全替换它们，所需的努力最小化。
+
+所有这些分布在许多包和文件中的组件都需要一个单一的真相来源。颜色、填充大小、阴影、字体……一切都必须在 TinaCMS 组件之间保持一致。Styled Components 提供了一个强大的主题系统，非常适合解决这个问题。我们可以为任何希望使用 Tina 通用样式的组件提供主题上下文。
+
+最初，Tina UI 被包含在一个 iframe 内的隔离侧边栏中。当我们转向使用 Tina 进行内联内容编辑时，特定字段的 UI 将直接显示在用户的网站上，而不是在一个隔离的 TinaCMS 容器中。由于主题对象是在 Tina 内部构建的，为页面内组件提供当前主题是一个挑战。通过 gatsby-config.js 配置的主题更改只能全局进行，并且只有在服务器重启时才会生效。我们需要一些更适合不断发展的 TinaCMS 项目的东西。
+
+## 引入 CSS 自定义属性。
+
+[CSS 自定义属性](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) 将变量带给了 CSS 大众！它们不是编译时的，也不依赖于 JavaScript，而是可以在普通 CSS 中定义和使用。CSS 自定义属性被声明并作用于一个选择器范围，比如 `:root`。你可以通过重新声明来覆盖现有属性，无论是在相同范围还是在子元素上。在 TinaCMS 的情况下，这意味着你可以轻松地在自己的项目中自定义和使用我们的主题，而无需编译我们的样式。
+
+这是一个覆盖主色（默认是蓝色）并在自定义按钮中使用它的示例：
+
+```css
+:root {
+  --tina-color-primary-light: #eb6337;
+  --tina-color-primary: #ec4815;
+  --tina-color-primary-dark: #dc4419;
+}
+
+.my-button {
+  background-color: var(--tina-color-primary);
+  border-radius: var(--tina-radius-big);
+
+  :hover {
+    background-color: var(--tina-color-primary-light);
+  }
+}
+```
+
+简化我们的主题系统的复杂性使我们更容易将 UI 适应新功能，同时也使那些将 TinaCMS 集成到他们项目中的人更容易。
+
+## 下一个挑战是什么？
+
+Styled Components 易于使用且通常令人愉快，但不幸的是需要一个运行时。虽然这在应用程序或网站中不是问题，但对于库来说是个问题。库的使用者可能已经在使用不同版本的 styled components，甚至是需要单独运行时的不同 css-in-js 库。理想情况下，TinaCMS 样式应该是框架无关的，没有运行时，可以被任何 HTML 页面使用。将我们的主题系统迁移到 CSS 自定义属性是使我们的样式系统与项目需求对齐的第一步。

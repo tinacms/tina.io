@@ -6,20 +6,21 @@ import TinaCmsPng from '@/public/img/tinacms-logo.png';
 import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
 import TinaIconSvg from '@/public/svg/tina-icon.svg';
 import '@/styles/tailwind.css';
-import { getGitHubStarCount } from '@/utils/github-star-helper';
-import { saveLocaleToCookie } from '@/utils/locale';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
 import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useRef, useState } from 'react';
 import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
+import { getGitHubStarCount } from '@/utils/github-star-helper';
+import { saveLocaleToCookie } from '@/utils/locale';
 import 'react-responsive-modal/styles.css';
 import { EmailForm } from '../modals/AppRouterEmailForm';
 import { Button } from '../ui/Button';
@@ -129,7 +130,7 @@ function parseNavItems(items: any[]): NavItem[] {
 
     // Default case for any other template type
     console.warn(
-      `Unknown nav item template: ${item._template}. Falling back to string item.`
+      `Unknown nav item template: ${item._template}. Falling back to string item.`,
     );
     return {
       _template: stringItemString,
@@ -164,31 +165,32 @@ export function AppNavBar({ sticky = true }) {
 
   useEffect(() => {
     if (sticky) {
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', handleScroll, { passive: true });
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [sticky]);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
+  }, [sticky, handleScroll]);
 
   useEffect(() => {
     const updateModalClass = () => {
       setModalClass(
         window.innerWidth < 540
           ? 'mobile-language-select-modal'
-          : 'language-select-modal'
+          : 'language-select-modal',
       );
     };
 
     updateModalClass();
-    window.addEventListener('resize', updateModalClass);
+    window.addEventListener('resize', updateModalClass, { passive: true });
     return () => {
       window.removeEventListener('resize', updateModalClass);
     };
   }, []);
 
   const [navItems, setNavItems] = useState<NavItem[]>(
-    Array.isArray(data.navItem) ? parseNavItems(data.navItem) : []
+    Array.isArray(data.navItem) ? parseNavItems(data.navItem) : [],
   );
   const toggleMenu = () => {
     const newOpenState = !open;
@@ -199,6 +201,13 @@ export function AppNavBar({ sticky = true }) {
       document.body.style.overflow = '';
     }
   };
+
+  // New function to handle navigation link clicks - only close mobile menu if it's open
+  const handleNavLinkClick = () => {
+    if (open) {
+      toggleMenu();
+    }
+  };
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
@@ -206,11 +215,11 @@ export function AppNavBar({ sticky = true }) {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [pathName]);
+  }, []);
 
   useEffect(() => {
     const matchedLocale = Object.values(SupportedLocales).find((locale) =>
-      pathName.startsWith(`/${locale}`)
+      pathName.startsWith(`/${locale}`),
     );
     setSelectedFlag(matchedLocale || SupportedLocales.EN);
   }, [pathName]);
@@ -222,20 +231,20 @@ export function AppNavBar({ sticky = true }) {
           ? parseNavItems(zhData.navItem)
           : []
         : data && Array.isArray(data.navItem)
-        ? parseNavItems(data.navItem)
-        : []
+          ? parseNavItems(data.navItem)
+          : [],
     );
-  }, [pathName, selectedFlag]);
+  }, [selectedFlag]);
 
   useEffect(() => {
     const fetchStarCount = async () => {
       const githubButton = navItems.find(
-        (item) => item._template === GitHubStarButton
+        (item) => item._template === GitHubStarButton,
       );
       if (githubButton && isGitHubStarButton(githubButton)) {
         const count = await getGitHubStarCount(
           githubButton.owner,
-          githubButton.repo
+          githubButton.repo,
         );
         setStarCount(count);
       }
@@ -255,7 +264,7 @@ export function AppNavBar({ sticky = true }) {
     }, 20);
 
     const localePattern = new RegExp(
-      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`
+      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`,
     );
     const isRootOrLocale =
       pathName === '/' ||
@@ -269,11 +278,11 @@ export function AppNavBar({ sticky = true }) {
     const isEnglish = code === SupportedLocales.EN;
     const hasLocalePrefix = localePattern.test(pathName);
 
-    let newPath;
+    let newPath: string;
     if (hasLocalePrefix) {
       newPath = isEnglish
         ? pathName.replace(localePattern, (_, __, slash) =>
-            slash === '/' ? '/' : ''
+            slash === '/' ? '/' : '',
           )
         : pathName.replace(localePattern, `/${code}$2`);
     } else {
@@ -294,6 +303,7 @@ export function AppNavBar({ sticky = true }) {
             } `}
           >
             <button
+              type="button"
               className="absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
               onClick={toggleMenu}
             >
@@ -320,6 +330,7 @@ export function AppNavBar({ sticky = true }) {
                 </div>
                 <div className="flex items-center">
                   <button
+                    type="button"
                     className={`outline-hidden hover:animate-jelly ${
                       animateFlag ? 'animate-bounce' : ''
                     } hidden max-[1023px]:block`}
@@ -339,10 +350,13 @@ export function AppNavBar({ sticky = true }) {
                     (item.items as any[]).map((subItem, subIndex) =>
                       subItem.href ? (
                         <li
-                          key={`${index}-${subIndex}`}
+                          key={`${index}-${subIndex}-${subItem.href}`}
                           className={`group ${navLinkClasses} py-2`}
                         >
-                          <Link href={subItem.href} onClick={toggleMenu}>
+                          <Link
+                            href={subItem.href}
+                            onClick={handleNavLinkClick}
+                          >
                             <span className="">
                               {subItem.label}
                               {subItem.href.startsWith('https://') && (
@@ -351,21 +365,24 @@ export function AppNavBar({ sticky = true }) {
                             </span>
                           </Link>
                         </li>
-                      ) : null
+                      ) : null,
                     )
                   ) : 'href' in item ? (
-                    <li key={index} className={`group ${navLinkClasses}`}>
+                    <li
+                      key={`${index}-${item.href}`}
+                      className={`group ${navLinkClasses}`}
+                    >
                       <Link
                         href={item.href}
                         className="py-2"
-                        onClick={toggleMenu}
+                        onClick={handleNavLinkClick}
                       >
                         {item.label}
                       </Link>
                     </li>
                   ) : item._template === GitHubStarButton ? (
                     <li
-                      key={index}
+                      key={`${index}-${item.owner}-${item.repo}`}
                       className={`group ${navLinkClasses} py-2 flex items-center`}
                     >
                       <Link
@@ -373,7 +390,7 @@ export function AppNavBar({ sticky = true }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center"
-                        onClick={toggleMenu}
+                        onClick={handleNavLinkClick}
                       >
                         <span className="flex items-center">
                           <svg
@@ -396,7 +413,7 @@ export function AppNavBar({ sticky = true }) {
                         </span>
                       </Link>
                     </li>
-                  ) : null
+                  ) : null,
                 )}
               </ul>
             </div>
@@ -425,7 +442,7 @@ export function AppNavBar({ sticky = true }) {
                 (item, index) =>
                   isModalButtonItem(item) && (
                     <Button
-                      key={index}
+                      key={`${index}-${item.modal}`}
                       color={item.color as ValidColors}
                       size="extraSmall"
                       onClick={() => openModal(item.modal)}
@@ -437,10 +454,11 @@ export function AppNavBar({ sticky = true }) {
                       )}
                       {item.label}
                     </Button>
-                  )
+                  ),
               )}
 
             <button
+              type="button"
               className={`outline-hidden hover:animate-jelly ${
                 animateFlag ? 'animate-bounce' : ''
               } hidden min-[1024px]:block`}
@@ -475,7 +493,7 @@ export function AppNavBar({ sticky = true }) {
                     case modalButtonString:
                       return (
                         <li
-                          key={index}
+                          key={`${index}-${item.modal}`}
                           className={`group ${navLinkClasses} py-2 flex items-center`}
                         >
                           <Button
@@ -496,11 +514,14 @@ export function AppNavBar({ sticky = true }) {
                       );
                     case stringItemString:
                       return (
-                        <li key={index} className={`group ${navLinkClasses}`}>
+                        <li
+                          key={`${index}-${item.href}`}
+                          className={`group ${navLinkClasses}`}
+                        >
                           <Link
                             href={item.href}
                             className="py-2 w-max"
-                            onClick={toggleMenu}
+                            onClick={handleNavLinkClick}
                           >
                             {item.label}
                           </Link>
@@ -508,11 +529,14 @@ export function AppNavBar({ sticky = true }) {
                       );
                     case groupOfStringItemsString:
                       return (
-                        <li key={index} className={`group ${navLinkClasses}`}>
+                        <li
+                          key={`${index}-${item.label}`}
+                          className={`group ${navLinkClasses}`}
+                        >
                           <div className="relative group">
                             <span
                               className="flex items-center cursor-pointer"
-                              onClick={toggleMenu}
+                              onClick={handleNavLinkClick}
                             >
                               {item.label}
                               <BiChevronDown
@@ -524,12 +548,12 @@ export function AppNavBar({ sticky = true }) {
                             >
                               {item.items.map((subItem, subIndex) => (
                                 <li
-                                  key={subIndex}
+                                  key={`${index}-${subIndex}-${subItem.href}`}
                                   className="py-2 px-2 flex items-center"
                                 >
                                   <Link
                                     href={subItem.href}
-                                    onClick={toggleMenu}
+                                    onClick={handleNavLinkClick}
                                   >
                                     <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                                       {subItem.label}
@@ -547,7 +571,7 @@ export function AppNavBar({ sticky = true }) {
                     case GitHubStarButton:
                       return (
                         <li
-                          key={index}
+                          key={`${index}-${item.owner}-${item.repo}`}
                           className={`group ${navLinkClasses} py-2 flex items-center`}
                         >
                           <Link
@@ -555,7 +579,7 @@ export function AppNavBar({ sticky = true }) {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center"
-                            onClick={toggleMenu}
+                            onClick={handleNavLinkClick}
                           >
                             <span className="flex items-center">
                               <svg
@@ -585,6 +609,7 @@ export function AppNavBar({ sticky = true }) {
                 })}
                 <li className="group flex items-center cursor-pointer">
                   <button
+                    type="button"
                     className={`outline-hidden hover:animate-jelly ${
                       animateFlag ? 'animate-bounce' : ''
                     }`}

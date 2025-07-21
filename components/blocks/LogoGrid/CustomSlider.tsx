@@ -1,11 +1,9 @@
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
   const sliderRef = useRef(null);
 
   const [isPaused, setIsPaused] = useState(false);
-
-  
 
   // Current scroll position in pixels (negative means moving left).
   const scrollPosition = useRef(0);
@@ -13,19 +11,21 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
   // The width of one “set” of items. We render 2 sets total in a row.
   const [oneSetWidth, setOneSetWidth] = useState(0);
   useEffect(() => {
-    if (!sliderRef.current) return;
+    if (!sliderRef.current) {
+      return;
+    }
 
     const measureId = requestAnimationFrame(() => {
       const totalWidth = sliderRef.current.scrollWidth;
-      
+
       setOneSetWidth(totalWidth / 2);
     });
 
     return () => cancelAnimationFrame(measureId);
-  }, [items, slidesToShow]);
+  }, []);
 
   useEffect(() => {
-    let rafId;
+    let rafId: number;
 
     function tick() {
       if (!isPaused && oneSetWidth && sliderRef.current) {
@@ -60,10 +60,13 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div ref={sliderRef} className="flex whitespace-nowrap subpixel-antialiased backface-hidden">
-        {items.map((item, i) => (
+      <div
+        ref={sliderRef}
+        className="flex whitespace-nowrap subpixel-antialiased backface-hidden"
+      >
+        {items.map((item) => (
           <div
-            key={i}
+            key={item.id}
             // Ensure each item is exactly 1/5 or 1/3 of the container for even horiz spacing
             className={`flex-none box-border px-2 ${widthClass}`}
           >
@@ -72,9 +75,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ))}
 
         {/* Duplicate items for the seamless loop */}
-        {items.map((item, i) => (
+        {items.map((item, index) => (
           <div
-            key={`clone-${i}`}
+            key={`clone-${item.id ?? index}`}
             className={`flex-none box-border px-2 ${widthClass}`}
           >
             {item}

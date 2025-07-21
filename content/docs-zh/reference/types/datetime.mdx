@@ -1,0 +1,88 @@
+---
+title: 日期字段
+last_edited: '2025-03-26T01:06:16.097Z'
+next: ''
+previous: ''
+---
+
+一个结构化输入，用于以ISO 8601格式存储日期值。底层使用了[react-datetime](https://www.npmjs.com/package/react-datetime)。
+
+## 类型定义
+
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: '将此设置为 `"datetime"` 以使用日期时间字段。\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "字段的内部使用名称。\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "dateFormat",
+      description: "定义UI日期格式。\n\n例如，'YYYY MM DD'。\n",
+      type: "string"
+    }
+  ]}
+/>
+
+日期时间以UTC格式保存，在输入时从用户的本地时间转换。
+
+> 在ui下添加到日期字段定义的任何额外属性都将传递给[react-datetime](https://www.npmjs.com/package/react-datetime)组件。
+
+## 示例
+
+### 简单字段
+
+```javascript
+{
+  type: 'datetime',
+  name: 'date',
+  label: '日期'
+}
+```
+
+![](/img/docs/reference/date.png)
+
+### 自定义日期格式的字段
+
+您可以通过自定义dateFormat和parse属性来定制日期字段使用的格式。
+
+```javascript
+{
+  label: "日期",
+  name: "date",
+  type: "datetime",
+  ui: {
+    dateFormat: 'YY-MM-DD',
+    parse: (value) => value && value.format('YY-MM-DD'),
+  },
+}
+```
+
+![](/img/docs/reference/date2.png)
+
+### 包含时间选择器的字段
+
+您可以通过提供`ui.timeFormat`属性在日期UI中添加时间选择器。
+
+```javascript
+{
+  label: "日期",
+  name: "date",
+  type: "datetime",
+  ui: {
+    timeFormat: "HH:mm"
+  },
+}
+```
+
+![](/img/docs/reference/date3.png)

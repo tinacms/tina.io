@@ -1,0 +1,28 @@
+---
+title: "安装 TinaCMS \U0001F999"
+last_edited: '2025-03-27T05:24:15.002Z'
+tocIsHidden: true
+next: content/docs-zh/beginner-tutorials/hello-world.mdx
+previous: content/docs-zh/beginner-tutorials/intro-cleanup.mdx
+---
+
+> 我们有专门的[入门套件](/docs/introduction/using-starter)，可以更快地启动和运行，但在这里我们将介绍如何将CMS添加到现有项目中。
+
+现在我们准备开始添加Tina了！
+
+1. 在你的项目目录中，通过运行 `npx @tinacms/cli@latest init` 安装Tina。
+2. 选择NextJS作为框架。
+3. 选择NPM作为你的包管理器。
+4. 选择“是”来使用TypeScript。
+5. 在TinaCMS添加到你的网站时，去喝杯咖啡☕。
+6. 🪟 **仅限Windows** – 在 `package.json` 文件中更新你的开发脚本为 `"tinacms dev -c  \"next dev\""`.
+7. 运行 `npm run dev` 来启动你的新的 **Tina化** NextJS 应用程序!![](/img/tutorials/SCR-20250319-jkaq.png)
+8. 通过访问 `http://localhost:3000/admin/index.html` 来进入你的新Tina编辑器
+
+<WarningCallout
+  body={<>
+    **删除** `src/pages/` 目录，这是为了确保与旧版本兼容而生成的。
+  </>}
+/>
+
+由于你刚刚设置了TinaCMS，你可能会注意到还没有内容可以编辑。这是因为Tina需要了解一个模型来确定你的页面需要什么数据！我们将在下一步中添加它。

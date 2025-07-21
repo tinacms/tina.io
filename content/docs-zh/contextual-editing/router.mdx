@@ -1,0 +1,74 @@
+---
+id: /docs/contextual-editing/router
+title: 可视化编辑路由器
+last_edited: '2025-03-17T22:13:09.665Z'
+next: ''
+previous: content/docs-zh/contextual-editing/vue.mdx
+---
+
+默认情况下，从集合列表中点击一个文档会将您带到全页面编辑器。
+
+在集合上设置[`ui.router`](/docs/reference/collections/#definition)属性会创建一个指向可视化编辑器的链接。
+
+![](</gif/Screen Recording 2025-03-17 at 5.40.45 pm (1).gif>)
+
+## `ui.router` 用法
+
+`router`属性是一个函数，应该返回页面路径作为字符串，或者返回`undefined`以进入默认编辑器。
+
+```javascript
+router: ({
+  collection: Collection,
+  document: Document
+}) => string | undefined
+```
+
+当在集合列表中点击一个文档时，该函数会被运行。
+
+## 示例
+
+### 首页路由
+
+从路由器函数返回 /（主页路由）或特定的slug将链接到该页面，并激活可视化编辑。
+
+```javascript
+{
+  name: 'page',
+  label: '页面',
+  path: 'content/page',
+  format: 'md',
+  ui: {
+    router: ({ document }) => {
+      // 导航到主页
+      if (document._sys.filename === 'home') {
+        return '/'
+      }
+      // 导航到关于页面
+      if (document._sys.filename === 'about') {
+        return `/about`
+      }
+      return undefined
+    },
+  },
+  fields: [],
+}
+```
+
+### 基于文件名的路由
+
+可以将路由与文档文件名关联，或通过编程方式实现。
+
+```javascript
+{
+  label: '博客文章',
+  name: 'post',
+  path: 'content/posts',
+  format: 'mdx',
+  ui: {
+    router: ({ document }) => {
+      return `/post/${document._sys.filename}`
+    },
+  },
+  fields: [],
+}
+```
