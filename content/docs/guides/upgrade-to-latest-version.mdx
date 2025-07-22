@@ -5,7 +5,7 @@ next: content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx
 previous: content/docs/beginner-tutorials/tutorial-overview.mdx
 ---
 
-To see which version of TinaCMS you’re currently using, check your package.json file:
+To see which version of TinaCMS you’re currently using, check your `package.json` file:
 
 ```json
 "dependencies": {
@@ -24,30 +24,22 @@ You can view all published versions of TinaCMS packages on npmjs.com:
 
 [@tinacms/cli on npm](https://www.npmjs.com/package/@tinacms/cli)
 
-Use your preferred package manager to upgrade TinaCMS to the latest version:
-
-With npm:
+Use your preferred package manager to upgrade TinaCMS to the latest version e.g.
 
 ```bash
 npm install tinacms @tinacms/cli@latest
 ```
 
-With pnpm:
-
-```bash
-pnpm add tinacms @tinacms/cli@latest
-```
-
-With yarn:
-
-```bash
-yarn add tinacms @tinacms/cli@latest
-```
-
-Example of Installing a Specific Version of TinaCMS with npm
-
-With npm:
+Example of Installing a Specific Version of TinaCMS with npm:
 
 ```bash
 npm install tinacms@2.8.0 @tinacms/cli@1.10.0
 ```
+
+> ⚠️ Reminder: After upgrading Tina, run a dev build to ensure lock file is up to date
+
+```bash
+npm run dev
+```
+
+This ensures TinaCMS’s internal plugins and dependencies trigger any needed updates to `tina-lock.json`. This file will need to be commited so that TinaCloud knows which version of TinaCMS your site is using.
