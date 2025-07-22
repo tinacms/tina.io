@@ -1,6 +1,6 @@
 ---
 title: Upgrade to Latest Version
-last_edited: '2025-07-11T08:01:15.663Z'
+last_edited: '2025-07-22T08:00:47.306Z'
 next: content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx
 previous: content/docs/beginner-tutorials/tutorial-overview.mdx
 ---
@@ -50,4 +50,19 @@ With npm:
 
 ```bash
 npm install tinacms@2.8.0 @tinacms/cli@1.10.0
+```
+
+### Verify the Upgrade
+
+After upgrading, run the project with your package manager to confirm it works as expected:
+
+```bash
+# Example with pnpm
+pnpm dev
+```
+
+If you're preparing to deploy, run the production build:
+
+```bash
+pnpm build
 ```
