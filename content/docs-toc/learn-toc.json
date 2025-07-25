@@ -257,9 +257,20 @@
           "_template": "item"
         },
         {
-          "title": "Internationalization",
-          "slug": "content/docs/guides/internationalization.mdx",
-          "_template": "item"
+          "title": "Globalization",
+          "items": [
+            {
+              "title": "TinaCMS Availability in China",
+              "slug": "content/docs/tina-cloud/tinacms-availability-China.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Internationalization",
+              "slug": "content/docs/guides/internationalization.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
         },
         {
           "title": "Multi-Tenancy",
