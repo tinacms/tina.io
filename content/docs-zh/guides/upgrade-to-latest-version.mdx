@@ -1,0 +1,45 @@
+---
+title: 升级到最新版本
+last_edited: '2025-07-11T08:01:15.663Z'
+next: content/docs-zh/guides/how-to-update-your-tina-version-with-dependabot.mdx
+previous: content/docs-zh/beginner-tutorials/tutorial-overview.mdx
+---
+
+要查看您当前使用的TinaCMS版本，请检查您的`package.json`文件：
+
+```json
+"dependencies": {
+  "@tinacms/cli": "^1.x.x",
+  "tinacms": "^1.x.x"
+}
+```
+
+🔍 如何查找可用版本
+
+> 注意：始终同时更新tinacms和@tinacms/cli到最新版本，以获取最新功能并避免兼容性问题。
+
+您可以在npmjs.com上查看所有已发布的TinaCMS包版本：
+
+[tinacms on npm](https://www.npmjs.com/package/tinacms)
+
+[@tinacms/cli on npm](https://www.npmjs.com/package/@tinacms/cli)
+
+使用您喜欢的包管理器将TinaCMS升级到最新版本，例如：
+
+```bash
+npm install tinacms @tinacms/cli@latest
+```
+
+使用npm安装特定版本TinaCMS的示例：
+
+```bash
+npm install tinacms@2.8.0 @tinacms/cli@1.10.0
+```
+
+> ⚠️ 提醒：升级Tina后，运行开发构建以确保锁定文件是最新的
+
+```bash
+npm run dev
+```
+
+这可以确保TinaCMS的内部插件和依赖项触发对`tina-lock.json`的任何必要更新。此文件需要提交，以便TinaCloud知道您的站点正在使用哪个版本的TinaCMS。
