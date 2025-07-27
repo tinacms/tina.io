@@ -125,20 +125,6 @@
       "headline": "Coming Soon",
       "items": [
         {
-          "headline": "AI Tooling",
-          "status": "",
-          "content": "We're working on some ways to leverage AI in the content creation process.\n",
-          "actions": [
-            {
-              "label": "Do you use /llms.txt to make your site LLM-friendly? 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
-            }
-          ]
-        },
-        {
           "headline": "Docs Template",
           "status": "",
           "content": "Since Tina works so well with documentation sites, we're building a best-of-breed Tina + Docs starter template.\n"
@@ -154,6 +140,20 @@
               "variant": "blue",
               "size": "medium",
               "url": "https://tina.io/editorial-workflow/"
+            }
+          ]
+        },
+        {
+          "headline": "MCP Server",
+          "status": "",
+          "content": "We're working on some ways to leverage AI in the content creation process.\n",
+          "actions": [
+            {
+              "label": "Do you use /llms.txt to make your site LLM-friendly? 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }
           ]
         }
