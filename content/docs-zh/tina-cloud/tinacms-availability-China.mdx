@@ -1,0 +1,46 @@
+---
+title: TinaCMS在中国的可用性
+last_edited: '2025-07-11T07:20:13.664Z'
+next: content/docs-zh/guides/internationalization.mdx
+previous: ''
+---
+
+本文档评估了在中国开发和部署项目时，无需VPN即可访问的关键TinaCMS服务和工具。
+
+### 快速概览
+
+| 服务                           | 状态         | 备注                            |
+| ----------------------------- | ------------ | ------------------------------ |
+| TinaCMS CLI                   | ✅ 可访问     | 功能齐全                       |
+| TinaCloud                     | ✅ 可访问     | 功能齐全                       |
+| GitHub                        | ⚠️ 速度慢    | 可访问但速度慢                 |
+| Tina.io                       | ✅ 可访问     | 功能齐全                       |
+| 静态网站托管平台              | ❌ 不可用     | 部署的实例无法访问             |
+
+### 服务可用性评估
+
+1. **TinaCMS CLI 安装**
+   * 命令: `npx create-tina-app@latest`
+   * 状态: ✅ 可访问 - npm注册表和TinaCMS CLI可以无问题访问。
+2. **TinaCloud 服务**
+   * 服务: TinaCloud 仪表板和API
+   * 状态: ✅ 可访问 - TinaCloud仪表板和API服务在中国均可完全访问。
+3. **GitHub**
+   * 服务: GitHub 仓库托管
+   * 状态: ⚠️ 可访问但速度慢 - GitHub可访问，但性能降低且偶尔有连接问题。
+4. **Tina.io 和文档**
+   * 服务: Tina.io 文档网站
+   * 状态: ✅ 可访问 - 官方TinaCMS文档完全可访问。
+5. **静态网站托管平台**
+
+* 服务: Vercel, Netlify, GitHub Pages
+* 状态: ❌ 不可用 - 平台网站可访问，但由于DNS问题，部署的实例无法从中国访问。
+
+### 总结
+
+TinaCMS在中国大陆总体上是可用和可操作的。主要障碍是**静态网站托管平台的不可访问性**，且没有直接的中国替代服务。因此，中国用户可以将他们的项目部署到*阿里云服务器*，结合*GitHub Actions*作为替代解决方案。
+
+有关详细的实施指导：
+
+* [部署到阿里云](/docs/tina-cloud/deployment-options/alibaba-cloud) - 学习如何使用阿里云基础设施设置Tina项目
+* [国际化](/docs/guides/internationalization#internationalization-with-github-action) - 为您的Tina项目添加多语言支持
