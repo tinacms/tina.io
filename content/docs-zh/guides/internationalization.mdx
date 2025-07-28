@@ -1,25 +1,25 @@
 ---
 id: /docs/guides/internationalization
 seo:
-  title: 使用TinaCMS实现国际化和多语言内容
+  title: 使用TinaCMS进行国际化和多语言内容
   description: >-
-    本指南涵盖了使用TinaCMS实现国际化的设置、配置和最佳实践，以提供无缝的多语言用户体验
+    本指南涵盖了使用TinaCMS实现国际化的设置、配置和最佳实践，以实现无缝的多语言用户体验
 title: 国际化
-last_edited: '2025-04-14T09:08:52.001Z'
+last_edited: '2025-07-11T07:19:58.061Z'
 next: ''
 previous: ''
 ---
 
-## 使用TinaCMS实现国际化
+## 使用TinaCMS进行国际化
 
-管理多语言内容对于全球化传播至关重要。TinaCMS提供了多种灵活的选项来实现这一目标。本指南重点介绍两种主要策略：
+管理多语言内容对于全球覆盖至关重要。TinaCMS提供了多种灵活的选项来促进这一点。本指南重点介绍两种主要策略：
 
 * 基于目录的本地化
 * 基于字段的本地化
 
 ### 基于目录的本地化
 
-使用基于目录的本地化时，您的内容应以目录为基础进行组织，其中语言环境（例如，en, fr）位于集合根目录（例如，blog, docs）下。例如：
+使用基于目录的本地化时，您的内容应以目录为基础进行结构化，其中语言环境（例如，en，fr）位于集合根目录（例如，blog，docs）下。例如：
 
 ```text
 .
@@ -37,7 +37,7 @@ previous: ''
 
 #### 实现基于目录的本地化的步骤
 
-在您的config.ts文件中，您可能会有一个集合包含所有语言环境。
+在您的config.ts中，您可能会有一个包含所有语言环境的集合
 
 ```jsx
 export const config = {
@@ -53,7 +53,7 @@ export const config = {
 
 #### 路由和文件结构：
 
-无论您使用的是Next.js还是其他框架，您的路由逻辑都应该更新，以根据URL或用户设置选择正确的语言环境。
+无论您使用的是Next.js还是其他框架，您的路由逻辑都应更新，以根据URL或用户设置选择正确的语言环境。
 
 ```jsx
 // 示例：在NextJS中获取页面列表
@@ -63,7 +63,7 @@ const getStaticPaths = async({ locales }) {
 })
 ```
 
-使用语言环境，您可以根据路径筛选文档。
+使用语言环境，您可以根据路径筛选文档
 
 ```jsx
 // /pages/post/[filename].tsx
@@ -83,15 +83,15 @@ const getStaticProps = async({ params, locale }) {
 }
 ```
 
-> 有关设置NextJS特定实现的路由的更多信息，请参阅[我们的指南](/docs/guides/internationalization/)
+> 有关设置NextJS特定实现路由的更多信息，请参阅[我们的指南](/docs/guides/internationalization/)
 
 #### 内容管理
 
-使用此设置，编辑者将通过文档列表浏览每个集合的语言环境。
+通过此设置，编辑者将通过文档列表浏览每个集合的语言环境。
 
 ![本地化列表](/img/docs/i18n/lang-folders.png)
 
-如果用户希望创建现有文档的新本地化版本，他们可以从文档列表中点击“复制文档”，并在新文档的文件名中添加所需的语言环境前缀。
+如果用户想要创建现有文档的新本地化版本，他们可以从文档列表中点击“复制文档”，并在新文档的文件名中添加所需的语言环境。
 
 ### 基于字段的本地化
 
@@ -141,7 +141,7 @@ export const pageSchema = {
 
 #### 显示本地化内容：
 
-在您的网站组件中，您可以根据当前语言环境选择正确的本地化字段进行显示。
+在您网站的组件中，您可以根据当前语言环境选择正确的本地化字段进行显示。
 
 ```jsx
 const PageComponent = ({ data, locale }) => {
@@ -152,22 +152,22 @@ const PageComponent = ({ data, locale }) => {
 
 #### 内容管理：
 
-TinaCMS会将所有本地化字段显示为根级字段的子字段。
+TinaCMS将所有本地化字段显示为根级字段的子字段。
 
 ![本地化字段](/img/docs/i18n/localized-fields.png)
 
-## 使用GitHub Action实现国际化
+## 使用GitHub Action进行国际化
 
-使用基于目录的本地化时，开发者需要将对应语言的MDX或JSON文件放置在正确的位置，以加载多语言路由。开发者可以选择手动翻译文本内容并将其放置在正确的位置，也可以使用GitHub Action自动化此过程。以下是一个解释有效GitHub Action工作流程的示例：
+使用基于目录的本地化时，开发人员需要将相应语言的MDX或JSON文件放置在正确的位置以加载多语言路由。开发人员可以选择手动翻译文本内容并将其放置在正确的位置，或者他们可以使用GitHub Action来自动化此过程。以下是一个解释有效GitHub Action工作流程的示例：
 
 ![自动翻译工作流程](/img/docs/guides-internationalization/Screenshot%202025-04-14%20102942.png)
 
 ### 为GitHub Actions设置触发条件
 
-必须为此GitHub Action设置触发条件。通常，当PR成功合并时触发。为了减少令牌消耗，定时触发是一个替代方案。以下示例展示了一个仅在PR合并且指定目录中有更改时激活的GitHub Action。
+必须为此GitHub Action设置触发条件。通常，触发发生在PR成功合并时。为了减少令牌消耗，计划触发是一个替代方案。下面的示例显示了一个仅在PR合并并包含指定目录中的更改时激活的GitHub Action。
 
 ```yaml
-# 仅在PR成功关闭且包含指定目录中的更改后触发
+# 仅在PR成功关闭并包含指定目录中的更改后触发
 on:
   pull_request:
     types: [closed] 
@@ -179,12 +179,12 @@ jobs:
     if: github.event.pull_request.merged == true
 ```
 
-### &#x20;识别修改的目标文件
+### 识别修改的目标文件
 
-为了最大限度地减少令牌使用，识别仅修改的文件进行翻译至关重要。以下是列出所有修改文件的简单示例。
+为了最小化令牌使用，仅识别修改的文件进行翻译是必要的。下面是一个列出所有修改文件的简单示例。
 
 ```javascript
-// 识别当前PR下修改的目标文件
+// 识别当前PR下的修改目标文件
 async function getChangedFilesFromApi() {
   try {
     const response = await axios.get(
@@ -206,7 +206,7 @@ async function getChangedFilesFromApi() {
 
     return mdxFiles;
   } catch (error) {
-    console.error('Error fetching changed files from API:', error.message);
+    console.error('从API获取更改文件时出错:', error.message);
     return [];
   }
 }
@@ -214,10 +214,10 @@ async function getChangedFilesFromApi() {
 
 ### 创建翻译分支
 
-创建一个单独的分支以区分原始分支和新添加的翻译内容至关重要。这种方法便于手动审核。
+创建一个单独的分支以区分原始分支和新添加的翻译是必要的。这种方法有助于手动审核。
 
 ```yaml
-# 为翻译文件创建单独的分支
+# 为翻译文件创建一个单独的分支
 - name: Create translation branch
         if: env.HAS_CHANGED_FILES == 'true'
         run: |
@@ -230,7 +230,7 @@ async function getChangedFilesFromApi() {
 
 ### 通过LLM API调用获取翻译
 
-外部LLM用于自动翻译。翻译质量和格式完整性取决于所选模型和提示。以下是一个将MDX文件翻译成中文的英文提示示例，同时保留文档界面和关键信息。
+外部LLM用于自动翻译。翻译质量和格式完整性取决于所选模型和提示。下面是一个将MDX文件翻译成中文的英文提示示例，同时保留文档接口和关键信息。
 
 ````
 Please translate the following Markdown content into Chinese, preserving all Markdown formatting, code blocks, and front matter metadata.Only translate the text content, do not modify code, variable names, or other technical content.Do not add ```markdown``` in the newly translated Markdown file.Please note the following special requirements:
@@ -243,7 +243,7 @@ Please translate the following Markdown content into Chinese, preserving all Mar
 
 ### 将所有更改提交到新分支并创建PR
 
-由LLM生成的内容不能被完全信任。将所有更改提交到新的PR以进行彻底验证是一种更谨慎和系统的方法。
+由LLM生成的内容不能被视为完全可靠。将所有更改提交到新的PR以进行彻底验证代表了一种更谨慎和系统的方法。
 
 ```javascript
 const prTitle = `Chinese translation for PR #${PR_NUMBER}`;

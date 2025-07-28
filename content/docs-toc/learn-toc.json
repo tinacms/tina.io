@@ -242,6 +242,11 @@
           "_template": "items"
         },
         {
+          "title": "Markdown to MDX migration guide",
+          "slug": "content/docs/guides/converting-md-to-mdx.mdx",
+          "_template": "item"
+        },
+        {
           "title": "Marking Draft Pages",
           "slug": "content/docs/drafts/drafts-fields.mdx",
           "_template": "item"
@@ -252,9 +257,20 @@
           "_template": "item"
         },
         {
-          "title": "Internationalization",
-          "slug": "content/docs/guides/internationalization.mdx",
-          "_template": "item"
+          "title": "Globalization",
+          "items": [
+            {
+              "title": "TinaCMS Availability in China",
+              "slug": "content/docs/tina-cloud/tinacms-availability-China.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Internationalization",
+              "slug": "content/docs/guides/internationalization.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
         },
         {
           "title": "Multi-Tenancy",

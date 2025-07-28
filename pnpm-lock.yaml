@@ -27,8 +27,8 @@ importers:
         specifier: ^3.0.80
         version: 3.0.80
       '@next/bundle-analyzer':
-        specifier: ^14.2.23
-        version: 14.2.30(bufferutil@4.0.9)
+        specifier: ^15.4.2
+        version: 15.4.2(bufferutil@4.0.9)
       '@next/third-parties':
         specifier: ^15.3.4
         version: 15.3.5(next@14.2.30(@babel/core@7.28.0)(@playwright/test@1.53.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react@18.3.1)
@@ -54,8 +54,8 @@ importers:
         specifier: ^4.24.0
         version: 4.25.2
       axios:
-        specifier: ^1.9.0
-        version: 1.10.0
+        specifier: ^1.11.0
+        version: 1.11.0
       btoa:
         specifier: ^1.2.1
         version: 1.2.1
@@ -126,8 +126,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(moment@2.30.1)(webpack@5.99.9)
       moment-timezone:
-        specifier: ^0.5.47
-        version: 0.5.48
+        specifier: ^0.6.0
+        version: 0.6.0
       monaco-editor:
         specifier: ^0.52.2
         version: 0.52.2
@@ -1100,8 +1100,8 @@ packages:
   '@codemirror/state@6.5.2':
     resolution: {integrity: sha512-FVqsPqtPWKVVL3dPSxy8wEF/ymIEuVzF1PK3VbUgrxXpJUSHQWWZz4JMToquRxnkw+36LTamCZG2iua2Ptq0fA==}
 
-  '@codemirror/view@6.38.0':
-    resolution: {integrity: sha512-yvSchUwHOdupXkd7xJ0ob36jdsSR/I+/C+VbY0ffBiL5NiSTEBDfB1ZGWbbIlDd5xgdUkody+lukAdOxYrOBeg==}
+  '@codemirror/view@6.38.1':
+    resolution: {integrity: sha512-RmTOkE7hRU3OVREqFVITWHz6ocgBjv08GoePscAakgVQfciA3SGCEk7mb9IzwW61cKKmlTpHXG6DUE5Ubx+MGQ==}
 
   '@corex/deepmerge@2.6.148':
     resolution: {integrity: sha512-6QMz0/2h5C3ua51iAnXMPWFbb1QOU1UvSM4bKBw5mzdT+WtLgjbETBBIQZ+Sh9WvEcGwlAt/DEdRpIC3XlDBMA==}
@@ -1591,6 +1591,12 @@ packages:
     peerDependencies:
       graphql: ^15.5.1
 
+  '@graphql-tools/utils@10.9.1':
+    resolution: {integrity: sha512-B1wwkXk9UvU7LCBkPs8513WxOQ2H8Fo5p8HR1+Id9WmYE5+bd51vqN+MbrqvWczHCH2gwkREgHJN88tE0n1FCw==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      graphql: ^15.5.1
+
   '@graphql-tools/utils@9.2.1':
     resolution: {integrity: sha512-WUw506Ql6xzmOORlriNrD6Ugx+HjVgYxt9KCXD9mHAak+eaXSwuGGPyE60hy9xaDEoXKBsG7SkG69ybitaVl6A==}
     peerDependencies:
@@ -1935,8 +1941,8 @@ packages:
   '@neondatabase/serverless@0.9.5':
     resolution: {integrity: sha512-siFas6gItqv6wD/pZnvdu34wEqgG3nSE6zWZdq5j2DEsa+VvX8i/5HXJOo06qrw5axPXn+lGCxeR+NLaSPIXug==}
 
-  '@next/bundle-analyzer@14.2.30':
-    resolution: {integrity: sha512-zYmPFpiworQCClUYIqGxfNphpJSUlAUiHYsc1/F8pPLIvcFtRVn1L1qO5GnEKL7KRUTyeKxzYycsOo8P/Rlmww==}
+  '@next/bundle-analyzer@15.4.2':
+    resolution: {integrity: sha512-kgjecwKDgJ50DZXjVllawD6MuTyxaREB5EUBKbG9NLBHjYu10O/OPL5JqKrBrYdQ9BNVxjGEQoDGcHB76ZjViQ==}
 
   '@next/env@14.2.30':
     resolution: {integrity: sha512-KBiBKrDY6kxTQWGzKjQB7QirL3PiiOkV7KW98leHFjtVRKtft76Ra5qSA/SL75xT44dp6hOcqiiJ6iievLOYug==}
@@ -4134,8 +4140,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@1.10.0:
-    resolution: {integrity: sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==}
+  axios@1.11.0:
+    resolution: {integrity: sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==}
 
   b4a@1.6.7:
     resolution: {integrity: sha512-OnAYlL5b7LEkALw87fUVafQw5rVR9RjwGd4KUwNQ6DrrNmaVaUCgLipfVlzrPQ4tWOR9P0IXGNOx50jYCCdSJg==}
@@ -5602,12 +5608,12 @@ packages:
     resolution: {integrity: sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==}
     engines: {node: '>= 0.12'}
 
-  form-data@2.5.3:
-    resolution: {integrity: sha512-XHIrMD0NpDrNM/Ckf7XJiBbLl57KEhT3+i3yY+eWm+cqYZJQTZrKo8Y8AWKnuV5GT4scfuUGt9LzNoIx3dU1nQ==}
+  form-data@2.5.5:
+    resolution: {integrity: sha512-jqdObeR2rxZZbPSGL+3VckHMYtu+f9//KXBsVny6JSX/pa38Fy+bGjuG8eW/H6USNQWhLi8Num++cU2yOCNz4A==}
     engines: {node: '>= 0.12'}
 
-  form-data@4.0.3:
-    resolution: {integrity: sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==}
+  form-data@4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
 
   formidable@1.2.6:
@@ -7415,8 +7421,8 @@ packages:
   moment-mini@2.29.4:
     resolution: {integrity: sha512-uhXpYwHFeiTbY9KSgPPRoo1nt8OxNVdMVoTBYHfSEKeRkIkwGpO+gERmhuhBtzfaeOyTkykSrm2+noJBgqt3Hg==}
 
-  moment-timezone@0.5.48:
-    resolution: {integrity: sha512-f22b8LV1gbTO2ms2j2z13MuPogNoh5UzxL3nzNAYKGraILnbGc9NEE6dyiiiLv46DGRb8A4kg8UKWLjPthxBHw==}
+  moment-timezone@0.6.0:
+    resolution: {integrity: sha512-ldA5lRNm3iJCWZcBCab4pnNL3HSZYXVb/3TYr75/1WCTWYuTqYUb5f/S384pncYjJ88lbO8Z4uPDvmoluHJc8Q==}
 
   moment@2.29.4:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
@@ -11233,7 +11239,7 @@ snapshots:
   '@codemirror/language@6.0.0':
     dependencies:
       '@codemirror/state': 6.5.2
-      '@codemirror/view': 6.38.0
+      '@codemirror/view': 6.38.1
       '@lezer/common': 1.2.3
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
@@ -11243,7 +11249,7 @@ snapshots:
     dependencies:
       '@marijn/find-cluster-break': 1.0.2
 
-  '@codemirror/view@6.38.0':
+  '@codemirror/view@6.38.1':
     dependencies:
       '@codemirror/state': 6.5.2
       crelt: 1.0.6
@@ -11553,7 +11559,7 @@ snapshots:
 
   '@graphql-codegen/plugin-helpers@5.1.1(graphql@15.10.1)':
     dependencies:
-      '@graphql-tools/utils': 10.8.6(graphql@15.10.1)
+      '@graphql-tools/utils': 10.9.1(graphql@15.10.1)
       change-case-all: 1.0.15
       common-tags: 1.8.2
       graphql: 15.10.1
@@ -11564,7 +11570,7 @@ snapshots:
   '@graphql-codegen/schema-ast@4.1.0(graphql@15.10.1)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 5.1.1(graphql@15.10.1)
-      '@graphql-tools/utils': 10.8.6(graphql@15.10.1)
+      '@graphql-tools/utils': 10.9.1(graphql@15.10.1)
       graphql: 15.10.1
       tslib: 2.6.3
 
@@ -11611,7 +11617,7 @@ snapshots:
       '@graphql-codegen/plugin-helpers': 5.1.1(graphql@15.10.1)
       '@graphql-tools/optimize': 2.0.0(graphql@15.10.1)
       '@graphql-tools/relay-operation-optimizer': 7.0.19(graphql@15.10.1)
-      '@graphql-tools/utils': 10.8.6(graphql@15.10.1)
+      '@graphql-tools/utils': 10.9.1(graphql@15.10.1)
       auto-bind: 4.0.0
       change-case-all: 1.0.15
       dependency-graph: 0.11.0
@@ -11674,7 +11680,7 @@ snapshots:
   '@graphql-tools/relay-operation-optimizer@7.0.19(graphql@15.10.1)':
     dependencies:
       '@ardatan/relay-compiler': 12.0.3(graphql@15.10.1)
-      '@graphql-tools/utils': 10.8.6(graphql@15.10.1)
+      '@graphql-tools/utils': 10.9.1(graphql@15.10.1)
       graphql: 15.10.1
       tslib: 2.8.1
     transitivePeerDependencies:
@@ -11689,6 +11695,15 @@ snapshots:
       value-or-promise: 1.0.12
 
   '@graphql-tools/utils@10.8.6(graphql@15.10.1)':
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
+      '@whatwg-node/promise-helpers': 1.3.2
+      cross-inspect: 1.0.1
+      dset: 3.1.4
+      graphql: 15.10.1
+      tslib: 2.8.1
+
+  '@graphql-tools/utils@10.9.1(graphql@15.10.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
       '@whatwg-node/promise-helpers': 1.3.2
@@ -11985,7 +12000,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       collect-v8-coverage: 1.0.2
 
-  '@jest/test-sequencer@25.5.4':
+  '@jest/test-sequencer@25.5.4(bufferutil@4.0.9)':
     dependencies:
       '@jest/test-result': 25.5.0
       graceful-fs: 4.2.11
@@ -11993,7 +12008,10 @@ snapshots:
       jest-runner: 25.5.4(bufferutil@4.0.9)
       jest-runtime: 25.5.4(bufferutil@4.0.9)
     transitivePeerDependencies:
+      - bufferutil
+      - canvas
       - supports-color
+      - utf-8-validate
 
   '@jest/transform@25.5.1':
     dependencies:
@@ -12156,7 +12174,7 @@ snapshots:
     dependencies:
       '@types/pg': 8.11.6
 
-  '@next/bundle-analyzer@14.2.30(bufferutil@4.0.9)':
+  '@next/bundle-analyzer@15.4.2(bufferutil@4.0.9)':
     dependencies:
       webpack-bundle-analyzer: 4.10.1(bufferutil@4.0.9)
     transitivePeerDependencies:
@@ -14741,9 +14759,9 @@ snapshots:
       acorn: 6.4.2
       acorn-walk: 6.2.0
 
-  acorn-jsx@5.3.2(acorn@8.8.2):
+  acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
-      acorn: 8.8.2
+      acorn: 8.15.0
 
   acorn-walk@6.2.0: {}
 
@@ -14967,10 +14985,10 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@1.10.0:
+  axios@1.11.0:
     dependencies:
       follow-redirects: 1.15.9
-      form-data: 4.0.3
+      form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -16686,15 +16704,16 @@ snapshots:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
-  form-data@2.5.3:
+  form-data@2.5.5:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       es-set-tostringtag: 2.1.0
+      hasown: 2.0.2
       mime-types: 2.1.35
       safe-buffer: 5.2.1
 
-  form-data@4.0.3:
+  form-data@4.0.4:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -17544,7 +17563,7 @@ snapshots:
   jest-config@25.5.4(bufferutil@4.0.9):
     dependencies:
       '@babel/core': 7.28.0
-      '@jest/test-sequencer': 25.5.4
+      '@jest/test-sequencer': 25.5.4(bufferutil@4.0.9)
       '@jest/types': 25.5.0
       babel-jest: 25.5.1(@babel/core@7.28.0)
       chalk: 3.0.0
@@ -18762,8 +18781,8 @@ snapshots:
 
   micromark-extension-mdxjs@1.0.1:
     dependencies:
-      acorn: 8.8.2
-      acorn-jsx: 5.3.2(acorn@8.8.2)
+      acorn: 8.15.0
+      acorn-jsx: 5.3.2(acorn@8.15.0)
       micromark-extension-mdx-expression: 1.0.8
       micromark-extension-mdx-jsx: 1.0.5
       micromark-extension-mdx-md: 1.0.1
@@ -19051,7 +19070,7 @@ snapshots:
 
   moment-mini@2.29.4: {}
 
-  moment-timezone@0.5.48:
+  moment-timezone@0.6.0:
     dependencies:
       moment: 2.30.1
 
@@ -21298,7 +21317,7 @@ snapshots:
       cookiejar: 2.1.4
       debug: 3.2.7
       extend: 3.0.2
-      form-data: 2.5.3
+      form-data: 2.5.5
       formidable: 1.2.6
       methods: 1.1.2
       mime: 1.6.0

@@ -232,9 +232,20 @@
           "_template": "item"
         },
         {
-          "title": "国际化支持",
-          "slug": "content/zh/docs/guides/internationalization.mdx",
-          "_template": "item"
+          "title": "全球化",
+          "items": [
+            {
+              "title": "TinaCMS在中国地区的可用性",
+              "slug": "content/zh/docs/tina-cloud/tinacms-availability-China.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "国际化",
+              "slug": "content/zh/docs/guides/internationalization.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
         },
         {
           "title": "多租户",
