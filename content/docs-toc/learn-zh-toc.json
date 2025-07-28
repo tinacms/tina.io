@@ -123,6 +123,10 @@
       "title": "技术指南",
       "items": [
         {
+          "title": "全球化",
+          "_template": "items"
+        },
+        {
           "title": "什么是Markdown？",
           "slug": "content/zh/docs/editing/markdown.mdx",
           "_template": "item"
