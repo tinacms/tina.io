@@ -236,12 +236,12 @@
           "items": [
             {
               "title": "国际化",
-              "slug": "content/docs/guides/internationalization.mdx",
+              "slug": "content/zh/docs/guides/internationalization.mdx",
               "_template": "item"
             },
             {
               "title": "TinaCMS在中国地区的可用性",
-              "slug": "content/docs/tina-cloud/tinacms-availability-China.mdx",
+              "slug": "content/zh/docs/tina-cloud/tinacms-availability-China.mdx",
               "_template": "item"
             }
           ],
