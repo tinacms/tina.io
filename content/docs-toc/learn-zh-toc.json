@@ -123,10 +123,6 @@
       "title": "技术指南",
       "items": [
         {
-          "title": "全球化",
-          "_template": "items"
-        },
-        {
           "title": "什么是Markdown？",
           "slug": "content/zh/docs/editing/markdown.mdx",
           "_template": "item"
@@ -234,6 +230,17 @@
           "title": "独立内容仓库",
           "slug": "content/zh/docs/guides/separate-content-repo.mdx",
           "_template": "item"
+        },
+        {
+          "title": "全球化",
+          "items": [
+            {
+              "title": "TinaCMS在中国地区的可用性",
+              "slug": "content/docs/tina-cloud/tinacms-availability-China.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
         },
         {
           "title": "国际化支持",
