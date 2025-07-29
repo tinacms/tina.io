@@ -94,11 +94,20 @@ Note that it **must be** the default export.
       description: "Used to run logic on authentication events.\n"
     },
     {
+      description:
+        "Opt out of update checks - this will prevent the CMS for checking for new versions. If true, the CMS will not check for updates.\n",
+      groupName: "ui",
+      name: "optOutOfUpdateCheck",
+      type: "boolean",
+      default: "false"
+    },
+    {
       groupName: "ui",
       name: "previewUrl",
       type: "function -- context: { branch: string } => { url: string }",
       description:
-        "Identify branch-specific URL patterns, such as for preview deployments, and link to them via editor.\n\n![](/img/docs/share-btn_xvmxii.png)\n"
+        "Identify branch-specific URL patterns, such as for preview deployments, and link to them via editor.\n\n![](/img/docs/share-btn_xvmxii.png)\n",
+      required: false
     },
     {
       groupName: "client",
