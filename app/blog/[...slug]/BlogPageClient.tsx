@@ -6,12 +6,15 @@ import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBl
 import { DocsPagination } from 'components/ui';
 // biome-ignore lint/style/useImportType: <explanation>
 import React from 'react';
+import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import type { BlogPageClientProps } from './BlogType';
-import { useTina } from 'tinacms/dist/react';
 
-const BlogPageClient: React.FC<BlogPageClientProps> = ({ data, variables, query }) => {
-
+const BlogPageClient: React.FC<BlogPageClientProps> = ({
+  data,
+  variables,
+  query,
+}) => {
   const { data: blogPostData } = useTina({
     query,
     variables,
@@ -20,9 +23,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data, variables, query 
 
   const post = blogPostData.post;
   const postedDate = formatDate(post.date);
-  const lastEditedDate = post.last_edited
-    ? formatDate(post.last_edited)
-    : null;
+  const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
   const previousPage = post.prev
     ? {
