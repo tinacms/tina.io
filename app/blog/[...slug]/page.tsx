@@ -73,6 +73,9 @@ export default async function BlogPage({
   try {
     const res = await client.queries.getExpandedPostDocument(vars);
 
+    const variables = res.variables;
+    const query = res.query;
+
     if (!res.data?.post) {
       console.warn(`No post found for slug: ${slugPath}`);
       return notFound();
@@ -106,7 +109,7 @@ export default async function BlogPage({
       },
     };
 
-    return <BlogPageClient data={{ post }} />;
+    return <BlogPageClient data={{ post }} variables={variables} query={query} />;
   } catch (error) {
     console.error(`Error fetching post for slug: ${slugPath}`, error);
     return notFound();
