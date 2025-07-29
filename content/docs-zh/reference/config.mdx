@@ -11,7 +11,7 @@ previous: content/docs-zh/reference/overview.mdx
 
 注意，它**必须是**默认导出。
 
-> 配置文件的位置之前在 `.tina/config.{ts,tsx,js,jsx}`
+> 配置文件的位置之前是在 `.tina/config.{ts,tsx,js,jsx}`
 
 ## 选项
 
@@ -85,20 +85,29 @@ previous: content/docs-zh/reference/overview.mdx
       name: "authProvider",
       type: "AuthProvider",
       description:
-        "设置[自定义认证](/docs/reference/self-hosted/auth-provider/overview)。\n"
+        "设置 [自定义身份验证](/docs/reference/self-hosted/auth-provider/overview)。\n"
     },
     {
       groupName: "admin",
       name: "authHooks",
       type: "AuthHooks",
-      description: "用于在认证事件上运行逻辑。\n"
+      description: "用于在身份验证事件上运行逻辑。\n"
+    },
+    {
+      description:
+        "选择退出更新检查 - 这将阻止 CMS 检查新版本。如果为 true，CMS 将不检查更新。\n",
+      groupName: "ui",
+      name: "optOutOfUpdateCheck",
+      type: "boolean",
+      default: "false"
     },
     {
       groupName: "ui",
       name: "previewUrl",
       type: "function -- context: { branch: string } => { url: string }",
       description:
-        "识别特定分支的 URL 模式，例如用于预览部署，并通过编辑器链接到它们。\n\n![](/img/docs/share-btn_xvmxii.png)\n"
+        "识别特定分支的 URL 模式，例如用于预览部署，并通过编辑器链接到它们。\n\n![](/img/docs/share-btn_xvmxii.png)\n",
+      required: false
     },
     {
       groupName: "client",
@@ -111,7 +120,7 @@ previous: content/docs-zh/reference/overview.mdx
       name: "referenceDepth",
       type: "number",
       description:
-        "生成的查询将遍历引用到给定深度。\n",
+        "生成的查询将遍历给定深度的引用。\n",
       default: "2"
     },
     {
@@ -160,7 +169,7 @@ previous: content/docs-zh/reference/overview.mdx
       groupName: "search",
       name: "indexBatchSize",
       type: "number",
-      description: "每个 PUT 请求要索引的文档数量。\n"
+      description: "每个 PUT 请求索引的文档数量。\n"
     },
     {
       groupName: "search",
@@ -201,7 +210,7 @@ previous: content/docs-zh/reference/overview.mdx
       groupName: "",
       name: "contentApiUrlOverride",
       type: "string",
-      description: "覆盖默认的内容 API URL。\n",
+      description: "覆盖默认内容 API URL。\n",
       experimental: true
     }
   ]}
@@ -235,7 +244,7 @@ export default defineConfig({
   },
   ui: {
     previewUrl: (context) => {
-      // 基于分支名称使用 Vercel 预览部署
+      // 使用基于分支名称的 Vercel 预览部署
       return { url: `https://my-app-git-${context.branch}.vercel.app` };
     },
   },
