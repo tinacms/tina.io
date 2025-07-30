@@ -45,4 +45,6 @@ export interface BlogPageClientProps {
   data: {
     post: BlogPost;
   };
+  variables: any;
+  query: string;
 }

@@ -6,46 +6,54 @@ import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBl
 import { DocsPagination } from 'components/ui';
 // biome-ignore lint/style/useImportType: <explanation>
 import React from 'react';
+import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import type { BlogPageClientProps } from './BlogType';
 
-const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
-  const blogPostData = data.post;
+const BlogPageClient: React.FC<BlogPageClientProps> = ({
+  data,
+  variables,
+  query,
+}) => {
+  const { data: blogPostData } = useTina({
+    query,
+    variables,
+    data: data,
+  });
 
-  const postedDate = formatDate(blogPostData.date);
-  const lastEditedDate = blogPostData.last_edited
-    ? formatDate(blogPostData.last_edited)
-    : null;
+  const post = blogPostData.post;
+  const postedDate = formatDate(post.date);
+  const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
-  const previousPage = blogPostData.prev
+  const previousPage = post.prev
     ? {
-        slug: blogPostData.prev.id.slice(7, -4),
-        title: blogPostData.prev.title,
+        slug: post.prev.id.slice(7, -4),
+        title: post.prev.title,
       }
     : null;
 
-  const nextPage = blogPostData.next
+  const nextPage = post.next
     ? {
-        slug: blogPostData.next.id.slice(7, -4),
-        title: blogPostData.next.title,
+        slug: post.next.id.slice(7, -4),
+        title: post.next.title,
       }
     : null;
 
   return (
     <div>
-      <BlogPageTitle title={blogPostData.title} />
+      <BlogPageTitle title={post.title} />
       <div className="p-6">
         <div className="pt-12 lg:pt-16 max-w-prose mx-auto">
           <div className="flex flex-col items-center opacity-80 m-0">
             <span>{postedDate}</span>
             <div className="flex flex-row text-lg gap-1 pb-4">
               <span>By </span>
-              <strong>{blogPostData.author}</strong>
+              <strong>{post.author}</strong>
             </div>
           </div>
           <div className="text-[#241748]">
             <TinaMarkdown
-              content={blogPostData.body}
+              content={post.body}
               components={docAndBlogComponents}
             />
           </div>
@@ -59,16 +67,16 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
           <div className="mt-8">
             <Giscus
               id="discussion-box"
-              repo={blogPostData.giscusProps.giscusRepo}
-              repoId={blogPostData.giscusProps.giscusRepoId}
-              category={blogPostData.giscusProps.giscusCategory}
-              categoryId={blogPostData.giscusProps.giscusCategoryId}
+              repo={post.giscusProps?.giscusRepo}
+              repoId={post.giscusProps?.giscusRepoId}
+              category={post.giscusProps?.giscusCategory}
+              categoryId={post.giscusProps?.giscusCategoryId}
               mapping="pathname"
               strict="0"
               reactionsEnabled="1"
               emitMetadata="0"
               inputPosition="top"
-              theme={blogPostData.giscusProps.giscusThemeUrl}
+              theme={post.giscusProps?.giscusThemeUrl}
               lang="en"
               loading="lazy"
             />
