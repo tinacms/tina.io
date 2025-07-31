@@ -33,6 +33,7 @@
               "_template": "codeButton"
             }
           ],
+          "headingOne": true,
           "media": [
             {
               "src": "/gif/smashingmagazine-tinacms.gif",
@@ -264,7 +265,7 @@
         "isFullscreen": false
       },
       "altText": "Getting Started with NPX",
-      "title": "Tired of Lengthy Set-up Processes?",
+      "title": "Tired of Lengthy Set-ups?",
       "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
       "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
       "_template": "videoEmbed"

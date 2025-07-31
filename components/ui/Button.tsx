@@ -102,7 +102,7 @@ export const FlushButton = ({
       passHref
       className={`${baseClasses} ${
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam
-      } ${'bg-none border-none hover:shadow-none py-2 px-2 hover:inner-link hover:translate-x-0 hover:translate-y-0'} ${className}`}
+      } ${'bg-none border-none hover:shadow-none py-2 px-2 hover:inner-link hover:translate-x-0 hover:translate-y-0'}${className}`}
       {...props}
     >
       {children}

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { Container } from '../Container';
+import GradGlow from '../../../public/svg/grad-glow.svg';
 
 // biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 export const QuoteBlock = ({ data, index }) => {
@@ -29,6 +30,7 @@ export const QuoteBlock = ({ data, index }) => {
           </div>
         </div>
       </Container>
+      <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1 opacity-50" />
     </section>
   );
 };

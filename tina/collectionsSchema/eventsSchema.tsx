@@ -4,6 +4,7 @@ import { LocationField } from 'tina/customTinaFormFields/locationField';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
 import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';
 import { seoInformation } from './sharedFields/seoInformation';
+import React from 'react';
 
 type offset = { value: any; label: string };
 

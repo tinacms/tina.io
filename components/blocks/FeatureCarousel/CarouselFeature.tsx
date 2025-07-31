@@ -56,7 +56,7 @@ const CarouselItem = ({
             <IconComponent
               className={`text-xl  ${
                 isHovered && !isSmallOrMediumScreen
-                  ? 'text-orange-500/90 md:text-3xl pb-1'
+                  ? 'text-blue-800 md:text-3xl pb-1'
                   : 'text-black md:text-2xl pb-1'
               }`}
             />
@@ -65,7 +65,7 @@ const CarouselItem = ({
             <h3
               className={` md:text-3xl text-2xl font-ibm-plex leading-tight cursor-pointer pl-3 ${
                 isHovered && !isSmallOrMediumScreen
-                  ? 'text-transparent lg:text-3xl bg-linear-to-br from-orange-400 cursor-default via-orange-500 to-orange-600 bg-clip-text'
+                  ? 'text-transparent lg:text-3xl bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text'
                   : 'text-black lg:text-xl'
               }`}
             >
@@ -276,12 +276,13 @@ export default function CarouselFeatureBlock({ data, index }) {
       <Container width="wide">
         <div className="flex flex-col h-auto lg:flex-row gap-6 w-full rounded-xl overflow-visible pb-20 ">
           <div className="flex flex-col order-2 min-h-[880px] lg:order-1 w-full lg:w-2/5 gap-4 auto-rows-auto rounded-xl overflow-visible ">
+          
             <h2
-              ref={titleRef}
-              className="lg:m-0 pl-3 font-ibm-plex inline w-fit m-auto text-3xl md:text-4xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center lg:text-left mt-10"
-            >
-              {data.blockHeadline}
-            </h2>
+            className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+            data-tina-field={tinaField(data, 'blockHeadline')}
+          >
+            {data.blockHeadline}
+          </h2>
             {data?.items?.length > 0 &&
               data.items.map(
                 (item, index) =>
@@ -348,7 +349,7 @@ export default function CarouselFeatureBlock({ data, index }) {
           </div>
         </div>
       </Container>
-      <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1" />
+      <GradGlow className="absolute w-full h-auto bottom-0 left-0 -z-1 opacity-50" />
     </section>
   );
 }

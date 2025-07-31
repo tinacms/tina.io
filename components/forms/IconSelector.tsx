@@ -26,6 +26,7 @@ import { ImCross } from 'react-icons/im';
 import { IoMdBook } from 'react-icons/io';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
+import React from 'react';
 
 const icons = {
   FaClock,

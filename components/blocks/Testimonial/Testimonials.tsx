@@ -72,13 +72,15 @@ export default function TestimonialsBlock({ data }) {
 
   return (
     <div className="max-w-[1500px] m-auto">
-      <h1
-        className={`w-full font-ibm-plex inline-block text-3xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center`}
-        data-tina-field={tinaField(data, 'title')}
-        ref={titleRef}
-      >
-        {data?.title || 'Loved by Developers'}
-      </h1>
+      <div className="flex flex-col items-center justify-center">
+      <h2
+          className="m-auto inline-block font-ibm-plex text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+          data-tina-field={tinaField(data, 'title')}
+          ref={titleRef}
+        >
+          {data?.title || 'Loved by Developers'}
+        </h2>
+      </div>
 
       <div className="mask-horizontal-fade relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
         <Marquee pauseOnHover className="[--duration:40s]">
@@ -101,15 +103,15 @@ export default function TestimonialsBlock({ data }) {
           -webkit-mask-image: linear-gradient(
             to right,
             transparent,
-            black 10%,
-            black 90%,
+            black 2%,
+            black 98%,
             transparent
           );
           mask-image: linear-gradient(
             to right,
             transparent,
-            black 10%,
-            black 90%,
+            black 2%,
+            black 98%,
             transparent
           );
           -webkit-mask-repeat: no-repeat;
