@@ -9,9 +9,9 @@ title: '使用草稿进行可视化编辑'
 
 ## 使用草稿进行可视化编辑
 
-在大多数情况下，您不希望在生产站点上为草稿文档创建页面。这使得[处理草稿](/docs/drafts/overview/)在可视化编辑中成为一个挑战。在这个示例中，我们将展示如何使用 [Next.js 预览模式](https://nextjs.org/docs/advanced-features/preview-mode)为草稿文档添加可视化编辑。
+在大多数情况下，您不希望在生产站点上为草稿文档创建页面。这使得[处理草稿](/docs/drafts/overview/)在可视化编辑中成为一个挑战。在本例中，我们将展示如何使用 [Next.js 预览模式](https://nextjs.org/docs/advanced-features/preview-mode)为草稿文档添加可视化编辑。
 
-在预览模式下，`getStaticProps` 将在每次请求时被调用。这意味着我们可以在预览模式下有条件地获取草稿文档，并将它们排除在生产站点之外。
+在预览模式中，`getStaticProps` 将在每次请求时被调用。这意味着我们可以在预览模式中有条件地获取草稿文档，并将其排除在生产站点之外。
 
 “预览模式”可以通过几个步骤添加：
 
@@ -48,7 +48,7 @@ const handler = async (req, res) => {
 export default handler
 ```
 
-此处理程序验证（通过 TinaCloud）令牌是否有效，然后重定向到我们想要编辑的文档。
+此处理程序验证（通过 TinaCloud）令牌是否有效，然后重定向到我们要编辑的文档。
 
 接下来，创建一个名为 `pages/api/preview/exit.{ts,js}` 的文件，这将处理退出预览模式的请求。该文件应如下所示：
 
@@ -107,13 +107,13 @@ export const getStaticPaths = async () => {
 }
 ```
 
-根据您的用例，您也可以安全地使用任何 `fallback` 值。
+根据您的使用情况，您也可以安全地使用 `fallback` 的任何值。
 
 ### 更新 getStaticProps
 
 #### 列表页面
 
-首先，我们将创建一个实用函数，根据我们是否处于预览模式，返回所有文档或仅返回生产文档。
+首先，我们将创建一个实用函数，该函数将根据我们是否处于预览模式返回所有文档或仅返回生产文档。
 
 _`util/getPosts.{ts,js}`_
 
@@ -124,7 +124,7 @@ export const getPosts = async ({ preview }) => {
   // 默认获取非草稿帖子
   let filter = { draft: { eq: false } }
 
-  // 如果启用了预览模式，获取所有帖子
+  // 如果启用了预览模式，则获取所有帖子
   if (preview) {
     filter = {}
   }
@@ -168,7 +168,7 @@ export const getStaticProps = async ({ params, preview = false }) => {
   })
 
   return {
-    // 如果帖子是草稿且预览为 false，则未找到帖子
+    // 如果帖子是草稿且预览为 false，则未找到该帖子
     notFound: data?.post?.draft && !preview,
     props: {
       preview,
@@ -219,7 +219,7 @@ export default App
 
 ## 使用编辑工作流
 
-如果您正在使用[编辑工作流](https://tina.io/docs/drafts/editorial-workflow/)，您可能希望确保预览数据从您正在编辑的分支中获取内容。为此，通过配置中的 `cmsCallback` 函数订阅 `branch:change` 事件：
+如果您正在使用[编辑工作流](https://tina.io/docs/drafts/editorial-workflow/)，您可能希望确保预览数据从您正在编辑的分支中获取内容。要启用此功能，请通过配置中的 `cmsCallback` 函数订阅 `branch:change` 事件：
 
 ```ts
 // tina/config.ts
@@ -268,7 +268,7 @@ export const getStaticProps = async ({
   )
 
   return {
-    // 如果帖子是草稿且预览为 false，则未找到帖子
+    // 如果帖子是草稿且预览为 false，则未找到该帖子
     notFound: data?.post?.draft && !preview,
     props: {
       preview,

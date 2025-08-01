@@ -13,7 +13,7 @@ prev: content/blog-zh/announcing-tinacms.mdx
 next: content/blog-zh/simple-markdown-blog-nextjs.mdx
 ---
 
-编辑工作流程的核心功能之一是为作者和编辑提供一个安全的空间，以便在不将这些正在处理的帖子发布到生产环境的情况下创建和迭代内容——**草稿模式**。
+编辑工作流的核心功能之一是为作者和编辑提供一个安全的空间，以便在这些正在处理的帖子未发布到生产环境时创建和迭代内容——**草稿模式**。
 
 本文将概述如何在使用TinaCMS的[Gatsby](https://www.gatsbyjs.org/ "Gatsby")网站中为Markdown文件添加草稿状态。根据环境和文件的草稿状态，它们将被选择性地“发布”或不发布。在开发中，我们将“发布”所有文件，以便我们可以查看和编辑草稿和已完成的帖子；而在生产中，我们将在我们的graphQL查询中过滤掉草稿帖子。
 
@@ -23,7 +23,7 @@ next: content/blog-zh/simple-markdown-blog-nextjs.mdx
 
 ### **步骤1：向MarkdownRemark节点添加已发布字段**
 
-首先，我们需要创建一种方法来告诉Gatsby根据环境决定在构建过程中包含（或不包含）哪些文件。为此，我们将在每个MarkdownRemark节点中添加一个`published`字段。`published`字段是文件在构建过程中被包含的开关。在开发模式中，开关是完全打开的，所有帖子，无论其草稿状态如何，都会被“发布”或通过构建过程。在生产模式中，开关会过滤掉任何处于草稿状态的内容。因此，可以将`published`视为`includedInBuild`的一个误称。
+首先，我们需要创建一种方法来告诉Gatsby根据环境选择要包含（或不包含）在构建过程中的文件。为此，我们将向每个MarkdownRemark节点添加一个`published`字段。`published`字段是文件被包含在构建过程中的开关。在开发模式下，开关是完全打开的，所有帖子，无论其草稿状态如何，都会被“发布”或通过构建过程。在生产模式下，开关会过滤掉任何处于草稿状态的内容。因此，可以将`published`视为`includedInBuild`的一个误称。
 
 我们需要修改的第一个文件是**gatsby-node.js**文件，通常位于站点的根目录。这是一个特殊的gatsby文件，我们可以在其中访问所有[Gatsby的Node-API](https://www.gatsbyjs.org/docs/node-apis/)，或访问处理Gatsby站点中所有数据的GraphQL层的入口点。我们将使用的API称为[`setFieldsOnGraphQLNodeType`](https://www.gatsbyjs.org/docs/node-apis/#setFieldsOnGraphQLNodeType)：
 
@@ -38,8 +38,8 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
         type: GraphQLBoolean,
         resolve: ({ frontmatter }) => {
           /*
-          在开发中，`published`始终为true
-          因此草稿和已完成的帖子都会被构建
+          在开发中，`published`总是为true
+          因此草稿和完成的帖子都会被构建
           */
           if (process.env.NODE_ENV !== 'production') {
             return true
@@ -110,9 +110,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 ### 步骤3：在查询级别过滤未发布的页面
 
-现在我们有了控制帖子是否包含在构建中的已发布字段，我们需要调整模板和索引列表文件中的查询，以便仅查询`published`数据。
+现在我们有了控制帖子是否包含在构建中的已发布字段，我们需要调整模板和索引列表文件中的查询，以便我们仅查询`published`数据。
 
-转到渲染所有帖子“列表”的组件或页面文件——这可能是一个简单博客的索引文件，或更复杂网站的列表页面文件。在该文件中，让我们为`allMarkdownRemark`查询添加一个过滤参数：
+转到渲染所有帖子“列表”的组件或页面文件——这可能是一个简单博客的索引文件，或者是一个更复杂网站的列表页面文件。在该文件中，让我们为`allMarkdownRemark`查询添加一个过滤参数：
 
 **src/pages/index.js**
 
@@ -158,9 +158,9 @@ export const pageQuery = graphql`
 
 ### 步骤4：在开发中添加“草稿”指示器
 
-既然您已经在blog-post.js模板文件中并添加了过滤参数，我们现在需要将‘draft’字段添加到我们的查询中，以便我们可以在组件中有条件地渲染一些帖子状态的指示。调整此查询后，您可能需要重新启动Gatsby开发服务器。
+既然您已经在您的blog-post.js模板文件中并添加了过滤参数，我们现在需要将‘draft’字段添加到我们的查询中，以便我们可以在组件中有条件地渲染一些帖子状态的指示。调整此查询后，您可能需要重新启动Gatsby开发服务器。
 
-将草稿添加到您的blog-post.js查询中：
+将draft添加到您的blog-post.js查询中：
 
 ```js
 export const pageQuery = graphql`
@@ -178,7 +178,7 @@ export const pageQuery = graphql`
 `
 ```
 
-您可以通过多种方式将‘草稿’指示器状态合并到您的组件中。一种方法是根据frontmatter.draft的值有条件地渲染草稿状态而不是日期，如下例所示：
+您可以通过多种方式将‘draft’指示器状态合并到您的组件中。一个方法是根据frontmatter.draft的值有条件地渲染草稿状态而不是日期，如下例所示：
 
 ```js
 <p
@@ -194,7 +194,7 @@ export const pageQuery = graphql`
 
 ### 步骤5：将草稿切换添加到您的表单中
 
-最后，让我们将此草稿切换字段添加到我们使用TinaCMS编辑博客文章的表单中。只需将此字段添加到每个页面的表单定义中。
+最后，让我们将此草稿切换字段添加到表单中，我们在TinaCMS中编辑博客文章。只需将此字段添加到每个页面的表单定义中。
 
 ```json
      {
@@ -206,7 +206,7 @@ export const pageQuery = graphql`
 
 ##### 注意：
 
-Tina仅会在文件被编辑后添加草稿frontmatter值。如果文件上未设置草稿frontmatter值，它将为`null`（假值），并将在所有环境中发布。
+Tina仅会在文件被编辑后添加draft frontmatter值。如果文件上未设置draft frontmatter值，它将为`null`（假值），并将在所有环境中发布。
 
 ### 就这样！
 
