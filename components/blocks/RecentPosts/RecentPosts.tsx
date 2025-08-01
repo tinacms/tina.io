@@ -1,5 +1,6 @@
 import { RichTextWrapper } from 'components/layout/RichTextWrapper';
 import { DynamicLink } from 'components/ui';
+import { tinaField } from 'tinacms/dist/react';
 import { formatDate } from 'utils/blog_helpers';
 import { getExcerpt } from 'utils/getExcerpt';
 import { Container } from '../Container';
@@ -19,9 +20,12 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
       <Container width="narrow">
         {data.title && (
           <div className="flex items-center mb-12 lg:mb-14 gap-6">
-            <h3 className="font-ibm-plex shrink-0 inline-block mx-auto text-center text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-200 via-blue-300 to-blue-500 bg-clip-text text-transparent">
-              {data.title}
-            </h3>
+            <h2
+              className="m-auto inline-block font-ibm-plex text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+              data-tina-field={tinaField(data, 'title')}
+            >
+              {data?.title || 'Recent Posts'}
+            </h2>
             <hr className="my-0" />
           </div>
         )}

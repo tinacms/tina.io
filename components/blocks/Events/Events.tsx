@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
+import { tinaField } from 'tinacms/dist/react';
 import eventsData from '../../../content/events/master-events.json';
+import { Actions } from '../ActionButton/ActionsButton';
 import {
   calculateEventStatus,
   calculateEventTimes,
@@ -29,7 +31,7 @@ export const Card = ({ cardItem, onHover }) => {
 
   return (
     <div
-      className="relative px-4 py-4 rounded-md group flex flex-col lg:gap-8 lg:flex-row bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
+      className="relative px-4 py-4 rounded-xl group flex flex-col lg:gap-8 lg:flex-row bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid shadow-md transform transition-transform duration-300 hover:scale-105 transform-origin-center overflow-hidden"
       onMouseEnter={() => onHover(cardItem.index)}
       onMouseLeave={() => onHover(null)}
     >
@@ -39,7 +41,7 @@ export const Card = ({ cardItem, onHover }) => {
             <Image
               src={cardItem.image}
               alt={cardItem.headline}
-              className="object-cover rounded-lg"
+              className="object-cover rounded-xl"
               fill={true}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               onError={(e) => {
@@ -72,7 +74,7 @@ export const Card = ({ cardItem, onHover }) => {
         <h3
           className={`font-ibm-plex text-2xl mb-1 ${
             isLiveOrPastEvent
-              ? 'text-black'
+              ? 'bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent'
               : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'
           }`}
         >
@@ -94,15 +96,18 @@ export const Card = ({ cardItem, onHover }) => {
         >
           {cardItem.location}
         </p>
-        <Link
-          href={cardItem.link || '#'}
-          className="flex items-center gap-1 pt-1"
-        >
-          <p className="font-ibm-plex text-md bg-linear-to-br from-blue-700 via-blue-850 to-blue-1000 bg-clip-text text-transparent inline-flex items-center">
-            Read more
-          </p>
-          <FaChevronRight className="text-sm text-blue-700" />
-        </Link>
+        <Actions
+          flush={true}
+          className=" text-sm px-0!"
+          items={[
+            {
+              label: 'READ MORE',
+              icon: true,
+              variant: 'ghostBlue',
+              url: cardItem.link || '#',
+            },
+          ]}
+        />
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
@@ -181,7 +186,10 @@ const EventsBlock = () => {
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-start">
-          <h2 className="pb-6 pl-3 font-ibm-plex inline w-fit m-auto lg:m-0 text-3xl lg:text-5xl lg:leading-tight bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-balance text-center mt-10">
+          <h2
+            className="font-ibm-plex inline-block text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+            data-tina-field={tinaField(eventsData, 'title')}
+          >
             {eventsData.title}
           </h2>
           <div className="flex flex-col gap-4">
@@ -196,12 +204,12 @@ const EventsBlock = () => {
 
           <Link
             href="/events"
-            className="pt-10 font-bold flex items-center justify-end gap-2"
+            className="pt-10 font-bold flex items-center justify-end gap-2 group"
           >
-            <span className="bg-linear-to-br text-md from-orange-400 via-orange-500 to-orange-600 hover:from-orange-500 hover:via-orange-700 hover:to-orange-800  bg-clip-text text-transparent">
+            <span className="bg-linear-to-br text-md from-blue-600 via-blue-800 to-blue-1000 group-hover:from-blue-400 group-hover:via-blue-600 group-hover:to-blue-800  bg-clip-text text-transparent">
               SEE ALL EVENTS
             </span>
-            <FaArrowRight className="text-orange-500" />
+            <FaArrowRight className="text-blue-800 group-hover:text-blue-600" />
           </Link>
         </div>
       </div>

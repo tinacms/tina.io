@@ -4,7 +4,7 @@ import Giscus from '@giscus/react';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
-// biome-ignore lint/style/useImportType: <explanation>
+// biome-ignore lint/style/useImportType: React is required
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';

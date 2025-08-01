@@ -52,6 +52,11 @@ export const featuresTemplate: Template = {
           default: false,
         },
         {
+          name: 'headingOne',
+          label: 'H1 Mode',
+          type: 'boolean',
+        },
+        {
           name: 'media',
           label: 'Media',
           type: 'object',
