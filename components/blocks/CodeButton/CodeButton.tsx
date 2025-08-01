@@ -45,7 +45,7 @@ export const CodeButton = ({ children, label, id, ...props }) => {
             <span className="text">
               <span className="bash">&gt;</span> {children}
             </span>
-            <span className="label">{label}</span>
+            <span className="label font-mono pr-2 text-sm">{label}</span>
             <span className="icon">
               <BiCopy />
             </span>

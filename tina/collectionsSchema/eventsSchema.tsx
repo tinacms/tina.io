@@ -1,5 +1,7 @@
 import moment from 'moment-timezone';
 import 'react-datetime/css/react-datetime.css';
+// biome-ignore lint/correctness/noUnusedImports: React is required
+import React from 'react';
 import { LocationField } from 'tina/customTinaFormFields/locationField';
 import { TextField, wrapFieldsWithMeta } from 'tinacms';
 import majorTimezones from '../../components/componentSuppliedData/EventsTimezones.json';

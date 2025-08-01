@@ -7,9 +7,8 @@ import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
 import PlayIcon from '@/public/svg/play-button.svg';
 
-export function FeatureBlock({ data, index }) {
+export function FeatureBlock({ data }) {
   const isReversed = data.isReversed;
-  const _isVideo = data.media?.[0]?.src;
 
   return (
     <div
@@ -22,13 +21,21 @@ export function FeatureBlock({ data, index }) {
           data.alignCenter ? 'items-center self-center' : ''
         }`}
       >
-        {data.headline && (
-          <h3
+        {data.headingOne && data.headline && (
+          <h1
+            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+            data-tina-field={tinaField(data, 'headline')}
+          >
+            {data.headline}
+          </h1>
+        )}
+        {data.headline && !data.headingOne && (
+          <h2
             className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
-          </h3>
+          </h2>
         )}
         <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-3">
           <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
@@ -157,7 +164,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-[#777777] text-left text-base font-ibm-plex">
+            <span className="text-sm text-gray-400 mt-2 text-left">
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -184,7 +191,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-[#777777] text-left text-base font-ibm-plex mt-2">
+            <span className="text-sm text-gray-400 mt-2 text-left">
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -203,7 +210,7 @@ export const RenderMedia = ({ data }) => {
         {isPlaying ? (
           <div className="flex flex-col justify-center w-full h-full pb-4 group">
             <YouTubeEmbed videoId={data.media[0].videoEmbedId} />
-            <span className="text-[#777777] text-left text-base font-ibm-plex">
+            <span className="text-sm text-gray-400 mt-2 text-left">
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -236,7 +243,7 @@ export const RenderMedia = ({ data }) => {
                 </div>
               </div>
             </button>
-            <span className="text-[#777777] text-left text-base font-ibm-plex mt-2">
+            <span className="text-sm text-gray-400 mt-2 text-left">
               {data.media[0].figureCaption}
             </span>
           </div>
@@ -272,7 +279,6 @@ export function FeaturesBlock({ data, index }) {
             <FeatureBlock
               key={`feature-${featureData.id ?? featureIndex}`}
               data={featureData}
-              index={featureIndex}
             />
           );
         })}
