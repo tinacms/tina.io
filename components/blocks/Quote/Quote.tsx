@@ -2,8 +2,8 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { Container } from '../Container';
 import GradGlow from '../../../public/svg/grad-glow.svg';
+import { Container } from '../Container';
 
 // biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 export const QuoteBlock = ({ data, index }) => {

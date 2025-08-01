@@ -61,16 +61,16 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
       >
         {title && (
           <>
-          <h2
-          className="font-ibm-plex inline-block text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
-          data-tina-field={tinaField(data, 'title')}
-        >
-          {title}
-        </h2>
-        <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-8">
-        <hr className="my-0! m-auto w-32 block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
-      </div>
-      </>
+            <h2
+              className="font-ibm-plex inline-block text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+              data-tina-field={tinaField(data, 'title')}
+            >
+              {title}
+            </h2>
+            <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-8">
+              <hr className="my-0! m-auto w-32 block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
+            </div>
+          </>
         )}
 
         <div className="w-full rounded-xl overflow-hidden">

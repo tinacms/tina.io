@@ -2,15 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { tinaField } from 'tinacms/dist/react';
 import eventsData from '../../../content/events/master-events.json';
+import { Actions } from '../ActionButton/ActionsButton';
 import {
   calculateEventStatus,
   calculateEventTimes,
   calculateEventYear,
   formatEventDate,
 } from './dates-calculations';
-import { tinaField } from 'tinacms/dist/react';
-import { Actions } from '../ActionButton/ActionsButton';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
@@ -96,12 +96,18 @@ export const Card = ({ cardItem, onHover }) => {
         >
           {cardItem.location}
         </p>
-        <Actions flush={true} className=" text-sm px-0!" items={[{
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "url": cardItem.link || '#',
-          }]} />
+        <Actions
+          flush={true}
+          className=" text-sm px-0!"
+          items={[
+            {
+              label: 'READ MORE',
+              icon: true,
+              variant: 'ghostBlue',
+              url: cardItem.link || '#',
+            },
+          ]}
+        />
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
@@ -180,7 +186,7 @@ const EventsBlock = () => {
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-start">
-        <h2
+          <h2
             className="font-ibm-plex inline-block text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
             data-tina-field={tinaField(eventsData, 'title')}
           >

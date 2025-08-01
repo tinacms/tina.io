@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: React is required
+import React, { useState } from 'react';
 import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiBadge, BiSupport } from 'react-icons/bi';
 import { CgCrown } from 'react-icons/cg';
@@ -26,7 +27,6 @@ import { ImCross } from 'react-icons/im';
 import { IoMdBook } from 'react-icons/io';
 import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
-import React from 'react';
 
 const icons = {
   FaClock,

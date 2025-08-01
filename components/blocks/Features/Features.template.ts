@@ -53,7 +53,7 @@ export const featuresTemplate: Template = {
         },
         {
           name: 'headingOne',
-          label: "H1 Mode",
+          label: 'H1 Mode',
           type: 'boolean',
         },
         {
