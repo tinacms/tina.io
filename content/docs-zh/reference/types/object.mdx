@@ -1,96 +1,111 @@
 ---
 title: 对象字段
-last_edited: '2025-03-26T05:48:23.867Z'
+last_edited: '2025-07-28T23:59:16.563Z'
 next: content/docs-zh/extending-tina/customize-list-ui.mdx
 previous: content/docs-zh/reference/types/reference.mdx
 ---
 
-`object`字段是一种动态字段类型，它使用其包含的数据在CMS中创建一个**嵌套页面**。
+`object`字段是一种动态字段类型，它在CMS中创建一个包含其数据的**嵌套页面**。
 
-这可以用于**创建重复的数据结构**或**在CMS中分组相关数据**。
+这可以用于在CMS中**创建重复的数据结构**或**分组相关数据**。
 
 ## 类型定义
 
-> 有关所有字段类型通用的附加属性，请参阅[字段](/docs/reference/fields)类型定义。
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
 
 <apiReference
   property={[
     {
-      name: 'type',
-      type: 'string',
-      description: '将此设置为 `"object"` 以使用对象字段。\n',
-      required: true,
+      name: "type",
+      type: "string",
+      description: '将此设置为`"object"`以使用对象字段。\n',
+      required: true
     },
     {
-      name: 'name',
-      description: '供内部使用的字段名称。\n',
-      type: 'string',
-      required: true,
+      name: "name",
+      description: "供内部使用的字段名称。\n",
+      type: "string",
+      required: true
     },
     {
-      name: 'fields',
-      description: '要在对象中显示的字段。\n',
-      type: 'Field[]',
+      name: "fields",
+      description: "要在对象中显示的字段。\n",
+      type: "Field[]"
     },
     {
-      name: 'templates',
+      name: "templates",
       description:
-        '要在对象中显示的模板。\n\n当 list: true 时可用。\n',
-      type: 'Template[]',
+        "要在对象中显示的模板。\n\n当list: true时可用。\n",
+      type: "Template[]"
     },
     {
-      name: 'templatesKey',
-      description: '为模板选择一个不同的引用键。\n',
-      type: 'string',
+      name: "templatesKey",
+      description: "为模板选择一个不同的引用键。\n",
+      type: "string"
     },
     {
-      groupName: 'ui',
-      name: 'visualSelector',
-      description: '是否为对象显示可视选择器。\n',
-      type: 'boolean',
-      default: 'false',
-    },
-    {
-      groupName: 'ui',
-      name: 'defaultItem',
       description:
-        '添加新对象时的预填充数据。\n\n当 list: true 时可用。\n',
-      type: 'Record<string, any> | () => Record<string, any>',
+        "对象是否应被视为使用定义的`fields`模式的对象数组。\n",
+      name: "list",
+      type: "boolean",
+      default: "false",
+      groupName: ""
     },
     {
-      groupName: 'ui',
-      name: 'itemProps',
       description:
-        '为列表元素设置自定义标签。\n\n当 list: true 时可用。\n',
-      type: '(item: Record<string, any>) => { label?: string }',
+        "定义如何将新项目添加到列表中。支持的值包括`append`或`prepend`。\n\n当`list: true`时可用\n\n在TinaCMS 2.8.2中添加\n",
+      name: "addItemBehavior",
+      type: "string",
+      default: "append"
     },
+    {
+      groupName: "ui",
+      name: "visualSelector",
+      description: "是否为对象显示视觉选择器。\n",
+      type: "boolean",
+      default: "false"
+    },
+    {
+      groupName: "ui",
+      name: "defaultItem",
+      description:
+        "添加新对象时的预填充数据。\n\n当list: true时可用。\n",
+      type: "Record<string, any> | () => Record<string, any>"
+    },
+    {
+      groupName: "ui",
+      name: "itemProps",
+      description:
+        "为列表元素设置自定义标签。\n\n当list: true时可用。\n",
+      type: "(item: Record<string, any>) => { label?: string }"
+    }
   ]}
 />
 
 `fields`或`templates`中只能定义**一个**。
 
-### 对象类型的概念化
+### 概念化对象类型
 
 重要的是，有两种关键方式使用对象类型...
 
-1. 使用`fields`时，对象将其内部字段包装在一个子窗口中。![](</img/docs/reference/Screen Recording 2025-03-14 at 11.38.07 am.gif>)
+1. 使用`fields`，对象将其内部字段包装在一个子窗口中。![](</img/docs/reference/Screen Recording 2025-03-14 at 11.38.07 am.gif>)
 2. 使用`templates`时，用户可以在关联的[模板](/docs/reference/templates)之间进行选择。![](</img/docs/reference/Screen Recording 2025-03-14 at 12.03.21 pm.gif>)
 
-如上所示，但按下`+`时，您可以选择一组选项之一。
+如上所示，但按下`+`会让您选择一组选项之一。
 
-## 可视选择器
+## 视觉选择器
 
-此可视块选择器允许编辑者选择带有图像和文本的模板。
+这个视觉块选择器允许编辑者选择带有图像和文本的模板。
 
-要启用可视块选择器，`visualSelector`属性必须为true。在编辑器中，这还会打开一个新窗口以选择模板。
+要启用视觉块选择器，`visualSelector`属性必须为true。在编辑器中，这也会打开一个新的模板选择窗口。
 
 ![](</img/docs/reference/Screen Recording 2025-03-14 at 11.43.03 am.gif>)
 
-要为某个模板获取图像，您需要通过模板的`ui.previewSrc`属性提供图像。这是一个URL，或相对于您的[TinaCMS配置中定义的公共文件夹](/docs/reference/media/repo-based)。
+要为某个模板获取图像，您需要通过模板的`ui.previewSrc`属性提供图像。这是一个URL，或相对于您在TinaCMS配置中定义的[公共文件夹](/docs/reference/media/repo-based)。
 
 ```javascript
 const showcaseTemplate: Template = {
-  label: '展示',
+  label: 'Showcase',
   name: 'showcase',
   ui: {
     previewSrc: '/img/blocks/features.png',
@@ -103,20 +118,20 @@ const showcaseTemplate: Template = {
 
 ## 自定义列表标签
 
-默认情况下，对象列表使用模板的`label`或对象的`label` + `" Item"`为每个元素标记。
+默认情况下，对象列表使用模板`label`或对象的`label` + `" Item"`标记每个元素。
 
-![列表UI](/img/docs/extending-tina/Extending_Tina_No_List_Props.png)
+![list UI](/img/docs/extending-tina/Extending_Tina_No_List_Props.png)
 
-如果列表中有多个对象，可以通过`itemProps`函数属性为每个元素自定义标签。
+如果列表中有多个对象，可以通过`itemProps`函数属性为每个元素自定义。
 
-- 如果使用`fields`，在对象上设置此属性
-- 如果使用`templates`，在每个模板上设置此属性
+* 如果使用`fields`，请在对象上设置此项
+* 如果使用`templates`，请在每个模板上设置此项
 
-![带标签属性的列表UI](/img/docs/extending-tina/Extending_Tina_Label_List_Props.png)
+![List UI with label prop](/img/docs/extending-tina/Extending_Tina_Label_List_Props.png)
 
 ## 自定义模板标识符
 
-使用`templates`属性时，您的文档会使用键`_template`存储每个选择的模板。
+使用模板属性时，您的文档会使用键`_template`存储每个选择的模板。
 
 ```markdown
 ---
@@ -128,7 +143,7 @@ farm:
 ---
 ```
 
-您可以通过`templatesKey`属性自定义此键——使用给定的键代替。
+您可以使用`templatesKey`属性自定义此项——使用给定的键代替。
 
 ## 示例
 
@@ -136,7 +151,7 @@ farm:
 
 ```javascript
 {
-  label: "推荐",
+  label: "Testimonial",
   name: "testimonial",
   type: "object",
   fields: [
@@ -184,7 +199,7 @@ farm:
 
 ### 简单包装字段
 
-数字、布尔值、日期时间、引用和富文本字段类型可以用作对象的唯一字段，以创建这些类型的列表。
+数字、布尔、日期时间、引用和富文本字段类型可以用作对象的唯一字段，以创建这些类型之一的列表。
 
 ```javascript
 {
@@ -207,9 +222,9 @@ farm:
 
 此示例同时使用模板和字段。
 
-- `featureItem`对象存储一个对象数组`{ headline, description, buttons }`。
-- 列表中的每个功能项都有一个唯一标签，由itemProps函数设置。
-- `featureBlock`数组的buttons元素也是一个对象列表，有3个选项可供选择（模板）。
+* `featureItem`对象存储一个对象数组`{ headline, description, buttons }`。
+* 列表中的每个功能项都有一个唯一的标签，由itemProps函数设置。
+* `featureBlock`数组的buttons元素也是一个对象列表，有3个选项可供选择（模板）。
 
 ```javascript
 import type { Template, TinaField } from 'tinacms';
@@ -259,7 +274,7 @@ export const featuresTemplate: Template = {
 
 ### 带默认值的字段
 
-当向列表添加新项时，它将使用这些`defaultItem`值创建。
+当向列表中添加新项目时，它将使用这些`defaultItem`值创建。
 
 ```javascript
 {
@@ -294,9 +309,9 @@ export const featuresTemplate: Template = {
 
 ![](/img/docs/reference/testimonial.png)
 
-### 带有自定义引用键的字段
+### 带自定义引用键的字段
 
-在此处设置templateKey会更改我们的保存数据，如下所示，其中定义模板的键已设置为`"type"`。
+在此处设置templateKey会将我们的保存数据更改为如下所示，其中定义模板的键已设置为`"type"`。
 
 ```javascript
 {
