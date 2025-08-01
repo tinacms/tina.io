@@ -280,7 +280,7 @@
               "label": "Schedule Call",
               "icon": true,
               "color": "blue",
-              "size": "small",
+              "size": "medium",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
             }
