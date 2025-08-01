@@ -132,7 +132,7 @@
         {
           "headline": "Improved PR workflow",
           "status": "",
-          "content": "We are making some improvements to Tina's editorial workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
+          "content": "We are making some improvements to Tina's Editorial Workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
           "actions": [
             {
               "label": "Editorial Workflow",
