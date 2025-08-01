@@ -1,6 +1,6 @@
 ---
 title: Rendering Markdown Content
-last_edited: '2025-03-26T05:55:15.589Z'
+last_edited: '2025-07-31T15:06:31.979Z'
 next: ''
 previous: ''
 ---
@@ -88,6 +88,55 @@ const components = {
   content={body}
   components={components}
 />
+```
+
+### Customizing Built-in Markdown Elements
+
+You can also use the components prop to customize more complex elements like `code_block`, `image`, or `table`.
+
+For example, you can replace `code_block` with your own component to support Mermaid diagrams or style code blocks the way you want.
+
+```javascript
+import { CodeBlock } from "@/components/code-block";
+import MermaidElement from "@/components/mermaid-element";
+
+const MarkdownComponentMapping = {
+  code_block: (props) =>
+    props?.lang === "mermaid" ? (
+      <MermaidElement {...props} />
+    ) : (
+      <CodeBlock {...props} />
+    ),
+};
+
+<TinaMarkdown
+  content={data.body}
+  components={MarkdownComponentMapping}
+/>
+```
+
+This replaces the default `<pre>` block with your own React components. You can now control the code output however you like. For example, you can add syntax highlighting, line numbers, or a copy button inside your `CodeBlock` component.
+
+Here's a simple CodeBlock example that uses Shiki to highlight code and adds a copy button.
+
+```javascript
+import { useEffect, useState } from "react";
+import { shikiSingleton } from "./shiki-singleton";
+
+function CodeBlock({ value, lang = "ts" }) {
+  const [html, setHtml] = useState("");
+
+  useEffect(() => {
+    shikiSingleton.codeToHtml(value, lang).then(setHtml);
+  }, [value, lang]);
+
+  return (
+    <div className="relative">
+      <pre dangerouslySetInnerHTML={{ __html: html }} />
+      <button onClick={() => navigator.clipboard.writeText(value)}>Copy</button>
+    </div>
+  );
+}
 ```
 
 ## MDX and Custom Elements
