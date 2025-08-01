@@ -45,7 +45,7 @@ export const Actions = ({
               >
                 {label}
                 {icon && (
-                  <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 -mt-1 rotate-180" />
+                  <BiArrowBack className="h-[1.125em] w-auto opacity-70 ml-2 -mr-1 rotate-180" />
                 )}
               </ActionButton>
             );

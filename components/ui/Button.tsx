@@ -31,7 +31,7 @@ const colorClasses = {
   ghost: 'text-orange-500 hover:text-orange-400',
   orangeWithBorder:
     'text-orange-500 hover:text-orange-400 border border-orange-500 bg-white',
-  ghostBlue: 'text-blue-800 hover:text-blue-800',
+  ghostBlue: 'text-blue-800 hover:text-blue-600',
   blueOutline:
     'text-blue-600 hover:text-blue-600 border-2 border-blue-600 cursor-pointer',
 };
