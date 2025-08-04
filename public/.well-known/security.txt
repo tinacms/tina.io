@@ -1,0 +1,7 @@
+Contact: mailto:security@tina.io
+OpenPGP: https://tina.io/.well-known/public_key.asc
+Key-Server: hkps://keys.openpgp.org
+Preferred-Languages: en, fr, zh
+Canonical: https://tina.io/.well-known/security.txt
+Expires: 2026-08-29T00:00:00.000Z
+Encryption: openpgp4fpr:27372C8AF17B96F30C0E5E23BB20E6EA8FA75FFF
