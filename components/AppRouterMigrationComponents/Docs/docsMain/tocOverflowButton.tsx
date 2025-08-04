@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
-import { getDocId } from 'utils/docs/getDocIds';
 
 const TocOverflow = ({ tocData }) => {
   return (
     <div className="absolute z-10 bg-white mt-4 rounded-lg w-full p-6 shadow-lg animate-fade-down animate-duration-300 max-h-96 overflow-y-scroll">
-      {tocData.tocData.map((item, index) => {
+      {tocData.tocData.map((item, _index) => {
         const textIndentation =
           item.type === 'h3' ? 'ml-4' : item.type === 'h4' ? 'ml-8' : '';
 
@@ -14,7 +14,7 @@ const TocOverflow = ({ tocData }) => {
 
         return (
           <Link
-            key={index}
+            key={item.text}
             href={linkHref}
             className={`block hover:text-orange-500 transition-colors pl-6 ${textIndentation} pb-1`}
           >
@@ -51,12 +51,15 @@ const TocOverflowButton = (tocData) => {
       {tocData.tocData.length !== 0 && (
         <div className="py-6 w-full" ref={containerRef}>
           <div
-            className="py-2 px-4 border-slate-400 bg-gradient-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
+            className="py-2 px-4 border-slate-400 bg-linear-to-r from-white/50 to-white/30 rounded-lg shadow-lg cursor-pointer"
             onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
           >
             <span className="flex items-center space-x-2">
               <MdMenu size={20} className="text-orange-500" />
-              <span className="text-slate-600 py-1">Table of Contents</span>
+              <span className="text-slate-600 py-1">
+                {/** biome-ignore lint/correctness/useHookAtTopLevel: <TODO> */}
+                {usePathname().includes('/zh/') ? '目录' : 'Table of Contents'}
+              </span>
             </span>
           </div>
           {isTableOfContentsOpen && (

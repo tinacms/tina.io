@@ -1,5 +1,5 @@
 /* styles.js */
-import css from 'styled-jsx/css'
+import css from 'styled-jsx/css';
 
 export const GlobalStyles = css.global`
   :root {
@@ -56,7 +56,7 @@ export const GlobalStyles = css.global`
   }
 
   .headingLarge {
-    font-family: var(--font-tuner);
+    font-family: var(--font-ibm-plex);
     font-weight: bold;
     line-height: 1.4;
     margin-bottom: 1rem;
@@ -138,4 +138,4 @@ export const GlobalStyles = css.global`
     background: var(--color-white);
     color: var(--color-blue);
   }
-`
+`;

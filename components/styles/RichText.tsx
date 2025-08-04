@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components';
 
 /* Styles rich text (markdown output).
    Use the RichTextWrapper component to easily apply these styles,
@@ -55,7 +55,7 @@ const RichText = css`
   h5,
   h6 {
     position: relative;
-    font-family: var(--font-tuner);
+    font-family: var(--font-ibm-plex);
     font-weight: regular;
     font-style: normal;
     em {
@@ -257,7 +257,7 @@ const RichText = css`
 
   th {
     border-bottom: 3px solid var(--color-light-dark);
-    font-family: var(--font-tuner);
+    font-family: var(--font-ibm-plex);
     font-weight: regular;
     font-style: normal;
     color: var(--color-orange);
@@ -270,6 +270,6 @@ const RichText = css`
   td {
     border-bottom: 1px solid var(--color-light-dark);
   }
-`
+`;
 
-export default RichText
+export default RichText;

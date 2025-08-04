@@ -1,0 +1,97 @@
+---
+id: '/docs/reference/self-hosted/auth-provider/clerk-auth'
+title: Clerk Auth Provider
+---
+
+[Clerk](https://clerk.com) 是一个用户管理服务，你可以在自托管的 Tina 设置中使用它。
+
+> 在寻找代码吗？查看 [GitHub 仓库](https://github.com/tinacms/tinacms/tree/main/packages/tinacms-clerk)。
+
+## 入门
+
+要开始使用，你需要安装以下依赖：
+
+```bash
+yarn add @clerk/clerk-js @clerk/backend tinacms-clerk
+```
+
+## 设置
+
+访问 [clerk.com](https://clerk.com/) 创建一个账户和一个“应用程序”。完成后，导航到 API 密钥选项卡以找到你的凭据，并将它们存储在项目中的 .env 文件中。
+
+![Clerk API 密钥截图](/img/clerk-api-keys-screenshot.png)
+
+确保使用你将用于登录 Clerk 的电子邮件地址更新 `TINA_PUBLIC_ALLOWED_EMAIL`。
+
+```bash
+CLERK_SECRET=sk_test_my-clerk-secret
+TINA_PUBLIC_CLERK_PUBLIC_KEY=pk_test_my-clerk-public-key
+TINA_PUBLIC_ALLOWED_EMAIL="your-email@gmail.com"
+```
+
+## 更新开发命令
+
+在自托管时，你可能希望为本地开发禁用身份验证。
+
+```json
+"scripts": {
+  "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+  "dev:prod": "tinacms dev -c \"next dev\"",
+}
+```
+
+## 更新你的 Tina 配置
+
+将以下内容添加到你的 `tina/config.{ts.js}` 文件中。确保将 "my-email@gmail.com" 替换为你用于登录的电子邮件：
+
+```ts
+import { ClerkAuthProvider } from 'tinacms-clerk/dist/frontend'
+
+//...
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+export default defineConfig({
+  //...
+  contentApiUrlOverride: '/api/tina/gql',
+  authProvider: isLocal ? new LocalAuthProvider() : new ClerkAuthProvider(),
+  //...
+})
+```
+
+注意，我们正在检查已登录用户的电子邮件是否存在于硬编码数组中。有几种方法可以更可维护地做到这一点：
+
+- 在 Clerk 中创建一个组织，并检查已登录用户是否是该项目组织的一部分。注意，组织在免费计划中目前限制为 3 个用户。
+- 创建一个 ["允许列表"](https://clerk.com/docs/authentication/allowlist)。注意，这是一个付费功能。
+
+## 更新 Tina 后端
+
+将以下内容添加到你的 `pages/api/tina/[...routes].{ts,js}` 文件中
+
+```ts
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { ClerkBackendAuthProvider } from 'tinacms-clerk'
+
+import databaseClient from '../../../tina/__generated__/databaseClient'
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
+
+const handler = TinaNodeBackend({
+  authProvider: isLocal
+    ? LocalBackendAuthProvider()
+    : ClerkBackendAuthProvider({
+        /**
+         * 对于高级 Clerk 用户，你可以使用限制
+         * https://clerk.com/docs/authentication/allowlist
+         */
+        allowList: [process.env.TINA_PUBLIC_ALLOWED_EMAIL],
+        secretKey: process.env.CLERK_SECRET,
+      }),
+  databaseClient,
+})
+
+export default (req, res) => {
+  // 如果需要，可以在这里修改请求
+  return handler(req, res)
+}
+```

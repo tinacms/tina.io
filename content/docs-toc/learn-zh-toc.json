@@ -1,0 +1,258 @@
+{
+  "supermenuGroup": [
+    {
+      "title": "新手入门系列",
+      "items": [
+        {
+          "title": "什么是新手入门系列？",
+          "slug": "content/zh/docs/beginner-tutorials/tutorial-overview.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "1. 创建你的TinaCMS站点",
+          "items": [
+            {
+              "title": "NextJS环境搭建",
+              "slug": "content/zh/docs/beginner-tutorials/nextjs-app.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "清理冗余代码",
+              "slug": "content/zh/docs/beginner-tutorials/intro-cleanup.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "安装CMS 🦙",
+              "slug": "content/zh/docs/beginner-tutorials/install-tinacms.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Hello World! 👋🌏",
+              "slug": "content/zh/docs/beginner-tutorials/hello-world.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "渲染你的内容",
+              "slug": "content/zh/docs/beginner-tutorials/display-content.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "2. 实时编辑功能",
+          "items": [
+            {
+              "title": "路由配置到编辑器",
+              "slug": "content/zh/docs/beginner-tutorials/routing.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "内容与编辑器连接",
+              "slug": "content/zh/docs/beginner-tutorials/wiring-content.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "加载你的内容",
+              "slug": "content/zh/docs/beginner-tutorials/loading-content.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "3. 内容模型",
+          "items": [
+            {
+              "title": "创建新字段",
+              "slug": "content/zh/docs/beginner-tutorials/new-field.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "从文本到Markdown 🌟",
+              "slug": "content/zh/docs/beginner-tutorials/string-to-markdown.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "渲染Markdown内容",
+              "slug": "content/zh/docs/beginner-tutorials/rendering-markdown.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "图片上传功能 🖼️",
+              "slug": "content/zh/docs/beginner-tutorials/new-picture.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "4. 网站构建体验",
+          "items": [
+            {
+              "title": "什么是\"区块\"？",
+              "slug": "content/zh/docs/beginner-tutorials/what-are-blocks.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "创建新模板",
+              "slug": "content/zh/docs/beginner-tutorials/new-template.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "关联到内容模型",
+              "slug": "content/zh/docs/beginner-tutorials/linking-to-model.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "渲染你的模板",
+              "slug": "content/zh/docs/beginner-tutorials/render-templates.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "网站构建体验 ✨",
+              "slug": "content/zh/docs/beginner-tutorials/website-builder-experience.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        }
+      ]
+    },
+    {
+      "title": "技术指南",
+      "items": [
+        {
+          "title": "什么是Markdown？",
+          "slug": "content/zh/docs/editing/markdown.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "使用Tina作为网站构建器",
+          "slug": "content/zh/docs/editing/blocks.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "运行时查询Tina内容",
+          "slug": "content/zh/docs/guides/react-data-fetching.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "配置内容集合",
+          "items": [
+            {
+              "title": "单文档集合",
+              "slug": "content/zh/docs/editing/single-document-collections.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "标记草稿文档",
+              "slug": "content/zh/docs/drafts/drafts-fields.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "保存时修改数据",
+              "slug": "content/zh/docs/extending-tina/before-submit.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "自动生成文件名",
+              "slug": "content/zh/docs/extending-tina/filename-customization.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "内容集合命名规范",
+              "slug": "content/zh/docs/guides/naming-conventions.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "框架专项指南",
+          "items": [
+            {
+              "title": "概述",
+              "slug": "content/zh/docs/integration/frameworks.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "从WordPress迁移",
+              "slug": "content/zh/docs/guides/converting-wordpress-to-tina.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Gatsby",
+              "items": [
+                {
+                  "title": "将现有Gatsby博客迁移到TinaCMS",
+                  "slug": "content/zh/docs/guides/converting-gatsby-to-tina.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
+              "title": "NextJS",
+              "items": [
+                {
+                  "title": "在NextJS中查询Tina内容",
+                  "slug": "content/zh/docs/guides/nextjs-data-fetching.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "NextJS+Tina国际化实现",
+                  "slug": "content/zh/docs/guides/nextjs-internationalization.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "可视化编辑中使用草稿",
+                  "slug": "content/zh/docs/guides/contextual-drafts.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
+            },
+            {
+              "title": "Docusaurus",
+              "slug": "content/zh/docs/guides/docusaurus.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "标记草稿页面",
+          "slug": "content/zh/docs/drafts/drafts-fields.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "独立内容仓库",
+          "slug": "content/zh/docs/guides/separate-content-repo.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "全球化",
+          "items": [
+            {
+              "title": "TinaCMS在中国地区的可用性",
+              "slug": "content/zh/docs/tina-cloud/tinacms-availability-China.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "国际化",
+              "slug": "content/zh/docs/guides/internationalization.mdx",
+              "_template": "item"
+            }
+          ],
+          "_template": "items"
+        },
+        {
+          "title": "多租户",
+          "slug": "content/zh/docs/guides/multi-tenancy.mdx",
+          "_template": "item"
+        }
+      ]
+    }
+  ]
+}

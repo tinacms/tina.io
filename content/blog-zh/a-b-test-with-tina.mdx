@@ -1,0 +1,319 @@
+---
+seo:
+  title: 使用Next.js中间件进行A/B测试 | TinaCMS博客
+  description: >-
+    了解如何在TinaCMS中设置A/B测试，通过比较内容变体来优化用户参与度和性能，从而做出数据驱动的决策
+title: 使用Next.js中间件和TinaCMS进行A/B测试
+date: '2022-05-30T14:00:00.000Z'
+author: James Perkins & James O'Halloran
+prev: content/blog-zh/basics-of-graphql.mdx
+next: content/blog-zh/tina-next-i18n.mdx
+---
+
+A/B测试可以成为任何网站上非常有用的工具。它可以帮助你提高用户参与度，降低跳出率，提高转化率，并有效地创建内容。
+
+Tina提供了A/B测试的能力，使营销团队在实现后无需开发团队即可测试内容。
+
+## 介绍
+
+我们将把本教程分为两个部分：
+
+1. 使用NextJS的中间件设置A/B测试。
+2. 使用Tina配置我们的A/B测试，以便我们的编辑可以启动动态A/B测试。
+
+## 创建我们的Tina应用
+
+这篇博客文章将使用Tailwind Starter。使用`create-tina-app`命令，选择“Next.js Starter”作为起始模板：
+
+```bash
+# 创建我们的Tina应用
+
+npx create-tina-app@latest a-b-testing
+
+✔ 你想使用哪个包管理器？ › Yarn
+✔ 你想使用哪个起始代码？ › Next.js Starter
+从仓库tinacms/tina-cloud-starter下载文件。这可能需要一点时间。
+正在安装包。这可能需要几分钟。
+
+## 进入目录并确保一切都已更新。
+
+cd a-b-testing
+yarn upgrade
+yarn dev
+```
+
+在你的网站运行后，你应该可以在[`http://localhost:3000`](http://localhost:3000)访问它。
+
+## 规划我们的测试
+
+起始页应该看起来像这样：
+
+![TinaCloud Starter](/img/blog/a-b-testing/starter-homepage.png)
+
+这个页面已经很好地设置为A/B测试，其页面布局(`[slug].tsx`)通过接受变量`slug`来渲染动态页面。
+
+让我们从创建一个名为`home-b`的主页替代版本开始。
+你可以在Tina中这样做：[http://localhost:3000/admin#/collections/page/new](http://localhost:3000/admin#/collections/page/new)
+
+![Tina Add document](/img/blog/a-b-testing/add-document.png)
+
+完成后，访问：`http://localhost:3000/home-b`以确认你的新`/home-b`页面已创建。
+
+## 设置我们的A/B测试
+
+最终，我们希望我们的网站能够动态地将某些页面替换为备用页面变体，但我们首先需要一个地方来引用这些活动的A/B测试。
+
+让我们在`content/ab-test/index.json`创建以下文件：
+
+```json
+{
+  "tests": [
+    {
+      "testId": "home",
+      "href": "/",
+      "variants": [
+        {
+          "testId": "b",
+          "href": "/home-b"
+        }
+      ]
+    }
+  ]
+}
+```
+
+稍后我们将使用此文件来告诉我们的网站，我们在主页上有一个A/B测试，使用`/home-b`作为变体。
+
+在下一步中，我们将设置一些NextJS中间件以动态使用此页面变体。
+
+## 使用NextJS中间件交付动态页面
+
+NextJS的中间件允许你在请求完成之前运行代码。我们将利用NextJS的中间件有条件地替换页面为其页面变体。
+
+> 你可以在[这里](https://nextjs.org/docs/advanced-features/middleware)了解更多关于NextJS中间件的信息。
+
+首先创建`pages/_middleware.ts`文件，包含以下代码：
+
+```ts
+//pages/_middleware.ts
+
+import { NextRequest, NextResponse } from 'next/server'
+import abTestDB from '../content/ab-test/index.json'
+import { getBucket } from '../utils/getBucket'
+
+// 检查给定页面上的AB测试
+export function middleware(req: NextRequest) {
+  // 找到与请求的url匹配的实验
+  const matchingExperiment = abTestDB.tests.find(
+    (test) => test.href == req.nextUrl.pathname
+  )
+
+  if (!matchingExperiment) {
+    // 未找到匹配的A/B实验，因此使用原始页面slug
+    return NextResponse.next()
+  }
+
+  const COOKIE_NAME = `bucket-${matchingExperiment.testId}`
+  const bucket = getBucket(matchingExperiment, req.cookies[COOKIE_NAME])
+
+  const updatedUrl = req.nextUrl.clone()
+  updatedUrl.pathname = bucket.url
+
+  // 将请求URL更新为我们的bucket URL（如果已更改）
+  const res =
+    req.nextUrl.pathname == bucket.url
+      ? NextResponse.next()
+      : NextResponse.rewrite(updatedUrl)
+
+  // 如果cookie中尚未存在，则将bucket添加到cookie中
+  if (!req.cookies[COOKIE_NAME]) {
+    res.cookie(COOKIE_NAME, bucket.id)
+  }
+
+  return res
+}
+```
+
+上面的代码片段中有一些内容，但基本上：
+
+* 我们检查请求的URL是否有活动的实验
+* 如果有，我们调用`getBucket`来查看我们应该提供哪个版本的页面
+* 我们更新用户的cookie，以便他们在给定的bucket中始终获得相同的页面。
+
+你会注意到上面的代码引用了一个`getBucket`函数。我们需要创建它，它将有条件地将我们放入每个页面的A/B测试的bucket中。
+
+```ts
+// /utils/getBucket.ts
+
+export const getBucket = (matchingABTest: any, bucketCookie?: string) => {
+  // 如果我们已经被分配了一个bucket，使用它
+  // 否则，调用getAssignedBucketId将我们放入一个bucket
+  const bucketId =
+    bucketCookie ||
+    getAssignedBucketId([
+      matchingABTest.testId,
+      ...matchingABTest.variants.map((t) => t.testId),
+    ])
+
+  // 检查我们的bucket是否匹配变体
+  const matchingVariant = matchingABTest.variants.find(
+    (t) => t.testId == bucketId
+  )
+
+  if (matchingVariant) {
+    // 我们匹配了一个页面变体
+    return {
+      url: matchingVariant.href,
+      id: bucketId,
+    }
+  } else {
+    // 无效的bucket，或者我们与默认的AB测试匹配
+    return {
+      url: matchingABTest.href,
+      id: matchingABTest.testId,
+    }
+  }
+}
+
+function getAssignedBucketId(buckets: readonly string[]) {
+  // 获取0到1之间的随机数
+  let n = cryptoRandom() * 100
+  // 获取每个bucket的百分比
+  const percentage = 100 / buckets.length
+  // 遍历buckets，查看随机数是否落在bucket的范围内
+  return (
+    buckets.find(() => {
+      n -= percentage
+      return n <= 0
+    }) ?? buckets[0]
+  )
+}
+
+function cryptoRandom() {
+  return crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)
+}
+```
+
+上面的代码片段执行以下操作：
+
+* 检查我们是否已经在一个bucket中，如果没有，则调用`getAssignedBucketId`随机将我们放入一个bucket。
+* 返回我们给定bucket的匹配A/B测试信息。
+
+这应该就是我们中间件的全部内容！现在，你应该可以访问主页[http://localhost:3000](http://localhost:3000)，你将有50-50的机会被提供`home.md`或`home-b.md`的内容。你可以通过清除浏览器的cookie来重置你的bucket。
+
+## 使用Tina创建A/B测试
+
+此时，我们的编辑可以编辑`home.md`和`home-b.md`的内容，但我们希望我们的编辑能够设置新的A/B测试。
+
+让我们通过为其创建一个Tina集合，使我们之前的`content/ab-test/index.json`文件可编辑。
+
+打开你的`schema.ts`，在`Pages`集合下，创建一个新的集合，如下所示：
+
+```ts
+/// ...,
+    {
+      label: "AB Test",
+      name: "abtest",
+      path: "content/ab-test",
+      format: "json",
+    }
+```
+
+我们现在需要添加我们希望内容团队能够编辑的字段，这将是ID、要运行测试的页面以及我们想要运行的变体。我们还希望能够在任意数量的页面上运行测试，因此我们将使用对象列表作为`tests`字段。
+
+> 如果你想了解更多关于所有不同字段类型及其使用方法的信息，请查看我们的[内容建模文档。](https://tina.io/docs/schema/)
+
+```ts
+    {
+      label: "AB Test",
+      name: "abtest",
+      path: "content/ab-test",
+      format: "json",
+      fields: [
+        {
+          type: "object",
+          label: "tests",
+          name: "tests",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: item.testId || "New A/B Test" };
+            },
+          },
+          fields: [
+            { type: "string", label: "Id", name: "testId" },
+            {
+              type: "string",
+              label: "Page",
+              name: "href",
+              description:
+                "这是将被有条件替换的根页面",
+            },
+            {
+              type: "object",
+              name: "variants",
+              label: "Variants",
+              list: true,
+              ui: {
+                itemProps: (item) => {
+                  return { label: item.testId || "New variant" };
+                },
+              },
+              fields: [
+                { type: "string", label: "Id", name: "testId" },
+                {
+                  type: "string",
+                  label: "Page",
+                  name: "href",
+                  description:
+                    "这是将被有条件使用的变体页面，而不是原始页面",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    }
+```
+
+> 你可能注意到了`ui`属性。我们使用它来为列表项提供更具描述性的标签。你可以在我们的[扩展Tina文档](https://tina.io/docs/extending-tina/customize-list-ui/)中了解更多。
+
+我们还需要更新`.tina/schema.ts`中的`RouteMappingPlugin`，以确保我们的集合只能使用基本编辑器进行编辑。
+
+```ts
+      const RouteMapping = new RouteMappingPlugin((collection, document) => {
+        if (collection.name == 'abtest') {
+          return undefined
+        }
+        // ...
+```
+
+现在，重启你的开发服务器，然后访问：[http://localhost:3000/admin#/collections/abtest/index](http://localhost:3000/admin#/collections/abtest/index)。你的编辑应该能够连接他们自己的A/B测试！
+
+![Tina Edit Variant](/img/blog/a-b-testing/edit-test.png)
+
+编辑创建新A/B测试的过程如下：
+
+* 编辑在CMS中创建一个新页面
+* 编辑将页面连接为“A/B测试”集合中的页面变体
+
+就是这样！我们希望这能让你的团队开始测试不同的页面变体，以优化你的内容！
+
+## 如何保持与Tina的同步？
+
+保持与Tina同步的最佳方式是订阅我们的新闻通讯。我们每两周发送一次更新。更新包括新功能、我们正在进行的工作、你可能错过的博客文章等等！
+
+你可以通过访问此链接并输入你的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
+
+### Tina社区Discord
+
+Tina有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和Tina爱好者。加入后，你会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的Tina新闻和预览
+* 与Tina社区分享你的项目，并讨论你的经验
+* 聊天关于Jamstack
+
+### Tina Twitter
+
+我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布最新的功能、改进和Tina的预览。如果你在项目中使用了我们，我们也会很高兴你能标记我们。

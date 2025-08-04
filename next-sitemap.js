@@ -12,49 +12,56 @@ module.exports = {
   },
   exclude: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
   sitemapSize: 7000,
-  transform: async (config, path) => {
+  transform: async (_config, path) => {
     const listOfMinorPaths = [
       '/privacy-notice',
       '/security',
       '/terms-of-service',
-    ]
+    ];
     if (listOfMinorPaths.includes(path)) {
       return {
         loc: path,
         priority: 0.3,
-      }
+      };
+    }
+    if (path === '/home') {
+      return {
+        loc: '/',
+        changefreq: 'daily',
+        priority: 0.7,
+      };
     }
     if (path === '/') {
       return {
         loc: path,
         changefreq: 'daily',
         priority: 1.0,
-      }
+      };
     }
     if (path.indexOf('/docs/') > -1) {
       return {
         loc: path,
         changefreq: 'weekly',
         priority: 0.5,
-      }
+      };
     }
     if (path.indexOf('/guides/') > -1) {
       return {
         loc: path,
         priority: 0.5,
-      }
+      };
     }
     if (path.indexOf('/blog/') > -1) {
       return {
         loc: path,
         changefreq: 'monthly',
         priority: 0.5,
-      }
+      };
     }
     return {
       loc: path,
       priority: 0.7,
       changefreq: 'weekly',
-    }
+    };
   },
-}
+};

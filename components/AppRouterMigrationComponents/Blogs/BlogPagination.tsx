@@ -2,7 +2,8 @@
 
 import { DynamicLink } from 'components/ui';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
 interface BlogPaginationProps {
   currentPage: number;
@@ -27,7 +28,7 @@ export default function NewBlogPagination({
   }
 
   return (
-    <div className="flex justify-between items-center mb-12 text-lg font-medium font-tuner">
+    <div className="flex justify-between items-center mb-12 text-lg font-medium font-ibm-plex">
       {/* Pagination Links */}
       <div className="flex gap-4">
         {!isFirst && (
@@ -60,14 +61,14 @@ export default function NewBlogPagination({
             aria-label="Pagination Dropdown"
             value={selectValue}
             onChange={handleSelectChange}
-            className="appearance-none border border-gray-300 rounded-md bg-light pl-2 pr-8 py-1 cursor-pointer text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-300"
+            className="appearance-none border border-gray-300 rounded-md bg-light pl-2 pr-8 py-1 cursor-pointer text-orange-600 focus:outline-hidden focus:ring-2 focus:ring-orange-300"
           >
             {Array.from({ length: numPages }, (_, i) => (
               <option
                 aria-label={`Go to Page ${i + 1}`}
                 aria-current={i + 1 === currentPage ? 'true' : 'false'}
                 value={i + 1}
-                key={`page-${i}`}
+                key={`page-${i + 1}`}
               >
                 {i + 1}
               </option>

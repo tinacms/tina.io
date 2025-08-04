@@ -1,5 +1,6 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 export const Hero = ({ narrow = false, children }) => {
   return (
@@ -8,13 +9,13 @@ export const Hero = ({ narrow = false, children }) => {
     >
       <HeroTitle narrow={narrow}>{children}</HeroTitle>
     </div>
-  )
-}
+  );
+};
 
 export const HeroTitle = styled(({ narrow, children, ...styleProps }) => {
-  return <h2 {...styleProps}>{children}</h2>
+  return <h2 {...styleProps}>{children}</h2>;
 })`
-  font-family: var(--font-tuner);
+  font-family: var(--font-ibm-plex);
   font-weight: bold;
   font-style: normal;
   font-size: 2.5rem;
@@ -47,4 +48,4 @@ export const HeroTitle = styled(({ narrow, children, ...styleProps }) => {
     css`
       max-width: 9em;
     `};
-`
+`;

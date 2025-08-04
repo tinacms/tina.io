@@ -135,7 +135,7 @@ For the most part, the UI properties are added to the field and adhere to the ex
 }
 ```
 
-[Register](/docs/fields/custom-fields/#registering-the-plugin) your `myMapField` with Tina:
+[Register](/docs/extending-tina/custom-field-components) your `myMapField` with Tina:
 
 ```js
 cms.fields.add({
@@ -146,7 +146,7 @@ cms.fields.add({
 
 #### One important gotcha
 
-Every property in the `defineSchema` API must be serializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formifyCallback](/docs/advanced/customizing-forms/#customizing-a-form) API to get access to the Tina form, or provide your own logic by specifying a plugin of your choice:
+Every property in the `defineSchema` API must be serializable. Meaning functions will not work. For example, there's no way to define a `validate` or `parse` function at this level. However, you can either use the [formifyCallback](/docs/extending-tina/custom-field-components) API to get access to the Tina form, or provide your own logic by specifying a plugin of your choice:
 
 ```js
 {

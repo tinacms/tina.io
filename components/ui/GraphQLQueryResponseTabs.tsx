@@ -5,19 +5,19 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
   const [isQuery, setIsQuery] = useState(!props.preselectResponse);
 
   const buttonStyling =
-    'flex justify-center relative leading-tight text-white mx-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-tuner whitespace-nowrap px-2';
+    'flex justify-center relative leading-tight text-white mx-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-t-3xl flex items-center gap-1 font-ibm-plex whitespace-nowrap px-2';
   const activeButtonStyling =
     ' hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px hover:text-gray-50 opacity-50 hover:opacity-100';
   const overlay = (
     <div
-      className="w-full flex-grow rounded-md"
+      className="w-full grow rounded-md"
       style={{
         backgroundColor: 'rgb(1, 22, 39)',
       }}
     ></div>
   );
   const underlineStyling =
-    'transition-[width] absolute h-1 bottom-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg';
+    'transition-[width] absolute h-1 bottom-0 bg-linear-to-br from-orange-400 to-orange-600 rounded-lg';
   const containerStyling =
     'w-full flex col-start-1 row-start-1 overflow-x-scroll flex-col';
 
@@ -30,6 +30,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
         }}
       >
         <button
+          type="button"
           onClick={() => setIsQuery(true)}
           className={buttonStyling + (isQuery ? '' : activeButtonStyling)}
           disabled={isQuery}
@@ -40,6 +41,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
           ></div>
         </button>
         <button
+          type="button"
           onClick={() => setIsQuery(false)}
           className={buttonStyling + (isQuery ? activeButtonStyling : '')}
           disabled={!isQuery}
@@ -52,7 +54,7 @@ export const GraphQLQueryResponseTabs = ({ ...props }) => {
       </div>
       <div className="h-fit grid grid-cols-1 w-full">
         <div
-          className={`${containerStyling} rounded-b-xl`}
+          className={`${containerStyling} rounded-b-xl font-source-code-pro`}
           style={{
             zIndex: isQuery ? 5 : 1,
           }}

@@ -1,30 +1,11 @@
-/* Tuner Medium */
-@font-face {
-  font-family: 'tuner-medium';
-  font-style: normal;
-  font-weight: medium;
-  font-display: fallback;
-  src: url('../../public/fonts/tuner-medium.woff2') format('woff2'),
-    url('../../public/fonts/tuner-medium.woff') format('woff');
-}
-
-/* Tuner Regular */
-@font-face {
-  font-family: 'tuner-regular';
-  font-style: normal;
-  font-weight: regular;
-  font-display: fallback;
-  src: url('../../public/fonts/tunerweb-regular.eot') format('eot'),
-    url('../../public/fonts/tunerweb-regular.woff') format('woff');
-}
-
 /* Inter Regular */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-display: fallback;
-  src: url('../../public/fonts/Inter-Regular.woff2') format('woff2'),
+  src:
+    url('../../public/fonts/Inter-Regular.woff2') format('woff2'),
     url('../../public/fonts/Inter-Regular.woff') format('woff');
 }
 
@@ -34,7 +15,8 @@
   font-style: italic;
   font-weight: 400;
   font-display: fallback;
-  src: url('../../public/fonts/Inter-Italic.woff2') format('woff2'),
+  src:
+    url('../../public/fonts/Inter-Italic.woff2') format('woff2'),
     url('../../public/fonts/Inter-Italic.woff') format('woff');
 }
 
@@ -44,7 +26,8 @@
   font-style: normal;
   font-weight: 500;
   font-display: fallback;
-  src: url('../../public/fonts/Inter-Medium.woff2') format('woff2'),
+  src:
+    url('../../public/fonts/Inter-Medium.woff2') format('woff2'),
     url('../../public/fonts/Inter-Medium.woff') format('woff');
 }
 
@@ -54,7 +37,8 @@
   font-style: italic;
   font-weight: 500;
   font-display: fallback;
-  src: url('../../public/fonts/Inter-MediumItalic.woff2') format('woff2'),
+  src:
+    url('../../public/fonts/Inter-MediumItalic.woff2') format('woff2'),
     url('../../public/fonts/Inter-MediumItalic.woff') format('woff');
 }
 
@@ -64,6 +48,25 @@
   font-style: normal;
   font-weight: 700;
   font-display: fallback;
-  src: url('../../public/fonts/Inter-Bold.woff2') format('woff2'),
+  src:
+    url('../../public/fonts/Inter-Bold.woff2') format('woff2'),
     url('../../public/fonts/Inter-Bold.woff') format('woff');
+}
+
+/* IBM Plex Sans SemiBold */
+@font-face {
+  font-family: 'IBMPlexSans-SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  font-display: fallback;
+  src: url('../../public/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+}
+
+/* Source Code Pro Regular */
+@font-face {
+  font-family: 'SourceCodePro-Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: url('../../public/fonts/SourceCodePro-Regular.ttf') format('truetype');
 }

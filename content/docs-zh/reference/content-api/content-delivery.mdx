@@ -1,0 +1,57 @@
+---
+id: /docs/reference/content-api/content-delivery
+title: 使用 Curl 和 Fetch
+last_edited: '2025-03-26T03:57:34.494Z'
+next: ''
+previous: ''
+---
+
+可以使用只读令牌向 Tina 内容 API 发出请求。在大多数情况下，这些请求是使用 [Tina 客户端](/docs/features/data-fetching/#making-requests-with-the-tina-client)进行的，不过你也可以直接访问 API。
+
+## 使用 `curl` 和 `fetch` 发出请求
+
+> 注意：在大多数情况下，可以使用 tina 客户端，不需要直接使用 fetch
+
+内容 API 的端点是 `https://content.tinajs.io/<TinaGraphQLVersion>/content/<myClientId>/github/<myBranch>`。令牌可以通过包含一个 `X-API-KEY` 自定义 HTTP 头并将令牌作为值来传递。
+
+其中 `myClientId` 是你的项目的客户端 ID，`myBranch` 是你想要查询的分支。
+
+`TinaGraphQLVersion` 是你正在使用的 `@tinacms/graphql` 的版本。你可以通过在项目中运行 `yarn list @tinacms/graphql` 来找到这个版本。对于 `TinaGraphQLVersion`，只使用 "major"."minor" 值。因此，如果使用版本 `1.4.17`，则 `TinaGraphQLVersion` 应为 `1.4`。
+
+以下是一个 curl 请求示例，它将查询内容 API 以获取集合列表：
+
+### Curl
+
+```bash
+curl --location --request POST 'https://content.tinajs.io/<TinaGraphQLVersion>/content/<ClientId>/github/main' \
+--header 'X-API-KEY: <Your API KEY>' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"{\n        collections{\n            name\n        }\n}","variables":{}}'
+```
+
+### Fetch
+
+```js
+var myHeaders = new Headers()
+myHeaders.append('X-API-KEY', '5f47d1d1c89755aba3b54684dd25f580ec6bb0d3')
+myHeaders.append('Content-Type', 'application/json')
+
+var graphql = JSON.stringify({
+  query: '{\n        collections{\n            name\n        }\n}',
+  variables: {},
+})
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: graphql,
+  redirect: 'follow',
+}
+
+fetch(
+  'https://content.tinajs.io/<TinaGraphQLVersion>/content/<ClientId>/github/main',
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error))
+```

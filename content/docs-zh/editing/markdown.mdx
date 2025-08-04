@@ -1,0 +1,44 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/toolkit/plugin-fields/markdown.tsx"
+id: /docs/editing/markdown
+title: 什么是Markdown？
+last_edited: '2025-03-26T03:56:04.145Z'
+next: content/docs-zh/editing/blocks.mdx
+previous: content/docs-zh/editing/overview.mdx
+---
+
+Markdown `(.md)` 和 MDX `(.mdx)` 是两种流行的内容创作格式。Tina与这两种格式都能很好地配合使用，并提供了一个简单的所见即所得编辑器（因此您的编辑人员不必手动编写任何标记）。
+
+![tinacms-markdown-field](/img/fields/markdown.png)
+
+### 什么是Markdown？
+
+一个基本的 `.md` 文件可能如下所示：
+
+```md
+---
+title: 这是我的标题
+---
+
+## 敲敲门！
+
+谁在那儿？
+```
+
+在 `---` 分隔符之间注册的字段称为您的**前置元数据**。下面的内容是您的**Markdown正文**。
+
+### 什么是MDX？
+
+MDX与Markdown类似，但它增加了在您的**Markdown正文**中编写JSX（react）组件的能力。
+
+```md
+---
+title: 这是我的标题
+---
+
+## 敲敲门！
+
+谁在那儿？
+
+<PunchLine text="你很高兴我没说香蕉吗？" />
+```

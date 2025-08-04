@@ -1,0 +1,53 @@
+---
+id: /docs/graphql/queries/update-document
+title: 更新文档
+last_edited: '2025-03-26T03:58:01.830Z'
+next: ''
+previous: ''
+---
+
+## 使用 `update<collection>` 更新文档
+
+我们为上述[模式](/docs/graphql/queries/#example-schema)定义的集合命名为“post”和“author”，因此我们可以使用 `updatePost` 和 `updateAuthor` 对每种集合类型应用更新。
+
+<GraphQLCodeBlock
+  query="mutation#{
+  ##updateAuthor(relativePath:#&#x22;napolean.json&#x22;,#params:#{name:#&#x22;Napolean&#x22;,#avatar:#&#x22;https://path.to/my-avatar.jpg&#x22;})#{
+  ####name
+  ####avatar
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;updateAuthor&#x22;:#{
+  ######&#x22;name&#x22;:#&#x22;Napolean&#x22;,
+  ######&#x22;avatar&#x22;:#&#x22;https://path.to/my-avatar.jpg&#x22;
+  ####}
+  ##}
+  }"
+/>
+
+<GraphQLCodeBlock
+  query="mutation#{
+  ##updatePost(relativePath:#&#x22;voteForPedro.json&#x22;,#params:#{title:#&#x22;Vote#For#Napolean#Instead&#x22;,#category:#&#x22;politics&#x22;,#author:#&#x22;content/authors/napolean.json&#x22;})#{
+  ####title
+  ####category
+  ####author#{
+  ######...#on#Author#{
+  ########id
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;updatePost&#x22;:#{
+  ######&#x22;title&#x22;:#&#x22;Vote#For#Napolean#Instead&#x22;,
+  ######&#x22;category&#x22;:#&#x22;politics&#x22;,
+  ######&#x22;author&#x22;:#{
+  ########&#x22;id&#x22;:#&#x22;content/authors/napolean.json&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>

@@ -6,8 +6,8 @@ seo:
     This guide covers setup, configuration and best practice to implement
     internationalization with TinaCMS for a seamless multilingual user
     experience
-title: Tina Guides
-last_edited: '2024-11-06T00:58:35.729Z'
+title: Internationalization
+last_edited: '2025-07-11T07:19:58.061Z'
 next: ''
 previous: ''
 ---
@@ -136,7 +136,7 @@ export const pageSchema = {
     },
     // ...other fields
   ],
-}
+};
 ```
 
 > Note: If you are using markdown/mdx content, and want to use the markdown body for your content, you might prefer using the directory-based approach to localization.
@@ -147,9 +147,9 @@ In your site's components, you can then choose the correct localized field to di
 
 ```jsx
 const PageComponent = ({ data, locale }) => {
-  const title = data.title[locale]
+  const title = data.title[locale];
   // ...display content
-}
+};
 ```
 
 #### Content Management:
@@ -157,3 +157,113 @@ const PageComponent = ({ data, locale }) => {
 TinaCMS will display all localized fields as children of the root-level field.
 
 ![Localized Fields](/img/docs/i18n/localized-fields.png)
+
+## Internationalization with GitHub Action
+
+When using Directory-Based Localization, developers need to place the corresponding language MDX or JSON files in the correct location for loading multilingual routes. Developers can choose to manually translate text content and place it in the correct location, or they can use a GitHub Action to automate this process. The following is an example explaining the workflow of an effective GitHub Action:
+
+![Auto Translation Workflow](/img/docs/guides-internationalization/Screenshot%202025-04-14%20102942.png)
+
+### Setting up trigger conditions for GitHub Actions
+
+A trigger condition must be set for this GitHub Action. Generally, triggering occurs when a PR is successfully merged. To reduce token consumption, scheduled triggering is an alternative. The example below shows a GitHub Action that activates only when a PR is merged with changes in the specified directory.
+
+```yaml
+# Only triggered after a PR is successfully closed and contains changes in the specified directory
+on:
+  pull_request:
+    types: [closed] 
+    paths:
+      - 'content/docs/**.mdx'
+
+jobs:
+  translate-mdx:
+    if: github.event.pull_request.merged == true
+```
+
+### &#x20;Identify modified target files
+
+To minimize token usage, identifying only modified files for translation is essential. Below is a simple example of listing all the modified files.
+
+```javascript
+// Identify modified target files under currrent PR
+async function getChangedFilesFromApi() {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls/${PR_NUMBER}/files`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+      }
+    );
+    const mdxFiles = response.data
+      .filter(
+        (file) =>
+          file.filename.startsWith('content/docs/') &&
+          file.filename.endsWith('.mdx')
+      )
+      .map((file) => file.filename);
+
+    return mdxFiles;
+  } catch (error) {
+    console.error('Error fetching changed files from API:', error.message);
+    return [];
+  }
+}
+```
+
+### Create Translation Branch
+
+Creating a separate branch to differentiate between the original branch and newly added translations is essential. This approach facilitates a manual review.
+
+```yaml
+# Create a separate branch for translated files
+- name: Create translation branch
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          TIMESTAMP=$(date +%s)
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          BRANCH_NAME="translate-pr-$PR_NUMBER-$TIMESTAMP"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+```
+
+### Acquiring translations through LLM API Calls
+
+External LLMs are employed for automatic translation. Translation quality and format integrity depend on the selected model and the prompt. Below is an English prompt example for translating MDX files into Chinese while preserving document interfaces and critical information.
+
+````
+Please translate the following Markdown content into Chinese, preserving all Markdown formatting, code blocks, and front matter metadata.Only translate the text content, do not modify code, variable names, or other technical content.Do not add ```markdown``` in the newly translated Markdown file.Please note the following special requirements:
+  1. Do not modify URLs, next and preview fields
+  2. Maintain the original format structure, including heading hierarchy, lists, tables, etc.
+  3. Comments in code blocks can be translated, but the code itself and its functionality should not be changed
+  4. Please return the translated markdown source code directly in your reply, without adding any other prompts or explanations
+{{content}}
+````
+
+### Commit all changes to the new branch and create a PR
+
+Content generated by LLMs cannot be considered fully reliable. Committing all changes to a new PR for thorough verification represents a more cautious and methodical approach.
+
+```javascript
+const prTitle = `Chinese translation for PR #${PR_NUMBER}`;
+const prBody = `This PR contains Chinese translations for the documentation files updated in PR (${SERVER_URL}/${REPO}/pull/${PR_NUMBER}).`;
+
+const response = await axios.post(
+  `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls`,
+  {
+    title: prTitle,
+    body: prBody,
+    head: BRANCH_NAME,
+    base: 'main',
+  },
+  {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+    },
+  }
+);
+```

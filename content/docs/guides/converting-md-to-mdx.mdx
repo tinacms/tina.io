@@ -1,0 +1,154 @@
+---
+title: Markdown to MDX migration guide
+last_edited: '2025-07-17T15:07:40.621Z'
+next: content/docs/cli-overview.mdx
+previous: content/docs/guides/converting-gatsby-to-tina.mdx
+---
+
+## Introduction
+
+Migrating from traditional Markdown (.md) to MDX (.mdx) unlocks the ability to use typed, interactive React components inside your content. If you're moving to a modern CMS like TinaCMS or working in a Next.js-based static site, this guide shows how to automate the conversion of custom Markdown content into clean MDX.
+
+## At a glance
+
+You need this if:
+
+* You're adopting MDX for React-based content rendering
+* Your Markdown files use custom containers e.g. YouTube embeds
+* You want to avoid manually rewriting thousands of files
+
+## Key Migration Challenges
+
+* Legacy shortcodes and custom syntax not MDX-compatible
+* MDX requires valid JSX — raw HTML and plugins won’t work
+* Markdown plugins are not portable
+* Manual conversion is slow and error-prone
+
+## Script Overview
+
+We built a Python script that:
+
+* Recursively scans .md files
+* Detects custom blocks using regex
+* Replaces each with JSX components
+* Cleans up formatting artifacts (e.g. `<!--endintro-->`)
+* Outputs .mdx files
+
+## Block Types We Support
+
+Here are the key Markdown patterns our script handles (some of these are unique to the project it was developed for):
+
+| Original Format                   | What It Represents               | Converted To                   |
+| --------------------------------- | -------------------------------- | ------------------------------ |
+| `::: greybox/highlight/...`       | Info or aside boxes              | `<asideEmbed variant="..." />` |
+| `::: email-template :::`          | Emails with subject, body, etc.  | `<emailEmbed />`               |
+| `::: good/bad/ok + image`         | Image with a feedback label      | `<imageEmbed />`               |
+| `::: img-small/img-large + image` | Image with size/border variants  | `<imageEmbed size="..." />`    |
+| `![Figure: Caption](src)`         | Standalone images with captions  | `<imageEmbed />`               |
+| `::: good + Caption :::`          | Styled caption text              | `<figureEmbed />`              |
+| `youtube: URL` + caption          | YouTube video with a description | `<youtubeEmbed />`             |
+
+These reflect common patterns we used in the original Markdown content.
+
+## Example Conversion (Before & After)
+
+**Before (Markdown):**
+
+```
+::: email-template  
+| | |
+| -------- | --- |
+| To: | XXX |
+| Cc: | YYY |
+| Bcc: | ZZZ |
+| Subject: | {{ EMAIL SUBJECT }} |  
+::: email-content
+### Hi XXX,
+{{ EMAIL CONTENT }}
+:::  
+:::  
+::: good  
+Figure: Good example - Nice email template  
+:::
+
+
+
+::: good
+![Figure: Well-structured diagram](diagram.png)
+:::
+
+`youtube: https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+**Watch this classic hit**
+
+```
+
+**After (MDX):**
+
+```jsx
+
+<emailEmbed
+  from=""
+  to="XXX"
+  cc="YYY"
+  bcc="ZZZ"
+  subject="&#123;&#123; EMAIL SUBJECT &#125;&#125;"
+  body={<>
+    ## Hi XXX,
+&#123;&#123; EMAIL CONTENT &#125;&#125;
+  </>}
+  figureEmbed={{
+    preset: "goodExample",
+    figure: "Good example - Nice email template",
+    shouldDisplay: true
+  }}
+/>
+
+
+<imageEmbed
+  alt="Image"
+  size="large"
+  showBorder={true}
+  figureEmbed={{
+    preset: "goodExample",
+    figure: 'Well-structured diagram',
+    shouldDisplay: true
+  }}
+  src="diagram.png"
+/>
+
+<youtubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" description="Watch this classic hit" />
+
+
+```
+
+**Rendered email template:**![](/img/docs/converting-md-to-mdx/nice-email-template.png)
+
+## Running the Script
+
+To convert a single file:
+
+```bash
+python convert_md_to_mdx.py path/to/rule.md
+```
+
+To convert all files:
+
+```bash
+python convert_md_to_mdx.py
+```
+
+After conversion, start your local TinaCMS site and browse the converted pages to make sure that custom blocks (videos, asides, emails, images, etc.) render correctly.
+
+## Extending the Script
+
+* Add new regex patterns for custom containers
+* Modify JSX output to match your component APIs
+* Tune parsing logic for edge cases or metadata
+
+## Final Notes
+
+This script made it possible to convert thousands of Markdown files into clean, structured MDX suitable for modern frameworks.
+
+If you're working on a similar migration and want help adapting or extending this approach, the team at [SSW](https://www.ssw.com.au) has experience with MDX and [TinaCMS projects and can assist if needed](https://www.ssw.com.au/consulting/tinacms).
+
+**→ View the script**: [convert\_md\_to\_mdx.py](https://github.com/SSWConsulting/SSW.Rules.Content/blob/tina/migration-dev-content/scripts/tina-migration/convert-rule-md-to-mdx.py)

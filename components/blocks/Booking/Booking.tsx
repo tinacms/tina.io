@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 
@@ -19,7 +19,7 @@ const BookingCard = ({ cardItem }) => {
 
   return (
     <Link href={cardItem.url || '#'}>
-      <div className="relative mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700 bg-gradient-to-br from-white/25 via-white/50 to-white/75 sm:pt-1">
+      <div className="relative mb-4 rounded-md group flex flex-col md:flex-row lg:flex-row w-full h-full items-center justify-between bg-background p-4 shadow transition transform duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring text-blue-800 hover:text-blue-700 bg-linear-to-br from-white/25 via-white/50 to-white/75 sm:pt-1">
         {isValidImage(cardItem.image) && (
           <Image
             src={cardItem.image}
@@ -29,13 +29,13 @@ const BookingCard = ({ cardItem }) => {
             height={96}
           />
         )}
-        <div className="flex-grow text-center md:text-left lg:pl-4 lg:text-left">
+        <div className="grow text-center md:text-left lg:pl-4 lg:text-left">
           <div className="font-medium text-3xl">{cardItem.name}</div>
           <div className="text-muted-foreground text-md">
             {cardItem.description}
           </div>
         </div>
-        <div className="flex-shrink-0 sm:self-center">
+        <div className="shrink-0 sm:self-center">
           <FaChevronRight className="h-10 w-10 text-muted-foreground pr-6" />
         </div>
       </div>
@@ -43,7 +43,7 @@ const BookingCard = ({ cardItem }) => {
   );
 };
 
-const BookingBlock = ({ data, index }) => {
+const BookingBlock = ({ data }) => {
   const [meetingPeople, setMeetingPeople] = useState<BookingItem[]>([]);
 
   useEffect(() => {
@@ -55,7 +55,9 @@ const BookingBlock = ({ data, index }) => {
     fetchData();
   }, []);
 
-  if (!meetingPeople.length) return null;
+  if (!meetingPeople.length) {
+    return null;
+  }
 
   return (
     <div className="flex justify-center w-full">
@@ -82,15 +84,15 @@ const BookingBlock = ({ data, index }) => {
             </p>
           </div>
         </div>
-        <div className="grid gap-3 my-16 px-10 py-12 md:bg-gradient-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
-          <h1 className="w-full text-center inline-block m-0 md:text-4xl font-tuner lg:text-4xl text-2xl whitespace-nowrap lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
+          <h1 className="w-full text-center inline-block m-0 md:text-4xl font-ibm-plex lg:text-4xl text-2xl whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
             {data.title}
           </h1>
           <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
             {data.description}
           </h3>
-          {meetingPeople.map((cardItem, idx) => (
-            <BookingCard key={idx} cardItem={cardItem} />
+          {meetingPeople.map((cardItem) => (
+            <BookingCard key={cardItem.name} cardItem={cardItem} />
           ))}
         </div>
       </div>

@@ -1,6 +1,5 @@
 import type { Template } from 'tinacms';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
-import { cardTemplate } from '../Pricing/Pricing.template';
 
 export const featureGridTemplate: Template = {
   label: 'Feature Grid',

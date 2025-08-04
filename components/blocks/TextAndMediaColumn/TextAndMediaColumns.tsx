@@ -1,4 +1,5 @@
 import { textAndMediaColumnsComponent } from 'components/tinaMarkdownComponents/textAndMediaColumnsComponents';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { VideoGridComponent } from '../Media/MediaComponent';
@@ -13,7 +14,7 @@ const TextAndMediaColumnsComponent = ({ data }) => {
   };
 
   return (
-    <div className="px-3 max-w-screen-xl mx-auto w-full">
+    <div className="px-3 max-w-(--breakpoint-xl) mx-auto w-full">
       <div className="lg:grid lg:grid-cols-7 mx-auto md:pb-16">
         <div
           className={`mx-6 my-auto lg:col-span-4 row-start-1 md:h-auto ${

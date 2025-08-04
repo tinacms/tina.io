@@ -1,0 +1,95 @@
+name: Auto Translate MDX to Chinese
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to translate'
+        required: true
+        type: number
+  pull_request:
+    types: [closed]
+    paths:
+      - 'content/docs/**.mdx'
+      - 'content/blog/**.mdx'
+
+env:
+  PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
+
+jobs:
+  translate-mdx:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    environment: All Environments
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: .github
+
+      - name: Get changed files from merged PR
+        id: get-changed-files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: node .github/scripts/get-changed-files.js
+
+      - name: Create translation branch
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          TIMESTAMP=$(date +%s)
+          BRANCH_NAME="translate-pr-${{ env.PR_NUMBER }}-$TIMESTAMP"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Translate changed MDX files and fix paths
+        if: env.HAS_CHANGED_FILES == 'true'
+        env:
+          TINA_OPENAI_API_KEY: ${{ secrets.TINA_OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: node .github/scripts/translate-mdx.js
+
+      - name: Commit and push changes
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          echo "Git status:"
+          git status
+
+          git add content/docs-zh/ content/blog-zh/
+
+          echo "Git status:"
+          git status
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit after git add"
+            exit 0
+          fi
+
+          git commit -m "Add Chinese translation for docs and blog from PR ${{ env.PR_NUMBER }}"
+          git push origin $BRANCH_NAME
+
+      - name: Create Pull Request
+        if: env.HAS_CHANGED_FILES == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+          REPO: ${{ github.repository }}
+        run: node .github/scripts/create-pr.js

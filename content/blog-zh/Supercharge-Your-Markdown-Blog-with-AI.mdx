@@ -1,0 +1,49 @@
+---
+seo:
+  title: 用AI增强你的Markdown博客 | TinaCMS博客
+  description: >-
+    AI如何在TinaCMS中增强你的Markdown博客？通过提供更智能的内容创作和改进的工作流程，实现更高效的博客体验。
+title: Markdown Bot - 改善你内容的AI朋友
+date: '2023-07-14T04:00:00.000Z'
+last_edited: '2023-07-14T04:00:00.000Z'
+author: Logan Anderson
+prev: content/blog-zh/Introducing-the-Deep-Dive-Video-Series.mdx
+next: content/blog-zh/Tina-CMS--Leveljs.mdx
+---
+
+使用[TinaCMS](https://tina.io)，所有的内容更改都直接提交到Git。这使得你的团队可以创建多种工作流程来审查和合并内容更新。通过依赖GitHub，你可以将CI/CD集成到你的内容工作流程中。
+
+为了展示这种组合的潜力，我们很高兴地介绍**Markdown Bot**，一个通过对你的Pull Requests提出建议来改善你内容的AI朋友。
+
+<Youtube embedSrc="https://www.youtube.com/embed/3SkumYmH8nc" />
+
+> 想跳过阅读直接查看代码？[查看开源仓库](https://github.com/tinacms/markdown-bot)。
+
+## 一个有用的助手，而不是替代品
+
+AI可以成为协助撰写和编辑内容的有价值工具。我们设计这个机器人不是为了取代内容编辑，而是为了增强他们的能力。机器人直接在你的pull requests中提供内容建议。如果你觉得建议有用，可以一键提交。如果不需要，也可以轻松忽略。
+
+![GitHub中的AI建议](/img/blog/Supercharge-Your-Markdown-Blog-with-AI/Screenshot_2023-07-21_at_12.36.48_PM_ztpdes.png "GitHub中的AI建议")
+
+## Markdown Bot在你的PR上工作
+
+市面上有很多AI写作工具，但如果你用它们处理markdown内容，通常需要从AI输出中复制和粘贴。我们想要一个可以在GitHub中与我们的内容互动的工具。这就是为什么我们开发了一个GitHub机器人，让我们可以直接在GitHub的pull request中接收这些建议。
+
+## 使用GitHub机器人
+
+在你将机器人集成到你的仓库后，你可以通过评论`ai fix: <path to file>`来命令它提出建议。可以通过在下面使用`prompt: <Custom Prompt>`添加自定义提示。然后，机器人会以pull request审查的形式提供提交建议。
+
+要开始使用，请[查看开源仓库](https://github.com/tinacms/markdown-bot "AI内容GitHub仓库")。
+
+## 展望未来：AI和基于Git的内容
+
+我们的GitHub机器人与TinaCMS密切合作，以增强内容创作过程。你不再需要手动复制和粘贴建议。机器人将建议直接带到你的pull requests中，提供流畅、高效的体验。
+
+我们可以设想一些令人印象深刻的自定义工作流程与AI和基于Git的内容一起构建。例如，你可以基于这个机器人进行以下操作：
+
+* 通过自定义事件（如打开PR）触发AI机器人。
+* 利用分析工具根据你表现最佳/最差的页面提出建议。
+* 将此机器人与你的反馈小部件集成，根据用户反馈打开PR。
+* 使用像[alex](https://github.com/get-alex/alex)这样的工具捕捉不敏感、不周到的写作。
+
+这些只是我们看到的将AI与基于Git的内容集成的众多可能性中的一部分。我们对这里的潜力感到兴奋，并期待看到社区将构建的创造性工作流程。

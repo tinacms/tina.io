@@ -1,0 +1,102 @@
+---
+title: 字符串字段
+last_edited: '2025-03-26T00:50:49.005Z'
+next: ''
+previous: ''
+---
+
+一个用于存储短文本内容的文本输入字段，例如标题或描述。
+
+对于缩进、加粗和其他格式，请使用[富文本字段类型](/docs/reference/types/rich-text)。
+
+## 类型定义
+
+> 有关所有字段类型共有的附加属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: '将此设置为 `"string"` 以使用字符串字段。\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: '供内部使用的字段名称。\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
+
+## 示例
+
+### 简单字段
+
+```javascript
+
+{
+  type: 'string',
+  name: 'title',
+  label: 'Title'
+}
+```
+
+![](/img/docs/reference/hello-world.png)
+
+### 简单列表字段
+
+设置 list: true 将使值成为数组
+
+```javascript
+{
+  type: 'string',
+  name: 'title',
+  label: 'Title',
+  list: true
+}
+```
+
+![](/img/docs/reference/value-hello-world.png)
+
+### 带有文本区域组件的字段
+
+默认情况下，文本字段用于字符串。要使用不同的核心字段插件，请通过 ui.component 属性指定。
+
+```javascript
+{
+  label: "Description",
+  name: "description",
+  type: "string",
+  ui: {
+    component: "textarea"
+  }
+}
+```
+
+![](/img/docs/reference/description-example.png)
+
+### 带有自定义组件的字段
+
+您可以为TinaCMS编辑器[创建自己的组件](https://tina.io/docs/extending-tina/custom-field-components/)来存储字符串类型内容。
+
+```javascript
+{
+  label: "Title",
+  name: "title",
+  type: "string",
+  ui: {
+    component: ({ input }) => {
+      return (
+        <div>
+          <label htmlFor="title">Title: </label>
+          <input {...input}></input>
+        </div>
+      );
+    },
+  },
+}
+```
+
+![](/img/docs/reference/title-hello-body.png)

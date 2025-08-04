@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components';
 
 export const Textarea = styled.textarea`
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
@@ -14,7 +14,7 @@ export const Textarea = styled.textarea`
   width: 100%;
   padding: 0.75rem 1rem;
   transition: all 85ms ease-out;
-  font-family: var(--font-tuner);
+  font-family: var(--font-ibm-plex);
   font-size: 16px;
   ::placeholder {
     opacity: 1;
@@ -38,4 +38,4 @@ export const Textarea = styled.textarea`
       transition: opacity 200ms ease;
     }
   }
-`
+`;

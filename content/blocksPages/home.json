@@ -2,41 +2,45 @@
   "seo": {
     "title": "TinaCMS – Headless CMS with GitHub & Markdown Support",
     "description": "Combine the power of GitHub and Markdown with TinaCMS for seamless content management. Empower developers and creators to edit, preview, and manage static and dynamic sites effortlessly.",
+    "canonicalUrl": "https://tina.io",
     "hasCustomSuffix": true
   },
   "blocks": [
     {
-      "blockSettings": {
-        "isFullscreen": true
-      },
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
-          "text": "TinaCMS is an open-source, headless CMS that supports Git, with built-in version control.",
+          "text": "TinaCMS is an open-source, headless CMS that supports Git - with built-in version control.",
           "buttons": [
             {
-              "label": "Try the editor now",
-              "icon": true,
+              "label": "Try the Editor Now",
+              "icon": false,
               "variant": "blue",
-              "size": "small",
+              "size": "medium",
               "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             },
             {
+              "label": "Book a Demo",
+              "icon": false,
+              "color": "blueOutline",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            },
+            {
               "label": "npx create-tina-app@latest",
-              "clickedOnText": "See [getting started with NPX!](/docs/introduction/using-starter)\n",
               "_template": "codeButton"
             }
           ],
+          "headingOne": true,
           "media": [
             {
-              "thumbnailVideo": "/img/docs/introduction/homepage-demo-2.webm",
-              "videoEmbedId": "zRkeKSZjlyw",
-              "figureCaption": "Video: TinaCMS Demo (4 min)",
-              "_template": "videoThumbnailToInternalVideo"
+              "src": "/gif/smashingmagazine-tinacms.gif",
+              "_template": "v2Video"
             }
           ],
-          "isFullScreen": true,
+          "isFullScreen": false,
           "isReversed": false,
           "imageBackground": false
         }
@@ -189,7 +193,7 @@
           "headline": "3rd Party Media",
           "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
           "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-3rd-party-media.webm",
+          "videoSrc": "/video/2024-09-19-key-features-3rd-party-media%20v3.webm",
           "button": {
             "label": "READ MORE",
             "icon": true,
@@ -221,7 +225,7 @@
             "icon": true,
             "variant": "ghostBlue",
             "size": "medium",
-            "url": "/docs/editing/overview"
+            "url": "/docs/using-tina-editor"
           }
         },
         {
@@ -254,6 +258,19 @@
       "_template": "carouselFeature"
     },
     {
+      "_template": "events"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "altText": "Getting Started with NPX",
+      "title": "Tired of Lengthy Set-ups?",
+      "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
+      "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
+      "_template": "videoEmbed"
+    },
+    {
       "features": [
         {
           "headline": "Talk to a Tina Expert",
@@ -263,7 +280,7 @@
               "label": "Schedule Call",
               "icon": true,
               "color": "blue",
-              "size": "small",
+              "size": "medium",
               "modal": "BookDemo.tsx",
               "_template": "modalButton"
             }
@@ -279,9 +296,6 @@
         }
       ],
       "_template": "features"
-    },
-    {
-      "_template": "events"
     },
     {
       "blockSettings": {

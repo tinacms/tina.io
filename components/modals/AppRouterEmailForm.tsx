@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+// biome-ignore lint/style/useImportType: <TODO>
 import React, { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
@@ -16,7 +17,7 @@ export const EmailForm = (props: EmailFormProps) => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [isEntering, setIsEntering] = useState(false);
+  const [_isEntering, setIsEntering] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -77,7 +78,7 @@ export const EmailForm = (props: EmailFormProps) => {
             props.isFooter ? 'w-auto' : ''
           }`}
         >
-          <h1 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-tuner lg:text-3xl text-2xl lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h1 className="inline-block lg:text-left md:text-left sm:text-center m-0 md:text-4xl font-ibm-plex lg:text-3xl text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
             Join the Herd! 🦙
           </h1>
           <p className="text-left w-full mt-2 mb-4">
@@ -87,12 +88,12 @@ export const EmailForm = (props: EmailFormProps) => {
           </p>
           {message.text && (
             <p
-              className={`font-tuner text-sm mb-4 flex items-center gap-2 ${
+              className={`font-ibm-plex text-sm mb-4 flex items-center gap-2 ${
                 message.type === 'success'
                   ? 'text-green-500'
                   : message.type === 'warning'
-                  ? 'text-orange-500'
-                  : 'text-red-500'
+                    ? 'text-orange-500'
+                    : 'text-red-500'
               }`}
             >
               {message.type === 'success' && <TiTick />}

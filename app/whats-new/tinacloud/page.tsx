@@ -1,11 +1,13 @@
 import { client } from 'tina/__generated__/client';
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import WhatsNewTinaCloudPageLayout from './WhatsNewTinaCloudPageLayout';
 
 export async function generateMetadata() {
   const vars = { last: 10, sort: 'dateReleased' };
   const { data } = await fetchTinaCloudData(vars);
   const nodesData = data.WhatsNewTinaCloudConnection.edges.map(
-    (edge) => edge.node
+    (edge) => edge.node,
   );
   const seoData = (nodesData[0] as { seo?: any })?.seo || {
     title: "What's New in TinaCloud",
@@ -13,30 +15,16 @@ export async function generateMetadata() {
       'Stay updated with the latest improvements and features in TinaCloud.',
   };
 
-  return {
-    title: `${seoData.title} | TinaCloud`,
-    description: seoData.description,
-    openGraph: {
-      title: seoData.title,
-      description: seoData.description,
-      type: 'website',
-      locale: 'en_CA',
-      site_name: 'https://tina.io/tinacloud',
-      images: [
-        {
-          url: 'https://tina.io/img/tina-og.png',
-          width: 1200,
-          height: 628,
-          alt: 'Tina - The Markdown CMS',
-        },
-      ],
-    },
-  };
+  if (seoData && !seoData?.canonicalUrl) {
+    seoData.canonicalUrl = `${settings.siteUrl}/whats-new/tinacloud`;
+  }
+
+  return getSeo(seoData);
 }
 
 export default async function TinaCloudPage() {
   const vars = { last: 10, sort: 'dateReleased' };
-  const { data, query } = await fetchTinaCloudData(vars);
+  const { data } = await fetchTinaCloudData(vars);
 
   return <WhatsNewTinaCloudPageLayout data={data} />;
 }

@@ -1,5 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import type {
   PageBlocks,
@@ -31,9 +32,11 @@ import { SpacerComponent } from './Spacer/Spacer';
 import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
+import VideoDisplay from './VideoEmbed/videoEmbed';
+
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
-  { ssr: false }
+  { ssr: false },
 );
 const TestimonialsBlock = dynamic(() => import('./Testimonial/Testimonials'), {
   ssr: false,
@@ -58,7 +61,7 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
     case 'PageBlocksMediaComponent':
       return <MediaComponent data={block} />;
     case 'PageBlocksBooking':
-      return <BookingBlock data={block} index={index} />;
+      return <BookingBlock data={block} />;
     case 'PageBlocksHero':
       return <HeroBlock data={block} index={index} />;
     case 'PageBlocksPricing':
@@ -66,15 +69,15 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
     case 'PageBlocksFaq':
       return <FaqBlock data={block} index={index} />;
     case 'PageBlocksContent':
-      return <ContentBlock data={block} index={index} />;
+      return <ContentBlock data={block} />;
     case 'PageBlocksColumns':
-      return <ColumnsBlock data={block} index={index} />;
+      return <ColumnsBlock data={block} />;
     case 'PageBlocksRecipeBlock':
       return <RecipeBlock data={block} />;
     case 'PageBlocksShowcase':
       return <ShowcaseItemsBlock data={block} index={index} />;
     case 'PageBlocksStory':
-      return <StoryBlock data={block} index={index} />;
+      return <StoryBlock index={index} />;
     case 'PageBlocksFeatureGrid':
       return <FeatureGridBlock data={block} index={index} />;
     case 'PageBlocksLogoGrid':
@@ -92,7 +95,7 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
         />
       );
     case 'PageBlocksTestimonials':
-      return <TestimonialsBlock data={block} index={index} />;
+      return <TestimonialsBlock data={block} />;
     case 'PageBlocksQuote':
       return <QuoteBlock data={block} index={index} />;
     case 'PageBlocksTextMediaColumnComponent':
@@ -103,6 +106,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <HighlightsSection data={block} />;
     case 'PageBlocksSpacer':
       return <SpacerComponent data={block} />;
+    case 'PageBlocksVideoEmbed':
+      return <VideoDisplay data={block} />;
     default:
       return null;
   }
@@ -115,7 +120,9 @@ export const Blocks = ({
   blocks: PageBlocks[];
   recentPosts: PostConnection;
 }) => {
-  if (!blocks) return null;
+  if (!blocks) {
+    return null;
+  }
 
   return blocks.map((block, index) => {
     // console.log(block.__typename); // Debugging log

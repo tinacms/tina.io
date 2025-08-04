@@ -160,6 +160,11 @@
                   "title": "Object Fields",
                   "slug": "content/docs/reference/types/object.mdx",
                   "_template": "item"
+                },
+                {
+                  "title": "Custom List Rendering",
+                  "slug": "content/docs/extending-tina/customize-list-ui.mdx",
+                  "_template": "item"
                 }
               ],
               "_template": "items"
@@ -220,6 +225,11 @@
             {
               "title": "Repo-based Media",
               "slug": "content/docs/reference/media/repo-based.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Overriding Default Media Types",
+              "slug": "content/docs/reference/media/overriding-accepted-media-types.mdx",
               "_template": "item"
             },
             {
@@ -395,7 +405,12 @@
           "items": [
             {
               "title": "Editorial Workflow",
-              "slug": "content/docs/drafts/editorial-workflow.mdx",
+              "slug": "content/docs/tina-cloud/editorial-workflow.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Webhooks",
+              "slug": "content/docs/tina-cloud/webhooks.mdx",
               "_template": "item"
             },
             {

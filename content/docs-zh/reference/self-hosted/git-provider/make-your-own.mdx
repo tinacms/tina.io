@@ -1,0 +1,147 @@
+---
+id: /docs/reference/self-hosted/git-provider/make-your-own
+title: 自定义Git提供者
+last_edited: '2024-11-07T04:15:12.643Z'
+next: ''
+previous: ''
+---
+
+实现一个Git提供者很简单。它是一个实现了[`GitProvider`](#gitprovider-interface)接口的类或对象。
+
+## GitProvider接口
+
+```ts
+export interface GitProvider {
+  onPut: (key: string, value: string) => Promise<void>
+  onDelete: (key: string) => Promise<void>
+}
+```
+
+### `onPut`
+
+用于将内容保存到Git。每当在CMS中保存一个值时都会调用它。
+
+### `onDelete`
+
+用于从Git中删除内容。每当在CMS中删除一个值时都会调用它。
+
+## 示例
+
+以下是[GitHub Git提供者](/docs/reference/self-hosted/git-provider/github)的源代码。它是如何实现`GitProvider`接口的一个很好的例子。
+
+```ts
+import { Octokit } from '@octokit/rest'
+import { Base64 } from 'js-base64'
+import type { GitProvider } from '@tinacms/graphql'
+
+type OctokitOptions = ConstructorParameters<typeof Octokit>[0]
+
+export interface GitHubProviderOptions {
+  owner: string
+  repo: string
+  token: string
+  branch: string
+  commitMessage?: string
+  rootPath?: string
+  octokitOptions?: OctokitOptions
+}
+
+export class MyGitHubProvider implements GitProvider {
+  octokit: Octokit
+  owner: string
+  repo: string
+  branch: string
+  rootPath?: string
+  commitMessage?: string
+
+  constructor(args: GitHubProviderOptions) {
+    this.owner = args.owner
+    this.repo = args.repo
+    this.branch = args.branch
+    this.commitMessage = args.commitMessage
+    this.rootPath = args.rootPath
+    this.octokit = new Octokit({
+      auth: args.token,
+      ...(args.octokitOptions || {}),
+    })
+  }
+
+  async onPut(key: string, value: string) {
+    let sha
+    const keyWithPath = this.rootPath ? `${this.rootPath}/${key}` : key
+    try {
+      const {
+        // @ts-ignore
+        data: { sha: existingSha },
+      } = await this.octokit.repos.getContent({
+        owner: this.owner,
+        repo: this.repo,
+        path: keyWithPath,
+        ref: this.branch,
+      })
+      sha = existingSha
+    } catch (e) {}
+
+    await this.octokit.repos.createOrUpdateFileContents({
+      owner: this.owner,
+      repo: this.repo,
+      path: keyWithPath,
+      message: this.commitMessage || 'Edited with TinaCMS',
+      content: Base64.encode(value),
+      branch: this.branch,
+      sha,
+    })
+  }
+
+  async onDelete(key: string) {
+    let sha
+    const keyWithPath = this.rootPath ? `${this.rootPath}/${key}` : key
+    try {
+      const {
+        // @ts-ignore
+        data: { sha: existingSha },
+      } = await this.octokit.repos.getContent({
+        owner: this.owner,
+        repo: this.repo,
+        path: keyWithPath,
+        ref: this.branch,
+      })
+      sha = existingSha
+    } catch (e) {}
+
+    if (sha) {
+      await this.octokit.repos.deleteFile({
+        owner: this.owner,
+        repo: this.repo,
+        path: keyWithPath,
+        message: this.commitMessage || 'Edited with TinaCMS',
+        branch: this.branch,
+        sha,
+      })
+    } else {
+      throw new Error(
+        `无法在仓库${this.owner}/${this.repo}中找到文件${keyWithPath}`
+      )
+    }
+  }
+}
+```
+
+## 添加你的Git提供者
+
+现在可以将其用作`createDatabase`[函数](/docs/reference/self-hosted/database-adapter/overview/#createdatabase-function)的一个属性。
+
+database.ts,js:
+
+```ts
+import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
+import { MyGitHubProvider } from './my-git-provider'
+//...
+
+export default isLocal ? createLocalDatabase() ? createDatabase({
+    gitProvider: new MyGitHubProvider({
+        //... 选项
+    }),
+    // ...
+})
+```

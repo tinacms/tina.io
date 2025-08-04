@@ -1,0 +1,128 @@
+---
+title: '多租户'
+last_edited: '2025-05-02T01:14:20.383Z'
+next: ''
+previous: ''
+---
+
+## 使用 TinaCMS 设置多租户
+
+本指南解释了如何设置 TinaCMS 来管理多个租户的内容，每个租户通过唯一的域名提供服务，并使用同一个代码库。这对于希望集中管理跨品牌或客户的内容和用户界面的项目非常理想。
+
+## 逻辑概述
+
+在多租户配置中：
+
+* 每个租户映射到一个唯一的域名（例如 tenant1.com, tenant2.ai）
+* 所有租户共享同一个 Next.js 和 TinaCMS 实例
+* 内容按租户分段存储在不同的路径下（例如 content/docs/tenant1/intro.mdx 和 content/docs/tenant2/intro.mdx）
+
+## 中间件
+
+多租户的核心是中间件，它检查请求的域名并动态重写路径以加载正确的租户内容。
+
+当用户访问 tenant1.com 时，中间件会将请求内部重写为 /tenant1/...，从而允许单一的 \[tenant]/\[slug]/page.tsx 模式为任何域名提供内容。
+
+## 设置步骤
+
+我们需要以下内容
+
+### 1. 定义租户列表
+
+在 .env 或 Vercel 环境变量中定义产品-域名映射：
+
+```javascript
+NEXT_PUBLIC_PRODUCT_LIST = [{
+  "product": "tenant1",
+  "domain": "tenant1.com"
+}, {
+  "product": "tenant2",
+    "domain": "tenant2.ai"
+  }]
+
+```
+
+在中间件中解析此列表以将传入的域名映射到租户 ID。
+
+### 2. 创建一个中间件文件
+
+```javascript
+// middleware.ts
+import { NextRequest, NextResponse } from 'next/server'
+
+const PRODUCT_LIST = JSON.parse(process.env.NEXT_PUBLIC_PRODUCT_LIST || '[]')
+
+const domainToProduct = Object.fromEntries(
+  PRODUCT_LIST.map(({ domain, product }: any) => [domain, product])
+)
+
+export function middleware(request: NextRequest) {
+  const hostname = request.headers.get('host') || ''
+  const product = domainToProduct[hostname]
+
+  if (product && !request.nextUrl.pathname.startsWith(`/${product}`)) {
+    const url = request.nextUrl.clone()
+    url.pathname = `/${product}${url.pathname}`
+    return NextResponse.rewrite(url)
+  }
+
+  return NextResponse.next()
+}
+
+```
+
+或者在 [SSW Products Repository](https://github.com/SSWConsulting/SSW.Products/blob/main/middleware.ts) 中找到更高级的中间件。
+
+### 3. 设置动态路由
+
+将你的 app/ 文件夹结构设置如下：
+
+```javascript
+|- app /
+|   |- [tenant] /
+|         |- [slug] /
+|             |- page.tsx
+
+```
+
+在 page.tsx 中，从相应的租户文件夹加载内容：
+
+```javascript
+const Page = async ({ params }: { params: { tenant: string; slug: string } }) => {
+  const content = await getPageContent(`${params.tenant}/${params.slug}.mdx`)
+  return <PageRenderer data={content} />
+}
+
+```
+
+### 4. 按租户组织内容
+
+在 content/ 中创建租户特定的文件夹：
+
+```javascript
+|- content /
+|     |- docs /
+|         |- tenant1 /
+|         |     |- intro.mdx
+|         |- tenant2 /
+|               |- intro.mdx
+
+```
+
+### 5. 为每个域名启用 Tina 管理面板
+
+确保在 [TinaCloud](https://app.tina.io) 中为每个域名添加相应的站点 URL，以便可以使用 Tina 管理内容！
+
+![](</Screenshot 2025-05-02 at 11.11.43 am.png>)
+
+### 6. 部署并添加自定义域名
+
+例如，在 Vercel 中：
+
+1. 将每个域名添加到项目中 
+2. 将 NEXT\_PUBLIC\_PRODUCT\_LIST 设置为环境变量 
+3. 确保内容存在于 content/docs/\<tenant>/ 中
+
+## 示例
+
+如果你想克隆一个多租户站点的示例，GitHub 上的 [SSW Products repository](https://github.com/SSWConsulting/SSW.Products) 实现了使用 TinaCMS 的多租户功能。

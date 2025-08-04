@@ -14,6 +14,7 @@ export const modalButtonTemplateFields = [
       { value: 'white', label: 'White' },
       { value: 'ghost', label: 'Ghost' },
       { value: 'command', label: 'Command' },
+      { value: 'blueOutline', label: 'Blue Outline' },
     ],
   },
   {
@@ -45,5 +46,5 @@ export const modalButtonTemplate = {
       size: 'medium',
     },
   },
-  fields: modalButtonTemplateFields, 
+  fields: modalButtonTemplateFields,
 };

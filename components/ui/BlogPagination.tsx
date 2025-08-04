@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -29,7 +30,7 @@ export const BlogPagination = styled(
             <DynamicLink href={prevPage}>
               <span
                 onClick={() => setSelectValue(selectValue - 1)}
-                className="font-tuner"
+                className="font-ibm-plex"
               >
                 <span className="font-sans font-bold">←</span> Newer
               </span>
@@ -39,7 +40,7 @@ export const BlogPagination = styled(
             <DynamicLink href={nextPage}>
               <span
                 onClick={() => setSelectValue(selectValue + 1)}
-                className="font-tuner"
+                className="font-ibm-plex"
               >
                 Older <span className="font-sans font-bold">→</span>
               </span>
@@ -57,9 +58,9 @@ export const BlogPagination = styled(
               {Array.from({ length: numPages }, (_, i) => (
                 <option
                   arial-label={`Go to Page ${i + 1}`}
-                  aria-current={i + 1 === currentPage ? true : false}
+                  aria-current={i + 1 === currentPage}
                   value={i + 1}
-                  key={`page-${i}`}
+                  key={`page-${i + 1}-${i}`}
                 >
                   {i + 1}
                 </option>
@@ -70,14 +71,14 @@ export const BlogPagination = styled(
         </div>
       </div>
     );
-  }
+  },
 )`
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.25rem;
   margin-bottom: 3rem;
-  font-family: var(--font-tuner-medium);
+  font-family: var(--font-ibm-plex-medium);
 
   p {
     color: var(--color-secondary);

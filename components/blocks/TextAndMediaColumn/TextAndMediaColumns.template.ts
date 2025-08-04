@@ -1,4 +1,4 @@
-import { Template } from 'tinacms';
+import type { Template } from 'tinacms';
 import { cloudinaryMediaComponent } from '../../sharedTemplates/CloudinaryMedia.template';
 import { youtubeMediaTemplate } from '../../sharedTemplates/YoutubeMediaTemplate';
 

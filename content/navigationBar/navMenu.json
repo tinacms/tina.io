@@ -12,36 +12,6 @@
       "_template": "stringItem"
     },
     {
-      "label": "Resources",
-      "items": [
-        {
-          "label": "About TinaCMS",
-          "href": "/about"
-        },
-        {
-          "label": "Blog",
-          "href": "/blog"
-        },
-        {
-          "label": "Compare Tina",
-          "href": "/compare-tina"
-        },
-        {
-          "label": "Examples",
-          "href": "/examples"
-        },
-        {
-          "label": "Whats New - TinaCMS",
-          "href": "/whats-new/tinacms"
-        },
-        {
-          "label": "Whats New - TinaCloud",
-          "href": "/whats-new/tinacloud"
-        }
-      ],
-      "_template": "groupOfStringItems"
-    },
-    {
       "label": "Community",
       "items": [
         {
@@ -59,6 +29,10 @@
         {
           "label": "Support",
           "href": "/docs/support"
+        },
+        {
+          "label": "Certifications",
+          "href": "/certifications"
         },
         {
           "label": "Awesome TinaCMS",
@@ -81,25 +55,43 @@
       "_template": "stringItem"
     },
     {
+      "label": "About",
+      "items": [
+        {
+          "label": "About TinaCMS",
+          "href": "/about"
+        },
+        {
+          "label": "Videos",
+          "href": "https://www.youtube.com/c/tinacms"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        },
+        {
+          "label": "Compare Tina",
+          "href": "/compare-tina"
+        },
+        {
+          "label": "Examples",
+          "href": "/examples"
+        },
+        {
+          "label": "What's New - TinaCMS",
+          "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "What's New - TinaCloud",
+          "href": "/whats-new/tinacloud"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
       "label": "My TinaCloud",
       "href": "https://app.tina.io/signin",
       "_template": "stringItem"
-    },
-    {
-      "label": "Subscribe",
-      "color": "white",
-      "size": "medium",
-      "modal": "EmailForm",
-      "icon2": "MdEmail",
-      "_template": "modalButton"
-    },
-    {
-      "label": "Book a demo",
-      "color": "orange",
-      "size": "medium",
-      "modal": "BookDemo",
-      "icon2": "FaCalendarDay",
-      "_template": "modalButton"
     }
   ]
 }

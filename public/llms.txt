@@ -1,0 +1,93 @@
+# TinaCMS
+
+> TinaCMS is an open-source, Git-backed headless CMS that supports Markdown, MDX, and JSON content. It offers visual editing, a flexible content model, and seamless integration with modern frameworks. Trusted by Unity, Smashing Magazine, and more.
+
+## Details
+
+- TinaCMS integrates with Git for version control and stores content as files (Markdown, MDX, JSON).
+- It provides both visual editing capabilities and a dedicated UI for content managers.
+- Can be self-hosted or hosted via the managed TinaCloud service.
+
+## Introduction
+
+- [What is TinaCMS?](https://tina.io/docs): Overview of TinaCMS as an open-source, Git-backed headless CMS for creating visual editing experiences on top of file-based content (Markdown, MDX, JSON).
+- [Quickstart](https://tina.io/docs/setup-overview): A brief guide to quickly setting up a new TinaCMS project.
+- [The Editing Experience](https://tina.io/docs/using-tina-editor): An overview of the user experience when editing content with Tina.
+- [The Tina Content Model](https://tina.io/docs/content-model-intro): Explains how the TinaCMS schema defines content structure via a version-controlled configuration, mapping data (Markdown, etc.) to the editor UI using collections and fields.
+
+## Getting Started
+
+- [Starter Kits](https://tina.io/docs/introduction/using-starter): Using pre-built TinaCMS templates for various frameworks. Quick setup via `npx create-tina-app@latest`.
+- [Add to an Existing Site](https://tina.io/docs/frameworks/overview): Instructions for integrating TinaCMS into existing web applications.
+### Framework Guides
+ - [NextJS (App Router)](https://tina.io/docs/frameworks/next/app-router): Integrating Tina with Next.js using the App Router.
+ - [NextJS (Pages Router)](https://tina.io/docs/frameworks/next/pages-router): Integrating Tina with Next.js using the Pages Router.
+ - [Astro](https://tina.io/docs/frameworks/astro): Integrating Tina with Astro.
+ - [Hugo](https://tina.io/docs/frameworks/hugo): Integrating Tina with Hugo.
+ - [Gatsby](https://tina.io/docs/frameworks/gatsby): Integrating Tina with Gatsby.
+ - [Jekyll](https://tina.io/docs/frameworks/jekyll): Integrating Tina with Jekyll.
+ - [Remix](https://tina.io/docs/frameworks/remix): Integrating Tina with Remix.
+ - [11ty](https://tina.io/docs/frameworks/11ty): Integrating Tina with Eleventy.
+ - [Other Frameworks](https://tina.io/docs/frameworks/other): General guidance for integrating with frameworks not listed above.
+- [FAQ](https://tina.io/docs/introduction/faq): Answers to frequently asked questions about TinaCMS.
+
+## Configuring TinaCMS
+
+- [The /tina Folder](https://tina.io/docs/tina-folder/overview): Explains the purpose of the `/tina` directory for configuring content models, data layer, content repository, queries, and other settings. Includes folder structure example.
+- [The Config File](https://tina.io/docs/reference/config): Details how the TinaCMS setup is defined via the default export from `tina/config.{ts,tsx,js,jsx}` using the `defineConfig` function.
+
+## Content Modelling
+
+- [Collections](https://tina.io/docs/reference/collections): Defines distinct content structures ('collections') dictating fields, editor forms, and output format (e.g., `.md`, `.json`). Content is created within a specific collection.
+- [Fields](https://tina.io/docs/reference/fields): Defines the content's structure and the corresponding form fields displayed in the TinaCMS editor using various Field Types (string, number, rich-text, etc.).
+- [Templates](https://tina.io/docs/reference/templates): Alternative to `fields` allowing multiple structural variants (e.g., different page layouts) within a single collection.
+
+## Field Types
+
+- [String Fields](https://tina.io/docs/reference/types/string): Basic text input for short-form content like titles.
+- [Number Fields](https://tina.io/docs/reference/types/number): Input field for numeric values.
+- [Date Fields](https://tina.io/docs/reference/types/datetime): Date/time input storing values in ISO 8601 format.
+- [Boolean Fields](https://tina.io/docs/reference/types/boolean): Toggle input storing `true` or `false`.
+- [Image Fields](https://tina.io/docs/reference/types/image): File input for images, storing URL/path. Supports media manager and external libraries.
+- [Reference Fields](https://tina.io/docs/reference/types/reference): Connects a document in one collection to a document in another, making the referenced data available.
+- [Object Fields](https://tina.io/docs/reference/types/object): Creates nested structures or groups of fields within the CMS. Useful for repeatable data structures.
+- [Rich-Text Fields](https://tina.io/docs/reference/types/rich-text): WYSIWYG editor for Markdown content, supporting formatting, links, media, and custom MDX components.
+### Custom Fields
+- [React Components](https://tina.io/docs/extending-tina/custom-field-components): How to replace default field inputs with custom React components using `ui.component`.
+- [Plug-in Components](https://tina.io/docs/reference/toolkit/fields/built-in-plugins): Using pre-built UI components (plugins) provided by TinaCMS via the `ui.component` property (e.g., color picker, tags).
+
+## Visual Editing
+
+- [Visual Editing Setup](https://tina.io/docs/contextual-editing/react): Tina provides a full-page editor by default. This section covers enabling side-by-side visual editing integrated with your React site for real-time previews.
+- [The Click-To-Edit API](https://tina.io/docs/contextual-editing/tinafield): Implementing the `data-tina-field` attribute to allow editors to click elements on the page preview to jump to the corresponding field in the sidebar.
+- [Visual Editing Router](https://tina.io/docs/contextual-editing/router): Configuring collections via `ui.router` to link directly to the visual editor instead of the default full-page editor from the collection list.
+
+## Querying Content
+
+- [Content API Overview](https://tina.io/docs/features/data-fetching): Tina provides a Content API (GraphQL) to query Git-based content as if it were a database, abstracting the file system.
+- [Common Queries](https://tina.io/docs/data-fetching/overview): Examples and setup for typical content queries using the Tina client.
+- [Custom Queries](https://tina.io/docs/data-fetching/custom-queries): Writing custom GraphQL queries by extending the generated client or using `client.request` directly for advanced scenarios.
+- [Manual GraphQL Queries](https://tina.io/docs/graphql/queries): Directly interacting with the GraphQL API generated from your schema, either locally via the CLI or through TinaCloud.
+
+## TinaCloud
+
+- [What is TinaCloud?](https://tina.io/docs/tina-cloud): Overview of TinaCloud hosted services and features for production deployments.
+- [Connecting to TinaCloud](https://tina.io/docs/tina-cloud/overview): Steps for connecting your TinaCMS project to TinaCloud.
+### Key Features
+- [Editorial Workflow](https://tina.io/docs/drafts/editorial-workflow): Enables multi-branch content workflows (drafts/reviews) for editorial teams.
+- [Content Search](https://tina.io/docs/reference/search/overview): Built-in content search functionality within the CMS interface, powered by `search-index`.
+- [Git Co-Authoring](https://tina.io/docs/tina-cloud/git-co-authoring): Automatically co-authors Git commits made via TinaCloud with the editor's GitHub user for better attribution.
+- [GraphQL API Versioning](https://tina.io/docs/tina-cloud/api-versioning): How TinaCloud handles different versions of the GraphQL API based on your site's generated schema version.
+
+## Self-Hosting
+
+- [Overview](https://tina.io/docs/self-hosted/overview): Option to run the TinaCMS backend independently of TinaCloud, managing your own database, authentication, and Git integration.
+- [User Management](https://tina.io/docs/self-hosted/user-management): Managing users via a dedicated "User" collection when using the default self-hosted authentication.
+- [Self Hosted Manual Setup](https://tina.io/docs/self-hosted/manual-setup): Guidance on manually setting up a self-hosted backend, choosing Git providers, database adapters, and auth providers.
+- [Querying Content in Self-hosted Backend](https://tina.io/docs/self-hosted/querying-data): Using the separate `databaseClient` to query content directly from your chosen database when self-hosting.
+- [Using the Next.js Vercel Example](https://tina.io/docs/self-hosted/starters/nextjs-vercel): Guide for setting up a pre-configured self-hosted example using Next.js, Vercel KV, and NextAuth.
+- [Migrating from TinaCloud to Self-Hosted](https://tina.io/docs/self-hosted/migrating-from-tina-cloud): Instructions for migrating an existing TinaCloud project to a self-hosted setup, including using the `@tinacms/cli init backend` command.
+
+---
+
+**NOTE:** *This file provides a high-level index of TinaCMS documentation for LLMs. For detailed information, consult the linked pages.*

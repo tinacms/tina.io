@@ -5,29 +5,39 @@
   },
   "blocks": [
     {
-      "headline": "Tina for Enterprise",
-      "text": "Reduce costs. Increase security & performance.",
-      "margin": "",
-      "spacing": "gap-10",
-      "buttons": [
+      "features": [
         {
-          "label": "Request 1-Pager",
-          "icon": false,
-          "variant": "white",
-          "size": "medium",
-          "url": "mailto:info@tina.io?subject=TinaCMS Enterprise 1-Pager&body=Hello, I'd like more information about the TinaCMS Enterprise Solution.",
-          "_template": "actions"
-        },
-        {
-          "label": "Schedule a Demo",
-          "icon": false,
-          "color": "blue",
-          "size": "medium",
-          "modal": "BookDemo.tsx",
-          "_template": "modalButton"
+          "headline": "Tina for Enterprise",
+          "text": "Reduce costs. Increase security & performance.",
+          "buttons": [
+            {
+              "label": "Request 1-Pager",
+              "icon": false,
+              "variant": "white",
+              "size": "medium",
+              "url": "mailto:info@tina.io?subject=TinaCMS%20Enterprise%201-Pager&body=Hello,%20I%27d%20like%20more%20information%20about%20the%20TinaCMS%20Enterprise%20Solution.",
+              "_template": "actions"
+            },
+            {
+              "label": "Schedule a Demo",
+              "icon": false,
+              "color": "blue",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "alignCenter": true,
+          "media": [
+            {
+              "image": "/uploads/tina-enterprise-hero.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true
         }
       ],
-      "_template": "hero"
+      "_template": "features"
     },
     {
       "title": "Trusted by",

@@ -1,0 +1,234 @@
+---
+title: 使用媒体与AWS S3存储桶
+---
+
+在TinaCMS中管理**S3存储桶媒体资产**。
+
+> 以下指南依赖于NextJS的API功能来验证第三方媒体交互。我们希望很快能记录一个与框架无关的方法。
+
+## 安装
+
+### 使用 Yarn
+
+```bash
+yarn add next-tinacms-s3
+```
+
+### 使用 NPM
+
+```bash
+npm install next-tinacms-s3
+```
+
+## 连接S3存储桶
+
+您需要一些凭证来访问AWS S3存储桶以正确设置。
+
+将以下变量添加到`.env`文件中。
+
+```env
+S3_REGION=<您的S3存储桶名称：例如 us-east-1>
+
+S3_BUCKET=<您的S3存储桶名称：例如 my-bucket>
+
+S3_ACCESS_KEY=<您的S3存储桶访问密钥>
+
+S3_SECRET_KEY=<您的S3存储桶访问密钥>
+```
+
+## 设置S3存储桶
+
+您需要正确设置S3存储桶和IAM用户。
+
+### 1. IAM用户应至少对您的存储桶具有以下权限。
+
+- `s3:ListBucket`
+- `s3:PutObject`
+- `s3:PutObjectAcl`
+- `s3:DeleteObject`
+
+### 2. S3存储桶应启用ACL。
+
+您应该能够进入AWS S3控制台并导航到您尝试写入对象的存储桶的详细信息。您会看到一个名为“权限”的选项卡。在那里，您可以在同名的块中更改“对象所有权”。
+
+一旦进入，您可以选择“启用ACL”选项。
+
+### 3. 您应确保S3存储桶中的对象可被匿名用户读取，并可由IAM用户写入。
+
+即，您可以禁用`阻止公共访问设置`并设置存储桶策略，如下所示：
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicRead",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::<S3-Bucket-NAME>/*"
+    },
+    {
+      "Sid": "LimitedWrite",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "<ARN of the IAM user>"
+      },
+      "Action": ["s3:PutObject", "s3:PutObjectAcl", "s3:DeleteObject"],
+      "Resource": "arn:aws:s3:::<S3-Bucket-NAME>/*"
+    },
+    {
+      "Sid": "ListBucket",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "<ARN of the IAM user>"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::<S3-Bucket-NAME>"
+    }
+  ]
+}
+```
+
+### 4. 您应确保CORS配置设置正确。
+
+图像是使用S3预签名URL上传的。这需要存储桶具有允许请求来源访问存储桶的CORS配置。
+
+```json
+[
+  {
+    "AllowedHeaders": [
+      "Authorization",
+      "Content-Range",
+      "Accept",
+      "Content-Type",
+      "Origin",
+      "Range"
+    ],
+    "AllowedMethods": [
+      "PUT"
+    ],
+    "AllowedOrigins": [
+      "*"
+    ],
+    "ExposeHeaders": [
+      "Content-Range",
+      "Content-Length",
+      "ETag"
+    ],
+    "MaxAgeSeconds": 3000
+  }
+]
+```
+
+## 注册媒体存储
+
+您可以通过`loadCustomStore`属性注册S3媒体存储。
+
+`loadCustomStore`属性可以在`tina/config.{js,ts,tsx}`中配置。
+
+```tsx
+//tina/config.{ts,js}
+//...
+
+export default defineConfig({
+  //...
+  media: {
+    loadCustomStore: async () => {
+      const pack = await import('next-tinacms-s3')
+      return pack.TinaCloudS3MediaStore
+    },
+  },
+})
+```
+
+## 设置API路由
+
+Tina的“外部媒体提供者”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方法可以做到这一点，包括与框架无关的[Netlify Functions实现](/docs/reference/media/external/authentication/#netlify)。
+
+### Next.js
+
+> **注意：**此步骤将向您展示如何为Next.js设置API路由。如果您使用的是不同的框架，则需要设置自己的API路由。
+
+在Next.js应用的`pages`目录中设置一个新的API路由，例如`pages/api/s3/[...media].ts`。然后为媒体添加一个新的捕获所有API路由。
+
+调用`createMediaHandler`来设置路由并将您的媒体存储实例连接到您的S3存储桶。
+
+从[`@tinacms/auth`](https://github.com/tinacms/tinacms/tree/main/packages/%40tinacms/auth)导入`isAuthorized`。
+
+`authorized`键将使得只有TinaCloud中的授权用户才能上传和编辑媒体。
+
+```ts
+// pages/api/s3/[...media].ts
+
+import {
+  mediaHandlerConfig,
+  createMediaHandler,
+} from 'next-tinacms-s3/dist/handlers'
+
+import { isAuthorized } from '@tinacms/auth'
+
+export const config = mediaHandlerConfig
+
+export default createMediaHandler({
+  config: {
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY || '',
+      secretAccessKey: process.env.S3_SECRET_KEY || '',
+    },
+    region: process.env.S3_REGION,
+  },
+  bucket: process.env.S3_BUCKET || '',
+  authorized: async (req, _res) => {
+    if (process.env.NODE_ENV === 'development') {
+      return true
+    }
+    try {
+      const user = await isAuthorized(req)
+
+      return user && user.verified
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  },
+})
+```
+
+### 与框架无关的实现
+
+在上面的示例中，我们展示了如何将后端处理器作为NextJS API功能托管。如果您在使用Vercel的其他框架中，适用相同的方法（唯一的小区别是您需要使用`/api/...`而不是`/pages/api/...`来处理您的处理器）。
+
+您还可以查看我们的[Netlify Functions](/docs/reference/media/external/authentication/#option-3-netlify-functions)和[AWS Lambda](/docs/reference/media/external/authentication/#option-3-aws-lambda)实现。
+
+### 使用自定义URL
+
+如果您为S3存储桶使用自定义URL，可以将`cdnUrl`值传递给`createMediaHandler`。
+
+```ts
+export default createMediaHandler({
+  config: ...,
+  bucket: ...,
+  authorized: ...,
+},
+{
+ cdnUrl: "https://my-custom-domain.com"
+}
+)
+```
+
+## 更新模式
+
+现在媒体存储已注册并设置了媒体的API路由，让我们在您的模式中添加一个图像。
+
+在您的模式中为图像添加一个新字段，例如：
+
+```ts
+ {
+  name: 'hero',
+  type: 'image',
+  label: 'Hero Image',
+ }
+```
+
+现在，当编辑您的网站时，图像字段将允许您通过媒体存储连接到您的S3存储桶以管理您的媒体资产。

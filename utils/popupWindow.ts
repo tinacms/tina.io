@@ -1,6 +1,6 @@
 function popupWindow(url, title, window, w, h) {
-  const y = window.top.outerHeight / 2 + window.top.screenY - h / 2
-  const x = window.top.outerWidth / 2 + window.top.screenX - w / 2
+  const y = window.top.outerHeight / 2 + window.top.screenY - h / 2;
+  const x = window.top.outerWidth / 2 + window.top.screenX - w / 2;
   return window.open(
     url,
     title,
@@ -11,8 +11,8 @@ function popupWindow(url, title, window, w, h) {
       ', top=' +
       y +
       ', left=' +
-      x
-  )
+      x,
+  );
 }
 
-export default popupWindow
+export default popupWindow;

@@ -2,13 +2,11 @@
   "seo": {
     "title": "TinaCMS – 集成GitHub和Markdown的无头CMS",
     "description": "将Github和Markdown的强大功能与TinaCMS集成，实现无缝内容管理。让开发者和创作者能够轻松地编辑、预览和管理静态及动态网站",
+    "canonicalUrl": "https://tina.io/zh",
     "hasCustomSuffix": true
   },
   "blocks": [
     {
-      "blockSettings": {
-        "isFullscreen": true
-      },
       "features": [
         {
           "headline": "网站、文档与羊驼，轻松无碍",
@@ -16,11 +14,19 @@
           "buttons": [
             {
               "label": "立即体验在线编辑",
-              "icon": true,
+              "icon": false,
               "variant": "blue",
-              "size": "small",
+              "size": "medium",
               "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
+            },
+            {
+              "label": "预约演示",
+              "icon": false,
+              "color": "blueOutline",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
             },
             {
               "label": "npx create-tina-app@latest",
@@ -29,12 +35,11 @@
           ],
           "media": [
             {
-              "src": "/img/docs/introduction/homepage-demo-2.webm",
-              "link": "https://www.youtube.com/watch?v=zRkeKSZjlyw",
-              "_template": "video"
+              "src": "/gif/smashingmagazine-tinacms.gif",
+              "_template": "v2Video"
             }
           ],
-          "isFullScreen": true,
+          "isFullScreen": false,
           "isReversed": false,
           "imageBackground": false
         }
@@ -252,6 +257,19 @@
       "_template": "carouselFeature"
     },
     {
+      "_template": "events"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": false
+      },
+      "altText": "NPX 入门指南",
+      "title": "厌倦了冗长的配置过程？",
+      "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
+      "figureCaption": "视频：使用 NPX 开始使用 TinaCMS（2 分钟）",
+      "_template": "videoEmbed"
+    },
+    {
       "features": [
         {
           "headline": "与Tina专家对话",
@@ -279,14 +297,11 @@
       "_template": "features"
     },
     {
-      "_template": "events"
-    },
-    {
       "blockSettings": {
         "isFullscreen": false
       },
-      "title2": "\"Tina彻底革新了Unity的文档管理方式\"",
-      "subtext": "Anton Iancu，AI与文档产品工程经理",
+      "title2": "\"Tina 正在改变我们在 Unity 处理文档的方式\"",
+      "subtext": "Anton Iancu，AI 和文档产品工程经理",
       "logo": "/img/logos/unity-logo.png",
       "_template": "quote"
     },
@@ -438,9 +453,10 @@
           ],
           "media": [
             {
-              "src": "/video/create-branch.webm",
-              "link": "https://www.youtube.com/watch?v=gYukiULGqGc",
-              "_template": "video"
+              "thumbnailVideo": "/video/create-branch.webm",
+              "videoEmbedId": "gYukiULGqGc",
+              "figureCaption": "视频：运用编辑流程进行修改（1分钟）",
+              "_template": "videoThumbnailToInternalVideo"
             }
           ]
         },
@@ -449,8 +465,10 @@
           "text": "编辑Markdown、MDX和JSON文件的内容不再繁琐。Tina提供实时预览功能，让用户体验达到全新水平",
           "media": [
             {
-              "src": "/img/docs/introduction/homepage-demo-2.webm",
-              "_template": "video"
+              "thumbnailVideo": "/video/click-to-edit.webm",
+              "videoEmbedId": "CsCQS7HIBv0",
+              "figureCaption": "视频：高效管理内容工作流程（2分钟）",
+              "_template": "videoThumbnailToInternalVideo"
             }
           ],
           "isReversed": true

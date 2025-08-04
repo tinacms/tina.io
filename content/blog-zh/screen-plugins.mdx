@@ -1,0 +1,107 @@
+---
+draft: false
+consumes:
+  - file: /packages/tinacms/src/plugins/screen-plugin.ts
+    details: 解释屏幕插件接口属性
+seo:
+  title: 什么是屏幕插件 | TinaCMS 博客
+  description: >-
+    TinaCMS 中的屏幕插件是一种强大的方式，可以通过灵活、可重用的组件来扩展功能和自定义编辑体验。
+title: 什么是屏幕插件？
+date: '2020-04-09T07:00:00.000Z'
+author: Nolan Phillips & Kendall Strautman
+prev: content/blog-zh/designing-an-extensible-styling-system.mdx
+next: content/blog-zh/software-engineering-daily-podcast-tinacms.mdx
+---
+
+插件是一个强大的概念。通常，插件用于扩展基础系统的核心功能。虽然许多插件系统是静态的，但 TinaCMS 是由一个[动态插件系统](https://tinacms.org/blog/dynamic-plugin-system/)驱动的。在这种方法中，插件是通过编程方式添加和移除的。这种动态性允许开发人员根据上下文添加和移除 CMS 功能。
+
+如果你使用过 Tina，你可能已经在不知不觉中使用了一些插件。`tinacms` 中最常用的插件是 `FormPlugin`，它在侧边栏中添加用于编辑内容的表单。
+
+另一个值得注意的插件是 [`ContentCreatorPlugin`](/docs/plugins/content-creators)。这个插件为创建新的数据源文件提供了基础。
+
+最近添加的一个插件是 [`ScreenPlugin`](/docs/editing/blocks)，这也是本文的主题。屏幕允许你渲染模态 UI 并处理各种内容编辑需求。例如，可以使用 _屏幕插件_ 注册一个表单来编辑“全局站点数据”。
+
+## 那是什么？
+
+**`ScreenPlugin` 有三个主要部分**：名称、图标和一个 React 组件。
+
+例如，对于一个 `GlobalFormPlugin`（一种屏幕插件），名称和图标用于在全局菜单中列出屏幕插件。
+
+![global-menu](/img/tina-grande-global-form.jpg)
+
+当用户点击菜单项时，会打开一个屏幕，其中渲染了 React 组件。_可以将屏幕视为一个空白画布_，它提供了一个创建超出侧边栏的编辑界面的空间。
+
+屏幕插件有两种可能的布局：`fullscreen` 和 `popup`。你可以根据 _屏幕_ 的用途选择使用其中之一。
+
+![full screen plugin](/img/blog/screen-plugin/fullscreen-screen-plugin.png)
+![popup screen plugin](/img/blog/screen-plugin/popup-screen-plugin.png)
+
+## 让我们制作一个基本的屏幕插件！
+
+为了真正感受屏幕插件的工作方式，让我们深入设置一个。
+
+**这是一个示例布局：**
+
+```js
+import { Quokka } from './cute-marsupials';
+
+export default function Island({ smiles }) {
+  return <Quokka>{smiles}</Quokka>;
+}
+```
+
+这里我们有一个 _Island_ 组件，它渲染一个微笑的短尾矮袋鼠。
+
+![Quokka Photo](/img/blog/screen-plugin/quokka.jpg)
+
+短尾矮袋鼠，被认为是地球上看起来最快乐的动物之一，是澳大利亚本土的小型有袋动物。这些快乐的生物以其似乎永远微笑的表情和友好的性格而闻名。
+
+最近，出现了一种与这些小动物拍摄[欢乐自拍](https://www.nationalgeographic.com/news/2015/3/150306-quokkas-selfies-animals-science-photography-australia/)的趋势。
+
+让我们为游客制作一个短尾矮袋鼠自拍屏幕插件。我们将分三步设置：
+
+1. 从 `tinacms` 导入 `useScreenPlugin` 钩子
+2. 创建我们的 `SelfiePlugin`
+3. 在我们的应用中使用该插件
+
+```jsx
+// 1. 导入 `useScreenPlugin`
+import { useScreenPlugin } from 'tinacms';
+import { Quokka } from './cute-marsupials';
+
+// 2. 定义屏幕插件
+const SelfiePlugin = {
+  name: 'Quokka Selfie',
+  Icon: () => <span>🐨</span>,
+  layout: 'popup',
+  Component() {
+    return <img src="/img/quokka-selfie.jpg" />;
+  },
+};
+
+export default function Island({ smiles }) {
+  // 3. 使用插件
+  useScreenPlugin(SelfiePlugin);
+
+  return <Quokka>{smiles}</Quokka>;
+}
+```
+
+对于图标，我们插入了一个小考拉表情符号（短尾矮袋鼠的远亲），但你可以用 `svg` 或 `png` 替换它。
+
+让我们看看自拍屏幕插件的实际效果。使用它会在全局菜单中添加一个新项目。
+
+![quokka selfie plugin global menu](/img/blog/screen-plugin/quokka-selfie-global-menu.png)
+
+点击菜单项将打开一个弹出模态，其中将渲染我们的组件。
+
+![quokka selfie screen plugin](/img/blog/screen-plugin/quokka-selfie-plugin-full.png)
+
+哒哒！它成功了。我们制作了一个插件来让每个人的日子更加明亮 ☺️。
+
+## 那么我可以用屏幕插件做什么？
+
+屏幕插件只是 React 组件，所以屏幕插件的_世界是你的牡蛎_，可以这么说。你可以制作一个魔术 8 球 🎱 屏幕插件，帮助内容团队决定午餐订在哪里。这一切都很有趣。
+
+如果没有别的，我希望这篇博客向你介绍了可能是[地球上最快乐的生物](https://www.reddit.com/r/Eyebleach/comments/cz30uy/the_quokka_possibly_the_happiest_animal_on_earth/)。我们现在都需要一点短尾矮袋鼠在我们的生活中。保重 🖖!

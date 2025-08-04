@@ -14,7 +14,7 @@ next: content/blog/more-changes-coming-to-inline-editing.mdx
 
 Websites today contain more dog GIFs and landscape hero photos than ever. Content editors need a way to work with that media when creating and updating web pages, blogs, or articles.
 
-Up until now, media changes with Tina have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](https://tina.io/docs/reference/media/overview/) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
+Up until now, media changes with Tina have been handled through image fields. By clicking on the field, editors could upload new images from their local filesystem. Developers would register a [Media Store](/docs/reference/media/overview) to the CMS that would handle uploading files. However, there was no way to view images that had already been uploaded to use them in a piece of content.
 
 Our latest release has addressed this limitation, and added a **Media Management Interface!**
 
@@ -50,7 +50,7 @@ new TinaCMS({
 
 ### Media Object
 
-3 new attributes were added to the individual [`Media` object interface](/docs/media/#media).
+3 new attributes were added to the individual [`Media` object interface](/docs/reference/media/overview).
 
 * `type` : Denotes whether the media item is a [file or a directory](https://github.com/tinacms/tinacms/issues/1452).
 * `id`: A unique identifier for this file, typically the full path to the file.
@@ -58,7 +58,7 @@ new TinaCMS({
 
 ### Media Store
 
-Two new methods were added to the [Media Store](/docs/media/#media-store) interface.
+Two new methods were added to the [Media Store](/docs/reference/media/overview) interface.
 
 * `list`: This function provides a paginated list of available items for the media manager to render.
 * `delete`: This function deletes a media file.
@@ -177,7 +177,7 @@ Media stores can implement a catch-all `previewSrc` method that will be run if a
 
 The argument passed to the `parse` function on both the inline and regular image fields was altered to provide more flexibility in configuring how image paths are saved in the data source. `parse` handles how the final value in the data source is populated.
 
-Instead of passing the `filename`, the entire [media object](/docs/media#media) is now passed. As a general recommendation, you could use either `media.id`(the full path to the image) or `media.filename` to adjust the preferred final value saved in the data source.
+Instead of passing the `filename`, the entire [media object](/docs/reference/media/overview) is now passed. As a general recommendation, you could use either `media.id`(the full path to the image) or `media.filename` to adjust the preferred final value saved in the data source.
 
 **Before**
 

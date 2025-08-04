@@ -1,4 +1,4 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
+const _modals = ['BookDemo.tsx', 'EmailForm.tsx'];
 
 export const codeButtonTemplate = {
   label: 'Code Button',
@@ -8,15 +8,7 @@ export const codeButtonTemplate = {
   ui: {
     itemProps: (item) => {
       return { label: item?.label };
-    }
-  },
-  fields: [
-    { name: 'label', label: 'Label', type: 'string' },
-    {
-      name: 'clickedOnText',
-      label: 'Clicked On Text',
-      type: 'rich-text',
-      description: 'This is for the tooltip that appears when the button is clicked (optional)',
     },
-  ],
+  },
+  fields: [{ name: 'label', label: 'Label', type: 'string' }],
 };

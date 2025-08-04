@@ -46,7 +46,7 @@ export const MobileVersionSelect = () => {
         <div className="absolute bg-white shadow-lg mt-2 right-1 rounded-lg w-full z-10 animate-fade-down animate-duration-300">
           {versions.map((version, index) => (
             <div
-              key={index}
+              key={`version-${index + 1}`}
               className="px-4 py-2 hover:bg-stone-100 cursor-pointer text-stone-600"
               onClick={() => handleVersionClick(version)}
             >
@@ -63,7 +63,7 @@ const DocsMobileHeader = (props) => {
   const { docsData, learnData, learnActive, setLearnActive } = props;
 
   return (
-    <div className="relative pb-20">
+    <div className="relative pb-5">
       <DocsSearchBarHeader
         paddingGlobal="pb-4"
         headerPadding=""

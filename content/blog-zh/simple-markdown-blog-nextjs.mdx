@@ -1,0 +1,591 @@
+---
+draft: false
+seo:
+  title: 使用Next.js创建简单的Markdown博客 | TinaCMS博客
+  description: >-
+    学习如何使用Next.js和TinaCMS创建一个简单的Markdown博客，结合灵活性和易用性，实现流畅的内容管理。
+title: 如何使用Next.js创建Markdown博客
+date: '2023-01-11T04:00:00.000Z'
+last_edited: '2024-06-03T14:30:00.000Z'
+author: Antonello Zanini
+prev: content/blog-zh/simple-markdown-blog-nextjs.mdx
+next: content/blog-zh/tina-v-1.1.3.mdx
+---
+
+## 使用Next.js创建Markdown博客
+
+> 本文已更新为使用Next.js 14及其最新功能。
+
+*想直接使用Tina与Next.js？[查看我们的快速入门](https://tina.io/docs/setup-overview/ "TinaCMS快速入门")*
+
+Next.js是一个基于React构建的用于开发Web应用的框架。具体来说，**Next.js因其引导的React环境（类似于`create-react-app`）和简单的基于文件的路由逻辑，已成为Web开发中最受欢迎的选择之一**。
+
+**Next.js简单而灵活**。在这里，你将看到如何使用Next.js构建一个简单的基于Markdown的博客。
+
+按照这个分步教程，学习**如何在Next.js中实现以下Markdown博客**：
+
+<WebmEmbed embedSrc="/img/blog/simple-markdown-blog-nextjs/simple-blog.webm" />
+
+现在，让我们学习如何实现这个基于Markdown的Next.js博客。
+
+## 克隆启动项目
+
+首先，让我们**克隆启动项目**。这只是一个用于本教程的博客应用模板。可以在[GitHub](https://github.com/tinalabs/nextjs-starter-boilerplate)上查看，或者使用以下命令在`my-nextjs-blog`目录中克隆启动仓库：
+
+```
+git clone https://github.com/tinalabs/nextjs-starter-boilerplate my-nextjs-blog
+```
+
+然后，进入项目文件夹，安装项目依赖，并使用以下命令启动博客应用：
+
+```
+cd my-nextjs-blog
+npm install
+npm run dev
+```
+
+克隆项目并启动[Next.js开发服务器](https://nextjs.org/docs/api-reference/cli#development)后，在浏览器中导航到`http://localhost:3000/`，你应该能看到以下页面：
+
+![启动项目运行效果](/img/blog/simple-markdown-blog-nextjs/empty-tina-blog.png "启动项目运行效果")
+
+如你所见，目前博客应用非常简单。现在让我们深入了解这个启动项目的结构，以**学习如何将这个应用转变为一个真正的基于Markdown的博客**。
+
+## 项目结构
+
+如果你在IDE中查看启动项目，你会看到以下文件结构：
+
+```
+my-nextjs-blog
+├── components/
+├── data/
+├── pages/
+├── public/
+└── styles/
+```
+
+注意，`pages`、`public`和`styles`来自[Create Next App](https://nextjs.org/docs/api-reference/create-next-app)初始化命令。其他两个目录是添加到项目中的。具体来说，**`data`包含博客配置和其他数据，而`components`存储博客所需的所有React组件**。
+
+现在，让我们看看`pages/index.js`文件：
+
+```javascript
+// pages/index.js
+
+const Index = (props) => {
+  return (
+    <Layout
+      pathname="/"
+      siteTitle={props.title}
+      siteDescription={props.description}
+    >
+      <section>
+        <BlogList />
+      </section>
+    </Layout>
+  );
+};
+
+export default Index;
+
+export async function getStaticProps() {
+  const configData = await import(`../data/config.json`);
+
+  return {
+    props: {
+      title: configData.title,
+      description: configData.description,
+    },
+  };
+}
+```
+
+这个文件包含主页组件。具体来说，它返回一个`Layout`组件，包裹一个包含`BlogList`组件的`<section>` HTML元素。
+
+这些是到目前为止渲染我们的小启动应用的所有部分。
+
+这就是`BlogList`的样子：
+
+```javascript
+// components/BlogList.js
+
+import styles from '../styles/BlogList.module.css';
+
+const BlogList = ({ allBlogs }) => {
+  return (
+    <div className={styles.bloglist__container}>
+      <h3>所有博客文章的列表将在这里显示</h3>
+    </div>
+  );
+};
+
+export default BlogList;
+```
+
+如你所见，它接受一个`allBlogs`属性值。这应该**包含要在博客主页上显示的所有博客文章的列表**。你将在本教程后面学习如何填充这个属性。
+
+## 布局和样式
+
+**每个博客页面都有一个通用布局**。这是在下面的`Layout`组件中定义的：
+
+```javascript
+// components/Layout.js
+
+import Header from './Header';
+import Meta from './Meta';
+import styles from '../styles/Layout.module.css';
+
+export default function Layout(props) {
+  return (
+    <section className={styles.layout}>
+      <Meta
+        siteTitle={props.siteTitle}
+        siteDescription={props.siteDescription}
+      />
+      <Header siteTitle={props.siteTitle} />
+      <div className={styles.content}>{props.children}</div>
+    </section>
+  );
+}
+```
+
+具体来说，**`Layout`组件的目的是为网站的每个页面提供视觉框架**。通常，这样的组件包含一个导航和/或标题，出现在大多数或所有页面上，以及一个页脚元素。
+
+在这种情况下，`Layout`只包含一个显示网站标题的头部组件。请记住，**使用`Layout`组件并不是Next.js独有的，Gatsby网站也依赖于类似的方法**。
+
+注意，`Layout`还包含以下Meta组件：
+
+```javascript
+// components/Meta.js
+
+import Head from 'next/head';
+
+export default function Meta(props) {
+  return (
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charset="utf-8" />
+      <title>{props.siteTitle}</title>
+      <meta name="Description" content={props.description}></meta>
+    </Head>
+  );
+}
+```
+
+这使用了**Next.js的[`Head`](https://nextjs.org/docs/api-reference/next/head)组件，使你能够指定页面头部的内容，以便于SEO**或可访问性目的。
+
+需要提到的一个重要方面是，`Layout`组件使用组件级CSS。不要忘记，**Next.js开箱即用地支持[组件级CSS](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)**。这非常直观。所有样式都限定在组件内。这意味着你不必担心意外覆盖其他地方的样式规则。
+
+博客应用的全局样式在你可以在styles目录中找到的`globals.css`中处理。因此，如果你想更改或添加一些全局CSS规则，可以在那里进行。同时，**请记住，全局字体并没有在`global.css`文件中定义**。这是在下面的Next.js `_app.js`文件中定义的：
+
+```javascript
+// pages/_app.js
+
+import '../styles/globals.css';
+import { Work_Sans } from 'next/font/google';
+
+// 使用Next.js 13字体优化功能导入Work Sans字体
+const workSans = Work_Sans({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+});
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <main className={workSans.className}>
+      <Component {...pageProps} />
+    </main>
+  );
+}
+
+export default MyApp;
+```
+
+## 向项目添加Posts目录
+
+现在你已经熟悉了项目结构和Next.js基础知识，让我们**添加所有使Markdown博客在Next.js中工作的必要内容**。
+
+首先，在项目的根文件夹中创建一个名为`posts`的新目录。这个文件夹将包含你所有的Markdown博客文章。如果你还没有准备好内容，只需添加一些虚拟博客文章。考虑使用**[Unsplash](https://unsplash.com/)**获取示例照片，而**[Cupcake](http://www.cupcakeipsum.com/)**、**[Hipsum](https://hipsum.co/)**或**[Sagan Ipsum](http://saganipsum.com/)**可以帮助你为你的文章生成文本。
+
+### 创建一个示例文章
+
+现在你有了一个`posts`文件夹，是时候**用一些Markdown文章填充它**了。
+
+以下是`/posts/my-post.md`的示例填充内容，包含常用的前置元数据。
+
+```markdown
+---
+title: 冰岛之旅
+author: 'Watson & Crick '
+date: '2019-07-10T16:04:44.000Z'
+hero_image: /norris-niman-iceland.jpg
+---
+
+大脑是智慧的种子，某些不可思议的东西正等待被发现。
+```
+
+如果你不熟悉这个概念，**前置元数据是一种在Markdown文件中存储元数据的方法**。通常，**前置元数据以[YAML](https://en.wikipedia.org/wiki/YAML)格式存储**，位于Markdown文件开头的三个破折号包裹的块中。
+
+此外，**将`.md`文件中引用的图像放在public目录中**。在Next.js中，你可以从基本URL `/`访问public中的任何文件。
+
+## 在Next.js中处理Markdown文件
+
+现在，是时候安装一些包了。这些包将帮助你处理Markdown文件。
+
+```
+npm add raw-loader gray-matter react-markdown
+```
+
+具体来说：
+
+* **[Raw Loader](https://github.com/webpack-contrib/raw-loader)** 将处理你的Markdown文件。
+* **[Gray Matter](https://github.com/jonschlinkert/gray-matter)** 将解析你的YAML前置元数据值。
+* **[React Markdown](https://github.com/rexxars/react-markdown)** 将解析并渲染你的Markdown文件的主体。
+
+### 添加`next.config.js`文件以配置Next.js
+
+现在你已经安装了一些处理Markdown所需的包，你需要配置`raw-loader`的使用。首先，**在项目根目录创建一个[`next.config.js`](https://nextjs.org/docs#custom-configuration)文件**。
+
+这个文件使你能够**处理Webpack、路由、构建和运行时配置、导出选项等的任何自定义配置**。在这个用例中，你只需[添加一个Webpack规则，使其使用`raw-loader`](https://v4.webpack.js.org/loaders/raw-loader/)来处理Markdown `.md`文件。
+
+```javascript
+// next.config.js
+
+module.exports = {
+  webpack: function (config) {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    });
+    return config;
+  },
+};
+```
+
+Webpack现在能够处理Markdown文件。你现在需要**配置Next.js为每个Markdown博客文章文件创建一个网页**。让我们学习如何做到这一点。
+
+## 在Next.js中配置动态路由
+
+作为背景知识，`pages`目录在Next.js中是特殊的。这个目录中的每个`.js`文件将响应一个匹配的HTTP请求。例如，当请求主页`"/"`时，将渲染从`pages/index.js`导出的组件。因此，如果你希望你的网站在`/about`有一个页面，只需创建一个名为`pages/about.js`的文件。
+
+这对于静态页面来说很棒，但你希望有一个模板，从中构建所有博客文章，使用每个Markdown文件中的不同数据。这意味着你需要实现**动态路由**。具体来说，**你希望每个博客文章都有一个与基于此模板的页面相关联的好看的URL**。
+
+在Next.js中，这可以非常容易地实现。具体来说，**Next.js中的[动态路由](https://nextjs.org/docs#dynamic-routing)通过文件名中的方括号`[]`来识别**。在这些括号中，你可以将一个查询参数传递给页面组件。
+
+### 初始化博客文章动态内容页面
+
+让我们在pages中创建一个名为blog的新文件夹，然后在该blog文件夹中添加一个新文件`[slug].js`。
+
+你将很快学习如何完成这个文件。现在，你需要知道的是，**这个文件代表一个动态网页**。
+
+换句话说，**`pages/blog/[slug].js`的内容将根据URL中的`[slug]`参数而变化**。具体来说，基于从URL中提取的slug字符串，`[slug].js`将从文件系统中读取一个Markdown文件，并使用其数据来渲染博客文章。
+
+## 创建`pages/blog/[slug].js`页面组件
+
+让我们编写`BlogTemplate`博客页面组件，该组件将渲染从posts中读取的Markdown文件中包含的内容。得益于这个页面，大部分博客逻辑将被实现。
+
+在存储在blog目录中的`[slug].js`页面组件中，**你将能够通过`slug`参数访问URL中传递的任何字符串**。通常，这样的信息用于动态检索要渲染页面的数据。例如，如果你访问`http://localhost:3000/blog/julius-caesar`，则`[slug].js`中的slug查询参数将包含`"julius-caesar"`字符串。
+
+现在让我们学习如何使用slug参数来检索你的内容数据。
+
+### 获取博客页面组件的Markdown数据
+
+通过动态路由，你可以**利用`slug`参数**。具体来说，你可以在`getStaticProps()`中使用`slug`来从相应的Markdown文件中获取数据，如下所示：
+
+```javascript
+// pages/blog/[slug].js
+
+import Image from 'next/image';
+import matter from 'gray-matter';
+import ReactMarkdown from 'react-markdown';
+import styles from '../../styles/Blog.module.css';
+import glob from 'glob';
+import Layout from '../../components/Layout';
+
+function reformatDate(fullDate) {
+  const date = new Date(fullDate);
+  return date.toDateString().slice(4);
+}
+
+export default function BlogTemplate({ frontmatter, markdownBody, siteTitle }) {
+  return (
+    <Layout siteTitle={siteTitle}>
+      <article className={styles.blog}>
+        <figure className={styles.blog__hero}>
+          <Image
+            width="1920"
+            height="1080"
+            src={frontmatter.hero_image}
+            alt={`blog_hero_${frontmatter.title}`}
+          />
+        </figure>
+        <div className={styles.blog__info}>
+          <h1>{frontmatter.title}</h1>
+          <h3>{reformatDate(frontmatter.date)}</h3>
+        </div>
+        <div className={styles.blog__body}>
+          <ReactMarkdown>{markdownBody}</ReactMarkdown>
+        </div>
+        <h2 className={styles.blog__footer}>
+          作者: {frontmatter.author}
+        </h2>
+      </article>
+    </Layout>
+  );
+}
+
+export async function getStaticProps(context) {
+  // 从上下文中提取slug
+  const { slug } = context.params;
+
+  const config = await import(`../../data/config.json`);
+
+  // 检索与slug关联的Markdown文件
+  // 并读取其数据
+  const content = await import(`../../posts/${slug}.md`);
+  const data = matter(content.default);
+
+  return {
+    props: {
+      siteTitle: config.title,
+      frontmatter: data.data,
+      markdownBody: data.content,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  // 从posts目录获取所有.md文件
+  const blogs = glob.sync(`posts/**/*.md`);
+
+  // 将文件名转换为它们的slug
+  const blogSlugs = blogs.map((file) =>
+    file.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
+  );
+
+  // 为每个`slug`参数创建一个路径
+  const paths = blogSlugs.map((slug) => {
+    return { params: { slug: slug } };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+```
+
+> 注意使用`gray-matter`和`ReactMarkdown`分别正确处理YAML前置元数据和Markdown主体。
+
+深入了解这个代码片段的工作原理。假设你导航到`http://localhost:3000/blog/julius-caesar`动态路由。`pages/blog/[slug].js`中的`BlogTemplate`组件被传递了参数对象`{ slug: "julius-caesar" }`。
+
+当调用`getStaticProps()`函数时，该`params`对象通过[上下文参数](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter)传入。然后，从存储在`context`中的查询参数中提取`slug`。具体来说，**`slug`用于在posts目录中搜索具有相同文件名的`.md`文件**。
+
+一旦你从该文件中获取数据，**你可以解析Markdown主体中的前置元数据并返回其数据**。这些数据作为props传递给`BlogTemplate`组件，该组件将根据需要渲染这些数据。
+
+### 实现`getStaticPaths()`
+
+此时，你应该对`getStaticProps()`更加熟悉。但**[`getStaticPaths()`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths)**函数可能对你来说是新的。由于这个模板使用动态路由，你需要为每个博客定义一个路径列表。这样，**Next.js将能够在构建时静态渲染每个博客文章**。请记住，你只需要在涉及动态路由时使用`getStaticPaths()`。
+
+在`getStaticPaths()`的返回对象中，以下两个键是必需的：
+
+* **[`paths`](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#paths)**：包含一个对象数组，每个对象都有一个包含所需动态参数的params字段。例如，`{ params : { slug: "julius-caesar"} }`。
+* **[`fallback`](https://nextjs.org/docs/basic-features/data-fetching/overview#the-fallback-key-required)**：允许你控制Next.js在`getStaticPaths()`未返回路径时的行为。将其设置为false，使Next.js为未知路径返回404页面。
+
+> 在Next.js 9.3发布之前，可以通过exportPathMap处理静态导出的路径生成。
+
+现在，导航到[`http://localhost:3000/blog/my-post`](http://localhost:3000/blog/my-post)。这就是BlogTemplate组件的样子：
+
+如你所见，它完美地渲染了以Markdown格式存储的博客文章数据。
+
+<WebmEmbed embedSrc="/video/blogTemplate.webm" />
+
+## 为你的博客添加主页
+
+让我们通过完成主页来结束这个简单的基于Markdown的Next.js博客。
+
+你所要做的就是**更改`pages/index.js`页面中的数据检索逻辑**。具体来说，你希望将适当的数据传递给`Index`页面上的`BlogList`组件。由于你只能在页面组件上使用`getStaticProps()`，你将不得不将博客数据从`Index`组件传递给`BlogList`作为一个属性。
+
+实现`pages/index.js`如下：
+
+```javascript
+// pages/index.js
+
+import matter from 'gray-matter';
+import Layout from '../components/Layout';
+import BlogList from '../components/BlogList';
+
+const Index = (props) => {
+  return (
+    <Layout
+      pathname="/"
+      siteTitle={props.title}
+      siteDescription={props.description}
+    >
+      <section>
+        <BlogList allBlogs={props.allBlogs} />
+      </section>
+    </Layout>
+  );
+};
+
+export default Index;
+
+export async function getStaticProps() {
+  // 获取网站配置
+  const siteConfig = await import(`../data/config.json`);
+
+  const webpackContext = require.context('../posts', true, /\.md$/);
+  // 包含在"posts"目录中的文件名列表
+  const keys = webpackContext.keys();
+  const values = keys.map(webpackContext);
+
+  // 从"posts"文件夹中的文件中获取文章数据
+  const posts = keys.map((key, index) => {
+    // 动态创建文章slug
+    // 从文件名中
+    const slug = key
+      .replace(/^.*[\\\/]/, '')
+      .split('.')
+      .slice(0, -1)
+      .join('.');
+
+    // 获取与当前文件名关联的.md文件值
+    const value = values[index];
+
+    // 解析.md文件中包含的YAML元数据和Markdown主体
+    const document = matter(value.default);
+
+    return {
+      frontmatter: document.data,
+      markdownBody: document.content,
+      slug,
+    };
+  });
+
+  return {
+    props: {
+      allBlogs: posts,
+      title: siteConfig.default.title,
+      description: siteConfig.default.description,
+    },
+  };
+}
+```
+
+这里的`getStaticProps()`函数可能看起来有些复杂，但让我们一步一步来。这里的逻辑基于Webpack提供的[`require.context()`](https://webpack.js.org/guides/dependency-management/#requirecontext)函数。这**允许你基于三个参数创建你自己的Webpack上下文**：
+
+* 要匹配的目录。
+* 一个布尔标志，用于包含或排除子目录。
+* 一个用于匹配文件的正则表达式。
+
+你可以使用以下语法定义一个Webpack上下文：
+
+```javascript
+require.context(directory, (useSubdirectories = true), (regExp = /^\.\/.*$/));
+```
+
+注意，圆括号中的参数是可选的。例如，这就是你可以调用`require.context()`函数的方式：
+
+```javascript
+require.context('../posts', true, /\\.md$/);
+```
+
+得益于Webpack上下文，你可以从特定目录中挑选出与正则表达式匹配的所有文件。这使你能够**从每个文件名生成slug字符串，读取其内容，使用frontmatter库解析它，并将处理后的数据作为props传递给Index**。
+
+然后，博客数据作为一个属性传递给`BlogList`组件。在`BlogList`组件中，你可以迭代博客数据并根据需要渲染文章预览列表。具体来说，**`BlogList`组件负责渲染博客数据**。
+
+这就是`BlogList`的样子：
+
+```javascript
+import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import styles from '../styles/BlogList.module.css';
+import Image from 'next/image';
+
+function truncateSummary(content) {
+  return content.slice(0, 200).trimEnd();
+}
+
+function reformatDate(fullDate) {
+  const date = new Date(fullDate);
+  return date.toDateString().slice(4);
+}
+
+const BlogList = ({ allBlogs }) => {
+  return (
+    <ul>
+      {allBlogs &&
+        allBlogs.length >= 1 &&
+        allBlogs.map((post) => (
+          <li key={post.slug}>
+            <Link
+              href={{ pathname: `/blog/${post.slug}` }}
+              className={styles.blog__link}
+            <Link href={{ pathname: `/blog/${post.slug}` }} className={styles.blog__link}>
+                <Image
+                  width={384}
+                  height={288}
+                  src={post.frontmatter.hero_image}
+                  alt={post.frontmatter.hero_image}
+                />
+              </div>
+              <div className={styles.blog__info}>
+                <h2>{post.frontmatter.title}</h2>
+                <h3>{reformatDate(post.frontmatter.date)}</h3>
+                <ReactMarkdown disallowedElements={['a']}>
+                <ReactMarkdown disallowedElements={["a"]}>{truncateSummary(post.markdownBody)}</ReactMarkdown>
+            </Link>
+          </li>
+        ))}
+    </ul>
+  );
+  )
+}
+export default BlogList
+````mdx
+如果您的开发服务器正在运行，您现在应该能够通过 `http://localhost:3000` 访问您的 Next.js Markdown 博客应用。否则，请使用以下命令启动应用：
+
+```shell
+npm run dev
+````
+
+请注意，**您可能需要重新加载博客主页才能看到博文**。
+
+恭喜！您刚刚学会了如何使用 Next.js 构建一个 Markdown 博客！
+
+如果您想查看最终结果，随时可以**查看这个基于 Markdown 的博客网站的[代码仓库](https://github.com/tinalabs/brevifolia-next-2023)**。
+
+使用以下命令克隆它：
+
+```shell
+git clone [https://github.com/tinalabs/brevifolia-next-2023](https://github.com/tinalabs/brevifolia-next-2023)
+```
+
+进入项目文件夹，并执行以下命令来安装依赖并启动这个基于 Markdown 的 Next.js 博客应用：
+
+```shell
+cd brevifolia-next-2023
+npm install
+npm run dev
+```
+
+在您的浏览器中访问 [`http://localhost:3000`](http://localhost:3000)，现在您应该能看到这个基于 Markdown 的博客应用正在运行。
+
+## 结论与后续步骤
+
+在本文中，您从零开始学习了如何使用 Next.js 构建一个基于 Markdown 的博客应用。正如您所见，这并不需要大量的代码。具体来说，您可以轻松配置 Next.js 从文件系统中读取 Markdown 文件。然后，您可以将这些文件用作您博文的来源。
+
+在搭建好基于 Markdown 的博客网站之后，您很可能需要一个 CMS（[内容管理系统](https://en.wikipedia.org/wiki/Content_management_system)）来让编辑和更新您的文章或数据变得更加容易。敬请期待**下一篇关于如何使用 TinaCMS 配置此入门项目的博客**。在此期间，您可以查阅我们的[文档](https://tina.io/docs)，或者[尝试一个入门项目](https://tina.io/docs/introduction/using-starter/)来立即开始体验 TinaCMS。
+
+## 您可以在哪里了解 Tina 的最新动态？
+
+您知道您想成为这个富有创造力、创新精神和支持氛围的开发者社区的一员（甚至还有一些编辑和设计师），他们每天都在试验和实施 Tina。
+
+在 [https://tina.io/community/](https://tina.io/community/) 查看 Tina 的社区。
+
+有关在 Next.js 中提供静态文件的更多信息，请查看[静态文件服务文档](https://nextjs.org/docs/app/building-your-application/optimizing/static-assets)。
+
+有关 Next.js 中静态导出的更多信息，请查看[静态导出文档](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)。
+
+```
+```

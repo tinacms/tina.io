@@ -1,31 +1,19 @@
 import { client } from 'tina/__generated__/client';
+import settings from '@/content/settings/config.json';
+import { getSeo } from '@/utils/metadata/getSeo';
 import EventsClient from './EventsClient';
 
 export async function generateMetadata() {
   const vars = {};
   const { data } = await fetchEvents(vars);
   const nodesData = data.eventsConnection.edges.map((edge: any) => edge.node);
-  const eventsSEOData = nodesData[0].seo;
+  const seo = nodesData[0].seo;
 
-  return {
-    title: `${eventsSEOData.title} | TinaCMS`,
-    description: eventsSEOData.description,
-    openGrah: {
-      title: eventsSEOData.title,
-      description: eventsSEOData.description,
-      type: 'website',
-      locale: 'en_CA',
-      site_name: 'https://tina.io/events',
-      images: [
-        {
-          url: 'https://tina.io/img/tina-og.png',
-          width: 1200,
-          height: 628,
-          alt: `Tina - The Markdown CMS`,
-        },
-      ],
-    },
-  };
+  if (seo && !seo?.canonicalUrl) {
+    seo.canonicalUrl = `${settings.siteUrl}/events`;
+  }
+
+  return getSeo(seo);
 }
 
 export default async function EventsPage() {

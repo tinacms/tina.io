@@ -1,0 +1,58 @@
+---
+title: 为TinaCMS配置Dependabot
+last_edited: '2025-06-30T08:22:08.383Z'
+next: ''
+previous: ''
+---
+
+如果你在使用GitHub，Dependabot可以通过检查新版本并打开PR来自动保持你的TinaCMS包的更新。
+
+## 配置Dependabot
+
+你需要关注2个包：
+
+* `tinacms`
+* `@tinacms/cli`
+
+为此，只需在你的.github文件夹中创建一个dependabot.yml文件，如下所示：
+
+```yaml
+# .github/dependabot.yml
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "tinacms"
+      - dependency-name: "@tinacms/*"
+```
+
+> 注意：你可以在这里找到更多关于Dependabot配置的信息：[Dependabot选项参考](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference#about-the-dependabotyml-file)
+
+这将告诉Dependabot在这些包需要更新时创建拉取请求。
+
+## 如何管理拉取请求
+
+默认情况下，Dependabot为每个包打开一个单独的PR。
+
+由于TinaCMS包通常相互依赖，单独合并PR可能导致package.json版本看起来不匹配——即使在锁定文件中解决了正确的版本。这可能会阻止Dependabot检测到实际的代码更改，导致更新遗漏或不完整。
+
+为了解决这个问题，更新你的dependabot.yml配置，将TinaCMS包分组到一个单一的PR中。
+
+在末尾添加以下内容：
+
+```yaml
+    #.github/dependabot.yml
+
+    # ...
+    groups:
+      tinacms:
+        patterns:
+          - "@tinacms/*"
+          - "tinacms"
+```
+
+通过这样做，你的包将保持同步，更新你的TinaCMS版本将更加容易！

@@ -1,24 +1,29 @@
+/** biome-ignore-all lint/performance/noImgElement: <TODO> */
+/** biome-ignore-all lint/a11y/noRedundantAlt: <TODO> */
+/** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: <TODO> */
 import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
 import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
-import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
+import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { Prism } from '../styles/Prism';
 import MermaidElement from './mermaid';
+
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),
   {
     ssr: false,
-  }
+  },
 );
 
 export const docAndBlogComponents: Components<{
@@ -54,6 +59,7 @@ export const docAndBlogComponents: Components<{
   Codesandbox: { embedSrc: string; title: string };
   Diagram: { alt: string; src: string };
   WideImage: { alt: string; src: string };
+  // biome-ignore lint/complexity/noBannedTypes: <TODO>
   CustomFieldComponentDemo: {};
   CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
@@ -160,7 +166,7 @@ export const docAndBlogComponents: Components<{
   },
   code: (props) => (
     <code
-      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded"
+      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded font-source-code-pro"
       {...props}
     />
   ),
@@ -176,6 +182,7 @@ export const docAndBlogComponents: Components<{
       <div>
         <hr></hr>
         <button
+          type="button"
           className="flex w-full items-start justify-between text-left text-gray-900"
           onClick={handleToggle}
         >
@@ -209,7 +216,7 @@ export const docAndBlogComponents: Components<{
           title={props.caption || ''}
         />
         {props.caption && (
-          <div className="text-sm font-tuner text-gray-500">
+          <div className="text-sm font-ibm-plex text-gray-500">
             Figure: {props.caption}
           </div>
         )}
@@ -236,13 +243,13 @@ export const docAndBlogComponents: Components<{
       style={{
         backgroundColor: 'var(--color-white)',
       }}
-      className="!my-6 border-l-4 md:py-6 pt-2 pb-4 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
+      className="my-6! border-l-4 md:py-6 pt-2 pb-4 border-x-teal-400 pl-3 rounded-tr-lg rounded-br-lg pr-2 relative overflow-hidden"
     >
       <div className="flex flex-col md:flex-row md:items-center md:gap-2 items-start">
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <AiOutlineBulb
             size={40}
-            className="text-white bg-gradient-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+            className="text-white bg-linear-to-br from-seafoam-500 to-seafoam-700 p-2 rounded-full my-2 md:my-0 md:mx-2 mx-0"
           />
         </div>
         <div className="leading-6">
@@ -260,7 +267,12 @@ export const docAndBlogComponents: Components<{
   Iframe: ({ iframeSrc, height }) => {
     return (
       <div>
-        <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+        <iframe
+          width="100%"
+          height={`${height}px`}
+          src={iframeSrc}
+          title="Iframe"
+        />
       </div>
     );
   },
@@ -283,7 +295,7 @@ export const docAndBlogComponents: Components<{
                   </span>
                 )}
               </div>
-              <div className="font-tuner text-blue-500 font-medium break-normal max-w-full inline-block">
+              <div className="font-ibm-plex text-blue-500 font-medium break-normal max-w-full inline-block">
                 {property?.name?.replace(/([A-Z])/g, '\u200B$1')}
               </div>
               <div className="text-gray-500 text-sm">{property.type}</div>
@@ -296,7 +308,7 @@ export const docAndBlogComponents: Components<{
               {property.default && (
                 <div className="text-slate-900 text-md">
                   Default is{' '}
-                  <span className="font-mono text-orange-500">
+                  <span className="font-source-code-pro text-orange-500">
                     {property.default}
                   </span>
                   .
@@ -314,20 +326,21 @@ export const docAndBlogComponents: Components<{
       return (
         <div className=" my-4 overflow-hidden group">
           <button
+            type="button"
             onClick={() =>
               setOpenGroups(
                 openGroups.includes(groupName)
                   ? openGroups.filter((group) => group !== groupName)
-                  : [...openGroups, groupName]
+                  : [...openGroups, groupName],
               )
             }
-            className="bg-gradient-to-b from-blue-100/20 to-blue-50/20 w-full flex items-center justify-between px-6 py-4 text-left bg-transparent hover:bg-blue-200/10 transition-colors"
+            className="bg-linear-to-b from-blue-100/20 to-blue-50/20 w-full flex items-center justify-between px-6 py-4 text-left bg-transparent hover:bg-blue-200/10 transition-colors"
           >
             <div>
               {required && (
                 <p className="text-orange-500 font-medium text-sm">REQUIRED</p>
               )}
-              <h3 className="text-md font-medium text-blue-500 font-tuner">
+              <h3 className="text-md font-medium text-blue-500 font-ibm-plex">
                 {groupName || 'Object'}
               </h3>
             </div>
@@ -347,7 +360,7 @@ export const docAndBlogComponents: Components<{
                       <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg -my-0.5" />
                     )}
                     <div className="mx-2 border-l-2 border-solid border-orange-400">
-                      <React.Fragment>{propertyItem(property)}</React.Fragment>
+                      {propertyItem(property)}
                     </div>
                   </div>
                 );
@@ -370,7 +383,9 @@ export const docAndBlogComponents: Components<{
 
         {/* Process properties in order, grouping only adjacent items with same groupName */}
         {(() => {
-          if (!props.property?.length) return null;
+          if (!props.property?.length) {
+            return null;
+          }
 
           const result = [];
           let currentGroup = null;
@@ -385,14 +400,14 @@ export const docAndBlogComponents: Components<{
                 result.push(
                   <React.Fragment key={`group-${result.length}`}>
                     {group(currentGroup, currentGroupProperties)}
-                  </React.Fragment>
+                  </React.Fragment>,
                 );
                 currentGroup = null;
                 currentGroupProperties = [];
               } else {
                 if (index !== 0) {
                   result.push(
-                    <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg" />
+                    <hr className="h-0.5 w-[80%] m-auto bg-gray-200 rounded-lg" />,
                   );
                 }
               }
@@ -401,7 +416,7 @@ export const docAndBlogComponents: Components<{
               result.push(
                 <React.Fragment key={`ind-${index}`}>
                   {propertyItem(property)}
-                </React.Fragment>
+                </React.Fragment>,
               );
             }
             // If property has a groupName
@@ -417,7 +432,7 @@ export const docAndBlogComponents: Components<{
                   result.push(
                     <React.Fragment key={`group-${result.length}`}>
                       {group(currentGroup, currentGroupProperties)}
-                    </React.Fragment>
+                    </React.Fragment>,
                   );
                 }
 
@@ -433,7 +448,7 @@ export const docAndBlogComponents: Components<{
             result.push(
               <React.Fragment key={`group-${result.length}`}>
                 {group(currentGroup, currentGroupProperties)}
-              </React.Fragment>
+              </React.Fragment>,
             );
           }
 
@@ -442,7 +457,7 @@ export const docAndBlogComponents: Components<{
 
         {props.property?.some((property) => property.required) && (
           <div className=" mx-6 mt-6 p-4 bg-blue-50 rounded-md flex items-start gap-3">
-            <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 flex-shrink-0" />
+            <Info className="text-[#3B82F6] w-5 h-5 mt-0.5 shrink-0" />
             <p className="text-sm text-gray-700">
               All properties marked as{' '}
               <span className="text-[#FF5533] font-medium">REQUIRED</span> must
@@ -481,7 +496,7 @@ export const docAndBlogComponents: Components<{
                         key={`cell-${rowIndex}-${cellIndex}`}
                         className={`border border-orange-100 px-4 py-2 ${
                           rowIndex === 0
-                            ? 'font-normal bg-white/50 text-left text-orange-500 font-tuner'
+                            ? 'font-normal bg-white/50 text-left text-orange-500 font-ibm-plex'
                             : ''
                         } ${cellIndex === 0 ? 'break-words max-w-xs' : ''}`}
                       >
@@ -533,7 +548,7 @@ export const docAndBlogComponents: Components<{
         ></iframe>
       </div>
       {caption && (
-        <div className="text-sm font-tuner text-gray-500">
+        <div className="text-sm font-ibm-plex text-gray-500">
           Video: {caption} {minutes && `(${minutes} minutes)`}
         </div>
       )}
@@ -587,7 +602,7 @@ export const docAndBlogComponents: Components<{
         <div>
           <AiOutlineWarning
             size={40}
-            className="text-white bg-gradient-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
+            className="text-white bg-linear-to-br from-orange-400 to-orange-600 px-2 pt-0.5 pb-1.5 rounded-full my-2 md:my-0 md:mx-2 mx-0"
           />
         </div>
         <div className="leading-6">
@@ -681,10 +696,11 @@ export const docAndBlogComponents: Components<{
     };
 
     return (
-      <div className="relative pb-3 word-break white-space overflow-x-hidden !rounded-xl margin-0">
+      <div className="relative pb-3 word-break white-space overflow-x-hidden rounded-xl! margin-0">
         <button
+          type="button"
           onClick={handleCopy}
-          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded"
+          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-source-code-pro"
         >
           {hasCopied ? (
             <CheckIcon className="h-4 w-4" />
@@ -741,14 +757,14 @@ export const docAndBlogComponents: Components<{
   ),
   CloudinaryVideo: ({ src }) => (
     <video className="video my-6" autoPlay loop muted playsInline>
-      <source src={src + `.webm`} type="video/webm" />
-      <source src={src + `.mp4`} type="video/mp4" />
+      <source src={`${src}.webm`} type="video/webm" />
+      <source src={`${src}.mp4`} type="video/mp4" />
     </video>
   ),
   Button: ({ link, label }) => (
     <div className="w-full flex justify-start my-6">
       <a
-        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-tuner whitespace-nowrap focus:outline-none focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-gradient-to-br from-orange-400 to-orange-600"
+        className="px-6 pt-[12px] pb-[10px] text-base font-medium transition duration-150 ease-out rounded-full flex items-center gap-1 font-ibm-plex whitespace-nowrap focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight text-white hover:text-gray-50 border border-orange-600 bg-linear-to-br from-orange-400 to-orange-600"
         href={link}
         target="_blank"
       >
@@ -761,19 +777,27 @@ export const docAndBlogComponents: Components<{
 function FormatHeaders({ children, level }) {
   const HeadingTag = `h${level}` as any;
   const id = getDocId(
-    children.props?.content.map((content) => content.text).join('') ?? children
+    children.props?.content.map((content) => content.text).join('') ?? children,
   );
 
-  const currentUrl =
-    typeof window !== 'undefined' ? window.location.pathname : '';
+  const [currentUrl, setCurrentUrl] = useState(
+    typeof window !== 'undefined' ? window.location.pathname : '',
+  );
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.pathname);
+    }
+  }, []);
+
   const linkHref = `${currentUrl}#${id}`;
 
   const styles = {
-    1: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl !mt-16 mb-4',
-    2: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl !mt-12 mb-2',
-    3: 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium !mt-8 mb-2 !important',
-    4: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium !mt-2 mb-2',
-    5: 'bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium !mt-2 mb-1',
+    1: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl mt-16! mb-4',
+    2: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl mt-12! mb-2',
+    3: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-8! mb-2 !important',
+    4: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2! mb-2',
+    5: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2! mb-1',
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',
   };
 
@@ -813,7 +837,7 @@ function FormatHeaders({ children, level }) {
       scrollToElement(hash);
     }
     //this is used for when you get sent a link with a hash (i.e link to a header)
-  }, []);
+  }, [scrollToElement]);
 
   return (
     <HeadingTag

@@ -1,4 +1,5 @@
 ---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
 id: templates
 title: Templates
 last_edited: '2025-03-26T01:40:40.668Z'
@@ -6,7 +7,7 @@ next: content/docs/reference/types.mdx
 previous: content/docs/reference/fields.mdx
 ---
 
-Templates exist as an alternative to the fields type when multiple variants of the same **collection** or **object**.
+Templates allow you to define multiple structured variants within a single collection or object. They’re ideal when you need different data shapes under the same parent.
 
 > For example in a "page" collection there might be a need for a marketing page template and a content page template, both under the collection "page".
 
@@ -90,3 +91,14 @@ export default defineConfig({
   },
 })
 ```
+
+Tina uses folder names matching the template to organize files correctly, e.g.:
+
+```javascript
+/content/pages/marketing/home.md
+/content/pages/content/about.md
+```
+
+## Limitations
+
+* Collections using templates cannot use the ‘Add Folder’ button

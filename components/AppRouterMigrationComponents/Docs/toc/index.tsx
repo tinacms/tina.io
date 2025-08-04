@@ -1,17 +1,18 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 import { getDocId } from 'utils/docs/getDocIds';
 
 interface TocProps {
   tocItems: Array<{ type: string; text: string }>;
-  activeIds: string[];
+  activeId: string;
 }
 
 export const generateMarkdown = (
-  tocItems: Array<{ type: string; text: string }>
+  tocItems: Array<{ type: string; text: string }>,
 ) => {
   return tocItems
     .map((item) => {
@@ -22,7 +23,7 @@ export const generateMarkdown = (
     .join('\n');
 };
 
-const ToC = ({ tocItems, activeIds }: TocProps) => {
+const ToC = ({ tocItems, activeId }: TocProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const tocWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -37,11 +38,10 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
   }, []);
 
   useEffect(() => {
-    if (tocWrapperRef.current && activeIds.length > 0) {
+    if (tocWrapperRef.current && activeId) {
       const tocList = tocWrapperRef.current;
 
-      const lastActiveId = activeIds[activeIds.length - 1];
-      const activeLink = tocList.querySelector(`a[href="#${lastActiveId}"]`);
+      const activeLink = tocList.querySelector(`a[href="#${activeId}"]`);
 
       if (activeLink) {
         const activeTop = (activeLink as HTMLElement).offsetTop;
@@ -54,56 +54,87 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
         });
       }
     }
-  }, [activeIds]);
+  }, [activeId]);
 
   if (!tocItems || tocItems.length === 0) {
     return null;
   }
 
   const tocMarkdown = generateMarkdown(tocItems);
+  const isZhPath =
+    typeof window !== 'undefined'
+      ? window.location.pathname.includes('/zh/')
+      : // biome-ignore lint/correctness/useHookAtTopLevel: <TODO>
+        usePathname().includes('/zh/');
 
   return (
-    <>
-      <TocWrapper>
-        <TocContent activeIds={activeIds} isOpen={isOpen}>
-          <TocDesktopHeader>Table of Contents</TocDesktopHeader>
-          <TocTitleList
-            ref={tocWrapperRef}
-            className="max-h-[70vh] 2xl:max-h-[75vh] p-4 overflow-y-auto"
-          >
-            <ReactMarkdown
-              components={{
-                ul: ({ children }) => (
-                  <ul className="space-y-1 pt-1">{children}</ul>
-                ),
-                li: ({ children }) => (
-                  <li className="leading-relaxed">{children}</li>
-                ),
-                a: ({ children, ...props }) => {
-                  const isActive = activeIds.includes(props.href?.slice(1)); // Match href with activeIds
-                  return (
-                    <a
-                      {...props}
-                      className={`
-                        block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150
+    <TocWrapper>
+      <TocContent activeId={activeId} isOpen={isOpen}>
+        <TocDesktopHeader>
+          {isZhPath ? '目录' : 'Table of Contents'}
+        </TocDesktopHeader>
+        <TocTitleList
+          ref={tocWrapperRef}
+          className="max-h-[70vh] 2xl:max-h-[75vh] p-4 overflow-y-auto"
+        >
+          <ReactMarkdown
+            components={{
+              ul: ({ children }) => (
+                <ul className="space-y-1 pt-1">{children}</ul>
+              ),
+              li: ({ children }) => (
+                <li className="leading-relaxed">{children}</li>
+              ),
+              a: ({ children, ...props }) => {
+                const isActive = activeId === props.href?.slice(1); // Match href with activeId
+
+                const handleClick = (
+                  e: React.MouseEvent<HTMLAnchorElement>,
+                ) => {
+                  e.preventDefault();
+                  const href = props.href;
+                  if (href?.startsWith('#')) {
+                    const targetId = href.slice(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                      const elementPosition =
+                        targetElement.getBoundingClientRect().top;
+                      const offsetPosition =
+                        elementPosition + window.pageYOffset - 100;
+
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth',
+                      });
+                    }
+                  }
+                };
+
+                return (
+                  <a
+                    type="button"
+                    {...props}
+                    // biome-ignore lint/a11y/useValidAnchor: <TODO>
+                    onClick={handleClick}
+                    className={`
+                        block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150 cursor-pointer
                         ${
                           isActive
                             ? 'text-orange-500 font-medium no-underline'
                             : 'text-gray-600 hover:text-orange-500'
                         }`}
-                    >
-                      {children}
-                    </a>
-                  );
-                },
-              }}
-            >
-              {tocMarkdown}
-            </ReactMarkdown>
-          </TocTitleList>
-        </TocContent>
-      </TocWrapper>
-    </>
+                  >
+                    {children}
+                  </a>
+                );
+              },
+            }}
+          >
+            {tocMarkdown}
+          </ReactMarkdown>
+        </TocTitleList>
+      </TocContent>
+    </TocWrapper>
   );
 };
 
@@ -164,7 +195,7 @@ const TocWrapper = styled.div`
   }
 `;
 
-const TocContent = styled.div<{ isOpen: boolean; activeIds: string[] }>`
+const TocContent = styled.div<{ isOpen: boolean; activeId: string }>`
   display: block;
   width: 100%;
   line-height: 1.25;

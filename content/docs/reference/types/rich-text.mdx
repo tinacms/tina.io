@@ -2,7 +2,7 @@
 title: Rich-Text Fields
 last_edited: '2025-03-26T06:28:07.274Z'
 next: ''
-previous: content/docs/reference/rich-text-usage/mermaid.mdx
+previous: content/docs/extending-tina/customize-list-ui.mdx
 ---
 
 The rich-text field stores **markdown content** with a WYSIWYG interface, supporting features like text formatting, links, media and custom elements (if used with mdx).
@@ -84,11 +84,15 @@ To insert a line break into an empty line in TinaCMS Rich Text:
 
 > This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
 
-## Markdown Tables
+## Tables
 
 Check out this video on how to use Table in rich text editor:
 
 <Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
+
+> Multi-line cells are not supported because content is serialized as Markdown. Tables only support single-line rows and cells. Use lists or separate fields if you need to represent multiple lines of content.
+
+***
 
 ## Examples
 

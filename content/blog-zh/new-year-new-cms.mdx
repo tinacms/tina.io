@@ -1,0 +1,93 @@
+---
+opengraph:
+  image:
+    url: /img/blog/new-year-new-cms/new_year_new_cms.png
+    width: '1920,'
+    height: '1080,'
+    alt: '新年，新CMS？'
+seo:
+  title: '新年，新CMS | TinaCMS博客'
+  description: >-
+    从TinaCMS开始新的一年！了解如何通过这个强大而灵活的CMS简化内容管理并改善开发者工作流程。
+title: '新年，新CMS？'
+date: '2022-01-06T00:00:00-04:00'
+last_edited: '2022-01-09T19:11:29.283Z'
+author: James Perkins
+prev: content/blog-zh/2021-a-year-in-review.mdx
+next: content/blog-zh/syntax-highlighting-with-tina.mdx
+---
+
+我们迎来了新的一年，如果你和我们一样，你可能为自己设定了一些新年目标。我们非常喜欢这个时间带来的新开始和自我提升。你是否设定了任何目标，比如建立或重建你自己的个人网站，开始一个新业务，或者给你的作品集增添新的色彩？这意味着你需要一个CMS来处理驱动你网站的所有内容，而我们认为Tina可以以一些独特的方式来满足这个角色。
+
+## 为什么选择Tina？
+
+### Git支持
+
+传统上，当你注册一个CMS时，你的内容被锁定在供应商中。这意味着如果你决定这个CMS不适合你，你必须找到一种方法来导出这些数据并将其导入到你的新CMS中。这不是Tina的做法，我们不想把你或你的内容扣为人质。事实上，Tina不存储你的任何数据，它们存储在你拥有的GitHub仓库中。是的，没错，你拥有并控制这一切。除了让你感到安全，因为你拥有自己的内容，这种方法还有许多实际的优势，例如：
+
+* 易于跟踪项目中的何时和何种变化
+* CI / CD支持
+* 无供应商锁定
+
+### 可视化编辑
+
+Tina不同于传统的无头CMS，在传统CMS中，你在一个表单中输入数据，而不知道它在你的网站上将如何表现或显示。然后你必须启动构建并导航到你的网站以查看更改。
+当你使用Tina时，内容是在你网站的侧边栏中编辑的，你可以在进行更改时实时查看更改。这使你可以准确地看到你正在编辑或创建的内容以及它将如何显示和表现。不再需要在每次编辑后保存、预览、刷新。一旦你对更改感到满意，你可以点击保存，Tina会将其直接提交到你的GitHub仓库，并开始重建过程。
+
+### 原生MDX支持
+
+Tina可以开箱即用地支持MDX，这意味着你可以创建可重用的组件，Tina可以为任何编辑或创建内容的人提供一种简单的方法来将它们添加到页面中，无论他们的经验如何。
+
+其他无头CMS要求创建内容的用户记住组件名称，在使用时使用正确的语法，以及使用mdx-remote或类似工具转换数据。这对于有经验的开发者来说是可以的，但如果你想让没有经验的客人参与进来，这将是一个陡峭的学习曲线。认真地，问问你的编辑朋友们，看看他们眼中的愤怒和/或恐惧。
+
+我们提供了一个按钮，任何人都可以点击，选择用户友好的组件名称，并将其添加到页面中。然后他们可以动态编辑该组件，使用你定义的正确文本、图像或样式。
+Tina也不要求你转换MDX或水合你的组件，使其比传统CMS更容易集成。
+
+## 三种在五分钟内开始的方法
+
+### Tina快速入门
+
+我们的[Tina快速入门](https://app.tina.io/quickstart)流程是一种基于网络的方式来开始使用Tina，它允许你从我们的启动模板中选择（Tina Barebones，Tina Documentation Starter，TinaCloud Starter）并直接部署到Vercel。
+
+这种方法允许你几乎立即看到Tina在生产部署中的工作方式。这对于了解Tina的功能、Tina的工作原理以及向他人展示（如你的内容团队）非常有用。
+
+<WebmEmbed embedSrc="/img/blog/new-year-new-cms/tina-quickstart.webm" />
+
+### `npx create-tina-app`
+
+`create-tina-app`允许你在本地使用我们的启动模板之一，这使你可以在决定Tina是否适合你之前查看幕后所有代码的工作方式。
+
+要使用`create-tina-app`，你需要`Node 14+`。这不要求你已经有一个应用程序，并将创建一个新项目和目录，允许你在本地开始开发。
+
+<WebmEmbed embedSrc="/img/blog/new-year-new-cms/create-tina-app.webm" />
+
+### Tina CLI
+
+Tina CLI（`npx @tincms/cli@latest init`）允许你将Tina添加到现有的Next.js应用程序中。使用CLI时，我们将处理重要部分，包括：
+
+* 添加所有Tina依赖项
+* 设置一个带有基本模式的.tina文件夹
+* 创建一个示例Tina驱动的页面的演示目录
+* 创建一个管理路由
+* 确保使用Tina最佳实践
+
+使用Tina CLI可以让你将Tina添加并选择性地集成到现有的Next.js应用程序中。这允许你保留已建立的网站，并逐步将Tina的强大功能带给你的编辑和内容团队。不过，一旦你使用它，我们不确定你会想要多慢地进行。
+
+<WebmEmbed embedSrc="/img/blog/new-year-new-cms/tina-cli.webm" />
+
+## 你可以在哪里跟上Tina的最新动态？
+
+你知道你会想成为这个充满创意、创新、支持的开发者社区（甚至还有一些编辑和设计师）的一部分，他们每天都在实验和实施Tina。
+
+### Tina社区Discord
+
+Tina有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和Tina爱好者。加入后你会发现一个地方：
+
+* 获取问题帮助
+* 找到最新的Tina新闻和抢先预览
+* 与Tina社区分享你的项目，并谈论你的经验
+* 聊聊Jamstack
+
+### Tina Twitter
+
+我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布Tina的最新功能、改进和抢先预览。如果你在项目中标记我们，我们也会非常兴奋。

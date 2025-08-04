@@ -2,14 +2,12 @@
 
 import { DynamicLink } from 'components/ui';
 import { usePathname } from 'next/navigation';
-import React, { createContext } from 'react';
+import React from 'react';
 import AnimateHeight from 'react-animate-height';
 import { BiChevronRight } from 'react-icons/bi';
 import styled, { css } from 'styled-components';
-import { matchActualTarget } from 'utils';
-import docsLinks from '../../../../content/docs-navigation.json';
-import data from '../../../../content/siteConfig.json';
-import { DocsNavProps } from './DocumentationNavigation';
+import { enhancedPathMatching } from 'utils/enhancedPathMatching';
+import type { DocsNavProps } from './DocumentationNavigation';
 
 interface NavTitleProps {
   level: number;
@@ -31,8 +29,8 @@ const NavTitle = ({
   const headerLevelClasses = {
     0:
       color === 'blue'
-        ? 'opacity-100 font-tuner-light text-blue-700 text-xl pt-2'
-        : 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
+        ? 'opacity-100 font-ibm-plex-light text-blue-700 text-xl pt-2'
+        : 'opacity-100 font-ibm-plex-light text-orange-500 text-xl pt-2',
     1: {
       default: 'text-base font-sans pt-1 text-gray-800',
       selected: 'text-base font-sans pt-1 font-bold',
@@ -54,8 +52,8 @@ const NavTitle = ({
   const selectedClass = selected
     ? 'selected'
     : childSelected
-    ? 'childSelected'
-    : 'default';
+      ? 'childSelected'
+      : 'default';
   const classes =
     level < 1
       ? headerLevelClasses[headerLevel]
@@ -78,8 +76,8 @@ const NavTitle = ({
 };
 
 const hasNestedSlug = (navItems = [], slug) => {
-  for (let item of navItems) {
-    if (matchActualTarget(item.slug || item.href, slug)) {
+  for (const item of navItems) {
+    if (enhancedPathMatching(item.slug || item.href, slug)) {
       return true;
     }
     if (item.items) {
@@ -105,17 +103,30 @@ const NavLevel = ({
   const navLevelElem = React.useRef(null);
   const pathname = usePathname(); // Replace useRouter with usePathname
   const path = pathname || ''; // Get current path
-  const slug = categoryData.slug?.replace(/\/$/, '');
-  const [expanded, setExpanded] = React.useState(
-    matchActualTarget(slug || categoryData.href, path) ||
-      hasNestedSlug(categoryData.items, path) ||
-      level === 0
-  );
+  let slug = categoryData.slug?.replace(/\/$/, '');
+  const isChinesePath = path.includes('/zh/');
+  if (isChinesePath && slug && !slug.startsWith('/zh/')) {
+    slug = `/zh${slug}`;
+  }
+  const isPathOrChildOfPath =
+    enhancedPathMatching(slug || categoryData.href, path) ||
+    hasNestedSlug(categoryData.items, path);
+
+  const [expanded, setExpanded] = React.useState(isPathOrChildOfPath);
 
   const selected =
-    path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
+    enhancedPathMatching(path.split('#')[0], slug) ||
+    (slug === '/docs' && path === '/docs/') ||
+    (slug === '/zh/docs' && path === '/zh/docs/');
 
   const childSelected = hasNestedSlug(categoryData.items, path);
+  React.useEffect(() => {
+    const shouldExpand =
+      enhancedPathMatching(slug || categoryData.href, path) ||
+      hasNestedSlug(categoryData.items, path);
+
+    setExpanded(shouldExpand);
+  }, [path, slug, categoryData.href, categoryData.items]);
 
   React.useEffect(() => {
     if (
@@ -139,7 +150,7 @@ const NavLevel = ({
         });
       }
     }
-  }, [navLevelElem.current, navListElem, selected]);
+  }, [navListElem, selected]);
 
   return (
     <>
@@ -301,11 +312,4 @@ const DocsNavigationContainer = styled.div`
   @media (min-width: 1600px) {
     padding: 1rem 1rem 2rem 1rem;
   }
-`;
-
-const AnchorIcon = styled.span`
-  display: inline-block;
-  position: relative;
-  transform: translate3d(0, 0, 0);
-  transition: all 150ms ease-out;
 `;

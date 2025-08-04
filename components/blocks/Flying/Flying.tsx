@@ -11,15 +11,14 @@ export function FlyingBlock({ data, index }) {
           <div>
             {data.headline && <h3 className="title">{data.headline}</h3>}
             {data.text && <p className="text">{data.text}</p>}
-            {data.buttons &&
-              data.buttons.map((button, index) => (
-                <RenderButton key={index} button={button} index={index} />
-              ))}
+            {data.buttons?.map((button, index) => (
+              <RenderButton key={button.id} button={button} index={index} />
+            ))}
           </div>
           <div className="learnImageWrapper">
             <Image
               className="learnImage"
-              src="/img/flyingTina.png"
+              src="/img/3d-flying-llama.png"
               alt="Tina learning"
               width={600}
               height={600}
@@ -109,7 +108,7 @@ export function FlyingBlock({ data, index }) {
         }
 
         .title {
-          font-family: var(--font-tuner);
+          font-family: var(--font-ibm-plex);
           font-weight: bold;
           line-height: 1.4;
           margin-bottom: 1.5rem;

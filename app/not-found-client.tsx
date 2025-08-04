@@ -4,6 +4,7 @@ import enLocale from 'content/not-found/en.json';
 import zhLocale from 'content/not-found/zh.json';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useState } from 'react';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
@@ -25,18 +26,18 @@ const PageLayout = ({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24">
       <div className="flex flex-col">
         <div className="mb-7">
-          <h2 className="font-tuner text-6xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 via-orange-500 inline-block">
+          <h2 className="font-ibm-plex text-6xl leading-tight text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600 via-orange-500 inline-block">
             {title}
           </h2>
           <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
-          <p className="text-lg lg:text-xl lg:leading-normal block bg-gradient-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+          <p className="text-lg lg:text-xl lg:leading-normal block bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
             {description}
           </p>
         </div>
         {children}
       </div>
       <div className="max-w-[65vw] mx-auto md:max-w-none">
-        <div className="relative aspect-square rounded-3xl overflow-hidden">
+        <div className="relative rounded-3xl overflow-hidden">
           <Image
             src="/img/rico-replacement.jpg"
             alt={imageAlt}
@@ -247,15 +248,21 @@ const parsePath = (pathname: string, localeList: string[]) => {
   const isBlogRoot = routeType === 'blog' && segments.length === 2;
 
   const routeKey = isBlogPagination || isBlogRoot ? 'blog/page' : routeType;
-  const pathWithoutPrefix = ((type: string, segs: string[]) => {
-    if (isBlogPagination) return segs.slice(2).join('/');
-    if (isBlogRoot) return 'page/1';
-    if (segs.length === 2) return '';
+  const pathWithoutPrefix = ((_type: string, segs: string[]) => {
+    if (isBlogPagination) {
+      return segs.slice(2).join('/');
+    }
+    if (isBlogRoot) {
+      return 'page/1';
+    }
+    if (segs.length === 2) {
+      return '';
+    }
     return segs.slice(2).join('/');
   })(routeType, segments);
 
   console.log(
-    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`
+    `[debug] pathname: ${pathname}, segments: ${segments}, routeKey: ${routeKey}, pathWithoutPrefix: ${pathWithoutPrefix}`,
   );
 
   return {
@@ -272,7 +279,7 @@ const queryPage = async (pathInfo: {
 }) => {
   try {
     const { routeKey, pathWithoutPrefix } = pathInfo;
-    const config = routeConfig[routeKey] || routeConfig['default'];
+    const config = routeConfig[routeKey] || routeConfig.default;
     const isDefaultRoute = config.type === 'page';
 
     try {
@@ -321,10 +328,6 @@ export default function NotFoundClient() {
   const pathInfo = parsePath(pathname, localeList);
   const content = localeContent[pathInfo.locale] || localeContent.en;
 
-  if (!pathInfo.needsQuery) {
-    return <NotFoundContent content={content} />;
-  }
-
   useEffect(() => {
     async function checkPageExists() {
       try {
@@ -343,6 +346,10 @@ export default function NotFoundClient() {
 
     checkPageExists();
   }, [pathInfo]);
+
+  if (!pathInfo.needsQuery) {
+    return <NotFoundContent content={content} />;
+  }
 
   if (loading) {
     return <LoadingPage content={content} />;

@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useImportType: <TODO>
 import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronCircleDown } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -9,11 +10,11 @@ export const RecipeBlock = ({ data }) => {
 
   const [highlightLines, setHighlightLines] = useState('');
   const [clickedInstruction, setClickedInstruction] = useState<number | null>(
-    null
+    null,
   );
   //LHSheight is the height used for the instructions block when the screen is >= 1024px
   const [LHSheight, setLHSheight] = useState<string | null>(null);
-  const [CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
+  const [_CodeBlockWidth, setCodeBlockWidth] = useState<string | null>(null);
   const [isBottomOfInstructions, setIsBottomOfInstructions] =
     useState<boolean>(false);
 
@@ -29,7 +30,7 @@ export const RecipeBlock = ({ data }) => {
     return () => {
       document.head.removeChild(style);
     };
-  }, [highlightLines]);
+  }, []);
 
   useEffect(() => {
     setLHSheight(`${codeblockRef.current?.offsetHeight}`);
@@ -44,7 +45,7 @@ export const RecipeBlock = ({ data }) => {
   const handleInstructionClick = (
     index: number,
     codeLineStart?: number,
-    codeLineEnd?: number
+    codeLineEnd?: number,
   ) => {
     setHighlightLines(`${codeLineStart}-${codeLineEnd}`);
     setClickedInstruction(index === clickedInstruction ? null : index);
@@ -101,7 +102,7 @@ export const RecipeBlock = ({ data }) => {
   return (
     <div className="recipe-block-container relative w-full">
       <div className="title-description px-10">
-        <h2 className="font-tuner text-orange-500 text-2xl">
+        <h2 className="font-ibm-plex text-orange-500 text-2xl">
           {title || 'Default Title'}
         </h2>
         <p className="font-light py-2 text-base">
@@ -111,7 +112,7 @@ export const RecipeBlock = ({ data }) => {
 
       <div className="content-wrapper flex flex-col lg:flex-row px-10 items-stretch">
         <div
-          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh flex-shrink-0 flex-grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
+          className="instructions bg-gray-800 relative lg:w-1/3 max-h-50vh shrink-0 grow rounded-tl-xl rounded-br-xl lg:rounded-br-none rounded-tr-xl lg:rounded-tr-none lg:rounded-bl-xl flex flex-col"
           ref={instructionBlockRefs}
           style={{
             height:
@@ -121,7 +122,7 @@ export const RecipeBlock = ({ data }) => {
           }}
         >
           <div className={`${isBottomOfInstructions ? 'hidden' : ''}`}>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 lg:rounded-bl-xl pointer-events-none"></div>
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black opacity-60 lg:rounded-bl-xl pointer-events-none"></div>
             <FaChevronCircleDown
               onClick={handleDownArrowClick}
               className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 w-7 h-7 text-xl text-white cursor-pointer shadow-md
@@ -135,7 +136,8 @@ export const RecipeBlock = ({ data }) => {
           >
             {instruction?.map((inst, idx) => (
               <div
-                key={idx}
+                key={inst.id}
+                // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
                 ref={(el) => (instructionRefs.current[idx] = el)}
                 className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''}`}
@@ -143,11 +145,11 @@ export const RecipeBlock = ({ data }) => {
                   handleInstructionClick(
                     idx,
                     inst.codeLineStart,
-                    inst.codeLineEnd
+                    inst.codeLineEnd,
                   )
                 }
               >
-                <h5 className="font-tuner">{`${idx + 1}. ${
+                <h5 className="font-ibm-plex">{`${idx + 1}. ${
                   inst.header || 'Default Header'
                 }`}</h5>
                 <div

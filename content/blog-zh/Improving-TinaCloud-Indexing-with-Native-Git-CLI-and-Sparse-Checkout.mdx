@@ -1,0 +1,32 @@
+---
+seo:
+  title: 改进TinaCloud索引
+  description: >-
+    了解TinaCloud的原生Git CLI和稀疏检出如何提高索引性能，使内容管理对开发者来说更快更高效。
+title: ⚡通过原生Git CLI和稀疏检出改进TinaCloud索引
+date: '2024-06-18T14:00:00.000Z'
+last_edited: '2024-06-23T14:00:00.000Z'
+author: Brook Jeynes
+prev: content/blog-zh/Tina-sponsoring-NDC-Oslo-conference.mdx
+next: content/blog-zh/version-2.mdx
+---
+
+TinaCloud现在使用原生Git CLI来克隆仓库以进行索引。这显著减少了内存使用，并在索引过程的第一部分提高了大型仓库的性能。
+
+如果你在使用TinaCMS，那么你很可能在使用TinaCloud。当不自托管TinaCMS时，TinaCloud是TinaCMS交互的后端。它提供了诸如搜索文件等有用的功能。为了让Tina能够执行这些操作，你的仓库内容需要被索引。
+
+管理大规模仓库对团队来说是一个独特的挑战。内容索引过程最初是使用`isomorphic-git`实现的，这是一种基于Node.js的Git解决方案。这个方法在大多数情况下运行良好，但随着Tina的用例增长，仓库的规模也在扩大。最近，我们有一个用户在尝试索引其存储数百万文件的仓库时遇到了内存不足（OOM）错误。
+
+这些问题的根本原因是TinaCloud下载了整个仓库的内容，包括所有图像和二进制文件，即使在索引过程中只需要这些文件的一个子集。这导致了大量的内存消耗和索引过程第一部分的低效。
+
+我们很高兴地宣布，我们的内容索引过程有了显著的改进。通过从Node.js Git实现过渡到原生Git CLI，我们在仓库克隆和检出过程中获得了更多的控制，能够有效地解决内存不足的问题。
+
+解决方案的关键在于利用Git的稀疏检出功能，结合克隆命令提供的许多标志，这使我们能够准确指定要包含在工作目录中的文件和目录。我们能够读取Tina配置文件，只拉取索引项目所需的内容。
+
+通过实施这些更改，TinaCloud现在能够高效地仅拉取索引所需的文件，显著减少内存使用，并在索引过程的第一部分提高大型仓库的性能。
+
+![图表展示了使用原生Git CLI前后内存使用的减少。](/img/blog/Improving-TinaCloud-Indexing-with-Native-Git-CLI-and-Sparse-Checkout/chart-native-git_dn9gbf.png "在索引一个1.9GB的包含内容和图像的仓库时，内存使用从旧实现的7.9GB减少到新实现的883MB。")
+
+这一增强标志着TinaCloud在变得更加健壮和高效方面迈出了重要一步，确保用户无论仓库大小如何都能无缝管理其内容。
+
+我们很高兴能继续改进Tina，并期待着提供更多关于我们幕后工作的更新。如果你有任何反馈或问题，请随时通过[Discord](https://discord.com/invite/zumN63Ybpf)联系我们的团队，或访问我们的[文档](https://tinacms.org/docs)获取更多信息。

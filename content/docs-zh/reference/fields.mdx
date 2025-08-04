@@ -1,0 +1,364 @@
+---
+cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
+id: fields
+title: 字段
+last_edited: '2025-03-26T05:18:10.207Z'
+next: content/docs-zh/reference/templates.mdx
+previous: content/docs-zh/reference/collections.mdx
+---
+
+字段定义了内容结构，以及在编辑器中为特定[集合](/docs/reference/collections)显示的表单字段。
+
+这些字段被分类为字段类型——它们决定了存储的数据以及在编辑器中显示的输入组件。
+
+字段类型的选项包括：
+
+* [`string`](/docs/reference/types/string/)
+* [`number`](/docs/reference/types/number/)
+* [`datetime`](/docs/reference/types/datetime/)
+* [`boolean`](/docs/reference/types/boolean/)
+* [`image`](/docs/reference/types/image/)
+* [`reference`](/docs/reference/types/reference/)
+* [`object`](/docs/reference/types/object/)
+* [`rich-text`](/docs/reference/types/rich-text/)(markdown)
+
+基本类型定义如下所示。某些字段类型通过特定类型的选项扩展了以下类型定义。
+
+## 类型定义
+
+<apiReference
+  title=""
+  property={[
+    {
+      name: "name",
+      type: "string",
+      description: "字段的名称。\n",
+      required: true
+    },
+    {
+      name: "type",
+      type: "string",
+      description: "决定使用的数据类型和表单字段。\n",
+      required: true
+    },
+    {
+      name: "label",
+      type: "string",
+      description:
+        "在编辑器中显示的集合名称。如果省略，则使用`name`。\n"
+    },
+    {
+      name: "description",
+      type: "string",
+      description:
+        "将显示给用户的关于字段的简短描述。\n",
+      experimental: false
+    },
+    {
+      name: "required",
+      type: "boolean",
+      description: "如果为`true`，则在此字段没有值时禁用保存。\n",
+      default: "false"
+    },
+    {
+      name: "nameOverride",
+      type: "string",
+      description: "控制在内容文件中使用的字段名称。\n"
+    },
+    {
+      name: "isTitle",
+      type: "boolean",
+      description: "定义字段标题。\n\n仅限*String*字段。\n",
+      default: "false"
+    },
+    {
+      name: "isBody",
+      type: "boolean",
+      description:
+        "定义哪个字段保存到Markdown正文中。\n\n仅限*Text*（`rich-text`和`string`）字段。\n",
+      default: "false"
+    },
+    {
+      name: "options",
+      type: "array",
+      description:
+        "限制允许的值为给定选项。\n\n仅限*Scalar*字段。\n"
+    },
+    {
+      groupName: "ui",
+      name: "list",
+      type: "boolean",
+      description:
+        "这可以用于存储值的数组。[检查兼容性](/docs/reference/fields#list-fields)。\n"
+    },
+    {
+      groupName: "ui",
+      name: "min",
+      type: "number",
+      description: "列表字段的最小项目数量。\n"
+    },
+    {
+      groupName: "ui",
+      name: "max",
+      type: "number",
+      description: "列表字段的最大项目数量。\n"
+    },
+    {
+      groupName: "ui",
+      name: "validate",
+      type: "(value: any, allValues: any, meta: any, field: Field) => string | object | undefined",
+      description:
+        "用于自定义字段验证。[检查兼容性](/docs/reference/fields#validating-field-values)。\n"
+    },
+    {
+      groupName: "ui",
+      name: "parse",
+      type: "(value: any, name: string, field: F) => any",
+      description:
+        "修改保存到内容文档中的数据的函数。\n"
+    },
+    {
+      groupName: "ui",
+      name: "format",
+      type: "(value: any, name: string, field: F) => any",
+      description: "修改显示给用户的数据的函数。\n"
+    },
+    {
+      groupName: "ui",
+      name: "component",
+      type: "FC<any> | string | null",
+      description:
+        "用于[自定义字段组件](/docs/extending-tina/custom-field-components)。\n"
+    }
+  ]}
+/>
+
+### 名称
+
+在GraphQL模式中使用的字段名称。
+
+在同级字段中应是唯一的。
+
+<WarningCallout
+  body={<>
+    此名称不能包含空格、破折号或特殊字符。
+  </>}
+/>
+
+`nameOverride`属性可以设置为用于替换内容文件中的字段名称。在其他情况下仍将使用实际的名称属性。
+
+```javascript
+fields: [
+  {
+    name: 'my_field',
+    nameOverride: 'my-field',
+    //...
+  },
+];
+```
+
+### 字段标题
+
+`isTitle`控制在集合页面中为文件显示哪个字段。如果从未设置，将使用文件名。
+
+![](/img/docs/reference/SCR-20250313-ifbe.png)
+
+要使用此属性...
+
+* 保持它为顶级字段（在`collections.fields`或`collections.templates.fields`中定义）。
+* 在同一字段上设置`required`为true。
+* 每个集合中仅包含一个字段。
+
+### 字段（markdown）正文
+
+通常保存在markdown文件中的内容将存储在前置部分。
+
+`isBody`控制链接到正文部分的字段。
+
+要使用此属性...
+
+* 字段类型应为`rich-text`或`string`。
+* 集合应为`"mdx"`或`"md"`格式。
+* 每个集合中仅包含一个字段。
+
+## 列表字段
+
+指定`list: true`会创建一个关联字段的数组。
+
+* [引用字段类型](/docs/reference/types/reference/)不能设置为列表。为了解决这个问题，它们可以[被包装](/docs/reference/types/object/#using-list-object-as-a-wrapper-for-other-types)在一个标记为`list: true`的对象字段类型中。
+* 只有以下类型在CMS中内置了专用的列表UI...
+  * [字符串字段类型](https://tina.io/docs/reference/types/string/)
+  * [对象字段类型](/docs/reference/types/object/)
+  * [图像字段类型](/docs/reference/types/image/)
+
+![](/img/docs/schema/image-example.png)
+
+```js
+fields: [
+  {
+    label: 'Hero Image',
+    name: 'heroImage',
+    type: 'image',
+    list: true,
+  },
+];
+```
+
+### ui.max
+
+在[对象字段类型](/docs/reference/types/object/)的列表上设置`ui.max`，当至少添加了给定数量的元素后，会在编辑器中禁用添加按钮。
+
+![](/img/docs/reference/obj-list.png)
+
+<WarningCallout
+  body={<>
+    这不支持使用模板的对象。
+  </>}
+/>
+
+```javascript
+{
+  type: "object",
+  label: "对象列表",
+  name: "objectList",
+  list: true,
+  ui: {
+    max: 3,
+  },
+  // ...
+}
+```
+
+### ui.min 
+
+对于任何列表字段，如果设置了`ui.min`，则在项目少于最小数量时，删除按钮将变灰（见下图）。
+
+![](/img/docs/reference/llama-list.png)
+
+```javascript
+{
+  type: "string",
+  label: "羊驼",
+  name: "llamas",
+  list: true,
+  ui: {
+    min: 3,
+  }
+}
+```
+
+## 选择字段
+
+任何*标量*字段都可以接受一个`options`数组来限制允许的值。这会将编辑器组件更改为下拉菜单或复选框集。
+
+您可以传入一个值数组，或一个结构为以下的对象数组：
+
+| 选项属性 | 定义                                      |
+| --------------- | ----------------------------------------------- |
+| value           | 与选项关联的实际值。    |
+| label           | 在编辑器中显示的此选项的名称。 |
+
+### 复选框字段
+
+通过同时使用`options`和`list`属性创建一组复选框字段：
+
+![](/img/docs/reference/SCR-20250313-jzht.png)
+
+```js
+fields: [
+  {
+    name: 'categories',
+    type: 'string',
+    list: true,
+    options: [
+      {
+        value: 'movies',
+        label: 'Movies',
+      },
+      {
+        value: 'music',
+        label: 'Music',
+      },
+      //...
+    ],
+  },
+];
+```
+
+### 下拉字段
+
+通过使用`options`而不使用`list`属性创建一个下拉字段：
+
+![](/img/docs/reference/SCR-20250313-jzkn.png)
+
+```js
+fields: [
+  {
+    name: 'categories',
+    type: 'string',
+    options: [
+      {
+        value: 'movies',
+        label: 'Movies',
+      },
+      {
+        value: 'music',
+        label: 'Music',
+      },
+      //...
+    ],
+  },
+];
+```
+
+## 格式化字段值
+
+`format`和`parse`定义了控制渲染和保存内容的函数。
+
+在下面的示例中，当用户输入时，他们将看到所有小写字符。当保存时，将是所有大写字符。
+
+```ts
+// ...fields
+{
+ name: "username",
+ type: "string",
+ label: "用户名",
+ ui: {
+// 在每次表单更改时调用，但结果存储在数据中而不是表单值中（保存到文件但不显示给用户）
+   parse: (val?: string)=>val && val.toUpperCase(),
+// 在每次表单更改时调用，结果放回表单的值中（显示给用户）
+   format: (val?: string)=> (val ? val.toLowerCase() : ""),
+ },
+},
+```
+
+## 验证字段值
+
+Tina允许使用验证函数`ui.validate`进行客户端验证。如果值**无效**，此函数返回一个`string`错误消息；如果字段**有效**，则返回`null`。
+
+要在验证中包含表单的其他字段值，可以使用`allValues`参数。
+
+<WarningCallout
+  body={<>
+    不兼容引用、对象和富文本字段类型——它们有更复杂的内部结构。
+  </>}
+/>
+
+```javascript
+{
+  label: "标题",
+  name: "title",
+  type: "string",
+  ui: {
+    validate: (value, allValues) => {
+      const titleLength = value?.length || 0
+      const descLength = allValues?.description?.length || 0
+      if (titleLength >= descLength) {
+        return '描述必须比标题长'
+      }
+    }
+  }
+}
+```
+
+![](/img/docs/extending-tina/invalid1_fbnwh1.png)

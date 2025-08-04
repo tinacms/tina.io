@@ -21,6 +21,7 @@ export const TinaBanner = ({ data }) => {
             src={backdrop}
             alt="backdrop"
             fill
+            sizes="100vw"
             style={{
               objectFit: 'cover',
             }}
@@ -30,6 +31,7 @@ export const TinaBanner = ({ data }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
         <div className={`${imageCellSizing} hidden`}>
           {leftFig && (
+            // biome-ignore lint/performance/noImgElement: <TODO>
             <img
               src={leftFig}
               alt="content creator"
@@ -37,6 +39,7 @@ export const TinaBanner = ({ data }) => {
             />
           )}
           {leftScreen && (
+            // biome-ignore lint/performance/noImgElement: <TODO>
             <img
               src={leftScreen}
               alt="content creation UI"
@@ -46,6 +49,7 @@ export const TinaBanner = ({ data }) => {
         </div>
         <div className={`${imageCellSizing} flex w-full`}>
           {centerFig && (
+            // biome-ignore lint/performance/noImgElement: <TODO>
             <img
               src={centerFig}
               alt="creator developer signpost"
@@ -53,6 +57,7 @@ export const TinaBanner = ({ data }) => {
             />
           )}
           {llama && (
+            // biome-ignore lint/performance/noImgElement: <TODO>
             <img
               src={llama}
               alt="llama logo"
@@ -62,6 +67,7 @@ export const TinaBanner = ({ data }) => {
         </div>
         <div className={`${imageCellSizing} hidden`}>
           {rightScreen && (
+            // biome-ignore lint/performance/noImgElement: <TODO>
             <img
               src={rightScreen}
               alt="npx command UI"
@@ -69,6 +75,7 @@ export const TinaBanner = ({ data }) => {
             />
           )}
           {rightFig && (
+            // biome-ignore lint/performance/noImgElement: <TODO>
             <img
               src={rightFig}
               alt="developer"

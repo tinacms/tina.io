@@ -1,0 +1,45 @@
+---
+title: 布尔字段
+last_edited: '2025-03-13T04:45:39.806Z'
+next: ''
+previous: ''
+---
+
+一个用于存储`true`或`false`值的切换输入。
+
+## 类型定义
+
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: 'type',
+      type: 'string',
+      description: '将此设置为`"boolean"`以使用布尔字段。\n',
+      required: true,
+    },
+    {
+      name: 'name',
+      description: '供内部使用的字段名称。\n',
+      type: 'string',
+      required: true,
+    },
+  ]}
+/>
+
+## 示例
+
+Tina将根据提供的配置生成适当的组件。
+
+### 简单字段
+
+```javascript
+{
+  type: 'boolean',
+  name: 'published',
+  label: '已发布'
+}
+```
+
+![](/img/docs/reference/boolean.png)

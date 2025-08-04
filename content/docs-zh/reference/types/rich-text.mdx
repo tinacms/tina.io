@@ -1,0 +1,236 @@
+---
+title: 富文本字段
+last_edited: '2025-03-26T06:28:07.274Z'
+next: ''
+previous: content/docs-zh/extending-tina/customize-list-ui.mdx
+---
+
+富文本字段存储**Markdown内容**，并提供一个所见即所得的界面，支持文本格式化、链接、媒体和自定义元素（如果与mdx一起使用）。
+
+## 类型定义
+
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: '将此设置为 `"rich-text"` 以使用富文本字段。\n',
+      required: true
+    },
+    {
+      name: "name",
+      description: "字段的内部使用名称。\n",
+      type: "string",
+      required: true
+    },
+    {
+      name: "toolbarOverride",
+      description: "选择要显示的特定工具栏选项。\n",
+      type: "string[]"
+    },
+    {
+      name: "templates",
+      description:
+        'MDX支持。在编辑器中使用"embed"选项注入自定义React组件。\n',
+      type: "Template[]"
+    }
+  ]}
+/>
+
+> `templates`属性用于`mdx`支持。
+
+<WarningCallout
+  body={<>
+    `"children"` 不应作为富文本字段的 `name` 使用，因为它与应用程序的其他部分冲突。
+  </>}
+/>
+
+## 工具栏自定义
+
+`toolbarOverride`属性控制富文本编辑器中显示的选项。
+
+它可以设置为以下任意子集：
+
+```javascript
+toolbarOverride: [
+  'heading',
+  'link',
+  'image',
+  'quote',
+  'ul',
+  'ol',
+  'bold',
+  'italic',
+  'code',
+  'codeBlock',
+  'mermaid',
+  'table',
+  'raw',
+  'embed',
+];
+```
+
+## 换行
+
+要在TinaCMS富文本中插入空行换行：
+
+* 按Shift + Enter创建换行
+* 如果换行后没有跟随文本行，它将在最终输出中呈现为\。\
+  这可以通过删除并重新创建该行来修复\
+  确保换行前有文本内容以避免此问题
+
+> 此行为不是标准Markdown规范的一部分，而是TinaCMS富文本实现的特定行为。
+
+## 表格
+
+查看此视频，了解如何在富文本编辑器中使用表格：
+
+<Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
+
+> 不支持多行单元格，因为内容被序列化为Markdown。表格仅支持单行行和单元格。如果需要表示多行内容，请使用列表或单独的字段。
+
+***
+
+## 示例
+
+Tina将根据提供的配置生成适当的组件。
+
+### 简单字段
+
+```javascript
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+}
+```
+
+![](/img/docs/reference/rtf.png)
+
+### 带工具栏覆盖的简单字段
+
+更改要显示的内容及其在编辑器中的显示顺序
+
+```javascript
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+  toolbarOverride: ["heading","bold", "italic"],
+}
+```
+
+![](/img/docs/reference/blog-post.png)
+
+### 带自定义组件的字段（`mdx`）
+
+可以在富文本块中嵌入自定义组件。
+
+```ts
+{
+  label: "Body",
+  name: "body",
+  isBody: true,
+  type: "rich-text",
+  templates: [
+    {
+      name: "Cta",
+      label: "Cta",
+      fields: [{
+        name: "heading",
+        label: "Heading",
+        type: "string"
+      }
+    ]}
+  ]
+}
+```
+
+![](/img/docs/reference/custom-template.png)
+
+<GraphQLCodeBlock
+  query="This#is#some#text
+
+  <Cta#heading=&#x22;Welcome&#x22;#/>"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;body&#x22;:#{
+  ########&#x22;type&#x22;:#&#x22;root&#x22;,
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;p&#x22;,
+  ############&#x22;children&#x22;:#[
+  ##############{
+  ################&#x22;type&#x22;:#&#x22;text&#x22;,
+  ################&#x22;text&#x22;:#&#x22;This#is#some#text&#x22;
+  ##############}
+  ############]
+  ##########},
+  ##########{
+  ############&#x22;type&#x22;:#&#x22;mdxJsxFlowElement&#x22;,
+  ############&#x22;name&#x22;:#&#x22;Cta&#x22;,
+  ############&#x22;props&#x22;:#{
+  ##############&#x22;heading&#x22;:#&#x22;Welcome&#x22;
+  ############}
+  ##########}
+  ########]
+  ######}
+  ####}
+  ##}
+  }"
+  preselectResponse={true}
+  customQueryName="Markdown"
+  customResponseName="Parsed AST"
+/>
+
+### 带默认富文本值的集合
+
+要为富文本字段设置默认值，应指定整个AST树，如下例所示。
+
+> 推荐的方法是填写您的数据，然后`console.log`相关字段的CMS API返回值。\
+> \
+> 然后将其复制到集合的`defaultItem`属性中。
+
+```javascript
+{
+  label: 'Blog Posts',
+  name: 'post',
+  path: 'content/posts',
+  defaultItem: () => {
+    return {
+      title: 'My New Post',
+      body: {
+        type: 'root',
+        children: [
+          {
+            type: 'p',
+            children: [
+              {
+                type: 'text',
+                text: 'Default Text',
+              },
+            ],
+          },
+        ],
+      },
+    }
+  },
+  fields: [
+    {
+      type: 'string',
+      label: 'Title',
+      name: 'title',
+    },
+    {
+      type: 'string',
+      label: 'Post Body',
+      name: 'body',
+      isBody: true,
+    },
+  ],
+}
+```

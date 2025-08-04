@@ -1,0 +1,212 @@
+---
+id: /docs/graphql/queries/advanced/filter-documents
+title: 过滤查询结果
+last_edited: '2025-03-26T03:58:37.682Z'
+next: ''
+previous: ''
+---
+
+Tina会自动为在你的模式中定义的集合创建过滤器。
+
+要过滤集合结果，请将`filter`参数传递给`<collection>Connection`查询，然后为集合中的字段使用任何过滤[操作符类型](/docs/graphql/queries/advanced/filter-documents/#operator-types)。
+
+`filter`对象是一组嵌套的条件，其中键对应于集合字段，值描述条件。
+
+条件可以是“二元”或“三元”的。二元条件由一个操作符和一个操作数组成（例如`{"eq":"foo"}`）。三元条件由两个操作符和两个操作数组成（例如`{"gt":0, "lte": 10}`）。
+
+## 操作符类型
+
+| 键         | 行为                     | 类型                             |
+| :--------- | ------------------------ | -------------------------------- |
+| eq         | 等于                     | string, number, boolean          |
+| in         | 其中之一                 | string\[], number\[], boolean\[] |
+| gt         | 大于                     | string, number                   |
+| gte        | 大于或等于               | string, number                   |
+| lt         | 小于                     | string, number                   |
+| lte        | 小于或等于               | string, number                   |
+| startsWith | 以...开始                | string                           |
+| after      | 之后                     | datetime                         |
+| before     | 之前                     | datetime                         |
+
+> 只有`gt`、`gte`、`lt`、`lte`、`after`、`before`可以用于三元条件。
+
+## 示例
+
+### 在字段上进行过滤
+
+这里我们将使用`postConnection`查询我们的`post`集合，并通过帖子`title`过滤结果：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{title:#{startsWith:#&#x22;Vote&#x22;}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### 使用IN操作符在字段上进行过滤
+
+这里我们将使用`postConnection`查询我们的`post`集合，并过滤结果以便仅返回指定`category`的成员：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{category:#{in:#[&#x22;politics&#x22;]}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### 在日期范围上进行过滤
+
+这里我们将使用`postConnection`查询我们的`post`集合，并过滤结果以便仅返回在指定范围内具有`date`的帖子：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{date:#{after:#&#x22;2022-06-01T07:00:00.000Z&#x22;,#before:#&#x22;2022-06-30T07:00:00.000Z&#x22;}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+### 在多个字段上进行过滤
+
+可以在多个字段上进行过滤。多个条件目前被视为布尔`AND`操作。这里我们将使用`postConnection`查询我们的`post`集合，并通过`category`和`title`过滤结果：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{category:#{in:#[&#x22;politics&#x22;]},#title:#{startsWith:#&#x22;Vote&#x22;}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>
+
+#### 在引用上进行过滤
+
+这里我们将使用`postConnection`查询我们的`post`集合，并在引用的`author`的名字上进行过滤：
+
+<GraphQLCodeBlock
+  query="{
+  ##postConnection(filter:#{author:#{author:#{name:#{eq:#&#x22;Napolean&#x22;}}}})#{
+  ####edges#{
+  ######node#{
+  ########id
+  ########title
+  ########category
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;postConnection&#x22;:#{
+  ######&#x22;edges&#x22;:#[
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Just#Another#Blog#Post&#x22;,
+  ############&#x22;category&#x22;:#&#x22;lifestyle&#x22;
+  ##########}
+  ########},
+  ########{
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;id&#x22;:#&#x22;content/posts/voteForPedro.json&#x22;,
+  ############&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ############&#x22;category&#x22;:#&#x22;politics&#x22;
+  ##########}
+  ########}
+  ######]
+  ####}
+  ##}
+  }"
+/>

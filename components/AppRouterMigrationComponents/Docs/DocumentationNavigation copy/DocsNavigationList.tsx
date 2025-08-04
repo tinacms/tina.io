@@ -1,13 +1,11 @@
-import React, { createContext } from 'react';
-import styled, { css } from 'styled-components';
-import { DocsNavProps } from 'components/DocumentationNavigation';
+import type { DocsNavProps } from 'components/DocumentationNavigation';
 import { useRouter } from 'next/router';
+import React from 'react';
+import AnimateHeight from 'react-animate-height';
+import { BiChevronRight } from 'react-icons/bi';
+import styled, { css } from 'styled-components';
 import { matchActualTarget } from 'utils';
 import { DynamicLink } from '../../../../components/ui';
-import docsLinks from '../../../../content/docs-navigation.json';
-import { BiChevronRight } from 'react-icons/bi';
-import AnimateHeight from 'react-animate-height';
-import data from '../../../../content/siteConfig.json';
 
 interface NavTitleProps {
   level: number;
@@ -17,8 +15,6 @@ interface NavTitleProps {
   onClick?: () => void;
 }
 
-
-
 const NavTitle = ({
   children,
   level = 3,
@@ -27,7 +23,7 @@ const NavTitle = ({
   ...props
 }: NavTitleProps) => {
   const headerLevelClasses = {
-    0: 'opacity-100 font-tuner-light text-orange-500 text-xl pt-2',
+    0: 'opacity-100 font-ibm-plex-light text-orange-500 text-xl pt-2',
     1: {
       default: 'text-base font-sans pt-1 text-gray-800',
       selected: 'text-base font-sans pt-1 font-bold text-blue-500',
@@ -49,8 +45,8 @@ const NavTitle = ({
   const selectedClass = selected
     ? 'selected'
     : childSelected
-    ? 'childSelected'
-    : 'default';
+      ? 'childSelected'
+      : 'default';
   const classes =
     level < 1
       ? headerLevelClasses[headerLevel]
@@ -67,7 +63,7 @@ const NavTitle = ({
 };
 
 const hasNestedSlug = (navItems = [], slug) => {
-  for (let item of navItems) {
+  for (const item of navItems) {
     if (matchActualTarget(item.slug || item.href, slug)) {
       return true;
     }
@@ -96,12 +92,11 @@ const NavLevel = ({
   const [expanded, setExpanded] = React.useState(
     matchActualTarget(slug || categoryData.href, path) ||
       hasNestedSlug(categoryData.items, path) ||
-      level === 0
+      level === 0,
   );
 
-
   const selected =
-    path.split('#')[0] == slug || (slug == '/docs' && path == '/docs/');
+    path.split('#')[0] === slug || (slug === '/docs' && path === '/docs/');
 
   const childSelected = hasNestedSlug(categoryData.items, router.asPath);
   React.useEffect(() => {
@@ -126,7 +121,7 @@ const NavLevel = ({
         });
       }
     }
-  }, [navLevelElem.current, navListElem, selected]);
+  }, [navListElem, selected]);
   return (
     <>
       <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
@@ -159,19 +154,16 @@ const NavLevel = ({
             )}
           </NavTitle>
         )}
-        
+
         {!childSelected && selected && level > 0 && (
-          <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"
-            
-          ></div>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[5px] w-full -z-10"></div>
         )}
       </NavLabelContainer>
       {categoryData.items && (
         <AnimateHeight duration={300} height={expanded ? 'auto' : 0}>
           <NavLevelChildContainer level={level}>
             {(categoryData.items || []).map((item) => (
-              <div>
+              <div key={item.id}>
                 <NavLevel
                   key={item.slug ? item.slug + level : item.title + level}
                   navListElem={navListElem}
@@ -245,20 +237,18 @@ export const DocsNavigationList = ({ navItems }: DocsNavProps) => {
   const navListElem = React.useRef(null);
 
   return (
-    <>
-      <DocsNavigationContainer ref={navListElem}>
-        {navItems?.map((categoryData) => (
-          <NavLevel
-            key={
-              'mobile-' +
-              (categoryData.slug ? categoryData.slug : categoryData.title)
-            }
-            navListElem={navListElem}
-            categoryData={categoryData}
-          />
-        ))}
-      </DocsNavigationContainer>
-    </>
+    <DocsNavigationContainer ref={navListElem}>
+      {navItems?.map((categoryData) => (
+        <NavLevel
+          key={
+            'mobile-' +
+            (categoryData.slug ? categoryData.slug : categoryData.title)
+          }
+          navListElem={navListElem}
+          categoryData={categoryData}
+        />
+      ))}
+    </DocsNavigationContainer>
   );
 };
 
@@ -286,7 +276,7 @@ const DocsNavigationContainer = styled.div`
   }
 `;
 
-const AnchorIcon = styled.span`
+const _AnchorIcon = styled.span`
   display: inline-block;
   position: relative;
   transform: translate3d(0, 0, 0);

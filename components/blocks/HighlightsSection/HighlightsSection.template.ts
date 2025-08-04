@@ -1,4 +1,4 @@
-import { Template, wrapFieldsWithMeta } from 'tinacms';
+import { type Template, wrapFieldsWithMeta } from 'tinacms';
 import IconSelector from '../../forms/IconSelector';
 
 export const highlightsSectionTemplate: Template = {

@@ -1,0 +1,55 @@
+---
+id: /docs/editing/single-document-collections
+title: 单文档集合
+last_edited: '2025-03-13T01:04:41.188Z'
+next: ''
+previous: content/docs-zh/editing/blocks.mdx
+---
+
+## 概述
+
+在Tina中，单文档集合指的是只能容纳一个文档的集合。在UI中，可以通过将`ui.allowedActions.create`和`ui.allowedActions.delete`设置为false来实现禁用创建和删除按钮。有关更多信息，请参阅[集合参考](/docs/reference/collections/ "Collection reference")。
+
+```javascript
+export default defineConfig({
+  collections: [
+    {
+      label: '站点设置',
+      name: 'siteSettings',
+      path: 'content/settings',
+      format: 'json',
+      fields: [
+        {
+          type: 'string',
+          label: '站点标题',
+          name: 'title',
+        },
+      ],
+      ui: {
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
+      },
+    },
+  ],
+});
+```
+
+一旦应用了这两个设置，并且文档只包含一个文件，UI将跳过列表页面，直接将用户引导到文档。
+
+<WebmEmbed embedSrc="/video/single-collection-demo.webm" />
+
+## 注意事项
+
+目前，查询生成不可用，这意味着您需要编写自己的[自定义查询](/docs/data-fetching/custom-queries/ "Custom Query Docs")。
+
+值得注意的是，设置`ui.allowedActions`仅仅是修改用户界面。如果您希望阻止API向集合中添加更多文件，可以使用`match`属性，如[集合文档](/docs/reference/collections/#matchinclude)中所述。
+
+```javascript
+match: {
+  include: 'documentName'
+}
+```
+
+通过实现这一点，将阻止创建新文档。

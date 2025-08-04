@@ -1,0 +1,98 @@
+---
+seo:
+  title: Tina 支持 MDX | TinaCMS 博客
+  description: >-
+    TinaCMS 现在支持 MDX，允许在 Markdown 中集成 React 组件，以实现更动态和可定制的内容管理。
+title: Tina 现在支持 MDX。
+date: '2021-10-26T08:00:00-04:00'
+last_edited: '2021-10-26T08:00:00-04:00'
+author: James Perkins
+prev: content/blog-zh/our-friend-frank-taillandier.mdx
+next: content/blog-zh/mdx-powered-docs.mdx
+---
+
+Tina 团队致力于革新 CMS 领域。我们是首个提供实时可视化编辑的团队，这使得团队能够更高效地工作。现在，我们推出了全球首个 MDX 的 UI 编辑器。这使得内容团队可以通过单击添加组件到页面中。
+
+<Youtube embedSrc="https://www.youtube.com/embed/yYysK7rCNM4" />
+
+你可以在我们的 [GitHub](https://github.com/tinacms/tina-docs-starter) 上查看我们的入门仓库，或者在我们的 [快速入门](https://app.tina.io/quickstart?utm_source=blog\&utm_medium=link\&utm_campaign=mdx_announcement) 流程中选择 `Documentation Starter`。
+
+## 为什么选择 MDX？
+
+MDX 允许在 Markdown 文件中编写 JSX，这使得开发者能够创建动态、互动和可定制的内容。MDX 的问题在于，你需要具备一定的技术理解才能使用和创建 MDX 内容。这就是我们赋予非技术团队成员通过单击使用可重用组件的能力的地方。这意味着内容团队可以快速行动，而开发者可以专注于其他项目。
+
+## 如何开始使用 MDX？
+
+查看开始使用 MDX 的步骤：
+
+### 更新到最新版本的 Tina
+
+你需要将 `tinacms` 和 `@tinacms/cli` 更新到最新版本以使用 MDX 功能。
+
+### 创建你希望内容团队使用的组件。
+
+像往常一样创建一个组件，并为你希望可编辑的任何部分使用 props，下面是一个提示组件的示例：
+
+```javascript
+...
+export default function Callout({callout}) {
+return(
+        <CalloutWrapper type={backgroundColor[callout.type]} >
+          <CalloutLabel >{label[callout.type] || callout.type}</CalloutLabel>
+          <CalloutText textColor={textColor[callout.type] || textColor.default}>{callout?.text}</CalloutText>
+        </CalloutWrapper>
+)}
+```
+
+1. 将组件的字段添加到你的 `schema.ts`
+
+```typescript
+...
+{
+          type: "rich-text",
+          label: "Body",
+          name: "body",
+          templates: [
+            {
+              name: "Callout",
+              label: "Callout",
+              fields:[
+                {
+                  name: "type",
+                  label: "Type",
+                  type: "string",
+                  options: ["default", "warning", "error"],
+                },
+                {
+                  name: "text",
+                  label: "Text",
+                  type: "string",
+                },
+              ]
+            },
+        ],
+          isBody: true,
+},
+...
+```
+
+1. 将组件添加到由 Tina 驱动的页面中。
+
+```javascript
+//imports
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import Callout from '../../blocks/callout-block';
+
+const components = {
+  Callout: (props) => {
+    return <Callout callout={props} />;
+  },
+};
+
+// Code removed for simplification
+<TinaMarkdown components={components}>{props.data.docs.body}</TinaMarkdown>;
+```
+
+### 准备好开始了吗？
+
+你可以在我们的 [GitHub](https://github.com/tinacms/tina-docs-starter) 上查看我们的入门仓库，或者在我们的 [快速入门](https://app.tina.io/quickstart?utm_source=blog\&utm_medium=link\&utm_campaign=mdx_announcement) 流程中选择 `Documentation Starter`。

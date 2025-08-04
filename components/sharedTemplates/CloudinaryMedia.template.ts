@@ -1,10 +1,10 @@
-import { Template } from "tinacms"
+import type { Template } from 'tinacms';
 
 export const cloudinaryMediaComponent: Template = {
-    label: 'Cloudinary Media Component',
-    name: 'cloudinaryMediaComponent',
-    fields: [
-        {name: 'media', label: 'media', type: 'image'},
-        {name: 'thumbnail', label: 'thumbnail', type: 'image'}
-    ]
-}
+  label: 'Cloudinary Media Component',
+  name: 'cloudinaryMediaComponent',
+  fields: [
+    { name: 'media', label: 'media', type: 'image' },
+    { name: 'thumbnail', label: 'thumbnail', type: 'image' },
+  ],
+};

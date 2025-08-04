@@ -1,4 +1,6 @@
-import { Template, wrapFieldsWithMeta } from 'tinacms';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
+import React from 'react';
+import type { Template } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
@@ -10,7 +12,7 @@ export const docsCollection = {
   path: 'content/docs',
   format: 'mdx',
   ui: {
-    beforeSubmit: async ({ values, cms, form }) => {
+    beforeSubmit: async ({ values }) => {
       return {
         ...values,
         last_edited: new Date().toISOString(),
@@ -18,6 +20,43 @@ export const docsCollection = {
     },
   },
   fields: [
+    {
+      name: 'cmsUsageWarning',
+      label: 'CMS Usage Warning',
+      type: 'string',
+      ui: {
+        component: ({ input }) => {
+          return (
+            <div>
+              {input.value && (
+                <div className="bg-gradient-to-b from-red-800 to-black text-white p-4 rounded-md my-4 text-wrap wrap-break-word w-full text-xm">
+                  <p>
+                    ⚠️ This page is included in the CMS application in error
+                    messages.
+                    <br />
+                    <br />
+                    <div className="opacity-90">
+                      Be careful to preserve <b>title fragments</b>, <b>slug</b>{' '}
+                      and other metadata when editing this document.
+                      <br />
+                      URL:{' '}
+                      <a
+                        href={input.value}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-200 underline hover:text-blue-500"
+                      >
+                        GitHub
+                      </a>
+                    </div>
+                  </p>
+                </div>
+              )}
+            </div>
+          );
+        },
+      },
+    },
     {
       ...seoInformation,
       description:
@@ -167,8 +206,8 @@ export const docsCollection = {
               ui: {
                 /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                 component: 'textarea',
-                format: (val?: string) => val && val.replaceAll('#', ' '),
-                parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                format: (val?: string) => val?.replaceAll('#', ' '),
+                parse: (val?: string) => val?.replaceAll(' ', '#'),
               },
             },
             {
@@ -180,8 +219,8 @@ export const docsCollection = {
               ui: {
                 /* TODO - remove as per https://github.com/tinacms/tina.io/issues/2047 */
                 component: 'textarea',
-                format: (val?: string) => val && val.replaceAll('#', ' '),
-                parse: (val?: string) => val && val.replaceAll(' ', '#'),
+                format: (val?: string) => val?.replaceAll('#', ' '),
+                parse: (val?: string) => val?.replaceAll(' ', '#'),
               },
             },
             {

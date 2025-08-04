@@ -7,14 +7,14 @@ interface Heading {
 }
 
 function createHeadings(
-  contentRef: React.RefObject<HTMLDivElement>
+  contentRef: React.RefObject<HTMLDivElement>,
 ): Heading[] {
   const headings = [];
   const htmlElements = contentRef.current.querySelectorAll(
-    'h1, h2, h3, h4, h5, h6'
+    'h1, h2, h3, h4, h5, h6',
   );
 
-  htmlElements.forEach(function (heading: HTMLHeadingElement) {
+  htmlElements.forEach((heading: HTMLHeadingElement) => {
     headings.push({
       id: heading.id,
       offset: heading.offsetTop,
@@ -26,55 +26,48 @@ function createHeadings(
 
 export function createTocListener(
   contentRef: React.RefObject<HTMLDivElement>,
-  setActiveIds: (activeIds: string[]) => void
+  setActiveIds: (activeIds: string[]) => void,
 ): () => void {
   let tick = false;
-  const THROTTLE_INTERVAL = 100;
   const headings = createHeadings(contentRef);
-  //Find the maximum pixel value from vertical scroll
   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
 
   const relativePositionHeadingMap = headings.map((heading) => {
     return {
       ...heading,
-      //Find the relative position of the heading based on the page content.
       relativePagePosition: heading.offset / contentRef.current.scrollHeight,
     };
   });
 
-  const throttledScroll = () => {
-    //Find the current vertical scroll pixel value
+  const handleScroll = () => {
     const scrollPos = window.scrollY;
     const newActiveIds = [];
-    //Find the relative position on the page based on the scroll.
     const relativeScrollPosition = scrollPos / maxScrollY;
-    //Find the headings that are above the current scroll position
-    //This is adjusted to account for differences between min/max scroll values and content height
     const activeHeadingCandidates = relativePositionHeadingMap.filter(
       (heading) => {
         return relativeScrollPosition >= heading.relativePagePosition;
-      }
+      },
     );
 
     const activeHeading =
       activeHeadingCandidates.length > 0
         ? activeHeadingCandidates.reduce((prev, current) =>
-            prev.offset > current.offset ? prev : current
+            prev.offset > current.offset ? prev : current,
           )
-        : headings[0] ?? {};
+        : (headings[0] ?? {});
     newActiveIds.push(activeHeading.id);
 
-    if (activeHeading.level != 'H2') {
+    if (activeHeading.level !== 'H2') {
       const activeHeadingParentCandidates =
         activeHeadingCandidates.length > 0
           ? activeHeadingCandidates.filter((heading) => {
-              return heading.level == 'H2';
+              return heading.level === 'H2';
             })
           : [];
       const activeHeadingParent =
         activeHeadingParentCandidates.length > 0
           ? activeHeadingParentCandidates.reduce((prev, current) =>
-              prev.offset > current.offset ? prev : current
+              prev.offset > current.offset ? prev : current,
             )
           : null;
 
@@ -86,14 +79,14 @@ export function createTocListener(
     setActiveIds(newActiveIds);
   };
 
-  return function onScroll(): void {
+  return () => {
     if (!tick) {
-      setTimeout(function () {
-        throttledScroll();
+      window.requestAnimationFrame(() => {
+        handleScroll();
         tick = false;
-      }, THROTTLE_INTERVAL);
+      });
+      tick = true;
     }
-    tick = true;
   };
 }
 
@@ -117,10 +110,6 @@ export function useHookWithRefCallback() {
 }
 
 export function useWindowSize() {
-  if (typeof window !== 'undefined') {
-    return { width: 1200, height: 800 };
-  }
-
   const [windowSize, setWindowSize] = React.useState<{
     width: number;
     height: number;
@@ -132,14 +121,18 @@ export function useWindowSize() {
     });
   }, []);
 
+  if (typeof window !== 'undefined') {
+    return { width: 1200, height: 800 };
+  }
+
   return windowSize;
 }
 
-export function useTocListener(data) {
+export function useTocListener(_data) {
   const [activeIds, setActiveIds] = React.useState([]);
   const [setRef, ref] = useHookWithRefCallback();
 
-  const windowSize = useWindowSize();
+  const _windowSize = useWindowSize();
 
   React.useEffect(() => {
     if (typeof window === `undefined` || !(ref as any).current) {
@@ -147,10 +140,10 @@ export function useTocListener(data) {
     }
 
     const activeTocListener = createTocListener(ref as any, setActiveIds);
-    window.addEventListener('scroll', activeTocListener);
+    window.addEventListener('scroll', activeTocListener, { passive: true });
 
     return () => window.removeEventListener('scroll', activeTocListener);
-  }, [(ref as any).current, data, windowSize]);
+  }, [ref]);
 
   return { contentRef: setRef, activeIds };
 }

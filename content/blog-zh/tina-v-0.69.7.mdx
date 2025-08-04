@@ -1,0 +1,70 @@
+---
+seo:
+  title: Tina v0.69.7 | TinaCMS 博客
+  description: >-
+    TinaCMS v0.69.7 解决了图像处理的问题并改进了错误日志记录，使得问题的跟踪和排查更加容易。
+title: TinaCMS V0.69.7
+date: '2022-09-14T04:00:00.000Z'
+last_edited: '2022-09-14T04:00:00.000Z'
+author: James O'Halloran
+prev: content/blog-zh/tina-v-0.68.14.mdx
+next: content/blog-zh/getting-started-with-tinacms.mdx
+---
+
+TinaCMS 版本 `0.69.7` 带来了一些修复、改进的错误处理和整体的开发者体验改进。
+
+## 更简单的“路由器”API
+
+现在可以在集合的定义中配置路由映射。
+
+```tsx
+// ...
+  name: 'post',
+  path: 'posts',
+  ui: {
+    router: ({ document }) => {
+      // 例如，帖子项目可以在 posts/hello-world 预览
+      return `/posts/${document._sys.filename}`;
+    },
+  },
+// ...
+```
+
+[查看上下文编辑文档](/docs/contextual-editing/overview)
+
+## 更简单的“全局表单”API
+
+可以在集合的定义中将集合标记为“全局”。
+
+```tsx
+// ...
+name: 'post',
+path: 'posts',
+ui: {
+  global: true
+},
+// ...
+```
+
+全局表单可以从任何页面进行编辑。它们通过侧边栏访问。
+
+![全局表单侧边栏](/img/blog/0.69.7/index-json.png)
+
+![全局表单](/img/blog/0.69.7/global-form.png)
+
+## 事件日志 UI
+
+侧边栏现在链接到一个“事件日志”UI，这使得调试诸如 GitHub 到 Tina 的连接中断等问题更加容易。
+
+![事件日志 UI](/img/blog/0.69.7/event-log.png)
+
+## S3 和“Digital Ocean Spaces”媒体存储
+
+文档仍在进行中，但与此同时你可以查看 [S3 PR](https://github.com/tinacms/tinacms/pull/3124) 和 [Digital Ocean Spaces PR](https://github.com/tinacms/tinacms/pull/3102)。
+
+## 其他改进和修复
+
+* 修复集合路径重叠的问题 [查看问题](https://github.com/tinacms/tinacms/issues/2947)
+* 改进 CLI 构建的错误输出
+* 修复 Windows 上的“create-tina-app”
+* 修复大图像预览过大以适应屏幕的问题

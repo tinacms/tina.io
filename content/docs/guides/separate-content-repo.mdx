@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-01-15T22:07:55.023Z'
+last_edited: '2025-07-09T14:11:28.314Z'
 next: ''
 previous: ''
 ---
@@ -20,7 +20,7 @@ You might want to do this for a variety of reasons, such as:
 
 <WarningCallout
   body={<>
-    Throughout this guide we'll be referring to a &#x22;website repo&#x22; and a &#x22;content repo&#x22;. The &#x22;website repo&#x22; is where your actual website is running, while the &#x22;content repo&#x22; is where you'll be storing your markdown content
+    Throughout this guide we'll be referring to a "website repo" and a "content repo". The "website repo" is where your actual website is running, while the "content repo" is where you'll be storing your markdown content
   </>}
 />
 
@@ -30,10 +30,11 @@ You might want to do this for a variety of reasons, such as:
 * You must provide the location of your content repo in your Tina config (more about that below).
 * When making changes, you'll need to ensure you've pushed *both* repos to GitHub, with the "content repo"
   changes first
+* When making changes you will need to sync the generated files in `tina/` (such as `tina-lock.json`, `__generated__` files etc) between your website repo and content repo
 
 ## Create the website repository
 
-We have deployed a basic starting "website repo", which you can clone to get started.
+We have deployed a basic starting "[website repo](https://github.com/tinacms/separate-website-repo)", which you can clone to get started.
 
 ```sh
 git clone git@github.com:tinacms/separate-website-repo.git
@@ -49,7 +50,7 @@ To set up the "content repo", we'll start with a simple `.mdx` file:
 mkdir -p ../demo-content-repo/content/pages && touch ../demo-content-repo/content/pages/home.mdx && echo "Hello" >> ../demo-content-repo/content/pages/home.mdx
 ```
 
-This command created a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
+This command creats a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
 
 ## Local Development
 
@@ -75,9 +76,9 @@ From here you can add more fields to you content models in `tina/config.js`. [Vi
 
 Next we'll want to create a TinaCloud project from our "content repo"
 
-Initialize Git in your content repo and push it to GitHub. From there [connect to TinaCloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
-
-Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
+1. Initialize Git in your content repo and push it to GitHub.
+2. From there [connect to TinaCloud](https://tina.io/docs/tina-cloud/dashboard/projects/)
+3. Once that's done, [create a token](https://tina.io/docs/tina-cloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
 
 Switch back to your "website repo" and set up an `.env` file to use when connecting to TinaCloud:
 
@@ -91,10 +92,87 @@ When you run `tinacms build`, it will use those credentials to connect to TinaCl
 yarn build
 ```
 
-## Learn More
+## Managing Schema Changes Across Repos
 
-To learn more about Tina, take a look at the following resources:
+When you modify your Tina schema ( tina/config.(ts/js) )
 
-* [Tina Docs](https://tina.io/docs)
+1. Run `tinacms build` to regenerate files - Tina will regenerate files such like your `tina-lock.json`
+2. Commit and push these changes to \*\*both \*\*your website repo and content repo to ensure compatibility across builds
 
-You can check out [Tina GitHub repository](https://github.com/tinacms/tinacms) - your feedback and contributions are welcome!
+## Path Configuration Considerations
+
+When defining collection paths inside your tina/config.(ts/js), avoid setting \`path: '' . As Tina expects a folder-relative path. Using an empty string `''` can result in errors when creating new documents because Tina prepends a `/` when saving, which can lead to invalid GitHub paths and creation errors.
+
+## Static Site Generator Compatibility
+
+If you are using a static site generate (SSG) other than Next.js, such like Astro. Ensure your content pipeline ignores the `tina/` directory inside your content repo. Tina's config files are not content files and this may cause parsing errors.
+
+Here's an example of how to exclude the \`tina/\` directory:
+
+```javascript
+export default defineCollection({
+  schema: mySchema,
+  exclude: ['tina/**/*'],
+});
+```
+
+## Triggering Website Builds from the Content Repo (Optional)
+
+When using a separate content repo, you may want content updates (e.g. from TinaCMS UI) to automatically trigger a build of your website. TinaCloud supports this out of the box using webhooks.
+
+### Using TinaCloud Webhooks (Recommended)
+
+TinaCloud can be configured to send a POST request to a webhook endpoint whenever content changes are committed. This is the recommended way to trigger a rebuild of your website.
+
+👉 Check out the [webhook functionality](https://tina.io/docs/tina-cloud/webhooks) for more details
+
+### Triggering Builds with GitHub Actions
+
+As an alternative to using webhooks, you can trigger website builds with GitHub Actions.\
+This is useful if your platform doesn’t support build webhooks, or if you want more control over the build process.
+
+#### Example Workflow
+
+Create a workflow file in your content repo (e.g. `.github/workflows/trigger-website-build.yml`):
+
+```yaml
+name: Trigger Website Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'your-org'
+
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.MY_APP_ID }}
+          private-key: ${{ secrets.MY_APP_PRIVATE_KEY }}
+          owner: your-org
+          repositories: your-website-repo
+
+      - name: Trigger website deploy
+        run: |
+          gh workflow run build-and-deploy.yml \
+            --repo your-org/your-website-repo \
+            --ref main \
+            --field run_id="$GITHUB_RUN_ID" \
+            --field branch_name="${GITHUB_REF#refs/heads/}"
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+```
+
+#### Prerequisites
+
+This setup requires:
+
+* A GitHub App with access to both repos
+* Token and app secrets saved in GitHub repo settings

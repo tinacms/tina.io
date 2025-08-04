@@ -1,0 +1,63 @@
+---
+id: /docs/drafts/draft-fields
+
+title: 草稿字段
+next: content/docs-zh/tina-cloud/editorial-workflow.mdx
+previous: content/docs-zh/drafts/overview.mdx
+---
+
+添加“草稿字段”是处理TinaCMS中“草稿”的一种方法
+
+## 什么是“草稿字段”？
+
+“草稿字段”只是简单的字段，用于指示文档是否为草稿。草稿字段没有任何特殊之处，它们与其他布尔字段没有任何区别。
+
+### 设置草稿字段
+
+可以将“草稿”字段添加到集合的顶级字段中。
+
+```ts
+const schema = defineSchema({
+  collections: [
+    {
+      name: 'post',
+      label: '文章',
+      path: 'content/posts',
+      fields: [
+        {
+          name: 'draft',
+          label: '草稿',
+          type: 'boolean',
+          required: true,
+          description: '如果选中此项，该文章将不会被发布',
+        },
+        // ... 其他字段
+      ],
+    },
+  ],
+});
+```
+
+> 注意：通常将草稿字段设置为必填是一个好的实践。这可能需要将草稿字段添加到您现有的文档中。
+
+### 从生产查询中排除草稿
+
+您可以添加一个过滤器，从查询中过滤掉草稿文档：
+
+```ts
+// 获取生产环境的文章
+const req = await client.queries.postConnection({
+  filter: { draft: { eq: false } },
+});
+
+// 获取所有文章
+const req = await client.queries.postConnection();
+```
+
+阅读更多关于查询数据的信息[这里](/docs/data-fetching/overview)。
+
+> 如果您在使用静态站点生成器（如Hugo）时使用了草稿字段，任何带有“draft: true”的文档将会被自动从您的生产站点中排除。
+
+## 注意事项：
+
+- 上述解决方案无法直接与[可视化编辑](/docs/contextual-editing/overview)一起使用。要设置带有草稿的可视化编辑，您需要实现[NextJS预览模式](/docs/guides/contextual-drafts)。

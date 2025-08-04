@@ -1,0 +1,436 @@
+---
+seo:
+  title: 从CMS到上下文可视化编辑 | TinaCMS博客
+  description: >-
+    了解TinaCMS如何从传统CMS过渡到上下文编辑，实现直接在您的实时网站中进行实时内容更新。
+title: 从CMS到可视化编辑
+date: '2022-03-16T07:00:00.000Z'
+author: James Perkins
+prev: content/blog-zh/tina-cms-get-started.mdx
+next: content/blog-zh/data-layer-performant-editing.mdx
+---
+
+Tina允许您作为开发者创建一个惊人的编辑体验。默认情况下，编辑体验是一个更传统的CMS，您需要登录到特定的URL并编辑内容，直到完成更改后才能看到内容。但是，如果您正在寻找一种更透明的实时编辑体验，Tina有一个超级功能，称为可视化编辑。正如它听起来的那样，您可以在页面上获得即时反馈，并且可以在发布到您的网站之前预览更改。
+
+<WebmEmbed embedSrc="/img/blog/from-cms-to-contextual/TinaSuper.webm" />
+
+## 开始我们的项目
+
+在这篇博客文章中，我们将使用Tina的示例，该示例位于Next.js官方示例中，并允许我们使用`create-next-app`。这个示例基于Next.js博客启动器，这是一个Markdown博客。
+
+> 您可以在Next.js示例目录中找到源代码，名称为[cms-tina](https://github.com/vercel/next.js/tree/canary/examples/cms-tina)。
+
+```bash
+## 创建我们新的Tina站点
+
+npx create-next-app --example cms-tina tina-contextual-editing
+
+## 进入我们的应用程序。
+
+cd tina-contextual-editing
+
+## 用您喜欢的编辑器打开
+```
+
+> 如果您想了解这个示例是如何创建的，请查看涵盖[开始使用Tina](https://tina.io/blog/tina-cms-get-started/)的博客文章。
+
+## Tina代码的作用是什么？
+
+在您向此示例添加任何代码之前，我想介绍一下Tina是如何集成的以及它是如何工作的。
+
+### `.tina`文件夹
+
+您会在项目的根目录中找到一个`.tina`文件夹，这是任何项目中Tina的核心和大脑。
+
+### `schema.ts`
+
+模式文件包含两个重要的代码片段`defineSchema`和`defineConfig`。`defineSchema`允许您定义内容的结构。如果您以前使用过更传统的CMS，您可能通过GUI完成过此操作。然而，鉴于Tina与Git紧密结合，我们将文件系统视为“真相的来源”，我们采用“内容建模即代码”的方法。
+
+如果您查看当前定义的模式，您会看到每个字段都与`_posts`文件夹中任何帖子内的前置内容相关。
+
+继续到`defineConfig`，`defineConfig`告诉您的项目内容从哪里请求，使用哪个分支，以及TinaCMS本身的任何配置。
+
+### `components`
+
+`.tina`中的`components`文件夹包含我们的`TinaProvider`和`DynamicTinaProvider`；这两个组件用Tina的力量包裹您的应用程序。我们稍后会回到这里进行一些更新。
+
+### `_generated__`
+
+这个文件夹包含所有从Tina自动生成的文件，如果您打开它，您会看到包含查询、片段和类型的文件。您不需要在这里进行更改，但了解您可能会在其中找到什么是很好的。
+
+在我们添加可视化编辑之前，继续使用`yarn tina-dev`启动应用程序并导航到[`http://localhost:3000/`](http://localhost:3000/)。您会注意到这是一个静态博客。随意浏览并感受一下博客。
+
+现在，如果您导航到[http://localhost:3000/admin](http://localhost:3000/admin)，您将看到一个登录屏幕，如果您登录，您将进入CMS仪表板。选择左侧的一个集合将带您进入一个屏幕，显示该空间中的所有当前文件。然后选择一个文件，您可以根据需要编辑它。
+
+<WebmEmbed embedSrc="/img/blog/mdx-powered-docs/example.webm" />
+
+## 添加可视化编辑
+
+现在您已经了解了CMS的工作原理以及背后的代码布局，我们可以开始在我们的项目中添加可视化编辑。我们需要做些什么才能使可视化编辑工作？
+
+1. 更新`getStaticPaths`和`getStaticProps`以使用Tina的graphql层
+2. 更新页面以使用`useTina`并为项目属性提供动力
+3. 更新TinaCMS配置
+
+### 创建getStaticPaths查询
+
+`getStaticPaths`查询需要知道我们所有的Markdown文件的位置。根据我们当前的模式，您可以选择使用`postConnection`，这将提供我们`_posts`文件夹中所有帖子的列表。确保您的本地服务器正在运行并导航到[http://localhost:4001/altair](http://localhost:4001/altair)并选择Docs按钮。Docs按钮使您能够查看所有可能的查询和返回的变量：
+
+因此基于`postConnection`，我们将希望查询`_sys`，这是文件系统，并检索`filename`，这将返回所有不带扩展名的文件名。
+
+```bash
+query {
+  postConnection {
+    edges {
+      node {
+        _sys {
+          basename
+        }
+      }
+    }
+  }
+}
+```
+
+如果您在GraphQL客户端中运行此查询，您将看到以下返回：
+
+```bash
+{
+  "data": {
+    "postConnection": {
+      "edges": [
+        {
+          "node": {
+            "_sys": {
+              "filename": "dynamic-routing"
+            }
+          }
+        },
+        {
+          "node": {
+            "_sys": {
+              "filename": "hello-world"
+            }
+          }
+        },
+        {
+          "node": {
+            "_sys": {
+              "filename": "preview"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+将此查询添加到我们的博客。
+
+NextJS启动博客在动态路由`/pages/posts/[slug].js`上提供服务。当您打开文件时，您将在文件底部看到一个名为`getStaticPaths`的函数。
+
+```bash
+export async function getStaticPaths() {
+
+....
+```
+
+删除此函数内部的所有代码，我们可以更新它以使用我们自己的代码。第一步是在文件顶部添加一个导入以便能够与我们的graphql交互，并删除我们不会使用的`getPostBySlug`和`getAllPosts`导入：
+
+```diff
+//其他导入
+.....
+- import { getPostBySlug, getAllPosts } from '../../lib/api'
++ import { staticRequest } from "tinacms";
+```
+
+在`getStaticPaths`函数内部，我们可以构建我们对内容API的请求。在发出请求时，我们期望一个`query`或`mutation`，然后根据需要传递`variables`，这是一个示例：
+
+`staticRequest({ query: '...', // 我们的查询 }),`
+
+“`staticRequest`做什么？”
+
+它只是一个辅助函数，向您本地运行的GraphQL服务器提供查询，该服务器在端口`4001`上启动。您也可以轻松地使用`fetch`或您选择的http客户端。
+
+我们可以使用之前的`getPostsList`查询来构建我们的动态路由：
+
+```bash
+export async function getStaticPaths() {
+  const result = await staticRequest({
+    query: `
+      query {
+        postConnection {
+          edges {
+            node {
+            _sys {
+              filename
+            }
+          }
+        }
+      }
+    `,
+  })
+  return {
+    paths: result.data.postConnection.edges.map(edge => ({
+      params: { slug: edge.node._sys.filename },
+    })),
+    fallback: false,
+  }
+}
+```
+
+**`getStaticPaths`的快速分解**
+
+`getStaticPaths`代码采用我们创建的graphql查询，因为它不需要任何`variables`，我们可以发送一个空对象。在返回功能中，我们遍历`postsListData.getPostsList`中的每个项目并为每个项目创建一个slug。
+
+## 创建getStaticProps查询
+
+### 创建查询
+
+`getStaticProps`查询将把所有内容传递给博客，这也是Next.js提供的代码当前的工作方式。当我们使用GraphQL API时，我们将同时传递内容，并使内容团队能够直接在浏览器中编辑它。
+
+我们需要从我们的内容API中查询以下内容：
+
+* 标题
+* 摘要
+* 日期
+* 封面图片
+* OG图片数据
+* 作者数据
+* 正文内容
+
+**创建我们的查询**
+
+使用我们的本地graphql客户端，我们可以使用相关博客帖子的路径查询`post`，下面是我们需要填写的框架。
+
+```bash
+query BlogPostQuery($relativePath: String!) {
+  post(relativePath: $relativePath) {
+    # 我们帖子的data。
+  }
+}
+```
+
+我们现在可以填写我们需要查询的相关字段，特别注意`author`和`ogImage`，它们是分组的，因此它们被查询为：
+
+```bash
+author {
+  name
+  picture
+}
+ogImage {
+  url
+}
+```
+
+一旦您填写了所有字段，您应该有一个如下所示的查询：
+
+```bash
+query BlogPostQuery($relativePath: String!) {
+  post(relativePath: $relativePath) {
+    title
+    excerpt
+    date
+    coverImage
+    author {
+      name
+      picture
+    }
+    ogImage {
+      url
+    }
+    body
+  }
+}
+```
+
+如果您想测试一下，您可以在底部的变量部分添加以下内容`{"relativePath": "hello-world.md"}`
+
+**将我们的查询添加到我们的博客**
+
+删除`getStaticProps`函数内部的所有代码，我们可以更新它以使用我们自己的代码。由于这些页面是动态的，我们将希望在查询中使用从`getStaticPaths`返回的值。我们将解构`params`以获取`slug`，并将其用作`relativePath`。正如您所记得的，“博客帖子”集合将文件存储在一个名为`_posts`的文件夹中，因此我们希望请求我们内容的相对路径。意味着对于位于`_posts/hello-world.md`的文件，我们只需要提供相对部分`hello-world.md`。
+
+```bash
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params
+  // 例如，`slug`是`hello-world`
+  const variables = { relativePath: `${slug}.md` }
+  // ...
+}
+```
+
+我们还希望调用`staticRequest`来加载我们特定页面的数据。您还会注意到我们将从getStaticProps返回查询和变量。我们将在TinaCMS前端中使用这些值。
+
+`import { staticRequest } from 'tinacms'`
+
+因此完整的查询应如下所示：
+
+```bash
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params
+  const variables = { relativePath: `${slug}.md` }
+  const data = await staticRequest({
+    query: query,
+    variables: variables,
+  })
+
+  return {
+    props: {
+      data,
+      variables,
+    },
+  }
+}
+```
+
+您可能注意到我们的查询不在那里，但我们正在引用它。这是因为我们希望能够重用我们的`useTina`钩子的查询。在我们的文件顶部，在导入之后，您可以添加查询：
+
+```jsx
+const query = `query BlogPostQuery($relativePath: String!) {
+  post(relativePath: $relativePath) {
+    title
+    excerpt
+    date
+    coverImage
+    author {
+      name
+      picture
+    }
+    ogImage {
+      url
+    }
+    body
+  }
+}`
+```
+
+### 添加`useTina`钩子
+
+`useTina`钩子用于使Tina内容的一部分可编辑。它是代码分割的，因此在生产中，这个钩子将传递数据值。当您处于编辑模式时，它会在侧边栏中注册一个可编辑的表单。
+
+### 添加导入
+
+首先需要做的是导入useTina、useEffect和useState。我们还可以删除一些我们不再使用的导入。
+
+```bash
+import {useState, useEffect} from 'react'
+import {useTina} from 'tinacms/dist/edit-state'
+```
+
+### 更改我们的props并添加UseTina
+
+我们将更新我们的props从`({ post, morePosts, preview })`到`(props)`。我们将把props传递给我们的`useTina`钩子。现在已经用传入的props更新了，我们可以使用`useTina`。
+
+```diff
+
+- export default function Post({ post, morePosts, preview }) {
++ export default function Post( props ) {
+
+
++  const { data } = useTina({
++    query,
++    variables: props.variables,
++    data: props.data,
++  })
+```
+
+如您所见，我们正在重用之前的查询，并将变量和数据传递给`useTina`。这现在意味着我们可以使用可视化编辑为我们的网站提供动力。恭喜，您的网站现在有了超级能力！
+
+### 更新我们的元素以使用Tina数据
+
+现在我们可以访问我们的Tina驱动的数据，我们可以遍历并更新所有元素以使用Tina。您可以将每个`post.`替换为`data.getPostsDocument.data.`，然后将`!post?.slug`替换为`!props.variables.relativePath`，当您完成时，您的返回代码应如下所示：
+
+```diff
+const router = useRouter()
+-  if (!router.isFallback && !post?.slug) {
++  if (!router.isFallback && !props.variables.relativePath) {
+    return <ErrorPage statusCode={404} />
+  }
+  return (
+-   <Layout preview={preview}>
++   <Layout preview={false}>
+      <Container>
+        <Header />
+        {router.isFallback ? (
+          <PostTitle>加载中…</PostTitle>
+        ) : (
+          <>
+            <article className="mb-32">
+              <Head>
+                <title>
+-                  {post.title} | Next.js博客示例与{CMS_NAME}
++                  {data.post.title} | Next.js博客示例与{CMS_NAME}
+                </title>
+-                <meta property="og:image" content={post.ogImage.url} />
++                <meta property="og:image" content={data.post.ogImage.url} />
+              </Head>
+              <PostHeader
+-                title={post.title}
+-                coverImage={post.coverImage}
+-                date={post.date}
+-                author={post.author}
++                title={data.post.title}
++                coverImage={data.post.coverImage}
++                date={data.post.date}
++                author={data.post.author}
+              />
+-             <PostBody content={post.content} />
++             <PostBody content={data.post.body} />
+            </article>
+          </>
+        )}
+      </Container>
+    </Layout>
+
+  )
+```
+
+### 可视化编辑的最后一部分
+
+原始代码正在做的一件事是在`getStaticProps`中将Markdown转换为HTML。我们目前没有对我们的正文进行此操作，只是返回字符串。由于可视化编辑的性质，我们需要确保始终通过Next.js团队提供的`markdownToHtml`函数传递最新内容。这就是`useState`和`useEffect`的用武之地，首先创建一个由状态跟踪的内容变量：
+
+> 注意，您可以使用另一个Markdown到HTML的包，这样就不需要这样做，但在这个示例中，我们希望重用尽可能多的原始代码，以展示如何通过最少的代码替换进行集成。
+
+```jsx
+const [content, setContent] = useState('')
+```
+
+然后在useEffect中，我们将我们的正文解析为Next.js团队提供的markdownToHtml代码，并将其设置为内容。
+
+```jsx
+useEffect(() => {
+  const parseMarkdown = async () => {
+    setContent(await markdownToHtml(data.post.body))
+  }
+  parseMarkdown()
+}, [data.post.body])
+```
+
+现在我们只需要将我们的帖子正文内容从`data.post.body`更新为`content`。如果您现在继续测试您的应用程序，您现在可以在页面上进行编辑！
+
+## 下一步
+
+现在您有了可视化编辑，以下是您可以使用Tina探索的一些内容
+
+* [通过Cloudinary进行媒体管理](https://tina.io/docs/reference/media/external/cloudinary/)
+* [路由映射 - 将CMS连接到可视化编辑](/docs/contextual-editing/overview)
+
+## 如何跟上Tina的更新？
+
+跟上Tina的最佳方式是订阅我们的新闻通讯，我们每两周发送一次更新。更新包括新功能、我们一直在做的事情、您可能错过的博客文章等等！
+
+您可以通过访问此链接并输入您的电子邮件来订阅：[https://tina.io/community/](https://tina.io/community/)
+
+### Tina社区Discord
+
+Tina有一个社区[Discord](https://discord.com/invite/zumN63Ybpf)，里面充满了Jamstack爱好者和Tina爱好者。当您加入时，您会发现一个地方：
+
+* 获得问题帮助
+* 找到最新的Tina新闻和抢先预览
+* 与Tina社区分享您的项目，并谈论您的经验
+* 聊聊Jamstack
+
+### Tina Twitter
+
+我们的Twitter账号（[@tinacms](https://twitter.com/tinacms)）宣布Tina的最新功能、改进和抢先预览。如果您在您构建的项目中标记我们，我们也会非常兴奋。

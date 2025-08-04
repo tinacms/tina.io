@@ -1,3 +1,4 @@
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import styled from 'styled-components';
@@ -29,28 +30,28 @@ export const VersionSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedVersion, setSelectedVersion] = useState(
     VERSIONS.find(
-      (v) => typeof window !== 'undefined' && v.url === window.location.origin
-    ) || VERSIONS[0]
+      (v) => typeof window !== 'undefined' && v.url === window.location.origin,
+    ) || VERSIONS[0],
   );
 
   return (
     <SelectWrapper>
-      
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="dropdown-button"
         aria-label="Version"
       >
         {selectedVersion.label}
-        <FaChevronDown className='pl-1'/>
+        <FaChevronDown className="pl-1" />
       </button>
 
-      
       {isOpen && (
         <DropdownList>
           {VERSIONS.map((version) => (
             <li key={version.id}>
               <button
+                type="button"
                 onClick={() => {
                   setSelectedVersion(version);
                   setIsOpen(false);
@@ -74,12 +75,12 @@ export const VersionSelect = () => {
 const SelectWrapper = styled.div`
   display: flex;
   justify-content: flex-end
-  flex-grow: 1;
+  grow: 1;
   position: relative;
 
   @media (min-width: 840px) {
     display: inline-block;
-    flex-grow: 0;
+    grow: 0;
   }
 
 .dropdown-button {

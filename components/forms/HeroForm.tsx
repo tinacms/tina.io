@@ -1,5 +1,5 @@
-import { Container } from '../blocks/Container'
-import HeroBg from '../../public/svg/hero-bg.svg'
+import HeroBg from '../../public/svg/hero-bg.svg';
+import { Container } from '../blocks/Container';
 
 export function HeroBlock({ data, index }) {
   return (
@@ -10,10 +10,7 @@ export function HeroBlock({ data, index }) {
       <Container width="narrow" center>
         <HeroFeature item={data} />
 
-        <form
-          action="https://formspree.io/f/mzbqndez"
-          method="POST"
-        >
+        <form action="https://formspree.io/f/mzbqndez" method="POST">
           <label>
             Your email:
             <input type="email" name="email" />
@@ -24,11 +21,10 @@ export function HeroBlock({ data, index }) {
           </label>
           <button type="submit">Send</button>
         </form>
-
       </Container>
       <HeroBg className="absolute pointer-events-none -z-1 left-0 bottom-0 w-full h-auto" />
     </section>
-  )
+  );
 }
 
 export const HeroFeature = ({ item }) => {
@@ -40,7 +36,7 @@ export const HeroFeature = ({ item }) => {
       </div>
       <style jsx>{`
         .heading {
-          font-family: var(--font-tuner);
+          font-family: var(--font-ibm-plex);
           font-weight: bold;
           font-style: normal;
           font-size: 2.5rem;
@@ -70,8 +66,8 @@ export const HeroFeature = ({ item }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
 export const Video = ({ src }) => {
   return (
@@ -84,14 +80,8 @@ export const Video = ({ src }) => {
         playsInline
         poster={`${src}`}
       >
-        <source
-          src={`${src}`}
-          type="video/webm"
-        />
-        <source
-          src={`${src}`}
-          type="video/mp4"
-        />
+        <source src={`${src}`} type="video/webm" />
+        <source src={`${src}`} type="video/mp4" />
       </video>
       <style jsx>{`
         .video {
@@ -113,5 +103,5 @@ export const Video = ({ src }) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};

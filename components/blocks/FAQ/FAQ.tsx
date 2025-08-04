@@ -1,4 +1,3 @@
-import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import BlobBackground from '../../../public/svg/blob-bg.svg';
 import { RichTextWrapper } from '../../layout/RichTextWrapper';
@@ -15,7 +14,7 @@ export function FaqBlock({ data, index }) {
           <div className="faq-wrapper">
             <div className="mb-10">
               {data.title && (
-                <h3 className="font-tuner text-3xl text-orange-500 mb-8">
+                <h3 className="font-ibm-plex text-3xl text-orange-500 mb-8">
                   {data.title}
                 </h3>
               )}
@@ -26,16 +25,15 @@ export function FaqBlock({ data, index }) {
               )}
             </div>
             <RichTextWrapper>
-              {data.questions &&
-                data.questions.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      {item.question && <h4>{item.question}</h4>}
-                      {item.answer && <TinaMarkdown content={item.answer} />}
-                      {index < data.questions.length - 1 && <hr />}
-                    </div>
-                  );
-                })}
+              {data.questions?.map((item, index) => {
+                return (
+                  <div key={item.id}>
+                    {item.question && <h4>{item.question}</h4>}
+                    {item.answer && <TinaMarkdown content={item.answer} />}
+                    {index < data.questions.length - 1 && <hr />}
+                  </div>
+                );
+              })}
             </RichTextWrapper>
           </div>
         </Container>

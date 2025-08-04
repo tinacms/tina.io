@@ -20,7 +20,7 @@
         "narrow": true,
         "color": "white"
       },
-      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\")\n",
+      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\").\n",
       "_template": "content"
     },
     {
@@ -58,6 +58,26 @@
               "url": "/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache"
             }
           ]
+        },
+        {
+          "headline": "☑︎ React 19 Support",
+          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n",
+          "actions": [
+            {
+              "label": "Blogged",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/blog/react-19-support"
+            },
+            {
+              "label": "🚀 Shipped in 2.7.7",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "/"
+            }
+          ]
         }
       ],
       "options": {
@@ -79,27 +99,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/5576"
-            }
-          ]
-        },
-        {
-          "headline": "□ React 19 Support",
-          "status": "",
-          "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n",
-          "actions": [
-            {
-              "label": "🧪 Beta version available",
-              "icon": true,
-              "variant": "orange",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/pull/5607"
-            },
-            {
-              "label": "GitHub Discussion 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/issues/5244"
             }
           ]
         },
@@ -126,7 +125,26 @@
       "headline": "Coming Soon",
       "items": [
         {
-          "headline": "AI Tooling",
+          "headline": "Docs Template",
+          "status": "",
+          "content": "Since Tina works so well with documentation sites, we're building a best-of-breed Tina + Docs starter template.\n"
+        },
+        {
+          "headline": "Improved PR workflow",
+          "status": "",
+          "content": "We are making some improvements to Tina's Editorial Workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
+          "actions": [
+            {
+              "label": "Editorial Workflow",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/editorial-workflow/"
+            }
+          ]
+        },
+        {
+          "headline": "MCP Server",
           "status": "",
           "content": "We're working on some ways to leverage AI in the content creation process.\n",
           "actions": [
@@ -136,25 +154,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
-            }
-          ]
-        },
-        {
-          "headline": "Docs Template",
-          "status": "",
-          "content": "Since Tina works so well with documentation sites, we're building a best-of-breed Tina + Docs starter template.\n"
-        },
-        {
-          "headline": "Improved PR workflow",
-          "status": "",
-          "content": "We are making some improvements to Tina's editorial workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
-          "actions": [
-            {
-              "label": "Editorial Workflow",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://tina.io/editorial-workflow/"
             }
           ]
         }

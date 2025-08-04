@@ -3,7 +3,7 @@
   "navItem": [
     {
       "label": "文档",
-      "href": "/docs",
+      "href": "/zh/docs",
       "_template": "stringItem"
     },
     {
@@ -20,7 +20,7 @@
         },
         {
           "label": "博客",
-          "href": "/blog"
+          "href": "/zh/blog"
         },
         {
           "label": "产品对比",
@@ -82,20 +82,9 @@
       "_template": "stringItem"
     },
     {
-      "label": "订阅",
-      "color": "white",
-      "size": "medium",
-      "modal": "EmailForm",
-      "icon2": "MdEmail",
-      "_template": "modalButton"
-    },
-    {
-      "label": "预约演示",
-      "color": "orange",
-      "size": "medium",
-      "modal": "BookDemo",
-      "icon2": "FaCalendarDay",
-      "_template": "modalButton"
+      "owner": "tinacms",
+      "repo": "tinacms",
+      "_template": "GitHubStarButton"
     }
   ]
 }

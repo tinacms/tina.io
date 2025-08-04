@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Input = styled.input`
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
@@ -15,7 +15,7 @@ export const Input = styled.input`
   width: 100%;
   padding: 0 16px;
   transition: all 85ms ease-out;
-  font-family: var(--font-tuner);
+  font-family: var(--font-ibm-plex);
   font-size: 16px;
   ::placeholder {
     opacity: 1;
@@ -39,4 +39,4 @@ export const Input = styled.input`
       transition: opacity 200ms ease;
     }
   }
-`
+`;

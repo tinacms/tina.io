@@ -1,11 +1,12 @@
 import Link from 'next/link';
+// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useRef, useState } from 'react';
 import { FiCheck, FiMinus } from 'react-icons/fi';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
 const TableHeader = ({ data, scrollData }) => {
   return (
-    <div className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
+    <div className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] pt-6 px-6 bg-slate-50">
       {/* Sticky Header Column */}
       <div className="sticky top-0 left-0 z-10 bg-slate-50 pl-4 pb-2 text-gray-700 font-bold">
         {data.tableHeader}
@@ -13,12 +14,12 @@ const TableHeader = ({ data, scrollData }) => {
       {/* Sticky void column */}
       <div className="sticky left-[175px] z-10">
         {scrollData && scrollData.scrollLeft > 80 && (
-          <div className="w-[30px] h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
+          <div className="w-[30px] h-full bg-linear-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
         )}
       </div>
       {/* Remaining Columns Titles */}
-      {data.columnItems?.map((headerItem, index) => (
-        <div key={index}>
+      {data.columnItems?.map((headerItem) => (
+        <div key={headerItem.id}>
           <div
             className={`text-center font-bold ${
               headerItem.isReccomended ? 'text-orange-600' : 'text-gray-700'
@@ -61,7 +62,7 @@ const TableBox = ({ data, index }) => {
 
   return (
     <div className="bg-slate-50 rounded-t-lg w-full">
-      <div className="lg:mx-auto relative max-w-screen-xl">
+      <div className="lg:mx-auto relative max-w-(--breakpoint-xl)">
         <div
           className="overflow-x-scroll lg:overflow-x-hidden shadow-2xl rounded-2xl lg:shadow-none snap-x"
           ref={scrollContainerRef}
@@ -69,7 +70,7 @@ const TableBox = ({ data, index }) => {
         >
           <div className="min-w-[1200px] bg-slate-50 p-6 rounded-3xl">
             {/* Void column on the right */}
-            <div className="absolute top-0 bottom-4 right-0 w-[40px] bg-gradient-to-r from-transparent  via-slate-50/80 to-slate-50 rounded-2xl pointer-events-none lg:hidden"></div>
+            <div className="absolute top-0 bottom-4 right-0 w-[40px] bg-linear-to-r from-transparent  via-slate-50/80 to-slate-50 rounded-2xl pointer-events-none lg:hidden"></div>
 
             {/* Sticky Table Header */}
             <div className=" bg-slate-50 pb-4">
@@ -82,8 +83,8 @@ const TableBox = ({ data, index }) => {
             >
               {data.rowItems?.map((row, rowIndex) => (
                 <div
-                  key={rowIndex}
-                  className="grid grid-cols-[1fr,30px,repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
+                  key={row.id}
+                  className="grid grid-cols-[1fr_30px_repeat(5,minmax(150px,1fr))] h-[50px] px-6 hover:bg-sky-50 bg-slate-50 snap-start group"
                 >
                   <div className="flex bg-slate-50 items-center sticky left-0 snap-start group-hover:bg-sky-50">
                     <div className="pl-2 py-2 whitespace-nowrap font-medium flex items-center">
@@ -108,11 +109,11 @@ const TableBox = ({ data, index }) => {
                   {/* Sticky void column */}
                   <div className="sticky left-[179px] z-10">
                     {scrollData && scrollData.scrollLeft > 80 && (
-                      <div className="w-[30px] h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent group-hover:from-sky-50 group-hover:via-sky-50/80"></div>
+                      <div className="w-[30px] h-full bg-linear-to-r from-slate-50 via-slate-50/80 to-transparent group-hover:from-sky-50 group-hover:via-sky-50/80"></div>
                     )}
                   </div>
 
-                  {row.rowCells?.map((cell, cellIndex) => {
+                  {row.rowCells?.map((cell, _cellIndex) => {
                     let cellData = {
                       columnHeader: '',
                       cellValue: '',
@@ -127,7 +128,7 @@ const TableBox = ({ data, index }) => {
 
                     return (
                       <div
-                        key={cellIndex}
+                        key={cell.id}
                         className="text-center flex items-center justify-center snap-start"
                       >
                         {cellData.isTicked ? (

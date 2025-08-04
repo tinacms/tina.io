@@ -1,0 +1,137 @@
+---
+id: introduction
+cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
+seo:
+  title: '开始并了解TinaCMS'
+  description: >-
+    TinaCMS是一个开源的、基于Git的CMS，具有实时编辑、版本控制和可扩展性，为开发者和内容创作者提供支持。
+title: 什么是TinaCMS？
+last_edited: '2025-06-19T06:47:19.122Z'
+tocIsHidden: true
+next: content/docs-zh/setup-overview.mdx
+---
+
+TinaCMS是一个开源的、基于Git的无头内容管理系统（CMS）——它允许你在你的网站上创建一个无代码的编辑体验。
+
+Tina不会将你锁定在一个专有数据库中。你可以通过Git的强大功能，以Markdown、MDX和JSON文件的形式控制你的内容。
+
+继续阅读以快速了解**TinaCMS的2分钟概述**，以及它如何适应你的网站。
+
+> 如果你想立即开始，请访问我们的[快速入门页面](/zh/docs/setup-overview/)。
+
+<scrollBasedShowcase
+  showcaseItems={[
+    {
+      title: "介绍",
+      image: "/landing-assets/TinaCMS-docs-graphics-01@2x.png",
+      content:
+        "TinaCMS是一个开源的内容管理系统（CMS），可以无缝集成到你的Markdown工作流程中。\n",
+      useAsSubsection: false
+    },
+    {
+      title: "你的网站",
+      image: "/landing-assets/TinaCMS-docs-graphics-02@2x.png",
+      content:
+        "使用TinaCMS，开发者可以在他们喜欢的地方托管网站，使用他们选择的任何框架。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "无头CMS",
+      image: "/landing-assets/TinaCMS-docs-graphics-03@2x.png",
+      content:
+        "TinaCMS是“无头”的，这意味着它与你的网站是解耦的。TinaCMS提供了一个可查询的内容API，供你的网站代码使用。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "CMS后端",
+      image: "/landing-assets/TinaCMS-docs-graphics-04@2x.png",
+      content:
+        "TinaCMS后端提供了查询内容的API，支持过滤、搜索和分页。\n",
+      useAsSubsection: false
+    },
+    {
+      title: "基于Git的内容",
+      image: "/landing-assets/TinaCMS-docs-graphics-06@2x.png",
+      content:
+        "你所有的内容都通过git备份到JSON/Markdown/MDX文件中。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "TinaCloud",
+      image: "/landing-assets/TinaCMS-docs-graphics-09@2x.png",
+      content:
+        "我们提供了一个易于使用的托管版本的后端，称为TinaCloud。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "自托管后端",
+      image: "/landing-assets/TinaCMS-docs-graphics-10@2x.png",
+      content:
+        "对于那些更喜欢控制和定制的人，TinaCMS也允许你在自己的技术栈上完全托管后端。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "CMS前端",
+      image: "/landing-assets/TinaCMS-docs-graphics-07@2x.png",
+      content:
+        'TinaCMS为你的编辑者提供了一个直观的CMS界面。对于使用React的网站，TinaCMS支持“可视化编辑”，允许内容编辑者查看实时更改。\n',
+      useAsSubsection: false
+    },
+    {
+      title: "/admin 路由",
+      image: "/landing-assets/TinaCMS-docs-graphics-05@2x.png",
+      content:
+        "用户通过导航到你网站上的`/admin`页面与CMS进行交互。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "保存",
+      image: "/landing-assets/TinaCMS-docs-graphics-08@2x.png",
+      content:
+        "当用户在CMS中进行更改时，会将提交返回到你的Git存储库。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "将TinaCMS集成到网站中",
+      image: "/landing-assets/TinaCMS-docs-graphics-11@2x.png",
+      content:
+        "可以通过`tinacms init`在你的网站上设置TinaCMS。这会安装一些Tina包，并添加一些样板代码。\n",
+      useAsSubsection: false
+    },
+    {
+      title: "本地运行TinaCMS",
+      image: "/landing-assets/TinaCMS-docs-graphics-12@2x.png",
+      content:
+        "你也可以灵活地在本地运行TinaCMS，使用本地文件而不是与托管API交互。这为开发者提供了一个超快速的反馈循环。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "内容建模",
+      image: "/landing-assets/TinaCMS-docs-graphics-13@2x.png",
+      content:
+        'TinaCMS中的内容是通过项目中的\\`tina/config.ts\\`文件建模的。通过这个文件，你可以定义“集合”，以建模你网站上的各种内容类型。\n',
+      useAsSubsection: true
+    },
+    {
+      title: "数据获取",
+      image: "/landing-assets/TinaCMS-docs-graphics-14@2x.png",
+      content:
+        "TinaCMS提供了一个GraphQL API，使数据获取更加高效和强大。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "客户端",
+      image: "/landing-assets/TinaCMS-docs-graphics-15@2x.png",
+      content:
+        "此外，我们还生成了一个用户友好的客户端，简化了查询内容的过程。\n",
+      useAsSubsection: true
+    },
+    {
+      title: "类型安全",
+      image: "/landing-assets/TinaCMS-docs-graphics-16@2x.png",
+      content:
+        "TinaCMS强调类型安全，确保你的内容查询保持无错误和一致性，从而提高代码的可靠性和可维护性。\n",
+      useAsSubsection: true
+    }
+  ]}
+/>

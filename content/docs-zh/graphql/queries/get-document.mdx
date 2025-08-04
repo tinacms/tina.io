@@ -1,0 +1,182 @@
+---
+id: /docs/graphql/queries/get-document
+title: 查询单个文档
+last_edited: '2024-08-15T01:06:34.115Z'
+---
+
+## 查询单个文档
+
+获取单个文档，提供其 `relativePath` 作为参数。
+
+* `relativePath` 是相对于 `collection` 路径的部分路径。
+
+在这个例子中，`post` 集合的路径是 `content/posts`，你的文档可以在 `content/posts/voteForPedro.md` 找到，给出 `relativePath: "voteForPedro.md"`。如果你的项目在 `content/posts/nested-folder/voteForPedro.md`，你需要指定：`relativePath: "nested-folder/voteForPedro.md"`。
+
+我们上面 [schema](/docs/graphql/queries/#example-schema) 的集合命名为 "post" 和 "author"，因此我们可以使用 `post` 和 `author` 查询每一个。
+
+### 示例
+
+仅查询作者。
+
+<GraphQLCodeBlock
+  query="{
+  ##author(relativePath:#&#x22;napolean.json&#x22;)#{
+  ####name
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;author&#x22;:#{
+  ######&#x22;name&#x22;:#&#x22;Napolean&#x22;
+  ####}
+  ##}
+  }"
+/>
+
+查询文章和作者。
+
+<GraphQLCodeBlock
+  query="{
+  ##post(relativePath:#&#x22;voteForPedro.json&#x22;)#{
+  ####title
+  ####category
+  ####author#{
+  ######...#on#Author#{
+  ########name
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;title&#x22;:#&#x22;Vote#For#Pedro&#x22;,
+  ######&#x22;category&#x22;:#&#x22;politics&#x22;,
+  ######&#x22;author&#x22;:#{
+  ########&#x22;name&#x22;:#&#x22;Napolean&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>
+
+在作者上查询文章。
+
+<GraphQLCodeBlock
+  query="{
+  ##author(relativePath:#&#x22;napolean.json&#x22;)#{
+  ####name
+  ####post#{
+  ######edges#{
+  ########node#{
+  ##########title
+  ########}
+  ######}
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;author&#x22;:#{
+  ######&#x22;name&#x22;:#&#x22;Napolean&#x22;,
+  ######&#x22;post&#x22;:#{
+  ########&#x22;edges&#x22;:#[
+  ##########&#x22;node&#x22;:#{
+  ############&#x22;title&#x22;:#&#x22;Vote for Pedro&#x22;,
+  ##########}
+  ########]
+  ######}
+  ####}
+  ##}
+  }"
+/>
+
+## 常见字段
+
+在一个集合中，有一些字段是所有文档共有的。这些字段是：`id`，`_values` 和 `_sys`。`id` 字段是文档的唯一标识符。`_values` 字段在编辑模式中内部使用，不用于外部。`_sys` 字段包含关于文档的元信息。
+
+`_sys` 字段是一个包含以下字段的对象：
+
+* `filename`: 文件名，不包括扩展名
+* `basename`: 文件名，包括扩展名
+* `path`: 文件相对于项目根目录的完整路径
+* `breadcrumbs`: 文件的父文件夹数组
+* `relativePath`: 文件相对于集合路径的路径
+* `extension`: 文件的扩展名
+* `template`: 文档的模板（如果不使用 `templates`，则为集合的名称）
+* `collection`: 关于集合的信息
+
+### 带有嵌套文件夹的示例
+
+<GraphQLCodeBlock
+  query="{
+  ##post(relativePath:#&#x22;nested/anotherPost.json&#x22;)#{
+  ####id
+  ####_sys#{
+  ######filename
+  ######basename
+  ######path
+  ######breadcrumbs
+  ######relativePath
+  ######extension
+  ######template
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;id&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ######&#x22;_sys&#x22;:#{
+  ########&#x22;filename&#x22;:#&#x22;anotherPost&#x22;,
+  ########&#x22;basename&#x22;:#&#x22;anotherPost.json&#x22;,
+  ########&#x22;path&#x22;:#&#x22;content/posts/nested/anotherPost.json&#x22;,
+  ########&#x22;breadcrumbs&#x22;:#[
+  ##########&#x22;nested&#x22;,
+  ##########&#x22;anotherPost&#x22;
+  ########],
+  ########&#x22;relativePath&#x22;:#&#x22;nested/anotherPost.json&#x22;,
+  ########&#x22;extension&#x22;:#&#x22;.json&#x22;,
+  ########&#x22;template&#x22;:#&#x22;post&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>
+
+### 没有嵌套文件夹的示例
+
+<GraphQLCodeBlock
+  query="{
+  ##post(relativePath:#&#x22;anotherPost.json&#x22;)#{
+  ####id
+  ####_sys#{
+  ######filename
+  ######basename
+  ######path
+  ######breadcrumbs
+  ######relativePath
+  ######extension
+  ######template
+  ####}
+  ##}
+  }"
+  response="{
+  ##&#x22;data&#x22;:#{
+  ####&#x22;post&#x22;:#{
+  ######&#x22;id&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ######&#x22;_sys&#x22;:#{
+  ########&#x22;filename&#x22;:#&#x22;anotherPost&#x22;,
+  ########&#x22;basename&#x22;:#&#x22;anotherPost.json&#x22;,
+  ########&#x22;path&#x22;:#&#x22;content/posts/anotherPost.json&#x22;,
+  ########&#x22;breadcrumbs&#x22;:#[
+  ##########&#x22;anotherPost&#x22;
+  ########],
+  ########&#x22;relativePath&#x22;:#&#x22;anotherPost.json&#x22;,
+  ########&#x22;extension&#x22;:#&#x22;.json&#x22;,
+  ########&#x22;template&#x22;:#&#x22;post&#x22;
+  ######}
+  ####}
+  ##}
+  }"
+/>
