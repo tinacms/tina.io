@@ -1,0 +1,7 @@
+Contact: mailto:security@ssw.com.au
+OpenPGP: https://ssw.com.au/.well-known/public_key.asc
+Key-Server: hkps://keys.openpgp.org
+Preferred-Languages: en, fr, zh
+Canonical: https://ssw.com.au/.well-known/security.txt
+Expires: 2026-8-5T00:00:00.000Z
+Encryption: openpgp4fpr:7939270B62F3FF0C08F35A76B67CB6AD2A3F20C3
