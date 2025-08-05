@@ -23,6 +23,15 @@ export const DEFAULT_LOCALE = 'en';
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
 
+  // Reverse proxy for /tina-docs/*
+  if (url.pathname.startsWith('/tina-docs')) {
+    const externalURL = `https://tina-docs-landing.vercel.app${url.pathname.replace(
+      '/tina-docs',
+      ''
+    )}${url.search}`;
+    return NextResponse.rewrite(externalURL);
+  }
+
   const locale = url.searchParams.get('setLocale') || getLocale(request);
   let response: NextResponse;
 
@@ -47,10 +56,10 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/'],
+  matcher: ['/', '/tina-docs/:path*'],
 };
 
-export function isValidPathCheck(pathname) {
+export function isValidPathCheck(pathname: string): boolean {
   if (VALID_PATHS.includes(pathname)) {
     return true;
   }
