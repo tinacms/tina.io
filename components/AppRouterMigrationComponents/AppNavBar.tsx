@@ -3,7 +3,6 @@
 import data from '@/content/navigationBar/navMenu.json';
 import zhData from '@/content/navigationBar/navMenuZh.json';
 import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
-import TinaIconSvg from '@/public/svg/tina-icon.svg';
 import '@/styles/tailwind.css';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
@@ -564,7 +563,6 @@ export function AppNavBar({ sticky = true }) {
                           <div className="relative group">
                             <span
                               className="flex items-center cursor-pointer"
-                              data-dropdown-trigger
                               onClick={(e) => handleDropdownToggle(`${index}-${item.label}`, e)}
                             >
                               {item.label}
