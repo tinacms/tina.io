@@ -515,6 +515,9 @@
       "_template": "table"
     },
     {
+      "blockSettings": {
+        "isFullscreen": true
+      },
       "features": [
         {
           "headline": "Skip the Drama,\n\nChat with a Llama 🦙",
