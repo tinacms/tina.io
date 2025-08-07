@@ -42,10 +42,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     >
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="touch-pan-y touch-pinch-zoom -ml-1 flex">
-          {slides.map((slide) => (
+          {slides.map((slide, index) => (
             <div
               className="embla__slide flex-none basis-[70%] md:basis-[50%] min-w-0 my-16 pl-4 opacity-40 [&.is-snapped]:opacity-100"
-              key={`embla-carousel-slide-${slide}`}
+              key={`embla-carousel-slide-${slide}-${index}`}
               style={{
                 transform: 'translate3d(0, 0, 0)',
                 transition: 'opacity 0.2s ease-in-out',
