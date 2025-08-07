@@ -420,6 +420,7 @@ export function AppNavBar({ sticky = true }) {
                         href={`https://github.com/${item.owner}/${item.repo}`}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="flex items-center"
                         onClick={handleNavLinkClick}
                       >
                         <span className="flex items-center">
@@ -562,7 +563,7 @@ export function AppNavBar({ sticky = true }) {
                         >
                           <div className="relative group">
                             <span
-                              className="flex items-center cursor-pointer touch-manipulation"
+                              className="flex items-center cursor-pointer"
                               data-dropdown-trigger
                               onClick={(e) => handleDropdownToggle(`${index}-${item.label}`, e)}
                             >
