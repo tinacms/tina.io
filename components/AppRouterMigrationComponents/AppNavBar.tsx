@@ -3,7 +3,6 @@
 import data from '@/content/navigationBar/navMenu.json';
 import zhData from '@/content/navigationBar/navMenuZh.json';
 import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
-import TinaIconSvg from '@/public/svg/tina-icon.svg';
 import '@/styles/tailwind.css';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
@@ -148,6 +147,7 @@ export function AppNavBar({ sticky = true }) {
   const [selectedFlag, setSelectedFlag] = useState(DEFAULT_LOCALE);
   const [animateFlag, setAnimateFlag] = useState(false);
   const [modalClass, setModalClass] = useState('language-select-modal');
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const navRef = useRef(null);
   const router = useRouter();
@@ -207,6 +207,18 @@ export function AppNavBar({ sticky = true }) {
       toggleMenu();
     }
   };
+
+  // Function to handle dropdown toggle
+  const handleDropdownToggle = (
+    dropdownId: string,
+    event?: React.MouseEvent,
+  ) => {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    setOpenDropdown(openDropdown === dropdownId ? null : dropdownId);
+  };
   const openModal = (modal) => setModalType(modal);
   const closeModal = () => setModalType(null);
 
@@ -250,6 +262,28 @@ export function AppNavBar({ sticky = true }) {
     };
     fetchStarCount();
   }, [navItems]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (openDropdown) {
+        const target = event.target as Element;
+        const isClickInsideDropdown = target.closest('.group');
+
+        if (!isClickInsideDropdown) {
+          setOpenDropdown(null);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [openDropdown]);
 
   const handleLanguageChange = (code: string) => {
     saveLocaleToCookie(code);
@@ -532,15 +566,28 @@ export function AppNavBar({ sticky = true }) {
                           <div className="relative group">
                             <span
                               className="flex items-center cursor-pointer"
-                              onClick={handleNavLinkClick}
+                              onClick={(e) =>
+                                handleDropdownToggle(
+                                  `${index}-${item.label}`,
+                                  e,
+                                )
+                              }
                             >
                               {item.label}
                               <BiChevronDown
-                                className={`ml-1 text-blue-200 group-hover:text-blue-400`}
+                                className={`ml-1 text-blue-200 transition-transform duration-200 ${
+                                  openDropdown === `${index}-${item.label}`
+                                    ? 'rotate-180'
+                                    : ''
+                                }`}
                               />
                             </span>
                             <ul
-                              className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 ease-in-out`}
+                              className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 transition-opacity duration-200 ease-in-out ${
+                                openDropdown === `${index}-${item.label}`
+                                  ? 'opacity-100 pointer-events-auto'
+                                  : 'opacity-0 pointer-events-none'
+                              }`}
                             >
                               {item.items.map((subItem, subIndex) => (
                                 <li
@@ -549,7 +596,11 @@ export function AppNavBar({ sticky = true }) {
                                 >
                                   <Link
                                     href={subItem.href}
-                                    onClick={handleNavLinkClick}
+                                    onClick={() => {
+                                      handleNavLinkClick();
+                                      setOpenDropdown(null);
+                                    }}
+                                    className="touch-manipulation"
                                   >
                                     <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                                       {subItem.label}
