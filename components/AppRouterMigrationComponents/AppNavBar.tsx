@@ -209,7 +209,10 @@ export function AppNavBar({ sticky = true }) {
   };
 
   // Function to handle dropdown toggle
-  const handleDropdownToggle = (dropdownId: string, event?: React.MouseEvent) => {
+  const handleDropdownToggle = (
+    dropdownId: string,
+    event?: React.MouseEvent,
+  ) => {
     if (event) {
       event.stopPropagation();
       event.preventDefault();
@@ -266,7 +269,7 @@ export function AppNavBar({ sticky = true }) {
       if (openDropdown) {
         const target = event.target as Element;
         const isClickInsideDropdown = target.closest('.group');
-        
+
         if (!isClickInsideDropdown) {
           setOpenDropdown(null);
         }
@@ -275,7 +278,7 @@ export function AppNavBar({ sticky = true }) {
 
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('touchstart', handleClickOutside);
-    
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
@@ -563,19 +566,26 @@ export function AppNavBar({ sticky = true }) {
                           <div className="relative group">
                             <span
                               className="flex items-center cursor-pointer"
-                              onClick={(e) => handleDropdownToggle(`${index}-${item.label}`, e)}
+                              onClick={(e) =>
+                                handleDropdownToggle(
+                                  `${index}-${item.label}`,
+                                  e,
+                                )
+                              }
                             >
                               {item.label}
                               <BiChevronDown
                                 className={`ml-1 text-blue-200 transition-transform duration-200 ${
-                                  openDropdown === `${index}-${item.label}` ? 'rotate-180' : ''
+                                  openDropdown === `${index}-${item.label}`
+                                    ? 'rotate-180'
+                                    : ''
                                 }`}
                               />
                             </span>
                             <ul
                               className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white shadow-lg rounded-md p-2 transition-opacity duration-200 ease-in-out ${
-                                openDropdown === `${index}-${item.label}` 
-                                  ? 'opacity-100 pointer-events-auto' 
+                                openDropdown === `${index}-${item.label}`
+                                  ? 'opacity-100 pointer-events-auto'
                                   : 'opacity-0 pointer-events-none'
                               }`}
                             >
