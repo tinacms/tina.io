@@ -536,7 +536,7 @@
             }
           ],
           "isReversed": true,
-          "imageBackground": false
+          "imageBackground": true
         }
       ],
       "_template": "features"
