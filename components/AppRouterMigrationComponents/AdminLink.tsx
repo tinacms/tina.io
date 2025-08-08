@@ -7,6 +7,7 @@ import { useEditState } from 'tinacms/dist/react';
 
 const AdminLink = () => {
   const { edit } = useEditState();
+  const pathname = usePathname();
   const [showAdminLink, setShowAdminLink] = React.useState(false);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const AdminLink = () => {
     <>
       {showAdminLink && (
         <div className="fixed top-[88px] right-16 flex items-center justify-between bg-blue-500 text-white px-3 py-1 rounded-full z-50">
-          <a href={`/admin/index.html#/~${usePathname()}`} className="text-xs">
+          <a href={`/admin/index.html#/~${pathname}`} className="text-xs">
             Edit This Page
           </a>
           <button

@@ -10,7 +10,6 @@ import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
