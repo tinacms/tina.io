@@ -1,18 +1,33 @@
 ---
 id: /docs/tina-cloud/deployment-options/vercel
 title: 部署到Vercel
+last_edited: '2025-08-08T00:00:52.485Z'
 next: content/docs-zh/tina-cloud/deployment-options/netlify.mdx
 previous: content/docs-zh/tina-cloud/dashboard/organizations.mdx
 ---
 
+## 创建一个新项目
+
+要在您的团队中创建一个新项目，导航到“添加新项目”按钮，系统会提示您导入您的GitHub仓库。
+
+选择后，您需要配置构建设置。
+
 ## 构建配置
 
-在Vercel中，您可以在 **Settings** > **General** > **Build & Development Settings** 更新您的构建配置。
+首次部署新项目时，您将在部署前看到构建配置页面，但您可以在 **设置** > **常规** > **构建和开发设置** 中更新您的构建配置。
 
-![Vercel构建设置](/img/docs/tina-cloud-deployment-options/vercel-build-settings_vubza8.png 'Vercel构建设置')
+![Vercel 构建设置](/img/docs/tina-cloud-deployment-options/vercel-build-settings_vubza8.png "Vercel 构建设置")
 
-> 如果您的package.json中有一个类似于 `tinacms build && <your-site-build-cmd>` 的“build”脚本，这可能不需要更改。如果您的Vercel配置没有运行自定义构建脚本（例如 `next build` 而不是 `npm run build`），您需要将其更改为 `tinacms build && next build`
+> 如果您的 package.json 中有一个类似 `tinacms build && <your-site-build-cmd>` 的“build”脚本，这可能不需要更改。如果您的 Vercel 配置没有运行自定义构建脚本（例如 `next build` 而不是 `npm run build`），您需要将其更改为 `tinacms build && next build`
 
 ## 环境变量
 
-假设您的Tina `clientID` 和 `token` 已设置为环境变量，您需要将这些添加到Vercel项目的“Environment Variables”选项卡中。
+无论您在本地 `.env` 文件中定义了什么环境变量，都需要复制到您的 Vercel 项目中。您可以随时通过进入 **设置 > 环境变量** 来更新这些变量。
+
+必需的环境变量包括 NEXT\_PUBLIC\_TINA\_CLIENT\_ID 和 TINA\_TOKEN，这两个变量可以在您的 [TinaCloud 项目](https://app.tina.io) 中找到。
+
+## 您的首次部署
+
+准备就绪后，选择“部署”并等待您的首次构建运行。成功后，通过选择“检查部署”访问您的新 Tina 站点。
+
+如果出现任何错误，请参考构建日志并相应地解决。
