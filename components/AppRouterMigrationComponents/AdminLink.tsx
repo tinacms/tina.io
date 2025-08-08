@@ -6,15 +6,17 @@ import { useEditState } from 'tinacms/dist/react';
 
 const AdminLink = () => {
   const { edit } = useEditState();
-  const [showAdminLink, setShowAdminLink] = React.useState(false);
+  const [showAdminLink, setShowAdminLink] = React.useState(true);
 
-  useEffect(() => {
-    setShowAdminLink(
-      !edit &&
-        JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
-          ?.access_token,
-    );
-  }, [edit]);
+  // useEffect(() => {
+  //   setShowAdminLink(
+  //     !edit &&
+  //       JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
+  //         ?.access_token,
+  //   );
+  // }, [edit]);
+
+  console.log('window.location', window.location);
 
   const handleDismiss = () => {
     setShowAdminLink(false);
