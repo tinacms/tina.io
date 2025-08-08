@@ -3,20 +3,19 @@
 import React, { useEffect } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import { useEditState } from 'tinacms/dist/react';
+import { usePathname } from 'next/navigation';
 
 const AdminLink = () => {
   const { edit } = useEditState();
   const [showAdminLink, setShowAdminLink] = React.useState(true);
 
-  // useEffect(() => {
-  //   setShowAdminLink(
-  //     !edit &&
-  //       JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
-  //         ?.access_token,
-  //   );
-  // }, [edit]);
-
-  console.log('window.location', window.location);
+  useEffect(() => {
+    setShowAdminLink(
+      !edit &&
+        JSON.parse((window.localStorage.getItem('tinacms-auth') as any) || '{}')
+          ?.access_token,
+    );
+  }, [edit]);
 
   const handleDismiss = () => {
     setShowAdminLink(false);
@@ -27,7 +26,7 @@ const AdminLink = () => {
       {showAdminLink && (
         <div className="fixed top-[88px] right-16 flex items-center justify-between bg-blue-500 text-white px-3 py-1 rounded-full z-50">
           <a
-            href={`/admin/index.html#/~${window.location.pathname}`}
+            href={`/admin/index.html#/~${usePathname()}`}
             className="text-xs"
           >
             Edit This Page
