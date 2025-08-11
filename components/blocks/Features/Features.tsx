@@ -6,6 +6,7 @@ import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
 import PlayIcon from '@/public/svg/play-button.svg';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 
 export function FeatureBlock({ data }) {
   const isReversed = data.isReversed;
@@ -31,7 +32,7 @@ export function FeatureBlock({ data }) {
         )}
         {data.headline && !data.headingOne && (
           <h2
-            className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+            className={`${BLOCK_HEADINGS} font-ibm-plex inline-block  py-4  lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}

@@ -1,4 +1,5 @@
 'use client';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -85,7 +86,7 @@ const BookingBlock = ({ data }) => {
           </div>
         </div>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
-          <h1 className="w-full text-center inline-block m-0 md:text-4xl font-ibm-plex lg:text-4xl text-2xl whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          <h1 className={`${BLOCK_HEADINGS} w-full text-center inline-block m-0 font-ibm-plex whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}>
             {data.title}
           </h1>
           <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
