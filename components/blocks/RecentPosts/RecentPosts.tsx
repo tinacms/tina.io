@@ -3,8 +3,8 @@ import { DynamicLink } from 'components/ui';
 import { tinaField } from 'tinacms/dist/react';
 import { formatDate } from 'utils/blog_helpers';
 import { getExcerpt } from 'utils/getExcerpt';
-import { Container } from '../Container';
 import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { Container } from '../Container';
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');

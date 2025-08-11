@@ -1,8 +1,8 @@
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
 
 export function HeroBlock({ data, index }) {
   return (
@@ -36,7 +36,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
           )}
           {item.headline2 && (
             <h2
-            className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
+              className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
               data-tina-field={tinaField(item, 'headline2')}
             >
               {item.headline2}

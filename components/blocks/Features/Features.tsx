@@ -5,8 +5,8 @@ import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
-import PlayIcon from '@/public/svg/play-button.svg';
 import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data }) {
   const isReversed = data.isReversed;

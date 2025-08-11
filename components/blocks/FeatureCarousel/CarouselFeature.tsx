@@ -5,12 +5,12 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import GradGlow from '../../../public/svg/grad-glow.svg';
 import { icons } from '../../ui/IconPickerIcons';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 import { CarouselFeatureMobile } from './CarouselFeature.mobile';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
 
 const CarouselItem = ({
   data,

@@ -1,9 +1,9 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
 
 type YouTubeEmbedProps = {
   src: string;

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { tinaField } from 'tinacms/dist/react';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
 import { Actions } from '../ActionButton/ActionsButton';
 import {
@@ -11,7 +12,6 @@ import {
   calculateEventYear,
   formatEventDate,
 } from './dates-calculations';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 

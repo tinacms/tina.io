@@ -2,9 +2,9 @@ import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
 
 const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';
