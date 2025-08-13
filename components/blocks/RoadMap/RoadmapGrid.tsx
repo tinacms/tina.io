@@ -1,4 +1,5 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -40,9 +41,11 @@ export function RoadmapGridBlock({ data, index }) {
   return (
     <section key={`roadmap-grid-${index}`} className={`w-full`}>
       <Container width="narrow">
-        <h3 className="font-ibm-plex inline-block text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4">
+        <h2
+          className={`${BLOCK_HEADINGS} font-ibm-plex inline-block lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4`}
+        >
           {data.headline}
-        </h3>
+        </h2>
         <div className="">
           {data.items?.map((itemData, index) => {
             const last = data.items.length - 1 === index;

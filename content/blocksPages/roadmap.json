@@ -9,19 +9,18 @@
         "isFullscreen": false
       },
       "headline": "Roadmap",
-      "text": "",
+      "text": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our GitHub Discussions.",
+      "buttons": [
+        {
+          "label": "GitHub Discussions",
+          "icon": false,
+          "variant": "orange",
+          "size": "medium",
+          "url": "https://github.com/tinacms/tinacms/discussions",
+          "_template": "actions"
+        }
+      ],
       "_template": "hero"
-    },
-    {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "options": {
-        "narrow": true,
-        "color": "white"
-      },
-      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\").\n",
-      "_template": "content"
     },
     {
       "headline": "Done",
