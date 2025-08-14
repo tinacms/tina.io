@@ -31,14 +31,6 @@
           }
         },
         {
-          "headline": "Kunai",
-          "text": "[Kunai](https://kunaico.com/), a boutique innovation agency focused on financial institutions, leveraged TinaCMS to power their website, marking the first time the [Qwik](https://qwik.dev/) framework was used with TinaCMS. They build full-stack technology solutions for banks, credit, and payment networks, helping clients modernize and capitalize on emerging trends.",
-          "url": "https://kunaico.com/",
-          "media": {
-            "src": "/Kunai%20OG%20Video%20GIF%20from%20ezgif.gif"
-          }
-        },
-        {
           "headline": "Smashing Magazine",
           "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
