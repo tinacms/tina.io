@@ -28,16 +28,16 @@ Type of Incident: Unauthorized use of AWS access keys
 
 Services Impacted:
 
-- Amazon SES (email sending)
-- User invitation workflows relying on outbound email
+* Amazon SES (email sending)
+* User invitation workflows relying on outbound email
 
 Nature of Access:
 
-- AWS access keys with root permissions were compromised and misused
+* AWS access keys with root permissions were compromised and misused
 
 Verification:
 
-- CloudTrail logs were used to confirm which systems and services were accessed during the incident
+* CloudTrail logs were used to confirm which systems and services were accessed during the incident
 
 ## Root Cause Analysis
 
@@ -79,18 +79,18 @@ This includes content databases, end user login information, access to applicati
    The use of process.env was replaced with import.meta, following best practices outlined in [Vite’s documentation](https://vite.dev/config/shared-options.html#define), to prevent sensitive data from being exposed in build artifacts.
 7. ✅ Done - Repository secrets audit:
    A thorough audit of all GitHub repositories is being conducted to identify any other sensitive information that may have been inadvertently exposed in past builds or commits
-8. \[TODO] Hardened IAM policies:
+8. ✅ Done - Hardened IAM policies:
    IAM policies tied to CI/CD systems have been reviewed and updated to ensure adherence to least privilege principles, removing unnecessary permissions, especially those with root or administrative access
-9. \[TODO] IP allow listing for AWS access:
+9. ✅ Done - IP allow listing for AWS access:
    AWS IAM role usage has been restricted to trusted IP ranges, particularly for CI/CD systems and other sensitive operations
-10. \[TODO] Continuous monitoring and alerts:
+10. ✅ Done - Continuous monitoring and alerts:
     Continuous monitoring tools like Amazon GuardDuty, AWS CloudTrail Insights, and AWS Security Hub will be implemented to detect and alert on suspicious activity, such as new access key creation or unusual IP access
 11. \[TODO] Automated security scans:
     Automated tools will be integrated into the CI/CD pipeline to proactively detect secrets or vulnerabilities during code builds
 
 ## Advice to Tina Customers
 
-1. Report suspicious emails: If you received unauthorized or suspicious emails from TinaCMS, please report them to [security@tina.io](mailto:security@tina.io)
+1. Report suspicious emails: If you received unauthorized or suspicious emails from TinaCMS, please report them to [security@tina.io](mailto\:security@tina.io)
 2. Verify email origin: Ensure any emails claiming to be from TinaCMS are legitimate
 3. Stay updated: Follow our official communication channels for real-time updates
 
@@ -98,8 +98,8 @@ This includes content databases, end user login information, access to applicati
 
 For questions, concerns, or further information, please contact:
 
-- Email: [security@tina.io](mailto:security@tina.io)
-- Website: [https://tina.io/security](https://tina.io/security)
+* Email: [security@tina.io](mailto\:security@tina.io)
+* Website: [https://tina.io/security](https://tina.io/security)
 
 TinaCMS remains committed to protecting our systems and maintaining transparency.
 
