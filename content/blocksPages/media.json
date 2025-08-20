@@ -71,7 +71,14 @@
         },
         {
           "headline": "Fonts",
-          "text": "The official fonts used in Tina.io and TinaCMS are IBM Plex Sans for headings, Inter for body text, and Roboto Mono for code blocks"
+          "text": "The official fonts used in Tina.io and TinaCMS are IBM Plex Sans for headings, Inter for body text, and Roboto Mono for code blocks",
+          "media": [
+            {
+              "image": "/img/brand-assets/Tina-Media-Fonts-hero.png",
+              "_template": "image"
+            }
+          ],
+          "imageBackground": true
         }
       ],
       "_template": "features"
