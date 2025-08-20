@@ -9,7 +9,7 @@ export function HeroBlock({ data, index }) {
     <section
       key={index}
       className={`relative overflow-visible z-10 text-center ${
-        data.margin ? data.margin : 'px-8 pt-8 lg:pt-28'
+        data.margin ? data.margin : 'px-8 pt-8 lg:pt-32'
       }`}
     >
       <Container width="narrow" center>
