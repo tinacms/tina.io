@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Container } from "./Container";
-import { ContentBlock } from "./Content/Content";
-import { HeroBlock } from "./Hero/Hero";
+import { Container } from './Container';
+import { ContentBlock } from './Content/Content';
+import { HeroBlock } from './Hero/Hero';
 
 interface FooterLinkPageProps {
   data: {
@@ -22,7 +22,7 @@ export const FooterLinkPage = ({ data }: FooterLinkPageProps) => {
     <div>
       {data.blocks.map((block, index) => {
         switch (block.__typename) {
-          case "PageBlocksHero":
+          case 'PageBlocksHero':
             return (
               <section key={`${block.__typename}-${index}`}>
                 <Container width="wide" center>
@@ -30,7 +30,7 @@ export const FooterLinkPage = ({ data }: FooterLinkPageProps) => {
                 </Container>
               </section>
             );
-          case "PageBlocksContent":
+          case 'PageBlocksContent':
             return (
               <section key={`${block.__typename}-${index}`} className="pb-16">
                 <Container width="wide">
