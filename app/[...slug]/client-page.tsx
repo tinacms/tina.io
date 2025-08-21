@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { BlocksPage } from 'components/blocks/BlocksPage';
-import { FooterLinkPage } from 'components/blocks/FooterLinkPage';
-import { useTina } from 'tinacms/dist/react';
+import { BlocksPage } from "components/blocks/BlocksPage";
+import { FooterLinkPage } from "components/blocks/FooterLinkPage";
+import { useTina } from "tinacms/dist/react";
 
 interface ClientPageProps {
   query: string;
@@ -13,10 +13,10 @@ interface ClientPageProps {
 }
 
 const FOOTER_LINK_PAGES = [
-  'security.json',
-  'telemetry.json', 
-  'terms-of-service.json',
-  'privacy-notice.json'
+  "security.json",
+  "telemetry.json",
+  "terms-of-service.json",
+  "privacy-notice.json",
 ];
 
 export default function ClientPage({
