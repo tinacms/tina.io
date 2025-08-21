@@ -1,7 +1,7 @@
 'use client';
 
 import { BlocksPage } from 'components/blocks/BlocksPage';
-import { FooterLinkBlocksPage } from 'components/blocks/FooterLinkBlocksPage';
+import { FooterLinkPage } from 'components/blocks/FooterLinkPage';
 import { useTina } from 'tinacms/dist/react';
 
 interface ClientPageProps {
@@ -12,7 +12,6 @@ interface ClientPageProps {
   };
 }
 
-// Pages that should use the FooterLinkBlocksPage component
 const FOOTER_LINK_PAGES = [
   'security.json',
   'telemetry.json', 
@@ -31,14 +30,14 @@ export default function ClientPage({
     variables,
   });
 
-  // Check if this is a footer link page
   const isFooterLinkPage = FOOTER_LINK_PAGES.includes(variables.relativePath);
 
-  // Use FooterLinkBlocksPage for footer link pages, BlocksPage for everything else
-  const PageComponent = isFooterLinkPage ? FooterLinkBlocksPage : BlocksPage;
+  if (isFooterLinkPage) {
+    return <FooterLinkPage data={tinaData.data.page} />;
+  }
 
   return (
-    <PageComponent
+    <BlocksPage
       data={tinaData.data.page}
       recentPosts={tinaData.data.recentPosts}
     />
