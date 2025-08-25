@@ -13,6 +13,7 @@ import {
   FeatureGridBlock,
   FeaturesBlock,
   FlyingBlock,
+  FooterLinkContentBlock,
   HeroBlock,
   LogoGridBlock,
   PricingBlock,
@@ -108,6 +109,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <SpacerComponent data={block} />;
     case 'PageBlocksVideoEmbed':
       return <VideoDisplay data={block} />;
+    case 'PageBlocksFooterLinkContent':
+      return <FooterLinkContentBlock data={block} />;
     default:
       return null;
   }
@@ -125,7 +128,11 @@ export const Blocks = ({
   }
 
   return blocks.map((block, index) => {
-    // console.log(block.__typename); // Debugging log
+    // FooterLinkContent blocks don't use BlockWrapper
+    if (block.__typename === 'PageBlocksFooterLinkContent') {
+      return blockByType(block, index, recentPosts);
+    }
+    
     return (
       <BlockWrapper
         data={block.blockSettings}
