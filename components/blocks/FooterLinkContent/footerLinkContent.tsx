@@ -21,22 +21,22 @@ export function FooterLinkContentBlock({ data }) {
           </Container>
         </div>
       )}
-      
+
       {/* Content Section - Using exact same styling as ContentBlock */}
       {data.byLine && (
         <Section color={data.options?.color || 'white'}>
           <DocsTextWrapper>
             <div className="text-left">
-                <div 
-                  className="max-w-4xl mx-auto px-5 sm:w-3/5 lg:w-3/5"
-                  data-tina-field={tinaField(data, 'byLine')}
-                >
-                  <TinaMarkdown
-                    components={contentComponents}
-                    content={data.byLine}
-                  />
-                </div>
+              <div
+                className="max-w-4xl mx-auto px-5 sm:w-3/5 lg:w-3/5"
+                data-tina-field={tinaField(data, 'byLine')}
+              >
+                <TinaMarkdown
+                  components={contentComponents}
+                  content={data.byLine}
+                />
               </div>
+            </div>
           </DocsTextWrapper>
         </Section>
       )}

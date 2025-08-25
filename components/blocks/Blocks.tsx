@@ -132,7 +132,7 @@ export const Blocks = ({
     if (block.__typename === 'PageBlocksFooterLinkContent') {
       return blockByType(block, index, recentPosts);
     }
-    
+
     return (
       <BlockWrapper
         data={block.blockSettings}
