@@ -13,6 +13,7 @@ import { carouselFeatureTemplate } from '../../components/blocks/FeatureCarousel
 import { featureGridTemplate } from '../../components/blocks/FeatureGrid/FeatureGrid.template';
 import { featuresTemplate } from '../../components/blocks/Features/Features.template';
 import { flyingTemplate } from '../../components/blocks/Flying/Flying.template';
+import { footerLinkContentTemplate } from '../../components/blocks/FooterLinkContent/footerLinkContent.template';
 import { heroTemplate } from '../../components/blocks/Hero/Hero.template';
 import { highlightsSectionTemplate } from '../../components/blocks/HighlightsSection/HighlightsSection.template';
 import { logoGridTemplate } from '../../components/blocks/LogoGrid/LogoGrid.template';
@@ -75,6 +76,7 @@ const templates = [
   textAndMediaColumnsComponentTemplate as Template,
   tinaBannerTemplate as Template,
   storyTemplate as Template,
+  footerLinkContentTemplate as Template,
   videoEmbedTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
