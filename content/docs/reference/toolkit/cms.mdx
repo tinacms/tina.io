@@ -1,7 +1,15 @@
 ---
 title: The CMS
-last_edited: '2021-11-10T00:00:00.000Z'
+last_edited: '2025-08-26T08:47:28.692Z'
+next: ''
+previous: ''
 ---
+
+<WarningCallout
+  body={<>
+    This page is out of date - check out [the TinaCMS GitHub](https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md) for the latest contribution information
+  </>}
+/>
 
 The CMS object in Tina is a container for attaching and accessing plugins, APIs, and the event bus. On its own, the CMS does very little; however, since it's the central integration point for everything that Tina does, it's extremely important!
 
@@ -76,11 +84,11 @@ interface ToolbarConfig {
 }
 ```
 
----
+***
 
 | key          | usage                                                                     |
 | ------------ | ------------------------------------------------------------------------- |
-| **enabled**  | Controls whether the CMS is enabled or disabled. _Defaults to_ `false`    |
+| **enabled**  | Controls whether the CMS is enabled or disabled. *Defaults to* `false`    |
 | **plugins**  | Array of plugins to be added to the CMS object.                           |
 | **apis**     | Object containing APIs to be registered to the CMS                        |
 | **sidebar**  | Enables and configures behavior of the sidebar                            |
@@ -88,7 +96,7 @@ interface ToolbarConfig {
 | **media**    | Configures media.                                                         |
 | **pageSize** | Sets how many media objects are displayed at a time in the media manager. |
 
----
+***
 
 ## Reference
 
@@ -109,8 +117,8 @@ interface TinaCMS {
 
 | property      | description                                                          |
 | ------------- | -------------------------------------------------------------------- |
-| `enabled`     | Returns the enabled state. When `true`, content _can_ be edited.     |
-| `disabled`    | Returns the disabled state. When `true`, content _cannot_ be edited. |
+| `enabled`     | Returns the enabled state. When `true`, content *can* be edited.     |
+| `disabled`    | Returns the disabled state. When `true`, content *cannot* be edited. |
 | `registerApi` | Registers a new external API with the CMS.                           |
 | `enable`      | Enables the CMS so content can be edited.                            |
 | `disable`     | Disables the CMS so content can no longer be edited.                 |
