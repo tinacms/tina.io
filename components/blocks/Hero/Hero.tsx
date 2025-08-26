@@ -23,49 +23,47 @@ export function HeroBlock({ data, index }) {
 
 export const HeroFeature = ({ item, spacing, children }) => {
   return (
-    <>
-      <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
-        <div className="flex flex-col gap-2">
-          {item.headline && (
-            <h2
-              className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
-              data-tina-field={tinaField(item, 'headline')}
-            >
-              {item.headline}
-            </h2>
-          )}
-          {item.headline2 && (
-            <h2
-              className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
-              data-tina-field={tinaField(item, 'headline2')}
-            >
-              {item.headline2}
-            </h2>
-          )}
-        </div>
-        {item.text && (
-          <p
-            className={item.mobileTextSize ? 'text-lg lg:text-xl' : 'text-xl'}
-            data-tina-field={tinaField(item, 'text')}
+    <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
+      <div className="flex flex-col gap-2">
+        {item.headline && (
+          <h2
+            className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
+            data-tina-field={tinaField(item, 'headline')}
           >
-            {item.text}
-          </p>
+            {item.headline}
+          </h2>
         )}
-        <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
-          {item.buttons?.map((button, index) => (
-            <div
-              key={button.id}
-              className={`flex items-start lg:items-center ${
-                index === 2 ? 'md:col-span-2 md:justify-center' : ''
-              }`}
-            >
-              <RenderButton button={button} index={index} />
-            </div>
-          ))}
-        </div>
-        {children}
+        {item.headline2 && (
+          <h2
+            className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
+            data-tina-field={tinaField(item, 'headline2')}
+          >
+            {item.headline2}
+          </h2>
+        )}
       </div>
-    </>
+      {item.text && (
+        <p
+          className={item.mobileTextSize ? 'text-lg lg:text-xl' : 'text-xl'}
+          data-tina-field={tinaField(item, 'text')}
+        >
+          {item.text}
+        </p>
+      )}
+      <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row justify-center items-start lg:items-center gap-10 pb-10">
+        {item.buttons?.map((button, index) => (
+          <div
+            key={button.id}
+            className={`flex items-start lg:items-center ${
+              index === 2 ? 'md:col-span-2 md:justify-center' : ''
+            }`}
+          >
+            <RenderButton button={button} index={index} />
+          </div>
+        ))}
+      </div>
+      {children}
+    </div>
   );
 };
 
