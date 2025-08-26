@@ -532,7 +532,7 @@
                 },
                 {
                   "title": "Migrating From TinaCloud",
-                  "slug": "content/docs/self-hosted/migrating-from-tina-cloud.mdx",
+                  "slug": "content/docs/self-hosted/migrating-from-tinacloud.mdx",
                   "_template": "item"
                 }
               ],
@@ -637,7 +637,7 @@
                 },
                 {
                   "title": "Tina Cloud",
-                  "slug": "content/docs/reference/self-hosted/auth-provider/tina-cloud.mdx",
+                  "slug": "content/docs/reference/self-hosted/auth-provider/tinacloud.mdx",
                   "_template": "item"
                 },
                 {
