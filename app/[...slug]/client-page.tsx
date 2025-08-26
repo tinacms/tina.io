@@ -21,6 +21,7 @@ export default function ClientPage({
     data,
     variables,
   });
+
   return (
     <BlocksPage
       data={tinaData.data.page}
