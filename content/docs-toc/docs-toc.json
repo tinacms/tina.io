@@ -397,7 +397,7 @@
         },
         {
           "title": "Connecting to TinaCloud",
-          "slug": "content/docs/tina-cloud/overview.mdx",
+          "slug": "content/docs/tinacloud/overview.mdx",
           "_template": "item"
         },
         {
@@ -405,12 +405,12 @@
           "items": [
             {
               "title": "Editorial Workflow",
-              "slug": "content/docs/tina-cloud/editorial-workflow.mdx",
+              "slug": "content/docs/tinacloud/editorial-workflow.mdx",
               "_template": "item"
             },
             {
               "title": "Webhooks",
-              "slug": "content/docs/tina-cloud/webhooks.mdx",
+              "slug": "content/docs/tinacloud/webhooks.mdx",
               "_template": "item"
             },
             {
@@ -420,12 +420,12 @@
             },
             {
               "title": "Git Co-Authoring",
-              "slug": "content/docs/tina-cloud/git-co-authoring.mdx",
+              "slug": "content/docs/tinacloud/git-co-authoring.mdx",
               "_template": "item"
             },
             {
               "title": "API Versioning",
-              "slug": "content/docs/tina-cloud/api-versioning.mdx",
+              "slug": "content/docs/tinacloud/api-versioning.mdx",
               "_template": "item"
             }
           ],
@@ -436,12 +436,12 @@
           "items": [
             {
               "title": "Overview",
-              "slug": "content/docs/tina-cloud/dashboard.mdx",
+              "slug": "content/docs/tinacloud/dashboard.mdx",
               "_template": "item"
             },
             {
               "title": "Registration",
-              "slug": "content/docs/tina-cloud/dashboard/registration.mdx",
+              "slug": "content/docs/tinacloud/dashboard/registration.mdx",
               "_template": "item"
             },
             {
@@ -449,12 +449,12 @@
               "items": [
                 {
                   "title": "Overview",
-                  "slug": "content/docs/tina-cloud/dashboard/projects.mdx",
+                  "slug": "content/docs/tinacloud/dashboard/projects.mdx",
                   "_template": "item"
                 },
                 {
                   "title": "Project Collaborators",
-                  "slug": "content/docs/tina-cloud/dashboard/users.mdx",
+                  "slug": "content/docs/tinacloud/dashboard/users.mdx",
                   "_template": "item"
                 }
               ],
@@ -462,12 +462,12 @@
             },
             {
               "title": "Organizations",
-              "slug": "content/docs/tina-cloud/dashboard/organizations.mdx",
+              "slug": "content/docs/tinacloud/dashboard/organizations.mdx",
               "_template": "item"
             },
             {
               "title": "GitHub Enterprise Integration",
-              "slug": "content/docs/tina-cloud/github-enterprise-integration.mdx",
+              "slug": "content/docs/tinacloud/github-enterprise-integration.mdx",
               "_template": "item"
             }
           ],
@@ -478,22 +478,22 @@
           "items": [
             {
               "title": "Vercel",
-              "slug": "content/docs/tina-cloud/deployment-options/vercel.mdx",
+              "slug": "content/docs/tinacloud/deployment-options/vercel.mdx",
               "_template": "item"
             },
             {
               "title": "Netlify",
-              "slug": "content/docs/tina-cloud/deployment-options/netlify.mdx",
+              "slug": "content/docs/tinacloud/deployment-options/netlify.mdx",
               "_template": "item"
             },
             {
               "title": "Github Pages",
-              "slug": "content/docs/tina-cloud/deployment-options/github-pages.mdx",
+              "slug": "content/docs/tinacloud/deployment-options/github-pages.mdx",
               "_template": "item"
             },
             {
               "title": "Alibaba Cloud",
-              "slug": "content/docs/tina-cloud/deployment-options/alibaba-cloud.mdx",
+              "slug": "content/docs/tinacloud/deployment-options/alibaba-cloud.mdx",
               "_template": "item"
             }
           ],

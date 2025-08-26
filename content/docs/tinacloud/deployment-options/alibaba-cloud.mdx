@@ -1,0 +1,254 @@
+---
+title: Deploying to Alibaba Cloud
+last_edited: '2025-07-11T07:03:10.826Z'
+next: content/docs/tinacloud/api-versioning.mdx
+previous: content/docs/tinacloud/deployment-options/github-pages.mdx
+---
+
+## Alternative Deployment for Chinese Users
+
+TinaCMS primarily implements automatic content repository updates through GitHub and static hosting platform integration, but **static hosting platforms like Vercel, Netlify, and GitHub Pages are not accessible in mainland China** and lack direct Chinese alternatives. 
+
+Chinese users can choose to deploy their projects to Alibaba Cloud servers combined with GitHub Actions as an alternative solution.
+
+Here is the accessibility status of TinaCMS-related services in mainland China without VPN:
+
+* **`npx create-tina-app@latest`** **command**: ✅ Works
+* **TinaCloud**: ✅ Accessible
+* **Tina.io**: ✅ Accessible
+* **GitHub**: ⚠️ Accessible but slow
+* **Vercel**: ❌ Not accessible
+
+> The above test results are current as of **`July 10, 2025`**, and accessibility status may change over time
+
+Given these limitations, this guide will walk you through deploying your TinaCMS project to **Alibaba Cloud**. As the leading cloud service provider in China, Alibaba Cloud offers reliable performance for Chinese users. While no Chinese cloud service currently provides the same seamless GitHub integration as Vercel, Alibaba Cloud remains the go-to option for developers who want to deploy their websites within mainland China.
+
+## Alibaba Cloud Configuration
+
+Alibaba Cloud offers a wide range of server options. We generally recommend using **Elastic Compute Service (ECS)** for TinaCMS project deployment. For detailed instructions on creating and configuring your server, please refer to the [Official Alibaba Cloud Documentation](https://www.alibabacloud.com/help/en/elastic-compute-service).
+
+### Server Setup
+
+After creating your ECS instance, you'll need to set up the necessary software for manage your TinaCMS project.
+
+#### Install PM2 for Process Management
+
+PM2 is a process manager for Node.js applications that helps keep your application running in production.
+
+```
+pnpm install -g pm2
+```
+
+#### Install and Configure Nginx
+
+Nginx will serve as a reverse proxy for your TinaCMS application.
+
+```
+yum install nginx
+```
+
+Next, start Nginx and enable it to run on system boot:
+
+```
+systemctl start nginx    # Start the Nginx service
+systemctl enable nginx   # Configure Nginx to start automatically on system boot
+systemctl status nginx   # Check the status of the Nginx service
+```
+
+#### Configure Nginx as a Reverse Proxy
+
+Create a configuration file for your TinaCMS site:
+
+```
+vim /etc/nginx/conf.d/tinademo.conf
+```
+
+Add the following configuration:
+
+```
+server {
+    listen 80;
+    server_name your - domain.com;  # Replace with your actual domain
+  location / {
+    proxy_pass http://localhost:3000;
+      proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+
+Test your Nginx configuration for syntax errors:
+
+```
+nginx -t
+```
+
+Reload Nginx to apply the new configuration:
+
+```
+nginx -s reload
+```
+
+### Preparing for GitHub Actions Deployment
+
+#### Create Deployment Directory
+
+First, create a directory on your server where your Tina CMS project will be deployed:
+
+```
+mkdir -p /www/tinademo
+cd /www/tinademo
+```
+
+#### Create a Tina Project
+
+Use the template to create a basic Tina project.
+
+```plaintext
+npx create-tina-app@latest
+```
+
+#### &#xA;Generate SSH Keys for GitHub Actions
+
+Generate an SSH key pair on your Alibaba Cloud server:
+
+```
+ssh -keygen -t ed25519 -C "deploy-key"
+# Press Enter to use the default path
+# Leave the passphrase empty by pressing Enter
+```
+
+#### Add Public Key to Authorized Keys
+
+Add the generated public key to the authorized\_keys file to allow GitHub Actions to authenticate:
+
+```
+cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+```
+
+## Configuring GitHub Secrets
+
+After generating your SSH key, you'll need to add several secrets to your GitHub repository to enable secure deployment.
+
+### Navigate to GitHub Secrets
+
+1. GitHub repository → Settings
+2. Secrets and variables → Actions
+3. Click "New repository secret"
+
+### Required GitHub Secrets
+
+You'll need to configure the following secrets:
+
+1. `SSH_PRIVATE_KEY` : The private key generated on your server
+   * View it using: `cat ~/.ssh/id_ed25519`
+   * Make sure to include the entire key, including the `-----BEGIN OPENSSH PRIVATE KEY----` and `-----END OPENSSH PRIVATE KEY-----`
+2. `SERVER_HOST`: Your Alibaba Cloud server's IP address
+   * This is the public IP address of your ECS instance
+3. `SERVER_USERNAME`: The username for connecting to your server
+   * Typically `root` or the user account you created on your ECS instance
+4. `NEXT_PUBLIC_TINA_BRANCH`: The branch that Tina CMS should use for content
+   * Usually your main branch (e.g., `main`  or `master`)
+5. `NEXT_PUBLIC_TINA_CLIENT_ID`: Your TinaCloud client ID
+   * Find this in your TinaCloud dashboard under project settings
+6. `TINA_TOKEN`: Your TinaCloud token for authentication
+   * Generate this from your TinaCloud dashboard under API Access
+
+## Creating GitHub Actions Workflow
+
+Create a new file in your repository at `.github/workflows/deploy.yml` with the following content:
+
+```yaml
+name: Deploy to Alibaba Cloud Server
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.14.0"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Create .env file
+        run: |
+          cat > .env << EOL
+          NEXT_PUBLIC_TINA_CLIENT_ID=${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN=${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH=${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
+          EOL
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH: ${{ secrets.NEXT_PUBLIC_TINA_BRANCH }}
+        run: pnpm build
+
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: ".next/,public/,package.json,pnpm-lock.yaml,.env,tina/,next.config.js,.tina/"
+          target: "/tina/tinademo/"
+          rm: true
+
+      - name: Execute Remote SSH Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /tina/tinademo
+            pnpm install
+            pm2 delete tinademo || true
+            pm2 flush tinademo
+            NODE_ENV=production pm2 start "pnpm start" --name tinademo
+
+```
+
+## Configuring a Custom Domain
+
+To use a custom domain with your TinaCMS project in China:
+
+### Domain Setup
+
+1. Purchase a domain from a Chinese provider (e.g. Alibaba Cloud, Tencent Cloud)
+2. Add an A record pointing to your Alibaba Cloud server's IP address
+3. Update your Nginx configuration:
+
+```
+server {
+    listen 80;
+    server_name yourdomain.cn;
+    # Rest of configuration
+}
+```
+
+### ICP Filing
+
+Remember that websites hosted in mainland China require ICP filing. Start this process through your domain provider or Alibaba Cloud.
+
+## Conclusion
+
+With the Alibaba Cloud and GitHub Actions configuration above, Chinese users can now use all TinaCMS features normally from mainland China. This setup maintains the same automatic content synchronization as Vercel, with no functional differences.
