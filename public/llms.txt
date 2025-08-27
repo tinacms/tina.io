@@ -72,12 +72,12 @@
 ## TinaCloud
 
 - [What is TinaCloud?](https://tina.io/docs/tina-cloud): Overview of TinaCloud hosted services and features for production deployments.
-- [Connecting to TinaCloud](https://tina.io/docs/tina-cloud/overview): Steps for connecting your TinaCMS project to TinaCloud.
+- [Connecting to TinaCloud](https://tina.io/docs/tinacloud/overview): Steps for connecting your TinaCMS project to TinaCloud.
 ### Key Features
 - [Editorial Workflow](https://tina.io/docs/drafts/editorial-workflow): Enables multi-branch content workflows (drafts/reviews) for editorial teams.
 - [Content Search](https://tina.io/docs/reference/search/overview): Built-in content search functionality within the CMS interface, powered by `search-index`.
-- [Git Co-Authoring](https://tina.io/docs/tina-cloud/git-co-authoring): Automatically co-authors Git commits made via TinaCloud with the editor's GitHub user for better attribution.
-- [GraphQL API Versioning](https://tina.io/docs/tina-cloud/api-versioning): How TinaCloud handles different versions of the GraphQL API based on your site's generated schema version.
+- [Git Co-Authoring](https://tina.io/docs/tinacloud/git-co-authoring): Automatically co-authors Git commits made via TinaCloud with the editor's GitHub user for better attribution.
+- [GraphQL API Versioning](https://tina.io/docs/tinacloud/api-versioning): How TinaCloud handles different versions of the GraphQL API based on your site's generated schema version.
 
 ## Self-Hosting
 
