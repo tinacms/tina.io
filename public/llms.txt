@@ -86,7 +86,7 @@
 - [Self Hosted Manual Setup](https://tina.io/docs/self-hosted/manual-setup): Guidance on manually setting up a self-hosted backend, choosing Git providers, database adapters, and auth providers.
 - [Querying Content in Self-hosted Backend](https://tina.io/docs/self-hosted/querying-data): Using the separate `databaseClient` to query content directly from your chosen database when self-hosting.
 - [Using the Next.js Vercel Example](https://tina.io/docs/self-hosted/starters/nextjs-vercel): Guide for setting up a pre-configured self-hosted example using Next.js, Vercel KV, and NextAuth.
-- [Migrating from TinaCloud to Self-Hosted](https://tina.io/docs/self-hosted/migrating-from-tina-cloud): Instructions for migrating an existing TinaCloud project to a self-hosted setup, including using the `@tinacms/cli init backend` command.
+- [Migrating from TinaCloud to Self-Hosted](https://tina.io/docs/self-hosted/migrating-from-tinacloud): Instructions for migrating an existing TinaCloud project to a self-hosted setup, including using the `@tinacms/cli init backend` command.
 
 ---
 
