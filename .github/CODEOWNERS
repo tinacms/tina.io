@@ -1,5 +1,5 @@
 * @tinacms/maintainers
 
-/content/docs/tina-cloud/**/* @tinacms/commercial-maintainers
+/content/docs/tinacloud/**/* @tinacms/commercial-maintainers
 
 /content/blog/**/*
