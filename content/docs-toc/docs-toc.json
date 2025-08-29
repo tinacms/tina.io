@@ -659,6 +659,21 @@
       ]
     },
     {
+      "title": "Troubleshooting",
+      "items": [
+        {
+          "title": "The TinaCMS CLI",
+          "slug": "content/docs/cli-overview.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Tina's Edit State",
+          "slug": "content/docs/extending-tina/edit-state.mdx",
+          "_template": "item"
+        }
+      ]
+    },
+    {
       "title": "Advanced",
       "items": [
         {
