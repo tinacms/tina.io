@@ -1,7 +1,15 @@
 ---
 title: Forms
-last_edited: '2021-11-10T00:00:00.000Z'
+last_edited: '2025-08-26T08:47:01.303Z'
+next: ''
+previous: ''
 ---
+
+<WarningCallout
+  body={<>
+    This page is out of date - check out [the TinaCMS GitHub](https://github.com/tinacms/tinacms/blob/main/CONTRIBUTING.md) for the latest contribution information
+  </>}
+/>
 
 ## Form Configuration
 
@@ -39,10 +47,10 @@ interface FormOptions<S> {
 | `id`                | A unique identifier for the form. This should be derived from the content to distinguish it from other instances of the form.                 |
 | `label`             | A label for the form that will appear in the sidebar.                                                                                         |
 | `fields`            | An array of fields that will define the shape of the form and how content is edited.                                                          |
-| `loadInitialValues` | _Optional:_ A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
-| `onSubmit`          | _Optional:_ An asynchronous function to invoke when the form is saved, i.e. when the 'Save' button is pressed.                                |
-| `reset`             | _Optional:_ A function that runs when the form state is reset by the user via the 'Reset' button.                                             |
-| `actions`           | _Optional:_ An array of custom actions that will be added to the form.                                                                        |
-| `buttons`           | _Optional:_ An object to customize the 'Save' and 'Reset' button text for the form.                                                           |
-| `onChange`          | _Optional:_ A function that runs when the form values are changed.                                                                            |
-| `__type`            | _Optional:_ Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |
+| `loadInitialValues` | *Optional:* A function to load the initial form state asynchronously. Return a promise that passes an object of form values when it resolves. |
+| `onSubmit`          | *Optional:* An asynchronous function to invoke when the form is saved, i.e. when the 'Save' button is pressed.                                |
+| `reset`             | *Optional:* A function that runs when the form state is reset by the user via the 'Reset' button.                                             |
+| `actions`           | *Optional:* An array of custom actions that will be added to the form.                                                                        |
+| `buttons`           | *Optional:* An object to customize the 'Save' and 'Reset' button text for the form.                                                           |
+| `onChange`          | *Optional:* A function that runs when the form values are changed.                                                                            |
+| `__type`            | *Optional:* Sets the Form's plugin type. Automatically set based on which form hook is used.                                                  |

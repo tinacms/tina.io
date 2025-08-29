@@ -39,8 +39,8 @@
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/connecting-site",
-      "destination": "/docs/tina-cloud/overview",
+      "source": "/docs/tinacloud/connecting-site",
+      "destination": "/docs/tinacloud/overview",
       "permanent": true
     },
     {
@@ -54,18 +54,18 @@
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/faq/:path*",
+      "source": "/docs/tinacloud/faq/:path*",
       "destination": "/docs/introduction/faq",
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/faq/:path*",
+      "source": "/docs/tinacloud/faq/:path*",
       "destination": "/docs/introduction/faq",
       "permanent": true
     },
     {
       "source": "/docs/drafts/editorial-workflow",
-      "destination": "/docs/tina-cloud/editorial-workflow",
+      "destination": "/docs/tinacloud/editorial-workflow",
       "permanent": true
     },
     {
@@ -79,8 +79,8 @@
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/alpha-faq/:path*",
-      "destination": "/docs/tina-cloud/faq",
+      "source": "/docs/tinacloud/alpha-faq/:path*",
+      "destination": "/docs/tinacloud/faq",
       "permanent": true
     },
     {
@@ -409,8 +409,8 @@
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/beta-faq/:path*",
-      "destination": "/docs/tina-cloud/alpha-faq",
+      "source": "/docs/tinacloud/beta-faq/:path*",
+      "destination": "/docs/tinacloud/alpha-faq",
       "permanent": true
     },
     {
@@ -424,7 +424,7 @@
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/client",
+      "source": "/docs/tinacloud/client",
       "destination": "/docs/contextual-editing/overview",
       "permanent": true
     },
@@ -439,7 +439,7 @@
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/cli",
+      "source": "/docs/tinacloud/cli",
       "destination": "/docs/cli-overview",
       "permanent": true
     },
@@ -545,7 +545,7 @@
     },
     {
       "source": "/docs/getting-started/faq/:path*",
-      "destination": "/docs/tina-cloud/faq/",
+      "destination": "/docs/tinacloud/faq/",
       "permanent": true
     },
     {
@@ -649,7 +649,7 @@
       "permanent": true
     },
     {
-      "source": "/docs/tina-cloud/data-layer",
+      "source": "/docs/tinacloud/data-layer",
       "destination": "/docs/reference/content-api/data-layer",
       "permanent": true
     },

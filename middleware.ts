@@ -11,7 +11,6 @@ export const VALID_PATHS = [
   '/about',
   '/compare-tina',
   '/enterprise',
-  '/home',
   '/roadmap',
   '/showcase',
   '/pricing',

@@ -111,11 +111,26 @@ const config = {
     ];
   },
   async redirects() {
-    return redirects.map((redirect) => ({
-      source: redirect.source,
-      destination: redirect.destination,
-      permanent: redirect.permanent,
-    }));
+    return [
+      // Redirect /home to / to keep URLs clean
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      // Redirect localized /home URLs to clean locale URLs
+      {
+        source: '/:locale(en|zh)/home',
+        destination: '/:locale',
+        permanent: true,
+      },
+      // Include existing redirects from config
+      ...redirects.map((redirect) => ({
+        source: redirect.source,
+        destination: redirect.destination,
+        permanent: redirect.permanent,
+      })),
+    ];
   },
   webpack(config) {
     config.module.rules.push({
