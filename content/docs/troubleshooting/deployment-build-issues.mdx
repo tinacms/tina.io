@@ -1,0 +1,41 @@
+---
+title: Deployment & Build Issues
+description: Common deployment and build problems with TinaCMS and TinaCloud
+---
+
+## Failed Loading TinaCMS Assets
+
+This error means that the TinaCMS admin HTML file failed to load the JavaScript bundle. This generally happens for a few reasons:
+
+### User has pushed the development admin/index.html to production
+
+When you run `tinacms dev` locally, Tina will generate a development admin/index.html file, which loads its assets from localhost. For production, this file should be built in CI using `tinacms build`. If a developer manually removes the admin/index.html file from their `.gitignore`, they may run into this issue.
+
+### Your site is served on a different base path
+
+If your site is served at a sub-directory, ensure that your `build.basePath` is [configured appropriately](/docs/reference/config/#definition)
+
+<Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
+
+**Video: FAQ - Setting a base path for TinaCMS (3 min)**
+
+## Vercel Deployment Issues
+
+### Popup blocker prevents Vercel from installing their GitHub app
+
+After choosing which starter template to deploy and being redirected to Vercel, a popup for Vercel to add their GitHub app may fail to open. Look in the bottom left corner for a toast message saying "The popup to install the GitHub App could not be opened."
+
+![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)\
+**Figure: Popup blocked**
+
+To fix, check your browser's address bar for blocked popups, allow them, and retry.
+
+## Accessing Local GraphQL Server
+
+### In production
+
+Make sure your API URL isn't set to point at your local GraphQL server when in production. You should be pointing to the ContentAPI.
+
+### Locally
+
+If you are working locally, make sure your [GraphQL server is running](/docs/graphql/cli/).

@@ -1,0 +1,52 @@
+---
+title: Authentication & Login Issues
+description: Common authentication and login problems with TinaCMS and TinaCloud
+---
+
+## Login Window Doesn't Close
+
+When a user logs in from your site, we will pop open a login window. When login is complete, we will attempt to send a message back to the main window.
+
+The most common reasons for this issue are:
+
+* The Site URL is not properly set for the Tina project. The main window's base URL will need to match the Tina project's Site URL setup in the TinaCloud Dashboard.
+* The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the TinaCloud dashboard.
+* The user attempting to login to TinaCloud does not have access to edit this site. Ensure that this user is authorized on the TinaCloud dashboard.
+
+> Make sure to include `https` in the Site URL eg: [https://forestry.io](https://forestry.io) or if you are testing locally, it might be something like `http://localhost:3000`
+
+### Site is building on a sub-path
+
+There is a known limitation where TinaCMS doesn't load assets correctly when the admin is deployed to a sub-path: (`https://jamespohalloran.github.io/my-site-root/admin/` for example). To resolve the issue, in your [Tina config file](/docs/reference/config/), set the `build.basePath` property to value of the sub-path (e.g. `my-site-root`).
+
+## Invalid Origin Error
+
+When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud Site URLs.
+
+To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
+
+!['?origin=' URL parameter](/img/docs/introduction/origin-url-highlight.png)\
+**Figure: URL parameter**
+
+![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)\
+**Figure: TinaCloud Site URLs settings**
+
+## Local Mode vs Production Mode
+
+### Local Mode
+
+When developers are developing locally, it's often convenient to load/save content from their local filesystem rather than connecting to the content on TinaCloud.
+
+When in local-mode, you **will not** need to login to enter edit-mode.
+
+<WarningCallout
+  body={<>
+    **Note:** Local-mode is meant for developing locally, and will not work when your site is hosted on production. When in local-mode, Tina tries to hit `http://localhost:4001`, which isn't available at runtime on your production site (and neither is the underlying filesystem content).
+  </>}
+/>
+
+### Production Mode
+
+Once you are ready to host your site in production and put editing behind authentication, you can self-host the CMS backend yourself or you can use TinaCloud's hosted backend.
+
+Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using [TinaCloud](/docs/tinacloud/dashboard/), Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Any changes that are saved by your editors will be committed to the configured branch in your GitHub repository.

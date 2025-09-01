@@ -1,0 +1,61 @@
+---
+title: TinaCloud vs Self-Hosted
+description: Feature comparisons and limitations between TinaCloud and self-hosted TinaCMS
+---
+
+## What Features Are Unavailable in Self-Hosted Tina?
+
+When comparing TinaCloud with self-hosting Tina, there are specific features unique to TinaCloud. These include:
+
+### 1. Git Backed Media
+
+In TinaCloud, there's a Git backed media feature. This integrates media into the Tina Media Manager and commits it directly to the Git repository. However, this functionality is not present in self-hosted Tina.
+
+The reason for its absence is due to the process involving media uploads. When using the media manager in TinaCloud, images are uploaded to TinaCloud servers and distributed via a CDN. This ensures that images are accessible through the Tina Media Manager, as they require a URL for accessibility. Without this, images won't appear in the Media Manager until the site is rebuilt.
+
+### 2. Dynamic Branch Switching at Runtime
+
+TinaCloud allows for changing the content branch at runtime, a feature managed through URL modification. However, in self-hosted Tina, changing branches is restricted to the build phase only.
+
+This limitation means that commands like...
+
+```ts
+client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
+```
+
+...are not functional in a self-hosted Tina setup.
+
+### 3. Search
+
+The self-hosted backend does not currently have endpoints to support search functionality.
+
+## What is TinaCloud?
+
+TinaCloud is a hosted [datalayer](/docs/reference/content-api/data-layer) for TinaCMS. TinaCloud is the easiest way to use TinaCMS in production. It provides:
+
+* A hosted GraphQL endpoint for your content
+* Git integration
+* User management
+* [Editorial Workflow](/docs/drafts/editorial-workflow) features
+
+It also allows authorization for different types of users (content creators, editors, marketers, etc) to login and edit their site without needing to grant direct access to the repository in GitHub.
+
+TinaCMS can be [self-hosted](/docs/self-hosted/overview) or used independently of TinaCloud as well.
+
+For more information, see [TinaCloud Overview](/docs/tinacloud/overview).
+
+## Tech Stack Comparison
+
+### TinaCloud
+
+* Content querying + indexing - **Node**
+* Cloud provider - **AWS**
+* Identity management - **Go**
+
+### TinaCMS
+
+* CMS - **React 18**
+
+## Node.js Support
+
+TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.

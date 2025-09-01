@@ -1,0 +1,36 @@
+---
+title: GraphQL & API Issues
+description: Common GraphQL schema and API-related problems with TinaCMS and TinaCloud
+---
+
+## Unable to Find Record Error
+
+TinaCloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
+
+* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote
+  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it
+* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder
+  * The referenced branch should be created and should contain the `tina` folder
+* The apiURL prop is misconfigured on the TinaCMS component
+  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch
+
+## GraphQL Schema Mismatch
+
+If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud. To resolve it:
+
+1. Ensure that your schema (generated from `tina/config.ts`) does not include any varying information, such as timestamps or random text
+2. Ensure that you have the latest versions of `@tinacms/cli` and `tinacms` in your project
+3. Run the dev command locally
+4. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud
+
+If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of `tinacms` and `@tinacms/cli` on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
+
+## API URL Misformatted
+
+The ContentAPI URL isn't formatted correctly. See [here](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
+
+## Why Do I Need a Database When Using Markdown?
+
+A database is essential when using markdown with TinaCMS because the Data Layer, which serves Markdown and JSON files, relies on a database to perform various content management functions. While the Markdown files are the primary source of your content, the database acts as a cache to enable advanced features like search, pagination, and cross-referencing between files. It also provides an API, allowing content fetching akin to traditional headless CMS operations.
+
+Initially, TinaCMS's Data Layer operates unnoticed during local development and is managed by TinaCloud in production. With the introduction of self-hosted options, users can now opt for more control and customization, integrating their own authentication systems and hosting. The entire TinaCMS, including its Data Layer, is open-source, allowing for community-driven enhancements and support.

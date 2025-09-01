@@ -86,8 +86,8 @@
           "_template": "items"
         },
         {
-          "title": "常见问题",
-          "slug": "content/zh/docs/introduction/faq.mdx",
+          "title": "故障排除",
+          "slug": "content/zh/docs/troubleshooting/index.mdx",
           "_template": "item"
         }
       ]

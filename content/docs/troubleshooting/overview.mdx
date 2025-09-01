@@ -1,0 +1,59 @@
+---
+id: /docs/troubleshooting/overview
+title: Troubleshooting
+last_edited: '2025-08-29T09:25:46.419Z'
+next: content/docs/troubleshooting/general-faq.mdx
+previous: content/docs/reference/self-hosted/auth-provider/bring-your-own.mdx
+---
+
+# Troubleshooting Guide
+
+This section contains solutions to common issues you might encounter when using TinaCMS and TinaCloud. Each guide focuses on specific problem areas to help you quickly find the information you need.
+
+## Quick Navigation
+
+### [Authentication & Login Issues](./authentication-login-issues)
+
+Problems with logging in, authentication errors, and local vs production mode issues.
+
+### [Deployment & Build Issues](./deployment-build-issues)
+
+Issues with deploying your site, build failures, and asset loading problems.
+
+### [GraphQL & API Issues](./graphql-api-issues)
+
+Schema mismatches, API errors, and database-related problems.
+
+### [Git & Repository Issues](./git-repository-issues)
+
+Branch protection, indexing problems, and repository configuration issues.
+
+### [Document Saving Issues](./saving-document-issues)
+
+Problems when saving content, commit failures, and workflow issues.
+
+### [TinaCloud vs Self-Hosted](./tinacloud-vs-self-hosted)
+
+Feature comparisons and limitations between hosted and self-hosted solutions.
+
+### [General FAQ](./general-faq)
+
+Basic questions about TinaCMS, support, and general usage.
+
+## Getting Help
+
+If you can't find a solution to your problem in these guides, you can:
+
+* Check our [community forums](https://tina.io/community)
+* Review the [main documentation](/docs)
+* Contact support through your TinaCloud dashboard
+
+## Common Error Messages
+
+| Error                           | Quick Fix                                             | Full Guide                                                     |
+| ------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------- |
+| "Failed loading TinaCMS assets" | Check build.basePath configuration                    | [Deployment & Build Issues](./deployment-build-issues)         |
+| "Unable to find record"         | Verify tina folder is in Git repository               | [GraphQL & API Issues](./graphql-api-issues)                   |
+| "Login window doesn't close"    | Check Site URL configuration                          | [Authentication & Login Issues](./authentication-login-issues) |
+| "There was a problem saving"    | Enable Editorial Workflow or update branch protection | [Document Saving Issues](./saving-document-issues)             |
+| "Branch not indexed"            | Force reindex by updating tina-lock.json              | [Git & Repository Issues](./git-repository-issues)             |

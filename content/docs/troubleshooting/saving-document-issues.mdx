@@ -1,0 +1,73 @@
+---
+title: Document Saving Issues
+description: Common problems when saving documents in TinaCMS and TinaCloud
+---
+
+## "There was a problem saving your document" Error
+
+When using TinaCloud without [Editorial Workflow](/editorial-workflow), you need to ensure that the [TinaCloud App](https://github.com/apps/tina-cloud-app) is able to commit to the selected branch of the repository.
+
+If it cannot, you will see an error of the following form:
+
+```text
+Tina caught an error while updating the page:
+
+Error: Unable to fetch, errors:
+    Error in PUT for src/pages/some-page.md
+```
+
+<Youtube embedSrc=" https://www.youtube.com/embed/MTIJotdIG9E?si=8mcaNAqogQRwL678" />
+
+**Video: FAQ - Bypassing GitHub branch protection with TinaCMS (3min)**
+
+Generally this happens when there is branch protection on your main branch and TinaCloud is unable to bypass it. Until July 2024, the TinaCloud GitHub app had admin rights to repositories which allowed it to bypass these rules for most repositories.
+
+To fix this issue, either:
+
+* Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
+  Ensure that the TinaCloud app is allowed to bypass the rule requiring branch protection
+* Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
+
+## Common Causes of Save Failures
+
+### 1. Branch Protection Rules
+
+The most common cause of save failures is GitHub branch protection rules that prevent the TinaCloud app from committing directly to protected branches.
+
+### 2. Repository Permissions
+
+Ensure that the TinaCloud GitHub app has the necessary permissions to commit to your repository.
+
+### 3. File Path Issues
+
+Verify that the file path being saved to exists and is accessible within your repository structure.
+
+### 4. Schema Validation Errors
+
+If your content doesn't match the defined schema, saves may fail. Check your TinaCMS configuration and ensure your content structure is valid.
+
+## Solutions
+
+### Enable Editorial Workflow
+
+The most robust solution is to enable [Editorial Workflow](/editorial-workflow), which creates pull requests instead of direct commits. This approach:
+
+* Works with all branch protection rules
+* Provides review and approval processes
+* Maintains better version control practices
+
+### Update Branch Protection Rules
+
+If you prefer direct commits, update your GitHub branch protection rules to allow the TinaCloud app to bypass restrictions:
+
+1. Go to your repository settings
+2. Navigate to Branches > Branch protection rules
+3. Update the rules to allow the TinaCloud app to bypass restrictions
+
+### Check Repository Configuration
+
+Ensure your TinaCloud project is properly configured:
+
+1. Verify the correct repository is connected
+2. Check that the branch specified in your configuration exists
+3. Ensure the TinaCloud app has the necessary repository permissions

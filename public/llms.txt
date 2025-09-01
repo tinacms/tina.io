@@ -29,7 +29,7 @@
  - [Remix](https://tina.io/docs/frameworks/remix): Integrating Tina with Remix.
  - [11ty](https://tina.io/docs/frameworks/11ty): Integrating Tina with Eleventy.
  - [Other Frameworks](https://tina.io/docs/frameworks/other): General guidance for integrating with frameworks not listed above.
-- [FAQ](https://tina.io/docs/introduction/faq): Answers to frequently asked questions about TinaCMS.
+- [Troubleshooting](https://tina.io/docs/troubleshooting/): Comprehensive troubleshooting guides for TinaCMS and TinaCloud.
 
 ## Configuring TinaCMS
 

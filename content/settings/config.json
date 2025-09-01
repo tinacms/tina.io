@@ -45,22 +45,22 @@
     },
     {
       "source": "/docs/errors/faq/:path*",
-      "destination": "/docs/introduction/faq/#common-tinacloud-errors",
+      "destination": "/docs/troubleshooting/",
       "permanent": true
     },
     {
       "source": "/faq/:path*",
-      "destination": "/docs/introduction/faq",
+      "destination": "/docs/troubleshooting/",
       "permanent": true
     },
     {
       "source": "/docs/tinacloud/faq/:path*",
-      "destination": "/docs/introduction/faq",
+      "destination": "/docs/troubleshooting/",
       "permanent": true
     },
     {
       "source": "/docs/tinacloud/faq/:path*",
-      "destination": "/docs/introduction/faq",
+      "destination": "/docs/troubleshooting/",
       "permanent": true
     },
     {
@@ -685,7 +685,7 @@
     },
     {
       "source": "/faq/:path*",
-      "destination": "/docs/introduction/faq",
+      "destination": "/docs/troubleshooting/",
       "permanent": true
     },
     {

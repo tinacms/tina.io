@@ -1,0 +1,52 @@
+---
+title: General FAQ
+description: Frequently asked questions about TinaCMS and TinaCloud
+---
+
+## Where can I get help or share an idea for TinaCMS or TinaCloud?
+
+Check out our communities at [tina.io/community](https://tina.io/community).
+
+## Do I need a certified person to use Tina?
+
+Anyone can start using Tina right away but it is designed for developers to setup and customize. A [certified developer](https://www.credly.com/org/superior-software-for-windows-ssw/badge/tinacms-developer) can accelerate the setup, fine-tune the configuration, and ensure best-practice architecture.
+
+## What versions of Node are supported?
+
+TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.
+
+## What is Tina's tech stack?
+
+### TinaCloud
+
+* Content querying + indexing - **Node**
+* Cloud provider - **AWS**
+* Identity management - **Go**
+
+### TinaCMS
+
+* CMS - **React 18**
+
+## Does TinaCloud only work with GitHub repositories?
+
+Currently yes, the first Git provider that TinaCloud integrates with is GitHub. Other Git providers may be available in the future.
+
+## Does TinaCloud work with Monorepos?
+
+It does! TinaCloud can work with sites inside monorepos by specifying the path to your `tina` folder in your project configuration.
+
+If your repo is not a monorepo, there's no need to do any configuration. We'll expect your `tina` folder at the root of your repo.
+
+Here's an example monorepo structure that works with TinaCloud:
+
+```
+    /projects/site-a
+    /projects/site-b
+    /projects/site-c
+```
+
+See [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina) for more information.
+
+## Do you support Git LFS?
+
+Unfortunately we do not support Git LFS at this time due to limitations with the GitHub API.

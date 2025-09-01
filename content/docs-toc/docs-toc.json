@@ -84,11 +84,6 @@
             }
           ],
           "_template": "items"
-        },
-        {
-          "title": "FAQ",
-          "slug": "content/docs/introduction/faq.mdx",
-          "_template": "item"
         }
       ]
     },
@@ -662,8 +657,8 @@
       "title": "Troubleshooting",
       "items": [
         {
-          "title": "The TinaCMS CLI",
-          "slug": "content/docs/cli-overview.mdx",
+          "title": "Overview",
+          "slug": "content/docs/troubleshooting/index.mdx",
           "_template": "item"
         },
         {

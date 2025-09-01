@@ -1,0 +1,87 @@
+---
+title: Git & Repository Issues
+description: Common Git and repository-related problems with TinaCMS and TinaCloud
+---
+
+## Unindexed Branches
+
+If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, or see no branches indexed at all, try the following:
+
+1. Verify that a configuration file exists at `tina/config.ts` on the default branch
+2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process
+3. Verify that the branch exists in the GitHub repository
+4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved
+5. Ensure that the Tina project is located in the root directory
+
+## Invalid or Undefined Branch
+
+The current branch that Tina is using is invalid or undefined. Double check that the correct branch is selected and it does in fact exist.
+
+You can view the branches that have been indexed by TinaCloud by visiting `https://app.tina.io/projects/<your-project-id>/configuration`.
+
+![Indexed Branches](/img/docs/tinacloud/branch-status.png)\
+**Figure: Branches indexed by TinaCloud**
+
+## Tina Directory Not Pushed to Git
+
+Everything in the `tina` directory (except the `__generated__` folder) needs to be pushed up to the git repository. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). Also make sure that the branch you're trying to use has the `tina` directory and is up to date.
+
+## Branch Protection Issues
+
+When using TinaCloud without [Editorial Workflow](/editorial-workflow), you need to ensure that the [TinaCloud App](https://github.com/apps/tina-cloud-app) is able to commit to the selected branch of the repository.
+
+If it cannot, you will see an error of the following form:
+
+```text
+Tina caught an error while updating the page:
+
+Error: Unable to fetch, errors:
+    Error in PUT for src/pages/some-page.md
+```
+
+<Youtube embedSrc=" https://www.youtube.com/embed/MTIJotdIG9E?si=8mcaNAqogQRwL678" />
+
+**Video: FAQ - Bypassing GitHub branch protection with TinaCMS (3min)**
+
+Generally this happens when there is branch protection on your main branch and TinaCloud is unable to bypass it. Until July 2024, the TinaCloud GitHub app had admin rights to repositories which allowed it to bypass these rules for most repositories.
+
+To fix this issue, either:
+
+* Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
+  Ensure that the TinaCloud app is allowed to bypass the rule requiring branch protection
+* Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
+
+## Co-author on Git Commits
+
+By default when using TinaCloud, the author on Git commits is the [TinaCloud GitHub app](https://github.com/apps/tina-cloud-app). Some users prefer to know who made the change.
+
+For this use case, Tina allows two different methods:
+
+1. GitHub authoring in order to attribute actions to a GitHub account.
+2. [Co-author](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git commits in order to attribute the commit to an additional user.
+
+Both of these can be enabled per-user in the TinaCloud account settings. Find out more about [Git Authoring](/docs/tinacloud/git-co-authoring).
+
+## Monorepo Support
+
+TinaCloud can work with sites inside monorepos by specifying the path to your `tina` folder in your project configuration.
+
+If your repo is not a monorepo, there's no need to do any configuration. We'll expect your `tina` folder at the root of your repo.
+
+Here's an example monorepo structure that works with TinaCloud:
+
+```
+    /projects/site-a
+    /projects/site-b
+    /projects/site-c
+```
+
+See [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina) for more information.
+
+## Git LFS Support
+
+Unfortunately we do not support Git LFS at this time due to limitations with the GitHub API.
+
+## Git Provider Support
+
+Currently, TinaCloud only works with GitHub repositories. Other Git providers may be available in the future.
