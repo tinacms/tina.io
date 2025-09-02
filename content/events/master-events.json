@@ -122,8 +122,8 @@
       "image": "/events/Copenhagen-event.webp",
       "link": "https://ndccopenhagen.com/",
       "location": "Copenhagen, Denmark",
-      "markerLAT": 55.6701,
-      "markerLONG": 12.565
+      "markerLONG": 60.6701,
+      "markerLAT": -10
     },
     {
       "headline": "NDC Lisbon - Azure Dev Summit",
@@ -134,8 +134,8 @@
       "image": "/events/Lisbon-event.jpg",
       "link": "https://azuredevsummit.com/",
       "location": "Lisbon, Portugal",
-      "markerLAT": 38.7697,
-      "markerLONG": 9.0936
+      "markerLONG": 40.6701,
+      "markerLAT": 10
     }
   ]
 }
