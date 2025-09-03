@@ -122,8 +122,8 @@
       "image": "/events/Copenhagen-event.webp",
       "link": "https://ndccopenhagen.com/",
       "location": "Copenhagen, Denmark",
-      "markerLONG": 60.6701,
-      "markerLAT": -10
+      "markerLAT": -10,
+      "markerLONG": 60.6701
     },
     {
       "headline": "NDC Lisbon - Azure Dev Summit",
@@ -131,11 +131,11 @@
       "startTime": "09:00",
       "endDate": "2025-10-16T00:00:00.000Z",
       "timezone": 1,
-      "image": "/events/Lisbon-event.jpg",
+      "image": "/louis-droege-8Nd3GY8z-iU-unsplash.jpg",
       "link": "https://azuredevsummit.com/",
       "location": "Lisbon, Portugal",
-      "markerLONG": 40.6701,
-      "markerLAT": 10
+      "markerLAT": 10,
+      "markerLONG": 40.6701
     }
   ]
 }
