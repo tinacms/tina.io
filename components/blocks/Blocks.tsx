@@ -34,6 +34,7 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import VideoDisplay from './VideoEmbed/videoEmbed';
+import HeroV2 from '../blocks-v2/hero/hero';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
@@ -111,6 +112,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <VideoDisplay data={block} />;
     case 'PageBlocksFooterLinkContent':
       return <FooterLinkContentBlock data={block} />;
+    case 'PageBlocksHeroV2':
+      return <HeroV2 data={block} />;
     default:
       return null;
   }
