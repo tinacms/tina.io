@@ -32,6 +32,7 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
+import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
@@ -78,6 +79,7 @@ const templates = [
   storyTemplate as Template,
   footerLinkContentTemplate as Template,
   videoEmbedTemplate as Template,
+  herov2Template as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {

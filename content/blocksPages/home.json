@@ -7,6 +7,33 @@
   },
   "blocks": [
     {
+      "title": "Sites, Docs and Llamas. No Dramas",
+      "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
+      "buttons": [
+        {
+          "label": "Try TinaCMS Editor",
+          "icon": false,
+          "variant": "orange",
+          "size": "medium",
+          "url": "/",
+          "_template": "actions"
+        },
+        {
+          "label": "Explore TinaDocs ",
+          "icon": false,
+          "variant": "white",
+          "size": "medium",
+          "url": "/",
+          "_template": "actions"
+        }
+      ],
+      "image": "/v2-homepage/sleeping-tina.jpg",
+      "_template": "heroV2"
+    },
+    {
+      "_template": "features"
+    },
+    {
       "features": [
         {
           "headline": "Sites, Docs and Llamas. No Dramas",
@@ -256,9 +283,6 @@
         }
       ],
       "_template": "carouselFeature"
-    },
-    {
-      "_template": "events"
     },
     {
       "blockSettings": {
