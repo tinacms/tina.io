@@ -16,7 +16,7 @@ TinaCMS 版本 `0.68.14` 为 Tina 带来了一些广泛的改进。以下是一�
 1. 新的统一客户端，可用于前端和后端。
 2. 数据层默认启用
 3. 更好地支持只读令牌
-4. 在 CI 中使用 TinaCMS 的方式更清晰和简洁
+4. 在 CI 中使用 TinaCMS 的更清晰和简洁的方法
 
 要更新到最新版本，请运行：
 
@@ -27,7 +27,7 @@ yarn add --dev @tinacms/cli@latest
 
 ## 新的统一客户端
 
-TinaCMS 一直缺少一种“统一的方式”来查询和获取内容。以前，有 `StaticRequest`、“只读令牌客户端”、“实验性生成客户端”和“仅使用 fetch”。现在，这些都简化为一个可以在前端和后端使用的客户端。
+TinaCMS 一直缺少一种“统一的方式”来查询和获取内容。以前，有 `StaticRequest`、“只读令牌客户端”、“实验性生成客户端”和“仅使用 fetch”。现在，这些都被简化为一个可以在前端和后端使用的客户端。
 
 为了更新，只需进行一些小的更改。
 
@@ -69,13 +69,13 @@ export const tinaConfig = defineConfig({
 export default schema
 ```
 
-令牌必须是通配符令牌 (`*`)，可以从 Tina 仪表板生成。有关只读令牌的更多信息，请参阅[此处](https://tina.io/blog/read-only-tokens-content-anytime)。
+令牌必须是通配符令牌 (`*`)，可以从 Tina 仪表板生成。阅读更多关于只读令牌的信息 [这里](https://tina.io/blog/read-only-tokens-content-anytime)
 
-有关获取这些值的更多信息，请参阅[“进入生产环境”](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms)文档。
+有关如何获取这些值的更多信息，请参阅 ["going to production"](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) 文档。
 
 ### package.json 中脚本的更新
 
-我们现在建议在 CI 中使用内容 API，并使用我们的新 `dev` 和 `build` 命令。`dev` 命令启动本地 GraphQL 服务器并运行您的子脚本（`next dev`）。`build` 命令使用生产 URL 编译客户端并构建 GraphQL schema。
+我们现在建议在 CI 中使用内容 API，并使用我们的新 `dev` 和 `build` 命令。`dev` 命令启动本地 GraphQL 服务器并运行您的子脚本 (`next dev`)。`build` 命令使用生产 URL 编译客户端并构建 GraphQL schema。
 
 脚本应如下所示：
 
@@ -89,7 +89,7 @@ export default schema
 }
 ```
 
-在开发时，运行 `yarn dev`，这将在同一个终端中启动开发服务器和 next dev 进程。
+在开发时，运行 `yarn dev`，它将在同一个终端中启动开发服务器和 next dev 进程。
 
 ### 生成文件的更新（可选）
 
@@ -97,7 +97,7 @@ export default schema
 
 要将它们从您的存储库中移除，请运行 `git rm --cached .tina/__generated__/*`，然后运行 `yarn tinacms build` 以更新需要保留的生成文件。
 
-完成这些更新后，新客户端应已配置并准备好用于查询。
+完成这些更新后，新客户端应配置完毕并可用于查询。
 
 ## 数据获取迁移
 
@@ -158,12 +158,12 @@ const { data, query, variables } = await client.queries.post({
 })
 ```
 
-有关更多信息，请参阅新的[数据获取](/docs/features/data-fetching)文档。
+有关更多信息，请参阅新的 [数据获取](/docs/features/data-fetching) 文档。
 
 ## 数据层默认启用
 
-[数据层](/docs/reference/content-api/data-layer/)现在默认启用。通过此功能，您的存储库被缓存，允许在不使用 GitHub API 的情况下查询内容。这使得数据获取更快，并且还允许我们绕过 GitHub 的[API 限制](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps)。
+[数据层](/docs/reference/content-api/data-layer/) 现在默认启用。通过此功能，您的存储库被缓存，允许在不使用 GitHub API 的情况下查询内容。这使得数据获取更快，并且还允许我们绕过 GitHub 的 [api 限制](https://docs.github.com/en/developers/apps/building-github-apps/rate-limits-for-github-apps)。
 
 除了更新到最新版本的 `@tinacms/cli` 外，此更改不需要任何操作。
 
-有关完整的更改集，请参阅此版本的[变更日志](https://github.com/tinacms/tinacms/pull/3041)。
+有关完整的更改集，请参阅此版本的 [更新日志](https://github.com/tinacms/tinacms/pull/3041)。
