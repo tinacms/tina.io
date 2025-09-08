@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 import { getDocId } from 'utils/docs/getDocIds';
+import { IoMdBook } from "react-icons/io";
 
 interface TocProps {
   tocItems: Array<{ type: string; text: string }>;
@@ -70,9 +71,10 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
   return (
     <TocWrapper>
       <TocContent activeId={activeId} isOpen={isOpen}>
-        <TocDesktopHeader>
-          {isZhPath ? '目录' : 'Table of Contents'}
-        </TocDesktopHeader>
+        <h3 className='text-foreground flex items-center gap-2'>
+          <IoMdBook size={20} />
+          {isZhPath ? '在此页面上' : 'On This Page'}
+        </h3>
         <TocTitleList
           ref={tocWrapperRef}
           className="max-h-[70vh] 2xl:max-h-[75vh] p-4 overflow-y-auto"
@@ -117,11 +119,11 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
                     // biome-ignore lint/a11y/useValidAnchor: <TODO>
                     onClick={handleClick}
                     className={`
-                        block py-1 px-2 rounded-md hover:bg-gray-50/75 transition-colors duration-150 cursor-pointer
+                        block py-1 px-2 rounded-md transition-colors duration-150 cursor-pointer
                         ${
                           isActive
                             ? 'text-orange-500 font-medium no-underline'
-                            : 'text-gray-600 hover:text-orange-500'
+                            : 'text-foreground hover:text-orange-500'
                         }`}
                   >
                     {children}
@@ -166,19 +168,6 @@ const TocTitleList = styled.div<{ ref: React.RefObject<HTMLDivElement> }>`
   );
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-`;
-const TocDesktopHeader = styled.span`
-  display: none;
-  font-size: 1rem;
-  color: var(--color-secondary);
-  opacity: 0.5;
-  background: transparent;
-  line-height: 1;
-  margin-bottom: 1.125rem;
-
-  @media (min-width: 1200px) {
-    display: block;
-  }
 `;
 
 const TocWrapper = styled.div`

@@ -19,11 +19,11 @@ const MainDocsBodyHeader = ({
           learnData={NavigationLearnItems}
         ></DocsMobileHeader>
       </div>
-      <div
-        className={`pt-4 font-ibm-plex text-4xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+      <h1
+        className={`pt-4 font-ibm-plex text-4xl bg-linear-to-r from-orange-500 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
       >
         {DocumentTitle}
-      </div>
+      </h1>
     </div>
   );
 };

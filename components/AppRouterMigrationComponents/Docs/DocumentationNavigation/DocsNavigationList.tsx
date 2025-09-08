@@ -27,22 +27,24 @@ const NavTitle = ({
   ...props
 }: NavTitleProps) => {
   const headerLevelClasses = {
-    0:
-      color === 'blue'
-        ? 'opacity-100 font-ibm-plex-light text-blue-700 text-xl pt-2'
-        : 'opacity-100 font-ibm-plex-light text-orange-500 text-xl pt-2',
+    0: {
+      default: 'opacity-100 font-ibm-plex-light text-black text-xl pt-2',
+      selected: 'opacity-100 font-ibm-plex-light font-[500] text-black text-xl pt-2',
+      childSelected:
+        'opacity-100 font-ibm-plex-light font-[600] text-black text-xl pt-2',
+    },
     1: {
-      default: 'text-base font-sans pt-1 text-gray-800',
+      default: 'text-base font-sans pt-1 text-gray-800 hover:text-orange-500',
       selected: 'text-base font-sans pt-1 font-bold',
       childSelected: 'text-base font-sans pt-1 font-[500] text-gray-800',
     },
     2: {
-      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
+      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700 hover:text-orange-500',
       selected: 'text-[15px] font-sans pt-0.5 font-bold',
       childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
     3: {
-      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700',
+      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700 hover:text-orange-500',
       selected: 'text-[15px] font-sans pt-0.5 font-bold',
       childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
@@ -54,10 +56,7 @@ const NavTitle = ({
     : childSelected
       ? 'childSelected'
       : 'default';
-  const classes =
-    level < 1
-      ? headerLevelClasses[headerLevel]
-      : headerLevelClasses[headerLevel][selectedClass];
+  const classes = headerLevelClasses[headerLevel][selectedClass];
 
   return (
     <div
@@ -151,7 +150,7 @@ const NavLevel = ({
       }
     }
   }, [navListElem, selected]);
-
+  
   return (
     <>
       <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
@@ -178,11 +177,7 @@ const NavLevel = ({
             <span className=" pr-2 -mr-2">{categoryData.title}</span>
             {categoryData.items && !selected && (
               <BiChevronRight
-                className={`${
-                  color === 'blue'
-                    ? 'text-blue-300 group-hover:text-blue-500'
-                    : 'text-orange-300 group-hover:text-orange-500'
-                } group-hover:rotate-90 w-5 h-auto -my-2 transition ease-out duration-300 transform ${
+                className={` text-black group-hover:rotate-90 group-hover:text-orange-600 w-5 h-auto -my-2 transition ease-out duration-300 transform ${
                   expanded ? 'rotate-90' : ''
                 }`}
               />
