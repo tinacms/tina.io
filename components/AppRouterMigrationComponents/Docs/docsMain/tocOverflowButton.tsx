@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { MdMenu } from 'react-icons/md';
+import { IoMdBook } from 'react-icons/io';
 
 const TocOverflow = ({ tocData }) => {
   return (
@@ -55,10 +55,10 @@ const TocOverflowButton = (tocData) => {
             onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
           >
             <span className="flex items-center space-x-2">
-              <MdMenu size={20} className="text-orange-500" />
-              <span className="text-slate-600 py-1">
+              <IoMdBook size={20} className="text-orange-500" />
+              <span className="text-foreground py-1">
                 {/** biome-ignore lint/correctness/useHookAtTopLevel: <TODO> */}
-                {usePathname().includes('/zh/') ? '目录' : 'Table of Contents'}
+                {usePathname().includes('/zh/') ? '在此页面上' : 'On This Page'}
               </span>
             </span>
           </div>
