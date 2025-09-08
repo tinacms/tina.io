@@ -1,0 +1,52 @@
+---
+title: Webhooks
+last_edited: '2025-04-24T06:19:07.233Z'
+next: ''
+previous: content/docs/drafts/drafts-fields.mdx
+---
+
+If you need to automate tasks or trigger external processes when your content
+is updated, you can leverage the webhooks feature. When content is pushed
+or modified to a specific branch, TinaCMS sends a notification to your
+server. The payload includes the paths of the modified files, enabling event driven actions like rebuilding your site or populating a search index.
+
+## Setting Up
+
+Webhooks can be created via the "Webhooks" tab within a project.
+
+![webhook dashboard](/img/docs/tinacloud/webhooks/webhooks-dashboard.png)
+
+To create a webhook, follow these steps:
+
+1. Go to the project.
+2. Click Webhooks | Add Webhook
+3. Enter a name, server URL, target branches and additional headers to be sent to the your server.
+
+# Webhook Logs
+
+Webhook logs can be found within **Webhooks | Logs**.
+
+![webhook logs](/img/docs/tinacloud/webhooks/webhook-logs.png)
+
+Each log entry includes:
+- **Date**: Timestamp of the webhook request.
+- **Status**: HTTP status code returned.
+- **Request**: Payload sent (see Requests)
+- **Response**: Body returned from your server.
+
+## Requests
+
+Below is an example webhook request payload:
+
+```
+{
+    clientId: "276...",
+    branch: "main",
+    paths: ["content/authors/bob", ...],
+    type: "content.modified",
+    eventId: "472..."
+}
+```
+
+> Note: The payload `type` can be of either `['content.modified' |
+> 'content.removed' | 'content.added']`

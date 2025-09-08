@@ -23,7 +23,7 @@ previous: content/docs-zh/schema.mdx
 
 Tina 客户端是获取网站内容的最简单方式。可以在 `tina/config.<js|ts>` 中的 `defineConfig` 函数中配置客户端。
 
-> 注意：token、clientId 和 branch 在[本地模式](/docs/tina-cloud/#local-mode)下**不**使用。要为生产环境设置这些值，请参阅[此文档](/docs/tina-cloud/overview)
+> 注意：token、clientId 和 branch 在[本地模式](/docs/tinacloud/#local-mode)下**不**使用。要为生产环境设置这些值，请参阅[此文档](/docs/tinacloud/overview)
 
 ```js
 // tina/config.{js,ts,tsx}
@@ -35,7 +35,7 @@ export default defineConfig({
 });
 ```
 
-在本地工作时，客户端使用本地 URL (`http://localhost:4001/graphql`) 构建。在[生产模式](/docs/tina-cloud/#prod-mode)下，`clientId`、`branch` 和 `token` 用于查询 TinaCloud。
+在本地工作时，客户端使用本地 URL (`http://localhost:4001/graphql`) 构建。在[生产模式](/docs/tinacloud/#prod-mode)下，`clientId`、`branch` 和 `token` 用于查询 TinaCloud。
 
 Tina 客户端提供了一个类型安全的查询构建器，该构建器是根据您网站的架构自动生成的：
 

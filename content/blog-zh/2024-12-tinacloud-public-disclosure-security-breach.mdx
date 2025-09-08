@@ -1,6 +1,7 @@
 ---
 title: 'TinaCloud：安全漏洞的公开披露'
 date: '2024-12-23T13:00:00.000Z'
+last_edited: '2025-08-18T14:00:00.000Z'
 author: Matt Wicks
 prev: content/blog-zh/two_factor_authentication.mdx
 next: ''
@@ -8,13 +9,13 @@ next: ''
 
 ## 事件概述
 
-2024年12月15日，TinaCMS发现涉及被盗用的AWS访问密钥的未经授权活动。这些密钥被利用来使用我们的Amazon Simple Email Service (SES)基础设施发送未经授权的电子邮件（目标是法国的普通社区，而非Tina的客户）。
+2024年12月15日，TinaCMS发现涉及被盗用的AWS访问密钥的未经授权活动。这些密钥被用于利用我们的Amazon Simple Email Service (SES)基础设施发送未经授权的电子邮件（目标是法国的普通社区，而不是Tina的客户）。
 
-![一封钓鱼邮件的截图](/img/blog/2024-12-tinacloud-public-disclosure-security-breach/phishing-email.png "发送的邮件是法语")
+![钓鱼邮件的截图](/img/blog/2024-12-tinacloud-public-disclosure-security-breach/phishing-email.png "发送的邮件是法语")
 
 作为自动化措施，受影响的密钥已被撤销。随后，我们的团队通过CloudTrail日志确认了事件的范围，调查了根本原因，并采取了措施（如下所述）来保护我们的系统。
 
-外发邮件功能，包括用户邀请，受到了影响。目前这一问题已得到解决。
+外发电子邮件功能，包括用户邀请，受到了影响。目前该问题已解决。
 
 对此我们深表歉意，并有信心此类事件不会再次发生。
 
@@ -28,16 +29,16 @@ next: ''
 
 受影响的服务：
 
-- Amazon SES（邮件发送）
-- 依赖外发邮件的用户邀请工作流
+* Amazon SES（电子邮件发送）
+* 依赖外发电子邮件的用户邀请工作流
 
 访问性质：
 
-- 具有根权限的AWS访问密钥被盗用并滥用
+* 拥有根权限的AWS访问密钥被盗用并滥用
 
 验证：
 
-- 使用CloudTrail日志确认在事件期间访问了哪些系统和服务
+* 使用CloudTrail日志确认在事件期间访问了哪些系统和服务
 
 ## 根本原因分析
 
@@ -49,18 +50,18 @@ next: ''
 
 **客户数据：**
 
-✅ 根据CloudTrail日志，没有未经授权访问客户数据的证据。
+✅ 根据CloudTrail日志，没有证据表明客户数据被未经授权访问。
 这包括内容数据库、终端用户登录信息、应用程序密钥的访问。
 
 **受影响的系统：**
 
-⚠️ 用于邮件发送功能的Amazon SES
+⚠️ 用于电子邮件发送功能的Amazon SES
 
 **用户影响：**
 
-❌ 邮件服务的临时中断影响了工作流，包括用户邀请
+❌ 电子邮件服务的临时中断影响了工作流，包括用户邀请
 
-## 已采取的措施
+## 采取的措施
 
 1. ✅ 完成 - 撤销所有访问密钥：
    所有被盗用和旧的AWS访问密钥立即被撤销
@@ -69,37 +70,37 @@ next: ''
 3. ✅ 完成 - 确认安全控制：
    在所有具有控制台访问权限的用户账户上启用了MFA（多因素认证）
    撤销了所有不必要用户的访问权限
-4. ✅ 完成 - 暂停邮件发送：
-   在确认根本原因和AWS的审查期间，外发邮件服务被暂时暂停。
+4. ✅ 完成 - 暂停电子邮件发送：
+   在确认根本原因和AWS的审查期间，外发电子邮件服务被暂时暂停。
    目前服务已恢复。
 5. ✅ 完成 - CI/CD AWS访问：
-   GitHub Actions的认证已从长期有效的访问密钥升级为OIDC
+   GitHub Actions的认证已从长期访问密钥升级为OIDC
 6. ✅ 完成 - 构建过程：
    审查了构建过程，并更新了环境变量的处理。
-   使用import.meta替换了process.env，遵循[Vite的文档](https://vite.dev/config/shared-options.html#define)中概述的最佳实践，以防止敏感数据在构建工件中暴露。
+   使用import.meta替代process.env，遵循[Vite的文档](https://vite.dev/config/shared-options.html#define)中列出的最佳实践，以防止敏感数据在构建产物中暴露。
 7. ✅ 完成 - 仓库密钥审计：
    正在对所有GitHub仓库进行彻底审计，以识别过去构建或提交中可能无意中暴露的任何其他敏感信息
-8. \[待办] 加强IAM策略：
-   已审查并更新与CI/CD系统相关的IAM策略，以确保遵循最小权限原则，移除不必要的权限，特别是那些具有根或管理访问权限的权限
-9. \[待办] AWS访问的IP白名单：
-   AWS IAM角色使用已限制在受信任的IP范围内，特别是对于CI/CD系统和其他敏感操作
-10. \[待办] 持续监控和警报：
-    将实施持续监控工具，如Amazon GuardDuty、AWS CloudTrail Insights和AWS Security Hub，以检测和警报可疑活动，如新访问密钥的创建或异常IP访问
-11. \[待办] 自动安全扫描：
-    将自动工具集成到CI/CD管道中，以在代码构建期间主动检测密钥或漏洞
+8. ✅ 完成 - 强化IAM策略：
+   与CI/CD系统相关的IAM策略已被审查和更新，以确保遵循最小权限原则，移除不必要的权限，特别是那些具有根或管理访问权限的权限
+9. ✅ 完成 - AWS访问的IP白名单：
+   AWS IAM角色的使用已被限制在受信任的IP范围内，特别是对于CI/CD系统和其他敏感操作
+10. ✅ 完成 - 持续监控和警报：
+    将实施Amazon GuardDuty、AWS CloudTrail Insights和AWS Security Hub等持续监控工具，以检测和警报可疑活动，例如新访问密钥的创建或异常IP访问
+11. \[待办] 自动化安全扫描：
+    将自动化工具集成到CI/CD管道中，以在代码构建期间主动检测密钥或漏洞
 
 ## 给Tina客户的建议
 
-1. 报告可疑邮件：如果您收到来自TinaCMS的未经授权或可疑邮件，请报告至[security@tina.io](mailto:security@tina.io)
+1. 报告可疑邮件：如果您收到来自TinaCMS的未经授权或可疑邮件，请报告至[security@tina.io](mailto\:security@tina.io)
 2. 验证邮件来源：确保任何声称来自TinaCMS的邮件都是合法的
 3. 保持更新：通过我们的官方沟通渠道获取实时更新
 
 ## 联系信息
 
-如有问题、疑虑或需要进一步信息，请联系：
+如有疑问、顾虑或需要进一步信息，请联系：
 
-- 邮箱：[security@tina.io](mailto:security@tina.io)
-- 网站：[https://tina.io/security](https://tina.io/security)
+* 邮箱：[security@tina.io](mailto\:security@tina.io)
+* 网站：[https://tina.io/security](https://tina.io/security)
 
 TinaCMS始终致力于保护我们的系统并保持透明。
 

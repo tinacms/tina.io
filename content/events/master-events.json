@@ -112,6 +112,30 @@
       "location": "Newcastle, Australia",
       "markerLAT": -27.81015,
       "markerLONG": 210
+    },
+    {
+      "headline": "NDC Copenhagen",
+      "startDate": "2025-09-08T00:00:00.000Z",
+      "startTime": "09:00",
+      "endDate": "2025-09-12T00:00:00.000Z",
+      "timezone": 2,
+      "image": "/events/Copenhagen-event.webp",
+      "link": "https://ndccopenhagen.com/",
+      "location": "Copenhagen, Denmark",
+      "markerLAT": -10,
+      "markerLONG": 60.6701
+    },
+    {
+      "headline": "NDC Lisbon - Azure Dev Summit",
+      "startDate": "2025-10-13T00:00:00.000Z",
+      "startTime": "09:00",
+      "endDate": "2025-10-16T00:00:00.000Z",
+      "timezone": 1,
+      "image": "/events/Lisbon-event.jpg",
+      "link": "https://azuredevsummit.com/",
+      "location": "Lisbon, Portugal",
+      "markerLAT": 10,
+      "markerLONG": 40.6701
     }
   ]
 }
