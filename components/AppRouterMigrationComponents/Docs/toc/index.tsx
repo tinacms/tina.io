@@ -2,10 +2,10 @@
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { IoMdBook } from 'react-icons/io';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 import { getDocId } from 'utils/docs/getDocIds';
-import { IoMdBook } from "react-icons/io";
 
 interface TocProps {
   tocItems: Array<{ type: string; text: string }>;
@@ -71,7 +71,7 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
   return (
     <TocWrapper>
       <TocContent activeId={activeId} isOpen={isOpen}>
-        <h3 className='text-foreground flex items-center gap-2'>
+        <h3 className="text-foreground flex items-center gap-2">
           <IoMdBook size={20} />
           {isZhPath ? '在此页面上' : 'On This Page'}
         </h3>

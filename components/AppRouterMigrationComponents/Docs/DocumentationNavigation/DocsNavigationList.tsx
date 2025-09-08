@@ -29,7 +29,8 @@ const NavTitle = ({
   const headerLevelClasses = {
     0: {
       default: 'opacity-100 font-ibm-plex-light text-black text-xl pt-2',
-      selected: 'opacity-100 font-ibm-plex-light font-[500] text-black text-xl pt-2',
+      selected:
+        'opacity-100 font-ibm-plex-light font-[500] text-black text-xl pt-2',
       childSelected:
         'opacity-100 font-ibm-plex-light font-[600] text-black text-xl pt-2',
     },
@@ -39,12 +40,14 @@ const NavTitle = ({
       childSelected: 'text-base font-sans pt-1 font-[500] text-gray-800',
     },
     2: {
-      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700 hover:text-orange-500',
+      default:
+        'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700 hover:text-orange-500',
       selected: 'text-[15px] font-sans pt-0.5 font-bold',
       childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
     3: {
-      default: 'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700 hover:text-orange-500',
+      default:
+        'text-[15px] font-sans opacity-80 pt-0.5 text-gray-700 hover:text-orange-500',
       selected: 'text-[15px] font-sans pt-0.5 font-bold',
       childSelected: 'text-[15px] font-sans pt-1 font-[500] text-gray-800',
     },
@@ -150,7 +153,7 @@ const NavLevel = ({
       }
     }
   }, [navListElem, selected]);
-  
+
   return (
     <>
       <NavLabelContainer ref={navLevelElem} status={categoryData.status}>
