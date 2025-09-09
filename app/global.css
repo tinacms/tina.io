@@ -35,6 +35,51 @@
   --spacer-size: 4.5rem;
   --section-padding: calc(var(--spacer-size) * 2);
   --container-padding: 2rem;
+
+  /* Tina Design Library */
+  --brand-primary: #EC4815;
+  --brand-primary-hover: #D13F13;
+  --brand-primary-light: #FFD3c1;
+  --brand-primary-text: #D13F13;
+  --brand-primary-contrast: #7a230b;
+
+  --brand-primary-gradient-start: #FF724B;
+  --brand-primary-gradient-end: #D13F13;
+
+  --brand-secondary: #0084FF;
+  --brand-secondary-hover: #0574E4;
+  --brand-secondary-light: #DCEEFF;
+  --brand-secondary-text: #0574e4;
+  --brand-secondary-contrast: #1d2c6c;
+
+  --brand-secondary-gradient-start: #144696;
+  --brand-secondary-gradient-end: #1d2c6c;
+
+  --brand-tertiary: #93E9BE;
+  --brand-tertiary-hover: #72c39b;
+  --brand-tertiary-light: #EEFDF9;
+  --brand-tertiary-text: #39745c;
+  --brand-tertiary-contrast: #214c3d;
+
+  --brand-tertiary-gradient-start:  #B4EFD9;
+  --brand-tertiary-gradient-end: #72C39b;
+
+  --glass-gradient-start: rgba(255, 255, 255, 0.1);
+  --glass-gradient-end: rgba(255, 255, 255, 0.4);
+
+  --neutral-background: #F8FAFC;
+  --neutral-background-secondary: #F1F5F9;
+  --neutral-background-quaternary: #E2E8F0;
+  --neutral-background-quinary: #F1F5F9;
+  --neutral-surface: #faebe5;
+  --neutral-text: #0f172a;
+  --neutral-text-secondary: #64748b;
+  --neutral-border: #CBD5E1;
+  --neutral-border-subtle: #e2e8f0;
+
+  --background-color: #e4f6f969;
+  --glass-hover-gradient-start: oklch(98.5% 0 0);
+  --glass-hover-gradient-end: oklch(95.6% 0.045 203.388);
 }
 
 ::-moz-selection {
