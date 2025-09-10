@@ -126,12 +126,12 @@
       "markerLONG": 60.6701
     },
     {
-      "headline": "NDC Lisbon - Azure Dev Summit",
+      "headline": "Azure Dev Summit",
       "startDate": "2025-10-13T00:00:00.000Z",
       "startTime": "09:00",
       "endDate": "2025-10-16T00:00:00.000Z",
       "timezone": 1,
-      "image": "/louis-droege-8Nd3GY8z-iU-unsplash.jpg",
+      "image": "/events/Lisbon-event.jpg",
       "link": "https://azuredevsummit.com/",
       "location": "Lisbon, Portugal",
       "markerLAT": 10,

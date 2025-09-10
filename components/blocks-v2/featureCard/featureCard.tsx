@@ -3,6 +3,7 @@ import Container from '@/component/util/Container';
 import { BLOCK_HEADINGS, SECTION_HEADINGS } from "@/component/styles/typography";
 import RenderButton from "@/utils/renderButtonArrayHelper";
 import Image from "next/image";
+import { sanitizeLabel } from "@/utils/sanitizeLabel";
 
 const HexagonBackground = ({ 
   textOnRight, 
@@ -15,8 +16,8 @@ const HexagonBackground = ({
     className={`pointer-events-none absolute ${headlineClass}`}
     style={{
       ...(textOnRight
-        ? { top: '-220px', left: '-220px' }
-        : { bottom: '-220px', right: '-220px' }),
+        ? { top: '-220px', left: '-150px' }
+        : { bottom: '-210px', right: '-180px' }),
       width: '720px',
       height: '720px',
       zIndex: 0,
@@ -67,7 +68,7 @@ function FeatureCardItem(data: { data: PageBlocksFeatureCard['cards'][number] })
   const headlineClass = themeColourMap[themeColour] || 'text-black';
 
   return (
-    <div className='relative grid grid-cols-2 bg-gradient-to-br from-white/10 to-white/40  shadow-lg py-24 px-10 rounded-md overflow-hidden'>
+    <div className='relative grid grid-cols-2 bg-gradient-to-br from-white/10 to-white/40  shadow-lg py-24 px-10 rounded-md overflow-hidden' id={sanitizeLabel(title)}>
       <HexagonBackground textOnRight={textOnRight} headlineClass={headlineClass} />
       <div className={`border-red-500 flex flex-col px-10 gap-8 ${textOnRight ? 'order-2' : 'order-1'}`}>
         <h3 className={`${BLOCK_HEADINGS} font-ibm-plex`}>{title}</h3>

@@ -12,6 +12,8 @@
   font-style: normal;
 }
 :root {
+  scroll-behavior: smooth;
+  scroll-padding-top: 200px;
   --color-tina-blue-light: #2296fe;
   --color-tina-blue: #2296fe;
   --color-tina-blue-dark: #0574e4;

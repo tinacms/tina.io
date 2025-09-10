@@ -11,12 +11,12 @@
       "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
       "buttons": [
         {
-          "label": "Try TinaCMS Editor",
+          "label": "Explore TinaCMS",
           "icon": false,
           "shape": "square",
           "variant": "orange",
           "size": "medium",
-          "url": "/",
+          "url": "#tinacms",
           "_template": "actions"
         },
         {
@@ -25,7 +25,7 @@
           "shape": "square",
           "variant": "ghostOutline",
           "size": "medium",
-          "url": "/",
+          "url": "#tinadocs",
           "_template": "actions"
         },
         {
