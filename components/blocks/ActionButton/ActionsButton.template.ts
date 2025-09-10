@@ -24,6 +24,7 @@ export const actionsButtonTemplateFields = {
         { value: 'orangeWithBorder', label: 'Orange with Border' },
         { value: 'ghostBlue', label: 'Ghost Blue' },
         { value: 'ghostOutline', label: 'Ghost Outline' },
+        { value: 'black', label: 'Black' },
       ],
     },
     {

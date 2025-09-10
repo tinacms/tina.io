@@ -28,7 +28,6 @@ export const Actions = ({
       >
         {items?.map((item) => {
           const { variant, label, icon, url, shape } = item;
-          console.log('ActionsButton item shape:', shape, 'variant:', variant);
           {
             const externalUrlPattern = /^((http|https|ftp):\/\/)/;
             const external = externalUrlPattern.test(url);

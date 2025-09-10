@@ -29,52 +29,71 @@
           "_template": "actions"
         }
       ],
-      "image": "/Screenshot 2025-09-10 at 10.03.51 am.png",
+      "image": "/Hero-Relaxing-Llama.png",
       "_template": "heroV2"
     },
     {
-      "_template": "features"
-    },
-    {
-      "features": [
+      "title": "Your All-in-One Content Hub",
+      "sectionEyebrow": "STREAMLINE, ORGANIZE, SUCCEED",
+      "cards": [
         {
-          "headline": "Sites, Docs and Llamas. No Dramas",
-          "text": "TinaCMS is an open-source, headless CMS that supports Git - with built-in version control.",
+          "textOnRight": true,
+          "themeColour": "tinaOrange",
+          "title": "TinaCMS",
+          "featureHeadline": "Visual Editor for Developers",
+          "featureText": "An open-source, headless CMS with built-in Git version control. Edit content visually while maintaining full developer control.",
           "buttons": [
             {
-              "label": "Try the Editor Now",
-              "icon": false,
-              "variant": "blue",
+              "label": "Learn about TinaCMS",
+              "icon": true,
+              "shape": "square",
+              "variant": "orange",
               "size": "medium",
-              "url": "https://demo.tina.io/admin#/~",
+              "url": "/",
               "_template": "actions"
             },
             {
-              "label": "Book a Demo",
+              "label": "Try the Editor",
               "icon": false,
-              "color": "blueOutline",
+              "shape": "square",
+              "variant": "ghostOutline",
               "size": "medium",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
+              "url": "/",
+              "_template": "actions"
+            }
+          ],
+          "image": "/Screenshot 2025-09-10 at 11.14.59 am.png"
+        },
+        {
+          "textOnRight": false,
+          "themeColour": "black",
+          "title": "TinaDocs",
+          "featureHeadline": "Beautiful Documentation Made Simple",
+          "featureText": "A complete documentation starter built on-top of TinaCMS. Create, edit and publish beautiful docs with zero configuration. ",
+          "buttons": [
+            {
+              "label": "Learn about TinaDocs",
+              "icon": true,
+              "shape": "square",
+              "variant": "black",
+              "size": "medium",
+              "url": "/",
+              "_template": "actions"
             },
             {
-              "label": "npx create-tina-app@latest",
-              "_template": "codeButton"
+              "label": "Try the Editor",
+              "icon": false,
+              "shape": "square",
+              "variant": "ghostOutline",
+              "size": "medium",
+              "url": "/",
+              "_template": "actions"
             }
           ],
-          "headingOne": true,
-          "media": [
-            {
-              "src": "/gif/smashingmagazine-tinacms.gif",
-              "_template": "v2Video"
-            }
-          ],
-          "isFullScreen": false,
-          "isReversed": false,
-          "imageBackground": false
+          "image": "/Screenshot 2025-09-10 at 12.10.41 pm.png"
         }
       ],
-      "_template": "features"
+      "_template": "featureCard"
     },
     {
       "blockSettings": {

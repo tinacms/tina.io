@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost' | 'ghostBlue' | 'orangeWithBorder' | 'ghostOutline';
+  color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost' | 'ghostBlue' | 'orangeWithBorder' | 'ghostOutline' | 'black';
   size?: 'large' | 'small' | 'medium' | 'extraSmall';
   className?: string;
   href?: string;
@@ -41,7 +41,8 @@ const colorClasses = {
   ghostBlue: 'text-blue-800 hover:text-blue-600',
   blueOutline:
     'text-blue-600 hover:text-blue-600 border-2 border-blue-600 cursor-pointer',
-  ghostOutline: 'text-gray-900 hover:text-black border-black bg-transparent'
+  ghostOutline: 'text-gray-900 hover:text-black border-black bg-transparent',
+  black: 'text-white border-black bg-black hover:text-gray-100'
 };
 
 const sizeClasses = {
@@ -59,7 +60,6 @@ export const Button = ({
   shape = 'pill',
   ...props
 }: ButtonProps) => {
-  console.log('Button - shape:', shape, 'color:', color);
   return (
     <button
       className={cn(
@@ -85,7 +85,6 @@ export const LinkButton = ({
   shape = 'pill',
   ...props
 }) => {
-  console.log('LinkButton - shape:', shape, 'color:', color);
   return (
     <Link
       href={link}
@@ -113,7 +112,6 @@ export const FlushButton = ({
   shape = 'pill',
   ...props
 }) => {
-  console.log('FlushButton - shape:', shape, 'color:', color);
   return (
     <Link
       href={link}
@@ -140,7 +138,6 @@ export const ModalButton = ({
   shape = 'pill',
   ...props
 }) => {
-  console.log('ModalButton - shape:', shape, 'color:', color);
   return (
     <button
       className={cn(
