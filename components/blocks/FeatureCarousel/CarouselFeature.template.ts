@@ -3,7 +3,7 @@ import IconSelector from '../../forms/IconSelector';
 import { actionsButtonTemplateFields } from '../ActionButton/ActionsButton.template';
 
 export const carouselFeatureTemplate: Template = {
-  label: '<⭐> Carousel Feature',
+  label: 'Carousel Feature',
   name: 'carouselFeature',
   ui: {
     previewSrc: '/img/blocks/feature-carousel.png',

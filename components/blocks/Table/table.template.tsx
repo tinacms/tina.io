@@ -10,7 +10,7 @@ export const splitOneAndJoin = (item, separator) => {
 };
 
 export const tableTemplate: Template = {
-  label: '<⭐> Table Box',
+  label: 'Table Box',
   name: 'table',
   ui: {
     previewSrc: '/img/blocks/table.png',

@@ -1,7 +1,7 @@
 import type { Template } from 'tinacms';
 
 export const tinaBannerTemplate: Template = {
-  label: 'Tina Banner',
+  label: 'zzTina Banner',
   name: 'tinaBanner',
   ui: {
     previewSrc: '/img/blocks/tina-banner.png',

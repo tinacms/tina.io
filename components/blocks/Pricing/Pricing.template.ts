@@ -107,7 +107,7 @@ export const cardTemplate: Template = {
 
 export const pricingTemplate: Template = {
   name: 'pricing',
-  label: '<⭐> Pricing',
+  label: 'Pricing',
   ui: {
     previewSrc: '/img/blocks/pricing.png',
     defaultItem: {

@@ -76,7 +76,7 @@ export const criteriaMapping = (values) => {
 };
 
 export const compareBoxTemplate: Template = {
-  label: '<⭐> Compare Box',
+  label: 'Compare Box',
   name: 'CompareBox',
   ui: {
     previewSrc: '/img/blocks/compare-box.png',
