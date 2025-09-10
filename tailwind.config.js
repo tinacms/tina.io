@@ -252,6 +252,52 @@ module.exports = {
         sm: '0 1px 1px rgb(20 70 150 / 0.05)',
       },
       colors: {
+        'brand-primary': 'var(--brand-primary)',
+        'brand-primary-hover': 'var(--brand-primary-hover)',
+        'brand-primary-light': 'var(--brand-primary-light)',
+        'brand-primary-text': 'var(--brand-primary-text)',
+        'brand-primary-contrast': 'var(--brand-primary-contrast)',
+
+        'brand-secondary': 'var(--brand-secondary)',
+        'brand-secondary-hover': 'var(--brand-secondary-hover)',
+        'brand-secondary-light': 'var(--brand-secondary-light)',
+        'brand-secondary-text': 'var(--brand-secondary-text)',
+        'brand-secondary-contrast': 'var(--brand-secondary-contrast)',
+
+        'brand-secondary-gradient-start':
+          'var(--brand-secondary-gradient-start)',
+        'brand-secondary-gradient-end': 'var(--brand-secondary-gradient-end)',
+
+        'brand-tertiary': 'var(--brand-tertiary)',
+        'brand-tertiary-hover': 'var(--brand-tertiary-hover)',
+        'brand-tertiary-light': 'var(--brand-tertiary-light)',
+        'brand-tertiary-text': 'var(--brand-tertiary-text)',
+        'brand-tertiary-contrast': 'var(--brand-tertiary-contrast)',
+
+        'brand-tertiary-gradient-start': 'var(--brand-tertiary-gradient-start)',
+        'brand-tertiary-gradient-end': 'var(--brand-tertiary-gradient-end)',
+
+        // Background gradients and glass
+        'glass-gradient-start': 'var(--glass-gradient-start)',
+        'glass-gradient-end': 'var(--glass-gradient-end)',
+        'background-color': 'var(--background-color)',
+        'glass-hover-gradient-start': 'var(--glass-hover-gradient-start)',
+        'glass-hover-gradient-end': 'var(--glass-hover-gradient-end)',
+
+        // Neutral system
+        'neutral-background': 'var(--neutral-background)',
+        'neutral-surface': 'var(--neutral-surface)',
+        'neutral-background-secondary': 'var(--neutral-background-secondary)',
+        'neutral-background-tertiary': 'var(--neutral-background-tertiary)',
+        'neutral-background-quaternary': 'var(--neutral-background-quaternary)',
+        'neutral-background-quinary': 'var(--neutral-background-quinary)',
+        'neutral-text': 'var(--neutral-text)',
+        'neutral-text-secondary': 'var(--neutral-text-secondary)',
+        'neutral-border': 'var(--neutral-border)',
+        'neutral-border-subtle': 'var(--neutral-border-subtle)',
+
+        // Code Block Background
+        'background-brand-code': 'var(--background-brand-code)',
         seafoam: {
           50: '#EEFDF9',
           100: '#E9FBF4',

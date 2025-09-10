@@ -3,6 +3,15 @@ export const actionsButtonTemplateFields = {
     { name: 'label', label: 'Label', type: 'string' },
     { name: 'icon', label: 'Icon', type: 'boolean' },
     {
+      name: 'shape',
+      label: 'Shape',
+      type: 'string',
+      options: [
+        { value: 'square', label: 'Square' },
+        { value: 'pill', label: 'Pill' },
+      ],
+    },
+    {
       name: 'variant',
       label: 'Variant',
       type: 'string',
@@ -14,6 +23,8 @@ export const actionsButtonTemplateFields = {
         { value: 'ghost', label: 'Ghost' },
         { value: 'orangeWithBorder', label: 'Orange with Border' },
         { value: 'ghostBlue', label: 'Ghost Blue' },
+        { value: 'ghostOutline', label: 'Ghost Outline' },
+        { value: 'black', label: 'Black' },
       ],
     },
     {

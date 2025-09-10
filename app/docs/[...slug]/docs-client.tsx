@@ -93,8 +93,11 @@ export default function DocsClient({ props }) {
           className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6 text-lg"
         >
           {' '}
+          {/* Markdown Renderer */}
           <TinaMarkdown
             content={DocumentationData?.body}
+            //Raw markdown in AST format
+            // node is h2: text-orange-500
             components={docAndBlogComponents}
           />
         </div>
