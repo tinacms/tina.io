@@ -5,7 +5,7 @@ import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
 
 export const flyingTemplate: Template = {
   name: 'flying',
-  label: 'Flying',
+  label: 'zzFlying',
   ui: {
     previewSrc: '/img/blocks/flying.png',
   },

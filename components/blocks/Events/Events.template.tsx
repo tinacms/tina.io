@@ -4,7 +4,7 @@ import React from 'react';
 import type { Template } from 'tinacms';
 
 export const eventsTemplate: Template = {
-  label: '<⭐> Events – prepopulated ✨',
+  label: 'Events – prepopulated ✨',
   name: 'events',
   ui: {
     previewSrc: '/img/blocks/events.png',
