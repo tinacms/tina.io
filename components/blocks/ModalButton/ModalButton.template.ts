@@ -13,8 +13,11 @@ export const modalButtonTemplateFields = [
       { value: 'orange', label: 'Orange' },
       { value: 'white', label: 'White' },
       { value: 'ghost', label: 'Ghost' },
+      { value: 'orangeWithBorder', label: 'Orange with Border' },
+      { value: 'ghostBlue', label: 'Ghost Blue' },
       { value: 'command', label: 'Command' },
       { value: 'blueOutline', label: 'Blue Outline' },
+      { value: 'ghostOutline', label: 'Ghost Outline' },
     ],
   },
   {

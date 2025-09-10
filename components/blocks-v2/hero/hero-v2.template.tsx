@@ -1,7 +1,7 @@
+import type { Template } from 'tinacms';
 import { actionsButtonTemplate } from '@/component/blocks/ActionButton/ActionsButton.template';
 import { codeButtonTemplate } from '@/component/blocks/CodeButton/CodeButton.template';
 import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.template';
-import type { Template } from 'tinacms';
 
 export const herov2Template: Template = {
   name: 'heroV2',

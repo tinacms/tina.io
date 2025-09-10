@@ -27,7 +27,8 @@ export const Actions = ({
           .join(' ')}
       >
         {items?.map((item) => {
-          const { variant, label, icon, url } = item;
+          const { variant, label, icon, url, shape } = item;
+          console.log('ActionsButton item shape:', shape, 'variant:', variant);
           {
             const externalUrlPattern = /^((http|https|ftp):\/\/)/;
             const external = externalUrlPattern.test(url);
@@ -39,7 +40,8 @@ export const Actions = ({
                 size={item.size ? item.size : 'medium'}
                 link={link}
                 target={external ? '_blank' : '_self'}
-                color={variant}
+                color={variant === 'default' ? 'seafoam' : variant}
+                shape={shape}
                 data-tina-field={tinaField(item, 'label')}
                 className={className}
               >

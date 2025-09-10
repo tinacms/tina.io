@@ -1,5 +1,6 @@
 import type { Form, Template, TinaCMS } from 'tinacms';
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
+import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -32,7 +33,6 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
-import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
