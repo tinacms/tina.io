@@ -1,57 +1,42 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
-	"vcs": {
-		"enabled": true,
-		"clientKind": "git",
-		"useIgnoreFile": true
-	},
-	"files": {
-		"includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-		"ignoreUnknown": false
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "space",
-		"indentWidth": 2,
-		"lineWidth": 80,
-		"lineEnding": "lf"
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"correctness": {
-				"noUnusedVariables": "error",
-				"useExhaustiveDependencies": "error",
-				"noInnerDeclarations": "off"
-			},
-			"suspicious": {
-				"noExplicitAny": "off",
-				"noArrayIndexKey": "error"
-			},
-			"style": {
-				"useConst": "error",
-				"useBlockStatements": "error",
-				"noNonNullAssertion": "off"
-			},
-			"complexity": {
-				"noForEach": "off",
-				"useOptionalChain": "error"
-			},
-			"performance": {
-				"noDelete": "warn"
-			},
-			"a11y": {
-				"useKeyWithClickEvents": "off",
-				"useKeyWithMouseEvents": "error",
-				"noStaticElementInteractions": "off"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "single",
-			"semicolons": "always"
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "files": {
+    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+    "ignoreUnknown": false
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "lineEnding": "lf"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": "error",
+        "noInnerDeclarations": "off"
+      },
+      "suspicious": { "noExplicitAny": "off", "noArrayIndexKey": "error" },
+      "style": {
+        "useConst": "error",
+        "useBlockStatements": "error",
+        "noNonNullAssertion": "off"
+      },
+      "complexity": { "noForEach": "off", "useOptionalChain": "error" },
+      "performance": { "noDelete": "warn" },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "useKeyWithMouseEvents": "error",
+        "noStaticElementInteractions": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": { "quoteStyle": "single", "semicolons": "always" }
+  }
 }
