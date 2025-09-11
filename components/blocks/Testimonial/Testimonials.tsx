@@ -15,7 +15,7 @@ const TestimonialCard = ({ ...data }) => {
     <Elem href={data.link} data-tina-field={tinaField(data, 'name')}>
       <figure
         className={cn(
-          'relative w-96 h-64 cursor-pointer overflow-hidden rounded-xl p-8 flex flex-col gap-4',
+          'relative w-96 h-72 cursor-pointer overflow-hidden rounded-xl p-8 flex flex-col gap-4',
           'shadow-md',
           'bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40',
           'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out',
