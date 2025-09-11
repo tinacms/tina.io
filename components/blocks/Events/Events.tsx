@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { FaArrowRightLong } from 'react-icons/fa6';
 import { BLOCK_HEADINGS } from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
-import { FaArrowRightLong } from "react-icons/fa6";
 import {
   calculateEventStatus,
   calculateEventTimes,
@@ -89,7 +89,10 @@ export const Card = ({ cardItem, onHover }) => {
         >
           {cardItem.location}
         </p>
-        <Link href={cardItem.link} className="flex gap-2 pt-2 items-center text-black hover:text-blue-600">
+        <Link
+          href={cardItem.link}
+          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600"
+        >
           READ MORE
           <FaArrowRightLong className="text-black hover:text-blue-600 pr-1" />
         </Link>

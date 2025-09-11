@@ -33,7 +33,7 @@
           "_template": "codeButton"
         }
       ],
-      "image": "/Hero-Relaxing-Llama.png",
+      "image": "/ai-llamas/lazy-llama2.png",
       "_template": "heroV2"
     },
     {
@@ -213,7 +213,7 @@
       "_template": "events"
     },
     {
-      "title": "Loved by Developers",
+      "title": "Hear from Other Great Users",
       "testimonials": [
         {
           "name": "MadeWithReactJS",

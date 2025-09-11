@@ -2,7 +2,16 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  color?: 'white' | 'blue' | 'orange' | 'seafoam' | 'ghost' | 'ghostBlue' | 'orangeWithBorder' | 'ghostOutline' | 'black';
+  color?:
+    | 'white'
+    | 'blue'
+    | 'orange'
+    | 'seafoam'
+    | 'ghost'
+    | 'ghostBlue'
+    | 'orangeWithBorder'
+    | 'ghostOutline'
+    | 'black';
   size?: 'large' | 'small' | 'medium' | 'extraSmall';
   className?: string;
   href?: string;
@@ -42,7 +51,7 @@ const colorClasses = {
   blueOutline:
     'text-blue-600 hover:text-blue-600 border-2 border-blue-600 cursor-pointer',
   ghostOutline: 'text-gray-900 hover:text-black border-black bg-transparent',
-  black: 'text-white border-black bg-black hover:text-gray-100'
+  black: 'text-white border-black bg-black hover:text-gray-100',
 };
 
 const sizeClasses = {
@@ -67,7 +76,7 @@ export const Button = ({
         shapeClasses[shape],
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
         sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium,
-        className
+        className,
       )}
       {...props}
     >
@@ -94,7 +103,7 @@ export const LinkButton = ({
         shapeClasses[shape],
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
         sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium,
-        className
+        className,
       )}
       {...props}
     >
@@ -121,7 +130,7 @@ export const FlushButton = ({
         shapeClasses[shape],
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
         'bg-none border-none hover:shadow-none py-2 px-2 hover:inner-link hover:translate-x-0 hover:translate-y-0',
-        className
+        className,
       )}
       {...props}
     >
@@ -145,7 +154,7 @@ export const ModalButton = ({
         shapeClasses[shape],
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
         sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium,
-        className
+        className,
       )}
       {...props}
     >

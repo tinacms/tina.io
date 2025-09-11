@@ -29,7 +29,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         </div>
       </div>
       <div className="relative">
-        <Image src={image} alt={title} fill />
+        <Image src={image} alt={title} width={500} height={500} />
       </div>
     </Container>
   );

@@ -1,16 +1,19 @@
-import { PageBlocksFeatureCard } from "tina/__generated__/types";
+import Image from 'next/image';
+import type { PageBlocksFeatureCard } from 'tina/__generated__/types';
+import {
+  BLOCK_HEADINGS,
+  SECTION_HEADINGS,
+} from '@/component/styles/typography';
 import Container from '@/component/util/Container';
-import { BLOCK_HEADINGS, SECTION_HEADINGS } from "@/component/styles/typography";
-import RenderButton from "@/utils/renderButtonArrayHelper";
-import Image from "next/image";
-import { sanitizeLabel } from "@/utils/sanitizeLabel";
+import RenderButton from '@/utils/renderButtonArrayHelper';
+import { sanitizeLabel } from '@/utils/sanitizeLabel';
 
-const HexagonBackground = ({ 
-  textOnRight, 
-  headlineClass 
-}: { 
-  textOnRight: boolean; 
-  headlineClass: string; 
+const HexagonBackground = ({
+  textOnRight,
+  headlineClass,
+}: {
+  textOnRight: boolean;
+  headlineClass: string;
 }) => (
   <div
     className={`pointer-events-none absolute ${headlineClass}`}
@@ -56,8 +59,18 @@ const HexagonBackground = ({
   </div>
 );
 
-function FeatureCardItem(data: { data: PageBlocksFeatureCard['cards'][number] }) {
-  const { title, featureHeadline, featureText, buttons, image, textOnRight, themeColour } = data.data;
+function FeatureCardItem(data: {
+  data: PageBlocksFeatureCard['cards'][number];
+}) {
+  const {
+    title,
+    featureHeadline,
+    featureText,
+    buttons,
+    image,
+    textOnRight,
+    themeColour,
+  } = data.data;
 
   const themeColourMap = {
     black: 'text-black',
@@ -68,20 +81,34 @@ function FeatureCardItem(data: { data: PageBlocksFeatureCard['cards'][number] })
   const headlineClass = themeColourMap[themeColour] || 'text-black';
 
   return (
-    <div className='relative grid grid-cols-2 bg-gradient-to-br from-white/10 to-white/40  shadow-lg py-24 px-10 rounded-md overflow-hidden' id={sanitizeLabel(title)}>
-      <HexagonBackground textOnRight={textOnRight} headlineClass={headlineClass} />
-      <div className={`border-red-500 flex flex-col px-10 gap-8 ${textOnRight ? 'order-2' : 'order-1'}`}>
+    <div
+      className="relative grid grid-cols-2 bg-gradient-to-br from-white/10 to-white/40  shadow-lg py-24 px-10 rounded-md overflow-hidden"
+      id={sanitizeLabel(title)}
+    >
+      <HexagonBackground
+        textOnRight={textOnRight}
+        headlineClass={headlineClass}
+      />
+      <div
+        className={` flex flex-col px-10 gap-8 ${textOnRight ? 'order-2' : 'order-1'}`}
+      >
         <h3 className={`${BLOCK_HEADINGS} font-ibm-plex`}>{title}</h3>
-        <h4 className={`${SECTION_HEADINGS} font-ibm-plex-[400] ${headlineClass}`}>{featureHeadline}</h4>
-        <p className='text-neutral-text-secondary font-light leading-relaxed text-lg max-w-[62ch]'>{featureText}</p>
-        <div className='flex gap-2'>
+        <h4
+          className={`${SECTION_HEADINGS} font-ibm-plex-[400] ${headlineClass}`}
+        >
+          {featureHeadline}
+        </h4>
+        <p className="text-neutral-text-secondary font-light leading-relaxed text-lg max-w-[62ch]">
+          {featureText}
+        </p>
+        <div className="flex gap-2">
           {buttons.map((button, index) => (
             <RenderButton key={button.label} button={button} index={index} />
           ))}
         </div>
       </div>
       <div
-        className={`relative border-blue-500 flex items-center justify-center ${textOnRight ? 'order-1' : 'order-2'}`}
+        className={`relative  flex items-center justify-center ${textOnRight ? 'order-1' : 'order-2'}`}
       >
         {image && (
           <Image
@@ -89,27 +116,29 @@ function FeatureCardItem(data: { data: PageBlocksFeatureCard['cards'][number] })
             alt={title}
             width={500}
             height={500}
-            className="rounded-md shadow-lg"
+            className="rounded-md shadow-xl"
             style={{ objectFit: 'contain' }}
           />
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default function FeatureCard(data: { data: PageBlocksFeatureCard }) {
   const { title, sectionEyebrow, cards } = data.data;
 
   return (
-    <Container className='flex flex-col items-center gap-6'>
-      <h3 className='font-ibm-plex font-semibold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'>{sectionEyebrow}</h3>
+    <Container className="flex flex-col items-center gap-6">
+      <h3 className="font-ibm-plex font-semibold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+        {sectionEyebrow}
+      </h3>
       <h2 className={`${BLOCK_HEADINGS} font-ibm-plex`}>{title}</h2>
-      <div className='grid grid-cols-1 w-full gap-10 py-10'>
+      <div className="grid grid-cols-1 w-full gap-10 py-10">
         {cards.map((card) => (
           <FeatureCardItem key={card.title} data={card} />
         ))}
-      </div>  
+      </div>
     </Container>
   );
 }

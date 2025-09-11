@@ -6,6 +6,7 @@ import type {
   PageBlocks,
   PostConnection,
 } from '../../tina/__generated__/types';
+import FeatureCard from '../blocks-v2/featureCard/featureCard';
 import HeroV2 from '../blocks-v2/hero/hero';
 import {
   BlockWrapper,
@@ -34,7 +35,6 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import VideoDisplay from './VideoEmbed/videoEmbed';
-import FeatureCard from '../blocks-v2/featureCard/featureCard';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
