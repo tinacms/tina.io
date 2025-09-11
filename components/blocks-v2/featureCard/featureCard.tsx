@@ -26,13 +26,13 @@ const HexagonBackground = ({
       zIndex: 0,
       transform: 'rotate(45deg)',
     }}
-    aria-hidden="true"
   >
     <svg
       width="100%"
       height="100%"
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       {/* Rounded hexagon, fill via tailwind class */}
       <path

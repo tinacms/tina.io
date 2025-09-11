@@ -20,7 +20,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         <div className="flex flex-row flex-wrap gap-2 max-w-[62ch]">
           {buttons?.map((button, index) => (
             <RenderButton
-              key={`button-${index}`}
+              key={`button-${button.label}`}
               button={button}
               index={index}
               className="py-3"
