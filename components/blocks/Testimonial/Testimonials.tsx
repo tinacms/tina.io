@@ -48,7 +48,7 @@ const TestimonialCard = ({ ...data }) => {
           />
           <div className="flex flex-col">
             {data.name && (
-              <h4 className="text-lg font-medium text-orange-500">
+              <h4 className="text-lg text-orange-500">
                 {data.name}
               </h4>
             )}
