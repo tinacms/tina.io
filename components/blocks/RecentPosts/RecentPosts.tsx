@@ -22,7 +22,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         {data.title && (
           <div className="flex items-center mb-12 lg:mb-14 gap-6">
             <h2
-              className={`${BLOCK_HEADINGS} font-ibm-plex m-auto inline-block pb-8 lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left`}
+              className={`${BLOCK_HEADINGS} font-ibm-plex m-auto inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
               data-tina-field={tinaField(data, 'title')}
             >
               {data?.title || 'Recent Posts'}
