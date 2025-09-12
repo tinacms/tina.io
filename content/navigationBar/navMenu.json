@@ -2,9 +2,18 @@
   "navigationBar": "Master",
   "navItem": [
     {
-      "label": "Docs",
-      "href": "/docs",
-      "_template": "stringItem"
+      "label": "Documentation",
+      "items": [
+        {
+          "label": "TinaCMS",
+          "href": "/tinacms/docs"
+        },
+        {
+          "label": "TinaDocs",
+          "href": "/tinadocs/documentation"
+        }
+      ],
+      "_template": "groupOfStringItems"
     },
     {
       "label": "Cloud Pricing",

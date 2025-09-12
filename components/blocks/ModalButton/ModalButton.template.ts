@@ -4,6 +4,15 @@ export const modalButtonTemplateFields = [
   { name: 'label', label: 'Label', type: 'string' },
   { name: 'icon', label: 'Icon', type: 'boolean' },
   {
+    name: 'shape',
+    label: 'Shape',
+    type: 'string',
+    options: [
+      { value: 'square', label: 'Square' },
+      { value: 'pill', label: 'Pill' },
+    ],
+  },
+  {
     name: 'color',
     label: 'Color',
     type: 'string',

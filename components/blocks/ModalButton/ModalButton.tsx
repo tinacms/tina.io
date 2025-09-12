@@ -42,12 +42,13 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
           .join(' ')}
       >
         {items?.map((item) => {
-          const { color, label, icon, modal } = item;
+          const { color, label, icon, modal, shape } = item;
 
           return (
             <ModalButton
               key={label}
               color={color}
+              shape={shape}
               id={sanitizeLabel(label)}
               className={className}
               onClick={() => openModal(modal)}
