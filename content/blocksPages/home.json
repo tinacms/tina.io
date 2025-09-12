@@ -346,6 +346,34 @@
     {
       "title": "Recent Posts",
       "_template": "recentPosts"
+    },
+    {
+      "features": [
+        {
+          "headline": "Talk to a Tina Expert",
+          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": true,
+              "shape": "square",
+              "color": "blue",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/img/TinaExpert.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
     }
   ]
 }
