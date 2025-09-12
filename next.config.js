@@ -63,6 +63,14 @@ const config = {
         source: '/admin',
         destination: '/admin/index.html',
       },
+      {
+        source: '/tinadocs',
+        destination: 'https://tina-docs-landing.vercel.app/',
+      },
+      {
+        source: '/tinadocs/:path*',
+        destination: 'https://tina-docs-landing.vercel.app/:path*',
+      },
     ];
   },
   env: {
