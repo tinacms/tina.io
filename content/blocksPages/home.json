@@ -153,7 +153,7 @@
               "shape": "square",
               "variant": "orange",
               "size": "medium",
-              "url": "/",
+              "url": "/tinacms",
               "_template": "actions"
             },
             {
@@ -162,7 +162,7 @@
               "shape": "square",
               "variant": "ghostOutline",
               "size": "medium",
-              "url": "/",
+              "url": "/tinacms/demo",
               "_template": "actions"
             }
           ],
@@ -181,7 +181,7 @@
               "shape": "square",
               "variant": "black",
               "size": "medium",
-              "url": "/",
+              "url": "/tinadocs",
               "_template": "actions"
             },
             {
@@ -190,7 +190,7 @@
               "shape": "square",
               "variant": "ghostOutline",
               "size": "medium",
-              "url": "/",
+              "url": "/tinadocs/demo",
               "_template": "actions"
             }
           ],
