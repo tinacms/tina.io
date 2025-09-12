@@ -1,11 +1,12 @@
 import { EmailForm } from 'components/forms';
 import { DemoForm } from 'components/modals/BookDemo';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { tinaField } from 'tinacms/dist/react';
+import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { ModalButton } from '../../ui';
 
@@ -17,9 +18,25 @@ const modals = {
 export const ModalB = ({ items, align = 'left' }) => {
   const [open, setOpen] = useState(false);
   const [ModalContent, setModalContent] = useState(null);
+  const [preloadedData, setPreloadedData] = useState(null);
+
+  const preloadMeetingData = useCallback(async () => {
+    if (!preloadedData) {
+      try {
+        const data = await fetchMeetingLinks();
+        setPreloadedData(data);
+      } catch (error) {
+        console.error('Failed to preload meeting data:', error);
+      }
+    }
+  }, [preloadedData]);
 
   const openModal = (modal) => {
-    setModalContent(modals[modal]);
+    if (modal === 'BookDemo.tsx' && preloadedData) {
+      setModalContent(<DemoForm preloadedData={preloadedData} />);
+    } else {
+      setModalContent(modals[modal]);
+    }
     setOpen(true);
   };
 
@@ -51,6 +68,9 @@ export const ModalB = ({ items, align = 'left' }) => {
               id={sanitizeLabel(label)}
               className=""
               onClick={() => openModal(modal)}
+              onMouseEnter={() =>
+                modal === 'BookDemo.tsx' && preloadMeetingData()
+              }
               data-tina-field={tinaField(item, 'label')}
             >
               {label}
