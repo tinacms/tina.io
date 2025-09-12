@@ -42,6 +42,9 @@
     "@styled-jsx/plugin-sass": "^4.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.0.6",
+    "@tinacms/mdx": "^1.8.1",
+    "@tinacms/schema-tools": "^1.9.1",
+    "@tinacms/search": "^1.1.1",
     "@vercel/postgres": "^0.10.0",
     "algoliasearch": "^4.24.0",
     "axios": "^1.11.0",
@@ -109,7 +112,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "2.8.0",
+    "tinacms": "^2.8.2",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
