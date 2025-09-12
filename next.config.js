@@ -68,6 +68,19 @@ const config = {
         destination: 'https://tina-docs-landing.vercel.app/',
       },
       {
+        source: '/tinadocs/demo',
+        destination:
+          'https://tina-docs-demo-psi.vercel.app/admin/index.html#/~/docs',
+      },
+      {
+        source: '/tinadocs/docs',
+        destination: 'https://tina-docs-red.vercel.app/docs',
+      },
+      {
+        source: '/tinadocs/tinacms/demo',
+        destination: 'https://demo.tina.io/admin#/~'
+      },
+      {
         source: '/tinadocs/:path*',
         destination: 'https://tina-docs-landing.vercel.app/:path*',
       },
