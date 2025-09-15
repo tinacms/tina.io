@@ -26,9 +26,9 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
       required: true
     },
     {
-      name: "toolbarOverride",
-      description: "Select specific toolbar options to display.\n",
-      type: "string[]"
+      name: "overrides",
+      description: "Toolbar override and customisation options.\n",
+      type: "ToolbarOverrides"
     },
     {
       name: "templates",
@@ -48,30 +48,27 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
   </>}
 />
 
-## Toolbar Customisation
+## Customisation
 
-The `toolbarOverride` property controls what options appear in the rich-text editor.
+The `overrides` property controls a series of overrides and customisations to
+the rich-text editor.
 
-It can be set to any subset of:
-
-```javascript
-toolbarOverride: [
-  'heading',
-  'link',
-  'image',
-  'quote',
-  'ul',
-  'ol',
-  'bold',
-  'italic',
-  'code',
-  'codeBlock',
-  'mermaid',
-  'table',
-  'raw',
-  'embed',
-];
-```
+<apiReference
+  property={[
+    {
+      name: "toolbar",
+      type: "ToolbarOverrideType[]",
+      description: "Select which toolbar options are displayed. The following
+      options are supported: [heading, link, image, quote, ul, ol, bold,
+      italic, code, codeBlock, mermaid, table, raw, embed].\n",
+    },
+    {
+      name: "showFloatingToolbar",
+      description: "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
+      type: "boolean",
+    },
+  ]}
+/>
 
 ## Line Breaks
 
