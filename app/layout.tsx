@@ -10,6 +10,7 @@ import data from '../content/siteConfig.json';
 import StyledComponentsRegistry from '../lib/registry';
 import '../styles/tailwind.css';
 import './global.css';
+import { TailwindIndicator } from '@/component/util/TailwindIndicator';
 
 const TinaChatBot = dynamic(
   () => import('../components/AppRouterMigrationComponents/TinaChatBot'),
@@ -82,6 +83,7 @@ export default async function RootLayout({
           <ConsentBanner />
           <TinaChatBot />
           <SiteLayout footerData={footerData}>{children}</SiteLayout>
+          <TailwindIndicator />
         </StyledComponentsRegistry>
         <Script
           id="hs-script-loader"
