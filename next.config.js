@@ -59,7 +59,7 @@ const config = {
         source: '/:locale(en|zh)',
         destination: '/:locale/home',
       },
-      //tinadocs docs + assets
+
       {
         source: '/tinadocs/docs',
         destination: 'https://tina-docs-red.vercel.app/tinadocs/docs',
@@ -68,11 +68,25 @@ const config = {
         source: '/tinadocs/docs/:path*',
         destination: 'https://tina-docs-red.vercel.app/tinadocs/docs/:path*',
       },
+
       {
-        source: '/tinadocs/_next/:path*',
-        destination: 'https://tina-docs-red.vercel.app/tinadocs/_next/:path*',
+        source: '/tinadocs/docsassets/_next/:path*',
+        destination:
+          'https://tina-docs-red.vercel.app/tinadocs/docsassets/_next/:path*',
       },
-      // This is the tinadocs landing page 
+
+      {
+        source: '/tinadocs/docsassets/_next/image',
+        destination:
+          'https://tina-docs-red.vercel.app/tinadocs/docsassets/_next/image',
+      },
+
+      {
+        source: '/tinadocs/landing/_next/image',
+        destination:
+          'https://tina-docs-landing.vercel.app/tinadocs/landing/_next/image',
+      },
+
       {
         source: '/tinadocs',
         destination: 'https://tina-docs-landing.vercel.app/',
