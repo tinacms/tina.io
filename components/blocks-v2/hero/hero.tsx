@@ -42,9 +42,9 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           <Image
             src={image}
             alt={title || 'Hero image'}
-            width={500}
+            width={450}
             height={500}
-            className="w-[250px] h-[300px] md:w-[500px] md:h-[500px]"
+            className="w-[250px] h-[300px] md:w-[450px] md:h-[500px]"
           />
         </div>
       )}
