@@ -13,6 +13,7 @@
             {
               "label": "Request 1-Pager",
               "icon": false,
+              "shape": "pill",
               "variant": "white",
               "size": "medium",
               "url": "mailto:info@tina.io?subject=TinaCMS%20Enterprise%201-Pager&body=Hello,%20I%27d%20like%20more%20information%20about%20the%20TinaCMS%20Enterprise%20Solution.",
@@ -21,6 +22,7 @@
             {
               "label": "Schedule a Demo",
               "icon": false,
+              "shape": "pill",
               "color": "blue",
               "size": "medium",
               "modal": "BookDemo.tsx",

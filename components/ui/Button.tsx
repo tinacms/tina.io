@@ -94,13 +94,14 @@ export const LinkButton = ({
   shape = 'pill',
   ...props
 }) => {
+  const nullcaseShape = shape || 'pill';
   return (
     <Link
       href={link}
       passHref
       className={cn(
         baseClasses,
-        shapeClasses[shape],
+        shapeClasses[nullcaseShape],
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
         sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium,
         className,
@@ -121,13 +122,14 @@ export const FlushButton = ({
   shape = 'pill',
   ...props
 }) => {
+  const nullcaseShape = shape || 'pill';
   return (
     <Link
       href={link}
       passHref
       className={cn(
         baseClasses,
-        shapeClasses[shape],
+        shapeClasses[nullcaseShape],
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
         'bg-none border-none hover:shadow-none py-2 px-2 hover:inner-link hover:translate-x-0 hover:translate-y-0',
         className,
@@ -144,14 +146,15 @@ export const ModalButton = ({
   size = 'medium',
   className = '',
   children,
-  shape = 'pill',
+  shape,
   ...props
 }) => {
+  const nullcaseShape = shape || 'pill';
   return (
     <button
       className={cn(
         baseClasses,
-        shapeClasses[shape],
+        shapeClasses[nullcaseShape],
         colorClasses[color] ? colorClasses[color] : colorClasses.seafoam,
         sizeClasses[size] ? sizeClasses[size] : sizeClasses.medium,
         className,
