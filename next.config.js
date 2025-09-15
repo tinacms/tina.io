@@ -59,22 +59,27 @@ const config = {
         source: '/:locale(en|zh)',
         destination: '/:locale/home',
       },
-      //Demo Site for TinaDocs
+      //tinadocs docs + assets
       {
-        source: '/tinadocs/demo',
-        destination: 'https://tina-docs-demo-psi.vercel.app/docs',
+        source: '/tinadocs/docs',
+        destination: 'https://tina-docs-red.vercel.app/tinadocs/docs',
       },
-
-      // TinaDocs Landing Pag
+      {
+        source: '/tinadocs/docs/:path*',
+        destination: 'https://tina-docs-red.vercel.app/tinadocs/docs/:path*',
+      },
+      {
+        source: '/tinadocs/_next/:path*',
+        destination: 'https://tina-docs-red.vercel.app/tinadocs/_next/:path*',
+      },
+      // This is the tinadocs landing page 
       {
         source: '/tinadocs',
         destination: 'https://tina-docs-landing.vercel.app/',
       },
-
-      // Demo Site for TinaCMS
       {
-        source: '/tinacms/demo',
-        destination: 'https://demo.tina.io/admin#/~',
+        source: '/admin',
+        destination: '/admin/index.html',
       },
     ];
   },

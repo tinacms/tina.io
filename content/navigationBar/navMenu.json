@@ -10,7 +10,7 @@
         },
         {
           "label": "TinaDocs",
-          "href": "/tinadocs/documentation"
+          "href": "/tinadocs/docs"
         }
       ],
       "_template": "groupOfStringItems"

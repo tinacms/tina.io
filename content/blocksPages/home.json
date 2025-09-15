@@ -162,7 +162,7 @@
               "shape": "square",
               "variant": "ghostOutline",
               "size": "medium",
-              "url": "/tinacms/demo",
+              "url": "https://demo.tina.io/admin#/~",
               "_template": "actions"
             }
           ],
@@ -190,7 +190,7 @@
               "shape": "square",
               "variant": "ghostOutline",
               "size": "medium",
-              "url": "/tinadocs/demo",
+              "url": "https://docsdemo.tina.io/admin/index.html#/~/docs",
               "_template": "actions"
             }
           ],
