@@ -16,7 +16,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   return (
     <section
       key={`recent-posts-${index}`}
-      className={'bg-white relative z-10 py-20 lg:py-28'}
+      className={'relative z-10 py-20 lg:py-28'}
     >
       <Container width="narrow">
         {data.title && (
