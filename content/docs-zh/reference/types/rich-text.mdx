@@ -5,7 +5,7 @@ next: ''
 previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 ---
 
-富文本字段存储**Markdown内容**，并提供一个所见即所得的界面，支持文本格式化、链接、媒体和自定义元素（如果与mdx一起使用）。
+富文本字段通过WYSIWYG界面存储**Markdown内容**，支持文本格式、链接、媒体和自定义元素（如果与mdx一起使用）。
 
 ## 类型定义
 
@@ -26,9 +26,9 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
       required: true
     },
     {
-      name: "toolbarOverride",
-      description: "选择要显示的特定工具栏选项。\n",
-      type: "string[]"
+      name: "overrides",
+      description: "工具栏覆盖和自定义选项。\n",
+      type: "ToolbarOverrides"
     },
     {
       name: "templates",
@@ -47,30 +47,24 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
   </>}
 />
 
-## 工具栏自定义
+## 自定义
 
-`toolbarOverride`属性控制富文本编辑器中显示的选项。
+`overrides`属性控制对富文本编辑器的一系列覆盖和自定义。
 
-它可以设置为以下任意子集：
-
-```javascript
-toolbarOverride: [
-  'heading',
-  'link',
-  'image',
-  'quote',
-  'ul',
-  'ol',
-  'bold',
-  'italic',
-  'code',
-  'codeBlock',
-  'mermaid',
-  'table',
-  'raw',
-  'embed',
-];
-```
+<apiReference
+  property={[
+    {
+      name: "toolbar",
+      type: "ToolbarOverrideType[]",
+      description: "选择显示哪些工具栏选项。支持以下选项：`['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`。\n",
+    },
+    {
+      name: "showFloatingToolbar",
+      description: "是否启用或禁用富文本浮动工具栏。\n",
+      type: "boolean",
+    },
+  ]}
+/>
 
 ## 换行
 
@@ -78,14 +72,14 @@ toolbarOverride: [
 
 * 按Shift + Enter创建换行
 * 如果换行后没有跟随文本行，它将在最终输出中呈现为\。\
-  这可以通过删除并重新创建该行来修复\
+  可以通过删除并重新创建该行来修复\
   确保换行前有文本内容以避免此问题
 
 > 此行为不是标准Markdown规范的一部分，而是TinaCMS富文本实现的特定行为。
 
 ## 表格
 
-查看此视频，了解如何在富文本编辑器中使用表格：
+查看此视频以了解如何在富文本编辑器中使用表格：
 
 <Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
 
