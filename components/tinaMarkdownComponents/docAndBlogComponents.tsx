@@ -232,7 +232,7 @@ export const docAndBlogComponents: Components<{
       <a
         href={props.url}
         {...props}
-        className="underline opacity-80 transition-all duration-200 ease-out hover:text-orange-500"
+        className="underline transition-all duration-200 ease-out hover:text-orange-500"
       />
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
@@ -793,9 +793,9 @@ function FormatHeaders({ children, level }) {
   const linkHref = `${currentUrl}#${id}`;
 
   const styles = {
-    1: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-4xl mt-16! mb-4',
-    2: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-3xl mt-12! mb-2',
-    3: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-100 bg-clip-text text-transparent text-xl font-medium mt-8! mb-2 !important',
+    1: 'bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent text-4xl mt-16! mb-4',
+    2: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 bg-clip-text text-transparent text-3xl mt-12! mb-2',
+    3: 'bg-linear-to-br from-blue-800 via-blue-900 to-blue-1000 bg-clip-text text-transparent text-xl font-medium mt-8! mb-2 !important',
     4: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-xl font-medium mt-2! mb-2',
     5: 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-lg font-medium mt-2! mb-1',
     6: 'text-gray-500 text-base font-normal mt-2 mb-1',
@@ -842,7 +842,7 @@ function FormatHeaders({ children, level }) {
   return (
     <HeadingTag
       id={id}
-      className={`${styles[level]} relative cursor-pointer group`}
+      className={`font-ibm-plex ${styles[level]} relative cursor-pointer group`}
     >
       <a
         href={linkHref}

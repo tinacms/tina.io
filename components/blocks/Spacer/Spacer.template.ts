@@ -1,7 +1,7 @@
 import type { Template } from 'tinacms';
 
 export const spacerTemplate: Template = {
-  label: '<⭐> Spacer',
+  label: 'Spacer',
   name: 'spacer',
   ui: {
     previewSrc: '/img/blocks/spacer.png',

@@ -4,7 +4,7 @@ import { codeButtonTemplate } from '../CodeButton/CodeButton.template';
 import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
 
 export const featuresTemplate: Template = {
-  label: '<⭐> Features',
+  label: 'Features',
   name: 'features',
   ui: {
     previewSrc: '/img/blocks/features.png',

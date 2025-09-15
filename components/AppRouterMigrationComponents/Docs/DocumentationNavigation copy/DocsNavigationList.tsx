@@ -143,11 +143,7 @@ const NavLevel = ({
             <span className=" pr-2 -mr-2">{categoryData.title}</span>
             {categoryData.items && !selected && (
               <BiChevronRight
-                className={`${
-                  level < 1
-                    ? 'text-orange-100 group-hover:text-orange-300'
-                    : 'text-blue-200 group-hover:text-blue-400'
-                } group-hover:rotate-90 w-5 h-auto -my-2 transition ease-out duration-300 transform ${
+                className={`text-black group-hover:rotate-90 w-5 h-auto -my-2 transition ease-out duration-300 transform ${
                   expanded ? 'rotate-90' : ''
                 }`}
               />
