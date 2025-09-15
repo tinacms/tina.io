@@ -40,7 +40,7 @@ export const Actions = ({
                 link={link}
                 target={external ? '_blank' : '_self'}
                 color={variant === 'default' ? 'seafoam' : variant}
-                shape={shape}
+                shape={shape || 'pill'}
                 data-tina-field={tinaField(item, 'label')}
                 className={className}
               >
