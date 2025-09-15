@@ -16,13 +16,11 @@ const HexagonBackground = ({
   headlineClass: string;
 }) => (
   <div
-    className={`pointer-events-none absolute ${headlineClass}`}
+    className={`pointer-events-none absolute w-2/3 lg:w-2/3 aspect-square ${headlineClass}`}
     style={{
       ...(textOnRight
         ? { top: '-220px', left: '-150px' }
         : { bottom: '-210px', right: '-180px' }),
-      width: '720px',
-      height: '720px',
       zIndex: 0,
       transform: 'rotate(45deg)',
     }}
@@ -82,7 +80,7 @@ function FeatureCardItem(data: {
 
   return (
     <div
-      className="relative grid grid-cols-2 bg-gradient-to-br from-white/10 to-white/40  shadow-lg py-24 px-10 rounded-md overflow-hidden"
+      className="relative grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-white/10 to-white/40  shadow-lg py-12 lg:py-24 px-5 lg:px-10 rounded-md overflow-hidden gap-y-10"
       id={sanitizeLabel(title)}
     >
       <HexagonBackground
