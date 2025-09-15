@@ -32,7 +32,7 @@ export const Actions = ({
             const externalUrlPattern = /^((http|https|ftp):\/\/)/;
             const external = externalUrlPattern.test(url);
             const link = url || '#';
-            console.log('label:', label, ' shape: ', shape)
+            console.log('label:', label, ' shape: ', shape);
             return (
               <ActionButton
                 key={label}

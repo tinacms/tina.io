@@ -9,7 +9,10 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const { title, subtext, buttons, image } = data.data || {};
 
   return (
-    <Container size="medium" className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4">
+    <Container
+      size="medium"
+      className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
+    >
       <div className="flex items-center flex-col gap-8  border-red-500 py-10">
         {title && (
           <h2 className={`${H1_HEADINGS} max-w-md md:max-w-none font-ibm-plex`}>

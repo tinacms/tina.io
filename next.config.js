@@ -103,8 +103,7 @@ const config = {
       // Landing static assets (browser asks under assetPrefix; child serves /_next/*)
       {
         source: '/tinadocs/landing/_next/:path*',
-        destination:
-          'https://tina-docs-landing.vercel.app/_next/:path*',
+        destination: 'https://tina-docs-landing.vercel.app/_next/:path*',
       },
 
       // Landing image optimizer (served exactly at this path in the child)
@@ -147,8 +146,14 @@ const config = {
   async headers() {
     const headers = [
       { key: 'Access-Control-Allow-Origin', value: '*' },
-      { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
-      { key: 'Access-Control-Allow-Headers', value: 'Accept, Content-Length, Content-Type' },
+      {
+        key: 'Access-Control-Allow-Methods',
+        value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+      },
+      {
+        key: 'Access-Control-Allow-Headers',
+        value: 'Accept, Content-Length, Content-Type',
+      },
       { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
       { key: 'Content-Security-Policy', value: "frame-ancestors 'self'" },
     ];
@@ -163,7 +168,11 @@ const config = {
     return [
       // keep URLs clean
       { source: '/home', destination: '/', permanent: true },
-      { source: '/:locale(en|zh)/home', destination: '/:locale', permanent: true },
+      {
+        source: '/:locale(en|zh)/home',
+        destination: '/:locale',
+        permanent: true,
+      },
 
       // existing redirects from JSON
       ...redirects.map((redirect) => ({
@@ -184,7 +193,7 @@ const config = {
       new MonacoWebpackPlugin({
         languages: ['javascript', 'typescript', 'html', 'css', 'json'],
         filename: 'static/[name].worker.js',
-      })
+      }),
     );
 
     return config;
