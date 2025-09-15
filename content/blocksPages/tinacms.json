@@ -14,7 +14,7 @@
           "shape": "square",
           "variant": "orange",
           "size": "medium",
-          "url": "/tinacms/demo",
+          "url": "https://demo.tina.io/admin#/~",
           "_template": "actions"
         },
         {
