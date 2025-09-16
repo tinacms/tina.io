@@ -5,22 +5,29 @@ import {
   SECTION_HEADINGS,
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
+import { cn } from '@/lib/utils';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 import { sanitizeLabel } from '@/utils/sanitizeLabel';
 
 const HexagonBackground = ({
   textOnRight,
   headlineClass,
+  className = '',
 }: {
   textOnRight: boolean;
   headlineClass: string;
+  className?: string;
 }) => (
   <div
-    className={`pointer-events-none absolute w-2/3 lg:w-2/3 aspect-square ${headlineClass}`}
+    className={cn(
+      'pointer-events-none absolute w-2/3 lg:w-2/3 aspect-square',
+      textOnRight
+        ? 'top-[-220px] left-[-150px]'
+        : 'top-[-220px] left-[-150px] lg:top-auto lg:left-auto lg:bottom-[-210px] lg:right-[-180px]',
+      headlineClass,
+      className,
+    )}
     style={{
-      ...(textOnRight
-        ? { top: '-220px', left: '-150px' }
-        : { bottom: '-210px', right: '-180px' }),
       zIndex: 0,
       transform: 'rotate(45deg)',
     }}
@@ -88,7 +95,7 @@ function FeatureCardItem(data: {
         headlineClass={headlineClass}
       />
       <div
-        className={` flex flex-col px-10 gap-8 ${textOnRight ? 'order-2' : 'order-1'}`}
+        className={` flex flex-col px-10 gap-8 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
       >
         <h3 className={`${BLOCK_HEADINGS} font-ibm-plex`}>{title}</h3>
         <h4
@@ -106,7 +113,7 @@ function FeatureCardItem(data: {
         </div>
       </div>
       <div
-        className={`relative  flex items-center justify-center ${textOnRight ? 'order-1' : 'order-2'}`}
+        className={`relative  flex items-center justify-center ${textOnRight ? 'order-1' : ' order-1 lg:order-2'}`}
       >
         {image && (
           <Image
