@@ -6,6 +6,9 @@ import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.
 export const featureCardTemplate: Template = {
   name: 'featureCard',
   label: 'Feature Card',
+  ui: {
+    previewSrc: '/img/blocks/featureCard.png',
+  },
   fields: [
     {
       name: 'title',

@@ -6,6 +6,9 @@ import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.
 export const herov2Template: Template = {
   name: 'heroV2',
   label: 'V2 | Hero',
+  ui: {
+    previewSrc: '/img/blocks/hero-v2.png',
+  },
   fields: [
     {
       type: 'string',
