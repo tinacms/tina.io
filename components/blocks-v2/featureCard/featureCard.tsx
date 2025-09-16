@@ -100,7 +100,7 @@ function FeatureCardItem(data: {
           {featureText}
         </p>
         <div className="flex gap-2">
-          {buttons.map((button, index) => (
+          {buttons?.map((button, index) => (
             <RenderButton key={button.label} button={button} index={index} />
           ))}
         </div>
@@ -133,7 +133,7 @@ export default function FeatureCard(data: { data: PageBlocksFeatureCard }) {
       </h3>
       <h2 className={`${BLOCK_HEADINGS} font-ibm-plex`}>{title}</h2>
       <div className="grid grid-cols-1 w-full gap-10 py-10">
-        {cards.map((card) => (
+        {cards?.map((card) => (
           <FeatureCardItem key={card.title} data={card} />
         ))}
       </div>
