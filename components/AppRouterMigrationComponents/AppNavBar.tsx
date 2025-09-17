@@ -156,21 +156,20 @@ export function AppNavBar({ sticky = true }) {
   const navLinkClasses =
     'flex items-center text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
 
-  const handleScroll = () => {
-    if (sticky && navRef.current) {
-      setStuck(window.scrollY > 50);
-    }
-  };
-
   useEffect(() => {
-    if (sticky) {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+    if (!sticky) {
+      return;
     }
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>
-  }, [sticky, handleScroll]);
+    const onScroll = () => {
+      if (navRef.current) {
+        setStuck(window.scrollY > 50);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [sticky]);
 
   useEffect(() => {
     const updateModalClass = () => {
