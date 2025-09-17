@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE, H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
 import {
   calculateEventStatus,
@@ -173,7 +173,7 @@ const EventsBlock = () => {
   return (
     <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8 flex flex-col gap-8">
       <h2
-        className={`${BLOCK_HEADINGS} font-ibm-plex inline-block lg:leading-tight text-black text-balance text-center`}
+        className={`${H1_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight text-black text-balance text-center`}
       >
         {eventsData.title}
       </h2>

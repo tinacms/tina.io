@@ -1,5 +1,5 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import BlobBackground from '../../../public/svg/blob-bg.svg';
 import { RichTextWrapper } from '../../layout/RichTextWrapper';
 import { Container } from '../Container';
@@ -16,7 +16,7 @@ export function FaqBlock({ data, index }) {
             <div className="mb-10">
               {data.title && (
                 <h3
-                  className={`${BLOCK_HEADINGS} font-ibm-plex text-orange-500 mb-8`}
+                  className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-orange-500 mb-8`}
                 >
                   {data.title}
                 </h3>

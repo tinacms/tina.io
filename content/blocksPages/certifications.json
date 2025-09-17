@@ -5,21 +5,10 @@
   },
   "blocks": [
     {
-      "features": [
-        {
-          "headline": "Professional TinaCMS certification",
-          "text": "We encourage all developers to earn a badge by demonstrating their knowledge and ability to answer questions and solve problems for their team. As a reward, each developer will, upon successful completion, receive 1 month of TinaCloud Teams Plus (valued at $49) for free. ",
-          "media": [
-            {
-              "src": "/TinaCMS-Dev-Credly-Badge.png",
-              "_template": "v2Video"
-            }
-          ],
-          "isReversed": false,
-          "imageBackground": false
-        }
-      ],
-      "_template": "features"
+      "title": "Professional TInaCMS Certification",
+      "subtext": "We encourage all developers to earn a badge by demonstrating their knowledge and ability to answer questions and solve problems for their team. As a reward, each developer will, upon successful completion, receive 1 month of TinaCloud Teams Plus (valued at $49) for free. ",
+      "image": "/tina-credly-badge.png",
+      "_template": "heroV2"
     },
     {
       "blockSettings": {

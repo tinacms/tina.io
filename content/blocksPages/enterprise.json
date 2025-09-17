@@ -5,41 +5,30 @@
   },
   "blocks": [
     {
-      "features": [
+      "title": "Tina for Enterprise",
+      "subtext": "Reduce costs, increase security & performance",
+      "buttons": [
         {
-          "headline": "Tina for Enterprise",
-          "text": "Reduce costs. Increase security & performance.",
-          "buttons": [
-            {
-              "label": "Request 1-Pager",
-              "icon": false,
-              "shape": "pill",
-              "variant": "white",
-              "size": "medium",
-              "url": "mailto:info@tina.io?subject=TinaCMS%20Enterprise%201-Pager&body=Hello,%20I%27d%20like%20more%20information%20about%20the%20TinaCMS%20Enterprise%20Solution.",
-              "_template": "actions"
-            },
-            {
-              "label": "Schedule a Demo",
-              "icon": false,
-              "shape": "pill",
-              "color": "blue",
-              "size": "medium",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            }
-          ],
-          "alignCenter": true,
-          "media": [
-            {
-              "image": "/uploads/tina-enterprise-hero.png",
-              "_template": "image"
-            }
-          ],
-          "isReversed": true
+          "label": "Request 1-Pager",
+          "icon": false,
+          "shape": "square",
+          "variant": "orange",
+          "size": "medium",
+          "url": "mailto:info@tina.io?subject=TinaCMS%20Enterprise%201-Pager&body=Hello,%20I%27d%20like%20more%20information%20about%20the%20TinaCMS%20Enterprise%20Solution",
+          "_template": "actions"
+        },
+        {
+          "label": "Schedule a Demo",
+          "icon": false,
+          "shape": "square",
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
-      "_template": "features"
+      "image": "/uploads/tina-enterprise-hero.png",
+      "_template": "heroV2"
     },
     {
       "title": "Trusted by",

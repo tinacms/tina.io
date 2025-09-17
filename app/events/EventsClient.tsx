@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from 'components/blocks/Events/Events';
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import { useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 
@@ -12,13 +13,13 @@ const EventsPageHeader = ({
   byline: string;
 }) => {
   return (
-    <div className="text-center mx-auto py-2">
-      <h1 className="pt-20 pb-5 text-4xl font-ibm-plex bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+    <div className="text-center mx-auto py-10">
+      <h1 className={`${H1_HEADINGS_SIZE} font-ibm-plex `}>
         {title}
       </h1>
-      <div>
-        <p className="text-gray-800 w-2/3 mx-auto break-words">{byline}</p>
-      </div>
+      
+        <p className="text-gray-800 w-2/3 mx-auto break-words py-6">{byline}</p>
+      
     </div>
   );
 };

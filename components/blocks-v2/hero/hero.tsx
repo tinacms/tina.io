@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
-import { H1_HEADINGS } from '@/component/styles/typography';
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import RenderButton from '@/utils/renderButtonArrayHelper';
@@ -15,7 +15,9 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     >
       <div className="flex items-center flex-col gap-8  border-red-500 py-10">
         {title && (
-          <h2 className={`${H1_HEADINGS} max-w-md md:max-w-none font-ibm-plex`}>
+          <h2
+            className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
+          >
             {curlyBracketFormatter(title)}
           </h2>
         )}

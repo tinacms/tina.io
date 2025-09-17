@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import type { PageBlocksFeatureCard } from 'tina/__generated__/types';
 import {
-  BLOCK_HEADINGS,
-  SECTION_HEADINGS,
+  BLOCK_HEADINGS_SIZE,
+  SECTION_HEADINGS_SIZE,
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
@@ -97,9 +97,9 @@ function FeatureCardItem(data: {
       <div
         className={` flex flex-col px-10 gap-8 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
       >
-        <h3 className={`${BLOCK_HEADINGS} font-ibm-plex`}>{title}</h3>
+        <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
         <h4
-          className={`${SECTION_HEADINGS} font-ibm-plex-[400] ${headlineClass}`}
+          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex-[400] ${headlineClass}`}
         >
           {featureHeadline}
         </h4>
@@ -138,7 +138,7 @@ export default function FeatureCard(data: { data: PageBlocksFeatureCard }) {
       <h3 className="font-ibm-plex font-semibold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
         {sectionEyebrow}
       </h3>
-      <h2 className={`${BLOCK_HEADINGS} font-ibm-plex`}>{title}</h2>
+      <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h2>
       <div className="grid grid-cols-1 w-full gap-10 py-10">
         {cards?.map((card) => (
           <FeatureCardItem key={card.title} data={card} />

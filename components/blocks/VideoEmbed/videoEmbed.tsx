@@ -1,7 +1,7 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
 
@@ -63,7 +63,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
         {title && (
           <>
             <h2
-              className={`${BLOCK_HEADINGS} font-ibm-plex inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
+              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
               data-tina-field={tinaField(data, 'title')}
             >
               {title}

@@ -5,7 +5,7 @@ import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data }) {
@@ -32,7 +32,7 @@ export function FeatureBlock({ data }) {
         )}
         {data.headline && !data.headingOne && (
           <h2
-            className={`${BLOCK_HEADINGS} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-center lg:text-left`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-center lg:text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}

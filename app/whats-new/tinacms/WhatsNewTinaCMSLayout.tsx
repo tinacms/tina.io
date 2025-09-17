@@ -1,3 +1,4 @@
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
 import Link from 'next/link';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';
@@ -8,7 +9,7 @@ const WhatsNewTinaCMSPageLayout = ({ data }) => {
 
   return (
     <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose md:mx-auto">
-      <h1 className="text-center justify-center font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-600 to-orange-700 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+      <h1 className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}>
         What's new with TinaCMS
       </h1>
       <div className="mt-8">
@@ -17,7 +18,7 @@ const WhatsNewTinaCMSPageLayout = ({ data }) => {
             key={item.id}
             className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105 bg-linear-to-br from-white/25 via-white/50 to-white/75"
           >
-            <h2 className="text-2xl bg-linear-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent text-blue-700 font-semibold">
+            <h2 className="text-2xl bg-linear-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent font-semibold">
               Version {item.versionNumber}
             </h2>
             <p className="text-sm text-gray-500">

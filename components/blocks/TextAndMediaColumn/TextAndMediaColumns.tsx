@@ -1,8 +1,8 @@
 import { textAndMediaColumnsComponent } from 'components/tinaMarkdownComponents/textAndMediaColumnsComponents';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { VideoGridComponent } from '../Media/MediaComponent';
+import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 
 const TextAndMediaColumnsComponent = ({ data }) => {
   const { mediaColumnItem, body, isVideoOnLeft } = data || {};
@@ -33,7 +33,7 @@ const TextAndMediaColumnsComponent = ({ data }) => {
           {body && (
             <TinaMarkdown
               content={body}
-              components={textAndMediaColumnsComponent}
+              components={docAndBlogComponents}
             />
           )}
         </div>

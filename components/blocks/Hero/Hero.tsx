@@ -1,6 +1,6 @@
 import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE, H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import { Container } from '../Container';
 import { RenderMedia } from '../Features/Features';
 
@@ -25,9 +25,17 @@ export const HeroFeature = ({ item, spacing, children }) => {
   return (
     <div className={`flex flex-col ${spacing ? spacing : 'gap-6'}`}>
       <div className="flex flex-col gap-2">
-        {item.headline && (
+        {item.headline && item.blockSettings?.isHeadingOne ?
+         (
+          <h1
+            className={`${H1_HEADINGS_SIZE} font-ibm-plex  text-center font-bold`}
+            data-tina-field={tinaField(item, 'headline')}
+          >
+            {item.headline}
+          </h1>
+        ) : (
           <h2
-            className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold`}
             data-tina-field={tinaField(item, 'headline')}
           >
             {item.headline}
@@ -35,7 +43,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
         )}
         {item.headline2 && (
           <h2
-            className={`${BLOCK_HEADINGS} font-ibm-plex text-transparent bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-center font-bold`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-black text-center font-bold`}
             data-tina-field={tinaField(item, 'headline2')}
           >
             {item.headline2}
