@@ -68,6 +68,32 @@ export const docsCollection = {
       type: 'string',
     },
     {
+      name: 'alias',
+      label: 'Alias',
+      type: 'string',
+      description:
+        'Alias for docs page - provides a stable permalink so that code and external references never break when the docs slug or location changes',
+      // TODO: If we want to look at making a custom component to enforce uniqueness we can here
+      ui: {
+        component: ({ input }) => {
+          return (
+            <div className='my-2 flex flex-col gap-1' >
+              <p className='block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2'>Alias</p>
+              <input
+                type="text"
+                value={input.value}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\s+/g, '-');
+                  input.onChange(val);
+                }}
+                className="shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded"
+              />
+            </div>
+          );
+        },
+      }, 
+    },
+    {
       type: 'string',
       name: 'last_edited',
       label: 'Last Edited',
