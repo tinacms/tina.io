@@ -77,8 +77,10 @@ export const docsCollection = {
       ui: {
         component: ({ input }) => {
           return (
-            <div className='my-2 flex flex-col gap-1' >
-              <p className='block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2'>Alias</p>
+            <div className="my-2 flex flex-col gap-1">
+              <p className="block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2">
+                Alias
+              </p>
               <input
                 type="text"
                 value={input.value}
@@ -91,7 +93,7 @@ export const docsCollection = {
             </div>
           );
         },
-      }, 
+      },
     },
     {
       type: 'string',
