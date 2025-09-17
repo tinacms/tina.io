@@ -1,15 +1,17 @@
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
 import Link from 'next/link';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 
 const WhatsNewTinaCMSPageLayout = ({ data }) => {
   const items = data.WhatsNewTinaCMSConnection.edges.map((edge) => edge.node);
 
   return (
     <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose md:mx-auto">
-      <h1 className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}>
+      <h1
+        className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}
+      >
         What's new with TinaCMS
       </h1>
       <div className="mt-8">

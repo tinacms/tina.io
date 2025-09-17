@@ -2,15 +2,17 @@
 
 import { Container, IconTopRightOnSquare } from 'components/blocks';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import type { ExamplesExamples } from './examples-types';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import type { ExamplesExamples } from './examples-types';
 
 export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
   const examples = tinaProps?.data?.examples?.examples;
 
   return (
     <Container width="medium">
-      <h1 className={`${H1_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight  text-balance text-center mt-20`}>
+      <h1
+        className={`${H1_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight  text-balance text-center mt-20`}
+      >
         Examples
       </h1>
       <section

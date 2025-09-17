@@ -1,8 +1,8 @@
 import { textAndMediaColumnsComponent } from 'components/tinaMarkdownComponents/textAndMediaColumnsComponents';
 import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { VideoGridComponent } from '../Media/MediaComponent';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
+import { VideoGridComponent } from '../Media/MediaComponent';
 
 const TextAndMediaColumnsComponent = ({ data }) => {
   const { mediaColumnItem, body, isVideoOnLeft } = data || {};
@@ -31,10 +31,7 @@ const TextAndMediaColumnsComponent = ({ data }) => {
           }`}
         >
           {body && (
-            <TinaMarkdown
-              content={body}
-              components={docAndBlogComponents}
-            />
+            <TinaMarkdown content={body} components={docAndBlogComponents} />
           )}
         </div>
       </div>

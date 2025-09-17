@@ -9,7 +9,9 @@ export const WhatsNewTinaCloudPageLayout = ({ data }) => {
 
   return (
     <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose mx-auto">
-      <h1 className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}>
+      <h1
+        className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}
+      >
         What's new with TinaCloud
       </h1>
       <div className="mt-8">

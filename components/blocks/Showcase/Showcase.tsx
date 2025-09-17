@@ -2,9 +2,12 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import {
+  BLOCK_HEADINGS_SIZE,
+  H1_HEADINGS_SIZE,
+} from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
-import { BLOCK_HEADINGS_SIZE, H1_HEADINGS_SIZE } from '@/component/styles/typography';
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1;
@@ -142,17 +145,20 @@ export function ShowcaseItemsBlock({ data, index }) {
   return (
     <section key={`features-${index}`} className="w-full">
       <Container>
-        {data.title && (
-          data.blockSettings.isHeadingOne ? (
-            <h1 className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}>
+        {data.title &&
+          (data.blockSettings.isHeadingOne ? (
+            <h1
+              className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+            >
               {data.title}
             </h1>
           ) : (
-            <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}>
+            <h2
+              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+            >
               {data.title}
             </h2>
-          )
-        )}
+          ))}
         {data.subText && (
           <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center py-4">
             {data.subText}
