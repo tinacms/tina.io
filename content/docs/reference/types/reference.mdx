@@ -1,7 +1,8 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/experimental-examples/kitchen-sink/README.md"
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/experimental-examples/kitchen-sink/README.md
 title: Reference Fields
-last_edited: '2025-03-26T05:27:39.833Z'
+last_edited: '2025-09-17T06:26:40.316Z'
 next: ''
 previous: ''
 ---
@@ -94,6 +95,12 @@ When editing in Tina, the user will be able to choose a document in the `author`
 ![](/img/docs/reference/reference_field_example_tszsxd.png)
 
 When querying for a `post` document via the client or raw GraphQL, the `author` key in the response will contain the values of the *referenced* `author` document:
+
+<WarningCallout
+  body={<>
+    If the collection you are referencing contains a large number of items then you may run into timeout issues. Check out [FAQ - Getting a 503 Service Unavailable error when loading the reference field ](https://www.youtube.com/redirect?event=video_description\&redir_token=QUFFLUhqbGIzTXJ1bmY1RUg4c3MxNnFJallnaUh4QklNQXxBQ3Jtc0trSGtJdk4ydXcxNmlkRUhCVFZsZGZlSzZDNTN0VzB5cm9fRFNucjdMZ3NJQmExOWhzMnYyU05VeG5QZFQxY3Mya2JkT0JSaldvTGJaMERVQzBxWUczMG9odDNZdnNJQTRYWERZWEJJV1ZRVFFDa2dOVQ\&q=https%3A%2F%2Ftina.io%2Fdocs%2Fintroduction%2Ffaq%2318-getting-a-503-service-unavailable-error-when-loading-the-reference-field\&v=6FVpOvLK51s)for more information.
+  </>}
+/>
 
 <GraphQLCodeBlock
   query="{
