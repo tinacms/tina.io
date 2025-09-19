@@ -1,8 +1,10 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/prompts/gitProvider.ts"
 id: /docs/self-hosted/existing-site
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/init/prompts/gitProvider.ts
 title: 在Next.js站点上自托管设置
-last_edited: '2024-08-20T00:35:12.579Z'
+alias: self-hosting-nextjs
+last_edited: '2025-09-18T23:09:28.063Z'
 next: content/docs-zh/self-hosted/manual-setup.mdx
 previous: content/docs-zh/self-hosted/starters/nextjs-vercel.mdx
 ---
@@ -11,7 +13,7 @@ previous: content/docs-zh/self-hosted/starters/nextjs-vercel.mdx
 
 我们提供了一个CLI初始化工具，可以快速在Next.js站点上设置后端，或者如果你使用的是其他框架，可以采用[手动设置方法](/docs/self-hosted/manual-setup/)。
 
-> 更喜欢视频教程？查看这个视频：
+> 更喜欢视频演示？查看这个视频：
 
 <Youtube embedSrc="https://www.youtube.com/embed/Jq5yWF1c0aM" />
 
@@ -31,7 +33,7 @@ npx @tinacms/cli@latest init backend
 
 ### GitHub个人访问令牌
 
-可以在[GitHub账户设置](https://github.com/settings/personal-access-tokens/new)中创建GitHub个人访问令牌。
+可以在[GitHub账户设置](https://github.com/settings/personal-access-tokens/new)中创建一个GitHub个人访问令牌。
 
 确保为你的新仓库分配`repo`访问权限，并具有对内容的读/写访问权限。
 
@@ -63,10 +65,10 @@ TinaCMS在初始化工作流中提供了两个数据库适配器：“Redis”�
 
 查看[此页面](/docs/self-hosted/querying-data)以获取更多信息。
 
-完成这些步骤后，`dev`和`build`命令应该可以使用。
+完成这些步骤后，`dev`和`build`命令应该可以使用了
 
 ## 下一步
 
 * [查询数据](/docs/self-hosted/querying-data)
-* 如果你想更改Git提供者、数据库适配器或身份验证提供者，请查看[参考](/docs/reference/self-hosted/overview/)。
+* 如果你想更改你的Git提供者、数据库适配器或身份验证提供者，请查看[参考](/docs/reference/self-hosted/overview/)。
 * 有问题吗？欢迎在我们的[Discord](https://discord.com/invite/zumN63Ybpf)中提问。

@@ -1,15 +1,17 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
 id: collections
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts
 title: 集合
-last_edited: '2025-03-26T04:54:11.946Z'
+alias: content-modelling-collections
+last_edited: '2025-09-18T23:04:32.497Z'
 next: content/docs-zh/reference/fields.mdx
 previous: content/docs-zh/reference/schema.mdx
 ---
 
 每个集合都是一个独特的内容结构。在TinaCMS中创建内容文档是基于每个集合进行的，以便：
 
-* 内容结构与集合定义相匹配。
+* 内容结构与集合定义匹配。
 * 文档存在于该集合下。
 
 ![](/img/docs/schema/SCR-20250312-nnbi.png)
@@ -56,13 +58,13 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "",
       name: "fields",
       type: "Field[]",
-      description: "一个[字段](/docs/reference/fields/)数组。\n"
+      description: "[字段](/docs/reference/fields/)的数组。\n"
     },
     {
       groupName: "",
       name: "templates",
       type: "Template[]",
-      description: "一个[模板](/docs/reference/templates/)数组。\n"
+      description: "[模板](/docs/reference/templates/)的数组。\n"
     },
     {
       groupName: "",
@@ -110,7 +112,7 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "ui",
       name: "global",
       type: "boolean",
-      description: "一个布尔值，如果为true，将使此集合成为全局集合。\n",
+      description: "一个布尔值，如果为true，将使此集合全局化。\n",
       default: "false"
     },
     {
@@ -186,7 +188,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 `path`让Tina知道哪些目录包含集合的文档。
 
-[`格式`](#format)或[`匹配`](#match)属性可以进一步指定包含的文档。
+[`Format`](#format)或[`match`](#match)属性可以进一步指定包含的文档。
 
 不同集合的文档可以共存，但如果有重叠的文档，CLI将打印警告。
 
@@ -194,7 +196,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 ### 文件格式
 
-`格式`定义了此集合中文档的文件扩展名。设置为`"md"`、`"markdown"`、`"mdx"`、`"json"`、`"toml"`或`"yaml"`之一。
+`Format`定义了此集合中文档的文件扩展名。设置为`"md"`、`"markdown"`、`"mdx"`、`"json"`、`"toml"`或`"yaml"`之一。
 
 如果未指定，则使用markdown文件。
 
@@ -202,10 +204,10 @@ previous: content/docs-zh/reference/schema.mdx
 
 ### match.include
 
-一个[glob模式](https://en.wikipedia.org/wiki/Glob_\(programming\))，将用于匹配`path`目录中的文件子集，不包括文件扩展名。使用此字段来**排除子目录**或**匹配特定文件集**。
+一个[glob模式](https://en.wikipedia.org/wiki/Glob_\(programming\))，用于匹配`path`目录中的文件子集，不包括文件扩展名。使用此字段来**排除子目录**或**匹配特定文件集**。
 
 * `?` 匹配单个字符
-* `*` 匹配任意数量的任意字符（不包括`/`）
+* `*` 匹配任意数量的任意字符（除`/`外）
 * `[abc]` 匹配给定集合中的任意一个字符
 * `[a-z]` 匹配一个范围。
 * `{foo,bar}` 匹配给定集合中的任意一个完整单词
@@ -274,7 +276,7 @@ defaultItem: () => {
 
 ### 富文本的默认值
 
-要设置[富文本字段](/docs/reference/types/rich-text/)的默认值，您必须提供一个抽象语法树（AST）。更多信息请参见此处。
+要为[富文本字段](/docs/reference/types/rich-text/)设置默认值，您必须提供一个抽象语法树（AST）。更多信息请参见此处。
 
 ## 示例
 
@@ -292,7 +294,7 @@ export default defineConfig({
         label: '博客文章',
         path: 'content/posts',
         fields: [
-          // 一个字段数组
+          // 字段数组
         ],
       },
     ],
@@ -323,7 +325,7 @@ export default defineConfig({
         },
         format: 'json',
         fields: [
-          // 一个字段数组
+          // 字段数组
         ],
       },
     ],
@@ -344,7 +346,7 @@ export default defineConfig({
         path: 'content/posts',
         defaultItem: () => {
           return {
-            // 当创建新文章时，标题字段将设置为"新文章"
+            // 当创建新文章时，标题字段将设置为“新文章”
             title: '新文章',
           };
         },

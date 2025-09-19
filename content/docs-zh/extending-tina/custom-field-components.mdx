@@ -1,7 +1,8 @@
 ---
 id: /docs/extending-tina/custom-field-components
 title: React 组件
-last_edited: '2025-04-01T06:32:03.368Z'
+alias: custom-fields-react
+last_edited: '2025-09-18T23:42:00.805Z'
 next: content/docs-zh/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -15,7 +16,7 @@ previous: ''
 这应该设置为一个有效的 React 组件，该组件最多接受四个属性：
 
 * `field`: 当前字段的[字段定义](https://tinacms.org/docs/reference/toolkit/fields)。
-* `input`: 制作输入所需的数据和回调。
+* `input`: 创建输入所需的数据和回调。
 * `meta`: 表单中关于字段的元数据。（例如 `dirty`，`valid`）。
 * `form`: CMS 表单，用于检索和更新同一集合中的其他字段。
 
@@ -39,13 +40,13 @@ previous: ''
 
 将 `component.ui` 设置为值 `"hidden"` 会将字段从编辑器中移除。
 
-该字段仍然在后台存在，并可以通过其他方式访问。
+该字段仍然存在于后台，可以通过其他方式访问。
 
 ## 示例
 
 ### 滑块组件
 
-这是一个用于调整图像饱和度的自定义滑块组件。
+这是一个可用于调整图像饱和度的自定义滑块组件。
 
 ![一个基本的滑块自定义组件](/img/docs/extending-tina/image-saturation.png)
 
