@@ -194,6 +194,12 @@ Documents of different collections can be co-located, but the CLI will print a w
 
 By default, the path is relative to where the CLI is running but this can be changed by using the [`--rootPath`](/docs/cli-overview) CLI flag.
 
+<WarningCallout
+  body={<>
+    In **Local Mode**, when **`path`** is changed, you will need to run `tinacms dev`. This ensures the generated files include the new path.
+  </>}
+/>
+
 ### File Format
 
 `Format` defines the file extension of documents in this collection. Set to one of `"md"`, `"markdown"`, `"mdx"`,`"json"`, `"toml"`, or `"yaml"`.
