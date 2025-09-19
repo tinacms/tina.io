@@ -7,7 +7,6 @@ export default async function AliasRedirect({
 }: {
   params: { alias: string };
 }) {
-  console.log('The Params Are', params);
 
   let finalDocument: DocConnectionQuery['docConnection']['edges'][number]['node'];
   try {
