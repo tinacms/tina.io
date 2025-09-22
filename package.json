@@ -65,7 +65,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.471.2",
     "markdown-toc": "^1.2.0",
-    "mermaid": "^11.6.0",
+    "mermaid": "^11.12.0",
     "moment": "^2.30.1",
     "moment-locales-webpack-plugin": "^1.2.0",
     "moment-timezone": "^0.6.0",
