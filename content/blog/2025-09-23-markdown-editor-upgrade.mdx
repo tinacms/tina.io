@@ -1,0 +1,81 @@
+---
+title: "TinaCMS Markdown Editor Upgrades — Smoother UX, Stronger Security"
+date: '2025-09-23T14:00:00.000Z'
+last_edited: '2025-09-23T14:00:00.000Z'
+author: Ben (TinaCMS Team)
+prev: content/blog/react-19-support.mdx
+next: ''
+---
+
+With the latest release of our Markdown editor, TinaCMS brings a set of **five major improvements** designed to make editing faster, cleaner, and more secure. From code blocks and diagrams to content structure and dependency updates, this upgrade is all about smoothing out the writing flow while reducing risks.
+
+## Why These Changes Matter
+
+Markdown is at the core of how TinaCMS users create and maintain content. When editing feels clunky, or when bugs and vulnerabilities creep in, it slows down everyone from developers to content teams.  
+This release tackles those issues head-on with UI improvements, better plugin handling, and tighter security.
+
+## What’s New
+
+### 1. Smarter Code Blocks with Searchable Dropdowns
+
+Code blocks were the top requested improvement. In previous versions, empty blocks sometimes showed “undefined,” and dropdowns could break the UI.
+
+Now code blocks are:
+
+- **Searchable** — pick your language from a dropdown.  
+- **Stable** — no more “undefined” glitches.  
+- **Cleaner to use** — improved UI for a smoother editing experience.
+
+
+### 2. Mermaid Diagrams Integrated into Code Blocks
+
+Mermaid was previously a stand-alone component. That’s no longer the case.
+
+- Select `mermaid` directly from the code block dropdown.  
+- Write diagrams inline.  
+- Use the preview button to check diagrams instantly.  
+
+No more switching back and forth.
+
+
+### 3. Horizontal Rule Plugin for Cleaner Breaks
+
+For long content, structure matters. The new horizontal rule plugin lets you insert clean section breaks with a single line, making text easier to follow.
+
+
+### 4. Guardrails Against Unsupported Markdown & Plugins
+
+Unsupported plugins or Markdown could previously be added into code blocks, sometimes breaking formatting.  
+Now, unsupported options are disabled by default — preventing mistakes and keeping your content stable.
+
+
+### 5. Security and Dependency Updates
+
+Staying current with dependencies is critical. In this release, we:
+
+- Updated TinaCMS dependencies to the latest versions.  
+- Benchmarked security vulnerabilities across packages.  
+- Reduced vulnerable packages from **39 down to 26** by updating just one key dependency.
+
+This means your projects are safer and easier to maintain.
+
+
+## Upgrade Path
+
+Upgrading to the latest version is simple. Update your dependencies and you’ll immediately get the new editor experience:
+
+```bash
+npm install tinacms@latest
+# or
+yarn add tinacms@latest
+
+Check out the [documentation](https://tina.io/docs) for detailed guidance on using code blocks, Mermaid diagrams, and the new plugins.
+
+
+## Looking Ahead
+
+This upgrade focuses on **better UX and stronger security**, but it’s only the beginning. We’re committed to refining the editor even further with more plugin support, improved previews, and faster performance in future releases.
+
+
+Best,  
+The TinaCMS Team 🦙
