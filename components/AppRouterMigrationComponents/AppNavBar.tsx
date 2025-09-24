@@ -55,6 +55,7 @@ const modalButtonString = 'modalButton';
 const stringItemString = 'stringItem';
 const groupOfStringItemsString = 'groupOfStringItems';
 const GitHubStarButton = 'GitHubStarButton';
+const doubleNavItemDropDownString = 'doubleNavItemDropDown';
 const iconMapping = {
   MdEmail: MdEmail,
   FaCalendarDay: FaCalendarDay,
@@ -92,11 +93,23 @@ interface GitHubStarButton extends NavItemBase {
   repo: string;
 }
 
+interface DoubleNavItemDropDown extends NavItemBase {
+  _template: typeof doubleNavItemDropDownString;
+  label: string;
+  items: Array<{
+    labelLeft: string;
+    hrefLeft: string;
+    labelRight: string;
+    hrefRight: string;
+  }>;
+}
+
 type NavItem =
   | ModalButtonItem
   | StringItem
   | GroupOfStringItems
-  | GitHubStarButton;
+  | GitHubStarButton
+  | DoubleNavItemDropDown;
 
 function isModalButtonItem(item: any): item is ModalButtonItem {
   return item._template === modalButtonString;
@@ -114,6 +127,10 @@ function isGitHubStarButton(item: any): item is GitHubStarButton {
   return item._template === GitHubStarButton;
 }
 
+function isDoubleNavItemDropDown(item: any): item is DoubleNavItemDropDown {
+  return item._template === doubleNavItemDropDownString;
+}
+
 function parseNavItems(items: any[]): NavItem[] {
   return items.map((item) => {
     if (isModalButtonItem(item)) {
@@ -124,6 +141,8 @@ function parseNavItems(items: any[]): NavItem[] {
       return item as GroupOfStringItems;
     } else if (isGitHubStarButton(item)) {
       return item as GitHubStarButton;
+    } else if (isDoubleNavItemDropDown(item)) {
+      return item as DoubleNavItemDropDown;
     }
 
     // Default case for any other template type
@@ -263,6 +282,7 @@ export function AppNavBar({ sticky = true }) {
     fetchStarCount();
   }, [navItems]);
 
+  console.log(navItems);
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
@@ -610,6 +630,65 @@ export function AppNavBar({ sticky = true }) {
                                     </span>
                                   </Link>
                                 </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </li>
+                      );
+                    case doubleNavItemDropDownString:
+                      return (
+                        <li
+                          key={`${index}-${item.label}`}
+                          className={`group ${navLinkClasses}`}
+                        >
+                          <div className="relative group">
+                            <span
+                              className="flex items-center cursor-pointer"
+                              onClick={(e) =>
+                                handleDropdownToggle(
+                                  `${index}-${item.label}`,
+                                  e,
+                                )
+                              }
+                            >
+                              {item.label}
+                              <BiChevronDown
+                                className={`ml-1 text-blue-200 transition-transform duration-200 ${
+                                  openDropdown === `${index}-${item.label}`
+                                    ? 'rotate-180'
+                                    : ''
+                                }`}
+                              />
+                            </span>
+                            <ul
+                              className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white text-black shadow-lg rounded-md p-4 transition-opacity duration-200 ease-in-out ${
+                                openDropdown === `${index}-${item.label}`
+                                  ? 'opacity-100 pointer-events-auto'
+                                  : 'opacity-0 pointer-events-none'
+                              }`}
+                            >
+                              {item.items.map((subItem, subIndex) => (
+                                <div
+                                  key={`${index}-${subIndex}-${subItem.hrefLeft}`}
+                                  className="flex items-center gap-2 py-1"
+                                >
+                                  {' '}
+                                  <Link
+                                    key={`${index}-${subIndex}-${subItem.hrefLeft}`}
+                                    className="hover:text-blue-500"
+                                    href={subItem.hrefLeft}
+                                  >
+                                    {subItem.labelLeft}
+                                  </Link>
+                                  <span> • </span>{' '}
+                                  <Link
+                                    key={`${index}-${subIndex}-${subItem.hrefRight}`}
+                                    className="hover:text-blue-500"
+                                    href={subItem.hrefRight}
+                                  >
+                                    {subItem.labelRight}
+                                  </Link>
+                                </div>
                               ))}
                             </ul>
                           </div>

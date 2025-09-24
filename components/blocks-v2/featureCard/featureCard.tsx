@@ -95,7 +95,7 @@ function FeatureCardItem(data: {
         headlineClass={headlineClass}
       />
       <div
-        className={` flex flex-col px-10 gap-8 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
+        className={` flex flex-col px-10 gap-2 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
       >
         <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
         <h4
@@ -103,7 +103,7 @@ function FeatureCardItem(data: {
         >
           {featureHeadline}
         </h4>
-        <p className="text-neutral-text-secondary font-light leading-relaxed text-lg max-w-[62ch]">
+        <p className="text-neutral-text-secondary font-light leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
         <div className="flex gap-2">
