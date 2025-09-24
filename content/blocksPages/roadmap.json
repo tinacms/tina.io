@@ -113,6 +113,20 @@
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
+        },
+        {
+          "headline": "□ Build system - move from Commonjs to ESM",
+          "status": "",
+          "content": "We’re modernizing our build system by switching from CommonJS to ESM for better performance and compatibility.\n",
+          "actions": [
+            {
+              "label": "GitHub Issue  🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/issues/5956"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
@@ -155,6 +169,10 @@
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }
           ]
+        },
+        {
+          "headline": "Swapping auth from AWS Cognito to WorkOS",
+          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n"
         }
       ],
       "options": {
