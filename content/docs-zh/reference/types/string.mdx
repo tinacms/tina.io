@@ -1,6 +1,7 @@
 ---
 title: 字符串字段
-last_edited: '2025-03-26T00:50:49.005Z'
+alias: string-fields
+last_edited: '2025-09-18T23:26:46.160Z'
 next: ''
 previous: ''
 ---
@@ -11,22 +12,22 @@ previous: ''
 
 ## 类型定义
 
-> 有关所有字段类型共有的附加属性，请查看[字段](/docs/reference/fields)类型定义。
+> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
 
 <apiReference
   property={[
     {
-      name: 'type',
-      type: 'string',
+      name: "type",
+      type: "string",
       description: '将此设置为 `"string"` 以使用字符串字段。\n',
-      required: true,
+      required: true
     },
     {
-      name: 'name',
-      description: '供内部使用的字段名称。\n',
-      type: 'string',
-      required: true,
-    },
+      name: "name",
+      description: "用于内部使用的字段名称。\n",
+      type: "string",
+      required: true
+    }
   ]}
 />
 
@@ -39,7 +40,7 @@ previous: ''
 {
   type: 'string',
   name: 'title',
-  label: 'Title'
+  label: '标题'
 }
 ```
 
@@ -47,13 +48,13 @@ previous: ''
 
 ### 简单列表字段
 
-设置 list: true 将使值成为数组
+设置 list: true 将使值成为一个数组
 
 ```javascript
 {
   type: 'string',
   name: 'title',
-  label: 'Title',
+  label: '标题',
   list: true
 }
 ```
@@ -62,11 +63,11 @@ previous: ''
 
 ### 带有文本区域组件的字段
 
-默认情况下，文本字段用于字符串。要使用不同的核心字段插件，请通过 ui.component 属性指定。
+默认情况下，文本字段用于字符串。要使用不同的核心字段插件，请通过 ui.component 属性指定。
 
 ```javascript
 {
-  label: "Description",
+  label: "描述",
   name: "description",
   type: "string",
   ui: {
@@ -79,18 +80,18 @@ previous: ''
 
 ### 带有自定义组件的字段
 
-您可以为TinaCMS编辑器[创建自己的组件](https://tina.io/docs/extending-tina/custom-field-components/)来存储字符串类型内容。
+您可以为TinaCMS编辑器[创建自己的组件](https://tina.io/docs/extending-tina/custom-field-components/)来存储字符串类型的内容。
 
 ```javascript
 {
-  label: "Title",
+  label: "标题",
   name: "title",
   type: "string",
   ui: {
     component: ({ input }) => {
       return (
         <div>
-          <label htmlFor="title">Title: </label>
+          <label htmlFor="title">标题: </label>
           <input {...input}></input>
         </div>
       );
