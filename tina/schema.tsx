@@ -30,8 +30,38 @@ import { settingCollection } from './collectionsSchema/settings';
 import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud';
 import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
 
+const testCollectionJSON: Collection = { 
+  name: 'testPagesJSON',
+  label: 'Test Pages JSON',
+  path: 'content/testPagesJSON',
+  format: 'json',
+  fields: [
+    {
+      type: 'rich-text',
+      name: 'content',
+      label: 'Content',
+    }
+  ],
+}
+
+const testCollectionMarkdown: Collection = { 
+  name: 'testPagesMarkdown',
+  label: 'Test Pages Markdown',
+  path: 'content/testPagesMarkdown',
+  format: 'mdx',
+  fields: [
+    {
+      type: 'rich-text',
+      name: 'content',
+      label: 'Content',
+    }
+  ],
+}
+
 export const schema = defineSchema({
   collections: [
+    testCollectionJSON,
+    testCollectionMarkdown,
     pagesCollection as Collection,
     docsCollection as Collection,
     docsZhCollection as Collection,
