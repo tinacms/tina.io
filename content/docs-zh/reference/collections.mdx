@@ -84,7 +84,7 @@ previous: content/docs-zh/reference/schema.mdx
       name: "frontmatterDelimiters",
       type: "string | [string, string]",
       description:
-        "用于前置数据的[分隔符](https://github.com/jonschlinkert/gray-matter#optionsdelimiters)。\n",
+        "[分隔符](https://github.com/jonschlinkert/gray-matter#optionsdelimiters)用于前置数据。\n",
       default: '"---"'
     },
     {
@@ -192,7 +192,13 @@ previous: content/docs-zh/reference/schema.mdx
 
 不同集合的文档可以共存，但如果有重叠的文档，CLI将打印警告。
 
-默认情况下，路径是相对于CLI运行的位置，但可以通过使用[`--rootPath`](/docs/cli-overview) CLI标志进行更改。
+默认情况下，路径是相对于CLI运行的位置，但可以通过使用[`--rootPath`](/docs/cli-overview) CLI标志来更改。
+
+<WarningCallout
+  body={<>
+    在**本地模式**下，当更改**`path`**时，您需要运行`tinacms dev`。这确保生成的文件包含新路径。
+  </>}
+/>
 
 ### 文件格式
 
@@ -346,7 +352,7 @@ export default defineConfig({
         path: 'content/posts',
         defaultItem: () => {
           return {
-            // 当创建新文章时，标题字段将设置为“新文章”
+            // 当创建新文章时，标题字段将被设置为“新文章”
             title: '新文章',
           };
         },

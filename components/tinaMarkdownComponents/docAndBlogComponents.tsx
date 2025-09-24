@@ -208,7 +208,7 @@ export const docAndBlogComponents: Components<{
   h6: (props) => <FormatHeaders level={6} {...props} />,
   img: (props) => {
     return (
-      <div className="flex flex-col gap-2 my-4">
+      <span className="flex flex-col gap-2 my-4">
         <img
           className="rounded-xl border"
           src={props.url}
@@ -220,7 +220,7 @@ export const docAndBlogComponents: Components<{
             Figure: {props.caption}
           </div>
         )}
-      </div>
+      </span>
     );
   },
   ul: (props) => <ul className="list-disc my-4 ml-2" {...props} />,

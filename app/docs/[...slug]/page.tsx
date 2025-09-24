@@ -16,6 +16,9 @@ export async function generateStaticParams() {
       .map((file) => {
         const path = file.substring(contentDir.length, file.length - 4); // Remove "./content/docs/" and ".mdx"
         return { slug: path.split('/') };
+      })
+      .filter((params) => {
+        return params.slug[0] !== 'r';
       });
   } catch (error) {
     console.error(error);
