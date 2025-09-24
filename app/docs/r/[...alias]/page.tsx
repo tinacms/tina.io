@@ -6,7 +6,7 @@ import path from 'path';
 import client from 'tina/__generated__/client';
 import type { DocConnectionQuery } from 'tina/__generated__/types';
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   try {
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
         const { data } = matter(fileContent);
 
         if (data.alias && typeof data.alias === 'string') {
-          aliasParams.push({ alias: data.alias });
+          aliasParams.push({ alias: [data.alias] });
         }
       } catch (fileError) {
         console.warn(`Error reading file ${file}:`, fileError);
@@ -39,16 +39,22 @@ export async function generateStaticParams() {
 export default async function AliasRedirect({
   params,
 }: {
-  params: { alias: string };
+  params: { alias: string[] };
 }) {
-  if (!params.alias || typeof params.alias !== 'string') {
+  console.log('the fucking parameters are : ', params);
+  
+  // Get the first segment as the actual alias
+  const aliasValue = params.alias?.[0];
+  const anchorText = params.alias.slice(1).join('/');
+  
+  if (!aliasValue || typeof aliasValue !== 'string') {
     return notFound();
   }
 
   let finalDocument: DocConnectionQuery['docConnection']['edges'][number]['node'];
   try {
     const res = await client.queries.docConnection({
-      filter: { alias: { eq: params.alias } },
+      filter: { alias: { eq: aliasValue } },
     });
 
     if (!res?.data?.docConnection?.edges) {
@@ -76,5 +82,7 @@ export default async function AliasRedirect({
     return notFound();
   }
 
-  return redirect(`/docs/${slug}`);
+  // Preserve anchor text in redirect
+  const redirectUrl = anchorText ? `/docs/${slug}#${anchorText}` : `/docs/${slug}`;
+  return redirect(redirectUrl);
 }
