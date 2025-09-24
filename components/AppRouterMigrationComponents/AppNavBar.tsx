@@ -10,7 +10,7 @@ import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import type React from 'react';
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
@@ -399,7 +399,37 @@ export function AppNavBar({ sticky = true }) {
               </div>
               <ul className="flex flex-col py-4 px-6 relative z-20">
                 {navItems.map((item, index) =>
-                  'items' in item ? (
+                  isDoubleNavItemDropDown(item) ? (
+                    (item as DoubleNavItemDropDown).items.map((subItem, subIndex) => (
+                      <li
+                        key={`${index}-${subIndex}`}
+                        className={`group ${navLinkClasses} py-2 flex items-center gap-2`}
+                      >
+                        <Link
+                          href={subItem.hrefLeft}
+                          onClick={handleNavLinkClick}
+                          className="hover:text-blue-500"
+                        >
+                          {subItem.labelLeft}
+                          {subItem.hrefLeft.startsWith('https://') && (
+                            <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
+                          )}
+                        </Link>
+                        <span className="text-gray-400">|</span>
+                        <Link
+                          href={subItem.hrefRight}
+                          onClick={handleNavLinkClick}
+                          className="hover:text-blue-500"
+                          aria-label={`${subItem.labelLeft} ${subItem.labelRight}`}
+                        >
+                          {subItem.labelRight}
+                          {subItem.hrefRight.startsWith('https://') && (
+                            <BiLinkExternal className="text-blue-200 text-sm inline ml-1" />
+                          )}
+                        </Link>
+                      </li>
+                    ))
+                  ) : 'items' in item ? (
                     (item.items as any[]).map((subItem, subIndex) =>
                       subItem.href ? (
                         <li
@@ -685,6 +715,7 @@ export function AppNavBar({ sticky = true }) {
                                     key={`${index}-${subIndex}-${subItem.hrefRight}`}
                                     className="hover:text-blue-500"
                                     href={subItem.hrefRight}
+                                    aria-label={`${subItem.labelLeft} ${subItem.labelRight}`}
                                   >
                                     {subItem.labelRight}
                                   </Link>
