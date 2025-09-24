@@ -35,7 +35,7 @@
           "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
           "media": {
-            "src": "/gif/smashingmagazine-tinacms.gif"
+            "src": "/gif/smashingmagazine-tinacms.webp"
           }
         },
         {
@@ -67,7 +67,7 @@
           "text": "[Roev](https://www.roev.com/) is a company innovating at the intersection of electric vehicles and renewable energy. The site was designed and built by [CoMedia](https://www.comediadesign.com/). ",
           "url": "https://www.roev.com/",
           "media": {
-            "src": "/gif/roev.gif"
+            "src": "/gif/roev.webp"
           }
         },
         {
@@ -75,7 +75,7 @@
           "text": "[Shadow Lion](https://shadowlion.com/) was founded in 2017 with the goal of supporting Tom Brady’s off-field media efforts but quickly began providing creative services to other athletes, influencers and organizations. The site was built by [VisualBoston](https://visualboston.com/) a digital studio based out of Boston, MA. ",
           "url": "https://shadowlion.com/",
           "media": {
-            "src": "/gif/shadowlion3.gif"
+            "src": "/gif/shadowlion3.webp"
           }
         },
         {
@@ -91,7 +91,7 @@
           "text": "RRE Ventures is an early-stage venture capital firm headquartered in New York City founding in 1994 they have sought out and partnered with extraordinary entrepreneurs who seek to disrupt and transform industries. The site was designed and built by [Studio Freight](https://studiofreight.com/).",
           "url": "https://rre.com",
           "media": {
-            "src": "/gif/rre-ventures.gif"
+            "src": "/gif/rre-ventures.webp"
           }
         },
         {
@@ -99,7 +99,7 @@
           "text": "[Comedia](http://www.comediadesign.com/) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC, and Postmates.",
           "url": "https://www.comediadesign.com/",
           "media": {
-            "src": "/gif/comedia.gif"
+            "src": "/gif/comedia.webp"
           }
         },
         {
