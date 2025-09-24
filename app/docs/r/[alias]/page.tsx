@@ -6,8 +6,6 @@ import path from 'path';
 import client from 'tina/__generated__/client';
 import type { DocConnectionQuery } from 'tina/__generated__/types';
 
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   try {
     const contentDir = './content/docs/';
