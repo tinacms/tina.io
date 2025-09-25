@@ -1,7 +1,8 @@
 ---
 id: /docs/reference/config/
 title: 配置参考
-last_edited: '2025-03-26T00:00:43.096Z'
+alias: the-config-file
+last_edited: '2025-09-18T23:25:05.323Z'
 tocIsHidden: false
 next: content/docs-zh/reference/schema.mdx
 previous: content/docs-zh/reference/overview.mdx
@@ -58,7 +59,7 @@ previous: content/docs-zh/reference/overview.mdx
       name: "branch",
       type: "string | null",
       description:
-        "用于拉取内容的基础分支。对于 **TinaCloud** 是必需的。\n"
+        "拉取内容的基础分支。对于 **TinaCloud** 是必需的。\n"
     },
     {
       groupName: "",
@@ -85,13 +86,13 @@ previous: content/docs-zh/reference/overview.mdx
       name: "authProvider",
       type: "AuthProvider",
       description:
-        "设置 [自定义身份验证](/docs/reference/self-hosted/auth-provider/overview)。\n"
+        "设置[自定义认证](/docs/reference/self-hosted/auth-provider/overview)。\n"
     },
     {
       groupName: "admin",
       name: "authHooks",
       type: "AuthHooks",
-      description: "用于在身份验证事件上运行逻辑。\n"
+      description: "用于在认证事件上运行逻辑。\n"
     },
     {
       description:
@@ -120,7 +121,7 @@ previous: content/docs-zh/reference/overview.mdx
       name: "referenceDepth",
       type: "number",
       description:
-        "生成的查询将遍历给定深度的引用。\n",
+        "生成的查询将遍历引用到给定深度。\n",
       default: "2"
     },
     {
@@ -169,7 +170,7 @@ previous: content/docs-zh/reference/overview.mdx
       groupName: "search",
       name: "indexBatchSize",
       type: "number",
-      description: "每个 PUT 请求索引的文档数量。\n"
+      description: "每个 PUT 请求要索引的文档数量。\n"
     },
     {
       groupName: "search",
@@ -220,7 +221,7 @@ previous: content/docs-zh/reference/overview.mdx
 
 ### Vercel 和 TinaCloud 配置
 
-这是一个使用 TinaCloud 托管数据层的标准配置，以及内置的 Tina 媒体和搜索功能。
+这是一个使用 TinaCloud 托管你的数据层的标准配置，以及内置的 Tina 媒体和搜索功能。
 
 ```ts
 const branch =
@@ -244,7 +245,7 @@ export default defineConfig({
   },
   ui: {
     previewUrl: (context) => {
-      // 使用基于分支名称的 Vercel 预览部署
+      // 基于分支名称使用 Vercel 预览部署
       return { url: `https://my-app-git-${context.branch}.vercel.app` };
     },
   },
@@ -315,7 +316,7 @@ TinaCMS 支持在 `tina/config.{ts,js,tsx}` 文件和集合中使用 TypeScript 
 }
 ```
 
-你现在可以使用别名导入工具或其他模块。
+你现在可以使用别名导入实用程序或其他模块。
 
 ```typescript
 import { someUtility } from '@/lib/utils';

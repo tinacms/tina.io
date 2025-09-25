@@ -1,8 +1,9 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/tina-cms.tsx"
 id: /docs/features/data-fetching
+cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/tina-cms.tsx'
 title: Content API Overview
-last_edited: '2025-05-19T01:42:14.730Z'
+alias: content-api-overview
+last_edited: '2025-09-18T23:16:23.736Z'
 next: content/docs/contextual-editing/overview.mdx
 previous: content/docs/schema.mdx
 ---
@@ -75,6 +76,7 @@ If you're using SSG, creating a new page in TinaCMS means the content updates in
      * **Other Frameworks:** Look for features like "**generate on demand**," "**incremental builds**," or dynamic routing in your framework's documentation. These allow the framework to build the page when it's first requested or use client-side rendering.
 3. **Incremental Static Regeneration (ISR):**
    * Supported by frameworks like Next.js, ISR allows pages to be generated or updated after the initial build, either on a timer or on the first request, without a full site rebuild.
+
 ## Fetching Content Across Branches in TinaCMS
 
 For server-rendered pages in TinaCMS, you can dynamically fetch content from the active editorial or preview branch by passing the active branch name stored in the `x-branch` cookie as a header when querying content.

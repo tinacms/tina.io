@@ -3,16 +3,17 @@ id: /docs/contextual-editing/react
 seo:
   title: 'TinaCMS中的可视化编辑设置'
   description: >-
-    学习如何在TinaCMS中使用React和Next.js设置可视化编辑。使用useTina钩子进行实时内容编辑、重新水合和多查询的高级表单选择。
+    学习如何在TinaCMS中使用React和Next.js设置可视化编辑。使用useTina钩子进行实时内容编辑、重新水合和高级表单选择以进行多重查询。
 title: 可视化编辑设置
-last_edited: '2025-06-16T00:16:18.006Z'
+alias: visual-editing-setup
+last_edited: '2025-09-18T23:16:43.102Z'
 next: content/docs-zh/contextual-editing/vue.mdx
 previous: content/docs-zh/contextual-editing/overview.mdx
 ---
 
-当您定义一个集合时，TinaCMS为您提供一个全页面编辑器窗口来添加内容。
+当您定义一个集合时，TinaCMS为您提供一个全页编辑器窗口来添加内容。
 
-Tina在与React一起使用时还允许进行“可视化编辑”。这种设置允许您的**网站和编辑器窗口并排显示**，实时展示您的更改。
+Tina在与React一起使用时还允许进行“可视化编辑”。这是一种设置，允许您的**网站和编辑器窗口并排显示**，实时显示您的更改。
 
 <WarningCallout
   body={<>
@@ -24,7 +25,7 @@ Tina在与React一起使用时还允许进行“可视化编辑”。这种设�
 
 ## 用法
 
-为了在编辑时更新页面，您需要重新水合页面数据。在React（或基于React的框架如NextJS）中，您可以使用`useTina`钩子为页面配置可视化编辑。
+为了在编辑时更新页面，您需要重新水合页面数据。在React（或基于React的框架如NextJS）中，您可以使用`useTina`钩子为可视化编辑配置页面。
 
 此钩子可以与代码中的内容区域关联，并在侧边栏中注册相应的字段以进行重新水合。
 
@@ -35,7 +36,7 @@ Tina在与React一起使用时还允许进行“可视化编辑”。这种设�
 * `query`和`variables`：这些是您用于[后端数据获取](/docs/features/data-fetching/)的相同值。查询必须仅针对**单个文档**。
 * `data`：这是您从Tina API收到的GraphQL响应。
 
-> 如果您使用Tina客户端函数进行数据获取，三个返回值可以直接插入到`useTina`钩子中。
+> 如果您使用Tina客户端函数进行数据获取，这三个返回值可以直接插入到`useTina`钩子中。
 
 ## 示例
 
@@ -75,7 +76,7 @@ export const getStaticProps = async () => {
 
 ### 使用指定表单的可视化编辑（实验性）
 
-Tina的实验性**按ID选择表单**功能允许开发人员在页面上存在多个`useTina`钩子（或查询）时选择在可视化编辑侧边栏中显示哪个表单。默认情况下，使用第一个请求的查询来确定表单。然而，通过使用此功能，您可以确保在Tina侧边栏中使用特定表单——例如，与页面集合而不是全局配置相关联的表单。这在处理多个域时特别有用，因为您网站的不同部分或区域需要不同的表单配置。
+Tina的实验性**通过ID选择表单**功能允许开发人员在页面上存在多个`useTina`钩子（或查询）时选择在可视化编辑侧边栏中显示哪个表单。默认情况下，使用第一个请求的查询来确定表单。然而，通过使用此功能，您可以确保在Tina侧边栏中使用特定表单——例如，与页面集合而不是全局配置相关联的表单。这在处理多个域时特别有用，因为您网站的不同部分或区域需要不同的表单配置。
 
 #### 工作原理
 
@@ -98,4 +99,4 @@ export default function PageComponent(props: PageComponentProps) {
 }
 ```
 
-在上面的示例中，回调使用页面的`relativePath`生成一个表单ID，确保在侧边栏中使用适当的表单进行编辑。
+在上面的示例中，回调使用页面的`relativePath`生成一个表单ID，确保在侧边栏中用于编辑的表单是适当的。
