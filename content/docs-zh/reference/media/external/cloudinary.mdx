@@ -1,11 +1,16 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/next-tinacms-cloudinary/src/errors.ts"
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/next-tinacms-cloudinary/src/errors.ts
 title: 使用Cloudinary进行媒体管理
+alias: cloudinary
+last_edited: '2025-09-18T23:31:57.519Z'
+next: ''
+previous: ''
 ---
 
 在TinaCMS中管理**Cloudinary媒体资产**。
 
-> 以下指南使用NextJS的API功能来验证第三方媒体交互。如果您在Vercel上使用其他框架，此指南仍然适用（需要做一个小调整，即使用`/api/...`而不是`/pages/api`来处理您的无服务器函数）。
+> 以下指南使用NextJS的API功能来验证第三方媒体交互。如果您在Vercel上使用其他框架，此指南仍然适用（需要做一个小调整，您需要使用`/api/...`而不是`/pages/api`来处理您的无服务器函数）。
 
 ## 安装
 
@@ -53,11 +58,11 @@ export default defineConfig({
 
 ## 设置API路由
 
-Tina的“外部媒体提供商”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方式可以设置此处理器：
+Tina的“外部媒体提供者”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方式可以设置此处理器：
 
 ### “NextJS API路由”
 
-对于使用NextJS的网站，您可以将处理器设置为NextJS服务器函数。为此，在您的项目中创建一个`pages/api/cloudinary/[...media].ts`文件，使用以下实现：
+对于使用NextJS的网站，您可以将处理器设置为NextJS服务器函数。为此，在您的项目中创建一个`pages/api/cloudinary/[...media].ts`文件，包含以下实现：
 
 ```ts
 // pages/api/cloudinary/[...media].ts
@@ -92,14 +97,14 @@ export default createMediaHandler({
 })
 ```
 
-以上代码片段中发生了以下事情：
+以上代码片段中发生了什么：
 
-- 我们调用`createMediaHandler`来设置路由并将您的媒体存储实例连接到您的Cloudinary账户。
-- `authorized`键将确保只有TinaCloud中的授权用户才能上传和编辑媒体。
+* 我们调用`createMediaHandler`来设置路由并将您的媒体存储实例连接到您的Cloudinary账户。
+* `authorized`键将确保只有TinaCloud内的授权用户可以上传和编辑媒体。
 
 ### 框架无关的实现
 
-在上述示例中，我们展示了如何将后端处理器托管为NextJS API函数。如果您在Vercel上使用其他框架，同样的方法适用（唯一的区别是您需要使用`/api/...`而不是`/pages/api/...`来处理您的处理器）。
+在上述示例中，我们展示了如何将后端处理器托管为NextJS API函数。如果您在Vercel上使用其他框架，同样的方法适用（唯一的小区别是您需要使用`/api/...`而不是`/pages/api/...`来处理您的处理器）。
 
 您还可以查看我们的[Netlify Functions](/docs/reference/media/external/authentication/#option-3-netlify-functions)实现。
 
