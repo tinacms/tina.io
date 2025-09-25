@@ -2,10 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import {
-  BLOCK_HEADINGS_SIZE,
-  H1_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
 import {
   calculateEventStatus,

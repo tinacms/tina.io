@@ -1,5 +1,3 @@
-import { textAndMediaColumnsComponent } from 'components/tinaMarkdownComponents/textAndMediaColumnsComponents';
-import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import { VideoGridComponent } from '../Media/MediaComponent';

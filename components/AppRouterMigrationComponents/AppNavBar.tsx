@@ -398,9 +398,9 @@ export function AppNavBar({ sticky = true }) {
                 {navItems.map((item, index) =>
                   isDoubleNavItemDropDown(item) ? (
                     (item as DoubleNavItemDropDown).items.map(
-                      (subItem, subIndex) => (
+                      (subItem, _subIndex) => (
                         <li
-                          key={`${index}-${subIndex}`}
+                          key={`${subItem.labelLeft}-${subItem.hrefLeft}`}
                           className={`group ${navLinkClasses} py-2 flex items-center gap-2`}
                         >
                           <Link
