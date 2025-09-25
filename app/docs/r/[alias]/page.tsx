@@ -28,7 +28,6 @@ export async function generateStaticParams() {
       }
     }
 
-    console.log('Generated alias params using filesystem:', aliasParams);
     return aliasParams;
   } catch (error) {
     console.error('Error generating static params for alias routes:', error);

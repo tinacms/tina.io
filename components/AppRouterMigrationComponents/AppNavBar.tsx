@@ -280,9 +280,7 @@ export function AppNavBar({ sticky = true }) {
     };
     fetchStarCount();
   }, [navItems]);
-
-  console.log(navItems);
-  // Close dropdown when clicking outside
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (openDropdown) {
