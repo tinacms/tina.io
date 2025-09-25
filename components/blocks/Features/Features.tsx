@@ -258,10 +258,8 @@ export const RenderMedia = ({ data }) => {
   ) {
     return (
       <div className="relative w-full pb-4">
-        {/** biome-ignore lint/performance/noImgElement: <TODO> */}
-        <img
+        <FeatureVideo
           src={data.media[0].src}
-          alt={data.headline}
           className="w-full h-auto rounded-lg"
         />
       </div>
