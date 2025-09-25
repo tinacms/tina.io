@@ -677,7 +677,7 @@ export function AppNavBar({ sticky = true }) {
                             <span
                               className="flex items-center cursor-pointer"
                               onClick={(e) =>
-                                handleDropdownToggle(
+                                openDropdownMenu(
                                   `${index}-${item.label}`,
                                   e,
                                 )
