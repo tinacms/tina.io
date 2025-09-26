@@ -375,7 +375,9 @@ export function AppNavBar({ sticky = true }) {
                   <Link href={'/'}>
                     <TinaLogoSvg
                       className={`flex items-center w-36 h-auto fill-orange-500`}
+                      aria-hidden="true"
                     />
+                    <span className="sr-only">Home</span>
                   </Link>
                 </div>
                 <div className="flex items-center">
