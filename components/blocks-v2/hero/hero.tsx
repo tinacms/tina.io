@@ -40,15 +40,16 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         )}
       </div>
       {image && (
-        <div className="relative flex items-center justify-center mx-auto max-w-md md:max-w-none">
+        <div className="relative w-[250px] h-[300px] md:w-[450px] md:h-[500px] mx-auto">
           <Image
             src={image}
             alt={title || 'Hero image'}
-            width={450}
-            height={500}
-            className="w-[250px] h-[300px] md:w-[450px] md:h-[500px]"
+            fill={true}
+            sizes="(max-width: 768px) 250px, 450px"
+            quality={60}
             priority={true}
             fetchPriority="high"
+            className="object-contain"
           />
         </div>
       )}
