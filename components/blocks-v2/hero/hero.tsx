@@ -47,6 +47,8 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             width={450}
             height={500}
             className="w-[250px] h-[300px] md:w-[450px] md:h-[500px]"
+            priority={true}
+            fetchPriority="high"
           />
         </div>
       )}
