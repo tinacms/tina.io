@@ -59,7 +59,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: fallback;
-  src: url('../../public/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+  src: url('../../public/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
 }
 
 /* Source Code Pro Regular */
@@ -68,5 +68,5 @@
   font-style: normal;
   font-weight: 400;
   font-display: fallback;
-  src: url('../../public/fonts/SourceCodePro-Regular.ttf') format('truetype');
+  src: url('../../public/fonts/SourceCodePro-Regular.woff2') format('woff2');
 }
