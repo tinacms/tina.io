@@ -116,16 +116,14 @@ function FeatureCardItem(data: {
         className={`relative  flex items-center justify-center ${textOnRight ? 'order-1' : ' order-1 lg:order-2'}`}
       >
         {image && (
-          <div className="relative w-full max-w-[333px] h-[400px] lg:h-[500px]">
-            <Image
-              src={image}
-              alt={title}
-              fill={true}
-              sizes="(max-width: 768px) 333px, 500px"
-              quality={60}
-              className="rounded-md shadow-xl object-contain"
-            />
-          </div>
+          <Image
+            src={image}
+            alt={title}
+            width={500}
+            height={500}
+            className="rounded-md shadow-xl"
+            style={{ objectFit: 'contain' }}
+          />
         )}
       </div>
     </div>
