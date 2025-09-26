@@ -2,9 +2,22 @@
   "navigationBar": "Master",
   "navItem": [
     {
-      "label": "Docs",
-      "href": "/docs",
-      "_template": "stringItem"
+      "label": "Products",
+      "items": [
+        {
+          "labelLeft": "TinaCMS",
+          "hrefLeft": "/tinacms",
+          "labelRight": "Docs",
+          "hrefRight": "/docs"
+        },
+        {
+          "labelLeft": "TinaDocs",
+          "hrefLeft": "/tinadocs",
+          "labelRight": "Docs",
+          "hrefRight": "/tinadocs/docs"
+        }
+      ],
+      "_template": "doubleNavItemDropDown"
     },
     {
       "label": "Cloud Pricing",

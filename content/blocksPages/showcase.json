@@ -5,14 +5,12 @@
   },
   "blocks": [
     {
-      "headline": "Showcase",
-      "text": "Selected sites that use TinaCMS",
-      "_template": "hero"
-    },
-    {
       "blockSettings": {
-        "isFullscreen": true
+        "isFullscreen": true,
+        "isHeadingOne": true
       },
+      "title": "Showcase",
+      "subText": "Selected sites that use TinaCMS",
       "items": [
         {
           "headline": "NDC Conferences",

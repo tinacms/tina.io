@@ -2,6 +2,7 @@
 
 import { Container, IconTopRightOnSquare } from 'components/blocks';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import type { ExamplesExamples } from './examples-types';
 
 export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
@@ -9,7 +10,9 @@ export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
 
   return (
     <Container width="medium">
-      <h1 className="font-ibm-plex inline-block text-3xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-20">
+      <h1
+        className={`${H1_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight  text-balance text-center mt-20`}
+      >
         Examples
       </h1>
       <section

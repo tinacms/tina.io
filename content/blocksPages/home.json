@@ -7,45 +7,34 @@
   },
   "blocks": [
     {
-      "features": [
+      "title": "{Sites,} Docs and Llamas. No Dramas",
+      "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
+      "buttons": [
         {
-          "headline": "Sites, Docs and Llamas. No Dramas",
-          "text": "TinaCMS is an open-source, headless CMS that supports Git - with built-in version control.",
-          "buttons": [
-            {
-              "label": "Try the Editor Now",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://demo.tina.io/admin#/~",
-              "_template": "actions"
-            },
-            {
-              "label": "Book a Demo",
-              "icon": false,
-              "color": "blueOutline",
-              "size": "medium",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            },
-            {
-              "label": "npx create-tina-app@latest",
-              "_template": "codeButton"
-            }
-          ],
-          "headingOne": true,
-          "media": [
-            {
-              "src": "/gif/smashingmagazine-tinacms.gif",
-              "_template": "v2Video"
-            }
-          ],
-          "isFullScreen": false,
-          "isReversed": false,
-          "imageBackground": false
+          "label": "Explore TinaCMS",
+          "icon": false,
+          "shape": "square",
+          "variant": "orange",
+          "size": "medium",
+          "url": "#tinacms",
+          "_template": "actions"
+        },
+        {
+          "label": "Explore TinaDocs ",
+          "icon": false,
+          "shape": "square",
+          "variant": "ghostOutline",
+          "size": "medium",
+          "url": "#tinadocs",
+          "_template": "actions"
+        },
+        {
+          "label": "npx create-tina-app@latest",
+          "_template": "codeButton"
         }
       ],
-      "_template": "features"
+      "image": "/ai-llamas/lazy-llama2.png",
+      "_template": "heroV2"
     },
     {
       "blockSettings": {
@@ -148,117 +137,67 @@
       "_template": "logoGrid"
     },
     {
-      "blockHeadline": "Key Features",
-      "items": [
+      "title": "Your All-in-One Content Hub",
+      "sectionEyebrow": "STREAMLINE, ORGANIZE, SUCCEED",
+      "cards": [
         {
-          "headline": "Visual Editing",
-          "text": "See content changes in real-time as you edit",
-          "icon2": "FaClock",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-visual-editing-v3.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://demo.tina.io/admin#/"
-          }
+          "textOnRight": true,
+          "themeColour": "tinaOrange",
+          "title": "TinaCMS",
+          "featureHeadline": "Visual Editor for Developers",
+          "featureText": "An open-source, headless CMS with built-in Git version control. Edit content visually while maintaining full developer control.",
+          "buttons": [
+            {
+              "label": "Learn about TinaCMS",
+              "icon": true,
+              "shape": "square",
+              "variant": "orange",
+              "size": "medium",
+              "url": "/tinacms",
+              "_template": "actions"
+            },
+            {
+              "label": "Try the Editor",
+              "icon": false,
+              "shape": "square",
+              "variant": "ghostOutline",
+              "size": "medium",
+              "url": "https://demo.tina.io/admin#/~",
+              "_template": "actions"
+            }
+          ],
+          "image": "/Screenshot 2025-09-10 at 11.14.59 am.png"
         },
         {
-          "headline": "Open Source",
-          "text": "Tina is licensed under Apache 2.0. It can be self-hosted or hosted on TinaCloud",
-          "icon2": "FaUnlock",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-open-source.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "https://github.com/tinacms/tinacms"
-          }
-        },
-        {
-          "headline": "Develop Locally",
-          "text": "Easily set up and run Tina locally to talk to your local filesystem",
-          "icon2": "FaCodeBranch",
-          "videoSrc": "/video/key-features/2024-09-19-key-features-local.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/setup-overview/"
-          }
-        },
-        {
-          "headline": "3rd Party Media",
-          "text": "Store Media assets in your repo or connect to S3, Cloudinary, DigitalOcean Spaces, etc. Or, use TinaCloud",
-          "icon2": "FaCloudDownloadAlt",
-          "videoSrc": "/video/2024-09-19-key-features-3rd-party-media%20v3.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/reference/media/overview"
-          }
-        },
-        {
-          "headline": "Build with Blocks",
-          "text": "Use pre-built templates or create custom components from scratch - you have full control to build your site how you want",
-          "icon2": "FaPuzzlePiece",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-control-components.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/editing/blocks"
-          }
-        },
-        {
-          "headline": "Markdown at Scale",
-          "text": "Tina powers super-fast sites with 10,000+ pages using Markdown, the best language for your site content",
-          "icon2": "FaMarkdown",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-markdown.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/using-tina-editor"
-          }
-        },
-        {
-          "headline": "Git Integration",
-          "text": "Users can edit, save changes, and request approval from within the UI - while devs see the branches, commits, and pull requests in GitHub",
-          "icon2": "FaGithub",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-github-integration.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs/drafts/editorial-workflow/"
-          }
-        },
-        {
-          "headline": "Easy Documentation",
-          "text": "Tina's docs run on TinaCMS - check it out!",
-          "icon2": "FaFileAlt",
-          "videoSrc": "/video/key-features/2024-09-13-key-features-docs.webm",
-          "button": {
-            "label": "READ MORE",
-            "icon": true,
-            "variant": "ghostBlue",
-            "size": "medium",
-            "url": "/docs"
-          }
+          "textOnRight": false,
+          "themeColour": "black",
+          "title": "TinaDocs",
+          "featureHeadline": "Beautiful Documentation Made Simple",
+          "featureText": "A complete documentation starter built on-top of TinaCMS. Create, edit and publish beautiful docs with zero configuration. ",
+          "buttons": [
+            {
+              "label": "Learn about TinaDocs",
+              "icon": true,
+              "shape": "square",
+              "variant": "black",
+              "size": "medium",
+              "url": "/tinadocs",
+              "_template": "actions"
+            },
+            {
+              "label": "Try the Editor",
+              "icon": false,
+              "shape": "square",
+              "variant": "ghostOutline",
+              "size": "medium",
+              "url": "https://docsdemo.tina.io/admin/index.html#/~/docs",
+              "_template": "actions"
+            }
+          ],
+          "image": "/Screenshot 2025-09-10 at 12.10.41 pm.png"
         }
       ],
-      "_template": "carouselFeature"
-    },
-    {
-      "_template": "events"
+      "_template": "featureCard"
     },
     {
       "blockSettings": {
@@ -271,43 +210,10 @@
       "_template": "videoEmbed"
     },
     {
-      "features": [
-        {
-          "headline": "Talk to a Tina Expert",
-          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
-          "buttons": [
-            {
-              "label": "Schedule Call",
-              "icon": true,
-              "color": "blue",
-              "size": "medium",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            }
-          ],
-          "media": [
-            {
-              "image": "/img/TinaExpert.png",
-              "_template": "image"
-            }
-          ],
-          "isReversed": true,
-          "imageBackground": false
-        }
-      ],
-      "_template": "features"
+      "_template": "events"
     },
     {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "title2": "\"Tina is transforming the way we do docs at Unity\"",
-      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "/img/logos/unity-logo.png",
-      "_template": "quote"
-    },
-    {
-      "title": "Loved by Developers",
+      "title": "Hear from Other Great Users",
       "testimonials": [
         {
           "name": "MadeWithReactJS",
@@ -438,48 +344,36 @@
       "_template": "testimonials"
     },
     {
+      "title": "Recent Posts",
+      "_template": "recentPosts"
+    },
+    {
       "features": [
         {
-          "headline": "Avoid Mistakes with Editorial Workflow",
-          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
+          "headline": "Talk to a Tina Expert",
+          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
           "buttons": [
             {
-              "label": "Editorial Workflow",
-              "icon": false,
-              "variant": "blue",
-              "size": "small",
-              "url": "/editorial-workflow",
-              "_template": "actions"
+              "label": "Schedule Call",
+              "icon": true,
+              "shape": "square",
+              "color": "blue",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
             }
           ],
           "media": [
             {
-              "thumbnailVideo": "/video/create-branch.webm",
-              "videoEmbedId": "gYukiULGqGc",
-              "figureCaption": "Video: Making a Change with the Editorial Workflow (1 min)",
-              "_template": "videoThumbnailToInternalVideo"
-            }
-          ]
-        },
-        {
-          "headline": "Unbeatable UX",
-          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
-          "media": [
-            {
-              "thumbnailVideo": "/video/click-to-edit.webm",
-              "videoEmbedId": "CsCQS7HIBv0",
-              "figureCaption": "Video: Managing your Content Workflows (2 min)",
-              "_template": "videoThumbnailToInternalVideo"
+              "image": "/img/TinaExpert.png",
+              "_template": "image"
             }
           ],
-          "isReversed": true
+          "isReversed": true,
+          "imageBackground": false
         }
       ],
       "_template": "features"
-    },
-    {
-      "title": "Recent Posts",
-      "_template": "recentPosts"
     }
   ]
 }

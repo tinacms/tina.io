@@ -1,5 +1,7 @@
 import type { Form, Template, TinaCMS } from 'tinacms';
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
+import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
+import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -78,6 +80,8 @@ const templates = [
   storyTemplate as Template,
   footerLinkContentTemplate as Template,
   videoEmbedTemplate as Template,
+  herov2Template as Template,
+  featureCardTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {

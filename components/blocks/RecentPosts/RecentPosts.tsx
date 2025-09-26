@@ -3,7 +3,7 @@ import { DynamicLink } from 'components/ui';
 import { tinaField } from 'tinacms/dist/react';
 import { formatDate } from 'utils/blog_helpers';
 import { getExcerpt } from 'utils/getExcerpt';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import { Container } from '../Container';
 
 const getPostHref = (path) => {
@@ -16,13 +16,13 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   return (
     <section
       key={`recent-posts-${index}`}
-      className={'bg-white relative z-10 py-20 lg:py-28'}
+      className={'relative z-10 py-20 lg:py-28'}
     >
       <Container width="narrow">
         {data.title && (
           <div className="flex items-center mb-12 lg:mb-14 gap-6">
             <h2
-              className={`${BLOCK_HEADINGS} font-ibm-plex m-auto inline-block pb-8 lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left`}
+              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex m-auto inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
               data-tina-field={tinaField(data, 'title')}
             >
               {data?.title || 'Recent Posts'}
