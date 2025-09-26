@@ -675,22 +675,28 @@ export function AppNavBar({ sticky = true }) {
                           key={`${index}-${item.label}`}
                           className={`group ${navLinkClasses}`}
                         >
-                          <div className="relative group">
-                            <span
+                          <div
+                            className="relative flex items-center justify-center group"
+                            onMouseLeave={closeDropdownMenu}
+                          >
+                            <button
+                              type="button"
                               className="flex items-center cursor-pointer"
+                              onMouseEnter={(e: React.MouseEvent) =>
+                                openDropdownMenu(`${index}-${item.label}`, e)
+                              }
                               onClick={(e) =>
                                 openDropdownMenu(`${index}-${item.label}`, e)
                               }
                             >
                               {item.label}
-                              <BiChevronDown
-                                className={`ml-1 text-blue-200 transition-transform duration-200 ${
-                                  openDropdown === `${index}-${item.label}`
-                                    ? 'rotate-180'
-                                    : ''
-                                }`}
-                              />
-                            </span>
+                              <BiChevronDown className="w-4 h-4 ml-0.5" />
+                            </button>
+                            {/* hover bridge that is invisible to user (maintains hover state) */}
+                            <div
+                              className="absolute left-0 top-full h-2 min-w-full"
+                              aria-hidden
+                            />
                             <ul
                               className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white text-black shadow-lg rounded-md p-4 transition-opacity duration-200 ease-in-out ${
                                 openDropdown === `${index}-${item.label}`
