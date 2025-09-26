@@ -3,7 +3,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-display: fallback;
+  font-display: swap;
   src:
     url('../../public/fonts/Inter-Regular.woff2') format('woff2'),
     url('../../public/fonts/Inter-Regular.woff') format('woff');
@@ -14,7 +14,7 @@
   font-family: 'Inter';
   font-style: italic;
   font-weight: 400;
-  font-display: fallback;
+  font-display: swap;
   src:
     url('../../public/fonts/Inter-Italic.woff2') format('woff2'),
     url('../../public/fonts/Inter-Italic.woff') format('woff');
@@ -25,7 +25,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-display: fallback;
+  font-display: swap;
   src:
     url('../../public/fonts/Inter-Medium.woff2') format('woff2'),
     url('../../public/fonts/Inter-Medium.woff') format('woff');
@@ -36,7 +36,7 @@
   font-family: 'Inter';
   font-style: italic;
   font-weight: 500;
-  font-display: fallback;
+  font-display: swap;
   src:
     url('../../public/fonts/Inter-MediumItalic.woff2') format('woff2'),
     url('../../public/fonts/Inter-MediumItalic.woff') format('woff');
@@ -47,7 +47,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-display: fallback;
+  font-display: swap;
   src:
     url('../../public/fonts/Inter-Bold.woff2') format('woff2'),
     url('../../public/fonts/Inter-Bold.woff') format('woff');
@@ -58,7 +58,7 @@
   font-family: 'IBMPlexSans-SemiBold';
   font-style: normal;
   font-weight: 600;
-  font-display: fallback;
+  font-display: swap;
   src: url('../../public/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
 }
 
@@ -67,6 +67,6 @@
   font-family: 'SourceCodePro-Regular';
   font-style: normal;
   font-weight: 400;
-  font-display: fallback;
+  font-display: swap;
   src: url('../../public/fonts/SourceCodePro-Regular.woff2') format('woff2');
 }
