@@ -717,7 +717,7 @@ export function AppNavBar({ sticky = true }) {
                                   >
                                     {subItem.labelLeft}
                                   </Link>
-                                  <span className='-mt-0.5'> • </span>{' '}
+                                  <span className="-mt-0.5"> • </span>{' '}
                                   <Link
                                     key={`${index}-${subIndex}-${subItem.hrefRight}`}
                                     className="hover:text-blue-500"
