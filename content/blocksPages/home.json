@@ -55,7 +55,7 @@
           "_template": "codeButton"
         }
       ],
-      "image": "/ai-llamas/lazy-llama2.png",
+      "image": "/ai-llamas/lazy-llama2.webp",
       "_template": "heroV2"
     },
     {
@@ -122,7 +122,7 @@
         {
           "name": "NDC Conferences",
           "link": "/showcase#ndc-conferences",
-          "logo": "/img/logos/NDCLogo.png",
+          "logo": "/img/logos/NDCLogo.webp",
           "size": 220
         },
         {
@@ -188,7 +188,7 @@
               "_template": "actions"
             }
           ],
-          "image": "/Screenshot 2025-09-10 at 11.14.59 am.png"
+          "image": "/Screenshot 2025-09-10 at 11.14.59 am.webp"
         },
         {
           "textOnRight": false,
@@ -216,7 +216,7 @@
               "_template": "actions"
             }
           ],
-          "image": "/Screenshot 2025-09-10 at 12.10.41 pm.png"
+          "image": "/Screenshot 2025-09-10 at 12.10.41 pm.webp"
         }
       ],
       "_template": "featureCard"
@@ -295,7 +295,7 @@
           "name": "Boko Colse",
           "username": "struhy_xd",
           "imageBorder": true,
-          "avatar": "/img/avatars/Boko-Čolse_um356c.jpg",
+          "avatar": "/img/avatars/Boko-Čolse_um356c.webp",
           "date": "2023-09-26T14:00:00.000Z",
           "testimonial": "Oh wow, I thought Sanity was good, but @tinacms is all I need.\n",
           "link": "https://twitter.com/struhy_xd/status/1706770885254787099"
@@ -323,7 +323,7 @@
           "name": "Billy Best",
           "username": "billybest5276",
           "imageBorder": true,
-          "avatar": "/img/avatars/billy-best_wbcpsb.jpg",
+          "avatar": "/img/avatars/billy-best_wbcpsb.webp",
           "date": "2023-08-06T03:00:00.000Z",
           "testimonial": "Just found this and I think I am already in love.\n",
           "link": "https://www.youtube.com/watch?v=PcgnJDILv4w&lc=Ugy92XCmtPug2_1Lr554AaABAg"
@@ -340,7 +340,7 @@
         {
           "name": "Peter Rusin",
           "imageBorder": true,
-          "avatar": "/img/avatars/piotr-rusin_ne0l3j.jpg",
+          "avatar": "/img/avatars/piotr-rusin_ne0l3j.webp",
           "date": "2023-09-05T03:00:00.000Z",
           "testimonial": "I tried a dozen CMSs and I have to say, as an engineer, I like Tina the most.\n",
           "link": "https://rusin.work"
@@ -348,7 +348,7 @@
         {
           "name": "Sean Pearce",
           "imageBorder": true,
-          "avatar": "/img/avatars/sean_bnwhd9.png",
+          "avatar": "/img/avatars/sean_bnwhd9.webp",
           "date": "2023-03-30T03:00:00.000Z",
           "testimonial": "Tina's in-context editor cannot be beaten, we’re all in on it.\n",
           "link": "https://www.shaunpearce.ie/"
@@ -357,7 +357,7 @@
           "name": "rascode",
           "username": "rascode11",
           "imageBorder": true,
-          "avatar": "/img/avatars/rascode11_elrciv.jpg",
+          "avatar": "/img/avatars/rascode11_elrciv.webp",
           "date": "2022-12-06T04:00:00.000Z",
           "testimonial": "@tinacms is a dream come true.\n",
           "link": "https://twitter.com/rascode11/status/1600175861621088266"
@@ -383,7 +383,7 @@
           ],
           "media": [
             {
-              "image": "/img/TinaExpert.png",
+              "image": "/img/TinaExpert.webp",
               "_template": "image"
             }
           ],
