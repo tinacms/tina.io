@@ -1,10 +1,10 @@
 import { RichTextWrapper } from 'components/layout/RichTextWrapper';
 import { DynamicLink } from 'components/ui';
 import { tinaField } from 'tinacms/dist/react';
-import { formatDate } from 'utils/blog_helpers';
 import { getExcerpt } from 'utils/getExcerpt';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
-import { Container } from '../Container';
+import Container from '@/component/util/Container';
+import Link from 'next/link';
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
@@ -12,21 +12,36 @@ const getPostHref = (path) => {
   return processedPath;
 };
 
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const day = date.getUTCDate();
+  const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' }).toUpperCase();
+  const year = date.getUTCFullYear();
+
+  return `${day} ${month}, ${year}`;
+}
+
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
+  console.log(data);
+  console.log(recentPosts.edges[0].node.date)
   return (
-    <section
-      key={`recent-posts-${index}`}
-      className={'relative z-10 py-20 lg:py-28'}
-    >
-      <Container width="narrow">
+    <Container size="medium" className="grid grid-cols-5 gap-10">
+      <section className="col-span-3 flex flex-col gap-8 border border-red-500">
+        <h2
+          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
+          data-tina-field={tinaField(data, 'title')}
+        >
+          {data?.title || 'Recent Posts'}
+        </h2>
+      </section>
+      <section
+        key={`recent-posts-${index}`}
+        className={
+          'relative z-10 py-20 lg:py-28 border border-blue-500 col-span-2'
+        }
+      >
         {data.title && (
           <div className="flex items-center mb-12 lg:mb-14 gap-6">
-            <h2
-              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex m-auto inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
-              data-tina-field={tinaField(data, 'title')}
-            >
-              {data?.title || 'Recent Posts'}
-            </h2>
             <hr className="my-0" />
           </div>
         )}
@@ -35,27 +50,29 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
             const slug = post._sys.filename;
             const href = getPostHref(post._sys.path);
             return (
-              <DynamicLink key={slug} href={href} passHref>
-                <div className="group flex-1 flex flex-col gap-6 items-start min-w-[20rem]">
-                  <h3 className="font-ibm-plex inline-block text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+              <div key={slug} className="group flex-1 flex flex-col gap-2 items-start min-w-[20rem]">
+                <span className="text-neutral-text-secondary text-sm">
+                  {formatDate(post.date)}
+                </span>
+                <DynamicLink href={href} passHref>
+                  <h3 className="text-base md:text-xl inline-block hover:underline transition-all duration-300">
                     {post.title}
                   </h3>
-                  <RichTextWrapper>
-                    <div className="flex flex-row mb-3 text-center justify-between">
-                      <strong>{formatDate(post.date)}</strong>
-                      <div className="flex">
-                        <span className="opacity-70 mr-1">By</span>{' '}
-                        <strong>{post.author}</strong>
-                      </div>
+                </DynamicLink>
+                <RichTextWrapper>
+                  <div className="flex flex-row mb-3 text-center justify-between">
+                    <div className="flex">
+                      <span className="text-neutral-text-secondary">
+                        By {post.author.toUpperCase()}
+                      </span>{' '}
                     </div>
-                    {getExcerpt(post.body, 200)}
-                  </RichTextWrapper>
-                </div>
-              </DynamicLink>
+                  </div>
+                </RichTextWrapper>
+              </div>
             );
           })}
         </div>
-      </Container>
-    </section>
+      </section>
+    </Container>
   );
 };
