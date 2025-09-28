@@ -8,6 +8,7 @@ import {
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
+import { extractYouTubeId } from '../VideoEmbed/utils';
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
@@ -41,14 +42,16 @@ const VideoCard = ({
   embedUrl,
   title,
 }: VideoCardProps) => {
-  console.log(embedUrl);
+  const videoId = extractYouTubeId(embedUrl);
   return (
     <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
       <YouTubeEmbed src={embedUrl} />
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
       </span>
-      <h3 className="text-base md:text-xl inline-block">{title}</h3>
+      <Link href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
+        <h3 className="text-base md:text-xl inline-block hover:underline transition-all duration-300">{title}</h3>
+      </Link>
       <span className="text-neutral-text-secondary text-sm">
         By{' '}
         <Link
@@ -63,8 +66,6 @@ const VideoCard = ({
 };
 
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
-  console.log(data);
-  console.log(recentPosts.edges[0].node.date);
   return (
     <Container size="medium" className="grid grid-cols-5 gap-16 py-16">
       <section className="col-span-5 lg:col-span-3 flex flex-col gap-8 items-center md:items-start">
