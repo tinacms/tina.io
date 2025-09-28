@@ -7,28 +7,6 @@
   },
   "blocks": [
     {
-      "title": "Recent Posts",
-      "youtubeVideos": [
-        {
-          "embedUrl": "https://www.youtube.com/embed/cChyJFvVo4A?si=0QrmfYk2Sn2TOHxT",
-          "dateReleased": "2025-09-09T00:00:00.000Z",
-          "title": "Top 5 TinaCMS Editor Upgrades You Need to Know",
-          "authorName": "Ben Neoh",
-          "authorUrl": "https://www.ssw.com.au/people/ben-neoh/",
-          "thumbnailImage": "/YouTube-Videos/ben-neoh-top-5-things.png"
-        },
-        {
-          "embedUrl": "https://www.youtube.com/embed/CyWH5wPJUC8?si=LrKzd0KMUpoZPMCL",
-          "dateReleased": "2025-08-21T00:00:00.000Z",
-          "title": "Case Study - SSW migrating from MD to MDX for SSW Rules",
-          "authorName": "Chloe Lin",
-          "authorUrl": "https://www.ssw.com.au/people/chloe-lin/",
-          "thumbnailImage": "/YouTube-Videos/Chloe-lin-case-study.png"
-        }
-      ],
-      "_template": "recentPosts"
-    },
-    {
       "title": "{Sites,} Docs and Llamas. No Dramas",
       "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
       "buttons": [
@@ -364,6 +342,26 @@
         }
       ],
       "_template": "testimonials"
+    },
+    {
+      "title": "Recent Posts",
+      "youtubeVideos": [
+        {
+          "embedUrl": "https://www.youtube.com/embed/cChyJFvVo4A?si=0QrmfYk2Sn2TOHxT",
+          "dateReleased": "2025-09-09T00:00:00.000Z",
+          "title": "Top 5 TinaCMS Editor Upgrades You Need to Know",
+          "authorName": "Ben Neoh",
+          "authorUrl": "https://www.ssw.com.au/people/ben-neoh/"
+        },
+        {
+          "embedUrl": "https://www.youtube.com/embed/CyWH5wPJUC8?si=LrKzd0KMUpoZPMCL",
+          "dateReleased": "2025-08-21T00:00:00.000Z",
+          "title": "Case Study - SSW migrating from MD to MDX for SSW Rules",
+          "authorName": "Chloe Lin",
+          "authorUrl": "https://www.ssw.com.au/people/chloe-lin/"
+        }
+      ],
+      "_template": "recentPosts"
     },
     {
       "features": [

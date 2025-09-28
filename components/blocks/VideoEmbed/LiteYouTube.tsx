@@ -18,8 +18,7 @@ export const LiteYouTube = ({
 
   return (
     <div
-      className={cn('relative w-full', className)}
-      style={{ paddingTop: '56.25%' }}
+      className={cn('relative w-full aspect-h-9 aspect-w-16', className)}
     >
       {!loaded && (
         <button

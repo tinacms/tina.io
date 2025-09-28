@@ -44,11 +44,6 @@ export const recentPostsTemplate = {
           type: 'string',
           description: 'The SSW People URL of the author',
         },
-        {
-          name: 'thumbnailImage',
-          label: 'Thumbnail Image',
-          type: 'image',
-        },
       ],
     },
   ],
