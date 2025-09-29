@@ -76,7 +76,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
           {data?.title || 'Recent Posts'}
         </h2>
         <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-4 max-w-4xl">
-          {data.youtubeVideos.map((video: VideoCardProps) => (
+          {data?.youtubeVideos?.map((video: VideoCardProps) => (
             <VideoCard
               key={video.embedUrl}
               authorName={video.authorName}
