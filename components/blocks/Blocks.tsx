@@ -22,6 +22,7 @@ import {
   QuoteBlock,
   StoryBlock,
 } from './';
+import CallToAction from './CallToAction/call-to-action';
 import { ColumnsBlock } from './Columns/Columns';
 import { VerticalCardsBlock } from './Events/Events';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
@@ -35,7 +36,6 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import VideoDisplay from './VideoEmbed/videoEmbed';
-import CallToAction from './CallToAction/call-to-action';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),

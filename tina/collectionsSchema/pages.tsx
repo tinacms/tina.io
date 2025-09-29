@@ -1,4 +1,5 @@
 import type { Form, Template, TinaCMS } from 'tinacms';
+import { callToActionTemplate } from '@/component/blocks/CallToAction/call-to-action.template';
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
 import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
@@ -34,7 +35,6 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
-import { callToActionTemplate } from '@/component/blocks/CallToAction/call-to-action.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
