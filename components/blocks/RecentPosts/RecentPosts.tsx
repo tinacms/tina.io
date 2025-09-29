@@ -7,8 +7,8 @@ import {
   SECTION_HEADINGS_SIZE,
 } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
-import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 import { extractYouTubeId } from '../VideoEmbed/utils';
+import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
@@ -49,8 +49,14 @@ const VideoCard = ({
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
       </span>
-      <Link href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
-        <h3 className="text-base md:text-xl inline-block hover:underline transition-all duration-300">{title}</h3>
+      <Link
+        href={`https://www.youtube.com/watch?v=${videoId}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <h3 className="text-base md:text-xl inline-block hover:underline transition-all duration-300">
+          {title}
+        </h3>
       </Link>
       <span className="text-neutral-text-secondary text-sm">
         By{' '}

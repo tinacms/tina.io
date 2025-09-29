@@ -17,9 +17,7 @@ export const LiteYouTube = ({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div
-      className={cn('relative w-full aspect-h-9 aspect-w-16', className)}
-    >
+    <div className={cn('relative w-full aspect-h-9 aspect-w-16', className)}>
       {!loaded && (
         <button
           type="button"
