@@ -34,6 +34,7 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
+import { callToActionTemplate } from '@/component/blocks/CallToAction/call-to-action.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
@@ -82,6 +83,7 @@ const templates = [
   videoEmbedTemplate as Template,
   herov2Template as Template,
   featureCardTemplate as Template,
+  callToActionTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
