@@ -22,7 +22,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClasses =
-  'transition duration-150 ease-out box-border border flex items-center font-ibm-plex whitespace-nowrap leading-snug focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight';
+  'transition duration-150 ease-out box-border border flex items-center font-ibm-plex whitespace-nowrap leading-snug focus:outline-hidden focus:shadow-outline hover:-translate-y-px active:translate-y-px hover:-translate-x-px active:translate-x-px leading-tight cursor-pointer';
 
 const raisedButtonClasses = 'hover:shadow active:shadow-none';
 
