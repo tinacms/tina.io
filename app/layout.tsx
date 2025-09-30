@@ -78,8 +78,6 @@ export default async function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link rel="preload" href="/styles/tailwind.css" as="style" />
-        <link rel="preload" href="/app/global.css" as="style" />
       </head>
       <body>
         <StyledComponentsRegistry>
