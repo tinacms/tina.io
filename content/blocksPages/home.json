@@ -364,32 +364,20 @@
       "_template": "recentPosts"
     },
     {
-      "features": [
+      "title": "Talk to a Tina Expert",
+      "description": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
+      "buttons": [
         {
-          "headline": "Talk to a Tina Expert",
-          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
-          "buttons": [
-            {
-              "label": "Schedule Call",
-              "icon": true,
-              "shape": "square",
-              "color": "blue",
-              "size": "medium",
-              "modal": "BookDemo.tsx",
-              "_template": "modalButton"
-            }
-          ],
-          "media": [
-            {
-              "image": "/img/TinaExpert.webp",
-              "_template": "image"
-            }
-          ],
-          "isReversed": true,
-          "imageBackground": false
+          "label": "Schedule Call",
+          "icon": false,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
-      "_template": "features"
+      "_template": "callToAction"
     }
   ]
 }

@@ -22,6 +22,7 @@ import {
   QuoteBlock,
   StoryBlock,
 } from './';
+import CallToAction from './CallToAction/call-to-action';
 import { ColumnsBlock } from './Columns/Columns';
 import { VerticalCardsBlock } from './Events/Events';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
@@ -116,6 +117,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <HeroV2 data={block} />;
     case 'PageBlocksFeatureCard':
       return <FeatureCard data={block} />;
+    case 'PageBlocksCallToAction':
+      return <CallToAction data={block} />;
     default:
       return null;
   }
