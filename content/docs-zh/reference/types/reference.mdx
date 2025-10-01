@@ -1,12 +1,13 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/experimental-examples/kitchen-sink/README.md"
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/experimental-examples/kitchen-sink/README.md
 title: 引用字段
-last_edited: '2025-03-26T05:27:39.833Z'
+last_edited: '2025-09-18T02:12:54.719Z'
 next: ''
 previous: ''
 ---
 
-`reference`字段允许“父”文档连接到不同集合中的另一个文档。这种关系只需要在*一侧*定义。
+`reference`字段允许一个“父”文档连接到不同集合中的另一个文档。这种关系只需要在*一侧*定义。
 
 一旦定义，*引用*文档的值将可用于父文档。
 
@@ -38,7 +39,7 @@ previous: ''
       groupName: "ui",
       name: "collectionFilter",
       description:
-        "基于引用集合中的属性过滤显示的引用。\n",
+        "根据引用集合中的属性过滤显示的引用。\n",
       type: "any"
     },
     {
@@ -94,6 +95,12 @@ schema: {
 ![](/img/docs/reference/reference_field_example_tszsxd.png)
 
 通过客户端或原始GraphQL查询`post`文档时，响应中的`author`键将包含*引用*的`author`文档的值：
+
+<WarningCallout
+  body={<>
+    如果您引用的集合包含大量项目，则可能会遇到超时问题。查看[FAQ - 加载引用字段时出现503服务不可用错误](https://tina.io/docs/introduction/faq#18-getting-a-503-service-unavailable-error-when-loading-the-reference-field)以获取更多信息。
+  </>}
+/>
 
 <GraphQLCodeBlock
   query="{
@@ -153,11 +160,11 @@ const referenceField = {
 
 ## 自定义文档标签
 
-默认情况下，引用选择器显示文档文件名。这可以通过`ui.optionComponent`设置为**自定义react组件**。
+默认情况下，引用选择器显示文档文件名。这可以使用`ui.optionComponent`设置为**自定义react组件**。
 
 `optionComponent`函数为您提供两个参数：`props`和`_internalSys`。
 
-* `props`代表引用集合中的字段。
+* `props`表示来自引用集合的字段。
 * `_internalSys`包含各种有用的信息供您在自定义组件中使用，例如`文件名`和`路径`。
 
 ![](/img/docs/reference/custom-reference-field-ui_ojtrlx.png)
@@ -207,7 +214,7 @@ const referenceField = {
 
 ### 具有多个集合和过滤的字段
 
-根据各自的过滤条件，将包括作者和帖子集合的成员。
+作者和帖子集合的成员将被包括在内，具体取决于它们各自的过滤条件。
 
 ```javascript
 {
@@ -259,7 +266,7 @@ const referenceField = {
 
 <WarningCallout
   body={<>
-    如果您传入一个函数，它应该作为可执行的传递。直接在回调中运行类似`const url = new URL('https://bob-northwind-sydney.com')`的操作是不允许的。
+    如果您传入一个函数，它应该作为可执行传递。直接在回调中运行类似`const url = new URL('https://bob-northwind-sydney.com')`的操作是不允许的。
   </>}
 />
 
@@ -267,7 +274,7 @@ const referenceField = {
 
 使用`optionComponent`进行自定义引用标签的简单示例。
 
-`ProfilePicture`是一个自定义组件，未在示例中包含。
+`ProfilePicture`是一个自定义组件，在示例中未包含。
 
 ```javascript
 {
@@ -305,9 +312,9 @@ const referenceField = {
 
 ### 具有多个集合和自定义标签的字段（高级）
 
-下面的示例显示了一个名为`reference`的集合，与作者和帖子集合都关联，并具有一个引用字段。`ui.optionComponent`属性定义了每个文档在UI中的标签显示方式。
+下面的示例显示了一个名为`reference`的集合，与作者和帖子集合相关联，并具有一个引用字段。`ui.optionComponent`属性定义了每个文档在UI中的标签显示方式。
 
-`AuthorCollectionCustomReference`和`PostCollectionCustomReference`是未在示例中包含的自定义组件。
+`AuthorCollectionCustomReference`和`PostCollectionCustomReference`是未包含在示例中的自定义组件。
 
 ```ts
 collections: [
@@ -393,7 +400,7 @@ collections: [
 
 我们还需要根据需要自行定义预期类型。
 
-使用`AuthorProps`接口作为示例，`optionComponent`函数可以期望我们从props输入中使用的名称和描述。
+以`AuthorProps`接口为例，`optionComponent`函数可以期望我们从props输入中使用的名称和描述。
 
 `_collection`字段由系统提供，用于表示特定集合（在此情况下为作者或帖子）。
 
