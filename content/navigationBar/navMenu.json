@@ -2,27 +2,59 @@
   "navigationBar": "Master",
   "navItem": [
     {
-      "label": "Products",
+      "label": "TinaCMS",
+      "href": "/tinacms",
       "items": [
         {
-          "labelLeft": "TinaCMS",
-          "hrefLeft": "/tinacms",
-          "labelRight": "Docs",
-          "hrefRight": "/docs"
+          "label": "Docs for TinaCMS",
+          "href": "/docs"
         },
         {
-          "labelLeft": "TinaDocs",
-          "hrefLeft": "/tinadocs",
-          "labelRight": "Docs",
-          "hrefRight": "/tinadocs/docs"
+          "label": "Videos",
+          "href": "https://www.youtube.com/c/tinacms"
+        },
+        {
+          "label": "Compare TinaCMS",
+          "href": "/compare-tina"
+        },
+        {
+          "label": "What's New in TinaCMS",
+          "href": "/whats-new/tinacms"
         }
       ],
-      "_template": "doubleNavItemDropDown"
+      "_template": "groupOfStringItems"
     },
     {
-      "label": "Cloud Pricing",
+      "label": "TinaDocs",
+      "href": "/tinadocs",
+      "items": [
+        {
+          "label": "Docs for TinaDocs",
+          "href": "/tinadocs/docs"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "TinaCloud",
+      "items": [
+        {
+          "label": "My TinaCloud",
+          "href": "https://app.tina.io/signin"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "Pricing",
       "href": "/pricing",
-      "_template": "stringItem"
+      "items": [
+        {
+          "label": "Enterprise",
+          "href": "/enterprise"
+        }
+      ],
+      "_template": "groupOfStringItems"
     },
     {
       "label": "Community",
@@ -63,48 +95,22 @@
       "_template": "groupOfStringItems"
     },
     {
-      "label": "Enterprise",
-      "href": "/enterprise",
-      "_template": "stringItem"
-    },
-    {
       "label": "About",
       "items": [
         {
-          "label": "About TinaCMS",
+          "label": "About Tina",
           "href": "/about"
-        },
-        {
-          "label": "Videos",
-          "href": "https://www.youtube.com/c/tinacms"
         },
         {
           "label": "Blog",
           "href": "/blog"
         },
         {
-          "label": "Compare Tina",
-          "href": "/compare-tina"
-        },
-        {
           "label": "Examples",
           "href": "/examples"
-        },
-        {
-          "label": "What's New - TinaCMS",
-          "href": "/whats-new/tinacms"
-        },
-        {
-          "label": "What's New - TinaCloud",
-          "href": "/whats-new/tinacloud"
         }
       ],
       "_template": "groupOfStringItems"
-    },
-    {
-      "label": "My TinaCloud",
-      "href": "https://app.tina.io/signin",
-      "_template": "stringItem"
     }
   ]
 }
