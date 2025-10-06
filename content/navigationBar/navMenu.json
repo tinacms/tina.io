@@ -18,6 +18,10 @@
           "href": "/compare-tina"
         },
         {
+          "label": "Showcase",
+          "href": "/showcase"
+        },
+        {
           "label": "What's New in TinaCMS",
           "href": "/whats-new/tinacms"
         }
@@ -59,10 +63,6 @@
     {
       "label": "Community",
       "items": [
-        {
-          "label": "Showcase",
-          "href": "/showcase"
-        },
         {
           "label": "Roadmap",
           "href": "/roadmap"
