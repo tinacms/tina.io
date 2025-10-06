@@ -1,7 +1,7 @@
 'use client';
 
-import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { useEffect, useState } from 'react';
+import { getRelativeTime } from './timeUtils';
 import type { GitHubCommit, GitHubMetadataProps } from './type';
 export default function GitHubMetadata({
   owner = 'tinacms',
@@ -86,17 +86,15 @@ export default function GitHubMetadata({
   }
 
   const lastUpdatedDate = commit.commit.author.date;
-  const formattedDate = formatDate(lastUpdatedDate);
+  const relativeTime = getRelativeTime(lastUpdatedDate);
 
   return (
     <div className={`text-slate-500 text-sm ${className}`}>
       <div className="flex items-center gap-2">
         <span>
           Last updated by{' '}
-          <span className="text-slate-600">
-            <span className="!text-semibold">{commit.commit.author.name}</span>
-          </span>
-          {formattedDate && ` on ${formattedDate}`}
+          <span className="font-bold">{commit.commit.author.name}</span>
+          {` ${relativeTime}.`}
         </span>
       </div>
     </div>
