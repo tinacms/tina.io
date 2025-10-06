@@ -13,11 +13,6 @@
         "_template": "stringItem"
       },
       {
-        "label": "Introduction",
-        "href": "/docs",
-        "_template": "stringItem"
-      },
-      {
         "label": "How Tina Works",
         "href": "/docs/product-tour",
         "_template": "stringItem"
@@ -35,6 +30,11 @@
       {
         "label": "Blog",
         "href": "/blog",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Introduction",
+        "href": "/docs",
         "_template": "stringItem"
       },
       {
