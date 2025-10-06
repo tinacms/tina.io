@@ -2,43 +2,7 @@
 
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { useEffect, useState } from 'react';
-
-interface GitHubCommit {
-  sha: string;
-  commit: {
-    author: {
-      name: string;
-      email: string;
-      date: string;
-    };
-    committer: {
-      name: string;
-      email: string;
-      date: string;
-    };
-    message: string;
-  };
-  author: {
-    login: string;
-    avatar_url: string;
-  } | null;
-  committer: {
-    login: string;
-    avatar_url: string;
-  } | null;
-}
-
-interface GitHubMetadataProps {
-  /** GitHub repository owner (e.g., 'tinacms') */
-  owner?: string;
-  /** GitHub repository name (e.g., 'tina.io') */
-  repo?: string;
-  /** Optional path to a specific file in the repository */
-  path?: string;
-  /** Additional CSS classes to apply to the component */
-  className?: string;
-}
-
+import type { GitHubCommit, GitHubMetadataProps } from './type';
 export default function GitHubMetadata({
   owner = 'tinacms',
   repo = 'tina.io',
