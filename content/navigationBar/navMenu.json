@@ -64,16 +64,8 @@
       "label": "Community",
       "items": [
         {
-          "label": "Roadmap",
-          "href": "/roadmap"
-        },
-        {
           "label": "Events",
           "href": "/events"
-        },
-        {
-          "label": "Support",
-          "href": "/docs/support"
         },
         {
           "label": "Certifications",
@@ -88,8 +80,16 @@
           "href": "https://discord.com/invite/zumN63Ybpf"
         },
         {
+          "label": "Support",
+          "href": "/docs/support"
+        },
+        {
           "label": "Forum",
           "href": "https://github.com/tinacms/tinacms/discussions"
+        },
+        {
+          "label": "Roadmap",
+          "href": "/roadmap"
         }
       ],
       "_template": "groupOfStringItems"
