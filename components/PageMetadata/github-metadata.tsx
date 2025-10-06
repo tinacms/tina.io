@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { FaHistory } from 'react-icons/fa';
 import { getRelativeTime } from './timeUtils';
 import type { GitHubCommit, GitHubMetadataProps } from './type';
 export default function GitHubMetadata({
@@ -88,6 +89,11 @@ export default function GitHubMetadata({
   const lastUpdatedDate = commit.commit.author.date;
   const relativeTime = getRelativeTime(lastUpdatedDate);
 
+  // Create GitHub history URL
+  const historyUrl = filePath
+    ? `https://github.com/${owner}/${repo}/commits/main/${filePath}`
+    : `https://github.com/${owner}/${repo}/commits/main`;
+
   return (
     <div className={`text-slate-500 text-sm ${className}`}>
       <div className="flex items-center gap-2">
@@ -96,6 +102,15 @@ export default function GitHubMetadata({
           <span className="font-bold">{commit.commit.author.name}</span>
           {` ${relativeTime}.`}
         </span>
+        <a
+          href={historyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-600 hover:text-slate-800 underline flex flex-row items-center gap-2"
+        >
+          See history
+          <FaHistory className="w-3 h-3" />
+        </a>
       </div>
     </div>
   );
