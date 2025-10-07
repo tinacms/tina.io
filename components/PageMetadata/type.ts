@@ -33,3 +33,9 @@ export interface GitHubMetadataProps {
   /** Additional CSS classes to apply to the component */
   className?: string;
 }
+
+export interface GitHubMetadataResponse {
+  latestCommit: GitHubCommit;
+  firstCommit: GitHubCommit | null;
+  historyUrl: string;
+}

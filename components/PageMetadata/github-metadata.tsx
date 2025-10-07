@@ -3,10 +3,8 @@
 import { formatDate } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { FaHistory } from 'react-icons/fa';
-import { fetchWithCache } from './fetch-github-meta';
-
 import { getRelativeTime } from './timeUtils';
-import type { GitHubCommit, GitHubMetadataProps } from './type';
+import type { GitHubMetadataProps, GitHubMetadataResponse } from './type';
 
 export default function GitHubMetadata({
   owner = 'tinacms',
@@ -14,61 +12,38 @@ export default function GitHubMetadata({
   path,
   className = '',
 }: GitHubMetadataProps) {
-  const filePath = path ? path.replace(/\\/g, '/') : null;
-  const [commit, setCommit] = useState<GitHubCommit | null>(null);
-  const [firstCommit, setFirstCommit] = useState<GitHubCommit | null>(null);
+  const [data, setData] = useState<GitHubMetadataResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchLastCommit = async () => {
+    const fetchGitHubMetadata = async () => {
       try {
         setLoading(true);
         setError(null);
 
         // Build the API URL
-        let apiUrl = `https://api.github.com/repos/${owner}/${repo}/commits`;
-        if (filePath) {
-          apiUrl += `?path=${filePath}`;
-        }
-        apiUrl += filePath ? '&' : '?';
-        apiUrl += 'per_page=1';
+        const params = new URLSearchParams({
+          owner,
+          repo,
+        });
 
-        const headers: Record<string, string> = {
-          Accept: 'application/vnd.github.v3+json',
-        };
-
-        // Add GitHub token if available
-        if (process.env.GITHUB_STAR_TOKEN) {
-          headers.Authorization = `Bearer ${process.env.GITHUB_STAR_TOKEN}`;
+        if (path) {
+          params.append('path', path);
         }
 
-        const commits: GitHubCommit[] = await fetchWithCache(apiUrl, headers);
+        const response = await fetch(
+          `/api/github-metadata?${params.toString()}`,
+        );
 
-        if (commits.length > 0) {
-          setCommit(commits[0]);
-
-          // Fetch the first commit (oldest) for creation date
-          if (filePath) {
-            try {
-              // Get all commits for the file to find the oldest one
-              const allCommitsUrl = `https://api.github.com/repos/${owner}/${repo}/commits?path=${filePath}&per_page=100`;
-              const allCommits: GitHubCommit[] = await fetchWithCache(
-                allCommitsUrl,
-                headers,
-              );
-
-              if (allCommits.length > 0) {
-                // The last commit in the array is the oldest
-                setFirstCommit(allCommits[allCommits.length - 1]);
-              }
-            } catch (err) {
-              console.warn('Could not fetch first commit:', err);
-            }
-          }
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`);
         }
+
+        const result: GitHubMetadataResponse = await response.json();
+        setData(result);
       } catch (err) {
-        console.error('Error fetching GitHub commit:', err);
+        console.error('Error fetching GitHub metadata:', err);
         setError(
           err instanceof Error ? err.message : 'Failed to fetch commit data',
         );
@@ -77,8 +52,8 @@ export default function GitHubMetadata({
       }
     };
 
-    fetchLastCommit();
-  }, [owner, repo, filePath]);
+    fetchGitHubMetadata();
+  }, [owner, repo, path]);
 
   if (loading) {
     return (
@@ -96,21 +71,17 @@ export default function GitHubMetadata({
     );
   }
 
-  if (!commit) {
+  if (!data) {
     return null;
   }
 
-  const lastUpdatedDate = commit.commit.author.date;
+  const { latestCommit, firstCommit, historyUrl } = data;
+  const lastUpdatedDate = latestCommit.commit.author.date;
   const relativeTime = getRelativeTime(lastUpdatedDate);
   const createdDate = firstCommit?.commit.author.date;
   const createdTime = createdDate
     ? formatDate(createdDate, 'd MMM yyyy')
     : null;
-
-  // Create GitHub history URL
-  const historyUrl = filePath
-    ? `https://github.com/${owner}/${repo}/commits/main/${filePath}`
-    : `https://github.com/${owner}/${repo}/commits/main`;
 
   // Create tooltip content
   const tooltipContent = createdTime
@@ -123,7 +94,7 @@ export default function GitHubMetadata({
         <span>
           Last updated by{' '}
           <span className="font-bold text-black">
-            {commit.commit.author.name}
+            {latestCommit.commit.author.name}
           </span>
           {` ${relativeTime}.`}
         </span>
