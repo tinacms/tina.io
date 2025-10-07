@@ -43,6 +43,9 @@ export async function GET(request: Request) {
   const headers: Record<string, string> = {
     Accept: 'application/vnd.github.v3+json',
     'User-Agent': 'TinaCMS-Docs/1.0',
+    // TODO: Update this to use GITHUB_TOKEN instead of GITHUB_STAR_TOKEN,
+    // as we already use GITHUB_STAR_TOKEN for fetching stars.
+    // Make sure to rename the token in the GitHub repository settings as well.
     ...(process.env.GITHUB_STAR_TOKEN && {
       Authorization: `Bearer ${process.env.GITHUB_STAR_TOKEN}`,
     }),
