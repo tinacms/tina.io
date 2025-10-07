@@ -104,7 +104,7 @@ export default function GitHubMetadata({
             target="_blank"
             title={tooltipContent}
             rel="noopener noreferrer"
-            className="text-black hover:text-red-500 underline flex flex-row items-center gap-2"
+            className="text-black hover:text-orange-600 underline flex flex-row items-center gap-2"
           >
             See history
             <FaHistory className="w-3 h-3" />
