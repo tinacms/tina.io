@@ -3,8 +3,11 @@
 import { formatDate } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { FaHistory } from 'react-icons/fa';
+import { fetchWithCache } from './fetch-github-meta';
+
 import { getRelativeTime } from './timeUtils';
 import type { GitHubCommit, GitHubMetadataProps } from './type';
+
 export default function GitHubMetadata({
   owner = 'tinacms',
   repo = 'tina.io',
@@ -40,17 +43,7 @@ export default function GitHubMetadata({
           headers.Authorization = `Bearer ${process.env.GITHUB_STAR_TOKEN}`;
         }
 
-        let response = null;
-        try {
-          response = await fetch(apiUrl, { headers });
-        } catch (error) {
-          console.error('Error fetching GitHub commit:', error);
-        }
-        if (!response.ok) {
-          throw new Error(`GitHub API error: ${response.status}`);
-        }
-
-        const commits: GitHubCommit[] = await response.json();
+        const commits: GitHubCommit[] = await fetchWithCache(apiUrl, headers);
 
         if (commits.length > 0) {
           setCommit(commits[0]);
@@ -60,14 +53,14 @@ export default function GitHubMetadata({
             try {
               // Get all commits for the file to find the oldest one
               const allCommitsUrl = `https://api.github.com/repos/${owner}/${repo}/commits?path=${filePath}&per_page=100`;
-              const allResponse = await fetch(allCommitsUrl, { headers });
+              const allCommits: GitHubCommit[] = await fetchWithCache(
+                allCommitsUrl,
+                headers,
+              );
 
-              if (allResponse.ok) {
-                const allCommits: GitHubCommit[] = await allResponse.json();
-                if (allCommits.length > 0) {
-                  // The last commit in the array is the oldest
-                  setFirstCommit(allCommits[allCommits.length - 1]);
-                }
+              if (allCommits.length > 0) {
+                // The last commit in the array is the oldest
+                setFirstCommit(allCommits[allCommits.length - 1]);
               }
             } catch (err) {
               console.warn('Could not fetch first commit:', err);
