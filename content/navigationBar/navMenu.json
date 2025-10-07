@@ -3,8 +3,11 @@
   "navItem": [
     {
       "label": "TinaCMS",
-      "href": "/tinacms",
       "items": [
+        {
+          "label": "Home",
+          "href": "/tinacms"
+        },
         {
           "label": "Docs for TinaCMS",
           "href": "/docs"
@@ -30,8 +33,11 @@
     },
     {
       "label": "TinaDocs",
-      "href": "/tinadocs",
       "items": [
+        {
+          "label": "Home",
+          "href": "/tinadocs"
+        },
         {
           "label": "Docs for TinaDocs",
           "href": "/tinadocs/docs"
@@ -45,14 +51,21 @@
         {
           "label": "My TinaCloud",
           "href": "https://app.tina.io/signin"
+        },
+        {
+          "label": "What's New in TinaCloud",
+          "href": "/whats-new/tinacloud"
         }
       ],
       "_template": "groupOfStringItems"
     },
     {
       "label": "Pricing",
-      "href": "/pricing",
       "items": [
+        {
+          "label": "Tina Cloud Pricing",
+          "href": "/pricing"
+        },
         {
           "label": "Enterprise",
           "href": "/enterprise"
