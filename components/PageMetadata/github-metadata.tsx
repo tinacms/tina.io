@@ -90,7 +90,7 @@ export default function GitHubMetadata({
 
   return (
     <div className={`text-slate-500 text-sm ${className}`}>
-      <div className="flex md:flex-row flex-col items-center gap-2">
+      <div className="flex md:flex-row flex-col md:items-center gap-2">
         <span>
           Last updated by{' '}
           <span className="font-bold text-black">
