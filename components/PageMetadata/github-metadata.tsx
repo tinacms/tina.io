@@ -1,6 +1,7 @@
 'use client';
 
 import { formatDate } from 'date-fns';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaHistory } from 'react-icons/fa';
 import { getRelativeTime } from './timeUtils';
@@ -22,7 +23,6 @@ export default function GitHubMetadata({
         setLoading(true);
         setError(null);
 
-        // Build the API URL
         const params = new URLSearchParams({
           owner,
           repo,
@@ -77,16 +77,16 @@ export default function GitHubMetadata({
 
   const { latestCommit, firstCommit, historyUrl } = data;
   const lastUpdatedDate = latestCommit.commit.author.date;
-  const relativeTime = getRelativeTime(lastUpdatedDate);
+  const lastUpdateInRelativeTime = getRelativeTime(lastUpdatedDate);
+  const lastUpdateInAbsoluteTime = formatDate(lastUpdatedDate, 'dd MMM yyyy');
   const createdDate = firstCommit?.commit.author.date;
   const createdTime = createdDate
     ? formatDate(createdDate, 'd MMM yyyy')
     : null;
 
-  // Create tooltip content
   const tooltipContent = createdTime
-    ? `Created ${createdTime}\nLast updated ${formatDate(lastUpdatedDate, 'dd MMM yyyy')}`
-    : `Last updated ${formatDate(lastUpdatedDate, 'dd MMM yyyy')}`;
+    ? `Created ${createdTime}\nLast updated ${lastUpdateInAbsoluteTime}`
+    : `Last updated ${lastUpdateInAbsoluteTime}`;
 
   return (
     <div className={`text-slate-500 text-sm ${className}`}>
@@ -96,10 +96,10 @@ export default function GitHubMetadata({
           <span className="font-bold text-black">
             {latestCommit.commit.author.name}
           </span>
-          {` ${relativeTime}.`}
+          {` ${lastUpdateInRelativeTime}.`}
         </span>
         <div className="relative group">
-          <a
+          <Link
             href={historyUrl}
             target="_blank"
             title={tooltipContent}
@@ -108,7 +108,7 @@ export default function GitHubMetadata({
           >
             See history
             <FaHistory className="w-3 h-3" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import type { GitHubCommit } from 'components/PageMetadata/type';
 import { NextResponse } from 'next/server';
 
-export const revalidate = 300; // Revalidate every 5 minutes
+const CACHE_TTL = 300; // 5 minutes in seconds
+export const revalidate = CACHE_TTL;
 
 async function fetchGitHub<T>(
   url: string,
@@ -9,7 +10,7 @@ async function fetchGitHub<T>(
 ): Promise<T> {
   const response = await fetch(url, {
     headers,
-    next: { revalidate: 300 },
+    next: { revalidate: CACHE_TTL },
   });
 
   if (
