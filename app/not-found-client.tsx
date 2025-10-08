@@ -23,14 +23,14 @@ const PageLayout = ({
   imageAlt = '404 Llama',
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24 content-center">
       <div className="flex flex-col">
         <div className="mb-7">
           <h2 className="font-ibm-plex text-6xl leading-tight text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600 via-orange-500 inline-block">
             {title}
           </h2>
           <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
-          <p className="text-lg lg:text-xl lg:leading-normal block bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent -mb-1">
+          <p className="text-lg lg:text-xl lg:leading-normal block -mb-1">
             {description}
           </p>
         </div>
@@ -39,11 +39,9 @@ const PageLayout = ({
       <div className="max-w-[65vw] mx-auto md:max-w-none">
         <div className="relative rounded-3xl overflow-hidden">
           <Image
-            src="/img/rico-replacement.jpg"
+            src="/img/tina-404-not-found.png"
             alt={imageAlt}
             className="object-cover"
-            width={364}
-            height={364}
           />
         </div>
       </div>
