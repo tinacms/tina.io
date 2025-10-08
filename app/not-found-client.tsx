@@ -41,7 +41,8 @@ const PageLayout = ({
           <Image
             src="/img/tina-404-not-found.webp"
             alt={imageAlt}
-            className="object-cover"
+            width={500}
+            height={450}
           />
         </div>
       </div>
