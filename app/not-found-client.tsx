@@ -39,7 +39,7 @@ const PageLayout = ({
       <div className="max-w-[65vw] mx-auto md:max-w-none">
         <div className="relative rounded-3xl overflow-hidden">
           <Image
-            src="/img/tina-404-not-found.png"
+            src="/img/tina-404-not-found.webp"
             alt={imageAlt}
             className="object-cover"
           />
