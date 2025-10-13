@@ -87,6 +87,12 @@ const config = {
         destination:
           'https://tina-docs-red.vercel.app/tinadocs/docsassets/_next/image',
       },
+      // Static content on root
+      {
+        source: '/tinadocs/_next/static/:path*',
+        destination:
+          'https://tina-docs-red.vercel.app/tinadocs/docsassets/_next/static/:path*',
+      },
 
       // =========================
       // LANDING (tina-docs-landing)
