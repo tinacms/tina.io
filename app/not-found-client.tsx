@@ -26,9 +26,7 @@ const PageLayout = ({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24 items-center">
       <div className="flex flex-col">
         <div className="mb-7">
-          <h1 className="font-ibm-plex text-6xl leading-tight">
-            {title}
-          </h1>
+          <h1 className="font-ibm-plex text-6xl leading-tight">{title}</h1>
           <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
           <p className="text-lg lg:text-xl lg:leading-normal block -mb-1">
             {description}
