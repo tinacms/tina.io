@@ -23,7 +23,7 @@ const PageLayout = ({
   imageAlt = '404 Llama',
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch py-24 items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-24 items-center">
       <div className="flex flex-col">
         <div className="mb-7">
           <h1 className="font-ibm-plex text-6xl leading-tight">{title}</h1>
