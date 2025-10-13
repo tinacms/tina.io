@@ -175,7 +175,16 @@
         },
         {
           "headline": "More insights on usage using PostHog",
-          "content": "We're adding deeper usage insights powered by PostHog, giving clearer visibility into how users engage with the platform.\n"
+          "content": "We're adding deeper usage insights powered by PostHog, giving clearer visibility into how users engage with the platform.\n",
+          "actions": [
+            {
+              "label": "PostHog 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://posthog.com/"
+            }
+          ]
         },
         {
           "headline": "MCP Server",
