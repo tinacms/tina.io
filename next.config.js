@@ -74,14 +74,15 @@ const config = {
         destination: `${TINA_DOCS_URL}/_next/static/pagefind/:path*`,
       },
 
-      // Landing Page
-      {
-        source: '/tinadocs/:path*',
-        destination: `${TINA_DOCS_LANDING_URL}/:path*`,
-      },
+      // Landing Page - Specific patterns first
       {
         source: '/tinadocs/landing/:path*',
         destination: `${TINA_DOCS_LANDING_URL}/landing/:path*`,
+      },
+      // Catch-all for remaining tinadocs paths
+      {
+        source: '/tinadocs/:path*',
+        destination: `${TINA_DOCS_LANDING_URL}/:path*`,
       },
 
       // Admin passthrough (yours)
