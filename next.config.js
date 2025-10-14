@@ -8,7 +8,7 @@ require('dotenv').config();
 const isStatic = process.env.EXPORT_MODE === 'static';
 
 const TINA_DOCS_URL = 'https://tina-docs-red.vercel.app/tinadocs';
-const TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app/tinadocs';
+const _TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app/tinadocs';
 
 /**
  * @type {import('next').NextConfig}
@@ -64,26 +64,26 @@ const config = {
         source: '/tinadocs/docs/:path*',
         destination: `${TINA_DOCS_URL}/docs/:path*`,
       },
-      {
-        source: '/tinadocs/docsassets/:path*',
-        destination: `${TINA_DOCS_URL}/docsassets/:path*`,
-      },
-      // Docs - Search functionality - Pagefind
-      {
-        source: '/tinadocs/_next/static/pagefind/:path*',
-        destination: `${TINA_DOCS_URL}/_next/static/pagefind/:path*`,
-      },
+      // {
+      //   source: '/tinadocs/docsassets/:path*',
+      //   destination: `${TINA_DOCS_URL}/docsassets/:path*`,
+      // },
+      // // Docs - Search functionality - Pagefind
+      // {
+      //   source: '/tinadocs/_next/static/pagefind/:path*',
+      //   destination: `${TINA_DOCS_URL}/_next/static/pagefind/:path*`,
+      // },
 
       // Landing Page - Specific patterns first
-      {
-        source: '/tinadocs/landing/:path*',
-        destination: `${TINA_DOCS_LANDING_URL}/landing/:path*`,
-      },
-      // Catch-all for remaining tinadocs paths
-      {
-        source: '/tinadocs/:path*',
-        destination: `${TINA_DOCS_LANDING_URL}/:path*`,
-      },
+      // {
+      //   source: '/tinadocs/landing/:path*',
+      //   destination: `${TINA_DOCS_LANDING_URL}/landing/:path*`,
+      // },
+      // // Catch-all for remaining tinadocs paths
+      // {
+      //   source: '/tinadocs/:path*',
+      //   destination: `${TINA_DOCS_LANDING_URL}/:path*`,
+      // },
 
       // Admin passthrough (yours)
       { source: '/admin', destination: '/admin/index.html' },
