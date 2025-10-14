@@ -77,6 +77,19 @@
               "url": "/"
             }
           ]
+        },
+        {
+          "headline": "☑︎ Docs Template",
+          "content": "Since Tina works so well with documentation sites, we've built a best-of-breed Tina + Docs starter template.\n",
+          "actions": [
+            {
+              "label": "TinaDocs",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/tinadocs"
+            }
+          ]
         }
       ],
       "options": {
