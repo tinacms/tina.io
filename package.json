@@ -112,7 +112,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "^2.8.3",
+    "tinacms": "^2.9.0",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
@@ -121,7 +121,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
-    "@tinacms/cli": "^1.10.3",
+    "@tinacms/cli": "^1.11.0",
     "@types/cookie": "^0.6.0",
     "@types/jest": "^25.2.3",
     "@types/negotiator": "^0.6.4",
