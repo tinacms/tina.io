@@ -60,14 +60,29 @@ const config = {
       { source: '/:locale(en|zh)', destination: '/:locale/home' },
 
       // Docs
-      { source: '/tinadocs/docs/:path*', destination: `${TINA_DOCS_URL}/tinadocs/docs/:path*` },
-      { source: '/tinadocs/docsassets/:path*', destination: `${TINA_DOCS_URL}/tinadocs/docsassets/:path*` },
+      {
+        source: '/tinadocs/docs/:path*',
+        destination: `${TINA_DOCS_URL}/tinadocs/docs/:path*`,
+      },
+      {
+        source: '/tinadocs/docsassets/:path*',
+        destination: `${TINA_DOCS_URL}/tinadocs/docsassets/:path*`,
+      },
       // Docs - Search functionality - Pagefind
-      { source: '/tinadocs/_next/static/pagefind/:path*', destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*` },
-      
+      {
+        source: '/tinadocs/_next/static/pagefind/:path*',
+        destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*`,
+      },
+
       // Landing Page
-      { source: '/tinadocs/:path*', destination: `${TINA_DOCS_LANDING_URL}/tinadocs/:path*` },
-      { source: '/tinadocs/landing/:path*', destination: `${TINA_DOCS_LANDING_URL}/tinadocs/landing/:path*` },
+      {
+        source: '/tinadocs/:path*',
+        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/:path*`,
+      },
+      {
+        source: '/tinadocs/landing/:path*',
+        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/landing/:path*`,
+      },
 
       // Admin passthrough (yours)
       { source: '/admin', destination: '/admin/index.html' },
