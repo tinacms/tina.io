@@ -61,6 +61,10 @@ const config = {
 
       // Docs
       {
+        source: '/tinadocs/docs',
+        destination: `${TINA_DOCS_URL}/docs`,
+      },
+      {
         source: '/tinadocs/docs/:path*',
         destination: `${TINA_DOCS_URL}/docs/:path*`,
       },
