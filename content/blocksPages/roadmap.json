@@ -169,12 +169,12 @@
           "content": "We're working on providing documentation for VibeCoding with TinaCMS to make it even easier to use.\n"
         },
         {
-          "headline": "Usage and gamification in the TinaCloud portal",
-          "content": "We're working on features to give users deeper insight into their activity while rewarding ongoing engagement.\n"
+          "headline": "TinaCloud - Project Insights",
+          "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
         },
         {
-          "headline": "More insights on usage using PostHog",
-          "content": "We're adding deeper usage insights powered by PostHog, giving clearer visibility into how users engage with the platform.\n",
+          "headline": "TinaCMS - Telemetry (powered by PostHog)",
+          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
           "actions": [
             {
               "label": "PostHog 🔗",
