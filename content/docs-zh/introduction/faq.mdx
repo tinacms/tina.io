@@ -2,42 +2,37 @@
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: 常见问题
 alias: 常见问题
-last_edited: '2025-09-18T22:54:46.670Z'
+last_edited: '2025-10-15T04:48:56.513Z'
 next: ''
 previous: ''
 ---
 
 ## 1. 什么是 TinaCloud？
 
-
 TinaCloud 是 TinaCMS 的托管 [数据层](/docs/reference/content-api/data-layer)。TinaCloud 是在生产环境中使用 TinaCMS 的最简单方式。它提供：
-
 
 * 为您的内容提供托管的 GraphQL 端点
 * Git 集成
 * 用户管理
-* [编辑工作流](/docs/drafts/editorial-workflow)功能
+* [编辑工作流](/docs/drafts/editorial-workflow) 功能
 
+它还允许不同类型的用户（内容创建者、编辑者、市场人员等）授权登录并编辑他们的网站，而无需直接访问 GitHub 中的存储库。
 
-它还允许不同类型的用户（内容创作者、编辑、市场人员等）授权登录并编辑他们的网站，而无需直接授予 GitHub 仓库的访问权限。
-
-TinaCMS 也可以[自托管](/docs/self-hosted/overview)或独立于 TinaCloud 使用。
+TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud 使用。
 
 欲了解更多信息，请参阅 [TinaCloud 概述](/docs/tinacloud/overview)。
 
-## 2. 我在哪里可以获得 TinaCMS 或 TinaCloud 的帮助或分享想法？
+## 2. 我在哪里可以获得有关 TinaCMS 或 TinaCloud 的帮助或分享想法？
 
-请访问我们的社区 [tina.io/community](https://tina.io/community)。
+请查看我们的社区 [tina.io/community](https://tina.io/community)。
 
+## 3. 使用 Tina 需要认证人员吗？
 
-## 3. 我需要管理员认证才能使用 Tina 吗？
-
-
-任何人都可以立即开始使用 Tina，但它是为开发人员设置和定制而设计的。[认证开发人员](https://www.credly.com/org/superior-software-for-windows-ssw/badge/tinacms-developer)可以加速设置、微调配置并确保最佳实践架构。
+任何人都可以立即开始使用 Tina，但它是为开发人员设置和自定义而设计的。[认证开发人员](https://www.credly.com/org/superior-software-for-windows-ssw/badge/tinacms-developer) 可以加速设置、微调配置，并确保最佳实践架构。
 
 ## 4. 支持哪些版本的 Node？
 
-TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn 一起使用。
+TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn 一起工作。
 
 ## 5. Tina 的技术栈是什么？
 
@@ -57,9 +52,9 @@ TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn �
 
 ### 1. Git 支持的媒体
 
-在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 仓库。然而，这一功能在自托管 Tina 中不存在。
+在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 存储库。然而，这一功能在自托管 Tina 中不存在。
 
-其缺失的原因是由于涉及媒体上传的过程。在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。没有这个，图像在网站重建之前不会出现在媒体管理器中。
+其缺失的原因是由于涉及媒体上传的过程。在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。否则，图像在站点重建之前不会出现在媒体管理器中。
 
 ### 2. 运行时动态分支切换
 
@@ -79,7 +74,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ## 7. 如何在 Git 提交中启用共同作者？
 
-默认情况下，当使用 TinaCloud 时，Git 提交的作者是 [TinaCloud GitHub 应用](https://github.com/apps/tina-cloud-app)。一些用户希望知道是谁进行了更改。
+默认情况下，使用 TinaCloud 时，Git 提交的作者是 [TinaCloud GitHub 应用](https://github.com/apps/tina-cloud-app)。一些用户希望知道是谁进行了更改。
 
 对于这种情况，Tina 提供了两种不同的方法：
 
@@ -88,11 +83,11 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 这两种方法都可以在 TinaCloud 帐户设置中按用户启用。了解更多关于 [Git 作者](/docs/tinacloud/git-co-authoring)的信息。
 
-## 8. 为什么使用 markdown 时需要数据库？
+## 8. 使用 Markdown 时为什么需要数据库？
 
-使用 TinaCMS 的 markdown 时，数据库是必需的，因为服务于 Markdown 和 JSON 文件的数据层依赖于数据库来执行各种内容管理功能。虽然 Markdown 文件是您内容的主要来源，但数据库充当缓存，以启用高级功能，如搜索、分页和文件之间的交叉引用。它还提供 API，允许内容获取类似于传统的无头 CMS 操作。
+使用 TinaCMS 的 Markdown 时，数据库是必需的，因为服务于 Markdown 和 JSON 文件的数据层依赖于数据库来执行各种内容管理功能。虽然 Markdown 文件是您内容的主要来源，但数据库充当缓存，以启用高级功能，如搜索、分页和文件之间的交叉引用。它还提供了一个 API，允许内容获取类似于传统无头 CMS 的操作。
 
-最初，TinaCMS 的数据层在本地开发期间不被注意，并在生产中由 TinaCloud 管理。随着自托管选项的引入，用户现在可以选择更多的控制和定制，集成自己的身份验证系统和托管。整个 TinaCMS，包括其数据层，都是开源的，允许社区驱动的增强和支持。
+最初，TinaCMS 的数据层在本地开发期间不被注意，并由生产中的 TinaCloud 管理。随着自托管选项的引入，用户现在可以选择更多的控制和自定义，集成自己的身份验证系统和托管。整个 TinaCMS，包括其数据层，都是开源的，允许社区驱动的增强和支持。
 
 ## 9. 什么是“本地模式”与“生产模式”？
 
@@ -104,26 +99,25 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 <WarningCallout
   body={<>
-    **注意：** 本地模式是为了在本地开发而设计的，当您的网站托管在生产环境中时将不起作用。在本地模式下，Tina 尝试访问 `http://localhost:4001`，这在您的生产网站上运行时不可用（底层文件系统内容也不可用）。
+    **注意：** 本地模式用于本地开发，当您的站点托管在生产环境中时将不起作用。在本地模式下，Tina 尝试访问 `http://localhost:4001`，这在您的生产站点上运行时不可用（底层文件系统内容也不可用）。
   </>}
 />
 
 ### 生产模式
 
-一旦您准备好在生产环境中托管您的网站并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
+一旦您准备好在生产环境中托管您的站点并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
 
+无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，无需用户创建 GitHub 帐户。任何由您的编辑者保存的更改都将提交到您 GitHub 存储库中配置的分支。
 
-无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，消除了用户创建 GitHub 帐户的需要。任何由您的编辑保存的更改都将提交到您 GitHub 仓库中配置的分支。
+## 10. TinaCloud 仅适用于 GitHub 存储库吗？
 
-## 10. TinaCloud 仅适用于 GitHub 仓库吗？
-
-目前是的，TinaCloud 集成的第一个 Git 提供商是 GitHub。未来可能会有其他 Git 提供商。
+目前是的，TinaCloud 集成的第一个 Git 提供商是 GitHub。未来可能会有其他 Git 提供商可用。
 
 ## 11. TinaCloud 是否支持 Monorepos？
 
-支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的网站一起工作。
+支持！通过在项目配置中指定 `tina` 文件夹的路径，TinaCloud 可以与 monorepos 中的站点一起工作。
 
-如果您的仓库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于仓库的根目录。
+如果您的存储库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于存储库的根目录。
 
 以下是一个与 TinaCloud 兼容的 monorepo 结构示例：
 
@@ -135,14 +129,14 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 有关更多信息，请参阅 [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina)。
 
-## 12. 为什么从网站登录时 Tina.io 登录窗口不会关闭？
+## 12. 为什么从站点登录时 Tina.io 登录窗口不会关闭？
 
-当用户从您的网站登录时，我们会弹出一个登录窗口。登录完成后，我们将尝试将消息发送回主窗口。
+当用户从您的站点登录时，我们会弹出一个登录窗口。登录完成后，我们将尝试将消息发送回主窗口。
 
 此问题的最常见原因是：
 
 * Tina 项目的站点 URL 设置不正确。主窗口的基本 URL 需要与 TinaCloud 仪表板中设置的 Tina 项目的站点 URL 匹配。
-* 您网站环境变量中设置的客户端 ID 与 TinaCloud 仪表板上项目设置中的客户端 ID 不匹配。
+* 您站点环境变量中设置的客户端 ID 与 TinaCloud 仪表板中项目设置中的客户端 ID 不匹配。
 * 尝试登录 TinaCloud 的用户无权编辑此站点。确保此用户在 TinaCloud 仪表板上获得授权。
 
 > 确保在站点 URL 中包含 `https`，例如：[https://forestry.io](https://forestry.io) 或者如果您在本地测试，可能是 `http://localhost:3000`
@@ -155,13 +149,13 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 此错误意味着 TinaCMS 管理 HTML 文件未能加载 JavaScript 包。通常由于以下几个原因导致：
 
-
 ### 用户将开发 admin/index.html 推送到生产环境
+
 当您在本地运行 `tinacms dev` 时，Tina 将生成一个开发 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中删除 admin/index.html 文件，他们可能会遇到此问题。
 
-### 您的网站在不同的基本路径上提供服务
+### 您的站点在不同的基本路径上提供服务
 
-如果您的网站在子目录中提供服务，请确保您的 `build.basePath` 已 [适当配置](/docs/reference/config/#definition)
+如果您的站点在子目录中提供服务，请确保您的 `build.basePath` 已 [适当配置](/docs/reference/config/#definition)
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
@@ -171,10 +165,10 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 1. 如何解决 `无法找到记录 'tina/__generated__/_graphql.json'` 错误？
 
-当 TinaCloud 的 GraphQL API 无法在您的 GitHub 仓库中找到文件时，会返回此错误。这可能在以下情况下发生：
+当 TinaCloud 的 GraphQL API 无法在您的 GitHub 存储库中找到文件时，会返回此错误。这可能在以下情况下发生：
 
-* `tina` 文件夹（和 `__generated__` 子文件夹）不在您的 GitHub 仓库远程
-  * 如果文件夹在您的本地仓库中，但不在远程，请确保没有 `.gitignore` 文件排除它
+* `tina` 文件夹（和 `__generated__` 子文件夹）不在您的 GitHub 存储库远程
+  * 如果文件夹在您的本地存储库中，但不在远程，请确保没有 `.gitignore` 文件排除它
 * Tina 配置了一个不存在的分支或不包含 `tina` 文件夹的分支
   * 应创建引用的分支并应包含 `tina` 文件夹
 * TinaCMS 组件上的 apiURL 属性配置错误
@@ -182,31 +176,31 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 2. 如何解决 `本地 GraphQL 模式与远程 GraphQL 模式不匹配` 错误？
 
-如果您在构建日志中收到此错误，则表示您部署站点中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
+如果您在构建日志中收到此错误，则表示您部署的站点中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
 
 1. 确保您的模式（从 `tina/config.ts` 生成）不包含任何变化的信息，例如时间戳或随机文本
 2. 确保您的项目中有最新版本的 `@tinacms/cli` 和 `tinacms`
-3. 在本地运行开发命令
-4. 提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库
+3. 在本地运行 dev 命令
+4. 提交对 `tina/tina-lock.json` 的任何更改并将其推送到 TinaCloud 中链接的 git 存储库
 
-如果您在访问 TinaCMS 界面时收到此错误，可能是由于项目中 `tinacms` 和 `@tinacms/cli` 的版本不匹配。更新这两个依赖项到最新版本并在本地运行开发命令。提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库。
+如果您在访问 TinaCMS 界面时收到此错误，可能是由于项目中 `tinacms` 和 `@tinacms/cli` 的版本不匹配。更新这两个依赖项到最新版本并在本地运行 dev 命令。提交对 `tina/tina-lock.json` 的任何更改并将其推送到 TinaCloud 中链接的 git 存储库。
 
 ### 3. 如何解决由未索引分支引起的错误？
 
-如果您收到类似 `指定的分支 'my-branch-name' 未被 TinaCloud 索引` 的错误，或者看到没有分支被索引，请尝试以下操作：
+如果您收到类似 `指定的分支 'my-branch-name' 未被 TinaCloud 索引` 的错误，或者根本没有看到索引的分支，请尝试以下操作：
 
-1. 验证默认分支上是否存在 `tina/config.ts` 配置文件
-2. 验证在 `tina/config.ts` 中传递给 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中作为环境变量设置
-3. 验证分支是否存在于 GitHub 仓库中
-4. 您可以通过对该分支中的 `tina/tina-lock.json` 文件进行空白更改来强制重新索引特定分支，提交更改并将其推送到 GitHub。这将启动分支的索引，并且（几分钟后）错误应得到解决
-
-5. 确保 Tina 项目位于根目录
+1. 验证默认分支上是否存在 `tina/config.ts` 的配置文件
+2. 验证在 `tina/config.ts` 中传递给 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中设置为环境变量
+3. 验证分支是否存在于 GitHub 存储库中
+4. 将分支拉入您的 TinaCloud 项目。<Youtube embedSrc="https://youtube.com/embed/GDAQle7Q-sY" /> **视频：TinaCloud - 如何索引缺失的分支（3 分钟）**
+5. 您可以通过对该分支中的 `tina/tina-lock.json` 文件进行空白更改来强制重新索引特定分支，提交更改并将其推送到 GitHub。这将启动分支的索引（几分钟后）错误应得到解决
+6. 确保 Tina 项目位于根目录
 
 ### 4. 如何解决 `保存文档时出现问题` 错误？
 
-在不使用 [编辑工作流](/editorial-workflow) 的情况下使用 TinaCloud 时，您需要确保 [TinaCloud 应用](https://github.com/apps/tina-cloud-app) 能够提交到仓库的选定分支。
+在不使用 [编辑工作流](/editorial-workflow) 的情况下使用 TinaCloud 时，您需要确保 [TinaCloud 应用](https://github.com/apps/tina-cloud-app) 能够提交到存储库的选定分支。
 
-如果不能，您将看到如下形式的错误：
+如果不能，您将看到以下形式的错误：
 
 ```text
 Tina 在更新页面时捕获到错误：
@@ -219,17 +213,17 @@ Tina 在更新页面时捕获到错误：
 
 **视频：常见问题 - 使用 TinaCMS 绕过 GitHub 分支保护（3 分钟）**
 
-通常这种情况发生在您的主分支上有分支保护，而 TinaCloud 无法绕过它。在 2024 年 7 月之前，TinaCloud GitHub 应用对仓库具有管理员权限，这使其能够绕过大多数仓库的这些规则。
+通常发生这种情况是因为您的主分支上有分支保护，而 TinaCloud 无法绕过它。直到 2024 年 7 月，TinaCloud GitHub 应用对存储库具有管理员权限，这使其能够绕过大多数存储库的这些规则。
 
-要解决此问题，可以：
+要解决此问题，请执行以下操作之一：
 
-* 从传统分支保护升级到分支规则集 - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
+* 从旧版分支保护升级到分支规则集 - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
   确保允许 TinaCloud 应用绕过需要分支保护的规则
-* 启用 [编辑工作流](/editorial-workflow) 以在分支上创建 PR
+* 启用 [编辑工作流](/editorial-workflow) 在分支上创建 PR
 
 ### 5. 如何解决 `无效或未定义的分支` 错误？
 
-Tina 使用的当前分支无效或未定义。仔细检查选择的分支是否正确，并且确实存在。
+Tina 使用的当前分支无效或未定义。仔细检查选择的分支是否正确并且确实存在。
 
 您可以通过访问 `https://app.tina.io/projects/<your-project-id>/configuration` 查看 TinaCloud 索引的分支。
 
@@ -238,17 +232,17 @@ Tina 使用的当前分支无效或未定义。仔细检查选择的分支是否
 
 ### 6. 如何解决 `tina 目录未推送到 git` 错误？
 
-`tina` 目录中的所有内容（除了 `__generated__` 文件夹）都需要推送到 git 仓库。确保将其添加到您的 git 仓库中（并确保您**没有**在 `.gitignore` 中列出它）。还要确保您尝试使用的分支具有 `tina` 目录并且是最新的。
+`tina` 目录中的所有内容（除了 `__generated__` 文件夹）都需要推送到 git 存储库。确保将其添加到您的 git 存储库中（并确保您**没有**将其列在 `.gitignore` 中）。还要确保您尝试使用的分支具有 `tina` 目录并且是最新的。
 
 ### 7. 如何解决 `API URL 格式错误` 错误？
 
-ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参阅[此处](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms)。
+ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参阅 [此处](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms)。
 
 ### 8. 如何解决 `无效` 错误？
 
-登录 TinaCloud 时，您尝试登录的网站的 URL 会通过 `?origin=` URL 参数发送。当身份验证窗口的 `?origin=` URL 参数中指定的 URL 与您的 TinaCloud 站点 URL 中定义的不匹配时，可能会发生此错误。
+登录 TinaCloud 时，您尝试登录的网站的 URL 通过 `?origin=` URL 参数发送。当身份验证窗口的 `?origin=` URL 参数中指定的 URL 与 TinaCloud 站点 URL 中定义的不匹配时，可能会发生此错误。
 
-要解决此问题，请确保您的 TinaCloud 站点 URL 设置中指定的一个 URL 与 `?origin=` URL 参数中显示的 URL 完全匹配。
+要解决此问题，请确保 TinaCloud 站点 URL 设置中指定的一个 URL 与 `?origin=` URL 参数中显示的 URL 完全匹配。
 
 !['?origin=' URL 参数](/img/docs/introduction/origin-url-highlight.png)\
 **图：URL 参数**
@@ -256,13 +250,13 @@ ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参
 ![TinaCloud 站点 URL 设置](/img/docs/introduction/tina-site-url-highlight.png)\
 **图：TinaCloud 站点 URL 设置**
 
-## 15. 如何在本地 GraphQL 服务器未运行或在生产环境中访问？
+## 15. 如何在本地 GraphQL 服务器未运行或在生产环境中访问它？
 
 ### 在生产环境中
 
 确保您的 API URL 未设置为在生产环境中指向本地 GraphQL 服务器。您应该指向 ContentAPI。
 
-### 在本地
+### 本地
 
 如果您在本地工作，请确保您的 [GraphQL 服务器正在运行](/docs/graphql/cli/)。
 
@@ -270,7 +264,7 @@ ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参
 
 ### 1. 弹出窗口阻止程序阻止 Vercel 安装其 GitHub 应用
 
-在选择要部署的入门模板并重定向到 Vercel 后，Vercel 添加其 GitHub 应用的弹出窗口可能无法打开。查看左下角的提示消息，显示“无法打开安装 GitHub 应用的弹出窗口”。
+选择要部署的入门模板并重定向到 Vercel 后，可能无法打开 Vercel 添加其 GitHub 应用的弹出窗口。查看左下角的消息，显示“无法打开安装 GitHub 应用的弹出窗口”。
 
 ![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)\
 **图：弹出窗口被阻止**
@@ -283,12 +277,20 @@ ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参
 
 Markdown 为大型语言模型（LLM）提供了明显的优势：
 
-* 清晰的结构——标题、列表和代码块更易于解析
-* 语义意义——格式化增加了清晰度和上下文
-* 适合提示——一致的标记减少了歧义
-* 人机可读——原始 Markdown 对人和机器都很友好
-* 与 LLM 趋势一致——Markdown 自然适应向 LLM 优化内容的转变，正如 [SEO 已死，LLMO 长存](https://jina.ai/news/seo-is-dead-long-live-llmo) 中所强调的那样
+* 清晰的结构 – 标题、列表和代码块更易于解析
+* 语义意义 – 格式化增加了清晰度和上下文
+* 适合提示 – 一致的标记减少了歧义
+* 人机可读 – 原始 Markdown 对人类和机器都很友好
+* 符合 LLM 趋势 – Markdown 自然适应向 LLM 优化内容的转变，如 [SEO 已死，LLMO 长存](https://jina.ai/news/seo-is-dead-long-live-llmo) 中所述
 
 ## 18. 您支持 Git LFS 吗？
 
-由于 GitHub API 的限制，我们目前不支持 Git LFS。
+遗憾的是，由于 GitHub API 的限制，我们目前不支持 Git LFS。
+
+## 18. 加载引用字段时出现 503 服务不可用错误。
+
+在具有大量项目的集合上使用引用字段时，您可能会发现网络请求超时。目前，我们没有任何机制来分页引用字段。
+
+替代方法是添加一个带有分页的 [自定义字段组件](https://tina.io/docs/extending-tina/custom-field-components)。要检索分页结果，您可以使用 [自定义查询](https://tina.io/docs/data-fetching/custom-queries)
+
+<Youtube embedSrc="https://www.youtube.com/embed/6FVpOvLK51s" caption="常见问题 - 加载引用字段时出现 503 服务不可用错误" />
