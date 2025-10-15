@@ -7,6 +7,9 @@ require('dotenv').config();
 
 const isStatic = process.env.EXPORT_MODE === 'static';
 
+const TINA_DOCS_URL = 'https://tina-docs-red.vercel.app';
+const TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app';
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -56,77 +59,38 @@ const config = {
       { source: '/', destination: '/home' },
       { source: '/:locale(en|zh)', destination: '/:locale/home' },
 
-      // =========================
-      // DOCS (tina-docs-red)
-      // Build expects:
-      //   basePath = /tinadocs
-      //   assetPrefix = /tinadocs/docsassets
-      //   images.path = /tinadocs/docsassets/_next/image
-      // =========================
-
-      // Docs pages
+      // Docs
       {
         source: '/tinadocs/docs',
-        destination: 'https://tina-docs-red.vercel.app/tinadocs/docs',
+        destination: `${TINA_DOCS_URL}/tinadocs/docs`,
       },
       {
         source: '/tinadocs/docs/:path*',
-        destination: 'https://tina-docs-red.vercel.app/tinadocs/docs/:path*',
+        destination: `${TINA_DOCS_URL}/tinadocs/docs/:path*`,
       },
-
-      // Docs static assets (chunks/css/fonts)
       {
-        source: '/tinadocs/docsassets/_next/:path*',
-        destination:
-          'https://tina-docs-red.vercel.app/tinadocs/docsassets/_next/:path*',
+        source: '/tinadocs/docsassets/:path*',
+        destination: `${TINA_DOCS_URL}/tinadocs/docsassets/:path*`,
       },
-
-      // Docs image optimizer
+      // Docs - Search functionality - Pagefind
       {
-        source: '/tinadocs/docsassets/_next/image',
-        destination:
-          'https://tina-docs-red.vercel.app/tinadocs/docsassets/_next/image',
+        source: '/tinadocs/_next/static/pagefind/:path*',
+        destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*`,
       },
 
-      // =========================
-      // LANDING (tina-docs-landing)
-      // Build expects:
-      //   basePath = '' (none)
-      //   assetPrefix = /tinadocs/landing
-      //   images.path = /tinadocs/landing/_next/image
-      // NOTE: Without basePath, the child serves:
-      //   pages at `/` and `/:path*`
-      //   static at `/_next/*`
-      //   image optimizer at `/tinadocs/landing/_next/image` (explicit path)
-      // =========================
-
-      // Landing static assets (browser asks under assetPrefix; child serves /_next/*)
-      {
-        source: '/tinadocs/landing/_next/:path*',
-        destination: 'https://tina-docs-landing.vercel.app/_next/:path*',
-      },
-
-      // Landing image optimizer (served exactly at this path in the child)
-      {
-        source: '/tinadocs/landing/_next/image',
-        destination:
-          'https://tina-docs-landing.vercel.app/tinadocs/landing/_next/image',
-      },
-
-      // Landing pages (no basePath in child → map /tinadocs → child root)
+      // Landing Page - Specific patterns first
       {
         source: '/tinadocs',
-        destination: 'https://tina-docs-landing.vercel.app/',
+        destination: `${TINA_DOCS_LANDING_URL}/tinadocs`,
       },
+      {
+        source: '/tinadocs/landing/:path*',
+        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/landing/:path*`,
+      },
+      // Catch-all for remaining tinadocs paths
       {
         source: '/tinadocs/:path*',
-        destination: 'https://tina-docs-landing.vercel.app/:path*',
-      },
-
-      // Optional: pass-through for favicon while proxied
-      {
-        source: '/tinadocs/favicon.svg',
-        destination: 'https://tina-docs-landing.vercel.app/favicon.svg',
+        destination: `${TINA_DOCS_LANDING_URL}/tinadocs/:path*`,
       },
 
       // Admin passthrough (yours)

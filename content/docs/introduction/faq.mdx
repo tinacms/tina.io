@@ -2,7 +2,7 @@
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
 alias: FAQ
-last_edited: '2025-10-01T23:30:00.738Z'
+last_edited: '2025-10-15T04:48:56.513Z'
 next: ''
 previous: ''
 ---
@@ -192,8 +192,9 @@ If you receive an error like `The specified branch, 'my-branch-name', has not be
 1. Verify that a configuration file exists at `tina/config.ts` on the default branch
 2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process
 3. Verify that the branch exists in the GitHub repository
-4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved
-5. Ensure that the Tina project is located in the root directory
+4. Pull down the branch into your TinaCloud project. <Youtube embedSrc="https://youtube.com/embed/GDAQle7Q-sY" /> **Video: TinaCloud - How to index missing branches (3 min)**
+5. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved
+6. Ensure that the Tina project is located in the root directory
 
 ### 4. How do I resolve `There was a problem saving your document` error?
 

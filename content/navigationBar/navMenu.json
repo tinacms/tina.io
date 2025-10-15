@@ -2,46 +2,83 @@
   "navigationBar": "Master",
   "navItem": [
     {
-      "label": "Products",
+      "label": "TinaCMS",
       "items": [
         {
-          "labelLeft": "TinaCMS",
-          "hrefLeft": "/tinacms",
-          "labelRight": "Docs",
-          "hrefRight": "/docs"
+          "label": "Home",
+          "href": "/tinacms"
         },
         {
-          "labelLeft": "TinaDocs",
-          "hrefLeft": "/tinadocs",
-          "labelRight": "Docs",
-          "hrefRight": "/tinadocs/docs"
-        }
-      ],
-      "_template": "doubleNavItemDropDown"
-    },
-    {
-      "label": "Cloud Pricing",
-      "href": "/pricing",
-      "_template": "stringItem"
-    },
-    {
-      "label": "Community",
-      "items": [
+          "label": "Docs for TinaCMS",
+          "href": "/docs"
+        },
+        {
+          "label": "Videos",
+          "href": "https://www.youtube.com/c/tinacms"
+        },
+        {
+          "label": "Compare TinaCMS",
+          "href": "/compare-tina"
+        },
         {
           "label": "Showcase",
           "href": "/showcase"
         },
         {
-          "label": "Roadmap",
-          "href": "/roadmap"
+          "label": "What's New in TinaCMS",
+          "href": "/whats-new/tinacms"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "TinaDocs",
+      "items": [
+        {
+          "label": "Home",
+          "href": "/tinadocs"
         },
+        {
+          "label": "Docs for TinaDocs",
+          "href": "/tinadocs/docs"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "TinaCloud",
+      "items": [
+        {
+          "label": "My TinaCloud",
+          "href": "https://app.tina.io/signin"
+        },
+        {
+          "label": "What's New in TinaCloud",
+          "href": "/whats-new/tinacloud"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "Pricing",
+      "items": [
+        {
+          "label": "TinaCloud Pricing",
+          "href": "/pricing"
+        },
+        {
+          "label": "Enterprise",
+          "href": "/enterprise"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "Community",
+      "items": [
         {
           "label": "Events",
           "href": "/events"
-        },
-        {
-          "label": "Support",
-          "href": "/docs/support"
         },
         {
           "label": "Certifications",
@@ -56,55 +93,37 @@
           "href": "https://discord.com/invite/zumN63Ybpf"
         },
         {
+          "label": "Support",
+          "href": "/docs/support"
+        },
+        {
           "label": "Forum",
           "href": "https://github.com/tinacms/tinacms/discussions"
+        },
+        {
+          "label": "Roadmap",
+          "href": "/roadmap"
         }
       ],
       "_template": "groupOfStringItems"
     },
     {
-      "label": "Enterprise",
-      "href": "/enterprise",
-      "_template": "stringItem"
-    },
-    {
       "label": "About",
       "items": [
         {
-          "label": "About TinaCMS",
+          "label": "About Tina",
           "href": "/about"
-        },
-        {
-          "label": "Videos",
-          "href": "https://www.youtube.com/c/tinacms"
         },
         {
           "label": "Blog",
           "href": "/blog"
         },
         {
-          "label": "Compare Tina",
-          "href": "/compare-tina"
-        },
-        {
           "label": "Examples",
           "href": "/examples"
-        },
-        {
-          "label": "What's New - TinaCMS",
-          "href": "/whats-new/tinacms"
-        },
-        {
-          "label": "What's New - TinaCloud",
-          "href": "/whats-new/tinacloud"
         }
       ],
       "_template": "groupOfStringItems"
-    },
-    {
-      "label": "My TinaCloud",
-      "href": "https://app.tina.io/signin",
-      "_template": "stringItem"
     }
   ]
 }
