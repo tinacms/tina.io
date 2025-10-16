@@ -1,0 +1,96 @@
+---
+title: Troubleshooting
+alias: troubleshooting
+last_edited: '2025-10-16T02:02:56.166Z'
+next: content/docs/tinacloud/dashboard.mdx
+previous: content/docs/tinacloud.mdx
+---
+
+## What are the common TinaCloud errors?
+
+### 1. How do I resolve the `Unable to find record 'tina/__generated__/_graphql.json'` error?
+
+TinaCloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
+
+* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote
+  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it
+* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder
+  * The referenced branch should be created and should contain the `tina` folder
+* The apiURL prop is misconfigured on the TinaCMS component
+  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch
+
+### 2. How do I resolve `The local GraphQL schema doesn't match the remote GraphQL schema` error?
+
+If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud. To resolve it:
+
+1. Ensure that your schema (generated from `tina/config.ts`) does not include any varying information, such as timestamps or random text
+2. Ensure that you have the latest versions of `@tinacms/cli` and `tinacms` in your project
+3. Run the dev command locally
+4. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud
+
+If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of `tinacms` and `@tinacms/cli` on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
+
+### 3. How do I resolve errors caused by unindexed branches?
+
+If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, or see no branches indexed at all, try the following:
+
+1. Verify that a configuration file exists at `tina/config.ts` on the default branch
+2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process
+3. Verify that the branch exists in the GitHub repository
+4. Pull down the branch into your TinaCloud project. <Youtube embedSrc="https://youtube.com/embed/GDAQle7Q-sY" /> **Video: TinaCloud - How to index missing branches (3 min)**
+5. You can also force a branch to be reindexed by TinaCloud by making a whitespace change to the `tina/tina-lock.json` file in that branch, committing it, and pushing it to GitHub. This will initiate indexing for the branch, and (after a few minutes) the error should be resolved
+6. Ensure that the Tina project is located in the root directory
+
+### 4. How do I resolve `There was a problem saving your document` error?
+
+When using TinaCloud without [Editorial Workflow](/editorial-workflow), you need to ensure that the [TinaCloud App](https://github.com/apps/tina-cloud-app) is able to commit to the selected branch of the repository.
+
+If it cannot, you will see an error of the following form:
+
+```text
+Tina caught an error while updating the page:
+
+Error: Unable to fetch, errors:
+    Error in PUT for src/pages/some-page.md
+```
+
+<Youtube embedSrc=" https://www.youtube.com/embed/MTIJotdIG9E?si=8mcaNAqogQRwL678" />
+
+**Video: FAQ - Bypassing GitHub branch protection with TinaCMS (3min)**
+
+Generally this happens when there is branch protection on your main branch and TinaCloud is unable to bypass it. Until July 2024, the TinaCloud GitHub app had admin rights to repositories which allowed it to bypass these rules for most repositories.
+
+To fix this issue, either:
+
+* Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
+  Ensure that the TinaCloud app is allowed to bypass the rule requiring branch protection
+* Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
+
+### 5. How do I resolve `Invalid or undefined branch` error?
+
+The current branch that Tina is using is invalid or undefined. Double check that the correct branch is selected and it does in fact exist.
+
+You can view the branches that have been indexed by TinaCloud by visiting `https://app.tina.io/projects/<your-project-id>/configuration`.
+
+![Indexed Branches](/img/docs/tinacloud/branch-status.png)\
+**Figure: Branches indexed by TinaCloud**
+
+### 6. How do I resolve `tina directory not pushed to git` error?
+
+Everything in the `tina` directory (except the `__generated__` folder) needs to be pushed up to the git repository. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). Also make sure that the branch you're trying to use has the `tina` directory and is up to date.
+
+### 7. How do I resolve `API URL is misformatted` errors?
+
+The ContentAPI URL isn't formatted correctly. See [here](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
+
+### 8. How do I resolve `Invalid ` errors?
+
+When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud Site URLs.
+
+To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
+
+!['?origin=' URL parameter](/img/docs/introduction/origin-url-highlight.png)\
+**Figure: URL parameter**
+
+![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)\
+**Figure: TinaCloud Site URLs settings**
