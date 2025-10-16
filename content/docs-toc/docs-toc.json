@@ -401,6 +401,11 @@
           "_template": "item"
         },
         {
+          "title": "Troubleshooting",
+          "slug": "content/docs/tinacloud/troubleshooting.mdx",
+          "_template": "item"
+        },
+        {
           "title": "Key Features",
           "items": [
             {
@@ -498,11 +503,6 @@
             }
           ],
           "_template": "items"
-        },
-        {
-          "title": "Troubleshooting",
-          "slug": "content/docs/tinacloud/troubleshooting.mdx",
-          "_template": "item"
         }
       ]
     },
