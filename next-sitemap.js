@@ -1,6 +1,10 @@
 module.exports = {
   siteUrl: 'https://tina.io',
   generateRobotsTxt: true,
+  additionalSitemaps: [
+    'https://tina.io/tinadocs/sitemap.xml',
+    'https://tina.io/tinadocs/doc/sitemap.xml',
+  ],
   robotsTxtOptions: {
     policies: [
       {
@@ -8,10 +12,6 @@ module.exports = {
         disallow: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
       },
       { userAgent: '*', allow: '/' },
-    ],
-    additionalSitemaps: [
-      'https://tina.io/tinadocs/sitemap.xml',
-      'https://tina.io/tinadocs/doc/sitemap.xml',
     ],
   },
   exclude: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
