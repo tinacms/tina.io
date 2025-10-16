@@ -498,6 +498,11 @@
             }
           ],
           "_template": "items"
+        },
+        {
+          "title": "Troubleshooting",
+          "slug": "content/docs/tinacloud/troubleshooting.mdx",
+          "_template": "item"
         }
       ]
     },
