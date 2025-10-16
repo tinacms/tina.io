@@ -2,7 +2,7 @@
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
 alias: FAQ
-last_edited: '2025-09-18T22:54:46.670Z'
+last_edited: '2025-10-15T04:48:56.513Z'
 next: ''
 previous: ''
 ---
@@ -192,8 +192,9 @@ If you receive an error like `The specified branch, 'my-branch-name', has not be
 1. Verify that a configuration file exists at `tina/config.ts` on the default branch
 2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process
 3. Verify that the branch exists in the GitHub repository
-4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved
-5. Ensure that the Tina project is located in the root directory
+4. Pull down the branch into your TinaCloud project. <Youtube embedSrc="https://youtube.com/embed/GDAQle7Q-sY" /> **Video: TinaCloud - How to index missing branches (3 min)**
+5. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved
+6. Ensure that the Tina project is located in the root directory
 
 ### 4. How do I resolve `There was a problem saving your document` error?
 
@@ -272,7 +273,7 @@ To fix, check your browser's address bar for blocked popups, allow them, and ret
 
 ## 17. Is Tina LLM-friendly?
 
-Yes. Tina is designed to be highly LLM-friendly, mainly because it uses Markdown for structuring content. 
+Yes. Tina is designed to be highly LLM-friendly, mainly because it uses Markdown for structuring content.
 
 Markdown gives Large Language Models (LLMs) clear advantages:
 
@@ -288,8 +289,10 @@ Unfortunately we do not support Git LFS at this time due to limitations with the
 
 ## 18. Getting a 503 Service Unavailable error when loading the reference field.
 
-When using the reference field on a collection with a large number of items, you may find the network requests time out. Currently, we do not have anything in place to paginate the reference field. 
+When using the reference field on a collection with a large number of items, you may find the network requests time out. Currently, we do not have anything in place to paginate the reference field.
 
-The alternative would be to add a [custom field component](https://tina.io/docs/extending-tina/custom-field-components) with pagination. To retrieve the paginated results, you can use a [custom query](https://tina.io/docs/data-fetching/custom-queries)
+The alternative would be to add a [custom field component](https://tina.io/docs/extending-tina/custom-field-components) with pagination. To retrieve the paginated results, you can use a [custom query](https://tina.io/docs/data-fetching/custom-queries).
 
-<Youtube embedSrc="https://www.youtube.com/embed/6FVpOvLK51s" caption="FAQ - Getting a 503 Service Unavailable error when loading the reference field" />
+<Youtube embedSrc="https://www.youtube.com/embed/6FVpOvLK51s"/>
+
+**Video: FAQ - Getting a 503 Service Unavailable error when loading the reference field**
