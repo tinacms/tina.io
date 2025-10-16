@@ -34,11 +34,13 @@ We built a Python script that:
 * Cleans up formatting artifacts (e.g. `<!--endintro-->`)
 * Outputs .mdx files
 
-## Block Types We Support
+## Block Types Supported
 
-Here are the key Markdown patterns our script handles (some of these are unique to the project it was developed for):
+Here are the key Markdown patterns which the script converts into MDX components:
 
-| Original Format                   | What It Represents               | Converted To                   |
+**Note:** Some examples are unique to the project it was developed for.
+
+| Original Format (.md)             | What It Represents               | Converted To (.mdx)            |
 | --------------------------------- | -------------------------------- | ------------------------------ |
 | `::: greybox/highlight/...`       | Info or aside boxes              | `<asideEmbed variant="..." />` |
 | `::: email-template :::`          | Emails with subject, body, etc.  | `<emailEmbed />`               |
