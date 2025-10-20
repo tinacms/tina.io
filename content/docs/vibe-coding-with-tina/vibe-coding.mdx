@@ -1,0 +1,97 @@
+---
+title: Building with TinaCMS Using AI Assistants
+last_edited: '2025-10-20T04:08:01.186Z'
+next: content/docs/beginner-tutorials/the-content-model.mdx
+previous: content/docs/introduction/using-starter.mdx
+---
+
+AI coding assistants pair exceptionally well with TinaCMS — as long as *you stay in control of the flow*. This guide shows how to work *with* your AI assistant like a pairing partner rather than handing it the wheel.
+
+The goal: **guided generation over blind automation.**
+
+***
+
+## 1. Set the Stage
+
+Set up an environment where your AI assistant can shine:
+
+* ✅ Use an IDE with inline AI suggestions (VS Code + Copilot recommended)
+* ✅ Start from a TinaCMS starter kit so the agent sees real code patterns
+* ✅ Review SSW’s *Rules for AI Development* (or your org’s AI guidelines)
+* ✅ Keep your dev server running so you can test output quickly
+
+> **Tip:** AI works best when it has context. Having the template setup gives it some code to use.
+
+***
+
+## 2. Build in Bite-Sized Pieces
+
+Avoid asking for “the whole project”. Instead, build in *small self-contained steps*.
+
+If you know what you want, use something like:
+
+Please create a component that allows commenting on a blog post.
+It should use Giscus, and config settings should be stored in a global config
+file so they can be reused across all comment blocks.
+
+If you’re not sure what to build yet, let AI brainstorm with you:
+
+> *“Suggest five useful blocks for a long-form article layout in TinaCMS.”*
+
+***
+
+## 3. Commit Early — Before Letting AI Go Wild
+
+AI is fast — sometimes *too* fast. It may:
+
+* Rename variables without updating references
+* Delete “unused” code that’s actually needed
+* Reformat entire files, making diff reviews painful
+
+To stay safe:
+
+* ✅ **Commit before applying major AI-generated edits**
+* ✅ If experimenting, **create a new branch first**
+* ✅ Treat AI outputs like prototypes: *easy to try, easy to revert*
+
+This protects your momentum. If the AI derails, you reset instantly instead of untangling chaos.
+
+***
+
+## 4. Test & Iterate
+
+Your job isn’t to accept suggestions blindly, it’s to **steer**.
+
+* If a suggestion is close → Accept → Tweak → Refine
+* If it’s off → Add more detail and regenerate
+* If it forgets Tina → Remind it explicitly (“This is using TinaCMS.”)
+
+Even debugging can be AI-assisted:
+
+After those changes to the comment system, the block no longer renders.
+Here's the error: error
+What's likely causing this, and how can I fix it without removing Giscus?
+
+***
+
+## 5. When It Gets Stuck — Reset the Vibe
+
+Sometimes AI spirals into irrelevant or repetitive suggestions.
+
+To reset:
+
+1. 🚫 Delete the bad attempts
+2. ✍️ Write **one clean sentence** about the outcome you want
+
+This snaps the assistant back into alignment.
+
+***
+
+## Final Thought
+
+AI is not a replacement for understanding Tina — *it accelerates your intent*.\
+The clearer your direction, the stronger its contribution.
+
+**Build small. Commit often. Iterate confidently.**
+
+***
