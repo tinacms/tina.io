@@ -1,13 +1,11 @@
 ---
 title: Building with TinaCMS Using AI Assistants
-last_edited: '2025-10-20T04:31:57.213Z'
+last_edited: '2025-10-20T05:51:37.213Z'
 next: content/docs/content-model-intro.mdx
 previous: content/docs/using-tina-editor.mdx
 ---
 
-AI coding assistants pair exceptionally well with TinaCMS — as long as *you stay in control of the flow*. This guide shows how to work *with* your AI assistant like a pairing partner rather than handing it the wheel.
-
-The goal: **guided generation over blind automation.**
+AI coding assistants pair exceptionally well with TinaCMS as long as you stay in control of the flow. This guide shows how to work *with* your AI assistant like a partner rather than handing it the wheel.
 
 ***
 
@@ -15,12 +13,19 @@ The goal: **guided generation over blind automation.**
 
 Set up an environment where your AI assistant can shine:
 
-* ✅ Use an IDE with inline AI suggestions (VS Code + Copilot recommended)
-* ✅ Start from a TinaCMS starter kit so the agent sees real code patterns
-* ✅ Review SSW’s *Rules for AI Development* (or your org’s AI guidelines)
-* ✅ Keep your dev server running so you can test output quickly
+### 1.1 Use an IDE with AI integration
 
-> **Tip:** AI works best when it has context. Having the template setup gives it some code to use.
+We recommend VSCode + Copilot.
+
+### 1.2 Setup your folder structure
+
+Start by creating an empty folder where you would like your project to be set up.
+
+### 1.3 Start from a TinaCMS starter kit
+
+Placeholder content
+
+> **Tip:** AI works best when it has context. Having the template gives it some code to model itself on. Check out [SSW's Rules to Better AI Development](https://www.ssw.com.au/rules/rules-to-better-ai-development/) for more tips.
 
 ***
 
@@ -30,19 +35,18 @@ Avoid asking for “the whole project”. Instead, build in *small self-containe
 
 If you know what you want, use something like:
 
-> *"Please create a component that allows commenting on a blog post.
-> It should use Giscus, and config settings should be stored in a global config
-> file so they can be reused across all comment blocks."*
+`"Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config
+ file so they can be reused across all comment blocks."`
 
 If you’re not sure what to build yet, let AI brainstorm with you:
 
-> *“Suggest five useful blocks for a long-form article layout in TinaCMS.”*
+`“Suggest five useful blocks for a long-form article layout in TinaCMS.”`
 
 ***
 
-## 3. Commit Early — Before Letting AI Go Wild
+## 3. Commit Early, Before Letting AI Go Wild
 
-AI is fast — sometimes *too* fast. It may:
+AI is fast and confident, sometimes a bit too much. It may:
 
 * Rename variables without updating references
 * Delete “unused” code that’s actually needed
@@ -74,14 +78,14 @@ What's likely causing this, and how can I fix it without removing Giscus?
 
 ***
 
-## 5. When It Gets Stuck — Reset the Vibe
+## 5. When It Gets Stuck
 
 Sometimes AI spirals into irrelevant or repetitive suggestions.
 
 To reset:
 
-1. 🚫 Delete the bad attempts
-2. ✍️ Write **one clean sentence** about the outcome you want
+1. Delete the bad attempts
+2. Write **one clean sentence** about the outcome you want
 
 This snaps the assistant back into alignment.
 
