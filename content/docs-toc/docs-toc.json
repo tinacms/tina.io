@@ -89,6 +89,11 @@
           "title": "FAQ",
           "slug": "content/docs/introduction/faq.mdx",
           "_template": "item"
+        },
+        {
+          "title": "Vibe Coding With Tina",
+          "slug": "content/docs/vibe-coding-with-tina/vibe-coding.mdx",
+          "_template": "item"
         }
       ]
     },
