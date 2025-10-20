@@ -1,11 +1,11 @@
 ---
 title: Building with TinaCMS Using AI Assistants
-last_edited: '2025-10-20T05:51:37.213Z'
+last_edited: '2025-10-20T21:51:11.692Z'
 next: content/docs/content-model-intro.mdx
 previous: content/docs/using-tina-editor.mdx
 ---
 
-AI coding assistants pair exceptionally well with TinaCMS as long as you stay in control of the flow. This guide shows how to work *with* your AI assistant like a partner rather than handing it the wheel.
+AI coding assistants pair exceptionally well with TinaCMS as long as you stay in control of the flow. This guide shows how to work with your AI assistant like a partner rather than handing it the wheel.
 
 ***
 
@@ -15,32 +15,75 @@ Set up an environment where your AI assistant can shine:
 
 ### 1.1 Use an IDE with AI integration
 
-We recommend VSCode + Copilot.
+Use a modern IDE that supports inline AI assistance.\
+We recommend **Visual Studio Code** paired with **GitHub Copilot** or another inline AI tool such as Cursor.
+
+These integrations allow your assistant to:
+
+* Understand context from nearby files
+* Adapt to your project’s style and structure automatically
 
 ### 1.2 Setup your folder structure
 
-Start by creating an empty folder where you would like your project to be set up.
+Before generating any code, create a clean folder where your project will live.
+This helps AI understand where new files should go and keeps your workspace organized as it starts generating multiple files.
 
 ### 1.3 Start from a TinaCMS starter kit
 
-Placeholder content
+AI works best when it has context. Having the template gives it some code to model itself on. Follow along with our [official guide](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you:
 
-> **Tip:** AI works best when it has context. Having the template gives it some code to model itself on. Check out [SSW's Rules to Better AI Development](https://www.ssw.com.au/rules/rules-to-better-ai-development/) for more tips.
+`Please set up a TinaCMS starter template using the command: npx create-tina-app@latest`
+
+Once installed, explore the generated files so you understand how TinaCMS is wired together.
+Your AI assistant will reference this structure automatically in later prompts, so the more you know your starting point, the more precise your direction will be.
+
+> **Tip:** Check out [SSW's Rules to Better AI Development](https://www.ssw.com.au/rules/rules-to-better-ai-development/)
 
 ***
 
 ## 2. Build in Bite-Sized Pieces
 
-Avoid asking for “the whole project”. Instead, build in *small self-contained steps*.
+AI works best when given small, focused tasks. Instead of asking for *“the whole project”*, break your work into **manageable, self-contained steps** that can be tested and refined one at a time.
 
-If you know what you want, use something like:
+This approach helps your assistant maintain context, reduces the chance of errors, and makes debugging much easier.
 
-`"Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config
- file so they can be reused across all comment blocks."`
+### 2.1 Start Small
 
-If you’re not sure what to build yet, let AI brainstorm with you:
+Rather than prompting your assistant to “build a blog site”, start with a single feature or component. If you know what you want, use something like:
 
-`“Suggest five useful blocks for a long-form article layout in TinaCMS.”`
+`Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config
+ file so they can be reused across all comment blocks.`
+
+This gives the AI a clear objective, a defined scope, and a hint at structure. This all helps produce high-quality, context-aware output.
+
+### 2.2 Iterate Feature by Feature
+
+Once one component or schema works, move on to the next logical piece.
+For example:
+
+* Add a layout block for your post pages
+* Create a metadata field group for SEO
+* Create a related posts section for blog entries
+
+By tackling each part in isolation, your AI assistant can build upon a solid foundation, learning the structure of your project as it goes.
+
+### 2.3 Use AI for Brainstorming
+
+If you’re not sure what you need yet, ask your assistant to help brainstorm possible content structures or reusable blocks.
+
+For example:
+
+`Suggest five useful blocks for a long-form article layout in TinaCMS.`
+
+### 2.4 Validate Early
+
+After each generated feature, test it immediately:
+
+* Run your dev server (npm run dev)
+* Check the TinaCMS interface for schema updates
+* Verify that components render correctly
+
+The earlier you validate, the less time you’ll spend debugging larger combined changes later.
 
 ***
 
@@ -48,53 +91,63 @@ If you’re not sure what to build yet, let AI brainstorm with you:
 
 AI is fast and confident, sometimes a bit too much. It may:
 
-* Rename variables without updating references
-* Delete “unused” code that’s actually needed
-* Reformat entire files, making diff reviews painful
+* Rename things that shouldn’t be touched
+* “Clean up” code that was actually doing something important
+* Reformat entire files
 
 To stay safe:
 
-* ✅ **Commit before applying major AI-generated edits**
-* ✅ If experimenting, **create a new branch first**
-* ✅ Treat AI outputs like prototypes: *easy to try, easy to revert*
+* **Commit before big AI edits.** It’s your save point.
+* If you’re exploring new ideas, **create a new branch first**
+* Treat AI outputs like prototypes: *easy to try, easy to revert*
 
-This protects your momentum. If the AI derails, you reset instantly instead of untangling chaos.
+This protects your momentum. If the AI derails, you can reset instead of untangling chaos.
 
 ***
 
 ## 4. Test & Iterate
 
-Your job isn’t to accept suggestions blindly, it’s to **steer**.
+Your job isn’t to accept suggestions blindly, it’s to steer.
 
-* If a suggestion is close → Accept → Tweak → Refine
-* If it’s off → Add more detail and regenerate
-* If it forgets Tina → Remind it explicitly (“This is using TinaCMS.”)
+AI will often get you close, but rarely perfect on the first try.
+Treat every output as a draft.
 
-Even debugging can be AI-assisted:
+* If a suggestion is close: Accept, tweak and refine
+* If it’s off: Add more detail and regenerate
+* If it forgets Tina: Remind it explicitly: `This is using TinaCMS, follow its component patterns.`
 
-After those changes to the comment system, the block no longer renders.
-Here's the error: error
-What's likely causing this, and how can I fix it without removing Giscus?
+Even debugging can be a collaboration. Instead of staring at an error alone, share it with your AI assistant:
+
+`After those changes to the comment system, the block no longer renders.
+Here's the error: {{error}}
+What's likely causing this, and how can I fix it?`
+
+AI won’t always nail the fix, but it will usually point you in the right direction. Use that feedback to keep momentum instead of getting stuck.
 
 ***
 
 ## 5. When It Gets Stuck
 
-Sometimes AI spirals into irrelevant or repetitive suggestions.
+Sometimes AI spirals, repeating itself, guessing wildly, or drifting into irrelevant code.
+
+Don’t fight it. Reset the vibe.
 
 To reset:
 
-1. Delete the bad attempts
-2. Write **one clean sentence** about the outcome you want
+1. **Delete the noise.** Clear out any broken or confusing suggestions.
+2. Write **one clean sentence** about the outcome you want next.
 
-This snaps the assistant back into alignment.
+That single line of clarity is often all it needs to snap back into alignment.
 
 ***
 
 ## Final Thought
 
-AI is not a replacement for understanding Tina — *it accelerates your intent*.\
-The clearer your direction, the stronger its contribution.
+AI won’t build your site for you but it will build *with* you.\
+Your job is to keep it aimed in the right direction.
+
+Understand Tina’s patterns, give clear prompts, and stay hands-on.\
+That’s how you get fast results that still feel intentional.
 
 **Build small. Commit often. Iterate confidently.**
 
