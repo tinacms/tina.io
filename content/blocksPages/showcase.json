@@ -33,7 +33,7 @@
           "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
           "media": {
-            "src": "/gif/smashingmagazine-tinacms.webm"
+            "src": "/gif/smashingmagazine-tinacms.gif"
           }
         },
         {
