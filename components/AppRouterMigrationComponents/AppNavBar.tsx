@@ -441,6 +441,8 @@ export function AppNavBar({ sticky = true }) {
                         >
                           <Link
                             href={subItem.href}
+                            target={subItem.external ? '_blank' : '_self'}
+                            rel={subItem.external ? 'noopener noreferrer' : undefined}
                             onClick={handleNavLinkClick}
                           >
                             <span className="">
