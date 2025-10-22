@@ -77,6 +77,7 @@ interface ModalButtonItem extends NavItemBase {
 interface StringItem extends NavItemBase {
   _template: typeof stringItemString;
   href: string;
+  external?: boolean;
 }
 
 interface GroupOfStringItems extends NavItemBase {
@@ -84,6 +85,7 @@ interface GroupOfStringItems extends NavItemBase {
   items: Array<{
     label: string;
     href: string;
+    external?: boolean;
   }>;
 }
 
@@ -600,6 +602,7 @@ export function AppNavBar({ sticky = true }) {
                           className={`group ${navLinkClasses} border-blue-500`}
                         >
                           <Link
+                            target={item.external ? '_blank' : '_self'}
                             href={item.href}
                             className=""
                             onClick={handleNavLinkClick}
@@ -654,6 +657,7 @@ export function AppNavBar({ sticky = true }) {
                                       handleNavLinkClick();
                                       setOpenDropdown(null);
                                     }}
+                                    target={subItem.external ? '_blank' : '_self'}
                                     className="touch-manipulation"
                                   >
                                     <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
