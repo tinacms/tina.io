@@ -12,7 +12,7 @@
         {
           "label": "Docs for TinaCMS",
           "href": "/docs",
-          "external": true
+          "external": false
         },
         {
           "label": "Videos",
