@@ -6,27 +6,33 @@
       "items": [
         {
           "label": "Home",
-          "href": "/tinacms"
+          "href": "/tinacms",
+          "external": false
         },
         {
           "label": "Docs for TinaCMS",
-          "href": "/docs"
+          "href": "/docs",
+          "external": true
         },
         {
           "label": "Videos",
-          "href": "https://www.youtube.com/c/tinacms"
+          "href": "https://www.youtube.com/c/tinacms",
+          "external": true
         },
         {
           "label": "Compare TinaCMS",
-          "href": "/compare-tina"
+          "href": "/compare-tina",
+          "external": false
         },
         {
           "label": "Showcase",
-          "href": "/showcase"
+          "href": "/showcase",
+          "external": false
         },
         {
           "label": "What's New in TinaCMS",
-          "href": "/whats-new/tinacms"
+          "href": "/whats-new/tinacms",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
@@ -36,11 +42,13 @@
       "items": [
         {
           "label": "Home",
-          "href": "/tinadocs"
+          "href": "/tinadocs",
+          "external": false
         },
         {
           "label": "Docs for TinaDocs",
-          "href": "/tinadocs/docs"
+          "href": "/tinadocs/docs",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
@@ -50,11 +58,13 @@
       "items": [
         {
           "label": "My TinaCloud",
-          "href": "https://app.tina.io/signin"
+          "href": "https://app.tina.io/signin",
+          "external": true
         },
         {
           "label": "What's New in TinaCloud",
-          "href": "/whats-new/tinacloud"
+          "href": "/whats-new/tinacloud",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
@@ -64,11 +74,13 @@
       "items": [
         {
           "label": "TinaCloud Pricing",
-          "href": "/pricing"
+          "href": "/pricing",
+          "external": false
         },
         {
           "label": "Enterprise",
-          "href": "/enterprise"
+          "href": "/enterprise",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
@@ -78,31 +90,38 @@
       "items": [
         {
           "label": "Events",
-          "href": "/events"
+          "href": "/events",
+          "external": false
         },
         {
           "label": "Certifications",
-          "href": "/certifications"
+          "href": "/certifications",
+          "external": false
         },
         {
           "label": "Awesome TinaCMS",
-          "href": "https://github.com/tinacms/awesome-tinacms"
+          "href": "https://github.com/tinacms/awesome-tinacms",
+          "external": true
         },
         {
           "label": "Discord",
-          "href": "https://discord.com/invite/zumN63Ybpf"
+          "href": "https://discord.com/invite/zumN63Ybpf",
+          "external": true
         },
         {
           "label": "Support",
-          "href": "/docs/support"
+          "href": "/docs/support",
+          "external": false
         },
         {
           "label": "Forum",
-          "href": "https://github.com/tinacms/tinacms/discussions"
+          "href": "https://github.com/tinacms/tinacms/discussions",
+          "external": true
         },
         {
           "label": "Roadmap",
-          "href": "/roadmap"
+          "href": "/roadmap",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
@@ -112,15 +131,18 @@
       "items": [
         {
           "label": "About Tina",
-          "href": "/about"
+          "href": "/about",
+          "external": false
         },
         {
           "label": "Blog",
-          "href": "/blog"
+          "href": "/blog",
+          "external": false
         },
         {
           "label": "Examples",
-          "href": "/examples"
+          "href": "/examples",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
