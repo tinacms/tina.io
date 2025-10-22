@@ -462,6 +462,7 @@ export function AppNavBar({ sticky = true }) {
                     >
                       <Link
                         href={item.href}
+                        target={item.external ? '_blank' : '_self'}
                         className="py-2"
                         onClick={handleNavLinkClick}
                       >
@@ -605,6 +606,8 @@ export function AppNavBar({ sticky = true }) {
                         >
                           <Link
                             href={item.href}
+                            target={item.external ? '_blank' : '_self'}
+                            rel={item.external ? 'noopener noreferrer' : undefined}
                             className=""
                             onClick={handleNavLinkClick}
                           >
