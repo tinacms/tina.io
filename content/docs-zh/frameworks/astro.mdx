@@ -1,13 +1,13 @@
 ---
 id: /docs/frameworks/astro
 title: Astro + Tina 设置指南
-last_edited: '2025-03-24T06:10:09.941Z'
+last_edited: '2025-10-21T09:35:02.227Z'
 next: content/docs-zh/frameworks/hugo.mdx
 previous: content/docs-zh/frameworks/next/pages-router.mdx
 ---
 
 \
-TinaCMS 可以本地添加到您的 Astro 网站中，实现无缝的内容管理和编辑。本指南将引导您完成本地设置、配置内容模型、运行 TinaCMS 以及启用可视化编辑。
+TinaCMS 可以本地添加到您的 Astro 网站，实现无缝的内容管理和编辑。本指南将引导您完成本地设置、配置内容模型、运行 TinaCMS 和启用可视化编辑。
 
 ## 入门
 
@@ -19,7 +19,7 @@ TinaCMS 可以本地添加到您的 Astro 网站中，实现无缝的内容管�
 npx @tinacms/cli@latest init
 ```
 
-此命令将提示您进行一些设置问题。当询问 **公共资产目录** 时，输入：
+此命令将提示您进行一些设置问题。当被问及 **公共资产目录** 时，输入：
 
 ```
 public
@@ -47,7 +47,7 @@ npx create-tina-app@latest --template tina-astro-starter
 npx tinacms dev -c "astro dev"
 ```
 
-> 注意：可以在 `astro dev` 后添加 `--port 8080` 以指定自定义端口。
+> 注意：`--port 8080` 可以在 `astro dev` 后添加以指定自定义端口。
 
 一旦 TinaCMS 运行，导航到：
 
@@ -59,7 +59,7 @@ http://localhost:<port>/admin/index.html
 
 > **提示：** 如果遇到错误，请查看[常见错误](/docs/forestry/common-errors)页面。
 
-此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并观察更新持久化到您的本地 markdown 文件中。
+此时，您应该能够看到 Tina 管理界面，选择一个帖子，保存更改，并观察更新持久化到您的本地 markdown 文件。
 
 ![TinaCMS 管理](/img/hugo-tina-admin-screenshot.png)
 
@@ -73,7 +73,7 @@ http://localhost:<port>/admin/index.html
 
 阅读更多关于[数据获取](/docs/features/data-fetching/)和[可视化编辑](/docs/contextual-editing/overview/)的信息。
 
-> **注意：** Astro 的可视化编辑目前是实验性的。[查看讨论](https://github.com/tinacms/tinacms/discussions/3399)。
+> **注意：** 使用 Astro 的可视化编辑目前是实验性的。[查看讨论](https://github.com/tinacms/tinacms/discussions/3399)。
 
 ## 下一步
 
@@ -81,6 +81,6 @@ http://localhost:<port>/admin/index.html
 * [了解如何查询您的内容](/docs/features/data-fetching/)
 * [部署您的网站](/docs/tinacloud)
 
-欲了解更多详情，请访问官方 [TinaCMS 文档](https://tina.io/docs/)和 [Astro 文档](https://astro.build/docs/)。
+欲了解更多详情，请访问官方 [TinaCMS 文档](https://tina.io/docs/) 和 [Astro 文档](https://astro.build/docs/)。
 
 加入 [TinaCMS Discord](https://discord.gg/suurtdwX) 以获得社区支持。

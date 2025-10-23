@@ -6,11 +6,11 @@ next: ''
 previous: ''
 ---
 
-“认证提供者”一词指的是TinaCMS组件，用于处理自托管时用户的身份验证和授权。
+术语“认证提供者”指的是TinaCMS组件，用于处理自托管时用户的身份验证和授权。
 
 Tina推荐的认证提供者基于[Auth.js](https://authjs.dev/)。它利用数据库中的用户集合来存储用户信息，并使用Auth.js API来处理身份验证和授权。通过利用Auth.js，你还可以轻松添加对任何Auth.js [登录提供者](https://authjs.dev/getting-started/providers)的支持，如Auth0、GitHub、Google等。
 
-在自托管时，认证提供者在两个地方进行配置：
+在自托管时，认证提供者需要在两个地方进行配置：
 
 * Tina配置
 * Tina后端
@@ -62,7 +62,7 @@ export default (req, res) => {
 }
 ```
 
-## 预构建的认证提供者
+## 预构建认证提供者
 
 * [默认 (Auth.js)](/docs/reference/self-hosted/auth-provider/authjs)
 * [TinaCloud](/docs/reference/self-hosted/auth-provider/tinacloud)

@@ -2,16 +2,16 @@
 id: /docs/frameworks/other
 prev: /docs-zh/setup-overview
 title: 与框架无关的TinaCMS设置指南
-last_edited: '2025-03-26T04:37:04.901Z'
+last_edited: '2025-10-21T09:41:33.751Z'
 next: ''
 previous: ''
 ---
 
 ## 介绍
 
-大多数情况下，TinaCMS与框架无关。除非你使用“可视化编辑”，否则设置过程在不同网站框架中基本相同。
+大多数情况下，TinaCMS与框架无关。除非你使用“可视化编辑”，否则设置过程在很大程度上与网站的框架无关。
 
-#### 希望支持你的框架？
+#### 想要支持你的框架？
 
 通过[GitHub讨论](https://github.com/tinacms/tinacms/discussions "GitHub discussions")让我们知道：
 
@@ -22,7 +22,7 @@ previous: ''
 
 ## 入门
 
-在你网站的目录中运行：
+在你的网站目录中运行：
 
 ```bash
  npx @tinacms/cli@latest init
@@ -44,7 +44,7 @@ previous: ''
   }
 ```
 
-如果CLI没有设置这些脚本，你需要手动应用。
+如果CLI没有设置这些，你需要手动应用。
 
 ## 建模你的内容
 
@@ -54,7 +54,7 @@ previous: ''
 
 ## 启动TinaCMS
 
-你可以通过以下命令启动TinaCMS：
+你可以通过以下方式启动TinaCMS：
 
 ```bash
 npx tinacms dev -c "<your-dev-process>"
@@ -72,13 +72,13 @@ npx tinacms dev -c "<your-dev-process>"
   </>}
 />
 
-此时，你应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改持久化到你的本地markdown文件中。
+此时，你应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改已持久化到你的本地markdown文件中。
 
 ![](/img/hugo-tina-admin-screenshot.png)
 
 ## 设置可视化编辑（可选）
 
-如果你希望使用TinaCMS的API为你的页面提供支持，并且你使用的是基于React的框架，你可能可以利用TinaCMS的可视化编辑功能。
+如果你想使用TinaCMS的API为你的页面提供支持，并且你使用的是基于React的框架，你可能可以利用TinaCMS的可视化编辑功能。
 
 ![基于块的编辑可视化](/gif/blocks.gif)
 
