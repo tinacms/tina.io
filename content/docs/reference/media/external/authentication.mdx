@@ -127,10 +127,19 @@ router.get('/cloudinary/media', mediaHandler)
 
 router.post('/cloudinary/media', mediaHandler)
 
-router.delete('/cloudinary/media/:media', (req, res) => {
-  req.query.media = ['media', req.params.media]
-  return mediaHandler(req, res)
-})
+router.delete("/cloudinary/media/:media", (req, res) => {
+  Object.defineProperty(
+    req,
+    'query',
+    {
+      ...Object.getOwnPropertyDescriptor(req, 'query'),
+      value: { ...req.query,  media: [ "media", req.params.media ] },
+      writable: true
+    }
+  );
+
+  return mediaHandler(req, res);
+});
 
 app.use('/api/', router)
 app.use('/.netlify/functions/api/', router)
