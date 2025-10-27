@@ -442,7 +442,11 @@ export function AppNavBar({ sticky = true }) {
                           <Link
                             href={subItem.href}
                             target={subItem.external ? '_blank' : '_self'}
-                            rel={subItem.external ? 'noopener noreferrer' : undefined}
+                            rel={
+                              subItem.external
+                                ? 'noopener noreferrer'
+                                : undefined
+                            }
                             onClick={handleNavLinkClick}
                           >
                             <span className="">
@@ -607,7 +611,9 @@ export function AppNavBar({ sticky = true }) {
                           <Link
                             href={item.href}
                             target={item.external ? '_blank' : '_self'}
-                            rel={item.external ? 'noopener noreferrer' : undefined}
+                            rel={
+                              item.external ? 'noopener noreferrer' : undefined
+                            }
                             className=""
                             onClick={handleNavLinkClick}
                           >
@@ -657,8 +663,14 @@ export function AppNavBar({ sticky = true }) {
                                 >
                                   <Link
                                     href={subItem.href}
-                                    target={subItem.external ? '_blank' : '_self'}
-                                    rel={subItem.external ? 'noopener noreferrer' : undefined}
+                                    target={
+                                      subItem.external ? '_blank' : '_self'
+                                    }
+                                    rel={
+                                      subItem.external
+                                        ? 'noopener noreferrer'
+                                        : undefined
+                                    }
                                     onClick={() => {
                                       handleNavLinkClick();
                                       setOpenDropdown(null);
