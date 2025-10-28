@@ -132,7 +132,7 @@ export const SubscriptionForm = ({ props }) => {
           <div className="flex justify-center pt-1">
             <button
               type="submit"
-              className="px-2 py-2 text-sm w-full bg-white text-orange-600 font-ibm-plex shadow-xl hover:bg-white/80 transition-colors duration-200 rounded-full "
+              className="px-2 py-2 text-sm w-full bg-white text-orange-600 font-ibm-plex shadow-xl hover:bg-white/80 transition-colors duration-200 rounded-full cursor-pointer"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Subscribe...' : label}

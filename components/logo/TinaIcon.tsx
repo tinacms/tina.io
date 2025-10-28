@@ -23,7 +23,7 @@ export const TinaIcon = ({
               color === 'orange' ? 'text-orange-500' : 'text-white'
             }`}
           >
-            {children}
+            {children} TinaCMS
           </span>
         )}
       </h1>

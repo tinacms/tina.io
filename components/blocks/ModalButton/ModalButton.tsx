@@ -14,7 +14,7 @@ const modals = {
   'EmailForm.tsx': <EmailForm />,
 };
 
-export const ModalB = ({ items, align = 'left' }) => {
+export const ModalB = ({ items, align = 'left', className = '' }) => {
   const [open, setOpen] = useState(false);
   const [ModalContent, setModalContent] = useState(null);
 
@@ -42,14 +42,15 @@ export const ModalB = ({ items, align = 'left' }) => {
           .join(' ')}
       >
         {items?.map((item) => {
-          const { color, label, icon, modal } = item;
+          const { color, label, icon, modal, shape } = item;
 
           return (
             <ModalButton
               key={label}
               color={color}
+              shape={shape}
               id={sanitizeLabel(label)}
-              className=""
+              className={className}
               onClick={() => openModal(modal)}
               data-tina-field={tinaField(item, 'label')}
             >

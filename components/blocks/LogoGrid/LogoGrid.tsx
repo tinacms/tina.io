@@ -2,7 +2,7 @@ import { useWindowSize } from 'components/hooks/UseWindowSize';
 import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import { Slider } from './CustomSlider';
 
 const Logo = ({ data, windowWidth = 1000 }) => {
@@ -56,7 +56,7 @@ export function LogoGridBlock({ data, index }) {
       <div className="flex flex-col items-center w-full justify-center">
         {data.title && (
           <h2
-            className={`${BLOCK_HEADINGS} font-ibm-plex inline w-fit m-auto lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center mt-10`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline w-fit m-auto lg:leading-tight bg-linear-to-br text-black text-balance text-center mt-10`}
           >
             {data.title}
           </h2>

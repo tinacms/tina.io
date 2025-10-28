@@ -22,7 +22,7 @@ import { SlLock } from 'react-icons/sl';
 import { TbPlugConnected } from 'react-icons/tb';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 
 const icons = {
   FaClock,
@@ -278,7 +278,7 @@ export function PricingBlock({ data }) {
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">
       <h1
-        className={`${BLOCK_HEADINGS} font-ibm-plex text-center justify-center lg:leading-tight bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600  bg-clip-text text-transparent`}
+        className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
       >
         {data.headline}
       </h1>

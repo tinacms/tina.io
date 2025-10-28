@@ -91,7 +91,7 @@ query pageWithRecentPosts($relativePath: String!) {
     }
     ...PageParts
   }
-  recentPosts: postConnection(sort: "date", last: 2) {
+  recentPosts: postConnection(sort: "date", last: 3) {
     edges {
       node {
         _sys {

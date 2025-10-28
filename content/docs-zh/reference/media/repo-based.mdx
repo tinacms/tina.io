@@ -1,14 +1,16 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts
 title: 基于仓库的媒体
-last_edited: '2025-03-26T03:40:07.387Z'
+alias: repo-based-media
+last_edited: '2025-09-18T23:25:44.757Z'
 next: ''
 previous: ''
 ---
 
-TinaCMS 提供了**内置的基于仓库（git）的媒体存储选项**。或者，您可以将您的CMS连接到外部媒体存储提供商。
+TinaCMS 有一个**内置的基于仓库（git）的媒体存储选项**。或者，您可以将您的CMS连接到外部媒体存储提供商。
 
-> 基于仓库的媒体将您的资产与内容放在一起，这意味着您可以**跟踪代码和媒体的更改并回滚版本**。
+> 基于仓库的媒体将您的资产与内容放在一起，这意味着您可以**跟踪更改并回滚代码和媒体的版本**。
 
 这还有其他好处，如减少依赖性、使用外部API、本地开发和预览环境之间的同步。
 
@@ -47,11 +49,11 @@ export default defineConfig({
 
 如果您希望将媒体上传到 `publicFolder` 的根目录，请将其设置为 `""`。
 
-> 此目录中的任何内容都将与 TinaCloud 的媒体服务器同步，图像将公开可访问。
+> 此目录中的任何内容都将与 TinaCloud 的媒体服务器同步，并且图像将公开可访问。
 
 ### 媒体权限
 
-`static` 属性决定了是否可以通过编辑器直接上传、编辑或删除媒体文件。
+`static` 属性决定媒体文件是否可以通过编辑器直接上传、编辑或删除。
 
 * **`static: true`** 编辑者不能上传/删除媒体（静态资产）
 * **`static: false`**（默认）：编辑者可以上传/删除媒体（动态资产）。
@@ -128,12 +130,12 @@ module.exports = {
 
 基于仓库的媒体设计用于单一分支工作流。如果您的项目使用[多个分支](/docs/tinacloud/branching/)或[编辑工作流](/docs/drafts/editorial-workflow/)，需要注意一些已知的限制。
 
-* 图像一旦上传就不能更改，任何后续对资产的更改都不会反映。
+* 图像上传后不能更改，任何后续对资产的更改都不会反映。
 * 如果您只有一个启用媒体的分支，媒体存储将从该分支获取/上传图像。
-* 如果您有多个启用媒体的分支，则所有媒体将从/上传到存储库的默认分支。
+* 如果您有多个启用媒体的分支，则所有媒体将从/上传到仓库的默认分支。
 
-如果您在非默认分支上配置 Tina（且 Tina 配置尚未合并到您的默认分支），您可能会在 TinaCloud 媒体设置中看到此消息：
+如果您在非默认分支上配置 Tina（并且 Tina 配置尚未合并到您的默认分支），您可能会在 TinaCloud 媒体设置中看到此消息：
 
 ![](/img/docs/reference/media-not-configured_lnr5lw.png)
 
-要解决此问题，您可能需要在将 Tina 合并到默认分支后启用媒体。
+为了解决这个问题，您可能需要在将 Tina 合并到默认分支后启用媒体。
