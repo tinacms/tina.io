@@ -92,7 +92,7 @@
     "react-dom": "^18.3.1",
     "react-github-btn": "^1.4.0",
     "react-icons": "^4.12.0",
-    "react-instantsearch-core": "^6.40.4",
+    "react-instantsearch-core": "^7.17.0",
     "react-instantsearch-dom": "^6.40.4",
     "react-intersection-observer": "^9.15.1",
     "react-markdown": "^8.0.7",
