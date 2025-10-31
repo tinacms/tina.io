@@ -1,6 +1,6 @@
 ---
 title: Content Security Policy (CSP) Configuration
-next: 'content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx'
+next: content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx
 previous: ''
 ---
 
@@ -191,6 +191,14 @@ If the TinaCMS editor fails to load:
 1. Verify all required domains are included in `connect-src`
 2. Check for CSP violations in the browser console
 3. Ensure `frame-src` allows the TinaCMS admin interface if using iframe mode
+
+<WarningCallout
+  body={<>
+    Having issues when authenticating with GitHub? It could be your CSP configuration!
+    
+    Check out [this GitHub issue on how it was resolved](https://github.com/tinacms/tina.io/issues/3978).
+  </>}
+/>
 
 ### Testing CSP Configuration
 
