@@ -1,20 +1,20 @@
 ---
 id: /docs/frameworks/hugo
-
 title: Hugo + TinaCMS 设置指南
+last_edited: '2025-10-21T09:36:06.358Z'
 next: content/docs-zh/frameworks/gatsby.mdx
 previous: content/docs-zh/frameworks/astro.mdx
 ---
 
 ## 介绍
 
-TinaCMS 可以在本地添加到您的 Hugo 站点。在本文档中，我们将指导您完成本地设置，以及在生产站点上进行编辑。
+TinaCMS 可以本地添加到您的 Hugo 网站。在本文档中，我们将指导您完成本地设置，以及在生产网站上的编辑。
 
 > 您可以参考我们的 [Tina Hugo Starter](https://github.com/tinacms/tina-hugo-starter) 作为示例。
 
 ## 入门
 
-在您的站点目录中，运行：
+在您网站的目录中运行：
 
 ```bash
  npx @tinacms/cli@latest init
@@ -22,29 +22,29 @@ TinaCMS 可以在本地添加到您的 Hugo 站点。在本文档中，我们将
 
 这将询问您一些设置问题。
 
-当提示输入“**公共资产目录**”时，输入：**static**。
+当被询问“**公共资产目录**”时，输入：**static**。
 
-> 如果您是从 Forestry.io CMS 导入站点，某些模型和配置将自动导入。
+> 如果您是从 Forestry.io CMS 导入您的网站，一些模型和配置将被自动导入。
 
 ## 建模您的内容
 
-要在 Tina 中编辑您的站点内容，您可以在 tina/config.ts 文件中建模您的内容。
+要在 Tina 中编辑您网站的内容，您可以在 tina/config.ts 文件中建模您的内容。
 
-在[这里](/docs/schema/)了解更多关于内容建模的信息
+在[这里](/docs/schema/)了解更多关于内容建模的信息。
 
 ## 启动 TinaCMS
 
-您可以通过以下方式启动 TinaCMS：
+您可以通过以下命令启动 TinaCMS：
 
 ```bash
 npx tinacms dev -c "hugo server -D -p 1313"
 ```
 
-> `hugo server -D -p 1313` 可以替换为您站点的自定义开发命令。
+> `hugo server -D -p 1313` 可以替换为您网站的自定义开发命令。
 
 在 TinaCMS 运行时，导航到 `http://localhost:1313/admin`
 
-> ^ 上述默认端口可能会因您的框架而异。
+> ^ 上述默认端口可能会根据您的框架而有所不同。
 
 > 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
 
@@ -54,6 +54,6 @@ npx tinacms dev -c "hugo server -D -p 1313"
 
 ## 下一步
 
-- [查看内容建模文档](/docs/schema/)
-- [了解如何查询您的内容](/docs/features/data-fetching/)
-- [部署您的站点](/docs/tinacloud)
+* [查看内容建模文档](/docs/schema/)
+* [了解如何查询您的内容](/docs/features/data-fetching/)
+* [部署您的网站](/docs/tinacloud)
