@@ -289,7 +289,7 @@
         },
         {
           "title": "Content Security Policy (CSP) Configuration",
-          "slug": "content/docs/guides/csp-configuration.mdx.mdx",
+          "slug": "content/docs/guides/csp-configuration.mdx",
           "_template": "item"
         }
       ]
