@@ -1,6 +1,6 @@
 ---
 title: 插件组件
-last_edited: '2025-03-17T05:20:14.331Z'
+last_edited: '2025-10-28T22:37:40.781Z'
 tocIsHidden: true
 next: ''
 previous: ''
@@ -8,7 +8,7 @@ previous: ''
 
 TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.component` 属性使用。
 
-将该属性设置为插件名称的字符串。
+将属性设置为插件名称的字符串。
 
 **这只会修改编辑器** – 存储的底层数据取决于使用的字段类型。
 
@@ -33,7 +33,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     字符串字段的默认输入类型。
     
-    要使用，设置 `ui.compontent` 为 `"text"`。
+    要使用，设置 `ui.component` 为 `"text"`。
     
     [插件详情](/docs/reference/toolkit/fields/text/)。
   </>}
@@ -45,7 +45,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     多行文本。
     
-    要使用，设置 `ui.compontent` 为 `"textarea"`。
+    要使用，设置 `ui.component` 为 `"textarea"`。
     
     [插件详情](/docs/reference/toolkit/fields/textarea/)。
   </>}
@@ -57,7 +57,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     数字字段类型的默认输入类型。
     
-    要使用，设置 `ui.compontent` 为 `"number"`。
+    要使用，设置 `ui.component` 为 `"number"`。
     
     [插件详情](/docs/reference/toolkit/fields/number/)。
   </>}
@@ -69,7 +69,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     图像字段类型的默认输入。
     
-    要使用，设置 `ui.compontent` 为 `"image"`。
+    要使用，设置 `ui.component` 为 `"image"`。
     
     [插件详情](/docs/reference/toolkit/fields/image/)。
   </>}
@@ -81,7 +81,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     提供一个颜色选择器，返回 RGB 或十六进制值。
     
-    要使用，设置 `ui.compontent` 为 `"color"`。
+    要使用，设置 `ui.component` 为 `"color"`。
     
     [插件详情](/docs/reference/toolkit/fields/color/)。
   </>}
@@ -93,7 +93,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     布尔字段类型的默认输入类型。
     
-    要使用，设置 `ui.compontent` 为 `"toggle"`。
+    要使用，设置 `ui.component` 为 `"toggle"`。
     
     [插件详情](/docs/reference/toolkit/fields/toggle/)。
   </>}
@@ -103,7 +103,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
 <ImageAndText
   image="/img/fields/radio-group-field-horizontal-radio.gif"
   docText={<>
-    要使用，设置 `ui.compontent` 为 `"radio-group"`。
+    要使用，设置 `ui.component` 为 `"radio-group"`。
     
     [插件详情](/docs/reference/toolkit/fields/radio-group/)。
   </>}
@@ -115,7 +115,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     默认用于定义了选项属性的标量类型。
     
-    要使用，设置 `ui.compontent` 为 `"select"`。
+    要使用，设置 `ui.component` 为 `"select"`。
     
     [插件详情](/docs/reference/toolkit/fields/select/)。
   </>}
@@ -125,7 +125,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
 <ImageAndText
   image="/img/fields/tags-field.png"
   docText={<>
-    要使用，设置 `ui.compontent` 为 `"tags"`。
+    要使用，设置 `ui.component` 为 `"tags"`。
     
     [插件详情](/docs/reference/toolkit/fields/tags/)。
   </>}
@@ -137,7 +137,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     管理 `list: true` 字段类型的默认输入类型。
     
-    要使用，设置 `ui.compontent` 为 `"list"`。
+    要使用，设置 `ui.component` 为 `"list"`。
     
     [插件详情](/docs/reference/toolkit/fields/list/)。
   </>}
@@ -147,7 +147,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
 <ImageAndText
   image="/img/fields/group.gif"
   docText={<>
-    要使用，设置 `ui.compontent` 为 `"group"`。
+    要使用，设置 `ui.component` 为 `"group"`。
     
     [插件详情](/docs/reference/toolkit/fields/group/)。
   </>}
@@ -157,7 +157,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
 <ImageAndText
   image="/img/blocks.gif"
   docText={<>
-    要使用，设置 `ui.compontent` 为 `"group-list"`。
+    要使用，设置 `ui.component` 为 `"group-list"`。
     
     [插件详情](/docs/reference/toolkit/fields/group-list/)。
   </>}
@@ -169,7 +169,7 @@ TinaCMS 提供了多种预构建组件（**插件**），可以通过 `ui.compon
   docText={<>
     使用日期选择器选择日期的默认输入类型。
     
-    要使用，设置 `ui.compontent` 为 `"date"`。
+    要使用，设置 `ui.component` 为 `"date"`。
     
     [插件详情](/docs/reference/toolkit/fields/date/)。
   </>}
