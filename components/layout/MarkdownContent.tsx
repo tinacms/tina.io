@@ -211,7 +211,8 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
           return <ul className="list-decimal ml-6" {...props} />;
         },
         a: ({ node, href, ...props }) => {
-          const isExternal = href?.startsWith('http://') || href?.startsWith('https://');
+          const isExternal =
+            href?.startsWith('http://') || href?.startsWith('https://');
           return (
             <a
               href={href}
