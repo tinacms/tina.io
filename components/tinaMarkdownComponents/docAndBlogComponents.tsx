@@ -228,11 +228,14 @@ export const docAndBlogComponents: Components<{
   li: (props) => <li className="mb-2 ml-8" {...props} />,
   p: (props) => <p className="mb-2" {...props} />,
   a: (props) => {
+    const isExternal = props.url?.startsWith('http://') || props.url?.startsWith('https://');
     return (
       <a
         href={props.url}
         {...props}
         className="underline transition-all duration-200 ease-out hover:text-orange-500"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
       />
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
