@@ -9,6 +9,10 @@ module.exports = {
       },
       { userAgent: '*', allow: '/' },
     ],
+    additionalSitemaps: [
+      'https://tina.io/tinadocs/sitemap.xml',
+      'https://tina.io/tinadocs/doc/sitemap.xml',
+    ],
   },
   exclude: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
   sitemapSize: 7000,

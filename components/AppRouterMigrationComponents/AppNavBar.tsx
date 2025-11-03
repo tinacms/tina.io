@@ -77,6 +77,7 @@ interface ModalButtonItem extends NavItemBase {
 interface StringItem extends NavItemBase {
   _template: typeof stringItemString;
   href: string;
+  external?: boolean;
 }
 
 interface GroupOfStringItems extends NavItemBase {
@@ -84,6 +85,7 @@ interface GroupOfStringItems extends NavItemBase {
   items: Array<{
     label: string;
     href: string;
+    external?: boolean;
   }>;
 }
 
@@ -439,6 +441,12 @@ export function AppNavBar({ sticky = true }) {
                         >
                           <Link
                             href={subItem.href}
+                            target={subItem.external ? '_blank' : '_self'}
+                            rel={
+                              subItem.external
+                                ? 'noopener noreferrer'
+                                : undefined
+                            }
                             onClick={handleNavLinkClick}
                           >
                             <span className="">
@@ -458,6 +466,7 @@ export function AppNavBar({ sticky = true }) {
                     >
                       <Link
                         href={item.href}
+                        target={item.external ? '_blank' : '_self'}
                         className="py-2"
                         onClick={handleNavLinkClick}
                       >
@@ -601,6 +610,10 @@ export function AppNavBar({ sticky = true }) {
                         >
                           <Link
                             href={item.href}
+                            target={item.external ? '_blank' : '_self'}
+                            rel={
+                              item.external ? 'noopener noreferrer' : undefined
+                            }
                             className=""
                             onClick={handleNavLinkClick}
                           >
@@ -650,6 +663,14 @@ export function AppNavBar({ sticky = true }) {
                                 >
                                   <Link
                                     href={subItem.href}
+                                    target={
+                                      subItem.external ? '_blank' : '_self'
+                                    }
+                                    rel={
+                                      subItem.external
+                                        ? 'noopener noreferrer'
+                                        : undefined
+                                    }
                                     onClick={() => {
                                       handleNavLinkClick();
                                       setOpenDropdown(null);
