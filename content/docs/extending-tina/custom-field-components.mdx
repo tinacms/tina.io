@@ -2,7 +2,7 @@
 id: /docs/extending-tina/custom-field-components
 title: React Components
 alias: custom-fields-react
-last_edited: '2025-11-03T05:42:59.208Z'
+last_edited: '2025-11-03T22:16:00.933Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -184,9 +184,15 @@ The below tutorial includes a segment on creating a custom Icon selector using a
 
 <Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
 
-### Image Scale Component
+### Image scale slider component
+
+With a little bit of extra CSS you can create scalable images in Tina. This will save you having to crop images for your blog.
+![An image being scaled within the Tina editor](/img-scale-component.gif)
 
 ```
+import { wrapFieldsWithMeta } from 'tinacms';
+
+// inside your collection
 {
   label: "Image Scale",
   name: "imgScale",
@@ -198,8 +204,6 @@ The below tutorial includes a segment on creating a custom Icon selector using a
       return (
         <div>
           <input
-            name="saturation"
-            id="saturation"
             type="range"
             min="1"
             max="200"
@@ -220,13 +224,13 @@ The below tutorial includes a segment on creating a custom Icon selector using a
 import client from "@/tina/client";
 import { useTina } from "tinacms/dist/react";
 
-
-const Image = ()=>{ 
-  const {query, data, variables} = use(client.queries.<your-query>());
+// Your component
+const Image = (props)=>{ 
+  
   const response = useTina({
-    query,
-    variables,
-    data});
+    query: props.query,
+    variables: props.variables,
+    data: props.data});
   return <div style={{
     width: '500px',
     height: '500px',
