@@ -93,11 +93,11 @@ const ConsentBanner = () => {
 
     if (isModalOpen) {
       document.addEventListener('keydown', handleEscapeKey);
-    }
 
-    return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
-    };
+      return () => {
+        document.removeEventListener('keydown', handleEscapeKey);
+      };
+    }
   }, [isModalOpen, cancelModal]);
 
   return (
