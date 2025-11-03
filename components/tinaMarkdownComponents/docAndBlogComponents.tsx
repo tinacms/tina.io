@@ -26,6 +26,18 @@ const ScrollBasedShowcase = dynamic(
   },
 );
 
+const isExternalUrl = (url: string): boolean => {
+  if (!url) {
+    return false;
+  }
+  try {
+    const urlObj = new URL(url, window.location.origin);
+    return urlObj.origin !== window.location.origin;
+  } catch {
+    return false;
+  }
+};
+
 export const docAndBlogComponents: Components<{
   Iframe: { iframeSrc: string; height: string };
   Youtube: { embedSrc: string; caption?: string; minutes?: string };
@@ -228,8 +240,9 @@ export const docAndBlogComponents: Components<{
   li: (props) => <li className="mb-2 ml-8" {...props} />,
   p: (props) => <p className="mb-2" {...props} />,
   a: (props) => {
-    const isExternal =
-      props.url?.startsWith('http://') || props.url?.startsWith('https://');
+    const isExternal = isExternalUrl(props.url);
+    const linkText = typeof props.children === 'string' ? props.children : '';
+
     return (
       <a
         href={props.url}
@@ -237,10 +250,16 @@ export const docAndBlogComponents: Components<{
         className="inline-flex items-center gap-0.5 underline decoration-from-font transition-all duration-200 ease-out hover:text-orange-500"
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
+        aria-label={
+          isExternal && linkText ? `${linkText} (opens in new tab)` : undefined
+        }
       >
         {props.children}
         {isExternal && (
-          <BiLinkExternal className="inline-block text-sm flex-shrink-0" />
+          <BiLinkExternal
+            className="inline-block text-sm flex-shrink-0"
+            aria-hidden="true"
+          />
         )}
       </a>
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
