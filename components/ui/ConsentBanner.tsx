@@ -84,7 +84,7 @@ const ConsentBanner = () => {
 
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isModalOpen) {
+      if (e.key === 'Escape') {
         cancelModal();
       }
     };
