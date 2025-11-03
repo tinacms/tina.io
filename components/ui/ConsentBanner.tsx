@@ -70,6 +70,17 @@ const ConsentBanner = () => {
     setIsModalOpen(false);
   };
 
+  const cancelModal = () => {
+    setIsModalOpen(false);
+    setIsVisible(true);
+  };
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      cancelModal();
+    }
+  };
+
   return (
     <>
       {isVisible && (
@@ -109,7 +120,10 @@ const ConsentBanner = () => {
       )}
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          onClick={handleBackdropClick}
+        >
           <div className="bg-white p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3">
             <h2 className="text-xl md:text-xl lg:text-3xl text-orange-600 font-ibm-plex mb-4 text-center">
               Customize your Consent Preferences
@@ -186,13 +200,22 @@ const ConsentBanner = () => {
                 </li>
               </ul>
             </div>
-            <button
-              type="button"
-              onClick={closeModal}
-              className="mt-4 px-4 py-2 bg-orange-600 text-white font-ibm-plex rounded-3xl mx-auto block"
-            >
-              Save my Preferences
-            </button>
+            <div className="flex gap-3 justify-center mt-4">
+              <button
+                type="button"
+                onClick={cancelModal}
+                className="px-4 py-2 border-2 border-orange-600 text-orange-600 font-ibm-plex rounded-3xl hover:bg-orange-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={closeModal}
+                className="px-4 py-2 bg-orange-600 text-white font-ibm-plex rounded-3xl hover:bg-orange-700"
+              >
+                Save my Preferences
+              </button>
+            </div>
           </div>
         </div>
       )}
