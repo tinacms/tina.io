@@ -2,7 +2,7 @@
 id: /docs/extending-tina/custom-field-components
 title: React Components
 alias: custom-fields-react
-last_edited: '2025-09-18T23:42:00.805Z'
+last_edited: '2025-11-03T05:42:59.208Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -186,6 +186,35 @@ The below tutorial includes a segment on creating a custom Icon selector using a
 
 ### Image Scale Component
 
+```
+{
+  label: "Image Scale",
+  name: "imgScale",
+  type: "number",
+  description: "My custom image scaler",
+  ui: {
+    parse: (val) => Number(val),
+    component: wrapFieldsWithMeta(({ field, input, meta }) => {
+      return (
+        <div>
+          <input
+            name="saturation"
+            id="saturation"
+            type="range"
+            min="1"
+            max="200"
+            step="1"
+            {...input}
+          />
+          <br />
+          Value: {input.value}
+        </div>
+      )
+    })
+  }
+}
+```
+
 ```javascript
 
 import client from "@/tina/client";
@@ -205,7 +234,7 @@ const Image = ()=>{
 
   }}>
     <img
-    src="/my-img"
+    src="/llama.png"
     style={{
       position: 'absolute',
       objectFit: 'contain',
