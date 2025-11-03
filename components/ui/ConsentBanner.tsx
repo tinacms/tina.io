@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import type React from 'react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 
 const ConsentBanner = () => {
@@ -71,10 +71,10 @@ const ConsentBanner = () => {
     setIsModalOpen(false);
   };
 
-  const cancelModal = () => {
+  const cancelModal = useCallback(() => {
     setIsModalOpen(false);
     setIsVisible(true);
-  };
+  }, []);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -96,7 +96,7 @@ const ConsentBanner = () => {
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, cancelModal]);
 
   return (
     <>
