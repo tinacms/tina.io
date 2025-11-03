@@ -183,3 +183,34 @@ Conditional fields can be created by checking values of other form fields.
 The below tutorial includes a segment on creating a custom Icon selector using a custom field component.
 
 <Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
+
+### Image Scale Component
+
+```javascript
+
+import client from "@/tina/client";
+import { useTina } from "tinacms/dist/react";
+
+
+const Image = ()=>{ 
+  const {query, data, variables} = use(client.queries.<your-query>());
+  const response = useTina({
+    query,
+    variables,
+    data});
+  return <div style={{
+    width: '500px',
+    height: '500px',
+    position: 'relative',
+
+  }}>
+    <img
+    src="/my-img"
+    style={{
+      position: 'absolute',
+      objectFit: 'contain',
+      scale: response.data.scale / 100,
+    }} />
+  </div>
+}
+```
