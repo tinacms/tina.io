@@ -3,6 +3,7 @@ import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import GithubSlugger from 'github-slugger';
 import Image from 'next/image';
 import React from 'react';
+import { BiLinkExternal } from 'react-icons/bi';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkDirective from 'remark-directive';
@@ -216,8 +217,14 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
               href={href}
               target={isExternal ? '_blank' : undefined}
               rel={isExternal ? 'noopener noreferrer' : undefined}
+              className="inline-flex items-center gap-0.5"
               {...props}
-            />
+            >
+              {props.children}
+              {isExternal && (
+                <BiLinkExternal className="inline-block text-sm flex-shrink-0" />
+              )}
+            </a>
           );
         },
         pre({ node, ...props }) {

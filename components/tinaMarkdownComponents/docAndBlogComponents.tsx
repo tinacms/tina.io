@@ -11,7 +11,7 @@ import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
-import { BiRightArrowAlt } from 'react-icons/bi';
+import { BiLinkExternal, BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -233,10 +233,15 @@ export const docAndBlogComponents: Components<{
       <a
         href={props.url}
         {...props}
-        className="underline transition-all duration-200 ease-out hover:text-orange-500"
+        className="inline-flex items-center gap-0.5 underline decoration-from-font transition-all duration-200 ease-out hover:text-orange-500"
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
-      />
+      >
+        {props.children}
+        {isExternal && (
+          <BiLinkExternal className="inline-block text-sm flex-shrink-0" />
+        )}
+      </a>
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
   },
