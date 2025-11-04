@@ -1,5 +1,7 @@
 import type { Form, Template, TinaCMS } from 'tinacms';
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
+import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
+import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -13,6 +15,7 @@ import { carouselFeatureTemplate } from '../../components/blocks/FeatureCarousel
 import { featureGridTemplate } from '../../components/blocks/FeatureGrid/FeatureGrid.template';
 import { featuresTemplate } from '../../components/blocks/Features/Features.template';
 import { flyingTemplate } from '../../components/blocks/Flying/Flying.template';
+import { footerLinkContentTemplate } from '../../components/blocks/FooterLinkContent/footerLinkContent.template';
 import { heroTemplate } from '../../components/blocks/Hero/Hero.template';
 import { highlightsSectionTemplate } from '../../components/blocks/HighlightsSection/HighlightsSection.template';
 import { logoGridTemplate } from '../../components/blocks/LogoGrid/LogoGrid.template';
@@ -75,7 +78,10 @@ const templates = [
   textAndMediaColumnsComponentTemplate as Template,
   tinaBannerTemplate as Template,
   storyTemplate as Template,
+  footerLinkContentTemplate as Template,
   videoEmbedTemplate as Template,
+  herov2Template as Template,
+  featureCardTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {

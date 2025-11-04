@@ -1,0 +1,114 @@
+---
+id: /docs/tinacloud/deployment-options/github-pages
+title: 部署到GitHub Pages
+last_edited: '2025-02-19T01:57:36.552Z'
+next: content/docs-zh/tinacloud/deployment-options/alibaba-cloud.mdx
+previous: content/docs-zh/tinacloud/deployment-options/netlify.mdx
+---
+
+GitHub Pages是一个流行的静态网站托管选项。可以在 **\<your-repo>** > **Settings** > **Pages** 中配置GitHub Pages。
+
+## 构建配置
+
+GitHub Pages提供了一些构建选项：
+
+* GitHub Actions
+* 从分支部署
+
+![GitHub Actions](/img/docs/tina-cloud-deployment-options/build-and-deploy.png "GitHub Actions")
+
+我们希望选择“**GitHub Actions**”，以便我们可以控制构建脚本，并确保它也在构建TinaCMS管理界面。
+
+通过点击为我们创建的操作上的“Configure”，我们可以调整构建脚本以便与我们的网站一起构建tinacms。
+
+在你的网站构建步骤**之前**添加以下步骤：
+
+如果你使用npm作为包管理器，可以使用以下内容：
+
+```yml
+- name: Build TinaCMS
+  env:
+    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+    TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+  run: npx tinacms build
+```
+
+或者如果你使用yarn：
+
+```yml
+- name: Build TinaCMS
+  env:
+    TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+    TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+  run: yarn build
+  # 这假设你的 "build" 脚本在你的
+  # package.json 中是 "tinacms build"
+```
+
+你的GitHub Action将看起来像这样：
+
+![GitHub Action](/img/docs/tina-cloud-deployment-options/gh-config.png "GitHub Action")
+
+## 常见问题
+
+### 常见问题：'Missing script: "tinacms"'
+
+此错误可能由以下原因导致：
+
+#### 1. tinacms依赖项未添加到package.json。
+
+确保`tinacms`和`@tinacms/cli`依赖项都列在你的package.json中。
+
+#### 2. 依赖项未在CI中安装。
+
+如果你使用npm，确保在TinaCMS构建命令之前运行`npm ci`。如果你使用yarn，确保在运行构建命令之前运行`yarn install --frozen-lockfile`。
+
+#### 3. 需要定义一个'tinacms'脚本。
+
+如果你的CI运行类似`yarn tinacms build`而不是`npx tinacms build`，你需要在你的package.json中添加一个自定义脚本：
+
+```json
+  "scripts": {
+    "tinacms": "tinacms",
+    // ...
+```
+
+### 常见问题：/admin返回404
+
+这可能由多种原因导致，但以下是最常见的原因和解决方法：
+
+#### 1. 未提供自定义构建工作流
+
+如果你的网站使用GitHub Pages进行部署，可能会使用GitHub的默认构建步骤。在这种情况下，TinaCMS不会包含在构建中。
+
+![GitHub Pages配置](/img/docs/tinacloud/gh-pages.png)。
+
+要解决此问题，你需要选择“GitHub Actions”源，并与网站一起构建tinacms管理界面。你可以查看我们上面的文档以获取设置此GitHub Action的帮助。
+
+#### 2. 'tinacms build'未在CI中运行
+
+检查以确保构建命令正在运行且未失败
+
+> 注意：如果你使用的是[hugo的github pages设置](https://gohugo.io/hosting-and-deployment/hosting-on-github/)，你需要确保在你的仓库根目录中存在一个`package-lock.json`。
+
+### 常见问题：根URL返回404
+
+这通常是由于GitHub Pages缺少入口文件。
+
+要解决此问题，你需要在`./pages`目录中创建一个名为`index.tsx`的文件。你的`index.tsx`应该看起来像这样：
+
+```ts
+import Filename, { getStaticProps as FilenameStaticProps } from './[filename]';
+
+const Index = Filename;
+
+export const getStaticProps = async ({ params }) => {
+  return FilenameStaticProps({ params: { filename: 'home' } });
+}
+
+export default Index;
+```
+
+## 环境变量
+
+假设你的Tina `clientID`和`token`已设置为环境变量，你需要将这些添加到项目的GitHub Secrets中。我们在上面的代码片段中使用的秘密是`TINA_PUBLIC_CLIENT_ID`和`TINA_TOKEN`。

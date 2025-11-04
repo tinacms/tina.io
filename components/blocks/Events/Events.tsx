@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
-import { tinaField } from 'tinacms/dist/react';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import eventsData from '../../../content/events/master-events.json';
-import { Actions } from '../ActionButton/ActionsButton';
 import {
   calculateEventStatus,
   calculateEventTimes,
@@ -43,7 +42,9 @@ export const Card = ({ cardItem, onHover }) => {
               alt={cardItem.headline}
               className="object-cover rounded-xl"
               fill={true}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 240px"
+              quality={60}
+              priority={false}
               onError={(e) => {
                 e.currentTarget.src = '/events/default.jpg';
               }}
@@ -71,13 +72,7 @@ export const Card = ({ cardItem, onHover }) => {
                 } to go`}
           </span>
         )}
-        <h3
-          className={`font-ibm-plex text-2xl mb-1 ${
-            isLiveOrPastEvent
-              ? 'bg-linear-to-br from-blue-600 via-blue-800 to-blue-1000 bg-clip-text text-transparent'
-              : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent'
-          }`}
-        >
+        <h3 className="font-ibm-plex text-2xl mb-1 text-black">
           {cardItem.headline}
         </h3>
         <div
@@ -96,18 +91,13 @@ export const Card = ({ cardItem, onHover }) => {
         >
           {cardItem.location}
         </p>
-        <Actions
-          flush={true}
-          className=" text-sm px-0!"
-          items={[
-            {
-              label: 'READ MORE',
-              icon: true,
-              variant: 'ghostBlue',
-              url: cardItem.link || '#',
-            },
-          ]}
-        />
+        <Link
+          href={cardItem.link}
+          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600"
+        >
+          READ MORE
+          <FaArrowRightLong className="text-black hover:text-blue-600 pr-1" />
+        </Link>
       </div>
       <div className="absolute inset-0 rounded-md z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
     </div>
@@ -139,17 +129,13 @@ const EventsBlock = () => {
 
   const now = new Date();
 
-  // Filter and sort the events
   let filteredEvents = eventsData.cardItems
     .filter((event) => {
       const startDate = new Date(event.startDate);
       const endDate = new Date(
         event.endDate?.split('T')[0] ?? event.startDate.split('T')[0],
       );
-      return (
-        startDate >= now || // Upcoming events
-        (startDate <= now && endDate >= now) // Currently ongoing events
-      );
+      return startDate >= now || (startDate <= now && endDate >= now);
     })
     .sort(
       (a, b) =>
@@ -165,8 +151,40 @@ const EventsBlock = () => {
     );
   }
 
+  // If there are only 1 or 2 upcoming/live events, add the most recently finished event(s) to make up to 3
+  if (filteredEvents.length < 3 && eventsData?.cardItems?.length > 3) {
+    // Find past events, sort by endDate descending (most recent first)
+    const pastEvents = eventsData.cardItems
+      .filter((event) => {
+        const endDate = new Date(
+          event.endDate?.split('T')[0] ?? event.startDate.split('T')[0],
+        );
+        return endDate < now;
+      })
+      .sort(
+        (a, b) =>
+          new Date(b.endDate ?? b.startDate).getTime() -
+          new Date(a.endDate ?? a.startDate).getTime(),
+      );
+
+    // Add as many as needed to reach 3
+    const needed = 3 - filteredEvents.length;
+    filteredEvents = [...filteredEvents, ...pastEvents.slice(0, needed)];
+  }
+
   return (
-    <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8">
+    <div className="max-w-[1500px] md:px-18 lg:px-10 px-3 md:w-4/5 lg:w-5/6 w-full mx-auto pb-4 pt-8 flex flex-col gap-8">
+      <h2
+        className={`${H1_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight text-black text-balance text-center`}
+      >
+        {eventsData.title}
+      </h2>
+      <div className="max-w-[62ch] mx-auto">
+        <p className="text-center text-neutral-text-secondary font-light leading-relaxed text-lg">
+          {eventsData.byLine}
+        </p>
+      </div>
+
       <div className="flex flex-col lg:flex-row lg:gap-4">
         <div
           className="w-full hidden md:flex lg:w-1/2 justify-center items-center rounded-lg"
@@ -186,12 +204,6 @@ const EventsBlock = () => {
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-start">
-          <h2
-            className="font-ibm-plex inline-block text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
-            data-tina-field={tinaField(eventsData, 'title')}
-          >
-            {eventsData.title}
-          </h2>
           <div className="flex flex-col gap-4">
             {filteredEvents.map((cardItem, index) => (
               <Card
@@ -204,12 +216,12 @@ const EventsBlock = () => {
 
           <Link
             href="/events"
-            className="pt-10 font-bold flex items-center justify-end gap-2 group"
+            className="self-end pt-10 font-bold flex items-center w-fit justify-end gap-2 group pr-1"
           >
-            <span className="bg-linear-to-br text-md from-blue-600 via-blue-800 to-blue-1000 group-hover:from-blue-400 group-hover:via-blue-600 group-hover:to-blue-800  bg-clip-text text-transparent">
+            <span className="text-black group-hover:text-blue-600">
               SEE ALL EVENTS
             </span>
-            <FaArrowRight className="text-blue-800 group-hover:text-blue-600" />
+            <FaArrowRightLong className="text-black group-hover:text-blue-600" />
           </Link>
         </div>
       </div>

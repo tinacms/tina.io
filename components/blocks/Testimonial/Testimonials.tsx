@@ -1,24 +1,28 @@
+import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { formatDate } from 'utils';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import Marquee from '@/components/ui/marquee';
 import { cn } from '@/lib/utils';
 
 const TestimonialCard = ({ ...data }) => {
   const Elem = data?.link ? 'a' : 'div';
+  const [imageError, setImageError] = useState(false);
 
   return (
     <Elem href={data.link} data-tina-field={tinaField(data, 'name')}>
       <figure
         className={cn(
-          'relative w-96 h-48 cursor-pointer overflow-hidden rounded-xl border p-4 flex flex-col justify-between',
-          'shadow-[inset_0_0_0_1px_rgba(223,219,252,0.15),0_0_1px_1px_rgba(223,219,252,0.5)]',
-          'bg-linear-to-b from-white to-white/30 hover:to-white/40',
+          'relative w-96 h-72 cursor-pointer overflow-hidden rounded-xl p-8 flex flex-col gap-4',
+          'shadow-md',
+          'bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40',
           'cursor-pointer hover:shadow-lg hover:bg-white hover:scale-[1.01] transition-all duration-150 ease-out',
         )}
       >
-        <blockquote className="text-sm text-gray-700 leading-relaxed">
+        <Image src="/quotation.svg" alt="quotation" width={24} height={24} />
+        <blockquote className="text-sm text-black leading-relaxed">
           {data.testimonial && (
             <div className="text-base lg:text-md line-clamp-3">
               <TinaMarkdown content={data.testimonial} />
@@ -27,33 +31,37 @@ const TestimonialCard = ({ ...data }) => {
         </blockquote>
         <div
           className={cn(
-            'flex items-center gap-3',
+            'flex items-center gap-3 absolute bottom-8',
             data.rhsImage ? 'flex-row-reverse justify-between' : 'flex-row',
           )}
         >
-          {/** biome-ignore lint/performance/noImgElement: <TODO> */}
-          <img
+          <Image
             className={cn(
               'w-12 h-12',
               data.imageBorder ? 'rounded-full' : 'rounded-sm',
             )}
-            alt="Testimonial avatar"
             width={48}
             height={48}
-            src={data.avatar}
+            src={imageError || !data.avatar ? '/default-user.svg' : data.avatar}
+            alt={`${data.name} avatar`}
+            onError={() => setImageError(true)}
           />
           <div className="flex flex-col">
             {data.name && (
-              <h4 className="text-lg font-medium text-blue-800">{data.name}</h4>
+              <h4 className="text-lg text-orange-500">{data.name}</h4>
             )}
             {(data.username || data.date) && (
-              <p className="text-sm text-blue-600">
+              <p className="text-sm text-black">
                 {data.username && <>@{data.username}</>}
                 {data.username && data.date && (
-                  <span className="mx-1.5 text-gray-400">&ndash;</span>
+                  <span className="mx-1.5 text-neutral-text-secondary">
+                    &ndash;
+                  </span>
                 )}
                 {data.date && (
-                  <span className="text-blue-500">{formatDate(data.date)}</span>
+                  <span className="text-neutral-text-secondary">
+                    {formatDate(data.date)}
+                  </span>
                 )}
               </p>
             )}
@@ -67,14 +75,13 @@ const TestimonialCard = ({ ...data }) => {
 export default function TestimonialsBlock({ data }) {
   const [_isShowingAll, _setIsShowingAll] = useState(false);
   const titleRef = useRef(null);
-  const firstRow = data.testimonials.slice(0, data.testimonials.length / 2);
-  const secondRow = data.testimonials.slice(data.testimonials.length / 2);
+  const testimonialItems = data.testimonials;
 
   return (
     <div className="max-w-[1500px] m-auto">
       <div className="flex flex-col items-center justify-center">
         <h2
-          className="m-auto inline-block font-ibm-plex text-3xl md:text-4xl pb-8 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex m-auto inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
           data-tina-field={tinaField(data, 'title')}
           ref={titleRef}
         >
@@ -82,16 +89,9 @@ export default function TestimonialsBlock({ data }) {
         </h2>
       </div>
 
-      <div className="mask-horizontal-fade relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
-        <Marquee pauseOnHover className="[--duration:40s]">
-          {firstRow.map((review) => (
-            <div key={review.id} className="mr-4">
-              <TestimonialCard key={review.username} {...review} />
-            </div>
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:40s]">
-          {secondRow.map((review) => (
+      <div className="mask-horizontal-fade relative flex w-full flex-col items-center justify-center overflow-hidden ">
+        <Marquee pauseOnHover className="[--duration:80s]">
+          {testimonialItems.map((review) => (
             <div key={review.id} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>

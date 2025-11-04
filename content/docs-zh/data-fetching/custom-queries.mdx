@@ -1,8 +1,10 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/app/src/Playground.tsx"
 id: /docs/data-fetching/custom-queries
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/app/src/Playground.tsx
 title: 自定义查询
-last_edited: '2025-03-26T03:57:00.112Z'
+alias: custom-queries
+last_edited: '2025-09-18T23:02:01.193Z'
 next: ''
 previous: content/docs-zh/data-fetching/overview.mdx
 ---
@@ -17,7 +19,7 @@ const myPost = await client.queries.post(
 在更高级的情况下，你可能希望对底层的GraphQL查询有更多的控制。在这些情况下，你有两个选择：
 
 * 通过编写自定义查询来扩展自动生成的`client.queries`。
-* 使用`client.request`，并编写内联查询。
+* 使用`client.request`，并编写一个内联查询。
 
 ## 扩展自动生成的`client.queries`
 
@@ -25,7 +27,7 @@ const myPost = await client.queries.post(
 
 Tina生成自定义的[GraphQL片段](https://graphql.org/learn/queries/#fragments)以用于自定义查询，这样当模式更新时查询就不需要更新。
 
-> 注意：这些片段可以在`tina/__generated__/frags.gql`中看到
+> 注意：这些片段可以在`tina/__generated__/frags.gql`中查看
 
 `tina/queries/postWithNav.gql`的示例：
 
@@ -46,13 +48,13 @@ query postWithNav($relativePath: String!) {
 
 我们在这里使用了`PostParts`和`NavParts`片段。对于每个集合，此片段在模式更新时生成并更新。你可以在`/tina/__generated__/frags.gql`中查看你的模式的任何可用片段。
 
-一旦查询被添加，客户端将更新其类型，以便可以用来请求新的查询。
+一旦添加了查询，客户端将更新其类型，以便可以用来请求新的查询。
 
 ```js
 import { client } from '../[pathToTina]/tina/__generated__/client'
 
 // 使用客户端进行数据获取
-// 在这里，它获取一个单独的“post”项目
+// 在这里，它获取一个单一的“post”项
 const myPost = await client.queries.postWithNav({
   relativePath: 'HelloWorld.md',
 })
@@ -69,7 +71,7 @@ console.log(myPost.nav.items)
 import { client } from '../[pathToTina]/tina/__generated__/client'
 
 // 使用客户端进行数据获取
-// 在这里，它获取一个单独的“post”项目
+// 在这里，它获取一个单一的“post”项
 const myPost = await client.request({
   query: `query getPost($relativePath: String!) {
       post(relativePath: $relativePath) {

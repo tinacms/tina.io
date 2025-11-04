@@ -1,0 +1,91 @@
+---
+title: Git Co-Authoring and GitHub Authoring - What is it and how do we use it?
+alias: git-coauthor
+last_edited: '2025-09-24T04:52:21.532Z'
+next: ''
+previous: ''
+---
+
+# Configuring GitHub Commit Authorship
+
+When changes are saved in TinaCMS, they are committed to your project's GitHub repository. By default, these commits are authored by our `tina-cloud-app`, which can make it difficult to track who made specific changes within a team.
+
+![A commit authored solely by the tina-cloud-app, making it unclear who made the change.](/tina-cloud-app-bad-example.png "Without authorship settings, it's unclear who made the change.")
+
+To solve this, TinaCMS provides two distinct methods for attributing your work: **Act as You** (the recommended approach) or **Co-authoring**.
+
+***
+
+### Authoring Options at a Glance
+
+You can choose between two levels of GitHub integration:
+
+1. **Act as You (Recommended):** The most seamless and accurate method. TinaCMS will perform all Git actions using **your personal GitHub identity** after you grant authorization.
+2. **Co-authoring:** A simpler, manual option. The `tina-cloud-app` will still make the commit, but it will add your name and email as a **co-author**, attributing the change to you in the commit message.
+
+***
+
+## Option 1: Act as You (Full GitHub Authoring)
+
+This method provides perfect attribution by using your GitHub account to perform all actions. Commits, branches, and pull requests will appear in your repository's history exactly as if you had made them from your own computer.
+
+![A commit authored solely by the user, making it clear who made the change.](/img/docs/tinacloud/github-authoring/github-authoring-commit-example.png "The commit and PR is created by the user, not the bot.")
+
+### How Permissions Are Secured 🔐
+
+An action is only allowed if **both** **your personal user account and the bot** have the required permissions.
+
+* **The Application's Permissions:** Our bot is granted a specific set of permissions to interact with your repository:
+  * `Code` (Read & Write)
+  * `Pull Requests` (Read & Write)
+  * `Repository Hooks` (Read & Write)
+  * `Metadata` (Read-only)
+* **Your Personal Permissions:** For every action, GitHub also checks if your personal account has the right to perform that action.
+
+You can find more information in the [Authenticating with a GitHub App on behalf of a user docs](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-with-a-github-app-on-behalf-of-a-user)
+
+### Fallback Behavior
+
+If you initiate an action that your personal GitHub account does not have permission for, the action will automatically **fall back to being performed by the bot's identity**.
+
+### How to Enable "Act as You"
+
+1. Navigate to your **Account Settings** in TinaCloud.
+2. Find the **GitHub Authoring** section.
+3. Use the toggle to select the **"Act as \[Your Name]"** option.
+4. You will be redirected to GitHub to authorize the application. Follow the on-screen instructions to grant permission.
+
+![The user settings UI showing the toggle to enable / disable the GitHub Authoring settings.](/img/docs/tinacloud/github-authoring/github-authoring-toggle.png "Toggle the setting via the GitHub Authoring profile settings.")
+
+***
+
+## Option 2: Co-authoring
+
+If you prefer not to grant the application permission to act on your behalf, co-authoring provides a lighter-weight way to get attribution.
+
+With this option, the `tina-cloud-app` still performs all Git actions, but it adds a `Co-authored-by:` trailer to the end of each commit message, crediting you for the work.
+
+![A commit clearly showing the user's avatar and name as the co-author.](/tina-cloud-app-good-example.png "With co-authorship configured, contributions are attributed with the bot.")
+
+### How to Enable Co-authoring
+
+1. Navigate to your **Account Settings** in TinaCloud.
+2. Find the **GitHub Authoring** section.
+3. Select the **"Co-authoring"** option.
+4. Fill out your **Git Co-author Name and Email**. By default, these are pre-filled from your TinaCloud account.
+5. Save your settings.
+
+![The user settings UI showing the input fields for the Git co-authoring settings.](/img/docs/tinacloud/github-authoring/co-authoring-input-fields.png "Co-author details are manually entered via the Git Co-authoring profile settings.")
+
+> **Note on Email Privacy:** The co-author email is publicly viewable on GitHub. If you wish to keep your email private, GitHub provides a `noreply` email address you can use. You can find this in your [GitHub email settings](https://github.com/settings/emails).
+
+***
+
+### Quick Comparison
+
+| Feature                    | Act as You (Recommended)                                                 | Co-authoring                                                                   |
+| -------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| **Attribution Method**     | Commits are made directly by your user identity.                         | Commits are made by the bot, with your name added as a `Co-authored-by:` line. |
+| **Security & Permissions** | Actions are limited by both the app's and your own permissions.          | No extra permissions required. Relies only on the bot's permissions.           |
+| **Setup**                  | One-time GitHub OAuth authorization.                                     | Manual entry of your name and email.                                           |
+| **Best For**               | Teams wanting seamless, accurate attribution and a clear commit history. | Users who want attribution without authorizing the app to act on their behalf. |

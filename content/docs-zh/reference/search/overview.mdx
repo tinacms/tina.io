@@ -1,18 +1,20 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/admin/pages/CollectionListPage.tsx"
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/admin/pages/CollectionListPage.tsx
 title: 搜索概述
-last_edited: '2023-06-08T04:00:00.000Z'
+alias: content-search
+last_edited: '2025-09-18T23:36:56.341Z'
 next: ''
 previous: ''
 ---
 
-TinaCMS 为内容提供了内置的搜索功能。这对于允许编辑者快速查找网站中的内容非常有用。TinaCloud 的内容搜索由 [Fergus McDowall](https://github.com/fergiemcdowall "Fergus McDowall") 的 [search-index](https://www.npmjs.com/package/search-index "search-index") 库提供支持。
+TinaCMS 提供了内置的内容搜索功能。这对于允许编辑者快速查找网站中的内容非常有用。TinaCloud 的内容搜索由 [Fergus McDowall](https://github.com/fergiemcdowall "Fergus McDowall") 的 [search-index](https://www.npmjs.com/package/search-index "search-index") 库提供支持。
 
 > 注意：目前在自托管的 Tina 中不支持搜索。
 
 ## 配置
 
-要启用搜索功能，您需要在 Tina 配置中填充 `search` 字段。使用 TinaCloud 搜索时，搜索配置中唯一必需的元素是 `search.tina.indexerToken` 字段。这可以从项目的 TinaCloud [仪表板](/docs/tina-cloud/dashboard/projects/#api-tokens)中获取。
+要启用搜索功能，您需要在 Tina 配置中填充 `search` 字段。使用 TinaCloud 搜索时，搜索配置中唯一必需的元素是 `search.tina.indexerToken` 字段。这可以从项目的 TinaCloud [仪表板](/docs/tinacloud/dashboard/projects/#api-tokens)中获取。
 
 ```javascript
 export default defineConfig({
@@ -36,12 +38,12 @@ export default defineConfig({
 
 ### 定义
 
-| 属性                              | 描述                                                                                                                                                                                                         |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `search.tina.indexerToken`        | TinaCloud 搜索令牌 (*必需*)                                                                                                                                                                                 |
-| `search.tina.stopwordLanguages`   | 可选的字符串停用词语言数组。默认为 `['eng']`。请参阅 [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub 仓库以获取支持语言的完整列表。                                              |
-| `search.indexBatchSize`           | 由索引过程使用，以确定每个请求要索引的文档数量。默认为 `100`。                                                                                                                                              |
-| `search.maxSearchIndexFieldLength`| 对于可变长度的文本字段，这控制在索引时考虑多少文本。较高的值将增加索引时间和搜索索引的大小。默认为 `100` 个字符。                                                                                           |
+| 属性                               | 描述                                                                                                                                                                                                       |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `search.tina.indexerToken`         | TinaCloud 搜索令牌 (*必需*)                                                                                                                                                                                |
+| `search.tina.stopwordLanguages`    | 可选的字符串停用词语言数组。默认为 `['eng']`。请参阅 [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub 仓库以获取支持语言的完整列表。                                             |
+| `search.indexBatchSize`            | 由索引过程使用，以确定每个请求要索引的文档数量。默认为 `100`。                                                                                                                                             |
+| `search.maxSearchIndexFieldLength` | 对于可变长度的文本字段，这控制索引时考虑的文本长度。较高的值将增加索引时间和搜索索引的大小。默认为 `100` 个字符。                                                                                           |
 
 ## 构建搜索索引
 
@@ -51,15 +53,15 @@ export default defineConfig({
 
 ### 生产
 
-当搜索配置完成并且站点使用 `build` 命令构建用于生产时，搜索索引将自动创建并上传到 TinaCloud。您站点的每个 Git 分支都有一个单独的搜索索引。
+当搜索配置完成并且站点使用 `build` 命令为生产环境构建时，搜索索引将自动创建并上传到 TinaCloud。站点的每个 Git 分支都有一个单独的搜索索引。
 
-请注意，搜索索引在站点构建后是“实时”的，因此任何新添加或删除的内容可能会在站点部署之前反映在搜索索引中。可以通过将 `--skip-search-index` cli 选项传递给 `build` 命令来跳过构建搜索索引。然后可以在站点部署完成后单独运行 [search-index](/docs/cli-overview/#tinacms-search-index) 命令。
+请注意，搜索索引在站点构建后是“实时”的，因此任何新添加或删除的内容可能会在站点部署之前反映在搜索索引中。可以通过将 `--skip-search-index` CLI 选项传递给 `build` 命令来跳过构建搜索索引。然后可以在站点部署完成后单独运行 [search-index](/docs/cli-overview/#tinacms-search-index) 命令。
 
 ## 自定义搜索索引
 
 ### 排除字段
 
-默认情况下，所有集合字段类型（除 `image` 外）都包含在搜索索引中。您可以通过控制哪些字段包含在搜索索引中来提高内容的可发现性。这可以通过在集合模式中的字段上设置可选的 `searchable` 属性来完成。例如，要禁用作者字段的索引，请使用类似以下的代码：
+默认情况下，所有集合字段类型（除 `image` 外）都包含在搜索索引中。您可以通过控制哪些字段包含在搜索索引中来提高内容的可发现性。这可以通过在集合模式中的字段上设置可选的 `searchable` 属性来完成。例如，要禁用作者字段的索引，可以使用如下代码：
 
 ```javascript
 // ...
@@ -96,4 +98,4 @@ fields: [
 
 ## 替代搜索提供商
 
-目前仅支持 TinaCloud 的搜索 API，但我们计划在不久的将来提供替代提供商，以及实现自定义搜索提供商的文档。如果您希望支持特定的搜索提供商，[请告知我们](https://github.com/tinacms/tinacms/discussions)。
+目前仅支持 TinaCloud 的搜索 API，但我们计划在不久的将来提供替代提供商，以及实现自定义搜索提供商的文档。如果您希望支持特定的搜索提供商，[请告诉我们](https://github.com/tinacms/tinacms/discussions)。

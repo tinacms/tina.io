@@ -1,7 +1,8 @@
 ---
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
-last_edited: '2025-07-14T04:01:09.573Z'
+alias: FAQ
+last_edited: '2025-10-16T03:23:32.419Z'
 next: ''
 previous: ''
 ---
@@ -19,7 +20,7 @@ It also allows authorization for different types of users (content creators, edi
 
 TinaCMS can be [self-hosted](/docs/self-hosted/overview) or used independently of TinaCloud as well.
 
-For more information, see [TinaCloud Overview](/docs/tina-cloud/overview).
+For more information, see [TinaCloud Overview](/docs/tinacloud/overview).
 
 ## 2. Where can I get help or share an idea for TinaCMS or TinaCloud?
 
@@ -80,7 +81,7 @@ For this use case, Tina allows two different methods:
 1. GitHub authoring in order to attribute actions to a GitHub account.
 2. [Co-author](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git commits in order to attribute the commit to an additional user.
 
-Both of these can be enabled per-user in the TinaCloud account settings. Find out more about [Git Authoring](/docs/tina-cloud/git-co-authoring).
+Both of these can be enabled per-user in the TinaCloud account settings. Find out more about [Git Authoring](/docs/tinacloud/git-co-authoring).
 
 ## 8. Why do I need a database when using markdown?
 
@@ -106,7 +107,7 @@ When in local-mode, you **will not** need to login to enter edit-mode.
 
 Once you are ready to host your site in production and put editing behind authentication, you can self-host the CMS backend yourself or you can use TinaCloud's hosted backend.
 
-Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using [TinaCloud](/docs/tina-cloud/dashboard/), Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Any changes that are saved by your editors will be committed to the configured branch in your GitHub repository.
+Whether you're [self-hosting](/docs/self-hosted/overview) Tina or using [TinaCloud](/docs/tinacloud/dashboard/), Tina's Content API authenticates directly with GitHub removing the need for users to create GitHub accounts. Any changes that are saved by your editors will be committed to the configured branch in your GitHub repository.
 
 ## 10. Does TinaCloud only work with GitHub repositories?
 
@@ -126,7 +127,7 @@ Here's an example monorepo structure that works with TinaCloud:
     /projects/site-c
 ```
 
-See [Path To Tina](/docs/tina-cloud/dashboard/projects/#path-to-tina) for more information.
+See [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina) for more information.
 
 ## 12. Why does Tina.io login window doesn't close when logging in from a site?
 
@@ -162,91 +163,7 @@ If your site is served at a sub-directory, ensure that your `build.basePath` is 
 
 ## 14. What are the common TinaCloud errors?
 
-### 1. How do I resolve the `Unable to find record 'tina/__generated__/_graphql.json'` error?
-
-TinaCloud's GraphQL API returns this error when it cannot find a file in your GitHub repository. This may occur under the following circumstances:
-
-* The `tina` folder (and `__generated__` subfolder) is not in your GitHub repository remote
-  * If the folder is in your local repository, but not in your remote, make sure there isn't a `.gitignore` file excluding it
-* Tina is configured with a branch that doesn't exist or a branch that doesn't contain the `tina` folder
-  * The referenced branch should be created and should contain the `tina` folder
-* The apiURL prop is misconfigured on the TinaCMS component
-  * Check the apiURL and make sure it looks like `https://content.tinajs.io/content/{tina_client_id}/github/{branch}` where `{tina_client_id}` matches the Client ID on the Project in TinaCloud and `{branch}` is a valid branch
-
-### 2. How do I resolve `The local GraphQL schema doesn't match the remote GraphQL schema` error?
-
-If you are getting this error in your build logs, it means that the `tina/tina-lock.json` in your deployed site doesn't match the version that is in TinaCloud. To resolve it:
-
-1. Ensure that your schema (generated from `tina/config.ts`) does not include any varying information, such as timestamps or random text
-2. Ensure that you have the latest versions of `@tinacms/cli` and `tinacms` in your project
-3. Run the dev command locally
-4. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud
-
-If you are getting this error when access the TinaCMS interface, it can be caused by a mismatch between the version of `tinacms` and `@tinacms/cli` on the project. Update both dependencies to the latest versions and run the dev command locally. Commit any changes to the `tina/tina-lock.json` and push those to the git repository linked in TinaCloud.
-
-### 3. How do I resolve errors caused by unindexed branches?
-
-If you receive an error like `The specified branch, 'my-branch-name', has not been indexed by TinaCloud`, or see no branches indexed at all, try the following:
-
-1. Verify that a configuration file exists at `tina/config.ts` on the default branch
-2. Verify that the correct branch has been specified in the config properties passed to defineConfig in `tina/config.ts`. Note, that this value may be set as an environment variable in your CI build process
-3. Verify that the branch exists in the GitHub repository
-4. You can force a reindexing of a particular branch by making a whitespace change to the `tina/tina-lock.json` file in that branch, commit the change, and push it to GitHub. This will initiate indexing for the branch and (after a few minutes) the error should be resolved
-5. Ensure that the Tina project is located in the root directory
-
-### 4. How do I resolve `There was a problem saving your document` error?
-
-When using TinaCloud without [Editorial Workflow](/editorial-workflow), you need to ensure that the [TinaCloud App](https://github.com/apps/tina-cloud-app) is able to commit to the selected branch of the repository.
-
-If it cannot, you will see an error of the following form:
-
-```text
-Tina caught an error while updating the page:
-
-Error: Unable to fetch, errors:
-    Error in PUT for src/pages/some-page.md
-```
-
-<Youtube embedSrc=" https://www.youtube.com/embed/MTIJotdIG9E?si=8mcaNAqogQRwL678" />
-
-**Video: FAQ - Bypassing GitHub branch protection with TinaCMS (3min)**
-
-Generally this happens when there is branch protection on your main branch and TinaCloud is unable to bypass it. Until July 2024, the TinaCloud GitHub app had admin rights to repositories which allowed it to bypass these rules for most repositories.
-
-To fix this issue, either:
-
-* Upgrade from legacy branch protection to branch rulesets - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
-  Ensure that the TinaCloud app is allowed to bypass the rule requiring branch protection
-* Enable [Editorial Workflow](/editorial-workflow) to create PRs on the branch
-
-### 5. How do I resolve `Invalid or undefined branch` error?
-
-The current branch that Tina is using is invalid or undefined. Double check that the correct branch is selected and it does in fact exist.
-
-You can view the branches that have been indexed by TinaCloud by visiting `https://app.tina.io/projects/<your-project-id>/configuration`.
-
-![Indexed Branches](/img/docs/tina-cloud/branch-status.png)\
-**Figure: Branches indexed by TinaCloud**
-
-### 6. How do I resolve `tina directory not pushed to git` error?
-
-Everything in the `tina` directory (except the `__generated__` folder) needs to be pushed up to the git repository. Be sure to add it to your git repository (and make sure you **don't** have it listed in a `.gitignore`). Also make sure that the branch you're trying to use has the `tina` directory and is up to date.
-
-### 7. How do I resolve `API URL is misformatted` errors?
-
-The ContentAPI URL isn't formatted correctly. See [here](/docs/tina-cloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
-
-### 8. How do I resolve `Invalid ` errors?
-
-When logging into TinaCloud, the URL of the website you're attempting to login from is sent via the `?origin=` URL parameter. This error can occur when the URL specified in the `?origin=` URL parameter of the auth window does not match one defined within your TinaCloud Site URLs.
-
-To resolve this, ensure that one of the URLs specified in your TinaCloud Site URLs settings exactly matches that shown in the `?origin=` URL parameter.
-
-!['?origin=' URL parameter](/img/docs/introduction/origin-url-highlight.png)\
-**Figure: URL parameter**
-
-![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)\
-**Figure: TinaCloud Site URLs settings**
+See the TinaCloud [troubleshooting](/docs/tinacloud/troubleshooting) page for more information.
 
 ## 15. How to to access local GraphQL server when it's not running or in prod?
 
@@ -269,6 +186,28 @@ After choosing which starter template to deploy and being redirected to Vercel, 
 
 To fix, check your browser's address bar for blocked popups, allow them, and retry.
 
-## 17. Do you support Git LFS?
+## 17. Is Tina LLM-friendly?
+
+Yes. Tina is designed to be highly LLM-friendly, mainly because it uses Markdown for structuring content.
+
+Markdown gives Large Language Models (LLMs) clear advantages:
+
+* Clear structure – headings, lists, and code blocks are easier to parse
+* Semantic meaning – formatting adds clarity and context
+* Prompt-friendly – consistent markup reduces ambiguity
+* Readable for humans & machines – raw Markdown works well for both
+* Aligned with LLM trends – Markdown fits naturally with the shift toward LLM-optimized content, as highlighted in [SEO is Dead, Long Live LLMO](https://jina.ai/news/seo-is-dead-long-live-llmo)
+
+## 18. Do you support Git LFS?
 
 Unfortunately we do not support Git LFS at this time due to limitations with the GitHub API.
+
+## 18. Getting a 503 Service Unavailable error when loading the reference field.
+
+When using the reference field on a collection with a large number of items, you may find the network requests time out. Currently, we do not have anything in place to paginate the reference field.
+
+The alternative would be to add a [custom field component](https://tina.io/docs/extending-tina/custom-field-components) with pagination. To retrieve the paginated results, you can use a [custom query](https://tina.io/docs/data-fetching/custom-queries).
+
+<Youtube embedSrc="https://www.youtube.com/embed/6FVpOvLK51s" />
+
+**Video: FAQ - Getting a 503 Service Unavailable error when loading the reference field**

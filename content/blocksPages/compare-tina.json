@@ -5,6 +5,9 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "headline": "What Makes TinaCMS Different?",
       "text": "Hint: It's more than just the Llama",
       "_template": "hero"

@@ -5,6 +5,7 @@ import { tinaField } from 'tinacms/dist/react';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data }) {
@@ -12,7 +13,7 @@ export function FeatureBlock({ data }) {
 
   return (
     <div
-      className={`flex flex-col-reverse w-full px-10 lg:gap-8 ${
+      className={`my-6 flex flex-col-reverse w-full px-10 lg:gap-8 ${
         isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
       }`}
     >
@@ -23,7 +24,7 @@ export function FeatureBlock({ data }) {
       >
         {data.headingOne && data.headline && (
           <h1
-            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-center lg:text-left"
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -31,7 +32,7 @@ export function FeatureBlock({ data }) {
         )}
         {data.headline && !data.headingOne && (
           <h2
-            className="font-ibm-plex inline-block text-3xl md:text-4xl py-4 lg:text-5xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left"
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-center lg:text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -41,7 +42,7 @@ export function FeatureBlock({ data }) {
           <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
         </div>
         <p
-          className="text-lg lg:text-xl lg:leading-normal bg-linear-to-br from-blue-700 via-blue-900 to-blue-1000 bg-clip-text text-transparent max-w-60ch text-balance text-center lg:text-left py-4"
+          className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center lg:text-left py-4"
           data-tina-field={tinaField(data, 'text')}
         >
           {data.text}

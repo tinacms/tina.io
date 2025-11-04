@@ -1,5 +1,5 @@
 export const testimonialsTemplate = {
-  label: '<⭐> Testimonials',
+  label: 'Testimonials',
   name: 'testimonials',
   ui: {
     previewSrc: '/img/blocks/testimonials.png',

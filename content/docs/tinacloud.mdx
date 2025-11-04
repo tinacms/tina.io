@@ -1,0 +1,54 @@
+---
+id: /docs/tinacloud
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/toolkit/react-sidebar/components/local-warning.tsx
+seo:
+  title: Deploy Tina to Production | TinaCMS Setup Guide
+  description: >-
+    Learn how to deploy your Tina-powered site to production. Step-by-step guide
+    for connecting to TinaCloud or self-hosted backends.
+title: What is TinaCloud?
+alias: what-is-tinacloud
+last_edited: '2025-10-16T05:20:43.276Z'
+next: content/docs/tinacloud/overview.mdx
+previous: ''
+---
+
+To deploy your site to production, you'll need to connect Tina to a hosted backend. This won't act as the source of truth for your data, but only to interface with your repo-based datastore.
+
+We have created **TinaCloud** as a tailored service to work with TinaCMS, but you can also set this up with your preferred hosting provider.
+
+TinaCloud provides:
+
+* A hosted GraphQL endpoint for your content,
+* Git integration
+* User management
+* [Editorial Workflow](http://localhost:3000/docs/drafts/editorial-workflow) features
+
+## Data Layer
+
+The Data Layer contains indexes of your Markdown and JSON files, ensuring low latency when fetching content. The Data Layer is synced up with your GitHub repository to ensure the indexes represent the source of truth.![TinaCMS GraphQL Data Layer](/img/docs/tinacms-data-layer_geyrv8.png "TinaCMS GraphQL Data Layer")
+
+[Check out the blog post for more info](/blog/self-hosted-datalayer/)
+
+## Video Tutorial
+
+For those who prefer to learn from video, you can check out a snippet on "TinaCloud" from our ["TinaCMS Deep Dive"](https://www.youtube.com/watch?v=PcgnJDILv4w\&list=PLPar4H9PHKVqoCwZy79PHr8-W_vA3lAOB\&pp=iAQB) series.
+
+<Youtube embedSrc="https://www.youtube.com/embed/r9vzL_8PEW8?start=39" />
+
+### Push your repository to GitHub
+
+Make sure all the contents of your site are pushed to Github and your `tina/tina-lock.json` is up to date and pushed to Github.
+
+## Using TinaCloud
+
+If your using TinaCloud, [check out the docs on how to deploy a TinaCloud](/docs/tinacloud/overview).
+
+## Using a Self Hosted Backend
+
+If you are self hosting, [check out the docs on how to deploy a self hosted backend](/docs/self-hosted/overview).
+
+## Not sure which to use?
+
+Check out [this doc](/docs/introduction/faq#what-is-tina-cloud) that explains the differences between the two.

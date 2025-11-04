@@ -1,7 +1,8 @@
 ---
 id: /docs/extending-tina/custom-field-components
 title: React Components
-last_edited: '2025-04-01T06:32:03.368Z'
+alias: custom-fields-react
+last_edited: '2025-11-03T22:58:44.784Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -182,3 +183,67 @@ Conditional fields can be created by checking values of other form fields.
 The below tutorial includes a segment on creating a custom Icon selector using a custom field component.
 
 <Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
+
+### Image scale slider component
+
+With a little bit of extra CSS you can create scalable images in Tina. This will save you having to crop images for your blog.
+![An image being scaled within the Tina editor](/img-scale-component.gif)
+
+```
+import { wrapFieldsWithMeta } from 'tinacms';
+
+// inside your collection
+{
+  label: "Image Scale",
+  name: "scale",
+  type: "number",
+  description: "My custom image scaler",
+  ui: {
+    parse: (val) => Number(val),
+    component: wrapFieldsWithMeta(({ field, input, meta }) => {
+      return (
+        <div>
+          <input
+            type="range"
+            min="1"
+            max="200"
+            step="1"
+            {...input}
+          />
+          <br />
+          Value: {input.value}
+        </div>
+      )
+    })
+  }
+}
+```
+
+```javascript
+
+import client from "@/tina/client";
+import { useTina } from "tinacms/dist/react";
+
+// Your component
+const Image = (props)=>{ 
+  
+  const response = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data});
+  return <div style={{
+    width: '500px',
+    height: '500px',
+    position: 'relative',
+
+  }}>
+    <img
+    src="/llama.png"
+    style={{
+      position: 'absolute',
+      objectFit: 'contain',
+      scale: response.data.scale / 100,
+    }} />
+  </div>
+}
+```

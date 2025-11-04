@@ -387,12 +387,12 @@
       "items": [
         {
           "title": "什么是TinaCloud?",
-          "slug": "content/zh/docs/tina-cloud.mdx",
+          "slug": "content/zh/docs/tinacloud.mdx",
           "_template": "item"
         },
         {
           "title": "连接TinaCloud",
-          "slug": "content/zh/docs/tina-cloud/overview.mdx",
+          "slug": "content/zh/docs/tinacloud/overview.mdx",
           "_template": "item"
         },
         {
@@ -410,12 +410,12 @@
             },
             {
               "title": "Git协作者",
-              "slug": "content/zh/docs/tina-cloud/git-co-authoring.mdx",
+              "slug": "content/zh/docs/tinacloud/git-co-authoring.mdx",
               "_template": "item"
             },
             {
               "title": "API版本控制",
-              "slug": "content/zh/docs/tina-cloud/api-versioning.mdx",
+              "slug": "content/zh/docs/tinacloud/api-versioning.mdx",
               "_template": "item"
             }
           ],
@@ -426,12 +426,12 @@
           "items": [
             {
               "title": "概览",
-              "slug": "content/zh/docs/tina-cloud/dashboard.mdx",
+              "slug": "content/zh/docs/tinacloud/dashboard.mdx",
               "_template": "item"
             },
             {
               "title": "注册",
-              "slug": "content/zh/docs/tina-cloud/dashboard/registration.mdx",
+              "slug": "content/zh/docs/tinacloud/dashboard/registration.mdx",
               "_template": "item"
             },
             {
@@ -439,12 +439,12 @@
               "items": [
                 {
                   "title": "概览",
-                  "slug": "content/zh/docs/tina-cloud/dashboard/projects.mdx",
+                  "slug": "content/zh/docs/tinacloud/dashboard/projects.mdx",
                   "_template": "item"
                 },
                 {
                   "title": "项目协作者",
-                  "slug": "content/zh/docs/tina-cloud/dashboard/users.mdx",
+                  "slug": "content/zh/docs/tinacloud/dashboard/users.mdx",
                   "_template": "item"
                 }
               ],
@@ -452,12 +452,12 @@
             },
             {
               "title": "组织",
-              "slug": "content/zh/docs/tina-cloud/dashboard/organizations.mdx",
+              "slug": "content/zh/docs/tinacloud/dashboard/organizations.mdx",
               "_template": "item"
             },
             {
               "title": "GitHub企业版集成",
-              "slug": "content/zh/docs/tina-cloud/github-enterprise-integration.mdx",
+              "slug": "content/zh/docs/tinacloud/github-enterprise-integration.mdx",
               "_template": "item"
             }
           ],
@@ -468,22 +468,22 @@
           "items": [
             {
               "title": "Vercel",
-              "slug": "content/zh/docs/tina-cloud/deployment-options/vercel.mdx",
+              "slug": "content/zh/docs/tinacloud/deployment-options/vercel.mdx",
               "_template": "item"
             },
             {
               "title": "Netlify",
-              "slug": "content/zh/docs/tina-cloud/deployment-options/netlify.mdx",
+              "slug": "content/zh/docs/tinacloud/deployment-options/netlify.mdx",
               "_template": "item"
             },
             {
               "title": "Github Pages",
-              "slug": "content/zh/docs/tina-cloud/deployment-options/github-pages.mdx",
+              "slug": "content/zh/docs/tinacloud/deployment-options/github-pages.mdx",
               "_template": "item"
             },
             {
               "title": "阿里云",
-              "slug": "content/zh/docs/tina-cloud/deployment-options/alibaba-cloud.mdx",
+              "slug": "content/zh/docs/tinacloud/deployment-options/alibaba-cloud.mdx",
               "_template": "item"
             }
           ],
@@ -522,7 +522,7 @@
                 },
                 {
                   "title": "从TinaCloud迁移",
-                  "slug": "content/zh/docs/self-hosted/migrating-from-tina-cloud.mdx",
+                  "slug": "content/zh/docs/self-hosted/migrating-from-tinacloud.mdx",
                   "_template": "item"
                 }
               ],
@@ -627,7 +627,7 @@
                 },
                 {
                   "title": "Tina Cloud",
-                  "slug": "content/zh/docs/reference/self-hosted/auth-provider/tina-cloud.mdx",
+                  "slug": "content/zh/docs/reference/self-hosted/auth-provider/tinacloud.mdx",
                   "_template": "item"
                 },
                 {

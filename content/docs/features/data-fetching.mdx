@@ -1,8 +1,9 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/tina-cms.tsx"
 id: /docs/features/data-fetching
+cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/src/tina-cms.tsx'
 title: Content API Overview
-last_edited: '2025-05-19T01:42:14.730Z'
+alias: content-api-overview
+last_edited: '2025-09-18T23:16:23.736Z'
 next: content/docs/contextual-editing/overview.mdx
 previous: content/docs/schema.mdx
 ---
@@ -23,7 +24,7 @@ To interface with the API, you can use Tina's type-safe client for data-fetching
 
 The Tina client is the easiest way to fetch your site's content. The client can be configured the `tina/config.<js|ts>` in the `defineConfig` function.
 
-> Note: token, clientId and branch are **not** used in [local-mode](/docs/tina-cloud/#local-mode). To setup these values for production see [this doc](/docs/tina-cloud/overview)
+> Note: token, clientId and branch are **not** used in [local-mode](/docs/tinacloud/#local-mode). To setup these values for production see [this doc](/docs/tinacloud/overview)
 
 ```js
 // tina/config.{js,ts,tsx}
@@ -35,7 +36,7 @@ export default defineConfig({
 });
 ```
 
-When working locally, the client is built with the local url (`http://localhost:4001/graphql`). When in [production mode](/docs/tina-cloud/#prod-mode), `clientId`, `branch` and `token` are used to query TinaCloud.
+When working locally, the client is built with the local url (`http://localhost:4001/graphql`). When in [production mode](/docs/tinacloud/#prod-mode), `clientId`, `branch` and `token` are used to query TinaCloud.
 
 Tina client provides a type-safe query builder, that is auto-generated based on your site's schema:
 
@@ -75,6 +76,7 @@ If you're using SSG, creating a new page in TinaCMS means the content updates in
      * **Other Frameworks:** Look for features like "**generate on demand**," "**incremental builds**," or dynamic routing in your framework's documentation. These allow the framework to build the page when it's first requested or use client-side rendering.
 3. **Incremental Static Regeneration (ISR):**
    * Supported by frameworks like Next.js, ISR allows pages to be generated or updated after the initial build, either on a timer or on the first request, without a full site rebuild.
+
 ## Fetching Content Across Branches in TinaCMS
 
 For server-rendered pages in TinaCMS, you can dynamically fetch content from the active editorial or preview branch by passing the active branch name stored in the `x-branch` cookie as a header when querying content.

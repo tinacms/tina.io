@@ -8,6 +8,7 @@ export * from './FAQ/FAQ';
 export * from './FeatureGrid/FeatureGrid';
 export * from './Features/Features';
 export * from './Flying/Flying';
+export * from './FooterLinkContent';
 export * from './Hero/Hero';
 export * from './LogoGrid/LogoGrid';
 export * from './Pricing/Pricing';

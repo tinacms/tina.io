@@ -9,19 +9,18 @@
         "isFullscreen": false
       },
       "headline": "Roadmap",
-      "text": "",
+      "text": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our GitHub Discussions.",
+      "buttons": [
+        {
+          "label": "GitHub Discussions",
+          "icon": false,
+          "variant": "orange",
+          "size": "medium",
+          "url": "https://github.com/tinacms/tinacms/discussions",
+          "_template": "actions"
+        }
+      ],
       "_template": "hero"
-    },
-    {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "options": {
-        "narrow": true,
-        "color": "white"
-      },
-      "content": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our [GitHub Discussions](https://github.com/tinacms/tinacms/discussions \"GitHub Discussions\").\n",
-      "_template": "content"
     },
     {
       "headline": "Done",
@@ -78,6 +77,19 @@
               "url": "/"
             }
           ]
+        },
+        {
+          "headline": "☑︎ Docs Template",
+          "content": "Since Tina works so well with documentation sites, we've built a best-of-breed Tina + Docs starter template.\n",
+          "actions": [
+            {
+              "label": "TinaDocs",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/tinadocs"
+            }
+          ]
         }
       ],
       "options": {
@@ -114,6 +126,20 @@
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
+        },
+        {
+          "headline": "□ Build system - move from Commonjs to ESM",
+          "status": "",
+          "content": "We’re modernizing our build system by switching from CommonJS to ESM for better performance and compatibility.\n",
+          "actions": [
+            {
+              "label": "GitHub Issue  🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/issues/5956"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
@@ -125,11 +151,6 @@
       "headline": "Coming Soon",
       "items": [
         {
-          "headline": "Docs Template",
-          "status": "",
-          "content": "Since Tina works so well with documentation sites, we're building a best-of-breed Tina + Docs starter template.\n"
-        },
-        {
           "headline": "Improved PR workflow",
           "status": "",
           "content": "We are making some improvements to Tina's Editorial Workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
@@ -140,6 +161,27 @@
               "variant": "blue",
               "size": "medium",
               "url": "https://tina.io/editorial-workflow/"
+            }
+          ]
+        },
+        {
+          "headline": "Copilot Instructions",
+          "content": "We're working on providing documentation for VibeCoding with TinaCMS to make it even easier to use.\n"
+        },
+        {
+          "headline": "TinaCloud - Project Insights",
+          "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
+        },
+        {
+          "headline": "TinaCMS - Telemetry (powered by PostHog)",
+          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
+          "actions": [
+            {
+              "label": "PostHog 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://posthog.com/"
             }
           ]
         },
@@ -156,6 +198,10 @@
               "url": "https://www.ssw.com.au/rules/make-your-website-llm-friendly/"
             }
           ]
+        },
+        {
+          "headline": "Swapping auth from AWS Cognito to WorkOS",
+          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n"
         }
       ],
       "options": {

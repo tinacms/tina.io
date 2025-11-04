@@ -2,6 +2,10 @@ import Image from 'next/image';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import {
+  BLOCK_HEADINGS_SIZE,
+  H1_HEADINGS_SIZE,
+} from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -141,8 +145,25 @@ export function ShowcaseItemsBlock({ data, index }) {
   return (
     <section key={`features-${index}`} className="w-full">
       <Container>
-        {/* TODO: why is there a type error here */}
-        {/* @ts-ignore */}
+        {data.title &&
+          (data.blockSettings.isHeadingOne ? (
+            <h1
+              className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+            >
+              {data.title}
+            </h1>
+          ) : (
+            <h2
+              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+            >
+              {data.title}
+            </h2>
+          ))}
+        {data.subText && (
+          <p className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center py-4">
+            {data.subText}
+          </p>
+        )}
         {data.items?.map((data, index) => {
           return <ShowcaseBlock data={data} key={data.id} index={index} />;
         })}

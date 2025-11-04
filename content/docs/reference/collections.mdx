@@ -1,8 +1,10 @@
 ---
-cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts"
 id: collections
+cmsUsageWarning: >-
+  https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts
 title: Collections
-last_edited: '2025-03-26T04:54:11.946Z'
+alias: content-modelling-collections
+last_edited: '2025-09-18T23:04:32.497Z'
 next: content/docs/reference/fields.mdx
 previous: content/docs/reference/schema.mdx
 ---
@@ -191,6 +193,12 @@ We recommend using singular naming in a collection (post, not post**s**).
 Documents of different collections can be co-located, but the CLI will print a warning if there are overlapping documents.
 
 By default, the path is relative to where the CLI is running but this can be changed by using the [`--rootPath`](/docs/cli-overview) CLI flag.
+
+<WarningCallout
+  body={<>
+    In **Local Mode**, when **`path`** is changed, you will need to run `tinacms dev`. This ensures the generated files include the new path.
+  </>}
+/>
 
 ### File Format
 

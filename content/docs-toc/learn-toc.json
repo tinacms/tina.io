@@ -261,7 +261,7 @@
           "items": [
             {
               "title": "TinaCMS Availability in China",
-              "slug": "content/docs/tina-cloud/tinacms-availability-China.mdx",
+              "slug": "content/docs/tinacloud/tinacms-availability-China.mdx",
               "_template": "item"
             },
             {
@@ -285,6 +285,11 @@
         {
           "title": "Configuring Dependabot for TinaCMS",
           "slug": "content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Content Security Policy (CSP) Configuration",
+          "slug": "content/docs/guides/csp-configuration.mdx",
           "_template": "item"
         }
       ]

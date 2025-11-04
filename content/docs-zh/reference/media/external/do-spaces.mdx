@@ -1,5 +1,9 @@
 ---
 title: 使用Digital Ocean Spaces的媒体
+alias: digital-ocean-spaces
+last_edited: '2025-09-18T23:33:07.011Z'
+next: ''
+previous: ''
 ---
 
 在TinaCMS中管理**Digital Ocean Spaces媒体资产**。
@@ -27,7 +31,7 @@ npm install next-tinacms-dos
 将以下变量添加到`.env`文件中。
 
 ```env
-SPACES_ENDPOINT=<您的Digital Ocean Spaces端点：例如 https://fra1.digitaloceanspaces.com> （不包括空间名称）
+SPACES_ENDPOINT=<您的Digital Ocean Spaces端点：例如 https://fra1.digitaloceanspaces.com>（不包括空间名称）
 
 SPACES_NAME=<您的Digital Ocean Spaces名称：例如 my-spaces>
 
@@ -111,7 +115,7 @@ export default createMediaHandler({
 })
 ```
 
-对于Netlify的使用案例，请阅读如何设置Netlify Functions [这里](/docs/reference/media/external/authentication/#netlify)
+对于Netlify的使用案例，请阅读如何设置Netlify Functions[这里](/docs/reference/media/external/authentication/#netlify)
 
 ### 使用自定义URL
 
@@ -143,4 +147,4 @@ export default createMediaHandler({
  }
 ```
 
-现在，当编辑您的网站时，图像字段将允许您通过媒体存储连接到Digital Ocean Spaces来管理您的媒体资产。
+现在，当编辑您的网站时，图像字段将允许您通过媒体存储连接到您的Digital Ocean Spaces来管理您的媒体资产。

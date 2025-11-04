@@ -66,7 +66,7 @@ const stripReferenceDownToSlug = (tableOfContentsSubset: any) => {
           array[index].slug = '/docs';
         } else if (array[index].slug === `content/zh${data.docsHomepage}.mdx`) {
           array[index].slug = '/zh/docs';
-        } else {
+        } else if (obj.slug) {
           array[index].slug = obj.slug.replace(/^content\/|\.mdx$/g, '/');
         }
       }
