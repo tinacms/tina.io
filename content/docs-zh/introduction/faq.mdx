@@ -22,7 +22,7 @@ TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud
 
 有关更多信息，请参阅 [TinaCloud 概述](/docs/tinacloud/overview)。
 
-## 2. 我在哪里可以获得 TinaCMS 或 TinaCloud 的帮助或分享想法？
+## 2. 我在哪里可以获得有关 TinaCMS 或 TinaCloud 的帮助或分享想法？
 
 查看我们的社区：[tina.io/community](https://tina.io/community)。
 
@@ -32,7 +32,7 @@ TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud
 
 ## 4. 支持哪些版本的 Node？
 
-TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn 一起使用。
+TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn 一起工作。
 
 ## 5. Tina 的技术栈是什么？
 
@@ -46,7 +46,7 @@ TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn �
 
 * CMS - **React 18**
 
-## 6. 自托管 Tina 与 TinaCloud 相比有哪些不可用的功能？
+## 6. 自托管 Tina 与 TinaCloud 相比有哪些功能不可用？
 
 在比较 TinaCloud 与自托管 Tina 时，有一些特定功能是 TinaCloud 独有的。这些包括：
 
@@ -81,7 +81,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 1. GitHub 授权以将操作归因于 GitHub 帐户。
 2. [共同作者](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git 提交以将提交归因于其他用户。
 
-这两种方法都可以在 TinaCloud 帐户设置中按用户启用。了解更多关于 [Git 作者](/docs/tinacloud/git-co-authoring)的信息。
+这两种方法都可以在 TinaCloud 帐户设置中按用户启用。了解更多关于 [Git 授权](/docs/tinacloud/git-co-authoring)。
 
 ## 8. 使用 Markdown 时为什么需要数据库？
 
@@ -99,19 +99,19 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 <WarningCallout
   body={<>
-    **注意：** 本地模式是为了在本地开发而设计的，当您的网站托管在生产环境中时将不起作用。在本地模式下，Tina 尝试访问 `http://localhost:4001`，这在您的生产网站上运行时不可用（底层文件系统内容也不可用）。
+    **注意：** 本地模式用于本地开发，当您的站点托管在生产环境中时将不起作用。在本地模式下，Tina 尝试访问 `http://localhost:4001`，这在您的生产站点上运行时不可用（底层文件系统内容也不可用）。
   </>}
 />
 
 ### 生产模式
 
-一旦您准备好在生产环境中托管您的网站并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
+一旦您准备好在生产环境中托管您的站点并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
 
 无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，无需用户创建 GitHub 帐户。您的编辑者保存的任何更改都将提交到您 GitHub 存储库中配置的分支。
 
 ## 10. TinaCloud 仅适用于 GitHub 存储库吗？
 
-目前是的，TinaCloud 集成的第一个 Git 提供商是 GitHub。未来可能会有其他 Git 提供商。
+## 11. TinaCloud 支持 Monorepos 吗？
 
 ## 11. TinaCloud 支持 Monorepos 吗？
 
@@ -129,9 +129,9 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 有关更多信息，请参阅 [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina)。
 
-## 12. 为什么从网站登录时 Tina.io 登录窗口不会关闭？
+## 12. 为什么从站点登录时 Tina.io 登录窗口不会关闭？
 
-当用户从您的网站登录时，我们会弹出一个登录窗口。登录完成后，我们将尝试将消息发送回主窗口。
+当用户从您的站点登录时，我们会弹出一个登录窗口。登录完成后，我们将尝试将消息发送回主窗口。
 
 此问题的最常见原因是：
 
@@ -153,13 +153,13 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 当您在本地运行 `tinacms dev` 时，Tina 将生成一个开发 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中删除 admin/index.html 文件，他们可能会遇到此问题。
 
-### 您的网站在不同的基本路径上提供服务
+### 您的站点在不同的基本路径上提供服务
 
-如果您的网站在子目录中提供服务，请确保您的 `build.basePath` 已 [适当配置](/docs/reference/config/#definition)
+如果您的站点在子目录中提供服务，请确保您的 `build.basePath` 已 [适当配置](/docs/reference/config/#definition)
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
-**视频：常见问题 - 为 TinaCMS 设置基本路径（3 分钟）**
+**视频：常见问题 - 为 TinaCMS 设置基础路径（3 分钟）**
 
 ## 14. 常见的 TinaCloud 错误有哪些？
 
@@ -200,7 +200,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 在不使用 [编辑工作流](/editorial-workflow) 的情况下使用 TinaCloud 时，您需要确保 [TinaCloud 应用](https://github.com/apps/tina-cloud-app) 能够提交到存储库的选定分支。
 
-如果不能，您将看到如下形式的错误：
+如果不能，您将看到以下形式的错误：
 
 ```text
 Tina 在更新页面时捕获到错误：
@@ -215,7 +215,7 @@ Tina 在更新页面时捕获到错误：
 
 通常发生这种情况是因为您的主分支上有分支保护，而 TinaCloud 无法绕过它。直到 2024 年 7 月，TinaCloud GitHub 应用对存储库拥有管理员权限，这使其能够绕过大多数存储库的这些规则。
 
-要解决此问题，可以：
+要解决此问题，请执行以下操作之一：
 
 * 从传统分支保护升级到分支规则集 - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
   确保 TinaCloud 应用被允许绕过需要分支保护的规则
@@ -242,7 +242,7 @@ ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参
 
 登录 TinaCloud 时，您尝试登录的网站的 URL 通过 `?origin=` URL 参数发送。当身份验证窗口的 `?origin=` URL 参数中指定的 URL 与 TinaCloud 站点 URL 中定义的不匹配时，可能会发生此错误。
 
-要解决此问题，请确保您的 TinaCloud 站点 URL 设置中指定的一个 URL 与 `?origin=` URL 参数中显示的 URL 完全匹配。
+要解决此问题，请确保 TinaCloud 站点 URL 设置中指定的一个 URL 与 `?origin=` URL 参数中显示的 URL 完全匹配。
 
 !['?origin=' URL 参数](/img/docs/introduction/origin-url-highlight.png)\
 **图：URL 参数**
@@ -252,9 +252,9 @@ ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参
 
 ## 15. 如何在本地 GraphQL 服务器未运行或在生产环境中访问它？
 
-### 在生产环境中
+### 在生产中
 
-确保您的 API URL 未设置为在生产环境中指向本地 GraphQL 服务器。您应该指向 ContentAPI。
+确保您的 API URL 未设置为在生产中指向本地 GraphQL 服务器。您应该指向 ContentAPI。
 
 ### 本地
 

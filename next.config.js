@@ -77,6 +77,11 @@ const config = {
         source: '/tinadocs/_next/static/pagefind/:path*',
         destination: `${TINA_DOCS_URL}/tinadocs/_next/static/pagefind/:path*`,
       },
+      // Docs - Sitemap
+      {
+        source: '/tinadocs/doc/sitemap.xml',
+        destination: `${TINA_DOCS_URL}/tinadocs/doc/sitemap.xml`,
+      },
 
       // Landing Page - Specific patterns first
       {
