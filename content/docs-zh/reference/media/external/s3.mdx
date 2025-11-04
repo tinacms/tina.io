@@ -1,20 +1,24 @@
 ---
 title: 使用媒体与AWS S3存储桶
+alias: aws-s3-bucket
+last_edited: '2025-09-18T23:35:17.421Z'
+next: ''
+previous: ''
 ---
 
 在TinaCMS中管理**S3存储桶媒体资产**。
 
-> 以下指南依赖于NextJS的API功能来验证第三方媒体交互。我们希望很快能记录一个与框架无关的方法。
+> 以下指南依赖于NextJS的API功能来验证第三方媒体交互。我们希望很快能记录一种与框架无关的方法。
 
 ## 安装
 
-### 使用 Yarn
+### 使用Yarn
 
 ```bash
 yarn add next-tinacms-s3
 ```
 
-### 使用 NPM
+### 使用NPM
 
 ```bash
 npm install next-tinacms-s3
@@ -42,18 +46,18 @@ S3_SECRET_KEY=<您的S3存储桶访问密钥>
 
 ### 1. IAM用户应至少对您的存储桶具有以下权限。
 
-- `s3:ListBucket`
-- `s3:PutObject`
-- `s3:PutObjectAcl`
-- `s3:DeleteObject`
+* `s3:ListBucket`
+* `s3:PutObject`
+* `s3:PutObjectAcl`
+* `s3:DeleteObject`
 
 ### 2. S3存储桶应启用ACL。
 
-您应该能够进入AWS S3控制台并导航到您尝试写入对象的存储桶的详细信息。您会看到一个名为“权限”的选项卡。在那里，您可以在同名的块中更改“对象所有权”。
+您应该能够进入AWS S3控制台并导航到您尝试写入对象的存储桶的详细信息。您会看到一个名为“权限”的选项卡。在那里，您可以更改“对象所有权”的选项。
 
 一旦进入，您可以选择“启用ACL”选项。
 
-### 3. 您应确保S3存储桶中的对象可被匿名用户读取，并可由IAM用户写入。
+### 3. 您应确保S3存储桶中的对象可被匿名用户读取，并可被IAM用户写入。
 
 即，您可以禁用`阻止公共访问设置`并设置存储桶策略，如下所示：
 
@@ -72,7 +76,7 @@ S3_SECRET_KEY=<您的S3存储桶访问密钥>
       "Sid": "LimitedWrite",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "<ARN of the IAM user>"
+        "AWS": "<IAM用户的ARN>"
       },
       "Action": ["s3:PutObject", "s3:PutObjectAcl", "s3:DeleteObject"],
       "Resource": "arn:aws:s3:::<S3-Bucket-NAME>/*"
@@ -81,7 +85,7 @@ S3_SECRET_KEY=<您的S3存储桶访问密钥>
       "Sid": "ListBucket",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "<ARN of the IAM user>"
+        "AWS": "<IAM用户的ARN>"
       },
       "Action": "s3:ListBucket",
       "Resource": "arn:aws:s3:::<S3-Bucket-NAME>"
@@ -92,7 +96,7 @@ S3_SECRET_KEY=<您的S3存储桶访问密钥>
 
 ### 4. 您应确保CORS配置设置正确。
 
-图像是使用S3预签名URL上传的。这需要存储桶具有允许请求来源访问存储桶的CORS配置。
+图像是使用S3预签名URL上传的。这要求存储桶具有允许请求来源访问存储桶的CORS配置。
 
 ```json
 [
@@ -144,13 +148,13 @@ export default defineConfig({
 
 ## 设置API路由
 
-Tina的“外部媒体提供者”支持需要一个轻量级的后端媒体处理器，需要由用户设置/托管。有多种方法可以做到这一点，包括与框架无关的[Netlify Functions实现](/docs/reference/media/external/authentication/#netlify)。
+Tina的“外部媒体提供者”支持需要一个轻量级的后端媒体处理程序，需要由用户设置/托管。有多种方法可以做到这一点，包括与框架无关的[Netlify Functions实现](/docs/reference/media/external/authentication/#netlify)。
 
 ### Next.js
 
-> **注意：**此步骤将向您展示如何为Next.js设置API路由。如果您使用的是不同的框架，则需要设置自己的API路由。
+> **注意：**此步骤将向您展示如何为Next.js设置API路由。如果您使用的是不同的框架，您将需要设置自己的API路由。
 
-在Next.js应用的`pages`目录中设置一个新的API路由，例如`pages/api/s3/[...media].ts`。然后为媒体添加一个新的捕获所有API路由。
+在您的Next.js应用的`pages`目录中设置一个新的API路由，例如`pages/api/s3/[...media].ts`。然后为媒体添加一个新的通配API路由。
 
 调用`createMediaHandler`来设置路由并将您的媒体存储实例连接到您的S3存储桶。
 
@@ -197,13 +201,13 @@ export default createMediaHandler({
 
 ### 与框架无关的实现
 
-在上面的示例中，我们展示了如何将后端处理器作为NextJS API功能托管。如果您在使用Vercel的其他框架中，适用相同的方法（唯一的小区别是您需要使用`/api/...`而不是`/pages/api/...`来处理您的处理器）。
+在上面的示例中，我们展示了如何将后端处理程序作为NextJS API功能托管。如果您在Vercel上使用其他框架，适用相同的方法（唯一的小区别是您需要使用`/api/...`而不是`/pages/api/...`作为您的处理程序）。
 
 您还可以查看我们的[Netlify Functions](/docs/reference/media/external/authentication/#option-3-netlify-functions)和[AWS Lambda](/docs/reference/media/external/authentication/#option-3-aws-lambda)实现。
 
 ### 使用自定义URL
 
-如果您为S3存储桶使用自定义URL，可以将`cdnUrl`值传递给`createMediaHandler`。
+如果您为S3存储桶使用自定义URL，您可以将`cdnUrl`值传递给`createMediaHandler`。
 
 ```ts
 export default createMediaHandler({
@@ -217,11 +221,11 @@ export default createMediaHandler({
 )
 ```
 
-## 更新模式
+## 更新Schema
 
-现在媒体存储已注册并设置了媒体的API路由，让我们在您的模式中添加一个图像。
+现在媒体存储已注册并设置了媒体的API路由，让我们在您的schema中添加一个图像。
 
-在您的模式中为图像添加一个新字段，例如：
+在您的schema中为图像添加一个新字段，例如：
 
 ```ts
  {

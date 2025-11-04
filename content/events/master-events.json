@@ -48,7 +48,7 @@
       "startTime": "08:30",
       "endDate": "2024-11-29T00:00:00.000Z",
       "timezone": 11,
-      "image": "/img/events/2024-11-21_10-33.jpg",
+      "image": "/events/Melbourne.png",
       "link": "https://www.writethedocs.org/conf/australia/2024/",
       "location": "Melbourne, Australia",
       "markerLAT": -26.81015,
@@ -126,7 +126,7 @@
       "markerLONG": 60.6701
     },
     {
-      "headline": "NDC Lisbon - Azure Dev Summit",
+      "headline": "Azure Dev Summit",
       "startDate": "2025-10-13T00:00:00.000Z",
       "startTime": "09:00",
       "endDate": "2025-10-16T00:00:00.000Z",

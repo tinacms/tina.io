@@ -1,8 +1,8 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { glob } from 'fast-glob';
-import { readFileSync } from 'fs';
 import matter from 'gray-matter';
 import { notFound, redirect } from 'next/navigation';
-import path from 'path';
 import client from 'tina/__generated__/client';
 import type { DocConnectionQuery } from 'tina/__generated__/types';
 
@@ -28,7 +28,6 @@ export async function generateStaticParams() {
       }
     }
 
-    console.log('Generated alias params using filesystem:', aliasParams);
     return aliasParams;
   } catch (error) {
     console.error('Error generating static params for alias routes:', error);

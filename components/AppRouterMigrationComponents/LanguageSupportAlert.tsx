@@ -47,7 +47,6 @@ export function LanguageSupportAlert() {
     const checkChineseVersion = async () => {
       if (isLocalesPath(previousPath) && !isLocalesPath(pathName)) {
         const pageType = getPageType(pathName);
-        console.log('pageType', pageType);
         const hasZhVersion = await hasChineseVersion(pageType, pathName);
         setIsVisible(!hasZhVersion);
       } else {

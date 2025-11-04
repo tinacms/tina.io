@@ -1,10 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
-  },
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "files": {
     "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     "ignoreUnknown": false
@@ -25,22 +21,14 @@
         "useExhaustiveDependencies": "error",
         "noInnerDeclarations": "off"
       },
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noArrayIndexKey": "error"
-      },
+      "suspicious": { "noExplicitAny": "off", "noArrayIndexKey": "error" },
       "style": {
         "useConst": "error",
         "useBlockStatements": "error",
         "noNonNullAssertion": "off"
       },
-      "complexity": {
-        "noForEach": "off",
-        "useOptionalChain": "error"
-      },
-      "performance": {
-        "noDelete": "warn"
-      },
+      "complexity": { "noForEach": "off", "useOptionalChain": "error" },
+      "performance": { "noDelete": "warn" },
       "a11y": {
         "useKeyWithClickEvents": "off",
         "useKeyWithMouseEvents": "error",
@@ -49,9 +37,6 @@
     }
   },
   "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "semicolons": "always"
-    }
+    "formatter": { "quoteStyle": "single", "semicolons": "always" }
   }
 }

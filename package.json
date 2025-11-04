@@ -42,6 +42,9 @@
     "@styled-jsx/plugin-sass": "^4.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.0.6",
+    "@tinacms/mdx": "^1.8.1",
+    "@tinacms/schema-tools": "^1.9.1",
+    "@tinacms/search": "^1.1.1",
     "@vercel/postgres": "^0.10.0",
     "algoliasearch": "^4.24.0",
     "axios": "^1.11.0",
@@ -128,7 +131,7 @@
     "@types/styled-components": "^5.1.34",
     "babel-plugin-styled-components": "^1.13.3",
     "jest": "^25.5.4",
-    "next-sitemap": "^2.5.28",
+    "next-sitemap": "^4.2.3",
     "tailwindcss": "^4.1.8",
     "ts-jest": "^25.5.1",
     "typescript": "^4.9.5"

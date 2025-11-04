@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import { fetchMeetingLinks } from 'utils/getMeetingLinks';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 
 export type BookingItem = {
   name: string;
@@ -87,7 +87,7 @@ const BookingBlock = ({ data }) => {
         </div>
         <div className="grid gap-3 my-16 px-10 py-12 md:bg-linear-to-br from-white/25 via-white/50 to-white/75 break-inside-avoid md:shadow-md rounded-lg">
           <h1
-            className={`${BLOCK_HEADINGS} w-full text-center inline-block m-0 font-ibm-plex whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
+            className={`${BLOCK_HEADINGS_SIZE} w-full text-center inline-block m-0 font-ibm-plex whitespace-nowrap lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent`}
           >
             {data.title}
           </h1>
