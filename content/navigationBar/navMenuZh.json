@@ -4,11 +4,13 @@
     {
       "label": "文档",
       "href": "/zh/docs",
+      "external": false,
       "_template": "stringItem"
     },
     {
       "label": "定价",
       "href": "/zh/pricing",
+      "external": false,
       "_template": "stringItem"
     },
     {
@@ -16,27 +18,33 @@
       "items": [
         {
           "label": "关于 TinaCMS",
-          "href": "/zh/about"
+          "href": "/zh/about",
+          "external": false
         },
         {
           "label": "博客",
-          "href": "/zh/blog"
+          "href": "/zh/blog",
+          "external": false
         },
         {
           "label": "产品对比",
-          "href": "/zh/compare-tina"
+          "href": "/zh/compare-tina",
+          "external": false
         },
         {
           "label": "示例",
-          "href": "/examples"
+          "href": "/examples",
+          "external": false
         },
         {
           "label": "最新动态 - TinaCMS",
-          "href": "/whats-new/tinacms"
+          "href": "/whats-new/tinacms",
+          "external": false
         },
         {
           "label": "最新动态 - TinaCloud",
-          "href": "/whats-new/tinacloud"
+          "href": "/whats-new/tinacloud",
+          "external": false
         }
       ],
       "_template": "groupOfStringItems"
@@ -46,27 +54,33 @@
       "items": [
         {
           "label": "案例展示",
-          "href": "/zh/showcase"
+          "href": "/zh/showcase",
+          "external": false
         },
         {
           "label": "产品路线",
-          "href": "/zh/roadmap"
+          "href": "/zh/roadmap",
+          "external": false
         },
         {
           "label": "技术支持",
-          "href": "/docs/support"
+          "href": "/docs/support",
+          "external": false
         },
         {
           "label": "Awesome TinaCMS",
-          "href": "https://github.com/tinacms/awesome-tinacms"
+          "href": "https://github.com/tinacms/awesome-tinacms",
+          "external": true
         },
         {
           "label": "Discord",
-          "href": "https://discord.com/invite/zumN63Ybpf"
+          "href": "https://discord.com/invite/zumN63Ybpf",
+          "external": true
         },
         {
           "label": "论坛",
-          "href": "https://github.com/tinacms/tinacms/discussions"
+          "href": "https://github.com/tinacms/tinacms/discussions",
+          "external": true
         }
       ],
       "_template": "groupOfStringItems"
@@ -74,11 +88,13 @@
     {
       "label": "企业版",
       "href": "/zh/enterprise",
+      "external": false,
       "_template": "stringItem"
     },
     {
       "label": "我的TinaCloud",
       "href": "https://app.tina.io/signin",
+      "external": true,
       "_template": "stringItem"
     },
     {

@@ -12,6 +12,8 @@
   },
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.format.enable": false,
+  "prettier.enable": false,
+  "prettier.disableLanguages": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
