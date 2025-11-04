@@ -1,6 +1,6 @@
 ---
 title: 内容安全策略 (CSP) 配置
-next: 'content/docs-zh/guides/how-to-update-your-tina-version-with-dependabot.mdx'
+next: content/docs-zh/guides/how-to-update-your-tina-version-with-dependabot.mdx
 previous: ''
 ---
 
@@ -12,9 +12,9 @@ previous: ''
 
 TinaCMS 需要以下 CSP 指令才能正常运行：
 
-### 图片来源
+### 图像来源
 
-TinaCMS 需要访问其资产交付网络以加载图片：
+TinaCMS 需要访问其资产交付网络以加载图像：
 
 ```javascript
 "img-src 'self' data: assets.tina.io;"
@@ -32,13 +32,13 @@ TinaCMS 需要连接到多个服务以进行身份验证和内容交付：
 * **content.tinajs.io** - 内容 API 和数据层
 * **assets.tinajs.io** - 资产管理和交付
 
-## 实施示例
+## 实现示例
 
 ### Next.js 配置
 
 #### 应用路由器 (Next.js 13+)
 
-在您的 `next.config.js` 中添加 CSP 头：
+在 `next.config.js` 中添加 CSP 头：
 
 ```javascript
 const baseCsp = [
@@ -75,9 +75,9 @@ module.exports = nextConfig;
 
 #### 页面路由器
 
-对于页面路由器，您也可以在 `next.config.js` 中使用上述方法配置 CSP。
+对于页面路由器，您也可以在 `next.config.js` 中使用上述相同的方法配置 CSP。
 
-或者，在您的中间件中设置 CSP 头：
+或者，在中间件中设置 CSP 头：
 
 ```typescript
 // middleware.ts
@@ -102,7 +102,7 @@ export function middleware(request: NextRequest) {
 
 ### Netlify 配置
 
-在您的 `netlify.toml` 中添加 CSP 头：
+在 `netlify.toml` 中添加 CSP 头：
 
 ```toml
 [[headers]]
@@ -113,7 +113,7 @@ export function middleware(request: NextRequest) {
 
 ### Vercel 配置
 
-在您的 `vercel.json` 中添加头：
+在 `vercel.json` 中添加头：
 
 ```json
 {
@@ -180,6 +180,7 @@ const baseCsp = [
 
 常见违规：
 
+
 * **阻止的图片加载**：将域添加到 `img-src`
 * **阻止的 API 调用**：将域添加到 `connect-src`
 * **阻止的内联样式**：您可能需要为某些 TinaCMS 功能添加 `style-src 'unsafe-inline'`
@@ -191,6 +192,14 @@ const baseCsp = [
 1. 验证所有必需的域是否包含在 `connect-src` 中
 2. 检查浏览器控制台中的 CSP 违规
 3. 确保 `frame-src` 允许 TinaCMS 管理界面（如果使用 iframe 模式）
+
+<WarningCallout
+  body={<>
+    使用 GitHub 进行身份验证时遇到问题？可能是您的 CSP 配置问题！
+    
+    查看 [这个 GitHub 问题及其解决方法](https://github.com/tinacms/tina.io/issues/3978)。
+  </>}
+/>
 
 ### 测试 CSP 配置
 
@@ -213,7 +222,7 @@ const baseCsp = [
 ## 最佳实践
 
 1. **从严格开始，然后放宽**：从严格的 CSP 开始，仅在需要时添加例外
-2. **使用报告模式**：在强制执行之前使用 `Content-Security-Policy-Report-Only` 测试 CSP 更改
-3. **定期审核**：随着应用程序的发展，审查并更新您的 CSP
+2. **使用仅报告模式**：在强制执行之前使用 `Content-Security-Policy-Report-Only` 测试 CSP 更改
+3. **定期审计**：随着应用程序的发展，审查和更新您的 CSP
 4. **记录例外**：记录为什么特定域被列入白名单
 5. **环境特定策略**：考虑为开发和生产设置不同的 CSP 规则
