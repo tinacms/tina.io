@@ -180,9 +180,10 @@ const baseCsp = [
 
 常见违规：
 
-* **阻止的图像加载**：将域添加到 `img-src`
+
+* **阻止的图片加载**：将域添加到 `img-src`
 * **阻止的 API 调用**：将域添加到 `connect-src`
-* **阻止的内联样式**：您可能需要 `style-src 'unsafe-inline'` 来支持某些 TinaCMS 功能
+* **阻止的内联样式**：您可能需要为某些 TinaCMS 功能添加 `style-src 'unsafe-inline'`
 
 ### TinaCMS 编辑器未加载
 
