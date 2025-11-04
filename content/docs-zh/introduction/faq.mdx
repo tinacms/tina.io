@@ -46,7 +46,7 @@ TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn �
 
 * CMS - **React 18**
 
-## 6. 自托管 Tina 与 TinaCloud 相比有哪些不可用的功能？
+## 6. 自托管 Tina 与 TinaCloud 相比有哪些功能不可用？
 
 在比较 TinaCloud 与自托管 Tina 时，TinaCloud 有一些独特的功能。这些包括：
 
@@ -81,7 +81,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 1. GitHub 授权以将操作归因于 GitHub 帐户。
 2. [共同作者](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git 提交以将提交归因于其他用户。
 
-这两种方法都可以在 TinaCloud 帐户设置中按用户启用。了解更多关于 [Git 作者](/docs/tinacloud/git-co-authoring)的信息。
+这两种方法都可以在 TinaCloud 帐户设置中按用户启用。了解更多关于 [Git 授权](/docs/tinacloud/git-co-authoring)。
 
 ## 8. 使用 Markdown 时为什么需要数据库？
 
@@ -113,7 +113,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 目前是的，TinaCloud 集成的第一个 Git 提供商是 GitHub。未来可能会有其他 Git 提供商可用。
 
-## 11. TinaCloud 是否支持 Monorepos？
+## 11. TinaCloud 支持 Monorepos 吗？
 
 支持！通过在项目配置中指定 `tina` 文件夹的路径，TinaCloud 可以与 monorepos 中的站点一起工作。
 
@@ -141,7 +141,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 > 确保在站点 URL 中包含 `https`，例如：[https://forestry.io](https://forestry.io) 或者如果您在本地测试，可能是 `http://localhost:3000`
 
-### 站点在子路径上构建
+### 网站在子路径上构建
 
 已知限制是当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/) 中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
 
@@ -159,7 +159,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
-**视频：常见问题 - 为 TinaCMS 设置基本路径（3 分钟）**
+**视频：常见问题 - 为 TinaCMS 设置基础路径（3 分钟）**
 
 ## 14. 常见的 TinaCloud 错误有哪些？
 
@@ -206,7 +206,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 Tina 在更新页面时捕获到错误：
 
 错误：无法获取，错误：
-    PUT src/pages/some-page.md 时出错
+    在 PUT 中出错 src/pages/some-page.md
 ```
 
 <Youtube embedSrc=" https://www.youtube.com/embed/MTIJotdIG9E?si=8mcaNAqogQRwL678" />
@@ -252,9 +252,9 @@ ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参
 
 ## 15. 如何在本地 GraphQL 服务器未运行或在生产环境中访问它？
 
-### 在生产环境中
+### 在生产中
 
-确保您的 API URL 未设置为在生产环境中指向本地 GraphQL 服务器。您应该指向 ContentAPI。
+确保您的 API URL 未设置为在生产中指向本地 GraphQL 服务器。您应该指向 ContentAPI。
 
 ### 本地
 
