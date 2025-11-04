@@ -1,5 +1,5 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
@@ -42,7 +42,7 @@ export function RoadmapGridBlock({ data, index }) {
     <section key={`roadmap-grid-${index}`} className={`w-full`}>
       <Container width="narrow">
         <h2
-          className={`${BLOCK_HEADINGS} font-ibm-plex inline-block lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent mb-4`}
+          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight  mb-4`}
         >
           {data.headline}
         </h2>

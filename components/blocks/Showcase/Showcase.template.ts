@@ -8,6 +8,19 @@ export const showcaseTemplate: Template = {
   },
   fields: [
     {
+      name: 'title',
+      label: 'Title',
+      type: 'string',
+    },
+    {
+      name: 'subText',
+      label: 'Sub Text',
+      type: 'string',
+      ui: {
+        component: 'textarea',
+      },
+    },
+    {
       name: 'items',
       label: 'Showcase Items',
       type: 'object',

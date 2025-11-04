@@ -1,9 +1,11 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
-import { BLOCK_HEADINGS } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { cn } from '@/lib/utils';
+import { LiteYouTube } from './LiteYouTube';
+import { extractYouTubeId } from './utils';
 
 type YouTubeEmbedProps = {
   src: string;
@@ -11,10 +13,9 @@ type YouTubeEmbedProps = {
 };
 
 export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
-  const isValidYoutubeUrl =
-    src && (src.includes('youtube.com/embed/') || src.includes('youtu.be/'));
+  const videoId = extractYouTubeId(src);
 
-  if (!isValidYoutubeUrl) {
+  if (!videoId) {
     console.error('Invalid YouTube URL:', src);
     return (
       <div
@@ -29,15 +30,11 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
   }
 
   return (
-    <div className={cn('relative pt-[56.25%] w-full', className)}>
-      <iframe
-        className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-        src={src}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-    </div>
+    <LiteYouTube
+      id={videoId}
+      title="YouTube video player"
+      className={className}
+    />
   );
 };
 
@@ -63,7 +60,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
         {title && (
           <>
             <h2
-              className={`${BLOCK_HEADINGS} font-ibm-plex inline-block pb-8 lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent text-balance text-center lg:text-left`}
+              className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block pb-8 lg:leading-tight text-black text-balance text-center lg:text-left`}
               data-tina-field={tinaField(data, 'title')}
             >
               {title}

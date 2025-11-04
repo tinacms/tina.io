@@ -6,6 +6,7 @@ import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docs
 import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
 import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
 import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
+import { GitHubMetadata } from 'components/PageMetadata';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { useCallback, useEffect, useState } from 'react';
@@ -85,6 +86,7 @@ export default function DocsClient({ props }) {
           setLearnActive={setLearnActive}
           NavigationLearnItems={NavigationLearnData?.data}
         />
+        <GitHubMetadata path={DocumentationData?.id} className="mt-2" />
         <div className="block xl:hidden">
           <TocOverflowButton tocData={PageTableOfContents} />
         </div>
@@ -93,8 +95,11 @@ export default function DocsClient({ props }) {
           className="pb-6 leading-7 text-slate-800 max-w-full space-y-3 mt-6 text-lg"
         >
           {' '}
+          {/* Markdown Renderer */}
           <TinaMarkdown
             content={DocumentationData?.body}
+            //Raw markdown in AST format
+            // node is h2: text-orange-500
             components={docAndBlogComponents}
           />
         </div>

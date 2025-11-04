@@ -6,6 +6,9 @@
   },
   "blocks": [
     {
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "headline": "Meet Tina",
       "text": " TinaCMS is a developer-friendly, open-source CMS powered by Git and Markdown. Enjoy live previews, real-time editing, and seamless integration for devs - all while keeping content creators in control. No databases, no hassle.",
       "margin": " lg:pb-24",
@@ -14,7 +17,7 @@
     },
     {
       "isVideoOnLeft": false,
-      "body": "###### Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
+      "body": "## Editing with Tina\n\nTo see a few ways you can edit your content, check out this video by Landon (3 minutes)\n",
       "mediaColumnItem": [
         {
           "embedUrl": "https://www.youtube.com/embed/4B7b6-bfWYI?si=vzakrDeab_QfZzQj",
@@ -80,7 +83,7 @@
     },
     {
       "isVideoOnLeft": true,
-      "body": "###### Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
+      "body": "## Best CMS on GitHub\n\nDiscover why developers and content editors love TinaCMS, from its real-time updates and Markdown simplicity to its unbeatable version control powered by GitHub. Plus, learn about Tina's exciting future with SSW!\n",
       "mediaColumnItem": [
         {
           "embedUrl": "https://www.youtube.com/embed/SjDsLgpuaJI?si=6bSk_qhwLycGd5ka",
