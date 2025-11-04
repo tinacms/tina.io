@@ -2,7 +2,7 @@
 id: /docs/extending-tina/custom-field-components
 title: React 组件
 alias: custom-fields-react
-last_edited: '2025-09-18T23:42:00.805Z'
+last_edited: '2025-11-03T22:58:44.784Z'
 next: content/docs-zh/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
@@ -16,7 +16,7 @@ previous: ''
 这应该设置为一个有效的 React 组件，该组件最多接受四个属性：
 
 * `field`: 当前字段的[字段定义](https://tinacms.org/docs/reference/toolkit/fields)。
-* `input`: 创建输入所需的数据和回调。
+* `input`: 制作输入所需的数据和回调。
 * `meta`: 表单中关于字段的元数据。（例如 `dirty`，`valid`）。
 * `form`: CMS 表单，用于检索和更新同一集合中的其他字段。
 
@@ -34,19 +34,19 @@ previous: ''
 
 集合中的任何字段都可以使用 `form.getFieldState(name: string)?.value` 访问，使用字段的 `name` 属性。
 
-> 可以从 [react-final-form FormAPI 文档](https://final-form.org/docs/final-form/types/FormApi) 中推断出更多的使用模式。
+> 更多使用模式可以从 [react-final-form FormAPI 文档](https://final-form.org/docs/final-form/types/FormApi) 中推断。
 
 ### 隐藏字段
 
 将 `component.ui` 设置为值 `"hidden"` 会将字段从编辑器中移除。
 
-该字段仍然存在于后台，可以通过其他方式访问。
+该字段仍然在后台存在，可以通过其他方式访问。
 
 ## 示例
 
 ### 滑块组件
 
-这是一个可用于调整图像饱和度的自定义滑块组件。
+这是一个用于调整图像饱和度的自定义滑块组件。
 
 ![一个基本的滑块自定义组件](/img/docs/extending-tina/image-saturation.png)
 
@@ -140,7 +140,7 @@ const CustomImageField = (props) => {
 }
 ```
 
-这在编辑器中显示为一个单一的图像输入，但每次更新时将保存 3 个值（图像来源、高度和宽度）。
+这在编辑器中显示为一个单一的图像输入，但每次更新时将保存 3 个值（图像源、高度和宽度）。
 
 ![](/img/docs/reference/SCR-20250317-mtnf.png)
 
@@ -154,7 +154,7 @@ imgHeight: 1480
 
 可以通过检查其他表单字段的值来创建条件字段。
 
-> 使用这种方法，隐藏的条件字段将保留在隐藏之前保存的任何值。
+> 使用这种方法，隐藏的条件字段将保留其隐藏前保存的任何值。
 
 ![](</gif/Screen Recording 2025-03-17 at 3.21.09 pm.gif>)
 
@@ -183,3 +183,67 @@ imgHeight: 1480
 下面的教程包括一个关于使用自定义字段组件创建自定义图标选择器的部分。
 
 <Youtube embedSrc="https://www.youtube.com/embed/amSRwAbgMR0?start=744" />
+
+### 图像缩放滑块组件
+
+通过一些额外的 CSS，你可以在 Tina 中创建可缩放的图像。这将节省你为博客裁剪图像的时间。
+![在 Tina 编辑器中缩放图像](/img-scale-component.gif)
+
+```
+import { wrapFieldsWithMeta } from 'tinacms';
+
+// 在你的集合中
+{
+  label: "图像缩放",
+  name: "scale",
+  type: "number",
+  description: "我的自定义图像缩放器",
+  ui: {
+    parse: (val) => Number(val),
+    component: wrapFieldsWithMeta(({ field, input, meta }) => {
+      return (
+        <div>
+          <input
+            type="range"
+            min="1"
+            max="200"
+            step="1"
+            {...input}
+          />
+          <br />
+          值: {input.value}
+        </div>
+      )
+    })
+  }
+}
+```
+
+```javascript
+
+import client from "@/tina/client";
+import { useTina } from "tinacms/dist/react";
+
+// 你的组件
+const Image = (props)=>{ 
+  
+  const response = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data});
+  return <div style={{
+    width: '500px',
+    height: '500px',
+    position: 'relative',
+
+  }}>
+    <img
+    src="/llama.png"
+    style={{
+      position: 'absolute',
+      objectFit: 'contain',
+      scale: response.data.scale / 100,
+    }} />
+  </div>
+}
+```
