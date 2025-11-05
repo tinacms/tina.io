@@ -58,7 +58,7 @@ TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn �
 
 ### 2. 运行时动态分支切换
 
-TinaCloud 允许在运行时更改内容分支，这一功能通过 URL 修改来管理。然而，在自托管 Tina 中，分支更改仅限于构建阶段。
+TinaCloud 允许在运行时更改内容分支，这一功能通过 URL 修改进行管理。然而，在自托管 Tina 中，分支更改仅限于构建阶段。
 
 这意味着像这样的命令...
 
@@ -109,11 +109,11 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，无需用户创建 GitHub 账户。您的编辑者保存的任何更改都将提交到您 GitHub 仓库中配置的分支。
 
-目前是的，TinaCloud 集成的第一个 Git 提供商是 GitHub。未来可能会有其他 Git 提供商可用。
+## 11. TinaCloud 支持 Monorepos 吗？
 
 ## 11. TinaCloud 支持 Monorepos 吗？
 
-支持！通过在项目配置中指定 `tina` 文件夹的路径，TinaCloud 可以与 monorepos 中的站点一起工作。
+支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的网站一起工作。
 
 如果您的存储库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于存储库的根目录。
 
@@ -141,11 +141,11 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 网站在子路径上构建
 
-已知限制是当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/) 中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
+已知限制是，当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/)中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
 
 ## 13. 如何解决“加载 TinaCMS 资产失败”错误？
 
-此错误意味着 TinaCMS 管理 HTML 文件未能加载 JavaScript 包。通常由于以下几个原因导致：
+此错误表示 TinaCMS 管理 HTML 文件未能加载 JavaScript 包。通常由于以下几个原因导致：
 
 ### 用户将开发 admin/index.html 推送到生产
 
@@ -174,18 +174,18 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 2. 如何解决 `本地 GraphQL 模式与远程 GraphQL 模式不匹配` 错误？
 
-如果您在构建日志中收到此错误，则表示您部署的站点中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
+如果您在构建日志中收到此错误，则表示您部署的网站中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
 
 1. 确保您的模式（从 `tina/config.ts` 生成）不包含任何变化的信息，例如时间戳或随机文本
 2. 确保您的项目中有最新版本的 `@tinacms/cli` 和 `tinacms`
-3. 在本地运行 dev 命令
+3. 在本地运行开发命令
 4. 提交对 `tina/tina-lock.json` 的任何更改并将其推送到 TinaCloud 中链接的 git 存储库
 
 如果您在访问 TinaCMS 界面时收到此错误，可能是由于项目中 `tinacms` 和 `@tinacms/cli` 的版本不匹配所致。更新这两个依赖项到最新版本，并在本地运行开发命令。提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库。
 
 ### 3. 如何解决由未索引分支引起的错误？
 
-如果您收到类似 `指定的分支 'my-branch-name' 未被 TinaCloud 索引` 的错误，或者根本没有看到索引的分支，请尝试以下操作：
+如果您收到类似 `指定的分支，'my-branch-name'，尚未被 TinaCloud 索引` 的错误，或者看到没有分支被索引，请尝试以下操作：
 
 1. 验证默认分支上的 `tina/config.ts` 中是否存在配置文件
 2. 验证在 `tina/config.ts` 中传递给 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中作为环境变量设置
@@ -211,7 +211,7 @@ Tina 在更新页面时捕获到错误：
 
 **视频：常见问题 - 使用 TinaCMS 绕过 GitHub 分支保护（3 分钟）**
 
-通常发生这种情况是因为您的主分支上有分支保护，而 TinaCloud 无法绕过它。直到 2024 年 7 月，TinaCloud GitHub 应用对存储库具有管理员权限，这使其能够绕过大多数存储库的这些规则。
+通常发生这种情况是因为您的主分支上有分支保护，而 TinaCloud 无法绕过它。直到 2024 年 7 月，TinaCloud GitHub 应用对存储库拥有管理员权限，这使其能够绕过大多数存储库的这些规则。
 
 要解决此问题，请执行以下操作之一：
 
@@ -225,12 +225,12 @@ Tina 使用的当前分支无效或未定义。仔细检查选择的分支是否
 
 您可以通过访问 `https://app.tina.io/projects/<your-project-id>/configuration` 查看 TinaCloud 索引的分支。
 
-![索引的分支](/img/docs/tinacloud/branch-status.png)\
+![已索引的分支](/img/docs/tinacloud/branch-status.png)\
 **图：TinaCloud 索引的分支**
 
 ### 6. 如何解决 `tina 目录未推送到 git` 错误？
 
-`tina` 目录中的所有内容（除了 `__generated__` 文件夹）都需要推送到 git 存储库。确保将其添加到您的 git 存储库中（并确保您**没有**将其列在 `.gitignore` 中）。还要确保您尝试使用的分支具有 `tina` 目录并且是最新的。
+`tina` 目录中的所有内容（除了 `__generated__` 文件夹）都需要推送到 git 存储库。确保将其添加到您的 git 存储库中（并确保您**没有**在 `.gitignore` 中列出它）。还要确保您尝试使用的分支具有 `tina` 目录并且是最新的。
 
 ### 7. 如何解决 `API URL 格式错误` 错误？
 
