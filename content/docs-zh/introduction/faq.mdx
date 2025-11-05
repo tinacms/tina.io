@@ -18,13 +18,13 @@ TinaCloud 是 TinaCMS 的托管[datalayer](/docs/reference/content-api/data-laye
 
 它还允许不同类型的用户（内容创作者、编辑、市场人员等）授权登录并编辑他们的网站，而无需直接授予 GitHub 仓库的访问权限。
 
-TinaCMS 也可以[自托管](/docs/self-hosted/overview)或独立于 TinaCloud 使用。
+TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud 使用。
 
-欲了解更多信息，请参阅 [TinaCloud 概述](/docs/tinacloud/overview)。
+有关更多信息，请参阅 [TinaCloud 概述](/docs/tinacloud/overview)。
 
-## 2. 我在哪里可以获得 TinaCMS 或 TinaCloud 的帮助或分享想法？
+## 2. 我在哪里可以获得有关 TinaCMS 或 TinaCloud 的帮助或分享想法？
 
-请访问我们的社区 [tina.io/community](https://tina.io/community)。
+请查看我们的社区：[tina.io/community](https://tina.io/community)。
 
 ## 3. 使用 Tina 需要认证人员吗？
 
@@ -46,19 +46,19 @@ TinaCMS 支持当前维护的 Node.js LTS 版本，并与 NPM、PNPM 和 Yarn �
 
 * CMS - **React 18**
 
-## 6. 自托管 Tina 与 TinaCloud 相比有哪些不可用的功能？
+## 6. 自托管 Tina 与 TinaCloud 相比有哪些功能不可用？
 
-在比较 TinaCloud 与自托管 Tina 时，TinaCloud 有一些独特的功能。这些包括：
+在比较 TinaCloud 和自托管 Tina 时，TinaCloud 有一些独特的功能。这些包括：
 
 ### 1. Git 支持的媒体
 
-在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 仓库。然而，这一功能在自托管 Tina 中不存在。
+在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 存储库。然而，这一功能在自托管 Tina 中不存在。
 
-其缺失的原因是由于涉及媒体上传的过程。在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。没有这个，图像在网站重建之前不会出现在媒体管理器中。
+其缺失的原因是由于涉及媒体上传的过程。在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。否则，图像在网站重建之前不会出现在媒体管理器中。
 
 ### 2. 运行时动态分支切换
 
-TinaCloud 允许在运行时更改内容分支，这一功能通过 URL 修改来管理。然而，在自托管 Tina 中，分支更改仅限于构建阶段。
+TinaCloud 允许在运行时更改内容分支，这一功能通过 URL 修改进行管理。然而，在自托管 Tina 中，分支更改仅限于构建阶段。
 
 这意味着像这样的命令...
 
@@ -78,12 +78,12 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 对于这种情况，Tina 提供了两种不同的方法：
 
-1. GitHub 授权以将操作归因于 GitHub 帐户。
-2. [共同作者](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git 提交以将提交归因于其他用户。
+1. GitHub 作者化，以便将操作归因于 GitHub 账户。
+2. [共同作者](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git 提交，以便将提交归因于其他用户。
 
 这两种方法都可以在 TinaCloud 帐户设置中按用户启用。了解更多关于 [Git 授权](/docs/tinacloud/git-co-authoring)。
 
-## 8. 为什么使用 markdown 时需要数据库？
+## 8. 为什么使用 Markdown 时需要数据库？
 
 使用 TinaCMS 的 markdown 时，数据库是必需的，因为数据层依赖于数据库来执行各种内容管理功能。虽然 Markdown 文件是您内容的主要来源，但数据库充当缓存以启用高级功能，如搜索、分页和文件之间的交叉引用。它还提供了一个 API，允许内容获取类似于传统的无头 CMS 操作。
 
@@ -105,7 +105,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 生产模式
 
-一旦您准备好在生产环境中托管您的网站并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
+一旦您准备好在生产环境中托管您的站点并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
 
 无论您是[自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，无需用户创建 GitHub 帐户。您的编辑者保存的任何更改都将提交到您 GitHub 仓库中配置的分支。
 
@@ -117,7 +117,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的网站一起工作。
 
-如果您的仓库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于仓库的根目录。
+如果您的存储库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于存储库的根目录。
 
 以下是一个与 TinaCloud 兼容的 monorepo 结构示例：
 
@@ -129,19 +129,19 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 有关更多信息，请参阅 [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina)。
 
-## 12. 为什么从网站登录时 Tina.io 登录窗口不会关闭？
+## 12. 为什么从站点登录时 Tina.io 登录窗口不会关闭？
 
 当用户从您的网站登录时，我们会弹出一个登录窗口。登录完成后，我们将尝试向主窗口发送消息。
 
 此问题的最常见原因是：
 
 * Tina 项目的站点 URL 设置不正确。主窗口的基本 URL 需要与 TinaCloud 仪表板中设置的 Tina 项目的站点 URL 匹配。
-* 您网站环境变量中设置的客户端 ID 与 TinaCloud 仪表板上项目设置中的客户端 ID 不匹配。
+* 您网站环境变量中设置的客户端 ID 与 TinaCloud 仪表板中项目设置中的客户端 ID 不匹配。
 * 尝试登录 TinaCloud 的用户无权编辑此站点。确保此用户在 TinaCloud 仪表板上获得授权。
 
 > 确保在站点 URL 中包含 `https`，例如：[https://forestry.io](https://forestry.io) 或者如果您在本地测试，可能是 `http://localhost:3000`
 
-### 站点在子路径上构建
+### 网站在子路径上构建
 
 已知限制是当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/)中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
 
@@ -153,13 +153,13 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 当您在本地运行 `tinacms dev` 时，Tina 将生成一个开发 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中删除 admin/index.html 文件，他们可能会遇到此问题。
 
-### 您的网站在不同的基本路径上提供服务
+### 您的站点在不同的基本路径上提供服务
 
 如果您的网站在子目录中提供服务，请确保您的 `build.basePath` [配置适当](/docs/reference/config/#definition)
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
-**视频：常见问题 - 为 TinaCMS 设置基本路径（3 分钟）**
+**视频：常见问题 - 为 TinaCMS 设置基础路径（3 分钟）**
 
 ## 14. 常见的 TinaCloud 错误是什么？
 
@@ -167,7 +167,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ## 15. 如何在本地 GraphQL 服务器未运行或在生产环境中访问它？
 
-### 在生产环境中
+### 在生产中
 
 确保您的 API URL 未设置为指向本地 GraphQL 服务器。您应该指向 ContentAPI。
 
