@@ -21,24 +21,24 @@ previous: content/docs-zh/tinacloud.mdx
 
 ### 2. 如何解决 `The local GraphQL schema doesn't match the remote GraphQL schema` 错误？
 
-如果您在构建日志中收到此错误，意味着您部署的网站中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
+如果在构建日志中出现此错误，则表示您部署的网站中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
 
-1. 确保您的架构（从 `tina/config.ts` 生成）不包含任何变化的信息，如时间戳或随机文本
+1. 确保您的架构（从 `tina/config.ts` 生成）不包含任何变化的信息，例如时间戳或随机文本
 2. 确保您的项目中有最新版本的 `@tinacms/cli` 和 `tinacms`
 3. 在本地运行开发命令
 4. 提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库
 
-如果您在访问 TinaCMS 界面时收到此错误，可能是项目中 `tinacms` 和 `@tinacms/cli` 的版本不匹配所致。更新这两个依赖项到最新版本，并在本地运行开发命令。提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库。
+如果在访问 TinaCMS 界面时遇到此错误，可能是项目中 `tinacms` 和 `@tinacms/cli` 的版本不匹配所致。更新这两个依赖项到最新版本，并在本地运行开发命令。提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库。
 
-### 3. 如何解决由未索引分支引起的错误？
+### 3. 如何解决由未索引的分支引起的错误？
 
-如果您收到类似 `The specified branch, 'my-branch-name', has not been indexed by TinaCloud` 的错误，或根本没有看到索引的分支，请尝试以下操作：
+如果收到类似 `The specified branch, 'my-branch-name', has not been indexed by TinaCloud` 的错误，或根本没有看到索引的分支，请尝试以下操作：
 
-1. 验证默认分支上是否存在 `tina/config.ts` 配置文件
+1. 验证默认分支上的 `tina/config.ts` 中是否存在配置文件
 2. 验证在传递给 `tina/config.ts` 中 defineConfig 的配置属性中指定了正确的分支。注意，此值可能在您的 CI 构建过程中设置为环境变量
 3. 验证分支是否存在于 GitHub 仓库中
-4. 将分支拉入您的 TinaCloud 项目中。<Youtube embedSrc="https://youtube.com/embed/GDAQle7Q-sY" /> **视频：TinaCloud - 如何索引缺失的分支（3 分钟）**
-5. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，并且（几分钟后）错误应得到解决
+4. 将分支拉入您的 TinaCloud 项目中。<Youtube embedSrc="https://youtube.com/embed/4fqTYtfpbBk" /> **视频：TinaCloud - 如何索引缺失的分支（3 分钟）**
+5. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，几分钟后错误应得到解决
 6. 确保 Tina 项目位于根目录中
 
 ### 4. 如何解决 `There was a problem saving your document` 错误？
@@ -48,10 +48,10 @@ previous: content/docs-zh/tinacloud.mdx
 如果不能，您将看到如下形式的错误：
 
 ```text
-Tina 在更新页面时捕获到错误：
+Tina 在更新页面时捕获了一个错误：
 
 错误：无法获取，错误：
-    在 PUT src/pages/some-page.md 时出错
+    在 PUT 中出错，路径为 src/pages/some-page.md
 ```
 
 <Youtube embedSrc=" https://www.youtube.com/embed/MTIJotdIG9E?si=8mcaNAqogQRwL678" />
@@ -63,12 +63,12 @@ Tina 在更新页面时捕获到错误：
 要解决此问题，可以：
 
 * 从传统分支保护升级到分支规则集 - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
-  确保允许 TinaCloud 应用绕过需要分支保护的规则
+  确保允许 TinaCloud 应用绕过要求分支保护的规则
 * 启用 [编辑工作流](/editorial-workflow) 在分支上创建 PR
 
 ### 5. 如何解决 `Invalid or undefined branch` 错误？
 
-Tina 使用的当前分支无效或未定义。仔细检查是否选择了正确的分支，并且它确实存在。
+Tina 当前使用的分支无效或未定义。仔细检查是否选择了正确的分支，并且它确实存在。
 
 您可以通过访问 `https://app.tina.io/projects/<your-project-id>/configuration` 查看 TinaCloud 已索引的分支。
 
@@ -85,12 +85,12 @@ ContentAPI URL 格式不正确。有关 URL 应如何格式化的信息，请参
 
 ### 8. 如何解决 `Invalid ` 错误？
 
-登录 TinaCloud 时，您尝试登录的网站的 URL 通过 `?origin=` URL 参数发送。当身份验证窗口的 `?origin=` URL 参数中指定的 URL 与您的 TinaCloud 网站 URL 中定义的不匹配时，可能会发生此错误。
+登录 TinaCloud 时，您尝试登录的网站的 URL 会通过 `?origin=` URL 参数发送。当身份验证窗口的 `?origin=` URL 参数中指定的 URL 与您的 TinaCloud 站点 URL 中定义的不匹配时，可能会发生此错误。
 
-要解决此问题，请确保在您的 TinaCloud 网站 URL 设置中指定的 URL 之一与 `?origin=` URL 参数中显示的完全匹配。
+要解决此问题，请确保在您的 TinaCloud 站点 URL 设置中指定的 URL 之一与 `?origin=` URL 参数中显示的完全匹配。
 
 !['?origin=' URL 参数](/img/docs/introduction/origin-url-highlight.png)\
 **图：URL 参数**
 
-![TinaCloud 网站 URL 设置](/img/docs/introduction/tina-site-url-highlight.png)\
-**图：TinaCloud 网站 URL 设置**
+![TinaCloud 站点 URL 设置](/img/docs/introduction/tina-site-url-highlight.png)\
+**图：TinaCloud 站点 URL 设置**
