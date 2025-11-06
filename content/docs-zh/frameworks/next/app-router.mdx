@@ -1,14 +1,14 @@
 ---
 seo:
   description: >-
-    学习如何在Next.js App Router中使用TinaCMS，包括设置、配置和最佳实践，以获得流畅的编辑体验。
-title: Next.js App路由
-last_edited: '2025-03-10T01:28:03.399Z'
+    学习如何在Next.js应用路由中使用TinaCMS，包括设置、配置和最佳实践，以获得流畅的编辑体验。
+title: Next.js 应用路由
+last_edited: '2025-10-21T09:40:34.169Z'
 next: content/docs-zh/frameworks/next/pages-router.mdx
 previous: content/docs-zh/introduction/using-starter.mdx
 ---
 
-> 👆本指南假设您正在使用 **[Next.js app router.](https://nextjs.org/docs/app)**
+> 👆本指南假设您正在使用**[Next.js应用路由。](https://nextjs.org/docs/app)**
 
 ## 视频指南
 
@@ -48,11 +48,11 @@ pnpm dev
 
 **我们推荐使用pnpm。**
 
-在TinaCMS运行后，导航到 `http://localhost:3000/admin/index.html`。
+在TinaCMS运行时，导航到 `http://localhost:3000/admin/index.html`。
 
-> ❓ 提示：如果运行此命令时出现错误，请查看[常见错误](/docs/forestry/common-errors)页面。
+> ❓ 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
 
-此时，您应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改持久化到您的本地markdown文件中。
+此时，您应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改持久化到本地的markdown文件中。
 
 ![TinaCMS 管理界面截图](/img/hugo-tina-admin-screenshot.png)
 
@@ -65,7 +65,7 @@ pnpm dev
 ```ts
 import { defineConfig } from 'tinacms';
 
-// 您的托管提供商可能将此作为环境变量公开
+// 您的托管服务提供商可能将其作为环境变量公开
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
@@ -75,9 +75,9 @@ const branch =
 export default defineConfig({
   branch,
 
-  // 从 tina.io 获取
+  // 从tina.io获取
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // 从 tina.io 获取
+  // 从tina.io获取
   token: process.env.TINA_TOKEN,
 
   build: {
@@ -117,7 +117,7 @@ export default defineConfig({
 });
 ```
 
-**有关配置的更详细概述，请参阅[TinaCMS内容建模](/docs/extending-tina/overview/)**
+**有关配置的更详细概述，请参阅[使用TinaCMS进行内容建模](/docs/extending-tina/overview/)**
 
 > 💡 如果您按照本指南使用 `tina init` 命令，您可能已经注意到创建了一个 `content` 和一个 `pages` 文件夹：
 
@@ -182,8 +182,8 @@ export default async function Page() {
 
 您可能已经注意到这是一个服务器渲染的页面。根据此页面的生成方式，Next将会：
 
-- **A. 将其构建为动态/服务器渲染页面**
-- **B. 将其构建为静态页面。**
+* **A. 将其构建为动态/服务器渲染页面**
+* **B. 将其构建为静态页面。**
 
 这取决于您希望如何渲染此页面。
 
@@ -219,7 +219,7 @@ export default async function PostPage({
 }
 ```
 
-在这里，我们使用 [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params) 将这些页面构建为SSG。您可以根据需要随意更改。
+在这里，我们使用 [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params) 将这些页面构建为SSG。您可以根据需要自由更改此设置。
 
 现在，为了使可视化编辑器工作，我们将创建一个新的“客户端页面”：
 
@@ -239,7 +239,7 @@ interface ClientPageProps {
 }
 
 export default function Post(props: ClientPageProps) {
-  // 数据在生产模式下传递，并在编辑模式下更新为侧边栏数据
+  // 在生产模式下数据通过，在编辑模式下数据更新为侧边栏数据
   const { data } = useTina({
     query: props.query,
     variables: props.variables,
@@ -261,11 +261,11 @@ export default function Post(props: ClientPageProps) {
 
 ## 常见问题
 
-### 页面上的更新未正确反映
+### 更新未正确反映在页面上
 
-在使用App Router的Next.js项目中使用TinaCMS时，您可能会遇到Vercel过于积极地缓存内容，导致某些更新未正确反映的情况。
+在使用Next.js项目中的应用路由与TinaCMS一起工作时，您可能会遇到Vercel过于激进地缓存内容，导致某些更新未正确反映的情况。
 
-根本原因是 [Vercel数据缓存](https://vercel.com/docs/data-cache) 正在缓存来自TinaCloud内容API的响应。这可以通过查询GraphQL API并查找更新的内容，或检查[Vercel中的缓存使用情况](https://vercel.com/docs/data-cache/manage-data-cache)来确认。
+根本原因是 [Vercel数据缓存](https://vercel.com/docs/data-cache) 正在缓存来自TinaCloud内容API的响应。这可以通过查询GraphQL API并查找更新的内容，或检查[Vercel中缓存的使用情况](https://vercel.com/docs/data-cache/manage-data-cache)来确认。
 
 有两种方法可以修改您的网站以最佳方式使用Vercel数据缓存：
 
@@ -276,7 +276,7 @@ export default function Post(props: ClientPageProps) {
 
 ### 新创建的内容项未出现在页面上
 
-在使用App Router的Next.js项目中使用TinaCMS时，您可能会遇到新创建的内容项未立即出现在相应页面上的情况。这种行为通常是由于Next.js和浏览器采用的积极缓存机制造成的。
+在使用Next.js项目中的应用路由与TinaCMS一起工作时，您可能会遇到新创建的内容项未立即出现在相应页面上的情况。这种行为通常是由Next.js和浏览器采用的激进缓存机制引起的。
 
 为了确保在本地开发期间看到最新的内容，您可以在浏览器的开发者工具中禁用浏览器缓存：
 
@@ -289,10 +289,10 @@ export default function Post(props: ClientPageProps) {
 
 \
 有关Next.js中缓存的更详细信息，请参阅Next.js官方文档：
-[Next.js缓存文档](https://nextjs.org/docs/app/building-your-application/caching)
+[Next.js 缓存文档](https://nextjs.org/docs/app/building-your-application/caching)
 
 ## 下一步
 
-- [查看内容建模文档](/docs/schema/)
-- [了解如何查询您的内容](/docs/features/data-fetching/)
-- [部署您的网站](/docs/tinacloud)
+* [查看内容建模文档](/docs/schema/)
+* [学习如何查询您的内容](/docs/features/data-fetching/)
+* [部署您的网站](/docs/tinacloud)
