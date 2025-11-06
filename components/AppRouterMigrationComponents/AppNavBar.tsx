@@ -2,7 +2,7 @@
 
 import data from '@/content/navigationBar/navMenu.json';
 import zhData from '@/content/navigationBar/navMenuZh.json';
-import TinaIoLogoSvg from '@/public/svg/tinaio-extended-logo.svg';
+import TinaIoLogoSvg from '@/public/svg/tinaio-logo.svg';
 import '@/styles/tailwind.css';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
