@@ -2,7 +2,7 @@
 
 import data from '@/content/navigationBar/navMenu.json';
 import zhData from '@/content/navigationBar/navMenuZh.json';
-import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
+import TinaIoLogoSvg from '@/public/svg/tinaio-extended-logo.svg';
 import '@/styles/tailwind.css';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
@@ -375,11 +375,9 @@ export function AppNavBar({ sticky = true }) {
               <div className="flex py-4 px-6 relative z-20 justify-between items-center">
                 <div className="pb-4 pt-2">
                   <Link href={'/'}>
-                    <TinaLogoSvg
-                      className={`flex items-center w-36 h-auto fill-orange-500`}
-                      aria-hidden="true"
+                    <TinaIoLogoSvg
+                      className={`flex items-center h-auto fill-orange-500`}
                     />
-                    <span className="sr-only">Home</span>
                   </Link>
                 </div>
                 <div className="flex items-center">
@@ -521,8 +519,8 @@ export function AppNavBar({ sticky = true }) {
             onClick={toggleMenu}
           ></div>
           <Link href={'/'}>
-            <TinaLogoSvg
-              className={`flex items-center w-40 h-auto fill-orange-500 ml-2`}
+            <TinaIoLogoSvg
+              className={`flex items-center h-auto fill-orange-500`}
             />
           </Link>
           <div className="flex space-x-2 gap-2 cursor-pointer">
@@ -572,8 +570,8 @@ export function AppNavBar({ sticky = true }) {
         >
           <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
             <Link href={'/'}>
-              <TinaLogoSvg
-                className={`w-40 flex items-center h-auto fill-orange-500 mb-4`}
+              <TinaIoLogoSvg
+                className={`flex items-center h-auto fill-orange-500`}
               />
             </Link>
             <nav className="flex-1 flex flex-wrap-reverse justify-end items-end xl:items-center gap-2 xl:gap-x-12">
