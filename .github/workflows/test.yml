@@ -1,0 +1,14 @@
+name: TEST
+
+on:
+  deployment_status:
+    types: [success]
+
+jobs:
+  run-lighthouse:
+    if: github.event.deployment_status.environment == 'Preview'
+    uses: ./.github/workflows/template-lighthouse.yml
+    with:
+      url: ${{ github.event.deployment_status.target_url }}
+    secrets:
+      GH_APP_KEY: ${{ secrets.GH_APP_KEY }}
