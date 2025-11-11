@@ -16,7 +16,7 @@ export const TinaBanner = ({ data }) => {
   return (
     <div className="w-full  relative mt-16">
       {backdrop && (
-        <div className="absolute w-full h-14 bottom-0 left-0 -mb-[3px] lg:mb-0 z-20">
+        <div className="absolute w-full h-14 bottom-0 left-0  lg:mb-0 z-20">
           <Image
             src={backdrop}
             alt="backdrop"
