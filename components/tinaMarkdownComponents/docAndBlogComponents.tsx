@@ -43,7 +43,7 @@ export const docAndBlogComponents: Components<{
     url: string;
     buttonText: string;
   };
-  ApiReference: {
+  apiReference: {
     title: string;
     property: {
       groupName: string;
