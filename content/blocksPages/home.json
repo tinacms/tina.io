@@ -143,7 +143,7 @@
         {
           "textOnRight": true,
           "themeColour": "tinaOrange",
-          "title": "TinaCMS",
+          "title": "Git-powered CMS",
           "featureHeadline": "Visual Editor for Developers",
           "featureText": "An open-source, headless CMS with built-in Git version control. Edit content visually while maintaining full developer control.",
           "buttons": [
