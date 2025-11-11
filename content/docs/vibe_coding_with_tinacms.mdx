@@ -1,11 +1,11 @@
 ---
 title: Vibe Coding with TinaCMS
-last_edited: '2025-10-21T22:21:17.511Z'
+last_edited: '2025-11-11T02:09:08.800Z'
 next: ''
 previous: ''
 ---
 
-AI coding assistants pair exceptionally well with TinaCMS as long as you stay in control of the flow. This guide shows how to work with your AI assistant like a partner rather than handing it the wheel.
+AI coding assistants work best with TinaCMS when you stay in control. This guide shows how to collaborate with AI as a partner, not a pilot.
 
 ## 1. Set the Stage
 
@@ -16,15 +16,10 @@ Set up an environment where your AI assistant can shine:
 Use a modern IDE that supports inline AI assistance.\
 We recommend **Visual Studio Code** paired with **GitHub Copilot** or another inline AI tool such as Cursor.
 
-These integrations allow your assistant to:
-
-* Understand context from nearby files
-* Adapt to your project’s style and structure automatically
-
 ### 1.2 Setup your folder structure
 
 Before generating any code, create a clean folder where your project will live.
-This helps AI understand where new files should go and keeps your workspace organized as it starts generating multiple files.
+This helps AI understand where new files should go and keeps your workspace organized.
 
 ### 1.3 Start from a TinaCMS starter kit
 
@@ -52,18 +47,11 @@ Rather than prompting your assistant to “build a blog site”, start with a si
 `Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config
  file so they can be reused across all comment blocks.`
 
-This gives the AI a clear objective, a defined scope, and a hint at structure. This all helps produce high-quality, context-aware output.
+This defines scope and structure, helping AI produce accurate, context-aware code.
 
 ### 2.2 Iterate Feature by Feature
 
-Once one component or schema works, move on to the next logical piece.
-For example:
-
-* Add a layout block for your post pages
-* Create a metadata field group for SEO
-* Create a related posts section for blog entries
-
-By tackling each part in isolation, your AI assistant can build upon a solid foundation, learning the structure of your project as it goes.
+Once one component or schema works, move on to the next logical piece. By building one feature at a time, your AI assistant learns your project’s structure progressively and builds on a solid foundation.
 
 ### 2.3 Use AI for Brainstorming
 
@@ -75,11 +63,7 @@ For example:
 
 ### 2.4 Validate Early
 
-After each generated feature, test it immediately:
-
-* Run your dev server (npm run dev)
-* Check the TinaCMS interface for schema updates
-* Verify that components render correctly
+After each feature, run your development server and verify that components render and work correctly.
 
 The earlier you validate, the less time you’ll spend debugging larger combined changes later.
 
@@ -126,9 +110,7 @@ AI won’t always nail the fix, but it will usually point you in the right direc
 
 ## 5. When It Gets Stuck
 
-Sometimes AI spirals, repeating itself, guessing wildly, or drifting into irrelevant code.
-
-Don’t fight it. Reset the vibe.
+If AI starts repeating or drifting off-track, reset the prompt.
 
 To reset:
 
@@ -142,9 +124,7 @@ That single line of clarity is often all it needs to snap back into alignment.
 ## Final Thought
 
 AI won’t build your site for you but it will build *with* you.\
-Your job is to keep it aimed in the right direction.
+Your job is to keep it aimed in the right direction by understanding Tina’s patterns, give clear prompts, and stay hands-on.\
 
-Understand Tina’s patterns, give clear prompts, and stay hands-on.\
-That’s how you get fast results that work.
 
 **Build small. Commit often. Iterate confidently.**
