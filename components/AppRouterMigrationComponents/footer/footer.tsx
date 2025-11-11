@@ -123,9 +123,8 @@ export function Footer({ footerData }: { footerData: FooterData }) {
     }, [footerData, isZhPath]);
 
   return (
-    <div>
+    <div className="bg-[url('/svg/orange-bg.svg')] bg-cover bg-center">
       {/* Footer Top */}
-      <div className="bg-[url('/svg/orange-bg.svg')] bg-cover bg-center">
         <div className="px-6 md:mx-auto max-w-7xl flex flex-col md:flex-row w-full justify-between items-start py-8 lg:py-16 lg:px-8">
           <div className="max-w-[15%] flex-1 drop-shadow-sm">
             <TinaIcon color="white" />
@@ -161,7 +160,6 @@ export function Footer({ footerData }: { footerData: FooterData }) {
               <SubscriptionForm props={modalButton} />
             )}
           </div>
-        </div>
       </div>
 
       {/* Footer Bottom */}
