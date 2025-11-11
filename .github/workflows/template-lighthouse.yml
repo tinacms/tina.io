@@ -42,19 +42,7 @@ jobs:
           configPath: ./.lighthouserc.json
           urls: |
             ${{ inputs.url }}
-            ${{ inputs.url }}/articles
-            ${{ inputs.url }}/company/about-us
-            ${{ inputs.url }}/company/clients
-            ${{ inputs.url }}/company/contact-us
-            ${{ inputs.url }}/consulting
-            ${{ inputs.url }}/consulting/net-upgrade
-            ${{ inputs.url }}/consulting/web-applications
-            ${{ inputs.url }}/employment
-            ${{ inputs.url }}/events/angular-superpowers-tour
-            ${{ inputs.url }}/events/ai-workshop
-            ${{ inputs.url }}/netug/sydney
-            ${{ inputs.url }}/training/internship-fullstack
-
+            
       - name: Create lighthouse report
         id: lighthouse-results-generate
         env:
