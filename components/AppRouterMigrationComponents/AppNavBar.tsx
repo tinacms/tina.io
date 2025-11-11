@@ -2,7 +2,7 @@
 
 import data from '@/content/navigationBar/navMenu.json';
 import zhData from '@/content/navigationBar/navMenuZh.json';
-import TinaLogoSvg from '@/public/svg/tina-extended-logo.svg';
+import TinaIoLogoSvg from '@/public/svg/tinaio-logo.svg';
 import '@/styles/tailwind.css';
 import { DemoForm } from 'components/modals/BookDemo';
 import LanguageSelect from 'components/modals/LanguageSelect';
@@ -77,6 +77,7 @@ interface ModalButtonItem extends NavItemBase {
 interface StringItem extends NavItemBase {
   _template: typeof stringItemString;
   href: string;
+  external?: boolean;
 }
 
 interface GroupOfStringItems extends NavItemBase {
@@ -84,6 +85,7 @@ interface GroupOfStringItems extends NavItemBase {
   items: Array<{
     label: string;
     href: string;
+    external?: boolean;
   }>;
 }
 
@@ -373,11 +375,9 @@ export function AppNavBar({ sticky = true }) {
               <div className="flex py-4 px-6 relative z-20 justify-between items-center">
                 <div className="pb-4 pt-2">
                   <Link href={'/'}>
-                    <TinaLogoSvg
-                      className={`flex items-center w-36 h-auto fill-orange-500`}
-                      aria-hidden="true"
+                    <TinaIoLogoSvg
+                      className={`flex items-center h-auto fill-orange-500`}
                     />
-                    <span className="sr-only">Home</span>
                   </Link>
                 </div>
                 <div className="flex items-center">
@@ -439,6 +439,12 @@ export function AppNavBar({ sticky = true }) {
                         >
                           <Link
                             href={subItem.href}
+                            target={subItem.external ? '_blank' : '_self'}
+                            rel={
+                              subItem.external
+                                ? 'noopener noreferrer'
+                                : undefined
+                            }
                             onClick={handleNavLinkClick}
                           >
                             <span className="">
@@ -458,6 +464,7 @@ export function AppNavBar({ sticky = true }) {
                     >
                       <Link
                         href={item.href}
+                        target={item.external ? '_blank' : '_self'}
                         className="py-2"
                         onClick={handleNavLinkClick}
                       >
@@ -512,8 +519,8 @@ export function AppNavBar({ sticky = true }) {
             onClick={toggleMenu}
           ></div>
           <Link href={'/'}>
-            <TinaLogoSvg
-              className={`flex items-center w-40 h-auto fill-orange-500 ml-2`}
+            <TinaIoLogoSvg
+              className={`flex items-center h-auto fill-orange-500`}
             />
           </Link>
           <div className="flex space-x-2 gap-2 cursor-pointer">
@@ -563,8 +570,8 @@ export function AppNavBar({ sticky = true }) {
         >
           <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
             <Link href={'/'}>
-              <TinaLogoSvg
-                className={`w-40 flex items-center h-auto fill-orange-500 mb-4`}
+              <TinaIoLogoSvg
+                className={`flex items-center h-auto fill-orange-500`}
               />
             </Link>
             <nav className="flex-1 flex flex-wrap-reverse justify-end items-end xl:items-center gap-2 xl:gap-x-12">
@@ -601,6 +608,10 @@ export function AppNavBar({ sticky = true }) {
                         >
                           <Link
                             href={item.href}
+                            target={item.external ? '_blank' : '_self'}
+                            rel={
+                              item.external ? 'noopener noreferrer' : undefined
+                            }
                             className=""
                             onClick={handleNavLinkClick}
                           >
@@ -650,6 +661,14 @@ export function AppNavBar({ sticky = true }) {
                                 >
                                   <Link
                                     href={subItem.href}
+                                    target={
+                                      subItem.external ? '_blank' : '_self'
+                                    }
+                                    rel={
+                                      subItem.external
+                                        ? 'noopener noreferrer'
+                                        : undefined
+                                    }
                                     onClick={() => {
                                       handleNavLinkClick();
                                       setOpenDropdown(null);

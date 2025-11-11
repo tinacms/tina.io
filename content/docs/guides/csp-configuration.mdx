@@ -1,0 +1,227 @@
+---
+title: Content Security Policy (CSP) Configuration
+next: content/docs/guides/how-to-update-your-tina-version-with-dependabot.mdx
+previous: ''
+---
+
+## Overview
+
+Content Security Policy (CSP) is a security standard that helps prevent cross-site scripting (XSS), clickjacking, and other code injection attacks. When using TinaCMS, you'll need to configure your CSP headers to allow connections to TinaCMS services.
+
+## Required CSP Directives
+
+TinaCMS requires the following CSP directives to function properly:
+
+### Image Sources
+
+TinaCMS needs access to load images from its asset delivery network:
+
+```javascript
+"img-src 'self' data: assets.tina.io;"
+```
+
+### Connect Sources
+
+TinaCMS requires connections to several services for authentication and content delivery:
+
+```javascript
+"connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+```
+
+* **identity.tinajs.io** - Authentication and identity services
+* **content.tinajs.io** - Content API and data layer
+* **assets.tinajs.io** - Asset management and delivery
+
+## Implementation Examples
+
+### Next.js Configuration
+
+#### App Router (Next.js 13+)
+
+Add CSP headers in your `next.config.js`:
+
+```javascript
+const baseCsp = [
+    "default-src 'self';",
+    "img-src 'self' data: assets.tina.io;",
+    "font-src 'self' data: fonts.gstatic.com;",
+    "object-src 'none';",
+    "frame-src 'none';",
+    "worker-src 'self' blob:;",
+    "frame-ancestors 'none';",
+    "base-uri 'self';",
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+];
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: baseCsp.join(' '),
+          },
+        ],
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
+```
+
+#### Pages Router
+
+For the Pages Router, you can also configure CSP in `next.config.js` using the same approach shown above.
+
+Alternatively, set CSP headers in your middleware:
+
+```typescript
+// middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  
+  const csp = [
+    "default-src 'self'",
+    "img-src 'self' data: assets.tina.io",
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io",
+    // ... other directives
+  ].join('; ');
+  
+  response.headers.set('Content-Security-Policy', csp);
+  
+  return response;
+}
+```
+
+### Netlify Configuration
+
+Add CSP headers in your `netlify.toml`:
+
+```toml
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+```
+
+### Vercel Configuration
+
+Add headers in your `vercel.json`:
+
+```json
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Apache Configuration
+
+Add to your `.htaccess` file:
+
+```apache
+<IfModule mod_headers.c>
+  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+</IfModule>
+```
+
+### Nginx Configuration
+
+Add to your nginx configuration:
+
+```nginx
+add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
+```
+
+## Self-Hosted Considerations
+
+If you're using a [self-hosted TinaCMS setup](/docs/self-hosted/overview/), you may need to adjust these CSP directives:
+
+* Replace TinaCloud domains with your own backend URLs
+* Ensure `connect-src` includes your content API endpoint
+* Add any custom media storage domains to `img-src`
+
+Example for self-hosted:
+
+```javascript
+const baseCsp = [
+    "default-src 'self';",
+    "img-src 'self' data: your-media-storage.example.com;",
+    "connect-src 'self' your-backend.example.com;",
+    // ... other directives
+];
+```
+
+## Troubleshooting
+
+### CSP Violations in Browser Console
+
+If you see CSP violation errors in your browser console:
+
+1. Check the error message to identify the blocked resource
+2. Add the appropriate domain to the relevant CSP directive
+3. Test thoroughly to ensure TinaCMS functionality works
+
+Common violations:
+
+* **Blocked image loads**: Add the domain to `img-src`
+* **Blocked API calls**: Add the domain to `connect-src`
+* **Blocked inline styles**: You may need `style-src 'unsafe-inline'` for certain TinaCMS features
+
+### TinaCMS Editor Not Loading
+
+If the TinaCMS editor fails to load:
+
+1. Verify all required domains are included in `connect-src`
+2. Check for CSP violations in the browser console
+3. Ensure `frame-src` allows the TinaCMS admin interface if using iframe mode
+
+<WarningCallout
+  body={<>
+    Having issues when authenticating with GitHub? It could be your CSP configuration!
+    
+    Check out [this GitHub issue on how it was resolved](https://github.com/tinacms/tina.io/issues/3978).
+  </>}
+/>
+
+### Testing CSP Configuration
+
+Use browser developer tools to verify your CSP configuration:
+
+1. Open DevTools → Console
+2. Look for CSP violation warnings
+3. Click on violations to see which resources are blocked
+4. Update your CSP accordingly
+
+You can also use online tools like [CSP Evaluator](https://csp-evaluator.withgoogle.com/) to validate your policy.
+
+## Additional Resources
+
+* [Self-Hosted Setup](/docs/self-hosted/overview/)
+* [TinaCloud Overview](/docs/tinacloud/overview/)
+* [Next.js Framework Guide](/docs/frameworks/next/overview/)
+* [MDN: Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+
+## Best Practices
+
+1. **Start restrictive, then loosen**: Begin with a strict CSP and only add exceptions as needed
+2. **Use report-only mode**: Test CSP changes with `Content-Security-Policy-Report-Only` before enforcing
+3. **Regular audits**: Review and update your CSP as your application evolves
+4. **Document exceptions**: Keep notes on why specific domains are whitelisted
+5. **Environment-specific policies**: Consider different CSP rules for development vs. production
