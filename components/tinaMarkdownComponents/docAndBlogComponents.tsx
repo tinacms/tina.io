@@ -43,7 +43,7 @@ export const docAndBlogComponents: Components<{
     url: string;
     buttonText: string;
   };
-  ApiReference: {
+  apiReference: {
     title: string;
     property: {
       groupName: string;
@@ -276,7 +276,7 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
-  ApiReference: (props) => {
+  apiReference: (props) => {
     const [openGroups, setOpenGroups] = useState([]);
     const propertyItem = (property) => {
       return (
