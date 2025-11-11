@@ -1,5 +1,4 @@
 import { algoliasearch } from 'algoliasearch';
-
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { createRef, useEffect, useState } from 'react';
 import { Dismissible, type Props as DismissibleProps } from 'react-dismissible';
