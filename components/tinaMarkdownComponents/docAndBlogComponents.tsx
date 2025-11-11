@@ -276,7 +276,7 @@ export const docAndBlogComponents: Components<{
       </div>
     );
   },
-  apiReference: (props) => {
+  ApiReference: (props) => {
     const [openGroups, setOpenGroups] = useState([]);
     const propertyItem = (property) => {
       return (
