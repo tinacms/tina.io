@@ -3,6 +3,7 @@ import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import GithubSlugger from 'github-slugger';
 import Image from 'next/image';
 import React from 'react';
+import { BiLinkExternal } from 'react-icons/bi';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkDirective from 'remark-directive';
@@ -74,6 +75,19 @@ const StyledCopyCodeButton = styled.button`
 const CodeWrapper = styled.div`
   position: relative;
 `;
+
+const isExternalUrl = (url: string): boolean => {
+  if (!url) {
+    return false;
+  }
+  try {
+    const urlObj = new URL(url, window.location.origin);
+    return urlObj.origin !== window.location.origin;
+  } catch {
+    return false;
+  }
+};
+
 function WithHeadings({ children, level }) {
   const HeadingTag = `h${level}` as any;
   const value = children
@@ -208,6 +222,34 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
         },
         ol: ({ node, ...props }) => {
           return <ul className="list-decimal ml-6" {...props} />;
+        },
+        a: ({ node, href, ...props }) => {
+          const isExternal = isExternalUrl(href);
+          const linkText =
+            typeof props.children === 'string' ? props.children : '';
+
+          return (
+            <a
+              href={href}
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noopener noreferrer' : undefined}
+              className="inline-flex items-center gap-0.5"
+              aria-label={
+                isExternal && linkText
+                  ? `${linkText} (opens in new tab)`
+                  : undefined
+              }
+              {...props}
+            >
+              {props.children}
+              {isExternal && (
+                <BiLinkExternal
+                  className="inline-block text-sm flex-shrink-0"
+                  aria-hidden="true"
+                />
+              )}
+            </a>
+          );
         },
         pre({ node, ...props }) {
           return <>{props.children}</>;

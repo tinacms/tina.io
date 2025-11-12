@@ -11,7 +11,7 @@ import { ChevronRight, Info } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineBulb, AiOutlineWarning } from 'react-icons/ai';
-import { BiRightArrowAlt } from 'react-icons/bi';
+import { BiLinkExternal, BiRightArrowAlt } from 'react-icons/bi';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -25,6 +25,18 @@ const ScrollBasedShowcase = dynamic(
     ssr: false,
   },
 );
+
+const isExternalUrl = (url: string): boolean => {
+  if (!url) {
+    return false;
+  }
+  try {
+    const urlObj = new URL(url, window.location.origin);
+    return urlObj.origin !== window.location.origin;
+  } catch {
+    return false;
+  }
+};
 
 export const docAndBlogComponents: Components<{
   Iframe: { iframeSrc: string; height: string };
@@ -228,12 +240,28 @@ export const docAndBlogComponents: Components<{
   li: (props) => <li className="mb-2 ml-8" {...props} />,
   p: (props) => <p className="mb-2" {...props} />,
   a: (props) => {
+    const isExternal = isExternalUrl(props.url);
+    const linkText = typeof props.children === 'string' ? props.children : '';
+
     return (
       <a
         href={props.url}
         {...props}
-        className="underline transition-all duration-200 ease-out hover:text-orange-500"
-      />
+        className="inline-flex items-center gap-0.5 underline decoration-from-font transition-all duration-200 ease-out hover:text-orange-500"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        aria-label={
+          isExternal && linkText ? `${linkText} (opens in new tab)` : undefined
+        }
+      >
+        {props.children}
+        {isExternal && (
+          <BiLinkExternal
+            className="inline-block text-sm flex-shrink-0"
+            aria-hidden="true"
+          />
+        )}
+      </a>
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
   },
