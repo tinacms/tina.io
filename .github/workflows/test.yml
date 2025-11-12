@@ -1,14 +1,15 @@
-name: TEST
+name: TEST - Dump Vercel Event
 
 on:
+  repository_dispatch:
   deployment_status:
-    types: [success]
 
 jobs:
-  run-lighthouse:
-    if: github.event.deployment_status.environment == 'Preview'
-    uses: ./.github/workflows/template-lighthouse.yml
-    with:
-      url: ${{ github.event.deployment_status.target_url }}
-    secrets:
-      GH_APP_KEY: ${{ secrets.GH_APP_KEY }}
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print full event payload
+        run: |
+          echo "GitHub event name: ${{ github.event_name }}"
+          echo "------ FULL PAYLOAD ------"
+          echo '${{ toJson(github.event) }}'
