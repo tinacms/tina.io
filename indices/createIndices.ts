@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-import algoliasearch, {
+import {
+  algoliasearch,
   type SearchClient,
-  type SearchIndex,
 } from 'algoliasearch';
 
 import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs';
@@ -27,14 +27,22 @@ const mapContentToIndex = async ({
 
   return Promise.all(
     paragraphs.map(async (paragraph, i) => {
+
+      if(!paragraph)
+      {
+        throw new Error(`Empty paragraph for ${obj.data?.slug} paragraph ${i}`);
+      }
       const excerpt = await stripMarkdown(paragraph);
+      
       if (excerpt) {
         return {
-          ...obj.data,
+          slug: obj.data.slug,
           excerpt,
           objectID: `${obj.data.slug}_${i}`,
         };
       }
+      console.log(`Skipping empty excerpt for ${obj.data.slug} paragraph ${i} ${typeof excerpt}`);
+      
     }),
   );
 };
@@ -45,55 +53,67 @@ const saveIndex = async (
   data: any,
 ) => {
   try {
-    const index = client.initIndex(indexName);
-    await index.setSettings({
-      attributesToSnippet: ['excerpt:50'],
-      attributeForDistinct: 'slug',
-      distinct: 1,
-    });
-    const result = await index.saveObjects(data);
-    console.log(
-      `${indexName}: added/updated ${result.objectIDs.length} entries`,
-    );
-    const numRemoved = await cleanupIndex(index, data);
-    if (numRemoved > 0) {
-      console.log(`${indexName}: removed ${numRemoved} entries`);
+    console.log(`Saving index: ${indexName} with ${data.length} records`);
+    for(let obj of data){
+      if(!obj){
+        throw new Error(`Undefined object in data for index ${indexName}`);
+      }
     }
+    var result = await client.replaceAllObjects({indexName, objects: data })
+    console.log(`Finished saving index: ${indexName}`);
+    await client.setSettings(
+      {
+        indexSettings: {
+          attributesToSnippet: ['excerpt:50'],
+          distinct: true
+        }, indexName}
+      );
+    console.log(
+      `${indexName}: added/updated ${result.batchResponses.length} entries`,
+    );
+    // const numRemoved = await cleanupIndex(index, data);
+    // if (numRemoved > 0) {
+    //   console.log(`${indexName}: removed ${numRemoved} entries`);
+    // }
   } catch (error) {
+    
     console.log(error);
   }
 };
 
-const cleanupIndex = async (index: SearchIndex, currentData: any) => {
-  const currentObjects: Set<string> = new Set();
-  const objectsToDelete: Set<string> = new Set();
-  let numRemoved = 0;
-  currentData.map((item) => {
-    currentObjects.add(item.objectID);
-  });
-  await index.browseObjects({
-    batch: (hits) => {
-      hits.forEach((hit) => {
-        if (!currentObjects.has(hit.objectID)) {
-          objectsToDelete.add(hit.objectID);
-        }
-      });
-    },
-  });
-  await Promise.all(
-    Array.from(objectsToDelete).map(async (objectID) => {
-      await index.deleteObject(objectID);
-      numRemoved++;
-    }),
-  );
-  return numRemoved;
-};
+// const cleanupIndex = async (index: SearchIndex, currentData: any) => {
+//   const currentObjects: Set<string> = new Set();
+//   const objectsToDelete: Set<string> = new Set();
+//   let numRemoved = 0;
+//   currentData.map((item) => {
+//     currentObjects.add(item.objectID);
+//   });
+//   await index.browseObjects({
+//     batch: (hits) => {
+//       hits.forEach((hit) => {
+//         if (!currentObjects.has(hit.objectID)) {
+//           objectsToDelete.add(hit.objectID);
+//         }
+//       });
+//     },
+//   });
+//   await Promise.all(
+//     Array.from(objectsToDelete).map(async (objectID) => {
+//       await index.deleteObject(objectID);
+//       numRemoved++;
+//     }),
+//   );
+//   return numRemoved;
+// };
 
 const createIndices = async () => {
+
+  
   const client = algoliasearch(
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY,
   );
+  
   const docs = await fetchSearchableDocs();
 
   await saveIndex(
