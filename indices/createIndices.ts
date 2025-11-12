@@ -64,8 +64,8 @@ const saveIndex = async (
         indexSettings: {
           attributesToSnippet: ['excerpt:50'],
           distinct: true
-        }, indexName}
-      );
+        }, indexName
+      });
     let after = (await client.searchSingleIndex({indexName})).nbHits;
     let diff = after - initial;
     if (diff > 0) {
