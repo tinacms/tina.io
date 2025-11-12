@@ -1,9 +1,6 @@
 require('dotenv').config();
 
-import {
-  algoliasearch,
-  type SearchClient,
-} from 'algoliasearch';
+import { algoliasearch, type SearchClient } from 'algoliasearch';
 
 import { fetchRelevantBlogs as fetchBlogs } from '../data-api/fetchBlogs';
 import fetchSearchableDocs from '../data-api/fetchDocs';
@@ -12,7 +9,10 @@ import { stripMarkdown } from '../utils/blog_helpers';
 const mapContentToIndex = async ({
   content,
   ...obj
-}: Partial<{ data: { slug: string, title: string }; content: string }>): Promise<
+}: Partial<{
+  data: { slug: string; title: string };
+  content: string;
+}>): Promise<
   {
     excerpt: string;
     objectID: string;
@@ -29,7 +29,7 @@ const mapContentToIndex = async ({
   const data = await Promise.all(
     paragraphs.map(async (paragraph, i) => {
       const excerpt = await stripMarkdown(paragraph);
-      
+
       if (excerpt) {
         return {
           slug: obj.data.slug,
@@ -38,10 +38,9 @@ const mapContentToIndex = async ({
           objectID: `${obj.data.slug}_${i}`,
         };
       }
-      
     }),
   );
-  return data.filter(item => item)
+  return data.filter((item) => item);
 };
 
 const saveIndex = async (
@@ -50,18 +49,17 @@ const saveIndex = async (
   data: any,
 ) => {
   try {
-
-    var initial = (await client.searchSingleIndex({indexName})).nbHits;
-    await client.replaceAllObjects({indexName, objects: data })
-    await client.setSettings(
-      {
-        indexSettings: {
-          attributesToSnippet: ['excerpt:50'],
-          distinct: true
-        }, indexName
-      });
-    let after = (await client.searchSingleIndex({indexName})).nbHits;
-    let diff = after - initial;
+    var initial = (await client.searchSingleIndex({ indexName })).nbHits;
+    await client.replaceAllObjects({ indexName, objects: data });
+    await client.setSettings({
+      indexSettings: {
+        attributesToSnippet: ['excerpt:50'],
+        distinct: true,
+      },
+      indexName,
+    });
+    const after = (await client.searchSingleIndex({ indexName })).nbHits;
+    const diff = after - initial;
     if (diff > 0) {
       console.log(`${indexName}: added ${diff} entries`);
     }
@@ -74,8 +72,6 @@ const saveIndex = async (
 };
 
 const createIndices = async () => {
-
-
   const client = algoliasearch(
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY,

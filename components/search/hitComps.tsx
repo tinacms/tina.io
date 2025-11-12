@@ -1,22 +1,24 @@
 import path from 'node:path';
-import { Hit } from 'algoliasearch';
-import {Highlight, Snippet} from "react-instantsearch-dom"
+import type { Hit } from 'algoliasearch';
+import type { MouseEventHandler } from 'react';
+import { Highlight, Snippet } from 'react-instantsearch-dom';
 import { formatDate } from '../../utils';
 import { DynamicLink } from '../ui/DynamicLink';
-import { MouseEventHandler } from 'react';
 
 const DocHit =
   (clickHandler: MouseEventHandler<HTMLDivElement>) =>
-  ({hit}: {hit: Hit<string>}) => {
-    hit._highlightResult
-    return <DynamicLink href={path.join('/docs', (hit as any).slug)}>
-      <div onClick={clickHandler}>
-        <h4>
-          <Highlight attribute="title" hit={hit} tagName="mark" />
-        </h4>
+  ({ hit }: { hit: Hit<string> }) => {
+    hit._highlightResult;
+    return (
+      <DynamicLink href={path.join('/docs', (hit as any).slug)}>
+        <div onClick={clickHandler}>
+          <h4>
+            <Highlight attribute="title" hit={hit} tagName="mark" />
+          </h4>
           <Snippet attribute="excerpt" hit={hit} tagName="mark" />
-      </div>
-    </DynamicLink>
+        </div>
+      </DynamicLink>
+    );
   };
 
 const BlogHit =
@@ -28,9 +30,7 @@ const BlogHit =
           <h4>
             <Highlight attribute="title" hit={hit} tagName="mark" />
           </h4>
-          {
-            <Snippet attribute="excerpt" hit={hit} tagName="mark" />
-          }
+          {<Snippet attribute="excerpt" hit={hit} tagName="mark" />}
           <div>{formatDate(hit.date)}</div>
         </div>
       </DynamicLink>
@@ -46,7 +46,7 @@ const PackageHit =
           <h4>
             <Highlight attribute="package" hit={hit} tagName="mark" />
           </h4>
-            <Snippet attribute="excerpt" hit={hit} tagName="mark" />
+          <Snippet attribute="excerpt" hit={hit} tagName="mark" />
         </div>
       </DynamicLink>
     );

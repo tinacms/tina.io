@@ -1,4 +1,4 @@
-import { algoliasearch } from "algoliasearch";
+import { algoliasearch } from 'algoliasearch';
 
 const DEFAULT_ALGOLIA_APP_ID = '80HKRA52OJ';
 const DEFAULT_ALGOLIA_SEARCH_KEY = 'f13c10ad814c92b85f380deadc2db2dc';
@@ -22,11 +22,17 @@ export const fetchAlgoliaSearchResults = async (
       hitsPerPage: 50,
       attributesToHighlight: ['title', 'excerpt'],
       advancedSyntax: true,
-      query
+      query,
     };
     const [docsResults, blogsResults] = await Promise.all([
-      searchClient.searchSingleIndex({indexName: 'Tina-Docs-Next', searchParams} ),
-      searchClient.searchSingleIndex({indexName: 'Tina-Blogs-Next', searchParams})
+      searchClient.searchSingleIndex({
+        indexName: 'Tina-Docs-Next',
+        searchParams,
+      }),
+      searchClient.searchSingleIndex({
+        indexName: 'Tina-Blogs-Next',
+        searchParams,
+      }),
     ]);
 
     return {
