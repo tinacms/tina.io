@@ -86,9 +86,6 @@ const createIndices = async () => {
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY,
   );
-
-  client.browseObjects
-  
   const docs = await fetchSearchableDocs();
 
   await saveIndex(
