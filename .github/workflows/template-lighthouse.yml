@@ -63,6 +63,9 @@ jobs:
           configPath: ./.lighthouserc.json
           urls: |
             ${{ inputs.url }}
+            ${{ inputs.url }}/docs
+            ${{ inputs.url }}/blog
+            ${{ inputs.url }}/blog/optimizing-tinacms-with-nextjs-and-vercel-data-cache
 
       - name: Create Lighthouse report
         id: lighthouse-results-generate
