@@ -50,15 +50,9 @@ const saveIndex = async (
   data: any,
 ) => {
   try {
-    for(let obj of data){
-      if(!obj){
-        throw new Error(`Undefined object in data for index ${indexName}`);
-      }
-    }
 
     var initial = (await client.searchSingleIndex({indexName})).nbHits;
-    var result = await client.replaceAllObjects({indexName, objects: data })
-    console.log(`Finished saving index: ${indexName}`);
+    await client.replaceAllObjects({indexName, objects: data })
     await client.setSettings(
       {
         indexSettings: {
