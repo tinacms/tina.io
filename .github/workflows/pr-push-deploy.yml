@@ -1,15 +1,32 @@
 name: PR Lighthouse Insights
 
 on:
-  repository_dispatch:
-    types:
-      - 'vercel.deployment.success'
+  deployment_status:
+    types: [created]
 
 jobs:
-  run-lighthouse:
-    if: github.event.client_payload.environment == 'preview'
+  wait-for-vercel:
+    name: Wait for Vercel Preview
+    runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.get-preview.outputs.url }}
+    steps:
+      - name: Wait for Vercel preview URL to be available
+        id: get-preview
+        uses: patrickedqvist/wait-for-vercel-preview@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 600
+          check_interval: 20
+          environment: Preview
+
+  prLighthouseInsights:
+    name: Run PR Lighthouse Insights
+    needs: [wait-for-vercel]
     uses: ./.github/workflows/template-lighthouse.yml
+    permissions:
+      pull-requests: write
     with:
-      url: ${{ github.event.client_payload.url }}
+      url: ${{ needs.wait-for-vercel.outputs.url }}
     secrets:
       GH_APP_KEY: ${{ secrets.GH_APP_KEY }}
