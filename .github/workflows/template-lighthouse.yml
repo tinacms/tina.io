@@ -41,6 +41,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+          ref: main
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -110,6 +111,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Ensure we're on main branch
+          git checkout main
+          git pull origin main
 
       - name: Stage markdown file for commit
         if: github.event_name != 'pull_request'
