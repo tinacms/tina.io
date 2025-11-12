@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 import {
-  Algoliasearch,
   algoliasearch,
   type SearchClient,
 } from 'algoliasearch';
@@ -13,11 +12,12 @@ import { stripMarkdown } from '../utils/blog_helpers';
 const mapContentToIndex = async ({
   content,
   ...obj
-}: Partial<{ data: { slug: string }; content: string }>): Promise<
+}: Partial<{ data: { slug: string, title: string }; content: string }>): Promise<
   {
     excerpt: string;
     objectID: string;
     slug: string;
+    title: string;
   }[]
 > => {
   //Break up the indexes to keep them within the algolia size limit
@@ -26,26 +26,22 @@ const mapContentToIndex = async ({
     .replaceAll('## ', '__BREAKINDEX__')
     .split('__BREAKINDEX__');
 
-  return Promise.all(
+  const data = await Promise.all(
     paragraphs.map(async (paragraph, i) => {
-
-      if(!paragraph)
-      {
-        throw new Error(`Empty paragraph for ${obj.data?.slug} paragraph ${i}`);
-      }
       const excerpt = await stripMarkdown(paragraph);
       
       if (excerpt) {
         return {
           slug: obj.data.slug,
           excerpt,
+          title: obj.data.title,
           objectID: `${obj.data.slug}_${i}`,
         };
       }
-      console.log(`Skipping empty excerpt for ${obj.data.slug} paragraph ${i} ${typeof excerpt}`);
       
     }),
   );
+  return data.filter(item => item)
 };
 
 const saveIndex = async (
@@ -54,13 +50,13 @@ const saveIndex = async (
   data: any,
 ) => {
   try {
-    console.log(`Saving index: ${indexName} with ${data.length} records`);
     for(let obj of data){
       if(!obj){
         throw new Error(`Undefined object in data for index ${indexName}`);
       }
     }
-    client.saveObjects
+
+    var initial = (await client.searchSingleIndex({indexName})).nbHits;
     var result = await client.replaceAllObjects({indexName, objects: data })
     console.log(`Finished saving index: ${indexName}`);
     await client.setSettings(
@@ -70,42 +66,17 @@ const saveIndex = async (
           distinct: true
         }, indexName}
       );
-    console.log(
-      `${indexName}: added/updated ${result.batchResponses.length} entries`,
-    );
-    const numRemoved = await cleanupIndex(client, indexName, data);
-    if (numRemoved > 0) {
-      console.log(`${indexName}: removed ${numRemoved} entries`);
+    let after = (await client.searchSingleIndex({indexName})).nbHits;
+    let diff = after - initial;
+    if (diff > 0) {
+      console.log(`${indexName}: added ${diff} entries`);
+    }
+    if (diff < 0) {
+      console.log(`${indexName}: removed ${Math.abs(diff)} entries`);
     }
   } catch (error) {
-    
     console.log(error);
   }
-};
-
-const cleanupIndex = async (client: SearchClient, indexName: string, currentData: any) => {
-  const currentObjects: Set<string> = new Set();
-  const objectsToDelete: Set<string> = new Set();
-  let numRemoved = 0;
-  currentData.map((item) => {
-    currentObjects.add(item.objectID);
-  });
-  
-  await client.browseObjects({
-    aggregator: (res)=> res.hits.forEach((hit) => {
-      if (!currentObjects.has(hit.objectID)) {
-        objectsToDelete.add(hit.objectID);
-        } 
-      }),
-    indexName 
-  });
-  await Promise.all(
-    Array.from(objectsToDelete).map(async (objectID) => {
-      await client.deleteObject({indexName, objectID});
-      numRemoved++;
-    }),
-  );
-  return numRemoved;
 };
 
 const createIndices = async () => {
