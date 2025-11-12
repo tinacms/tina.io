@@ -35,6 +35,12 @@ jobs:
           ref: ${{ github.event.client_payload.git.sha }}
           repository: ${{ github.repository }}
 
+      - name: Checkout (default)
+        if: github.event_name != 'pull_request' && github.event_name != 'repository_dispatch'
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
