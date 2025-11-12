@@ -71,12 +71,15 @@ jobs:
         run: python scripts/generate-lighthouse-report.py
 
       - name: Comment on PR with Lighthouse insights
-        if: github.event_name == 'pull_request'
+        if: |
+          github.event_name == 'pull_request' ||
+          github.event.client_payload.pull_request.number != ''
         uses: mshick/add-pr-comment@v2
         with:
           message: ${{ steps.lighthouse-results-generate.outputs.report }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-repeats: true
+
 
       - name: Add Lighthouse Insights to Summary
         if: github.event_name != 'pull_request'
