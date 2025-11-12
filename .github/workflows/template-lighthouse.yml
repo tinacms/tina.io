@@ -27,7 +27,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
 
-      # repository_dispatch context from Vercel
       - name: Checkout (repository_dispatch)
         if: github.event_name == 'repository_dispatch'
         uses: actions/checkout@v5
@@ -41,6 +40,11 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Wait for slot to be available
         uses: jtalk/url-health-check-action@v4
