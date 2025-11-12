@@ -1,11 +1,14 @@
 name: TEST - Dump Vercel Event
 
 on:
-  repository_dispatch:
   deployment_status:
+    types: [created]  # triggers when a new deployment status is created
+  workflow_dispatch:  # still lets you run it manually if needed
 
 jobs:
   debug:
+    # only continue if the deployment itself succeeded
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Print full event payload
