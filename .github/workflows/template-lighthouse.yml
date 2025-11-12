@@ -36,9 +36,11 @@ jobs:
           ref: ${{ github.event.client_payload.git.sha }}
           repository: ${{ github.repository }}
 
-      - uses: actions/setup-node@v6
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"
+          node-version-file: '../../.nvmrc'
+          cache: 'pnpm'
 
       - name: Wait for slot to be available
         uses: jtalk/url-health-check-action@v4
