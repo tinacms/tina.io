@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 import {
+  Algoliasearch,
   algoliasearch,
   type SearchClient,
 } from 'algoliasearch';
@@ -59,6 +60,7 @@ const saveIndex = async (
         throw new Error(`Undefined object in data for index ${indexName}`);
       }
     }
+    client.saveObjects
     var result = await client.replaceAllObjects({indexName, objects: data })
     console.log(`Finished saving index: ${indexName}`);
     await client.setSettings(
@@ -71,48 +73,50 @@ const saveIndex = async (
     console.log(
       `${indexName}: added/updated ${result.batchResponses.length} entries`,
     );
-    // const numRemoved = await cleanupIndex(index, data);
-    // if (numRemoved > 0) {
-    //   console.log(`${indexName}: removed ${numRemoved} entries`);
-    // }
+    const numRemoved = await cleanupIndex(client, indexName, data);
+    if (numRemoved > 0) {
+      console.log(`${indexName}: removed ${numRemoved} entries`);
+    }
   } catch (error) {
     
     console.log(error);
   }
 };
 
-// const cleanupIndex = async (index: SearchIndex, currentData: any) => {
-//   const currentObjects: Set<string> = new Set();
-//   const objectsToDelete: Set<string> = new Set();
-//   let numRemoved = 0;
-//   currentData.map((item) => {
-//     currentObjects.add(item.objectID);
-//   });
-//   await index.browseObjects({
-//     batch: (hits) => {
-//       hits.forEach((hit) => {
-//         if (!currentObjects.has(hit.objectID)) {
-//           objectsToDelete.add(hit.objectID);
-//         }
-//       });
-//     },
-//   });
-//   await Promise.all(
-//     Array.from(objectsToDelete).map(async (objectID) => {
-//       await index.deleteObject(objectID);
-//       numRemoved++;
-//     }),
-//   );
-//   return numRemoved;
-// };
+const cleanupIndex = async (client: SearchClient, indexName: string, currentData: any) => {
+  const currentObjects: Set<string> = new Set();
+  const objectsToDelete: Set<string> = new Set();
+  let numRemoved = 0;
+  currentData.map((item) => {
+    currentObjects.add(item.objectID);
+  });
+  
+  await client.browseObjects({
+    aggregator: (res)=> res.hits.forEach((hit) => {
+      if (!currentObjects.has(hit.objectID)) {
+        objectsToDelete.add(hit.objectID);
+        } 
+      }),
+    indexName 
+  });
+  await Promise.all(
+    Array.from(objectsToDelete).map(async (objectID) => {
+      await client.deleteObject({indexName, objectID});
+      numRemoved++;
+    }),
+  );
+  return numRemoved;
+};
 
 const createIndices = async () => {
 
-  
+
   const client = algoliasearch(
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_ADMIN_KEY,
   );
+
+  client.browseObjects
   
   const docs = await fetchSearchableDocs();
 
