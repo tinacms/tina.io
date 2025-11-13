@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2024.11.36",
+  "dateReleased": "2024-11-11T04:03:48Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "Add a link to how to resolve invalid site url issues"
+        },
+        {
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4",
+          "changesDescription": "feat: paginated branch status"
+        }
+      ]
+    }
+  ]
+}

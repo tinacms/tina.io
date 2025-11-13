@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2.1.1",
+  "dateReleased": "2024-08-11T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "commit_hash": "c6e9afb",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c6e9afb",
+          "changesDescription": "fix reference field selector styling"
+        },
+        {
+          "commit_hash": "d9b23fc",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d9b23fc",
+          "changesDescription": "Improve reference field selector"
+        },
+        {
+          "commit_hash": "1c69338",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/1c69338",
+          "changesDescription": "fix reference field search and styling"
+        },
+        {
+          "commit_hash": "a1a767d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a1a767d",
+          "changesDescription": "add icon to reference selector"
+        }
+      ]
+    }
+  ]
+}

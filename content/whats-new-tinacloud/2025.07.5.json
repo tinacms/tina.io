@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.07.5",
+  "dateReleased": "2025-07-09T03:50:01Z",
+  "changesObject": [
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix(sst): increase asset transformer memory"
+        }
+      ]
+    }
+  ]
+}

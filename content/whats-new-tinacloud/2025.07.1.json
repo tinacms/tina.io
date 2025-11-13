@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2025.07.1",
+  "dateReleased": "2025-07-03T05:15:15Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🚸 UX - Improves error message upon re-registering account"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔊 Logs - Adds API Gateway requestId to Identity API logs"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Sentry - Remove from dashboard"
+        }
+      ]
+    }
+  ]
+}

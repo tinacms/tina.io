@@ -1,0 +1,76 @@
+{
+  "versionNumber": "2025.07.10",
+  "dateReleased": "2025-07-24T23:50:43Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "✨ Feat: Consolidated Editorial Workflow endpoints"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "feat(git-authoring): redesign the git authoring settings page"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "📝 Docs - Additional testing guidance"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Changesets - Removal"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Build system - Remove unnecessary files, build scripts and dependencies"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "🔧 Refactor: Handle CodeMismatchException with unauthorized response"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - Editorial workflow blocked by CORS"
+        },
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "🐛 Bug - Add Editorial Workflow status endpoint to CORS"
+        },
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "✨ feat: Add JSON validation for Tina lock"
+        },
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "✨ feat: add sanitizeMessageGroupId function for AWS SQS compliance"
+        },
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "🔒 Security: enhance Editorial Workflow endpoints with authentication middleware"
+        }
+      ]
+    }
+  ]
+}

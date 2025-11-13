@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2025.05.112",
+  "dateReleased": "2025-05-13T05:25:11Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "♻️ Refactor : Move account settings and Git configuration sections into tabs"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix(stripe): add automatic tax settings"
+        }
+      ]
+    }
+  ]
+}

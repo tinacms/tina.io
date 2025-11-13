@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.74",
+  "dateReleased": "2025-01-16T04:58:48Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "feat: update logging to use the slog library"
+        }
+      ]
+    }
+  ]
+}

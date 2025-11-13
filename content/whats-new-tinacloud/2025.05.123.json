@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.05.123",
+  "dateReleased": "2025-06-02T03:23:28Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "🐛 Bug Fix: Hide Security tab when MFA settings not available"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: close auth window once done to avoid race condition"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2025.04.107",
+  "dateReleased": "2025-04-28T22:28:39Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "feat: Introduce owner field to new projects and organisations"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: run go mod tidy to fix builds."
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🧱 Tooling - Skips non-indexed apps when running delete-old-indices CLI tool"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "changesDescription": "chore(deps): bump golang.org/x/crypto from 0.31.0 to 0.35.0 in /identity"
+        }
+      ]
+    }
+  ]
+}

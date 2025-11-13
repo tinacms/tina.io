@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2025.06.2",
+  "dateReleased": "2025-06-11T07:58:24Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: ensure user always has a site url"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix(connect-github): stop loading if window is closed prematurely"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🚑 Hotfix - Use single popup window for multiple auth actions"
+        }
+      ]
+    }
+  ]
+}

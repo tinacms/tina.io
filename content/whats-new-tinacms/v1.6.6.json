@@ -1,0 +1,46 @@
+{
+  "versionNumber": "1.6.6",
+  "dateReleased": "2024-07-15T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "commit_hash": "a9b461c",
+          "changesDescription": "updated 'file has changes' indicator ui"
+        },
+        {
+          "commit_hash": "3034430",
+          "changesDescription": "Make padding between collection list page and singular pages consistent. Ensure navigation bar padding does not overlap with the burger icon on collection singular pages"
+        },
+        {
+          "commit_hash": "171f5a5",
+          "changesDescription": "Fix collections body not working with smaller screens"
+        },
+        {
+          "commit_hash": "fd216f3",
+          "changesDescription": "updated TinaCloud auth modal text"
+        },
+        {
+          "commit_hash": "d004af2",
+          "changesDescription": "improve error message by adding emoji"
+        },
+        {
+          "commit_hash": "20f972a",
+          "changesDescription": "Fix collections header styling for smaller screens"
+        },
+        {
+          "commit_hash": "2a36b65",
+          "changesDescription": "Remove unnecessary usage of @react-hook/window-size"
+        },
+        {
+          "commit_hash": "f26b40d",
+          "changesDescription": "Allow customization of accepted media types in media manager"
+        },
+        {
+          "changesDescription": "Updated dependencies \\[f26b40d]"
+        }
+      ]
+    }
+  ]
+}

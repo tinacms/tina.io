@@ -1,0 +1,20 @@
+{
+  "versionNumber": "2.7.7",
+  "dateReleased": "2025-05-13T07:29:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5607",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5607",
+          "commit_hash": "1965236",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/19652363784e48b065ec1924a9cd9611c8e79cae",
+          "gitHubName": "jeffsee55",
+          "gitHubLink": "https://github.com/jeffsee55",
+          "changesDescription": "React 19 Support"
+        }
+      ]
+    }
+  ]
+}

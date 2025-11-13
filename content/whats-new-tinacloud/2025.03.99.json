@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2025.03.99",
+  "dateReleased": "2025-03-18T03:26:30Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "♻️ Refactor - Parameters for DynamodbLevel"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🧪 Testing - Additional unit tests for DynamodbLevel"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🧪 Testing - Unit tests for DynamodbLevel._batch"
+        },
+        {
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "Update project + organization - add name length validation"
+        }
+      ]
+    }
+  ]
+}

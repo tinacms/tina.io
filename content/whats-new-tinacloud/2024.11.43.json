@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.11.43",
+  "dateReleased": "2024-11-28T01:35:09Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "⚡ Performance - Add read cache for DynamoDB reads"
+        }
+      ]
+    }
+  ]
+}

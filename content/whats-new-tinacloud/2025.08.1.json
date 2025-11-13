@@ -1,0 +1,30 @@
+{
+  "versionNumber": "2025.08.1",
+  "dateReleased": "2025-08-07T01:35:12Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "Update Choose Starter"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🐛 Bug Fixes",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "Fix MFA preference type from string to boolean"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": []
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.06.5",
+  "dateReleased": "2025-06-17T05:41:27Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - Authentication failing due to AWS Cognito not providing subId value"
+        }
+      ]
+    }
+  ]
+}

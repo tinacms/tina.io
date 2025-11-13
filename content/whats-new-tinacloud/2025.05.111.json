@@ -1,0 +1,71 @@
+{
+  "versionNumber": "2025.05.111",
+  "dateReleased": "2025-05-12T22:16:57Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: Don't reset loading after mfa auth as page should redirect."
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: Add optional tax registration field to stripe checkouts."
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: Enable auto update for customer tax."
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: Add automatic tax for updated subscriptions."
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "🐛 Bug - New customers cannot create checkout session"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "lint: replace prettier + eslint with biomejs"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "lint: Introduce formatting changes from biomejs."
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Remove - Husky tool"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Deletion - Remove unnecessary await from SST config"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🚨 Linter - Fix a series of minor issues"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🧱 Infrastructure - Adds steps to build process to check formatting"
+        }
+      ]
+    }
+  ]
+}

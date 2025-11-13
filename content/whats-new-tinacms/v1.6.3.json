@@ -1,0 +1,22 @@
+{
+  "versionNumber": "1.6.3",
+  "dateReleased": "2024-05-01T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "commit_hash": "66f7e2074",
+          "changesDescription": "Cleanup"
+        },
+        {
+          "commit_hash": "b3ad50a62",
+          "changesDescription": "Fix issue where rich-text nested inside JSX objects wasn't being parsed/stringified properly."
+        },
+        {
+          "changesDescription": "Updated dependencies \\[b3ad50a62]"
+        }
+      ]
+    }
+  ]
+}

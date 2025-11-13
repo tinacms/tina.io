@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2025.07.9",
+  "dateReleased": "2025-07-11T00:35:26Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "feat(repo): add additional stats to repo select component"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🥅 Errors - Improve error handling when indexing by paths"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: nil reference in the billing code when an organization is not found"
+        }
+      ]
+    }
+  ]
+}

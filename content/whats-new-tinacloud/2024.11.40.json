@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2024.11.40",
+  "dateReleased": "2024-11-25T06:26:51Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "✏️ Typo - Corrects subtitle text for projects page"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - Demonstration subscriptions - Allow upgrade to paid plans"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "🔒 SSO - Added logic to transfer org roles correctly"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "⬆️ [at]tinacms/graphql - upgrade from 1.5.7 to 1.5.8"
+        }
+      ]
+    }
+  ]
+}

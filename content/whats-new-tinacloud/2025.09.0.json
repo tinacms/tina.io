@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2025.09.0",
+  "dateReleased": "2025-09-08T04:56:54Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "Site URLs UI Improvement + Tool Bar"
+        },
+        {
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "Fix /Quickstart Process"
+        },
+        {
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "Organization UI - Button and Heading Consistency"
+        }
+      ]
+    }
+  ]
+}

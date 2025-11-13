@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2025.07.0",
+  "dateReleased": "2025-07-02T23:48:34Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - No user auth tokens treated as error rather than non-existent"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - TinaCloud Webhooks not triggered if schema pushed with content changes"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔊 Logs - Removes go-chi logging middleware"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔊 Logs - Add logging to getBillingState endpoint"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Sentry - Removal from Identity API"
+        }
+      ]
+    }
+  ]
+}

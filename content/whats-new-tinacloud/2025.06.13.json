@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.06.13",
+  "dateReleased": "2025-06-26T04:08:59Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix(auth): redirect unconfirmed users to confirm account page on signin"
+        }
+      ]
+    }
+  ]
+}

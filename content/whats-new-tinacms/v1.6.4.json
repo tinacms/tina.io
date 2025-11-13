@@ -1,0 +1,18 @@
+{
+  "versionNumber": "1.6.4",
+  "dateReleased": "2024-06-02T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "commit_hash": "2e3393ef5",
+          "changesDescription": "Implement Create folder feature for tinacms."
+        },
+        {
+          "changesDescription": "Updated dependencies \\[2e3393ef5]"
+        }
+      ]
+    }
+  ]
+}

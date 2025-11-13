@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.05.122",
+  "dateReleased": "2025-05-28T06:30:14Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: swap link to button on configure cloud perms page"
+        }
+      ]
+    }
+  ]
+}

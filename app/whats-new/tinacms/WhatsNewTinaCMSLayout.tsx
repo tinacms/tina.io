@@ -1,16 +1,71 @@
-import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
 import Link from 'next/link';
-import { FaGithub, FaNewspaper } from 'react-icons/fa';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { FaExternalLinkAlt, FaGithub, FaNewspaper } from 'react-icons/fa';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+
+type ChangeItem = {
+  pull_request_number?: string;
+  pull_request_link?: string;
+  commit_hash?: string;
+  commit_link?: string;
+  gitHubName?: string;
+  gitHubLink?: string;
+  changesDescription?: string;
+};
 
 type WhatsNewCardProps = {
   item: {
     versionNumber: string;
     dateReleased: string;
-    body: string;
+    changesObject: {
+      changesTitle: string;
+      changesList: ChangeItem[];
+    }[];
     key: string;
   };
+};
+
+const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
+  return (
+    <li className="mb-3 pl-4 border-l-2 border-blue-200">
+      <div className="flex flex-wrap items-start gap-2 mb-2">
+        {change.pull_request_number && change.pull_request_link && (
+          <Link
+            href={change.pull_request_link}
+            className="inline-flex items-center px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            #{change.pull_request_number}{' '}
+            <FaExternalLinkAlt className="ml-1 text-xs" />
+          </Link>
+        )}
+        {change.commit_hash && change.commit_link && (
+          <Link
+            href={change.commit_link}
+            className="inline-flex items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {change.commit_hash.substring(0, 7)}{' '}
+            <FaExternalLinkAlt className="ml-1 text-xs" />
+          </Link>
+        )}
+        {change.gitHubName && change.gitHubLink && (
+          <Link
+            href={change.gitHubLink}
+            className="inline-flex items-center px-2 py-1 text-xs bg-green-100 text-green-800 rounded-md hover:bg-green-200 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @{change.gitHubName} <FaExternalLinkAlt className="ml-1 text-xs" />
+          </Link>
+        )}
+      </div>
+      {change.changesDescription && (
+        <p className="text-gray-700">{change.changesDescription}</p>
+      )}
+    </li>
+  );
 };
 
 export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
@@ -19,7 +74,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
       key={item.key}
       className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105 bg-linear-to-br from-white/25 via-white/50 to-white/75"
     >
-      <div className="flex justify-between items-baseline">
+      <div className="flex justify-between items-baseline mb-6">
         <h2 className="text-2xl bg-linear-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent font-semibold">
           Version {item.versionNumber}
         </h2>
@@ -27,9 +82,29 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
           Released on {new Date(item.dateReleased).toLocaleDateString()}
         </p>
       </div>
-      {item.body && (
-        <TinaMarkdown content={item.body} components={whatsNewMDComponents} />
-      )}
+
+      {item.changesObject?.map((section, sectionIndex) => (
+        <div
+          key={`section-${section.changesTitle}-${sectionIndex}`}
+          className="mb-6"
+        >
+          <h3 className="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-2">
+            {section.changesTitle}
+          </h3>
+          {section.changesList && section.changesList.length > 0 ? (
+            <ul className="space-y-2">
+              {section.changesList.map((change, changeIndex) => (
+                <ChangeItemComponent
+                  key={`change-${changeIndex}-${change.commit_hash || change.gitHubName || 'unknown'}`}
+                  change={change}
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 italic">No changes in this section</p>
+          )}
+        </div>
+      ))}
     </div>
   );
 };

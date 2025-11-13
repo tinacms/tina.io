@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.04.105",
+  "dateReleased": "2025-04-09T05:26:37Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "⚡ Performance - Add SchemaMetadata cache"
+        }
+      ]
+    }
+  ]
+}

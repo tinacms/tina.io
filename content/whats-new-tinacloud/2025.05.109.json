@@ -1,0 +1,40 @@
+{
+  "versionNumber": "2025.05.109",
+  "dateReleased": "2025-05-08T00:47:15Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Login - Remove state machine"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "fix: ensure stage is lowercase when running sst dev"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "changesDescription": "chore(deps-dev): bump vite from 4.5.13 to 4.5.14"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": []
+    }
+  ]
+}

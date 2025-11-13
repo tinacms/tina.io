@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.02.89",
+  "dateReleased": "2025-02-24T06:32:25Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🚑 Hot fix - CORS issue in Content API"
+        }
+      ]
+    }
+  ]
+}

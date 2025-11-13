@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2.2.2",
+  "dateReleased": "2024-09-02T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "[6ccda6c](https://github.com/tinacms/tinacms/commit/6ccda6c): Experimental Feature - Added reference field filter"
+        },
+        {
+          "changesDescription": "[33eaa81](https://github.com/tinacms/tinacms/commit/33eaa81): Minor code refactor in reference field selector"
+        },
+        {
+          "changesDescription": "[f59d67b](https://github.com/tinacms/tinacms/commit/f59d67b): Media Manager - Make active item disappear on navigation and refresh"
+        },
+        {
+          "changesDescription": "[daeeebf](https://github.com/tinacms/tinacms/commit/daeeebf): Fix issue where clicking Search in the admin UI resulted in a redirect instead of loading the search results"
+        },
+        {
+          "changesDescription": "[27bfe84](https://github.com/tinacms/tinacms/commit/27bfe84): CLI - Adds client caching and cli flag to disable: `--no-client-build-cache`"
+        },
+        {
+          "changesDescription": "Updated dependencies \\[[6ccda6c](https://github.com/tinacms/tinacms/commit/6ccda6c), [33eaa81](https://github.com/tinacms/tinacms/commit/33eaa81)]"
+        },
+        {
+          "changesDescription": "[acf8430](https://github.com/tinacms/tinacms/commit/acf8430): Add rollup option to ignore `\"MODULE_LEVEL_DIRECTIVE\"`"
+        },
+        {
+          "changesDescription": "[110f1ce](https://github.com/tinacms/tinacms/commit/110f1ce): Fix `tina-lock.json` to not include search configuration, including search indexer token"
+        },
+        {
+          "changesDescription": "[27bfe84](https://github.com/tinacms/tinacms/commit/27bfe84): CLI - Adds client caching and cli flag to disable: `--no-client-build-cache`"
+        },
+        {
+          "changesDescription": "Updated dependencies \\[[6ccda6c](https://github.com/tinacms/tinacms/commit/6ccda6c), [33eaa81](https://github.com/tinacms/tinacms/commit/33eaa81), [f088b97](https://github.com/tinacms/tinacms/commit/f088b97), [f59d67b](https://github.com/tinacms/tinacms/commit/f59d67b), [daeeebf](https://github.com/tinacms/tinacms/commit/daeeebf), [27bfe84](https://github.com/tinacms/tinacms/commit/27bfe84)]"
+        }
+      ]
+    }
+  ]
+}

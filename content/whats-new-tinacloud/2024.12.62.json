@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2024.12.62",
+  "dateReleased": "2024-12-31T03:15:01Z",
+  "changesObject": [
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Integrations - Removes remaining Launch Darkly and HubSpot integrations"
+        },
+        {
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "Switch to AWS SSO for role assumption and credential management"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🧱 CI/CD - Adds email and GitHub App variables to GitHub Actions"
+        }
+      ]
+    }
+  ]
+}

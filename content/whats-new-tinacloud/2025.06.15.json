@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2025.06.15",
+  "dateReleased": "2025-06-26T22:27:37Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "feat(js/gitauthtokens): add js routes to interact with git auth tokens"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - Fix webhook refresh such that it will function with incorrect InstallationID"
+        }
+      ]
+    }
+  ]
+}

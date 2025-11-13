@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.70",
+  "dateReleased": "2025-01-14T23:42:36Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "⚡ Performance - Reinstate direct calls to some endpoints of Identity API"
+        }
+      ]
+    }
+  ]
+}

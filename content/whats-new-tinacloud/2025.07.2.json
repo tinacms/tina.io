@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.07.2",
+  "dateReleased": "2025-07-03T23:34:44Z",
+  "changesObject": [
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔥 Sentry - Remove remaining mentions in codebase"
+        }
+      ]
+    }
+  ]
+}

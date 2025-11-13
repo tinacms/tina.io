@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.01.65",
+  "dateReleased": "2025-01-07T07:40:34Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU",
+          "changesDescription": "⬆️ chore: update @tinacms/graphql to version 1.5.10"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔐 Security - Correct GraphQL authorization checks"
+        }
+      ]
+    }
+  ]
+}

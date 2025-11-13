@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.77",
+  "dateReleased": "2025-01-20T05:13:24Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "⚡ Performance - Pre-read standard schema entries"
+        }
+      ]
+    }
+  ]
+}

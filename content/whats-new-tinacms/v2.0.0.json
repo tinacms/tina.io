@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2.0.0",
+  "dateReleased": "2024-07-23T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Major Changes",
+      "changesList": [
+        {
+          "commit_hash": "957fa26",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/957fa26",
+          "changesDescription": "Removed deprecated useTina hook This was deprecated as part of the v1 release and shouldn't have been in use by anyone"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "commit_hash": "e58b951",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/e58b951",
+          "changesDescription": "update vulnerable packages so npm audit does not complain"
+        },
+        {
+          "commit_hash": "957fa26",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/957fa26",
+          "changesDescription": "update to React 18"
+        },
+        {
+          "commit_hash": "9076d09",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/9076d09",
+          "changesDescription": "update next js version from 12 to 14 in tinacms packages"
+        }
+      ]
+    }
+  ]
+}

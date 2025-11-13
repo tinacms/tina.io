@@ -1,0 +1,83 @@
+{
+  "versionNumber": "2024.09.23",
+  "dateReleased": "2024-09-18T23:58:48Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2274",
+          "pull_request_number": "2274",
+          "changesDescription": "Added admin/editor count in query results"
+        },
+        {
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2277",
+          "pull_request_number": "2277",
+          "changesDescription": "chore(deps): update @tinacms/graphql to version 1.5.2"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2289",
+          "pull_request_number": "2289",
+          "changesDescription": "Add Editorial Workflow logging"
+        },
+        {
+          "gitHubName": "bradystroud",
+          "gitHubLink": "https://github.com/bradystroud",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2290",
+          "pull_request_number": "2290",
+          "changesDescription": "README - Add vision"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2285",
+          "pull_request_number": "2285",
+          "changesDescription": "chore(deps): bump path-to-regexp from 6.2.0 to 6.3.0"
+        },
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2280",
+          "pull_request_number": "2280",
+          "changesDescription": "chore(deps): bump dset from 3.1.3 to 3.1.4"
+        },
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2279",
+          "pull_request_number": "2279",
+          "changesDescription": "chore(deps): bump express from 4.18.2 to 4.20.0"
+        },
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2297",
+          "pull_request_number": "2297",
+          "changesDescription": "chore(deps-dev): bump vite from 4.3.9 to 4.5.5"
+        },
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/1914",
+          "pull_request_number": "1914",
+          "changesDescription": "chore(deps): bump axios from 0.21.4 to 0.28.0"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": []
+    }
+  ]
+}

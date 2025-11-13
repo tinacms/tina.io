@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.07.7",
+  "dateReleased": "2025-07-10T00:11:09Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "⚡ Performance - Increase ContentAPIRouter's concurrent DynamoDB connection count"
+        }
+      ]
+    }
+  ]
+}

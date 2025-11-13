@@ -1,0 +1,34 @@
+{
+  "versionNumber": "2.5.2",
+  "dateReleased": "2024-12-13T03:55:01.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5352",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5352",
+          "commit_hash": "b54b303",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b54b303a8290528230dc83d8fb1b7535df7199f6",
+          "gitHubName": "shuaixr",
+          "gitHubLink": "https://github.com/shuaixr",
+          "changesDescription": "Fixes an issue where setting empty values in `NumberInput` and `DateField` would throw errors. ([https://github.com/tinacms/tinacms/issues/2445](https://github.com/tinacms/tinacms/issues/2445))"
+        },
+        {
+          "pull_request_number": "5351",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5351",
+          "commit_hash": "0345852",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0345852e3a7568b61a1417cd037715ab0d0dca01",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU",
+          "changesDescription": "Removes `fetch-ponyfill` dependency and use native fetch (node18+)"
+        },
+        {
+          "commit_hash": "c45ac5d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c45ac5d9c7219593cde63e0cc6fbf945480884f7",
+          "changesDescription": "Updated dependencies \\[]:"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2025.01.81",
+  "dateReleased": "2025-01-31T05:00:14Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🚸 UX - Improve when accepting invitations"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - Prevent join tokens being revoked by forcing user interaction"
+        }
+      ]
+    }
+  ]
+}

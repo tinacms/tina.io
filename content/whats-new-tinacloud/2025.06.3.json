@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.06.3",
+  "dateReleased": "2025-06-12T02:46:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔊 Release notes - Correct generation"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🚸 UX - Add PleaseWait modal page for GitHub connecting workflow"
+        }
+      ]
+    }
+  ]
+}

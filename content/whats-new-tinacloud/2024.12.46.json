@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2024.12.46",
+  "dateReleased": "2024-12-04T04:21:16Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔊 Logs - Add messages providing information on how Dynamodb*Iterators are used in Production"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "➖ Common Library - Rationalize imported packages"
+        }
+      ]
+    }
+  ]
+}

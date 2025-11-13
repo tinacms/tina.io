@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2025.02.82",
+  "dateReleased": "2025-02-05T03:38:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🔊 Logs - Improve"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - Improves resilience of invite acceptance"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "changesDescription": "chore(deps-dev): bump vitest from 2.1.8 to 2.1.9"
+        }
+      ]
+    }
+  ]
+}

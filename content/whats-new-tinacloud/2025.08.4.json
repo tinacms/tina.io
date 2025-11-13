@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2025.08.4",
+  "dateReleased": "2025-08-29T03:53:31Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "UI changes to Project Dashboard"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "Implement media asset indexing"
+        }
+      ]
+    }
+  ]
+}

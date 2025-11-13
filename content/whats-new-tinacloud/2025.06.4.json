@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2025.06.4",
+  "dateReleased": "2025-06-16T00:56:39Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "Account Settings - Add Frontend Framework Preferences to User Onboarding and Settings"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "♻️ Refactor - Improve clarity of Org and User data routing"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🚸 UX - Ensure spinner remains centered during login"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "changesDescription": "chore(deps): bump brace-expansion from 1.1.11 to 1.1.12"
+        }
+      ]
+    }
+  ]
+}

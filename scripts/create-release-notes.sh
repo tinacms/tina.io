@@ -23,24 +23,62 @@ if [ -z "$RELEASE_NOTES" ]; then
   echo "RELEASE_NOTES is not set"
   exit 1
 fi
+create_json_structure() {
+  local version="$1"
+  local date="$2"
+  local changes_json="$3"
+  
+  # Create the final JSON structure with metadata
+  jq -n --arg version "$version" --arg date "$date" --argjson changes "$changes_json" '{
+    versionNumber: $version,
+    dateReleased: $date,
+    changesObject: $changes.changesObject
+  }'
+}
 
 # Create the release notes file
 pathToReleaseNotesRoot="content/whats-new-$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]')"
-releaseNotesFile="$pathToReleaseNotesRoot/$(echo "$VERSION_NUMBER" | tr '[:upper:]' '[:lower:]').mdx"
+releaseNotesFile="$pathToReleaseNotesRoot/$(echo "$VERSION_NUMBER" | tr '[:upper:]' '[:lower:]').json"
 
 echo "Creating release notes file: $releaseNotesFile"
 
-{
-  echo "---"
-  # Trim the 'v' prefix if it exists in VERSION_NUMBER
-  trimmedVersionNumber=$(echo "$VERSION_NUMBER" | sed 's/^v//')
-  echo "versionNumber: $trimmedVersionNumber"
-  echo "dateReleased: $DATE_RELEASED"
-  echo "---"
-  echo ""
-  # Use printf to correctly interpret \n as new lines
-  printf "%b\n" "$RELEASE_NOTES"
-} > "$releaseNotesFile"
+# Trim the 'v' prefix if it exists in VERSION_NUMBER
+trimmedVersionNumber=$(echo "$VERSION_NUMBER" | sed 's/^v//')
+
+# Check if RELEASE_NOTES is JSON or markdown
+if echo "$RELEASE_NOTES" | jq empty 2>/dev/null; then
+  # It's JSON - create structured JSON output
+  create_json_structure "$trimmedVersionNumber" "$DATE_RELEASED" "$RELEASE_NOTES" > "$releaseNotesFile"
+else
+  # It's markdown - convert to simple JSON structure for backward compatibility
+  jq -n --arg version "$trimmedVersionNumber" --arg date "$DATE_RELEASED" --arg content "$RELEASE_NOTES" '{
+    versionNumber: $version,
+    dateReleased: $date,
+    changesObject: [
+      {
+        changesTitle: "Release Notes",
+        changesList: [
+          {
+            changesDescription: {
+              type: "root",
+              children: [
+                {
+                  type: "p",
+                  children: [
+                    {
+                      type: "text", 
+                      text: $content
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }' > "$releaseNotesFile"
+fi
 
 
 echo "✅ File created"

@@ -1,0 +1,18 @@
+{
+  "versionNumber": "2024.11.37",
+  "dateReleased": "2024-11-13T03:22:32Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2395",
+          "pull_request_number": "2395",
+          "changesDescription": "⬆️ GraphQL - Ensure GraphQL version bumped in outermost package.json"
+        }
+      ]
+    }
+  ]
+}

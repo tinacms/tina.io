@@ -1,0 +1,28 @@
+{
+  "versionNumber": "2.2.0",
+  "dateReleased": "2024-08-18T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "[324950a](https://github.com/tinacms/tinacms/commit/324950a4f98cb3c0750de2210cd5dc0b95d4f440): Updates Plate Editor to latest version 36."
+        },
+        {
+          "changesDescription": "[ceb0c07](https://github.com/tinacms/tinacms/commit/ceb0c07dece8cd76ea499df215804bb24e6eabce): Add infinite scroll to the media manager"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "[f378f11](https://github.com/tinacms/tinacms/commit/f378f114430f9a8e36bc320b6d3a7cbd4f37f508): Add filepath to collection items"
+        },
+        {
+          "changesDescription": "Updated dependencies \\[[324950a](https://github.com/tinacms/tinacms/commit/324950a4f98cb3c0750de2210cd5dc0b95d4f440)]"
+        }
+      ]
+    }
+  ]
+}

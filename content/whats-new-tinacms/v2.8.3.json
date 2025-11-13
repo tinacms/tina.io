@@ -1,0 +1,47 @@
+{
+  "versionNumber": "2.8.3",
+  "dateReleased": "2025-09-15T00:58:31Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5951",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5951",
+          "commit_hash": "ea917dd",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ea917dd2840c955d462b66b58009d2a16da39377",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8",
+          "changesDescription": "Auth prompt - added branding"
+        },
+        {
+          "pull_request_number": "5947",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5947",
+          "commit_hash": "b012b6c",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b012b6c7fae2674c613fd4c54e1819a86c6d2c3e",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "Sidebar - updated tooltips, show editing panel is now orange for visibility/branding"
+        },
+        {
+          "pull_request_number": "5969",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5969",
+          "commit_hash": "39e5b05",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/39e5b0562af7bca1e2923fc94b7c8119e12a0133",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "Content manager - Make UTC the default for the DateField"
+        },
+        {
+          "pull_request_number": "5946",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5946",
+          "commit_hash": "55e018b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/55e018b9826a540005bbadf8fd51e9bac456d531",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "Media manager - improved display of transparent images"
+        }
+      ]
+    }
+  ]
+}

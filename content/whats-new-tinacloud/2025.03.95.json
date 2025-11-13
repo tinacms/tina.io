@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.03.95",
+  "dateReleased": "2025-03-04T22:21:48Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: replace exceptions with logged warnings for indexing"
+        },
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "♻️ Refactor - Generic table references"
+        }
+      ]
+    }
+  ]
+}

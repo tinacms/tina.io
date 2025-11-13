@@ -1,0 +1,18 @@
+{
+  "versionNumber": "2024.10.26",
+  "dateReleased": "2024-10-07T21:33:14Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2333",
+          "pull_request_number": "2333",
+          "changesDescription": "checkout - add ability to let user input coupons"
+        }
+      ]
+    }
+  ]
+}

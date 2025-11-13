@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.03.94",
+  "dateReleased": "2025-03-02T23:35:45Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: hide locked Editorial Workflow box if enabled"
+        }
+      ]
+    }
+  ]
+}

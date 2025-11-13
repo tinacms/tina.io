@@ -1,0 +1,52 @@
+{
+  "versionNumber": "2.7.8",
+  "dateReleased": "2025-05-26T23:55:46Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5680",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5680",
+          "commit_hash": "5e36123",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/5e361239a372e21dda624d17b4ff274bab23ce90",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "Collections - Add folder button is now always visible"
+        },
+        {
+          "pull_request_number": "5697",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5697",
+          "commit_hash": "856e07a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/856e07a0b8d742ee78d5eba565623cf081a61534",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "- ✏️ Rename `CreateBranchModel` to `CreateBranchModal`"
+        },
+        {
+          "pull_request_number": "5691",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5691",
+          "commit_hash": "4d9c8ab",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4d9c8abf6badd1bcc833bda432ab22dace4925ae",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - Fix issue where Editorial Workflow fails to save from preview when path ends in slash"
+        },
+        {
+          "pull_request_number": "5668",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5668",
+          "commit_hash": "7346dc9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/7346dc996fd81ecb395b62f373976512e8224c21",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU",
+          "changesDescription": "Allow tel links"
+        },
+        {
+          "commit_hash": "d689189",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/d68918973d39aabbb9e5e4672a913771f8841734",
+          "changesDescription": "Updated dependencies \\[]:"
+        }
+      ]
+    }
+  ]
+}

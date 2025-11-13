@@ -1,0 +1,46 @@
+{
+  "versionNumber": "2025.03.100",
+  "dateReleased": "2025-03-24T05:05:01Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "Add GitHub Enterprise integration UI"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "fix: Editorial Workflow button not toggling correctly"
+        },
+        {
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4",
+          "changesDescription": "fix: use pathToTina when syncing media"
+        },
+        {
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4",
+          "changesDescription": "fix: use mediaBranch in resolveMediaBranch"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "changesDescription": "chore(deps): bump github.com/golang-jwt/jwt/v5 from 5.2.1 to 5.2.2 in /identity"
+        }
+      ]
+    }
+  ]
+}

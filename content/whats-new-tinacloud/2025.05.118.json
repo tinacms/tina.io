@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2025.05.118",
+  "dateReleased": "2025-05-21T02:53:08Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "♻️ Account Section Refactor and Security Improvements"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "fix: update robots.txt to disallow all web crawlers"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "changesDescription": "chore(deps): bump undici from 5.28.5 to 5.29.0"
+        }
+      ]
+    }
+  ]
+}

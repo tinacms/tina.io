@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.12.45",
+  "dateReleased": "2024-12-02T03:14:45Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "⚡ Performance - Cache improvements"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "versionNumber": "2.9.0",
+  "dateReleased": "2025-09-29T23:45:23Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5992",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5992",
+          "commit_hash": "98fbc94",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/98fbc941a07fbc52edafaeb43b49b5ea30ea4172",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "Consistency Fixes for Alerts, Callouts, Badges"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "6014",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6013",
+          "commit_hash": "0bbe080",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a631a376871b848893acfebcb2f84aa7b7f81190",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "🐛 Bug - Fix Media Manager Title Overlay"
+        },
+        {
+          "pull_request_number": "6009",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6009",
+          "commit_hash": "0bbe080",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/88ab1e3187e852206922c96d157ff14030e1791b",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw",
+          "changesDescription": "🐛 Bug - Button Overlap on Collections Menu"
+        },
+        {
+          "pull_request_number": "5995",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5995",
+          "commit_hash": "ced9076",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ced9076d25d7177bd8d9ae3c6133d0560366511c",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "⚡ Performance - Improve media load performance"
+        }
+      ]
+    }
+  ]
+}

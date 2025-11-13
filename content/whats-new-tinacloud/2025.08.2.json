@@ -1,0 +1,30 @@
+{
+  "versionNumber": "2025.08.2",
+  "dateReleased": "2025-08-26T00:12:10Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8",
+          "changesDescription": "Footer - make it orange"
+        },
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "Delete S3 media when removed from GitHub"
+        },
+        {
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8",
+          "changesDescription": "UI updates to the Sign In form view"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": []
+    }
+  ]
+}

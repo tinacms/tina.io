@@ -1,0 +1,34 @@
+{
+  "versionNumber": "2.7.2",
+  "dateReleased": "2025-02-28T05:07:01Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5526",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5526",
+          "commit_hash": "619e601",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/619e6010d6f95d893e980952bef64f747808c956",
+          "gitHubName": "qwadrox",
+          "gitHubLink": "https://github.com/qwadrox",
+          "changesDescription": ""
+        },
+        {
+          "pull_request_number": "5497",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5497",
+          "commit_hash": "602b4d0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/602b4d07f94de4c10d5bb059a5edc49546a2031c",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4",
+          "changesDescription": ""
+        },
+        {
+          "commit_hash": "602b4d0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/602b4d07f94de4c10d5bb059a5edc49546a2031c",
+          "changesDescription": "Updated dependencies \\[]:"
+        }
+      ]
+    }
+  ]
+}

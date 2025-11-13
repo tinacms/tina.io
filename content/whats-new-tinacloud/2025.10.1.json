@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.10.1",
+  "dateReleased": "2025-10-13T21:56:13Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "changesDescription": "Add branch pulling functionality with progress tracking UI"
+        }
+      ]
+    }
+  ]
+}

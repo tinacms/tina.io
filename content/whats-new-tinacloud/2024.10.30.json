@@ -1,0 +1,18 @@
+{
+  "versionNumber": "2024.10.30",
+  "dateReleased": "2024-10-24T00:02:16Z",
+  "changesObject": [
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2355",
+          "pull_request_number": "2355",
+          "changesDescription": "⬆️ Vitest - Upgrade to version 2.1.3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.05.114",
+  "dateReleased": "2025-05-14T03:50:58Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🧱 Infrastructure - Add sourcemaps to Content API Lambdas"
+        }
+      ]
+    }
+  ]
+}

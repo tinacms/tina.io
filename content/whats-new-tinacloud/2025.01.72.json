@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.72",
+  "dateReleased": "2025-01-15T07:38:23Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "♻️ Vercel integration - Ruggedize"
+        }
+      ]
+    }
+  ]
+}

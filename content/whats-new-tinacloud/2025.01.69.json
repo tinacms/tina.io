@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.69",
+  "dateReleased": "2025-01-14T02:12:23Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "🐛 Bug - SSO login issues"
+        }
+      ]
+    }
+  ]
+}

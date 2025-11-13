@@ -1,0 +1,37 @@
+{
+  "versionNumber": "2024.9.9",
+  "dateReleased": "2024-09-04T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2247",
+          "pull_request_number": "2247",
+          "changesDescription": "🍞 Add toast messages on modification of tags"
+        },
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2245",
+          "pull_request_number": "2245",
+          "changesDescription": "Updated Editorial Workflow styling to be more consistent"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2065",
+          "pull_request_number": "2065",
+          "changesDescription": "chore(deps): bump glob-parent from 5.1.1 to 5.1.2"
+        }
+      ]
+    }
+  ]
+}

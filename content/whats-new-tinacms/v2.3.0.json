@@ -1,0 +1,57 @@
+{
+  "versionNumber": "2.3.0",
+  "dateReleased": "2024-10-21T05:09:14Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5098",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5098",
+          "commit_hash": "c5dad82",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c5dad82a3f1fc4f7686f1503a7894dfacffa8c36",
+          "gitHubName": "Jord-Gui",
+          "gitHubLink": "https://github.com/Jord-Gui",
+          "changesDescription": "Add table plugin to rich-text-editor"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "4825",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/4825",
+          "commit_hash": "ecea7ac",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ecea7ac5e1c087954eaaf873df3a563ca08f3e47",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU",
+          "changesDescription": "✨ Add Mermaid Support to Rich Text Field (Plate)"
+        },
+        {
+          "pull_request_number": "5205",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5205",
+          "commit_hash": "eb519f2",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/eb519f27a4c0fe1b05c361db2c1fe2337e6c4e12",
+          "gitHubName": "Jord-Gui",
+          "gitHubLink": "https://github.com/Jord-Gui",
+          "changesDescription": "Add Mermaid to unsupported table cell formats"
+        },
+        {
+          "pull_request_number": "5204",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5204",
+          "commit_hash": "00f6525",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/00f6525871c7c6bd40091424337df72c7bfcf783",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU",
+          "changesDescription": "lock mermaid to 9.4.0 to allow cjs"
+        },
+        {
+          "commit_hash": "c5dad82",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c5dad82a3f1fc4f7686f1503a7894dfacffa8c36",
+          "changesDescription": "Updated dependencies \\[, [`ecea7ac`](https://github.com/tinacms/tinacms/commit/ecea7ac5e1c087954eaaf873df3a563ca08f3e47)]:"
+        }
+      ]
+    }
+  ]
+}

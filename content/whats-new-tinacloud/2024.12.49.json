@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2024.12.49",
+  "dateReleased": "2024-12-09T01:57:22Z",
+  "changesObject": [
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw",
+          "changesDescription": "Removed Sentry from `common`, `js/assets-api`, `js/content-api` and `metrics-api`"
+        }
+      ]
+    }
+  ]
+}

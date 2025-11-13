@@ -1,0 +1,47 @@
+{
+  "versionNumber": "2.6.3",
+  "dateReleased": "2025-02-07T05:41:41Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "5475",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5475",
+          "commit_hash": "05ba069",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/05ba0692a7e990fbb671177829562869d517e7c1",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU",
+          "changesDescription": "Remove the console.log for failing to encode a url"
+        },
+        {
+          "pull_request_number": "5474",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5474",
+          "commit_hash": "42daaf7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/42daaf7af125da265d2c5998168e9c7345dc0a59",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "changesDescription": "Reference dropdown - make it consume all the width of the sidebar"
+        },
+        {
+          "pull_request_number": "5447",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5447",
+          "commit_hash": "bc986dd",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/bc986dd48f9a7da264281b55926ec51ce1068bb7",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4",
+          "changesDescription": "Fix issue where browser was being closed when adding an embed in the rich text editor"
+        },
+        {
+          "pull_request_number": "5448",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5448",
+          "commit_hash": "3af2354",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3af23542b984c10e138d0cf10a165d50b99bb0e9",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4",
+          "changesDescription": "Encode urls in media manager to prevent unsafe characters from breaking images"
+        }
+      ]
+    }
+  ]
+}

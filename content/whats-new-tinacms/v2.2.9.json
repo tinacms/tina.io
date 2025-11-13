@@ -1,0 +1,34 @@
+{
+  "versionNumber": "2.2.9",
+  "dateReleased": "2024-10-08T23:43:19Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "pull_request_number": "4780",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/4780",
+          "commit_hash": "31513bb",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/31513bb473cd1d349a3711ef7c5075cf9d03f121",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189",
+          "changesDescription": "improve reference field selector filter and simplyfy schema needed to be written by user"
+        },
+        {
+          "pull_request_number": "4991",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/4991",
+          "commit_hash": "3b2aba8",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3b2aba80ac14a512592f67a04f9e1792667db9dd",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw",
+          "changesDescription": "- Correct 'window' variable definition test"
+        },
+        {
+          "commit_hash": "31513bb",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/31513bb473cd1d349a3711ef7c5075cf9d03f121",
+          "changesDescription": "Updated dependencies \\[]:"
+        }
+      ]
+    }
+  ]
+}

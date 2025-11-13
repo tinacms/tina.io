@@ -1,0 +1,18 @@
+{
+  "versionNumber": "2024.10.31",
+  "dateReleased": "2024-10-27T23:23:11Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2358",
+          "pull_request_number": "2358",
+          "changesDescription": "Co-authoring - fix unable to save settings"
+        }
+      ]
+    }
+  ]
+}

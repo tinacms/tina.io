@@ -1,0 +1,44 @@
+{
+  "versionNumber": "2025.06.0",
+  "dateReleased": "2025-06-05T00:48:33Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2805",
+          "pull_request_number": "2805",
+          "changesDescription": "refactor: refactor version determination and enhance logging"
+        },
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2809",
+          "pull_request_number": "2809",
+          "changesDescription": "Update .env.sample - where to obtain API key"
+        },
+        {
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2810",
+          "pull_request_number": "2810",
+          "changesDescription": "🔧 Update account settings for better type handling"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot",
+          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2811",
+          "pull_request_number": "2811",
+          "changesDescription": "chore(deps): bump tar-fs from 2.1.2 to 2.1.3"
+        }
+      ]
+    }
+  ]
+}
