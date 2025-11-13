@@ -8,7 +8,7 @@ import { modalButtonTemplate } from '../ModalButton/ModalButton.template';
 export const cardTemplate: Template = {
   name: 'card',
   label: 'Card',
-  //@ts-ignore
+  //@ts-expect-error
   type: 'object',
   fields: [
     {
@@ -147,7 +147,7 @@ export const pricingTemplate: Template = {
     {
       name: 'plans',
       label: 'Pricing Plans',
-      // @ts-ignore
+      // @ts-expect-error
       type: cardTemplate.type,
       list: true,
       fields: cardTemplate.fields as any,

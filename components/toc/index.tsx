@@ -28,11 +28,15 @@ const ToC = ({ tocItems, activeIds }: TocProps) => {
     const close = () => setIsOpen(false);
     const allLinks = document.querySelectorAll('a');
     if (allLinks.length > 0) {
-      allLinks.forEach((a) => a.addEventListener('click', close));
+      allLinks.forEach((a) => {
+        a.addEventListener('click', close);
+      });
     }
     return () => {
       if (allLinks.length > 0) {
-        allLinks.forEach((a) => a.removeEventListener('click', close));
+        allLinks.forEach((a) => {
+          a.removeEventListener('click', close);
+        });
       }
     };
   }, []);
