@@ -26,12 +26,12 @@ type WhatsNewCardProps = {
 
 const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
   return (
-    <li className="mb-3 flex flex-col">
+    <li className="mb-3 flex justify-between">
       <div className="flex items-start gap-2 mb-2">
         {change.gitHubName && change.gitHubLink && (
           <Link
             href={change.gitHubLink}
-            className=" items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
+            className="whitespace-nowrap items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -47,7 +47,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         {change.pull_request_number && change.pull_request_link && (
           <Link
             href={change.pull_request_link}
-            className="inline-flex items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
+            className="h-fit items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -57,7 +57,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
         {change.commit_hash && change.commit_link && (
           <Link
             href={change.commit_link}
-            className="inline-flex items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
+            className="h-fit items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
             target="_blank"
             rel="noopener noreferrer"
           >
