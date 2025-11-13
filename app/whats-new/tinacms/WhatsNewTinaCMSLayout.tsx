@@ -26,17 +26,32 @@ type WhatsNewCardProps = {
 
 const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
   return (
-    <li className="mb-3 pl-4 border-l-2 border-blue-200">
-      <div className="flex flex-wrap items-start gap-2 mb-2">
+    <li className="mb-3 flex flex-col">
+      <div className="flex items-start gap-2 mb-2">
+        {change.gitHubName && change.gitHubLink && (
+          <Link
+            href={change.gitHubLink}
+            className=" items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @{change.gitHubName}
+          </Link>
+        )}
+        -
+        {change.changesDescription && (
+          <p className="text-gray-700">{change.changesDescription}</p>
+        )}
+      </div>
+      <div className='flex gap-2 '>
         {change.pull_request_number && change.pull_request_link && (
           <Link
             href={change.pull_request_link}
-            className="inline-flex items-center px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition-colors"
+            className="inline-flex items-center px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200 transition-colors font-mono"
             target="_blank"
             rel="noopener noreferrer"
           >
             #{change.pull_request_number}{' '}
-            <FaExternalLinkAlt className="ml-1 text-xs" />
           </Link>
         )}
         {change.commit_hash && change.commit_link && (
@@ -47,23 +62,9 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
             rel="noopener noreferrer"
           >
             {change.commit_hash.substring(0, 7)}{' '}
-            <FaExternalLinkAlt className="ml-1 text-xs" />
-          </Link>
-        )}
-        {change.gitHubName && change.gitHubLink && (
-          <Link
-            href={change.gitHubLink}
-            className="inline-flex items-center px-2 py-1 text-xs bg-green-100 text-green-800 rounded-md hover:bg-green-200 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @{change.gitHubName} <FaExternalLinkAlt className="ml-1 text-xs" />
           </Link>
         )}
       </div>
-      {change.changesDescription && (
-        <p className="text-gray-700">{change.changesDescription}</p>
-      )}
     </li>
   );
 };
@@ -72,7 +73,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
   return (
     <div
       key={item.key}
-      className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105 bg-linear-to-br from-white/25 via-white/50 to-white/75"
+      className="mb-6 p-10 shadow-xl rounded-lg bg-linear-to-br from-white/25 via-white/50 to-white/75"
     >
       <div className="flex justify-between items-baseline mb-6">
         <h2 className="text-2xl bg-linear-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent font-semibold">
@@ -92,7 +93,7 @@ export const WhatsNewCard = ({ item }: WhatsNewCardProps) => {
             {section.changesTitle}
           </h3>
           {section.changesList && section.changesList.length > 0 ? (
-            <ul className="space-y-2">
+            <ul className="space-y-4">
               {section.changesList.map((change, changeIndex) => (
                 <ChangeItemComponent
                   key={`change-${changeIndex}-${change.commit_hash || change.gitHubName || 'unknown'}`}
