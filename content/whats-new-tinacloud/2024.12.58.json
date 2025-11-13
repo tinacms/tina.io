@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Improve dashboard efficiency",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Improve dashboard efficiency"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

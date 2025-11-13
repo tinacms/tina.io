@@ -6,14 +6,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix: replace exceptions with logged warnings for indexing",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: replace exceptions with logged warnings for indexing"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "♻️ Refactor - Generic table references",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "♻️ Refactor - Generic table references"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

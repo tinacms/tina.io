@@ -6,14 +6,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🔊 Release notes - Correct generation",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Release notes - Correct generation"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🚸 UX - Add PleaseWait modal page for GitHub connecting workflow",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🚸 UX - Add PleaseWait modal page for GitHub connecting workflow"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

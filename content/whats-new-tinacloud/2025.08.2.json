@@ -6,25 +6,31 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "Footer - make it orange",
           "gitHubName": "tiagov8",
-          "gitHubLink": "https://github.com/tiagov8",
-          "changesDescription": "Footer - make it orange"
+          "gitHubLink": "https://github.com/tiagov8"
         },
         {
+          "changesDescription": "Delete S3 media when removed from GitHub",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "Delete S3 media when removed from GitHub"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "UI updates to the Sign In form view",
           "gitHubName": "tiagov8",
-          "gitHubLink": "https://github.com/tiagov8",
-          "changesDescription": "UI updates to the Sign In form view"
+          "gitHubLink": "https://github.com/tiagov8"
         }
       ]
     },
     {
       "changesTitle": "New Contributors",
-      "changesList": []
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "tiagov8",
+          "gitHubLink": "https://github.com/tiagov8"
+        }
+      ]
     }
   ]
 }

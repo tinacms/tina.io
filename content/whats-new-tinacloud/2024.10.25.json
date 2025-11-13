@@ -6,25 +6,19 @@
       "changesTitle": "🛠️ Fixes",
       "changesList": [
         {
+          "changesDescription": "fix: empty site urls break cors auth in https://github.com/tinacms/tinacloud/pull/2326",
           "gitHubName": "kldavis4",
-          "gitHubLink": "https://github.com/kldavis4",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2326",
-          "pull_request_number": "2326",
-          "changesDescription": "fix: empty site urls break cors auth"
+          "gitHubLink": "https://github.com/kldavis4"
         },
         {
+          "changesDescription": "Users now have to manually create accounts on org acceptance in https://github.com/tinacms/tinacloud/pull/2324",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2324",
-          "pull_request_number": "2324",
-          "changesDescription": "Users now have to manually create accounts on org acceptance"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "fix: media sync media root in https://github.com/tinacms/tinacloud/pull/2332",
           "gitHubName": "kldavis4",
-          "gitHubLink": "https://github.com/kldavis4",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2332",
-          "pull_request_number": "2332",
-          "changesDescription": "fix: media sync media root"
+          "gitHubLink": "https://github.com/kldavis4"
         }
       ]
     }

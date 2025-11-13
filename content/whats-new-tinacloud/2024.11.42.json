@@ -1,5 +1,14 @@
 {
   "versionNumber": "2024.11.42",
   "dateReleased": "2024-11-27T04:15:28Z",
-  "changesObject": []
+  "changesObject": [
+    {
+      "changesTitle": "Release Notes",
+      "changesList": [
+        {
+          "changesDescription": ""
+        }
+      ]
+    }
+  ]
 }

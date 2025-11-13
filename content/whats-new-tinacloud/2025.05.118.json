@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "♻️ Account Section Refactor and Security Improvements",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "♻️ Account Section Refactor and Security Improvements"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix: update robots.txt to disallow all web crawlers",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "fix: update robots.txt to disallow all web crawlers"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     },
@@ -26,9 +26,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump undici from 5.28.5 to 5.29.0",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps): bump undici from 5.28.5 to 5.29.0"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

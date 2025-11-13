@@ -6,13 +6,13 @@
       "changesTitle": "Minor Changes",
       "changesList": [
         {
+          "changesDescription": "Adds html formatting support for field descriptions",
           "pull_request_number": "5246",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5246",
           "commit_hash": "bc59a81",
           "commit_link": "https://github.com/tinacms/tinacms/commit/bc59a819e1e68e48de027c4fac72551ca109185d",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "Adds html formatting support for field descriptions"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     },
@@ -20,27 +20,42 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
+          "changesDescription": "🐛 fix r.join error when building pages",
           "pull_request_number": "5228",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5228",
           "commit_hash": "9bb408f",
           "commit_link": "https://github.com/tinacms/tinacms/commit/9bb408f1c45ecb1fd8e39faac652c4b342f74967",
           "gitHubName": "JackDevAU",
-          "gitHubLink": "https://github.com/JackDevAU",
-          "changesDescription": "🐛 fix r.join error when building pages"
+          "gitHubLink": "https://github.com/JackDevAU"
         },
         {
+          "changesDescription": "- Adjust Save button position and size on iPad",
           "pull_request_number": "5216",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5216",
           "commit_hash": "bbf2f81",
           "commit_link": "https://github.com/tinacms/tinacms/commit/bbf2f81143eb400faf8aa4dff33b8a58fa5059c8",
           "gitHubName": "Ben0189",
-          "gitHubLink": "https://github.com/Ben0189",
-          "changesDescription": "- Adjust Save button position and size on iPad"
+          "gitHubLink": "https://github.com/Ben0189"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@1.6.7",
+          "commit_hash": "0daf0b6",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0daf0b6"
         },
         {
+          "changesDescription": "@tinacms/search@1.0.34",
           "commit_hash": "0daf0b6",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/0daf0b687b36614a1fdf904b1d5125e4c63e81a9",
-          "changesDescription": "Updated dependencies \\[]:"
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0daf0b6"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@1.5.1",
+          "commit_hash": "0daf0b6",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/0daf0b6"
         }
       ]
     }

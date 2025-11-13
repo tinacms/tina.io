@@ -6,14 +6,14 @@
       "changesTitle": "🔈 Logging",
       "changesList": [
         {
+          "changesDescription": "Identify oauth sign-ins",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "Identify oauth sign-ins"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "Add project related events",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "Add project related events"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "⚡ Performance - Reinstate direct calls to some endpoints of Identity API",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Reinstate direct calls to some endpoints of Identity API"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

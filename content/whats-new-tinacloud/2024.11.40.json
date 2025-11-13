@@ -6,19 +6,19 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "✏️ Typo - Corrects subtitle text for projects page",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "✏️ Typo - Corrects subtitle text for projects page"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🐛 Bug - Demonstration subscriptions - Allow upgrade to paid plans",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Demonstration subscriptions - Allow upgrade to paid plans"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🔒 SSO - Added logic to transfer org roles correctly",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "🔒 SSO - Added logic to transfer org roles correctly"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -26,9 +26,12 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump github.com/golang-jwt/jwt/v4 from 4.1.0 to 4.5.1 in /identity"
+        },
+        {
+          "changesDescription": "⬆️ [at]tinacms/graphql - upgrade from 1.5.7 to 1.5.8",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⬆️ [at]tinacms/graphql - upgrade from 1.5.7 to 1.5.8"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🔥 Login - Remove state machine",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Login - Remove state machine"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "fix: ensure stage is lowercase when running sst dev",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "fix: ensure stage is lowercase when running sst dev"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     },
@@ -26,15 +26,21 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps-dev): bump vite from 4.5.13 to 4.5.14",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps-dev): bump vite from 4.5.13 to 4.5.14"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     },
     {
       "changesTitle": "New Contributors",
-      "changesList": []
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
     }
   ]
 }

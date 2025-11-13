@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🧱 CI/CD - Improvements",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 CI/CD - Improvements"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

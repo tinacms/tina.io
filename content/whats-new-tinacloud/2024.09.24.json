@@ -6,18 +6,14 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "starter templates - updates note for common vercel deployment issues in https://github.com/tinacms/tinacloud/pull/2320",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2320",
-          "pull_request_number": "2320",
-          "changesDescription": "starter templates - updates note for common vercel deployment issues"
+          "gitHubLink": "https://github.com/wicksipedia"
         },
         {
+          "changesDescription": "User sign up - use name instead of username to prefix default organisation in https://github.com/tinacms/tinacloud/pull/2318",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2318",
-          "pull_request_number": "2318",
-          "changesDescription": "User sign up - use name instead of username to prefix default organisation"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     },
@@ -25,18 +21,14 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump rollup from 2.38.3 to 2.79.2 in https://github.com/tinacms/tinacloud/pull/2323",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2323",
-          "pull_request_number": "2323",
-          "changesDescription": "chore(deps): bump rollup from 2.38.3 to 2.79.2"
+          "gitHubLink": "https://github.com/dependabot"
         },
         {
+          "changesDescription": "chore(deps): bump axios from 0.21.1 to 1.7.7 in https://github.com/tinacms/tinacloud/pull/2322",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2322",
-          "pull_request_number": "2322",
-          "changesDescription": "chore(deps): bump axios from 0.21.1 to 1.7.7"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat(ui/gitauthtokens): add toggle to enable / disable git authoring",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "feat(ui/gitauthtokens): add toggle to enable / disable git authoring"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -16,19 +16,19 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🧱 Infrastructure - Add sourcemaps, update runtime used by Assets API",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 Infrastructure - Add sourcemaps, update runtime used by Assets API"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "⚡ Resilience - Improve handling of malformatted images",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Resilience - Improve handling of malformatted images"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "fix(auth): reset password redirects to verification screen for unverified accounts",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix(auth): reset password redirects to verification screen for unverified accounts"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

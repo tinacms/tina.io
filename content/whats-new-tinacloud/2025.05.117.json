@@ -6,9 +6,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
-          "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⬆️ Upgrade - @tinacms/graphql to 1.5.17"
+          "changesDescription": "⬆️ Upgrade - @tinacms/graphql to 1.5.17",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
         }
       ]
     }

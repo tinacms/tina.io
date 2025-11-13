@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "♻️ Refactor : Move account settings and Git configuration sections into tabs",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "♻️ Refactor : Move account settings and Git configuration sections into tabs"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix(stripe): add automatic tax settings",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix(stripe): add automatic tax settings"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

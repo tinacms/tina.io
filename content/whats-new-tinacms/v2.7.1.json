@@ -6,22 +6,22 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
+          "changesDescription": "Fix bug when encoding media manager image urls with special characters",
           "pull_request_number": "5517",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5517",
           "commit_hash": "74513b3",
           "commit_link": "https://github.com/tinacms/tinacms/commit/74513b357aa27165aa86f7b3218c697c663539e8",
           "gitHubName": "kldavis4",
-          "gitHubLink": "https://github.com/kldavis4",
-          "changesDescription": "Fix bug when encoding media manager image urls with special characters"
+          "gitHubLink": "https://github.com/kldavis4"
         },
         {
+          "changesDescription": "add auto format for strikethrough",
           "pull_request_number": "5509",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5509",
           "commit_hash": "06c1716",
           "commit_link": "https://github.com/tinacms/tinacms/commit/06c17163b558a96275b0ef66c746b005a6f90d13",
           "gitHubName": "Ben0189",
-          "gitHubLink": "https://github.com/Ben0189",
-          "changesDescription": "add auto format for strikethrough"
+          "gitHubLink": "https://github.com/Ben0189"
         }
       ]
     }

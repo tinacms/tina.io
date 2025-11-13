@@ -6,11 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "Add ability to bill annually in https://github.com/tinacms/tinacloud/pull/2339",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2339",
-          "pull_request_number": "2339",
-          "changesDescription": "Add ability to bill annually"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

@@ -6,19 +6,19 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix: allow resuming verification of account",
           "gitHubName": "kldavis4",
-          "gitHubLink": "https://github.com/kldavis4",
-          "changesDescription": "fix: allow resuming verification of account"
+          "gitHubLink": "https://github.com/kldavis4"
         },
         {
+          "changesDescription": "fix: prefix shown join links with `https://`",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: prefix shown join links with `https://`"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "fix: update log messages for external user verification errors",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "fix: update log messages for external user verification errors"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     },
@@ -26,9 +26,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump golang.org/x/crypto from 0.1.0 to 0.31.0 in /identity",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps): bump golang.org/x/crypto from 0.1.0 to 0.31.0 in /identity"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

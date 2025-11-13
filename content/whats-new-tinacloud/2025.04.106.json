@@ -6,29 +6,29 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🗃️ ContentIndex Schema - Switch default new index schema version from 1 to 2",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🗃️ ContentIndex Schema - Switch default new index schema version from 1 to 2"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "fix: token validation lamba usage",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: token validation lamba usage"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "🔥 Token auth - removes checkTokenAuth function",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Token auth - removes checkTokenAuth function"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "⚡ Performance - Cache tokens between Content API invocations",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Cache tokens between Content API invocations"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "refactor: Simplify admin checks",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "refactor: Simplify admin checks"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -36,24 +36,24 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "🧱 Tooling - Adds CLI tool to delete old indices",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 Tooling - Adds CLI tool to delete old indices"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "♻️ Refactor - Update migrate-index to interleave writes and deletions with queries",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "♻️ Refactor - Update migrate-index to interleave writes and deletions with queries"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🧱 Tooling - Improves delete-old-indices querying for old entries",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 Tooling - Improves delete-old-indices querying for old entries"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🧱 Tooling - Extends delete-old-indices to operate with v2 ContentIndex schema",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 Tooling - Extends delete-old-indices to operate with v2 ContentIndex schema"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -61,29 +61,29 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps-dev): bump vite from 4.5.11 to 4.5.12",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps-dev): bump vite from 4.5.11 to 4.5.12"
+          "gitHubLink": "https://github.com/dependabot"
         },
         {
+          "changesDescription": "chore(deps): bump koa from 2.16.0 to 2.16.1",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps): bump koa from 2.16.0 to 2.16.1"
+          "gitHubLink": "https://github.com/dependabot"
         },
         {
+          "changesDescription": "chore(deps-dev): bump aws-cdk-lib from 2.187.0 to 2.189.0",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps-dev): bump aws-cdk-lib from 2.187.0 to 2.189.0"
+          "gitHubLink": "https://github.com/dependabot"
         },
         {
+          "changesDescription": "chore(deps-dev): bump vite from 4.5.12 to 4.5.13",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps-dev): bump vite from 4.5.12 to 4.5.13"
+          "gitHubLink": "https://github.com/dependabot"
         },
         {
+          "changesDescription": "chore(deps-dev): bump aws-cdk-lib from 2.189.0 to 2.189.1",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps-dev): bump aws-cdk-lib from 2.189.0 to 2.189.1"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

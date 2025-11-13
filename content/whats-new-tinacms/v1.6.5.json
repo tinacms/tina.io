@@ -3,25 +3,10 @@
   "dateReleased": "2024-07-07T14:00:00.000Z",
   "changesObject": [
     {
-      "changesTitle": "Patch Changes",
+      "changesTitle": "Release Notes",
       "changesList": [
         {
-          "commit_hash": "04f0bf3",
-          "changesDescription": "CMS - Fix broken link in error message of CMS startup. Broken link was replaced by [https://tina.io/docs/tinacloud/overview](https://tina.io/docs/tinacloud/overview)"
-        },
-        {
-          "commit_hash": "0503072",
-          "changesDescription": "update ts, remove rimraf, fix types"
-        },
-        {
-          "commit_hash": "1104006",
-          "changesDescription": "Update tailwind to v3.4.4 + fix media manager height overflow on mobile screens"
-        },
-        {
-          "changesDescription": "Updated dependencies \\[0503072]"
-        },
-        {
-          "changesDescription": "Updated dependencies \\[dffa355]"
+          "changesDescription": "### Patch Changes\n\n* 04f0bf3: CMS - Fix broken link in error message of CMS startup. Broken link was replaced by [https://tina.io/docs/tinacloud/overview](https://tina.io/docs/tinacloud/overview)\n* 0503072: update ts, remove rimraf, fix types\n* 1104006: Update tailwind to v3.4.4 + fix media manager height overflow on mobile screens\n* Updated dependencies \\[0503072]\n* Updated dependencies \\[dffa355]\n  * @tinacms/mdx\\@1.3.26\n  * @tinacms/schema-tools\\@1.4.17\n  * @tinacms/search\\@1.0.21\n  * @tinacms/sharedctx\\@1.0.3"
         }
       ]
     }

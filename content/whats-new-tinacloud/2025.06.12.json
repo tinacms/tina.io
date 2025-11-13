@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🔊 Improved Production logging",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Improved Production logging"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

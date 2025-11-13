@@ -6,14 +6,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "ci(gosec): remove specified version in attempt to always pull latest",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "ci(gosec): remove specified version in attempt to always pull latest"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "🐛 Bug - Too many pending tasks for the read cache lock",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Too many pending tasks for the read cache lock"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

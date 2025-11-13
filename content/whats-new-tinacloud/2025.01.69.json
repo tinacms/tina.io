@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - SSO login issues",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - SSO login issues"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

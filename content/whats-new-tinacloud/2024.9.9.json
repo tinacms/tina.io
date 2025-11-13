@@ -6,18 +6,14 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🍞 Add toast messages on modification of tags in [https://github.com/tinacms/tinacloud/pull/2247](https://github.com/tinacms/tinacloud/pull/2247) and [https://github.com/tinacms/tinacloud/pull/2249](https://github.com/tinacms/tinacloud/pull/2249)",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2247",
-          "pull_request_number": "2247",
-          "changesDescription": "🍞 Add toast messages on modification of tags"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "Updated Editorial Workflow styling to be more consistent in [https://github.com/tinacms/tinacloud/pull/2245](https://github.com/tinacms/tinacloud/pull/2245)",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2245",
-          "pull_request_number": "2245",
-          "changesDescription": "Updated Editorial Workflow styling to be more consistent"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -25,11 +21,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump glob-parent from 5.1.1 to 5.1.2 in [https://github.com/tinacms/tinacloud/pull/2065](https://github.com/tinacms/tinacloud/pull/2065)",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2065",
-          "pull_request_number": "2065",
-          "changesDescription": "chore(deps): bump glob-parent from 5.1.1 to 5.1.2"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

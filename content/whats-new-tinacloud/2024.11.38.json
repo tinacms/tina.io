@@ -4,7 +4,13 @@
   "changesObject": [
     {
       "changesTitle": "✨ Features",
-      "changesList": []
+      "changesList": [
+        {
+          "changesDescription": "Improved SSO support and",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
     }
   ]
 }

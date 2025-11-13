@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat(js/gitauthtokens): add js routes to interact with git auth tokens",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "feat(js/gitauthtokens): add js routes to interact with git auth tokens"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Fix webhook refresh such that it will function with incorrect InstallationID",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Fix webhook refresh such that it will function with incorrect InstallationID"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

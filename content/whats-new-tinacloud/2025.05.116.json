@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🚸 UX - Improve resilience of OAuth login flow",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🚸 UX - Improve resilience of OAuth login flow"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "Quick Start - Adding Tina Docs Template",
           "gitHubName": "amankumarrr",
-          "gitHubLink": "https://github.com/amankumarrr",
-          "changesDescription": "Quick Start - Adding Tina Docs Template"
+          "gitHubLink": "https://github.com/amankumarrr"
         }
       ]
     },
@@ -16,15 +16,21 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
-          "gitHubName": "dependabot[bot]",
-          "gitHubLink": "https://github.com/dependabot[bot]",
-          "changesDescription": "chore(deps): bump form-data from 4.0.2 to 4.0.4"
+          "changesDescription": "chore(deps): bump form-data from 4.0.2 to 4.0.4[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     },
     {
       "changesTitle": "New Contributors",
-      "changesList": []
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "amankumarrr",
+          "gitHubLink": "https://github.com/amankumarrr"
+        }
+      ]
     }
   ]
 }

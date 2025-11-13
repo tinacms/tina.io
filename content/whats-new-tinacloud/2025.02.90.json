@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🚑 Hotfix - Fix search",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🚑 Hotfix - Fix search"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

@@ -6,19 +6,19 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "🔥 Integrations - Removes remaining Launch Darkly and HubSpot integrations",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Integrations - Removes remaining Launch Darkly and HubSpot integrations"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "Switch to AWS SSO for role assumption and credential management",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "Switch to AWS SSO for role assumption and credential management"
+          "gitHubLink": "https://github.com/wicksipedia"
         },
         {
+          "changesDescription": "🧱 CI/CD - Adds email and GitHub App variables to GitHub Actions",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 CI/CD - Adds email and GitHub App variables to GitHub Actions"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

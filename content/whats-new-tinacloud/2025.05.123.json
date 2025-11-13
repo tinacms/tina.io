@@ -6,14 +6,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug Fix: Hide Security tab when MFA settings not available",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "🐛 Bug Fix: Hide Security tab when MFA settings not available"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "fix: close auth window once done to avoid race condition",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: close auth window once done to avoid race condition"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

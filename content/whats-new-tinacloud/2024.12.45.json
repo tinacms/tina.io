@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "⚡ Performance - Cache improvements",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Cache improvements"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🔊 Logs - Improve",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Logs - Improve"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Improves resilience of invite acceptance",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Improves resilience of invite acceptance"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -26,9 +26,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps-dev): bump vitest from 2.1.8 to 2.1.9",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps-dev): bump vitest from 2.1.8 to 2.1.9"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

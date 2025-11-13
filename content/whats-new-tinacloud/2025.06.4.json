@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "Account Settings - Add Frontend Framework Preferences to User Onboarding and Settings",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "Account Settings - Add Frontend Framework Preferences to User Onboarding and Settings"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     },
@@ -16,14 +16,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "♻️ Refactor - Improve clarity of Org and User data routing",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "♻️ Refactor - Improve clarity of Org and User data routing"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🚸 UX - Ensure spinner remains centered during login",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🚸 UX - Ensure spinner remains centered during login"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -31,9 +31,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump brace-expansion from 1.1.11 to 1.1.12",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps): bump brace-expansion from 1.1.11 to 1.1.12"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

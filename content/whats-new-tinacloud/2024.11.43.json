@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "⚡ Performance - Add read cache for DynamoDB reads",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Add read cache for DynamoDB reads"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🥅 Error handling - Improve robustness when refreshing GitHub webhooks",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🥅 Error handling - Improve robustness when refreshing GitHub webhooks"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Only delete GitHub repository webhook when unused",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Only delete GitHub repository webhook when unused"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

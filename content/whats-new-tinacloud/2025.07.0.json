@@ -6,14 +6,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - No user auth tokens treated as error rather than non-existent",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - No user auth tokens treated as error rather than non-existent"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🐛 Bug - TinaCloud Webhooks not triggered if schema pushed with content changes",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - TinaCloud Webhooks not triggered if schema pushed with content changes"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -21,19 +21,19 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "🔊 Logs - Removes go-chi logging middleware",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Logs - Removes go-chi logging middleware"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🔊 Logs - Add logging to getBillingState endpoint",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Logs - Add logging to getBillingState endpoint"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🔥 Sentry - Removal from Identity API",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Sentry - Removal from Identity API"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

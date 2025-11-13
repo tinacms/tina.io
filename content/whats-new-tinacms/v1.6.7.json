@@ -6,8 +6,7 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
-          "commit_hash": "82ab066",
-          "changesDescription": "upgrade vulnerable packages in example project, test project and peer dependency packages"
+          "changesDescription": "82ab066: upgrade vulnerable packages in example project, test project and peer dependency packages"
         }
       ]
     }

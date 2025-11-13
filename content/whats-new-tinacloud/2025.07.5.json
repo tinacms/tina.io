@@ -6,9 +6,9 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "fix(sst): increase asset transformer memory",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix(sst): increase asset transformer memory"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

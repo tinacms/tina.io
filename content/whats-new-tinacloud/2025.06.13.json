@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix(auth): redirect unconfirmed users to confirm account page on signin",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix(auth): redirect unconfirmed users to confirm account page on signin"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

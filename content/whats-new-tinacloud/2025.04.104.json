@@ -6,14 +6,14 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🧱 Infrastructure - Schema transfer tool work",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "🧱 Infrastructure - Schema transfer tool work"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "♻️ Refactor - Simplify inter-window communication on Dashboard",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "♻️ Refactor - Simplify inter-window communication on Dashboard"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -21,9 +21,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump axios from 0.21.4 to 1.8.4",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps): bump axios from 0.21.4 to 1.8.4"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

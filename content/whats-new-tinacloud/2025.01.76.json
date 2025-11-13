@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "⚡ Throttling - Improve system performance under load",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Throttling - Improve system performance under load"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

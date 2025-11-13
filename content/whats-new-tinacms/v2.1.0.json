@@ -3,22 +3,10 @@
   "dateReleased": "2024-07-24T14:00:00.000Z",
   "changesObject": [
     {
-      "changesTitle": "Minor Changes",
+      "changesTitle": "Release Notes",
       "changesList": [
         {
-          "commit_hash": "cb83dc2",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/cb83dc2",
-          "changesDescription": "add toolbarOverride option to rich-text fields"
-        }
-      ]
-    },
-    {
-      "changesTitle": "Patch Changes",
-      "changesList": [
-        {
-          "commit_hash": "1b3584c",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/1b3584c",
-          "changesDescription": "Add cloudinary supported files to the default media upload types"
+          "changesDescription": "##### Minor Changes\n\n* cb83dc2: add toolbarOverride option to rich-text fields\n\n##### Patch Changes\n\n* 1b3584c: Add cloudinary supported files to the default media upload types\n* Updated dependencies \\[cb83dc2]\n  * @tinacms/schema-tools\\@1.5.0\n  * @tinacms/mdx\\@1.3.29\n  * @tinacms/search\\@1.0.24"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "Upgrade `aws-sdk-client-mock`",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "Upgrade `aws-sdk-client-mock`"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat: update logging to use the slog library",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "feat: update logging to use the slog library"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

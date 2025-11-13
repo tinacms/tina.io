@@ -6,9 +6,9 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "🔥 Sentry - Remove remaining mentions in codebase",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Sentry - Remove remaining mentions in codebase"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

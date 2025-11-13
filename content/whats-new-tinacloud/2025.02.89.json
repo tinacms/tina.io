@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🚑 Hot fix - CORS issue in Content API",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🚑 Hot fix - CORS issue in Content API"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

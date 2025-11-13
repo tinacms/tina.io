@@ -6,11 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "checkout - add ability to let user input coupons in https://github.com/tinacms/tinacloud/pull/2333",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2333",
-          "pull_request_number": "2333",
-          "changesDescription": "checkout - add ability to let user input coupons"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

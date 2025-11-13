@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat: logging for external user invitations",
           "gitHubName": "kldavis4",
-          "gitHubLink": "https://github.com/kldavis4",
-          "changesDescription": "feat: logging for external user invitations"
+          "gitHubLink": "https://github.com/kldavis4"
         }
       ]
     },
@@ -16,14 +16,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "📝 README - Corrects TinaCloud mentions, updates SST mentions",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "📝 README - Corrects TinaCloud mentions, updates SST mentions"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "fix: sanitize release notes by removing links and HTML comments",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "fix: sanitize release notes by removing links and HTML comments"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

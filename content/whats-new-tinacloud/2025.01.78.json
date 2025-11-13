@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🔊 Logging - Log signin screen state changes, improve resilience, improve README",
           "gitHubName": "JackDevAU",
-          "gitHubLink": "https://github.com/JackDevAU",
-          "changesDescription": "🔊 Logging - Log signin screen state changes, improve resilience, improve README"
+          "gitHubLink": "https://github.com/JackDevAU"
         }
       ]
     }

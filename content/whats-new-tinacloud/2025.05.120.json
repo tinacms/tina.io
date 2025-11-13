@@ -6,24 +6,24 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "♻️ Refactor registration flow from XState to useState",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "♻️ Refactor registration flow from XState to useState"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "📝 Update README with WSL tool requirements",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "📝 Update README with WSL tool requirements"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "fix: org admin access to projects they're not part of",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: org admin access to projects they're not part of"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "fix: dont enable automatic tax on checkouts in setup mode",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: dont enable automatic tax on checkouts in setup mode"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

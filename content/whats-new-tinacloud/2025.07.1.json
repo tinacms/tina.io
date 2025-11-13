@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🚸 UX - Improves error message upon re-registering account",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🚸 UX - Improves error message upon re-registering account"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -16,14 +16,14 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "🔊 Logs - Adds API Gateway requestId to Identity API logs",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Logs - Adds API Gateway requestId to Identity API logs"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🔥 Sentry - Remove from dashboard",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Sentry - Remove from dashboard"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

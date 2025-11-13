@@ -6,11 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "Co-authoring - fix unable to save settings in https://github.com/tinacms/tinacloud/pull/2358",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2358",
-          "pull_request_number": "2358",
-          "changesDescription": "Co-authoring - fix unable to save settings"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

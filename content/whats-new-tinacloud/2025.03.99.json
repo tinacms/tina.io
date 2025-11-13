@@ -6,24 +6,24 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "♻️ Refactor - Parameters for DynamodbLevel",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "♻️ Refactor - Parameters for DynamodbLevel"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🧪 Testing - Additional unit tests for DynamodbLevel",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧪 Testing - Additional unit tests for DynamodbLevel"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🧪 Testing - Unit tests for DynamodbLevel._batch",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧪 Testing - Unit tests for DynamodbLevel._batch"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "Update project + organization - add name length validation",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "Update project + organization - add name length validation"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

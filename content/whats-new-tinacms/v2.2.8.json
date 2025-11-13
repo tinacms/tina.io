@@ -6,18 +6,33 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
+          "changesDescription": "⬆️ Update Minor & Patch Dependencies Versions",
           "pull_request_number": "4843",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/4843",
           "commit_hash": "4753c9b",
           "commit_link": "https://github.com/tinacms/tinacms/commit/4753c9b53854d19212229f985bc445b2794fad9a",
           "gitHubName": "JackDevAU",
-          "gitHubLink": "https://github.com/JackDevAU",
-          "changesDescription": "⬆️ Update Minor & Patch Dependencies Versions"
+          "gitHubLink": "https://github.com/JackDevAU"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/mdx@1.4.4",
+          "commit_hash": "4753c9b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4753c9b"
         },
         {
+          "changesDescription": "@tinacms/schema-tools@1.6.4",
           "commit_hash": "4753c9b",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/4753c9b53854d19212229f985bc445b2794fad9a",
-          "changesDescription": "Updated dependencies \\[]:"
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4753c9b"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.0.31",
+          "commit_hash": "4753c9b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4753c9b"
         }
       ]
     }

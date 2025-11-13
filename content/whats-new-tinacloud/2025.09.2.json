@@ -6,14 +6,14 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "💄 UI - Error Page Branding Improvements",
           "gitHubName": "joshbermanssw",
-          "gitHubLink": "https://github.com/joshbermanssw",
-          "changesDescription": "💄 UI - Error Page Branding Improvements"
+          "gitHubLink": "https://github.com/joshbermanssw"
         },
         {
+          "changesDescription": "🔈 Logging: Enhance error handling during response serialization in Content API",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "🔈 Logging: Enhance error handling during response serialization in Content API"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     }

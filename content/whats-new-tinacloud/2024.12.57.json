@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🛂 Invites - Allow users to be invited without requiring email",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🛂 Invites - Allow users to be invited without requiring email"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🔒 Pipeline security - stop using access key/secrets in favour of OIDC",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "🔒 Pipeline security - stop using access key/secrets in favour of OIDC"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

@@ -3,14 +3,10 @@
   "dateReleased": "2024-06-02T14:00:00.000Z",
   "changesObject": [
     {
-      "changesTitle": "Patch Changes",
+      "changesTitle": "Release Notes",
       "changesList": [
         {
-          "commit_hash": "2e3393ef5",
-          "changesDescription": "Implement Create folder feature for tinacms."
-        },
-        {
-          "changesDescription": "Updated dependencies \\[2e3393ef5]"
+          "changesDescription": "### Patch Changes\n\n* 2e3393ef5: Implement Create folder feature for tinacms.\n* Updated dependencies \\[2e3393ef5]\n  * @tinacms/schema-tools\\@1.4.16\n  * @tinacms/mdx\\@1.3.25\n  * @tinacms/search\\@1.0.20\n  * @tinacms/sharedctx\\@1.0.2"
         }
       ]
     }

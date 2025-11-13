@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "⚡ Performance - Increase ContentAPIRouter's concurrent DynamoDB connection count",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Increase ContentAPIRouter's concurrent DynamoDB connection count"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

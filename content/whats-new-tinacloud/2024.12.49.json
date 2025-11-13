@@ -6,9 +6,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "Removed Sentry from `common`, `js/assets-api`, `js/content-api` and `metrics-api`",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "Removed Sentry from `common`, `js/assets-api`, `js/content-api` and `metrics-api`"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

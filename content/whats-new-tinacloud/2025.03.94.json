@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix: hide locked Editorial Workflow box if enabled",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: hide locked Editorial Workflow box if enabled"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

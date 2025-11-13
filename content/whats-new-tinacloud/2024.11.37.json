@@ -6,11 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "⬆️ GraphQL - Ensure GraphQL version bumped in outermost package.json in https://github.com/tinacms/tinacloud/pull/2395",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2395",
-          "pull_request_number": "2395",
-          "changesDescription": "⬆️ GraphQL - Ensure GraphQL version bumped in outermost package.json"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

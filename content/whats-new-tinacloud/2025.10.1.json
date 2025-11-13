@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "Add branch pulling functionality with progress tracking UI",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "Add branch pulling functionality with progress tracking UI"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     }

@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "✨ feat(verifyUserAccount): sanitize verification code input",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "✨ feat(verifyUserAccount): sanitize verification code input"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "ci(gosec): use latest gosec version",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "ci(gosec): use latest gosec version"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

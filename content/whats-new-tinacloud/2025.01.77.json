@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "⚡ Performance - Pre-read standard schema entries",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Pre-read standard schema entries"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

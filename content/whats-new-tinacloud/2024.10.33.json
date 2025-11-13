@@ -6,11 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat: endpoint for schemas validation in https://github.com/tinacms/tinacloud/pull/2360",
           "gitHubName": "kldavis4",
-          "gitHubLink": "https://github.com/kldavis4",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2360",
-          "pull_request_number": "2360",
-          "changesDescription": "feat: endpoint for schemas validation"
+          "gitHubLink": "https://github.com/kldavis4"
         }
       ]
     },
@@ -18,11 +16,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "♻️ Project Reindexing - Simplify reindexing status reporting behavior in https://github.com/tinacms/tinacloud/pull/2367",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "pull_request_link": "https://github.com/tinacms/tinacloud/pull/2367",
-          "pull_request_number": "2367",
-          "changesDescription": "♻️ Project Reindexing - Simplify reindexing status reporting behavior"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

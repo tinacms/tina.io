@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Minimize data transferred when listing apps",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Minimize data transferred when listing apps"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

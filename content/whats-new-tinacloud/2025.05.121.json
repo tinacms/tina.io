@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "♻️ Refactor branch status endpoint to return detailed branch information",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "♻️ Refactor branch status endpoint to return detailed branch information"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     },
@@ -16,24 +16,24 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix: report project deletion errors to the user",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: report project deletion errors to the user"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "fix: next-calver issues",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "fix: next-calver issues"
+          "gitHubLink": "https://github.com/wicksipedia"
         },
         {
+          "changesDescription": "🐛 Bug - Incorrect count displayed for project limit when deleting old indices",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Incorrect count displayed for project limit when deleting old indices"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "fix: provide generic checkout errors to user when updating subscriptions",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: provide generic checkout errors to user when updating subscriptions"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

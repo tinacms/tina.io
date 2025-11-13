@@ -6,9 +6,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
-          "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⬆️ Updates - @tinacms/graphql, @babel/*, axios packages"
+          "changesDescription": "⬆️ Updates - @tinacms/graphql, @babel/*, axios packages",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
         }
       ]
     }

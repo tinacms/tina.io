@@ -3,10 +3,10 @@
   "dateReleased": "2025-02-11T23:31:28Z",
   "changesObject": [
     {
-      "changesTitle": "Patch Changes",
+      "changesTitle": "Updated Dependencies",
       "changesList": [
         {
-          "changesDescription": "Updated dependencies \\[]:"
+          "changesDescription": "@tinacms/search@1.0.39"
         }
       ]
     }

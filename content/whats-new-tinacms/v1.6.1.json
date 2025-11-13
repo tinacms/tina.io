@@ -6,8 +6,7 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
-          "commit_hash": "216cfff0c",
-          "changesDescription": "Add fetch options to generated client"
+          "changesDescription": "216cfff0c: Add fetch options to generated client"
         }
       ]
     }

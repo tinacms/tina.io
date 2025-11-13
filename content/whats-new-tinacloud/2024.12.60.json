@@ -6,19 +6,19 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "🧱 WorkOS - Move location of WorkOS Client ID",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 WorkOS - Move location of WorkOS Client ID"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🔥 Serverless.yml - Delete",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Serverless.yml - Delete"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🧱 Stripe - Modifies environment variables",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 Stripe - Modifies environment variables"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

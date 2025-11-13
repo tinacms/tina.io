@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "fix: Role validation",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: Role validation"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     }

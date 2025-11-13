@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "⚡ Performance - Add SchemaMetadata cache",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Add SchemaMetadata cache"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

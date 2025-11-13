@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "♻️ Vercel integration - Ruggedize",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "♻️ Vercel integration - Ruggedize"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

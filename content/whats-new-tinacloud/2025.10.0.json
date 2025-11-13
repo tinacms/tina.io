@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "✨ Add welcome step to quickstart flow",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "✨ Add welcome step to quickstart flow"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     }

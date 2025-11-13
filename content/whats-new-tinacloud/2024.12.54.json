@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Unable to conduct TinaSchema checks if branch has slashes",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Unable to conduct TinaSchema checks if branch has slashes"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

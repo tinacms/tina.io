@@ -6,9 +6,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "🔥 Intercom and LogRocket integrations - Delete",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Intercom and LogRocket integrations - Delete"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

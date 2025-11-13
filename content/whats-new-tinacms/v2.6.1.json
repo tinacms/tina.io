@@ -6,13 +6,13 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Fixes race condition in the request cache",
           "pull_request_number": "5436",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5436",
           "commit_hash": "61c45f4",
           "commit_link": "https://github.com/tinacms/tinacms/commit/61c45f49a2abe82336b661dedbbe2a15d0f3da05",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Fixes race condition in the request cache"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

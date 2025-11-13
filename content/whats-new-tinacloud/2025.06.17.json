@@ -6,19 +6,19 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "⚡ Performance - Minimize requests for GitHub tokens",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⚡ Performance - Minimize requests for GitHub tokens"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🧑‍💻 DX - Remove version information from returned schema",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧑‍💻 DX - Remove version information from returned schema"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "✨ Feature: Add direct Lambda invocation to the Content API",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "✨ Feature: Add direct Lambda invocation to the Content API"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     },
@@ -26,14 +26,14 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "🔊 Logs - Adds logging around AWS Lambda handler in Identity API Router",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Logs - Adds logging around AWS Lambda handler in Identity API Router"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
-          "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Logs - @tinacms/graphql version"
+          "changesDescription": "🔊 Logs - @tinacms/graphql version",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
         }
       ]
     }

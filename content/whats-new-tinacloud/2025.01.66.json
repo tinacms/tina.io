@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat: show org invite link on the users page.",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "feat: show org invite link on the users page."
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -16,29 +16,29 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🔥 Lambda Invoking - Removes client library and ContentAPIRouter permissions",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Lambda Invoking - Removes client library and ContentAPIRouter permissions"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "fix: add additional logging around identity api status errors",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: add additional logging around identity api status errors"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "📝 Docs - Update architecture diagram with Content API and Identity API connection",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "📝 Docs - Update architecture diagram with Content API and Identity API connection"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🛂 Authentication - Use returns from /token endpoint correctly",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🛂 Authentication - Use returns from /token endpoint correctly"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "fix: create githost form not submitting",
           "gitHubName": "kldavis4",
-          "gitHubLink": "https://github.com/kldavis4",
-          "changesDescription": "fix: create githost form not submitting"
+          "gitHubLink": "https://github.com/kldavis4"
         }
       ]
     }

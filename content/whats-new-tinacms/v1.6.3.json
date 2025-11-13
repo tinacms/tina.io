@@ -3,18 +3,10 @@
   "dateReleased": "2024-05-01T14:00:00.000Z",
   "changesObject": [
     {
-      "changesTitle": "Patch Changes",
+      "changesTitle": "Release Notes",
       "changesList": [
         {
-          "commit_hash": "66f7e2074",
-          "changesDescription": "Cleanup"
-        },
-        {
-          "commit_hash": "b3ad50a62",
-          "changesDescription": "Fix issue where rich-text nested inside JSX objects wasn't being parsed/stringified properly."
-        },
-        {
-          "changesDescription": "Updated dependencies \\[b3ad50a62]"
+          "changesDescription": "### Patch Changes\n\n* 66f7e2074: Cleanup\n* b3ad50a62: Fix issue where rich-text nested inside JSX objects wasn't being parsed/stringified properly.\n* Updated dependencies \\[b3ad50a62]\n  * @tinacms/mdx\\@1.3.24\n  * @tinacms/search\\@1.0.19"
         }
       ]
     }

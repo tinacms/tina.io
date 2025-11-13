@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat: Introduce owner field to new projects and organisations",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "feat: Introduce owner field to new projects and organisations"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -16,14 +16,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "fix: run go mod tidy to fix builds.",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "fix: run go mod tidy to fix builds."
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "🧱 Tooling - Skips non-indexed apps when running delete-old-indices CLI tool",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 Tooling - Skips non-indexed apps when running delete-old-indices CLI tool"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -31,9 +31,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "chore(deps): bump golang.org/x/crypto from 0.31.0 to 0.35.0 in /identity",
           "gitHubName": "dependabot",
-          "gitHubLink": "https://github.com/dependabot",
-          "changesDescription": "chore(deps): bump golang.org/x/crypto from 0.31.0 to 0.35.0 in /identity"
+          "gitHubLink": "https://github.com/dependabot"
         }
       ]
     }

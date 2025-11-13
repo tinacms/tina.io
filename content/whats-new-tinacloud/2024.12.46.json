@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "🔊 Logs - Add messages providing information on how Dynamodb*Iterators are used in Production",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔊 Logs - Add messages providing information on how Dynamodb*Iterators are used in Production"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "👒 Dependencies",
       "changesList": [
         {
+          "changesDescription": "➖ Common Library - Rationalize imported packages",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "➖ Common Library - Rationalize imported packages"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

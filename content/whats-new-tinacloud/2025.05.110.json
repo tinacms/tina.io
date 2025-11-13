@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "Enhanced Repository Filtering & Select Components",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "Enhanced Repository Filtering & Select Components"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Fix runaway promise when setting Vercel environment variables",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Fix runaway promise when setting Vercel environment variables"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

@@ -6,49 +6,49 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
+          "changesDescription": "Fix basePath support for preview images in TinaCMS blocks",
           "pull_request_number": "5863",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5863",
           "commit_hash": "003e348",
           "commit_link": "https://github.com/tinacms/tinacms/commit/003e348472ddc08eee63d78190038097542b6311",
           "gitHubName": "JackDevAU",
-          "gitHubLink": "https://github.com/jackdevau",
-          "changesDescription": "Fix basePath support for preview images in TinaCMS blocks"
+          "gitHubLink": "https://github.com/jackdevau"
         },
         {
+          "changesDescription": "feat: move delete icon position",
           "pull_request_number": "6063",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/6063",
           "commit_hash": "5527e8a",
           "commit_link": "https://github.com/tinacms/tinacms/commit/5527e8ab5821c8613fcfd1b0b8bc6d93291a6d03",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "feat: move delete icon position"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         },
         {
+          "changesDescription": "Fix - Fixed blockquotes (block_quote)",
           "pull_request_number": "6083",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/6083",
           "commit_hash": "5ffd60e",
           "commit_link": "https://github.com/tinacms/tinacms/commit/5ffd60e7b07b19cde6fab36a911503276c83715f",
           "gitHubName": "Calinator444",
-          "gitHubLink": "https://github.com/Calinator444",
-          "changesDescription": "Fix - Fixed blockquotes (block_quote)"
+          "gitHubLink": "https://github.com/Calinator444"
         },
         {
+          "changesDescription": "docs: Update references from tina-cloud-starter to tina-nextjs-starter",
           "pull_request_number": "6059",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/6059",
           "commit_hash": "b23aa0c",
           "commit_link": "https://github.com/tinacms/tinacms/commit/b23aa0c5defc51b8f9fe00a59dd87e1d2f8b9f0b",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "docs: Update references from tina-cloud-starter to tina-nextjs-starter"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "🐛 Fix: Decode branch name in protected branch check",
           "pull_request_number": "6055",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/6055",
           "commit_hash": "5d13c0d",
           "commit_link": "https://github.com/tinacms/tinacms/commit/5d13c0d023373692233c8be2127ae6e3d7d68b47",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "🐛 Fix: Decode branch name in protected branch check"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     }

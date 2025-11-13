@@ -6,14 +6,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - ContentAPI CORS matching won't work on [at]tinacms/graphql versions newer than 1.5",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - ContentAPI CORS matching won't work on [at]tinacms/graphql versions newer than 1.5"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🐛 Bug - Fix ContentQueue retry handling",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Fix ContentQueue retry handling"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

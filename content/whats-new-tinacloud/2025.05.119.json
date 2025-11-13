@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "handleSchemaSha - use default branch when bot branches are passed in",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "handleSchemaSha - use default branch when bot branches are passed in"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

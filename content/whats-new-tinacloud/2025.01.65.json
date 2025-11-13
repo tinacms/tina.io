@@ -6,14 +6,14 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
-          "gitHubName": "JackDevAU",
-          "gitHubLink": "https://github.com/JackDevAU",
-          "changesDescription": "⬆️ chore: update @tinacms/graphql to version 1.5.10"
+          "changesDescription": "⬆️ chore: update @tinacms/graphql to version 1.5.10",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
         },
         {
+          "changesDescription": "🔐 Security - Correct GraphQL authorization checks",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔐 Security - Correct GraphQL authorization checks"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

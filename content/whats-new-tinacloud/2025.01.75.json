@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "♻️ ContentAPIRouter - Refactor secrets retrieval",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "♻️ ContentAPIRouter - Refactor secrets retrieval"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

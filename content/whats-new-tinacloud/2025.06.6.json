@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🐛 Bug - Correct InstallationID for GitHub repositories if InstallationID invalid",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Correct InstallationID for GitHub repositories if InstallationID invalid"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

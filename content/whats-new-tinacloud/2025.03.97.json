@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🧱 CI/CD - Infrastructure changes to improve user content access",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 CI/CD - Infrastructure changes to improve user content access"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

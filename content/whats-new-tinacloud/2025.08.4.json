@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "UI changes to Project Dashboard",
           "gitHubName": "joshbermanssw",
-          "gitHubLink": "https://github.com/joshbermanssw",
-          "changesDescription": "UI changes to Project Dashboard"
+          "gitHubLink": "https://github.com/joshbermanssw"
         }
       ]
     },
@@ -16,9 +16,9 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "Implement media asset indexing",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "Implement media asset indexing"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     }

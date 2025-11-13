@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
-          "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "⬆️ Upgrade - @tinacms/graphql to 1.5.12"
+          "changesDescription": "⬆️ Upgrade - @tinacms/graphql to 1.5.12",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
         }
       ]
     }

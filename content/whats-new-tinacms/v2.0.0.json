@@ -3,32 +3,10 @@
   "dateReleased": "2024-07-23T14:00:00.000Z",
   "changesObject": [
     {
-      "changesTitle": "Major Changes",
+      "changesTitle": "Release Notes",
       "changesList": [
         {
-          "commit_hash": "957fa26",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/957fa26",
-          "changesDescription": "Removed deprecated useTina hook This was deprecated as part of the v1 release and shouldn't have been in use by anyone"
-        }
-      ]
-    },
-    {
-      "changesTitle": "Patch Changes",
-      "changesList": [
-        {
-          "commit_hash": "e58b951",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/e58b951",
-          "changesDescription": "update vulnerable packages so npm audit does not complain"
-        },
-        {
-          "commit_hash": "957fa26",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/957fa26",
-          "changesDescription": "update to React 18"
-        },
-        {
-          "commit_hash": "9076d09",
-          "commit_link": "https://github.com/tinacms/tinacms/commit/9076d09",
-          "changesDescription": "update next js version from 12 to 14 in tinacms packages"
+          "changesDescription": "##### Major Changes\n\n* 957fa26: Removed deprecated useTina hook This was deprecated as part of the v1 release and shouldn't have been in use by anyone\n\n##### Patch Changes\n\n* e58b951: update vulnerable packages so npm audit does not complain\n* 957fa26: update to React 18\n* 9076d09: update next js version from 12 to 14 in tinacms packages\n* Updated dependencies \\[f567fc8]\n* Updated dependencies \\[e58b951]\n* Updated dependencies \\[957fa26]\n* Updated dependencies \\[9076d09]\n  * @tinacms/mdx\\@1.3.28\n  * @tinacms/schema-tools\\@1.4.19\n  * @tinacms/search\\@1.0.23"
         }
       ]
     }

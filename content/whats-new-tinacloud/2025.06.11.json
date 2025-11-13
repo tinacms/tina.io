@@ -6,9 +6,9 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "feat: enable CORS for latest version endpoint",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "feat: enable CORS for latest version endpoint"
+          "gitHubLink": "https://github.com/wicksipedia"
         }
       ]
     }

@@ -4,7 +4,13 @@
   "changesObject": [
     {
       "changesTitle": "🔧 Fixes",
-      "changesList": []
+      "changesList": [
+        {
+          "changesDescription": "🧱 CI/CD - Improvements and",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
     }
   ]
 }

@@ -6,19 +6,19 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "Site URLs UI Improvement + Tool Bar",
           "gitHubName": "joshbermanssw",
-          "gitHubLink": "https://github.com/joshbermanssw",
-          "changesDescription": "Site URLs UI Improvement + Tool Bar"
+          "gitHubLink": "https://github.com/joshbermanssw"
         },
         {
+          "changesDescription": "Fix /Quickstart Process",
           "gitHubName": "joshbermanssw",
-          "gitHubLink": "https://github.com/joshbermanssw",
-          "changesDescription": "Fix /Quickstart Process"
+          "gitHubLink": "https://github.com/joshbermanssw"
         },
         {
+          "changesDescription": "Organization UI - Button and Heading Consistency",
           "gitHubName": "joshbermanssw",
-          "gitHubLink": "https://github.com/joshbermanssw",
-          "changesDescription": "Organization UI - Button and Heading Consistency"
+          "gitHubLink": "https://github.com/joshbermanssw"
         }
       ]
     }

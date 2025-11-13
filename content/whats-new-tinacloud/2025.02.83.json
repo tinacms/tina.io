@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🚑 Hotfix - Force GitHub to recreate webhooks",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🚑 Hotfix - Force GitHub to recreate webhooks"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

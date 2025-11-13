@@ -6,14 +6,14 @@
       "changesTitle": "✨ Features",
       "changesList": [
         {
+          "changesDescription": "✨ Feat: Consolidated Editorial Workflow endpoints",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "✨ Feat: Consolidated Editorial Workflow endpoints"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "feat(git-authoring): redesign the git authoring settings page",
           "gitHubName": "brookjeynes-ssw",
-          "gitHubLink": "https://github.com/brookjeynes-ssw",
-          "changesDescription": "feat(git-authoring): redesign the git authoring settings page"
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
         }
       ]
     },
@@ -21,19 +21,19 @@
       "changesTitle": "🧱 Infrastructure",
       "changesList": [
         {
+          "changesDescription": "📝 Docs - Additional testing guidance",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "📝 Docs - Additional testing guidance"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🔥 Changesets - Removal",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Changesets - Removal"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🔥 Build system - Remove unnecessary files, build scripts and dependencies",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🔥 Build system - Remove unnecessary files, build scripts and dependencies"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     },
@@ -41,34 +41,34 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🔧 Refactor: Handle CodeMismatchException with unauthorized response",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "🔧 Refactor: Handle CodeMismatchException with unauthorized response"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "🐛 Bug - Editorial workflow blocked by CORS",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🐛 Bug - Editorial workflow blocked by CORS"
+          "gitHubLink": "https://github.com/ncn-ssw"
         },
         {
+          "changesDescription": "🐛 Bug - Add Editorial Workflow status endpoint to CORS",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "🐛 Bug - Add Editorial Workflow status endpoint to CORS"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "✨ feat: Add JSON validation for Tina lock",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "✨ feat: Add JSON validation for Tina lock"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "✨ feat: add sanitizeMessageGroupId function for AWS SQS compliance",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "✨ feat: add sanitizeMessageGroupId function for AWS SQS compliance"
+          "gitHubLink": "https://github.com/kulesy"
         },
         {
+          "changesDescription": "🔒 Security: enhance Editorial Workflow endpoints with authentication middleware",
           "gitHubName": "kulesy",
-          "gitHubLink": "https://github.com/kulesy",
-          "changesDescription": "🔒 Security: enhance Editorial Workflow endpoints with authentication middleware"
+          "gitHubLink": "https://github.com/kulesy"
         }
       ]
     }

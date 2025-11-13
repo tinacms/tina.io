@@ -6,9 +6,9 @@
       "changesTitle": "🔧 Fixes",
       "changesList": [
         {
+          "changesDescription": "🧱 Infrastructure - Add sourcemaps to Content API Lambdas",
           "gitHubName": "ncn-ssw",
-          "gitHubLink": "https://github.com/ncn-ssw",
-          "changesDescription": "🧱 Infrastructure - Add sourcemaps to Content API Lambdas"
+          "gitHubLink": "https://github.com/ncn-ssw"
         }
       ]
     }

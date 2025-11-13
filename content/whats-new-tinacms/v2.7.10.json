@@ -6,31 +6,31 @@
       "changesTitle": "Patch Changes",
       "changesList": [
         {
+          "changesDescription": "🐛 FIX - Visual Editor Webpack HMR loading issue",
           "pull_request_number": "5833",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5833",
           "commit_hash": "5269d65",
           "commit_link": "https://github.com/tinacms/tinacms/commit/5269d6578d361c55326f39375eaa175707342d51",
           "gitHubName": "JackDevAU",
-          "gitHubLink": "https://github.com/JackDevAU",
-          "changesDescription": "🐛 FIX - Visual Editor Webpack HMR loading issue"
+          "gitHubLink": "https://github.com/JackDevAU"
         },
         {
+          "changesDescription": "Sidebar - display a warning if the user isn't on the latest version",
           "pull_request_number": "5796",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5796",
           "commit_hash": "3026a2b",
           "commit_link": "https://github.com/tinacms/tinacms/commit/3026a2b492113a53c036e43d5d85837cea4a6de3",
           "gitHubName": "wicksipedia",
-          "gitHubLink": "https://github.com/wicksipedia",
-          "changesDescription": "Sidebar - display a warning if the user isn't on the latest version"
+          "gitHubLink": "https://github.com/wicksipedia"
         },
         {
+          "changesDescription": "✨ Add a `StaticTinaMarkdown` component",
           "pull_request_number": "5783",
           "pull_request_link": "https://github.com/tinacms/tinacms/pull/5783",
           "commit_hash": "28a94a6",
           "commit_link": "https://github.com/tinacms/tinacms/commit/28a94a602186f48b528b91236007839e5d02a9de",
           "gitHubName": "JackDevAU",
-          "gitHubLink": "https://github.com/JackDevAU",
-          "changesDescription": "✨ Add a `StaticTinaMarkdown` component"
+          "gitHubLink": "https://github.com/JackDevAU"
         }
       ]
     }
