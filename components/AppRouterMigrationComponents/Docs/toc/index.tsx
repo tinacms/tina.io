@@ -31,10 +31,14 @@ const ToC = ({ tocItems, activeId }: TocProps) => {
   useEffect(() => {
     const close = () => setIsOpen(false);
     const allLinks = document.querySelectorAll('a');
-    allLinks.forEach((a) => a.addEventListener('click', close));
+    allLinks.forEach((a) => {
+      a.addEventListener('click', close);
+    });
 
     return () => {
-      allLinks.forEach((a) => a.removeEventListener('click', close));
+      allLinks.forEach((a) => {
+        a.removeEventListener('click', close);
+      });
     };
   }, []);
 

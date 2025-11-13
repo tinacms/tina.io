@@ -237,7 +237,6 @@ export const docAndBlogComponents: Components<{
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
   },
-  //@ts-ignore it doesnt recognside blockquote but wont render block_quote and wil render blockquote....???
   blockquote: (props) => (
     <blockquote
       style={{
@@ -470,7 +469,7 @@ export const docAndBlogComponents: Components<{
   },
   table: (props) => {
     // Navigate through the nested structure to find the actual table content
-    // @ts-ignore - Linter is wrong about the actual structure
+    // @ts-expect-error - Linter is wrong about the actual structure
     const tableRows = props?.children?.props?.children || [];
 
     return (
@@ -479,7 +478,6 @@ export const docAndBlogComponents: Components<{
           <tbody>
             {tableRows.map((row, rowIndex) => {
               // Each row has its own props.children array containing cells
-              // @ts-ignore - Linter is wrong about the actual structure
               const cells = row?.props?.children || [];
               const CellComponent = rowIndex === 0 ? 'th' : 'td';
 
@@ -685,7 +683,7 @@ export const docAndBlogComponents: Components<{
       src={src}
     />
   ),
-  // @ts-ignore TODO: fix this in TinaCMS
+  // @ts-expect-error TODO: fix this in TinaCMS
   code_block: ({ value, lang, children }) => {
     const [hasCopied, setHasCopied] = React.useState(false);
 

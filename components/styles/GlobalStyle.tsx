@@ -72,7 +72,6 @@ const CssReset = css`
   }
 `;
 
-// @ts-ignore
 export const GlobalStyle = React.memo(createGlobalStyle`
   ${CssReset}
   .short-code-warning {

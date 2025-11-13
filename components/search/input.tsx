@@ -1,6 +1,5 @@
 import crypto from 'node:crypto';
 import axios from 'axios';
-// @ts-ignore
 import * as debounce from 'lodash/debounce';
 import router from 'next/router';
 import { connectSearchBox } from 'react-instantsearch-dom';

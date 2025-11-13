@@ -316,7 +316,7 @@ export function AppNavBar({ sticky = true }) {
     }, 20);
 
     const localePattern = new RegExp(
-      `^/(${Object.values(SupportedLocales).join('|')})(\/|$)`,
+      `^/(${Object.values(SupportedLocales).join('|')})(/|$)`,
     );
     const isRootOrLocale =
       pathName === '/' ||
