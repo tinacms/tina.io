@@ -29,16 +29,18 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
     <li className="mb-3 flex justify-between">
       <div className="flex items-start gap-2 mb-2">
         {change.gitHubName && change.gitHubLink && (
-          <Link
-            href={change.gitHubLink}
-            className="whitespace-nowrap items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @{change.gitHubName}
-          </Link>
+          <>
+            <Link
+              href={change.gitHubLink}
+              className="whitespace-nowrap items-center px-2 py-1 text-xs bg-orange-100 text-orange-500 rounded-md hover:bg-orange-200 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @{change.gitHubName}
+            </Link>
+            <span>-</span>
+          </>
         )}
-        -
         {change.changesDescription && (
           <p className="text-gray-700">{change.changesDescription}</p>
         )}
