@@ -26,7 +26,6 @@ const TinaLlamaOutline = () => (
 );
 
 export default function CallToAction(data: any) {
-  console.log(data);
   const { title, description, buttons } = data.data;
   return (
     <Container size="medium" className="p-6">
