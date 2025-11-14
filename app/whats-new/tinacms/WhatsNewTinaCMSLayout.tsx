@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FaGithub, FaNewspaper } from 'react-icons/fa';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 
-type ChangeItem = {
+interface ChangeItem {
   pull_request_number?: string;
   pull_request_link?: string;
   commit_hash?: string;
@@ -12,7 +12,7 @@ type ChangeItem = {
   changesDescription?: string;
 };
 
-type WhatsNewCardProps = {
+interface WhatsNewCardProps {
   item: {
     versionNumber: string;
     dateReleased: string;
