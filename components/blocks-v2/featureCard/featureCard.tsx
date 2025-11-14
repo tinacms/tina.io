@@ -95,7 +95,7 @@ function FeatureCardItem(data: {
         headlineClass={headlineClass}
       />
       <div
-        className={` flex flex-col px-10 gap-2 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
+        className={` flex flex-col md:px-10 gap-2 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
       >
         <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
         <h4
@@ -108,7 +108,7 @@ function FeatureCardItem(data: {
         </p>
         <div className="flex flex-col sm:flex-row gap-2 gap-y-2">
           {buttons?.map((button, index) => (
-            <RenderButton key={button.label} button={button} index={index} />
+            <RenderButton key={button.label} button={button} />
           ))}
         </div>
       </div>
