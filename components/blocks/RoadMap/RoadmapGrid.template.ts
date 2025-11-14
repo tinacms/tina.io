@@ -32,7 +32,6 @@ export const roadmapGridTemplate: Template = {
           label: 'Content',
           type: 'rich-text',
         },
-        // @ts-ignore
         actionsButtonTemplate as any,
       ],
     },

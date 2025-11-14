@@ -12,7 +12,6 @@ export const SocialBlock = (props) => {
         <DynamicLink href={props.tina} passHref>
           <Button color="white">
             <TinaIconSvg
-              // @ts-ignore
               style={{
                 color: '#EC4815',
                 height: '1.675rem',

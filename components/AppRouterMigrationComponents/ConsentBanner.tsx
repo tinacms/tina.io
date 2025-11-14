@@ -1,8 +1,6 @@
 'use client';
-
 import Cookies from 'js-cookie';
 import Link from 'next/link';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { FaChevronUp } from 'react-icons/fa';

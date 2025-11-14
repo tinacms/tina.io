@@ -19,7 +19,7 @@ export const DocsTextWrapper = ({ children }) => {
         var fitVid = fitVids[i];
         var width = fitVid.getAttribute('width');
         var height = fitVid.getAttribute('height');
-        // @ts-ignore
+        // @ts-expect-error
         var aspectRatio = height / width;
         var parentDiv = fitVid.parentNode;
 
