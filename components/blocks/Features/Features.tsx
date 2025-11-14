@@ -58,7 +58,10 @@ export function FeatureBlock({ data }) {
           </div>
           {data.buttons?.length > 2 && (
             <div className="flex mt-4">
-              <RenderButton key={`button-${data.buttons[2].id ?? 2}`} button={data.buttons[2]} />
+              <RenderButton
+                key={`button-${data.buttons[2].id ?? 2}`}
+                button={data.buttons[2]}
+              />
             </div>
           )}
         </div>
