@@ -32,7 +32,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
               <RenderButton
                 key={`button-${button?.label || index}`}
                 button={button}
-                index={index}
                 className="py-3"
               />
             ))}

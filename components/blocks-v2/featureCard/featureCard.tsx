@@ -108,7 +108,7 @@ function FeatureCardItem(data: {
         </p>
         <div className="flex flex-col sm:flex-row gap-2 gap-y-2">
           {buttons?.map((button, index) => (
-            <RenderButton key={button.label} button={button} index={index} />
+            <RenderButton key={button.label} button={button} />
           ))}
         </div>
       </div>
