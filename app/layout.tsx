@@ -94,7 +94,7 @@ export default async function RootLayout({
           </noscript>
           <CloudBanner />
           <AdminLink />
-		<ConsentBanner /> 
+		      {/* <ConsentBanner />  */}
           <TinaChatBot />
           <SiteLayout footerData={footerData}>{children}</SiteLayout>
           <TailwindIndicator />
