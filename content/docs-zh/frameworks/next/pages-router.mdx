@@ -2,8 +2,8 @@
 seo:
   description: >-
     使用Next.js Pages Router设置TinaCMS。了解配置步骤、最佳实践以及如何实现流畅的编辑体验。
-title: Next.js Pages路由
-last_edited: '2025-03-27T01:38:32.349Z'
+title: Next.js Pages Router
+last_edited: '2025-10-21T09:40:45.384Z'
 next: content/docs-zh/frameworks/astro.mdx
 previous: content/docs-zh/frameworks/next/app-router.mdx
 ---
@@ -22,7 +22,7 @@ previous: content/docs-zh/frameworks/next/app-router.mdx
 npx @tinacms/cli@latest init
 ```
 
-这将询问您一些设置问题。当提示输入 **公共资产目录** 时，输入：**public**。
+这将询问您一些设置问题。当提示输入 **public assets directory** 时，输入：**public**。
 
 ## 更新构建脚本
 
@@ -50,13 +50,13 @@ pnpm dev
 
 在TinaCMS运行时，导航到 `http://localhost:3000/admin/index.html`。
 
-> ❓ 提示：如果运行此命令时出现错误，请参阅[常见错误](/docs/forestry/common-errors)页面。
+> ❓ 提示：如果运行此命令时出现错误，请查看 [常见错误](/docs/forestry/common-errors) 页面。
 
-此时，您应该能够看到Tina管理界面，选择一个帖子，保存更改，并看到更改已持久化到您的本地markdown文件中。
+此时，您应该能够看到Tina管理页面，选择一个帖子，保存更改，并看到更改已持久化到本地的markdown文件中。
 
-![TinaCMS 管理界面截图](/img/hugo-tina-admin-screenshot.png)
+![TinaCMS管理截图](/img/hugo-tina-admin-screenshot.png)
 
-## TinaCMS 配置文件
+## TinaCMS配置文件
 
 运行 `tina init` 命令后，创建了一些文件以帮助您快速入门。其中之一是 `tina/config.ts` 文件。这是一个必需的配置文件，定义了所有的tina模式。
 
@@ -117,7 +117,7 @@ export default defineConfig({
 })
 ```
 
-**有关配置的更详细概述，请参阅[TinaCMS内容建模](/docs/extending-tina/overview/)**
+**有关配置的更详细概述，请参阅 [使用TinaCMS进行内容建模](/docs/extending-tina/overview/)**
 
 > 💡 如果您按照本指南使用 `tina init` 命令，您可能已经注意到创建了一个 `content` 和一个 `pages` 文件夹：
 
@@ -260,4 +260,4 @@ export const getStaticProps = async (ctx) => {
 
 * [查看内容建模文档](/docs/schema/)
 * [了解如何查询您的内容](/docs/features/data-fetching/)
-* [部署您的网站](/docs/tina-cloud)
+* [部署您的网站](/docs/tinacloud)

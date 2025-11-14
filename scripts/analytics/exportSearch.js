@@ -21,7 +21,7 @@ const { sql } = require('@vercel/postgres');
     rows.forEach((row) => {
       const formattedDate = new Date(Number(row.timestamp)).toISOString();
       console.log(
-        `${row.timestamp},"${formattedDate}","${row.session_id}","${row.search_query.replace(/"/g, '\"')}"`,
+        `${row.timestamp},"${formattedDate}","${row.session_id}","${row.search_query.replace(/"/g, '"')}"`,
       );
     });
   }

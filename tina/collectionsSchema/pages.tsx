@@ -87,7 +87,7 @@ const templates = [
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
-    //@ts-ignore - this is necessary as block settings are not being recognised as a Field type (even though it is)
+    //@ts-expect-error - this is necessary as block settings are not being recognised as a Field type (even though it is)
     updatedTemplate.fields = [blockSettings, ...updatedTemplate.fields];
   }
   return updatedTemplate as Template;

@@ -1,0 +1,41 @@
+{
+  "versionNumber": "2025.03.102",
+  "dateReleased": "2025-03-28T05:06:05Z",
+  "changesObject": [
+    {
+      "changesTitle": "🧱 Infrastructure",
+      "changesList": [
+        {
+          "changesDescription": "✨ New Schema - Addition of DynamodbLevelSchemaV2 for new ContentIndex schema",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        },
+        {
+          "changesDescription": "feat: batch `migrate-index` create and delete calls to speed up migration.",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "🚑 Hotfix - Fix DynamodbLevelSchema* queries",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps-dev): bump aws-cdk-lib from 2.110.1 to 2.184.0",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        },
+        {
+          "changesDescription": "chore(deps-dev): bump vite from 4.5.9 to 4.5.10",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

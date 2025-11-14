@@ -37,7 +37,7 @@ const addCitiesAndPrefix = (offsets: number[], _prefix = '+'): offset[] => {
   //Get the timezones of major cities
   majorTimezones.forEach((cityOffset) => {
     const zone = moment.tz(cityOffset.ianaName).utcOffset() / 60;
-    return cityTimezoneMap.set(
+    cityTimezoneMap.set(
       zone,
       cityTimezoneMap.get(zone)
         ? `${cityTimezoneMap.get(zone)}, ${cityOffset.city}`
@@ -65,7 +65,6 @@ export const eventsCollection = {
   path: 'content/events',
   format: 'json',
   ui: {
-    //@ts-ignore need to investigate why this is not recognised
     allowedActions: {
       create: false,
       delete: false,
@@ -95,8 +94,6 @@ export const eventsCollection = {
           label: item.headline,
         }),
       },
-      //@ts-ignore https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
-      // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         {
@@ -105,8 +102,6 @@ export const eventsCollection = {
           type: 'datetime',
           description: 'Enter date in the timezone of the event.',
           ui: {
-            //@ts-ignore https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
-            // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
             utc: true,
             format: (value, _name, _field) =>
               value && dateFormat.format(new Date(Date.parse(value))),
@@ -140,8 +135,6 @@ export const eventsCollection = {
           description:
             'Note this field is not mandatory. Leave blank for a 1 day event. Enter date in the timezone of the event.',
           ui: {
-            //@ts-ignore https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
-            // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
             utc: true,
             format: (value, _name, _field) =>
               value && dateFormat.format(new Date(Date.parse(value))),
@@ -175,7 +168,6 @@ export const eventsCollection = {
           ui: {
             parse: (value) => Number(value),
             component: 'select',
-            //@ts-ignore
             options: [
               ...addCitiesAndPrefix(positiveTimezoneList),
               ...addCitiesAndPrefix(negativeTimezoneList, ''),

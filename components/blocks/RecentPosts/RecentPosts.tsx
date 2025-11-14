@@ -1,6 +1,7 @@
 import { RichTextWrapper } from 'components/layout/RichTextWrapper';
 import { DynamicLink } from 'components/ui';
 import Link from 'next/link';
+import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
 import {
   BLOCK_HEADINGS_SIZE,
@@ -99,7 +100,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         className={'relative z-10 col-span-5 lg:col-span-2'}
       >
         <h3
-          className={`block text-center md:text-left lg:hidden ${SECTION_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
+          className={`block text-center md:text-left ${SECTION_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
         >
           Blog Posts
         </h3>
@@ -132,6 +133,13 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
               </div>
             );
           })}
+          <Link
+            href="/blog"
+            className="flex gap-2 pt-2 items-center text-black hover:text-blue-600 font-bold -mt-4 lg:-mt-10"
+          >
+            READ MORE BLOGS
+            <FaArrowRightLong className="pr-1" />
+          </Link>
         </div>
       </section>
     </Container>

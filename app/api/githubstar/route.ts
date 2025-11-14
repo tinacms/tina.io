@@ -13,15 +13,17 @@ export async function GET(request: Request) {
   }
 
   try {
+    const headers: Record<string, string> = {
+      Accept: 'application/vnd.github.v3+json',
+    };
+
+    if (process.env.GITHUB_STAR_TOKEN) {
+      headers.Authorization = `Bearer ${process.env.GITHUB_STAR_TOKEN}`;
+    }
+
     const response = await fetch(
       `https://api.github.com/repos/${owner}/${repo}`,
-      {
-        headers: {
-          // Token
-          Authorization: `Bearer ${process.env.GITHUB_STAR_TOKEN}`,
-          Accept: 'application/vnd.github.v3+json',
-        },
-      },
+      { headers },
     );
 
     if (!response.ok) {

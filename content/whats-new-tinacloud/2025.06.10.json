@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.06.10",
+  "dateReleased": "2025-06-24T00:10:29Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: add latest version endpoint to fetch versions from npm",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "feat: webhooks in https://github.com/tinacms/tinacloud/pull/2736",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4"
+        }
+      ]
+    }
+  ]
+}
