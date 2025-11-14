@@ -14,8 +14,21 @@ export async function POST(request: NextRequest) {
     try {
       const response = await mailchimp.lists.addListMember(
         process.env.MAILCHIMP_AUDIENCE_ID!,
-        { email_address, status, merge_fields, notes },
+        { email_address, status, merge_fields },
       );
+
+      
+      if (notes && response.id) {
+        try {
+          await mailchimp.lists.addListMemberNote(
+            process.env.MAILCHIMP_AUDIENCE_ID!,
+            response.id,
+            { note: notes },
+          );
+        } catch (noteError) {
+          console.error('Failed to add note:', noteError);
+        }
+      }
 
       return NextResponse.json({ success: true, response }, { status: 200 });
     } catch (err: any) {
