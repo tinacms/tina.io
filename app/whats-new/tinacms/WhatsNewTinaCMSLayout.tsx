@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaExternalLinkAlt, FaGithub, FaNewspaper } from 'react-icons/fa';
+import { FaGithub, FaNewspaper } from 'react-icons/fa';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 
 type ChangeItem = {

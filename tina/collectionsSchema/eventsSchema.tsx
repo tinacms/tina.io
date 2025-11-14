@@ -37,7 +37,7 @@ const addCitiesAndPrefix = (offsets: number[], _prefix = '+'): offset[] => {
   //Get the timezones of major cities
   majorTimezones.forEach((cityOffset) => {
     const zone = moment.tz(cityOffset.ianaName).utcOffset() / 60;
-    return cityTimezoneMap.set(
+    cityTimezoneMap.set(
       zone,
       cityTimezoneMap.get(zone)
         ? `${cityTimezoneMap.get(zone)}, ${cityOffset.city}`

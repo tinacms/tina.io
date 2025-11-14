@@ -14,8 +14,9 @@ export const WhatsNewTinaCloudPageLayout = ({ data }) => {
         What's new with <span className="text-orange-500">TinaCloud</span>
       </h1>
       <div className="mt-8">
-        {items &&
-          items.map((item) => <WhatsNewCard key={item.id} item={item} />)}
+        {items?.map((item) => (
+          <WhatsNewCard key={item.id} item={item} />
+        ))}
       </div>
       <div className="font-ibm-plex text-lg text-center text-blue-700">
         <Link
