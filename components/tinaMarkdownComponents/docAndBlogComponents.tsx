@@ -237,7 +237,6 @@ export const docAndBlogComponents: Components<{
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
   },
-  // @ts-expect-error - blockquote not recognized in types but works
   blockquote: (props) => (
     <blockquote
       style={{
@@ -479,7 +478,6 @@ export const docAndBlogComponents: Components<{
           <tbody>
             {tableRows.map((row, rowIndex) => {
               // Each row has its own props.children array containing cells
-              // @ts-expect-error - Linter is wrong about the actual structure
               const cells = row?.props?.children || [];
               const CellComponent = rowIndex === 0 ? 'th' : 'td';
 

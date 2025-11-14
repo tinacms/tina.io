@@ -86,7 +86,6 @@ export default function Search({ indices, collapse, expanded = false }: any) {
   useClickOutside(ref, () => setFocus(false));
 
   return (
-    // @ts-expect-error - InstantSearch types don't match usage
     <InstantSearch
       searchClient={searchClient}
       indexName={indices[0].name}

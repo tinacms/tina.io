@@ -72,7 +72,6 @@ const CssReset = css`
   }
 `;
 
-// @ts-expect-error - React.memo types don't match createGlobalStyle
 export const GlobalStyle = React.memo(createGlobalStyle`
   ${CssReset}
   .short-code-warning {

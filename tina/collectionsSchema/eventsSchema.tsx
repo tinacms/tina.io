@@ -65,7 +65,6 @@ export const eventsCollection = {
   path: 'content/events',
   format: 'json',
   ui: {
-    // @ts-expect-error - need to investigate why this is not recognised
     allowedActions: {
       create: false,
       delete: false,
@@ -95,7 +94,6 @@ export const eventsCollection = {
           label: item.headline,
         }),
       },
-      // @ts-expect-error https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
       // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
@@ -173,7 +171,6 @@ export const eventsCollection = {
           ui: {
             parse: (value) => Number(value),
             component: 'select',
-            // @ts-expect-error
             options: [
               ...addCitiesAndPrefix(positiveTimezoneList),
               ...addCitiesAndPrefix(negativeTimezoneList, ''),
