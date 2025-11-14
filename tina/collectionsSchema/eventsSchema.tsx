@@ -65,7 +65,7 @@ export const eventsCollection = {
   path: 'content/events',
   format: 'json',
   ui: {
-    //@ts-expect-error need to investigate why this is not recognised
+    // @ts-expect-error - need to investigate why this is not recognised
     allowedActions: {
       create: false,
       delete: false,
@@ -95,7 +95,7 @@ export const eventsCollection = {
           label: item.headline,
         }),
       },
-      //@ts-expect-error https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
+      // @ts-expect-error https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
       // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
@@ -105,7 +105,6 @@ export const eventsCollection = {
           type: 'datetime',
           description: 'Enter date in the timezone of the event.',
           ui: {
-            //@ts-expect-error https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
             // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
             utc: true,
             format: (value, _name, _field) =>
@@ -140,7 +139,6 @@ export const eventsCollection = {
           description:
             'Note this field is not mandatory. Leave blank for a 1 day event. Enter date in the timezone of the event.',
           ui: {
-            //@ts-expect-error https://tina.io/docs/reference/toolkit/fields/date/#datetimepickerprops and https://tina.io/docs/reference/toolkit/fields/number/
             // type error as utc, options and step fields aren't formally recognised but valid as per docs (linked above)
             utc: true,
             format: (value, _name, _field) =>
@@ -175,7 +173,7 @@ export const eventsCollection = {
           ui: {
             parse: (value) => Number(value),
             component: 'select',
-            //@ts-expect-error
+            // @ts-expect-error
             options: [
               ...addCitiesAndPrefix(positiveTimezoneList),
               ...addCitiesAndPrefix(negativeTimezoneList, ''),

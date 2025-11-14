@@ -1,3 +1,4 @@
+// @ts-expect-error - algoliasearch doesn't have default export in types
 import algoliasearch from 'algoliasearch/lite';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { createRef, useEffect, useState } from 'react';
@@ -85,7 +86,7 @@ export default function Search({ indices, collapse, expanded = false }: any) {
   useClickOutside(ref, () => setFocus(false));
 
   return (
-    // @ts-expect-error
+    // @ts-expect-error - InstantSearch types don't match usage
     <InstantSearch
       searchClient={searchClient}
       indexName={indices[0].name}

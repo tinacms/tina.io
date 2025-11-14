@@ -237,7 +237,7 @@ export const docAndBlogComponents: Components<{
       //Ripped the styling from styles/RichText.tsx " a:not([class]) "
     );
   },
-  //@ts-expect-error it doesnt recognside blockquote but wont render block_quote and wil render blockquote....???
+  // @ts-expect-error - blockquote not recognized in types but works
   blockquote: (props) => (
     <blockquote
       style={{

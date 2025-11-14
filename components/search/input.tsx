@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 import axios from 'axios';
-// @ts-expect-error
+// @ts-expect-error - lodash/debounce types don't match usage
 import * as debounce from 'lodash/debounce';
 import router from 'next/router';
 import { connectSearchBox } from 'react-instantsearch-dom';
