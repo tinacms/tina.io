@@ -41,7 +41,7 @@ export default function CallToAction(data: any) {
           </p>
           <div className="flex flex-row gap-4">
             {buttons?.map((button: any) => (
-              <RenderButton button={button} index={button.id} />
+              <RenderButton key={button.id} button={button} index={button.id} />
             ))}
           </div>
         </div>

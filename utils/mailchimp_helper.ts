@@ -26,7 +26,7 @@ export async function addToMailchimp(
     mergeFields.LNAME = lastName;
   }
   if (notes) {
-    mergeFields.MMERGE13 = notes; // MMERGE13 is the merge tag name for the notes field in Mailchimp Audience Settings 
+    mergeFields.MMERGE13 = notes; // MMERGE13 is the merge tag name for the notes field in Mailchimp Audience Settings
   }
 
   try {

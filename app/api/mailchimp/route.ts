@@ -15,14 +15,14 @@ export async function POST(request: NextRequest) {
       const response = await mailchimp.lists.addListMember(
         process.env.MAILCHIMP_AUDIENCE_ID!,
         { email_address, status, merge_fields },
-      )
-      
+      );
+
       if (note) {
         try {
-          const noteResponse = await mailchimp.lists.createListMemberNote(
+          const _noteResponse = await mailchimp.lists.createListMemberNote(
             process.env.MAILCHIMP_AUDIENCE_ID!,
             response.id,
-            { note }
+            { note },
           );
         } catch (noteError: any) {
           throw new Error(noteError.message);
