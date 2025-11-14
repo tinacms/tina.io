@@ -9,6 +9,7 @@ export async function addToMailchimp(
   email: string,
   firstName?: string,
   lastName?: string,
+  notes?: string,
 ): Promise<SubscriptionResult> {
   if (!validate(email)) {
     return {
@@ -33,6 +34,7 @@ export async function addToMailchimp(
         email_address: email,
         status: 'subscribed',
         merge_fields: mergeFields,
+        notes: notes,
       }),
     });
 

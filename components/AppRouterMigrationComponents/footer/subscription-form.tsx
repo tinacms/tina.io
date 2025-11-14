@@ -8,6 +8,7 @@ interface FormData {
   firstName: string;
   lastName: string;
   email: string;
+  notes: string;
 }
 
 export const SubscriptionForm = ({ props }) => {
@@ -16,10 +17,11 @@ export const SubscriptionForm = ({ props }) => {
     firstName: '',
     lastName: '',
     email: '',
+    notes: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -37,6 +39,7 @@ export const SubscriptionForm = ({ props }) => {
         formData.email,
         formData.firstName,
         formData.lastName,
+        formData.notes,
       );
 
       if (result.result === 'success') {
@@ -48,6 +51,7 @@ export const SubscriptionForm = ({ props }) => {
           firstName: '',
           lastName: '',
           email: '',
+          notes: '',
         });
       } else if (result.message.includes('400')) {
         setMessage({ text: "You're already in our herd!", type: 'warning' });
@@ -109,6 +113,15 @@ export const SubscriptionForm = ({ props }) => {
             value={formData.email}
             onChange={handleInputChange}
             required
+            disabled={isSubmitting}
+          />
+          <textarea
+            className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder-white/70"
+            placeholder="Notes"
+            name="notes"
+            rows={2}
+            value={formData.notes}
+            onChange={handleInputChange}
             disabled={isSubmitting}
           />
           {message.text && (
