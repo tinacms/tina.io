@@ -45,7 +45,7 @@ const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
           <p className="text-gray-700">{change.changesDescription}</p>
         )}
       </div>
-      <div className='flex gap-2 '>
+      <div className="flex gap-2 ">
         {change.pull_request_number && change.pull_request_link && (
           <Link
             href={change.pull_request_link}

@@ -9,11 +9,12 @@ export async function generateMetadata() {
   const _nodesData = data.WhatsNewTinaCloudConnection.edges.map(
     (edge) => edge.node,
   );
-  
+
   // Use default SEO data since the new JSON structure doesn't include SEO fields
   const seoData = {
     title: "What's New in TinaCloud",
-    description: 'Stay updated with the latest improvements and features in TinaCloud.',
+    description:
+      'Stay updated with the latest improvements and features in TinaCloud.',
     canonicalUrl: `${settings.siteUrl}/whats-new/tinacloud`,
   };
 

@@ -13,12 +13,10 @@ export const WhatsNewTinaCloudPageLayout = ({ data }) => {
       >
         What's new with <span className="text-orange-500">TinaCloud</span>
       </h1>
-      <div className='mt-8'>
-
-      {items && items.map((item) => (
-        <WhatsNewCard key={item.id} item={item} />
-      ))}
-           </div>
+      <div className="mt-8">
+        {items &&
+          items.map((item) => <WhatsNewCard key={item.id} item={item} />)}
+      </div>
       <div className="font-ibm-plex text-lg text-center text-blue-700">
         <Link
           href="https://us20.campaign-archive.com/home/?u=1fea337bee20e7270d025ea8a&id=c1062536a1"

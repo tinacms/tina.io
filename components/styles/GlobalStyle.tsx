@@ -72,6 +72,7 @@ const CssReset = css`
   }
 `;
 
+// @ts-expect-error
 export const GlobalStyle = React.memo(createGlobalStyle`
   ${CssReset}
   .short-code-warning {

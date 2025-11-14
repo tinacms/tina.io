@@ -167,7 +167,7 @@ const CodeSnippet = (props) => {
             }
             <div className="flex flex-col lg:flex-row gap-4">
               <div className="flex-1">{props.children[codeIndex]}</div>
-              <div className="flex-1 bg-[#f6f6f9] border border-gray-100 rounded-md overflow-hidden">
+              <div className="flex-1 bg-gray-50 bg-[#f6f6f9] border border-gray-100 rounded-md overflow-hidden">
                 <Image
                   src={props.url}
                   alt={props.children}
@@ -202,43 +202,43 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
       rehypePlugins={[rehypeRaw, remarkGfm]}
       remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
       skipHtml={skipHtml ? skipHtml : false}
-      components={
-        {
-          ul: ({ node, ...props }) => {
-            return <ul className="list-disc ml-6" {...props} />;
-          },
-          ol: ({ node, ...props }) => {
-            return <ul className="list-decimal ml-6" {...props} />;
-          },
-          pre({ node, ...props }) {
-            return <>{props.children}</>;
-          },
-          'code-snippet': CodeSnippet,
-          'code-snippets': CodeSnippets,
-          code({ node, inline, className, children, ...props }) {
-            const match = /language-(\w+)/.exec(className || '') || props.lang;
-            return inline! && match ? (
-              <CodeWrapper className="code-wrapper">
-                <Prism
-                  lang={match[1]}
-                  theme="nightOwl"
-                  value={String(children).replace(/\n$/, '')}
-                />
-              </CodeWrapper>
-            ) : (
-              <code className={className} {...props}>
-                {children}
-              </code>
-            );
-          },
-          h1: (props) => <WithHeadings level={1} {...props} />,
-          h2: (props) => <WithHeadings level={2} {...props} />,
-          h3: (props) => <WithHeadings level={3} {...props} />,
-          h4: (props) => <WithHeadings level={5} {...props} />,
-          h5: (props) => <WithHeadings level={5} {...props} />,
-          h6: (props) => <WithHeadings level={6} {...props} />,
-        } as any
-      }
+      components={{
+        ul: ({ node, ...props }) => {
+          return <ul className="list-disc ml-6" {...props} />;
+        },
+        ol: ({ node, ...props }) => {
+          return <ul className="list-decimal ml-6" {...props} />;
+        },
+        pre({ node, ...props }) {
+          return <>{props.children}</>;
+        },
+        // @ts-expect-error
+        'code-snippet': CodeSnippet,
+        // @ts-expect-error
+        'code-snippets': CodeSnippets,
+        code({ node, inline, className, children, ...props }) {
+          const match = /language-(\w+)/.exec(className || '') || props.lang;
+          return inline! && match ? (
+            <CodeWrapper className="code-wrapper">
+              <Prism
+                lang={match[1]}
+                theme="nightOwl"
+                value={String(children).replace(/\n$/, '')}
+              />
+            </CodeWrapper>
+          ) : (
+            <code className={className} {...props}>
+              {children}
+            </code>
+          );
+        },
+        h1: (props) => <WithHeadings level={1} {...props} />,
+        h2: (props) => <WithHeadings level={2} {...props} />,
+        h3: (props) => <WithHeadings level={3} {...props} />,
+        h4: (props) => <WithHeadings level={5} {...props} />,
+        h5: (props) => <WithHeadings level={5} {...props} />,
+        h6: (props) => <WithHeadings level={6} {...props} />,
+      }}
     >
       {body}
     </ReactMarkdown>
