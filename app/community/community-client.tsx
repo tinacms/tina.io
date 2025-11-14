@@ -36,7 +36,6 @@ export default function CommunityPageClient(data) {
               link={'https://github.com/tinacms/tinacms/discussions'}
             >
               <TinaIconSvg
-                // @ts-expect-error
                 style={{
                   fill: '#EC4815',
                   height: '1.675rem',
