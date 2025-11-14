@@ -1,23 +1,31 @@
 'use client';
 import Image from 'next/image';
-// biome-ignore lint/style/useImportType: <TODO>
 import React, { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
 import BettyWithLlama from '../../public/img/BettyWithLlama.png';
 import { addToMailchimp } from '../../utils';
-import { Button, Input } from '../ui';
+import { Button, Input, Textarea } from '../ui';
 
 interface EmailFormProps {
   isFooter: boolean;
 }
 
+interface FormData {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  notes?: string;
+}
+
 export const EmailForm = (props: EmailFormProps) => {
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [_isEntering, setIsEntering] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    notes: '',
+  });
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -26,11 +34,22 @@ export const EmailForm = (props: EmailFormProps) => {
     setIsProcessing(true);
     setMessage({ text: '', type: '' });
     try {
-      const result = await addToMailchimp(email, firstName, lastName);
+      const result = await addToMailchimp(
+        formData.email,
+        formData.firstName,
+        formData.lastName,
+        formData.notes,
+      );
       if (result.result === 'success') {
         setMessage({
           text: "You've been added to the llama list.",
           type: 'success',
+        });
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          notes: '',
         });
       } else if (result.message.includes('400')) {
         setMessage({ text: "You're already in our herd!", type: 'warning' });
@@ -46,16 +65,20 @@ export const EmailForm = (props: EmailFormProps) => {
         text: 'There was an error. Please try again.',
         type: 'error',
       });
+    } finally {
+      setIsProcessing(false);
     }
-    setIsProcessing(false);
   };
 
-  const handleInputChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsEntering(true);
-      setter(event.currentTarget.value);
-    };
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 gap-1 bg-white max-w-7xl mx-auto">
@@ -63,9 +86,8 @@ export const EmailForm = (props: EmailFormProps) => {
         <Image
           src={BettyWithLlama}
           alt="Betty with a llama"
-          layout="fill"
-          objectFit="cover"
-          className="w-full h-full"
+          fill
+          className="w-full h-full object-cover"
         />
       </div>
       <div
@@ -107,8 +129,8 @@ export const EmailForm = (props: EmailFormProps) => {
               placeholder="First name"
               name="firstName"
               type="text"
-              onChange={handleInputChange(setFirstName)}
-              onFocus={handleInputChange(setFirstName)}
+              value={formData.firstName}
+              onChange={handleInputChange}
               disabled={isProcessing}
               className="w-full"
             />
@@ -116,8 +138,8 @@ export const EmailForm = (props: EmailFormProps) => {
               placeholder="Last name"
               name="lastName"
               type="text"
-              onChange={handleInputChange(setLastName)}
-              onFocus={handleInputChange(setLastName)}
+              value={formData.lastName}
+              onChange={handleInputChange}
               disabled={isProcessing}
               className="w-full"
             />
@@ -127,8 +149,19 @@ export const EmailForm = (props: EmailFormProps) => {
               placeholder="Email"
               name="email"
               type="email"
-              onChange={handleInputChange(setEmail)}
-              onFocus={handleInputChange(setEmail)}
+              value={formData.email}
+              onChange={handleInputChange}
+              disabled={isProcessing}
+              className="w-full"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
+            <Textarea
+              placeholder="Notes"
+              name="notes"
+              rows={2}
+              value={formData.notes}
+              onChange={handleInputChange}
               disabled={isProcessing}
               className="w-full"
             />
