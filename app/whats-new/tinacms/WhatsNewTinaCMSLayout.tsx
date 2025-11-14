@@ -10,7 +10,7 @@ interface ChangeItem {
   gitHubName?: string;
   gitHubLink?: string;
   changesDescription?: string;
-};
+}
 
 interface WhatsNewCardProps {
   item: {
@@ -22,7 +22,7 @@ interface WhatsNewCardProps {
     }[];
     key: string;
   };
-};
+}
 
 const ChangeItemComponent = ({ change }: { change: ChangeItem }) => {
   return (
