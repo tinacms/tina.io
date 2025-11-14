@@ -19,7 +19,6 @@ export const featureGridTemplate: Template = {
           label: item.headline,
         }),
       },
-      // @ts-expect-error
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         {
