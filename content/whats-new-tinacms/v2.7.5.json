@@ -1,0 +1,76 @@
+{
+  "versionNumber": "2.7.5",
+  "dateReleased": "2025-04-07T06:01:35Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "TinaCMS sidebar now has a loading indicator when loading content. Also fixed the link for contextual editing that was 404'ing",
+          "pull_request_number": "5587",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5587",
+          "commit_hash": "921f235",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/921f2356e4615d532d02eefa7103fdb70f83b97a",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "fix naming of TinaCloud",
+          "pull_request_number": "5602",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5602",
+          "commit_hash": "ab43169",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ab43169af5a95f31fa27bb0236623a031883a1fd",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Editorial Workflow - improved create branch modal for non-devs",
+          "pull_request_number": "5580",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5580",
+          "commit_hash": "b551232",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b5512326ad0ad9855bc75e2073a3ab2a8ec4c064",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Sorting on fields within templates",
+          "pull_request_number": "5560",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5560",
+          "commit_hash": "ea204c9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ea204c9045451f3ebea04f503e6158d2016613e4",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4"
+        },
+        {
+          "changesDescription": "- Fix server-side branch queries by storing the active branch in a cookie and passing it via the x-branch header.",
+          "pull_request_number": "5588",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5588",
+          "commit_hash": "fd664d8",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/fd664d8f4e83941ed1b1f234668ab6341a6178f8",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@1.7.3",
+          "commit_hash": "ab43169",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ab43169"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@1.6.2",
+          "commit_hash": "ab43169",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ab43169"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.0.43",
+          "commit_hash": "ab43169",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ab43169"
+        }
+      ]
+    }
+  ]
+}

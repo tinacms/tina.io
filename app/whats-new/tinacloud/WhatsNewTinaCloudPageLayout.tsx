@@ -1,41 +1,22 @@
-import { whatsNewMDComponents } from 'components/styles/WhatsNewMDComponents';
 import Link from 'next/link';
 import { FaNewspaper } from 'react-icons/fa';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { WhatsNewCard } from '../tinacms/WhatsNewTinaCMSLayout';
 
 export const WhatsNewTinaCloudPageLayout = ({ data }) => {
   const items = data.WhatsNewTinaCloudConnection.edges.map((edge) => edge.node);
 
   return (
-    <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose mx-auto">
+    <div className="p-6 py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-5xl md:mx-auto">
       <h1
         className={`${H1_HEADINGS_SIZE} text-center justify-center font-ibm-plex lg:leading-tight`}
       >
-        What's new with TinaCloud
+        What's new with <span className="text-orange-500">TinaCloud</span>
       </h1>
       <div className="mt-8">
-        {items.length === 0 ? (
-          <p className="text-gray-500">No items found</p>
-        ) : (
-          items.map((item) => (
-            <div
-              key={item.id}
-              className="mb-6 p-10 shadow-xl rounded-lg transform transition-transform duration-300 hover:scale-105 bg-linear-to-br from-white/25 via-white/50 to-white/75"
-            >
-              <h2 className="text-2xl bg-linear-to-br from-blue-700 to-blue-1000 bg-clip-text text-transparent font-semibold">
-                Version {item.versionNumber}
-              </h2>
-              <p className="text-sm text-gray-500">
-                Released on {new Date(item.dateReleased).toLocaleDateString()}
-              </p>
-              <TinaMarkdown
-                content={item.body}
-                components={whatsNewMDComponents}
-              />
-            </div>
-          ))
-        )}
+        {items?.map((item) => (
+          <WhatsNewCard key={item.id} item={item} />
+        ))}
       </div>
       <div className="font-ibm-plex text-lg text-center text-blue-700">
         <Link

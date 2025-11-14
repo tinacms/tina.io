@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.02.85",
+  "dateReleased": "2025-02-12T03:31:29Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "⬆️ Upgrade - @tinacms/graphql to 1.5.12",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "versionNumber": "2025.08.0",
+  "dateReleased": "2025-08-04T23:18:30Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Quick Start - Adding Tina Docs Template",
+          "gitHubName": "amankumarrr",
+          "gitHubLink": "https://github.com/amankumarrr"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump form-data from 4.0.2 to 4.0.4[bot]",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": [
+        {
+          "changesDescription": "their first contribution",
+          "gitHubName": "amankumarrr",
+          "gitHubLink": "https://github.com/amankumarrr"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.11.0",
+  "dateReleased": "2025-11-09T23:46:10Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔈 Logging",
+      "changesList": [
+        {
+          "changesDescription": "Identify oauth sign-ins",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Add project related events",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}

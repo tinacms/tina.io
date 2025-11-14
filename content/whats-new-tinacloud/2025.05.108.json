@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.05.108",
+  "dateReleased": "2025-05-01T03:05:11Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix: Role validation",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}
