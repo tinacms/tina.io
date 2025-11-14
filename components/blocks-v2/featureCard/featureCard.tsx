@@ -95,7 +95,7 @@ function FeatureCardItem(data: {
         headlineClass={headlineClass}
       />
       <div
-        className={` flex flex-col px-10 gap-2 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
+        className={` flex flex-col md:px-10 gap-2 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
       >
         <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
         <h4
