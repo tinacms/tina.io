@@ -135,7 +135,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
           })}
           <Link
             href="/blog"
-            className="flex gap-2 pt-2 items-center text-black hover:text-blue-600 font-bold -mt-4 lg:-mt-10"
+            className="underline hover:no-underline transition-all duration-300 flex gap-2 pt-2 items-center text-black hover:text-blue-600 font-bold -mt-4 lg:-mt-10"
           >
             READ MORE BLOGS
             <FaArrowRightLong className="pr-1" />
