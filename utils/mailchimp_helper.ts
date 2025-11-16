@@ -9,6 +9,7 @@ export async function addToMailchimp(
   email: string,
   firstName?: string,
   lastName?: string,
+  notes?: string,
 ): Promise<SubscriptionResult> {
   if (!validate(email)) {
     return {
@@ -17,12 +18,15 @@ export async function addToMailchimp(
     };
   }
 
-  const mergeFields: { FNAME?: string; LNAME?: string } = {};
+  const mergeFields: { FNAME?: string; LNAME?: string; MMERGE13?: string } = {};
   if (firstName) {
     mergeFields.FNAME = firstName;
   }
   if (lastName) {
     mergeFields.LNAME = lastName;
+  }
+  if (notes) {
+    mergeFields.MMERGE13 = notes; // MMERGE13 is the merge tag name for the notes field in Mailchimp Audience Settings
   }
 
   try {
@@ -33,6 +37,7 @@ export async function addToMailchimp(
         email_address: email,
         status: 'subscribed',
         merge_fields: mergeFields,
+        note: notes,
       }),
     });
 
