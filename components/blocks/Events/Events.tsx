@@ -216,7 +216,7 @@ const EventsBlock = () => {
 
           <Link
             href="/events"
-            className="self-end pt-10 font-bold flex items-center w-fit justify-end gap-2 group pr-1"
+            className="pl-4 pt-10 font-bold flex items-center w-fit justify-end gap-2 group pr-1 underline hover:no-underline transition-all duration-300"
           >
             <span className="text-black group-hover:text-blue-600">
               SEE ALL EVENTS
