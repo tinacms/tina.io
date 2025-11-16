@@ -47,12 +47,7 @@ export const EmailForm = (props: EmailFormProps) => {
           text: "You've been added to the llama list.",
           type: 'success',
         });
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          notes: '',
-        });
+        setFormData(defaultValues.current);
       } else if (result.message.includes('400')) {
         setMessage({ text: "You're already in our herd!", type: 'warning' });
       } else {
