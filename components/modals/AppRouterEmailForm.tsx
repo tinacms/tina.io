@@ -21,12 +21,13 @@ interface FormData {
 }
 
 export const EmailForm = (props: EmailFormProps) => {
-  const [formData, setFormData] = useState<FormData>({
+  const defaultValues = useRef<FormData>({
     firstName: '',
     lastName: '',
     email: '',
     notes: '',
   });
+  const [formData, setFormData] = useState<FormData>(defaultValues.current);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
