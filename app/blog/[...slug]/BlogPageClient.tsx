@@ -43,15 +43,15 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
     <div>
       <BlogPageTitle title={post.title} />
       <div className="p-6">
-        <div className="pt-12 lg:pt-16 max-w-prose mx-auto">
-          <div className="flex flex-col items-center opacity-80 m-0">
-            <span>{postedDate}</span>
-            <div className="flex flex-row text-lg gap-1 pb-4">
-              <span>By </span>
+        <div className="max-w-prose mx-auto">
+          <div className="flex justify-between items-center opacity-80 m-0">
+            <span className="flex flex-row text-lg gap-1">
+              By
               <strong>{post.author}</strong>
-            </div>
+            </span>
+            <span>{postedDate}</span>
           </div>
-          <div className="text-[#241748]">
+          <div className=" pt-6">
             <TinaMarkdown
               content={post.body}
               components={docAndBlogComponents}
@@ -89,11 +89,11 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
 function BlogPageTitle({ title }: { title: string }) {
   const blogTitleStyling =
-    'leading-[1.3] max-w-[9em] bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
+    'leading-[1.3] max-w-3xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 ' +
     'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl lg:text-6xl';
 
   return (
-    <div className="relative z-10 overflow-visible text-center px-8 py-12 lg:py-16">
+    <div className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">
       <div className={blogTitleStyling}>{title}</div>
     </div>
   );
