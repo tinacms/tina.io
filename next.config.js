@@ -144,7 +144,9 @@ const config = {
       },
 
       {
-        source: '/docs/introduction/faq', destination: '/docs/faq', permanent: true
+        source: '/docs/introduction/faq',
+        destination: '/docs/faq',
+        permanent: true,
       },
 
       // existing redirects from JSON
