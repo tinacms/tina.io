@@ -1,0 +1,38 @@
+{
+  "versionNumber": "2.9.4",
+  "dateReleased": "2025-11-17T07:33:48Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "✨ Enhance CreateBranchModal - UI improvements and code organization",
+          "pull_request_number": "6124",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6124",
+          "commit_hash": "e1b6d05",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/e1b6d05c6b31c5c0928633064a065ddd331667ca",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "feat: Integrate Sonner for alert notifications",
+          "pull_request_number": "6126",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6126",
+          "commit_hash": "4ee0dd9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4ee0dd95913392b0da12dd5c9344909e5292e911",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Refactor collections UI",
+          "pull_request_number": "6103",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6103",
+          "commit_hash": "27e5ca9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/27e5ca9b18a90f13f92425ebb2628b143d6a81be",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        }
+      ]
+    }
+  ]
+}
