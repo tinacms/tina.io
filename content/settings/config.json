@@ -722,6 +722,11 @@
       "source": "/docs/tinacms-context",
       "destination": "/docs/contextual-editing/overview",
       "permanent": true
+    },
+    {
+      "source": "/docs/introduction/faq",
+      "destination": "/docs/faq",
+      "permanent": true
     }
   ]
 }

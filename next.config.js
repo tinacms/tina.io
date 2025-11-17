@@ -142,7 +142,6 @@ const config = {
         destination: '/:locale',
         permanent: true,
       },
-
       // existing redirects from JSON
       ...redirects.map((redirect) => ({
         source: redirect.source,

@@ -92,7 +92,7 @@
         },
         {
           "title": "FAQ",
-          "slug": "content/docs/introduction/faq.mdx",
+          "slug": "content/docs/faq.mdx",
           "_template": "item"
         }
       ]
