@@ -126,7 +126,7 @@ export const SearchResultsOverflowTabs = ({
   const width = (activeTabElement?.offsetWidth || 0) + 30;
   const docsCount = algoliaSearchResults?.docs?.count || 0;
   const blogsCount = algoliaSearchResults?.blogs?.count || 0;
-  const numberOfResults = docsCount + blogsCount;
+  const numberOfResults = ( docsCount + blogsCount || 0);
 
   return (
     <div className="w-full">
