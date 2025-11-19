@@ -124,9 +124,9 @@ export const SearchResultsOverflowTabs = ({
   const activeTabElement = tabRefs.current[activeTabIndex];
   const left = activeTabElement?.offsetLeft || 0;
   const width = (activeTabElement?.offsetWidth || 0) + 30;
-  const numberOfResults =
-    (algoliaSearchResults?.docs?.count || 0) +
-    (algoliaSearchResults?.blogs?.count || 0);
+  const docsCount = algoliaSearchResults?.docs?.count || 0;
+  const blogsCount = algoliaSearchResults?.blogs?.count || 0;
+  const numberOfResults = docsCount + blogsCount;
 
   return (
     <div className="w-full">
@@ -143,7 +143,7 @@ export const SearchResultsOverflowTabs = ({
               }`}
               onClick={() => setActiveTab('DOCS')}
             >
-              DOCS ({algoliaSearchResults?.docs?.count || 0})
+              DOCS ({docsCount})
             </button>
             <button
               type="button"
@@ -154,7 +154,7 @@ export const SearchResultsOverflowTabs = ({
               }`}
               onClick={() => setActiveTab('BLOG')}
             >
-              BLOGS ({algoliaSearchResults?.blogs?.count || 0})
+              BLOGS ({blogsCount})
             </button>
 
             {/* Blue moving underline */}
