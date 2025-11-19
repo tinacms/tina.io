@@ -15,8 +15,8 @@ export const highlightText = (text: string) => {
   const segments = [];
   let lastIndex = 0;
 
-  let match: RegExpExecArray | null;
-  while ((match = regex.exec(text)) !== null) {
+  let match: RegExpExecArray | null = regex.exec(text);
+  while (match !== null) {
     if (match.index > lastIndex) {
       segments.push(text.substring(lastIndex, match.index));
     }
@@ -26,6 +26,7 @@ export const highlightText = (text: string) => {
       </span>,
     );
     lastIndex = regex.lastIndex;
+    match = regex.exec(text);
   }
   if (lastIndex < text.length) {
     segments.push(text.substring(lastIndex));
@@ -53,7 +54,10 @@ export const SearchResultsOverflowBody = ({
   return (
     <div className="py-2">
       {bodyItem?.results.slice(0, 10).map((item: any) => (
-        <div key={item.objectID} className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors">
+        <div
+          key={item.objectID}
+          className="py-3 px-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors"
+        >
           <Link
             href={`/${activeItem.toLowerCase()}/${item.slug}`}
             onClick={onResultClick}
@@ -269,7 +273,9 @@ export const SearchModal = ({
           ) : (
             <div className="p-12 text-center text-gray-500">
               <HiMagnifyingGlass className="mx-auto text-5xl mb-4 text-gray-300" />
-              <p className="text-lg font-inter font-medium">Start typing to search...</p>
+              <p className="text-lg font-inter font-medium">
+                Start typing to search...
+              </p>
               <p className="text-sm text-gray-400 mt-2">
                 Search through docs and blog posts
               </p>
