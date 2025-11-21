@@ -303,6 +303,13 @@ export const DocsSearchBarHeader = ({
     setIsSearchModalOpen(true);
   };
 
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsSearchModalOpen(true);
+    }
+  };
+
   return (
     <>
       <div className={`${paddingGlobal} pt-8`}>
@@ -334,6 +341,7 @@ export const DocsSearchBarHeader = ({
             className={`w-full p-2 pl-6 rounded-full border border-gray-300/20 bg-white/50 shadow-lg cursor-pointer ${searchBarPadding}`}
             placeholder="Search"
             onClick={handleInputClick}
+            onKeyDown={handleInputKeyDown}
             readOnly
           />
           <HiMagnifyingGlass
