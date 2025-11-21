@@ -4,7 +4,7 @@ cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/
 seo:
   title: '概述：使用 TinaCloud 进行生产部署'
   description: >-
-    学习如何使用 TinaCloud 将 Tina 网站投入生产。按照我们的分步指南，在 Vercel、Netlify 或 GitHub Pages 上进行设置和部署
+    学习如何使用 TinaCloud 将 Tina 站点部署到生产环境。按照我们的分步指南，在 Vercel、Netlify 或 GitHub Pages 上进行设置和部署
 title: 使用 TinaCloud 进行生产部署
 alias: Production-with-TinaCloud
 last_edited: '2025-09-17T05:45:13.880Z'
@@ -16,27 +16,27 @@ previous: content/docs-zh/tinacloud.mdx
 
 <Youtube embedSrc="https://www.youtube.com/embed/sTVd8CYtXrA?si=DmnS-45aXkmCq8Fa" />
 
-要将您的网站部署到生产环境，您需要将 Tina 连接到托管的后端。本文档将引导您完成从[本地运行到生产运行](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode)的步骤。
+要将您的站点部署到生产环境，您需要将 Tina 连接到托管的后端。本文件将引导您完成从[本地运行到生产运行](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode)的步骤。
 
 ## 前提条件
 
-* 确保您的网站在 Github 上，并且所有更改都已推送（包括 `tina/tina-lock.json`）。
+* 确保您的站点在 Github 上，并且所有更改都已推送（包括 `tina/tina-lock.json`）。
 * 确保您有一个 [TinaCloud](https://app.tina.io) 账户。
-  * 查看 [TinaCloud 仪表板](/docs/tinacloud/dashboard) 文档以获取更多信息。
+  * 查看 [TinaCloud Dashboard](/docs/tinacloud/dashboard) 文档以获取更多信息。
 
 ## 创建一个 TinaCloud 项目
 
-访问 [app.tina.io](https://app.tina.io) 并创建一个新的[项目](/docs/tinacloud/dashboard/projects/)。系统会要求您连接您的 Github 账户并选择要连接到 TinaCloud 的存储库。
+前往 [app.tina.io](https://app.tina.io) 并创建一个新的[项目](/docs/tinacloud/dashboard/projects/)。系统会要求您连接您的 Github 账户并选择要连接到 TinaCloud 的存储库。
 
 ## 运行后端初始化命令
 
-下一步是连接您的网站。一旦连接，您的项目编辑者将能够直接从您的网站将内容保存到其 GitHub 存储库中。
+下一步是连接您的站点。一旦连接，您的项目编辑者将能够直接从您的站点将内容保存到其 GitHub 存储库中。
 
 ```bash
 npx @tinacms/cli init backend
 ```
 
-这将会：
+这将会
 
 * 要求您提供 ClientId：可以在项目的“概述”选项卡中找到。
 * 要求您提供只读令牌：可以在项目的“令牌”选项卡中找到。
@@ -65,7 +65,7 @@ export default defineConfig({
 
 <WarningCallout
   body={<>
-    注意：如果您从本地环境文件加载您的 schema 配置值，Tina 的构建过程只会拾取 `.env` 文件（而不是 `.env.local` 或 `.env.development`）。
+    注意：如果您从本地环境文件加载您的架构配置值，Tina 的构建过程只会拾取 `.env` 文件（而不是 `.env.local` 或 `.env.development`）。
   </>}
 />
 
@@ -73,7 +73,7 @@ export default defineConfig({
 
 这可能已经在初始化过程中设置，但您应该确保分支被传递到配置中。
 
-通常，您会希望使用与您的网站一起部署的分支。这将根据您的主机而有所不同，但大多数会提供某种环境变量供您使用。
+通常，您会希望使用与您的站点一起部署的分支。这将根据您的主机而有所不同，但大多数会提供某种环境变量供您使用。
 
 ```diff
 // tina/config.ts
@@ -121,11 +121,11 @@ export default defineConfig({
 
 apiURL 被配置为在开发中使用本地内容 API（查询您的本地文件），在生产中使用托管内容 API（带身份验证）。
 
-## 部署您的网站（使用 TinaCMS 管理）
+## 部署您的站点（使用 TinaCMS 管理）
 
-下一步是更新您的部署配置，以便 TinaCMS 管理与您的网站一起构建。这允许您的编辑者通过 `<your-site>/admin`（或 `your-site/admin/index.html`）进入 CMS。
+下一步是更新您的部署配置，以便 TinaCMS 管理与您的站点一起构建。这允许您的编辑者通过 `<your-site>/admin`（或 `your-site/admin/index.html`）进入 CMS。
 
-通常，您需要确保您的构建命令在网站的构建命令之前运行 `tinacms build`。这将与您的网站一起构建 TinaCMS 管理。您还需要确保您的 Tina `NEXT_PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN` 被设置为主机上的环境变量。
+通常，您需要确保您的构建命令在站点的构建命令之前运行 `tinacms build`。这将与您的站点一起构建 TinaCMS 管理。您还需要确保您的 Tina `NEXT_PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN` 被设置为主机上的环境变量。
 
 我们为一些流行的部署选项提供了文档：
 
