@@ -18,6 +18,11 @@
     max-width: 1200px !important;
   }
 
+  .search-modal { 
+    height: 100% !important;
+    max-height: 40rem !important;
+  }
+
   .email-form-modal {
     height: auto !important;
     min-height: 20rem;
