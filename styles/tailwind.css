@@ -2,6 +2,10 @@
 
 @config '../tailwind.config.js';
 
+.react-responsive-modal-container { 
+  overflow-y: hidden !important;
+}
+
 @layer utilities {
   /* This is a hack to override the responsive modal's custom styling */
   .react-responsive-modal-modal {
