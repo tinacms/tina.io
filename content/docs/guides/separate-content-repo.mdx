@@ -30,39 +30,58 @@ You might want to do this for a variety of reasons, such as:
 * You must provide the location of your content repo in your Tina config (more about that below).
 * When making changes, you'll need to ensure you've pushed *both* repos to GitHub, with the "content repo"
   changes first
-* When making changes you will need to sync the generated files in `tina/` (such as `tina-lock.json`, `__generated__` files etc) between your website repo and content repo
 
 ## Create the website repository
 
-We have deployed a basic starting "[website repo](https://github.com/tinacms/separate-website-repo)", which you can clone to get started.
+First, create a new Tina project. To help you get started we've created a basic starting "[website repo](https://github.com/tinacms/separate-website-repo)", which you can clone to follow along.
 
-```sh
+```bash
 git clone git@github.com:tinacms/separate-website-repo.git
 ```
 
-The "website repo" contains the NextJS site, and the `tina` config.
+The "website repo" contains a NextJS site, and the `tina` config with the local config path already configured.
 
 ## Create the content repository
 
-To set up the "content repo", we'll start with a simple `.mdx` file:
+Next we'll setup the "content repo". Lets create a simple simple `.mdx` file to start with:
 
-```sh
-mkdir -p ../demo-content-repo/content/pages && touch ../demo-content-repo/content/pages/home.mdx && echo "Hello" >> ../demo-content-repo/content/pages/home.mdx
+```bash
+tree .
+# .
+# └── separate-website-repo
+#
+# 2 directories, 0 files
+
+mkdir -p demo-content-repo/content/pages
+cd demo-content-repo
+touch ./content/pages/home.mdx 
+echo "Hello" >> ./content/pages/home.mdx
+cd ..
+
+tree .
+# .
+# ├── demo-content-repo
+# │   └── content
+# │       └── pages
+# │           └── home.mdx
+# └── separate-website-repo
+# 
+# 5 directories, 1 file
 ```
 
-This command creats a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
+This command creates a folder (`demo-content-repo`) and adds a single MDX file to it in the `content/pages` directory. We'll be using that directory for the `page` collection defined in the Tina config.
 
 ## Local Development
 
 In the "website repo", install the project's dependencies
 
-```sh
+```bash
 yarn install
 ```
 
 Run the project locally:
 
-```sh
+```bash
 yarn dev
 ```
 
@@ -72,32 +91,50 @@ Open `http://localhost:3000/admin/index.html`.
 
 From here you can add more fields to you content models in `tina/config.js`. [Visit the docs](https://tina.io/docs/schema/) to learn more about content modeling.
 
-## Deploying your content repo
+## Deploying your website repo in TinaCloud
 
-Next we'll want to create a TinaCloud project from our "content repo"
+Next we'll want to create a TinaCloud project for our "website repo"
 
 1. Initialize Git in your content repo and push it to GitHub.
-2. From there [connect to TinaCloud](https://tina.io/docs/tinacloud/dashboard/projects/)
+2. [Connect the website repo to TinaCloud](https://tina.io/docs/tinacloud/dashboard/projects/)
 3. Once that's done, [create a token](https://tina.io/docs/tinacloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
 
 Switch back to your "website repo" and set up an `.env` file to use when connecting to TinaCloud:
 
-```
+```bash
 cp .env.example .env
 ```
 
 When you run `tinacms build`, it will use those credentials to connect to TinaCloud rather than the local server:
 
-```sh
+```bash
 yarn build
 ```
 
-## Managing Schema Changes Across Repos
+## Connecting the content repo
 
-When you modify your Tina schema ( tina/config.(ts/js) )
+Now that the “website repo” has been created in TinaCloud, grab the client ID for the project and create a new tina/meta.json file in the content repo.
 
-1. Run `tinacms build` to regenerate files - Tina will regenerate files such like your `tina-lock.json`
-2. Commit and push these changes to \*\*both \*\*your website repo and content repo to ensure compatibility across builds
+```bash
+cd demo-content-repo
+mkdir tina/
+touch tina/meta.json
+```
+
+Then add the following contents into tina/meta.json
+
+```
+{
+  "upstreamBranch": "main",
+  "upstreamClientId": "{{ client ID }}"
+}
+```
+
+<WarningCallout
+  body={<>
+    Previous versions of TinaCMS required you to maintain an up-to-date \`/tina\` folder in both repositories. This has now been simplified to a single `tina/meta.json` file.
+  </>}
+/>
 
 ## Path Configuration Considerations
 
