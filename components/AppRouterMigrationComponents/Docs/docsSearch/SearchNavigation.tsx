@@ -74,7 +74,7 @@ export const SearchResultsOverflowBody = ({
       <div>
         {numberOfResults > 0 ? (
           <Link
-            className="block"
+            className="underline"
             href={`/search?query=${encodeURIComponent(query)}`}
             onClick={onResultClick}
           >
