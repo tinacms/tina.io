@@ -4,6 +4,7 @@ import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
+import { IoMdClose } from "react-icons/io";
 
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -138,11 +139,19 @@ const ConsentBanner = () => {
 
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          className="fixed inset-0 z-50 flex items-center  justify-center backdrop-blur-sm"
           onClick={handleBackdropClick}
         >
-          <div className="bg-white p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3">
-            <h2 className="text-xl md:text-xl lg:text-3xl text-orange-600 font-ibm-plex mb-4 text-center">
+          <div className="relative bg-white shadow-md p-10 rounded-lg w-11/12 sm:w-96 md:w-2/3 lg:w-1/3">
+            <button
+              type="button"
+              className="absolute top-4 right-4 cursor-pointer hover:opacity-70 transition-opacity"
+              onClick={cancelModal}
+              aria-label="Close modal"
+            >
+              <IoMdClose className="text-orange-500 text-2xl" />
+            </button>
+            <h2 className="text-xl md:text-xl lg:text-3xl text-orange-500 font-ibm-plex mb-4 text-center">
               Customize your Consent Preferences
             </h2>
             <div className="lg:flex lg:justify-center lg:ml-auto lg:mr-auto">
