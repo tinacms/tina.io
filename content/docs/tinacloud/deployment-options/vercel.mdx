@@ -28,6 +28,175 @@ Mandatory environment variables include the NEXT\_PUBLIC\_TINA\_CLIENT\_ID and t
 
 ## Your First Deployment
 
-Once ready, select ‘Deploy’ and wait for your first build to run. Once it succeeds, visit your new Tina site by selecting ‘Inspect Deployment’. 
+Once ready, select ‘Deploy’ and wait for your first build to run. Once it succeeds, visit your new Tina site by selecting ‘Inspect Deployment’.
 
-If any errors occur, refer to the build logs and address accordingly. 
+If any errors occur, refer to the build logs and address accordingly.
+
+## Conditional deployment configuration
+
+By default, TinaCMS will push a commit with changes every time you make a change. That also means Vercel will create a deployment every time you make a change. This is great for getting the content changes out fast without the extra effort of manual deployments. If that workflow does not work for you, follow the steps below to configure the Vercel deployment behaviour.
+
+Go to your project's **Settings > Git**. You'll find options related to **`Deploy Hooks`** and **`Ignore Build Step`**
+
+You'll want to **disable the automatic deployment on pushes** for your primary branch (e.g., `main`). The exact setting might vary slightly depending on your Vercel plan or recent UI updates, but the goal is to stop Vercel from listening directly to your Git `push` events. The guides below outline the **Ignore Build Step** options required for them to work.
+
+> ⚠️ **Simple option**: Keeps Vercel's auto-deploy, but conditionally ignores builds
+
+> ⚠️ **Advanced option**: Completely disables Vercel's auto-deploy, full control via GitHub Actions
+
+> ⚠️ **Both options**: Due to the way Vercel is configured internally, every commit to a tracked branch will still count towards your quotas and concurrent build count
+
+### Simple option
+
+Use Vercel's built-in functionality - follow the [Ignore Build Step Guide](https://vercel.com/docs/project-configuration/git-settings#ignored-build-step) to define a Bash or Node script to conditionally reject deploying certain builds.
+
+Set your **`Ignore Build Step`** to **`Run my Bash script`** or **`Run my Node script`**. Put your script in your repo and supply a path to it to the command, e.g. **`bash my-deployment-conditions.sh`**. Your file will be similar to the one below, which only deploys the production version.
+
+```bash
+#!/bin/bash
+
+echo "VERCEL_ENV: $VERCEL_ENV"
+
+if [[ "$VERCEL_ENV" == "production" ]] ; then
+  # Proceed with the build
+  echo "✅ - Build can proceed"
+  exit 1;
+
+else
+  # Don't build
+  echo "🛑 - Build cancelled"
+  exit 0;
+fi
+```
+
+### Advanced option
+
+If your use case is more complicated, it is easier to delegate the build and deployment process to the GitHub Actions Workflows. They have a lot more customisation and allow you to tweak the process to do exactly what you want.
+
+In a nutshell, what we are going to do is:
+
+1. Stop Vercel from deploying automatically
+2. Get the required information from Vercel to run our custom solution
+3. Create a GitHub Actions Workflow to build the project and deploy it to Vercel
+4. Tweak it so it debounces commits and deploys the latest changes 5 minutes after the last commit on the targeted branch
+
+Those steps are just an example. Feel free to alter the workflow to suit your particular needs.
+
+##### Stop automatic builds
+
+In Vercel, navigate to your project **Settings > Git > Ignore Build Step** and set it to **`Don't build anything`**. This will disable the automatic deployments altogether. If that is not something you want, you might need to explore other options.
+
+##### Gather the required Vercel integration data
+
+In Vercel, navigate to **My Account > Settings > Tokens**, create a token with a **`Scope`** of your projects and an appropriate expiration. Give it a descriptive name. **Copy the token when prompted to, you will need it for the next step, and you won't be able to see it again.**
+
+Navigate to your project **Settings > Project ID** and copy the **`Project ID`** from there.
+
+Navigate to your project and copy the site URL, e.g. [https://mycoolblog.vercel.app/](https://mycoolblog.vercel.app/).
+
+Navigate to your Vercel account **Settings > General > User ID** and copy **`User ID`** from there. That will be used as an organisation ID at a later step.
+
+##### Set up repository secrets to use with a workflow
+
+Navigate to your **GitHub Profile > Your Project > Settings > Security > Secrets and variables > Actions > Repository secrets**.
+
+Create the following secrets with the respective data you obtained from Vercel:
+
+> ⚠️ Variable names must match exactly for the Workflow to work.
+
+* **VERCEL\_TOKEN**
+* **VERCEL\_PROJECT\_ID**
+* **VERCEL\_URL**
+* **VERCEL\_ORG\_ID**
+
+##### Set up the workflow in the project
+
+At the root of your project, create the following folder structure:
+
+```
+.github/workflows/vercel-deploy-debounced.yml
+```
+
+This is where the magic happens and this is where we will put our custom logic for the GitHub Actions.
+
+Now let's add some content to the file.
+
+The code below will create a GitHub Actions Workflow to deploy to Vercel when 5 minutes have passed since the last commit to **`main`**. Follow the comments to understand how we handle the debouncing.
+
+Push the file to your GitHub repo. The workflow will be created automatically.
+
+Go to your **GitHub project > Actions** and verify that your workflow is running.
+
+If everything is running correctly, you should be able to make changes to your repo and see them deployed approximately 5 minutes after the last commit in the series is pushed.
+
+> 📝 **Note for monorepos**: You may need to add `working-directory` to your workflow steps
+
+```yaml
+
+# .github/workflows/vercel-deploy-debounced.yml
+
+name: Vercel Deploy (Debounced)
+
+on:
+  push:
+    branches:
+      - main # Configure this to your primary branch (e.g., 'main', 'master', 'production')
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # This 'concurrency' setting is key for debouncing:
+    # - 'group': Defines a group for concurrency. Only one job in this group can run at a time.
+    #            Using a fixed string like 'vercel-deploy-main' means all pushes to 'main'
+    #            will fall into this group.
+    # - 'cancel-in-progress: true': If a new job starts in this group while an old one is
+    #                               still running, the old job will be automatically cancelled.
+    concurrency:
+      group: vercel-deploy-main
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout code
+      uses: actions/checkout@v3
+
+      - name: Debounce commits for 5 minutes
+
+      run: |
+      . echo "New commit pushed. Waiting for 5 minutes to ensure no further commits..."
+        sleep 300 # Wait for 300 seconds (5 minutes)
+      . echo "Debounce period completed. If this job was not cancelled, no new commits arrived."
+        # If a new commit had been pushed during this 'sleep' period,
+      . # this job would have been cancelled by the 'concurrency' setting,
+        # and a new job for the latest commit would have started.
+      . # Therefore, if this step completes, it means there was a 5-minute
+        # window without new commits on this branch.
+
+      - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+      # This step pulls your Vercel project's environment variables and configuration.
+      # This is often needed for the 'vercel build' step to succeed.
+      run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project
+      # This performs the build locally within the GitHub Actions runner.
+      run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      env:
+        SITE_URL: ${{ secrets.VERCEL_URL }}
+
+      - name: Deploy Project to Vercel
+      # The '--prebuilt' flag tells Vercel to use the already built output from the previous step,
+      # which saves Vercel build minutes as it doesn't need to build again.
+      run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+      env:
+        VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+```
+
+##### 🛠️ Troubleshooting
+
+* **Workflow not running?** Check that GitHub secrets names match exactly (VERCEL\_TOKEN, VERCEL\_PROJECT\_ID, etc.)
+* **Build failing?** Check GitHub Actions logs and Vercel deployment logs
+* **Both systems deploying?** Ensure **`Ignore Build Step`** is set correctly in Vercel
