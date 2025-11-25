@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-11-25T23:02:36.178Z'
+last_edited: '2025-11-25T23:16:30.192Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -125,6 +125,8 @@ Create the following secrets with the respective data you obtained from Vercel:
 * **VERCEL\_URL**
 * **VERCEL\_ORG\_ID**
 
+****![](/img/docs/tina-cloud-deployment-options/Repo%20Secrets%20Creation.png)Figure: GitHub Repo Secrets Creation Page
+
 ##### Set up the workflow in the project
 
 At the root of your project, create the following folder structure:
@@ -142,6 +144,8 @@ The code below will create a GitHub Actions Workflow to deploy to Vercel when 5 
 Push the file to your GitHub repo. The workflow will be created automatically.
 
 Go to your **GitHub repo | Actions** and verify that your workflow is running.
+
+![](/img/docs/tina-cloud-deployment-options/GitHub%20Actions.png)Figure: Successful and failed GitHub Actions
 
 If everything is running correctly, you should be able to make changes to your repo and see them deployed approximately 5 minutes after the last commit in the series is pushed.
 
