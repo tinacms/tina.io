@@ -160,41 +160,40 @@ jobs:
 
     steps:
       - name: Checkout code
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Debounce commits for 5 minutes
-
-      run: |
-      . echo "New commit pushed. Waiting for 5 minutes to ensure no further commits..."
-        sleep 300 # Wait for 300 seconds (5 minutes)
-      . echo "Debounce period completed. If this job was not cancelled, no new commits arrived."
-        # If a new commit had been pushed during this 'sleep' period,
-      . # this job would have been cancelled by the 'concurrency' setting,
-        # and a new job for the latest commit would have started.
-      . # Therefore, if this step completes, it means there was a 5-minute
-        # window without new commits on this branch.
+        run: |
+          echo "New commit pushed. Waiting for 5 minutes to ensure no further commits..."
+          sleep 300 # Wait for 300 seconds (5 minutes)
+          echo "Debounce period completed. If this job was not cancelled, no new commits arrived."
+          # If a new commit had been pushed during this 'sleep' period,
+          # this job would have been cancelled by the 'concurrency' setting,
+          # and a new job for the latest commit would have started.
+          # Therefore, if this step completes, it means there was a 5-minute
+          # window without new commits on this branch.
 
       - name: Install Vercel CLI
-      run: npm install --global vercel@latest
+        run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
-      # This step pulls your Vercel project's environment variables and configuration.
-      # This is often needed for the 'vercel build' step to succeed.
-      run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        # This step pulls your Vercel project's environment variables and configuration.
+        # This is often needed for the 'vercel build' step to succeed.
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project
-      # This performs the build locally within the GitHub Actions runner.
-      run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-      env:
-        SITE_URL: ${{ secrets.VERCEL_URL }}
+        # This performs the build locally within the GitHub Actions runner.
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          SITE_URL: ${{ secrets.VERCEL_URL }}
 
       - name: Deploy Project to Vercel
-      # The '--prebuilt' flag tells Vercel to use the already built output from the previous step,
-      # which saves Vercel build minutes as it doesn't need to build again.
-      run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-      env:
-        VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-        VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        # The '--prebuilt' flag tells Vercel to use the already built output from the previous step,
+        # which saves Vercel build minutes as it doesn't need to build again.
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 ```
 
 ##### 🛠️ Troubleshooting
