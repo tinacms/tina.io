@@ -36,7 +36,7 @@ If any errors occur, refer to the build logs and address accordingly.
 
 By default, TinaCMS will push a commit with changes every time you make a change. That also means Vercel will create a deployment every time you make a change. This is great for getting the content changes out fast without the extra effort of manual deployments. If that workflow does not work for you, follow the steps below to configure the Vercel deployment behaviour.
 
-Go to your project's **Settings > Git**. You'll find options related to **`Deploy Hooks`** and **`Ignore Build Step`**
+In Vercel, go to your project's **Settings | Git**. You'll find options related to **`Deploy Hooks`** and **`Ignore Build Step`**
 
 You'll want to **disable the automatic deployment on pushes** for your primary branch (e.g., `main`). The exact setting might vary slightly depending on your Vercel plan or recent UI updates, but the goal is to stop Vercel from listening directly to your Git `push` events. The guides below outline the **Ignore Build Step** options required for them to work.
 
@@ -84,21 +84,21 @@ Those steps are just an example. Feel free to alter the workflow to suit your pa
 
 ##### Stop automatic builds
 
-In Vercel, navigate to your project **Settings > Git > Ignore Build Step** and set it to **`Don't build anything`**. This will disable the automatic deployments altogether. If that is not something you want, you might need to explore other options.
+In Vercel, navigate to your project **Settings | Git | Ignore Build Step** and set it to **`Don't build anything`**. This will disable the automatic deployments altogether. If that is not something you want, you might need to explore other options.
 
 ##### Gather the required Vercel integration data
 
-In Vercel, navigate to **My Account > Settings > Tokens**, create a token with a **`Scope`** of your projects and an appropriate expiration. Give it a descriptive name. **Copy the token when prompted to, you will need it for the next step, and you won't be able to see it again.**
+In Vercel, navigate to **My Account | Settings | Tokens**, create a token with a **`Scope`** of your projects and an appropriate expiration. Give it a descriptive name. **Copy the token when prompted to, you will need it for the next step, and you won't be able to see it again.**
 
-Navigate to your project **Settings > Project ID** and copy the **`Project ID`** from there.
+In Vercel, navigate to your project **Settings | Project ID** and copy the **`Project ID`** from there.
 
 Navigate to your project and copy the site URL, e.g. [https://mycoolblog.vercel.app/](https://mycoolblog.vercel.app/).
 
-Navigate to your Vercel account **Settings > General > User ID** and copy **`User ID`** from there. That will be used as an organisation ID at a later step.
+Navigate to your Vercel account **Settings | General | User ID** and copy **`User ID`** from there. That will be used as an organisation ID at a later step.
 
 ##### Set up repository secrets to use with a workflow
 
-Navigate to your **GitHub Profile > Your Project > Settings > Security > Secrets and variables > Actions > Repository secrets**.
+Navigate to your **GitHub Profile | Your Project | Settings | Security | Secrets and variables | Actions | Repository secrets**.
 
 Create the following secrets with the respective data you obtained from Vercel:
 
@@ -125,7 +125,7 @@ The code below will create a GitHub Actions Workflow to deploy to Vercel when 5 
 
 Push the file to your GitHub repo. The workflow will be created automatically.
 
-Go to your **GitHub project > Actions** and verify that your workflow is running.
+Go to your **GitHub repo | Actions** and verify that your workflow is running.
 
 If everything is running correctly, you should be able to make changes to your repo and see them deployed approximately 5 minutes after the last commit in the series is pushed.
 
