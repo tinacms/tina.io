@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-08-08T00:00:52.485Z'
+last_edited: '2025-11-25T08:11:39.085Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -10,11 +10,11 @@ previous: content/docs/tinacloud/dashboard/organizations.mdx
 
 To create a new project inside your team, navigate to the Add New button and you will be prompted to import your GitHub repository.
 
-Once selected you will then need to configure the build settings.
+Once selected, you will then need to configure the build settings.
 
 ## Build Configuration
 
-When first deploying a new project you will be met with the build configuration page before deploying, but you can update your build configuration at **Settings** > **General** > **Build & Development Settings**.
+When first deploying a new project, you will be met with the build configuration page before deploying, but you can update your build configuration at **Settings** | **General** | **Build & Development Settings**.
 
 ![Vercel Build Settings](/img/docs/tina-cloud-deployment-options/vercel-build-settings_vubza8.png "Vercel Build Settings")
 
@@ -22,15 +22,15 @@ When first deploying a new project you will be met with the build configuration 
 
 ## Environment variables
 
-Whatever environment variables you have defined locally in your `.env` file will need to be copied over to your Vercel project. These can be updated at any time by going to **Settings > Environment Variables**
+Whatever environment variables you have defined locally in your `.env` file will need to be copied over to your Vercel project. These can be updated at any time by going to **Settings | Environment Variables**
 
-Mandatory environment variables include the NEXT\_PUBLIC\_TINA\_CLIENT\_ID and the TINA\_TOKEN both of which can be found in your [TinaCloud project](https://app.tina.io)
+Mandatory environment variables include the NEXT\_PUBLIC\_TINA\_CLIENT\_ID and the TINA\_TOKEN, both of which can be found in your [TinaCloud project](https://app.tina.io)
 
 ## Your First Deployment
 
-Once ready, select ‘Deploy’ and wait for your first build to run. Once it succeeds, visit your new Tina site by selecting ‘Inspect Deployment’.
+Once ready, select `Deploy` and wait for your first build to run. Once it succeeds, visit your new Tina site by selecting `Inspect Deployment`.
 
-If any errors occur, refer to the build logs and address accordingly.
+If any errors occur, refer to the build logs and address them accordingly.
 
 ## Conditional deployment configuration
 
@@ -38,13 +38,15 @@ By default, TinaCMS will push a commit with changes every time you make a change
 
 In Vercel, go to your project's **Settings | Git**. You'll find options related to **`Deploy Hooks`** and **`Ignore Build Step`**
 
-You'll want to **disable the automatic deployment on pushes** for your primary branch (e.g., `main`). The exact setting might vary slightly depending on your Vercel plan or recent UI updates, but the goal is to stop Vercel from listening directly to your Git `push` events. The guides below outline the **Ignore Build Step** options required for them to work.
+You'll want to **disable the automatic deployment on pushes** for your primary branch (e.g., `main`). The exact setting might vary slightly depending on your Vercel plan or recent UI updates, but the goal is to stop Vercel from listening directly to your Git `push` events. The guides below outline the **`Ignore Build Step`** options required for them to work.
 
 > ⚠️ **Simple option**: Keeps Vercel's auto-deploy, but conditionally ignores builds
 
 > ⚠️ **Advanced option**: Completely disables Vercel's auto-deploy, full control via GitHub Actions
 
-> ⚠️ **Both options**: Due to the way Vercel is configured internally, every commit to a tracked branch will still count towards your quotas and concurrent build count
+> ⚠️ **Important limitation of both options**: Due to the way Vercel is configured internally, every commit to a tracked branch will still count towards your quotas and concurrent build count
+
+> ⚠️ **It is not recommended to use both options at the same time. It can lead to race conditions or undesirable behaviour. If you can handle the complexity, the advanced option is the recommended choice. It is a much more flexible and scalable solution for most custom use cases.**
 
 ### Simple option
 
