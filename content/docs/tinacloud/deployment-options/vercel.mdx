@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-11-26T03:27:46.111Z'
+last_edited: '2025-11-26T03:33:15.597Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -108,15 +108,15 @@ In Vercel, navigate to **My Account | Account Settings | Tokens**, create a toke
 
 ![Token creation screen](/img/docs/tina-cloud-deployment-options/vercel-tokens.png "Token creation screen")
 
-In Vercel, navigate to your project **Settings | General | Project ID** and copy the **`Project ID`** from there.
+Then navigate to your project **Settings | General | Project ID** and copy the **`Project ID`** from there.
 
 ![Location of the Project ID to copy](/img/docs/tina-cloud-deployment-options/vercel-project-id.png "Location of the Project ID to copy")
 
-In Vercel, navigate to your project and copy the site URL, e.g. [https://mycoolblog.vercel.app/](https://mycoolblog.vercel.app/).
+Next, navigate to your project and copy the site URL, e.g. [https://mycoolblog.vercel.app/](https://mycoolblog.vercel.app/).
 
 ![Location of the project URL to copy](/img/docs/tina-cloud-deployment-options/vercel-site-url.png "Location of the project URL to copy")
 
-In Vercel, navigate to **MyAccount | Account Settings | General | User ID** and copy **`User ID`** from there. That will be used as an organisation ID at a later step.
+Finally, navigate to **MyAccount | Account Settings | General | User ID** and copy **`User ID`** from there. That will be used as an organisation ID at a later step.
 
 ![Location of the User ID to copy](/img/docs/tina-cloud-deployment-options/vercel-user-id.png "Location of the User ID to copy")
 
@@ -147,11 +147,7 @@ At the root of your project, create the following folder structure:
 .github/workflows/vercel-deploy-debounced.yml
 ```
 
-This is where the magic happens and this is where we will put our custom logic for the GitHub Actions.
-
-Now let's add some content to the file.
-
-The code below will create a GitHub Actions Workflow to deploy to Vercel when 5 minutes have passed since the last commit to **`main`**. Follow the comments to understand how we handle the debouncing.
+Add the following code to the created file. It will create a GitHub Actions Workflow to deploy to Vercel when 5 minutes have passed since the last commit to **`main`**. Follow the comments to understand how we handle the debouncing.
 
 > 📝 **Note for monorepos**: You may need to add `working-directory` to your workflow steps
 
@@ -218,7 +214,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 ```
 
-Push the file to your GitHub repo. The workflow will be created automatically.
+Now push the file to your GitHub repo. GitHub will create the workflow automatically.
 
 Go to your **GitHub repo | Actions** and verify that your workflow is running.
 
