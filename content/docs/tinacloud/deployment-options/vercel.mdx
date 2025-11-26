@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-11-26T00:08:37.865Z'
+last_edited: '2025-11-26T00:11:09.649Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -50,15 +50,13 @@ You'll want to **disable the automatic deployment on pushes** for your primary
   </>}
 />
 
-> ****
-
 ### Simple option
 
 Use Vercel's built-in functionality but conditionally ignore builds - follow the [Ignore Build Step Guide](https://vercel.com/docs/project-configuration/git-settings#ignored-build-step) to define a Bash or Node script to reject deploying certain builds conditionally.
 
 Set your **`Ignore Build Step`** to **`Run my Bash script`** or **`Run my Node script`**.
 
-![](/img/docs/tina-cloud-deployment-options/Vercel%20Bash.png)Figure: Ignored Build Step for running Bash scripts
+![Ignored Build Step for running Bash scripts](/img/docs/tina-cloud-deployment-options/Vercel%20Bash.png "Ignored Build Step for running Bash scripts")
 
 Put your script in your repo and supply a path to it to the command, e.g. **`bash my-deployment-conditions.sh`**. Your file will be similar to the one below, which only deploys the production version.
 
