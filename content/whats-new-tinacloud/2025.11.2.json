@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2025.11.2",
+  "dateReleased": "2025-11-26T00:01:45Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add logging in around MFA",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        },
+        {
+          "changesDescription": "fix(assets-api): adjust cors to allow deeper retrieval in s3",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        }
+      ]
+    }
+  ]
+}
