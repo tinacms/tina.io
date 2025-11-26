@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-11-25T23:16:30.192Z'
+last_edited: '2025-11-26T00:08:37.865Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -40,17 +40,21 @@ In Vercel, go to your project's **Settings | Git**. You'll find options related
 
 You'll want to **disable the automatic deployment on pushes** for your primary branch (e.g., `main`). The exact setting might vary slightly depending on your Vercel plan or recent UI updates, but the goal is to stop Vercel from listening directly to your Git `push` events. The guides below outline the **`Ignore Build Step`** options required for them to work.
 
-> ⚠️ **Simple option**: Keeps Vercel's auto-deploy, but conditionally ignores builds
+<WarningCallout
+  body={<>
+    Important limitation of both options: Due to the way Vercel is configured internally, every commit to a tracked branch will still count towards your quotas and concurrent build count
+    
+    It is not recommended to use both options simultaneously. It can lead to race conditions or undesirable behaviour.
+    
+    If you can handle the complexity, the advanced option is the recommended choice. It is a much more flexible and scalable solution for most custom use cases.
+  </>}
+/>
 
-> ⚠️ **Advanced option**: Completely disables Vercel's auto-deploy, full control via GitHub Actions
-
-> ⚠️ **Important limitation of both options**: Due to the way Vercel is configured internally, every commit to a tracked branch will still count towards your quotas and concurrent build count
-
-> ⚠️ **It is not recommended to use both options at the same time. It can lead to race conditions or undesirable behaviour. If you can handle the complexity, the advanced option is the recommended choice. It is a much more flexible and scalable solution for most custom use cases.**
+> ****
 
 ### Simple option
 
-Use Vercel's built-in functionality - follow the [Ignore Build Step Guide](https://vercel.com/docs/project-configuration/git-settings#ignored-build-step) to define a Bash or Node script to reject deploying certain builds conditionally.
+Use Vercel's built-in functionality but conditionally ignore builds - follow the [Ignore Build Step Guide](https://vercel.com/docs/project-configuration/git-settings#ignored-build-step) to define a Bash or Node script to reject deploying certain builds conditionally.
 
 Set your **`Ignore Build Step`** to **`Run my Bash script`** or **`Run my Node script`**.
 
@@ -76,6 +80,8 @@ fi
 ```
 
 ### Advanced option
+
+Completely disable Vercel's auto-deploy and gain full control via GitHub Actions.
 
 If your use case is more complicated, it is easier to delegate the build and deployment process to the GitHub Actions Workflows. They have a lot more customisation and allow you to tweak the process to do exactly what you want.
 
