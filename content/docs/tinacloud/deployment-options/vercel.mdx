@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-11-26T00:22:48.099Z'
+last_edited: '2025-11-26T00:23:04.660Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -121,6 +121,12 @@ In Vercel, navigate to **MyAccount | Account Settings | General | User ID** and 
 Navigate to your **GitHub Profile | Your Project | Settings | Security | Secrets and variables | Actions | Repository secrets**.
 
 Create the following secrets with the respective data you obtained from Vercel:
+
+<WarningCallout
+  body={<>
+    Variable names must match exactly for the Workflow to work.
+  </>}
+/>
 
 * **VERCEL\_TOKEN**
 * **VERCEL\_PROJECT\_ID**
