@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-11-26T02:03:06.062Z'
+last_edited: '2025-11-26T03:27:46.111Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -43,7 +43,11 @@ You'll want to **disable the automatic deployment on pushes** for your primary
 <WarningCallout
   body={<>
     Important limitation of both options: Due to the way Vercel is configured internally, every commit to a tracked branch will still count towards your quotas and concurrent build count
-    
+  </>}
+/>
+
+<WarningCallout
+  body={<>
     It is not recommended to use both options simultaneously. It can lead to race conditions or undesirable behaviour.
     
     If you can handle the complexity, the advanced option is the recommended choice. It is a much more flexible and scalable solution for most custom use cases.
