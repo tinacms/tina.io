@@ -1,7 +1,7 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
 title: Deploying to Vercel
-last_edited: '2025-11-26T00:16:15.262Z'
+last_edited: '2025-11-26T00:22:48.099Z'
 next: content/docs/tinacloud/deployment-options/netlify.mdx
 previous: content/docs/tinacloud/dashboard/organizations.mdx
 ---
@@ -102,7 +102,7 @@ In Vercel, navigate to your project **Settings | Git | Ignore Build Step** and s
 
 In Vercel, navigate to **My Account | Account Settings | Tokens**, create a token with a **`Scope`** of your projects and an appropriate expiration. Give it a descriptive name. **Copy the token when prompted to, you will need it for the next step, and you won't be able to see it again.**
 
-****![Token creation screen](/img/docs/tina-cloud-deployment-options/Vercel%20Tokens.png "Token creation screen")****
+![Token creation screen](/img/docs/tina-cloud-deployment-options/Vercel%20Tokens.png "Token creation screen")
 
 In Vercel, navigate to your project **Settings | General | Project ID** and copy the **`Project ID`** from there.
 
@@ -122,14 +122,12 @@ Navigate to your **GitHub Profile | Your Project | Settings | Security | Secrets
 
 Create the following secrets with the respective data you obtained from Vercel:
 
-> ⚠️ Variable names must match exactly for the Workflow to work.
-
 * **VERCEL\_TOKEN**
 * **VERCEL\_PROJECT\_ID**
 * **VERCEL\_URL**
 * **VERCEL\_ORG\_ID**
 
-****![GitHub Repo Secrets Creation Page](/img/docs/tina-cloud-deployment-options/Repo%20Secrets%20Creation.png "GitHub Repo Secrets Creation Page")
+![GitHub Repo Secrets Creation Page](/img/docs/tina-cloud-deployment-options/Repo%20Secrets%20Creation.png "GitHub Repo Secrets Creation Page")
 
 ##### Set up the workflow in the project
 
@@ -144,14 +142,6 @@ This is where the magic happens and this is where we will put our custom logic f
 Now let's add some content to the file.
 
 The code below will create a GitHub Actions Workflow to deploy to Vercel when 5 minutes have passed since the last commit to **`main`**. Follow the comments to understand how we handle the debouncing.
-
-Push the file to your GitHub repo. The workflow will be created automatically.
-
-Go to your **GitHub repo | Actions** and verify that your workflow is running.
-
-![Successful and failed GitHub Actions](/img/docs/tina-cloud-deployment-options/GitHub%20Actions.png "Successful and failed GitHub Actions")
-
-If everything is running correctly, you should be able to make changes to your repo and see them deployed approximately 5 minutes after the last commit in the series is pushed.
 
 > 📝 **Note for monorepos**: You may need to add `working-directory` to your workflow steps
 
@@ -217,6 +207,14 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 ```
+
+Push the file to your GitHub repo. The workflow will be created automatically.
+
+Go to your **GitHub repo | Actions** and verify that your workflow is running.
+
+![Successful and failed GitHub Actions](/img/docs/tina-cloud-deployment-options/GitHub%20Actions.png "Successful and failed GitHub Actions")
+
+If everything is running correctly, you should be able to make changes to your repo and see them deployed approximately 5 minutes after the last commit in the series is pushed.
 
 ##### 🛠️ Troubleshooting
 
