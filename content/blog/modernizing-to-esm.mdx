@@ -1,0 +1,66 @@
+---
+title: Modernizing the Core for Security and Performance
+date: '2025-11-26T00:00:00.000Z'
+last_edited: '2025-11-26T00:00:00.000Z'
+author: TinaCMS Team
+prev: ''
+next: ''
+---
+
+With our latest major release, TinaCMS is making a significant architectural shift: **we are moving to ES Modules (ESM) only and ending support for CommonJS (CJS).**
+
+This is a necessary modernization that aligns TinaCMS with the future of the JavaScript ecosystem, ensuring better security, updated dependencies, and a smoother developer experience.
+
+## Why We Are Moving to ESM
+
+For years, the JavaScript community has been transitioning from CommonJS (`require`) to ES Modules (`import/export`). While supporting both (dual-mode) has been the standard for a long time, it often leads to "dependency hell," bloated bundles, and security vulnerabilities blocked by outdated CJS packages.
+
+By moving to pure ESM, we are addressing three critical pain points:
+
+1. **Security & Vulnerabilities:** Staying on CommonJS forced us to keep older versions of certain dependencies. By shifting to ESM, we have unlocked the ability to upgrade these packages, significantly reducing our vulnerability footprint.
+2. **Ecosystem Compatibility:** Many key libraries in the open-source world (like `micromark` and `hast`) have already gone pure ESM. This update allows TinaCMS to interact natively with modern tools without complex build workarounds.
+3. **Modern Build System:** This change simplifies our build pipeline, removing the confusion caused by inconsistent module systems.
+
+## What’s Changing?
+
+### 1. Updated Dependencies (Mermaid & More)
+
+One of the immediate benefits of this migration is the ability to upgrade **Mermaid**. Previously, we were locked to an older version because the new versions are ESM-only.
+With this update, we’ve upgraded Mermaid to the latest version, ensuring that your diagrams within the editor are faster, more stable, and feature-rich.
+
+### 2. Solved Self-Hosting Complexities
+
+Migrating a CMS to ESM isn't just about changing file extensions. Our team did extensive work to ensure self-hosted setups remain robust.
+
+* **Database Bundling:** We resolved issues where the CLI bundled user database files (`database.ts`) incorrectly. The system now correctly handles temporary output files to ensure Node.js treats them as ESM.
+* **Polyfills:** We implemented `esbuild` banners to polyfill `require` where necessary, ensuring that even if some of your underlying database drivers still use CJS, they will function correctly within the new ESM environment.
+
+### 3. Stability Across the Ecosystem
+
+We know that architectural changes can be daunting. To ensure a smooth transition, we have rigorously tested this release against our entire suite of starter templates and common configurations.
+
+Whether you are using a meta-framework, a static site generator, or a custom self-hosted setup, we have verified that builds, dev environments, and production deployments remain stable and performant.
+
+## Upgrade Path
+
+To upgrade to the ESM-only version of TinaCMS, you will need to update your package versions.
+
+```bash
+npm install tinacms@latest @tinacms/cli@latest
+```
+
+### Breaking Changes
+
+Since we have dropped CommonJS support, you must ensure your project uses ESM syntax.
+
+1. **Check your imports:** Ensure you are using `import` instead of `require` in your Tina configuration files.
+2. **Type Config:** Ensure your `package.json` includes `"type": "module"` if you are running scripts that expect ESM, or ensure your config files use `.ts` / `.mjs` extensions where appropriate.
+
+## Looking Ahead
+
+This migration was a heavy lift, but it clears the technical debt required to build the next generation of TinaCMS features. By standardizing on ESM, we can now move faster, ship smaller bundles, and keep your content infrastructure secure.
+
+As always, if you run into issues during the migration, reach out to us on Discord or check the GitHub repository.
+
+**Best,**
+**The TinaCMS Team 🦙**
