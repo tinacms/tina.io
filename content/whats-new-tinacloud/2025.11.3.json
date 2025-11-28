@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.11.3",
+  "dateReleased": "2025-11-28T06:09:24Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "💄 Logo update",
+          "gitHubName": "Pat-Stuart",
+          "gitHubLink": "https://github.com/Pat-Stuart"
+        }
+      ]
+    }
+  ]
+}
