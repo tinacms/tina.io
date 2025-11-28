@@ -252,7 +252,7 @@
           "_template": "item"
         },
         {
-          "_template": "item",
+          "_template": "items",
           "items": [
             {
               "_template": "item",
@@ -261,8 +261,8 @@
             },
             {
               "_template": "item",
-              "slug": "content/docs/guides/separate-content-repo-azure",
-              "title": "Separate Content Repo and Azure DevOps"
+              "slug": "content/docs/guides/separate-content-repo-azure.mdx",
+              "title": "Azure DevOps"
             }
           ],
           "title": "Separate Content Repo"
