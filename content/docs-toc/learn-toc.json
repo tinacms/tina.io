@@ -252,9 +252,20 @@
           "_template": "item"
         },
         {
-          "title": "Separate Content Repo",
-          "slug": "content/docs/guides/separate-content-repo.mdx",
-          "_template": "item"
+          "_template": "item",
+          "items": [
+            {
+              "_template": "item",
+              "slug": "content/docs/guides/separate-content-repo.mdx",
+              "title": "Overview"
+            },
+            {
+              "_template": "item",
+              "slug": "content/docs/guides/separate-content-repo-azure",
+              "title": "Separate Content Repo and Azure DevOps"
+            }
+          ],
+          "title": "Separate Content Repo"
         },
         {
           "title": "Globalization",

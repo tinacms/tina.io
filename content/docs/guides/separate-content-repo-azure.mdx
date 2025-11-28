@@ -1,0 +1,459 @@
+---
+id: /docs/guides/separate-content-repo-azure
+title: Separate Content Repo and Azure DevOps
+last_edited: '2025-11-25T14:25:00.363Z'
+next: ''
+previous: '/docs/guides/separate-content-repo'
+---
+
+## Introduction
+
+This guide covers the essentials for setting up a **two-repository architecture** with TinaCMS and Azure Portal
+
+- **Repository 1 (Website)**: Next.js application with TinaCMS configuration
+- **Repository 2 (Content)**: Markdown/MDX content and media files
+
+### Connection Mechanism
+
+**Azure**: In the following documentation, the content repo is copied into a Docker image using GitHub Actions
+
+## Azure Deployment Setup
+
+### Prerequisites
+
+- Azure account with active subscription
+- Access to Azure Portal ([portal.azure.com](https://portal.azure.com))
+- GitHub account with repository access
+
+### Step 1: Set Up Azure Resources
+
+Create the following resources in the [Azure Portal](https://portal.azure.com):
+
+1. **Resource Group** - Create a resource group to organize your resources (e.g., `my-website-rg`)
+2. **Azure Container Registry (ACR)** - Create a container registry with a globally unique name (e.g., `mywebsiteacr`)
+   - Enable **Admin user** in Settings → Access keys
+   - Save the login server, username, and password for later
+3. **App Service Plan** - Create a Linux-based plan with your preferred pricing tier (Basic B1 or Standard S1)
+4. **Web App for Containers** - Create an App Service configured to:
+   - Use **Container** as the publish method
+   - Connect to your Azure Container Registry
+   - Use Linux as the OS
+
+---
+
+### Step 2: Create Service Principal for GitHub Actions
+
+1. **Click on the Cloud Shell icon** (>_) in the top right of Azure Portal
+2. **Select "Bash"** when prompted
+3. **Run the following command** to create a service principal:
+
+```bash
+az ad sp create-for-rbac \
+  --name "my-website-github-actions" \
+  --role contributor \
+  --scopes /subscriptions/{YOUR_SUBSCRIPTION_ID}/resourceGroups/my-website-rg \
+  --sdk-auth
+```
+
+**To find your Subscription ID:**
+- Search for "Subscriptions" in Azure Portal
+- Copy the Subscription ID
+
+4. **Copy the entire JSON output** - you'll need it for GitHub secrets:
+
+```json
+{
+  "clientId": "xxx-xxx-xxx",
+  "clientSecret": "xxx-xxx-xxx",
+  "subscriptionId": "xxx-xxx-xxx",
+  "tenantId": "xxx-xxx-xxx",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  ...
+}
+```
+
+**Important values to save:**
+- `clientId` → Will be `AZURE_CLIENT_ID`
+- `clientSecret` → Will be `AZURE_CLIENT_SECRET`
+- `subscriptionId` → Will be `AZURE_SUBSCRIPTION_ID`
+- `tenantId` → Will be `AZURE_TENANT_ID`
+
+---
+
+### Step 3: Configure GitHub Repository Secrets
+
+1. **Navigate to your website repository on GitHub**
+2. **Go to "Settings" → "Secrets and variables" → "Actions"**
+3. **Click "New repository secret"** for each of the following:
+
+**Azure Secrets:**
+
+| Secret Name | Value | Where to Find |
+|------------|-------|---------------|
+| `AZURE_CLIENT_ID` | From service principal output | `clientId` field |
+| `AZURE_CLIENT_SECRET` | From service principal output | `clientSecret` field |
+| `AZURE_SUBSCRIPTION_ID` | From service principal output | `subscriptionId` field |
+| `AZURE_TENANT_ID` | From service principal output | `tenantId` field |
+| `AZURE_REGISTRY_NAME` | `mywebsiteacr` | ACR name without .azurecr.io |
+| `AZURE_WEBAPP_NAME` | `my-website-app` | Web App name |
+| `AZURE_RESOURCE_GROUP` | `my-website-rg` | Resource group name |
+
+**Content Repository Access:**
+
+| Secret Name | Value | Where to Find |
+|------------|-------|---------------|
+| `GH_APP_ID` | GitHub App ID | See instructions below |
+| `GH_APP_PRIVATE_KEY` | GitHub App private key (.pem file contents) | See instructions below |
+
+#### How to create GitHub App token:
+
+1. **Navigate to GitHub Settings** → [Developer settings](https://github.com/settings/apps) → GitHub Apps
+2. **Click "New GitHub App"**
+3. **Configure the GitHub App:**
+   - **GitHub App name**: `Content Repository Access for CI/CD` (must be globally unique)
+   - **Homepage URL**: `https://github.com/your-org/my-website` (your website repo URL)
+   - **Webhook**: Uncheck "Active" (not needed for this use case)
+
+4. **Set Repository permissions:**
+   - **Contents**: `Read-only` (to read content from the repository)
+   - **Metadata**: `Read-only` (automatically selected)
+
+5. **Where can this GitHub App be installed?**
+   - Select **"Only on this account"**
+
+6. **Click "Create GitHub App"**
+
+7. **After creation:**
+   - Scroll down to **"Private keys"** section
+   - **Click "Generate a private key"**
+   - A `.pem` file will be downloaded automatically
+   - **Note the App ID** (shown at the top of the page)
+
+8. **Install the GitHub App:**
+   - Click **"Install App"** in the left sidebar
+   - **Click "Install"** next to your organization/account
+   - Select **"Only select repositories"**
+   - Choose your **content repository**
+   - **Click "Install"**
+
+9. **Add to GitHub secrets** (in your website repository):
+   - `GH_APP_ID`: The App ID from step 7
+   - `GH_APP_PRIVATE_KEY`: The entire contents of the downloaded `.pem` file (including `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`)
+
+**TinaCMS Secrets:**
+
+| Secret Name | Value | Where to Find |
+|------------|-------|---------------|
+| `TINA_TOKEN` | TinaCMS token | tina.io dashboard |
+| `NEXT_PUBLIC_TINA_CLIENT_ID` | TinaCMS client ID | tina.io dashboard |
+
+---
+
+### Step 4: Create GitHub Actions Workflow
+
+1. **In your website repository**, create the following file structure:
+
+```
+my-website/
+└── .github/
+    └── workflows/
+        └── deploy-azure.yml
+```
+
+2. **Create/Edit `.github/workflows/deploy-azure.yml`** with the following content:
+
+```yaml
+name: Deploy to Azure
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      content_branch:
+        description: 'Content branch to deploy'
+        required: false
+        default: 'main'
+        type: string
+
+env:
+  REGISTRY_NAME: ${{ secrets.AZURE_REGISTRY_NAME }}
+  IMAGE_NAME: my-website
+  WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+  RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ==========================================
+      # 1. CHECKOUT REPOSITORIES
+      # ==========================================
+      - name: Checkout website repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate GitHub App token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          repositories: "my-content"  # ⚠️ UPDATE THIS to your content repository name
+
+      - name: Checkout content repository
+        uses: actions/checkout@v4
+        with:
+          repository: your-org/my-content  # ⚠️ UPDATE THIS
+          ref: ${{ github.event.inputs.content_branch || 'main' }}
+          token: ${{ steps.app-token.outputs.token }}
+          path: content-temp
+          fetch-depth: 0
+
+      # ==========================================
+      # 2. SETUP NODE.JS
+      # ==========================================
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install content dependencies (if needed)
+        run: |
+          cd content-temp
+          if [ -f package.json ]; then
+            npm install
+          fi
+
+      # ==========================================
+      # 3. PROCESS CONTENT
+      # ==========================================
+      - name: Process content
+        run: |
+          echo "📦 Processing content..."
+
+          # If any, run content generation scripts
+          cd content-temp
+          if [ -f package.json ] && grep -q "generate-index" package.json; then
+            npm run generate-index
+          fi
+          cd ..
+
+          # Copy generated files to website root
+          if [ -f content-temp/content-index.json ]; then
+            cp content-temp/content-index.json ./
+            echo "✓ Copied content-index.json"
+          fi
+
+          # Move content directory for Docker build
+          mv content-temp content
+          echo "✅ Content processing complete"
+
+      # ==========================================
+      # 4. AZURE LOGIN
+      # ==========================================
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: |
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+            }
+
+      - name: Login to Azure Container Registry
+        run: |
+          echo ${{ secrets.AZURE_CLIENT_SECRET }} | docker login \
+            ${{ env.REGISTRY_NAME }}.azurecr.io \
+            --username ${{ secrets.AZURE_CLIENT_ID }} \
+            --password-stdin
+
+      # ==========================================
+      # 5. BUILD AND PUSH DOCKER IMAGE
+      # ==========================================
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:latest
+          build-args: |
+            TINA_TOKEN=${{ secrets.TINA_TOKEN }}
+            NEXT_PUBLIC_TINA_CLIENT_ID=${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+            NEXT_PUBLIC_TINA_BRANCH=${{ github.event.inputs.content_branch || 'main' }}
+          cache-from: type=registry,ref=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:cache
+          cache-to: type=registry,ref=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:cache,mode=max
+
+      # ==========================================
+      # 6. DEPLOY TO AZURE WEB APP
+      # ==========================================
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.WEBAPP_NAME }}
+          images: ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:latest
+
+      # ==========================================
+      # 7. VERIFY DEPLOYMENT
+      # ==========================================
+      - name: Verify deployment
+        run: |
+          echo "✅ Deployment complete!"
+          echo "🌐 Website URL: https://${{ env.WEBAPP_NAME }}.azurewebsites.net"
+
+          # Wait for app to be ready
+          sleep 30
+
+          # Check health
+          curl -f https://${{ env.WEBAPP_NAME }}.azurewebsites.net || echo "⚠️ Site may still be starting..."
+```
+
+**⚠️ Important**: Update line 24 with your actual content repository:
+```yaml
+repository: your-org/my-content  # Change this!
+```
+
+---
+
+### Step 5: Create Dockerfile
+
+**In your website repository root**, create a file named `Dockerfile`:
+
+```dockerfile
+# Base Stage
+FROM node:20-alpine AS base
+
+# Dependencies Stage
+FROM base AS deps
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm ci --force
+
+# Builder Stage
+FROM base AS builder
+WORKDIR /app
+
+# Copy dependencies
+COPY --from=deps /app/node_modules ./node_modules
+
+# Copy application code
+COPY . .
+
+# Content is already present (copied by GitHub Actions)
+# Verify content exists
+RUN ls -la content/ || echo "⚠️ Warning: No content directory"
+
+# Build arguments
+ARG TINA_TOKEN
+ARG NEXT_PUBLIC_TINA_CLIENT_ID
+ARG NEXT_PUBLIC_TINA_BRANCH=main
+
+# Set environment variables for build
+ENV TINA_TOKEN=$TINA_TOKEN \
+    NEXT_PUBLIC_TINA_CLIENT_ID=$NEXT_PUBLIC_TINA_CLIENT_ID \
+    NEXT_PUBLIC_TINA_BRANCH=$NEXT_PUBLIC_TINA_BRANCH \
+    NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1
+
+# Build application
+RUN npm run build
+
+# Runner Stage
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1 \
+    PORT=3000 \
+    HOSTNAME="0.0.0.0"
+
+# Create non-root user
+RUN addgroup -S nodejs -g 1001 && \
+    adduser -S nextjs -u 1001
+
+# Copy built application
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
+```
+
+---
+
+### Step 6: Update Next.js Configuration
+
+**Ensure `next.config.js`** (or `next.config.ts`) has standalone output:
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Required for Docker
+  output: 'standalone',
+
+  // Other configurations...
+};
+
+module.exports = nextConfig;
+```
+
+#### Why ?
+
+It creates a self-contained production builds with only the necessary files to run the application which leads to:
+- Minimal dependencies (only necessary npm packages)
+- Production-Ready server (generate lightweight `server.js` file, no need full Next.js framework)
+
+It results on a Docker optimized structure: we get a much smaller, faster Docker image (often 50-80% size reduction) that starts up quicker and uses fewer resources.
+
+---
+
+### Step 7: Deploy to Azure
+
+#### Manual Deployment:
+
+If you want to deploy a specific branch or re-deploy:
+
+1. **Go to GitHub repository → Actions tab**
+2. **Click on "Deploy to Azure" workflow**
+3. **Click "Run workflow" button** (on the right)
+4. **Choose branch** (default: main)
+5. **Enter content branch** (default: main)
+6. **Click "Run workflow"**
+
+---
+
+### Step 8: Configure Web App Environment Variables
+
+After first successful deployment, you may want to add runtime environment variables:
+
+1. **Go to Azure Portal** → App Services → `my-website-app`
+2. **Click on "Settings" → "Environment variables"** in the left menu
+3. **Click "+ Add" under "Application settings"**
+4. **Add the following variables:**
+
+| Name | Value |
+|------|-------|
+| `TINA_TOKEN` | (Copy from GitHub secrets) |
+| `NEXT_PUBLIC_TINA_CLIENT_ID` | (Copy from GitHub secrets) |
+| `NODE_ENV` | `production` |
+| `WEBSITES_PORT` | `3000` |
+
+5. **Click "Apply"** at the bottom
+6. **Click "Confirm"** when prompted
+7. **Wait for the app to restart** (~30 seconds)
+
+---
