@@ -202,6 +202,11 @@
         {
           "headline": "Swapping auth from AWS Cognito to WorkOS",
           "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n"
+        },
+        {
+          "headline": "Account Deletion",
+          "status": "",
+          "content": "We're working on allowing users to delete their own accounts. This will introduce a range of new features such as project and organization ownership transferring.\n"
         }
       ],
       "options": {
