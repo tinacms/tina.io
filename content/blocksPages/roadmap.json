@@ -90,6 +90,20 @@
               "url": "/tinadocs"
             }
           ]
+        },
+        {
+          "headline": "☑︎ Build system - move from Commonjs to ESM",
+          "content": "We’re modernizing our build system by switching from CommonJS to ESM for better performance and compatibility.\n",
+          "actions": [
+            {
+              "label": "🚀 Shipped in 3.0.0",
+              "icon": true,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "/blog/modernizing-to-esm"
+            }
+          ]
         }
       ],
       "options": {
@@ -124,20 +138,6 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
-            }
-          ]
-        },
-        {
-          "headline": "□ Build system - move from Commonjs to ESM",
-          "status": "",
-          "content": "We’re modernizing our build system by switching from CommonJS to ESM for better performance and compatibility.\n",
-          "actions": [
-            {
-              "label": "GitHub Issue  🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/issues/5956"
             }
           ]
         }
