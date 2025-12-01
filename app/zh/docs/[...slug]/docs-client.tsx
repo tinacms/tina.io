@@ -1,10 +1,10 @@
 'use client';
 
-import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
-import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMainBody';
-import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
-import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
-import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
+import { useDocsNavigation } from 'components/Docs/DocsNavigationContext';
+import MainDocsBodyHeader from 'components/Docs/docsMain/docsMainBody';
+import TocOverflowButton from 'components/Docs/docsMain/tocOverflowButton';
+import ToC from 'components/Docs/toc';
+import { useTocListener } from 'components/Docs/toc_helper';
 import { formatDate } from '@/component/util/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
