@@ -71,7 +71,7 @@
 
 ## TinaCloud
 
-- [What is TinaCloud?](https://tina.io/docs/tina-cloud): Overview of TinaCloud hosted services and features for production deployments.
+- [What is TinaCloud?](https://tina.io/docs/tinacloud): Overview of TinaCloud hosted services and features for production deployments.
 - [Connecting to TinaCloud](https://tina.io/docs/tinacloud/overview): Steps for connecting your TinaCMS project to TinaCloud.
 ### Key Features
 - [Editorial Workflow](https://tina.io/docs/drafts/editorial-workflow): Enables multi-branch content workflows (drafts/reviews) for editorial teams.
