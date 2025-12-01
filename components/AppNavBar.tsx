@@ -20,8 +20,8 @@ import { Modal } from 'react-responsive-modal';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import { saveLocaleToCookie } from '@/utils/locale';
 import 'react-responsive-modal/styles.css';
-import { EmailForm } from '../modals/AppRouterEmailForm';
-import { Button } from '../ui/Button';
+import { EmailForm } from './modals/AppRouterEmailForm';
+import { Button } from './ui/Button';
 
 enum ValidColors {
   White = 'white',
