@@ -1,8 +1,8 @@
 'use client';
 
-import NewBlogPagination from 'components/AppRouterMigrationComponents/Blogs/BlogPagination';
-import { extractTextFromBody } from 'components/AppRouterMigrationComponents/utils/extractTextFromBody';
-import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
+import NewBlogPagination from '@/component/Blogs/BlogPagination';
+import { extractTextFromBody } from '@/utils/extractTextFromBody';
+import { formatDate } from '@/utils/formatDate';
 import { MarkdownContent } from 'components/layout';
 import { DynamicLink } from 'components/ui';
 
