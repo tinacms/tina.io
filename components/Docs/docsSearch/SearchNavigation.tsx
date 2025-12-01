@@ -1,6 +1,6 @@
 'use client';
 
-import { MobileVersionSelect } from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMobileHeader';
+import { MobileVersionSelect } from 'components/Docs/docsMain/docsMobileHeader';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';

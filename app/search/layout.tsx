@@ -1,6 +1,6 @@
 'use client';
 
-import { DocsNavigationProvider } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
+import { DocsNavigationProvider } from 'components/Docs/DocsNavigationContext';
 
 export default function DocsLayout({
   children,

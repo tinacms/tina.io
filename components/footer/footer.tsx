@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useMemo } from 'react';
 
-import '../../../styles/tailwind.css';
-import { TinaIcon } from '../../logo';
-import { DynamicLink } from '../../ui';
+import '../../styles/tailwind.css';
+import { TinaIcon } from '../logo';
+import { DynamicLink } from '../ui';
 import { footerLinksZh, footerNavZh } from './constants';
 import { SocialIcon } from './social-icon';
 import { SubscriptionForm } from './subscription-form';
