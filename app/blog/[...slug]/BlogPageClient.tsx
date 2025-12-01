@@ -1,7 +1,7 @@
 'use client';
 
 import Giscus from '@giscus/react';
-import { formatDate } from '@/component/util/formatDate';
+import { formatDate } from '@/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 // biome-ignore lint/style/useImportType: React is required

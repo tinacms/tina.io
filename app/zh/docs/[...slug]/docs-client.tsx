@@ -5,7 +5,7 @@ import MainDocsBodyHeader from 'components/Docs/docsMain/docsMainBody';
 import TocOverflowButton from 'components/Docs/docsMain/tocOverflowButton';
 import ToC from 'components/Docs/toc';
 import { useTocListener } from 'components/Docs/toc_helper';
-import { formatDate } from '@/component/util/formatDate';
+import { formatDate } from '@/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { usePathname } from 'next/navigation';
