@@ -1,7 +1,7 @@
 'use client';
 
 import { MarkdownContent, RichTextWrapper } from 'components/layout';
-import { EmailForm } from 'components/modals/AppRouterEmailForm';
+import { EmailForm } from '@/component/modals/EmailForm';
 import { ButtonGroup, LinkButton } from 'components/ui';
 import Image from 'next/image';
 import TinaIconSvg from 'public/svg/tina-icon.svg';
