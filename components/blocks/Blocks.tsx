@@ -36,6 +36,7 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import VideoDisplay from './VideoEmbed/videoEmbed';
+import { Map } from '@/component/blocks-v2/map/map';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
@@ -119,6 +120,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <FeatureCard data={block} />;
     case 'PageBlocksCallToAction':
       return <CallToAction data={block} />;
+    case 'PageBlocksMap':
+      return <Map data={block} />;
     default:
       return null;
   }

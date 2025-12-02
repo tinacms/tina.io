@@ -128,6 +128,11 @@
       "_template": "logoGrid"
     },
     {
+      "heading": "Your Global Support Network",
+      "content": "With offices in **Australia**, **China** and **France**, we're here to help around the clock. Our dedicated, multilingual team is always ready to assist, ensuring seamless support across different time zones. Reach out to us whenever you need, day or night.\n\nServicing 19 hours of global service coverage every day. Relative to UTC Timezone this covers: \n\n* 22:00-08:00 → Brisbane/ Sydney + Hangzhou \n* 07:00-10:00 → Hangzhou + Strasbourg\n* 10:00-17:00 → Strasbourg only\n",
+      "_template": "map"
+    },
+    {
       "items": [
         {
           "headline": "Built-in Version Control",
