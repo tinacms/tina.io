@@ -221,7 +221,7 @@ const AccordionItem = ({
     <li>
       <div
         className={
-          'group flex flex-col cursor-pointer p-2 transition-all duration-300 rounded-md shadow-md border border-white/30 bg-gradient-to-br from-white/10 to-white/40 hover:from-gray-300/10 hover:to-gray-300/40'
+          'group flex flex-col cursor-pointer p-2 transition-all duration-300 rounded-md shadow-md border border-white/30 bg-gradient-to-tr from-white/10 to-white/40 hover:from-blue-500/10 hover:to-white/40'
         }
         onClick={handleSelectOffice}
       >
@@ -370,10 +370,10 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
                   d={pathData}
                   className={
                     isHighlighted
-                      ? 'fill-[#ea6d43] cursor-pointer'
+                      ? 'fill-[#ea6d43]'
                       : isBaseSelected
-                        ? 'fill-[#ea6d43] cursor-pointer opacity-50'
-                        : 'fill-[#afafaf]'
+                        ? 'fill-[#ea6d43] opacity-50'
+                        : 'fill-gray-400'
                   }
                 />
               );
