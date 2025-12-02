@@ -1,7 +1,7 @@
 'use client';
 
 import { MarkdownContent, RichTextWrapper } from 'components/layout';
-import { EmailForm } from 'components/modals/AppRouterEmailForm';
+import { EmailForm } from '@/component/modals/EmailForm';
 import { ButtonGroup, LinkButton } from 'components/ui';
 import Image from 'next/image';
 import TinaIconSvg from 'public/svg/tina-icon.svg';
@@ -36,7 +36,6 @@ export default function CommunityPageClient(data) {
               link={'https://github.com/tinacms/tinacms/discussions'}
             >
               <TinaIconSvg
-                // @ts-ignore
                 style={{
                   fill: '#EC4815',
                   height: '1.675rem',
@@ -101,9 +100,9 @@ export default function CommunityPageClient(data) {
       </div>
 
       {/* Newsletter Section */}
-      <div className="bg-green-100 py-12">
+      <div className="py-12">
         <div className="text-center px-6 lg:px-20">
-          <h2 className="text-4xl font-ibm-plexbg-linear-to-br from-orange-400 via-orange-500 to-orange-600 text-transparent bg-clip-text">
+          <h2 className="text-3xl lg:text-4xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent mb-2">
             {data.newsletter_header}
           </h2>
           <p className="text-gray-600 mt-2">{data.newsletter_cta}</p>

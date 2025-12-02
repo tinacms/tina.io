@@ -19,7 +19,6 @@ export const featureGridTemplate: Template = {
           label: item.headline,
         }),
       },
-      // @ts-ignore
       fields: [
         { name: 'headline', label: 'Headline', type: 'string' },
         {
@@ -33,7 +32,7 @@ export const featureGridTemplate: Template = {
           label: 'URL',
           type: 'string',
         },
-        // @ts-ignore
+        // @ts-expect-error
         actionsButtonTemplate,
       ],
     },

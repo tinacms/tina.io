@@ -45,7 +45,7 @@ export default async function BlogPaginationPage({
   const contentDir = './content/blog-zh/';
   const posts = await glob(`${contentDir}**/*.mdx`);
   const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-  const pageIndex = parseInt(params.page_index) || 1;
+  const pageIndex = parseInt(params.page_index, 10) || 1;
   const startIndex = (pageIndex - 1) * POSTS_PER_PAGE;
 
   let postResponse = null;

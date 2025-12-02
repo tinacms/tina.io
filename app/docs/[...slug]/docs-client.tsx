@@ -1,11 +1,12 @@
 'use client';
 
-import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
-import MainDocsBodyHeader from 'components/AppRouterMigrationComponents/Docs/docsMain/docsMainBody';
-import TocOverflowButton from 'components/AppRouterMigrationComponents/Docs/docsMain/tocOverflowButton';
-import ToC from 'components/AppRouterMigrationComponents/Docs/toc';
-import { useTocListener } from 'components/AppRouterMigrationComponents/Docs/toc_helper';
-import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
+import { useDocsNavigation } from 'components/Docs/DocsNavigationContext';
+import MainDocsBodyHeader from 'components/Docs/docsMain/docsMainBody';
+import TocOverflowButton from 'components/Docs/docsMain/tocOverflowButton';
+import ToC from 'components/Docs/toc';
+import { useTocListener } from 'components/Docs/toc_helper';
+import { formatDate } from '@/utils/formatDate';
+import { GitHubMetadata } from 'components/PageMetadata';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { useCallback, useEffect, useState } from 'react';
@@ -85,6 +86,7 @@ export default function DocsClient({ props }) {
           setLearnActive={setLearnActive}
           NavigationLearnItems={NavigationLearnData?.data}
         />
+        <GitHubMetadata path={DocumentationData?.id} className="mt-2" />
         <div className="block xl:hidden">
           <TocOverflowButton tocData={PageTableOfContents} />
         </div>

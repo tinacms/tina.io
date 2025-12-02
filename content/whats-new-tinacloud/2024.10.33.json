@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2024.10.33",
+  "dateReleased": "2024-10-31T06:38:58Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: endpoint for schemas validation in https://github.com/tinacms/tinacloud/pull/2360",
+          "gitHubName": "kldavis4",
+          "gitHubLink": "https://github.com/kldavis4"
+        }
+      ]
+    },
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "♻️ Project Reindexing - Simplify reindexing status reporting behavior in https://github.com/tinacms/tinacloud/pull/2367",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

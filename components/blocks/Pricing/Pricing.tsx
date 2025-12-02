@@ -68,7 +68,7 @@ const FreeTier = ({ data }) => (
         />
         <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
           {data.freeTier?.buttons?.map((button, index) => (
-            <RenderButton key={button.id} button={button} index={index} />
+            <RenderButton key={button.id} button={button} />
           ))}
         </div>
       </div>
@@ -124,7 +124,7 @@ const PaidTier = ({ data, isMonthly }) => {
         </div>
         <div className="pt-3 flex">
           {data.buttons?.map((button, index) => (
-            <RenderButton key={button.id} button={button} index={index} />
+            <RenderButton key={button.id} button={button} />
           ))}
         </div>
         <div className="pt-6">

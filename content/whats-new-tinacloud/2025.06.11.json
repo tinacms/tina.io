@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.06.11",
+  "dateReleased": "2025-06-24T01:45:37Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: enable CORS for latest version endpoint",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        }
+      ]
+    }
+  ]
+}

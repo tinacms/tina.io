@@ -212,9 +212,8 @@ export function MarkdownContent({ content, skipHtml }: MarkdownContentProps) {
         pre({ node, ...props }) {
           return <>{props.children}</>;
         },
-        // @ts-ignore
+        // @ts-expect-error - Custom component not in types
         'code-snippet': CodeSnippet,
-        // @ts-ignore
         'code-snippets': CodeSnippets,
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '') || props.lang;

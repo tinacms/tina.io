@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.10.0",
+  "dateReleased": "2025-10-06T21:41:00Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "✨ Add welcome step to quickstart flow",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

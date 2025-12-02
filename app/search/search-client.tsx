@@ -1,14 +1,14 @@
 'use client';
 
-import { useDocsNavigation } from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
+import { useDocsNavigation } from 'components/Docs/DocsNavigationContext';
 import {
   SearchHeader,
   SearchTabs,
-} from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchComponent';
+} from 'components/Docs/docsSearch/SearchComponent';
 import {
   DocsSearchBarHeader,
   LeftHandSideParentContainer,
-} from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
+} from 'components/Docs/docsSearch/SearchNavigation';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getSearchPageData } from './getSearchPageData';

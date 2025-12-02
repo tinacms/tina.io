@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2024.9.9",
+  "dateReleased": "2024-09-04T14:00:00.000Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🍞 Add toast messages on modification of tags in [https://github.com/tinacms/tinacloud/pull/2247](https://github.com/tinacms/tinacloud/pull/2247) and [https://github.com/tinacms/tinacloud/pull/2249](https://github.com/tinacms/tinacloud/pull/2249)",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Updated Editorial Workflow styling to be more consistent in [https://github.com/tinacms/tinacloud/pull/2245](https://github.com/tinacms/tinacloud/pull/2245)",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "👒 Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "chore(deps): bump glob-parent from 5.1.1 to 5.1.2 in [https://github.com/tinacms/tinacloud/pull/2065](https://github.com/tinacms/tinacloud/pull/2065)",
+          "gitHubName": "dependabot",
+          "gitHubLink": "https://github.com/dependabot"
+        }
+      ]
+    }
+  ]
+}

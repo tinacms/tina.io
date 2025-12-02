@@ -78,7 +78,9 @@ export default function EventsClient({
       threshold: 0.2,
     });
     const cards = document.querySelectorAll('.event-card');
-    cards.forEach((card) => observer.observe(card));
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
 
     return () => observer.disconnect();
     // biome-ignore lint/correctness/useExhaustiveDependencies: <TODO>

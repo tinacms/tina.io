@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2025.09.1",
+  "dateReleased": "2025-09-24T08:23:42Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🥅 Improve S3 error handling for missing search index",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "Add Last Edited Field",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🔈 Logging - Enhance logging in app creation process",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🐛 Bug fix: Fix broken doc links by using 'tinacloud' instead of 'tina-cloud'",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

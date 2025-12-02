@@ -1,7 +1,7 @@
 {
   "notFound": {
-    "title": "Sorry, Friend.",
-    "description": "We couldn't find your baby llama, check pen 404.",
+    "title": "Oops, this llama took a wrong turn.",
+    "description": "404 - The page you’re looking for has gone on a spontaneous llama trek.",
     "buttons": {
       "documentation": "Documentation",
       "guides": "Guides",
@@ -9,7 +9,7 @@
     }
   },
   "notTranslated": {
-    "title": "Page Not Yet Translated",
+    "title": "Page not yet translated",
     "description": "This page hasn't been translated yet. You'll be redirected to the English version.",
     "buttons": {
       "continue": "Continue in English"

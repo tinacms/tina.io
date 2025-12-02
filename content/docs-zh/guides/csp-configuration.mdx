@@ -1,0 +1,228 @@
+---
+title: 内容安全策略 (CSP) 配置
+next: content/docs-zh/guides/how-to-update-your-tina-version-with-dependabot.mdx
+previous: ''
+---
+
+## 概述
+
+内容安全策略 (CSP) 是一种安全标准，有助于防止跨站脚本 (XSS)、点击劫持和其他代码注入攻击。在使用 TinaCMS 时，您需要配置 CSP 头以允许连接到 TinaCMS 服务。
+
+## 必需的 CSP 指令
+
+TinaCMS 需要以下 CSP 指令才能正常运行：
+
+### 图像来源
+
+TinaCMS 需要访问其资产交付网络以加载图像：
+
+```javascript
+"img-src 'self' data: assets.tina.io;"
+```
+
+### 连接来源
+
+TinaCMS 需要连接到多个服务以进行身份验证和内容交付：
+
+```javascript
+"connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+```
+
+* **identity.tinajs.io** - 身份验证和身份服务
+* **content.tinajs.io** - 内容 API 和数据层
+* **assets.tinajs.io** - 资产管理和交付
+
+## 实现示例
+
+### Next.js 配置
+
+#### 应用路由器 (Next.js 13+)
+
+在 `next.config.js` 中添加 CSP 头：
+
+```javascript
+const baseCsp = [
+    "default-src 'self';",
+    "img-src 'self' data: assets.tina.io;",
+    "font-src 'self' data: fonts.gstatic.com;",
+    "object-src 'none';",
+    "frame-src 'none';",
+    "worker-src 'self' blob:;",
+    "frame-ancestors 'none';",
+    "base-uri 'self';",
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+];
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: baseCsp.join(' '),
+          },
+        ],
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
+```
+
+#### 页面路由器
+
+对于页面路由器，您也可以在 `next.config.js` 中使用上述相同的方法配置 CSP。
+
+或者，在中间件中设置 CSP 头：
+
+```typescript
+// middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  
+  const csp = [
+    "default-src 'self'",
+    "img-src 'self' data: assets.tina.io",
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io",
+    // ... 其他指令
+  ].join('; ');
+  
+  response.headers.set('Content-Security-Policy', csp);
+  
+  return response;
+}
+```
+
+### Netlify 配置
+
+在 `netlify.toml` 中添加 CSP 头：
+
+```toml
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+```
+
+### Vercel 配置
+
+在 `vercel.json` 中添加头：
+
+```json
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Apache 配置
+
+添加到您的 `.htaccess` 文件：
+
+```apache
+<IfModule mod_headers.c>
+  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+</IfModule>
+```
+
+### Nginx 配置
+
+添加到您的 nginx 配置：
+
+```nginx
+add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
+```
+
+## 自托管注意事项
+
+如果您使用 [自托管 TinaCMS 设置](/docs/self-hosted/overview/)，您可能需要调整这些 CSP 指令：
+
+* 将 TinaCloud 域替换为您自己的后端 URL
+* 确保 `connect-src` 包含您的内容 API 端点
+* 将任何自定义媒体存储域添加到 `img-src`
+
+自托管示例：
+
+```javascript
+const baseCsp = [
+    "default-src 'self';",
+    "img-src 'self' data: your-media-storage.example.com;",
+    "connect-src 'self' your-backend.example.com;",
+    // ... 其他指令
+];
+```
+
+## 故障排除
+
+### 浏览器控制台中的 CSP 违规
+
+如果您在浏览器控制台中看到 CSP 违规错误：
+
+1. 检查错误消息以识别被阻止的资源
+2. 将适当的域添加到相关的 CSP 指令
+3. 彻底测试以确保 TinaCMS 功能正常
+
+常见违规：
+
+
+* **阻止的图片加载**：将域添加到 `img-src`
+* **阻止的 API 调用**：将域添加到 `connect-src`
+* **阻止的内联样式**：您可能需要为某些 TinaCMS 功能添加 `style-src 'unsafe-inline'`
+
+### TinaCMS 编辑器未加载
+
+如果 TinaCMS 编辑器无法加载：
+
+1. 验证所有必需的域是否包含在 `connect-src` 中
+2. 检查浏览器控制台中的 CSP 违规
+3. 确保 `frame-src` 允许 TinaCMS 管理界面（如果使用 iframe 模式）
+
+<WarningCallout
+  body={<>
+    使用 GitHub 进行身份验证时遇到问题？可能是您的 CSP 配置问题！
+    
+    查看 [这个 GitHub 问题及其解决方法](https://github.com/tinacms/tina.io/issues/3978)。
+  </>}
+/>
+
+### 测试 CSP 配置
+
+使用浏览器开发者工具验证您的 CSP 配置：
+
+1. 打开开发者工具 → 控制台
+2. 查找 CSP 违规警告
+3. 点击违规以查看哪些资源被阻止
+4. 相应地更新您的 CSP
+
+您还可以使用在线工具如 [CSP Evaluator](https://csp-evaluator.withgoogle.com/) 来验证您的策略。
+
+## 其他资源
+
+* [自托管设置](/docs/self-hosted/overview/)
+* [TinaCloud 概述](/docs/tinacloud/overview/)
+* [Next.js 框架指南](/docs/frameworks/next/overview/)
+* [MDN: 内容安全策略](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+
+## 最佳实践
+
+1. **从严格开始，然后放宽**：从严格的 CSP 开始，仅在需要时添加例外
+2. **使用仅报告模式**：在强制执行之前使用 `Content-Security-Policy-Report-Only` 测试 CSP 更改
+3. **定期审计**：随着应用程序的发展，审查和更新您的 CSP
+4. **记录例外**：记录为什么特定域被列入白名单
+5. **环境特定策略**：考虑为开发和生产设置不同的 CSP 规则

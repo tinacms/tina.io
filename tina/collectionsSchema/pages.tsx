@@ -1,4 +1,5 @@
 import type { Form, Template, TinaCMS } from 'tinacms';
+import { callToActionTemplate } from '@/component/blocks/CallToAction/call-to-action.template';
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
 import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
@@ -82,10 +83,11 @@ const templates = [
   videoEmbedTemplate as Template,
   herov2Template as Template,
   featureCardTemplate as Template,
+  callToActionTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
-    //@ts-ignore - this is necessary as block settings are not being recognised as a Field type (even though it is)
+    //@ts-expect-error - this is necessary as block settings are not being recognised as a Field type (even though it is)
     updatedTemplate.fields = [blockSettings, ...updatedTemplate.fields];
   }
   return updatedTemplate as Template;

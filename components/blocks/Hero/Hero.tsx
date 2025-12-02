@@ -68,7 +68,7 @@ export const HeroFeature = ({ item, spacing, children }) => {
               index === 2 ? 'md:col-span-2 md:justify-center' : ''
             }`}
           >
-            <RenderButton button={button} index={index} />
+            <RenderButton button={button} key={button.id || index} />
           </div>
         ))}
       </div>

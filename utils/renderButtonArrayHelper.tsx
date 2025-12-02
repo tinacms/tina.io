@@ -2,24 +2,19 @@ import { Actions } from 'components/blocks/ActionButton/ActionsButton';
 import { CodeButton } from 'components/blocks/CodeButton/CodeButton';
 import { ModalB } from 'components/blocks/ModalButton/ModalButton';
 
-const RenderButton = ({ button, index, className = '' }) => {
+const RenderButton = ({ button, className = '' }) => {
   if (button.__typename.includes('Actions')) {
-    return <Actions key={index} items={[button]} className={className} />;
+    return <Actions items={[button]} className={className} />;
   } else if (button.__typename.includes('ModalButton')) {
     return (
       <div className="lg:-mt-0.5">
-        <ModalB key={index} items={[button]} className={className} />
+        <ModalB items={[button]} className={className} />
       </div>
     );
   } else if (button.__typename.includes('CodeButton')) {
     return (
       <div>
-        <CodeButton
-          key={index}
-          id={button.id}
-          label={button.label}
-          className={className}
-        >
+        <CodeButton id={button.id} label={button.label} className={className}>
           {button.children}
         </CodeButton>
       </div>

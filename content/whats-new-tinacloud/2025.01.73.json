@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.01.73",
+  "dateReleased": "2025-01-15T22:21:41Z",
+  "changesObject": [
+    {
+      "changesTitle": "🔧 Fixes",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Bug - Improve reliability under load",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

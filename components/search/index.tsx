@@ -1,4 +1,4 @@
-import algoliasearch from 'algoliasearch/lite';
+import { algoliasearch } from 'algoliasearch';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { createRef, useEffect, useState } from 'react';
 import { Dismissible, type Props as DismissibleProps } from 'react-dismissible';
@@ -85,7 +85,6 @@ export default function Search({ indices, collapse, expanded = false }: any) {
   useClickOutside(ref, () => setFocus(false));
 
   return (
-    // @ts-ignore
     <InstantSearch
       searchClient={searchClient}
       indexName={indices[0].name}

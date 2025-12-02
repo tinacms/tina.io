@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2025.06.14",
+  "dateReleased": "2025-06-26T06:33:32Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "✨ Integrity - Provide TinaSchema endpoint",
+          "gitHubName": "ncn-ssw",
+          "gitHubLink": "https://github.com/ncn-ssw"
+        }
+      ]
+    }
+  ]
+}

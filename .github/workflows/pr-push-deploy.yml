@@ -1,0 +1,17 @@
+name: PR Lighthouse Insights
+
+on:
+  deployment_status:
+    types: [created]
+
+jobs:
+  prLighthouseInsights:
+    name: Run PR Lighthouse Insights
+    if: github.event.deployment_status.environment == 'Preview' && github.event.deployment_status.state == 'success'
+    uses: ./.github/workflows/template-lighthouse.yml
+    permissions:
+      pull-requests: write
+    with:
+      url: ${{ github.event.deployment_status.target_url }}
+    secrets:
+      GH_APP_KEY: ${{ secrets.GH_APP_KEY }}

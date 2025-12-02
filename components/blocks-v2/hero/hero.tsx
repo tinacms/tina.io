@@ -22,7 +22,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           </h2>
         )}
         {subtext && (
-          <p className="text-neutral-text-secondary md:max-w-[62ch] font-light leading-relaxed text-lg max-w-md">
+          <p className="text-neutral-text-secondary md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">
             {subtext}
           </p>
         )}
@@ -32,7 +32,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
               <RenderButton
                 key={`button-${button?.label || index}`}
                 button={button}
-                index={index}
                 className="py-3"
               />
             ))}
