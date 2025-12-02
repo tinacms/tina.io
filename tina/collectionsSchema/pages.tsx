@@ -3,6 +3,7 @@ import { callToActionTemplate } from '@/component/blocks/CallToAction/call-to-ac
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
 import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
+import { mapTemplate } from '@/component/blocks-v2/map/map.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -35,7 +36,6 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
-import { mapTemplate } from '@/component/blocks-v2/map/map.template';
 
 const extendedSeoInformation = {
   ...seoInformation,

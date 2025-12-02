@@ -2,6 +2,7 @@
 import dynamic from 'next/dynamic';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
+import { Map } from '@/component/blocks-v2/map/map';
 import type {
   PageBlocks,
   PostConnection,
@@ -36,7 +37,6 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import VideoDisplay from './VideoEmbed/videoEmbed';
-import { Map } from '@/component/blocks-v2/map/map';
 
 const CarouselFeatureBlock = dynamic(
   () => import('./FeatureCarousel/CarouselFeature'),
