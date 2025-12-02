@@ -152,7 +152,9 @@ const OpenStatus = ({ office }: { office: Office }) => {
   const timeZone = OFFICE_TIMEZONES[office.addressLocality];
 
   useEffect(() => {
-    if (!timeZone) return;
+    if (!timeZone) {
+      return;
+    }
 
     const updateStatus = () => {
       const now = dayjs.utc().tz(timeZone);
@@ -177,7 +179,9 @@ const OpenStatus = ({ office }: { office: Office }) => {
     return () => clearInterval(interval);
   }, [timeZone]);
 
-  if (!status) return null;
+  if (!status) {
+    return null;
+  }
 
   return (
     <span
@@ -247,7 +251,7 @@ const AccordionItem = ({
   );
 };
 
-export const Map = ({ data }: { data: PageBlocksMap }) => {
+export const OfficeMap = ({ data }: { data: PageBlocksMap }) => {
   const { heading, content } = data || {};
   const [selectedOffice, setSelectedOffice] = useState<Office | null>(null);
 
@@ -264,7 +268,9 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
   }, []);
 
   const highlightedCountry = useMemo(() => {
-    if (!selectedOffice) return null;
+    if (!selectedOffice) {
+      return null;
+    }
     return OFFICE_COUNTRY_TO_MAP_COUNTRY[selectedOffice.addressCountry] || null;
   }, [selectedOffice]);
 
@@ -326,7 +332,10 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
             viewBox="0 0 895.92 471.76"
             preserveAspectRatio="xMinYMin"
             className="relative w-full"
+            role="img"
+            aria-label="World map showing office locations"
           >
+            <title>World map showing office locations</title>
             <defs>
               <filter
                 x="-0.05"
