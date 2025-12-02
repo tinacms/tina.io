@@ -146,19 +146,19 @@
           "content": "We're adding a public GitHub action for auditing TinaCMS content using AI. Add the GitHub action to your repo, pass in your Tina token, and the action will create suggestions for improving your content and work on them at your discretion.\n",
           "actions": [
             {
+              "label": "Video",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://www.youtube.com/watch?v=Y9STkSMSnKw"
+            },
+            {
               "label": "GitHub Issue 🔗",
               "icon": false,
               "shape": "pill",
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/issues/6156"
-            },
-            {
-              "label": "Video 🎥",
-              "icon": false,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://www.youtube.com/watch?v=Y9STkSMSnKw"
             }
           ]
         }
