@@ -280,7 +280,7 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
       )}
       <div className="flex gap-8 w-full">
         {/* Accordion */}
-        <div className="w-80 flex-shrink-0">
+        <div className="w-80 flex-shrink-0 z-10">
           <ul className="space-y-2">
             {filteredOffices.map((office) => (
               <AccordionItem
