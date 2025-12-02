@@ -3,8 +3,8 @@
 import {
   DocsNavigationProvider,
   useDocsNavigation,
-} from 'components/AppRouterMigrationComponents/Docs/DocsNavigationContext';
-import { LeftHandSideParentContainer } from 'components/AppRouterMigrationComponents/Docs/docsSearch/SearchNavigation';
+} from 'components/Docs/DocsNavigationContext';
+import { LeftHandSideParentContainer } from 'components/Docs/docsSearch/SearchNavigation';
 // biome-ignore lint/style/useImportType: <TODO>
 import React, { createContext, useContext } from 'react';
 

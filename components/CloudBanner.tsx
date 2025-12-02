@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
-import '../../styles/tailwind.css';
+import '../styles/tailwind.css';
 
 const formatStarCount = (count: number) => {
   const rounded = Math.round(count / 100) * 100;

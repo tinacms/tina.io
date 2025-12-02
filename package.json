@@ -96,7 +96,7 @@
     "react-instantsearch-core": "^7.19.0",
     "react-intersection-observer": "^9.15.1",
     "react-markdown": "^8.0.7",
-    "react-responsive-modal": "^6.4.2",
+    "react-responsive-modal": "^7.1.0",
     "react-slick": "^0.30.3",
     "react-tinacms-editor": "^0.53.26",
     "rehype-raw": "^6.1.1",

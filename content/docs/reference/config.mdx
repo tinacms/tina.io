@@ -2,7 +2,7 @@
 id: /docs/reference/config/
 title: Config Reference
 alias: the-config-file
-last_edited: '2025-09-18T23:25:05.323Z'
+last_edited: '2025-12-01T01:42:05.927Z'
 tocIsHidden: false
 next: content/docs/reference/schema.mdx
 previous: content/docs/reference/overview.mdx
@@ -109,6 +109,13 @@ Note that it **must be** the default export.
       description:
         "Identify branch-specific URL patterns, such as for preview deployments, and link to them via editor.\n\n![](/img/docs/share-btn_xvmxii.png)\n",
       required: false
+    },
+    {
+      description:
+        'A regular expression pattern that folder names must match when creating new folders. Only applies to newly created folders, not existing ones.\n\nEg: "^\\[a-z0-9-]+$" for lowercase letters, numbers and hyphens\n',
+      groupName: "ui",
+      name: "regexValidation.folderNameRegex",
+      type: "string"
     },
     {
       groupName: "client",
