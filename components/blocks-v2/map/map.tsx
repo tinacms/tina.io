@@ -6,12 +6,16 @@ import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { useEffect, useMemo, useState } from 'react';
 import { BiChevronRightCircle } from 'react-icons/bi';
+import {
+  FaArrowRight,
+  FaArrowRightLong,
+  FaChevronRight,
+} from 'react-icons/fa6';
 import type { PageBlocksMap } from 'tina/__generated__/types';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import { allCountries } from './worldmapData';
-import { FaArrowRight, FaArrowRightLong, FaChevronRight } from 'react-icons/fa6';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -231,9 +235,7 @@ const AccordionItem = ({
         onClick={handleSelectOffice}
       >
         <div className="group flex cursor-pointer pl-2 justify-between w-full">
-          <div className="uppercase text-black">
-            {office.addressLocality}
-          </div>
+          <div className="uppercase text-black">{office.addressLocality}</div>
           <div className="flex items-center justify-center text-black">
             <FaChevronRight
               className={`transition-transform duration-300 ${currentlySelected ? 'rotate-90' : ''}`}

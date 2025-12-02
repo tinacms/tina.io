@@ -82,7 +82,7 @@ export function FeatureBlock({ data }) {
 
 export const RenderMedia = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  console.log('Redner Media', data)
+  console.log('Redner Media', data);
   if (
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo' ||
     data.media[0].__typename === 'PageBlocksHeroMediaVideo'

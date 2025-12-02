@@ -46,7 +46,7 @@ export const herov2Template: Template = {
       options: ['left', 'center', 'right'],
       ui: {
         component: 'select',
-      }
+      },
     },
     {
       name: 'image',

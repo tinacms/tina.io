@@ -13,7 +13,8 @@ const FeatureWrapper = ({ url, id, children }) => {
       : url;
   const isInternalLink = formattedUrl?.startsWith('/');
 
-  const className = "h-full w-full group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-lg bg-linear-to-br from-white via-white to-white/50 shadow-lg";
+  const className =
+    'h-full w-full group block py-6 px-8 md:py-9 md:px-11 lg:py-12 lg:px-14 rounded-lg bg-linear-to-br from-white via-white to-white/50 shadow-lg';
 
   if (!formattedUrl) {
     return (
