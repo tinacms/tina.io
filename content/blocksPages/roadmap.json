@@ -140,6 +140,20 @@
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
+        },
+        {
+          "headline": "Dr. Docustein",
+          "content": "asdad\n",
+          "actions": [
+            {
+              "label": "GitHub Epic 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/issues/6156"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
