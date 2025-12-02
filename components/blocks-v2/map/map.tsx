@@ -5,12 +5,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { useEffect, useMemo, useState } from 'react';
-import { BiChevronRightCircle } from 'react-icons/bi';
-import {
-  FaArrowRight,
-  FaArrowRightLong,
-  FaChevronRight,
-} from 'react-icons/fa6';
+import { FaChevronRight } from 'react-icons/fa6';
 import type { PageBlocksMap } from 'tina/__generated__/types';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
