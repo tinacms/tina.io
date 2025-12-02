@@ -5,13 +5,13 @@ import MainDocsBodyHeader from 'components/Docs/docsMain/docsMainBody';
 import TocOverflowButton from 'components/Docs/docsMain/tocOverflowButton';
 import ToC from 'components/Docs/toc';
 import { useTocListener } from 'components/Docs/toc_helper';
-import { formatDate } from '@/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { formatDate } from '@/utils/formatDate';
 import { useNavigationData } from '../toc-layout-client';
 
 export default function DocsClient({ props }) {

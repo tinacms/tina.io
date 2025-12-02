@@ -1,9 +1,9 @@
-import { EmailForm } from '@/component/modals/EmailForm';
 import { DemoForm } from 'components/modals/BookDemo';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { Modal } from 'react-responsive-modal';
+import { EmailForm } from '@/component/modals/EmailForm';
 import 'react-responsive-modal/styles.css';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
