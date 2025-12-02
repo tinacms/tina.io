@@ -10,8 +10,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
 
-  console.log('horizontal Alignment', buttonHorizontalAlignment, alignment);
-
   return (
     <Container
       size="medium"
