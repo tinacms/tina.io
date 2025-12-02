@@ -185,8 +185,8 @@ const OpenStatus = ({ office }: { office: Office }) => {
   return (
     <span
       className={clsx(
-        { "bg-green-800": status === "Open", "bg-[#ea6d43]": status === "Closed" },
-        "text-xxxs ml-2 p-1 font-bold uppercase text-white"
+        { "bg-green-500/20 text-green-800 border-green-800": status === "Open", "bg-[#ea6d43]/20 text-[#ea6d43] border-[#ea6d43]": status === "Closed" },
+        "text-xs ml-2 p-1 uppercase rounded-md border"
       )}
     >
       {status}
@@ -218,31 +218,28 @@ const AccordionItem = ({
   return (
     <li>
       <div
-        className={`group flex cursor-pointer items-center justify-between p-2 transition-all duration-300 ${
-          currentlySelected
-            ? "bg-[#ea6d43]"
-            : "bg-gray-400 hover:bg-gray-600"
-        }`}
+        className={"group flex flex-col cursor-pointer p-2 transition-all duration-300 rounded-md shadow-md border border-white/30 bg-gradient-to-br from-white/10 to-white/40 hover:from-gray-300/10 hover:to-gray-300/40"}
         onClick={handleSelectOffice}
       >
-        <div className="group flex cursor-pointer pl-2">
-          <div className="font-sans uppercase text-white">
+        <div className="group flex cursor-pointer pl-2 justify-between w-full">
+          <div className="uppercase text-black font-mono">
             {office.addressLocality}
           </div>
-        </div>
-        <div className="flex items-center justify-center text-white">
+          <div className="flex items-center justify-center text-black">
           <BiChevronRightCircle
             className={`transition-transform duration-300 ${currentlySelected ? "rotate-90" : ""}`}
           />
         </div>
-      </div>
-      <div
-        className={`mb-2 overflow-hidden bg-white transition-all duration-300 ${
-          currentlySelected ? "max-h-52" : "max-h-0"
+        </div>
+        <div
+        className={`overflow-hidden transition-all duration-300 ${
+          currentlySelected ? "max-h-52 mb-2" : "max-h-0"
         }`}
       >
         {children}
       </div>
+      </div>
+      
     </li>
   );
 };
@@ -251,19 +248,16 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
   const { heading, content } = data || {};
   const [selectedOffice, setSelectedOffice] = useState<Office | null>(null);
 
-  // Filter offices to only show those in selected countries
   const filteredOffices = useMemo(() => {
     return OFFICES.filter(office => 
       SELECTED_COUNTRIES.includes(office.addressCountry as typeof SELECTED_COUNTRIES[number])
     );
   }, []);
 
-  // Create a Set of selected countries for fast lookup
   const selectedCountriesSet = useMemo(() => {
     return new Set<Country>(SELECTED_COUNTRIES as readonly Country[]);
   }, []);
 
-  // Get the country that should be highlighted based on selected office
   const highlightedCountry = useMemo(() => {
     if (!selectedOffice) return null;
     return OFFICE_COUNTRY_TO_MAP_COUNTRY[selectedOffice.addressCountry] || null;
@@ -272,7 +266,7 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
   return (
     <div className="flex flex-col gap-8 items-center justify-center p-10 max-w-7xl mx-auto relative">
       {heading && <h2 className={` font-ibm-plex ${H1_HEADINGS_SIZE}`}>{heading}</h2>}
-      {content && <div className="max-w-prose text-neutral-text-secondary">
+      {content && <div className="text-neutral-text-secondary">
         <TinaMarkdown content={content} components={docAndBlogComponents} />
       </div>}
       <div className="flex gap-8 w-full">
@@ -286,7 +280,7 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
                 selectedOffice={selectedOffice}
                 setSelectedOffice={setSelectedOffice}
               >
-                <div className="p-4 text-sm">
+                <div className="text-sm pl-2 pt-2">
                   <div className="font-semibold mb-2">{office.name}</div>
                   <div className="space-y-1 text-gray-700">
                     <div>{office.streetAddress}</div>
