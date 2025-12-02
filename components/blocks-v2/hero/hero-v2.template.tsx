@@ -40,6 +40,15 @@ export const herov2Template: Template = {
       ],
     },
     {
+      name: 'buttonHorizontalAlignment',
+      type: 'string',
+      label: 'Button Horizontal Alignment',
+      options: ['left', 'center', 'right'],
+      ui: {
+        component: 'select',
+      }
+    },
+    {
       name: 'image',
       type: 'image',
       label: 'Image',

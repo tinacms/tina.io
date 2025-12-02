@@ -11,6 +11,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import { allCountries } from './worldmapData';
+import { FaArrowRight, FaArrowRightLong, FaChevronRight } from 'react-icons/fa6';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -230,11 +231,11 @@ const AccordionItem = ({
         onClick={handleSelectOffice}
       >
         <div className="group flex cursor-pointer pl-2 justify-between w-full">
-          <div className="uppercase text-black font-mono">
+          <div className="uppercase text-black">
             {office.addressLocality}
           </div>
           <div className="flex items-center justify-center text-black">
-            <BiChevronRightCircle
+            <FaChevronRight
               className={`transition-transform duration-300 ${currentlySelected ? 'rotate-90' : ''}`}
             />
           </div>
@@ -382,7 +383,7 @@ export const OfficeMap = ({ data }: { data: PageBlocksMap }) => {
                       ? 'fill-[#ea6d43]'
                       : isBaseSelected
                         ? 'fill-[#ea6d43] opacity-50'
-                        : 'fill-gray-400'
+                        : 'fill-gray-300'
                   }
                 />
               );

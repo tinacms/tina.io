@@ -11,6 +11,8 @@ import PlayIcon from '@/public/svg/play-button.svg';
 export function FeatureBlock({ data }) {
   const isReversed = data.isReversed;
 
+  console.log('data', data);
+
   return (
     <div
       className={`my-6 flex flex-col-reverse w-full px-10 lg:gap-8 ${
@@ -80,6 +82,7 @@ export function FeatureBlock({ data }) {
 
 export const RenderMedia = ({ data }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  console.log('Redner Media', data)
   if (
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaVideo' ||
     data.media[0].__typename === 'PageBlocksHeroMediaVideo'
@@ -260,12 +263,17 @@ export const RenderMedia = ({ data }) => {
   ) {
     return (
       <div className="relative w-full pb-4">
-        {/** biome-ignore lint/performance/noImgElement: <TODO> */}
-        <img
+        <video
           src={data.media[0].src}
-          alt={data.headline}
           className="w-full h-auto rounded-lg"
-        />
+          autoPlay={true}
+          loop
+          muted
+          playsInline
+        >
+          <source src={data.media[0].src} type="video/webm" />
+          <source src={data.media[0].src} type="video/mp4" />
+        </video>
       </div>
     );
   }
