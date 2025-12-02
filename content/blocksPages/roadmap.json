@@ -142,7 +142,7 @@
           ]
         },
         {
-          "headline": "Dr. Docustein",
+          "headline": "□ Dr. Docustein",
           "content": "We're adding a public GitHub action for auditing TinaCMS content using AI. Add the GitHub action to your repo, pass in your Tina token, and the action will create suggestions for improving your content and work on them at your disgression\n",
           "actions": [
             {
