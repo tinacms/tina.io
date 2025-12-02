@@ -143,7 +143,7 @@
         },
         {
           "headline": "□ 🧟‍♂️ Dr. Docustein",
-          "content": "We're adding a public GitHub action for auditing TinaCMS content using AI. Add the GitHub action to your repo, pass in your Tina token, and the action will create suggestions for improving your content and work on them at your disgression.\n",
+          "content": "We're adding a public GitHub action for auditing TinaCMS content using AI. Add the GitHub action to your repo, pass in your Tina token, and the action will create suggestions for improving your content and work on them at your discretion.\n\n[See video](https://www.youtube.com/watch?v=Y9STkSMSnKw)\n",
           "actions": [
             {
               "label": "GitHub Issue 🔗",
@@ -152,6 +152,13 @@
               "variant": "default",
               "size": "medium",
               "url": "https://github.com/tinacms/tinacms/issues/6156"
+            },
+            {
+              "label": "Video 🎥",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://www.youtube.com/watch?v=Y9STkSMSnKw"
             }
           ]
         }
