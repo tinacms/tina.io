@@ -64,9 +64,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ref={sliderRef}
         className="flex whitespace-nowrap subpixel-antialiased backface-hidden"
       >
-        {items.map((item) => (
+        {items.map((item, index) => (
           <div
-            key={item.id}
+            key={`item-${index}`}
             // Ensure each item is exactly 1/5 or 1/3 of the container for even horiz spacing
             className={`flex-none box-border px-2 ${widthClass}`}
           >
@@ -77,7 +77,7 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         {/* Duplicate items for the seamless loop */}
         {items.map((item, index) => (
           <div
-            key={`clone-${item.id ?? index}`}
+            key={`clone-${index}`}
             className={`flex-none box-border px-2 ${widthClass}`}
           >
             {item}

@@ -26,7 +26,7 @@ export const Actions = ({
           .filter(Boolean)
           .join(' ')}
       >
-        {items?.map((item) => {
+        {items?.map((item, index) => {
           const { variant, label, icon, url, shape } = item;
           {
             const externalUrlPattern = /^((http|https|ftp):\/\/)/;
@@ -34,7 +34,7 @@ export const Actions = ({
             const link = url || '#';
             return (
               <ActionButton
-                key={label}
+                key={`action-button-${index}`}
                 id={sanitizeLabel(label)}
                 size={item.size ? item.size : 'medium'}
                 link={link}

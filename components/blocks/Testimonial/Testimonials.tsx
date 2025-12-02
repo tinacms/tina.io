@@ -91,8 +91,8 @@ export default function TestimonialsBlock({ data }) {
 
       <div className="mask-horizontal-fade relative flex w-full flex-col items-center justify-center overflow-hidden ">
         <Marquee pauseOnHover className="[--duration:80s]">
-          {testimonialItems.map((review) => (
-            <div key={review.id} className="mr-4">
+          {testimonialItems.map((review, index) => (
+            <div key={`review-${index}`} className="mr-4">
               <TestimonialCard key={review.username} {...review} />
             </div>
           ))}
