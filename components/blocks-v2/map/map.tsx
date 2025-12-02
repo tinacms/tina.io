@@ -278,7 +278,7 @@ export const Map = ({ data }: { data: PageBlocksMap }) => {
           <TinaMarkdown content={content} components={docAndBlogComponents} />
         </div>
       )}
-      <div className="flex gap-8 w-full">
+      <div className="flex flex-col md:flex-row gap-8 w-full">
         {/* Accordion */}
         <div className="w-80 flex-shrink-0 z-10">
           <ul className="space-y-2">
