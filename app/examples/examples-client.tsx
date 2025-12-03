@@ -15,9 +15,7 @@ export function ExamplesPageClient({ tinaProps }: { tinaProps: { data } }) {
       >
         Examples
       </h1>
-      <section
-        className="relative px-8 py-12 lg:py-16 columns-xs gap-6"
-      >
+      <section className="relative px-8 py-12 lg:py-16 columns-xs gap-6">
         {examples.map((example) => (
           <Example key={example.label} example={example} />
         ))}
