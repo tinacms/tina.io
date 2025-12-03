@@ -67,7 +67,7 @@ const FreeTier = ({ data }) => (
           components={pricingComponents}
         />
         <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 justify-start">
-          {data.freeTier?.buttons?.map((button, index) => (
+          {data.freeTier?.buttons?.map((button, _index) => (
             <RenderButton key={button.id} button={button} />
           ))}
         </div>
@@ -123,7 +123,7 @@ const PaidTier = ({ data, isMonthly }) => {
           {data.annualDescription}{' '}
         </div>
         <div className="pt-3 flex">
-          {data.buttons?.map((button, index) => (
+          {data.buttons?.map((button, _index) => (
             <RenderButton key={button.id} button={button} />
           ))}
         </div>
