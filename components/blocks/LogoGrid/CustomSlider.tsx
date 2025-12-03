@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
+  // Handle both old format (React elements) and new format (objects with id and element)
+  const normalizedItems = items.map((item, idx) => {
+    if (item && typeof item === 'object' && 'element' in item && 'id' in item) {
+      return { id: item.id, element: item.element };
+    }
+    // Fallback for old format - use index as id
+    return { id: `item-${idx}`, element: item };
+  });
   const sliderRef = useRef(null);
 
   const [isPaused, setIsPaused] = useState(false);
@@ -64,23 +72,23 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ref={sliderRef}
         className="flex whitespace-nowrap subpixel-antialiased backface-hidden"
       >
-        {items.map((item, index) => (
+        {normalizedItems.map((item) => (
           <div
-            key={`item-${index}`}
+            key={`original-${item.id}`}
             // Ensure each item is exactly 1/5 or 1/3 of the container for even horiz spacing
             className={`flex-none box-border px-2 ${widthClass}`}
           >
-            {item}
+            {item.element}
           </div>
         ))}
 
         {/* Duplicate items for the seamless loop */}
-        {items.map((item, index) => (
+        {normalizedItems.map((item) => (
           <div
-            key={`clone-${index}`}
+            key={`clone-${item.id}`}
             className={`flex-none box-border px-2 ${widthClass}`}
           >
-            {item}
+            {item.element}
           </div>
         ))}
       </div>

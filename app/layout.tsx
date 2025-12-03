@@ -1,10 +1,10 @@
 import { GoogleTagManager } from '@next/third-parties/google';
+import dynamic from 'next/dynamic';
+import Script from 'next/script';
 import AdminLink from '@/component/AdminLink';
 import { CloudBanner } from '@/component/CloudBanner';
 import ConsentBanner from '@/component/ConsentBanner';
 import { SiteLayout } from '@/component/SiteLayout';
-import dynamic from 'next/dynamic';
-import Script from 'next/script';
 import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
 import data from '../content/siteConfig.json';
 import StyledComponentsRegistry from '../lib/registry';
@@ -12,12 +12,9 @@ import '../styles/tailwind.css';
 import './global.css';
 import { TailwindIndicator } from '@/component/util/TailwindIndicator';
 
-const TinaChatBot = dynamic(
-  () => import('../components/TinaChatBot'),
-  {
-    ssr: false,
-  },
-);
+const TinaChatBot = dynamic(() => import('../components/TinaChatBot'), {
+  ssr: false,
+});
 
 export const metadata = {
   title: {

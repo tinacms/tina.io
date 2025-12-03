@@ -1,9 +1,9 @@
-import { EmailForm } from '@/component/modals/EmailForm';
 import { DemoForm } from 'components/modals/BookDemo';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { Modal } from 'react-responsive-modal';
+import { EmailForm } from '@/component/modals/EmailForm';
 import 'react-responsive-modal/styles.css';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
@@ -46,7 +46,7 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
 
           return (
             <ModalButton
-              key={`modal-button-${index}`}
+              key={sanitizeLabel(label) || modal || `modal-button-${index}`}
               color={color}
               shape={shape}
               id={sanitizeLabel(label)}

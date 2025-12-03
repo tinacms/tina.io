@@ -34,7 +34,7 @@ export const Actions = ({
             const link = url || '#';
             return (
               <ActionButton
-                key={`action-button-${index}`}
+                key={sanitizeLabel(label) || `action-button-${index}`}
                 id={sanitizeLabel(label)}
                 size={item.size ? item.size : 'medium'}
                 link={link}
