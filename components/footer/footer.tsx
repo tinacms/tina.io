@@ -49,8 +49,15 @@ const LinkGroup = React.memo(
           {item.label}
         </summary>
         <div className="p-4">
-          {item.items.map((subItem) => (
-            <div key={subItem.id}>
+          {item.items.map((subItem, index) => (
+            <div
+              key={
+                subItem.id ||
+                subItem.href ||
+                subItem.label ||
+                `sub-item-${index}`
+              }
+            >
               <DynamicLink href={subItem.href || ''} passHref>
                 <div className="hover:-translate-y-px hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] active:translate-y-px hover:-translate-x-px active:translate-x-px hover:opacity-100 cursor-pointer">
                   {subItem.label}

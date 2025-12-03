@@ -99,7 +99,6 @@
     "react-markdown": "^8.0.7",
     "react-responsive-modal": "^7.1.0",
     "react-slick": "^0.30.3",
-    "react-tinacms-editor": "^0.53.26",
     "rehype-raw": "^6.1.1",
     "remark-directive": "^2.0.1",
     "remark-directive-rehype": "^0.4.2",
@@ -113,7 +112,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "^2.9.5",
+    "tinacms": "^3.0.0",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
@@ -122,7 +121,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
-    "@tinacms/cli": "^1.12.4",
+    "@tinacms/cli": "^2.0.0",
     "@types/cookie": "^0.6.0",
     "@types/jest": "^25.2.3",
     "@types/negotiator": "^0.6.4",

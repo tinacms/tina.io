@@ -1,10 +1,10 @@
 'use client';
 
+import { MarkdownContent } from 'components/layout';
+import { DynamicLink } from 'components/ui';
 import NewBlogPagination from '@/component/Blogs/BlogPagination';
 import { extractTextFromBody } from '@/utils/extractTextFromBody';
 import { formatDate } from '@/utils/formatDate';
-import { MarkdownContent } from 'components/layout';
-import { DynamicLink } from 'components/ui';
 
 interface Post {
   id: string;
