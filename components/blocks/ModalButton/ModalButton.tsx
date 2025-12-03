@@ -1,4 +1,4 @@
-import { EmailForm } from 'components/forms';
+import { EmailForm } from '@/component/modals/EmailForm';
 import { DemoForm } from 'components/modals/BookDemo';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React, { useState } from 'react';

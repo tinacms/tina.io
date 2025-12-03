@@ -1,11 +1,11 @@
-import type { DocsNavProps } from 'components/DocumentationNavigation';
+import type { DocsNavProps } from '../DocumentationNavigation/DocumentationNavigation';
 import { useRouter } from 'next/router';
 import React from 'react';
 import AnimateHeight from 'react-animate-height';
 import { BiChevronRight } from 'react-icons/bi';
 import styled, { css } from 'styled-components';
 import { matchActualTarget } from 'utils';
-import { DynamicLink } from '../../../../components/ui';
+import { DynamicLink } from '@/component/ui';
 
 interface NavTitleProps {
   level: number;

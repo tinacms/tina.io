@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import styled from 'styled-components';
-import { HitsWrapper } from '../../../../components/search/styles';
-import { Overlay } from '../../../ui/Overlay';
+import { HitsWrapper } from '@/component/search/styles';
+import { Overlay } from '@/component/ui';
 
 export interface DocsNavProps {
   navItems: any;
