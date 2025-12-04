@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-11-24T02:11:43.831Z'
+last_edited: '2025-12-04T23:20:49.872Z'
 next: ''
 previous: ''
 ---
@@ -97,7 +97,7 @@ Next we'll want to create a TinaCloud project for our "website repo"
 
 1. Initialize Git in your content repo and push it to GitHub.
 2. [Connect the website repo to TinaCloud](https://tina.io/docs/tinacloud/dashboard/projects/)
-3. Once that's done, [create a token](https://tina.io/docs/tinacloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
+3. Once that's done, [create a content token](https://tina.io/docs/tinacloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
 
 Switch back to your "website repo" and set up an `.env` file to use when connecting to TinaCloud:
 
@@ -138,7 +138,7 @@ Then add the following contents into tina/meta.json
 
 ## Path Configuration Considerations
 
-When defining collection paths inside your tina/config.(ts/js), avoid setting \`path: '' . As Tina expects a folder-relative path. Using an empty string `''` can result in errors when creating new documents because Tina prepends a `/` when saving, which can lead to invalid GitHub paths and creation errors.
+When defining collection paths inside your tina/config.(ts/js), avoid setting `path: ''` . As Tina expects a folder-relative path. Using an empty string `''` can result in errors when creating new documents because Tina prepends a `/` when saving, which can lead to invalid GitHub paths and creation errors.
 
 ## Static Site Generator Compatibility
 
