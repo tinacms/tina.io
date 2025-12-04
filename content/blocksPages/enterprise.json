@@ -5,7 +5,7 @@
   },
   "blocks": [
     {
-      "title": "Everything You Love About {Tina} - Built for {Enterprise}",
+      "title": "Enterprise Ready with {TinaCMS}",
       "subtext": "Advanced security, global performance, compliance, and dedicated support. Tina Enterprise gives large teams the control and reliability needed to scale content with confidence",
       "buttons": [
         {
@@ -260,14 +260,14 @@
       "_template": "featureGrid"
     },
     {
-      "title": "Enterprise Without the Complexity",
+      "title": "Let's Get Started",
       "description": "Speak with our team to see how TinaCMS Enterprise can support your organisation’s content workflow",
       "buttons": [
         {
           "label": "Book a Demo",
           "icon": true,
           "shape": "square",
-          "color": "orangeWithBorder",
+          "color": "orange",
           "size": "medium",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"

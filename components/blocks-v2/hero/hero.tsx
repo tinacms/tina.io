@@ -30,7 +30,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         )}
         {buttons && buttons.length > 0 && (
           <div
-            className={`flex ${alignment === 'left' ? 'justify-start' : 'justify-center md:justify-start'} w-full flex-row flex-wrap gap-2 max-w-[62ch]`}
+            className={`flex ${alignment === 'left' ? 'justify-center md:justify-start' : 'justify-center'} w-full flex-row flex-wrap gap-2 max-w-[62ch]`}
           >
             {buttons.map((button, index) => (
               <RenderButton
