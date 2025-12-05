@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
 import 'react-responsive-modal/styles.css';
 import { CheckIcon } from '@heroicons/react/24/outline';
-import { usePathname } from 'next/navigation';
 import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
@@ -33,25 +32,15 @@ export const CodeButton = ({
   const [showPopover, setShowPopover] = useState(false);
 
   const buttonId = id || sanitizeLabel(label);
-  const pathName = usePathname();
-  const sessionKey = `${pathName}-${buttonId}-popOverText`;
 
   const clickEvent = () => {
     setCopied(true);
     copyToClipboard(label);
-    sessionStorage.setItem(sessionKey, 'true');
     setShowPopover(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
   };
-
-  useEffect(() => {
-    const hasSession = sessionStorage.getItem(sessionKey);
-    if (hasSession) {
-      setShowPopover(true);
-    }
-  }, [sessionKey]);
 
   return (
     <div className="relative flex flex-col border-2 border-seafoam-150 rounded-md">
