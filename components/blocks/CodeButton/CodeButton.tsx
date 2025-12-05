@@ -86,7 +86,7 @@ export const CodeButton = ({
         )}
       </button>
       {showPopover && popOverText?.children?.length > 0 && (
-        <div className="bg-white text-xs border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2">
+        <div className="bg-white text-xs border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]">
           <TinaMarkdown
             content={popOverText}
             components={CodeButtonMarkdownStyle}
