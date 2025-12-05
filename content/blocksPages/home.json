@@ -30,7 +30,7 @@
         },
         {
           "label": "npx create-tina-app@latest",
-          "popOverText": "Need some help? Check out the [docs](/docs/introduction/using-starter)\n",
+          "helpText": "Need some help? Check out the [docs](/docs/introduction/using-starter)\n",
           "_template": "codeButton"
         }
       ],

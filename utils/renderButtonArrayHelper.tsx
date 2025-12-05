@@ -18,7 +18,7 @@ const RenderButton = ({ button, className = '' }) => {
           id={button.id}
           label={button.label}
           className={className}
-          popOverText={button?.popOverText}
+          helpText={button?.helpText}
         >
           {button.children}
         </CodeButton>
