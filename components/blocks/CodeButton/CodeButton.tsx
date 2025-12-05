@@ -54,10 +54,10 @@ export const CodeButton = ({
   }, [sessionKey]);
 
   return (
-    <div className="relative inline-block">
+    <div className="relative flex flex-col border-2 border-seafoam-150 rounded-md">
       <button
         type="button"
-        className="relative border-2 border-seafoam-150 rounded-md bg-white text-black cursor-pointer hover:text-orange-500 transition-colors"
+        className={`relative ${_copied || showPopover ? 'rounded-t-md' : 'rounded-md'} bg-white text-black cursor-pointer hover:text-orange-500 transition-colors`}
         onClick={clickEvent}
         id={buttonId}
         {...props}
@@ -69,7 +69,9 @@ export const CodeButton = ({
           <span className="label font-mono pr-2 text-sm flex items-center mt-0.5 select-text">
             {label}
           </span>
-          <span className="flex items-center bg-seafoam-50 h-full px-4 py-3 rounded-tr-md rounded-br-md border-l border-seafoam-150 transition-colors duration-200">
+          <span
+            className={`flex items-center bg-seafoam-50 h-full px-4 py-3 rounded-tr-md rounded-br-md border-l border-seafoam-150 transition-colors duration-200`}
+          >
             <BiCopy className="w-5 h-5 opacity-70 group-hover:text-orange-500" />
           </span>
         </div>
@@ -83,10 +85,8 @@ export const CodeButton = ({
           </div>
         )}
       </button>
-
       {showPopover && popOverText?.children?.length > 0 && (
-        <div className="absolute flex flex-row items-center gap-4 top-full left-0 mt-2 z-10 rounded-md bg-white p-4 shadow-md border border-seafoam-150">
-          <div className="absolute gap-4 -top-1.5 left-4 w-3 h-3 bg-white border-l border-t border-seafoam-150 transform rotate-45"></div>
+        <div className="bg-white border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2">
           <TinaMarkdown
             content={popOverText}
             components={CodeButtonMarkdownStyle}
