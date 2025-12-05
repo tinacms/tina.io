@@ -29,14 +29,14 @@ export const CodeButton = ({
   ...props
 }) => {
   const [_copied, setCopied] = useState(false);
-  const [showPopover, setShowPopover] = useState(false);
+  const [showHelpText, setShowHelpText] = useState(false);
 
   const buttonId = id || sanitizeLabel(label);
 
   const clickEvent = () => {
     setCopied(true);
     copyToClipboard(label);
-    setShowPopover(true);
+    setShowHelpText(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
@@ -46,7 +46,7 @@ export const CodeButton = ({
     <div className="relative flex flex-col border-2 border-seafoam-150 rounded-md">
       <button
         type="button"
-        className={`relative ${_copied || showPopover ? 'rounded-t-md' : 'rounded-md'} bg-white text-black cursor-pointer hover:text-orange-500 transition-colors`}
+        className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-md'} bg-white text-black cursor-pointer hover:text-orange-500 transition-colors`}
         onClick={clickEvent}
         id={buttonId}
         {...props}
@@ -74,14 +74,14 @@ export const CodeButton = ({
           </div>
         )}
       </button>
-      {showPopover && helpText?.children?.length > 0 && (
+      {showHelpText && helpText?.children?.length > 0 && (
         <div className="bg-white text-xs border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]">
           <TinaMarkdown
             content={helpText}
             components={CodeButtonMarkdownStyle}
           />
           <button
-            onClick={() => setShowPopover(false)}
+            onClick={() => setShowHelpText(false)}
             type="button"
             className="hover:text-orange-500 hover:cursor-pointer"
           >
