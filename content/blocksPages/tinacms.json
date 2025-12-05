@@ -28,7 +28,6 @@
         },
         {
           "label": "npx create-tina-app@latest",
-          "popOverText": "",
           "_template": "codeButton"
         }
       ],
