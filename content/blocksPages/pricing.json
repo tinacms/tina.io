@@ -170,7 +170,7 @@
         },
         {
           "name": "Enterprise",
-          "description": "For custom needs\n",
+          "description": "For custom needs. See [Enterprise details](https://tina.io/enterprise).\n",
           "price": "Custom",
           "annualPrice": "Custom",
           "interval": "",
