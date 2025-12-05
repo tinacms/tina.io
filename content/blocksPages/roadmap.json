@@ -140,6 +140,20 @@
               "url": "https://github.com/tinacms/tinacms/discussions/4476"
             }
           ]
+        },
+        {
+          "headline": "□ Content Changes with GitHub Actions",
+          "content": "We're adding a public GitHub Action for querying and editing your content. One of the use cases for this would be using GitHub actions to periodically use AI to find content in your project, e.g. documentation.\n",
+          "actions": [
+            {
+              "label": "GitHub Issue 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/issues/6156"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
