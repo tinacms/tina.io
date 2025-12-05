@@ -30,9 +30,11 @@
         },
         {
           "label": "npx create-tina-app@latest",
+          "popOverText": "Need some help? Check out the [docs](/docs/introduction/using-starter)\n",
           "_template": "codeButton"
         }
       ],
+      "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/lazy-llama2.webp",
       "_template": "heroV2"
     },

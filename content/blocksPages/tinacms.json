@@ -28,9 +28,11 @@
         },
         {
           "label": "npx create-tina-app@latest",
+          "popOverText": "",
           "_template": "codeButton"
         }
       ],
+      "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/working--lama.png",
       "_template": "heroV2"
     },
