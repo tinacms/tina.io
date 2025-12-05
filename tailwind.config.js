@@ -229,6 +229,16 @@ module.exports = {
             transform: 'translateY(calc(-100% - var(--gap)))',
           },
         },
+        slideDown: {
+          '0%': {
+            maxHeight: '0',
+            opacity: '0',
+          },
+          '100%': {
+            maxHeight: '500px',
+            opacity: '1',
+          },
+        },
       },
       animation: {
         jelly: 'jelly 0.6s ease',
@@ -237,6 +247,7 @@ module.exports = {
         'pop-in': 'popIn 0.5s ease-out forwards',
         marquee: 'marquee var(--duration) infinite linear',
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+        'slide-down': 'slideDown 500ms ease-out',
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',

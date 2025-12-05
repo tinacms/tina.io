@@ -31,6 +31,7 @@
           "_template": "codeButton"
         }
       ],
+      "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/working--lama.png",
       "_template": "heroV2"
     },

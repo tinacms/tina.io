@@ -14,7 +14,12 @@ const RenderButton = ({ button, className = '' }) => {
   } else if (button.__typename.includes('CodeButton')) {
     return (
       <div>
-        <CodeButton id={button.id} label={button.label} className={className}>
+        <CodeButton
+          id={button.id}
+          label={button.label}
+          className={className}
+          helpText={button?.helpText}
+        >
           {button.children}
         </CodeButton>
       </div>
