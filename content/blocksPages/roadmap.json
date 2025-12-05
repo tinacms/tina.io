@@ -142,16 +142,9 @@
           ]
         },
         {
-          "headline": "□ 🧟‍♂️ Dr. Docustein",
-          "content": "We're adding a public GitHub action for auditing TinaCMS content using AI. Add the GitHub action to your repo, pass in your Tina token, and the action will create suggestions for improving your content and work on them at your discretion.\n",
+          "headline": "□ Content Changes with GitHub Actions",
+          "content": "We're adding a public GitHub Action for querying and editing your content. One of the use cases for this would be using GitHub actions to periodically use AI to find content in your project, e.g. documentation.\n",
           "actions": [
-            {
-              "label": "Video",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://www.youtube.com/watch?v=Y9STkSMSnKw"
-            },
             {
               "label": "GitHub Issue 🔗",
               "icon": false,
