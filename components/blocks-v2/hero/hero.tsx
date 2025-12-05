@@ -6,7 +6,9 @@ import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
-  const { title, subtext, buttons, image } = data.data || {};
+  const { title, subtext, buttons, image, buttonHorizontalAlignment } =
+    data.data || {};
+  const alignment = buttonHorizontalAlignment ?? 'center';
 
   return (
     <Container
@@ -27,7 +29,9 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           </p>
         )}
         {buttons && buttons.length > 0 && (
-          <div className="flex justify-center md:justify-start flex-row flex-wrap gap-2 max-w-[62ch]">
+          <div
+            className={`flex ${alignment === 'left' ? 'justify-center md:justify-start' : 'justify-center'} w-full flex-row flex-wrap gap-2 max-w-[62ch]`}
+          >
             {buttons.map((button, index) => (
               <RenderButton
                 key={`button-${button?.label || index}`}

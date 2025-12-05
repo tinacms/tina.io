@@ -2,6 +2,7 @@
 import dynamic from 'next/dynamic';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
+import { OfficeMap } from '@/component/blocks-v2/map/map';
 import type {
   PageBlocks,
   PostConnection,
@@ -119,6 +120,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <FeatureCard data={block} />;
     case 'PageBlocksCallToAction':
       return <CallToAction data={block} />;
+    case 'PageBlocksMap':
+      return <OfficeMap data={block} />;
     default:
       return null;
   }

@@ -5,8 +5,8 @@
   },
   "blocks": [
     {
-      "title": "Tina for Enterprise",
-      "subtext": "Reduce costs, increase security & performance",
+      "title": "Enterprise Ready with {TinaCMS}",
+      "subtext": "Advanced security, global performance, compliance, and dedicated support. Tina Enterprise gives large teams the control and reliability needed to scale content with confidence",
       "buttons": [
         {
           "label": "Request 1-Pager",
@@ -21,12 +21,13 @@
           "label": "Schedule a Demo",
           "icon": false,
           "shape": "square",
-          "color": "blue",
+          "color": "orangeWithBorder",
           "size": "medium",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }
       ],
+      "buttonHorizontalAlignment": "left",
       "image": "/uploads/tina-enterprise-hero.png",
       "_template": "heroV2"
     },
@@ -128,35 +129,57 @@
       "_template": "logoGrid"
     },
     {
+      "heading": "Your Global Support Network",
+      "content": "With offices in **Australia**, **China** and **France**, we're here to help around the clock. Our dedicated, multilingual team is always ready to assist, ensuring seamless support across different time zones. Reach out to us whenever you need, day or night.\n\nServicing 19 hours of global service coverage every day. Relative to UTC Timezone this covers:\n\n* 22:00-08:00 → Brisbane/ Sydney + Hangzhou\n* 07:00-10:00 → Hangzhou + Strasbourg\n* 10:00-17:00 → Strasbourg only\n",
+      "_template": "map"
+    },
+    {
+      "features": [
+        {
+          "headline": "Editorial Workflow",
+          "text": "Editorial Workflows backed by GitHub are built into TinaCloud. Your content team can make Pull Requests (PRs) without leaving the CMS",
+          "buttons": [
+            {
+              "label": "Learn More",
+              "icon": false,
+              "shape": "square",
+              "variant": "orangeWithBorder",
+              "size": "medium",
+              "url": "/editorial-workflow",
+              "_template": "actions"
+            }
+          ],
+          "alignCenter": false,
+          "media": [
+            {
+              "src": "/video/create-branch.webm",
+              "_template": "v2Video"
+            }
+          ],
+          "imageBackground": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "items": [
         {
-          "headline": "Built-in Version Control",
-          "text": "Tina is built on Git. Easily revert to earlier versions, undo mistakes, work on branches, and deploy with confidence."
-        },
-        {
           "headline": "Reduced Costs",
-          "text": "When switching to TinaCMS, most customers reduce licensing and operating costs by more than 50%. "
+          "text": "Most customers reduce licensing and operating costs by more than 50% when switching to TinaCMS from other enterprise-level CMS platforms."
         },
         {
           "headline": "Self-host",
-          "text": "TinaCMS can be self-hosted behind your firewall for increased security. "
-        },
-        {
-          "headline": "Editorial Workflow",
-          "text": "Editorial workflows backed by Git are built into Tina. Your content team can make Pull Requests (PRs) without leaving the CMS. ",
+          "text": "TinaCMS can be self-hosted behind your firewall for increased security. ",
           "actions": [
             {
               "label": "Learn More",
               "icon": false,
-              "variant": "white",
+              "shape": "square",
+              "variant": "orangeWithBorder",
               "size": "small",
-              "url": "https://tina.io/editorial-workflow/"
+              "url": "/docs/self-hosted/overview"
             }
           ]
-        },
-        {
-          "headline": "Performance and Scalability",
-          "text": "Static architecture delivers fast load times and scalability by pre-rendering pages as static assets and serving them from a CDN. This often  eliminates down-time and results in a 10 x time-to-first-byte."
         },
         {
           "headline": "Enhanced Security",
@@ -172,70 +195,85 @@
       "_template": "quote"
     },
     {
+      "features": [
+        {
+          "headline": "Built-in Version Control",
+          "text": "Your content lives in Git, providing you full version history, safe rollback and branch-based workflows. Every change is tracked automatically, making auditing and compliance significantly easier",
+          "media": [
+            {
+              "src": "/video/key-features/2024-09-13-key-features-github-integration.webm",
+              "_template": "v2Video"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "items": [
         {
-          "headline": "Single Sign On",
-          "text": "Compatible with the most popular IdPs like Okta and support for both SAML and OIDC."
+          "headline": "Performance & Scalability",
+          "text": "With ISR and webhook-triggered regeneration, your site stays dynamic while delivering the speed of fully static assets. Content updates propagate automatically, and users experience consistently fast performance at any scale.",
+          "actions": [
+            {
+              "label": "Learn More",
+              "icon": false,
+              "shape": "square",
+              "variant": "orangeWithBorder",
+              "size": "small",
+              "url": "/docs/tinacloud/webhooks"
+            }
+          ]
         },
         {
-          "headline": "SOC 2 and GDPR",
-          "text": "Actively pursuing SOC 2 certification and GDPR compliance."
+          "headline": "Single Sign On",
+          "text": "Compatible with leading identity providers including Okta, Entra ID (Azure AD), and Google Workspace, with full support for both SAML and OIDC"
+        },
+        {
+          "headline": "Seamless CI/CD Integration",
+          "text": "Connect effortlessly to your modern CI/CD pipeline to automate checks, enforce quality gates, and run custom deployment scripts. Configure dedicated environments, such as pre-production and production, with ease, ensuring consistent, reliable releases every time."
+        },
+        {
+          "headline": "Training & Support",
+          "text": "Get access to the team behind TinaCMS for training, priority support, and custom development.",
+          "actions": [
+            {
+              "label": "Get Support",
+              "icon": false,
+              "shape": "square",
+              "variant": "orangeWithBorder",
+              "size": "small",
+              "url": "/docs/support"
+            }
+          ]
         },
         {
           "headline": "Uptime SLAs",
           "text": "99.9% server uptime with swift communications if something impacts your sending integration."
         },
         {
-          "headline": "Simplified Development & Maintenance",
-          "text": "Web teams become efficient when using modern frameworks and TinaCMS. Updates and deployments become simpler, reducing the risk of bugs and downtime."
-        },
-        {
-          "headline": "CI/CD ",
-          "text": "Integration with a modern CI/CD pipeline to perform all checks and run scripts.   Easily configure separate environments such as pre-production and  production. \n"
-        },
-        {
           "headline": "No More Caching",
-          "text": "Remove the need for complex caching layers. Caching is built in, with statically generated content distributed through CDN networks. \n"
+          "text": "Remove the need for complex caching layers. Caching is built in - with statically generated content distributed through CDN networks."
         }
       ],
       "_template": "featureGrid"
     },
     {
-      "options": {
-        "narrow": true,
-        "color": "white",
-        "align": "center"
-      },
-      "content": "## Reduced Hosting and Operating Costs\n\nMost customers reduce licensing and operating costs by more than 50% when switching to TinaCMS from other enterprise-level CMS platforms.\n",
-      "_template": "content"
-    },
-    {
-      "items": [
-        {
-          "headline": "Reduced Hosting and Operating Costs",
-          "text": "Most customers reduce licensing and operating costs by more than 50% when switching to TinaCMS from other enterprise-level CMS platforms."
-        },
-        {
-          "headline": "Training & Support",
-          "text": "Get access to the team behind TinaCMS for training, priority support, and custom development."
-        }
-      ],
-      "_template": "featureGrid"
-    },
-    {
-      "headline": "Get a Demo",
-      "text": "Discuss your project and get a demo from a TinaCMS team member",
+      "title": "Let's Get Started",
+      "description": "Speak with our team to see how TinaCMS Enterprise can support your organisation’s content workflow",
       "buttons": [
         {
-          "label": "Get a Demo",
-          "icon": false,
-          "color": "blue",
+          "label": "Book a Demo",
+          "icon": true,
+          "shape": "square",
+          "color": "orange",
           "size": "medium",
           "modal": "BookDemo.tsx",
           "_template": "modalButton"
         }
       ],
-      "_template": "hero"
+      "_template": "callToAction"
     }
   ]
 }
