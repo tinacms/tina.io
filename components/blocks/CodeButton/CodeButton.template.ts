@@ -12,6 +12,12 @@ export const codeButtonTemplate = {
   },
   fields: [
     { name: 'label', label: 'Label', type: 'string' },
-    { name: 'popOverText', label: 'Pop Over Text', type: 'rich-text', description: 'Optional:This text will appear when the user clicks on the button' },
+    {
+      name: 'popOverText',
+      label: 'Pop Over Text',
+      type: 'rich-text',
+      description:
+        'Optional:This text will appear when the user clicks on the button',
+    },
   ],
 };
