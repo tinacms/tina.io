@@ -29,10 +29,10 @@
           "_template": "item"
         },
         {
-          "title": "Supported Frameworks",
+          "title": "Getting Started with Tina",
           "items": [
             {
-              "title": "Starter Kits",
+              "title": "Tina Starter - CLI",
               "slug": "content/docs/introduction/using-starter.mdx",
               "_template": "item"
             },
