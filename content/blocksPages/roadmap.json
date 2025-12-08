@@ -90,6 +90,20 @@
               "url": "/tinadocs"
             }
           ]
+        },
+        {
+          "headline": "☑︎ Build system - move from Commonjs to ESM",
+          "content": "We’re modernizing our build system by switching from CommonJS to ESM for better performance and compatibility.\n",
+          "actions": [
+            {
+              "label": "🚀 Shipped in 3.0.0",
+              "icon": true,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "/blog/modernizing-to-esm"
+            }
+          ]
         }
       ],
       "options": {
@@ -128,16 +142,16 @@
           ]
         },
         {
-          "headline": "□ Build system - move from Commonjs to ESM",
-          "status": "",
-          "content": "We’re modernizing our build system by switching from CommonJS to ESM for better performance and compatibility.\n",
+          "headline": "□ Content Changes with GitHub Actions",
+          "content": "We're adding a public GitHub Action for querying and editing your content. One of the use cases for this would be using GitHub actions to periodically use AI to find content in your project, e.g. documentation.\n",
           "actions": [
             {
-              "label": "GitHub Issue  🔗",
+              "label": "GitHub Issue 🔗",
               "icon": false,
+              "shape": "pill",
               "variant": "default",
               "size": "medium",
-              "url": "https://github.com/tinacms/tinacms/issues/5956"
+              "url": "https://github.com/tinacms/tinacms/issues/6156"
             }
           ]
         }

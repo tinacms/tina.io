@@ -1,11 +1,11 @@
 'use client';
 
 import { MarkdownContent, RichTextWrapper } from 'components/layout';
-import { EmailForm } from 'components/modals/AppRouterEmailForm';
 import { ButtonGroup, LinkButton } from 'components/ui';
 import Image from 'next/image';
 import TinaIconSvg from 'public/svg/tina-icon.svg';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
+import { EmailForm } from '@/component/modals/EmailForm';
 
 export default function CommunityPageClient(data) {
   return (

@@ -1,22 +1,33 @@
+'use client';
 import Image from 'next/image';
-// biome-ignore lint/style/useImportType: <TODO>
-import React, { useState } from 'react';
+import type React from 'react';
+import { useRef, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
 import BettyWithLlama from '../../public/img/BettyWithLlama.png';
 import { addToMailchimp } from '../../utils';
-import { Button, Input } from '../ui';
+import { Button, Input, Textarea } from '../ui';
 
 interface EmailFormProps {
   isFooter: boolean;
 }
 
+interface FormData {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  notes?: string;
+}
+
 export const EmailForm = (props: EmailFormProps) => {
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [_isEntering, setIsEntering] = useState(false);
+  const defaultValues = useRef<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    notes: '',
+  });
+  const [formData, setFormData] = useState<FormData>(defaultValues.current);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -25,12 +36,18 @@ export const EmailForm = (props: EmailFormProps) => {
     setIsProcessing(true);
     setMessage({ text: '', type: '' });
     try {
-      const result = await addToMailchimp(email, firstName, lastName);
+      const result = await addToMailchimp(
+        formData.email,
+        formData.firstName,
+        formData.lastName,
+        formData.notes,
+      );
       if (result.result === 'success') {
         setMessage({
           text: "You've been added to the llama list.",
           type: 'success',
         });
+        setFormData(defaultValues.current);
       } else if (result.message.includes('400')) {
         setMessage({ text: "You're already in our herd!", type: 'warning' });
       } else {
@@ -45,16 +62,20 @@ export const EmailForm = (props: EmailFormProps) => {
         text: 'There was an error. Please try again.',
         type: 'error',
       });
+    } finally {
+      setIsProcessing(false);
     }
-    setIsProcessing(false);
   };
 
-  const handleInputChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsEntering(true);
-      setter(event.currentTarget.value);
-    };
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 gap-1 bg-white max-w-7xl mx-auto">
@@ -62,18 +83,17 @@ export const EmailForm = (props: EmailFormProps) => {
         <Image
           src={BettyWithLlama}
           alt="Betty with a llama"
-          layout="fill"
-          objectFit="cover"
-          className="w-full h-full"
+          fill
+          className="w-full h-full object-cover"
         />
       </div>
       <div
-        className={`${message.text ? 'lg:pt-7 lg:pb-3' : 'lg:pt-12 lg:pb-7'}`}
+        className={`${message.text ? 'lg:pt-7 lg:pb-2' : 'lg:pt-12 lg:pb-4'}`}
       >
         <form
           id="newsletter-signup"
           onSubmit={handleSubmit}
-          className={`flex flex-col justify-center pt-8 pb-9 p-10 md:p-12 lg:p-20 ${
+          className={`flex flex-col justify-center pt-8 pb-6 p-10 md:p-12 lg:px-20 lg:pt-16 lg:pb-10 ${
             props.isFooter ? 'w-auto' : ''
           }`}
         >
@@ -81,9 +101,9 @@ export const EmailForm = (props: EmailFormProps) => {
             Join the Herd! 🦙
           </h1>
           <p className="text-left w-full mt-2 mb-4">
-            Join our coding community for the latest tips and news. Learn more
-            about the community and get llama-zing content delivered to your
-            inbox!
+            Become part of our coding community and stay updated with the latest
+            tips and news. Learn more about the community and get llama-zing
+            content delivered to your inbox!
           </p>
           {message.text && (
             <p
@@ -106,8 +126,8 @@ export const EmailForm = (props: EmailFormProps) => {
               placeholder="First name"
               name="firstName"
               type="text"
-              onChange={handleInputChange(setFirstName)}
-              onFocus={handleInputChange(setFirstName)}
+              value={formData.firstName}
+              onChange={handleInputChange}
               disabled={isProcessing}
               className="w-full"
             />
@@ -115,8 +135,8 @@ export const EmailForm = (props: EmailFormProps) => {
               placeholder="Last name"
               name="lastName"
               type="text"
-              onChange={handleInputChange(setLastName)}
-              onFocus={handleInputChange(setLastName)}
+              value={formData.lastName}
+              onChange={handleInputChange}
               disabled={isProcessing}
               className="w-full"
             />
@@ -126,18 +146,29 @@ export const EmailForm = (props: EmailFormProps) => {
               placeholder="Email"
               name="email"
               type="email"
-              onChange={handleInputChange(setEmail)}
-              onFocus={handleInputChange(setEmail)}
+              value={formData.email}
+              onChange={handleInputChange}
               disabled={isProcessing}
               className="w-full"
             />
           </div>
-          <div className="w-full flex justify-end">
+          <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
+            <Textarea
+              placeholder="Notes"
+              name="notes"
+              rows={2}
+              value={formData.notes}
+              onChange={handleInputChange}
+              disabled={isProcessing}
+              className="w-full"
+            />
+          </div>
+          <div className="w-full flex justify-end mt-6">
             <Button
               type="submit"
               color="orange"
               disabled={isProcessing}
-              className="mt-4"
+              className="px-6 py-2.5"
             >
               {isProcessing ? 'Processing...' : 'Subscribe'}
             </Button>

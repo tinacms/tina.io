@@ -1,8 +1,7 @@
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
-import data from '../../content/docs-navigation.json';
-import { LinkButton } from '../ui';
-import { DynamicLink } from '../ui/DynamicLink';
+import { DynamicLink, LinkButton } from '@/component/ui';
+import data from '../../../content/docs-navigation.json';
 
 export const DocsHeaderNav = () => {
   return (

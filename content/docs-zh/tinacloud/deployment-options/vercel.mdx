@@ -1,33 +1,229 @@
 ---
 id: /docs/tinacloud/deployment-options/vercel
-title: 部署到Vercel
-last_edited: '2025-08-08T00:00:52.485Z'
+title: 部署到 Vercel
+last_edited: '2025-11-26T03:33:15.597Z'
 next: content/docs-zh/tinacloud/deployment-options/netlify.mdx
 previous: content/docs-zh/tinacloud/dashboard/organizations.mdx
 ---
 
 ## 创建一个新项目
 
-要在您的团队中创建一个新项目，导航到“添加新项目”按钮，系统会提示您导入您的GitHub仓库。
+要在您的团队中创建一个新项目，导航到“添加新项目”按钮，系统会提示您导入您的 GitHub 仓库。
 
 选择后，您需要配置构建设置。
 
 ## 构建配置
 
-首次部署新项目时，您将在部署前看到构建配置页面，但您可以在 **设置** > **常规** > **构建和开发设置** 中更新您的构建配置。
+首次部署新项目时，您将在部署前看到构建配置页面，但您可以在 **设置** | **常规** | **构建和开发设置** 中更新您的构建配置。
 
 ![Vercel 构建设置](/img/docs/tina-cloud-deployment-options/vercel-build-settings_vubza8.png "Vercel 构建设置")
 
-> 如果您的 package.json 中有一个类似 `tinacms build && <your-site-build-cmd>` 的“build”脚本，这可能不需要更改。如果您的 Vercel 配置没有运行自定义构建脚本（例如 `next build` 而不是 `npm run build`），您需要将其更改为 `tinacms build && next build`
+> 如果您的 package.json 中有一个类似 `tinacms build && <your-site-build-cmd>` 的 "build" 脚本，这可能不需要更改。如果您的 Vercel 配置没有运行自定义构建脚本（例如 `next build` 而不是 `npm run build`），您需要将其更改为 `tinacms build && next build`
 
 ## 环境变量
 
-无论您在本地 `.env` 文件中定义了什么环境变量，都需要复制到您的 Vercel 项目中。您可以随时通过进入 **设置 > 环境变量** 来更新这些变量。
+您在本地 `.env` 文件中定义的任何环境变量都需要复制到您的 Vercel 项目中。您可以随时通过转到 **设置 | 环境变量** 来更新这些变量。
 
-必需的环境变量包括 NEXT\_PUBLIC\_TINA\_CLIENT\_ID 和 TINA\_TOKEN，这两个变量可以在您的 [TinaCloud 项目](https://app.tina.io) 中找到。
+必需的环境变量包括 NEXT\_PUBLIC\_TINA\_CLIENT\_ID 和 TINA\_TOKEN，这两个变量都可以在您的 [TinaCloud 项目](https://app.tina.io) 中找到。
 
 ## 您的首次部署
 
-准备就绪后，选择“部署”并等待您的首次构建运行。成功后，通过选择“检查部署”访问您的新 Tina 站点。
+准备就绪后，选择 `Deploy` 并等待您的首次构建运行。成功后，通过选择 `Inspect Deployment` 访问您的新 Tina 站点。
 
 如果出现任何错误，请参考构建日志并相应地解决。
+
+## 条件部署配置
+
+默认情况下，每次您进行更改时，TinaCMS 都会推送一个包含更改的提交。这也意味着每次您进行更改时，Vercel 都会创建一个部署。这对于快速发布内容更改而无需手动部署的额外工作非常有用。如果该工作流程不适合您，请按照以下步骤配置 Vercel 的部署行为。
+
+在 Vercel 中，转到您的项目 **设置 | Git**。您会找到与 **`Deploy Hooks`** 和 **`Ignore Build Step`** 相关的选项。
+
+您需要为您的主分支（例如 `main`）**禁用推送时的自动部署**。具体设置可能会根据您的 Vercel 计划或最近的 UI 更新略有不同，但目标是阻止 Vercel 直接监听您的 Git `push` 事件。以下指南概述了使其工作所需的 **`Ignore Build Step`** 选项。
+
+<WarningCallout
+  body={<>
+    两个选项的重要限制：由于 Vercel 的内部配置方式，对跟踪分支的每次提交仍将计入您的配额和并发构建计数。
+  </>}
+/>
+
+<WarningCallout
+  body={<>
+    不建议同时使用两个选项。这可能导致竞争条件或不良行为。
+    
+    如果您能够处理复杂性，推荐使用高级选项。对于大多数自定义用例来说，这是一个更灵活和可扩展的解决方案。
+  </>}
+/>
+
+### 简单选项
+
+使用 Vercel 的内置功能，但有条件地忽略构建 - 请按照 [忽略构建步骤指南](https://vercel.com/docs/project-configuration/git-settings#ignored-build-step) 定义一个 Bash 或 Node 脚本，以有条件地拒绝部署某些构建。
+
+将您的 **`Ignore Build Step`** 设置为 **`运行我的 Bash 脚本`** 或 **`运行我的 Node 脚本`**。
+
+![运行 Bash 脚本的忽略构建步骤](/img/docs/tina-cloud-deployment-options/vercel-bash.png "运行 Bash 脚本的忽略构建步骤")
+
+将您的脚本放在您的仓库中，并为命令提供路径，例如 **`bash my-deployment-conditions.sh`**。您的文件将类似于下面的文件，该文件仅部署生产版本。
+
+```bash
+#!/bin/bash
+
+echo "VERCEL_ENV: $VERCEL_ENV"
+
+if [[ "$VERCEL_ENV" == "production" ]] ; then
+  # 继续构建
+  echo "✅ - 构建可以继续"
+  exit 1;
+
+else
+  # 不构建
+  echo "🛑 - 构建已取消"
+  exit 0;
+fi
+```
+
+### 高级选项
+
+完全禁用 Vercel 的自动部署，并通过 GitHub Actions 获得完全控制。
+
+如果您的用例更复杂，将构建和部署过程委托给 GitHub Actions 工作流会更容易。它们具有更多的自定义功能，允许您调整流程以完全符合您的需求。
+
+简而言之，我们要做的是：
+
+1. 阻止 Vercel 自动部署
+2. 从 Vercel 获取运行我们自定义解决方案所需的信息
+3. 创建一个 GitHub Actions 工作流来构建项目并将其部署到 Vercel
+4. 调整它以便在目标分支上最后一次提交后 5 分钟部署最新更改
+
+这些步骤只是一个示例。请随意更改工作流以适应您的特定需求。
+
+##### 停止自动构建
+
+在 Vercel 中，导航到您的项目 **设置 | Git | 忽略构建步骤** 并将其设置为 **`不构建任何东西`**。这将完全禁用自动部署。如果这不是您想要的，您可能需要探索其他选项。
+
+![停止所有自动部署的忽略构建步骤](/img/docs/tina-cloud-deployment-options/vercel-dont-build.png "停止所有自动部署的忽略构建步骤")
+
+##### 收集所需的 Vercel 集成数据
+
+在 Vercel 中，导航到 **我的账户 | 账户设置 | 令牌**，创建一个具有您项目范围的令牌，并设置适当的过期时间。给它一个描述性的名称。**在提示时复制令牌，您将在下一步中需要它，并且您将无法再次看到它。**
+
+![令牌创建屏幕](/img/docs/tina-cloud-deployment-options/vercel-tokens.png "令牌创建屏幕")
+
+然后导航到您的项目 **设置 | 常规 | 项目 ID** 并从那里复制 **`项目 ID`**。
+
+![要复制的项目 ID 位置](/img/docs/tina-cloud-deployment-options/vercel-project-id.png "要复制的项目 ID 位置")
+
+接下来，导航到您的项目并复制站点 URL，例如 [https://mycoolblog.vercel.app/](https://mycoolblog.vercel.app/)。
+
+![要复制的项目 URL 位置](/img/docs/tina-cloud-deployment-options/vercel-site-url.png "要复制的项目 URL 位置")
+
+最后，导航到 **我的账户 | 账户设置 | 常规 | 用户 ID** 并从那里复制 **`用户 ID`**。稍后将其用作组织 ID。
+
+![要复制的用户 ID 位置](/img/docs/tina-cloud-deployment-options/vercel-user-id.png "要复制的用户 ID 位置")
+
+##### 设置用于工作流的仓库密钥
+
+导航到您的 **GitHub 个人资料 | 您的项目 | 设置 | 安全 | 密钥和变量 | 操作 | 仓库密钥**。
+
+使用从 Vercel 获得的相应数据创建以下密钥：
+
+<WarningCallout
+  body={<>
+    变量名称必须完全匹配才能使工作流正常工作。
+  </>}
+/>
+
+* **VERCEL\_TOKEN**
+* **VERCEL\_PROJECT\_ID**
+* **VERCEL\_URL**
+* **VERCEL\_ORG\_ID**
+
+![GitHub 仓库密钥创建页面](/img/docs/tina-cloud-deployment-options/repo-secrets-creation.png "GitHub 仓库密钥创建页面")
+
+##### 在项目中设置工作流
+
+在您的项目根目录下，创建以下文件夹结构：
+
+```
+.github/workflows/vercel-deploy-debounced.yml
+```
+
+将以下代码添加到创建的文件中。它将创建一个 GitHub Actions 工作流，当距离最后一次提交到 **`main`** 分支 5 分钟后，部署到 Vercel。请按照注释了解我们如何处理去抖动。
+
+> 📝 **对于 monorepos 的注意事项**：您可能需要在工作流步骤中添加 `working-directory`
+
+```yaml
+
+# .github/workflows/vercel-deploy-debounced.yml
+
+name: Vercel Deploy (Debounced)
+
+on:
+  push:
+    branches:
+      - main # 将此配置为您的主分支（例如 'main', 'master', 'production'）
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # 此 'concurrency' 设置是去抖动的关键：
+    # - 'group': 定义并发的组。此组中只能同时运行一个作业。
+    #            使用固定字符串如 'vercel-deploy-main' 意味着所有推送到 'main' 的作业
+    #            都将属于此组。
+    # - 'cancel-in-progress: true': 如果在旧作业仍在运行时，此组中启动了新作业，
+    #                               旧作业将被自动取消。
+    concurrency:
+      group: vercel-deploy-main
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Debounce commits for 5 minutes
+        run: |
+          echo "新提交已推送。等待 5 分钟以确保没有进一步的提交..."
+          sleep 300 # 等待 300 秒（5 分钟）
+          echo "去抖动期已完成。如果此作业未被取消，则没有新提交到达。"
+          # 如果在此 'sleep' 期间有新提交被推送，
+          # 此作业将被 'concurrency' 设置取消，
+          # 并且将为最新提交启动新作业。
+          # 因此，如果此步骤完成，意味着在此分支上有 5 分钟
+          # 没有新提交。
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        # 此步骤提取您的 Vercel 项目的环境变量和配置。
+        # 这通常是 'vercel build' 步骤成功所需的。
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project
+        # 这在 GitHub Actions 运行器中本地执行构建。
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          SITE_URL: ${{ secrets.VERCEL_URL }}
+
+      - name: Deploy Project to Vercel
+        # '--prebuilt' 标志告诉 Vercel 使用上一步的已构建输出，
+        # 这节省了 Vercel 构建时间，因为它不需要再次构建。
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+```
+
+现在将文件推送到您的 GitHub 仓库。GitHub 将自动创建工作流。
+
+转到您的 **GitHub 仓库 | Actions** 并验证您的工作流是否正在运行。
+
+![成功和失败的 GitHub Actions](/img/docs/tina-cloud-deployment-options/github-actions.png "成功和失败的 GitHub Actions")
+
+如果一切正常，您应该能够对您的仓库进行更改，并在系列中最后一次提交后大约 5 分钟看到它们被部署。
+
+##### 🛠️ 故障排除
+
+* **工作流未运行？** 检查 GitHub 密钥名称是否完全匹配（VERCEL\_TOKEN, VERCEL\_PROJECT\_ID 等）
+* **构建失败？** 检查 GitHub Actions 日志和 Vercel 部署日志
+* **两个系统都在部署？** 确保在 Vercel 中正确设置了 **`Ignore Build Step`**

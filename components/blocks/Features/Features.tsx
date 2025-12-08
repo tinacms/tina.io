@@ -260,12 +260,17 @@ export const RenderMedia = ({ data }) => {
   ) {
     return (
       <div className="relative w-full pb-4">
-        {/** biome-ignore lint/performance/noImgElement: <TODO> */}
-        <img
+        <video
           src={data.media[0].src}
-          alt={data.headline}
           className="w-full h-auto rounded-lg"
-        />
+          autoPlay={true}
+          loop
+          muted
+          playsInline
+        >
+          <source src={data.media[0].src} type="video/webm" />
+          <source src={data.media[0].src} type="video/mp4" />
+        </video>
       </div>
     );
   }

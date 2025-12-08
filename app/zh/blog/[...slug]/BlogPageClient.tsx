@@ -1,12 +1,12 @@
 'use client';
 
 import Giscus from '@giscus/react';
-import { formatDate } from 'components/AppRouterMigrationComponents/utils/formatDate';
 import { docAndBlogComponents } from 'components/tinaMarkdownComponents/docAndBlogComponents';
 import { DocsPagination } from 'components/ui';
 // biome-ignore lint/style/useImportType: <TODO>
 import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { formatDate } from '@/utils/formatDate';
 import type { BlogPageClientProps } from './BlogType';
 
 const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
