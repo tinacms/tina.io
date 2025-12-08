@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-08T22:11:47.826Z'
+last_edited: '2025-12-08T22:26:53.013Z'
 next: ''
 previous: ''
 ---
@@ -10,6 +10,18 @@ Overview
 We've created a sample repo
 
 This workflow fetches content paths from TinaCMS, generates feedback issues, updates lastChecked in markdown files, and opens a PR.
+
+## Bootstrapping your project
+
+### Priming your content
+
+In order for the script to run we need to seed all of you existing content with a `lastChecked` field.
+
+Navigate to the directory for the workflow
+
+```bash
+cd ./github/workflows/scripts/tina-helpers
+```
 
 Reference files:
 
