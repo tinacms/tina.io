@@ -1,14 +1,13 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-08T22:07:15.369Z'
+last_edited: '2025-12-08T22:09:38.834Z'
 next: ''
 previous: ''
 ---
 
 Overview
 
-We've created a sample repo 
-
+We've created a sample repo
 
 This workflow fetches content paths from TinaCMS, generates feedback issues, updates lastChecked in markdown files, and opens a PR.
 
@@ -50,8 +49,6 @@ Use a single-line string or a YAML multiline block in the workflow.
 
 Example query to list items in a collection:
 
-query postConnection {  postConnection {    totalCount    edges {      cursor      node {        ... on Document {          \_sys { path }        }        lastChecked      }    }    pageInfo {      hasNextPage      endCursor    }  }}
-
 Files to copy into your repo
 
 Copy workflow:
@@ -77,8 +74,6 @@ run-ast-parser
 Installs helper scripts and reads env from secrets/vars.
 
 Runs aggregate-links to collect content paths using TinaClient (see aggregate-links.ts).
-
-Runs map-links-to-content to read file contents into a JSON array of { path, content }.
 
 Exposes outputs:
 
@@ -128,8 +123,6 @@ TINA\_TOKEN="..."
 
 TINA\_CLIENT\_ID="..."
 
-TINA\_AUDITOR\_QUERY="query postConnection { ... }"
-
 Run helper scripts:
 
 pnpm --dir=.github/scripts/tina-helpers install
@@ -152,7 +145,7 @@ If you need to include created issue IDs in the PR body, aggregate them via uplo
 
 Troubleshooting
 
-“Resource not accessible by integration”: ensure the workflow runs in the base repo (not a fork), uses token: ${{ secrets.GITHUB\_TOKEN }}, and permissions include contents/pull-requests write.
+“Resource not accessible by integration”: ensure the workflow runs in the base repo (not a fork), uses token: , and permissions include contents/pull-requests write.
 
 Unexpected token “… not valid JSON”: confirm outputs used with fromJson are valid JSON; do not pass raw GraphQL there.
 
@@ -160,13 +153,12 @@ client undefined: regenerate Tina codegen and import the named client export fro
 
 That’s it. After configuring secrets/vars and copying the workflow plus helper scripts, trigger the workflow via Actions → “Audit Content with AI” to generate issues, update files, and create a PR
 
-
 <scrollBasedShowcase
   showcaseItems={[
     {
       title: "Tina Cloud",
       image: "",
-      content: "Your Graphql query will be run inside Tina Cloudl \n",
+      content: "Your Graphql query will be run inside Tina Cloudl\n",
       useAsSubsection: false
     },
     {
