@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-08T22:26:53.013Z'
+last_edited: '2025-12-08T22:53:39.573Z'
 next: ''
 previous: ''
 ---
@@ -14,6 +14,32 @@ This workflow fetches content paths from TinaCMS, generates feedback issues, upd
 ## Bootstrapping your project
 
 ### Priming your content
+
+In order to start auditing you content with AI we first need to add a field to the colleciton you'd like to query.
+
+```tsx
+const MyCollection : Collection = {
+  label: 'My Collection'
+  name: 'myCollection'
+  format: 'mdx'
+  fields: [
+    // new field
+    {
+      type: 'datetime',
+      name: 'lastChecked',
+      ui: {
+        component: 'hidden',
+      }
+    },
+
+    //...
+  ]
+
+}
+
+```
+
+> Be sure to run your project at last once after making the above schema changes (i.e. by running `pnpm dev`). This will rebuild you `tina-lock.json` file including the new field.
 
 In order for the script to run we need to seed all of you existing content with a `lastChecked` field.
 
