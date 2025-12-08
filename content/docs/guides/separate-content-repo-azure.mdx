@@ -10,8 +10,8 @@ previous: content/docs/guides/separate-content-repo.mdx
 
 This guide covers the essentials for setting up a **two-repository architecture** with TinaCMS and Azure Portal
 
-- **Repository 1 (Website)**: Next.js application with TinaCMS configuration
-- **Repository 2 (Content)**: Markdown/MDX content and media files
+* **Repository 1 (Website)**: Next.js application with TinaCMS configuration
+* **Repository 2 (Content)**: Markdown/MDX content and media files
 
 ### Connection Mechanism
 
@@ -21,9 +21,9 @@ This guide covers the essentials for setting up a **two-repository architecture*
 
 ### Prerequisites
 
-- Azure account with active subscription
-- Access to Azure Portal ([portal.azure.com](https://portal.azure.com))
-- GitHub account with repository access
+* Azure account with active subscription
+* Access to Azure Portal ([portal.azure.com](https://portal.azure.com))
+* GitHub account with repository access
 
 ### Step 1: Set Up Azure Resources
 
@@ -31,19 +31,19 @@ Create the following resources in the [Azure Portal](https://portal.azure.com):
 
 1. **Resource Group** - Create a resource group to organize your resources (e.g., `my-website-rg`)
 2. **Azure Container Registry (ACR)** - Create a container registry with a globally unique name (e.g., `mywebsiteacr`)
-   - Enable **Admin user** in Settings → Access keys
-   - Save the login server, username, and password for later
+   * Enable **Admin user** in Settings → Access keys
+   * Save the login server, username, and password for later
 3. **App Service Plan** - Create a Linux-based plan with your preferred pricing tier (Basic B1 or Standard S1)
 4. **Web App for Containers** - Create an App Service configured to:
-   - Use **Container** as the publish method
-   - Connect to your Azure Container Registry
-   - Use Linux as the OS
+   * Use **Container** as the publish method
+   * Connect to your Azure Container Registry
+   * Use Linux as the OS
 
----
+***
 
 ### Step 2: Create Service Principal for GitHub Actions
 
-1. **Click on the Cloud Shell icon** (>_) in the top right of Azure Portal
+1. **Click on the Cloud Shell icon** (>\_) in the top right of Azure Portal
 2. **Select "Bash"** when prompted
 3. **Run the following command** to create a service principal:
 
@@ -56,10 +56,11 @@ az ad sp create-for-rbac \
 ```
 
 **To find your Subscription ID:**
-- Search for "Subscriptions" in Azure Portal
-- Copy the Subscription ID
 
-4. **Copy the entire JSON output** - you'll need it for GitHub secrets:
+* Search for "Subscriptions" in Azure Portal
+* Copy the Subscription ID
+
+1. **Copy the entire JSON output** - you'll need it for GitHub secrets:
 
 ```json
 {
@@ -74,12 +75,13 @@ az ad sp create-for-rbac \
 ```
 
 **Important values to save:**
-- `clientId` → Will be `AZURE_CLIENT_ID`
-- `clientSecret` → Will be `AZURE_CLIENT_SECRET`
-- `subscriptionId` → Will be `AZURE_SUBSCRIPTION_ID`
-- `tenantId` → Will be `AZURE_TENANT_ID`
 
----
+* `clientId` → Will be `AZURE_CLIENT_ID`
+* `clientSecret` → Will be `AZURE_CLIENT_SECRET`
+* `subscriptionId` → Will be `AZURE_SUBSCRIPTION_ID`
+* `tenantId` → Will be `AZURE_TENANT_ID`
+
+***
 
 ### Step 3: Configure GitHub Repository Secrets
 
@@ -89,21 +91,21 @@ az ad sp create-for-rbac \
 
 **Azure Secrets:**
 
-| Secret Name | Value | Where to Find |
-|------------|-------|---------------|
-| `AZURE_CLIENT_ID` | From service principal output | `clientId` field |
-| `AZURE_CLIENT_SECRET` | From service principal output | `clientSecret` field |
-| `AZURE_SUBSCRIPTION_ID` | From service principal output | `subscriptionId` field |
-| `AZURE_TENANT_ID` | From service principal output | `tenantId` field |
-| `AZURE_REGISTRY_NAME` | `mywebsiteacr` | ACR name without .azurecr.io |
-| `AZURE_WEBAPP_NAME` | `my-website-app` | Web App name |
-| `AZURE_RESOURCE_GROUP` | `my-website-rg` | Resource group name |
+| Secret Name             | Value                         | Where to Find                |
+| ----------------------- | ----------------------------- | ---------------------------- |
+| `AZURE_CLIENT_ID`       | From service principal output | `clientId` field             |
+| `AZURE_CLIENT_SECRET`   | From service principal output | `clientSecret` field         |
+| `AZURE_SUBSCRIPTION_ID` | From service principal output | `subscriptionId` field       |
+| `AZURE_TENANT_ID`       | From service principal output | `tenantId` field             |
+| `AZURE_REGISTRY_NAME`   | `mywebsiteacr`                | ACR name without .azurecr.io |
+| `AZURE_WEBAPP_NAME`     | `my-website-app`              | Web App name                 |
+| `AZURE_RESOURCE_GROUP`  | `my-website-rg`               | Resource group name          |
 
 **Content Repository Access:**
 
-| Secret Name | Value | Where to Find |
-|------------|-------|---------------|
-| `GH_APP_ID` | GitHub App ID | See instructions below |
+| Secret Name          | Value                                       | Where to Find          |
+| -------------------- | ------------------------------------------- | ---------------------- |
+| `GH_APP_ID`          | GitHub App ID                               | See instructions below |
 | `GH_APP_PRIVATE_KEY` | GitHub App private key (.pem file contents) | See instructions below |
 
 #### How to create GitHub App token:
@@ -111,44 +113,38 @@ az ad sp create-for-rbac \
 1. **Navigate to GitHub Settings** → [Developer settings](https://github.com/settings/apps) → GitHub Apps
 2. **Click "New GitHub App"**
 3. **Configure the GitHub App:**
-   - **GitHub App name**: `Content Repository Access for CI/CD` (must be globally unique)
-   - **Homepage URL**: `https://github.com/your-org/my-website` (your website repo URL)
-   - **Webhook**: Uncheck "Active" (not needed for this use case)
-
+   * **GitHub App name**: `Content Repository Access for CI/CD` (must be globally unique)
+   * **Homepage URL**: `https://github.com/your-org/my-website` (your website repo URL)
+   * **Webhook**: Uncheck "Active" (not needed for this use case)
 4. **Set Repository permissions:**
-   - **Contents**: `Read-only` (to read content from the repository)
-   - **Metadata**: `Read-only` (automatically selected)
-
+   * **Contents**: `Read-only` (to read content from the repository)
+   * **Metadata**: `Read-only` (automatically selected)
 5. **Where can this GitHub App be installed?**
-   - Select **"Only on this account"**
-
+   * Select **"Only on this account"**
 6. **Click "Create GitHub App"**
-
 7. **After creation:**
-   - Scroll down to **"Private keys"** section
-   - **Click "Generate a private key"**
-   - A `.pem` file will be downloaded automatically
-   - **Note the App ID** (shown at the top of the page)
-
+   * Scroll down to **"Private keys"** section
+   * **Click "Generate a private key"**
+   * A `.pem` file will be downloaded automatically
+   * **Note the App ID** (shown at the top of the page)
 8. **Install the GitHub App:**
-   - Click **"Install App"** in the left sidebar
-   - **Click "Install"** next to your organization/account
-   - Select **"Only select repositories"**
-   - Choose your **content repository**
-   - **Click "Install"**
-
+   * Click **"Install App"** in the left sidebar
+   * **Click "Install"** next to your organization/account
+   * Select **"Only select repositories"**
+   * Choose your **content repository**
+   * **Click "Install"**
 9. **Add to GitHub secrets** (in your website repository):
-   - `GH_APP_ID`: The App ID from step 7
-   - `GH_APP_PRIVATE_KEY`: The entire contents of the downloaded `.pem` file (including `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`)
+   * `GH_APP_ID`: The App ID from step 7
+   * `GH_APP_PRIVATE_KEY`: The entire contents of the downloaded `.pem` file (including `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`)
 
 **TinaCMS Secrets:**
 
-| Secret Name | Value | Where to Find |
-|------------|-------|---------------|
-| `TINA_TOKEN` | TinaCMS token | tina.io dashboard |
+| Secret Name                  | Value             | Where to Find     |
+| ---------------------------- | ----------------- | ----------------- |
+| `TINA_TOKEN`                 | TinaCMS token     | tina.io dashboard |
 | `NEXT_PUBLIC_TINA_CLIENT_ID` | TinaCMS client ID | tina.io dashboard |
 
----
+***
 
 ### Step 4: Create GitHub Actions Workflow
 
@@ -161,7 +157,7 @@ my-website/
         └── deploy-azure.yml
 ```
 
-2. **Create/Edit `.github/workflows/deploy-azure.yml`** with the following content:
+1. **Create/Edit `.github/workflows/deploy-azure.yml`** with the following content:
 
 ```yaml
 name: Deploy to Azure
@@ -317,11 +313,12 @@ jobs:
 ```
 
 **⚠️ Important**: Update line 24 with your actual content repository:
+
 ```yaml
 repository: your-org/my-content  # Change this!
 ```
 
----
+***
 
 ### Step 5: Create Dockerfile
 
@@ -393,7 +390,7 @@ EXPOSE 3000
 CMD ["node", "server.js"]
 ```
 
----
+***
 
 ### Step 6: Update Next.js Configuration
 
@@ -414,12 +411,13 @@ module.exports = nextConfig;
 #### Why ?
 
 It creates a self-contained production builds with only the necessary files to run the application which leads to:
-- Minimal dependencies (only necessary npm packages)
-- Production-Ready server (generate lightweight `server.js` file, no need full Next.js framework)
+
+* Minimal dependencies (only necessary npm packages)
+* Production-Ready server (generate lightweight `server.js` file, no need full Next.js framework)
 
 It results on a Docker optimized structure: we get a much smaller, faster Docker image (often 50-80% size reduction) that starts up quicker and uses fewer resources.
 
----
+***
 
 ### Step 7: Deploy to Azure
 
@@ -434,7 +432,7 @@ If you want to deploy a specific branch or re-deploy:
 5. **Enter content branch** (default: main)
 6. **Click "Run workflow"**
 
----
+***
 
 ### Step 8: Configure Web App Environment Variables
 
@@ -445,15 +443,15 @@ After first successful deployment, you may want to add runtime environment varia
 3. **Click "+ Add" under "Application settings"**
 4. **Add the following variables:**
 
-| Name | Value |
-|------|-------|
-| `TINA_TOKEN` | (Copy from GitHub secrets) |
+| Name                         | Value                      |
+| ---------------------------- | -------------------------- |
+| `TINA_TOKEN`                 | (Copy from GitHub secrets) |
 | `NEXT_PUBLIC_TINA_CLIENT_ID` | (Copy from GitHub secrets) |
-| `NODE_ENV` | `production` |
-| `WEBSITES_PORT` | `3000` |
+| `NODE_ENV`                   | `production`               |
+| `WEBSITES_PORT`              | `3000`                     |
 
-5. **Click "Apply"** at the bottom
-6. **Click "Confirm"** when prompted
-7. **Wait for the app to restart** (~30 seconds)
+1. **Click "Apply"** at the bottom
+2. **Click "Confirm"** when prompted
+3. **Wait for the app to restart** (\~30 seconds)
 
----
+***
