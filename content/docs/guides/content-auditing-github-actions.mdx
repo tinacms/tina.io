@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T04:28:26.677Z'
+last_edited: '2025-12-09T04:42:33.967Z'
 next: ''
 previous: ''
 ---
@@ -64,6 +64,13 @@ Prerequisites
 
 Enable GitHub Actions for the organization.
 
+
+Go to 
+
+**Your Repository  > ⚙️Settings > Models**
+
+Ensure you have Models in your repository enabled.
+
 Allow GitHub Actions to create PRs for the repository.
 
 
@@ -81,10 +88,11 @@ Allow GitHub Actions to create PRs for the repository.
 | TINA\_AUDITOR\_CONTENT\_WINDOW | A number indicating how many outdated content items will be checked when you run the action. (i.e. 5) |
 | TINA\_AUDITOR\_EXPIRY\_DAYS    | The number of days that will pass before your content is re-evaluated after already being checked.    |
 | TINA\_AUDITOR\_SYSTEM\_PROMPT  | The prompt that will be used to evaluate your content when passing it to GitHub model.                |
+| TINA\_AUDITOR\_QUERY           | The query that will be used to find the content within your repo.                                     |
 
 ### Adding your Query
 
-**NOTE: Your query must include the following variables**
+The query you supply as TINA\_CONTENT\_QUERY must be a connection type. For more information about connection queries please consult the [documentation](https://tina.io/docs/graphql/queries/query-documents). Note that your field only requires \_sys.path and the $first and $filter properties. The 2 filters will be supplied when the action is run and the path property will be used to locate your content.
 
 ```graphql
 # Replace with your connetion
