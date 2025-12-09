@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T05:23:33.782Z'
+last_edited: '2025-12-09T05:24:48.503Z'
 next: ''
 previous: ''
 ---
@@ -11,7 +11,45 @@ We've created a sample repo
 
 This workflow fetches content paths from TinaCMS, generates feedback issues, updates lastChecked in markdown files, and opens a PR.
 
-Schema Changes Setup
+<scrollBasedShowcase
+  showcaseItems={[
+    {
+      title: "Tina Cloud",
+      image: "",
+      content:
+        "The GraphQL query you run will be evaluated inside of TinaCloud. This supplies the GitHub action with the list of files it will need to locate and update.\n",
+      useAsSubsection: false
+    },
+    {
+      title: "GitHub Actions",
+      image: "",
+      content:
+        "The GitHub actions will use the response from TinaCloud to locate the correct files within your repository.\n",
+      useAsSubsection: false
+    },
+    {
+      title: "Pull Requests",
+      image: "",
+      content:
+        "The GitHub action will automatically create Pull Requests with hte list of files that were checked. It's important that you merge these requests before re-running the action, otherwise the content checker will evaluate them again.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Issues",
+      image: "",
+      content:
+        "The GitHub Action will check out your repository, scan the content returned from TinaCloud, and create Issues with suggestions based on your feedback.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "GitHub Models",
+      image: "",
+      content:
+        "Used to read and evaluate your content using the System prompt provided. This uses **Mistral 3B** by default.\n",
+      useAsSubsection: false
+    }
+  ]}
+/>
 
 ## Preparing your Content
 
@@ -111,43 +149,3 @@ query <your-connection>($first: Float, $filter: <your-connection-filter>) {
 	}
 }
 ```
-
-<scrollBasedShowcase
-  showcaseItems={[
-    {
-      title: "Tina Cloud",
-      image: "",
-      content:
-        "The GraphQL query you run will be evaluated inside of TinaCloud. This supplies the GitHub action with the list of files it will need to locate and update.\n",
-      useAsSubsection: false
-    },
-    {
-      title: "GitHub Actions",
-      image: "",
-      content:
-        "The GitHub actions will use the response from TinaCloud to locate the correct files within your repository.\n",
-      useAsSubsection: false
-    },
-    {
-      title: "Pull Requests",
-      image: "",
-      content:
-        "The GitHub action will automatically create Pull Requests with hte list of files that were checked. It's important that you merge these requests before re-running the action, otherwise the content checker will evaluate them again.\n",
-      useAsSubsection: true
-    },
-    {
-      title: "Issues",
-      image: "",
-      content:
-        "The GitHub Action will check out your repository, scan the content returned from TinaCloud, and create Issues with suggestions based on your feedback.\n",
-      useAsSubsection: true
-    },
-    {
-      title: "GitHub Models",
-      image: "",
-      content:
-        "Used to read and evaluate your content using the System prompt provided. This uses **Mistral 3B** by default.\n",
-      useAsSubsection: false
-    }
-  ]}
-/>
