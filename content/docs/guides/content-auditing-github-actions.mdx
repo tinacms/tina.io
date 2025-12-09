@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T05:10:30.455Z'
+last_edited: '2025-12-09T05:20:12.382Z'
 next: ''
 previous: ''
 ---
@@ -50,6 +50,10 @@ touch .env
 ```
 
 Add your Tina Token and Tina Client ID the .env file. These are the same properties you'll be adding to your [GitHub secrets](/docs/guides/content-auditing-github-actions#secrets).
+
+You'll also need to add TINA\_CONTENT\_QUERY. See [Adding your Query](/docs/guides/content-auditing-github-actions#adding-your-query).
+
+Once you've supplied thes values
 
 ```bash
 pnpm run migrate-content
@@ -118,7 +122,6 @@ query <your-connection>($first: Float, $filter: <your-connection-filter>) {
 		}
 	}
 }
-
 ```
 
 Repo must contain TinaCMS-generated client/types and content files to audit.
@@ -274,6 +277,13 @@ That’s it. After configuring secrets/vars and copying the workflow plus helper
       content:
         "The GitHub Action will check out your repository, scan the content returned from TinaCloud, and create Issues with suggestions based on your feedback.\n",
       useAsSubsection: true
+    },
+    {
+      title: "GitHub Models",
+      image: "",
+      content:
+        "Used to read and evaluate your content using the System prompt provided. This uses **Mistral 3B** by default.\n",
+      useAsSubsection: false
     }
   ]}
 />
