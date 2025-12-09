@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T05:20:12.382Z'
+last_edited: '2025-12-09T05:23:33.782Z'
 next: ''
 previous: ''
 ---
@@ -59,17 +59,7 @@ Once you've supplied thes values
 pnpm run migrate-content
 ```
 
-Reference files:
-
-audit-content.yml
-
-package.json
-
-aggregate-links.ts
-
-tina-client.ts
-
-.env (local/dev)
+## Configuring your Repo
 
 ### **Permissions**
 
@@ -83,8 +73,6 @@ Enable GitHub Actions for the organization.
 
 1. Go to: **Your Repository  > ⚙️Settings > Models**
 2. Ensure you have Models enabled for your repostory
-
-Allow GitHub Actions to create PRs for the repository.
 
 ### Secrets
 
@@ -123,130 +111,6 @@ query <your-connection>($first: Float, $filter: <your-connection-filter>) {
 	}
 }
 ```
-
-Repo must contain TinaCMS-generated client/types and content files to audit.
-
-Node 20+ and pnpm in CI (the workflow sets these up).
-
-Secrets and Variables
-
-Add repo secrets:
-
-TINA\_TOKEN: Tina Cloud API token.
-
-TINA\_CLIENT\_ID: Tina Cloud client/workspace ID.
-
-Add repo variable:
-
-TINA\_AUDITOR\_QUERY: GraphQL query string used by the helper client.
-
-Use a single-line string or a YAML multiline block in the workflow.
-
-Example query to list items in a collection:
-
-Files to copy into your repo
-
-Copy workflow:
-
-audit-content.yml
-
-Copy helper scripts (or adapt to your structure):
-
-package.json
-
-tina-client.ts
-
-aggregate-links.ts
-
-map-links-to-content.ts
-
-update-checked.ts
-
-What the workflow does
-
-run-ast-parser
-
-Installs helper scripts and reads env from secrets/vars.
-
-Runs aggregate-links to collect content paths using TinaClient (see aggregate-links.ts).
-
-Exposes outputs:
-
-items: JSON array of objects with path and content.
-
-links: JSON array of paths.
-
-generate-feedback
-
-Matrix job over items (content).
-
-Calls an AI model and creates per-file issues via actions/github-script.
-
-update-checked
-
-Installs helper scripts.
-
-Runs update-checked with links to update lastChecked frontmatter.
-
-Pretty-prints links and opens a PR with changes.
-
-Key configuration in audit-content.yml
-
-permissions:
-
-contents: write, issues: write, pull-requests: write (required for commits, issues, and PRs).
-
-Secrets/vars injection:
-
-TINA\_TOKEN, TINA\_CLIENT\_ID via secrets.
-
-TINA\_AUDITOR\_QUERY via repo variables (written into .env for local scripts).
-
-pnpm usage:
-
-Uses pnpm/action-setup\@v4 and pnpm --dir to run scripts from the helper directory.
-
-Outputs format:
-
-items and links are valid JSON strings emitted via $GITHUB\_OUTPUT for downstream jobs.
-
-Local development
-
-Use .github/scripts/tina-helpers/.env locally:
-
-TINA\_TOKEN="..."
-
-TINA\_CLIENT\_ID="..."
-
-Run helper scripts:
-
-pnpm --dir=.github/scripts/tina-helpers install
-
-pnpm --dir=.github/scripts/tina-helpers run aggregate-links
-
-pnpm --dir=.github/scripts/tina-helpers run map-links-to-content '\["content/path.md"]'
-
-pnpm --dir=.github/scripts/tina-helpers run update-checked '\["content/path.md"]'
-
-Notes and tips
-
-pnpm --silent suppresses pnpm logs; your scripts should only print JSON to stdout when outputs are captured.
-
-If you pass raw GraphQL between jobs, keep it as a string; only use fromJson for valid JSON.
-
-fetch-depth: 0 is set so the PR action can commit and push.
-
-If you need to include created issue IDs in the PR body, aggregate them via upload-artifact in the matrix job and download in update-checked before creating the PR.
-
-Troubleshooting
-
-“Resource not accessible by integration”: ensure the workflow runs in the base repo (not a fork), uses token: , and permissions include contents/pull-requests write.
-
-Unexpected token “… not valid JSON”: confirm outputs used with fromJson are valid JSON; do not pass raw GraphQL there.
-
-client undefined: regenerate Tina codegen and import the named client export from the correct path.
-
-That’s it. After configuring secrets/vars and copying the workflow plus helper scripts, trigger the workflow via Actions → “Audit Content with AI” to generate issues, update files, and create a PR
 
 <scrollBasedShowcase
   showcaseItems={[
