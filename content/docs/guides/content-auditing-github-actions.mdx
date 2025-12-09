@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T23:13:08.227Z'
+last_edited: '2025-12-09T23:16:39.309Z'
 next: ''
 previous: ''
 ---
@@ -156,10 +156,10 @@ pnpm run migrate-content
 
 ## Running the Query
 
-Once you've finished setting up the GitHub action for your own project
+Once you've finished setting up the GitHub action for your own project you should be able to see a new workflow called **Audit Content with AI** in the GitHub Actions for your repo. You can run it manually to perform your first conent audit.
 
 ![Running a content audit in GitHub Actions](/img/docs/content-audit-github-actions/running-github-action.gif "Running a Content Audit in GitHub")
 
-![](/img/docs/content-audit-github-actions/issues-audit-action.png "Issue list after running content audit action")
+The flow will output a separate issue for each file it audited. Each issue will contain feedback for the issue audited.![](/img/docs/content-audit-github-actions/issues-audit-action.png "Issue list after running content audit action")
 
 ![Pull Request with Last Checked date updated in GitHub](/img/docs/content-audit-github-actions/content-audit-pr.png "Pull Request with Last Checked date updated")
