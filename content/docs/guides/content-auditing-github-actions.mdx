@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T04:46:15.533Z'
+last_edited: '2025-12-09T04:46:24.465Z'
 next: ''
 previous: ''
 ---
@@ -78,12 +78,12 @@ Allow GitHub Actions to create PRs for the repository.
 
 ### Variables
 
-| Secret                         | Description                                                                                           |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| TINA\_AUDITOR\_CONTENT\_WINDOW | A number indicating how many outdated content items will be checked when you run the action. (i.e. 5) |
-| TINA\_AUDITOR\_EXPIRY\_DAYS    | The number of days that will pass before your content is re-evaluated after already being checked.    |
-| TINA\_AUDITOR\_SYSTEM\_PROMPT  | The prompt that will be used to evaluate your content when passing it to GitHub model.                |
-| TINA\_AUDITOR\_QUERY           | The query that will be used to find the content within your repo.                                     |
+| Secret                             | Description                                                                                           |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **TINA\_AUDITOR\_CONTENT\_WINDOW** | A number indicating how many outdated content items will be checked when you run the action. (i.e. 5) |
+| **TINA\_AUDITOR\_EXPIRY\_DAYS**    | The number of days that will pass before your content is re-evaluated after already being checked.    |
+| **TINA\_AUDITOR\_SYSTEM\_PROMPT**  | The prompt that will be used to evaluate your content when passing it to GitHub model.                |
+| **TINA\_AUDITOR\_QUERY**           | The query that will be used to find the content within your repo.                                     |
 
 ### Adding your Query
 
