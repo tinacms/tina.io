@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T05:03:09.381Z'
+last_edited: '2025-12-09T05:10:30.455Z'
 next: ''
 previous: ''
 ---
@@ -42,10 +42,17 @@ const MyCollection : Collection = {
 
 In order for the script to run we need to seed all of you existing content with a `lastChecked` field.
 
-Navigate to the directory for the workflow
+Navigate to the directory for the workflow and add an env file
 
 ```bash
-cd ./github/scripts/tina-helpers pnpm run migrate-content
+cd ./github/scripts/tina-helpers
+touch .env
+```
+
+Add your Tina Token and Tina Client ID the .env file. These are the same properties you'll be adding to your [GitHub secrets](/docs/guides/content-auditing-github-actions#secrets).
+
+```bash
+pnpm run migrate-content
 ```
 
 Reference files:
@@ -93,7 +100,7 @@ Allow GitHub Actions to create PRs for the repository.
 
 ### Adding your Query
 
-The query you supply as TINA\_CONTENT\_QUERY must be a connection type. For more information about connection queries please consult the [documentation](https://tina.io/docs/graphql/queries/query-documents). Note that your field only requires \_sys.path and the $first and $filter properties. The 2 filters will be supplied when the action is run and the path property will be used to locate your content.
+The query you supply as **TINA\_CONTENT\_QUERY** must be a connection type. For more information about connection queries please consult the [documentation](https://tina.io/docs/graphql/queries/query-documents). Note that query need only return `_sys.path` and accept the `$first` and `$filter` properties. The 2 filters will be supplied when the action is run and the path property will be used to locate your content.
 
 ```graphql
 # Replace with your connetion
