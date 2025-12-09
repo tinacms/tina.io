@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T04:14:36.772Z'
+last_edited: '2025-12-09T04:16:24.923Z'
 next: ''
 previous: ''
 ---
@@ -239,6 +239,13 @@ That’s it. After configuring secrets/vars and copying the workflow plus helper
       content:
         "The GitHub actions will use the response from TinaCloud to locate the correct files within your repository.\n",
       useAsSubsection: false
+    },
+    {
+      title: "Pull Requests",
+      image: "",
+      content:
+        "The GitHub action will automatically create Pull Requests with hte list of files that were checked. It's important that you merge these requests before re-running the action, otherwise the content checker will evaluate them again.\n",
+      useAsSubsection: true
     }
   ]}
 />
