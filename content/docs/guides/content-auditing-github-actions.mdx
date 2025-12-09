@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T04:09:54.508Z'
+last_edited: '2025-12-09T04:14:36.772Z'
 next: ''
 previous: ''
 ---
@@ -67,10 +67,15 @@ Enable GitHub Actions for the organization.
 
 Allow GitHub Actions to create PRs for the repository.
 
+
+### Secrets 
+
 | Variable             | Source                              |
 | -------------------- | ----------------------------------- |
 | **TINA\_TOKEN**      | Your TinaCloud API Token            |
-| **TINA\_CLIENT\_ID** | The Tina client ID for your project |
+| **TINA\_CLIENT\_ID** | The Tina Client ID for your project |
+
+### Variables
 
 ### Adding your Query
 
@@ -224,13 +229,15 @@ That’s it. After configuring secrets/vars and copying the workflow plus helper
     {
       title: "Tina Cloud",
       image: "",
-      content: "Your Graphql query will be run inside Tina Cloudl\n",
+      content:
+        "The GraphQL query you run will be evaluated inside of TinaCloud. This supplies the GitHub action with the list of files it will need to locate and update.\n",
       useAsSubsection: false
     },
     {
-      title: "GitHub Models",
+      title: "GitHub Actions",
       image: "",
-      content: "After using the GraphQL query supplied\n",
+      content:
+        "The GitHub actions will use the response from TinaCloud to locate the correct files within your repository.\n",
       useAsSubsection: false
     }
   ]}
