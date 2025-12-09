@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T23:16:39.309Z'
+last_edited: '2025-12-09T23:20:17.422Z'
 next: ''
 previous: ''
 ---
@@ -161,5 +161,14 @@ Once you've finished setting up the GitHub action for your own project you shoul
 ![Running a content audit in GitHub Actions](/img/docs/content-audit-github-actions/running-github-action.gif "Running a Content Audit in GitHub")
 
 The flow will output a separate issue for each file it audited. Each issue will contain feedback for the issue audited.![](/img/docs/content-audit-github-actions/issues-audit-action.png "Issue list after running content audit action")
+The workflow will also output a pull request to updated the Last Checked date of every file that was audited.
+
+
+
+<WarningCallout
+  body={<>
+    It's important that you merge this pull request before running the GitHub Action again. Otherwise it will audit the same files again when you re-run it.
+  </>}
+/>
 
 ![Pull Request with Last Checked date updated in GitHub](/img/docs/content-audit-github-actions/content-audit-pr.png "Pull Request with Last Checked date updated")
