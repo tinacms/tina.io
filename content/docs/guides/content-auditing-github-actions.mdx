@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T22:20:37.946Z'
+last_edited: '2025-12-09T22:58:06.970Z'
 next: ''
 previous: ''
 ---
@@ -50,6 +50,10 @@ This workflow fetches content paths from TinaCMS, generates feedback issues, upd
     }
   ]}
 />
+
+## Installing the GitHub action
+
+We have a our own repo containing the GitHub action. Follow the [installation steps](https://github.com/tinacms/github-content-auditor?tab=readme-ov-file#how-to-install) to set the action up on your repo.
 
 ## Configuring your Repo
 
@@ -149,3 +153,7 @@ Once you've supplied these values.
 ```bash
 pnpm run migrate-content
 ```
+
+## Running the Query
+
+Once you've finished setting up the GitHub action for your own project
