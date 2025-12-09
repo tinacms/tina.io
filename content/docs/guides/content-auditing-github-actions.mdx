@@ -1,6 +1,6 @@
 ---
 title: 'Setup Guide: Audit Content GitHub Action'
-last_edited: '2025-12-09T04:55:39.065Z'
+last_edited: '2025-12-09T05:00:10.992Z'
 next: ''
 previous: ''
 ---
@@ -11,11 +11,11 @@ We've created a sample repo
 
 This workflow fetches content paths from TinaCMS, generates feedback issues, updates lastChecked in markdown files, and opens a PR.
 
-## Project Setup
+Schema Changes Setup
 
-### Preparing your content
+## Preparing your Content
 
-In order to start auditing you content with AI we first need to add a field to the collection you'd like to query.
+TinaCloud will be used to locate and filter your content. We'll need add a couple of fields to your existing collections to enable the content checks.
 
 ```tsx
 const MyCollection : Collection = {
