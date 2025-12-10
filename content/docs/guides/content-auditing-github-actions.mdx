@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T06:23:52.061Z'
+last_edited: '2025-12-10T06:26:10.874Z'
 next: ''
 previous: ''
 ---
@@ -128,6 +128,12 @@ cd ./github/scripts/tina-helpers
 ```
 
 You'll need to add a `.env` file inside this location with your **Collection**, **Tina Token** and **Tina Client ID** saved. These are the same properties added to your [GitHub Settings](/docs/guides/content-auditing-github-actions#secrets).
+
+```
+TINA_TOKEN=<your-tina-token>
+TINA_CLIENT_ID="02e62100-71a7-4638-9442-06fddf27d187"
+TINA_AUDITOR_COLLECTION="page"
+```
 
 Then run the commands below to migrate your content.
 
