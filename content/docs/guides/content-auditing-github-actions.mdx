@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T02:11:24.291Z'
+last_edited: '2025-12-10T05:30:48.805Z'
 next: ''
 previous: ''
 ---
@@ -111,12 +111,12 @@ query <your-connection>($first: Float, $filter: <your-connection-filter>) {
 
 #### Variables
 
-| Name                               | Description                                                                                                                                                |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **TINA\_AUDITOR\_CONTENT\_WINDOW** | A number indicating how many outdated content items will be checked when you run the action. (e.g. 5)                                                      |
-| **TINA\_AUDITOR\_EXPIRY\_DAYS**    | The number of days that will pass before your content is re-evaluated  being checked.                                                                      |
-| **TINA\_AUDITOR\_SYSTEM\_PROMPT**  | The prompt that will be used to evaluate your content when passing it to GitHub model.                                                                     |
-| **TINA\_AUDITOR\_QUERY**           | The query that will be used to find the content within your repo. See [Adding your Query](/docs/guides/content-auditing-github-actions#adding-your-query). |
+| Name                                         | Description                                                                                           |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **TINA\_AUDITOR\_CONTENT\_WINDOW**           | A number indicating how many outdated content items will be checked when you run the action. (e.g. 5) |
+| **TINA\_AUDITOR\_EXPIRY\_DAYS**              | The number of days that will pass before your content is re-evaluated  being checked.                 |
+| **TINA\_AUDITOR\_SYSTEM\_PROMPT (optional)** | The prompt that will be used to evaluate your content when passing it to GitHub model.                |
+| **TINA\_AUDITOR\_COLLECTION**                | The collection the audit query will be ran against.                                                   |
 
 ## Preparing your Content
 
