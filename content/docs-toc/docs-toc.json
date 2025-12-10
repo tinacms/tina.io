@@ -29,10 +29,10 @@
           "_template": "item"
         },
         {
-          "title": "Supported Frameworks",
+          "title": "Getting Started with Tina",
           "items": [
             {
-              "title": "Starter Kits",
+              "title": "Tina Starter - CLI",
               "slug": "content/docs/introduction/using-starter.mdx",
               "_template": "item"
             },
@@ -206,16 +206,91 @@
               "_template": "items"
             },
             {
-              "title": "Custom Fields",
+              "title": "React Components",
+              "slug": "content/docs/extending-tina/custom-field-components.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Plug-in Components",
               "items": [
                 {
-                  "title": "React Components",
-                  "slug": "content/docs/extending-tina/custom-field-components.mdx",
+                  "title": "Overview",
+                  "slug": "content/docs/reference/toolkit/fields/built-in-plugins.mdx",
                   "_template": "item"
                 },
                 {
-                  "title": "Plug-in Components",
-                  "slug": "content/docs/reference/toolkit/fields/built-in-plugins.mdx",
+                  "title": "Text Input",
+                  "slug": "content/docs/reference/toolkit/fields/text.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Text Area",
+                  "slug": "content/docs/reference/toolkit/fields/textarea.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Number Input",
+                  "slug": "content/docs/reference/toolkit/fields/number.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Image Input",
+                  "slug": "content/docs/reference/toolkit/fields/image.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Color Input",
+                  "slug": "content/docs/reference/toolkit/fields/color.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Toggle Input",
+                  "slug": "content/docs/reference/toolkit/fields/toggle.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Radio Group",
+                  "slug": "content/docs/reference/toolkit/fields/radio-group.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Select Input",
+                  "slug": "content/docs/reference/toolkit/fields/select.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Tags Input",
+                  "slug": "content/docs/reference/toolkit/fields/tags.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "List Input",
+                  "slug": "content/docs/reference/toolkit/fields/list.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Group Input",
+                  "slug": "content/docs/reference/toolkit/fields/group.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Group List Input",
+                  "slug": "content/docs/reference/toolkit/fields/group-list.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Date Input",
+                  "slug": "content/docs/reference/toolkit/fields/date.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Markdown Input",
+                  "slug": "content/docs/reference/toolkit/fields/markdown.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "HTML Input",
+                  "slug": "content/docs/reference/toolkit/fields/html.mdx",
                   "_template": "item"
                 }
               ],

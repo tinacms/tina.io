@@ -17,7 +17,7 @@ The `color` field is a visual color picker. This field is used for content value
 
 There are two types of color widgets, "sketch" or "block". The "sketch" widget allows the editor to pick a color from the familiar picker seen below.
 
-![tinacms-color-field](/img/fields/color.jpg)
+![tinacms-color-field](/img/fields/sketch-color-field.png)
 
 The "block" widget allows the editor to choose from a set of predefined color swatches.
 
@@ -34,6 +34,7 @@ interface ColorConfig {
   colorFormat?: 'hex' | 'rgb' // Defaults to "hex"
   colors?: string[]
   widget?: 'sketch' | 'block' // Defaults to "sketch"
+  width?: string // Defaults to full page width
 }
 ```
 
@@ -46,6 +47,7 @@ interface ColorConfig {
 | `colorFormat` | Specify whether you want the color value to be a hexadecimal ('hex') or RBG value. *(Optional)*                                                                                                                                              |
 | `colors`      | An array of 'swatch' values that will either display as options below the "sketch" widget, or will serve as swatch options for the "block" widget. If no colors are passed, a set of default colors will render, ROYGBIV style. *(Optional)* |
 | `widget`      | An optional string indicating whether the "sketch" or "block" widget should render. This will default to "sketch" if no value is passed. *(Optional)*                                                                                        |
+| `width`       | An optional string to set the width of the color picker. This will default to full page width if no value is passed. *(Optional)*                                                                                                            |
 
 > This interfaces only shows the keys unique to the color field. Visit the [Field Config](https://tina.io/docs/extending-tina/custom-field-components/#default-field-plugins "field configuration link") docs for a complete list of options.
 
@@ -64,6 +66,7 @@ const BlogPostForm = {
         colorFormat: 'hex',
         colors: ['#EC4815', '#241748', '#B4F4E0', '#E6FAF8'],
         widget: 'sketch',
+        width: '240px'
       },
     },
     // ...
