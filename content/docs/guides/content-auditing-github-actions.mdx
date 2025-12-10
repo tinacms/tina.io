@@ -1,18 +1,15 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T01:17:02.981Z'
+last_edited: '2025-12-10T01:20:28.770Z'
 next: ''
 previous: ''
 ---
 
 ## Overview
 
-As your site content begins to scale, keeping older content up to date can become difficult. 
-
+As your site content begins to scale, keeping older content up to date can become difficult.
 
 This guide contains instructions to setup a GitHub Actions workflow to check for outdated content using AI and raise GitHub Issues.
-
-
 
 ![A GitHub Issue Created by the Workflow](/img/docs/content-audit-github-actions/CleanShot%202025-12-09%20at%2016.35.50.png "A GitHub Issue Created by the Workflow")
 
@@ -43,14 +40,14 @@ This guide contains instructions to setup a GitHub Actions workflow to check for
       title: "Pull Requests",
       image: "",
       content:
-        "The GitHub action will automatically create Pull Requests with the list of files that were checked. \n",
+        "The GitHub action will automatically create Pull Requests with the list of files that were checked.\n",
       useAsSubsection: true
     },
     {
       title: "GitHub Models",
       image: "",
       content:
-        "GitHub models will read and evaluate your content, flagging any potential areas for improvement. \n",
+        "GitHub models will read and evaluate your content, flagging any potential areas for improvement.\n",
       useAsSubsection: false
     }
   ]}
@@ -86,16 +83,7 @@ You'll need to add configuration settings that will be used when the GitHub acti
 | **TINA\_TOKEN**      | Your TinaCloud API Token. **TinaCloud \| \<your-project> \| Tokens \| Content (Readonly)**                                               |
 | **TINA\_CLIENT\_ID** | The Tina Client ID for your project. You can find it in **TinaCloud \| Projects \| \<your-project> \|  ⚙️ Project Details \| Client ID** |
 
-#### Variables
-
-| Name                               | Description                                                                                                                                                |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **TINA\_AUDITOR\_CONTENT\_WINDOW** | A number indicating how many outdated content items will be checked when you run the action. (e.g. 5)                                                      |
-| **TINA\_AUDITOR\_EXPIRY\_DAYS**    | The number of days that will pass before your content is re-evaluated  being checked.                                                                      |
-| **TINA\_AUDITOR\_SYSTEM\_PROMPT**  | The prompt that will be used to evaluate your content when passing it to GitHub model.                                                                     |
-| **TINA\_AUDITOR\_QUERY**           | The query that will be used to find the content within your repo. See [Adding your Query](/docs/guides/content-auditing-github-actions#adding-your-query). |
-
-### Adding your Query
+### Composing your Query
 
 The query you supply as **TINA\_CONTENT\_QUERY** must be a connection type. For more information about connection queries please consult the [documentation](https://tina.io/docs/graphql/queries/query-documents). Note that query need only return `_sys.path` and accept the `$first` and `$filter` properties. The 2 filters will be supplied when the action is run and the path property will be used to locate your content.
 
@@ -116,6 +104,15 @@ query <your-connection>($first: Float, $filter: <your-connection-filter>) {
 	}
 }
 ```
+
+#### Variables
+
+| Name                               | Description                                                                                                                                                |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TINA\_AUDITOR\_CONTENT\_WINDOW** | A number indicating how many outdated content items will be checked when you run the action. (e.g. 5)                                                      |
+| **TINA\_AUDITOR\_EXPIRY\_DAYS**    | The number of days that will pass before your content is re-evaluated  being checked.                                                                      |
+| **TINA\_AUDITOR\_SYSTEM\_PROMPT**  | The prompt that will be used to evaluate your content when passing it to GitHub model.                                                                     |
+| **TINA\_AUDITOR\_QUERY**           | The query that will be used to find the content within your repo. See [Adding your Query](/docs/guides/content-auditing-github-actions#adding-your-query). |
 
 ## Preparing your Content
 
