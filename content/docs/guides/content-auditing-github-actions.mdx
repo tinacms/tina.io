@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T01:21:31.964Z'
+last_edited: '2025-12-10T01:26:05.071Z'
 next: ''
 previous: ''
 ---
@@ -85,10 +85,10 @@ You'll need to add configuration settings that will be used when the GitHub acti
 
 #### Composing your Query
 
-The query you supply as **TINA\_CONTENT\_QUERY** must be a connection type. For more information about connection queries please consult the [documentation](https://tina.io/docs/graphql/queries/query-documents). Note that query need only return `_sys.path` and accept the `$first` and `$filter` properties. The 2 filters will be supplied when the action is run and the path property will be used to locate your content.
+Now you will compose a query for TinaCloud that will be used to locate and filter your content on TinaCloud. This query must be a connection Type. For more information about connection queries please consult the [documentation](https://tina.io/docs/graphql/queries/query-documents). Note that query need only return `_sys.path` and accept the `$first` and `$filter` properties. The 2 filters will be supplied when the action is run and the path property will be used to locate your content.
 
 ```graphql
-# Replace with your connetion
+# Replace with your connection
 query <your-connection>($first: Float, $filter: <your-connection-filter>) {
 	<your-connection>(first: $first, filter: $filter) {
 		edges {
