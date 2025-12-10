@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T00:02:35.671Z'
+last_edited: '2025-12-10T00:08:49.389Z'
 next: ''
 previous: ''
 ---
@@ -53,31 +53,35 @@ This workflow fetches content paths from TinaCMS, generates feedback issues, upd
 
 ## Installing the GitHub action
 
-We have a our own repo containing the GitHub action. Follow the [installation steps](https://github.com/tinacms/github-content-auditor?tab=readme-ov-file#how-to-install) to set the action up on your repo.
+We have a created a public repo with a GitHub action you can use out of the box for auditing your content. All you need to do is copy the action into your repo and configure the settings. Follow the [installation steps](https://github.com/tinacms/github-content-auditor?tab=readme-ov-file#how-to-install) to set the action up yourself.
 
 ## Configuring your Repo
 
 ### **Permissions**
 
-Enable the appropriate permissions for GitHub Actions
+Enable the appropriate permissions for GitHub Actions:
 
 1. Go to: **Your Repository > ⚙️ Settings > Actions > General > Workflow Permisions**
 2. Enable read permissions for workflows within your repository
 3. Allow GitHub Actions to create and approve pull requests
 
-Enable GitHub Actions for the organization.
+Enable GitHub Actions your repo:
 
 1. Go to: **Your Repository  > ⚙️Settings > Models**
 2. Ensure you have Models enabled for your repostory
 
-### Secrets
+### Variables
+
+You'll need to add configuration settings that will be used when the GitHub action is run. To configure the se settings go to Your Repo > ⚙️Settings > Secrets and Variables.
+
+#### Secrets
 
 | Variable             | Source                              |
 | -------------------- | ----------------------------------- |
 | **TINA\_TOKEN**      | Your TinaCloud API Token            |
 | **TINA\_CLIENT\_ID** | The Tina Client ID for your project |
 
-### Variables
+#### Variables
 
 | Secret                             | Description                                                                                           |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
