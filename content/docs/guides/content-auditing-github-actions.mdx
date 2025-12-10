@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T01:31:48.318Z'
+last_edited: '2025-12-10T01:55:40.716Z'
 next: ''
 previous: ''
 ---
@@ -85,11 +85,11 @@ You'll need to add configuration settings that will be used when the GitHub acti
 
 #### Composing your Query
 
-Now locate the connection query for the collection you would like to audit. This query is auto generated when you run \ a collection to your schema and run/build your project.
+Now locate the connection query for the collection you would like to audit. This query is auto generated when you add a collection to your schema and run/build your project.
 
-`tina/__generated__queries.gql`
+`tina/__generated__/queries.gql`
 
-This query must be a connection Type. For more information about connection queries please consult the [documentation](https://tina.io/docs/graphql/queries/query-documents). Note that query need only return `_sys.path` and accept the `$first` and `$filter` properties. The 2 filters will be supplied when the action is run and the path property will be used to locate your content.
+> Note that query you provide must only return `_sys.path` and accept the `$first` and `$filter` properties. The filters will be supplied when the action is run and the path property will be used to locate your content.
 
 ```graphql
 # Replace with your connection
@@ -120,7 +120,7 @@ query <your-connection>($first: Float, $filter: <your-connection-filter>) {
 
 ## Preparing your Content
 
-TinaCloud will be used to locate and filter your content. We'll need add a couple of fields to your existing collections to enable the content checks.
+TinaCloud will be used to locate and filter your content. We'll need add a couple of fields to your selected collection to enable the content checks.
 
 ```tsx
 const MyCollection : Collection = {
