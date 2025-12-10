@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T06:27:25.874Z'
+last_edited: '2025-12-10T06:31:45.458Z'
 next: ''
 previous: ''
 ---
@@ -91,6 +91,14 @@ You'll need to add configuration settings that will be used when the GitHub acti
 | **TINA\_AUDITOR\_EXPIRY\_DAYS**              | The number of days that will pass before your content is re-evaluated  being checked.                 |
 | **TINA\_AUDITOR\_SYSTEM\_PROMPT (optional)** | The prompt that will be used to evaluate your content when passing it to GitHub model.                |
 | **TINA\_AUDITOR\_COLLECTION**                | The collection the audit query will be ran against.                                                   |
+
+#### System Prompt (Optional)
+
+You may optionally override the default system propmpt by providing your own as a GitHub variable. The value to override is `TINA_AUDITOR_SYSTEM_PROMPT`. The default system prompt is as follows:
+
+```
+You are an expert content auditor. Your task is to review the provided markdown content and provide constructive feedback on its quality, clarity, relevance and engagement. You should highlight and suggest specific areas for improvement.
+```
 
 ## Preparing your Content
 
