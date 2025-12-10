@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2025-12-04T23:21:50.605Z'
+last_edited: '2025-12-10T01:49:38.558Z'
 next: ''
 previous: ''
 ---
@@ -9,14 +9,14 @@ previous: ''
 ## Introduction
 
 Tina supports sourcing content from a separate Git repo. With this approach you can continue to define your
-Tina config in your "website repo", but documents will be saved elsewhere.
+Tina config in your "website repo", but documents will be saved externally in a “content repo”.
 
 ### Why?
 
 You might want to do this for a variety of reasons, such as:
 
-* To decouple your website code from your content files so your commit history isn't a mix of content updates and code updates
-* To avoid having to give TinaCloud write access to your website's code (only give access to your content repo)
+* To decouple your website code from your content files so your commit history isn't a mix of content updates and code updates.
+* To avoid having to give TinaCloud write access to your website's code (only give access to your content repo).
 
 <WarningCallout
   body={<>
@@ -28,22 +28,27 @@ You might want to do this for a variety of reasons, such as:
 
 * You must have *both* the "content repo" and the "website repo" checked out onto your local machine.
 * You must provide the location of your content repo in your Tina config (more about that below).
-* When making changes, you'll need to ensure you've pushed *both* repos to GitHub, with the "content repo"
-  changes first
 
 ## Create the website repository
 
-First, create a new Tina project. To help you get started we've created a basic starting "[website repo](https://github.com/tinacms/separate-website-repo)", which you can clone to follow along.
+We'll start by first creating the “website repo”. To help with this, we've created a [basic template](https://github.com/tinacms/separate-website-repo) that you can clone down and follow along with. The template contains a NextJS site, and the `tina` config with the local config path already configured.
 
 ```bash
 git clone git@github.com:tinacms/separate-website-repo.git
 ```
 
-The "website repo" contains a NextJS site, and the `tina` config with the local config path already configured.
+If you do not wish to start from a template, follow the [quickstart guide on how to create a TinaCMS project](https://tina.io/docs/setup-overview). The important things you should have at the end of this step are as follow:
+
+1. A project that has TinaCMS setup within it.
+2. Said project is pushed to GitHub.
+
+> The project at this stage does not have to be setup and deployed within TinaCloud. This will be done at a later step within this guide.
 
 ## Create the content repository
 
-Next we'll setup the "content repo". Lets create a simple simple `.mdx` file to start with:
+Next we'll setup the "content repo". Lets create a simple `.mdx` file to start with.
+
+The below commands create a folder (`demo-content-repo`), initalise Git within said folder, and adds an initial MDX file to the `content/pages` directory. We'll be using that directory for the `page` collection defined in the Tina config.
 
 ```bash
 tree .
@@ -54,6 +59,7 @@ tree .
 
 mkdir -p demo-content-repo/content/pages
 cd demo-content-repo
+git init
 touch ./content/pages/home.mdx 
 echo "Hello" >> ./content/pages/home.mdx
 cd ..
@@ -69,51 +75,55 @@ tree .
 # 5 directories, 1 file
 ```
 
-This command creates a folder (`demo-content-repo`) and adds a single MDX file to it in the `content/pages` directory. We'll be using that directory for the `page` collection defined in the Tina config.
+<WarningCallout
+  body={<>
+    Before moving forward, ensure the “content repo” is pushed to GitHub.
+  </>}
+/>
 
 ## Local Development
 
-In the "website repo", install the project's dependencies
+In the "website repo", install the project's dependencies and start the development server to generate the `tina-lock.json` and other required files.
 
 ```bash
 yarn install
-```
-
-Run the project locally:
-
-```bash
 yarn dev
 ```
 
-## Visit the page in edit mode
+## Edit the content
 
-Open `http://localhost:3000/admin/index.html`.
+With the development server running, open your browser of choice and head to `http://localhost:3000/admin/index.html`.
 
-From here you can add more fields to you content models in `tina/config.js`. [Visit the docs](https://tina.io/docs/schema/) to learn more about content modeling.
+From here you can add more fields to you content models in `tina/config.js`. To learn more, visit the [docs on content modeling](https://tina.io/docs/schema/).
 
-## Deploying your website repo in TinaCloud
+## Deploy the content repo in TinaCloud
 
-Next we'll want to create a TinaCloud project for our "website repo"
+With the content repo created locally and within GitHub, it's time to create it in TinaCloud. [This process is detailed in the following guide.](https://tina.io/docs/tinacloud/dashboard/projects/)
 
-1. Initialize Git in your content repo and push it to GitHub.
-2. [Connect the website repo to TinaCloud](https://tina.io/docs/tinacloud/dashboard/projects/)
-3. Once that's done, [create a content token](https://tina.io/docs/tinacloud/dashboard/projects/#api-tokens) for the `main` branch, or use `*` to allow all branches.
+Once that's done, take note of two tokens described below. You will need them for the next step.
 
-Switch back to your "website repo" and set up an `.env` file to use when connecting to TinaCloud:
+1. The client ID found on the projects "Overview" tab.
+2. The content token found on the projects “Tokens” tab.
+
+> You can confine content tokens to certain branches. To learn more, visit the [docs on how to create a content token](https://tina.io/docs/tinacloud/dashboard/projects/#api-tokens).
+
+## Deploy the website repo in TinaCloud
+
+With the website repo created locally and within GitHub, it's time to create it in TinaCloud. This process is the exact same as done with the “content repo”.
+
+Create a `.env` file in the “website repo” and fill it out with the tokens retrieved in the previous step.
 
 ```bash
 cp .env.example .env
 ```
 
-When you run `tinacms build`, it will use those credentials to connect to TinaCloud rather than the local server:
+When you run `tinacms build`, it will use those credentials to connect to TinaCloud rather than the local server. If you're following along with the template, we've integrated this process into the `yarn build` command.
 
-```bash
-yarn build
-```
+The final thing to do is take note of the client ID token found on the projects “Overview” tab. You will need it for the next step.
 
-## Connecting the content repo
+## Connect the content repo
 
-Now that the “website repo” has been created in TinaCloud, grab the client ID for the project and create a new tina/meta.json file in the content repo.
+Now that the “website repo” has been created in TinaCloud, grab the client ID retrieved in the previous step and create a new `tina/meta.json` file in the “content repo”. This is what connects the two together.
 
 ```bash
 cd demo-content-repo
@@ -121,28 +131,28 @@ mkdir tina/
 touch tina/meta.json
 ```
 
-Then add the following contents into tina/meta.json
+Then add the following contents into it:
 
 ```
 {
   "upstreamBranch": "main",
-  "upstreamClientId": "{{ client ID }}"
+  "upstreamClientId": "{{ website repo client ID }}"
 }
 ```
 
 <WarningCallout
   body={<>
-    Previous versions of TinaCMS required you to maintain an up-to-date \`/tina\` folder in both repositories. This has now been simplified to a single `tina/meta.json` file. If you're migrating from the way it used to be, ensure to update the repo in TinaCloud from the “content repo” to the “website repo”.
+    Previous versions of TinaCMS required you to maintain an up-to-date `/tina` folder in both repositories. This has now been simplified to a single `tina/meta.json` file. If you're migrating from the way it used to be, ensure to update the repo in TinaCloud from the “content repo” to the “website repo”.
   </>}
 />
 
 ## Path Configuration Considerations
 
-When defining collection paths inside your tina/config.(ts/js), avoid setting `path: ''` . As Tina expects a folder-relative path. Using an empty string `''` can result in errors when creating new documents because Tina prepends a `/` when saving, which can lead to invalid GitHub paths and creation errors.
+When defining collection paths inside your `tina/config.(ts/js)`, avoid setting `path: ''` . As Tina expects a folder-relative path. Using an empty string `''` can result in errors when creating new documents because Tina prepends a `/` when saving, which can lead to invalid GitHub paths and creation errors.
 
 ## Static Site Generator Compatibility
 
-If you are using a static site generator (SSG) other than Next.js, such as Astro. Ensure your content pipeline ignores the `tina/` directory inside your content repo. Tina's config files are not content files and this may cause parsing errors.
+If you are using a static site generator (SSG) other than NextJS, such as Astro. Ensure your content pipeline ignores the `tina/` directory inside your “content repo”. Tina's config files are not content files and this may cause parsing errors.
 
 Here's an example of how to exclude the `tina/` directory:
 
