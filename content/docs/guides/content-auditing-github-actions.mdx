@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-10T00:11:40.967Z'
+last_edited: '2025-12-10T00:23:00.198Z'
 next: ''
 previous: ''
 ---
@@ -83,12 +83,12 @@ You'll need to add configuration settings that will be used when the GitHub acti
 
 #### Variables
 
-| Name                               | Description                                                                                           |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| **TINA\_AUDITOR\_CONTENT\_WINDOW** | A number indicating how many outdated content items will be checked when you run the action. (e.g. 5) |
-| **TINA\_AUDITOR\_EXPIRY\_DAYS**    | The number of days that will pass before your content is re-evaluated after already being checked.    |
-| **TINA\_AUDITOR\_SYSTEM\_PROMPT**  | The prompt that will be used to evaluate your content when passing it to GitHub model.                |
-| **TINA\_AUDITOR\_QUERY**           | The query that will be used to find the content within your repo.                                     |
+| Name                               | Description                                                                                                                                                |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TINA\_AUDITOR\_CONTENT\_WINDOW** | A number indicating how many outdated content items will be checked when you run the action. (e.g. 5)                                                      |
+| **TINA\_AUDITOR\_EXPIRY\_DAYS**    | The number of days that will pass before your content is re-evaluated after already being checked.                                                         |
+| **TINA\_AUDITOR\_SYSTEM\_PROMPT**  | The prompt that will be used to evaluate your content when passing it to GitHub model.                                                                     |
+| **TINA\_AUDITOR\_QUERY**           | The query that will be used to find the content within your repo. See [Adding your Query](/docs/guides/content-auditing-github-actions#adding-your-query). |
 
 ### Adding your Query
 
@@ -156,6 +156,16 @@ Once you've supplied these values.
 
 ```bash
 pnpm run migrate-content
+```
+
+The output should look something like this:
+
+```bash
+updated: content/posts/future-of-remote-work-2025.mdx 
+updated: content/posts/learning-about-components.mdx 
+updated: content/posts/june/learning-about-tinacloud.mdx 
+updated: content/posts/artificial-intelligence-explained.mdx 
+
 ```
 
 ## Running the Query
