@@ -1,6 +1,6 @@
 ---
 title: Auditing Content with GitHub Actions
-last_edited: '2025-12-09T23:58:18.864Z'
+last_edited: '2025-12-10T00:02:35.671Z'
 next: ''
 previous: ''
 ---
@@ -28,6 +28,13 @@ This workflow fetches content paths from TinaCMS, generates feedback issues, upd
       useAsSubsection: false
     },
     {
+      title: "Issues",
+      image: "",
+      content:
+        "After scanning your content the GitHub action will produce a list of issues with suggested improvements for each content item. This feedback will be based on your system prompt.\n",
+      useAsSubsection: true
+    },
+    {
       title: "Pull Requests",
       image: "",
       content:
@@ -35,17 +42,10 @@ This workflow fetches content paths from TinaCMS, generates feedback issues, upd
       useAsSubsection: true
     },
     {
-      title: "Issues",
-      image: "",
-      content:
-        "The GitHub Action will check out your repository, scan the content returned from TinaCloud, and create Issues with suggestions based on your feedback.\n",
-      useAsSubsection: true
-    },
-    {
       title: "GitHub Models",
       image: "",
       content:
-        "Used to read and evaluate your content using the System prompt provided. This uses **Mistral 3B** by default.\n",
+        "GitHub models will read and evaluate your content against System prompt you've provided, flagging any potential areas for improvement. **Mistral 3B** is used by default.\n",
       useAsSubsection: false
     }
   ]}
