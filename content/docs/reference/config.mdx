@@ -2,7 +2,7 @@
 id: /docs/reference/config/
 title: Config Reference
 alias: the-config-file
-last_edited: '2025-12-01T01:42:05.927Z'
+last_edited: '2025-12-09T23:01:02.997Z'
 tocIsHidden: false
 next: content/docs/reference/schema.mdx
 previous: content/docs/reference/overview.mdx
@@ -213,6 +213,20 @@ Note that it **must be** the default export.
       type: "string",
       description: "Regex used for splitting tokens.\n",
       default: "/[\\p{L}\\d_]+/"
+    },
+    {
+      description:
+        "The defaultBranchName is used for overriding the local branch when resolving the `historyUrl` on local. The primary use case is for when the default branch is not called `main`\n",
+      groupName: "repoProvider",
+      name: "defaultBranchName",
+      type: "string"
+    },
+    {
+      description:
+        "Allows users to define where TinaCMS should link users to view the source history of the file they are editing. \n\n`branch` is resolved by TinaCMS for the active editing branch\n\n`relativePath` is resolved by TinaCMS for the relative path of the relevant content file\n\nExample for GitHub:\n\n```\nhistoryUrl: ({ relativePath, branch }) => ({ \n  url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`\n```\n",
+      groupName: "repoProvider",
+      name: "historyUrl",
+      type: "function -- historyUrl?: (context: { relativePath: string; branch: string;}) => { url: string }"
     },
     {
       groupName: "",
