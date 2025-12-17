@@ -585,7 +585,7 @@ const DesktopNavMenu = ({
       <Link href={'/'}>
         <TinaIoLogoSvg className={`flex items-center h-auto fill-orange-500`} />
       </Link>
-      <ul className="flex gap-4 items-end justify-center">
+      <ul className="flex gap-4 items-end justify-center mt-2">
         {navItems.map((item, index) => {
           return desktopNavItemMapper(item, {
             index,
