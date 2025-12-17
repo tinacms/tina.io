@@ -274,7 +274,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${navLinkClasses} w-fit hover:bg-white/60 rounded-xl pl-3 pr-2`}
+          className={`group ${navLinkClasses} w-fit hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
         >
           <button
           type="button"
@@ -293,7 +293,7 @@ function desktopNavItemMapper(
               aria-hidden
             />
             <ul
-              className={`absolute -left-[8px] top-full min-w-full mt-5 w-max bg-white/60 shadow-lg rounded-xl p-2 transition-opacity duration-200 ease-in-out ${
+              className={`absolute -left-[10px] top-full min-w-full mt-5 w-max bg-[#ECF7F8] shadow-lg rounded-xl p-2 transition-opacity duration-200 ease-in-out ${
                 openDropdown === `${index}-${item.label}`
                   ? 'opacity-100 pointer-events-auto'
                   : 'opacity-0 pointer-events-none'
@@ -302,7 +302,7 @@ function desktopNavItemMapper(
               {item.items.map((subItem, subIndex) => (
                 <li
                   key={`${index}-${subIndex}-${subItem.href}`}
-                  className="py-2 px-2 flex items-center"
+                  className="py-2 px-2 flex items-center group hover:bg-white/60  rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500"
                 >
                   <Link
                     href={subItem.href}
@@ -311,14 +311,12 @@ function desktopNavItemMapper(
                     onClick={() => {
                       setOpenDropdown(null);
                     }}
-                    className="touch-manipulation"
+                    className="touch-manipulation flex items-center"
                   >
-                    <span className="text-gray-600 hover:text-blue-500 transition text-md ease-out duration-150">
                       {subItem.label}
                       {subItem.href.startsWith('https://') && (
                         <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
                       )}
-                    </span>
                   </Link>
                 </li>
               ))}
