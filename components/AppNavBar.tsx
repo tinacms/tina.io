@@ -275,6 +275,7 @@ function desktopNavItemMapper(
         <li
           key={`${index}-${item.label}`}
           className={`group ${navLinkClasses} w-fit hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
+          onMouseLeave={closeDropdownMenu}
         >
           <button
             type="button"
@@ -282,7 +283,6 @@ function desktopNavItemMapper(
             onMouseEnter={(e: React.MouseEvent) =>
               openDropdownMenu(`${index}-${item.label}`, e)
             }
-            onMouseLeave={closeDropdownMenu}
             onClick={(e) => openDropdownMenu(`${index}-${item.label}`, e)}
           >
             {item.label}
@@ -319,67 +319,6 @@ function desktopNavItemMapper(
               ))}
             </ul>
           </button>
-        </li>
-      );
-    case doubleNavItemDropDownString:
-      return (
-        <li
-          key={`${index}-${item.label}`}
-          className={`group ${navLinkClasses}`}
-        >
-          <div
-            className="relative flex items-center justify-center group"
-            onMouseLeave={closeDropdownMenu}
-          >
-            <button
-              type="button"
-              className="flex items-center cursor-pointer"
-              onMouseEnter={(e: React.MouseEvent) =>
-                openDropdownMenu(`${index}-${item.label}`, e)
-              }
-              onClick={(e) => openDropdownMenu(`${index}-${item.label}`, e)}
-            >
-              {item.label}
-              <BiChevronDown className="w-4 h-4 ml-0.5" />
-            </button>
-            {/* hover bridge that is invisible to user (maintains hover state) */}
-            <div
-              className="absolute left-0 top-full h-2 min-w-full"
-              aria-hidden
-            />
-            <ul
-              className={`absolute left-0 top-full mt-2 min-w-full w-max bg-white text-black shadow-lg rounded-md p-4 transition-opacity duration-200 ease-in-out ${
-                openDropdown === `${index}-${item.label}`
-                  ? 'opacity-100 pointer-events-auto'
-                  : 'opacity-0 pointer-events-none'
-              }`}
-            >
-              {item.items.map((subItem, subIndex) => (
-                <div
-                  key={`${index}-${subIndex}-${subItem.hrefLeft}`}
-                  className="flex items-center gap-2 py-1"
-                >
-                  {' '}
-                  <Link
-                    key={`${index}-${subIndex}-${subItem.hrefLeft}`}
-                    className="hover:text-blue-500"
-                    href={subItem.hrefLeft}
-                  >
-                    {subItem.labelLeft}
-                  </Link>
-                  <span className="-mt-0.5"> • </span>{' '}
-                  <Link
-                    key={`${index}-${subIndex}-${subItem.hrefRight}`}
-                    className="hover:text-blue-500"
-                    href={subItem.hrefRight}
-                    aria-label={`${subItem.labelLeft} ${subItem.labelRight}`}
-                  >
-                    {subItem.labelRight}
-                  </Link>
-                </div>
-              ))}
-            </ul>
-          </div>
         </li>
       );
     case GitHubStarButton:
