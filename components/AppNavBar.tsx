@@ -459,6 +459,15 @@ const MobileNavMenu = ({
 }: MobileNavMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    if (menuOpen) {
+      document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
   return (
     <>
       <div
@@ -469,7 +478,7 @@ const MobileNavMenu = ({
         <button
           type="button"
           className="absolute top-20 left-0 -translate-x-full transition duration-150 ease-out rounded-l-full flex items-center font-ibm-plex whitespace-nowrap leading-tight hover:shadow active:shadow-none text-orange-500 hover:text-orange-400 border border-gray-100/60 bg-linear-to-br from-white to-gray-50 pr-3 pl-4 pt-[8px] pb-[6px] text-sm font-medium cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={toggleMenu}
         >
           <BiMenu
             className={`h-6 w-auto transition ease-out duration-200 ${
@@ -511,7 +520,7 @@ const MobileNavMenu = ({
               mobileNavItemMapper(item, {
                 index,
                 starCount,
-                closeMenu: () => setMenuOpen(false),
+                closeMenu: toggleMenu,
               }),
             )}
           </ul>
@@ -524,7 +533,7 @@ const MobileNavMenu = ({
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
         }`}
-        onClick={() => setMenuOpen(false)}
+        onClick={toggleMenu}
       ></div>
       <Link href={'/'}>
         <TinaIoLogoSvg className={`flex items-center h-auto fill-orange-500`} />
