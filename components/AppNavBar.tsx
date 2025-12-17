@@ -186,7 +186,10 @@ interface MobileNavMenuProps {
   starCount: number;
 }
 
-function isRouteActive(pathname: string, list: GroupOfStringItems['items']): boolean {
+function isRouteActive(
+  pathname: string,
+  list: GroupOfStringItems['items'],
+): boolean {
   return list.some((listItem) => listItem.href === pathname);
 }
 
@@ -212,7 +215,7 @@ interface NavItemMapperContext {
   starCount: number;
 }
 
-const navLinkClasses =
+const _navLinkClasses =
   'flex items-center py-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
 
 interface MobileNavItemMapperContext {
@@ -225,6 +228,7 @@ interface MobileNavItemMapperContext {
 
 function desktopNavItemMapper(
   item: NavItem,
+  pathName: string,
   context: NavItemMapperContext,
 ): React.ReactNode {
   const {
@@ -237,14 +241,12 @@ function desktopNavItemMapper(
     starCount,
   } = context;
 
-  const pathname = usePathname();
-
   switch (item._template) {
     case modalButtonString:
       return (
         <li
           key={`${index}-${item.modal}`}
-          className={`group ${navLinkClasses}`}
+          className={`group ${_navLinkClasses}`}
         >
           <Button
             color={item.color as ValidColors}
@@ -266,7 +268,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.href}`}
-          className={`group ${navLinkClasses} border-blue-500`}
+          className={`group ${_navLinkClasses} border-blue-500`}
         >
           <Link
             href={item.href}
@@ -282,7 +284,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${navLinkClasses} w-fit  ${isRouteActive(pathname, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
+          className={`group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
           onMouseLeave={closeDropdownMenu}
         >
           <button
@@ -333,7 +335,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.owner}-${item.repo}`}
-          className={`group ${navLinkClasses} py-2 flex items-center`}
+          className={`group ${_navLinkClasses} py-2 flex items-center`}
         >
           <Link
             href={`https://github.com/${item.owner}/${item.repo}`}
@@ -361,7 +363,8 @@ function mobileNavItemMapper(
   item: NavItem,
   context: MobileNavItemMapperContext,
 ): React.ReactNode {
-  const { index, starCount, closeMenu, openDropdown, setOpenDropdown } = context;
+  const { index, starCount, closeMenu, openDropdown, setOpenDropdown } =
+    context;
   const dropdownId = `mobile-${index}-${item.label}`;
   const isOpen = openDropdown === dropdownId;
 
@@ -370,7 +373,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${navLinkClasses} flex flex-col items-start`}
+          className={`group ${_navLinkClasses} flex flex-col items-start`}
         >
           <button
             type="button"
@@ -412,7 +415,10 @@ function mobileNavItemMapper(
 
     case stringItemString:
       return (
-        <li key={`${index}-${item.href}`} className={`group ${navLinkClasses}`}>
+        <li
+          key={`${index}-${item.href}`}
+          className={`group ${_navLinkClasses}`}
+        >
           <Link
             href={item.href}
             target={item.external ? '_blank' : '_self'}
@@ -428,7 +434,7 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.owner}-${item.repo}`}
-          className={`group ${navLinkClasses} py-2 flex items-center`}
+          className={`group ${_navLinkClasses} py-2 flex items-center`}
         >
           <Link
             href={`https://github.com/${item.owner}/${item.repo}`}
@@ -525,14 +531,14 @@ const MobileNavMenu = ({
             </div>
           </div>
           <LinkButton
-          link={'https://app.tina.io'}
-          color="blue"
-          size="small"
-          className="cursor-pointer outline-hidden w-fit ml-6"
-        >
-          {' '}
-          My TinaCloud
-        </LinkButton>
+            link={'https://app.tina.io'}
+            color="blue"
+            size="small"
+            className="cursor-pointer outline-hidden w-fit ml-6"
+          >
+            {' '}
+            My TinaCloud
+          </LinkButton>
           <ul className="flex flex-col py-4 px-6 relative z-20">
             {navItems.map((item, index) =>
               mobileNavItemMapper(item, {
@@ -579,7 +585,6 @@ const MobileNavMenu = ({
                 </Button>
               ),
           )}
-
       </div>
     </>
   );
@@ -596,8 +601,6 @@ const DesktopNavMenu = ({
   setOpenDropdown,
   pathName,
 }: DesktopNavMenuProps) => {
-  console.log('NavItems', navItems);
-  console.log('PathName', pathName);
   return (
     <nav className="w-full max-w-7xl mx-auto flex items-center justify-between">
       <Link href={'/'}>
@@ -605,7 +608,7 @@ const DesktopNavMenu = ({
       </Link>
       <ul className="flex gap-4 items-end justify-center mt-2">
         {navItems.map((item, index) => {
-          return desktopNavItemMapper(item, {
+          return desktopNavItemMapper(item, pathName, {
             index,
             openModal,
             openDropdown,
@@ -657,9 +660,6 @@ export function AppNavBar({ sticky = true }) {
   const navRef = useRef(null);
   const router = useRouter();
   const pathName = usePathname();
-
-  const navLinkClasses =
-    'flex items-center p-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
 
   useEffect(() => {
     if (!sticky) {
