@@ -209,7 +209,7 @@ interface NavItemMapperContext {
 }
 
 const navLinkClasses =
-    'flex items-center py-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
+  'flex items-center py-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
 
 interface MobileNavItemMapperContext {
   index: number;
@@ -277,7 +277,7 @@ function desktopNavItemMapper(
           className={`group ${navLinkClasses} w-fit hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
         >
           <button
-          type="button"
+            type="button"
             className="relative flex items-center justify-center group"
             onMouseEnter={(e: React.MouseEvent) =>
               openDropdownMenu(`${index}-${item.label}`, e)
@@ -285,8 +285,8 @@ function desktopNavItemMapper(
             onMouseLeave={closeDropdownMenu}
             onClick={(e) => openDropdownMenu(`${index}-${item.label}`, e)}
           >
-              {item.label}
-              <BiChevronDown className="w-4 h-4 ml-0.5" />
+            {item.label}
+            <BiChevronDown className="w-4 h-4 ml-0.5" />
             {/* hover bridge that is invisible to user (maintains hover state) */}
             <div
               className="absolute left-0 top-full h-5 min-w-full"
@@ -300,10 +300,7 @@ function desktopNavItemMapper(
               }`}
             >
               {item.items.map((subItem, subIndex) => (
-                <li
-                  key={`${index}-${subIndex}-${subItem.href}`}
-                  className="py-2 px-2 flex items-center group hover:bg-white/60  rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500"
-                >
+                <li key={`${index}-${subIndex}-${subItem.href}`}>
                   <Link
                     href={subItem.href}
                     target={subItem.external ? '_blank' : '_self'}
@@ -311,12 +308,12 @@ function desktopNavItemMapper(
                     onClick={() => {
                       setOpenDropdown(null);
                     }}
-                    className="touch-manipulation flex items-center"
+                    className="touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60  rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500"
                   >
-                      {subItem.label}
-                      {subItem.href.startsWith('https://') && (
-                        <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
-                      )}
+                    {subItem.label}
+                    {subItem.href.startsWith('https://') && (
+                      <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
+                    )}
                   </Link>
                 </li>
               ))}
@@ -413,7 +410,6 @@ function desktopNavItemMapper(
   }
 }
 
-
 function mobileNavItemMapper(
   item: NavItem,
   context: MobileNavItemMapperContext,
@@ -470,10 +466,7 @@ function mobileNavItemMapper(
 
     case stringItemString:
       return (
-        <li
-          key={`${index}-${item.href}`}
-          className={`group ${navLinkClasses}`}
-        >
+        <li key={`${index}-${item.href}`} className={`group ${navLinkClasses}`}>
           <Link
             href={item.href}
             target={item.external ? '_blank' : '_self'}
@@ -525,7 +518,6 @@ const MobileNavMenu = ({
   selectedFlag,
   starCount,
 }: MobileNavMenuProps) => {
-
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -596,9 +588,7 @@ const MobileNavMenu = ({
         onClick={() => setMenuOpen(false)}
       ></div>
       <Link href={'/'}>
-        <TinaIoLogoSvg
-          className={`flex items-center h-auto fill-orange-500`}
-        />
+        <TinaIoLogoSvg className={`flex items-center h-auto fill-orange-500`} />
       </Link>
       <div className="flex space-x-2 gap-2 cursor-pointer">
         {navItems
@@ -654,9 +644,7 @@ const DesktopNavMenu = ({
   return (
     <nav className="w-full max-w-7xl mx-auto flex items-center justify-between">
       <Link href={'/'}>
-        <TinaIoLogoSvg
-          className={`flex items-center h-auto fill-orange-500`}
-        />
+        <TinaIoLogoSvg className={`flex items-center h-auto fill-orange-500`} />
       </Link>
       <ul className="flex gap-4 items-end justify-center">
         {navItems.map((item, index) => {
@@ -863,11 +851,7 @@ export function AppNavBar({ sticky = true }) {
         <EmailForm isFooter={false} />
       </Modal>
 
-      <Modal
-        open={modalType === 'LanguageSelect'}
-        onClose={closeModal}
-        center
-      >
+      <Modal open={modalType === 'LanguageSelect'} onClose={closeModal} center>
         <LanguageSelect
           onLanguageSelect={handleLanguageChange}
           currentLanguage={selectedFlag}
