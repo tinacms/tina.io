@@ -186,6 +186,10 @@ interface MobileNavMenuProps {
   starCount: number;
 }
 
+function isRouteActive(pathname: string, list: GroupOfStringItems['items']): boolean {
+  return list.some((listItem) => listItem.href === pathname);
+}
+
 interface DesktopNavMenuProps {
   navItems: NavItem[];
   openModal: (modal: string) => void;
@@ -214,6 +218,8 @@ const navLinkClasses =
 interface MobileNavItemMapperContext {
   index: number;
   starCount: number;
+  openDropdown: string | null;
+  setOpenDropdown: React.Dispatch<React.SetStateAction<string | null>>;
   closeMenu: () => void;
 }
 
@@ -230,6 +236,8 @@ function desktopNavItemMapper(
     setOpenDropdown,
     starCount,
   } = context;
+
+  const pathname = usePathname();
 
   switch (item._template) {
     case modalButtonString:
@@ -274,7 +282,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${navLinkClasses} w-fit hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
+          className={`group ${navLinkClasses} w-fit  ${isRouteActive(pathname, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
           onMouseLeave={closeDropdownMenu}
         >
           <button
@@ -353,54 +361,53 @@ function mobileNavItemMapper(
   item: NavItem,
   context: MobileNavItemMapperContext,
 ): React.ReactNode {
-  const { index, starCount, closeMenu } = context;
+  const { index, starCount, closeMenu, openDropdown, setOpenDropdown } = context;
+  const dropdownId = `mobile-${index}-${item.label}`;
+  const isOpen = openDropdown === dropdownId;
 
   switch (item._template) {
-    case doubleNavItemDropDownString:
-      return (item as DoubleNavItemDropDown).items.map((subItem) => (
-        <li
-          key={`${subItem.labelLeft}-${subItem.hrefLeft}`}
-          className={`group ${navLinkClasses} py-2 flex items-center gap-2`}
-        >
-          <Link
-            href={subItem.hrefLeft}
-            onClick={closeMenu}
-            className="hover:text-blue-500"
-          >
-            {subItem.labelLeft}
-            {subItem.hrefLeft.startsWith('https://') && <ExternalLinkIcon />}
-          </Link>
-          <span className="text-gray-400">|</span>
-          <Link
-            href={subItem.hrefRight}
-            onClick={closeMenu}
-            className="hover:text-blue-500"
-            aria-label={`${subItem.labelLeft} ${subItem.labelRight}`}
-          >
-            {subItem.labelRight}
-            {subItem.hrefRight.startsWith('https://') && <ExternalLinkIcon />}
-          </Link>
-        </li>
-      ));
-
     case groupOfStringItemsString:
-      return (item as GroupOfStringItems).items.map((subItem, subIndex) =>
-        subItem.href ? (
-          <li
-            key={`${index}-${subIndex}-${subItem.href}`}
-            className={`group ${navLinkClasses} py-2`}
+      return (
+        <li
+          key={`${index}-${item.label}`}
+          className={`group ${navLinkClasses} flex flex-col items-start`}
+        >
+          <button
+            type="button"
+            className="flex items-center"
+            onClick={() => setOpenDropdown(isOpen ? null : dropdownId)}
           >
-            <Link
-              href={subItem.href}
-              target={subItem.external ? '_blank' : '_self'}
-              rel={subItem.external ? 'noopener noreferrer' : undefined}
-              onClick={closeMenu}
-            >
-              {subItem.label}
-              {subItem.href.startsWith('https://') && <ExternalLinkIcon />}
-            </Link>
-          </li>
-        ) : null,
+            {item.label}
+            <BiChevronDown
+              className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${
+                isOpen ? 'rotate-180' : ''
+              }`}
+            />
+          </button>
+          <ul
+            className={`flex flex-col pl-4 overflow-hidden transition-all duration-200 ease-in-out ${
+              isOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
+            }`}
+          >
+            {item.items.map((subItem, subIndex) => (
+              <li key={`${index}-${subIndex}-${subItem.href}`}>
+                <Link
+                  href={subItem.href}
+                  target={subItem.external ? '_blank' : '_self'}
+                  rel={subItem.external ? 'noopener noreferrer' : undefined}
+                  onClick={() => {
+                    setOpenDropdown(null);
+                    closeMenu();
+                  }}
+                  className="py-2 px-2 flex items-center text-gray-600 hover:text-blue-500"
+                >
+                  {subItem.label}
+                  {subItem.href.startsWith('https://') && <ExternalLinkIcon />}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </li>
       );
 
     case stringItemString:
@@ -458,13 +465,15 @@ const MobileNavMenu = ({
   starCount,
 }: MobileNavMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-    if (menuOpen) {
-      document.body.style.overflow = 'auto';
-    } else {
-      document.body.style.overflow = 'hidden';
+    const newMenuOpen = !menuOpen;
+    setMenuOpen(newMenuOpen);
+    document.body.style.overflow = newMenuOpen ? 'hidden' : 'auto';
+    // Reset dropdown when closing menu
+    if (!newMenuOpen) {
+      setOpenDropdown(null);
     }
   };
 
@@ -504,7 +513,7 @@ const MobileNavMenu = ({
             <div className="flex items-center">
               <button
                 type="button"
-                className={`outline-hidden hover:animate-jelly duration-600 hidden max-[1023px]:block`}
+                className={`outline-hidden hover:animate-jelly duration-600`}
                 onClick={() => openModal('LanguageSelect')}
               >
                 {selectedFlag === 'en' ? (
@@ -515,11 +524,22 @@ const MobileNavMenu = ({
               </button>
             </div>
           </div>
+          <LinkButton
+          link={'https://app.tina.io'}
+          color="blue"
+          size="small"
+          className="cursor-pointer outline-hidden w-fit ml-6"
+        >
+          {' '}
+          My TinaCloud
+        </LinkButton>
           <ul className="flex flex-col py-4 px-6 relative z-20">
             {navItems.map((item, index) =>
               mobileNavItemMapper(item, {
                 index,
                 starCount,
+                openDropdown,
+                setOpenDropdown,
                 closeMenu: toggleMenu,
               }),
             )}
@@ -560,17 +580,6 @@ const MobileNavMenu = ({
               ),
           )}
 
-        <button
-          type="button"
-          className={`outline-hidden hover:animate-jelly duration-600 hidden min-[1024px]:block`}
-          onClick={() => openModal('LanguageSelect')}
-        >
-          {selectedFlag === 'en' ? (
-            <EnFlag className="w-8 h-8" />
-          ) : (
-            <ZhFlag className="w-8 h-8" />
-          )}
-        </button>
       </div>
     </>
   );
@@ -755,7 +764,7 @@ export function AppNavBar({ sticky = true }) {
   return (
     <>
       <div ref={navRef} className={`relative w-full`}>
-        <div className="flex lg:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
+        <div className="flex xl:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           <MobileNavMenu
             navItems={navItems}
             openModal={openModal}
@@ -768,7 +777,7 @@ export function AppNavBar({ sticky = true }) {
             stuck && sticky
               ? `xl:fixed shadow-sm bg-linear-to-r from-[rgba(216,251,248,0.6)] to-[rgba(215,233,255,0.6)] backdrop-blur-sm animate-slide-in top-0 p-4`
               : `translate-y-2 px-4 pt-4 pb-6`
-          } z-40 w-full lg:px-10 hidden lg:flex items-center justify-between`}
+          } z-40 w-full lg:px-10 hidden xl:flex items-center justify-between`}
         >
           <DesktopNavMenu
             navItems={navItems}

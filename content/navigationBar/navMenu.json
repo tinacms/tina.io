@@ -46,6 +46,20 @@
       "_template": "groupOfStringItems"
     },
     {
+      "label": "TinaCloud",
+      "items": [
+        {
+          "label": "Whats New in TinaCloud",
+          "href": "/whats-new/tinacloud"
+        },
+        {
+          "label": "Quickstart ",
+          "href": "https://app.tina.io/quickstart"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
       "label": "Pricing",
       "items": [
         {
