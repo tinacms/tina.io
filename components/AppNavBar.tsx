@@ -216,7 +216,7 @@ interface NavItemMapperContext {
 }
 
 const _navLinkClasses =
-  'flex items-center py-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 cursor-pointer drop-shadow-sm text-base font-medium';
+  'flex items-center py-2 text-blue-700 hover:text-blue-500 transition ease-out duration-150 drop-shadow-sm text-base font-medium';
 
 interface MobileNavItemMapperContext {
   index: number;
@@ -623,7 +623,7 @@ const DesktopNavMenu = ({
         <LinkButton
           link={'https://app.tina.io'}
           color="blue"
-          size="small"
+          size="medium"
           className="cursor-pointer outline-hidden"
         >
           {' '}
