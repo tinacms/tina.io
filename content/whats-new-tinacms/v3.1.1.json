@@ -1,0 +1,28 @@
+{
+  "versionNumber": "3.1.1",
+  "dateReleased": "2025-12-18T02:18:07Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "🔒 Security: Update Next.js to 14.2.35 to address security vulnerabilities",
+          "pull_request_number": "6262",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6262",
+          "commit_hash": "3a12a39",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3a12a392d5a8eb9bba5a5be65d080f24afa08de3",
+          "gitHubName": "0xharkirat",
+          "gitHubLink": "https://github.com/0xharkirat"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.1.7"
+        }
+      ]
+    }
+  ]
+}
