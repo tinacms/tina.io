@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '../components/ui';
 import { DynamicLink } from '../components/ui/DynamicLink';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '../middleware';
-import client from '../tina/__generated__/client';
+import { checkPageExists } from './actions/not-found-actions';
 
 const localeContent = {
   en: enLocale,
@@ -87,148 +87,6 @@ const LoadingPage = ({ content }) => (
   ></PageLayout>
 );
 
-type RouteInfo = {
-  type: string;
-  queryFunction: (params: any) => Promise<any>;
-  getRedirectPath: (path: string) => string;
-  getRelativePath: (path: string) => string;
-  fileExtension: string;
-  checkExists?: (response: any) => boolean;
-};
-
-const responseCheckers = {
-  docs: (response) => !!response?.data?.doc,
-  blog: (response) => !!response?.data?.post,
-  blogPagination: (response) => !!response?.data?.postConnection?.edges?.length,
-  community: (response) => !!response?.data?.page,
-  examples: (response) => !!response?.data?.examples,
-  conference: (response) => !!response?.data?.conference,
-  events: (response) => !!response?.data?.eventsConnection?.edges?.length,
-  whatsNew: (response) =>
-    !!response?.data?.WhatsNewTinaCMSConnection?.edges?.length,
-  page: (response) => !!response?.data?.page,
-  default: (response) => !!response,
-};
-
-const routeConfig: Record<string, RouteInfo> = {
-  docs: {
-    type: 'docs',
-    queryFunction: async (params) => {
-      return await client.queries.doc({
-        relativePath: params,
-      });
-    },
-    getRedirectPath: (path) => {
-      return path === 'index' || path === '' ? '/docs' : `/docs/${path}`;
-    },
-    getRelativePath: (path) => `${path || 'index'}.mdx`,
-    fileExtension: '.mdx',
-    checkExists: responseCheckers.docs,
-  },
-  blog: {
-    type: 'blog',
-    queryFunction: async (params) => {
-      return await client.queries.getExpandedPostDocument({
-        relativePath: params,
-      });
-    },
-    getRedirectPath: (path) => `/blog/${path}`,
-    getRelativePath: (path) => `${path}.mdx`,
-    fileExtension: '.mdx',
-    checkExists: responseCheckers.blog,
-  },
-  'blog/page': {
-    type: 'blogPagination',
-    queryFunction: async () => {
-      return await client.queries.postConnection();
-    },
-    getRedirectPath: (path) => {
-      const pageNumber = path.split('/')[1] || '1';
-      return pageNumber === '1' ? '/blog' : `/blog/page/${pageNumber}`;
-    },
-    getRelativePath: () => '',
-    fileExtension: '',
-    checkExists: responseCheckers.blogPagination,
-  },
-  community: {
-    type: 'community',
-    queryFunction: async (params) => {
-      return await client.queries.page({
-        relativePath: params,
-      });
-    },
-    getRedirectPath: () => '/community',
-    getRelativePath: () => 'community.json',
-    fileExtension: '.json',
-    checkExists: responseCheckers.community,
-  },
-  conference: {
-    type: 'conference',
-    queryFunction: async (params) => {
-      return await client.queries.conference({
-        relativePath: params,
-      });
-    },
-    getRedirectPath: () => '/conference',
-    getRelativePath: () => 'TinaCon2025.mdx',
-    fileExtension: '.mdx',
-    checkExists: responseCheckers.conference,
-  },
-  events: {
-    type: 'events',
-    queryFunction: async () => {
-      return await client.queries.eventsConnection();
-    },
-    getRedirectPath: () => '/events',
-    getRelativePath: () => '',
-    fileExtension: '',
-    checkExists: responseCheckers.events,
-  },
-  examples: {
-    type: 'examples',
-    queryFunction: async (params) => {
-      return await client.queries.examples({
-        relativePath: params,
-      });
-    },
-    getRedirectPath: () => '/examples',
-    getRelativePath: () => 'index.json',
-    fileExtension: '.json',
-    checkExists: responseCheckers.examples,
-  },
-  'whats-new': {
-    type: 'whatsNew',
-    queryFunction: async () => {
-      return await client.queries.WhatsNewTinaCMSConnection();
-    },
-    getRedirectPath: () => '/whats-new/tinacms',
-    getRelativePath: () => '',
-    fileExtension: '',
-    checkExists: responseCheckers.whatsNew,
-  },
-  default: {
-    type: 'page',
-    queryFunction: async (params) => {
-      console.log('[debug] Default route query params:', params);
-      return await client.queries.pageWithRecentPosts({
-        relativePath: typeof params === 'string' ? params : 'index.json',
-      });
-    },
-    getRedirectPath: (path) => {
-      if (path === 'index' || path === '') {
-        return '/';
-      }
-      return `/${path}`;
-    },
-    getRelativePath: (path) => {
-      console.log('[debug] Default route getRelativePath path:', path);
-      return path ? `${path}.json` : 'index.json';
-    },
-    fileExtension: '.json',
-    checkExists: responseCheckers.page,
-  },
-};
-
 const parsePath = (pathname: string, localeList: string[]) => {
   const segments = pathname.split('/').filter(Boolean);
   const hasLocalePrefix =
@@ -270,51 +128,6 @@ const parsePath = (pathname: string, localeList: string[]) => {
   };
 };
 
-const queryPage = async (pathInfo: {
-  routeKey: string;
-  pathWithoutPrefix: string;
-}) => {
-  try {
-    const { routeKey, pathWithoutPrefix } = pathInfo;
-    const config = routeConfig[routeKey] || routeConfig.default;
-    const isDefaultRoute = config.type === 'page';
-
-    try {
-      const path = isDefaultRoute ? routeKey : pathWithoutPrefix;
-      const relativePath = config.getRelativePath(path);
-
-      console.log(`[debug] Route info:`, {
-        routeKey,
-        pathWithoutPrefix,
-        relativePath,
-        configType: config.type,
-      });
-
-      const response = relativePath
-        ? await config.queryFunction(relativePath)
-        : await config.queryFunction({});
-
-      const redirectPath = config.getRedirectPath(path);
-
-      console.log(`[debug] Response info:`, {
-        redirectPath,
-        hasResponse: !!response,
-        dataKeys: response?.data ? Object.keys(response.data) : [],
-      });
-
-      const exists = config.checkExists?.(response) ?? !!response;
-
-      return { exists, redirectPath };
-    } catch (error) {
-      console.error(`Error checking ${routeKey} existence:`, error);
-      return { exists: false };
-    }
-  } catch (error) {
-    console.error('Error querying page:', error);
-    return { exists: false };
-  }
-};
-
 export default function NotFoundClient() {
   const pathname = usePathname();
   const localeList = SUPPORTED_LOCALES;
@@ -326,14 +139,14 @@ export default function NotFoundClient() {
   const content = localeContent[pathInfo.locale] || localeContent.en;
 
   useEffect(() => {
-    async function checkPageExists() {
+    async function checkPage() {
       try {
-        const result = await queryPage({
-          routeKey: pathInfo.routeKey,
-          pathWithoutPrefix: pathInfo.pathWithoutPrefix,
-        });
+        const result = await checkPageExists(
+          pathInfo.routeKey,
+          pathInfo.pathWithoutPrefix,
+        );
         setPageExists(result.exists);
-        if (result.exists) {
+        if (result.exists && result.redirectPath) {
           setRedirectPath(result.redirectPath);
         }
       } finally {
@@ -341,7 +154,7 @@ export default function NotFoundClient() {
       }
     }
 
-    checkPageExists();
+    checkPage();
   }, [pathInfo]);
 
   if (!pathInfo.needsQuery) {

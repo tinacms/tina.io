@@ -196,3 +196,7 @@ h4 {
   background: var(--color-white);
   color: var(--color-blue);
 }
+
+#chatbase-bubble-button {
+  z-index: 49 !important;
+}
