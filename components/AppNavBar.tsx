@@ -284,7 +284,7 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2`}
+          className={`group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2 cursor-pointer`}
           onMouseLeave={closeDropdownMenu}
         >
           <button
