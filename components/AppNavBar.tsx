@@ -486,7 +486,7 @@ const MobileNavMenu = ({
   return (
     <>
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
+        className={`fixed top-0 right-0 h-full w-[300px] bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         } `}
       >
