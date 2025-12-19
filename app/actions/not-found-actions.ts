@@ -157,25 +157,11 @@ export async function checkPageExists(
       const path = isDefaultRoute ? routeKey : pathWithoutPrefix;
       const relativePath = config.getRelativePath(path);
 
-      console.log(`[debug] Route info:`, {
-        routeKey,
-        pathWithoutPrefix,
-        relativePath,
-        configType: config.type,
-      });
-
       const response = relativePath
         ? await config.queryFunction(relativePath)
         : await config.queryFunction({});
 
       const redirectPath = config.getRedirectPath(path);
-
-      console.log(`[debug] Response info:`, {
-        redirectPath,
-        hasResponse: !!response,
-        dataKeys: response?.data ? Object.keys(response.data) : [],
-      });
-
       const exists = config.checkExists?.(response) ?? !!response;
 
       return { exists, redirectPath };
