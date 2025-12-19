@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import { FaChevronUp } from 'react-icons/fa';
 
 const ConsentBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -101,38 +100,38 @@ const ConsentBanner = () => {
   return (
     <>
       {isVisible && (
-        <div className="fixed bottom-0 w-full bg-linear-to-br from-orange-400 to-orange-600 text-white p-6 text-center z-50">
+        <div className="fixed flex flex-col gap-4 bottom-0 w-full z-50 bg-linear-to-br from-orange-400 to-orange-600 text-white p-6 text-center justify-center items-center">
           <p className="pb-2">
-            We use cookies to improve your experience. By continuing, you agree
-            to our use of cookies.{' '}
+            We use cookies to improve your experience. By continuing, you accept
+            our{' '}
             <Link href="/privacy-notice" className="text-white underline">
-              Learn More
+              cookie policy
             </Link>
+            .
           </p>
-          <div className="flex justify-center mt-2">
+          <div className="flex">
             <button
               type="button"
               onClick={handleAcceptAll}
-              className="font-ibm-plex text-sm mx-2 px-4 py-2 bg-white text-[#ea6d43] rounded-3xl hover:bg-gray-200"
+              className="font-ibm-plex text-sm mx-2 px-6 py-2 bg-white text-[#ea6d43] rounded-3xl hover:bg-gray-200 cursor-pointer"
             >
               Accept All
             </button>
             <button
               type="button"
               onClick={handleDeclineAll}
-              className="mx-2 px-4 py-2 font-ibm-plex text-sm border-2 border-white rounded-3xl hover:bg-orange-600"
+              className="mx-2 px-6 py-2 font-ibm-plex text-sm border-2 border-white rounded-3xl hover:bg-orange-600 cursor-pointer"
             >
               Reject All
             </button>
-            <button
-              type="button"
-              className="text-[#ea6d43] bg-white font-ibm-plex rounded-3xl text-sm px-5 py-2.5 text-center inline-flex items-center mx-2 hover:bg-gray-200"
-              onClick={openModal}
-            >
-              Customize
-              <FaChevronUp className="pl-1" />
-            </button>
           </div>
+          <button
+            type="button"
+            className="underline font-ibm-plex text-sm cursor-pointer"
+            onClick={openModal}
+          >
+            Manage cookies
+          </button>
         </div>
       )}
 
