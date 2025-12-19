@@ -102,7 +102,8 @@ const ConsentBanner = () => {
       {isVisible && (
         <div className="fixed flex flex-col gap-4 bottom-0 w-full z-50 bg-linear-to-br from-orange-400 to-orange-600 text-white p-6 text-center justify-center items-center">
           <p className="pb-2">
-            We use cookies to improve your experience. By continuing, you accept our{' '}
+            We use cookies to improve your experience. By continuing, you accept
+            our{' '}
             <Link href="/privacy-notice" className="text-white underline">
               cookie policy
             </Link>
@@ -125,12 +126,12 @@ const ConsentBanner = () => {
             </button>
           </div>
           <button
-              type="button"
-              className="underline font-ibm-plex text-sm cursor-pointer"
-              onClick={openModal}
-            >
-              Manage cookies
-            </button>
+            type="button"
+            className="underline font-ibm-plex text-sm cursor-pointer"
+            onClick={openModal}
+          >
+            Manage cookies
+          </button>
         </div>
       )}
 
