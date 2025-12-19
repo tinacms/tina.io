@@ -533,8 +533,8 @@ const MobileNavMenu = ({
           <LinkButton
             link={'https://app.tina.io'}
             color="blue"
-            size="small"
-            className="cursor-pointer outline-hidden w-fit ml-6"
+            size="medium"
+            className="cursor-pointer outline-hidden w-fit ml-6 px-10"
           >
             {' '}
             My TinaCloud
