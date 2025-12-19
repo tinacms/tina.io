@@ -289,7 +289,7 @@ function desktopNavItemMapper(
         >
           <button
             type="button"
-            className="relative flex items-center justify-center group"
+            className="relative flex items-center justify-center group cursor-pointer"
             onMouseEnter={(e: React.MouseEvent) =>
               openDropdownMenu(`${index}-${item.label}`, e)
             }
@@ -534,7 +534,7 @@ const MobileNavMenu = ({
             link={'https://app.tina.io'}
             color="blue"
             size="medium"
-            className="cursor-pointer outline-hidden w-fit ml-6 px-10"
+            className="cursor-pointer outline-hidden w-fit ml-6 px-12"
           >
             {' '}
             My TinaCloud
