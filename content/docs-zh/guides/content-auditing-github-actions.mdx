@@ -1,9 +1,11 @@
 ---
 title: 使用GitHub Actions审核内容
-last_edited: '2025-12-11T01:06:14.377Z'
+last_edited: '2025-12-12T06:55:00.463Z'
 next: ''
 previous: ''
 ---
+
+> 注意：这仍在进行中，目前功能可用，但我们正在努力简化它。请在[这里](https://github.com/tinacms/tinacms/issues/6156)关注更新。
 
 ## 概述
 
@@ -19,28 +21,28 @@ previous: ''
       title: "Tina Cloud",
       image: "",
       content:
-        "您的内容将在Tina Cloud中被查询。这为GitHub操作提供了需要定位的文件列表。\n",
+        "您的内容将在Tina Cloud中查询。这为GitHub操作提供了需要定位的文件列表。\n",
       useAsSubsection: false
     },
     {
       title: "GitHub Actions",
       image: "",
       content:
-        "GitHub操作将使用来自TinaCloud的响应在您的存储库中定位正确的文件。然后将读取每个文件的内容进行审查。\n",
+        "GitHub操作将使用来自TinaCloud的响应在您的存储库中定位正确的文件。从那里开始，将读取每个文件的内容以进行审查。\n",
       useAsSubsection: false
     },
     {
       title: "问题",
       image: "",
       content:
-        "在扫描您的内容后，GitHub操作将根据您的系统提示生成一个带有建议改进的列表。\n",
+        "在扫描您的内容后，GitHub操作将生成一个问题列表，并根据您的系统提示提出改进建议。\n",
       useAsSubsection: true
     },
     {
       title: "拉取请求",
       image: "",
       content:
-        "GitHub操作将自动创建拉取请求，其中包含已检查的文件列表。\n",
+        "GitHub操作将自动创建包含已检查文件列表的拉取请求。\n",
       useAsSubsection: true
     },
     {
@@ -55,7 +57,7 @@ previous: ''
 
 ## 安装GitHub操作
 
-我们有一个公共仓库，其中包含一个GitHub操作，您可以直接使用它来审核您的内容。按照[安装步骤](https://github.com/tinacms/github-content-auditor?tab=readme-ov-file#how-to-install)进行设置。
+我们有一个公共仓库，其中包含一个您可以直接使用的GitHub操作来审核您的内容。按照[安装步骤](https://github.com/tinacms/github-content-auditor?tab=readme-ov-file#how-to-install)进行设置。
 
 ## 配置您的仓库
 
@@ -78,7 +80,7 @@ previous: ''
 
 ### 变量
 
-您需要添加配置设置，这些设置将在运行GitHub操作时使用。要配置设置，请前往**您的仓库 | ⚙️设置 | 秘密和变量。**
+您需要添加在运行GitHub操作时将使用的配置设置。要配置设置，请前往**您的仓库 | ⚙️设置 | 秘密和变量。**
 
 #### 秘密
 
@@ -93,7 +95,7 @@ previous: ''
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | **TINA\_AUDITOR\_CONTENT\_WINDOW**           | 一个数字，表示运行操作时将检查多少过时的内容项。（例如：5） |
 | **TINA\_AUDITOR\_EXPIRY\_DAYS**              | 在您的内容被重新评估之前将经过的天数。                 |
-| **TINA\_AUDITOR\_SYSTEM\_PROMPT (可选)**     | 将在将内容传递给GitHub模型时用于评估内容的提示。                |
+| **TINA\_AUDITOR\_SYSTEM\_PROMPT (可选)**     | 将内容传递给GitHub模型时用于评估内容的提示。                |
 | **TINA\_AUDITOR\_COLLECTION**                | 审核查询将针对的集合。                                                   |
 
 #### 系统提示（可选）
@@ -103,7 +105,7 @@ previous: ''
 默认的系统提示如下：
 
 ```plaintext
-您是一名专家内容审核员。您的任务是审查提供的Markdown内容，并对其质量、清晰度、相关性和吸引力提供建设性反馈。您应突出并建议具体的改进区域。
+您是一名专家内容审核员。您的任务是审查提供的Markdown内容，并对其质量、清晰度、相关性和吸引力提供建设性反馈。您应突出并建议具体的改进区域。忽略lastChecked日期。
 ```
 
 ## 准备您的内容
@@ -133,7 +135,7 @@ const MyCollection : Collection = {
 
 > 在添加新字段后，请确保重新生成并提交您的`tina-lock.json`。
 
-为了使脚本运行，我们需要为您所有现有内容添加一个`lastChecked`字段。
+为了运行脚本，我们需要为您所有现有内容添加一个`lastChecked`字段。
 
 导航到工作流的目录。
 
@@ -141,7 +143,7 @@ const MyCollection : Collection = {
 cd ./github/scripts/tina-helpers
 ```
 
-您需要在此位置添加一个`.env`文件，其中保存您的**集合**、**Tina令牌**和**Tina客户端ID**。这些是您在[GitHub设置](/docs/guides/content-auditing-github-actions#secrets)中添加的相同属性。
+您需要在此位置添加一个`.env`文件，并保存您的**Collection**、**Tina Token**和**Tina Client ID**。这些是您在[GitHub设置](/docs/guides/content-auditing-github-actions#secrets)中添加的相同属性。
 
 ```env
 TINA_TOKEN=<your-tina-token>
@@ -175,21 +177,21 @@ updated: content/posts/artificial-intelligence-explained.mdx
 
 ## 运行查询
 
-一旦您为自己的项目设置了GitHub操作，您应该能够在您的仓库的GitHub Actions中看到一个名为**使用AI审核内容**的新工作流。运行它以执行您的第一次内容审核。
+一旦您完成了为自己的项目设置GitHub操作，您应该能够在您的仓库的GitHub Actions中看到一个名为**使用AI审核内容**的新工作流。运行它以执行您的第一次内容审核。
 
 ![在GitHub Actions中运行内容审核](/img/docs/content-audit-github-actions/running-github-action.gif "在GitHub Actions中运行内容审核")
 
-在内容审核完成后，流程将输出一个问题列表。每个问题将包含内容的建议列表以及需要更改的文件的便捷链接。![](/img/docs/content-audit-github-actions/issues-audit-action.png "运行内容审核操作后的问题列表")
-工作流还将输出一个拉取请求，以更新每个被审核文件的`lastChecked`日期。
+流程将在内容审核完成后输出一个问题列表。每个问题将包含内容的建议列表以及需要更改的文件的便捷链接。![](/img/docs/content-audit-github-actions/issues-audit-action.png "运行内容审核操作后的问题列表")
+工作流还将输出一个拉取请求，以更新每个已审核文件的`lastChecked`日期。
 
 ![更新了最后检查日期的拉取请求](/img/docs/content-audit-github-actions/content-audit-pr.png "更新了最后检查日期的拉取请求")
 
 <WarningCallout
   body={<>
-    在再次运行GitHub操作之前，合并此拉取请求非常重要。否则，当您重新运行它时，它将再次审核相同的文件。
+    在再次运行GitHub操作之前，务必合并此拉取请求。否则，当您重新运行它时，它将再次审核相同的文件。
   </>}
 />
 
 ## 建议：将问题分配给Copilot
 
-现在您有了一组由工作流生成的问题，您有几种选择来处理反馈。您可以自己处理这些问题，也可以通过将问题分配给GitHub Copilot来完全自动化这个过程！
+现在您有了一组从工作流生成的问题，您有几种选择来处理反馈。您可以自己处理这些问题，或者通过将问题分配给GitHub Copilot来完全自动化这个过程！
