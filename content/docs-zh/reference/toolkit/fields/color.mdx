@@ -1,0 +1,75 @@
+---
+consumes:
+  - file: /packages/tinacms/src/plugins/fields/ColorFieldPlugin.tsx
+    details: 记录颜色字段插件
+  - file: /packages/@tinacms/fields/src/ColorPicker/ColorPicker.tsx
+    details: 显示颜色字段的使用和界面
+title: 颜色字段
+---
+
+<WarningCallout
+  body={<>
+    这是一个高级功能，可能不需要配置。您可能需要的是内容类型参考！
+  </>}
+/>
+
+`color` 字段是一个可视化的颜色选择器。此字段用于处理颜色渲染的内容值。可以保存为RGB或十六进制值。
+
+有两种类型的颜色小部件，“sketch”或“block”。“sketch”小部件允许编辑者从下面熟悉的选择器中选择颜色。
+
+![tinacms-color-field](/img/fields/sketch-color-field.png)
+
+“block”小部件允许编辑者从一组预定义的颜色样本中选择。
+
+![tinacms-block-color-field](/img/fields/block-color-field.png)
+
+## 选项
+
+```typescript
+interface ColorConfig {
+  component: 'color'
+  name: string
+  label?: string
+  description?: string
+  colorFormat?: 'hex' | 'rgb' // 默认为 "hex"
+  colors?: string[]
+  widget?: 'sketch' | 'block' // 默认为 "sketch"
+  width?: string // 默认为全页面宽度
+}
+```
+
+| 选项          | 描述                                                                                                                                                                                                                                         |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `component`   | 插件组件的名称。始终为 `'color'`。                                                                                                                                                                                                           |
+| `name`        | 正在编辑的数据中某个值的路径。                                                                                                                                                                                                                |
+| `label`       | 字段的人类可读标签。默认为 `name`。 *(可选)*                                                                                                                                                                                                 |
+| `description` | 扩展字段用途或提示特定操作的描述。 *(可选)*                                                                                                                                                                                                  |
+| `colorFormat` | 指定您希望颜色值是十六进制（'hex'）还是RBG值。 *(可选)*                                                                                                                                                                                      |
+| `colors`      | 一个“样本”值数组，将在“sketch”小部件下显示为选项，或作为“block”小部件的样本选项。如果没有传递颜色，将呈现一组默认颜色，ROYGBIV风格。 *(可选)*                                                                                               |
+| `widget`      | 一个可选字符串，指示应渲染“sketch”还是“block”小部件。如果没有传递值，则默认为“sketch”。 *(可选)*                                                                                                                                            |
+| `width`       | 一个可选字符串，用于设置颜色选择器的宽度。如果没有传递值，则默认为全页面宽度。 *(可选)*                                                                                                                                                      |
+
+> 此接口仅显示颜色字段独有的键。访问 [字段配置](https://tina.io/docs/extending-tina/custom-field-components/#default-field-plugins "字段配置链接") 文档以获取完整的选项列表。
+
+## 定义
+
+```javascript
+const BlogPostForm = {
+  fields: [
+    {
+      type: 'string',
+      name: 'rawFrontmatter.background_color',
+      label: '背景颜色',
+      description: '在此编辑页面背景颜色',
+      ui: {
+        component: 'color',
+        colorFormat: 'hex',
+        colors: ['#EC4815', '#241748', '#B4F4E0', '#E6FAF8'],
+        widget: 'sketch',
+        width: '240px'
+      },
+    },
+    // ...
+  ],
+}
+```
