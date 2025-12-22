@@ -313,15 +313,16 @@ function desktopNavItemMapper(
                 <li key={`${index}-${subIndex}-${subItem.href}`}>
                   <Link
                     href={subItem.href}
-                    target={subItem.external ? '_blank' : '_self'}
-                    rel={subItem.external ? 'noopener noreferrer' : undefined}
-                    onClick={() => {
+                    target={subItem.href.startsWith('https') ? '_blank' : undefined}
+                    rel={subItem.href.startsWith('https') ? 'noopener noreferrer' : undefined}
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setOpenDropdown(null);
                     }}
                     className="touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60  rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500"
                   >
                     {subItem.label}
-                    {subItem.href.startsWith('https://') && (
+                    {subItem.href.startsWith('https') && (
                       <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
                     )}
                   </Link>
@@ -373,11 +374,11 @@ function mobileNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${_navLinkClasses} flex flex-col items-start`}
+          className={`group ${_navLinkClasses} flex flex-col items-start text-lg`}
         >
           <button
             type="button"
-            className="flex items-center"
+            className="flex items-center cursor-pointer"
             onClick={() => setOpenDropdown(isOpen ? null : dropdownId)}
           >
             {item.label}
@@ -534,7 +535,7 @@ const MobileNavMenu = ({
             link={'https://app.tina.io'}
             color="blue"
             size="medium"
-            className="cursor-pointer outline-hidden w-fit ml-6 px-12"
+            className="cursor-pointer outline-hidden mx-6"
           >
             {' '}
             My TinaCloud
