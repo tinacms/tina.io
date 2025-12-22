@@ -6,9 +6,9 @@ next: ''
 previous: content/docs-zh/drafts/drafts-fields.mdx
 ---
 
-<Youtube embedSrc="https://www.youtube.com/embed/gYukiULGqGc" />
+<Youtube embedSrc="https://www.youtube.com/embed/u5QsWV4_5aU" />
 
-> 注意：编辑工作流程功能仅在某些付费计划中可用。
+> 注意：编辑工作流功能仅在某些付费计划中可用。
 
 如果您的内容编辑需要在多个分支上工作，您可以利用编辑工作流程功能。与其将内容直接保存到受保护的分支（例如，`main`），不如创建一个新分支。会生成一个草稿拉取请求，所有后续编辑都在这个新分支上进行。当您的内容准备好发布时，可以通过 GitHub 将其合并回受保护的分支（例如，`main`）。
 
@@ -44,7 +44,7 @@ previous: content/docs-zh/drafts/drafts-fields.mdx
 
 ## GitHub 拉取请求链接
 
-在分支列表模态框中，您可以点击下拉菜单并点击“查看拉取请求”以在 GitHub 上查看拉取请求。这将在您的浏览器中打开一个新标签页。此链接仅在拉取请求是通过 TinaCMS 创建的情况下出现，而不是手动创建的。
+在分支列表模态框中，您可以点击下拉菜单并点击“查看拉取请求”以在 GitHub 上查看拉取请求。这将在浏览器中打开一个新标签页。此链接仅在拉取请求是通过 TinaCMS 创建的情况下出现，而不是手动创建的。
 
 ![PR 链接](/img/docs/editorial-workflow/preview-link.png)
 
@@ -54,7 +54,7 @@ previous: content/docs-zh/drafts/drafts-fields.mdx
 
 ![编辑工作流程保存](/img/blog/editorial-workflow/share-btn_xvmxii.png)
 
-这将允许您在将更改合并到受保护的分支之前预览内容更改。要设置预览链接，在您的配置文件中将 `previewUrl` 函数添加到 `ui` 对象中。此函数将接收分支名称作为参数，并应返回该分支的预览 URL。例如：
+这将允许您在将更改合并到受保护的分支之前预览内容更改。要设置预览链接，在您的配置文件中向 `ui` 对象添加一个 `previewUrl` 函数。此函数将接收分支名称作为参数，并应返回该分支的预览 URL。例如：
 
 ```js
 // tina/config.{ts,tsx,js}
@@ -73,4 +73,4 @@ export default defineConfig({
 });
 ```
 
-现在，您将能够在分支列表模态框中点击“查看预览”按钮以预览您的更改。
+现在，您可以在分支列表模态框中点击“查看预览”按钮以预览您的更改。

@@ -1,0 +1,20 @@
+{
+  "versionNumber": "3.1.2",
+  "dateReleased": "2025-12-18T23:12:56Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "💄 UI/UX - Update Alerts UI and resolve overflow issue",
+          "pull_request_number": "6271",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6271",
+          "commit_hash": "8335218",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/833521832f91c98ff3cb48535eecb3824cb0f7bd",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

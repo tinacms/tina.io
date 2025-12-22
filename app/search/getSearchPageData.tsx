@@ -1,3 +1,5 @@
+'use server';
+
 import { notFound } from 'next/navigation';
 import client from 'tina/__generated__/client';
 import { formatTableofContentsData } from 'utils/docs/getDocProps';
