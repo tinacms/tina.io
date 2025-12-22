@@ -313,8 +313,14 @@ function desktopNavItemMapper(
                 <li key={`${index}-${subIndex}-${subItem.href}`}>
                   <Link
                     href={subItem.href}
-                    target={subItem.href.startsWith('https') ? '_blank' : undefined}
-                    rel={subItem.href.startsWith('https') ? 'noopener noreferrer' : undefined}
+                    target={
+                      subItem.href.startsWith('https') ? '_blank' : undefined
+                    }
+                    rel={
+                      subItem.href.startsWith('https')
+                        ? 'noopener noreferrer'
+                        : undefined
+                    }
                     onClick={(e) => {
                       e.stopPropagation();
                       setOpenDropdown(null);

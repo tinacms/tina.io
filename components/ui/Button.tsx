@@ -96,9 +96,6 @@ export const LinkButton = ({
 }) => {
   const externalLink = link.startsWith('http');
 
-  console.log('link', link);
-  console.log('externalLink', externalLink);
-
   const nullcaseShape = shape || 'pill';
   return (
     <Link
