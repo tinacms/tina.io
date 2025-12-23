@@ -94,11 +94,12 @@ export const LinkButton = ({
   shape = 'pill',
   ...props
 }) => {
+  const externalLink = link.startsWith('http');
+
   const nullcaseShape = shape || 'pill';
   return (
     <Link
       href={link}
-      passHref
       className={cn(
         baseClasses,
         shapeClasses[nullcaseShape],
@@ -107,6 +108,8 @@ export const LinkButton = ({
         className,
       )}
       {...props}
+      target={externalLink ? '_blank' : undefined}
+      rel={externalLink ? 'noopener noreferrer' : undefined}
     >
       {children}
     </Link>
