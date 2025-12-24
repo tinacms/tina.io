@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { BiCopy } from 'react-icons/bi';
-import { BiCheck } from 'react-icons/bi';
+import { BiCheck, BiCopy } from 'react-icons/bi';
 import 'react-responsive-modal/styles.css';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import { IoMdClose } from 'react-icons/io';
@@ -62,13 +61,19 @@ export const CodeButton = ({
           <span
             className={`relative flex items-center bg-seafoam-500 h-full px-4 py-3 rounded-tr-sm ${_copied || showHelpText ? '' : 'rounded-br-sm'} border-l border-seafoam-150 ease-out transition-colors duration-200 text-black group-hover:text-black/90`}
           >
-            <BiCopy className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
-            <BiCheck className={`w-5 h-5 absolute inset-0 m-auto duration-200 ${_copied ? 'rotate-0 scale-100 opacity-100' : '-rotate-180 scale-0 opacity-0'}`} />
+            <BiCopy
+              className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
+            />
+            <BiCheck
+              className={`w-5 h-5 absolute inset-0 m-auto duration-200 ${_copied ? 'rotate-0 scale-100 opacity-100' : '-rotate-180 scale-0 opacity-0'}`}
+            />
           </span>
         </div>
       </button>
       {showHelpText && helpText?.children?.length > 0 && (
-        <div className={`bg-[#120101] text-seafoam-500 text-xs border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]`}>
+        <div
+          className={`bg-[#120101] text-seafoam-500 text-sm border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]`}
+        >
           <TinaMarkdown
             content={helpText}
             components={CodeButtonMarkdownStyle}
