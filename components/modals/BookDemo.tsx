@@ -25,9 +25,9 @@ export const DemoForm = () => {
         </h1>
       </div>
       <div className="grid lg:grid-cols-3 gap-3 px-6 md:px-0 lg:px-6 grow">
-        {meetingPeople.map((person) => (
+        {meetingPeople.map((person, index) => (
           <div
-            key={person.id}
+            key={`person-${person.name}-${index}`}
             className="flex justify-center w-full items-center h-full"
           >
             <div className="w-full max-w-sm h-full">

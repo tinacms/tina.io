@@ -94,8 +94,8 @@ const BookingBlock = ({ data }) => {
           <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
             {data.description}
           </h3>
-          {meetingPeople.map((cardItem) => (
-            <BookingCard key={cardItem.name} cardItem={cardItem} />
+          {meetingPeople.map((cardItem, index) => (
+            <BookingCard key={`booking-${cardItem.name}-${index}`} cardItem={cardItem} />
           ))}
         </div>
       </div>
