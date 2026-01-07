@@ -17,10 +17,6 @@
           "href": "https://www.youtube.com/c/tinacms"
         },
         {
-          "label": "Compare TinaCMS",
-          "href": "/compare-tina"
-        },
-        {
           "label": "Showcase",
           "href": "/showcase"
         },
@@ -57,12 +53,12 @@
           "href": "/editorial-workflow"
         },
         {
-          "label": "Whats New in TinaCloud",
-          "href": "/whats-new/tinacloud"
-        },
-        {
           "label": "Quickstart ",
           "href": "https://app.tina.io/quickstart"
+        },
+        {
+          "label": "Whats New in TinaCloud",
+          "href": "/whats-new/tinacloud"
         }
       ],
       "_template": "groupOfStringItems"
