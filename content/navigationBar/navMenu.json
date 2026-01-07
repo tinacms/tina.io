@@ -64,8 +64,8 @@
       "_template": "groupOfStringItems"
     },
     {
-      "label": "Enterprise",
-      "href": "/enterprise",
+      "label": "Editorial Workflow",
+      "href": "/editorial-workflow",
       "_template": "stringItem"
     },
     {
