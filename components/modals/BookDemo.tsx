@@ -7,11 +7,23 @@ import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 
 export const DemoForm = () => {
   const [meetingPeople, setMeetingPeople] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const meetingPeopleData = await fetchMeetingLinks();
-      setMeetingPeople(meetingPeopleData);
+      try {
+        setIsLoading(true);
+        setError(null);
+        const meetingPeopleData = await fetchMeetingLinks();
+        setMeetingPeople(meetingPeopleData || []);
+      } catch (err) {
+        console.error('Failed to fetch meeting links:', err);
+        setError('Failed to load meeting links. Please try again later.');
+        setMeetingPeople([]);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
@@ -24,8 +36,24 @@ export const DemoForm = () => {
           Choose your location
         </h1>
       </div>
-      <div className="grid lg:grid-cols-3 gap-3 px-6 md:px-0 lg:px-6 grow">
-        {meetingPeople.map((person, index) => (
+      {isLoading && (
+        <div className="flex justify-center items-center py-10">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      )}
+      {error && (
+        <div className="flex justify-center items-center py-10">
+          <p className="text-red-600">{error}</p>
+        </div>
+      )}
+      {!isLoading && !error && meetingPeople.length === 0 && (
+        <div className="flex justify-center items-center py-10">
+          <p className="text-muted-foreground">No meeting links available.</p>
+        </div>
+      )}
+      {!isLoading && !error && meetingPeople.length > 0 && (
+        <div className="grid lg:grid-cols-3 gap-3 px-6 md:px-0 lg:px-6 grow">
+          {meetingPeople.map((person, index) => (
           <div
             key={`person-${person.name}-${index}`}
             className="flex justify-center w-full items-center h-full"
@@ -58,7 +86,8 @@ export const DemoForm = () => {
             </div>
           </div>
         ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

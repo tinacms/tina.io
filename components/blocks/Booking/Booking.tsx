@@ -49,8 +49,13 @@ const BookingBlock = ({ data }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const meetingPeopleData = await fetchMeetingLinks();
-      setMeetingPeople(meetingPeopleData);
+      try {
+        const meetingPeopleData = await fetchMeetingLinks();
+        setMeetingPeople(meetingPeopleData || []);
+      } catch (err) {
+        console.error('Failed to fetch meeting links:', err);
+        setMeetingPeople([]);
+      }
     };
 
     fetchData();
