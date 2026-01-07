@@ -119,16 +119,16 @@
           "href": "/about"
         },
         {
+          "label": "Compare TinaCMS",
+          "href": "/compare-tina"
+        },
+        {
           "label": "Blog",
           "href": "/blog"
         },
         {
           "label": "Examples",
           "href": "/examples"
-        },
-        {
-          "label": "Compare TinaCMS",
-          "href": "/compare-tina"
         }
       ],
       "_template": "groupOfStringItems"
