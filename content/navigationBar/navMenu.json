@@ -64,20 +64,6 @@
       "_template": "groupOfStringItems"
     },
     {
-      "label": "Pricing",
-      "items": [
-        {
-          "label": "TinaCloud Pricing",
-          "href": "/pricing"
-        },
-        {
-          "label": "Enterprise",
-          "href": "/enterprise"
-        }
-      ],
-      "_template": "groupOfStringItems"
-    },
-    {
       "label": "Enterprise",
       "href": "/enterprise",
       "_template": "stringItem"
