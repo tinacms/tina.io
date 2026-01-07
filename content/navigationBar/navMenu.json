@@ -49,6 +49,10 @@
       "label": "TinaCloud",
       "items": [
         {
+          "label": "Editorial Workflow",
+          "href": "/editorial-workflow"
+        },
+        {
           "label": "Whats New in TinaCloud",
           "href": "/whats-new/tinacloud"
         },
