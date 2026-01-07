@@ -78,6 +78,11 @@
       "_template": "groupOfStringItems"
     },
     {
+      "label": "Enterprise",
+      "href": "/enterprise",
+      "_template": "stringItem"
+    },
+    {
       "label": "Community",
       "items": [
         {
