@@ -1,6 +1,6 @@
 ---
 title: Loading Your Content
-last_edited: '2025-05-08T08:12:37.416Z'
+last_edited: '2026-01-07T23:27:08.221Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/the-content-model.mdx
 previous: content/docs/beginner-tutorials/wiring-content.mdx
@@ -13,6 +13,8 @@ This is because the `useTina` callback is being called before `fetchContent` has
 To fix this, we need to alter our approach a little, so that the `useTina` method is called once our async data fetching is complete.
 
 We will do this by creating a new child component, and only render that component when we have some data (a typical React solution to asynchronous data fetching).
+
+### The Fix
 
 1\. Create a new component `app/awesome-content.tsx`
 
@@ -76,7 +78,7 @@ export default function Home() {
 
 That's it!
 
-Now let's check that it works!
+### Check the Solution
 
 4\. Navigate to `http://localhost/admin/index.html` and edit your amazing title and see how the changes are immediately reflected in the HTML.
 
