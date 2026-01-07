@@ -49,6 +49,10 @@
       "label": "TinaCloud",
       "items": [
         {
+          "label": "TinaCloud Pricing",
+          "href": "/pricing"
+        },
+        {
           "label": "Editorial Workflow",
           "href": "/editorial-workflow"
         },
