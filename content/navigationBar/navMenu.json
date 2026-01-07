@@ -125,6 +125,10 @@
         {
           "label": "Examples",
           "href": "/examples"
+        },
+        {
+          "label": "Compare TinaCMS",
+          "href": "/compare-tina"
         }
       ],
       "_template": "groupOfStringItems"
