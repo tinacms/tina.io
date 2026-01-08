@@ -9,9 +9,15 @@ import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { ModalButton } from '../../ui';
 
-const modals = {
-  'BookDemo.tsx': <DemoForm />,
-  'EmailForm.tsx': <EmailForm />,
+// Function that returns modal components
+const getModalContent = (modal: string) => {
+  if (modal === 'BookDemo.tsx') {
+    return <DemoForm />;
+  }
+  if (modal === 'EmailForm.tsx') {
+    return <EmailForm />;
+  }
+  return null;
 };
 
 export const ModalB = ({ items, align = 'left', className = '' }) => {
@@ -19,7 +25,7 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
   const [ModalContent, setModalContent] = useState(null);
 
   const openModal = (modal) => {
-    setModalContent(modals[modal]);
+    setModalContent(getModalContent(modal));
     setOpen(true);
   };
 
