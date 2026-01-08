@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+/* biome-ignore lint/correctness/noUnusedImports: may need to use React for future compatibility */
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 
@@ -75,4 +76,3 @@ export function DemoFormClient({
     </div>
   );
 }
-
