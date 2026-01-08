@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2026.01.1",
+  "dateReleased": "2026-01-08T09:21:53Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "feat: add button to switch to sso mode in auth",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "feat: add title tags to all pages",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "feat: add fuzzy search",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "fix: state issue with enterprise sso login button",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        }
+      ]
+    }
+  ]
+}
