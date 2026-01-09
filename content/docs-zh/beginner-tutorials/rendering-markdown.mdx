@@ -1,6 +1,6 @@
 ---
 title: 渲染我们的Markdown
-last_edited: '2025-03-28T01:07:17.698Z'
+last_edited: '2026-01-07T23:50:23.671Z'
 tocIsHidden: true
 next: content/docs-zh/beginner-tutorials/new-picture.mdx
 previous: content/docs-zh/beginner-tutorials/string-to-markdown.mdx
@@ -8,7 +8,9 @@ previous: content/docs-zh/beginner-tutorials/string-to-markdown.mdx
 
 让我们修复我们的Markdown内容。
 
-1\. 更新 `app/awesome-content.tsx`，添加以下内容：
+### 通过 `TinaMarkdown` 解析内容
+
+1\. 更新 `app/awesome-content.tsx` 以添加以下内容：
 
 ```typescript
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -20,13 +22,13 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 ```
 
-测试一下。它有效！现在尝试再次编辑您的内容。看，一个富文本编辑器！
+测试一下。它有效！现在再次尝试编辑您的内容。看，一个富文本编辑器！
 
 2\. 继续为您的正文添加**一些** *样式*。
 
-> *为什么我们需要这样做？* 当我们向TinaCMS请求Markdown内容时，它会给我们一个解析后的[抽象语法树](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST)。这看起来像一个包含我们的文本/格式/结构的JavaScript对象，每个都有自己的节点。\
+> *为什么我们需要这样做？* 当我们向TinaCMS请求我们的Markdown内容时，它会给我们一个解析后的[抽象语法树](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST)。这看起来像一个包含我们的文本/格式/结构的JavaScript对象，每个都在自己的节点中。\
 > \
-> Tina可以像上面那样使用`TinaMarkdown`为我们处理这个问题，或者我们可以自己逐步处理以获得更多的控制。🔧
+> Tina可以像上面那样使用 `TinaMarkdown` 为我们处理这个问题，或者我们可以自己逐步处理以获得更多的控制。🔧
 
 <WarningCallout
   body={<>

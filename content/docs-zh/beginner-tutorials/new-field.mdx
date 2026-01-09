@@ -1,14 +1,16 @@
 ---
 title: 我们的新字段
-last_edited: '2025-03-28T01:03:45.048Z'
+last_edited: '2026-01-07T23:29:49.301Z'
 tocIsHidden: true
 next: content/docs-zh/beginner-tutorials/string-to-markdown.mdx
 previous: content/docs-zh/beginner-tutorials/loading-content.mdx
 ---
 
-我们的惊人标题非常惊人，但一个标题并不能构成一个网站。让我们稍微扩展一下模式，以便显示一些更有趣的内容。
+我们的惊人标题非常惊人，但一个标题并不能构成一个网站。让我们稍微扩展一下模式，以便显示更多有趣的内容。
 
-1\. 编辑 `tina/config.ts`，并在 `my_first_collection` 模式中添加一个新字段。
+### 扩展模式
+
+编辑 `tina/config.ts`，并在 `my_first_collection` 模式中添加一个新字段。
 
 ```typescript
 schema: {
@@ -25,7 +27,7 @@ schema: {
             isTitle: true,
             required: true,
           },
-          // 👇 新字段！ 👇 
+          // 👇 新字段！👇 
           {
             type: "string",
             name: "body",
@@ -46,9 +48,11 @@ schema: {
   },
 ```
 
-2\. 现在，为了做一些不同的事情，继续在你的IDE中直接编辑 `Hello-World.md` 文件。
+### 从代码端更新内容
 
-3\. 向markdown文件的正文添加一些文本，如下所示：
+现在，为了做一些不同的事情，继续直接在你的IDE中编辑 `Hello-World.md` 文件。
+
+在markdown文件的正文中添加一些文本，如下所示：
 
 ```
 ---
@@ -58,9 +62,11 @@ title: 你好，世界！看看我惊人的标题！
 看看我不可思议的正文 🦙
 ```
 
-> `isBody` 属性正如其名 - 它告诉 Tina 这个属性是markdown内容的“正文”（即，*不*在前置元数据中）。
+> `isBody` 属性的作用正如其名 - 它告诉 Tina 这个属性是markdown内容的“正文”（即，*不*在前置元数据中）。
 
-4\. 编辑 `app/awesome-content.tsx` 组件以渲染正文内容：
+### 显示我们的新内容
+
+1. 编辑 `app/awesome-content.tsx` 组件以渲染正文内容：
 
 ```typescript
 "use client";
@@ -85,7 +91,7 @@ export default function AwesomeContent({data}) {
 }
 ```
 
-5\. 启动你的应用，导航到 `http://localhost:3000`，你将看到屏幕上显示了你不可思议的正文。
+2. 启动你的应用，导航到 `http://localhost:3000`，你将看到屏幕上的不可思议的正文。
 
 > 那编辑呢？试着访问 `http://localhost:3000/admin/index.html`，你会看到一个新字段神奇地出现在你的可视化编辑器中。太棒了！🙌 🎉
 

@@ -1,6 +1,6 @@
 ---
 title: 加载您的内容
-last_edited: '2025-05-08T08:12:37.416Z'
+last_edited: '2026-01-07T23:27:17.805Z'
 tocIsHidden: true
 next: content/docs-zh/beginner-tutorials/the-content-model.mdx
 previous: content/docs-zh/beginner-tutorials/wiring-content.mdx
@@ -8,15 +8,17 @@ previous: content/docs-zh/beginner-tutorials/wiring-content.mdx
 
 在上一步中，我们看到我们的实现抛出了一个错误。
 
-这是因为在`fetchContent`完成之前，`useTina`回调就被调用了……而且这一切都是在客户端完成的！
+这是因为在`fetchContent`完成之前，`useTina`回调被调用了……而且这一切都是在客户端完成的！
 
-为了解决这个问题，我们需要稍微改变一下方法，以便在我们的异步数据获取完成后再调用`useTina`方法。
+为了解决这个问题，我们需要稍微改变一下我们的方法，以便在异步数据获取完成后再调用`useTina`方法。
 
 我们将通过创建一个新的子组件来实现这一点，并且只有在我们有一些数据时才渲染该组件（这是React解决异步数据获取的典型方法）。
 
+### 解决方案
+
 1\. 创建一个新组件 `app/awesome-content.tsx`
 
-2\. 向其中添加以下代码：
+2\. 添加以下代码：
 
 ```typescript
 "use client";
@@ -39,7 +41,7 @@ export default function AwesomeContent({data}) {
 }
 ```
 
-3\. 重构 `app/page.tsx` 以有条件地显示 `<AwesomeContent />`，仅当我们有数据时：
+3\. 重构 `app/page.tsx` 以在有数据时有条件地显示 `<AwesomeContent />`：
 
 ```typescript
 "use client";
@@ -76,12 +78,12 @@ export default function Home() {
 
 就是这样！
 
-现在让我们检查一下它是否有效！
+### 检查解决方案
 
-4\. 导航到 `http://localhost/admin/index.html` 并编辑您惊人的标题，看看更改如何立即反映在HTML中。
+1. 导航到 `http://localhost/admin/index.html` 并编辑您惊人的标题，看看更改如何立即反映在HTML中。
 
-5\. 点击“保存”，然后导航回 `http://localhost:3000` 查看您的更改如何在您的“生产”站点上持久化。
+2. 点击“保存”，然后导航回 `http://localhost:3000` 查看您的更改如何在您的“生产”站点上持久化。
 
-> **奖励**：在您的IDE中检查您的 `Hello-World.md` 文件，看看底层内容如何随着您的新更改被保存。
+> **额外奖励**：在您的IDE中检查您的 `Hello-World.md` 文件，看看底层内容如何随着您的新更改被保存。
 
 ![](</gif/Screen Recording 2025-03-19 at 11.08.18 am.gif>)
