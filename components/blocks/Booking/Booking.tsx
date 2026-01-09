@@ -100,7 +100,10 @@ const BookingBlock = ({ data }) => {
             {data.description}
           </h3>
           {meetingPeople.map((cardItem, index) => (
-            <BookingCard key={`booking-${cardItem.name}-${index}`} cardItem={cardItem} />
+            <BookingCard
+              key={`booking-${cardItem.name}-${index}`}
+              cardItem={cardItem}
+            />
           ))}
         </div>
       </div>

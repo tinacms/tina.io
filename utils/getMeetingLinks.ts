@@ -7,12 +7,12 @@ export const fetchMeetingLinks = async () => {
     const meetingPeopleResponse = await client.queries.meetingLinks({
       relativePath: 'meetingList.json',
     });
-    
+
     if (!meetingPeopleResponse?.data?.meetingLinks?.bookingCard) {
       console.error('Meeting links data is missing or malformed');
       return [];
     }
-    
+
     const meetingPeopleData =
       meetingPeopleResponse.data.meetingLinks.bookingCard.map((person) => ({
         name: person.name || '',

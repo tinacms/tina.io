@@ -14,22 +14,23 @@ export async function GET() {
       );
     }
 
-    const meetingPeople = meetingPeopleResponse.data.meetingLinks.bookingCard.map(
-      (person) => ({
+    const meetingPeople =
+      meetingPeopleResponse.data.meetingLinks.bookingCard.map((person) => ({
         name: person.name || '',
         description: person.description || '',
         image: person.image || '',
         url: person.url || '#',
-      }),
-    );
+      }));
 
     return NextResponse.json({ meetingPeople, error: null });
   } catch (error) {
     console.error('Error fetching meeting links:', error);
     return NextResponse.json(
-      { error: 'Failed to load meeting links. Please try again later.', meetingPeople: [] },
+      {
+        error: 'Failed to load meeting links. Please try again later.',
+        meetingPeople: [],
+      },
       { status: 500 },
     );
   }
 }
-
