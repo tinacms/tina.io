@@ -9,7 +9,7 @@ previous: content/docs/frameworks/remix.mdx
 
 ## Introduction
 
-TinaCMS can be added to your SvelteKit site locally. In this doc, we'll guide through the local setup, as well as editing on your production site.
+TinaCMS can be added to your SvelteKit site locally. In this doc, we'll guide you through the local setup, as well as editing on your production site.
 
 ## Getting Started
 
@@ -28,16 +28,16 @@ This will ask you a few setup questions.
 ```json
   "scripts": {
     "dev": "tinacms dev -c \"vite dev\"",
-		"build": "tinacms build && vite build",
-		"preview": "tinacms build && vite preview",
+    "build": "tinacms build && vite build",
+    "preview": "tinacms build && vite preview"
   }
 ```
 
 ## Move static files
 
-TinaCMS would assume your static files would be in the `public` directory. But SvelteKit serves statics files in the `static` directory. So you need to move your static files to the `static` directory.
+TinaCMS assumes your static files are in the `public` directory. However, SvelteKit serves static files from the `static` directory. You'll need to ensure Tina is configured to use this directory.
 
-Confirm you have both directories under statics:
+Confirm you have both directories under `static`:
 
 ```bash
  # Tina admin
@@ -49,7 +49,7 @@ Confirm you have both directories under statics:
 
 ## Adjust tina configuration
 
-Update the output directories to aim the `static` directory used by SveteKit
+Update the output directories to target the `static` directory used by SvelteKit
 
 ```js
 import { defineConfig } from 'tinacms';
@@ -82,7 +82,7 @@ export default defineConfig({
 
 ## Model your content
 
-To edit your site's content in Tina, you can model your content in the tina/config.ts file.
+To edit your site's content in Tina, you can model your content in the `tina/config.ts` file.
 
 Learn more about content modelling [here](/docs/schema/)
 
@@ -96,7 +96,7 @@ npm run dev
 
 With TinaCMS running, navigate to `http://localhost:5173/admin/index.html`
 
-> Hint: If you are getting error when running this command please see the [Common Errors](/docs/forestry/common-errors) page.
+> Hint: If you encounter an error when running this command, please see the [Common Errors](/docs/forestry/common-errors) page.
 
 At this point, you should be able to see the Tina admin, select a post, save changes, and see the changes persisted to your local markdown files.
 
