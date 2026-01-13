@@ -105,6 +105,8 @@ fields: [
 
 TinaCMS includes built-in fuzzy search capabilities that help users find content even when they make typos or spelling mistakes. Fuzzy search is **enabled by default**, so your search will automatically handle common misspellings without any additional configuration.
 
+> Fuzzy search was released in **tinacms@3.3.0** and **@tinacms/cli@2.1.0**. No config changes are needed to get the benefits of the new search — just update your packages!
+
 ### How Fuzzy Search Works
 
 Fuzzy search finds terms in your content that are "similar" to what the user typed, even if they don't match exactly. TinaCMS uses the **Damerau-Levenshtein distance** algorithm, which measures similarity by counting the minimum number of single-character edits needed to transform one word into another.
