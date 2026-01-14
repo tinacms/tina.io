@@ -11,32 +11,48 @@
       "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
       "buttons": [
         {
-          "label": "Explore TinaCMS",
-          "icon": false,
-          "shape": "square",
-          "variant": "orange",
-          "size": "medium",
-          "url": "#tinacms",
-          "_template": "actions"
-        },
-        {
-          "label": "Explore TinaDocs ",
-          "icon": false,
-          "shape": "square",
-          "variant": "ghostOutline",
-          "size": "medium",
-          "url": "#tinadocs",
-          "_template": "actions"
-        },
-        {
           "label": "npx create-tina-app@latest",
-          "helpText": "Need some help? Check out the [docs](/docs/introduction/using-starter)\n",
+          "helpText": "Need some help? Watch the video – see the [CLI docs](https://tina.io/docs/introduction/using-starter)\n",
           "_template": "codeButton"
         }
       ],
       "buttonHorizontalAlignment": "left",
-      "image": "/ai-llamas/lazy-llama2.webp",
+      "image": "/v2-homepage/chill-llama.png",
       "_template": "heroV2"
+    },
+    {
+      "title": "Get started with one of our templates",
+      "tagLine": "Building at scale?",
+      "buttons": [
+        {
+          "label": "Contact Sales",
+          "icon": true,
+          "shape": "square",
+          "variant": "orange",
+          "size": "small",
+          "url": "/",
+          "_template": "actions"
+        }
+      ],
+      "boxes": [
+        {
+          "title": "Next.js Starter",
+          "description": "Build stunning websites with TinaCMS visual editor.",
+          "image": "/Starters/tina-nextjs-starter.png",
+          "link": "https://app.tina.io/quickstart"
+        },
+        {
+          "title": "TinaDocs",
+          "description": "Build stunning websites with TinaCMS visual editor.",
+          "image": "/Starters/tina-docs-starter.png"
+        },
+        {
+          "title": "Astro",
+          "description": "Build stunning websites with TinaCMS visual editor.",
+          "image": "/Starters/tina-astro-starter.png"
+        }
+      ],
+      "_template": "tripleBox"
     },
     {
       "blockSettings": {

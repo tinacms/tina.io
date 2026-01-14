@@ -43,11 +43,12 @@ export const CodeButton = ({
   };
 
   return (
-    <div className="relative flex flex-col border-2 border-seafoam-150 rounded-md">
+    <div className="relative flex flex-col border-2 border-brand-primary rounded-md">
       <button
         type="button"
-        className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-sm'} bg-[#120101] text-seafoam-500 cursor-pointer hover:text-seafoam-300 transition-colors`}
+        className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-sm'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
         onClick={clickEvent}
+        onMouseEnter={() => setShowHelpText(true)}
         id={buttonId}
         {...props}
       >
@@ -59,7 +60,7 @@ export const CodeButton = ({
             {label}
           </span>
           <span
-            className={`relative flex items-center bg-seafoam-500 h-full px-4 py-3 rounded-tr-sm ${_copied || showHelpText ? '' : 'rounded-br-sm'} border-l border-seafoam-150 ease-out transition-colors duration-200 text-black group-hover:text-black/90`}
+            className={`relative flex items-center bg-brand-primary h-full px-4 py-3 ${_copied || showHelpText ? '' : 'rounded-br-sm'} border-l border-brand-primary ease-out transition-colors duration-200 text-white group-hover:text-gray-200`}
           >
             <BiCopy
               className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
@@ -72,7 +73,7 @@ export const CodeButton = ({
       </button>
       {showHelpText && helpText?.children?.length > 0 && (
         <div
-          className={`bg-[#120101] text-seafoam-500 text-sm border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]`}
+          className={`bg-white/50 text-black text-sm border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]`}
         >
           <TinaMarkdown
             content={helpText}
@@ -81,7 +82,7 @@ export const CodeButton = ({
           <button
             onClick={() => setShowHelpText(false)}
             type="button"
-            className="hover:text-seafoam-300 hover:cursor-pointer"
+            className="hover:text-brand-primary hover:cursor-pointer"
           >
             <IoMdClose className="w-5 h-5" />
           </button>
