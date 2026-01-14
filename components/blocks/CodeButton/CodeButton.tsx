@@ -57,7 +57,7 @@ export const CodeButton = ({
   };
 
   return (
-    <div className="relative flex flex-col border-2 border-brand-primary rounded-md">
+    <div className="relative flex flex-col border border-brand-primary rounded-md">
       <button
         type="button"
         className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-sm'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
