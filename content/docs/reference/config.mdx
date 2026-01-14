@@ -10,6 +10,16 @@ previous: content/docs/reference/overview.mdx
 
 The result of the `defineConfig` function when exported from `tina/config.{ts,tsx,js,jsx}` defines your TinaCMS setup.
 
+<WarningCallout
+  body={<>
+    Important - Config must be deterministic
+    
+    The object returned by defineConfig must be evaluated multiple times during development and build. Avoid using non-deterministic values (e.g Date.now(), Math.random()) directly in config properties that affect schema or runtime configuration. This can cause GraphQL schema mismatch errors
+    
+    If you need dynamic values, return a function and compute the value lazily.
+  </>}
+/>
+
 Note that it **must be** the default export.
 
 > The location for the config file was previously at `.tina/config.{ts,tsx,js,jsx}`
@@ -223,7 +233,7 @@ Note that it **must be** the default export.
     },
     {
       description:
-        "Allows users to define where TinaCMS should link users to view the source history of the file they are editing. \n\n`branch` is resolved by TinaCMS for the active editing branch\n\n`relativePath` is resolved by TinaCMS for the relative path of the relevant content file\n\nExample for GitHub:\n\n```\nhistoryUrl: ({ relativePath, branch }) => ({ \n  url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`\n```\n",
+        "Allows users to define where TinaCMS should link users to view the source history of the file they are editing.\n\n`branch` is resolved by TinaCMS for the active editing branch\n\n`relativePath` is resolved by TinaCMS for the relative path of the relevant content file\n\nExample for GitHub:\n\n```\nhistoryUrl: ({ relativePath, branch }) => ({ \n  url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`\n```\n",
       groupName: "repoProvider",
       name: "historyUrl",
       type: "function -- historyUrl?: (context: { relativePath: string; branch: string;}) => { url: string }"
