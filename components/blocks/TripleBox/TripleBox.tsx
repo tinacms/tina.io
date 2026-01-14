@@ -47,7 +47,12 @@ function TripleBoxItemCard({ data }: { data: PageBlocksTripleBoxBoxes }) {
       {badges && badges.length > 0 && (
         <div className="flex gap-2 items-end mt-auto">
           {badges.map((badge) => (
-            <span key={badge} className="text-sm bg-slate-400 text-zinc-50 px-1.5 py-0.5 rounded-md">{badge}</span>
+            <span
+              key={badge}
+              className="text-sm bg-slate-400 text-zinc-50 px-1.5 py-0.5 rounded-md"
+            >
+              {badge}
+            </span>
           ))}
         </div>
       )}
