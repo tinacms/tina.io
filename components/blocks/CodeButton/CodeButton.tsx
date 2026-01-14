@@ -88,7 +88,7 @@ export const CodeButton = ({
       </button>
       {showHelpText && helpText?.children?.length > 0 && (
         <div
-          className="bg-white text-xs border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px] max-w-min min-w-full"
+          className="bg-white text-xs border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px] max-w-min min-w-full"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
