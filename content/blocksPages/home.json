@@ -25,31 +25,47 @@
       "tagLine": "Building at scale?",
       "buttons": [
         {
-          "label": "Contact Sales",
+          "label": "Let's talk",
           "icon": true,
           "shape": "square",
-          "variant": "orange",
-          "size": "small",
-          "url": "/",
-          "_template": "actions"
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
         }
       ],
       "boxes": [
         {
-          "title": "Next.js Starter",
-          "description": "Build stunning websites with TinaCMS visual editor.",
-          "image": "/Starters/tina-nextjs-starter.png",
-          "link": "https://app.tina.io/quickstart"
+          "title": "Next.js",
+          "description": "A marketing landing page with a blog powered by Tina and styled with Tailwind",
+          "image": "/Starters/next.js.svg",
+          "link": "https://app.tina.io/quickstart",
+          "badges": [
+            "Next.js",
+            "Blog",
+            "Website"
+          ]
         },
         {
           "title": "TinaDocs",
-          "description": "Build stunning websites with TinaCMS visual editor.",
-          "image": "/Starters/tina-docs-starter.png"
+          "description": "A modern and customizable documentation template powered by TinaCMS",
+          "image": "/Starters/tina-docs.svg",
+          "link": "https://app.tina.io/quickstart",
+          "badges": [
+            "Next.js",
+            "Documentation"
+          ]
         },
         {
           "title": "Astro",
-          "description": "Build stunning websites with TinaCMS visual editor.",
-          "image": "/Starters/tina-astro-starter.png"
+          "description": "A modern static site generator designed for fast, lightweight, and flexible web projects paired with TinaCMS",
+          "image": "/Starters/astro.svg",
+          "link": "https://app.tina.io/quickstart",
+          "badges": [
+            "Astro",
+            "Blog",
+            "Website"
+          ]
         }
       ],
       "_template": "tripleBox"

@@ -35,27 +35,22 @@ function ConditionalLink({
 }
 
 function TripleBoxItemCard({ data }: { data: PageBlocksTripleBoxBoxes }) {
-  const { title, description, image, link } = data;
+  const { title, description, image, link, badges } = data;
   return (
     <ConditionalLink
       href={link}
-      className="flex gap-2 bg-gradient-to-br from-white/10 to-white/40 shadow-md rounded-lg p-6"
+      className="flex flex-col gap-2 bg-gradient-to-br from-white/10 to-white/40 shadow-md rounded-lg p-6 h-full"
     >
-      <div className="flex flex-col gap-2 w-1/2">
-        <h3 className="text-lg font-sembiold">{title}</h3>
-        <p className="text-sm">{description}</p>
-      </div>
-      <div className="w-1/2">
-        {image && (
-          <Image
-            src={image}
-            alt={title}
-            width={250}
-            height={250}
-            className="w-full h-full object-cover"
-          />
-        )}
-      </div>
+      <Image src={image} alt={title} width={40} height={40} />
+      <h3 className="text-2xl font-ibm-plex font-semibold h-">{title}</h3>
+      <p className="text-sm">{description}</p>
+      {badges && badges.length > 0 && (
+        <div className="flex gap-2 items-end mt-auto">
+          {badges.map((badge) => (
+            <span key={badge} className="text-sm bg-slate-400 text-zinc-50 px-1.5 py-0.5 rounded-md">{badge}</span>
+          ))}
+        </div>
+      )}
     </ConditionalLink>
   );
 }
@@ -64,7 +59,7 @@ export default function TripleBox({ data }: { data: PageBlocksTripleBox }) {
   return (
     <Container size="medium" className="flex flex-col gap-6">
       <div className="flex flex-col lg:flex-row gap-4 justify-between lg:items-center items-start">
-        <h2 className="text-2xl font-sembiold font-ibm-plex">{data.title}</h2>
+        <h2 className="text-2xl font-semibold font-ibm-plex">{data.title}</h2>
         <div className="flex gap-6 items-center">
           <h3 className="text-xl font-normal text-neutral-text-secondary">
             {data.tagLine}
@@ -79,7 +74,7 @@ export default function TripleBox({ data }: { data: PageBlocksTripleBox }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {data.boxes?.map((box) => (
           <TripleBoxItemCard key={box.title} data={box} />
         ))}

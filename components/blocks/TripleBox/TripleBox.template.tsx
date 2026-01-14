@@ -65,6 +65,12 @@ export const tripleBoxTemplate = {
           label: 'Link',
           type: 'string',
         },
+        {
+          name: 'badges',
+          label: 'Badges',
+          type: 'string',
+          list: true,
+        },
       ],
     },
   ],
