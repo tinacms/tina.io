@@ -17,10 +17,6 @@
           "href": "https://www.youtube.com/c/tinacms"
         },
         {
-          "label": "Compare TinaCMS",
-          "href": "/compare-tina"
-        },
-        {
           "label": "Showcase",
           "href": "/showcase"
         },
@@ -49,29 +45,28 @@
       "label": "TinaCloud",
       "items": [
         {
-          "label": "Whats New in TinaCloud",
-          "href": "/whats-new/tinacloud"
-        },
-        {
-          "label": "Quickstart ",
-          "href": "https://app.tina.io/quickstart"
-        }
-      ],
-      "_template": "groupOfStringItems"
-    },
-    {
-      "label": "Pricing",
-      "items": [
-        {
-          "label": "TinaCloud Pricing",
+          "label": "Pricing",
           "href": "/pricing"
         },
         {
           "label": "Enterprise",
           "href": "/enterprise"
+        },
+        {
+          "label": "Quickstart ",
+          "href": "https://app.tina.io/quickstart"
+        },
+        {
+          "label": "Whats New in TinaCloud",
+          "href": "/whats-new/tinacloud"
         }
       ],
       "_template": "groupOfStringItems"
+    },
+    {
+      "label": "Editorial Workflow",
+      "href": "/editorial-workflow",
+      "_template": "stringItem"
     },
     {
       "label": "Community",
@@ -113,6 +108,10 @@
         {
           "label": "About Tina",
           "href": "/about"
+        },
+        {
+          "label": "Compare TinaCMS",
+          "href": "/compare-tina"
         },
         {
           "label": "Blog",

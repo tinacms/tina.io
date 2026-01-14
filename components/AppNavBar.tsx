@@ -19,6 +19,7 @@ import { MdEmail } from 'react-icons/md';
 import { Modal } from 'react-responsive-modal';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import { saveLocaleToCookie } from '@/utils/locale';
+import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 import 'react-responsive-modal/styles.css';
 import { EmailForm } from '@/component/modals/EmailForm';
 import { Button, LinkButton } from './ui/Button';
@@ -313,6 +314,7 @@ function desktopNavItemMapper(
                 <li key={`${index}-${subIndex}-${subItem.href}`}>
                   <Link
                     href={subItem.href}
+                    prefetch={shouldPrefetchLink(subItem.href)}
                     target={
                       subItem.href.startsWith('https') ? '_blank' : undefined
                     }
@@ -403,6 +405,7 @@ function mobileNavItemMapper(
               <li key={`${index}-${subIndex}-${subItem.href}`}>
                 <Link
                   href={subItem.href}
+                  prefetch={shouldPrefetchLink(subItem.href)}
                   target={subItem.external ? '_blank' : '_self'}
                   rel={subItem.external ? 'noopener noreferrer' : undefined}
                   onClick={() => {

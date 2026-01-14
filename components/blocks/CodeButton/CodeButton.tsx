@@ -30,6 +30,7 @@ export const CodeButton = ({
 }) => {
   const [_copied, setCopied] = useState(false);
   const [showHelpText, setShowHelpText] = useState(false);
+  const [isExplicitlyShown, setIsExplicitlyShown] = useState(false);
 
   const buttonId = id || sanitizeLabel(label);
 
@@ -37,9 +38,22 @@ export const CodeButton = ({
     setCopied(true);
     copyToClipboard(label);
     setShowHelpText(true);
+    setIsExplicitlyShown(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
+  };
+
+  const handleMouseEnter = () => {
+    if (helpText?.children?.length > 0) {
+      setShowHelpText(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isExplicitlyShown) {
+      setShowHelpText(false);
+    }
   };
 
   return (
@@ -48,7 +62,8 @@ export const CodeButton = ({
         type="button"
         className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-sm'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
         onClick={clickEvent}
-        onMouseEnter={() => setShowHelpText(true)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         id={buttonId}
         {...props}
       >
@@ -73,14 +88,19 @@ export const CodeButton = ({
       </button>
       {showHelpText && helpText?.children?.length > 0 && (
         <div
-          className={`bg-white/50 text-black text-sm border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]`}
+          className="bg-white text-xs border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px] max-w-min min-w-full"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <TinaMarkdown
             content={helpText}
             components={CodeButtonMarkdownStyle}
           />
           <button
-            onClick={() => setShowHelpText(false)}
+            onClick={() => {
+              setShowHelpText(false);
+              setIsExplicitlyShown(false);
+            }}
             type="button"
             className="hover:text-brand-primary hover:cursor-pointer"
           >

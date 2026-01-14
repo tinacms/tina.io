@@ -49,8 +49,13 @@ const BookingBlock = ({ data }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const meetingPeopleData = await fetchMeetingLinks();
-      setMeetingPeople(meetingPeopleData);
+      try {
+        const meetingPeopleData = await fetchMeetingLinks();
+        setMeetingPeople(meetingPeopleData || []);
+      } catch (err) {
+        console.error('Failed to fetch meeting links:', err);
+        setMeetingPeople([]);
+      }
     };
 
     fetchData();
@@ -94,8 +99,11 @@ const BookingBlock = ({ data }) => {
           <h3 className="w-full text-center mb-6 inline-block m-0 pb-4 text-lg md:whitespace-nowrap lg:leading-tight text-black">
             {data.description}
           </h3>
-          {meetingPeople.map((cardItem) => (
-            <BookingCard key={cardItem.name} cardItem={cardItem} />
+          {meetingPeople.map((cardItem, index) => (
+            <BookingCard
+              key={`booking-${cardItem.name}-${index}`}
+              cardItem={cardItem}
+            />
           ))}
         </div>
       </div>
