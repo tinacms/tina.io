@@ -1,6 +1,6 @@
 ---
 title: 'Hybrid Fetching '
-last_edited: '2026-01-16T05:25:17.960Z'
+last_edited: '2026-01-16T05:27:52.246Z'
 next: ''
 previous: ''
 ---
@@ -37,8 +37,7 @@ import ClientFallback from "@/components/ClientFallback";
 
 export const dynamic = "force-static";
 
-
-
+
 type PageProps = {
   params: {
     slug: string;
@@ -78,18 +77,25 @@ export default async function Page({ params }: PageProps) {
 
 ```
 
-```csharp
+```javascript
 // components/ClientFallback.tsx
 "use client";
 
 export default async function ClientFallback() {
 const page = await getPageFromTina(params.slug);
 
+const { data } = useTina({
+    query: page.query,
+    variables: page.variables,
+    data: page.data,
+  });
+
+
   return (
     <main>
-      <h1>{page.title}</h1>
+      <h1>{data .title}</h1>
       <article
-        dangerouslySetInnerHTML={{ __html: page.body }}
+        dangerouslySetInnerHTML={{ __html: data.body }}
       />
     </main>
   );
