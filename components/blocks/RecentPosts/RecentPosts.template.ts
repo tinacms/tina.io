@@ -27,6 +27,12 @@ export const recentPostsTemplate = {
           type: 'string',
         },
         {
+          name: 'url',
+          label: 'URL',
+          type: 'string',
+          description: 'Link URL for the post title',
+        },
+        {
           name: 'datePosted',
           label: 'Date Posted',
           type: 'datetime',

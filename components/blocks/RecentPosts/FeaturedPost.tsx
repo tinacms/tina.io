@@ -1,4 +1,5 @@
 import { tinaField } from 'tinacms/dist/react';
+import Link from 'next/link';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 
 function formatDate(dateString: string): string {
@@ -15,6 +16,7 @@ function formatDate(dateString: string): string {
 type FeaturedPostProps = {
   featuredPost: {
     title?: string;
+    url?: string;
     datePosted?: string;
     authorName?: string;
     authorUrl?: string;
@@ -48,12 +50,23 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           ) : null}
         </div>
         <div className='flex flex-col py-1 gap-2'>
-          <h3 
-            className='text-2xl' 
-            data-tina-field={tinaField(featuredPost, 'title')}
-          >
-            {featuredPost.title}
-          </h3>
+          {featuredPost.url ? (
+            <Link href={featuredPost.url} className='hover:underline'>
+              <h3 
+                className='text-2xl' 
+                data-tina-field={tinaField(featuredPost, 'title')}
+              >
+                {featuredPost.title}
+              </h3>
+            </Link>
+          ) : (
+            <h3 
+              className='text-2xl' 
+              data-tina-field={tinaField(featuredPost, 'title')}
+            >
+              {featuredPost.title}
+            </h3>
+          )}
           
           {featuredPost.authorName && (
             <p className='text-neutral-text-secondary text-base'>

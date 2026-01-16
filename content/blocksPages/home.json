@@ -347,6 +347,16 @@
     },
     {
       "title": "Recent Videos",
+      "featuredHeading": "Featured Video",
+      "featuredPost": {
+        "title": "TinaCMS for GitHub - The SSW Rules Migration ",
+        "url": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+        "datePosted": "2026-01-16T13:00:00.000Z",
+        "authorName": "Jake Bayliss",
+        "authorUrl": "https://www.ssw.com.au/people/jake-bayliss/",
+        "embedUrl": "https://www.youtube.com/embed/lqqduKKhH_o?si=jT7KpzZRmyEvroxA",
+        "imageUrl": ""
+      },
       "youtubeVideos": [
         {
           "embedUrl": "https://www.youtube.com/embed/cChyJFvVo4A?si=0QrmfYk2Sn2TOHxT",
