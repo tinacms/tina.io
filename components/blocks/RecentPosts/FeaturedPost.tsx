@@ -2,6 +2,8 @@ import { tinaField } from 'tinacms/dist/react';
 import Link from 'next/link';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 import { formatDate } from '@/utils/formatDate';
+import { LiteYouTube } from '../VideoEmbed/LiteYouTube';
+import { extractYouTubeId } from '../VideoEmbed/utils';
 
 type FeaturedPostProps = {
   featuredPost: {
@@ -16,18 +18,12 @@ type FeaturedPostProps = {
 };
 
 export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
+
   return (
-    <div className="flex flex-col gap-2 w-full max-md:max-w-md">
-      {featuredPost.datePosted && (
-        <p 
-          className='text-base text-neutral-text-secondary w-fit'
-          data-tina-field={tinaField(featuredPost, 'datePosted')}
-        >
-          {formatDate(featuredPost.datePosted)}
-        </p>
-      )}
+    <div className="flex overflow-hidden flex-col gap-2 w-full z-1 rounded-lg max-md:max-w-md relative">
+      <div className="absolute inset-x-0 inset-y-0 bottom-0 right-0 bg-gradient-to-t from-orange-300 via-orange-200 to-sky-300 opacity-15 pointer-events-none -z-10" />
       <div className="gap-2 flex flex-col md:flex-row w-full">
-        <div className='w-full md:w-[calc(75%-1rem)]'>
+        <div className='w-full md:w-[calc(50%-1rem)]'>
           {featuredPost.imageUrl ? (
             <img 
               src={featuredPost.imageUrl} 
@@ -36,14 +32,26 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
               data-tina-field={tinaField(featuredPost, 'imageUrl')}
             />
           ) : featuredPost.embedUrl ? (
-            <YouTubeEmbed src={featuredPost.embedUrl} />
+            
+            <YouTubeEmbed className='rounded-none h-full ' src={featuredPost.embedUrl} />
           ) : null}
         </div>
-        <div className='flex flex-col py-1 gap-2'>
+        <div className='flex w-1/2 flex-col py-3 gap-2'>
+          <span className="uppercase border border-orange-500 bg-white px-3 py-0.5 rounded-full text-sm text-orange-500 font-li w-fit">
+            Featured
+          </span>
+          {featuredPost.datePosted && (
+            <p 
+              className='text-sm text-neutral-text-secondary w-fit'
+              data-tina-field={tinaField(featuredPost, 'datePosted')}
+            >
+              {formatDate(featuredPost.datePosted)}
+            </p>
+          )}
           {featuredPost.url ? (
             <Link href={featuredPost.url} className='hover:underline'>
               <h3 
-                className='text-2xl' 
+                className='text-lg' 
                 data-tina-field={tinaField(featuredPost, 'title')}
               >
                 {featuredPost.title}
@@ -51,15 +59,17 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
             </Link>
           ) : (
             <h3 
-              className='text-2xl' 
+              className='text-lg' 
               data-tina-field={tinaField(featuredPost, 'title')}
             >
               {featuredPost.title}
             </h3>
           )}
           
+          
+          
           {featuredPost.authorName && (
-            <p className='text-neutral-text-secondary text-base'>
+            <p className='text-neutral-text-secondary text-sm'>
               By{' '}
               {featuredPost.authorUrl ? (
                 <Link 
