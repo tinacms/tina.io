@@ -62,13 +62,13 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
             <p className='text-neutral-text-secondary text-base'>
               By{' '}
               {featuredPost.authorUrl ? (
-                <a 
+                <Link 
                   className='hover:text-neutral-text uppercase underline transition-colors' 
                   href={featuredPost.authorUrl}
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >
                   {featuredPost.authorName}
-                </a>
+                </Link>
               ) : (
                 <span 
                   className='uppercase'
