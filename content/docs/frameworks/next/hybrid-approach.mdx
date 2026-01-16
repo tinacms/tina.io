@@ -1,6 +1,6 @@
 ---
 title: 'Hybrid Fetching '
-last_edited: '2026-01-16T05:34:52.766Z'
+last_edited: '2026-01-16T05:39:24.246Z'
 next: ''
 previous: ''
 ---
@@ -14,11 +14,19 @@ To address this, we use a hybrid approach: SSG for existing pages and dynamic re
 // lib/tina.ts
 import { client } from "@/tina/__generated__/client";
 
-export async function getPageFromTina(slug: string) {
+export async function getPageFromTina(slug: string, branch: string = "main") {
   try {
     const response = await client.queries.page({
-      relativePath: `${slug}.md`,
-    });
+      relativePath: `${slug}.md`},
+      {
+        fetchOptions: {  
+          headers: {
+            /* Retrieve the active branch from cookie */
+            'x-branch': branch, 
+        },
+      },
+  }
+);
 
     return response?.data?.page ?? null;
   } catch {
@@ -84,7 +92,11 @@ import { notFound } from "next/navigation";
 
 
 export default async function ClientFallback() {
-const page = await getPageFromTina(params.slug);
+
+const cookieStore = await cookies();
+const branchValue = cookieStore.get("x-branch")?.value || "";
+
+const page = await getPageFromTina(params.slug, branchValue );
 
 if(!page?.data)
 {
