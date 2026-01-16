@@ -61,13 +61,22 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           {featuredPost.authorName && (
             <p className='text-neutral-text-secondary text-base'>
               By{' '}
-              <a 
-                className='hover:text-neutral-text uppercase underline transition-colors' 
-                href={featuredPost.authorUrl || '#'}
-                data-tina-field={tinaField(featuredPost, 'authorName')}
-              >
-                {featuredPost.authorName}
-              </a>
+              {featuredPost.authorUrl ? (
+                <a 
+                  className='hover:text-neutral-text uppercase underline transition-colors' 
+                  href={featuredPost.authorUrl}
+                  data-tina-field={tinaField(featuredPost, 'authorName')}
+                >
+                  {featuredPost.authorName}
+                </a>
+              ) : (
+                <span 
+                  className='uppercase'
+                  data-tina-field={tinaField(featuredPost, 'authorName')}
+                >
+                  {featuredPost.authorName}
+                </span>
+              )}
             </p>
           )}
         </div>
