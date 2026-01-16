@@ -38,12 +38,17 @@ export default defineConfig({
 
 ### Definition
 
-| Property                           | Description                                                                                                                                                                                                 |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `search.tina.indexerToken`         | TinaCloud search token (*required*)                                                                                                                                                                         |
-| `search.tina.stopwordLanguages`    | Optional array of string stopword languages. Defaults to `['eng']`. See the [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub repository for a full list of supported languages.  |
-| `search.indexBatchSize`            | Used by the indexing process to determine the number of documents to index per request. Defaults to `100`.                                                                                                  |
-| `search.maxSearchIndexFieldLength` | For variable length text fields, this controls how much of the text is considered when indexing. A higher value will increase the indexing time and size of the search index. Defaults to `100` characters. |
+| Property                                      | Description                                                                                                                                                                                                 |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `search.tina.indexerToken`                    | TinaCloud search token (*required*)                                                                                                                                                                         |
+| `search.tina.stopwordLanguages`               | Optional array of string stopword languages. Defaults to `['eng']`. See the [stopword](https://github.com/fergiemcdowall/stopword#language-code) GitHub repository for a full list of supported languages.  |
+| `search.tina.fuzzyEnabled`                    | Enable or disable fuzzy search globally. Defaults to `true`.                                                                                                                                                |
+| `search.tina.fuzzyOptions.maxDistance`        | Maximum edit distance for fuzzy matching (0-10). Higher values find more distant matches but may return less relevant results. Defaults to `2`.                                                             |
+| `search.tina.fuzzyOptions.minSimilarity`      | Minimum similarity score (0-1) required for a match. Higher values return more precise matches. Defaults to `0.6`.                                                                                          |
+| `search.tina.fuzzyOptions.maxTermExpansions`  | Maximum number of similar terms to consider per search word (1-100). Defaults to `10`.                                                                                                                      |
+| `search.tina.fuzzyOptions.useTranspositions`  | Allow character transpositions (e.g., "teh" → "the") using Damerau-Levenshtein algorithm. Defaults to `true`.                                                                                               |
+| `search.indexBatchSize`                       | Used by the indexing process to determine the number of documents to index per request. Defaults to `100`.                                                                                                  |
+| `search.maxSearchIndexFieldLength`            | For variable length text fields, this controls how much of the text is considered when indexing. A higher value will increase the indexing time and size of the search index. Defaults to `100` characters. |
 
 ## Building the search index
 
@@ -95,6 +100,116 @@ fields: [
 ]
 //
 ```
+
+## Fuzzy Search
+
+TinaCMS includes built-in fuzzy search capabilities that help users find content even when they make typos or spelling mistakes. Fuzzy search is **enabled by default**, so your search will automatically handle common misspellings without any additional configuration.
+
+> Fuzzy search was released in **tinacms@3.3.0** and **@tinacms/cli@2.1.0**. No config changes are needed to get the benefits of the new search — just update your packages!
+
+### How Fuzzy Search Works
+
+Fuzzy search finds terms in your content that are "similar" to what the user typed, even if they don't match exactly. TinaCMS uses the **Damerau-Levenshtein distance** algorithm, which measures similarity by counting the minimum number of single-character edits needed to transform one word into another.
+
+**Supported edit operations:**
+
+| Operation | Example | Edits |
+| --------- | ------- | ----- |
+| Insertion | "rect" → "react" | 1 |
+| Deletion | "reactt" → "react" | 1 |
+| Substitution | "reect" → "react" | 1 |
+| Transposition | "raect" → "react" | 1 (swapping adjacent characters) |
+
+When a user searches, each word in their query is expanded to include similar terms from your indexed content. For example, searching "Raect tutrial" would also match documents containing "React tutorial".
+
+### Configuration
+
+Fuzzy search works out of the box with sensible defaults. You can customize its behavior by adding `fuzzyOptions` to your search configuration:
+
+```javascript
+export default defineConfig({
+  //...
+  search: {
+    tina: {
+      indexerToken: '<Your Search Token>',
+      stopwordLanguages: ['eng'],
+      fuzzyEnabled: true, // enabled by default
+      fuzzyOptions: {
+        maxDistance: 2,          // max edit distance (0-10)
+        minSimilarity: 0.6,      // min similarity score (0-1)
+        maxTermExpansions: 10,   // max similar terms per word
+        useTranspositions: true, // allow letter swaps
+      },
+    },
+  },
+  //...
+})
+```
+
+### Examples
+
+Here are examples of typos that fuzzy search will catch with the default settings:
+
+```javascript
+// Single character errors
+"Raect"       → matches "React"
+"TypeScrpt"   → matches "TypeScript"
+"Javscript"   → matches "JavaScript"
+
+// Transposed letters
+"teh"         → matches "the"
+"freind"      → matches "friend"
+
+// Multi-word queries with typos
+"Raect tutrial"           → matches "React tutorial"
+"TypeScrpt developmnt"    → matches "TypeScript development"
+```
+
+### Disabling Fuzzy Search
+
+If you prefer exact matching only, you can disable fuzzy search:
+
+```javascript
+export default defineConfig({
+  //...
+  search: {
+    tina: {
+      indexerToken: '<Your Search Token>',
+      fuzzyEnabled: false, // Disable fuzzy search
+    },
+  },
+  //...
+})
+```
+
+### Performance Tips
+
+Fuzzy search includes automatic caching for repeated queries. If you need to optimize performance further, consider these adjustments:
+
+| Adjustment | Effect |
+| ---------- | ------ |
+| Lower `maxDistance` (e.g., 1) | Faster searches, fewer false positives, but may miss some typos |
+| Higher `minSimilarity` (e.g., 0.8) | More precise matches, fewer irrelevant results |
+| Lower `maxTermExpansions` (e.g., 5) | Faster searches with large indexes |
+
+**Example configuration for stricter, faster matching:**
+
+```javascript
+fuzzyOptions: {
+  maxDistance: 1,        // Only 1 edit allowed
+  minSimilarity: 0.8,    // 80% similarity required
+  maxTermExpansions: 5,  // Fewer term expansions
+}
+```
+
+### Troubleshooting
+
+| Issue | Solution |
+| ----- | -------- |
+| Search returns too many irrelevant results | Increase `minSimilarity` to `0.7` or `0.8`, or decrease `maxDistance` to `1` |
+| Search doesn't find results with typos | Ensure `fuzzyEnabled` is `true` (default). Try increasing `maxDistance` to `3` |
+| Search feels slow | Reduce `maxTermExpansions` and `maxDistance`. Consider lowering `maxSearchIndexFieldLength` |
+| Want exact matching only | Set `fuzzyEnabled: false` |
 
 ## Alternative Search Providers
 

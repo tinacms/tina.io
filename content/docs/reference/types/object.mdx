@@ -1,6 +1,6 @@
 ---
 title: The Object Field
-last_edited: '2025-07-28T23:59:16.563Z'
+last_edited: '2026-01-12T05:34:02.890Z'
 next: content/docs/extending-tina/customize-list-ui.mdx
 previous: content/docs/reference/types/reference.mdx
 ---
@@ -238,10 +238,11 @@ export const featuresTemplate: Template = {
       label: 'Feature Items',
       type: 'object',
       list: true,
-      ui {
-      itemProps: (item) => {
-        return { label: item?.headline };
-      },
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.headline };
+        }
+      }
     },
     fields: [
       { name: 'headline', label: 'Headline', type: 'string' },
