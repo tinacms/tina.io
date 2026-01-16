@@ -1,17 +1,7 @@
 import { tinaField } from 'tinacms/dist/react';
 import Link from 'next/link';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const day = date.getUTCDate();
-  const month = date
-    .toLocaleString('en-US', { month: 'short', timeZone: 'UTC' })
-    .toUpperCase();
-  const year = date.getUTCFullYear();
-
-  return `${day} ${month}, ${year}`;
-}
+import { formatDate } from '@/utils/formatDate';
 
 type FeaturedPostProps = {
   featuredPost: {
