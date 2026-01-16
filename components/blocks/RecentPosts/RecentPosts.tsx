@@ -80,12 +80,14 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
     <Container size="medium" className="grid grid-cols-5 gap-16 py-16">
       
       <section className="col-span-5 text-3xl lg:col-span-3 flex flex-col gap-8 items-center md:items-start">
-        <h2 
-          className={`${BLOCK_HEADINGS_SIZE} block text-center md:text-left text font-ibm-plex mb-8 lg:leading-tight text-black text-balance`}
-          data-tina-field={tinaField(data, 'featuredHeading')}
-        >
-          {data?.featuredHeading || 'Featured'}
-        </h2>
+        {data?.featuredHeading && (
+          <h2 
+            className={`${BLOCK_HEADINGS_SIZE} block text-center md:text-left text font-ibm-plex mb-8 lg:leading-tight text-black text-balance`}
+            data-tina-field={tinaField(data, 'featuredHeading')}
+          >
+            {data.featuredHeading}
+          </h2>
+        )}
         {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
           className={`${SECTION_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-5 text-black text-balance`}
