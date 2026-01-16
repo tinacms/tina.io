@@ -79,7 +79,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
     <Container size="medium" className="grid grid-cols-5 gap-16 py-16">
       
       <section className="col-span-5 text-3xl lg:col-span-3 flex flex-col gap-8 items-center md:items-start">
-        <h2 className={`${BLOCK_HEADINGS_SIZE} block text-center md:text-left text font-ibm-plex pb lg:leading-tight text-black text-balance`}>
+        <h2 className={`${BLOCK_HEADINGS_SIZE} block text-center md:text-left text font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}>
           {/* TODO: Make this configureable in Tina */}
           Featured
         </h2>
@@ -99,7 +99,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
           </div>
         </div>
         <h2
-          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight col-span-5 text-black text-balance`}
+          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-5 text-black text-balance`}
           data-tina-field={tinaField(data, 'title')}
         >
           {data?.title || 'Recent Posts'}
