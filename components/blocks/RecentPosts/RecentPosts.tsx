@@ -10,6 +10,7 @@ import {
 import Container from '@/component/util/Container';
 import { extractYouTubeId } from '../VideoEmbed/utils';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
+import { FeaturedPost } from './FeaturedPost';
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
@@ -80,57 +81,12 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
       
       <section className="col-span-5 text-3xl lg:col-span-3 flex flex-col gap-8 items-center md:items-start">
         <h2 
-          className={`${BLOCK_HEADINGS_SIZE} block text-center md:text-left text font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
+          className={`${BLOCK_HEADINGS_SIZE} block text-center md:text-left text font-ibm-plex mb-8 lg:leading-tight text-black text-balance`}
           data-tina-field={tinaField(data, 'featuredHeading')}
         >
           {data?.featuredHeading || 'Featured'}
         </h2>
-        {/* Featured post */}
-        {featuredPost && (
-          <div className="gap-2 flex w-full">
-            <div className='w-[calc(50%-1rem)]'>
-              {featuredPost.imageUrl ? (
-                <img 
-                  src={featuredPost.imageUrl} 
-                  alt={featuredPost.title || 'Featured post'} 
-                  className="w-full h-auto object-cover"
-                  data-tina-field={tinaField(featuredPost, 'imageUrl')}
-                />
-              ) : featuredPost.embedUrl ? (
-                <YouTubeEmbed src={featuredPost.embedUrl} />
-              ) : null}
-            </div>
-            <div className='flex flex-col gap-2'>
-              {featuredPost.datePosted && (
-                <p 
-                  className='text-sm text-neutral-text-secondary'
-                  data-tina-field={tinaField(featuredPost, 'datePosted')}
-                >
-                  {formatDate(featuredPost.datePosted)}
-                </p>
-              )}
-              <h3 
-                className='text-2xl' 
-                data-tina-field={tinaField(featuredPost, 'title')}
-              >
-                {featuredPost.title}
-              </h3>
-              
-              {featuredPost.authorName && (
-                <p className='text-neutral-text-secondary text-base'>
-                  By{' '}
-                  <a 
-                    className='hover:text-neutral-text uppercase underline transition-colors' 
-                    href={featuredPost.authorUrl || '#'}
-                    data-tina-field={tinaField(featuredPost, 'authorName')}
-                  >
-                    {featuredPost.authorName}
-                  </a>
-                </p>
-              )}
-            </div>
-          </div>
-        )}
+        {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
           className={`${SECTION_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-5 text-black text-balance`}
           data-tina-field={tinaField(data, 'title')}
