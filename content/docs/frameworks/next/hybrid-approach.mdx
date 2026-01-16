@@ -1,6 +1,6 @@
 ---
 title: 'Hybrid Fetching '
-last_edited: '2026-01-16T05:27:52.246Z'
+last_edited: '2026-01-16T05:33:21.074Z'
 next: ''
 previous: ''
 ---
@@ -8,7 +8,6 @@ previous: ''
 When using Static Site Generation (SSG), there may be occasions where a client-side approach or dynamic rendering is needed. However, with dynamic rendering, the first request can be slower because the page is built on demand, which can negatively impact the initial user experience.
 
 To address this, we use a hybrid approach: SSG for existing pages and dynamic rendering for newly created pages.
-
 
 
 ```javascript
@@ -80,9 +79,17 @@ export default async function Page({ params }: PageProps) {
 ```javascript
 // components/ClientFallback.tsx
 "use client";
+import { notFound } from "next/navigation";
+
+
 
 export default async function ClientFallback() {
 const page = await getPageFromTina(params.slug);
+
+if(!page?.data)
+{
+ return notFound();
+}
 
 const { data } = useTina({
     query: page.query,
@@ -102,3 +109,13 @@ const { data } = useTina({
 }
 
 ```
+
+
+Here are the two possible scenarios depicted in the diagram.
+
+
+<ImageAndText
+  docText={<>
+
+  </>}
+/>
