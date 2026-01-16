@@ -1,6 +1,6 @@
 ---
 title: 'Hybrid Fetching '
-last_edited: '2026-01-16T05:11:43.161Z'
+last_edited: '2026-01-16T05:25:17.960Z'
 next: ''
 previous: ''
 ---
@@ -9,3 +9,90 @@ When using Static Site Generation (SSG), there may be occasions where a client-s
 
 To address this, we use a hybrid approach: SSG for existing pages and dynamic rendering for newly created pages.
 
+
+
+```javascript
+// lib/tina.ts
+import { client } from "@/tina/__generated__/client";
+
+export async function getPageFromTina(slug: string) {
+  try {
+    const response = await client.queries.page({
+      relativePath: `${slug}.md`,
+    });
+
+    return response?.data?.page ?? null;
+  } catch {
+    return null;
+  }
+}
+
+
+```
+
+```javascript
+// app/[slug]/page.tsx
+import { getPageFromTina} from "@/lib/tina";
+import ClientFallback from "@/components/ClientFallback";
+
+export const dynamic = "force-static";
+
+
+
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+// Next.js built-in function
+export async function generateStaticParams() {
+  const response = await client.queries.pageConnection();
+
+  return (
+    response?.data?.pageConnection?.edges
+      ?.map((edge) => ({
+        slug: edge?.node?.sys?.filename,
+      }))
+      .filter((param) => Boolean(param.slug)) ?? []
+  );
+}
+
+
+export default async function Page({ params }: PageProps) {
+  const page = await getPageFromTina(params.slug);
+
+  if (!page) {
+    return <ClientFallback />;
+  }
+
+  return (
+    <main>
+      <h1>{page.title}</h1>
+      <article
+        dangerouslySetInnerHTML={{ __html: page.body }}
+      />
+    </main>
+  );
+}
+
+```
+
+```csharp
+// components/ClientFallback.tsx
+"use client";
+
+export default async function ClientFallback() {
+const page = await getPageFromTina(params.slug);
+
+  return (
+    <main>
+      <h1>{page.title}</h1>
+      <article
+        dangerouslySetInnerHTML={{ __html: page.body }}
+      />
+    </main>
+  );
+}
+
+```
