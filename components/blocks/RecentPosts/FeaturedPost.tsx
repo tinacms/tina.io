@@ -25,7 +25,7 @@ type FeaturedPostProps = {
 
 export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex flex-col gap-2 w-full max-sm:max-w-4xl">
       {featuredPost.datePosted && (
         <p 
           className='text-base text-neutral-text-secondary w-fit'
@@ -34,8 +34,8 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
           {formatDate(featuredPost.datePosted)}
         </p>
       )}
-      <div className="gap-2 flex w-full">
-        <div className='w-[calc(75%-1rem)]'>
+      <div className="gap-2 flex flex-col md:flex-row w-full">
+        <div className='w-full md:w-[calc(75%-1rem)]'>
           {featuredPost.imageUrl ? (
             <img 
               src={featuredPost.imageUrl} 
