@@ -34,6 +34,7 @@ import { tableTemplate } from '../../components/blocks/Table/table.template';
 import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testimonials.template';
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
+import { tripleBoxTemplate } from '../../components/blocks/TripleBox/TripleBox.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
 
@@ -86,6 +87,7 @@ const templates = [
   featureCardTemplate as Template,
   callToActionTemplate as Template,
   mapTemplate as Template,
+  tripleBoxTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
