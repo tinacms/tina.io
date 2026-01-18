@@ -27,6 +27,14 @@ export const recentPostsTemplate = {
           type: 'string',
         },
         {
+          name: 'description',
+          label: 'Description',
+          type: 'string',
+          ui: {
+            component: 'textarea',
+          },
+        },
+        {
           name: 'url',
           label: 'URL',
           type: 'string',
