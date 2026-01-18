@@ -55,7 +55,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
             </p>
           )}
           {featuredPost.url ? (
-            <Link href={featuredPost.url} className='hover:underline'>
+            <Link href={featuredPost.url} className='hover:underline' target="_blank" rel="noopener noreferrer">
               <h3 
                 className='text-lg' 
                 data-tina-field={tinaField(featuredPost, 'title')}
