@@ -82,7 +82,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
       <section className="col-span-5 text-3xl lg:col-span-3 flex flex-col gap-8 items-center md:items-start">
         {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
-          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-5 text-black text-balance`}
+          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-5 text-black text-balance`}
           data-tina-field={tinaField(data, 'title')}
         >
           {data?.title || 'Recent Posts'}
