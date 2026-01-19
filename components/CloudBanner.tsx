@@ -28,7 +28,7 @@ export function CloudBanner() {
       className="
         relative z-10 w-full flex flex-col items-center justify-center 
         py-3 px-4 text-base leading-[1.2] 
-        bg-[linear-gradient(90deg,white,#f2fdfc_33.3%,#e6faf8_100%)] 
+        bg-(image:--gradient-banner)
         shadow-[0_0_8px_2px_rgba(0,0,0,0.03)] 
         border-b border-[#d1faf6] 
         text-(--color-tina-blue)

@@ -71,6 +71,8 @@
   --glass-gradient-start: rgba(255, 255, 255, 0.1);
   --glass-gradient-end: rgba(255, 255, 255, 0.4);
 
+  --gradient-banner: linear-gradient(90deg, white, #f2fdfc 33.3%, #e6faf8 100%);
+
   --neutral-background: #F8FAFC;
   --neutral-background-secondary: #F1F5F9;
   --neutral-background-quaternary: #E2E8F0;

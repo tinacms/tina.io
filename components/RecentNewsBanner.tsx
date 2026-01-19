@@ -15,9 +15,9 @@ export function RecentNewsBanner({
   link,
 }: RecentNewsBannerProps) {
   return (
-    <div className="bg-[linear-gradient(90deg,white,#f2fdfc_33.3%,#e6faf8_100%)] border-b border-[#d1faf6] py-2 px-4 lg:px-10">
+    <div className="bg-(image:--gradient-banner) z-10 shadow-[0_0_8px_2px_rgba(0,0,0,0.03)] relative border-b border-[#d1faf6] py-2 px-4 lg:px-10">
       <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-base">
-        <span className="bg-[#0574E4] text-white px-2 py-0.5 rounded-md text-sm font-bold">
+        <span className="bg-[#0574E4] text-white px-2 shadow-lg rounded-md text-sm font-bold">
           {updateCategory}
         </span>
         <span className="text-slate-700 hover:text-slate-950 transition-colors duration-200">
