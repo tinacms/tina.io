@@ -80,12 +80,14 @@ export default async function RootLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
-          <RecentNewsBanner
-            updateCategory={bannerData.updateCategory}
-            description={bannerData.description}
-            linkTitle={bannerData.linkTitle}
-            link={bannerData.link}
-          />
+          {bannerData.showBanner && (
+            <RecentNewsBanner
+              updateCategory={bannerData.updateCategory}
+              description={bannerData.description}
+              linkTitle={bannerData.linkTitle}
+              link={bannerData.link}
+            />
+          )}
           <AdminLink />
           <ConsentBanner />
           <TinaChatBot />

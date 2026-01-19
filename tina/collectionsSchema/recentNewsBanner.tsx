@@ -12,6 +12,12 @@ export const recentNewsBannerCollection = {
   },
   fields: [
     {
+      name: 'showBanner',
+      label: 'Show Banner',
+      type: 'boolean',
+      description: 'Toggle to show or hide the banner on the site',
+    },
+    {
       name: 'updateCategory',
       label: 'Update Category',
       type: 'string',
