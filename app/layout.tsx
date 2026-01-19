@@ -2,7 +2,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import AdminLink from '@/component/AdminLink';
-import { RecentNewsBanner } from '@/component/RecentNewsBanner';
+import { CombinedBanner } from '@/component/CombinedBanner';
 import ConsentBanner from '@/component/ConsentBanner';
 import { SiteLayout } from '@/component/SiteLayout';
 import { getJsonPreviewProps } from '@/utils/getJsonPreviewProps';
@@ -80,14 +80,13 @@ export default async function RootLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
-          {bannerData.showBanner && (
-            <RecentNewsBanner
-              updateCategory={bannerData.updateCategory}
-              description={bannerData.description}
-              linkTitle={bannerData.linkTitle}
-              link={bannerData.link}
-            />
-          )}
+          <CombinedBanner
+            showNewsBanner={bannerData.showBanner}
+            updateCategory={bannerData.updateCategory}
+            description={bannerData.description}
+            linkTitle={bannerData.linkTitle}
+            link={bannerData.link}
+          />
           <AdminLink />
           <ConsentBanner />
           <TinaChatBot />
