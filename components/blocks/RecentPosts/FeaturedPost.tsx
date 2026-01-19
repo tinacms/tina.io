@@ -23,13 +23,10 @@ type FeaturedPostProps = {
 export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
 
   return (
-    <div className="flex overflow-hidden p-3 flex-col gap-2 w-full z-1 rounded-lg max-md:max-w-md relative">
-      <div className="absolute inset-x-0 inset-y-0 bottom-0 right-0 bg-gradient-to-t from-orange-300 via-orange-200 to-sky-300 opacity-15 pointer-events-none -z-10" />
+    <div className="flex overflow-hidden flex-col gap-2 shadow-md p-3 bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40 w-full z-1 rounded-lg max-md:max-w-md relative">
+      {/* <div className="absolute inset-x-0 inset-y-0 bottom-0 right-0 bg-gradient-to-t from-orange-300 via-orange-200 to-sky-300 opacity-15 pointer-events-none -z-10" /> */}
       <div className="md:gap-5 flex flex-col md:flex-row w-full">
         <div className='w-full md:w-1/2 aspect-video relative'>
-          <span className="absolute top-3 left-3 z-10 uppercase bg-orange-500 text-white px-3 py-0.5 rounded-full text-sm font-li w-fit">
-            Featured
-          </span>
           {featuredPost.imageUrl ? (
             <div
               data-tina-field={tinaField(featuredPost, 'imageUrl')}
@@ -46,15 +43,20 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
             <YouTubeEmbed className='rounded-none h-full ' src={featuredPost.embedUrl} />
           ) : null}
         </div>
-        <div className='flex w-1/2 flex-col py-3 gap-2'>
-          {featuredPost.datePosted && (
-            <p 
-              className='text-sm text-neutral-text-secondary w-fit'
-              data-tina-field={tinaField(featuredPost, 'datePosted')}
-            >
-              {formatDate(featuredPost.datePosted)}
-            </p>
-          )}
+        <div className='flex lg:w-1/2 flex-col py-3 gap-2'>
+          <div className='flex items-center gap-2'>
+            {featuredPost.datePosted && (
+              <p 
+                className='text-sm text-neutral-text-secondary w-fit'
+                data-tina-field={tinaField(featuredPost, 'datePosted')}
+              >
+                {formatDate(featuredPost.datePosted)}
+              </p>
+            )}
+            <span className="uppercase bg-orange-500 text-white px-3 py-0.5 rounded-full text-sm font-li w-fit">
+              Featured
+            </span>
+          </div>
           {featuredPost.url ? (
             <Link href={featuredPost.url} className='hover:underline' target="_blank" rel="noopener noreferrer">
               <h3 
