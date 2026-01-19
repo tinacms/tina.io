@@ -56,6 +56,11 @@ export default async function RootLayout({
   );
   const footerData = previewProps.props.file.data;
 
+  const bannerPreviewProps = await getJsonPreviewProps(
+    'content/recent-news-banner/banner.json',
+  );
+  const bannerData = bannerPreviewProps.props.file.data;
+
   return (
     <html lang="en">
       <head>
@@ -75,7 +80,12 @@ export default async function RootLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
-          <RecentNewsBanner />
+          <RecentNewsBanner
+            updateCategory={bannerData.updateCategory}
+            description={bannerData.description}
+            linkTitle={bannerData.linkTitle}
+            link={bannerData.link}
+          />
           <AdminLink />
           <ConsentBanner />
           <TinaChatBot />

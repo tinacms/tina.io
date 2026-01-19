@@ -26,6 +26,7 @@ import { footerCollection } from './collectionsSchema/footer';
 import { meetingLinksCollection } from './collectionsSchema/meetingLinks';
 import { navigationBarCollection } from './collectionsSchema/navigationBar';
 import { pagesCollection } from './collectionsSchema/pages';
+import { recentNewsBannerCollection } from './collectionsSchema/recentNewsBanner';
 import { settingCollection } from './collectionsSchema/settings';
 import { whatsNewTinaCloudCollection } from './collectionsSchema/whatsNewTinaCloud';
 import { whatsNewTinaCMSCollection } from './collectionsSchema/whatsNewTinaCMS';
@@ -46,6 +47,7 @@ export const schema = defineSchema({
     footerCollection as Collection,
     conferenceTinaCMSCollection as Collection,
     settingCollection as Collection,
+    recentNewsBannerCollection as Collection,
     {
       name: 'docsTableOfContents',
       label: 'Docs - Table of Contents',
