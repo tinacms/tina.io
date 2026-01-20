@@ -26,8 +26,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
     >
       <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
-        <div className='flex flex-col gap-3'>
-        { /* Recent News Banner */}
         {bannerFilled && (
           <Badge className='relative' asChild={true}>
             <Link 
@@ -39,7 +37,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
               })}
               className="flex items-center gap-2"
             >
-              <Badge small color="orange" className="absolute  text-[10px] text-white left-2.5 -top-2.5">NEW</Badge>
+              <Badge small color="orange" className="absolute  text-[10px] text-white right-2.5 -top-2.5">NEW</Badge>
               <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-xs via-blue-950'>
                 <span className="inline-flex items-center gap-2">
                   <MdSmartDisplay className="size-5" />
@@ -50,6 +48,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             </Link>
           </Badge>
         )}
+        <div className='flex flex-col gap-3'>
         {title && (
           <h2
             className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
