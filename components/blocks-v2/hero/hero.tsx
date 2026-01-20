@@ -72,8 +72,8 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                       {recentNewsBanner.badgeText}
                     </Badge>
                   )}
-                  <MdSmartDisplay className="size-5" />
-                  <span className="inline-flex items-center">{recentNewsBanner.title}</span>
+                  
+                  <span className="inline-flex gap-2 items-center"><MdSmartDisplay className="size-5" />{recentNewsBanner.title}</span>
                 </span>
               </AnimatedShinyText>
             </Link>
