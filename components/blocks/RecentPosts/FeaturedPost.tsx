@@ -43,7 +43,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
             <YouTubeEmbed className='rounded-none h-full ' src={featuredPost.embedUrl} />
           ) : null}
         </div>
-        <div className='flex lg:w-1/2 flex-col py-3 gap-2'>
+        <div className='flex md:w-1/2 flex-col py-3 gap-2'>
           <div className='flex items-center gap-2'>
             {featuredPost.datePosted && (
               <p 
