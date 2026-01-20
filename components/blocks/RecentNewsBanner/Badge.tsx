@@ -1,15 +1,15 @@
 import { Slot } from "@radix-ui/react-slot";
 import { MdSmartDisplay } from "react-icons/md";
 
-interface RecentNewsBannerProps {
+interface BadgeProps {
   asChild?: boolean;
   children?: React.ReactNode;
 }
 
-export const RecentNewsBanner = ({ 
+export const Badge = ({ 
   asChild = false, 
   children,
-}: RecentNewsBannerProps) => {
+}: BadgeProps) => {
   const Comp = asChild ? Slot : "span";
   
   return (

@@ -36,6 +36,10 @@
       ],
       "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/lazy-llama2.webp",
+      "recentNewsBanner": {
+        "title": "Watch: SSW Rules migrates to TinaCMS",
+        "link": "qd"
+      },
       "_template": "heroV2"
     },
     {

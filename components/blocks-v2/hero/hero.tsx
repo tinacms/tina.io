@@ -5,12 +5,12 @@ import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 
-import { RecentNewsBanner } from '@/component/blocks/RecentNewsBanner/RecentNewsBanner';
+import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
 import { MdSmartDisplay } from 'react-icons/md';
 import Link from 'next/link';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
-  const { title, subtext, buttons, image, buttonHorizontalAlignment } =
+  const { title, subtext, buttons, image, buttonHorizontalAlignment, recentNewsBanner } =
     data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
 
@@ -21,12 +21,14 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     >
       <div className="flex items-center flex-col gap-8  border-red-500 py-10">
         <div className='flex flex-col gap-3'>
-        <RecentNewsBanner asChild={true}>
-          <Link href="#">
-            <MdSmartDisplay className="size-5" />
-            WATCH VIDEO: SSW Rules migrates to TinaCMS
+        {recentNewsBanner && (
+          <Badge asChild={true}>
+            <Link href={recentNewsBanner.link || '#'}>
+              <MdSmartDisplay className="size-5" />
+              {recentNewsBanner.title}
             </Link>
-          </RecentNewsBanner>
+          </Badge>
+        )}
         {title && (
           <h2
             className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
