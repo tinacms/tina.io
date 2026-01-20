@@ -1,11 +1,12 @@
-import { Slot } from "@radix-ui/react-slot";
-import { MdSmartDisplay } from "react-icons/md";
+import { cn } from "@/lib/utils";
+import {Slot } from "@radix-ui/react-slot";
 
 interface BadgeProps {
   asChild?: boolean;
   children?: React.ReactNode;
   small?: boolean;
   color?: 'default' | 'orange';
+  className?: string;
 }
 
 export const Badge = ({ 
@@ -13,6 +14,7 @@ export const Badge = ({
   children,
   small = false,
   color = 'default',
+  className,
 }: BadgeProps) => {
   const Comp = asChild ? Slot : "span";
   let base = "self-start flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border";
@@ -22,7 +24,7 @@ export const Badge = ({
     : "text-blue-800 bg-brand-secondary/10 border-brand-secondary";
   return (
     <Comp
-      className={`${base} ${size} ${colorClass}`}
+      className={cn(base, size, colorClass, className)}
     >
       {children}
     </Comp>

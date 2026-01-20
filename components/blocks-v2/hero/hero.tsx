@@ -10,6 +10,7 @@ import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
 import { MdSmartDisplay } from 'react-icons/md';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const { title, subtext, buttons, image, buttonHorizontalAlignment, recentNewsBanner } =
@@ -38,10 +39,13 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
               })}
               className="flex items-center gap-2"
             >
-              
-              <MdSmartDisplay className="size-5" />
-              <Badge small color="orange">NEW</Badge>
-              {recentNewsBanner.title}
+              <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-xs via-blue-950'>
+                <span className="inline-flex items-center gap-2">
+                  <MdSmartDisplay className="size-5" />
+                  <Badge small color="orange" className="inline-flex items-center">NEW</Badge>
+                  <span className="inline-flex items-center">{recentNewsBanner.title}</span>
+                </span>
+              </AnimatedShinyText>
             </Link>
           </Badge>
         )}
@@ -53,7 +57,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           </h2>
         )}
         {subtext && (
-          <p className="text-neutral-text-secondary md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">
+          <p className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">
             {subtext}
           </p>
         )}
