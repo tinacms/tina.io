@@ -19,8 +19,8 @@ export const Badge = ({
   dataTinaField,
 }: BadgeProps) => {
   const Comp = asChild ? Slot : "span";
-  let base = "self-start flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border";
-  let size = small ? "px-1" : "px-3.5 py-1.5 text-base";
+  let base = "self-start flex gap-2 items-center  w-fit font-ibm-plex-medium rounded-full border";
+  let size = small ? "px-1  text-[10px]" : "px-3.5 py-1.5 text-base";
   let colorClass = color === 'orange'
     ? "bg-orange-500 text-white border-orange-500"
     : "text-blue-800 bg-brand-secondary/10 border-brand-secondary";

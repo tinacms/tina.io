@@ -62,9 +62,8 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 <span className="inline-flex items-center gap-2">
                   {recentNewsBanner.badgeText && recentNewsBanner.badgePosition === 'left' && (
                     <Badge
-                      small
                       color="orange"
-                      className={cn("uppercase text-[10px] text-white", 'mr-2')}
+                      className={cn("uppercase text-white", 'mr-2')}
                       dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
                     >
                       {recentNewsBanner.badgeText}
@@ -74,9 +73,9 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   <span className="inline-flex items-center">{recentNewsBanner.title}</span>
                   {recentNewsBanner.badgeText && recentNewsBanner.badgePosition === 'right' && (
                     <Badge
-                      small
+                      
                       color="orange"
-                      className={cn("uppercase text-[10px] text-white", 'ml-2')}
+                      className={cn("uppercase text-white", 'ml-2')}
                       dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
                     >
                       {recentNewsBanner.badgeText}
