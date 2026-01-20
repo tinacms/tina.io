@@ -59,11 +59,14 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 ) : null
               )}
               <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-xs via-blue-950'>
-                <span className="inline-flex items-center gap-2">
-                  {recentNewsBanner.badgeText && recentNewsBanner.badgePosition === 'left' && (
+                <span className={cn(
+                  "inline-flex items-center gap-2",
+                  recentNewsBanner.badgePosition === 'right' && recentNewsBanner.badgeText && 'flex-row-reverse'
+                )}>
+                  {recentNewsBanner.badgeText && (recentNewsBanner.badgePosition === 'left' || recentNewsBanner.badgePosition === 'right') && (
                     <Badge
                       color="orange"
-                      className={cn("uppercase text-white", 'mr-2')}
+                      className="uppercase text-white"
                       dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
                     >
                       {recentNewsBanner.badgeText}
@@ -71,16 +74,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   )}
                   <MdSmartDisplay className="size-5" />
                   <span className="inline-flex items-center">{recentNewsBanner.title}</span>
-                  {recentNewsBanner.badgeText && recentNewsBanner.badgePosition === 'right' && (
-                    <Badge
-                      
-                      color="orange"
-                      className={cn("uppercase text-white", 'ml-2')}
-                      dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
-                    >
-                      {recentNewsBanner.badgeText}
-                    </Badge>
-                  )}
                 </span>
               </AnimatedShinyText>
             </Link>
