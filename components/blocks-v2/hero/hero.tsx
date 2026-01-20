@@ -4,6 +4,7 @@ import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import RenderButton from '@/utils/renderButtonArrayHelper';
+import { tinaField } from 'tinacms/dist/react';
 
 import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
 import { MdSmartDisplay } from 'react-icons/md';
@@ -24,7 +25,10 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         <div className='flex flex-col gap-3'>
         {recentNewsBanner && (
           <Badge asChild={true}>
-            <Link href={recentNewsBanner.link || '#'}>
+            <Link 
+              href={recentNewsBanner.link || '#'}
+              data-tina-field={tinaField(data.data, 'recentNewsBanner')}
+            >
               <MdSmartDisplay className="size-5" />
               {recentNewsBanner.title}
             </Link>
