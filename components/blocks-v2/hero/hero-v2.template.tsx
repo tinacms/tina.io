@@ -73,6 +73,20 @@ export const herov2Template: Template = {
           label: 'Open in New Tab',
           type: 'boolean',
         },
+        {
+          name: 'badgePosition',
+          label: 'Badge Position',
+          type: 'string',
+          options: [
+              { value: 'left', label: 'Left' },
+              { value: 'right', label: 'Right' },
+          ],
+          ui: {
+            component: 'select',
+          },
+          required: false,
+          description: 'Position of the NEW badge (left or right)',
+          },
       ],
     },
   ],

@@ -37,11 +37,20 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
               })}
               className="flex items-center gap-2"
             >
-              <Badge small color="orange" className="absolute  text-[10px] text-white -right-3 -top-2.5">NEW</Badge>
+              {/* New badge */}
+              <Badge
+                small
+                color="orange"
+                className={cn(
+                  "absolute text-[10px] text-white -top-2.5",
+                  recentNewsBanner.badgePosition === 'left' ? '-left-3' : '-right-3'
+                )}
+              >
+                NEW
+              </Badge>
               <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-xs via-blue-950'>
                 <span className="inline-flex items-center gap-2">
                   <MdSmartDisplay className="size-5" />
-                  
                   <span className="inline-flex items-center">{recentNewsBanner.title}</span>
                 </span>
               </AnimatedShinyText>
