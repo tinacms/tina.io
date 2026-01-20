@@ -68,6 +68,11 @@ export const herov2Template: Template = {
           label: 'Link',
           type: 'string',
         },
+        {
+          name: 'openInNewTab',
+          label: 'Open in New Tab',
+          type: 'boolean',
+        },
       ],
     },
   ],

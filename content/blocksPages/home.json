@@ -38,7 +38,8 @@
       "image": "/ai-llamas/lazy-llama2.webp",
       "recentNewsBanner": {
         "title": "Watch: SSW Rules migrates to TinaCMS",
-        "link": "https://www.youtube.com/embed/lqqduKKhH_o?si=Tr3OXdC0WdKSrJRj"
+        "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+        "openInNewTab": true
       },
       "_template": "heroV2"
     },

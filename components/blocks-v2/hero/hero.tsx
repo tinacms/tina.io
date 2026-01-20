@@ -16,18 +16,25 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
 
+
+  const bannerFilled = recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
+
   return (
     <Container
       size="medium"
       className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
     >
-      <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",recentNewsBanner && "pt-0" )}>
+      <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
         <div className='flex flex-col gap-3'>
-        {recentNewsBanner && (
+        {bannerFilled && (
           <Badge asChild={true}>
             <Link 
               href={recentNewsBanner.link || '#'}
               data-tina-field={tinaField(data.data, 'recentNewsBanner')}
+              {...(recentNewsBanner.openInNewTab && {
+                target: "_blank",
+                rel: "noopener noreferrer"
+              })}
             >
               <MdSmartDisplay className="size-5" />
               {recentNewsBanner.title}
