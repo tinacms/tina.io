@@ -53,5 +53,22 @@ export const herov2Template: Template = {
       type: 'image',
       label: 'Image',
     },
+    {
+      name: 'recentNewsBanner',
+      type: 'object',
+      label: 'Recent News Banner',
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          type: 'string',
+        },
+        {
+          name: 'link',
+          label: 'Link',
+          type: 'string',
+        },
+      ],
+    },
   ],
 };

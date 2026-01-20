@@ -397,6 +397,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         'ibm-plex': ['IBMPlexSans-SemiBold', ...defaultTheme.fontFamily.sans],
+        'ibm-plex-medium': ['IBMPlexSans-Medium', ...defaultTheme.fontFamily.sans],
         'source-code-pro': [
           'SourceCodePro-Regular',
           ...defaultTheme.fontFamily.mono,

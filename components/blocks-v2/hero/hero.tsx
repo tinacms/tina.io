@@ -5,6 +5,9 @@ import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 
+import { RecentNewsBanner } from '@/component/blocks/RecentNewsBanner/RecentNewsBanner';
+import { MdSmartDisplay } from 'react-icons/md';
+
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const { title, subtext, buttons, image, buttonHorizontalAlignment } =
     data.data || {};
@@ -16,6 +19,11 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
     >
       <div className="flex items-center flex-col gap-8  border-red-500 py-10">
+        <div className='flex flex-col gap-3'>
+        <RecentNewsBanner>
+            <MdSmartDisplay className="size-5" />
+            WATCH VIDEO: SSW Rules migrates to TinaCMS
+          </RecentNewsBanner>
         {title && (
           <h2
             className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
@@ -28,6 +36,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             {subtext}
           </p>
         )}
+        </div>
         {buttons && buttons.length > 0 && (
           <div
             className={`flex ${alignment === 'left' ? 'justify-center md:justify-start' : 'justify-center'} w-full flex-row flex-wrap gap-2 max-w-[62ch]`}
