@@ -8,6 +8,7 @@ import RenderButton from '@/utils/renderButtonArrayHelper';
 import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
 import { MdSmartDisplay } from 'react-icons/md';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const { title, subtext, buttons, image, buttonHorizontalAlignment, recentNewsBanner } =
@@ -19,7 +20,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       size="medium"
       className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
     >
-      <div className="flex items-center flex-col gap-8  border-red-500 py-10">
+      <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",recentNewsBanner && "pt-0" )}>
         <div className='flex flex-col gap-3'>
         {recentNewsBanner && (
           <Badge asChild={true}>

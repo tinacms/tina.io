@@ -14,7 +14,7 @@ export const Badge = ({
   
   return (
     <Comp
-      className="border-brand-secondary self-start flex gap-1 items-center px-3 py-1 w-fit text-base text-blue-800 bg-brand-secondary/10 font-ibm-plex-medium rounded-full border"
+      className="border-brand-secondary self-start flex gap-2 items-center px-3 py-1 w-fit text-base text-blue-800 bg-brand-secondary/10 font-ibm-plex-medium rounded-full border"
     >
       {children}
     </Comp>
