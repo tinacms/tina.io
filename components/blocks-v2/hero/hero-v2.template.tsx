@@ -74,6 +74,13 @@ export const herov2Template: Template = {
           type: 'boolean',
         },
         {
+          name: 'badgeText',
+          label: 'Badge Text',
+          type: 'string',
+          required: false,
+          description: 'Text to display in the badge. If empty, badge will not show.'
+        },
+        {
           name: 'badgePosition',
           label: 'Badge Position',
           type: 'string',
@@ -86,7 +93,7 @@ export const herov2Template: Template = {
           },
           required: false,
           description: 'Position of the NEW badge (left or right)',
-          },
+        },
       ],
     },
   ],
