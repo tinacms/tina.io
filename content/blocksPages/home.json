@@ -40,7 +40,8 @@
         "title": "Watch now: see how SSW moved 3500+ pages to TinaCMS",
         "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
         "openInNewTab": true,
-        "badgeText": "new"
+        "badgeText": "new",
+        "badgePosition": "right"
       },
       "_template": "heroV2"
     },

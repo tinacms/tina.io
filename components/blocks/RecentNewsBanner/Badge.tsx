@@ -7,6 +7,7 @@ interface BadgeProps {
   small?: boolean;
   color?: 'default' | 'orange';
   className?: string;
+  dataTinaField?: string;
 }
 
 export const Badge = ({ 
@@ -15,6 +16,7 @@ export const Badge = ({
   small = false,
   color = 'default',
   className,
+  dataTinaField,
 }: BadgeProps) => {
   const Comp = asChild ? Slot : "span";
   let base = "self-start flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border";
@@ -25,6 +27,7 @@ export const Badge = ({
   return (
     <Comp
       className={cn(base, size, colorClass, className)}
+      {...(dataTinaField ? { 'data-tina-field': dataTinaField } : {})}
     >
       {children}
     </Comp>

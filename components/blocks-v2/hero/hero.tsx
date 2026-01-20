@@ -26,11 +26,13 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
     >
       <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
-        {bannerFilled && (
-          <Badge className='relative' asChild={true}>
+        
+        <div className='flex flex-col gap-3'>
+          {bannerFilled && (
+          <Badge className='relative mb-2' asChild={true}>
             <Link 
               href={recentNewsBanner.link || '#'}
-              data-tina-field={tinaField(data.data, 'recentNewsBanner')}
+              data-tina-field={tinaField(data.data.recentNewsBanner, 'title')}
               {...(recentNewsBanner.openInNewTab && {
                 target: "_blank",
                 rel: "noopener noreferrer"
@@ -46,6 +48,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                     "uppercase absolute text-[10px] text-white -top-2.5",
                     recentNewsBanner.badgePosition === 'left' ? '-left-3' : '-right-3'
                   )}
+                  dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
                 >
                   {recentNewsBanner.badgeText}
                 </Badge>
@@ -59,7 +62,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             </Link>
           </Badge>
         )}
-        <div className='flex flex-col gap-3'>
         {title && (
           <h2
             className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
