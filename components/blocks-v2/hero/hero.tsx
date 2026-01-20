@@ -28,8 +28,11 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
         
         <div className='flex flex-col gap-3'>
-          {bannerFilled && (
-          <Badge className='relative mb-2' asChild={true}>
+        {bannerFilled && (
+          <Badge className={cn(
+            'mb-2',
+            (recentNewsBanner.badgePosition === 'top left' || recentNewsBanner.badgePosition === 'top right') && 'relative'
+          )} asChild={true}>
             <Link 
               href={recentNewsBanner.link || '#'}
               data-tina-field={tinaField(data.data.recentNewsBanner, 'title')}
@@ -41,22 +44,44 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             >
               {/* New badge (conditionally rendered) */}
               {recentNewsBanner.badgeText && (
-                <Badge
-                  small
-                  color="orange"
-                  className={cn(
-                    "uppercase absolute text-[10px] text-white -top-2.5",
-                    recentNewsBanner.badgePosition === 'left' ? '-left-3' : '-right-3'
-                  )}
-                  dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
-                >
-                  {recentNewsBanner.badgeText}
-                </Badge>
+                (recentNewsBanner.badgePosition === 'top left' || recentNewsBanner.badgePosition === 'top right') ? (
+                  <Badge
+                    small
+                    color="orange"
+                    className={cn(
+                      "uppercase absolute text-[10px] text-white -top-2.5",
+                      recentNewsBanner.badgePosition === 'top left' ? '-left-3' : '-right-3'
+                    )}
+                    dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
+                  >
+                    {recentNewsBanner.badgeText}
+                  </Badge>
+                ) : null
               )}
               <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-xs via-blue-950'>
                 <span className="inline-flex items-center gap-2">
+                  {recentNewsBanner.badgeText && recentNewsBanner.badgePosition === 'left' && (
+                    <Badge
+                      small
+                      color="orange"
+                      className={cn("uppercase text-[10px] text-white", 'mr-2')}
+                      dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
+                    >
+                      {recentNewsBanner.badgeText}
+                    </Badge>
+                  )}
                   <MdSmartDisplay className="size-5" />
                   <span className="inline-flex items-center">{recentNewsBanner.title}</span>
+                  {recentNewsBanner.badgeText && recentNewsBanner.badgePosition === 'right' && (
+                    <Badge
+                      small
+                      color="orange"
+                      className={cn("uppercase text-[10px] text-white", 'ml-2')}
+                      dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
+                    >
+                      {recentNewsBanner.badgeText}
+                    </Badge>
+                  )}
                 </span>
               </AnimatedShinyText>
             </Link>
