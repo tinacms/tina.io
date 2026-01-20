@@ -7,6 +7,7 @@ import RenderButton from '@/utils/renderButtonArrayHelper';
 
 import { RecentNewsBanner } from '@/component/blocks/RecentNewsBanner/RecentNewsBanner';
 import { MdSmartDisplay } from 'react-icons/md';
+import Link from 'next/link';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const { title, subtext, buttons, image, buttonHorizontalAlignment } =
@@ -20,9 +21,11 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     >
       <div className="flex items-center flex-col gap-8  border-red-500 py-10">
         <div className='flex flex-col gap-3'>
-        <RecentNewsBanner>
+        <RecentNewsBanner asChild={true}>
+          <Link href="#">
             <MdSmartDisplay className="size-5" />
             WATCH VIDEO: SSW Rules migrates to TinaCMS
+            </Link>
           </RecentNewsBanner>
         {title && (
           <h2
