@@ -3,6 +3,7 @@ import { actionsButtonTemplate } from '@/component/blocks/ActionButton/ActionsBu
 import { codeButtonTemplate } from '@/component/blocks/CodeButton/CodeButton.template';
 import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.template';
 import { IconPickerInput } from '@/component/forms/IconPicker';
+import type React from 'react';
 
 export const herov2Template: Template = {
   name: 'heroV2',
@@ -83,8 +84,7 @@ export const herov2Template: Template = {
         },
         {
           ui: {
-            // @ts-ignore
-            component: IconPickerInput,
+            component: IconPickerInput as unknown as React.FC<{field: unknown}>,
           },
           name: 'icon',
           label: 'Icon',

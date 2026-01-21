@@ -1,6 +1,7 @@
 import { Popover, PopoverButton, Transition, PopoverPanel } from '@headlessui/react';
 import React from 'react';
 import { BiChevronRight } from 'react-icons/bi';
+import { FaFacebookF } from 'react-icons/fa';
 import { GoCircleSlash } from 'react-icons/go';
 import { Button, wrapFieldsWithMeta } from 'tinacms';
 
@@ -28,13 +29,6 @@ export const IconOptions = {
       />
     </svg>
   ),
-  // ...BoxIcons,
-  // FaFacebookF,
-  // FaGithub,
-  // FaLinkedin,
-  // FaXTwitter,
-  // FaYoutube,
-  // AiFillInstagram,
 };
 
 const iconColorClass: {
@@ -87,7 +81,6 @@ const iconSizeClass = {
   custom: '',
 };
 
-//@ts-ignore
 export const Icon = ({ data, parentColor = '', className = '', tinaField = '' }) => {
 
   
@@ -100,7 +93,6 @@ export const Icon = ({ data, parentColor = '', className = '', tinaField = '' })
   
   const IconSVG = IconOptions[name];
 
-  //@ts-ignore
   const iconSizeClasses = typeof size === 'string' ? iconSizeClass[size] : iconSizeClass[Object.keys(iconSizeClass)[size]];
 
   const iconColor = color && color !== 'primary' ? color : 'blue';
