@@ -110,7 +110,7 @@ export const Icon = ({ data, parentColor = '', className = '', tinaField = '' })
 
 
 
-export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
+export const IconPickerInput: React.FC<{field: unknown}> = wrapFieldsWithMeta(({ input }) => {
   const [filter, setFilter] = React.useState('');
   const filteredBlocks = React.useMemo(() => {
     return Object.keys(IconOptions).filter((name) => {

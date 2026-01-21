@@ -136,7 +136,7 @@ export const herov2Template: Template = {
         },
         {
           ui: {
-            component: IconPickerInput as React.FC<{field: unknown}>,
+            component: IconPickerInput,
           },
           name: 'titleIcon',
           label: 'Title Icon',
