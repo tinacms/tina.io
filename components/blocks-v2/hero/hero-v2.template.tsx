@@ -5,6 +5,14 @@ import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.
 import { IconPickerInput } from '@/component/forms/IconPicker';
 import type React from 'react';
 
+const BADGE_COLOR_OPTIONS = [
+  { value: 'blue', label: 'Blue (solid)' },
+  { value: 'ghostBlue', label: 'Ghost Blue (outline)' },
+  { value: 'orange', label: 'Orange (solid)' },
+  { value: 'ghostOrange', label: 'Ghost Orange (outline)' },
+  { value: 'blueSecondary', label: 'Blue Secondary (light)' },
+];
+
 export const herov2Template: Template = {
   name: 'heroV2',
   label: 'V2 | Hero',
@@ -117,13 +125,7 @@ export const herov2Template: Template = {
               name: 'color',
               label: 'Badge Color',
               type: 'string',
-              options: [
-                { value: 'blue', label: 'Blue (solid)' },
-                { value: 'ghostBlue', label: 'Ghost Blue (outline)' },
-                { value: 'orange', label: 'Orange (solid)' },
-                { value: 'ghostOrange', label: 'Ghost Orange (outline)' },
-                { value: 'blueSecondary', label: 'Blue Secondary (light)' },
-              ],
+              options: BADGE_COLOR_OPTIONS,
               ui: {
                 component: 'select',
               },
@@ -146,13 +148,7 @@ export const herov2Template: Template = {
           name: 'backgroundColor',
           label: 'Background Color',
           type: 'string',
-          options: [
-            { value: 'blue', label: 'Blue (solid)' },
-            { value: 'ghostBlue', label: 'Ghost Blue (outline)' },
-            { value: 'orange', label: 'Orange (solid)' },
-            { value: 'ghostOrange', label: 'Ghost Orange (outline)' },
-            { value: 'blueSecondary', label: 'Blue Secondary (light)' },
-          ],
+          options: BADGE_COLOR_OPTIONS,
           ui: {
             component: 'select',
           },
