@@ -89,12 +89,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   </Badge>
                 ) : null
               )}
-              <AnimatedShinyText className={cn('flex items-center  gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
-                <span className={cn(
-                  "inline-flex items-center gap-2",
-                  recentNewsBanner.badge?.position === 'right' && recentNewsBanner.badge?.text && 'flex-row-reverse'
-                )}>
-                  {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
+              {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
                     <Badge
                       color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
                       size='medium'
@@ -105,15 +100,22 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                       {recentNewsBanner.badge?.text}
                     </Badge>
                   )}
+              {/* Title Icon (from recentNewsBanner.titleIcon) - outside AnimatedShinyText */}
+              {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
+                <>
+                  {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5" })}
+                </>
+              )}
+              
+              <AnimatedShinyText className={cn('flex items-center  gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
+                <span className={cn(
+                  "inline-flex items-center gap-2",
+                  recentNewsBanner.badge?.position === 'right' && recentNewsBanner.badge?.text && 'flex-row-reverse'
+                )}>
+                  
                   
                   <span className="inline-flex gap-2 items-center">
                     {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}
-                    {/* Title Icon (from recentNewsBanner.titleIcon) */}
-                    {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
-                      <span className="ml-1 flex items-center">
-                        {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5" })}
-                      </span>
-                    )}
                     {recentNewsBanner.title}
                   </span>
                 </span>
