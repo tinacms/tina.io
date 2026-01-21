@@ -3,7 +3,58 @@ import {
   transformerNotationFocus,
   transformerNotationHighlight,
 } from '@shikijs/transformers';
+import type { ShikiTransformer } from 'shiki';
 import { createHighlighter, type Highlighter } from 'shiki';
+
+/**
+ * Parse line range string like "5-10" or "3" into a Set of line numbers
+ */
+function parseLineRange(lineRange: string): Set<number> {
+  const lines = new Set<number>();
+  if (!lineRange) return lines;
+
+  const parts = lineRange.split(',');
+  for (const part of parts) {
+    const trimmed = part.trim();
+    if (trimmed.includes('-')) {
+      const [start, end] = trimmed.split('-').map(Number);
+      if (!Number.isNaN(start) && !Number.isNaN(end)) {
+        for (let i = start; i <= end; i++) {
+          lines.add(i);
+        }
+      }
+    } else {
+      const num = Number(trimmed);
+      if (!Number.isNaN(num)) {
+        lines.add(num);
+      }
+    }
+  }
+  return lines;
+}
+
+/**
+ * Custom transformer that highlights specific line ranges
+ */
+function transformerLineHighlight(
+  highlightLines: string,
+): ShikiTransformer | undefined {
+  if (!highlightLines) return undefined;
+
+  const linesToHighlight = parseLineRange(highlightLines);
+  if (linesToHighlight.size === 0) return undefined;
+
+  return {
+    name: 'line-highlight',
+    line(node, line) {
+      if (linesToHighlight.has(line)) {
+        node.properties['data-highlighted'] = '';
+        this.addClassToHast(node, 'highlighted');
+      }
+      return node;
+    },
+  };
+}
 
 class ShikiSingleton {
   private highlighter: Highlighter | null = null;
@@ -66,17 +117,26 @@ class ShikiSingleton {
     code: string,
     lang: string,
     isDarkMode: boolean,
+    highlightLines?: string,
   ): Promise<string> {
     const highlighter = await this.getHighlighter(lang);
+
+    const transformers: ShikiTransformer[] = [
+      transformerNotationDiff({ matchAlgorithm: 'v3' }),
+      transformerNotationHighlight({ matchAlgorithm: 'v3' }),
+      transformerNotationFocus({ matchAlgorithm: 'v3' }),
+    ];
+
+    // Add line highlight transformer if lines are specified
+    const lineHighlighter = transformerLineHighlight(highlightLines);
+    if (lineHighlighter) {
+      transformers.push(lineHighlighter);
+    }
 
     return highlighter.codeToHtml(code, {
       lang,
       theme: isDarkMode ? 'night-owl' : 'github-light',
-      transformers: [
-        transformerNotationDiff({ matchAlgorithm: 'v3' }),
-        transformerNotationHighlight({ matchAlgorithm: 'v3' }),
-        transformerNotationFocus({ matchAlgorithm: 'v3' }),
-      ],
+      transformers,
       meta: {
         showLineNumbers: true,
       },
