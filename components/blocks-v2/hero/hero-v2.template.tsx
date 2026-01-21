@@ -95,7 +95,7 @@ export const herov2Template: Template = {
               label: 'Icon',
               type: 'string',
               required: false,
-              description: 'Icon to display in the banner. Leave empty for no icon.'
+              description: 'Icon to display in the badge. Leave empty for no icon.'
             },
             {
               name: 'position',
@@ -114,6 +114,16 @@ export const herov2Template: Template = {
               description: 'Position of the badge: inline left/right or anchored top left/right',
             },
           ],
+        },
+        {
+          ui: {
+            component: IconPickerInput as React.FC<{field: unknown}>,
+          },
+          name: 'titleIcon',
+          label: 'Title Icon',
+          type: 'string',
+          required: false,
+          description: 'Icon to display next to the banner title. Leave empty for no icon.'
         },
       ],
     },

@@ -86,7 +86,13 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   )}
                   
                   <span className="inline-flex gap-2 items-center">
-                    {BadgeIconComponent && !recentNewsBanner.badge?.text   && <BadgeIconComponent className="size-5" />}
+                    {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}
+                    {/* Title Icon (from recentNewsBanner.titleIcon) */}
+                    {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
+                      <span className="ml-1 flex items-center">
+                        {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5" })}
+                      </span>
+                    )}
                     {recentNewsBanner.title}
                   </span>
                 </span>
