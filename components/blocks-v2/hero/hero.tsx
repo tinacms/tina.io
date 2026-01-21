@@ -35,12 +35,11 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           {/* Banner */}
         {bannerFilled && (
           <Badge className={cn(
-            'mb-2',
+            'mb-2 px-1 py-1',
             (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative',
             recentNewsBanner.badge?.text &&
               (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right')
-              ? 'px-1 py-1'
-              : 'px-4 py-2'
+              
           )} asChild={true}>
             <Link 
               href={recentNewsBanner.link || '#'}
@@ -49,7 +48,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 target: "_blank",
                 rel: "noopener noreferrer"
               })}
-              className="flex items-center gap-2"
+              className="flex  items-center gap-2"
             >
               {/* New badge (conditionally rendered) */}
               {recentNewsBanner.badge?.text && (
@@ -58,8 +57,8 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                     size='small'
                     color="orange"
                     className={cn(
-                      "uppercase absolute text-[10px] text-white -top-2.5 flex items-center gap-1",
-                      recentNewsBanner.badge?.position === 'top left' ? '-left-3' : '-right-3'
+                      "uppercase absolute text-[10px] text-white -top-3 flex items-center gap-1",
+                      recentNewsBanner.badge?.position === 'top left' ? '-left-2.5' : '-right-2.5'
                     )}
                     dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
                   >
@@ -68,7 +67,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   </Badge>
                 ) : null
               )}
-              <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-xs via-blue-950'>
+              <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-sm via-blue-950'>
                 <span className={cn(
                   "inline-flex items-center gap-2",
                   recentNewsBanner.badge?.position === 'right' && recentNewsBanner.badge?.text && 'flex-row-reverse'
@@ -77,7 +76,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                     <Badge
                       color="orange"
                       size='medium'
-                      className="uppercase text-white flex items-center gap-1"
+                      className="uppercase text-white text-xs self-center flex items-center gap-1"
                       dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
                     >
                       {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}
