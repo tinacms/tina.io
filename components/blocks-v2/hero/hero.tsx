@@ -70,7 +70,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 target: "_blank",
                 rel: "noopener noreferrer"
               })}
-              className="flex  items-center gap-2"
+              className="flex items-center gap-2"
             >
               {/* New badge (conditionally rendered) */}
               {recentNewsBanner.badge?.text && (
