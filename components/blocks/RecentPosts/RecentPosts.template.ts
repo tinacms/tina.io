@@ -57,12 +57,6 @@ export const recentPostsTemplate = {
           description: 'The SSW People URL of the author',
         },
         {
-          name: 'embedUrl',
-          label: 'YouTube Embed URL',
-          type: 'string',
-          description: 'YouTube Embed URL, formatted like https://www.youtube.com/embed/<id>',
-        },
-        {
           name: 'imageUrl',
           label: 'Image',
           type: 'image',

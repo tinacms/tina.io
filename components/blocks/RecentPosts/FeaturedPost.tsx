@@ -1,11 +1,8 @@
 import { tinaField } from 'tinacms/dist/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
-import { LiteYouTube } from '../VideoEmbed/LiteYouTube';
-import { extractYouTubeId } from '../VideoEmbed/utils';
-import { FaArrowRightLong } from 'react-icons/fa6';
 import { formatDate } from './RecentPosts';
+import { cn } from '@/lib/utils';
 
 type FeaturedPostProps = {
   featuredPost: {
@@ -15,7 +12,6 @@ type FeaturedPostProps = {
     datePosted?: string;
     authorName?: string;
     authorUrl?: string;
-    embedUrl?: string;
     imageUrl?: string;
   };
 };
@@ -29,8 +25,9 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
 
       {/* <div className="absolute inset-x-0 inset-y-0 bottom-0 right-0 bg-gradient-to-t from-orange-300 via-orange-200 to-sky-300 opacity-15 pointer-events-none -z-10" /> */}
       <div className="md:gap-5 flex flex-col md:flex-row w-full">
+        {featuredPost.imageUrl && (
         <div className='w-full md:w-1/2 flex relative'>
-          {featuredPost.imageUrl ? (
+          
             <div
               data-tina-field={tinaField(featuredPost, 'imageUrl')}
               className="aspect-w-16 aspect-h-9 my-auto w-full rounded-lg overflow-hidden relative">
@@ -41,12 +38,10 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
                 className="object-cover"
               />
             </div>
-          ) : featuredPost.embedUrl ? (
-            
-            <YouTubeEmbed className='rounded-none h-full ' src={featuredPost.embedUrl} />
-          ) : null}
+          
         </div>
-        <div className='flex md:w-1/2 flex-col py-3 gap-2'>
+        )}
+        <div className={cn('flex flex-col py-3 gap-2', featuredPost.imageUrl && 'md:w-1/2')}>
           <div className='flex items-center gap-2'>
             {featuredPost.datePosted && (
               <p 
