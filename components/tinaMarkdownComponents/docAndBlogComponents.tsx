@@ -3,7 +3,6 @@
 /** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
 /** biome-ignore-all lint/a11y/noSvgWithoutTitle: <TODO> */
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: <TODO> */
-import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import { CardGrid } from 'components/blocks/CardGrid';
 import RecipeBlock from 'components/blocks/Recipe';
 import { GraphQLQueryResponseTabs } from 'components/ui/GraphQLQueryResponseTabs';
@@ -16,7 +15,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
-import { Prism } from '../styles/Prism';
+import { CodeBlock } from './code-block/code-block';
 import MermaidElement from './mermaid';
 
 const ScrollBasedShowcase = dynamic(
@@ -54,6 +53,7 @@ export const docAndBlogComponents: Components<{
       required: boolean;
     }[];
   };
+  code_block: { value: string; lang: string; children: any };
   WebmEmbed: { embedSrc: string; width?: string };
   WarningCallout: { body: string };
   Codesandbox: { embedSrc: string; title: string };
@@ -683,39 +683,15 @@ export const docAndBlogComponents: Components<{
       src={src}
     />
   ),
-  // @ts-expect-error TODO: fix this in TinaCMS
   code_block: ({ value, lang, children }) => {
-    const [hasCopied, setHasCopied] = React.useState(false);
-
-    const handleCopy = () => {
-      navigator.clipboard.writeText(children || value || '');
-      setHasCopied(true);
-      setTimeout(() => setHasCopied(false), 2000);
-    };
-
-    return (
-      <div className="relative pb-3 word-break white-space overflow-x-hidden rounded-xl! margin-0">
-        <button
-          type="button"
-          onClick={handleCopy}
-          className="absolute top-4 right-3 z-10 h-6 w-6 flex items-center justify-center text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 rounded font-source-code-pro"
-        >
-          {hasCopied ? (
-            <CheckIcon className="h-4 w-4" />
-          ) : (
-            <ClipboardIcon className="h-4 w-4" />
-          )}
-          <span className="sr-only">Copy</span>
-        </button>
-        <Prism
-          value={children || value || ''}
-          lang={lang || 'jsx'}
-          theme="nightOwl"
-        />
-      </div>
+    return lang === 'mermaid' ? (
+      <MermaidElement value={value} />
+    ) : (
+      <CodeBlock value={value} lang={lang}>
+        {children}
+      </CodeBlock>
     );
   },
-
   GraphQLCodeBlock: ({
     query,
     response,

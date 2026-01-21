@@ -1,0 +1,81 @@
+pre.shiki {
+  counter-reset: line;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.shiki .diff.add {
+  background-color: rgba(22, 163, 77, 0.3);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+:root.dark .shiki .diff.add {
+  background-color: rgba(22, 163, 77, 0.3);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.shiki .diff.remove {
+  background-color: rgba(220, 57, 38, 0.25);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+:root.dark .shiki .diff.remove {
+  background-color: rgba(220, 57, 38, 0.25);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.shiki .line.diff.add::before {
+  color: #14532d;
+}
+
+.shiki .line.diff.remove::before {
+  color: #7f1d1d;
+}
+
+:root.dark .shiki .line.diff.add::before {
+  color: #6ff4b3;
+}
+
+:root.dark .shiki .line.diff.remove::before {
+  color: #f43a3a;
+}
+
+.shiki .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2em;
+  margin-right: 1em;
+  text-align: right;
+  color: var(--neutral-text-secondary);
+}
+
+.shiki .line.highlighted {
+  background-color: rgba(203, 213, 255, 0.6);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+:root.dark .shiki .line.highlighted {
+  background-color: rgb(100, 107, 139, 0.6);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.shiki.has-focused .line:not(.focused) {
+  opacity: 0.4;
+  filter: grayscale(0.3);
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.shiki span.line {
+  margin-right: 1rem;
+}
+
+.shiki {
+  overflow-x: auto !important;
+}

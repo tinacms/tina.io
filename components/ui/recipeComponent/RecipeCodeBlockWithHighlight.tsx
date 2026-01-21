@@ -1,12 +1,8 @@
-import Prism from 'prismjs';
-// biome-ignore lint/style/useImportType: <TODO>
-import React, { useEffect, useRef, useState } from 'react';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
-import 'prism-themes/themes/prism-night-owl.css';
-import 'prismjs/plugins/line-highlight/prism-line-highlight';
-import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
+'use client';
 
+import { useEffect, useState } from 'react';
+import { shikiSingleton } from '../../tinaMarkdownComponents/code-block/shiki-singelton';
+import '../../tinaMarkdownComponents/code-block/code-block.css';
 import { CodeToolbar } from './RecipeCodeToolBar';
 
 interface CodeBlockProps {
@@ -22,19 +18,57 @@ const CodeBlockWithHighlightLines = ({
   children,
   highlightLines,
 }: CodeBlockProps) => {
+  const [html, setHtml] = useState('');
   const [tooltipVisible, setTooltipVisible] = useState(false);
-  const preRef = useRef<HTMLPreElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const codeContent =
+    typeof children === 'string' ? children : value || String(children || '');
 
   useEffect(() => {
-    if (preRef.current) {
-      preRef.current.setAttribute('data-line', highlightLines);
-      Prism.highlightAllUnder(preRef.current);
-    }
-  }, [highlightLines]);
+    let isMounted = true;
+
+    const load = async () => {
+      setIsLoading(true);
+
+      if (!codeContent || typeof codeContent !== 'string') {
+        if (isMounted) {
+          setHtml('');
+          setIsLoading(false);
+        }
+        return;
+      }
+
+      try {
+        const code = await shikiSingleton.codeToHtml(
+          codeContent,
+          lang,
+          true, // dark mode for recipe blocks
+          highlightLines,
+        );
+
+        if (isMounted) {
+          setHtml(code);
+          setIsLoading(false);
+        }
+      } catch {
+        if (isMounted) {
+          // Fallback to plain text if highlighting fails
+          setHtml(`<pre><code>${codeContent}</code></pre>`);
+          setIsLoading(false);
+        }
+      }
+    };
+
+    load();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [codeContent, lang, highlightLines]);
 
   const copyToClipboard = () => {
-    const codeToCopy = typeof children === 'string' ? children : value || '';
-    navigator.clipboard.writeText(codeToCopy).then(
+    navigator.clipboard.writeText(codeContent).then(
       () => {
         setTooltipVisible(true);
         setTimeout(() => setTooltipVisible(false), 1500);
@@ -45,6 +79,21 @@ const CodeBlockWithHighlightLines = ({
     );
   };
 
+  if (isLoading) {
+    return (
+      <div className="codeblock-container">
+        <div className="sticky top-0 z-30">
+          <CodeToolbar
+            lang={lang}
+            onCopy={copyToClipboard}
+            tooltipVisible={tooltipVisible}
+          />
+        </div>
+        <div className="bg-[#011627] p-4 animate-pulse min-h-[200px]" />
+      </div>
+    );
+  }
+
   return (
     <div className="codeblock-container">
       <div className="sticky top-0 z-30">
@@ -54,19 +103,15 @@ const CodeBlockWithHighlightLines = ({
           tooltipVisible={tooltipVisible}
         />
       </div>
-      <pre
-        ref={preRef}
-        className="line-numbers"
-        data-line={highlightLines}
+      <div
+        className="shiki w-full overflow-x-auto bg-[#011627] py-4 px-2 text-sm"
         style={{
-          overflowX: 'hidden',
-          maxWidth: '100%',
           whiteSpace: 'pre-wrap',
           wordBreak: 'break-word',
         }}
-      >
-        <code className={`language-${lang}`}>{value || children}</code>
-      </pre>
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki output is trusted and already escaped for XSS safety.
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </div>
   );
 };

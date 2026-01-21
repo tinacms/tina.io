@@ -1,24 +1,20 @@
-import Prism from 'prismjs';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
-import React, { useEffect } from 'react';
-import 'prism-themes/themes/prism-night-owl.css';
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
-import 'prismjs/plugins/line-highlight/prism-line-highlight';
+'use client';
+
+import { CodeBlock } from './code-block/code-block';
 
 export const codeBlockComponents = {
-  code_block: ({ value, lang, children, highlightLines }) => {
-    useEffect(() => {
-      Prism.highlightAll();
-    }, []);
+  code_block: ({
+    value,
+    lang,
+    children,
+  }: {
+    value?: string;
+    lang?: string;
+    children?: React.ReactNode;
+  }) => {
+    const codeContent =
+      typeof children === 'string' ? children : value || String(children || '');
 
-    return (
-      <pre className="line-numbers" data-line={highlightLines || ''}>
-        <code className={`language-${lang || 'jsx'}`}>
-          {children || value || ''}
-        </code>
-      </pre>
-    );
+    return <CodeBlock value={codeContent} lang={lang || 'jsx'} />;
   },
 };
