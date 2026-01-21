@@ -1,11 +1,30 @@
 import { cn } from "@/lib/utils";
 import {Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-interface BadgeProps {
+const badgeVariants = cva(
+  "self-start flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border",
+  {
+    variants: {
+      size: {
+        default: "px-3.5 py-1.5 text-base",
+        small: "px-1 text-[10px]",
+      },
+      color: {
+        blue: "text-blue-800 bg-brand-secondary/10 border-brand-secondary",
+        orange: "bg-orange-500 text-white border-orange-500",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+      color: "blue",
+    },
+  }
+);
+
+interface BadgeProps extends VariantProps<typeof badgeVariants> {
   asChild?: boolean;
   children?: React.ReactNode;
-  small?: boolean;
-  color?: 'default' | 'orange';
   className?: string;
   dataTinaField?: string;
 }
@@ -13,20 +32,15 @@ interface BadgeProps {
 export const Badge = ({ 
   asChild = false, 
   children,
-  small = false,
-  color = 'default',
+  size,
+  color,
   className,
   dataTinaField,
 }: BadgeProps) => {
   const Comp = asChild ? Slot : "span";
-  let base = "self-start flex gap-2 items-center  w-fit font-ibm-plex-medium rounded-full border";
-  let size = small ? "px-1  text-[10px]" : "px-3.5 py-1.5 text-base";
-  let colorClass = color === 'orange'
-    ? "bg-orange-500 text-white border-orange-500"
-    : "text-blue-800 bg-brand-secondary/10 border-brand-secondary";
   return (
     <Comp
-      className={cn(base, size, colorClass, className)}
+      className={cn(badgeVariants({ size, color }), className)}
       {...(dataTinaField ? { 'data-tina-field': dataTinaField } : {})}
     >
       {children}
