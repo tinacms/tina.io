@@ -18,7 +18,7 @@ const badgeVariants = cva(
         ghostBlue: "text-brand-secondary border-brand-secondary bg-white",
         orange: "bg-brand-primary text-white border-brand-primary",
         ghostOrange: "border-brand-primary text-brand-primary bg-white",
-        blueSecondary: "border-brand-secondary bg-brand-secondary/10 text-blue-800",
+        blueSecondary: "border-brand-secondary bg-brand-secondary-light text-blue-800",
       },
     },
     defaultVariants: {

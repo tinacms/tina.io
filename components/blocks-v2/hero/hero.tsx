@@ -79,7 +79,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                     size='small'
                     color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
                     className={cn(
-                      "uppercase absolute text-[10px] text-white -top-3 flex items-center gap-1",
+                      "uppercase absolute text-[10px] -top-3 flex items-center gap-1",
                       recentNewsBanner.badge?.position === 'top left' ? '-left-2.5' : '-right-2.5'
                     )}
                     dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
