@@ -75,7 +75,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                       className="uppercase text-white flex items-center gap-1"
                       dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
                     >
-                      {BadgeIconComponent && <BadgeIconComponent className="w-4 h-4" />}
+                      {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}
                       {recentNewsBanner.badgeText}
                     </Badge>
                   )}
