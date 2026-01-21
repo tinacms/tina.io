@@ -32,10 +32,15 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
         
         <div className='flex flex-col gap-3'>
+          {/* Banner */}
         {bannerFilled && (
           <Badge className={cn(
             'mb-2',
-            (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative'
+            (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative',
+            recentNewsBanner.badge?.text &&
+              (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right')
+              ? 'px-1 py-1'
+              : 'px-4 py-2'
           )} asChild={true}>
             <Link 
               href={recentNewsBanner.link || '#'}
