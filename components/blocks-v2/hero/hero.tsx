@@ -58,7 +58,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') ? (
                   <Badge
                     size='small'
-                    color="orange"
+                    color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
                     className={cn(
                       "uppercase absolute text-[10px] text-white -top-3 flex items-center gap-1",
                       recentNewsBanner.badge?.position === 'top left' ? '-left-2.5' : '-right-2.5'
@@ -77,9 +77,9 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 )}>
                   {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
                     <Badge
-                      color="orange"
+                      color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
                       size='medium'
-                      className="uppercase text-white text-xs self-center flex items-center gap-1"
+                      className="uppercase text-xs self-center flex items-center gap-1"
                       dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
                     >
                       {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}

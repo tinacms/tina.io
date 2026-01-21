@@ -43,7 +43,8 @@
         "badge": {
           "text": "new",
           "icon": "MdOutlineVideocam",
-          "position": "left"
+          "position": "left",
+          "color": "orange"
         },
         "backgroundColor": "blueSecondary"
       },

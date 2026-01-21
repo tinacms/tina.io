@@ -113,6 +113,23 @@ export const herov2Template: Template = {
               required: false,
               description: 'Position of the badge: inline left/right or anchored top left/right',
             },
+            {
+              name: 'color',
+              label: 'Badge Color',
+              type: 'string',
+              options: [
+                { value: 'blue', label: 'Blue (solid)' },
+                { value: 'ghostBlue', label: 'Ghost Blue (outline)' },
+                { value: 'orange', label: 'Orange (solid)' },
+                { value: 'ghostOrange', label: 'Ghost Orange (outline)' },
+                { value: 'blueSecondary', label: 'Blue Secondary (light)' },
+              ],
+              ui: {
+                component: 'select',
+              },
+              required: false,
+              description: 'Color variant for the badge',
+            },
           ],
         },
         {
