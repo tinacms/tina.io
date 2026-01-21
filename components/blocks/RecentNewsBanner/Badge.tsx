@@ -4,17 +4,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 
 
-
-// Color variants
-/*
-Color Variants - bg-brand-secondary white
-blue: bg-brand-secondary text-white
-ghostBlue: text-brand-secondary border-brand-secondary bg-white
-orange: bg-brand-primary text-white
-ghostOrange: border-brand-primary text-brand-primary bg-white
-blueSecondary: border-brand-secondary bg-brand-secondary/10 text-blue-800
-*/
-
 const badgeVariants = cva(
   "self-start flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border",
   {

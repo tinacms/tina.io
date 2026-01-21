@@ -26,17 +26,20 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
 
   // Determine text color based on background color
   const getTextColorClass = (bgColor?: string) => {
+
+    console.log('Background Color:', bgColor); // Debugging line
     switch (bgColor) {
       case 'blue':
+        return 'text-transparent from-white via-brand-secondary bg-white to-white';
       case 'orange':
-        return 'text-white/70';
+        return 'text-transparent from-white via-brand-primary-light bg-white to-white';
       case 'ghostBlue':
-        return 'text-brand-secondary/70';
+        return 'text-transparent bg-brand-secondary from-brand-secondary via-brand-secondary-light to-brand-secondary';
       case 'ghostOrange':
-        return 'text-brand-primary/90';
+        return 'text-transparent bg-brand-primary from-brand-primary via-brand-primary-light to-brand-primary';
       case 'blueSecondary':
       default:
-        return 'text-blue-800/70';
+        return "text-transparent bg-brand-secondary-gradient-start from-brand-secondary-gradient-start via-brand-secondary to-brand-secondary-gradient-start";
     }
   };
 
@@ -86,7 +89,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   </Badge>
                 ) : null
               )}
-              <AnimatedShinyText className={cn('flex items-center gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
+              <AnimatedShinyText className={cn('flex items-center  gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
                 <span className={cn(
                   "inline-flex items-center gap-2",
                   recentNewsBanner.badge?.position === 'right' && recentNewsBanner.badge?.text && 'flex-row-reverse'
