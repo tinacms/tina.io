@@ -84,9 +84,9 @@ export const herov2Template: Template = {
         },
         {
           ui: {
-            component: IconPickerInput as unknown as React.FC<{field: unknown}>,
+            component: IconPickerInput as React.FC<{field: unknown}>,
           },
-          name: 'icon',
+          name: 'badgeIcon',
           label: 'Icon',
           type: 'string',
           required: false,

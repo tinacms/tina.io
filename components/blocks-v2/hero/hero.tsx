@@ -7,7 +7,7 @@ import RenderButton from '@/utils/renderButtonArrayHelper';
 import { tinaField } from 'tinacms/dist/react';
 
 import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
-import { MdSmartDisplay } from 'react-icons/md';
+import { Icon, IconOptions } from '@/component/forms/IconPicker';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
@@ -17,8 +17,12 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
 
-
   const bannerFilled = recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
+  
+  // Get the icon component if an icon is selected
+  const BadgeIconComponent = recentNewsBanner?.badgeIcon && IconOptions[recentNewsBanner.badgeIcon] 
+    ? IconOptions[recentNewsBanner.badgeIcon] 
+    : null;
 
   return (
     <Container
@@ -49,11 +53,12 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                     small
                     color="orange"
                     className={cn(
-                      "uppercase absolute text-[10px] text-white -top-2.5",
+                      "uppercase absolute text-[10px] text-white -top-2.5 flex items-center gap-1",
                       recentNewsBanner.badgePosition === 'top left' ? '-left-3' : '-right-3'
                     )}
                     dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
                   >
+                    {BadgeIconComponent && <BadgeIconComponent className="w-3 h-3" />}
                     {recentNewsBanner.badgeText}
                   </Badge>
                 ) : null
@@ -66,14 +71,18 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   {recentNewsBanner.badgeText && (recentNewsBanner.badgePosition === 'left' || recentNewsBanner.badgePosition === 'right') && (
                     <Badge
                       color="orange"
-                      className="uppercase text-white"
+                      className="uppercase text-white flex items-center gap-1"
                       dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
                     >
+                      {BadgeIconComponent && <BadgeIconComponent className="w-4 h-4" />}
                       {recentNewsBanner.badgeText}
                     </Badge>
                   )}
                   
-                  <span className="inline-flex gap-2 items-center"><MdSmartDisplay className="size-5" />{recentNewsBanner.title}</span>
+                  <span className="inline-flex gap-2 items-center">
+                    {BadgeIconComponent && !recentNewsBanner.badgeText && <BadgeIconComponent className="size-5" />}
+                    {recentNewsBanner.title}
+                  </span>
                 </span>
               </AnimatedShinyText>
             </Link>
