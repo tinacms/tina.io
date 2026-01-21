@@ -20,8 +20,8 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const bannerFilled = recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
   
   // Get the icon component if an icon is selected
-  const BadgeIconComponent = recentNewsBanner?.badgeIcon && IconOptions[recentNewsBanner.badgeIcon] 
-    ? IconOptions[recentNewsBanner.badgeIcon] 
+  const BadgeIconComponent = recentNewsBanner?.badge?.icon && IconOptions[recentNewsBanner.badge.icon] 
+    ? IconOptions[recentNewsBanner.badge.icon] 
     : null;
 
   return (
@@ -35,7 +35,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         {bannerFilled && (
           <Badge className={cn(
             'mb-2',
-            (recentNewsBanner.badgePosition === 'top left' || recentNewsBanner.badgePosition === 'top right') && 'relative'
+            (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative'
           )} asChild={true}>
             <Link 
               href={recentNewsBanner.link || '#'}
@@ -47,41 +47,41 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
               className="flex items-center gap-2"
             >
               {/* New badge (conditionally rendered) */}
-              {recentNewsBanner.badgeText && (
-                (recentNewsBanner.badgePosition === 'top left' || recentNewsBanner.badgePosition === 'top right') ? (
+              {recentNewsBanner.badge?.text && (
+                (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') ? (
                   <Badge
                     size='small'
                     color="orange"
                     className={cn(
                       "uppercase absolute text-[10px] text-white -top-2.5 flex items-center gap-1",
-                      recentNewsBanner.badgePosition === 'top left' ? '-left-3' : '-right-3'
+                      recentNewsBanner.badge?.position === 'top left' ? '-left-3' : '-right-3'
                     )}
-                    dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
+                    dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
                   >
                     {BadgeIconComponent && <BadgeIconComponent className="w-3 h-3" />}
-                    {recentNewsBanner.badgeText}
+                    {recentNewsBanner.badge?.text}
                   </Badge>
                 ) : null
               )}
               <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-xs via-blue-950'>
                 <span className={cn(
                   "inline-flex items-center gap-2",
-                  recentNewsBanner.badgePosition === 'right' && recentNewsBanner.badgeText && 'flex-row-reverse'
+                  recentNewsBanner.badge?.position === 'right' && recentNewsBanner.badge?.text && 'flex-row-reverse'
                 )}>
-                  {recentNewsBanner.badgeText && (recentNewsBanner.badgePosition === 'left' || recentNewsBanner.badgePosition === 'right') && (
+                  {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
                     <Badge
                       color="orange"
                       size='medium'
                       className="uppercase text-white flex items-center gap-1"
-                      dataTinaField={tinaField(data.data.recentNewsBanner, 'badgeText')}
+                      dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
                     >
                       {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}
-                      {recentNewsBanner.badgeText}
+                      {recentNewsBanner.badge?.text}
                     </Badge>
                   )}
                   
                   <span className="inline-flex gap-2 items-center">
-                    {BadgeIconComponent && !recentNewsBanner.badgeText && <BadgeIconComponent className="size-5" />}
+                    {BadgeIconComponent && !recentNewsBanner.badge?.text   && <BadgeIconComponent className="size-5" />}
                     {recentNewsBanner.title}
                   </span>
                 </span>

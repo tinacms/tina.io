@@ -76,37 +76,44 @@ export const herov2Template: Template = {
           type: 'boolean',
         },
         {
-          name: 'badgeText',
-          label: 'Badge Text',
-          type: 'string',
-          required: false,
-          description: 'Text to display in the badge. If empty, badge will not show.'
-        },
-        {
-          ui: {
-            component: IconPickerInput as React.FC<{field: unknown}>,
-          },
-          name: 'badgeIcon',
-          label: 'Icon',
-          type: 'string',
-          required: false,
-          description: 'Icon to display in the banner. Leave empty for no icon.'
-        },
-        {
-          name: 'badgePosition',
-          label: 'Badge Position',
-          type: 'string',
-          options: [
-              { value: 'left', label: 'Left (inline)' },
-              { value: 'right', label: 'Right (inline)' },
-              { value: 'top left', label: 'Top Left (anchored)' },
-              { value: 'top right', label: 'Top Right (anchored)' },
+          name: 'badge',
+          label: 'Badge',
+          type: 'object',
+          fields: [
+            {
+              name: 'text',
+              label: 'Badge Text',
+              type: 'string',
+              required: false,
+              description: 'Text to display in the badge. If empty, badge will not show.'
+            },
+            {
+              ui: {
+                component: IconPickerInput as React.FC<{field: unknown}>,
+              },
+              name: 'icon',
+              label: 'Icon',
+              type: 'string',
+              required: false,
+              description: 'Icon to display in the banner. Leave empty for no icon.'
+            },
+            {
+              name: 'position',
+              label: 'Badge Position',
+              type: 'string',
+              options: [
+                  { value: 'left', label: 'Left (inline)' },
+                  { value: 'right', label: 'Right (inline)' },
+                  { value: 'top left', label: 'Top Left (anchored)' },
+                  { value: 'top right', label: 'Top Right (anchored)' },
+              ],
+              ui: {
+                component: 'select',
+              },
+              required: false,
+              description: 'Position of the badge: inline left/right or anchored top left/right',
+            },
           ],
-          ui: {
-            component: 'select',
-          },
-          required: false,
-          description: 'Position of the badge: inline left/right or anchored top left/right',
         },
       ],
     },
