@@ -4,13 +4,8 @@ import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import RenderButton from '@/utils/renderButtonArrayHelper';
-import { tinaField } from 'tinacms/dist/react';
-
-import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
-import { IconOptions } from '@/component/forms/IconPicker';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
+import { RecentNewsBanner } from './RecentNewsBanner';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const { title, subtext, buttons, image, buttonHorizontalAlignment, recentNewsBanner } =
@@ -18,26 +13,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const alignment = buttonHorizontalAlignment ?? 'center';
 
   const bannerFilled = recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
-  
-  const BadgeIconComponent = recentNewsBanner?.badge?.icon && IconOptions[recentNewsBanner.badge.icon] 
-    ? IconOptions[recentNewsBanner.badge.icon] 
-    : null;
-
-  const getTextColorClass = (bgColor?: string) => {
-    switch (bgColor) {
-      case 'blue':
-        return 'text-transparent from-white via-brand-secondary bg-white to-white';
-      case 'orange':
-        return 'text-transparent from-white via-brand-primary-light bg-white to-white';
-      case 'ghostBlue':
-        return 'text-transparent bg-brand-secondary from-brand-secondary via-brand-secondary-light to-brand-secondary';
-      case 'ghostOrange':
-        return 'text-transparent bg-brand-primary from-brand-primary via-brand-primary-light to-brand-primary';
-      case 'blueSecondary':
-      default:
-        return "text-transparent bg-brand-secondary-gradient-start from-brand-secondary-gradient-start via-brand-secondary to-brand-secondary-gradient-start";
-    }
-  };
 
   return (
     <Container
@@ -47,78 +22,8 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       <div className={cn("flex @container items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
         
         <div className='flex flex-col gap-3'>
-          {/* Banner */}
-        {bannerFilled && (
-          <Badge
-          
-          color={recentNewsBanner.backgroundColor as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'blueSecondary'}
-          className={cn(
-            'mb-2 px-1 py-1',
-            (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative',
-            recentNewsBanner.badge?.text &&
-              (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right')
-              
-          )} asChild={true}>
-            <Link 
-              href={recentNewsBanner.link || '#'}
-              data-tina-field={tinaField(data.data.recentNewsBanner, 'title')}
-              {...(recentNewsBanner.openInNewTab && {
-                target: "_blank",
-                rel: "noopener noreferrer"
-              })}
-              className="flex items-center gap-2"
-            >
-              {/* New badge (conditionally rendered) */}
-              {recentNewsBanner.badge?.text && (
-                (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') ? (
-                  <Badge
-                    size='small'
-                    color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
-                    className={cn(
-                      "uppercase absolute text-[10px] -top-3 flex items-center gap-1",
-                      recentNewsBanner.badge?.position === 'top left' ? '-left-2.5' : '-right-2.5'
-                    )}
-                    dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
-                  >
-                    {BadgeIconComponent && <BadgeIconComponent className="w-3 h-3" />}
-                    {recentNewsBanner.badge?.text}
-                  </Badge>
-                ) : null
-              )}
-              
-              <div className={cn(
-                "flex items-center gap-2",
-                recentNewsBanner.badge?.position === 'right' && 'flex-row-reverse'
-              )}>
-                {/* Recent news badge */}
-                {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
-                  <Badge
-                    color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
-                    size='medium'
-                    className="uppercase text-xs self-center flex items-center gap-1"
-                    dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
-                  >
-                    {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}
-                    {recentNewsBanner.badge?.text}
-                  </Badge>
-                )}
-                {/* Title Icon (from recentNewsBanner.titleIcon) - outside AnimatedShinyText */}
-                {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
-                  <>
-                    {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5 ml-2" })}
-                  </>
-                )}
-                
-                <AnimatedShinyText className={cn('flex first:pl-2 last:pr-2 items-center @max-lg:text-xs gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
-                  <span className="inline-flex gap-2 text-nowrap items-center">
-                    {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}
-                    {recentNewsBanner.title}
-                  </span>
-                </AnimatedShinyText>
-              </div>
-            </Link>
-          </Badge>
-        )}
+          {/* Recent News Banner */}
+          {bannerFilled && <RecentNewsBanner recentNewsBanner={recentNewsBanner} parentData={data.data} />}
         {title && (
           <h2
             className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
