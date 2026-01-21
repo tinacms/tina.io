@@ -41,6 +41,7 @@
         "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
         "openInNewTab": true,
         "badgeText": "new",
+        "badgeIcon": "MdOutlineVideocam",
         "badgePosition": "right"
       },
       "_template": "heroV2"
