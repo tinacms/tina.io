@@ -7,7 +7,7 @@ import RenderButton from '@/utils/renderButtonArrayHelper';
 import { tinaField } from 'tinacms/dist/react';
 
 import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
-import { Icon, IconOptions } from '@/component/forms/IconPicker';
+import { IconOptions } from '@/component/forms/IconPicker';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
@@ -19,15 +19,11 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
 
   const bannerFilled = recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
   
-  // Get the icon component if an icon is selected
   const BadgeIconComponent = recentNewsBanner?.badge?.icon && IconOptions[recentNewsBanner.badge.icon] 
     ? IconOptions[recentNewsBanner.badge.icon] 
     : null;
 
-  // Determine text color based on background color
   const getTextColorClass = (bgColor?: string) => {
-
-    console.log('Background Color:', bgColor); // Debugging line
     switch (bgColor) {
       case 'blue':
         return 'text-transparent from-white via-brand-secondary bg-white to-white';
