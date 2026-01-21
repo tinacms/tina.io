@@ -34,7 +34,10 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         <div className='flex flex-col gap-3'>
           {/* Banner */}
         {bannerFilled && (
-          <Badge className={cn(
+          <Badge
+          
+          color='blueSecondary'
+          className={cn(
             'mb-2 px-1 py-1',
             (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative',
             recentNewsBanner.badge?.text &&

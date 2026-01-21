@@ -2,6 +2,19 @@ import { cn } from "@/lib/utils";
 import {Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
+
+
+
+// Color variants
+/*
+Color Variants - bg-brand-secondary white
+blue: bg-brand-secondary text-white
+ghostBlue: text-brand-secondary border-brand-secondary bg-white
+orange: bg-brand-primary text-white
+ghostOrange: border-brand-primary text-brand-primary bg-white
+blueSecondary: border-brand-secondary bg-brand-secondary/10 text-blue-800
+*/
+
 const badgeVariants = cva(
   "self-start flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border",
   {
@@ -12,8 +25,11 @@ const badgeVariants = cva(
         small: "px-1 text-[10px]",
       },
       color: {
-        blue: "text-blue-800 bg-brand-secondary/10 border-brand-secondary",
-        orange: "bg-orange-500 text-white border-orange-500",
+        blue: "bg-brand-secondary text-white border-brand-secondary",
+        ghostBlue: "text-brand-secondary border-brand-secondary bg-white",
+        orange: "bg-brand-primary text-white border-brand-primary",
+        ghostOrange: "border-brand-primary text-brand-primary bg-white",
+        blueSecondary: "border-brand-secondary bg-brand-secondary/10 text-blue-800",
       },
     },
     defaultVariants: {
