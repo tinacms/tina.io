@@ -46,9 +46,9 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   return (
     <Container
       size="medium"
-      className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
+      className="min-h-[50vh]  grid grid-cols-1 md:grid-cols-2 gap-4"
     >
-      <div className={cn("flex items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
+      <div className={cn("flex @container items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
         
         <div className='flex flex-col gap-3'>
           {/* Banner */}
@@ -113,8 +113,8 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   </>
                 )}
                 
-                <AnimatedShinyText className={cn('flex items-center  gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
-                  <span className="inline-flex gap-2 items-center">
+                <AnimatedShinyText className={cn('flex items-center @max-lg:text-xs gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
+                  <span className="inline-flex gap-2 text-nowrap items-center">
                     {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}
                     {recentNewsBanner.title}
                   </span>
