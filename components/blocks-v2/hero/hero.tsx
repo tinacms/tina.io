@@ -109,11 +109,11 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 {/* Title Icon (from recentNewsBanner.titleIcon) - outside AnimatedShinyText */}
                 {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
                   <>
-                    {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5" })}
+                    {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5 ml-2" })}
                   </>
                 )}
                 
-                <AnimatedShinyText className={cn('flex items-center @max-lg:text-xs gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
+                <AnimatedShinyText className={cn('flex first:pl-2 last:pr-2 items-center @max-lg:text-xs gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
                   <span className="inline-flex gap-2 text-nowrap items-center">
                     {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}
                     {recentNewsBanner.title}
