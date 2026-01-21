@@ -21,9 +21,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
   return (
 
     <div className="flex overflow-hidden flex-col gap-2 shadow-md p-3 bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40 w-full z-0 rounded-lg max-md:max-w-md relative">
-    <Link href={featuredPost.url} className='absolute inset-0 z-1' target="_blank" rel="noopener noreferrer"/>
-
-      {/* <div className="absolute inset-x-0 inset-y-0 bottom-0 right-0 bg-gradient-to-t from-orange-300 via-orange-200 to-sky-300 opacity-15 pointer-events-none -z-10" /> */}
+    {featuredPost.url && <Link href={featuredPost.url} className='absolute inset-0 z-1' target="_blank" rel="noopener noreferrer"/>}
       <div className="md:gap-5 flex flex-col md:flex-row w-full">
         {featuredPost.imageUrl && (
         <div className='w-full md:w-1/2 flex relative'>
@@ -55,21 +53,13 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
               Featured
             </span>
           </div>
-          {featuredPost.url ? (
-              <h3 
-                className='text-lg' 
-                data-tina-field={tinaField(featuredPost, 'title')}
-              >
-                {featuredPost.title}
-              </h3>
-          ) : (
+            {featuredPost.title && (
             <h3 
               className='text-lg' 
               data-tina-field={tinaField(featuredPost, 'title')}
             >
               {featuredPost.title}
-            </h3>
-          )}
+            </h3>)}
           
           {featuredPost.description && (
             <p 
