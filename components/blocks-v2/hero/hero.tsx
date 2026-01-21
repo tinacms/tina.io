@@ -89,37 +89,37 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   </Badge>
                 ) : null
               )}
-              {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
-                    <Badge
-                      color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
-                      size='medium'
-                      className="uppercase text-xs self-center flex items-center gap-1"
-                      dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
-                    >
-                      {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}
-                      {recentNewsBanner.badge?.text}
-                    </Badge>
-                  )}
-              {/* Title Icon (from recentNewsBanner.titleIcon) - outside AnimatedShinyText */}
-              {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
-                <>
-                  {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5" })}
-                </>
-              )}
               
-              <AnimatedShinyText className={cn('flex items-center  gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
-                <span className={cn(
-                  "inline-flex items-center gap-2",
-                  recentNewsBanner.badge?.position === 'right' && recentNewsBanner.badge?.text && 'flex-row-reverse'
-                )}>
-                  
-                  
+              <div className={cn(
+                "flex items-center gap-2",
+                recentNewsBanner.badge?.position === 'right' && 'flex-row-reverse'
+              )}>
+                {/* Recent news badge */}
+                {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
+                  <Badge
+                    color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
+                    size='medium'
+                    className="uppercase text-xs self-center flex items-center gap-1"
+                    dataTinaField={tinaField(data.data.recentNewsBanner?.badge, 'text')}
+                  >
+                    {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}
+                    {recentNewsBanner.badge?.text}
+                  </Badge>
+                )}
+                {/* Title Icon (from recentNewsBanner.titleIcon) - outside AnimatedShinyText */}
+                {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
+                  <>
+                    {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5" })}
+                  </>
+                )}
+                
+                <AnimatedShinyText className={cn('flex items-center  gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
                   <span className="inline-flex gap-2 items-center">
                     {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}
                     {recentNewsBanner.title}
                   </span>
-                </span>
-              </AnimatedShinyText>
+                </AnimatedShinyText>
+              </div>
             </Link>
           </Badge>
         )}
