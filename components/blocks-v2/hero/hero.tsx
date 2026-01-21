@@ -24,6 +24,22 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     ? IconOptions[recentNewsBanner.badge.icon] 
     : null;
 
+  // Determine text color based on background color
+  const getTextColorClass = (bgColor?: string) => {
+    switch (bgColor) {
+      case 'blue':
+      case 'orange':
+        return 'text-white/70';
+      case 'ghostBlue':
+        return 'text-brand-secondary/70';
+      case 'ghostOrange':
+        return 'text-brand-primary/90';
+      case 'blueSecondary':
+      default:
+        return 'text-blue-800/70';
+    }
+  };
+
   return (
     <Container
       size="medium"
@@ -70,7 +86,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                   </Badge>
                 ) : null
               )}
-              <AnimatedShinyText className='flex items-center gap-2 text-blue-800/70 text-sm via-blue-950'>
+              <AnimatedShinyText className={cn('flex items-center gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
                 <span className={cn(
                   "inline-flex items-center gap-2",
                   recentNewsBanner.badge?.position === 'right' && recentNewsBanner.badge?.text && 'flex-row-reverse'
