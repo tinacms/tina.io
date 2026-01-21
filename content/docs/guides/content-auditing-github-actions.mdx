@@ -1,0 +1,197 @@
+---
+title: Auditing Content with GitHub Actions
+last_edited: '2025-12-12T06:55:00.463Z'
+next: ''
+previous: ''
+---
+
+> Note: This is still a work in progress, It is functional but we are working on making it simpler. Keep an eye out for updates [here](https://github.com/tinacms/tinacms/issues/6156).
+
+## Overview
+
+As your site content begins to scale, keeping older content up to date can become difficult.
+
+This guide contains instructions to setup a GitHub Actions Workflow to check for outdated content using AI and raise GitHub Issues.
+
+![](/img/docs/content-audit-github-actions/audit-issue-description.png)
+
+<scrollBasedShowcase
+  showcaseItems={[
+    {
+      title: "Tina Cloud",
+      image: "",
+      content:
+        "Your content will be queried in Tina Cloud.  This supplies the GitHub action with the list of files it will need to locate.\n",
+      useAsSubsection: false
+    },
+    {
+      title: "GitHub Actions",
+      image: "",
+      content:
+        "The GitHub Action will use the response from TinaCloud to locate the correct files within your repository. From there the content of each file wil be read for review.\n",
+      useAsSubsection: false
+    },
+    {
+      title: "Issues",
+      image: "",
+      content:
+        "After scanning your content the GitHub action will produce a list of issues with suggested improvements based on your system prompt.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "Pull Requests",
+      image: "",
+      content:
+        "The GitHub action will automatically create Pull Requests with the list of files that were checked.\n",
+      useAsSubsection: true
+    },
+    {
+      title: "GitHub Models",
+      image: "",
+      content:
+        "GitHub Models will read and evaluate your content, flagging any potential areas for improvement.\n",
+      useAsSubsection: false
+    }
+  ]}
+/>
+
+## Installing the GitHub action
+
+We have a public repo with a GitHub action you can use out of the box for auditing your content. Follow the [installation steps](https://github.com/tinacms/github-content-auditor?tab=readme-ov-file#how-to-install) to set it up.
+
+## Configuring your Repo
+
+### **Permissions**
+
+#### Enabling Permissions for GitHub Actions
+
+1. Go to: **Your Repository | ⚙️ Settings | Actions | General | Workflow Permissions**
+2. Enable read permissions for workflows within your repository
+3. Allow GitHub Actions to create and approve pull requests
+
+![Workflow Permission Settings on GitHub](/img/docs/content-audit-github-actions/workflow-settings-github.png "Workflow Permission Settings on GitHub")
+
+Enable GitHub Models for your repo:
+
+1. Go to: **Your Repository  | ⚙️Settings | Models**
+2. Ensure you have Models enabled for your repository
+
+![Enabling GitHub Models for your Repo](/img/docs/content-audit-github-actions/github-models-settings.png "Enabling GitHub Models for your Repo")
+
+### Variables
+
+You'll need to add configuration settings that will be used when the GitHub action is run. To configure the settings go to **Your Repo | ⚙️Settings | Secrets and Variables.**
+
+#### Secrets
+
+| Name                 | Description                                                                                                                              |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **TINA\_TOKEN**      | Your TinaCloud API Token. **TinaCloud \| \<your-project> \| Tokens \| Content (Readonly)**                                               |
+| **TINA\_CLIENT\_ID** | The Tina Client ID for your project. You can find it in **TinaCloud \| Projects \| \<your-project> \|  ⚙️ Project Details \| Client ID** |
+
+#### Variables
+
+| Name                                         | Description                                                                                           |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **TINA\_AUDITOR\_CONTENT\_WINDOW**           | A number indicating how many outdated content items will be checked when you run the action. (e.g. 5) |
+| **TINA\_AUDITOR\_EXPIRY\_DAYS**              | The number of days that will pass before your content is re-evaluated  being checked.                 |
+| **TINA\_AUDITOR\_SYSTEM\_PROMPT (optional)** | The prompt that will be used to evaluate your content when passing it to GitHub model.                |
+| **TINA\_AUDITOR\_COLLECTION**                | The collection the audit query will be ran against.                                                   |
+
+#### System Prompt (Optional)
+
+You may optionally override the default system prompt by providing your own as a GitHub variable. The value to override is `TINA_AUDITOR_SYSTEM_PROMPT`.
+
+The default system prompt is as follows:
+
+```plaintext
+You are an expert content auditor. Your task is to review the provided markdown content and provide constructive feedback on its quality, clarity, relevance and engagement. You should highlight and suggest specific areas for improvement. Ignore the lastChecked date.
+```
+
+## Preparing your Content
+
+TinaCloud will be used to locate and filter your content. We'll need add a couple of fields to your selected collection to enable the content checks.
+
+```tsx
+const MyCollection : Collection = {
+  label: 'My Collection'
+  name: 'myCollection'
+  format: 'mdx'
+  fields: [
+    // new field
+    {
+      type: 'datetime',
+      name: 'lastChecked',
+      ui: {
+        component: 'hidden',
+      }
+    },
+    //...
+  ]
+
+}
+
+```
+
+> Be sure to regenerate and commit your  `tina-lock.json` after adding the new field.
+
+In order for the script to run we need to seed all of you existing content with a `lastChecked` field.
+
+Navigate to the directory for the workflow.
+
+```bash
+cd ./github/scripts/tina-helpers
+```
+
+You'll need to add a `.env` file inside this location with your **Collection**, **Tina Token** and **Tina Client ID** saved. These are the same properties added to your [GitHub Settings](/docs/guides/content-auditing-github-actions#secrets).
+
+```env
+TINA_TOKEN=<your-tina-token>
+TINA_CLIENT_ID=<your-tina-client-id>
+TINA_AUDITOR_COLLECTION=<your-tina-collection>
+```
+
+Then run the commands below to migrate your content.
+
+```bash
+pnpm install
+pnpm run migrate-content
+```
+
+The output should look something like this:
+
+```bash
+updated: content/posts/future-of-remote-work-2025.mdx 
+updated: content/posts/learning-about-components.mdx 
+updated: content/posts/june/learning-about-tinacloud.mdx 
+updated: content/posts/artificial-intelligence-explained.mdx 
+
+
+```
+
+<WarningCallout
+  body={<>
+    You must commit and push the updated files for the GitHub action to work. The changes should be in TinaCloud.
+  </>}
+/>
+
+## Running the Query
+
+Once you've finished setting up the GitHub action for your own project you should be able to see a new workflow called **Audit Content with AI** in the GitHub Actions for your repo. Run it to perform your first content audit.
+
+![Running a content audit in GitHub Actions](/img/docs/content-audit-github-actions/running-github-action.gif "Running a Content Audit in GitHub")
+
+The flow will output a list of Issues after the content audit is finished. Each Issue will contain a list of suggestions for the content and a handy link to the file that needs to be changed.![](/img/docs/content-audit-github-actions/issues-audit-action.png "Issue List after Running Content Audit Action")
+The workflow will also output a pull request to update the `lastChecked` date of every file that was audited.
+
+![Pull Request with Last Checked Date Updated](/img/docs/content-audit-github-actions/content-audit-pr.png "Pull Request with Last Checked Date Updated")
+
+<WarningCallout
+  body={<>
+    It's important that you merge this pull request before running the GitHub Action again. Otherwise it will audit the same files again when you re-run it.
+  </>}
+/>
+
+## Suggestion: Assigning Issues to Copilot
+
+Now that you have a set of Issues generated from the Workflow, you have a couple of options for tackling the feedback. You can do the Issues yourself or fully automate the process by assigning the Issue to GitHub Copilot!

@@ -11,32 +11,64 @@
       "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
       "buttons": [
         {
-          "label": "Explore TinaCMS",
-          "icon": false,
-          "shape": "square",
-          "variant": "orange",
-          "size": "medium",
-          "url": "#tinacms",
-          "_template": "actions"
-        },
-        {
-          "label": "Explore TinaDocs ",
-          "icon": false,
-          "shape": "square",
-          "variant": "ghostOutline",
-          "size": "medium",
-          "url": "#tinadocs",
-          "_template": "actions"
-        },
-        {
           "label": "npx create-tina-app@latest",
-          "helpText": "Need some help? Check out the [docs](/docs/introduction/using-starter)\n",
+          "helpText": "Need some help? Watch the video – see the [CLI docs](https://tina.io/docs/introduction/using-starter)\n",
           "_template": "codeButton"
         }
       ],
       "buttonHorizontalAlignment": "left",
-      "image": "/ai-llamas/lazy-llama2.webp",
+      "image": "/ai-llamas/Relax-Llama.png",
       "_template": "heroV2"
+    },
+    {
+      "title": "Get started with one of our templates",
+      "tagLine": "Building at scale?",
+      "buttons": [
+        {
+          "label": "Let's talk",
+          "icon": true,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "boxes": [
+        {
+          "title": "Next.js",
+          "description": "A marketing landing page with a blog powered by Tina and styled with Tailwind",
+          "image": "/Starters/next.js.svg",
+          "link": "https://app.tina.io/quickstart",
+          "badges": [
+            "Next.js",
+            "Blog",
+            "Website"
+          ]
+        },
+        {
+          "title": "TinaDocs",
+          "description": "A modern and customizable documentation template powered by TinaCMS",
+          "image": "/Starters/tina-docs.svg",
+          "link": "https://app.tina.io/quickstart",
+          "badges": [
+            "Next.js",
+            "Documentation"
+          ]
+        },
+        {
+          "title": "Astro",
+          "description": "A modern static site generator designed for fast, lightweight, and flexible web projects paired with TinaCMS",
+          "image": "/Starters/astro.svg",
+          "link": "https://app.tina.io/quickstart",
+          "badges": [
+            "Astro",
+            "Blog",
+            "Website"
+          ]
+        }
+      ],
+      "_template": "tripleBox"
     },
     {
       "blockSettings": {

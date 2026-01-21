@@ -229,6 +229,11 @@
                   "title": "Using Drafts with Visual Editing",
                   "slug": "content/docs/guides/contextual-drafts.mdx",
                   "_template": "item"
+                },
+                {
+                  "title": "Hybrid Approach ",
+                  "slug": "content/docs/frameworks/next/hybrid-approach.mdx",
+                  "_template": "item"
                 }
               ],
               "_template": "items"
@@ -290,6 +295,11 @@
         {
           "title": "Content Security Policy (CSP) Configuration",
           "slug": "content/docs/guides/csp-configuration.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Auditing Content with GitHub Actions",
+          "slug": "content/docs/guides/content-auditing-github-actions.mdx",
           "_template": "item"
         }
       ]

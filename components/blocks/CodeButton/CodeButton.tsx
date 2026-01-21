@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BiCopy } from 'react-icons/bi';
+import { BiCheck, BiCopy } from 'react-icons/bi';
 import 'react-responsive-modal/styles.css';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import { IoMdClose } from 'react-icons/io';
@@ -30,6 +30,7 @@ export const CodeButton = ({
 }) => {
   const [_copied, setCopied] = useState(false);
   const [showHelpText, setShowHelpText] = useState(false);
+  const [isExplicitlyShown, setIsExplicitlyShown] = useState(false);
 
   const buttonId = id || sanitizeLabel(label);
 
@@ -37,53 +38,71 @@ export const CodeButton = ({
     setCopied(true);
     copyToClipboard(label);
     setShowHelpText(true);
+    setIsExplicitlyShown(true);
     setTimeout(() => {
       setCopied(false);
     }, 2000);
   };
 
+  const handleMouseEnter = () => {
+    if (helpText?.children?.length > 0) {
+      setShowHelpText(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isExplicitlyShown) {
+      setShowHelpText(false);
+    }
+  };
+
   return (
-    <div className="relative flex flex-col border-2 border-seafoam-150 rounded-md">
+    <div className="relative flex flex-col border border-brand-primary rounded-md">
       <button
         type="button"
-        className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-md'} bg-white text-black cursor-pointer hover:text-orange-500 transition-colors`}
+        className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-sm'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
         onClick={clickEvent}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         id={buttonId}
         {...props}
       >
         <div className="group flex items-center pl-4 gap-2">
-          <span className="bash flex items-center text-black text-lg select-none group-hover:text-orange-500">
+          <span className="bash flex items-center text-lg select-none">
             &gt;
           </span>
           <span className="label font-mono pr-2 text-sm flex items-center mt-0.5 select-text">
             {label}
           </span>
           <span
-            className={`flex items-center bg-seafoam-50 h-full px-4 py-3 rounded-tr-md rounded-br-md border-l border-seafoam-150 transition-colors duration-200`}
+            className={`relative flex items-center bg-brand-primary h-full px-4 py-3 ${_copied || showHelpText ? '' : 'rounded-br-sm'} border-l border-brand-primary ease-out transition-colors duration-200 text-white group-hover:text-gray-200`}
           >
-            <BiCopy className="w-5 h-5 opacity-70 group-hover:text-orange-500" />
+            <BiCopy
+              className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
+            />
+            <BiCheck
+              className={`w-5 h-5 absolute inset-0 m-auto duration-200 ${_copied ? 'rotate-0 scale-100 opacity-100' : '-rotate-180 scale-0 opacity-0'}`}
+            />
           </span>
         </div>
-
-        {_copied && (
-          <div className="absolute inset-0 bg-white rounded-md flex items-center justify-center gap-2">
-            <CheckIcon className="w-5 h-5 text-orange-500" />
-            <span className="font-mono text-sm text-orange-600 font-medium">
-              Copied to Clipboard
-            </span>
-          </div>
-        )}
       </button>
       {showHelpText && helpText?.children?.length > 0 && (
-        <div className="bg-white text-xs border-t border-seafoam-150 rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px]">
+        <div
+          className="bg-white/50 text-xs border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px] max-w-min min-w-full"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <TinaMarkdown
             content={helpText}
             components={CodeButtonMarkdownStyle}
           />
           <button
-            onClick={() => setShowHelpText(false)}
+            onClick={() => {
+              setShowHelpText(false);
+              setIsExplicitlyShown(false);
+            }}
             type="button"
-            className="hover:text-orange-500 hover:cursor-pointer"
+            className="hover:text-brand-primary hover:cursor-pointer"
           >
             <IoMdClose className="w-5 h-5" />
           </button>

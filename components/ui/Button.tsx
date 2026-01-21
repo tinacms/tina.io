@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   color?:
@@ -94,11 +95,13 @@ export const LinkButton = ({
   shape = 'pill',
   ...props
 }) => {
+  const externalLink = link.startsWith('http');
+
   const nullcaseShape = shape || 'pill';
   return (
     <Link
       href={link}
-      passHref
+      prefetch={shouldPrefetchLink(link)}
       className={cn(
         baseClasses,
         shapeClasses[nullcaseShape],
@@ -107,6 +110,8 @@ export const LinkButton = ({
         className,
       )}
       {...props}
+      target={externalLink ? '_blank' : undefined}
+      rel={externalLink ? 'noopener noreferrer' : undefined}
     >
       {children}
     </Link>
@@ -126,6 +131,7 @@ export const FlushButton = ({
   return (
     <Link
       href={link}
+      prefetch={shouldPrefetchLink(link)}
       passHref
       className={cn(
         baseClasses,

@@ -80,6 +80,11 @@
                   "_template": "item"
                 },
                 {
+                  "title": "SvelteKit",
+                  "slug": "content/docs/frameworks/sveltekit.mdx",
+                  "_template": "item"
+                },
+                {
                   "title": "Other Frameworks",
                   "slug": "content/docs/frameworks/other.mdx",
                   "_template": "item"

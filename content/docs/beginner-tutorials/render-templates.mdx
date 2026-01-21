@@ -1,6 +1,6 @@
 ---
 title: Render Your Templates
-last_edited: '2025-03-28T01:06:18.826Z'
+last_edited: '2026-01-08T00:00:39.022Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/website-builder-experience.mdx
 previous: content/docs/beginner-tutorials/linking-to-model.mdx
@@ -10,7 +10,9 @@ Now we've done most of the plumbing, the last step is to have the `app/awesome-c
 
 > Remember... the power of blocks is how it enables non-developers to dictate the order in which the content is displayed on the page, so we can't just hard-code things any more.
 
-1\. Navigate to `app/awesome-content.tsx` and make the following changes:
+### Checking the Data we get Back
+
+Navigate to `app/awesome-content.tsx` and make the following changes:
 
 ```typescript
   const awesomeTitle = pageData.data.my_first_collection.title;
@@ -31,7 +33,9 @@ To update our template, we want to:
 
 There are a few ways we can do this, but for now we'll go with the quick-n-dirty solution.
 
-2\. Change `app/awesome-content.tsx` to the following:
+### Showing our Data
+
+Change `app/awesome-content.tsx` to the following:
 
 ```typescript
 

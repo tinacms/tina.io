@@ -86,7 +86,7 @@ export const SubscriptionForm = ({ props }) => {
         <div className="flex flex-col gap-2.5 w-full">
           <div className="flex gap-2.5">
             <input
-              className="w-full px-2 py-2 text-sm  text-white border rounded-sm border-white placeholder-white/70 bg-white/10"
+              className="w-full px-2 py-2 text-sm  text-white border rounded-sm border-white placeholder:!text-white/70 bg-white/10"
               placeholder="First name"
               name="firstName"
               type="text"
@@ -96,7 +96,7 @@ export const SubscriptionForm = ({ props }) => {
               disabled={isSubmitting}
             />
             <input
-              className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder-white/70"
+              className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder:!text-white/70"
               placeholder="Last name"
               name="lastName"
               type="text"
@@ -108,7 +108,7 @@ export const SubscriptionForm = ({ props }) => {
           </div>
 
           <input
-            className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder-white/70"
+            className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder:!text-white/70"
             placeholder="Email"
             name="email"
             type="email"
@@ -118,7 +118,7 @@ export const SubscriptionForm = ({ props }) => {
             disabled={isSubmitting}
           />
           <textarea
-            className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder-white/70"
+            className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder:!text-white/70"
             placeholder="Notes"
             name="notes"
             rows={2}

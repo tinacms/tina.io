@@ -1,6 +1,6 @@
 ---
 title: Our New Field
-last_edited: '2025-03-28T01:03:45.048Z'
+last_edited: '2026-01-07T23:29:49.301Z'
 tocIsHidden: true
 next: content/docs/beginner-tutorials/string-to-markdown.mdx
 previous: content/docs/beginner-tutorials/loading-content.mdx
@@ -8,7 +8,9 @@ previous: content/docs/beginner-tutorials/loading-content.mdx
 
 Our amazing title is pretty amazing, but one title does not a website make. Let's extend the schema a little, so we can get some more interesting content displayed.
 
-1\. Edit `tina/config.ts`, and add a new field to the `my_first_collection` schema.
+### Extend the Schema
+
+Edit `tina/config.ts`, and add a new field to the `my_first_collection` schema.
 
 ```typescript
 schema: {
@@ -46,9 +48,11 @@ schema: {
   },
 ```
 
-2\. Now, just to do something a little different, go ahead and edit `Hello-World.md` file directly in your IDE.
+### Update Content from the Code Side
 
-3\. Add some text to the body of the markdown file, like this:
+Now, just to do something a little different, go ahead and edit `Hello-World.md` file directly in your IDE.
+
+Add some text to the body of the markdown file, like this:
 
 ```
 ---
@@ -60,7 +64,9 @@ Look at my incredible body 🦙
 
 > The `isBody` property does what it says on the tin - it tells Tina that this property is the "body" of the markdown content (ie, *not* in front-matter).
 
-4\. Edit the `app/awesome-content.tsx` component so it renders out the body content:
+### Display our New Content
+
+1. Edit the `app/awesome-content.tsx` component so it renders out the body content:
 
 ```typescript
 "use client";
@@ -85,7 +91,7 @@ export default function AwesomeContent({data}) {
 }
 ```
 
-5\. Start up your app, navigate to `http://localhost:3000` and you will see your incredible body on screen.
+2. Start up your app, navigate to `http://localhost:3000` and you will see your incredible body on screen.
 
 > What about editing? Well, try going to `http://localhost:3000/admin/index.html` and you'll see a new field has magically appeared in your  visual editor. Hooray! 🙌 🎉
 

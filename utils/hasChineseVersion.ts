@@ -1,3 +1,5 @@
+'use server';
+
 import { SupportedLocales } from '../middleware';
 import { client } from '../tina/__generated__/client';
 

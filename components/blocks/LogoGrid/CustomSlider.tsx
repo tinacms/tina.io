@@ -4,7 +4,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
   // Handle both old format (React elements) and new format (objects with id and element)
   const normalizedItems = items.map((item, idx) => {
     if (item && typeof item === 'object' && 'element' in item && 'id' in item) {
-      return { id: item.id, element: item.element };
+      // Use index as fallback if id is undefined or null
+      const id = item.id ?? `item-${idx}`;
+      return { id, element: item.element };
     }
     // Fallback for old format - use index as id
     return { id: `item-${idx}`, element: item };
@@ -72,9 +74,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ref={sliderRef}
         className="flex whitespace-nowrap subpixel-antialiased backface-hidden"
       >
-        {normalizedItems.map((item) => (
+        {normalizedItems.map((item, idx) => (
           <div
-            key={`original-${item.id}`}
+            key={`original-${item.id}-${idx}`}
             // Ensure each item is exactly 1/5 or 1/3 of the container for even horiz spacing
             className={`flex-none box-border px-2 ${widthClass}`}
           >
@@ -83,9 +85,9 @@ export const Slider = ({ items, speed = 0.05, slidesToShow = 5 }) => {
         ))}
 
         {/* Duplicate items for the seamless loop */}
-        {normalizedItems.map((item) => (
+        {normalizedItems.map((item, idx) => (
           <div
-            key={`clone-${item.id}`}
+            key={`clone-${item.id}-${idx}`}
             className={`flex-none box-border px-2 ${widthClass}`}
           >
             {item.element}
