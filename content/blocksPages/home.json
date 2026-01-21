@@ -44,7 +44,8 @@
           "text": "new",
           "icon": "MdOutlineVideocam",
           "position": "left"
-        }
+        },
+        "backgroundColor": "blueSecondary"
       },
       "_template": "heroV2"
     },

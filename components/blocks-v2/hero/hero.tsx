@@ -36,7 +36,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         {bannerFilled && (
           <Badge
           
-          color='blueSecondary'
+          color={recentNewsBanner.backgroundColor as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'blueSecondary'}
           className={cn(
             'mb-2 px-1 py-1',
             (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative',

@@ -125,6 +125,23 @@ export const herov2Template: Template = {
           required: false,
           description: 'Icon to display next to the banner title. Leave empty for no icon.'
         },
+        {
+          name: 'backgroundColor',
+          label: 'Background Color',
+          type: 'string',
+          options: [
+            { value: 'blue', label: 'Blue (solid)' },
+            { value: 'ghostBlue', label: 'Ghost Blue (outline)' },
+            { value: 'orange', label: 'Orange (solid)' },
+            { value: 'ghostOrange', label: 'Ghost Orange (outline)' },
+            { value: 'blueSecondary', label: 'Blue Secondary (light)' },
+          ],
+          ui: {
+            component: 'select',
+          },
+          required: false,
+          description: 'Background color for the recent news banner',
+        },
       ],
     },
   ],
