@@ -26,11 +26,11 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
     <div className="flex overflow-hidden flex-col gap-2 shadow-md p-3 bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40 w-full z-1 rounded-lg max-md:max-w-md relative">
       {/* <div className="absolute inset-x-0 inset-y-0 bottom-0 right-0 bg-gradient-to-t from-orange-300 via-orange-200 to-sky-300 opacity-15 pointer-events-none -z-10" /> */}
       <div className="md:gap-5 flex flex-col md:flex-row w-full">
-        <div className='w-full md:w-1/2 aspect-video relative'>
+        <div className='w-full md:w-1/2 flex relative'>
           {featuredPost.imageUrl ? (
             <div
               data-tina-field={tinaField(featuredPost, 'imageUrl')}
-              className="aspect-w-16 aspect-h-9 h-full w-full rounded-lg overflow-hidden relative">
+              className="aspect-w-16 aspect-h-9 my-auto w-full rounded-lg overflow-hidden relative">
               <Image 
                 src={featuredPost.imageUrl} 
                 alt={featuredPost.title || 'Featured post'} 
