@@ -50,15 +50,8 @@ const CompareBoxBlock = dynamic(() => import('./CompareBox/CompareBox'), {
   ssr: false,
 });
 
-const Badge = dynamic(
-  () => import('./RecentNewsBanner/Badge').then((mod) => mod.Badge),
-  { ssr: false },
-);
-
 const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
   switch (block.__typename) {
-    case 'PageBlocksRecentNewsBanner': 
-      return <Badge />;
     case 'PageBlocksFeatures':
       return <FeaturesBlock data={block} index={index} />;
     case 'PageBlocksCompareBox':
