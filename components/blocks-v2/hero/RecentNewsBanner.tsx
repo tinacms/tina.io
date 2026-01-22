@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { tinaField } from 'tinacms/dist/react';
-import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
 
 type RecentNewsBannerProps = {
   recentNewsBanner: RecentNewsBannerType;
@@ -70,7 +69,6 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
         })}
         className="flex items-center gap-2"
       >
-        {/* Anchored badge (top left/right) */}
         {recentNewsBanner.badge?.text &&   badgePositionType === 'top' && (
             <Badge
               size='small'
@@ -90,7 +88,6 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
           "flex items-center gap-2",
           recentNewsBanner.badge?.position === 'right' && 'flex-row-reverse'
         )}>
-          {/* Inline badge (left/right) */}
           {recentNewsBanner.badge?.text && recentNewsBanner.badge?.position && badgePositionType === 'inline' && (
             <Badge
               color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
