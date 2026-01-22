@@ -36,6 +36,7 @@ import { SpacerComponent } from './Spacer/Spacer';
 import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
+import TripleBox from './TripleBox/TripleBox';
 import VideoDisplay from './VideoEmbed/videoEmbed';
 
 const CarouselFeatureBlock = dynamic(
@@ -122,6 +123,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <CallToAction data={block} />;
     case 'PageBlocksMap':
       return <OfficeMap data={block} />;
+    case 'PageBlocksTripleBox':
+      return <TripleBox data={block} />;
     default:
       return null;
   }
