@@ -70,3 +70,12 @@
   font-display: swap;
   src: url('../../public/fonts/SourceCodePro-Regular.woff2') format('woff2');
 }
+
+/* IBM Plex Sans Medium */
+@font-face {
+  font-family: 'IBMPlexSans-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../public/fonts/IBMPlexSans-Medium.woff2') format('woff2');
+}

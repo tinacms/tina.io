@@ -3,31 +3,52 @@ import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
+import { cn } from '@/lib/utils';
 import RenderButton from '@/utils/renderButtonArrayHelper';
+import { RecentNewsBanner } from './RecentNewsBanner';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
-  const { title, subtext, buttons, image, buttonHorizontalAlignment } =
-    data.data || {};
+  const {
+    title,
+    subtext,
+    buttons,
+    image,
+    buttonHorizontalAlignment,
+    recentNewsBanner,
+  } = data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
+
+  const bannerFilled =
+    recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
 
   return (
     <Container
       size="medium"
-      className="min-h-[50vh] grid grid-cols-1 md:grid-cols-2 gap-4"
+      className="min-h-[50vh]  grid grid-cols-1 md:grid-cols-2 gap-4"
     >
-      <div className="flex items-center flex-col gap-8  border-red-500 py-10">
-        {title && (
-          <h2
-            className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
-          >
-            {curlyBracketFormatter(title)}
-          </h2>
+      <div
+        className={cn(
+          'flex @container items-center flex-col gap-8  border-red-500 py-10',
+          bannerFilled && 'pt-0',
         )}
-        {subtext && (
-          <p className="text-neutral-text-secondary md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">
-            {subtext}
-          </p>
-        )}
+      >
+        <div className="flex flex-col gap-3">
+          {bannerFilled && (
+            <RecentNewsBanner recentNewsBanner={recentNewsBanner} />
+          )}
+          {title && (
+            <h2
+              className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
+            >
+              {curlyBracketFormatter(title)}
+            </h2>
+          )}
+          {subtext && (
+            <p className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">
+              {subtext}
+            </p>
+          )}
+        </div>
         {buttons && buttons.length > 0 && (
           <div
             className={`flex ${alignment === 'left' ? 'justify-center md:justify-start' : 'justify-center'} w-full flex-row flex-wrap gap-2 max-w-[62ch]`}
@@ -49,7 +70,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             alt={title || 'Hero image'}
             fill={true}
             sizes="(max-width: 768px) 250px, 450px"
-            quality={60}
+            quality={80}
             priority={true}
             fetchPriority="high"
             className="object-contain"

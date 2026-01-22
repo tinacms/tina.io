@@ -29,7 +29,7 @@ export default function CallToAction(data: any) {
   const { title, description, buttons } = data.data;
   return (
     <Container size="medium" className="p-6">
-      <div className="relative flex flex-col gap-6 bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40 shadow-xl rounded-lg mx-auto px-14 py-14 overflow-hidden">
+      <div className="relative flex flex-col gap-6 bg-gradient-to-br from-white/10 to-white/40 shadow-xl rounded-lg mx-auto px-14 py-14 overflow-hidden">
         <div className="hidden md:block absolute bottom-10 right-20 pointer-events-none">
           <TinaLlamaOutline />
         </div>

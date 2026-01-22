@@ -10,6 +10,7 @@ import {
 import Container from '@/component/util/Container';
 import { extractYouTubeId } from '../VideoEmbed/utils';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
+import { FeaturedPost } from './FeaturedPost';
 
 const getPostHref = (path) => {
   let processedPath = path.replace(/^content/, '').replace(/\.mdx$/, '');
@@ -17,7 +18,7 @@ const getPostHref = (path) => {
   return processedPath;
 };
 
-function formatDate(dateString: string): string {
+export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const day = date.getUTCDate();
   const month = date
@@ -73,11 +74,14 @@ const VideoCard = ({
 };
 
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
+  const featuredPost = data?.featuredPost;
+
   return (
-    <Container size="medium" className="grid grid-cols-5 gap-16 py-16">
-      <section className="col-span-5 lg:col-span-3 flex flex-col gap-8 items-center md:items-start">
+    <Container size="medium" className="grid grid-cols-3 gap-16 py-16">
+      <section className="col-span-3 text-3xl lg:col-span-2 flex flex-col gap-8 items-center md:items-start">
+        {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
-          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
+          className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex lg:leading-tight col-span-3 text-black text-balance`}
           data-tina-field={tinaField(data, 'title')}
         >
           {data?.title || 'Recent Posts'}
@@ -97,7 +101,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
       </section>
       <section
         key={`recent-posts-${index}`}
-        className={'relative z-10 col-span-5 lg:col-span-2'}
+        className={'relative z-10 col-span-3 lg:col-span-1'}
       >
         <h3
           className={`block text-center md:text-left ${SECTION_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
