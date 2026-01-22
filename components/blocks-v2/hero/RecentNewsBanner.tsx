@@ -32,10 +32,9 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
   const BadgeIconComponent = recentNewsBanner?.badge?.icon ? IconOptions[recentNewsBanner.badge.icon] : null;
   const TitleIconComponent = recentNewsBanner?.titleIcon ? IconOptions[recentNewsBanner.titleIcon] : null;
   
-  const getBadgePositionType = (position?: string): BadgePositionType | null => {
+  const getBadgePositionType = (position?: string): BadgePositionType => {
     if (position === 'top left' || position === 'top right') return 'top';
-    if (position === 'left' || position === 'right') return 'inline';
-    return null;
+    return 'inline';
   };
   
   const badgePositionType = getBadgePositionType(recentNewsBanner.badge?.position);
@@ -115,7 +114,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
             'flex items-center @max-lg:text-xs gap-2 text-sm',
             badgePositionType === 'inline' && recentNewsBanner.badge?.position === 'left' && 'pr-2',
             badgePositionType === 'inline' && recentNewsBanner.badge?.position === 'right' && 'pl-2',
-            (badgePositionType === 'top' || !badgePositionType) && 'px-2',
+            (badgePositionType === 'top' || !recentNewsBanner.badge?.position) && 'px-2',
             getTextColorClass(recentNewsBanner.backgroundColor)
           )}>
             <span className="inline-flex gap-2 text-nowrap items-center">
