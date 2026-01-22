@@ -1,0 +1,137 @@
+---
+seo:
+  title: 'Hybrid Approach '
+  description: >-
+    Fetching data on the client side across branches while keeping static site
+    generation intact with the TinaCloud API.
+title: 'Hybrid Fetching '
+last_edited: '2026-01-20T23:07:29.083Z'
+next: ''
+previous: ''
+---
+
+When using Static Site Generation (SSG), there may be occasions where a client-side approach or dynamic rendering is needed. However, with dynamic rendering, the first request can be slower because the page is built on demand, which can negatively impact the initial user experience.
+
+To address this, we use a hybrid approach: SSG for existing pages and dynamic rendering for newly created pages.
+
+```javascript
+// lib/tina.ts
+import { client } from "@/tina/__generated__/client";
+
+export async function getPageFromTina(slug: string, branch: string = "main") {
+  try {
+    const response = await client.queries.page({
+      relativePath: `${slug}.md`},
+      {
+        fetchOptions: {  
+          headers: {
+            /* Retrieve the active branch from cookie */
+            'x-branch': branch, 
+        },
+      },
+  }
+);
+
+    return response?.data?.page ?? null;
+  } catch {
+    return null;
+  }
+}
+
+
+```
+
+```javascript
+// app/[slug]/page.tsx
+import { getPageFromTina} from "@/lib/tina";
+import ClientFallback from "@/components/ClientFallback";
+
+export const dynamic = "force-static";
+
+
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+// Next.js built-in function
+export async function generateStaticParams() {
+  const response = await client.queries.pageConnection();
+
+  return (
+    response?.data?.pageConnection?.edges
+      ?.map((edge) => ({
+        slug: edge?.node?.sys?.filename,
+      }))
+      .filter((param) => Boolean(param.slug)) ?? []
+  );
+}
+
+
+export default async function Page({ params }: PageProps) {
+  const page = await getPageFromTina(params.slug);
+
+  if (!page) {
+    return <ClientFallback />;
+  }
+
+  return (
+    <main>
+      <h1>{page.title}</h1>
+      <article
+        dangerouslySetInnerHTML={{ __html: page.body }}
+      />
+    </main>
+  );
+}
+
+```
+
+```javascript
+// components/ClientFallback.tsx
+"use client";
+import { notFound } from "next/navigation";
+
+
+
+export default async function ClientFallback() {
+
+const cookieStore = await cookies();
+const branchValue = cookieStore.get("x-branch")?.value || "";
+
+const page = await getPageFromTina(params.slug, branchValue );
+
+if(!page?.data)
+{
+ return notFound();
+}
+
+const { data } = useTina({
+    query: page.query,
+    variables: page.variables,
+    data: page.data,
+  });
+
+
+  return (
+    <main>
+      <h1>{data .title}</h1>
+      <article
+        dangerouslySetInnerHTML={{ __html: data.body }}
+      />
+    </main>
+  );
+}
+
+```
+
+Here are the two possible scenarios depicted in the diagram.
+
+![](/fetch-option-1.png)
+**Figure: Flow when an existing page is requested**
+
+![](/fetch-option-2.png)
+**Figure: Flow when a new page is requested**
+
+Here is the documentation on [fetching content across branches](/docs/features/data-fetching#fetching-content-across-branches-in-tinacms)

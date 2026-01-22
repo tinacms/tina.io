@@ -57,7 +57,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             alt={title || 'Hero image'}
             fill={true}
             sizes="(max-width: 768px) 250px, 450px"
-            quality={60}
+            quality={80}
             priority={true}
             fetchPriority="high"
             className="object-contain"
