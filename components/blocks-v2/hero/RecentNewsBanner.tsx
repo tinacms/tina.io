@@ -7,13 +7,27 @@ import { tinaField } from 'tinacms/dist/react';
 import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
 
 type RecentNewsBannerProps = {
-  recentNewsBanner: NonNullable<PageBlocksHeroV2['recentNewsBanner']>;
+  recentNewsBanner: RecentNewsBannerType;
+};
+
+type RecentNewsBannerBadge = {
+  text?: string;
+  icon?: string;
+  position?: string;
+  color?: string;
+};
+
+type RecentNewsBannerType = {
+  title?: string;
+  link?: string;
+  openInNewTab?: boolean;
+  badge?: RecentNewsBannerBadge;
+  titleIcon?: string;
+  backgroundColor?: string;
 };
 
 export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) => {
-  const BadgeIconComponent = recentNewsBanner?.badge?.icon && IconOptions[recentNewsBanner.badge.icon] 
-    ? IconOptions[recentNewsBanner.badge.icon] 
-    : null;
+  const BadgeIconComponent = recentNewsBanner?.badge?.icon ? IconOptions[recentNewsBanner.badge.icon] : null;
 
   const getTextColorClass = (bgColor?: string) => {
     switch (bgColor) {
