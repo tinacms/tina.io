@@ -1,8 +1,8 @@
-import { tinaField } from 'tinacms/dist/react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { formatDate } from './RecentPosts';
+import Link from 'next/link';
+import { tinaField } from 'tinacms/dist/react';
 import { cn } from '@/lib/utils';
+import { formatDate } from './RecentPosts';
 
 type FeaturedPostProps = {
   featuredPost: {
@@ -17,33 +17,42 @@ type FeaturedPostProps = {
 };
 
 export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
-
   return (
-
     <div className="flex hover:scale-101 hover:shadow-lg transition-all hover:bg-white overflow-hidden flex-col gap-2 shadow-md p-3 bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40 w-full z-0 rounded-lg max-md:max-w-md relative">
-    {featuredPost.url && <Link href={featuredPost.url} className='absolute inset-0 z-1' target="_blank" rel="noopener noreferrer"/>}
+      {featuredPost.url && (
+        <Link
+          href={featuredPost.url}
+          className="absolute inset-0 z-1"
+          target="_blank"
+          rel="noopener noreferrer"
+        />
+      )}
       <div className="md:gap-5 flex flex-col md:flex-row w-full">
         {featuredPost.imageUrl && (
-        <div className='w-full md:w-1/2 flex relative'>
-          
+          <div className="w-full md:w-1/2 flex relative">
             <div
               data-tina-field={tinaField(featuredPost, 'imageUrl')}
-              className="aspect-w-16 aspect-h-9 my-auto w-full rounded-lg overflow-hidden relative">
-              <Image 
-                src={featuredPost.imageUrl} 
-                alt={featuredPost.title || 'Featured post'} 
+              className="aspect-w-16 aspect-h-9 my-auto w-full rounded-lg overflow-hidden relative"
+            >
+              <Image
+                src={featuredPost.imageUrl}
+                alt={featuredPost.title || 'Featured post'}
                 fill
                 className="object-cover"
               />
             </div>
-          
-        </div>
+          </div>
         )}
-        <div className={cn('flex flex-col py-3 gap-2', featuredPost.imageUrl && 'md:w-1/2')}>
-          <div className='flex items-center gap-2'>
+        <div
+          className={cn(
+            'flex flex-col py-3 gap-2',
+            featuredPost.imageUrl && 'md:w-1/2',
+          )}
+        >
+          <div className="flex items-center gap-2">
             {featuredPost.datePosted && (
-              <p 
-                className='text-sm text-neutral-text-secondary w-fit'
+              <p
+                className="text-sm text-neutral-text-secondary w-fit"
                 data-tina-field={tinaField(featuredPost, 'datePosted')}
               >
                 {formatDate(featuredPost.datePosted)}
@@ -53,37 +62,38 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
               Featured
             </span>
           </div>
-            {featuredPost.title && (
-            <h3 
-              className='text-lg' 
+          {featuredPost.title && (
+            <h3
+              className="text-lg"
               data-tina-field={tinaField(featuredPost, 'title')}
             >
               {featuredPost.title}
-            </h3>)}
-          
+            </h3>
+          )}
+
           {featuredPost.description && (
-            <p 
-              className='text-xs text-neutral-text-secondary'
+            <p
+              className="text-xs text-neutral-text-secondary"
               data-tina-field={tinaField(featuredPost, 'description')}
             >
               {featuredPost.description}
             </p>
           )}
-          
+
           {featuredPost.authorName && (
-            <p className='text-neutral-text-secondary text-sm'>
+            <p className="text-neutral-text-secondary text-sm">
               By{' '}
               {featuredPost.authorUrl ? (
-                <Link 
-                  className='relative hover:text-neutral-text z-2 uppercase underline transition-colors' 
+                <Link
+                  className="relative hover:text-neutral-text z-2 uppercase underline transition-colors"
                   href={featuredPost.authorUrl}
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >
                   {featuredPost.authorName}
                 </Link>
               ) : (
-                <span 
-                  className='uppercase'
+                <span
+                  className="uppercase"
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >
                   {featuredPost.authorName}
