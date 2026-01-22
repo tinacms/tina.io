@@ -36,7 +36,6 @@ import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/Te
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
-import { recentNewsBannerTemplate } from '@/component/blocks/RecentNewsBanner/RecentNewsBanner.template';
 
 const extendedSeoInformation = {
   ...seoInformation,
@@ -61,7 +60,6 @@ const templates = [
   carouselFeatureTemplate as Template,
   eventsTemplate as Template,
   highlightsSectionTemplate as Template,
-  recentNewsBannerTemplate,
   recentPostsTemplate as Template,
   compareBoxTemplate as Template,
   RecipeBlock as Template,

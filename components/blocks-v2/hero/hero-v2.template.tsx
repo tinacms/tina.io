@@ -104,16 +104,16 @@ export const herov2Template: Template = {
               label: 'Badge Position',
               type: 'string',
               options: [
-                  { value: 'left', label: 'Left (inline)' },
-                  { value: 'right', label: 'Right (inline)' },
-                  { value: 'top left', label: 'Top Left (anchored)' },
-                  { value: 'top right', label: 'Top Right (anchored)' },
+                  { value: 'left', label: 'Left' },
+                  { value: 'right', label: 'Right' },
+                  { value: 'top left', label: 'Top Left' },
+                  { value: 'top right', label: 'Top Right' },
               ],
               ui: {
                 component: 'select',
               },
               required: false,
-              description: 'Position of the badge: inline left/right or anchored top left/right',
+              description: 'Position of the badge on the banner',
             },
             {
               name: 'color',
