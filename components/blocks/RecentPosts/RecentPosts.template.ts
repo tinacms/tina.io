@@ -60,7 +60,7 @@ export const recentPostsTemplate = {
           name: 'imageUrl',
           label: 'Image',
           type: 'image',
-          description: 'Takes precedence over video if both are provided',
+          description: 'use an image with a 16:9 aspect ratio for best results',
         },
       ],
     },
