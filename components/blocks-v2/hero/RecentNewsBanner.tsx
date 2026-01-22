@@ -52,8 +52,6 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
       className={cn(
         'mb-2 px-1 py-1',
         (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative',
-        recentNewsBanner.badge?.text &&
-          (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right')
       )} 
       asChild={true}
     >
@@ -105,7 +103,15 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
             <TitleIconComponent className="size-5 ml-2" />
           )}
           
-          <AnimatedShinyText className={cn('flex first:pl-2 last:pr-2 items-center @max-lg:text-xs gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
+          <AnimatedShinyText className={cn(
+            'flex items-center @max-lg:text-xs gap-2 text-sm',
+            recentNewsBanner.badge?.position === 'left' && 'pr-2',
+            recentNewsBanner.badge?.position === 'right' && 'pl-2',
+            recentNewsBanner.badge?.position === 'top left' && 'px-2',
+            recentNewsBanner.badge?.position === 'top right' && 'px-2',
+            !recentNewsBanner.badge?.position && 'px-2',
+            getTextColorClass(recentNewsBanner.backgroundColor)
+          )}>
             <span className="inline-flex gap-2 text-nowrap items-center">
               {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}
               {recentNewsBanner.title}
