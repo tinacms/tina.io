@@ -1,6 +1,5 @@
 import type React from 'react';
 import type { Template } from 'tinacms';
-import { BadgeColor } from '@/component/Badge/Badge';
 import { BADGE_COLOR_OPTIONS } from '@/component/Badge/Badge.template';
 import { actionsButtonTemplate } from '@/component/blocks/ActionButton/ActionsButton.template';
 import { codeButtonTemplate } from '@/component/blocks/CodeButton/CodeButton.template';

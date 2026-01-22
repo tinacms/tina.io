@@ -51,7 +51,6 @@ export const RecentNewsBanner = ({
         return 'text-transparent bg-brand-secondary from-brand-secondary via-brand-secondary-light to-brand-secondary';
       case 'ghostOrange':
         return 'text-transparent bg-brand-primary from-brand-primary via-brand-primary-light to-brand-primary';
-      case 'blueSecondary':
       default:
         return 'text-transparent bg-brand-secondary-gradient-start from-brand-secondary-gradient-start via-brand-secondary to-brand-secondary-gradient-start';
     }
