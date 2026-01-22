@@ -4,14 +4,8 @@ import { codeButtonTemplate } from '@/component/blocks/CodeButton/CodeButton.tem
 import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.template';
 import { IconPickerInput } from '@/component/forms/IconPicker';
 import type React from 'react';
-
-const BADGE_COLOR_OPTIONS = [
-  { value: 'blue', label: 'Blue (solid)' },
-  { value: 'ghostBlue', label: 'Ghost Blue (outline)' },
-  { value: 'orange', label: 'Orange (solid)' },
-  { value: 'ghostOrange', label: 'Ghost Orange (outline)' },
-  { value: 'blueSecondary', label: 'Blue Secondary (light)' },
-];
+import { BadgeColor } from '@/component/Badge/Badge';
+import { BADGE_COLOR_OPTIONS } from '@/component/Badge/Badge.template';
 
 export const herov2Template: Template = {
   name: 'heroV2',

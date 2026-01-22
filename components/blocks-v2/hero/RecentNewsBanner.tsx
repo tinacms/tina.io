@@ -1,4 +1,4 @@
-import { Badge, type BadgeColor } from '@/component/Badge';
+import { Badge, type BadgeColor } from '@/component/Badge/Badge';
 import { IconOptions } from '@/component/forms/IconPicker';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
