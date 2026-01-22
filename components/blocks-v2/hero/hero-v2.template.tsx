@@ -1,11 +1,11 @@
+import type React from 'react';
 import type { Template } from 'tinacms';
+import { BadgeColor } from '@/component/Badge/Badge';
+import { BADGE_COLOR_OPTIONS } from '@/component/Badge/Badge.template';
 import { actionsButtonTemplate } from '@/component/blocks/ActionButton/ActionsButton.template';
 import { codeButtonTemplate } from '@/component/blocks/CodeButton/CodeButton.template';
 import { modalButtonTemplate } from '@/component/blocks/ModalButton/ModalButton.template';
 import { IconPickerInput } from '@/component/forms/IconPicker';
-import type React from 'react';
-import { BadgeColor } from '@/component/Badge/Badge';
-import { BADGE_COLOR_OPTIONS } from '@/component/Badge/Badge.template';
 
 export const herov2Template: Template = {
   name: 'heroV2',
@@ -87,27 +87,29 @@ export const herov2Template: Template = {
               label: 'Badge Text',
               type: 'string',
               required: false,
-              description: 'Text to display in the badge. If empty, badge will not show.'
+              description:
+                'Text to display in the badge. If empty, badge will not show.',
             },
             {
               ui: {
-                component: IconPickerInput as React.FC<{field: unknown}>,
+                component: IconPickerInput as React.FC<{ field: unknown }>,
               },
               name: 'icon',
               label: 'Icon',
               type: 'string',
               required: false,
-              description: 'Icon to display in the badge. Leave empty for no icon.'
+              description:
+                'Icon to display in the badge. Leave empty for no icon.',
             },
             {
               name: 'position',
               label: 'Badge Position',
               type: 'string',
               options: [
-                  { value: 'left', label: 'Left' },
-                  { value: 'right', label: 'Right' },
-                  { value: 'top left', label: 'Top Left' },
-                  { value: 'top right', label: 'Top Right' },
+                { value: 'left', label: 'Left' },
+                { value: 'right', label: 'Right' },
+                { value: 'top left', label: 'Top Left' },
+                { value: 'top right', label: 'Top Right' },
               ],
               ui: {
                 component: 'select',
@@ -136,7 +138,8 @@ export const herov2Template: Template = {
           label: 'Title Icon',
           type: 'string',
           required: false,
-          description: 'Icon to display next to the banner title. Leave empty for no icon.'
+          description:
+            'Icon to display next to the banner title. Leave empty for no icon.',
         },
         {
           name: 'backgroundColor',

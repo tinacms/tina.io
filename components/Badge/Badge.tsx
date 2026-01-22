@@ -1,32 +1,38 @@
-import { cn } from "@/lib/utils";
-import {Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 
 const badgeVariants = cva(
-  "flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border",
+  'flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border',
   {
     variants: {
       size: {
-        default: "px-3.5 py-1.5 text-base",
-        medium: "px-3 text-sm",
-        small: "px-1 text-[10px]",
+        default: 'px-3.5 py-1.5 text-base',
+        medium: 'px-3 text-sm',
+        small: 'px-1 text-[10px]',
       },
       color: {
-        blue: "bg-brand-secondary text-white border-brand-secondary",
-        ghostBlue: "text-brand-secondary border-brand-secondary bg-white",
-        orange: "bg-brand-primary text-white border-brand-primary",
-        ghostOrange: "border-brand-primary text-brand-primary bg-white",
-        blueSecondary: "border-brand-secondary bg-brand-secondary-light text-blue-800",
+        blue: 'bg-brand-secondary text-white border-brand-secondary',
+        ghostBlue: 'text-brand-secondary border-brand-secondary bg-white',
+        orange: 'bg-brand-primary text-white border-brand-primary',
+        ghostOrange: 'border-brand-primary text-brand-primary bg-white',
+        blueSecondary:
+          'border-brand-secondary bg-brand-secondary-light text-blue-800',
       },
     },
     defaultVariants: {
-      size: "default",
-      color: "blue",
+      size: 'default',
+      color: 'blue',
     },
-  }
+  },
 );
 
-export type BadgeColor = 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary';
+export type BadgeColor =
+  | 'blue'
+  | 'ghostBlue'
+  | 'orange'
+  | 'ghostOrange'
+  | 'blueSecondary';
 
 interface BadgeProps extends VariantProps<typeof badgeVariants> {
   asChild?: boolean;
@@ -35,15 +41,15 @@ interface BadgeProps extends VariantProps<typeof badgeVariants> {
   dataTinaField?: string;
 }
 
-export const Badge = ({ 
-  asChild = false, 
+export const Badge = ({
+  asChild = false,
   children,
   size,
   color,
   className,
   dataTinaField,
 }: BadgeProps) => {
-  const Comp = asChild ? Slot : "span";
+  const Comp = asChild ? Slot : 'span';
   return (
     <Comp
       className={cn(badgeVariants({ size, color }), className)}
@@ -52,4 +58,4 @@ export const Badge = ({
       {children}
     </Comp>
   );
-}
+};
