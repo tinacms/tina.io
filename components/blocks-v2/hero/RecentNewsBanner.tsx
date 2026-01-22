@@ -1,4 +1,4 @@
-import { Badge } from '@/component/blocks/RecentNewsBanner/Badge';
+import { Badge, type BadgeColor } from '@/component/blocks/RecentNewsBanner/Badge';
 import { IconOptions } from '@/component/forms/IconPicker';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -35,7 +35,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
     (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') 
       ? 'top' 
       : 'inline';
-  const getTextColorClass = (bgColor?: string) => {
+  const getTextColorClass = (bgColor?: BadgeColor) => {
     switch (bgColor) {
       case 'blue':
         return 'text-transparent from-white via-brand-secondary bg-white to-white';
@@ -53,7 +53,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
 
   return (
     <Badge
-      color={recentNewsBanner.backgroundColor as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'blueSecondary'}
+      color={recentNewsBanner.backgroundColor as BadgeColor}
       className={cn(
         'mb-2 px-1 py-1',
         badgePositionType === 'top' && 'relative',
@@ -72,7 +72,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
         {recentNewsBanner.badge?.text &&   badgePositionType === 'top' && (
             <Badge
               size='small'
-              color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
+              color={recentNewsBanner.badge?.color as BadgeColor}
               className={cn(
                 "uppercase absolute text-[10px] -top-3 flex items-center gap-1",
                 recentNewsBanner.badge?.position === 'top left' ? '-left-2.5' : '-right-2.5'
@@ -90,7 +90,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
         )}>
           {recentNewsBanner.badge?.text && recentNewsBanner.badge?.position && badgePositionType === 'inline' && (
             <Badge
-              color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
+              color={recentNewsBanner.badge?.color as BadgeColor}
               size='medium'
               className="uppercase text-xs self-center flex items-center gap-1"
               dataTinaField={tinaField(recentNewsBanner?.badge, 'text')}
@@ -109,7 +109,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
             badgePositionType === 'inline' && recentNewsBanner.badge?.position === 'left' && 'pr-2',
             badgePositionType === 'inline' && recentNewsBanner.badge?.position === 'right' && 'pl-2',
             (badgePositionType === 'top' || !recentNewsBanner.badge?.position) && 'px-2',
-            getTextColorClass(recentNewsBanner.backgroundColor)
+            getTextColorClass(recentNewsBanner.backgroundColor as BadgeColor)
           )}>
             <span className="inline-flex gap-2 text-nowrap items-center">
               {BadgeIconComponent && !recentNewsBanner.badge?.text && <BadgeIconComponent className="size-5" />}

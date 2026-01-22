@@ -22,7 +22,6 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
       <div className={cn("flex @container items-center flex-col gap-8  border-red-500 py-10",bannerFilled && "pt-0" )}>
         
         <div className='flex flex-col gap-3'>
-          {/* Recent News Banner */}
           {bannerFilled && <RecentNewsBanner recentNewsBanner={recentNewsBanner} />}
         {title && (
           <h2

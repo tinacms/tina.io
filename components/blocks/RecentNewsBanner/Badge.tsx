@@ -26,6 +26,8 @@ const badgeVariants = cva(
   }
 );
 
+export type BadgeColor = 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary';
+
 interface BadgeProps extends VariantProps<typeof badgeVariants> {
   asChild?: boolean;
   children?: React.ReactNode;
