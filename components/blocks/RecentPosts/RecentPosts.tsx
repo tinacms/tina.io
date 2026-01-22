@@ -75,10 +75,9 @@ const VideoCard = ({
 
 export const RecentPostsBlock = ({ data, index, recentPosts }) => {
   const featuredPost = data?.featuredPost;
-  
+
   return (
     <Container size="medium" className="grid grid-cols-3 gap-16 py-16">
-      
       <section className="col-span-3 text-3xl lg:col-span-2 flex flex-col gap-8 items-center md:items-start">
         {featuredPost && <FeaturedPost featuredPost={featuredPost} />}
         <h2
@@ -86,7 +85,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
           data-tina-field={tinaField(data, 'title')}
         >
           {data?.title || 'Recent Posts'}
-      </h2>
+        </h2>
         <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-4 max-w-4xl">
           {data?.youtubeVideos?.map((video: VideoCardProps) => (
             <VideoCard
