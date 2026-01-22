@@ -28,6 +28,7 @@ type RecentNewsBannerType = {
 
 export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) => {
   const BadgeIconComponent = recentNewsBanner?.badge?.icon ? IconOptions[recentNewsBanner.badge.icon] : null;
+  const TitleIconComponent = recentNewsBanner?.titleIcon ? IconOptions[recentNewsBanner.titleIcon] : null;
 
   const getTextColorClass = (bgColor?: string) => {
     switch (bgColor) {
@@ -101,10 +102,8 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
           )}
           
           {/* Title Icon */}
-          {recentNewsBanner.titleIcon && IconOptions[recentNewsBanner.titleIcon] && (
-            <>
-              {IconOptions[recentNewsBanner.titleIcon]({ className: "size-5 ml-2" })}
-            </>
+          {TitleIconComponent && (
+            <TitleIconComponent className="size-5 ml-2" />
           )}
           
           <AnimatedShinyText className={cn('flex first:pl-2 last:pr-2 items-center @max-lg:text-xs gap-2 text-sm', getTextColorClass(recentNewsBanner.backgroundColor))}>
