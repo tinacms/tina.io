@@ -23,7 +23,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         
         <div className='flex flex-col gap-3'>
           {/* Recent News Banner */}
-          {bannerFilled && <RecentNewsBanner recentNewsBanner={recentNewsBanner} parentData={data.data} />}
+          {bannerFilled && <RecentNewsBanner recentNewsBanner={recentNewsBanner} />}
         {title && (
           <h2
             className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}

@@ -8,10 +8,9 @@ import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
 
 type RecentNewsBannerProps = {
   recentNewsBanner: NonNullable<PageBlocksHeroV2['recentNewsBanner']>;
-  parentData: PageBlocksHeroV2;
 };
 
-export const RecentNewsBanner = ({ recentNewsBanner, parentData }: RecentNewsBannerProps) => {
+export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) => {
   const BadgeIconComponent = recentNewsBanner?.badge?.icon && IconOptions[recentNewsBanner.badge.icon] 
     ? IconOptions[recentNewsBanner.badge.icon] 
     : null;
@@ -45,7 +44,7 @@ export const RecentNewsBanner = ({ recentNewsBanner, parentData }: RecentNewsBan
     >
       <Link 
         href={recentNewsBanner.link || '#'}
-        data-tina-field={tinaField(parentData.recentNewsBanner, 'title')}
+        data-tina-field={tinaField(recentNewsBanner, 'title')}
         {...(recentNewsBanner.openInNewTab && {
           target: "_blank",
           rel: "noopener noreferrer"
@@ -62,7 +61,7 @@ export const RecentNewsBanner = ({ recentNewsBanner, parentData }: RecentNewsBan
                 "uppercase absolute text-[10px] -top-3 flex items-center gap-1",
                 recentNewsBanner.badge?.position === 'top left' ? '-left-2.5' : '-right-2.5'
               )}
-              dataTinaField={tinaField(parentData.recentNewsBanner?.badge, 'text')}
+              dataTinaField={tinaField(recentNewsBanner?.badge, 'text')}
             >
               {BadgeIconComponent && <BadgeIconComponent className="w-3 h-3" />}
               {recentNewsBanner.badge?.text}
@@ -80,7 +79,7 @@ export const RecentNewsBanner = ({ recentNewsBanner, parentData }: RecentNewsBan
               color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
               size='medium'
               className="uppercase text-xs self-center flex items-center gap-1"
-              dataTinaField={tinaField(parentData.recentNewsBanner?.badge, 'text')}
+              dataTinaField={tinaField(recentNewsBanner?.badge, 'text')}
             >
               {BadgeIconComponent && <BadgeIconComponent className="w-5 h-5" />}
               {recentNewsBanner.badge?.text}
