@@ -30,7 +30,6 @@ type BadgePositionType = 'inline' | 'top';
 export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) => {
   const BadgeIconComponent = recentNewsBanner?.badge?.icon ? IconOptions[recentNewsBanner.badge.icon] : null;
   const TitleIconComponent = recentNewsBanner?.titleIcon ? IconOptions[recentNewsBanner.titleIcon] : null;
-  console.log("RecentNewsBanner props:", recentNewsBanner?.badge?.position);
   const badgePositionType: BadgePositionType = 
     (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') 
       ? 'top' 
