@@ -101,7 +101,6 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
             </Badge>
           )}
           
-          {/* Title Icon */}
           {TitleIconComponent && (
             <TitleIconComponent className="size-5 ml-2" />
           )}
