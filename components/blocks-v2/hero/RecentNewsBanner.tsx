@@ -26,9 +26,19 @@ type RecentNewsBannerType = {
   backgroundColor?: string;
 };
 
+type BadgePositionType = 'inline' | 'top';
+
 export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) => {
   const BadgeIconComponent = recentNewsBanner?.badge?.icon ? IconOptions[recentNewsBanner.badge.icon] : null;
   const TitleIconComponent = recentNewsBanner?.titleIcon ? IconOptions[recentNewsBanner.titleIcon] : null;
+  
+  const getBadgePositionType = (position?: string): BadgePositionType | null => {
+    if (position === 'top left' || position === 'top right') return 'top';
+    if (position === 'left' || position === 'right') return 'inline';
+    return null;
+  };
+  
+  const badgePositionType = getBadgePositionType(recentNewsBanner.badge?.position);
 
   const getTextColorClass = (bgColor?: string) => {
     switch (bgColor) {
@@ -51,7 +61,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
       color={recentNewsBanner.backgroundColor as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'blueSecondary'}
       className={cn(
         'mb-2 px-1 py-1',
-        (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') && 'relative',
+        badgePositionType === 'top' && 'relative',
       )} 
       asChild={true}
     >
@@ -65,8 +75,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
         className="flex items-center gap-2"
       >
         {/* Anchored badge (top left/right) */}
-        {recentNewsBanner.badge?.text && (
-          (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') ? (
+        {recentNewsBanner.badge?.text && badgePositionType === 'top' && (
             <Badge
               size='small'
               color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
@@ -79,7 +88,6 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
               {BadgeIconComponent && <BadgeIconComponent className="w-3 h-3" />}
               {recentNewsBanner.badge?.text}
             </Badge>
-          ) : null
         )}
         
         <div className={cn(
@@ -87,7 +95,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
           recentNewsBanner.badge?.position === 'right' && 'flex-row-reverse'
         )}>
           {/* Inline badge (left/right) */}
-          {recentNewsBanner.badge?.text && (recentNewsBanner.badge?.position === 'left' || recentNewsBanner.badge?.position === 'right') && (
+          {recentNewsBanner.badge?.text && badgePositionType === 'inline' && (
             <Badge
               color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
               size='medium'
@@ -105,11 +113,9 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
           
           <AnimatedShinyText className={cn(
             'flex items-center @max-lg:text-xs gap-2 text-sm',
-            recentNewsBanner.badge?.position === 'left' && 'pr-2',
-            recentNewsBanner.badge?.position === 'right' && 'pl-2',
-            recentNewsBanner.badge?.position === 'top left' && 'px-2',
-            recentNewsBanner.badge?.position === 'top right' && 'px-2',
-            !recentNewsBanner.badge?.position && 'px-2',
+            badgePositionType === 'inline' && recentNewsBanner.badge?.position === 'left' && 'pr-2',
+            badgePositionType === 'inline' && recentNewsBanner.badge?.position === 'right' && 'pl-2',
+            (badgePositionType === 'top' || !badgePositionType) && 'px-2',
             getTextColorClass(recentNewsBanner.backgroundColor)
           )}>
             <span className="inline-flex gap-2 text-nowrap items-center">
