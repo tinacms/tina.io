@@ -31,14 +31,11 @@ type BadgePositionType = 'inline' | 'top';
 export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) => {
   const BadgeIconComponent = recentNewsBanner?.badge?.icon ? IconOptions[recentNewsBanner.badge.icon] : null;
   const TitleIconComponent = recentNewsBanner?.titleIcon ? IconOptions[recentNewsBanner.titleIcon] : null;
-  
-  const getBadgePositionType = (position?: string): BadgePositionType => {
-    if (position === 'top left' || position === 'top right') return 'top';
-    return 'inline';
-  };
-  
-  const badgePositionType = getBadgePositionType(recentNewsBanner.badge?.position);
-
+  console.log("RecentNewsBanner props:", recentNewsBanner?.badge?.position);
+  const badgePositionType: BadgePositionType = 
+    (recentNewsBanner.badge?.position === 'top left' || recentNewsBanner.badge?.position === 'top right') 
+      ? 'top' 
+      : 'inline';
   const getTextColorClass = (bgColor?: string) => {
     switch (bgColor) {
       case 'blue':
@@ -74,7 +71,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
         className="flex items-center gap-2"
       >
         {/* Anchored badge (top left/right) */}
-        {recentNewsBanner.badge?.text && badgePositionType === 'top' && (
+        {recentNewsBanner.badge?.text &&   badgePositionType === 'top' && (
             <Badge
               size='small'
               color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
@@ -94,7 +91,7 @@ export const RecentNewsBanner = ({ recentNewsBanner }: RecentNewsBannerProps) =>
           recentNewsBanner.badge?.position === 'right' && 'flex-row-reverse'
         )}>
           {/* Inline badge (left/right) */}
-          {recentNewsBanner.badge?.text && badgePositionType === 'inline' && (
+          {recentNewsBanner.badge?.text && recentNewsBanner.badge?.position && badgePositionType === 'inline' && (
             <Badge
               color={recentNewsBanner.badge?.color as 'blue' | 'ghostBlue' | 'orange' | 'ghostOrange' | 'blueSecondary' || 'orange'}
               size='medium'
