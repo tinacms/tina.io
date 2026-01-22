@@ -2,10 +2,8 @@ import { cn } from "@/lib/utils";
 import {Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
-
-
 const badgeVariants = cva(
-  "self-start flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border",
+  "flex gap-2 items-center w-fit font-ibm-plex-medium rounded-full border",
   {
     variants: {
       size: {

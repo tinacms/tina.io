@@ -1,7 +1,6 @@
 import { Popover, PopoverButton, Transition, PopoverPanel } from '@headlessui/react';
 import React from 'react';
 import { BiChevronRight } from 'react-icons/bi';
-
 import * as MdIcons from 'react-icons/md'
 import { GoCircleSlash } from 'react-icons/go';
 import { Button, wrapFieldsWithMeta } from 'tinacms';
