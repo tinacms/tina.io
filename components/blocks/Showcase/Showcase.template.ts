@@ -48,7 +48,8 @@ export const showcaseTemplate: Template = {
               name: 'youtubeUrl',
               label: 'YouTube URL',
               type: 'string',
-              description: 'Add a youtube video link. Takes precendence over the image of both are provided.',
+              description:
+                'Add a youtube video link. Takes precendence over the image of both are provided.',
             },
             { name: 'src', label: 'Image Source', type: 'image' },
           ],

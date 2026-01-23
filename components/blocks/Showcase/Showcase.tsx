@@ -11,7 +11,6 @@ import { Container } from '../Container';
 import { LiteYouTube } from '../VideoEmbed/LiteYouTube';
 import { extractYouTubeId } from '../VideoEmbed/utils';
 
-
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1;
   const id = data.headline
