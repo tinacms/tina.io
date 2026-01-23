@@ -40,16 +40,18 @@ export const showcaseTemplate: Template = {
         },
         { name: 'url', label: 'URL', type: 'string' },
         {
-          name: 'youtubeUrl',
-          label: 'YouTube URL',
-          type: 'string',
-          description: 'Enter a YouTube URL or video ID. This takes priority over image/video.',
-        },
-        {
           name: 'media',
           label: 'Media',
           type: 'object',
-          fields: [{ name: 'src', label: 'Image Source', type: 'image' }],
+          fields: [
+            {
+              name: 'youtubeUrl',
+              label: 'YouTube URL',
+              type: 'string',
+              description: 'Add a youtube video link. Takes precendence over the image of both are provided.',
+            },
+            { name: 'src', label: 'Image Source', type: 'image' },
+          ],
         },
       ],
     },

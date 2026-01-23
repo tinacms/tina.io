@@ -32,7 +32,10 @@
           "headline": "SSW Rules",
           "text": "SSW Migrated **4000+** pages to TinaCMS from Decap CMS. [SSW Rules](https://www.ssw.com.au/rules)  is a site SSW uses to document industry best practices for software development based on their **30 years** of developer experience.",
           "url": "",
-          "youtubeUrl": "https://www.youtube.com/watch?v=lqqduKKhH_o"
+          "media": {
+            "youtubeUrl": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+            "src": ""
+          }
         },
         {
           "headline": "Smashing Magazine",

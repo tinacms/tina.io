@@ -39,11 +39,11 @@ export function ShowcaseBlock({ data, index }) {
           )}
           {data.actions && <Actions items={data.actions} />}
         </div>
-        {(data.youtubeUrl || data.media?.src) && (
+        {(data.media?.youtubeUrl || data.media?.src) && (
           <div className="featureImage">
-            {data.youtubeUrl ? (
+            {data.media.youtubeUrl ? (
               <LiteYouTube
-                id={extractYouTubeId(data.youtubeUrl)}
+                id={extractYouTubeId(data.media.youtubeUrl)}
                 title={data.headline || 'YouTube video'}
                 className="rounded-lg"
               />
