@@ -40,6 +40,12 @@ export const showcaseTemplate: Template = {
         },
         { name: 'url', label: 'URL', type: 'string' },
         {
+          name: 'youtubeUrl',
+          label: 'YouTube URL',
+          type: 'string',
+          description: 'Enter a YouTube URL or video ID. This takes priority over image/video.',
+        },
+        {
           name: 'media',
           label: 'Media',
           type: 'object',

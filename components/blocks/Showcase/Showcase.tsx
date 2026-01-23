@@ -9,6 +9,33 @@ import {
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
+function getYouTubeEmbedUrl(url: string): string {
+  // Extract video ID from various YouTube URL formats
+  let videoId = '';
+  
+  // Check if it's already just a video ID (11 characters)
+  if (url.length === 11 && !url.includes('/') && !url.includes('.')) {
+    videoId = url;
+  } else {
+    // Try to extract from full URLs
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/,
+      /youtube\.com\/embed\/([^?\s]+)/,
+      /youtube\.com\/v\/([^?\s]+)/,
+    ];
+    
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match && match[1]) {
+        videoId = match[1];
+        break;
+      }
+    }
+  }
+  
+  return `https://www.youtube.com/embed/${videoId}`;
+}
+
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1;
   const id = data.headline
@@ -36,29 +63,41 @@ export function ShowcaseBlock({ data, index }) {
           )}
           {data.actions && <Actions items={data.actions} />}
         </div>
-        {data.media?.src && (
+        {(data.youtubeUrl || data.media?.src) && (
           <div className="featureImage">
-            <a href={data.url} target="_blank">
-              {data.media.src.endsWith('.webm') ? (
-                <video
-                  className="showcaseVideo"
-                  src={data.media.src}
-                  autoPlay
-                  muted
-                  loop
-                  width={1120}
-                  height={800}
+            {data.youtubeUrl ? (
+              <div className="videoWrapper">
+                <iframe
+                  src={getYouTubeEmbedUrl(data.youtubeUrl)}
+                  title={data.headline}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="youtubeEmbed"
                 />
-              ) : (
-                <Image
-                  className="showcaseImage"
-                  src={data.media.src}
-                  alt={data.headline}
-                  width={1120}
-                  height={800}
-                />
-              )}
-            </a>
+              </div>
+            ) : (
+              <a href={data.url} target="_blank">
+                {data.media.src.endsWith('.webm') ? (
+                  <video
+                    className="showcaseVideo"
+                    src={data.media.src}
+                    autoPlay
+                    muted
+                    loop
+                    width={1120}
+                    height={800}
+                  />
+                ) : (
+                  <Image
+                    className="showcaseImage"
+                    src={data.media.src}
+                    alt={data.headline}
+                    width={1120}
+                    height={800}
+                  />
+                )}
+              </a>
+            )}
           </div>
         )}
       </div>
@@ -135,6 +174,20 @@ export function ShowcaseBlock({ data, index }) {
           height: 7px;
           width: 100%;
           margin: 2rem 0px;
+        }
+        .videoWrapper {
+          position: relative;
+          padding-bottom: 56.25%; /* 16:9 aspect ratio */
+          height: 0;
+          overflow: hidden;
+        }
+        .videoWrapper :global(.youtubeEmbed) {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
         }
       `}</style>
     </>

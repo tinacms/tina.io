@@ -29,6 +29,12 @@
           }
         },
         {
+          "headline": "SSW Rules",
+          "text": "SSW Migrated **4000+** pages to TinaCMS from Decap CMS. [SSW Rules](https://www.ssw.com.au/rules)  is a site SSW uses to document industry best practices for software development based on their **30 years** of developer experience.",
+          "url": "",
+          "youtubeUrl": "https://www.youtube.com/watch?v=lqqduKKhH_o"
+        },
+        {
           "headline": "Smashing Magazine",
           "text": "Smashing Magazine uses TinaCMS to edit content for 10's of thousands of posts and pages. Check out their [article](https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/)  describing how they use branches and Git to manage content with Tina's [Editorial Workflow](https://tina.io/editorial-workflow).",
           "url": "https://www.smashingmagazine.com/2023/09/smashing-magazine-tinacms-manage-editorial-workflow/",
