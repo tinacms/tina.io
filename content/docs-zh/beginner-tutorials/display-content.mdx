@@ -1,26 +1,26 @@
 ---
 title: 渲染您的内容
-last_edited: '2025-05-08T08:11:01.183Z'
+last_edited: '2026-01-07T23:13:36.416Z'
 tocIsHidden: true
 next: content/docs-zh/beginner-tutorials/live-editing.mdx
 previous: content/docs-zh/beginner-tutorials/hello-world.mdx
 ---
 
-现在我们已经在Tina中创建了令人惊叹的“Hello world”内容，我们需要将它显示在我们的网站上！
+现在我们已经在Tina中创建了惊人的“Hello world”内容，我们需要在我们的网站上显示它！
 
-> 有几种方法可以将内容渲染到屏幕上。目前，我们将使用[客户端数据获取]()，这意味着页面将在用户访问页面时直接从浏览器查询Tina以获取内容。还有其他方法，例如SSR和SSG，我们稍后会探索这些方法。
+> 有几种方法可以将内容渲染到屏幕上。目前，我们将使用[客户端数据获取]()，这意味着页面将在用户访问页面时直接从浏览器查询Tina以获取内容。还有其他方法，例如SSR和SSG，我们将在后面探索。
 
-1\. 打开 `app/page.tsx`
+### 更新您的主页代码
 
-2\. 添加以下代码：
+前往 `app/page.tsx` 并添加以下代码：
 
 ```typescript
 "use client";
-// 因为NextJS默认是SSR，我们现在需要进行客户端渲染。
+// 需要这样做，因为NextJS默认是SSR，而我们现在想要进行客户端渲染。
 import { useState, useEffect } from "react";
 import { client } from "../tina/__generated__/client";
-// 这将用于查询我们的Tina CMS以获取我们令人惊叹的标题
-// 您可能需要根据您的设置更新相对导入路径
+// 这将用于查询我们的Tina CMS以获取我们惊人的标题
+// 您可能需要根据您的设置更新相对导入
 
 export default function Home() {
   const [amazingTitle, setAmazingTitle] = useState("");
@@ -45,19 +45,23 @@ return (
 }
 ```
 
-这里有一些内容需要注意，让我们更详细地看看 `fetchContent` 方法...
+### 这段代码做了什么？
 
-首先，也是最重要的一点，我们正在使用Tina的 **`client`**，它是我们进入Tina CMS内容的入口。您可以[阅读更多关于client的信息]()，但现在，只需将其视为一个基础的“API服务”，我们在需要从Tina检索数据时使用它。
+这里有一些事情正在发生，所以让我们更详细地看看 `fetchContent` 方法...
 
-然后我们使用 `client.queries`，它使我们能够访问我们在Tina schema中定义的所有集合。目前，我们有一个集合——`my_first_collection`，Tina为我们提供了强类型的访问这些集合的方法。这非常棒！
+首先，也是最重要的事情是，我们正在使用Tina的 **`client`**，这是我们进入Tina CMS内容的网关。您可以[阅读更多关于客户端的信息]()，但现在，只需将其视为一个基础“API服务”，我们在需要从Tina检索数据时使用它。
 
-> 这些强类型的扩展方法是通过运行 `tinacms build` 命令自动生成的。当您运行 `npm run dev` 时，此命令会默认包含，但了解这一点很重要，因为如果您没有运行应用程序，可能会疑惑为什么新的集合没有立即出现在 `client.queries` 对象中。
+然后我们使用 `client.queries`，这使我们可以访问我们在Tina模式中定义的所有集合。目前，我们有1个集合 - `my_first_collection` - Tina为我们提供了对这些集合的强类型访问。这非常棒！
 
-请记住，一个集合可以包含许多记录。目前我们只有一个——在上一步中创建的 `Hello-World.md` 文件。
+> 这些强类型扩展方法是由Tina在运行 `tinacms build` 命令时自动生成的。默认情况下，当您运行 `npm run dev` 时会包含此命令，但了解这一点很重要，因为如果您没有正在运行应用程序，您可能会想知道为什么新集合没有立即出现在 `client.queries` 对象上。
+
+### 显示您的数据
+
+请记住，一个集合可以包含许多记录。目前我们只有1个 - 在上一步中创建的 `Hello-World.md` 文件。
 
 因此，我们将指定该文件作为我们想要返回的内容。
 
-3\. 将硬编码的 `<h1>Hello World!</h1>` 内容替换为我们令人惊叹的Tina驱动的内容！
+1. 用我们惊人的Tina驱动的内容替换您硬编码的 `<h1>Hello World!</h1>` 内容！
 
 ```typescript
 return (
@@ -69,6 +73,6 @@ return (
   );
 ```
 
-4\. 启动您的应用程序，欣赏由Tina驱动的令人惊叹的标题 🥳
+2. 启动您的应用程序，欣赏由Tina驱动的惊人标题 🥳
 
 ![](</gif/Untitled video - Made with Clipchamp (8).gif>)

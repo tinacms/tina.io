@@ -1,6 +1,6 @@
 ---
 title: 对象字段
-last_edited: '2025-07-28T23:59:16.563Z'
+last_edited: '2026-01-12T05:34:02.890Z'
 next: content/docs-zh/extending-tina/customize-list-ui.mdx
 previous: content/docs-zh/reference/types/reference.mdx
 ---
@@ -11,7 +11,7 @@ previous: content/docs-zh/reference/types/reference.mdx
 
 ## 类型定义
 
-> 有关所有字段类型的其他常见属性，请查看[字段](/docs/reference/fields)类型定义。
+> 有关所有字段类型共有的其他属性，请查看[字段](/docs/reference/fields)类型定义。
 
 <apiReference
   property={[
@@ -61,7 +61,7 @@ previous: content/docs-zh/reference/types/reference.mdx
     {
       groupName: "ui",
       name: "visualSelector",
-      description: "是否为对象显示视觉选择器。\n",
+      description: "是否为对象显示可视选择器。\n",
       type: "boolean",
       default: "false"
     },
@@ -69,7 +69,7 @@ previous: content/docs-zh/reference/types/reference.mdx
       groupName: "ui",
       name: "defaultItem",
       description:
-        "添加新对象时的预填充数据。\n\n当list: true时可用。\n",
+        "添加新对象时的预填数据。\n\n当list: true时可用。\n",
       type: "Record<string, any> | () => Record<string, any>"
     },
     {
@@ -91,21 +91,21 @@ previous: content/docs-zh/reference/types/reference.mdx
 1. 使用`fields`，对象将其内部字段包装在一个子窗口中。![](</img/docs/reference/Screen Recording 2025-03-14 at 11.38.07 am.gif>)
 2. 使用`templates`时，用户可以在关联的[模板](/docs/reference/templates)之间进行选择。![](</img/docs/reference/Screen Recording 2025-03-14 at 12.03.21 pm.gif>)
 
-如上所示，但按下`+`会让您选择一组选项之一。
+这如上所示，但按下`+`会让您选择一组选项之一。
 
-## 视觉选择器
+## 可视选择器
 
-这个视觉块选择器允许编辑者选择带有图像和文本的模板。
+这个可视块选择器允许编辑者选择带有图像和文本的模板。
 
-要启用视觉块选择器，`visualSelector`属性必须为true。在编辑器中，这也会打开一个新的模板选择窗口。
+要启用可视块选择器，`visualSelector`属性必须为true。在编辑器中，这也会打开一个新的模板选择窗口。
 
 ![](</img/docs/reference/Screen Recording 2025-03-14 at 11.43.03 am.gif>)
 
-要为某个模板获取图像，您需要通过模板的`ui.previewSrc`属性提供图像。这是一个URL，或相对于您在TinaCMS配置中定义的[公共文件夹](/docs/reference/media/repo-based)。
+要为某个模板获取图像，您需要提供带有模板的`ui.previewSrc`属性的图像。这是一个URL，或相对于您在TinaCMS配置中定义的[公共文件夹](/docs/reference/media/repo-based)。
 
 ```javascript
 const showcaseTemplate: Template = {
-  label: 'Showcase',
+  label: '展示',
   name: 'showcase',
   ui: {
     previewSrc: '/img/blocks/features.png',
@@ -143,7 +143,7 @@ farm:
 ---
 ```
 
-您可以使用`templatesKey`属性自定义此项——使用给定的键代替。
+您可以使用`templatesKey`属性自定义此项——给定的键代替。
 
 ## 示例
 
@@ -151,7 +151,7 @@ farm:
 
 ```javascript
 {
-  label: "Testimonial",
+  label: "推荐",
   name: "testimonial",
   type: "object",
   fields: [
@@ -238,10 +238,11 @@ export const featuresTemplate: Template = {
       label: '功能项',
       type: 'object',
       list: true,
-      ui {
-      itemProps: (item) => {
-        return { label: item?.headline };
-      },
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.headline };
+        }
+      }
     },
     fields: [
       { name: 'headline', label: '标题', type: 'string' },

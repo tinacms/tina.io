@@ -10,9 +10,19 @@ previous: content/docs-zh/reference/overview.mdx
 
 从 `tina/config.{ts,tsx,js,jsx}` 导出的 `defineConfig` 函数的结果定义了你的 TinaCMS 设置。
 
+<WarningCallout
+  body={<>
+    重要 - 配置必须是确定性的
+    
+    defineConfig 返回的对象在开发和构建过程中必须多次评估。避免在影响模式或运行时配置的配置属性中直接使用非确定性值（例如 Date.now(), Math.random()）。这可能导致 GraphQL 模式不匹配错误。
+    
+    如果需要动态值，请返回一个函数并延迟计算该值。
+  </>}
+/>
+
 注意，它**必须是**默认导出。
 
-> 配置文件的位置之前是在 `.tina/config.{ts,tsx,js,jsx}`
+> 配置文件的位置以前是在 `.tina/config.{ts,tsx,js,jsx}`
 
 ## 选项
 
@@ -39,7 +49,7 @@ previous: content/docs-zh/reference/overview.mdx
       type: "string",
       required: true,
       description:
-        'TinaCMS 构建路径（编辑器路由）。\n\n通常为 `"admin"`。\n\n这将在 `[url]/admin/index.html` 查看。\n'
+        'TinaCMS 构建路径（编辑器路由）。\n\n通常为 `"admin"`。\n\n这将在 `[url]/admin/index.html` 中查看。\n'
     },
     {
       groupName: "build",
@@ -52,14 +62,14 @@ previous: content/docs-zh/reference/overview.mdx
       name: "basePath",
       type: "string",
       description:
-        '如果在子路径上提供服务，则设置。\n\n对于 `[url]/my-site`，设置为 `"my-site"`。\n'
+        '如果在子路径中提供服务，请设置。\n\n对于 `[url]/my-site`，设置为 `"my-site"`。\n'
     },
     {
       groupName: "",
       name: "branch",
       type: "string | null",
       description:
-        "要从中提取内容的基础分支。对于 **TinaCloud** 是必需的。\n"
+        "用于拉取内容的基础分支。对于 **TinaCloud** 是必需的。\n"
     },
     {
       groupName: "",
@@ -128,7 +138,7 @@ previous: content/docs-zh/reference/overview.mdx
       name: "referenceDepth",
       type: "number",
       description:
-        "生成的查询将遍历引用到给定深度。\n",
+        "生成的查询将遍历引用到给定的深度。\n",
       default: "2"
     },
     {
@@ -177,14 +187,14 @@ previous: content/docs-zh/reference/overview.mdx
       groupName: "search",
       name: "indexBatchSize",
       type: "number",
-      description: "每个 PUT 请求要索引的文档数量。\n"
+      description: "每个 PUT 请求索引的文档数量。\n"
     },
     {
       groupName: "search",
       name: "maxSearchIndexFieldLength",
       type: "number",
       description:
-        "将为搜索索引的字符串字段的最大长度。\n"
+        "将被索引用于搜索的字符串字段的最大长度。\n"
     },
     {
       groupName: "search",
@@ -216,14 +226,14 @@ previous: content/docs-zh/reference/overview.mdx
     },
     {
       description:
-        "defaultBranchName 用于在本地解析 `historyUrl` 时覆盖本地分支。主要用例是当默认分支不叫 `main` 时\n",
+        "defaultBranchName 用于在本地解析 `historyUrl` 时覆盖本地分支。主要用例是当默认分支不叫 `main` 时。\n",
       groupName: "repoProvider",
       name: "defaultBranchName",
       type: "string"
     },
     {
       description:
-        "允许用户定义 TinaCMS 应该链接用户查看他们正在编辑的文件的源历史记录的位置。\n\n`branch` 由 TinaCMS 为活动编辑分支解析\n\n`relativePath` 由 TinaCMS 为相关内容文件的相对路径解析\n\nGitHub 示例：\n\n```\nhistoryUrl: ({ relativePath, branch }) => ({ \n  url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`\n```\n",
+        "允许用户定义 TinaCMS 应该链接用户以查看他们正在编辑的文件的源历史记录的位置。\n\n`branch` 由 TinaCMS 为活动编辑分支解析\n\n`relativePath` 由 TinaCMS 为相关内容文件的相对路径解析\n\nGitHub 示例：\n\n```\nhistoryUrl: ({ relativePath, branch }) => ({ \n  url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`\n```\n",
       groupName: "repoProvider",
       name: "historyUrl",
       type: "function -- historyUrl?: (context: { relativePath: string; branch: string;}) => { url: string }"
@@ -242,7 +252,7 @@ previous: content/docs-zh/reference/overview.mdx
 
 ### Vercel 和 TinaCloud 配置
 
-这是一个使用 TinaCloud 托管数据层的标准配置，并内置了 Tina 的媒体和搜索功能。
+这是一个使用 TinaCloud 托管数据层的标准配置，以及内置的 Tina 媒体和搜索功能。
 
 ```ts
 const branch =
@@ -323,7 +333,7 @@ export default defineConfig({
 
 TinaCMS 支持在 `tina/config.{ts,js,tsx}` 文件和集合中使用 TypeScript 路径别名。
 
-确保 `tsconfig.json` 存在于项目的根目录。 在 `compilerOptions` 部分定义你的别名。
+确保 `tsconfig.json` 存在于项目的根目录。在 `compilerOptions` 部分定义你的别名。
 
 ```javascript
 //tsconfig.json
@@ -337,7 +347,7 @@ TinaCMS 支持在 `tina/config.{ts,js,tsx}` 文件和集合中使用 TypeScript 
 }
 ```
 
-你现在可以使用别名导入工具或其他模块。
+现在你可以使用别名导入实用程序或其他模块。
 
 ```typescript
 import { someUtility } from '@/lib/utils';
