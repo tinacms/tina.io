@@ -147,6 +147,11 @@
           "media": {
             "src": "/img/tina-showcase/wearemanyhands.png"
           }
+        },
+        {
+          "headline": "SSW Rules",
+          "text": "SSW Migrated 3500+ pages to TinaCMS",
+          "url": "defwe"
         }
       ],
       "_template": "showcase"
