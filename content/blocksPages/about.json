@@ -97,7 +97,7 @@
       "items": [
         {
           "headline": "2025: Improved performance by implementing webhooks",
-          "content": "Tina sites build times go from **20 min** to **20 sec** when they take advantage of ISR. More on [TinaCMS for GitHub - The SSW Rules Migration | Jake Bayliss](https://www.youtube.com/watch?v=lqqduKKhH_o). \n\n**Version 3** get a big change under the covers with the move to ESM (from CommonJS). \n\n[Improved usability of the flagship feature Editorial Workflow](https://www.youtube.com/watch?v=u5QsWV4_5aU)."
+          "content": "For large sites like [SSW Rules](https://www.ssw.com.au/rules) (3,600+ pages), content updates go from **20+ min** full rebuilds to just **20 sec** when leveraging TinaCloud webhooks and ISR. More on [TinaCMS for GitHub - The SSW Rules Migration | Jake Bayliss](https://www.youtube.com/watch?v=lqqduKKhH_o). \n\n**Version 3** get a big change under the covers with the move to ESM (from CommonJS). \n\n[Improved usability of the flagship feature Editorial Workflow](https://www.youtube.com/watch?v=u5QsWV4_5aU)."
         },
         {
           "headline": "2024: Acquired by SSW",
