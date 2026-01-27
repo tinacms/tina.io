@@ -37,6 +37,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^15.4.2",
     "@next/third-parties": "^15.3.4",
+    "@radix-ui/react-slot": "^1.2.4",
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^8.17.14",
     "@styled-jsx/plugin-sass": "^4.1.1",
