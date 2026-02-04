@@ -1,7 +1,7 @@
 ---
 id: /docs/extending-tina/filename-customization
 title: Filename customization
-last_edited: '2026-02-04T22:04:23.817Z'
+last_edited: '2026-02-04T22:05:12.305Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -9,7 +9,7 @@ previous: content/docs/extending-tina/format-and-parse.mdx
 
 By default Tina doesn't provide any opinionated file name constraints. This is because most operating systems provide a variety of file name configurations and we didn't want users to be constrained. If you need to enforce file name constraints at the collection level, Tina provides a few options for you.
 
-* Please be aware of the following limitations with Tina if you do decide to do decide to implement filename customization:
+* Please be aware of the following limitations with Tina if you do decide to do decide to implement filename customisation using any of the methods below:
 * Filename must contain only `a-z`, `A-Z`, `0-9` , `-`, `_`, `.`, or `/`.
 * File names cannot contain spaces
 * The filename generated cannot be a duplicate within the collection
@@ -114,6 +114,6 @@ export default defineConfig({
 Option B: using parse
 ---------------------
 
-Using the parse function you can enforce file constraints within the Tina editor.
+Using the parse function you can enforce file constraints within the Tina editor. you can define a callback function 
 
 
