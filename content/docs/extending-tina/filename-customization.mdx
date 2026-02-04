@@ -2,7 +2,7 @@
 id: /docs/extending-tina/filename-customization
 title: Filename customization
 alias: Any-
-last_edited: '2026-02-04T22:14:39.945Z'
+last_edited: '2026-02-04T22:15:08.787Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -26,6 +26,10 @@ By default Tina doesn't provide any opinionated file name constraints. This is b
 | `ui.filename.readonly` | Disable the editor from editing the filename                                    |
 | `ui.filename.slugify`  | A function that takes in the values of the form and returns the filename        |
 | `ui.filename.parse`    | A function that parses the filename into the desired format when the user types |
+
+## Option A: using parse
+
+Using the parse function you can enforce file constraints within the Tina editor. The callback function you provide will be used to sanitise the user input while they're typing. For Example: you could use
 
 ## Option B: using slugify
 
@@ -116,7 +120,3 @@ export default defineConfig({
   },
 })
 ```
-
-## Option A: using parse
-
-Using the parse function you can enforce file constraints within the Tina editor. The callback function you provide will be used to sanitise the user input while they're typing. For Example: you could use
