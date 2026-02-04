@@ -2,7 +2,7 @@
 id: /docs/extending-tina/filename-customization
 title: Filename customization
 alias: Any-
-last_edited: '2026-02-04T22:16:20.104Z'
+last_edited: '2026-02-04T22:39:52.229Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -30,6 +30,30 @@ By default Tina doesn't provide any opinionated file name constraints. This is b
 ## Option A: using parse
 
 Using the parse function you can enforce file constraints within the Tina editor. The callback function you provide will be used to sanitise the user input while they're typing. For Example: you could use the parse function to enforce sanke case naming conventions.
+
+```
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: "Blog Posts",
+        ui: {
+          filename: {
+            parse: (filemame) => filemame.replaceAll(" ","_"),
+          }
+        },
+        name: "post",
+        path: "content/post",
+        format: "mdx",
+        fields: [
+          //...
+        ]
+      }
+    ],
+  },
+});
+```
 
 ## Option B: using slugify
 
