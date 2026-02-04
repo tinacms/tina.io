@@ -1,7 +1,7 @@
 ---
 id: /docs/extending-tina/filename-customization
 title: Filename customization
-last_edited: '2026-02-04T21:47:06.124Z'
+last_edited: '2026-02-04T21:50:16.215Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -9,18 +9,16 @@ previous: content/docs/extending-tina/format-and-parse.mdx
 
 By default Tina doesn't provide any opinionated file name constraints. This is because most operating systems provide a variety of file name configurations and we didn't want users to be constrained. If you need to enforce file name constraints at the collection level, Tina provides a few options for you.
 
+Please be aware of the following limitations with Tina if you do decide to do decide to implement filename customization:
 
-
-Option A: Slugify
------------------
+Filename must contain only a-z, A-Z, 0-9, -, \_, ., or [/.](/.)
 
 The slugify function is useful for when you want the file name to be derived from other field(s). By default
 
 A couple things to keep in mind when customizing the filename:
 
-* Filename can not contain any spaces
-* Filename must contain only a-z, A-Z, 0-9, -, \_, ., or /.
-* Filename must be unique within the collection
+* File names cannot contain spaces
+* The filename generated cannot be a duplicate within the collection
 * If the filename starts with `/` it will be treated as an absolute path relative to the collection root
   * Example: `/foo/bar/blog-post` will be saved as `<MyCollectionPath>/post/blog-post.md`
 * If the filename does not start with `/` it will be treated as a relative to your current folder
