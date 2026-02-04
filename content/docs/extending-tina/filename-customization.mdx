@@ -1,7 +1,8 @@
 ---
 id: /docs/extending-tina/filename-customization
 title: Filename customization
-last_edited: '2026-02-04T22:07:08.458Z'
+alias: Any-
+last_edited: '2026-02-04T22:10:34.270Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -73,6 +74,12 @@ export default defineConfig({
   },
 })
 ```
+
+<WarningCallout
+  body={<>
+    The slugify function is only applies constraints when the user creates new files. Users still have complete freedom when renaming a file.
+  </>}
+/>
 
 ### Example with default slugify
 
