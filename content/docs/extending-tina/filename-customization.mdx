@@ -2,7 +2,7 @@
 id: /docs/extending-tina/filename-customization
 title: Filename customization
 alias: Any-
-last_edited: '2026-02-04T22:42:33.010Z'
+last_edited: '2026-02-04T22:58:00.568Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -42,7 +42,7 @@ export default defineConfig({
         label: "Blog Posts",
         ui: {
           filename: {
-            parse: (filemame) => filemame.replaceAll(" ","_"),
+            parse: (filename) => filename.replaceAll(" ","_"),
           }
         },
         name: "post",
