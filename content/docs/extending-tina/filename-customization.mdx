@@ -2,11 +2,10 @@
 id: /docs/extending-tina/filename-customization
 title: Filename customization
 alias: Any-
-last_edited: '2026-02-04T22:10:34.270Z'
+last_edited: '2026-02-04T22:11:20.220Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
-
 
 By default Tina doesn't provide any opinionated file name constraints. This is because most operating systems provide a variety of file name configurations and we didn't want users to be constrained. If you need to enforce file name constraints at the collection level, Tina provides a few options for you.
 
@@ -30,6 +29,12 @@ By default Tina doesn't provide any opinionated file name constraints. This is b
 ## Option A: using slugify
 
 The `slugify` function is useful when you want to have a file name that is *derived* from other field(s) in your collection. For example: you could have a filename that is composed from `title` and `topic` and title fields in your collection.
+
+<WarningCallout
+  body={<>
+    The slugify function is only applies constraints when the user creates new files. Users still have complete freedom when renaming a file.
+  </>}
+/>
 
 ### Example with slugify and read only
 
@@ -75,12 +80,6 @@ export default defineConfig({
 })
 ```
 
-<WarningCallout
-  body={<>
-    The slugify function is only applies constraints when the user creates new files. Users still have complete freedom when renaming a file.
-  </>}
-/>
-
 ### Example with default slugify
 
 If no slugify function is provided and there is a field with `isTitle: true`. A default slugify function will be used that strips out every non-alphanumeric character and replaces spaces with dashes.
@@ -117,10 +116,6 @@ export default defineConfig({
 })
 ```
 
-
-Option B: using parse
----------------------
+## Option B: using parse
 
 Using the parse function you can enforce file constraints within the Tina editor. The callback function you provide will be used to sanitise the user input while they're typing. For Example: you could use
-
-
