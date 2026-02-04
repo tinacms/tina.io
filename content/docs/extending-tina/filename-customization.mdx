@@ -1,7 +1,7 @@
 ---
 id: /docs/extending-tina/filename-customization
 title: Filename customization
-last_edited: '2026-02-04T21:56:32.621Z'
+last_edited: '2026-02-04T21:58:12.158Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -28,7 +28,7 @@ By default Tina doesn't provide any opinionated file name constraints. This is b
 
 ## Option A: using slugify
 
-To use the filename customization API, you need to pass a `slugify` function that allows you to customize the filename of a document based on its content.
+The `slugify` function is useful when you want to have a file name that is *derived* from other field(s) in your collection. use the filename customization API, you need to pass a `slugify` function that allows you to customize the filename of a document based on its content.
 
 ### Example with slugify and disabled
 
