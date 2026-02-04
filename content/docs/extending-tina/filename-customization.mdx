@@ -1,8 +1,7 @@
 ---
 id: /docs/extending-tina/filename-customization
 title: Filename customization
-alias: Any-
-last_edited: '2026-02-04T22:59:21.493Z'
+last_edited: '2026-02-04T23:54:31.036Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
@@ -21,15 +20,15 @@ By default, Tina does not enforce strict filename constraints, as operating syst
 
 ## Configuration
 
-| Property               | Description                                                                     |
-| ---------------------- | ------------------------------------------------------------------------------- |
-| `ui.filename.readonly` | Prevents the user from editing the filename                                     |
-| `ui.filename.slugify`  | A function that generates the filename based on form values                     |
-| `ui.filename.parse`    | A function that sanitizes the filename input as the user types                  |
+| Property               | Description                                                    |
+| ---------------------- | -------------------------------------------------------------- |
+| `ui.filename.readonly` | Prevents the user from editing the filename                    |
+| `ui.filename.slugify`  | A function that generates the filename based on form values    |
+| `ui.filename.parse`    | A function that sanitizes the filename input as the user types |
 
 ## Option A: Sanitizing Input with `parse`
 
-The `parse` function allows you to enforce filename constraints within the editor. The provided callback function sanitizes user input in real-time. 
+The `parse` function allows you to enforce filename constraints within the editor. The provided callback function sanitizes user input in real-time.
 
 ### Example using parse to enforce snake case
 
