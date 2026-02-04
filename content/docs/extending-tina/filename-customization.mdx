@@ -7,29 +7,29 @@ next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
 
-By default Tina doesn't provide any opinionated file name constraints. This is because most operating systems provide a variety of file name configurations and we didn't want users to be constrained. If you need to enforce file name constraints at the collection level, Tina provides a few options for you.
+By default, Tina does not enforce strict filename constraints, as operating systems support a wide variety of formats. However, you can enforce custom constraints at the collection level if needed.
 
-## Limitations
+## Filename Rules
 
-* Filename must contain only `a-z`, `A-Z`, `0-9` , `-`, `_`, `.`, or `/`.
-* File names cannot contain spaces
-* The filename generated cannot be a duplicate within the collection
-* If the filename starts with `/` it will be treated as an absolute path relative to the collection root
+* Filenames must contain only `a-z`, `A-Z`, `0-9` , `-`, `_`, `.`, or `/`.
+* Filenames cannot contain spaces
+* The filename generated must be unique within the collection
+* If the filename starts with `/`, it will be treated as an absolute path relative to the collection root
   * Example: `/foo/bar/blog-post` will be saved as `<MyCollectionPath>/post/blog-post.md`
-* If the filename does not start with `/` it will be treated as a relative to your current folder
+* If the filename does not start with `/`, it will be treated as relative to the current folder
   * Example: `bar/blog-post` will be saved as `<MyCollectionPath>/<CurrentDirectory>/bar/blog-post.md`
 
-## Definition
+## Configuration
 
 | Property               | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------------- |
-| `ui.filename.readonly` | Prevent the editor from editing the filename                                    |
-| `ui.filename.slugify`  | A function that takes in the values of the form and returns the filename        |
-| `ui.filename.parse`    | A function that parses the filename into the desired format when the user types |
+| `ui.filename.readonly` | Prevents the user from editing the filename                                     |
+| `ui.filename.slugify`  | A function that generates the filename based on form values                     |
+| `ui.filename.parse`    | A function that sanitizes the filename input as the user types                  |
 
-## Option A: using parse
+## Option A: Sanitizing Input with `parse`
 
-Using the parse function you can enforce file constraints within the Tina editor. The callback function you provide will be used to sanitise the user input while they're typing. 
+The `parse` function allows you to enforce filename constraints within the editor. The provided callback function sanitizes user input in real-time. 
 
 ### Example using parse to enforce snake case
 
@@ -57,13 +57,13 @@ export default defineConfig({
 });
 ```
 
-## Option B: using slugify
+## Option B: Generating Filenames with `slugify`
 
-The `slugify` function is useful when you want to have a file name that is *derived* from other field(s) in your collection.
+Use the `slugify` function to automatically generate filenames based on other fields in the collection.
 
 <WarningCallout
   body={<>
-    The `slugify` function only applies constraints when the user creates new files. Users still have complete freedom when renaming a file.
+    The `slugify` function only applies constraints when the user creates new files. Users can still rename files freely after creation.
   </>}
 />
 
@@ -113,7 +113,7 @@ export default defineConfig({
 
 ### Example with default slugify
 
-If no slugify function is provided and there is a field with `isTitle: true`. A default slugify function will be used that strips out every non-alphanumeric character and replaces spaces with dashes.
+If no `slugify` function is provided and a field has `isTitle: true`, Tina uses a default `slugify` function. This removes non-alphanumeric characters and replaces spaces with dashes.
 
 ```ts
 export default defineConfig({
