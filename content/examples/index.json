@@ -14,7 +14,7 @@
     },
     {
       "label": "Tina Self Hosted Demo",
-      "description": "A demo of how to use self-hosted TinaCMS with Nextjs.\\\n\\\nUses\n\n* Vercel KV\n* Github\n* Auth.js\n",
+      "description": "A demo of how to use self-hosted TinaCMS with Nextjs.\\\n\\\nUses\n\n* Vercel KV\n* GitHub\n* Auth.js\n",
       "image": "/img/Tina_Self_Hosted_Demo_k4vpql.png",
       "link": "https://github.com/tinacms/tina-self-hosted-demo"
     },
