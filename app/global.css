@@ -13,6 +13,16 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* IBM Plex Sans Medium */
+@font-face {
+  font-family: 'IBMPlexSans-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-Medium.woff2') format('woff2');
+}
+
 :root {
   scroll-behavior: smooth;
   scroll-padding-top: 200px;

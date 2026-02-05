@@ -37,6 +37,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/bundle-analyzer": "^15.4.2",
     "@next/third-parties": "^15.3.4",
+    "@radix-ui/react-slot": "^1.2.4",
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^8.17.14",
     "@styled-jsx/plugin-sass": "^4.1.1",
@@ -112,7 +113,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "^3.1.2",
+    "tinacms": "^3.4.1",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
@@ -121,7 +122,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
-    "@tinacms/cli": "^2.0.5",
+    "@tinacms/cli": "^2.1.4",
     "@types/cookie": "^0.6.0",
     "@types/jest": "^25.2.3",
     "@types/negotiator": "^0.6.4",

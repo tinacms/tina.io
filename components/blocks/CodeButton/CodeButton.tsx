@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { BiCheck, BiCopy } from 'react-icons/bi';
 import 'react-responsive-modal/styles.css';
-import { CheckIcon } from '@heroicons/react/24/outline';
 import { IoMdClose } from 'react-icons/io';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { sanitizeLabel } from 'utils/sanitizeLabel';

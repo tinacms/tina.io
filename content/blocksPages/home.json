@@ -18,6 +18,18 @@
       ],
       "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/Relax-Llama.png",
+      "recentNewsBanner": {
+        "title": "See how SSW moved 3500+ pages to TinaCMS",
+        "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+        "openInNewTab": true,
+        "badge": {
+          "text": "new",
+          "icon": "MdOutlineVideocam",
+          "position": "left",
+          "color": "orange"
+        },
+        "backgroundColor": "blueSecondary"
+      },
       "_template": "heroV2"
     },
     {
@@ -379,6 +391,17 @@
     },
     {
       "title": "Recent Videos",
+      "featuredHeading": "Featured Video",
+      "featuredPost": {
+        "title": "TinaCMS for GitHub - The SSW Rules Migration ",
+        "description": "Jake walks you through the migration of the SSW\nRules site from Decap CMS and Gatsby to Tina CMS and Next.js.",
+        "url": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+        "datePosted": "2026-01-16T13:00:00.000Z",
+        "authorName": "Jake Bayliss",
+        "authorUrl": "https://www.ssw.com.au/people/jake-bayliss/",
+        "embedUrl": "",
+        "imageUrl": "/jake-ssw-rules-video.png"
+      },
       "youtubeVideos": [
         {
           "embedUrl": "https://www.youtube.com/embed/cChyJFvVo4A?si=0QrmfYk2Sn2TOHxT",

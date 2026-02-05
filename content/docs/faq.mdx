@@ -2,7 +2,7 @@
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
 alias: FAQ
-last_edited: '2025-11-17T04:40:04.268Z'
+last_edited: '2026-02-05T22:30:32.697Z'
 next: ''
 previous: ''
 ---
@@ -32,7 +32,21 @@ Anyone can start using Tina right away but it is designed for developers to setu
 
 ## 4. What versions of Node are supported?
 
-TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.
+TinaCMS is supported on all LTS versions of Node. See [Node.js Releases](https://nodejs.org/en/about/previous-releases) to find out more about release versions.
+
+NPM, PNPM and Yarn package managers are all supported.
+
+| Node Version |                                                                  |
+| ------------ | ---------------------------------------------------------------- |
+| v25.x        | ✅ Supported - current but not LTS                                |
+| v24.x LTS    | ✅ Supported - recommended for production                         |
+| v23.x        | ℹ️ Supported - upgrade is recommended since v23.x is EoL  |
+| v22.x LTS    | ✅ Supported - good for production                                |
+| v21.x        | ℹ️ Supported - upgrade is recommended since v21.x is EoL  |
+| v20.x LTS    | ✅ Supported - recommended to update                              |
+| v19.x        | ❌ EoL                                                            |
+
+Table updated February 2026
 
 ## 5. What is Tina's tech stack?
 
@@ -212,8 +226,8 @@ The alternative would be to add a [custom field component](https://tina.io/docs/
 
 **Video: FAQ - Getting a 503 Service Unavailable error when loading the reference field**
 
-## 19. Do I need a GitHub account to edit? 
+## 19. Do I need a GitHub account to edit?
 
-No! Only the individual who sets up the TinaCloud project, linking it to a GitHub repository, requires GitHub. 
+No! Only the individual who sets up the TinaCloud project, linking it to a GitHub repository, requires GitHub.
 
-Editors can create a [TinaCloud](https://app.tina.io) account with just their email. If co-authoring is enabled for the editor, then commits will be co-authored by their email address. 
+Editors can create a [TinaCloud](https://app.tina.io) account with just their email. If co-authoring is enabled for the editor, then commits will be co-authored by their email address.
