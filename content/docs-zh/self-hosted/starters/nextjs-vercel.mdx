@@ -9,11 +9,11 @@ previous: content/docs-zh/self-hosted/overview.mdx
 
 ## 介绍
 
-本文档将指导您设置我们预配置的自托管示例存储库。此实现使用：
+本文档将指导您设置我们预配置的自托管示例库。此实现使用：
 
 - [NextJS](https://nextjs.org/)
 - 用于[数据库适配器](/docs/reference/self-hosted/database-adapter/overview)的 [Vercel](/docs/reference/self-hosted/database-adapter/vercel-kv) KV
-- 用于其[认证提供者](/docs/reference/self-hosted/auth-provider/overview)的 [NextAuth](/docs/reference/self-hosted/auth-provider/authjs)
+- 用于其[身份验证提供者](/docs/reference/self-hosted/auth-provider/overview)的 [NextAuth](/docs/reference/self-hosted/auth-provider/authjs)
 
 ## 部署入门模板
 
@@ -23,7 +23,7 @@ previous: content/docs-zh/self-hosted/overview.mdx
 
 这将：
 
-- 在您的 GitHub 账户中创建自托管入门[存储库](https://github.com/tinacms/tina-self-hosted-demo)的副本
+- 在您的 GitHub 账户中创建自托管入门[库](https://github.com/tinacms/tina-self-hosted-demo)的副本
 - 使用入门代码创建一个新的 Vercel 项目
 - 为项目创建一个新的 Vercel KV 存储
 
@@ -37,11 +37,11 @@ previous: content/docs-zh/self-hosted/overview.mdx
 
 #### `GITHUB_PERSONAL_ACCESS_TOKEN`
 
-可以在您的 [GitHub 开发者设置](https://github.com/settings/personal-access-tokens/new)中生成 GitHub 个人访问令牌。确保为新存储库分配 `repo` 访问权限，并具有对内容的读/写访问权限。
+可以在您的 [GitHub 开发者设置](https://github.com/settings/personal-access-tokens/new)中生成 GitHub 个人访问令牌。确保为新库分配 `repo` 访问权限，并具有对内容的读/写访问权限。
 
 您可能希望将到期日期更改为超过 30 天（最大为 1 年）。
 
-![GitHub 认证设置](/img/docs/self-hosted/personal-access-token.png)
+![GitHub 身份验证设置](/img/docs/self-hosted/personal-access-token.png)
 
 #### `NEXTAUTH_SECRET`
 
@@ -61,15 +61,15 @@ openssl rand -hex 16
 
 ## 添加其他用户
 
-查看 [用户管理文档](/docs/self-hosted/user-management/)以了解如何添加其他用户的信息。
+查看 [用户管理文档](/docs/self-hosted/user-management/)以获取有关如何添加其他用户的信息。
 
 > 注意：当您在本地测试 TinaCMS 时，您无需登录即可访问 CMS。
 
 ## 本地开发
 
-### 克隆存储库
+### 克隆库
 
-（将 URL 替换为您新分叉的存储库）
+（将 URL 替换为您新分叉的库）
 
 ```shell
 git clone <YourGitUrl>
@@ -89,8 +89,8 @@ yarn install
 cp .env.example .env
 ```
 
-在本地使用与之前在 Vercel 项目中设置的相同环境变量。
-您还需要添加一些在 Vercel 中自动应用于您的 [Vercel KV 存储](https://vercel.com/dashboard/stores) 的环境变量。
+在本地使用与您之前在 Vercel 项目中设置的相同环境变量。
+您还需要添加一些在 Vercel 中自动应用于您的 [Vercel KV 存储](https://vercel.com/dashboard/stores) 的环境变量
 
 ```env
 # GitHub 凭证用于 onPut 和 onDelete
@@ -115,4 +115,4 @@ KV_REST_API_TOKEN=
 yarn dev
 ```
 
-您将能够在 `http://localhost:3000` 查看您的入门项目。要使用 TinaCMS 编辑内容，请访问 `http://localhost:3000/admin`。
+您将能够在 `http://localhost:3000` 查看您的入门站点。要使用 TinaCMS 编辑内容，请访问 `http://localhost:3000/admin`
