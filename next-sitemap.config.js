@@ -32,7 +32,14 @@ module.exports = {
       return {
         loc: '/',
         changefreq: 'daily',
-        priority: 0.7,
+        priority: 1.0,
+      };
+    }
+    if (path === '/zh/home') {
+      return {
+        loc: '/zh',
+        changefreq: 'daily',
+        priority: 1.0,
       };
     }
     if (path === '/') {
