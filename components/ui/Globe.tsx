@@ -5,18 +5,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
-const isWebGLAvailable = (): boolean => {
-  try {
-    const canvas = document.createElement('canvas');
-    return !!(
-      window.WebGLRenderingContext &&
-      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
-    );
-  } catch {
-    return false;
-  }
-};
-
 const GlobeFallback = () => (
   <div
     style={{ width: '100%', height: '700px' }}
@@ -290,11 +278,6 @@ const Globe = ({ activeGlobeId, cardItems }) => {
     width: '100%',
     height: '700px',
   });
-  const [webGLSupported, setWebGLSupported] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    setWebGLSupported(isWebGLAvailable());
-  }, []);
 
   useEffect(() => {
     const updateControls = () => {
@@ -325,19 +308,10 @@ const Globe = ({ activeGlobeId, cardItems }) => {
     };
   }, []);
 
-  // Show nothing while checking WebGL support (prevents hydration mismatch)
-  if (webGLSupported === null) {
-    return <div style={{ width: '100%', height: '700px' }} />;
-  }
-
-  // Show fallback if WebGL is not supported
-  if (!webGLSupported) {
-    return <GlobeFallback />;
-  }
-
   return (
     <div ref={containerRef} style={{ width: '100%', height: '700px' }}>
       <Canvas
+        fallback={<GlobeFallback />}
         style={{
           width: canvasSize.width,
           height: canvasSize.height,
