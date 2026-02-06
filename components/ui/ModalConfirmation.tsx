@@ -1,7 +1,5 @@
-// biome-ignore lint/style/useImportType: <TODO>
-import React from 'react';
-import Modal from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
+import type React from 'react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 interface ModalConfirmationProps {
   isOpen: boolean;
@@ -15,18 +13,11 @@ const ModalConfirmation: React.FC<ModalConfirmationProps> = ({
   body,
 }) => {
   return (
-    <Modal
-      open={isOpen}
-      onClose={onClose}
-      center
-      classNames={{
-        overlay: 'bg-gray-400 bg-opacity-80',
-        modal:
-          'bg-white w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/3 max-w-5xl rounded-2xl p-4 text-left',
-      }}
-    >
-      <div>{body}</div>
-    </Modal>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="bg-white w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/3 max-w-5xl rounded-2xl p-4 text-left">
+        <div>{body}</div>
+      </DialogContent>
+    </Dialog>
   );
 };
 

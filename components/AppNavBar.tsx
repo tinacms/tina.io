@@ -16,11 +16,10 @@ import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
-import { Modal } from 'react-responsive-modal';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import { saveLocaleToCookie } from '@/utils/locale';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
-import 'react-responsive-modal/styles.css';
 import { EmailForm } from '@/component/modals/EmailForm';
 import { Button, LinkButton } from './ui/Button';
 
@@ -803,27 +802,26 @@ export function AppNavBar({ sticky = true }) {
         </div>
       </div>
 
-      <Modal open={modalType === 'BookDemo'} onClose={closeModal} center>
-        <DemoForm />
-      </Modal>
+      <Dialog open={modalType === 'BookDemo'} onOpenChange={(open) => !open && closeModal()}>
+        <DialogContent className="max-w-5xl w-[90vw]">
+          <DemoForm />
+        </DialogContent>
+      </Dialog>
 
-      <Modal
-        open={modalType === 'EmailForm'}
-        onClose={closeModal}
-        center
-        classNames={{
-          modal: 'email-and-demo-modal email-form-modal',
-        }}
-      >
-        <EmailForm isFooter={false} />
-      </Modal>
+      <Dialog open={modalType === 'EmailForm'} onOpenChange={(open) => !open && closeModal()}>
+        <DialogContent className="max-w-5xl w-[90vw]">
+          <EmailForm isFooter={false} />
+        </DialogContent>
+      </Dialog>
 
-      <Modal open={modalType === 'LanguageSelect'} onClose={closeModal} center>
-        <LanguageSelect
-          onLanguageSelect={handleLanguageChange}
-          currentLanguage={selectedFlag}
-        />
-      </Modal>
+      <Dialog open={modalType === 'LanguageSelect'} onOpenChange={(open) => !open && closeModal()}>
+        <DialogContent className="sm:max-w-md">
+          <LanguageSelect
+            onLanguageSelect={handleLanguageChange}
+            currentLanguage={selectedFlag}
+          />
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
