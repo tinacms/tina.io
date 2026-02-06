@@ -1,13 +1,10 @@
 import { DemoForm } from 'components/modals/BookDemo';
 import { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
-import { EmailForm } from '@/component/modals/EmailForm';
-import {
-  Dialog,
-  DialogContent,
-} from '@/components/ui/dialog';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
+import { EmailForm } from '@/component/modals/EmailForm';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { ModalButton } from '../../ui';
 
 // Function that returns modal components
@@ -71,9 +68,7 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
       </div>
 
       <Dialog open={open} onOpenChange={(isOpen) => !isOpen && closeModal()}>
-        <DialogContent className="sm:max-w-lg">
-          {ModalContent}
-        </DialogContent>
+        <DialogContent className="sm:max-w-lg">{ModalContent}</DialogContent>
       </Dialog>
     </>
   );

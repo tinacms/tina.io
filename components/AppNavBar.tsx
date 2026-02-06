@@ -16,11 +16,11 @@ import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
+import { EmailForm } from '@/component/modals/EmailForm';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import { saveLocaleToCookie } from '@/utils/locale';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
-import { EmailForm } from '@/component/modals/EmailForm';
 import { Button, LinkButton } from './ui/Button';
 
 enum ValidColors {
@@ -802,19 +802,28 @@ export function AppNavBar({ sticky = true }) {
         </div>
       </div>
 
-      <Dialog open={modalType === 'BookDemo'} onOpenChange={(open) => !open && closeModal()}>
+      <Dialog
+        open={modalType === 'BookDemo'}
+        onOpenChange={(open) => !open && closeModal()}
+      >
         <DialogContent className="max-w-5xl w-[90vw]">
           <DemoForm />
         </DialogContent>
       </Dialog>
 
-      <Dialog open={modalType === 'EmailForm'} onOpenChange={(open) => !open && closeModal()}>
+      <Dialog
+        open={modalType === 'EmailForm'}
+        onOpenChange={(open) => !open && closeModal()}
+      >
         <DialogContent className="max-w-5xl w-[90vw]">
           <EmailForm isFooter={false} />
         </DialogContent>
       </Dialog>
 
-      <Dialog open={modalType === 'LanguageSelect'} onOpenChange={(open) => !open && closeModal()}>
+      <Dialog
+        open={modalType === 'LanguageSelect'}
+        onOpenChange={(open) => !open && closeModal()}
+      >
         <DialogContent className="sm:max-w-md">
           <LanguageSelect
             onLanguageSelect={handleLanguageChange}

@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 
 // Helper function for highlighting Algolia search hits
