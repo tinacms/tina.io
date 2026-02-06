@@ -51,7 +51,9 @@ If you’re not sure what you need yet, ask your assistant to help brainstorm po
 
 For example:
 
-`Suggest five useful blocks for a long-form article layout in TinaCMS.`
+```plaintext
+Suggest five useful blocks for a long-form article layout in TinaCMS.
+```
 
 ### 2.2 Define Your Scope
 
@@ -74,17 +76,23 @@ Help your AI understand Tina's unique architecture.
 ### 3.1 Schema First
 
 Tina starts with the schema. Instead of asking for a page, ask for the schema definition first.
-`Create a 'Testimonial' object for my schema. It should have an author name, quote, and avatar image.`
+```plaintext
+Create a 'Testimonial' object for my schema. It should have an author name, quote, and avatar image.
+```
 
 ### 3.2 Visual Editing
 
 AI often forgets the glue that makes real-time editing work. Remind it:
-`When building the component, ensure every editable element has a 'data-tina-field' attribute matching the schema.`
+```plaintext
+When building the component, ensure every editable element has a 'data-tina-field' attribute matching the schema.
+```
 
 ### 3.3 TypeScript Types
 
 Don't manually type your props.
-`Generate the TypeScript interface for this component based on the Tina query response.`
+```plaintext
+Generate the TypeScript interface for this component based on the Tina query response.
+```
 
 ***
 
@@ -100,7 +108,9 @@ This approach helps your assistant maintain context, reduces the chance of error
 
 Rather than prompting your assistant to “build a blog site”, start with a single feature or component. If you know what you want, use something like:
 
-`Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config file so they can be reused across all comment blocks.`
+```plaintext
+Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config file so they can be reused across all comment blocks.
+```
 
 This defines scope and structure, helping AI produce accurate, context-aware code.
 
@@ -159,13 +169,19 @@ Treat every output as a draft.
 
 * If a suggestion is close: Accept, tweak and refine
 * If it’s off: Add more detail and regenerate
-* If it forgets Tina: Remind it explicitly: `This is using TinaCMS, follow its component patterns.`
+* If it forgets Tina: Remind it explicitly:
+
+```plaintext
+This is using TinaCMS, follow its component patterns.
+```
 
 Even debugging can be a collaboration. Instead of staring at an error alone, share it with your AI assistant:
 
-`After those changes to the comment system, the block no longer renders.
+```plaintext
+After those changes to the comment system, the block no longer renders.
 Here's the error: {{error}}
-What's likely causing this, and how can I fix it?`
+What's likely causing this, and how can I fix it?
+```
 
 AI won’t always nail the fix, but it will usually point you in the right direction. Use that feedback to keep momentum instead of getting stuck. 
 
