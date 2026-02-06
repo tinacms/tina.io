@@ -41,7 +41,7 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
           isList
             ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row'
             : 'flex flex-row',
-          align === 'center' && 'justify-center'
+          align === 'center' && 'justify-center',
         )}
       >
         {items?.map((item, index) => {
