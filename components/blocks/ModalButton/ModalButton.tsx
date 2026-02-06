@@ -5,6 +5,7 @@ import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { EmailForm } from '@/component/modals/EmailForm';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 import { ModalButton } from '../../ui';
 
 // Function that returns modal components
@@ -34,16 +35,14 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
   return (
     <>
       <div
-        className={[
+        className={cn(
           '-mb-2',
           'items-center',
           isList
             ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row'
             : 'flex flex-row',
-          align === 'center' && 'justify-center',
-        ]
-          .filter(Boolean)
-          .join(' ')}
+          align === 'center' && 'justify-center'
+        )}
       >
         {items?.map((item, index) => {
           const { color, label, icon, modal, shape } = item;

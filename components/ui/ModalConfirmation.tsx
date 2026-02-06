@@ -15,7 +15,7 @@ const ModalConfirmation: React.FC<ModalConfirmationProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="bg-white w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/3 max-w-5xl rounded-2xl p-4 text-left">
-        <div>{body}</div>
+        {body}
       </DialogContent>
     </Dialog>
   );
