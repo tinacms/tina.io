@@ -19,12 +19,13 @@ For advanced tasks, terminal tools like **GitHub Copilot CLI** are faster than c
 
 ### 1.2 Setup your folder structure
 
-Before generating any code, create a clean folder where your project will live.
+Before generating any code, create a new folder where your project will live.
 This helps AI understand where new files should go and keeps your workspace organized.
+Trying to manage TinaCMS code in a random folder can confuse the AI.
 
 ### 1.3 Use a TinaCMS starter kit
 
-AI works best when it has context. Having the template gives it some code to model itself on. Follow along with our [official guide](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you:
+AI works best when it has context. Having the template gives it some code to model itself on. Follow along with our [official guide](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you with a prompt like the one below:
 
 ```plaintext
 Please set up a TinaCMS starter template
@@ -34,6 +35,7 @@ Use tina.io as documentation reference
 ```
 
 ![](/setup.png)
+**Figure: Results of the above prompt**
 
 Once installed, explore the generated files so you understand how TinaCMS is wired together.
 Your AI assistant will reference this structure automatically in later prompts, so the more you know your starting point, the more precise your direction will be.
@@ -123,6 +125,7 @@ AI works best when given small, focused tasks. Instead of asking for *“the who
 This approach helps your assistant maintain context, reduces the chance of errors, and makes debugging much easier.
 
 ![](/vibe_cycle.png)
+**Figure: The Vibe Coding Cycle**
 
 ### 4.1 Start Small
 
@@ -148,7 +151,7 @@ The earlier you validate, the less time you’ll spend debugging larger combined
 
 ## 5. Commit Early, Before Letting AI Go Wild
 
-AI is fast and confident, sometimes a bit too much. It may:
+AI is fast and confident, sometimes overly so. It may:
 
 * Rename things that shouldn’t be touched
 * “Clean up” code that was actually doing something important
