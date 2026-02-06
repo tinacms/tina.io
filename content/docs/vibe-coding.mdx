@@ -13,7 +13,7 @@ Set up an environment where your AI assistant can shine:
 
 ### 1.1 Use an IDE with AI integration
 
-Use a modern IDE that supports inline AI assistance.\
+Use a modern IDE that supports inline AI assistance.
 We recommend **Visual Studio Code** paired with **GitHub Copilot** or another inline AI tool such as Cursor.
 
 ### 1.2 Setup your folder structure
@@ -41,28 +41,11 @@ Your AI assistant will reference this structure automatically in later prompts, 
 
 ***
 
-## 2. Build in Bite-Sized Pieces
+## 2. Planning Before Prompting
 
-AI works best when given small, focused tasks. Instead of asking for *“the whole project”*, break your work into **manageable, self-contained steps** that can be tested and refined one at a time.
+Before writing code, take a moment to define what you're building. AI performs best when you provide a clear roadmap rather than vague requests.
 
-This approach helps your assistant maintain context, reduces the chance of errors, and makes debugging much easier.
-
-![](/vibe_cycle.png)
-
-### 2.1 Start Small
-
-Rather than prompting your assistant to “build a blog site”, start with a single feature or component. If you know what you want, use something like:
-
-`Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config
- file so they can be reused across all comment blocks.`
-
-This defines scope and structure, helping AI produce accurate, context-aware code.
-
-### 2.2 Iterate Feature by Feature
-
-Once one component or schema works, move on to the next logical piece. By building one feature at a time, your AI assistant learns your project’s structure progressively and builds on a solid foundation.
-
-### 2.3 Use AI for Brainstorming
+### 2.1 Use AI for Brainstorming
 
 If you’re not sure what you need yet, ask your assistant to help brainstorm possible content structures or reusable blocks.
 
@@ -70,7 +53,62 @@ For example:
 
 `Suggest five useful blocks for a long-form article layout in TinaCMS.`
 
-### 2.4 Validate Early
+### 2.2 Define Your Scope
+
+Brief the AI on your **Goal**, **Key Features**, and **Constraints**.
+
+Instead of: *"Build a portfolio"*
+Try: *"I want a portfolio site with a 'Projects' collection. Each project has a title, cover image, and a rich-text body. Use Tailwind for styling."*
+
+### 2.3 Explain the Context
+
+If you have existing code, tell the AI where to look.
+*"I have a `content/posts` directory and a `components/Post.tsx` file. I want to add a new field to the post schema."*
+
+***
+
+## 3. Master the Tina-Specific Patterns
+
+Help your AI understand Tina's unique architecture.
+
+### 3.1 Schema First
+
+Tina starts with the schema. Instead of asking for a page, ask for the schema definition first.
+`Create a 'Testimonial' object for my schema. It should have an author name, quote, and avatar image.`
+
+### 3.2 Visual Editing
+
+AI often forgets the glue that makes real-time editing work. Remind it:
+`When building the component, ensure every editable element has a 'data-tina-field' attribute matching the schema.`
+
+### 3.3 TypeScript Types
+
+Don't manually type your props.
+`Generate the TypeScript interface for this component based on the Tina query response.`
+
+***
+
+## 4. Build in Bite-Sized Pieces
+
+AI works best when given small, focused tasks. Instead of asking for *“the whole project”*, break your work into **manageable, self-contained steps** that can be tested and refined one at a time.
+
+This approach helps your assistant maintain context, reduces the chance of errors, and makes debugging much easier.
+
+![](/vibe_cycle.png)
+
+### 4.1 Start Small
+
+Rather than prompting your assistant to “build a blog site”, start with a single feature or component. If you know what you want, use something like:
+
+`Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config file so they can be reused across all comment blocks.`
+
+This defines scope and structure, helping AI produce accurate, context-aware code.
+
+### 4.2 Iterate Feature by Feature
+
+Once one component or schema works, move on to the next logical piece. By building one feature at a time, your AI assistant learns your project’s structure progressively and builds on a solid foundation.
+
+### 4.3 Validate Early
 
 After each feature, run your development server and verify that components render and work correctly.
 
@@ -78,7 +116,7 @@ The earlier you validate, the less time you’ll spend debugging larger combined
 
 ***
 
-## 3. Commit Early, Before Letting AI Go Wild
+## 5. Commit Early, Before Letting AI Go Wild
 
 AI is fast and confident, sometimes a bit too much. It may:
 
@@ -96,9 +134,25 @@ This protects your momentum. If the AI derails, you can reset instead of untangl
 
 ***
 
-## 4. Test & Iterate
+## 6. Reset Context Between Tasks
 
-Your job isn’t to accept suggestions blindly, it’s to steer.
+Don't let your chat session run forever.
+
+A common trap is to keep one long conversation going while moving from task to task (e.g., **defining a new collection** → **building a React component** → **styling with Tailwind**). The AI tries to hold onto *everything* you’ve discussed, which leads to confusion and hallucinated code from previous tasks.
+
+**Treat your AI context like a mental workspace.** When you finish a distinct task:
+
+1.  **Commit your changes** (see section 5).
+2.  **Clear the chat** or start a new session.
+3.  **Prime the AI** with just the context it needs for the new task.
+
+Gordon Beeming calls this ["letting your AI call it a day"](https://gordonbeeming.com/blog/2025-10-28/your-ai-copilot-has-a-mental-workday-too). A fresh session ensures the AI focuses *only* on the current problem, not the baggage of the last three hours.
+
+***
+
+## 7. Test & Iterate
+
+Your job isn’t to accept suggestions blindly. It’s to steer.
 
 AI will often get you close, but rarely perfect on the first try.
 Treat every output as a draft.
@@ -117,7 +171,7 @@ AI won’t always nail the fix, but it will usually point you in the right direc
 
 ***
 
-## 5. When It Gets Stuck
+## 8. When It Gets Stuck
 
 If AI starts repeating or drifting off-track, reset the prompt.
 
@@ -132,7 +186,7 @@ That single line of clarity is often all it needs to snap back into alignment.
 
 ## Final Thought
 
-AI won’t build your site for you but it will build *with* you.\
-Your job is to keep it aimed in the right direction by understanding Tina’s patterns, give clear prompts, and stay hands-on.
+AI won’t build your site for you, but it will build *with* you.
+Your job is to keep it aimed in the right direction by understanding Tina’s patterns, giving clear prompts, and staying hands-on.
 
 **Build small. Commit often. Iterate confidently.**
