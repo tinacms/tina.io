@@ -1,6 +1,7 @@
 ---
 title: How We Name Things in the TinaCMS
-alias: tinacms-lingo
+alias: lingo
+last_edited: '2026-02-08T22:41:21.654Z'
 next: content/docs/index.mdx
 previous: content/docs/setup-overview.mdx
 ---
@@ -10,27 +11,84 @@ previous: content/docs/setup-overview.mdx
 As TinaCMS continues to evolve, it's important to use clear and consistent language when describing its editing experience. We often reference a set of terms that explain how visual editing works and how editors interact with content. The following definitions outline these terms and show how they fit together:
 
 ### Admin Sidebar
+
 The Sidebar with collections listed (Not to be confused with the TinaCMS Editor)
 
+![](/lingo/TinaCMs-Admin-Sidebar.jpeg "Left-hand side Admin Sidebar")
+
 ### TinaCMS Editor
+
 The left-hand pane where content is edited using structured fields and inputs.
 
+![](/lingo/TinaCMS-Editor.jpeg "Left-hand side TinaCMS Editor")
+
 ### Visual Editing
+
 The overall two-pane editing experience, with the **Editor** on the left and a live **Site Preview** on the right.
 
-![](/tinacms-visual-editing.png)
+![](/lingo/Visual-Editing.jpeg "Visual editing with Editor (left) and Site Preview (right)")
 
 ### Site Preview
+
 The right-hand pane that displays a live view of the website as content is edited.
 
 ### Visual Element Highlighting
+
 Hovering over elements in the **Site Preview** highlights them in blue 🟦, helping identify page structure and content relationships.
 
+![](/lingo/VisualHighlight.jpeg "Visual Element Highlighting of Title")
+
 ### Fields
-Something that is editable in TinaCMS, defined in the config. Can come in many different shapes and sizes.
 
-### Rich Text Embed 
-The “Embeds/Templates” inside Rich Text Fields.
+[Fields](https://tina.io/docs/reference/fields) define the structure of the content served to your site. These are defined in your config, or in seperate `Template`'s.
 
-### Blocks 
-An Object Field using templates.
+```ts
+const someTemplate: Template = {
+  name: 'someTemplate',
+  label: 'Some Template',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string' }
+   ]}
+```
+
+![](</lingo/TinaCMS FIelds.jpeg> "Fields Highlighted in TinaCMS Editor")
+
+### Rich Text Embed
+
+Within [rich-text fields](/docs/reference/types/rich-text), we have the option to embed custom components as a template. Enriching markdown backed content with React components.
+
+```
+const someCollection: Collection = {
+  name: 'someCollection',
+  label: 'Some Collection',
+  path: 'content/someCollection',
+  format: 'mdx',
+  fields: [
+    {
+    name: 'richBody',
+    label: 'Rich Body',
+    type: 'rich-text',
+    templates: [
+      someTemplate
+      ]}
+     ]
+    }
+```
+
+![](</lingo/TinaCMS Rich Text Embed.jpeg> "Rich-text embeds inside a rich-text body")
+
+### Blocks
+
+[Blocks](/docs/editing/blocks) are a way to model flexible page-builder styled content. It is an ordered array of different components (sections), such as a hero, features, content etc.
+
+![](/lingo/TinaCMS-Editor.jpeg "Array of blocks under 'Page Sections'")
+
+### Editorial Workflow
+
+The [editorial workflow](/editorial-workflow) allows users to easily make changes in TinaCMS for a Git based environment. It gives users the ability to:
+
+* Create branches in the TinaCMS Editor
+* Make Git commits from their own site
+* Create pull-requests in the TinaCMS Editor
+
+<WebmEmbed embedSrc="/video/create-branch.webm" />

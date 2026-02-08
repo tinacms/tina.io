@@ -6,6 +6,7 @@ import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { cn } from '@/lib/utils';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 import { RecentNewsBanner } from './RecentNewsBanner';
+import { tinaField } from 'tinacms/dist/react';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const {
@@ -39,12 +40,13 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           {title && (
             <h2
               className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
+              data-tina-field={tinaField(data.data, 'title')}
             >
               {curlyBracketFormatter(title)}
             </h2>
           )}
           {subtext && (
-            <p className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">
+            <p className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md" data-tina-field={tinaField(data.data, 'subtext')}>
               {subtext}
             </p>
           )}
@@ -58,6 +60,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 key={`button-${button?.label || index}`}
                 button={button}
                 className="py-3"
+                data-tina-field={tinaField(button, 'label')}
               />
             ))}
           </div>
