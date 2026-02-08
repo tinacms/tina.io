@@ -24,7 +24,7 @@
           "_template": "item"
         },
         {
-          "title": "The Tina Content Model",
+          "title": "Modelling your Content",
           "slug": "content/docs/content-model-intro.mdx",
           "_template": "item"
         },
@@ -582,7 +582,7 @@
               "_template": "item"
             },
             {
-              "title": "Github Pages",
+              "title": "GitHub Pages",
               "slug": "content/docs/tinacloud/deployment-options/github-pages.mdx",
               "_template": "item"
             },

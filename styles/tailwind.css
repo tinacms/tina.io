@@ -4,44 +4,6 @@
 
 @config '../tailwind.config.js';
 
-.react-responsive-modal-container { 
-  overflow-y: hidden !important;
-}
-
-@layer utilities {
-  /* This is a hack to override the responsive modal's custom styling */
-  .react-responsive-modal-modal {
-    padding: 0 0 0 0 !important;
-    border-radius: 16px !important;
-    overflow: hidden !important;
-    max-height: 100% !important;
-    max-width: 62rem !important;
-    height: 20rem;
-  }
-
-  .email-and-demo-modal {
-    width: 75% !important;
-    max-width: 1200px !important;
-  }
-
-  .search-modal { 
-    height: 100% !important;
-    max-height: 40rem !important;
-  }
-
-  .email-form-modal {
-    height: auto !important;
-    min-height: 20rem;
-    max-height: 90vh !important;
-  }
-
-  .react-responsive-modal-closeButton {
-    background-color: white !important;
-    border-radius: 50% !important;
-    opacity: 50% !important;
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
