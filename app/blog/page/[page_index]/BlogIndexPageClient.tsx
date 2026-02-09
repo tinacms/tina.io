@@ -37,42 +37,46 @@ export default function BlogIndexPageClient({
   numberOfPages: numPages,
 }: BlogPageClientProps) {
   return (
-    <div className="p-6">
+    <section className="p-6">
+      <header className="text-center pt-8 pb-4">
+        <h1 className="font-ibm-plex text-4xl md:text-5xl lg:text-6xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          Blog{pageIndex > 1 ? ` - Page ${pageIndex}` : ''}
+        </h1>
+      </header>
       <div className="py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose mx-auto">
         {posts.map((post) => (
-          <DynamicLink
-            key={post.id}
-            href={`/blog/${post._sys.filename}`}
-            passHref
-          >
-            <div className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
-              <h3 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
+          <article key={post.id} className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
+            <DynamicLink
+              href={`/blog/${post._sys.filename}`}
+              passHref
+            >
+              <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                 {post.title}
-              </h3>
-              <div className="w-full text-[#241748] ">
-                <div className="flex justify-between items-center w-full mb-6 -mt-2">
-                  <p className="opacity-70">
-                    <span className="mr-1">By</span>
-                    <strong>{post.author}</strong>
-                  </p>
-                  <p className="opacity-70">{formatDate(post.date || '')}</p>
-                </div>
-                <div className=" font-light mb-6">
-                  <MarkdownContent
-                    skipHtml={true}
-                    content={extractTextFromBody(post.body)}
-                  />
-                </div>
-
-                <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
+              </h2>
+            </DynamicLink>
+            <div className="w-full text-[#241748] ">
+              <div className="flex justify-between items-center w-full mb-6 -mt-2">
+                <p className="opacity-70">
+                  <span className="mr-1">By</span>
+                  <strong>{post.author}</strong>
+                </p>
+                <time className="opacity-70" dateTime={post.date}>{formatDate(post.date || '')}</time>
               </div>
+              <div className=" font-light mb-6">
+                <MarkdownContent
+                  skipHtml={true}
+                  content={extractTextFromBody(post.body)}
+                />
+              </div>
+
+              <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
             </div>
-          </DynamicLink>
+          </article>
         ))}
-        <div className="mt-12">
+        <nav aria-label="Blog pagination" className="mt-12">
           <NewBlogPagination currentPage={pageIndex} numPages={numPages} />
-        </div>
+        </nav>
       </div>
-    </div>
+    </section>
   );
 }

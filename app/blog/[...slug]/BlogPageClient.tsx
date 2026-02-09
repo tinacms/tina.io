@@ -40,7 +40,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
     : null;
 
   return (
-    <div>
+    <article>
       <BlogPageTitle title={post.title} />
       <div className="p-6">
         <div className="max-w-prose mx-auto">
@@ -49,7 +49,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
               By
               <strong>{post.author}</strong>
             </span>
-            <span>{postedDate}</span>
+            <time dateTime={post.date}>{postedDate}</time>
           </div>
           <div className=" pt-6">
             <TinaMarkdown
@@ -60,7 +60,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
           {lastEditedDate && (
             <div className="mt-2 text-sm opacity-50">
-              Last Edited: {lastEditedDate}
+              Last Edited: <time dateTime={post.last_edited}>{lastEditedDate}</time>
             </div>
           )}
           <DocsPagination prevPage={previousPage} nextPage={nextPage} />
@@ -83,7 +83,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -93,9 +93,9 @@ function BlogPageTitle({ title }: { title: string }) {
     'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl lg:text-6xl';
 
   return (
-    <div className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">
-      <div className={blogTitleStyling}>{title}</div>
-    </div>
+    <header className="relative z-10 overflow-visible text-center px-8 pt-12 pb-4">
+      <h1 className={blogTitleStyling}>{title}</h1>
+    </header>
   );
 }
 

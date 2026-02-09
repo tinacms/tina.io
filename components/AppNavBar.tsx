@@ -494,7 +494,8 @@ const MobileNavMenu = ({
 
   return (
     <>
-      <div
+      <nav
+        aria-label="Mobile navigation"
         className={`fixed top-0 right-0 h-full w-[300px] bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         } `}
@@ -560,7 +561,7 @@ const MobileNavMenu = ({
             )}
           </ul>
         </div>
-      </div>
+      </nav>
 
       <div
         className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${
@@ -772,7 +773,7 @@ export function AppNavBar({ sticky = true }) {
 
   return (
     <>
-      <div ref={navRef} className={`relative w-full`}>
+      <header ref={navRef} className={`relative w-full`}>
         <div className="flex xl:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           <MobileNavMenu
             navItems={navItems}
@@ -800,7 +801,7 @@ export function AppNavBar({ sticky = true }) {
             pathName={pathName}
           />
         </div>
-      </div>
+      </header>
 
       <Dialog
         open={modalType === 'BookDemo'}

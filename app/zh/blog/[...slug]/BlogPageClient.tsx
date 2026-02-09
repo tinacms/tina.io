@@ -32,12 +32,12 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
     : null;
 
   return (
-    <div>
+    <article>
       <BlogPageTitle title={blogPostData.title} />
       <div className="p-6">
         <div className="pt-12 lg:pt-16 max-w-prose mx-auto">
           <div className="flex flex-col items-center opacity-80 m-0">
-            <span>{postedDate}</span>
+            <time dateTime={blogPostData.date}>{postedDate}</time>
             <div className="flex flex-row text-lg gap-1 pb-4">
               <span>By </span>
               <strong>{blogPostData.author}</strong>
@@ -52,7 +52,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
 
           {lastEditedDate && (
             <div className="mt-2 text-sm opacity-50">
-              Last Edited: {lastEditedDate}
+              Last Edited: <time dateTime={blogPostData.last_edited}>{lastEditedDate}</time>
             </div>
           )}
           <DocsPagination prevPage={previousPage} nextPage={nextPage} />
@@ -75,7 +75,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -85,9 +85,9 @@ function BlogPageTitle({ title }: { title: string }) {
     'text-transparent bg-clip-text font-ibm-plex mx-auto text-4xl md:text-5xl lg:text-6xl';
 
   return (
-    <div className="relative z-10 overflow-visible text-center px-8 py-12 lg:py-16">
-      <div className={blogTitleStyling}>{title}</div>
-    </div>
+    <header className="relative z-10 overflow-visible text-center px-8 py-12 lg:py-16">
+      <h1 className={blogTitleStyling}>{title}</h1>
+    </header>
   );
 }
 

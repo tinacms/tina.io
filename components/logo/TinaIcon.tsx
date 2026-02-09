@@ -11,7 +11,7 @@ export const TinaIcon = ({
 }) => {
   return (
     <Link href={link} className={className}>
-      <h1 className="flex items-center">
+      <span className="flex items-center">
         <TinaIconSvg
           className={`${children ? 'w-8' : 'w-16'} h-auto ${
             color === 'orange' ? 'fill-orange-500' : 'fill-white'
@@ -26,7 +26,7 @@ export const TinaIcon = ({
             {children} TinaCMS
           </span>
         )}
-      </h1>
+      </span>
     </Link>
   );
 };

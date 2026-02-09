@@ -307,22 +307,24 @@ export const DocsSearchBarHeader = ({
     <>
       <div className={`${paddingGlobal} pt-8`}>
         <div className="flex gap-8 max-w-sm">
-          <h1
+          <button
+            type="button"
             className={`${
               !learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
             } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
             onClick={() => setLearnActive(false)}
           >
             {isZh ? '文档' : 'Docs'}
-          </h1>
-          <h1
+          </button>
+          <button
+            type="button"
             className={`${
               learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
             } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
             onClick={() => setLearnActive(true)}
           >
             {isZh ? '学习' : 'Learn'}
-          </h1>
+          </button>
           <div className="mr-3"></div>
         </div>
         <div className="flex justify-between mb-4 md:ml-4">
