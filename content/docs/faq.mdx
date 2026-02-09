@@ -2,7 +2,7 @@
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
 alias: FAQ
-last_edited: '2026-02-09T04:33:39.499Z'
+last_edited: '2026-02-09T04:44:22.873Z'
 next: ''
 previous: ''
 ---
@@ -236,6 +236,8 @@ Editors can create a [TinaCloud](https://app.tina.io) account with just their em
 
 ## 20. GitHub Copilot branches not indexed by TinaCloud
 
-Due to a limitation with GitHub Copilot's webhook system, branches created are not indexed. TinaCMS branches need trigger the branch create event to be indexed. For more information track the progress on this [issue](https://github.com/tinacms/tinacloud/issues/3243).
+Due to a limitation with GitHub Copilot's webhook system, branches created by assigning work to GitHub copilot will fail to build. TinaCMS branches need trigger the branch create event to be indexed. For more information track the progress on this [issue](https://github.com/tinacms/tinacloud/issues/3243).
 
 As a workaround for the time being, GitHub copilot branches can be manually re-indexed within the tina cloud dashboard
+
+![](/img/docs/faq/renaming-copilot-branches.gif "Re-indexing GitHub copilot branches in Tinacloud")
