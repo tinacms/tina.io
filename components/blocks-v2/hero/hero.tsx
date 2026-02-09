@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
+import { tinaField } from 'tinacms/dist/react';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { cn } from '@/lib/utils';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 import { RecentNewsBanner } from './RecentNewsBanner';
-import { tinaField } from 'tinacms/dist/react';
 
 export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
   const {
@@ -46,7 +46,10 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             </h2>
           )}
           {subtext && (
-            <p className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md" data-tina-field={tinaField(data.data, 'subtext')}>
+            <p
+              className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md"
+              data-tina-field={tinaField(data.data, 'subtext')}
+            >
               {subtext}
             </p>
           )}
