@@ -13,6 +13,42 @@ import {
 
 const LazyGlobe = React.lazy(() => import('../../ui/Globe'));
 
+const GlobeFallback = () => (
+  <div
+    style={{ width: '100%', height: '700px' }}
+    className="flex items-center justify-center"
+  >
+    <Image
+      src="/img/tina-404-not-found.webp"
+      alt="Tina events around the world"
+      width={500}
+      height={500}
+      style={{ objectFit: 'contain' }}
+    />
+  </div>
+);
+
+class GlobeErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <GlobeFallback />;
+    }
+    return this.props.children;
+  }
+}
+
 export const Card = ({ cardItem, onHover }) => {
   const [formattedDate, setFormattedDate] = useState('');
   // By default, dates are shown in the client's timezone.
@@ -191,16 +227,18 @@ const EventsBlock = () => {
           ref={globeContainerRef}
         >
           {isGlobeVisible && (
-            <Suspense
-              fallback={
-                <div className="font-ibm-plex text-2xl">Loading Globe...</div>
-              }
-            >
-              <LazyGlobe
-                activeGlobeId={activeGlobeId}
-                cardItems={filteredEvents}
-              />
-            </Suspense>
+            <GlobeErrorBoundary>
+              <Suspense
+                fallback={
+                  <div className="font-ibm-plex text-2xl">Loading Globe...</div>
+                }
+              >
+                <LazyGlobe
+                  activeGlobeId={activeGlobeId}
+                  cardItems={filteredEvents}
+                />
+              </Suspense>
+            </GlobeErrorBoundary>
           )}
         </div>
         <div className="flex flex-col w-full lg:w-1/2 justify-start">

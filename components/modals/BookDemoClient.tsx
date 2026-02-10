@@ -20,7 +20,7 @@ export function DemoFormClient({
   error: string | null;
 }) {
   return (
-    <div className="py-10 h-full flex flex-col">
+    <div className="py-10 h-full flex flex-col !w-full">
       <div className="flex justify-center pb-8">
         <h1 className="inline-block m-0 font-ibm-plex lg:text-3xl md:text-2xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
           Choose your location

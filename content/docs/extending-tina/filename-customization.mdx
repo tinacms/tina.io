@@ -1,35 +1,72 @@
 ---
 id: /docs/extending-tina/filename-customization
-
 title: Filename customization
+last_edited: '2026-02-04T23:54:31.036Z'
 next: content/docs/extending-tina/before-submit.mdx
 previous: content/docs/extending-tina/format-and-parse.mdx
 ---
 
-The filename customization API allows you to customize the filename of a document based on its content. This is useful when you do not want your editors to have to worry about the filename of a document.
+By default, Tina does not enforce strict filename constraints, as operating systems support a wide variety of formats. However, you can enforce custom constraints at the collection level if needed.
 
-A couple things to keep in mind when customizing the filename:
+## Filename Rules
 
-- Filename can not contain any spaces
-- Filename must contain only a-z, A-Z, 0-9, -, \_, ., or /.
-- Filename must be unique within the collection
-- If the filename starts with `/` it will be treated as an absolute path relative to the collection root
-  - Example: `/foo/bar/blog-post` will be saved as `<MyCollectionPath>/post/blog-post.md`
-- If the filename does not start with `/` it will be treated as a relative to your current folder
-  - Example: `bar/blog-post` will be saved as `<MyCollectionPath>/<CurrentDirectory>/bar/blog-post.md`
+* Filenames must contain only `a-z`, `A-Z`, `0-9` , `-`, `_`, `.`, or `/`.
+* Filenames cannot contain spaces
+* The filename generated must be unique within the collection
+* If the filename starts with `/`, it will be treated as an absolute path relative to the collection root
+  * Example: `/foo/bar/blog-post` will be saved as `<MyCollectionPath>/post/blog-post.md`
+* If the filename does not start with `/`, it will be treated as relative to the current folder
+  * Example: `bar/blog-post` will be saved as `<MyCollectionPath>/<CurrentDirectory>/bar/blog-post.md`
 
-## Definition
+## Configuration
 
-| Property               | Description                                                              |
-| ---------------------- | ------------------------------------------------------------------------ |
-| `ui.filename.readonly` | Disable the editor from editing the filename                             |
-| `ui.filename.slugify`  | A function that takes in the values of the form and returns the filename |
+| Property               | Description                                                    |
+| ---------------------- | -------------------------------------------------------------- |
+| `ui.filename.readonly` | Prevents the user from editing the filename                    |
+| `ui.filename.slugify`  | A function that generates the filename based on form values    |
+| `ui.filename.parse`    | A function that sanitizes the filename input as the user types |
 
-## Usage
+## Option A: Sanitizing Input with `parse`
 
-To use the filename customization API, you need to pass a `slugify` function that allows you to customize the filename of a document based on its content.
+The `parse` function allows you to enforce filename constraints within the editor. The provided callback function sanitizes user input in real-time.
 
-### Example with slugify and disabled
+### Example using parse to enforce snake case
+
+```
+export default defineConfig({
+  //...
+  schema: {
+    collections: [
+      {
+        label: "Blog Posts",
+        ui: {
+          filename: {
+            parse: (filename) => filename.replaceAll(" ","_"),
+          }
+        },
+        name: "post",
+        path: "content/post",
+        format: "mdx",
+        fields: [
+          //...
+        ]
+      }
+    ],
+  },
+});
+```
+
+## Option B: Generating Filenames with `slugify`
+
+Use the `slugify` function to automatically generate filenames based on other fields in the collection.
+
+<WarningCallout
+  body={<>
+    The `slugify` function only applies constraints when the user creates new files. Users can still rename files freely after creation.
+  </>}
+/>
+
+### Example with slugify and read only
 
 ```ts
 export default defineConfig({
@@ -75,7 +112,7 @@ export default defineConfig({
 
 ### Example with default slugify
 
-If no slugify function is provided and there is a field with `isTItle: true`. A default slugify function will be used that strips out every non-alphanumeric character and replaces spaces with dashes.
+If no `slugify` function is provided and a field has `isTitle: true`, Tina uses a default `slugify` function. This removes non-alphanumeric characters and replaces spaces with dashes.
 
 ```ts
 export default defineConfig({
