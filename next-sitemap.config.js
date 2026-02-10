@@ -14,7 +14,22 @@ module.exports = {
       'https://tina.io/tinadocs/doc/sitemap.xml',
     ],
   },
-  exclude: ['/api/*', '/github/*', '/rss.xml', '/blog/page/*'],
+  exclude: [
+    '/api/*',
+    '/github/*',
+    '/rss.xml',
+    '/blog/page/*',
+    // Deprecated/orphaned docs - not in main navigation
+    '/docs/beginner-tutorials/*',
+    '/docs/forestry/*',
+    '/docs/tinacloud/alpha-faq',
+    '/docs/tinacloud/beta-migration',
+    '/docs/tinacloud/schema-migration',
+    '/docs/legacy-redirect',
+    '/docs/contributing/*',
+    '/docs/migrations/*',
+    '/docs/errors/*',
+  ],
   sitemapSize: 7000,
   transform: async (_config, path) => {
     const listOfMinorPaths = [
