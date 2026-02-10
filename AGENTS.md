@@ -42,7 +42,7 @@ pnpm create-rss     # Regenerate RSS feeds
 
 - **Framework:** Next.js 14 (App Router) with TypeScript
 - **CMS:** TinaCMS 3.x — content is edited visually at `/admin`
-- **Styling:** Tailwind CSS 4 + shadcn/ui (new-york style)
+- **Styling:** Tailwind CSS 4. shadcn/ui (new-york style) is available but not strictly required. For design guidance, refer to the [Tina.io Design Library on Figma](https://www.figma.com/design/qFedRo7Xsc9oexI2IoPbFG/Tina.io-Design-Library) (access via SharePoint if needed), or follow conventions from existing components.
 - **Linting/Formatting:** Biome (single quotes, semicolons, 2-space indent, 80-char width)
 - **Package Manager:** pnpm 9.6.0
 - **Node:** 22.x (see `.nvmrc`)
