@@ -91,6 +91,11 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 
 14 collections defined in `tina/collectionsSchema/`: Pages, Docs, Docs-ZH, Blogs, Blogs-ZH, Examples, Meeting Links, Navigation Bar, Events, Footer, Settings, What's New (TinaCMS/TinaCloud), Conference, Table of Contents. The generated `tina-lock.json` must be committed.
 
+## Important Workflow Notes
+
+- **After switching branches or changing TinaCMS schema files** (`tina/` directory), run `pnpm dev` to regenerate `tina-lock.json`. This is faster than a full build and keeps the TinaCMS schema in sync.
+- **After editing any `.ts`, `.tsx`, `.js`, or `.jsx` files**, run `pnpm lint:fix` to auto-fix formatting and lint issues before committing.
+
 ## Coding Standards
 
 - **Biome** is the sole linter/formatter — no ESLint or Prettier
