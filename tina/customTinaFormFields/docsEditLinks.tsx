@@ -14,7 +14,7 @@ export const DocsEditLinks = () => (
           rel="noopener noreferrer"
           className="text-blue-600 underline hover:text-blue-800"
         >
-          Tina Docs Landing
+          TinaDocs Landing
         </a>
       </li>
       <li>
