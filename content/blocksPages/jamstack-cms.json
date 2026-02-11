@@ -7,6 +7,9 @@
     {
       "headline": "TinaCMS: The perfect CMS for the JamStack",
       "text": "Build your site your way, using a headless CMS that reads/writes to markdown/mdx/json files.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {

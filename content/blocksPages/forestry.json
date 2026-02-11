@@ -21,6 +21,9 @@
           "_template": "codeButton"
         }
       ],
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {

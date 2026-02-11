@@ -7,7 +7,7 @@
     {
       "headline": "TinaCMS vs Strapi",
       "text": "Understand why TinaCMS could be the optimal choice for your content management.",
-      "_template": "hero"
+      "blockSettings": { "isHeadingOne": true }, "_template": "hero"
     },
     {
       "options": {

@@ -7,7 +7,7 @@
     {
       "headline": "TinaCMS vs Storyblok: Why TinaCMS Could Be Your Choice",
       "text": "Discover the unique benefits of TinaCMS for your projects.",
-      "_template": "hero"
+      "blockSettings": { "isHeadingOne": true }, "_template": "hero"
     },
     {
       "options": {

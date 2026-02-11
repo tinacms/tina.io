@@ -6,7 +6,8 @@
   "blocks": [
     {
       "blockSettings": {
-        "isFullscreen": false
+        "isFullscreen": false,
+        "isHeadingOne": true
       },
       "headline": "Roadmap",
       "text": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our GitHub Discussions.",

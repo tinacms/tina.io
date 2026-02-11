@@ -37,11 +37,11 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             <RecentNewsBanner recentNewsBanner={recentNewsBanner} />
           )}
           {title && (
-            <h2
+            <h1
               className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
             >
               {curlyBracketFormatter(title)}
-            </h2>
+            </h1>
           )}
           {subtext && (
             <p className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">

@@ -7,6 +7,9 @@
     {
       "headline": "TinaCMS + Jekyll = ❤️",
       "text": "Harness the strength of Markdown and Git to enhance your Jekyll projects with TinaCMS.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {

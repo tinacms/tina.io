@@ -23,6 +23,9 @@
           "_template": "modalButton"
         }
       ],
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {

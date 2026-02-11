@@ -7,7 +7,7 @@
     {
       "headline": "TinaCMS vs Contentful: Why TinaCMS Could Be Right For You",
       "text": "Discover the advantages of TinaCMS",
-      "_template": "hero"
+      "blockSettings": { "isHeadingOne": true }, "_template": "hero"
     },
     {
       "options": {
