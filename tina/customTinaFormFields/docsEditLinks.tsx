@@ -9,7 +9,7 @@ export const DocsEditLinks = () => (
     <ul className="flex flex-col gap-1">
       <li>
         <a
-          href="https://tina-docs-landing.vercel.app/admin"
+          href="https://tina-docs-landing.vercel.app/tinadocs/admin"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 underline hover:text-blue-800"
@@ -19,7 +19,7 @@ export const DocsEditLinks = () => (
       </li>
       <li>
         <a
-          href="https://tina-docs-red.vercel.app/admin"
+          href="https://tina-docs-red.vercel.app/tinadocs/admin"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 underline hover:text-blue-800"
