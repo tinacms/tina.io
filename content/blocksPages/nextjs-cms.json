@@ -54,7 +54,7 @@
       "text": "Explore how TinaCMS can enhance your Next.js development.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Set Up TinaCMS with Next.js",
           "icon": false,
           "variant": "default",
           "size": "medium",

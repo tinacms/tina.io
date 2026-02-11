@@ -54,7 +54,7 @@
       "text": "Get started with TinaCMS now.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Build Your Jamstack Site",
           "icon": false,
           "variant": "blue",
           "size": "medium",

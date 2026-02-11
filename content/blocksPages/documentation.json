@@ -54,7 +54,7 @@
       "text": "Get started with TinaCMS for your documentation projects.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Start Building Docs",
           "icon": false,
           "variant": "blue",
           "size": "medium",
