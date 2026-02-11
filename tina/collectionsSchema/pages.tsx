@@ -130,7 +130,7 @@ export const pagesCollection = {
   fields: [
     {
       type: 'string',
-      label: '',
+      label: 'Edit Links',
       name: '_docsEditLinks',
       ui: {
         component: DocsEditLinks,
