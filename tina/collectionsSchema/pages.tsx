@@ -130,7 +130,7 @@ export const pagesCollection = {
   fields: [
     {
       type: 'string',
-      label: 'Tina Docs Edit Links',
+      label: '',
       name: '_docsEditLinks',
       ui: {
         component: DocsEditLinks,

@@ -1,10 +1,10 @@
+// biome-ignore lint/correctness/noUnusedImports: Required for JSX in TinaCMS admin
 import React from 'react';
-import { wrapFieldsWithMeta } from 'tinacms';
 
-export const DocsEditLinks = wrapFieldsWithMeta(() => (
+export const DocsEditLinks = () => (
   <div className="rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm">
     <p className="mb-2 font-semibold text-gray-700">
-      Edit this page on Tina Docs:
+      Edit the TinaDocs zones with visual editing:
     </p>
     <ul className="flex flex-col gap-1">
       <li>
@@ -29,4 +29,4 @@ export const DocsEditLinks = wrapFieldsWithMeta(() => (
       </li>
     </ul>
   </div>
-));
+);
