@@ -81,7 +81,7 @@
           "imageBackground": true
         },
         {
-          "headline": "Tina the Llama",
+          "headline": "Character Sheet",
           "text": "This character sheet is used as a reference for generating new images and videos of Tina the Llama.\n\nUse a prompt like \"Use the provided character sheet as the exact character reference. Do not change colors, facial features, proportions, or style. Generate an image of Tina the Llama standing up and covering eyes.\"",
           "alignCenter": false,
           "headingOne": false,
