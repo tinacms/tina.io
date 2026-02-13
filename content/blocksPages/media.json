@@ -82,6 +82,20 @@
             }
           ],
           "imageBackground": true
+        },
+        {
+          "headline": "Character Sheet",
+          "text": "This character sheet is used as a reference for generating new images and videos of Tina the Llama. \nUse a prompt like \"Use the provided character sheet as the exact character reference. Do not change colors, facial features, proportions, or style. Generate an image of Tina the Llama standing up and covering eyes.\"",
+          "alignCenter": false,
+          "headingOne": false,
+          "media": [
+            {
+              "image": "/ai-llamas/tina-character-sheet.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true,
+          "imageBackground": false
         }
       ],
       "_template": "features"

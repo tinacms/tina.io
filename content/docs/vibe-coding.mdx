@@ -1,6 +1,6 @@
 ---
 title: Vibe Coding with TinaCMS
-last_edited: '2025-11-11T06:11:18.499Z'
+last_edited: '2026-02-06T04:16:09.804Z'
 next: content/docs/introduction/using-starter.mdx
 previous: content/docs/content-model-intro.mdx
 ---
@@ -11,19 +11,21 @@ AI coding assistants work best with TinaCMS when you stay in control. This guide
 
 Set up an environment where your AI assistant can shine:
 
-### 1.1 Use an IDE with AI integration
+### 1.1 Use an AI-Integrated IDE
 
-Use a modern IDE that supports inline AI assistance.\
-We recommend **Visual Studio Code** paired with **GitHub Copilot** or another inline AI tool such as Cursor.
+AI works best when it lives in your editor. For seamless inline assistance, we recommend **Visual Studio Code** (with **GitHub Copilot**) or **Cursor**.
+
+For advanced tasks, terminal tools like **GitHub Copilot CLI** are faster than chat interfaces.
 
 ### 1.2 Setup your folder structure
 
-Before generating any code, create a clean folder where your project will live.
+Before generating any code, create a new folder where your project will live.
 This helps AI understand where new files should go and keeps your workspace organized.
+Trying to manage TinaCMS code in a random folder can confuse the AI.
 
 ### 1.3 Use a TinaCMS starter kit
 
-AI works best when it has context. Having the template gives it some code to model itself on. Follow along with our [official guide](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you:
+AI works best when it has context. Having the template gives it some code to model itself on. Use our [Tina Starter CLI tool](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you with a prompt like the one below:
 
 ```plaintext
 Please set up a TinaCMS starter template
@@ -33,44 +35,113 @@ Use tina.io as documentation reference
 ```
 
 ![](/setup.png)
+**Figure: Results of the above prompt**
 
 Once installed, explore the generated files so you understand how TinaCMS is wired together.
 Your AI assistant will reference this structure automatically in later prompts, so the more you know your starting point, the more precise your direction will be.
 
 > **Tip:** Check out [SSW's Rules to Better AI Development](https://www.ssw.com.au/rules/rules-to-better-ai-development/)
 
+### 1.4 Create an AGENTS.md File
+
+Create a file named `AGENTS.md` in your root directory. This serves as a handbook for your AI assistant. Include high-level goals, tech stack details, and conventions.
+
+Example:
+
+```plaintext
+# Project: My Tina Blog
+Stack: Next.js, TinaCMS, Tailwind CSS
+
+- Use `tina/config.ts` for schema definitions.
+- Components live in `components/`.
+- Use TypeScript interfaces for all props.
+```
+
+> **Tip:** To learn how to make a great AGENTS.md file read the SSW Rule [Write an AGENTS.md](https://www.ssw.com.au/rules/write-agents-md)
+
 ***
 
-## 2. Build in Bite-Sized Pieces
+## 2. Planning Before Prompting
+
+Before writing code, take a moment to define what you're building. AI performs best when you provide a clear roadmap rather than vague requests.
+
+### 2.1 Use AI for Brainstorming
+
+If you’re not sure what you need yet, ask your assistant to help brainstorm possible content structures or reusable blocks.
+
+For example:
+
+```plaintext
+Suggest five useful blocks for a long-form article layout in TinaCMS.
+```
+
+### 2.2 Define Your Scope
+
+Brief the AI on your **Goal**, **Key Features**, and **Constraints**.
+
+Instead of: *"Build a portfolio"*
+Try: *"I want a portfolio site with a 'Projects' collection. Each project has a title, cover image, and a rich-text body. Use Tailwind for styling."*
+
+### 2.3 Explain the Context
+
+If you have existing code, tell the AI where to look.
+```plaintext
+I have a `content/posts` directory and a `components/Post.tsx` file. I want to add a new field to the post schema.
+```
+
+***
+
+## 3. Master the Tina-Specific Patterns
+
+Help your AI understand Tina's unique architecture.
+
+### 3.1 Schema First
+
+Tina starts with the schema. Instead of asking for a page, ask for the schema definition first.
+```plaintext
+Create a 'Testimonial' object for my schema. It should have an author name, quote, and avatar image.
+```
+
+### 3.2 Visual Editing
+
+AI often forgets the glue that makes real-time editing work. Remind it:
+```plaintext
+When building the component, ensure every editable element has a 'data-tina-field' attribute matching the schema.
+```
+
+### 3.3 TypeScript Types
+
+Don't manually type your props.
+```plaintext
+Generate the TypeScript interface for this component based on the Tina query response.
+```
+
+***
+
+## 4. Build in Bite-Sized Pieces
 
 AI works best when given small, focused tasks. Instead of asking for *“the whole project”*, break your work into **manageable, self-contained steps** that can be tested and refined one at a time.
 
 This approach helps your assistant maintain context, reduces the chance of errors, and makes debugging much easier.
 
 ![](/vibe_cycle.png)
+**Figure: The Vibe Coding Cycle**
 
-### 2.1 Start Small
+### 4.1 Start Small
 
 Rather than prompting your assistant to “build a blog site”, start with a single feature or component. If you know what you want, use something like:
 
-`Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config
- file so they can be reused across all comment blocks.`
+```plaintext
+Please create a component that allows commenting on a blog post. It should use Giscus, and config settings should be stored in a global config file so they can be reused across all comment blocks.
+```
 
 This defines scope and structure, helping AI produce accurate, context-aware code.
 
-### 2.2 Iterate Feature by Feature
+### 4.2 Iterate Feature by Feature
 
 Once one component or schema works, move on to the next logical piece. By building one feature at a time, your AI assistant learns your project’s structure progressively and builds on a solid foundation.
 
-### 2.3 Use AI for Brainstorming
-
-If you’re not sure what you need yet, ask your assistant to help brainstorm possible content structures or reusable blocks.
-
-For example:
-
-`Suggest five useful blocks for a long-form article layout in TinaCMS.`
-
-### 2.4 Validate Early
+### 4.3 Validate Early
 
 After each feature, run your development server and verify that components render and work correctly.
 
@@ -78,9 +149,9 @@ The earlier you validate, the less time you’ll spend debugging larger combined
 
 ***
 
-## 3. Commit Early, Before Letting AI Go Wild
+## 5. Commit Early, Before Letting AI Go Wild
 
-AI is fast and confident, sometimes a bit too much. It may:
+AI is fast and confident, sometimes overly so. It may:
 
 * Rename things that shouldn’t be touched
 * “Clean up” code that was actually doing something important
@@ -96,28 +167,50 @@ This protects your momentum. If the AI derails, you can reset instead of untangl
 
 ***
 
-## 4. Test & Iterate
+## 6. Reset Context Between Tasks
 
-Your job isn’t to accept suggestions blindly, it’s to steer.
+Don't let your chat session run forever.
+
+A common trap is to keep one long conversation going while moving from task to task (e.g., **defining a new collection** → **building a React component** → **styling with Tailwind**). The AI tries to hold onto *everything* you’ve discussed, which leads to confusion and hallucinated code from previous tasks.
+
+**Treat your AI context like a mental workspace.** When you finish a distinct task:
+
+1. **Commit your changes** (see section 5).
+2. **Clear the chat** or start a new session.
+3. **Prime the AI** with just the context it needs for the new task.
+
+Gordon Beeming calls this ["letting your AI call it a day"](https://gordonbeeming.com/blog/2025-10-28/your-ai-copilot-has-a-mental-workday-too). A fresh session ensures the AI focuses *only* on the current problem, not the baggage of the last three hours.
+
+***
+
+## 7. Test & Iterate
+
+Your job isn’t to accept suggestions blindly. It’s to steer.
 
 AI will often get you close, but rarely perfect on the first try.
 Treat every output as a draft.
 
 * If a suggestion is close: Accept, tweak and refine
 * If it’s off: Add more detail and regenerate
-* If it forgets Tina: Remind it explicitly: `This is using TinaCMS, follow its component patterns.`
+* If it forgets Tina: Remind it explicitly:
+
+```plaintext
+This is using TinaCMS, follow its component patterns.
+```
 
 Even debugging can be a collaboration. Instead of staring at an error alone, share it with your AI assistant:
 
-`After those changes to the comment system, the block no longer renders.
+```plaintext
+After those changes to the comment system, the block no longer renders.
 Here's the error: {{error}}
-What's likely causing this, and how can I fix it?`
+What's likely causing this, and how can I fix it?
+```
 
-AI won’t always nail the fix, but it will usually point you in the right direction. Use that feedback to keep momentum instead of getting stuck.
+AI won’t always nail the fix, but it will usually point you in the right direction. Use that feedback to keep momentum instead of getting stuck. 
 
 ***
 
-## 5. When It Gets Stuck
+## 8. When It Gets Stuck
 
 If AI starts repeating or drifting off-track, reset the prompt.
 
@@ -132,7 +225,7 @@ That single line of clarity is often all it needs to snap back into alignment.
 
 ## Final Thought
 
-AI won’t build your site for you but it will build *with* you.\
-Your job is to keep it aimed in the right direction by understanding Tina’s patterns, give clear prompts, and stay hands-on.
+AI won’t build your site for you, but it will build *with* you.
+Your job is to keep it aimed in the right direction by understanding Tina’s patterns, giving clear prompts, and staying hands-on.
 
 **Build small. Commit often. Iterate confidently.**

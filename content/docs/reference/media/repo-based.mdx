@@ -133,9 +133,26 @@ Repo-based media is designed to be used around a single-branch workflow. If your
 * Images cannot be altered, once uploaded any subsequent changes to an asset will not be reflected.
 * If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
 * If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
+* Media files cannot be renamed through the Media Manager. See [Renaming Media Files](#renaming-media-files) below for a workaround.
 
 If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), you may see this message in the TinaCloud media settings:
 
 ![](/img/docs/reference/media-not-configured_lnr5lw.png)
 
 To workaround this, you may need to enable media **after** merging Tina to your default branch.
+
+### Renaming Media Files
+
+Repo-based media does not support renaming files through the Media Manager. Because media only tracks a single branch, there is no branching functionality available for media operations like renaming.
+
+If the tracked branch has branch protection rules enabled, attempting to upload a renamed version of a file will save the file to the media storage (S3) but the change will **not** be committed to the protected branch. This results in the new file being stored but not reflected in your repository.
+
+**Workaround:** To rename a media file, perform the following steps directly in GitHub:
+
+1. Navigate to your repository on GitHub and locate the media file in your media directory (e.g. `public/uploads/`)
+2. Delete the old file directly in GitHub
+3. Wait for the deletion to sync back to TinaCloud
+4. Add the file with the new name directly in GitHub
+5. Wait for the new file to sync back to TinaCloud
+
+> This workaround is necessary because changes made directly in GitHub will sync back to TinaCloud, bypassing the single-branch media limitation.

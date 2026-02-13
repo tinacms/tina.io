@@ -35,6 +35,7 @@ import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testim
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { tripleBoxTemplate } from '../../components/blocks/TripleBox/TripleBox.template';
+import { DocsEditLinks } from '../customTinaFormFields/docsEditLinks';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
 
@@ -127,6 +128,14 @@ export const pagesCollection = {
     },
   },
   fields: [
+    {
+      type: 'string',
+      label: 'Edit Links',
+      name: '_docsEditLinks',
+      ui: {
+        component: DocsEditLinks,
+      },
+    },
     extendedSeoInformation,
     {
       label: 'Page Sections',
