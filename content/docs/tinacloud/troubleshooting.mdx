@@ -100,5 +100,3 @@ To resolve this, ensure that one of the URLs specified in your TinaCloud Site UR
 The TinaCloud login flow redirects through several external domains (AWS Cognito, API Gateway, GitHub) that may be blocked by your VPN or firewall. If any domain in the redirect chain is blocked, the login will time out before completing.
 
 To resolve this, ensure your network allows outbound traffic to all domains listed on the [Network Requirements](/docs/tinacloud/network-requirements/) page. Whitelisting `*.tina.io` alone is not sufficient — the authentication flow also requires access to AWS and GitHub domains.
-
-To diagnose which domain is blocked, open your browser's DevTools (Network tab) and attempt to log in. Look for any requests that stall or fail.
