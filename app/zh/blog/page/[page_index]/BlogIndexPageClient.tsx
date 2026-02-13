@@ -45,11 +45,11 @@ export default function BlogIndexPageClient({
       </header>
       <div className="py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose mx-auto">
         {posts.map((post) => (
-          <article key={post.id} className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8">
-            <DynamicLink
-              href={`/zh/blog/${post._sys.filename}`}
-              passHref
-            >
+          <article
+            key={post.id}
+            className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8"
+          >
+            <DynamicLink href={`/zh/blog/${post._sys.filename}`} passHref>
               <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                 {post.title}
               </h2>
@@ -60,7 +60,9 @@ export default function BlogIndexPageClient({
                   <span className="mr-1">By</span>
                   <strong>{post.author}</strong>
                 </p>
-                <time className="opacity-70" dateTime={post.date}>{formatDate(post.date || '')}</time>
+                <time className="opacity-70" dateTime={post.date}>
+                  {formatDate(post.date || '')}
+                </time>
               </div>
               <div className=" font-light mb-6">
                 <MarkdownContent

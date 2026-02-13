@@ -60,7 +60,8 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
           {lastEditedDate && (
             <div className="mt-2 text-sm opacity-50">
-              Last Edited: <time dateTime={post.last_edited}>{lastEditedDate}</time>
+              Last Edited:{' '}
+              <time dateTime={post.last_edited}>{lastEditedDate}</time>
             </div>
           )}
           <DocsPagination prevPage={previousPage} nextPage={nextPage} />
