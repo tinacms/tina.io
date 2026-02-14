@@ -1,12 +1,15 @@
 {
   "seo": {
-    "title": "Jamstack CMS",
+    "title": "Jamstack CMS – TinaCMS for Static Site Generators",
     "description": "Supercharge your Jamstack projects with TinaCMS. Enjoy a flexible, file-based headless CMS and liberate your site from monolithic systems."
   },
   "blocks": [
     {
       "headline": "TinaCMS: The perfect CMS for the JamStack",
       "text": "Build your site your way, using a headless CMS that reads/writes to markdown/mdx/json files.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {
@@ -51,7 +54,7 @@
       "text": "Get started with TinaCMS now.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Build Your Jamstack Site",
           "icon": false,
           "variant": "blue",
           "size": "medium",

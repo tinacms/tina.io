@@ -26,9 +26,9 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <div className="font-ibm-plex text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
+        <h1 className="font-ibm-plex text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
           Results for "{displayQuery}"
-        </div>
+        </h1>
         {isExactSearch && (
           <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
             Exact Match

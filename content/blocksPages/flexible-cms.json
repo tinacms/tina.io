@@ -7,6 +7,9 @@
     {
       "headline": "TinaCMS: The Epitome of Flexibility and Customization.",
       "text": "Open your world to endless customization and flexible workflows with the open-source frontend of TinaCMS.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {
@@ -51,7 +54,7 @@
       "text": "Get started with TinaCMS now.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Explore TinaCMS Customization",
           "icon": false,
           "variant": "blue",
           "size": "medium",

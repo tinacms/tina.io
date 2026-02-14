@@ -7,6 +7,9 @@
     {
       "headline": "TinaCMS: The Ultimate CMS for Next.js",
       "text": "TinaCMS was built with NextJS in mind. It provides an unmatched developer workflow, with amazing visual editing capabilities that your editors will love.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {
@@ -51,7 +54,7 @@
       "text": "Explore how TinaCMS can enhance your Next.js development.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Set Up TinaCMS with Next.js",
           "icon": false,
           "variant": "default",
           "size": "medium",

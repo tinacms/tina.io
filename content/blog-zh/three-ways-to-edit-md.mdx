@@ -31,7 +31,7 @@ next: content/blog-zh/exporting-wordpress-content-to-gatsby.mdx
 在深入了解如何使用Tina编辑Markdown之前，我们必须了解Gatsby如何使用GraphQL处理数据查询。您可以在Gatsby中几乎从任何地方获取数据。在我们的例子中，我们使用*Markdown*。当您构建网站时，Gatsby会为所有数据创建一个GraphQL模式。然后，您可以在React组件中使用[GraphQL](https://graphql.org/learn/)来查询您的数据源。
 
 Gatsby允许您通过两种方式查询数据：*[Page Queries和Static Queries](https://www.gatsbyjs.org/docs/static-vs-normal-queries/)*。
-自从发布[React Hooks API](https://reactjs.org/docs/hooks-intro.html)和Gatsby中的[`useStaticQuery` hook](https://www.gatsbyjs.org/docs/use-static-query/)以来，查询数据变得非常容易。不过，有些情况下您不能使用Static Query。首先，让我们探讨一下它们的区别。
+自从发布[React Hooks API](https://legacy.reactjs.org/docs/hooks-intro.html)和Gatsby中的[`useStaticQuery` hook](https://www.gatsbyjs.org/docs/use-static-query/)以来，查询数据变得非常容易。不过，有些情况下您不能使用Static Query。首先，让我们探讨一下它们的区别。
 
 ### 两者的主要区别是：
 
@@ -48,20 +48,20 @@ Static Queries的另一个好处是，您可以在需要数据的组件中获取
 
 ## React概述
 
-为了获取数据，我们可以使用Gatsby的查询选项。为了构建我们的组件，React还提供了一些选项。您可以将组件创建为[类组件或函数组件](https://reactjs.org/docs/components-and-props.html)。在React Hooks API之前，您必须使用类组件来在组件中拥有状态。现在有了hooks，您可以在函数组件中做到这一点。🥰
+为了获取数据，我们可以使用Gatsby的查询选项。为了构建我们的组件，React还提供了一些选项。您可以将组件创建为[类组件或函数组件](https://legacy.reactjs.org/docs/components-and-props.html)。在React Hooks API之前，您必须使用类组件来在组件中拥有状态。现在有了hooks，您可以在函数组件中做到这一点。🥰
 
 ## 使用Tina编辑Markdown的三种方式
 
 鉴于在Gatsby中创建组件和获取数据的所有选项，我们必须为项目选择最合适的方法。Tina可以与所有这些选项一起工作，提供**[三种不同的方法](/docs/guides/converting-gatsby-to-tina)**来编辑Gatsby中的Markdown，如下所述。
 
-* **remarkForm** - 一个[高阶组件](https://reactjs.org/docs/higher-order-components.html)，用于从Gatsby中的Page Query获取数据时使用。此组件可用于函数和类组件。请注意这里的细微差别！与渲染props组件的唯一命名区别是小写的“r”。
-* **useLocalRemarkForm** - 一个[React Hook](https://reactjs.org/docs/hooks-overview.html)，用于从Static或Page Query获取数据的函数组件。如果组件获取的是静态数据，将调用Gatsby的`useStaticQuery` hook。
-* **RemarkForm** - 一个[渲染Props组件](https://reactjs.org/docs/render-props.html)，您可以在类组件中使用，从Static或Page Query获取数据。静态数据将通过Gatsby的`StaticQuery`渲染Props组件获取。
+* **remarkForm** - 一个[高阶组件](https://legacy.reactjs.org/docs/higher-order-components.html)，用于从Gatsby中的Page Query获取数据时使用。此组件可用于函数和类组件。请注意这里的细微差别！与渲染props组件的唯一命名区别是小写的“r”。
+* **useLocalRemarkForm** - 一个[React Hook](https://legacy.reactjs.org/docs/hooks-overview.html)，用于从Static或Page Query获取数据的函数组件。如果组件获取的是静态数据，将调用Gatsby的`useStaticQuery` hook。
+* **RemarkForm** - 一个[渲染Props组件](https://legacy.reactjs.org/docs/render-props.html)，您可以在类组件中使用，从Static或Page Query获取数据。静态数据将通过Gatsby的`StaticQuery`渲染Props组件获取。
 
 ### remarkForm - 如何使用以及为什么它不能与Static Queries一起使用
 
 首先，让我们深入了解如何将TinaCMS与Page Query连接起来。
-TinaCMS中的`remarkForm`组件是一个[高阶组件](https://reactjs.org/docs/higher-order-components.html)，简称HOC。这意味着它是一个接受另一个组件并返回一个具有附加功能的新组件的函数。
+TinaCMS中的`remarkForm`组件是一个[高阶组件](https://legacy.reactjs.org/docs/higher-order-components.html)，简称HOC。这意味着它是一个接受另一个组件并返回一个具有附加功能的新组件的函数。
 
 > 如果您不熟悉HOC，我建议您在[React官方文档](https://legacy.reactjs.org/docs/higher-order-components.html)中阅读相关内容。它们在React世界中被认为是“高级用法”。
 
@@ -169,7 +169,7 @@ const [markdownRemark] = useLocalRemarkForm(heroData.markdownRemark)
 
 ### RemarkForm - 渲染Props组件
 
-您不能在类组件上使用React Hooks。这就是为什么Tina提供了一个使用[渲染Props](https://reactjs.org/docs/render-props.html)模式的[`RemarkForm`](/docs/guides/converting-gatsby-to-tina)组件。
+您不能在类组件上使用React Hooks。这就是为什么Tina提供了一个使用[渲染Props](https://legacy.reactjs.org/docs/render-props.html)模式的[`RemarkForm`](/docs/guides/converting-gatsby-to-tina)组件。
 
 此组件适用于Page和Static Queries。我将在下面展示如何与Page Query一起使用。
 

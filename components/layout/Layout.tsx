@@ -24,7 +24,7 @@ export const Layout = ({ children, color, sticky = true }: LayoutProps) => {
         }}
       />
       <div className="pb-0 lg:pb-20"></div>
-      <div className="flex flex-col flex-1">{children}</div>
+      <main className="flex flex-col flex-1">{children}</main>
       <Footer />
     </div>
   );

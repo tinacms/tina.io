@@ -38,12 +38,12 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             <RecentNewsBanner recentNewsBanner={recentNewsBanner} />
           )}
           {title && (
-            <h2
+            <h1
               className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
               data-tina-field={tinaField(data.data, 'title')}
             >
               {curlyBracketFormatter(title)}
-            </h2>
+            </h1>
           )}
           {subtext && (
             <p

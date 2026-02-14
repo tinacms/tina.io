@@ -1,12 +1,15 @@
 {
   "seo": {
-    "title": "TinaCMS for Astro",
+    "title": "TinaCMS for Astro – Visual Editing for Astro Sites",
     "description": "Enhance your Astro development workflow with TinaCMS. Seamlessly manage content, enable live editing, and streamline collaboration for your Astro websites."
   },
   "blocks": [
     {
       "headline": "TinaCMS for Astro",
       "text": "Combine the best of Astro and TinaCMS to create dynamic, content-rich websites with ease.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {

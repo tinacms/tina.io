@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "TinaCMS – Headless CMS with GitHub & Markdown Support",
-    "description": "Edit content live, preview changes instantly, and keep everything version-controlled in your repository"
+    "description": "Edit content live, preview changes instantly, and keep everything version-controlled in your Git repository. TinaCMS gives developers full flexibility and editors an intuitive experience."
   },
   "blocks": [
     {

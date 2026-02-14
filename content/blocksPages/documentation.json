@@ -1,12 +1,15 @@
 {
   "seo": {
-    "title": "Documentation",
+    "title": "TinaCMS for Documentation Sites – Git-Backed Docs",
     "description": "Enhance your open-source documentation projects with TinaCMS. Benefit from markdown-based content, flexible user interactions, and cross-framework compatibility."
   },
   "blocks": [
     {
       "headline": "TinaCMS: The perfect partner for your documentation.",
       "text": "Leverage the power of Markdown and Git-backed content to elevate your open-source documentation projects.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {
@@ -51,7 +54,7 @@
       "text": "Get started with TinaCMS for your documentation projects.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Start Building Docs",
           "icon": false,
           "variant": "blue",
           "size": "medium",

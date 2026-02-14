@@ -1,12 +1,15 @@
 {
   "seo": {
-    "title": "The Best CMS For Markdown",
-    "description": "Elevate your Markdown projects with TinaCMS. Enjoy a customized CMS experience tailored for your Markdown content with configurable shortcodes."
+    "title": "Best Markdown CMS – TinaCMS for MD & MDX Files",
+    "description": "Elevate your Markdown projects with TinaCMS. Enjoy a customized CMS experience tailored for your Markdown and MDX content with configurable shortcodes."
   },
   "blocks": [
     {
       "headline": "TinaCMS: The Best CMS For Markdown.",
       "text": "Plug-in TinaCMS into your markdown-based project, to provide an easy-to-use editor experience.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {
@@ -51,7 +54,7 @@
       "text": "Get started with TinaCMS now.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Get Started with Markdown",
           "icon": false,
           "variant": "blue",
           "size": "medium",

@@ -130,7 +130,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
     }, [footerData, isZhPath]);
 
   return (
-    <div>
+    <footer>
       {/* Footer Top */}
       <div className="bg-[url('/svg/orange-bg.svg')] bg-cover bg-center">
         <div className="px-6 md:mx-auto max-w-7xl flex flex-col md:flex-row w-full justify-between items-start py-8 lg:py-16 lg:px-8">
@@ -210,6 +210,6 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

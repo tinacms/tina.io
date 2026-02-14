@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Editorial Workflow with TinaCMS",
-    "description": "Efficiently manage and review your team's content changes through an integrated Git workflow. "
+    "description": "Efficiently manage and review your team's content changes through an integrated Git workflow. Create branches, protect production, and merge with confidence using pull requests."
   },
   "blocks": [
     {
@@ -23,6 +23,9 @@
           "_template": "modalButton"
         }
       ],
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {
