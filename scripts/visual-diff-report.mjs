@@ -4,7 +4,7 @@
  * Visual Diff Report Generator
  *
  * Compares screenshots from two directories (baseline vs current),
- * computes pixel diffs, and generates a self-contained HTML report.
+ * computes pixel diffs, and generates an HTML report with file-referenced images.
  *
  * Usage:
  *   node scripts/visual-diff-report.mjs [baselineDir] [currentDir] [outputPath]
@@ -34,6 +34,9 @@ const OUTPUT_PATH =
 const BASELINE_BRANCH = process.env.VISUAL_BASE_BRANCH || 'baseline';
 const CURRENT_BRANCH = process.env.VISUAL_PR_BRANCH || 'current';
 
+// Diff images are saved alongside screenshots
+const DIFF_DIR = path.join(path.dirname(OUTPUT_PATH), 'screenshots', 'diffs');
+
 function readPng(filePath) {
   return new Promise((resolve, reject) => {
     const stream = fs.createReadStream(filePath).pipe(new PNG());
@@ -44,16 +47,7 @@ function readPng(filePath) {
   });
 }
 
-function pngToBase64(png) {
-  const buffer = PNG.sync.write(png);
-  return buffer.toString('base64');
-}
-
-function fileToBase64(filePath) {
-  return fs.readFileSync(filePath).toString('base64');
-}
-
-async function comparePair(baselinePath, currentPath) {
+async function comparePair(baselinePath, currentPath, diffOutputPath) {
   const baseline = await readPng(baselinePath);
   const current = await readPng(currentPath);
 
@@ -92,11 +86,13 @@ async function comparePair(baselinePath, currentPath) {
   const totalPixels = width * height;
   const diffPercent = ((numDiffPixels / totalPixels) * 100).toFixed(2);
 
+  // Write diff image to file
+  fs.writeFileSync(diffOutputPath, PNG.sync.write(diff));
+
   return {
     diffPercent: parseFloat(diffPercent),
     numDiffPixels,
     totalPixels,
-    diffPng: diff,
     sizeChanged:
       baseline.width !== current.width || baseline.height !== current.height,
     baselineSize: { w: baseline.width, h: baseline.height },
@@ -107,6 +103,11 @@ async function comparePair(baselinePath, currentPath) {
 function slugToPagePath(slug) {
   if (slug === '_homepage') return '/';
   return '/' + slug.replace(/__/g, '/');
+}
+
+// Compute a relative path from the report HTML to an image file
+function relPath(imgAbsPath) {
+  return path.relative(path.dirname(OUTPUT_PATH), imgAbsPath);
 }
 
 async function main() {
@@ -125,6 +126,9 @@ async function main() {
     process.exit(1);
   }
 
+  // Ensure diff output directory exists
+  fs.mkdirSync(DIFF_DIR, { recursive: true });
+
   const baselineFiles = new Set(
     fs.readdirSync(BASELINE_DIR).filter((f) => f.endsWith('.png'))
   );
@@ -142,6 +146,7 @@ async function main() {
     const pagePath = slugToPagePath(slug);
     const baselinePath = path.join(BASELINE_DIR, file);
     const currentPath = path.join(CURRENT_DIR, file);
+    const diffPath = path.join(DIFF_DIR, file);
 
     const hasBaseline = baselineFiles.has(file);
     const hasCurrent = currentFiles.has(file);
@@ -152,7 +157,7 @@ async function main() {
         slug,
         pagePath,
         status: 'added',
-        currentImg: fileToBase64(currentPath),
+        currentSrc: relPath(currentPath),
       });
       continue;
     }
@@ -163,16 +168,18 @@ async function main() {
         slug,
         pagePath,
         status: 'removed',
-        baselineImg: fileToBase64(baselinePath),
+        baselineSrc: relPath(baselinePath),
       });
       continue;
     }
 
-    const comparison = await comparePair(baselinePath, currentPath);
+    const comparison = await comparePair(baselinePath, currentPath, diffPath);
 
     if (comparison.diffPercent === 0) {
       console.log(`  ✓  ${pagePath} — unchanged`);
       results.push({ slug, pagePath, status: 'unchanged' });
+      // Remove diff file for unchanged pages
+      fs.unlinkSync(diffPath);
     } else {
       const sizeNote = comparison.sizeChanged
         ? ` (size: ${comparison.baselineSize.w}x${comparison.baselineSize.h} → ${comparison.currentSize.w}x${comparison.currentSize.h})`
@@ -189,9 +196,9 @@ async function main() {
         sizeChanged: comparison.sizeChanged,
         baselineSize: comparison.baselineSize,
         currentSize: comparison.currentSize,
-        baselineImg: fileToBase64(baselinePath),
-        currentImg: fileToBase64(currentPath),
-        diffImg: pngToBase64(comparison.diffPng),
+        baselineSrc: relPath(baselinePath),
+        currentSrc: relPath(currentPath),
+        diffSrc: relPath(diffPath),
       });
     }
   }
@@ -209,22 +216,38 @@ async function main() {
   console.log(`  Unchanged: ${unchanged.length}`);
   console.log(`  Total:     ${results.length}`);
 
-  // Generate HTML report
-  const html = generateReport(results, { changed, added, removed, unchanged });
+  // Generate HTML report using streaming writes
   fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
-  fs.writeFileSync(OUTPUT_PATH, html);
+  const out = fs.createWriteStream(OUTPUT_PATH);
+
+  out.write(reportHeader({ changed, added, removed, unchanged }));
+
+  // Write changed cards sorted by diff percentage (highest first)
+  const sortedChanged = [...changed].sort(
+    (a, b) => b.diffPercent - a.diffPercent
+  );
+  for (const r of sortedChanged) {
+    out.write(generateChangedSection(r));
+  }
+  for (const r of added) {
+    out.write(generateAddedSection(r));
+  }
+  for (const r of removed) {
+    out.write(generateRemovedSection(r));
+  }
+
+  out.write(reportFooter(unchanged));
+
+  await new Promise((resolve, reject) => {
+    out.on('finish', resolve);
+    out.on('error', reject);
+    out.end();
+  });
+
   console.log(`\n📄 Report: ${OUTPUT_PATH}`);
 }
 
-function generateReport(results, { changed, added, removed, unchanged }) {
-  const changedRows = [...changed]
-    .sort((a, b) => b.diffPercent - a.diffPercent)
-    .map((r) => generateChangedSection(r))
-    .join('\n');
-
-  const addedRows = added.map((r) => generateAddedSection(r)).join('\n');
-  const removedRows = removed.map((r) => generateRemovedSection(r)).join('\n');
-
+function reportHeader({ changed, added, removed, unchanged }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -299,20 +322,22 @@ function generateReport(results, { changed, added, removed, unchanged }) {
 </div>
 
 <div id="cards">
-${changedRows}
-${addedRows}
-${removedRows}
-</div>
+`;
+}
 
-${
-  unchanged.length > 0
-    ? `
+function reportFooter(unchanged) {
+  const unchangedHtml =
+    unchanged.length > 0
+      ? `
 <details class="unchanged-list">
   <summary>${unchanged.length} unchanged pages</summary>
   <ul>${unchanged.map((r) => `<li>${r.pagePath}</li>`).join('\n    ')}</ul>
 </details>`
-    : ''
-}
+      : '';
+
+  return `</div>
+
+${unchangedHtml}
 
 <script>
 function toggleCard(el) {
@@ -366,13 +391,13 @@ function generateChangedSection(r) {
     </div>
     <div class="view-panel view-sidebyside active">
       <div class="side-by-side">
-        <div class="col"><div class="col-label">Baseline (${BASELINE_BRANCH})</div><div class="img-container"><img src="data:image/png;base64,${r.baselineImg}" loading="lazy"></div></div>
-        <div class="col"><div class="col-label">Current (${CURRENT_BRANCH})</div><div class="img-container"><img src="data:image/png;base64,${r.currentImg}" loading="lazy"></div></div>
+        <div class="col"><div class="col-label">Baseline (${BASELINE_BRANCH})</div><div class="img-container"><img src="${r.baselineSrc}" loading="lazy"></div></div>
+        <div class="col"><div class="col-label">Current (${CURRENT_BRANCH})</div><div class="img-container"><img src="${r.currentSrc}" loading="lazy"></div></div>
       </div>
     </div>
-    <div class="view-panel view-diff"><div class="diff-img"><img src="data:image/png;base64,${r.diffImg}" loading="lazy"></div></div>
-    <div class="view-panel view-baseline"><div class="img-container"><img src="data:image/png;base64,${r.baselineImg}" loading="lazy"></div></div>
-    <div class="view-panel view-current"><div class="img-container"><img src="data:image/png;base64,${r.currentImg}" loading="lazy"></div></div>
+    <div class="view-panel view-diff"><div class="diff-img"><img src="${r.diffSrc}" loading="lazy"></div></div>
+    <div class="view-panel view-baseline"><div class="img-container"><img src="${r.baselineSrc}" loading="lazy"></div></div>
+    <div class="view-panel view-current"><div class="img-container"><img src="${r.currentSrc}" loading="lazy"></div></div>
   </div>
 </div>`;
 }
@@ -385,7 +410,7 @@ function generateAddedSection(r) {
     <span class="badge added">New</span>
   </div>
   <div class="diff-detail">
-    <div class="img-container"><img src="data:image/png;base64,${r.currentImg}" loading="lazy"></div>
+    <div class="img-container"><img src="${r.currentSrc}" loading="lazy"></div>
   </div>
 </div>`;
 }
@@ -398,7 +423,7 @@ function generateRemovedSection(r) {
     <span class="badge removed">Removed</span>
   </div>
   <div class="diff-detail">
-    <div class="img-container"><img src="data:image/png;base64,${r.baselineImg}" loading="lazy"></div>
+    <div class="img-container"><img src="${r.baselineSrc}" loading="lazy"></div>
   </div>
 </div>`;
 }
