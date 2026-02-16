@@ -16,7 +16,7 @@ TinaCloud 是 TinaCMS 的一个托管 [数据层](/docs/reference/content-api/da
 * 用户管理
 * [编辑工作流](/docs/drafts/editorial-workflow) 功能
 
-它还允许不同类型的用户（内容创作者、编辑、市场人员等）授权登录并编辑他们的网站，而无需直接访问 GitHub 中的存储库。
+它还允许不同类型的用户（内容创作者、编辑、市场人员等）进行授权登录和编辑他们的网站，而无需直接访问 GitHub 中的代码库。
 
 TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud 使用。
 
@@ -38,13 +38,13 @@ NPM、PNPM 和 Yarn 包管理器都被支持。
 
 | Node 版本 |                                          |
 | --------- | ---------------------------------------- |
-| v25.x     | ℹ️ 不支持 - 当前版本但不是 LTS           |
+| v25.x     | ℹ️ 不支持 - 当前但不是 LTS               |
 | v24.x LTS | ✅ 支持 - 推荐用于生产                    |
-| v23.x     | ❌ 已停止支持                             |
+| v23.x     | ❌ 已终止支持                             |
 | v22.x LTS | ✅ 支持 - 适合生产                        |
-| v21.x     | ❌ 已停止支持                             |
+| v21.x     | ❌ 已终止支持                             |
 | v20.x LTS | ℹ️ 不支持 - 推荐更新                     |
-| v19.x     | ❌ 已停止支持                             |
+| v19.x     | ❌ 已终止支持                             |
 
 表格更新于 2026 年 2 月
 
@@ -68,7 +68,7 @@ NPM、PNPM 和 Yarn 包管理器都被支持。
 
 在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 存储库。然而，这一功能在自托管 Tina 中不存在。
 
-其缺失的原因是由于涉及媒体上传的过程。在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。没有这个，图像在站点重建之前不会出现在媒体管理器中。
+其缺失的原因是由于涉及媒体上传的过程。当在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。没有这个，图像在网站重建之前不会出现在媒体管理器中。
 
 ### 2. 运行时动态分支切换
 
@@ -92,12 +92,12 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 对于这种情况，Tina 提供了两种不同的方法：
 
-1. GitHub 授权以便将操作归因于 GitHub 账户。
-2. [共同作者](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git 提交以便将提交归因于额外的用户。
+1. GitHub 授权以将操作归因于一个 GitHub 账户。
+2. [共同作者](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors) Git 提交以将提交归因于额外的用户。
 
-这两种方法都可以在 TinaCloud 账户设置中按用户启用。了解更多关于 [Git 授权](/docs/tinacloud/git-co-authoring)的信息。
+这两种方法都可以在 TinaCloud 账户设置中按用户启用。了解更多关于 [Git 作者化](/docs/tinacloud/git-co-authoring)的信息。
 
-## 8. 为什么使用 Markdown 时需要数据库？
+## 8. 使用 Markdown 时为什么需要数据库？
 
 在使用 TinaCMS 的 Markdown 时，数据库是必需的，因为服务于 Markdown 和 JSON 文件的数据层依赖于数据库来执行各种内容管理功能。虽然 Markdown 文件是您内容的主要来源，但数据库充当缓存以启用高级功能，如搜索、分页和文件之间的交叉引用。它还提供了一个 API，允许内容获取类似于传统的无头 CMS 操作。
 
@@ -107,13 +107,13 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 本地模式
 
-当开发人员在本地开发时，通常方便从本地文件系统加载/保存内容，而不是连接到 TinaCloud 上的内容。
+当开发人员在本地开发时，通常方便从他们的本地文件系统加载/保存内容，而不是连接到 TinaCloud 上的内容。
 
 在本地模式下，您**不需要**登录即可进入编辑模式。
 
 <WarningCallout
   body={<>
-    **注意：** 本地模式是为了本地开发而设计的，当您的站点托管在生产环境中时将不起作用。在本地模式下，Tina 尝试访问 `http://localhost:4001`，这在您的生产站点运行时不可用（底层文件系统内容也不可用）。
+    **注意：** 本地模式是为了本地开发而设计的，当您的网站托管在生产环境中时将不起作用。在本地模式下，Tina 尝试访问 `http://localhost:4001`，这在您的生产网站上运行时不可用（底层文件系统内容也不可用）。
   </>}
 />
 
@@ -121,7 +121,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 一旦您准备好在生产环境中托管您的网站并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
 
-无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，消除了用户创建 GitHub 账户的需要。任何由您的编辑保存的更改都将提交到您 GitHub 存储库中配置的分支。
+无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，无需用户创建 GitHub 账户。任何由您的编辑保存的更改都将提交到您 GitHub 仓库中配置的分支。
 
 ## 10. TinaCloud 仅适用于 GitHub 存储库吗？
 
@@ -145,13 +145,13 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ## 12. 为什么从网站登录时 Tina.io 登录窗口不会关闭？
 
-当用户从您的站点登录时，我们会弹出一个登录窗口。当登录完成时，我们将尝试将消息发送回主窗口。
+当用户从您的网站登录时，我们会弹出一个登录窗口。登录完成后，我们将尝试将消息发送回主窗口。
 
 此问题的最常见原因是：
 
 * Tina 项目的站点 URL 设置不正确。主窗口的基本 URL 需要与 TinaCloud 仪表板中设置的 Tina 项目的站点 URL 匹配。
-* 您站点环境变量中设置的客户端 ID 与 TinaCloud 仪表板中项目设置中的客户端 ID 不匹配。
-* 尝试登录 TinaCloud 的用户无权编辑此站点。确保此用户在 TinaCloud 仪表板上被授权。
+* 您网站环境变量中设置的客户端 ID 与 TinaCloud 仪表板中项目设置中的客户端 ID 不匹配。
+* 尝试登录 TinaCloud 的用户无权编辑此站点。确保该用户在 TinaCloud 仪表板上获得授权。
 
 > 确保在站点 URL 中包含 `https`，例如：[https://forestry.io](https://forestry.io) 或者如果您在本地测试，可能是 `http://localhost:3000`
 
@@ -165,7 +165,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 用户将开发的 admin/index.html 推送到生产环境
 
-当您在本地运行 `tinacms dev` 时，Tina 将生成一个开发的 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中移除 admin/index.html 文件，他们可能会遇到此问题。
+当您在本地运行 `tinacms dev` 时，Tina 会生成一个开发的 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中删除 admin/index.html 文件，他们可能会遇到此问题。
 
 ### 您的站点在不同的基础路径上提供服务
 
@@ -175,13 +175,13 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 **视频：常见问题 - 为 TinaCMS 设置基础路径（3 分钟）**
 
-## 14. 常见的 TinaCloud 错误是什么？
+## 14. 常见的 TinaCloud 错误有哪些？
 
 有关更多信息，请参阅 TinaCloud [故障排除](/docs/tinacloud/troubleshooting) 页面。
 
-## 15. 如何在本地 GraphQL 服务器未运行或在生产环境中访问它？
+## 15. 如何在本地 GraphQL 服务器未运行或在生产中访问它？
 
-### 在生产环境中
+### 在生产中
 
 确保您的 API URL 未设置为指向本地 GraphQL 服务器。您应该指向 ContentAPI。
 
@@ -193,7 +193,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 1. 弹出窗口阻止 Vercel 安装其 GitHub 应用
 
-在选择要部署的入门模板并被重定向到 Vercel 后，可能无法打开 Vercel 添加其 GitHub 应用的弹出窗口。在左下角查找一条消息，提示“无法打开安装 GitHub 应用的弹出窗口”。
+在选择要部署的入门模板并被重定向到 Vercel 后，可能无法打开 Vercel 添加其 GitHub 应用的弹出窗口。请查看左下角的提示消息，显示“无法打开安装 GitHub 应用的弹出窗口”。
 
 ![](/img/docs/introduction/vercel-popup-blocked_ogt6fr.png)\
 **图：弹出窗口被阻止**
@@ -208,13 +208,13 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 
 * 清晰的结构——标题、列表和代码块更易于解析
 * 语义意义——格式化增加了清晰度和上下文
-* 适合提示——一致的标记减少了歧义
-* 人机可读——原始 Markdown 对人类和机器都很友好
-* 符合 LLM 趋势——Markdown 自然适应向 LLM 优化内容的转变，如 [SEO 已死，LLMO 永生](https://jina.ai/news/seo-is-dead-long-live-llmo) 中所述
+* 友好的提示——一致的标记减少了歧义
+* 人机可读——原始 Markdown 对两者都有效
+* 与 LLM 趋势一致——Markdown 自然适应向 LLM 优化内容的转变，如 [SEO 已死，LLMO 永存](https://jina.ai/news/seo-is-dead-long-live-llmo) 中所述
 
 ## 18. 您支持 Git LFS 吗？
 
-很遗憾，由于 GitHub API 的限制，我们目前不支持 Git LFS。
+不幸的是，由于 GitHub API 的限制，我们目前不支持 Git LFS。
 
 ## 18. 加载引用字段时出现 503 服务不可用错误。
 
@@ -228,7 +228,7 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 
 ## 19. 我需要 GitHub 账户来编辑吗？
 
-不需要！只有设置 TinaCloud 项目并将其链接到 GitHub 存储库的个人需要 GitHub。
+作为临时解决方案，可以从 [TinaCloud 仪表板](https://app.tina.io/) 手动重新索引由 GitHub Copilot 创建的分支。
 
 编辑者可以仅使用他们的电子邮件创建一个 [TinaCloud](https://app.tina.io) 账户。如果为编辑者启用了共同作者功能，则提交将由他们的电子邮件地址共同作者。
 
@@ -241,3 +241,16 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 作为临时解决方案，可以从 [TinaCloud 仪表板](https://app.tina.io/) 手动重新索引由 GitHub Copilot 创建的分支。
 
 ![](/img/docs/faq/renaming-copilot-branches.gif "在 Tinacloud 中重新索引 GitHub Copilot 分支")
+
+## 21. 如何在媒体管理器中重命名媒体文件？
+
+通过 TinaCloud 媒体管理器目前不支持重命名媒体文件。基于仓库的媒体仅跟踪单个分支，并且没有用于媒体操作（如重命名）的分支功能。如果跟踪的分支受到保护，上传重命名的文件将保存到存储（S3），但更改不会提交到分支。
+
+作为一种解决方法，您可以通过在 GitHub 中直接进行更改来重命名媒体文件：
+
+1. 从您的媒体目录（例如 `public/uploads/`）中直接在 GitHub 中删除旧文件
+2. 等待删除同步回 TinaCloud
+3. 直接在 GitHub 中添加新名称的文件
+4. 等待添加同步回 TinaCloud
+
+有关更多详细信息，请参阅 [重命名媒体文件](/docs/reference/media/repo-based/#renaming-media-files)。
