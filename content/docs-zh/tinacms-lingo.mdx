@@ -1,6 +1,7 @@
 ---
 title: 我们在TinaCMS中的命名方式
-alias: tinacms-lingo
+alias: lingo
+last_edited: '2026-02-08T22:41:21.654Z'
 next: content/docs-zh/index.mdx
 previous: content/docs-zh/setup-overview.mdx
 ---
@@ -9,16 +10,85 @@ previous: content/docs-zh/setup-overview.mdx
 
 随着TinaCMS的不断发展，在描述其编辑体验时使用清晰且一致的语言非常重要。我们经常引用一组术语来解释可视化编辑的工作原理以及编辑者如何与内容互动。以下定义概述了这些术语，并展示了它们如何结合在一起：
 
-**可视化编辑**\
-整体的双窗格编辑体验，左侧是**编辑器**，右侧是实时的**网站预览**。
+### 管理侧边栏
 
-**TinaCMS 编辑器**\
-左侧窗格，通过结构化字段和输入来编辑内容。
+列出集合的侧边栏（不要与TinaCMS编辑器混淆）
 
-**网站预览**\
+![](/lingo/tinacms-admin-sidebar.jpeg "左侧管理侧边栏")
+
+### TinaCMS 编辑器
+
+左侧窗格，通过结构化字段和输入编辑内容。
+
+![](/lingo/tinacms-editor.jpeg "左侧TinaCMS编辑器")
+
+### 可视化编辑
+
+整体的双窗格编辑体验，左侧是**编辑器**，右侧是实时**网站预览**。
+
+![](/lingo/visual-editing.jpeg "带有编辑器（左）和网站预览（右）的可视化编辑")
+
+### 网站预览
+
 右侧窗格，显示网站的实时视图，随着内容的编辑而更新。
 
-**可视元素高亮**\
-在**网站预览**中悬停在元素上时，它们会以蓝色🟦高亮显示，帮助识别页面结构和内容关系。
+### 可编辑区域
 
-![](/tinacms-visual-editing.png)
+在**网站预览**中带有蓝色轮廓 🟦 的元素是可编辑的。点击任何带轮廓的元素将自动聚焦其在侧边栏中对应的字段，以便立即编辑。
+
+![](/lingo/visual-highlight.jpeg "标题的视觉元素高亮")
+
+### 字段
+
+[字段](https://tina.io/docs/reference/fields) 定义了提供给您网站的内容结构。这些字段在您的配置中定义，或在单独的`Template`中定义。
+
+```ts
+const someTemplate: Template = {
+  name: 'someTemplate',
+  label: 'Some Template',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string' }
+   ]}
+```
+
+![](</lingo/tinacms-fields.jpeg> "TinaCMS编辑器中高亮显示的字段")
+
+### 富文本嵌入
+
+在[富文本字段](/docs/reference/types/rich-text)中，我们可以选择将自定义组件作为模板嵌入。通过React组件丰富基于Markdown的内容。
+
+```
+const someCollection: Collection = {
+  name: 'someCollection',
+  label: 'Some Collection',
+  path: 'content/someCollection',
+  format: 'mdx',
+  fields: [
+    {
+    name: 'richBody',
+    label: 'Rich Body',
+    type: 'rich-text',
+    templates: [
+      someTemplate
+      ]}
+     ]
+    }
+```
+
+![](</lingo/tinacms-rich-text-embed.jpeg> "富文本正文中的富文本嵌入")
+
+### 块
+
+[块](/docs/editing/blocks) 是一种建模灵活页面构建器风格内容的方法。它是不同组件（部分）的有序数组，例如英雄、功能、内容等。
+
+![](/lingo/tinacms-editor.jpeg "“页面部分”下的块数组")
+
+### 编辑工作流程
+
+[编辑工作流程](/editorial-workflow) 允许用户在基于Git的环境中轻松地在TinaCMS中进行更改。它为用户提供了以下功能：
+
+* 在TinaCMS编辑器中创建分支
+* 从他们自己的网站进行Git提交
+* 在TinaCMS编辑器中创建拉取请求
+
+<WebmEmbed embedSrc="/video/create-branch.webm" />
