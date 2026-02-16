@@ -25,9 +25,9 @@
     "deploy": "pnpm build && pnpm export",
     "postbuild": "next-sitemap",
     "analytics:export:search": "node ./scripts/analytics/exportSearch.js",
-    "visual:compare": "./scripts/compare-branches.sh",
-    "visual:capture": "pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium --reporter=list --retries=1",
-    "visual:report": "node ./scripts/visual-diff-report.mjs"
+    "visual:capture": "pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium --reporter=list",
+    "visual:report": "npx tsx tests/visual-compare/generate-report.ts",
+    "visual:recapture": "npx tsx tests/visual-compare/recapture-missing.ts"
   },
   "resolutions": {
     "graphql": "^15.5.1"
