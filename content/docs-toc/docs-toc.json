@@ -14,6 +14,11 @@
           "_template": "item"
         },
         {
+          "title": "TinaCMS Lingo",
+          "slug": "content/docs/tinacms-lingo.mdx",
+          "_template": "item"
+        },
+        {
           "title": "The Editing Experience",
           "slug": "content/docs/using-tina-editor.mdx",
           "_template": "item"
@@ -483,6 +488,11 @@
         {
           "title": "Connecting to TinaCloud",
           "slug": "content/docs/tinacloud/overview.mdx",
+          "_template": "item"
+        },
+        {
+          "title": "Network Requirements",
+          "slug": "content/docs/tinacloud/network-requirements.mdx",
           "_template": "item"
         },
         {

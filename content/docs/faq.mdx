@@ -241,3 +241,16 @@ We have raised this issue with GitHub and will provide updates as they become av
 As a temporary workaround, branches created by GitHub Copilot can be manually re-indexed from the [TinaCloud dashboard](https://app.tina.io/).
 
 ![](/img/docs/faq/renaming-copilot-branches.gif "Re-indexing GitHub Copilot branches in Tinacloud")
+
+## 21. How do I rename media files in the Media Manager?
+
+Renaming media files is not currently supported through the TinaCloud Media Manager. Repo-based media only tracks a single branch and does not have branching functionality for media operations like renaming. If the tracked branch is protected, uploading a renamed file will save it to storage (S3) but the change will not be committed to the branch.
+
+As a workaround, you can rename media files by making the changes directly in GitHub:
+
+1. Delete the old file from your media directory (e.g. `public/uploads/`) directly in GitHub
+2. Wait for the deletion to sync back to TinaCloud
+3. Add the file with the new name directly in GitHub
+4. Wait for the addition to sync back to TinaCloud
+
+For more details, see [Renaming Media Files](/docs/reference/media/repo-based/#renaming-media-files).

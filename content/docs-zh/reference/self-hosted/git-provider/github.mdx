@@ -31,15 +31,15 @@ export default isLocal ? createLocalDatabase() ? createDatabase({
 
 | 选项     | 描述                                                                                       |
 | -------- | ----------------------------------------------------------------------------------------- |
-| `branch` | 要保存内容的分支。                                                                        |
+| `branch` | 保存内容的分支。                                                                          |
 | `owner`  | 仓库的所有者。                                                                            |
-| `repo`   | 要保存内容的仓库。                                                                        |
+| `repo`   | 保存内容的仓库。                                                                          |
 | `token`  | 一个 [GitHub 个人访问令牌](https://github.com/settings/personal-access-tokens/new)。      |
 
 ### 可选参数
 
 | 选项             | 描述                                                                                                                |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `commitMessage`  | 保存内容时使用的提交信息。默认为 `Edited with TinaCMS`。                                                           |
-| `rootPath`       | 此路径将作为所有路径的前缀。通常仅在 monorepos 中使用。可选。                                                      |
-| `octokitOptions` | 传递给 [Octokit 构造函数](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) 的选项。 |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `commitMessage`  | 保存内容时使用的提交消息。默认为 `Edited with TinaCMS`。                                                            |
+| `rootPath`       | 此路径将被添加到所有路径的前缀。通常仅在 monorepos 中使用。可选。                                                   |
+| `octokitOptions` | 传递给 [Octokit 构造函数](https://github.com/octokit/octokit.js/blob/main/README.md#constructor-options) 的选项。   |
