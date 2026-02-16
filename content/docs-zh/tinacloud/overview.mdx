@@ -16,13 +16,13 @@ previous: content/docs-zh/tinacloud.mdx
 
 <Youtube embedSrc="https://www.youtube.com/embed/sTVd8CYtXrA?si=DmnS-45aXkmCq8Fa" />
 
-要将您的站点部署到生产环境，您需要将 Tina 连接到托管的后端。本文档将引导您完成从[本地运行到生产运行](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode)的步骤。
+要将您的站点部署到生产环境，您需要将 Tina 连接到托管的后端。本文件将引导您完成从[本地运行到生产运行](/docs/introduction/faq/#what-is-local-mode-vs-prod-mode)的步骤。
 
 ## 前提条件
 
 * 确保您的站点在 GitHub 上，并且所有更改都已推送（包括 `tina/tina-lock.json`）。
 * 确保您有一个 [TinaCloud](https://app.tina.io) 账户。
-  * 查看 [TinaCloud Dashboard](/docs/tinacloud/dashboard) 文档以获取更多信息。
+  * 查看 [TinaCloud 仪表板](/docs/tinacloud/dashboard) 文档以获取更多信息。
 
 ## 创建一个 TinaCloud 项目
 
@@ -30,18 +30,18 @@ previous: content/docs-zh/tinacloud.mdx
 
 ## 运行后端初始化命令
 
-下一步是连接您的站点。一旦连接，您的项目编辑者将能够直接从您的站点将内容保存到其 GitHub 存储库中。
+下一步是连接您的站点。一旦连接，您项目的编辑者将能够直接从站点内将内容保存到其 GitHub 存储库。
 
 ```bash
 npx @tinacms/cli init backend
 ```
 
-这将会
+这将会：
 
 * 要求您提供 ClientId：可以在项目的“概述”选项卡中找到。
 * 要求您提供只读令牌：可以在项目的“令牌”选项卡中找到。
 * 用连接到 TinaCloud 所需的环境变量填充您的 `.env` 文件。
-  * 如果您使用不同的环境变量文件，或者您已有 `.env` 文件，您需要手动复制这些变量。
+  * 如果您使用不同的环境变量文件，或者您已有 `.env` 文件，则需要手动复制这些变量。
 
 ## 确保 ClientId 和 Token 被传递到配置中
 
@@ -65,7 +65,7 @@ export default defineConfig({
 
 <WarningCallout
   body={<>
-    注意：如果您从本地环境文件加载您的架构配置值，Tina 的构建过程只会拾取 `.env` 文件（而不是 `.env.local` 或 `.env.development`）。
+    注意：如果您从本地环境文件加载您的架构配置值，Tina 的构建过程将只会拾取 `.env` 文件（而不是 `.env.local` 或 `.env.development`）。
   </>}
 />
 
@@ -99,7 +99,7 @@ export default defineConfig({
 > `NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF` 是 Vercel 的[系统环境变量](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables)，表示进行部署提交的分支。
 > `HEAD` 是 [Netlify](https://docs.netlify.com/configure-builds/environment-variables/#git-metadata) 使用的等效系统环境变量。
 
-您完全配置的 `tina/config.{js,ts}` 应该看起来像这样：
+您完全配置的 `tina/config.{js,ts}` 应如下所示：
 
 ```ts
 import {  defineConfig } from 'tinacms'
