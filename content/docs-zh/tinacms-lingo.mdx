@@ -1,5 +1,5 @@
 ---
-title: 我们在TinaCMS中的命名方式
+title: 我们在TinaCMS中如何命名事物
 alias: lingo
 last_edited: '2026-02-08T22:41:21.654Z'
 next: content/docs-zh/index.mdx
@@ -8,7 +8,7 @@ previous: content/docs-zh/setup-overview.mdx
 
 ## TinaCMS 编辑术语
 
-随着TinaCMS的不断发展，在描述其编辑体验时使用清晰且一致的语言非常重要。我们经常引用一组术语来解释可视化编辑的工作原理以及编辑者如何与内容互动。以下定义概述了这些术语，并展示了它们如何结合在一起：
+随着TinaCMS的不断发展，在描述其编辑体验时使用清晰且一致的语言是很重要的。我们经常引用一组术语来解释可视化编辑的工作原理以及编辑者如何与内容互动。以下定义概述了这些术语，并展示了它们如何结合在一起：
 
 ### 管理侧边栏
 
@@ -24,9 +24,9 @@ previous: content/docs-zh/setup-overview.mdx
 
 ### 可视化编辑
 
-整体的双窗格编辑体验，左侧是**编辑器**，右侧是实时**网站预览**。
+整体的双窗格编辑体验，左侧是**编辑器**，右侧是实时的**网站预览**。
 
-![](/lingo/visual-editing.jpeg "带有编辑器（左）和网站预览（右）的可视化编辑")
+![](/lingo/visual-editing.jpeg "可视化编辑，左侧为编辑器，右侧为网站预览")
 
 ### 网站预览
 
@@ -40,7 +40,7 @@ previous: content/docs-zh/setup-overview.mdx
 
 ### 字段
 
-[字段](https://tina.io/docs/reference/fields) 定义了提供给您网站的内容结构。这些字段在您的配置中定义，或在单独的`Template`中定义。
+[字段](https://tina.io/docs/reference/fields)定义了提供给你的网站的内容结构。这些字段在你的配置中定义，或在单独的`Template`中定义。
 
 ```ts
 const someTemplate: Template = {
@@ -55,7 +55,7 @@ const someTemplate: Template = {
 
 ### 富文本嵌入
 
-在[富文本字段](/docs/reference/types/rich-text)中，我们可以选择将自定义组件作为模板嵌入。通过React组件丰富基于Markdown的内容。
+在[富文本字段](/docs/reference/types/rich-text)中，我们可以选择将自定义组件作为模板嵌入。用React组件丰富基于Markdown的内容。
 
 ```
 const someCollection: Collection = {
@@ -79,16 +79,16 @@ const someCollection: Collection = {
 
 ### 块
 
-[块](/docs/editing/blocks) 是一种建模灵活页面构建器风格内容的方法。它是不同组件（部分）的有序数组，例如英雄、功能、内容等。
+[块](/docs/editing/blocks)是一种建模灵活页面构建器风格内容的方法。它是不同组件（部分）的有序数组，如英雄、功能、内容等。
 
 ![](/lingo/tinacms-editor.jpeg "“页面部分”下的块数组")
 
 ### 编辑工作流程
 
-[编辑工作流程](/editorial-workflow) 允许用户在基于Git的环境中轻松地在TinaCMS中进行更改。它为用户提供了以下功能：
+[编辑工作流程](/editorial-workflow)允许用户在基于Git的环境中轻松地在TinaCMS中进行更改。它使用户能够：
 
 * 在TinaCMS编辑器中创建分支
-* 从他们自己的网站进行Git提交
+* 从自己的网站进行Git提交
 * 在TinaCMS编辑器中创建拉取请求
 
 <WebmEmbed embedSrc="/video/create-branch.webm" />
