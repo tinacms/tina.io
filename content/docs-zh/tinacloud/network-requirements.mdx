@@ -1,0 +1,57 @@
+---
+title: 网络要求
+next: content/docs-zh/tinacloud/troubleshooting.mdx
+previous: content/docs-zh/tinacloud/overview.mdx
+---
+
+## 概述
+
+TinaCloud 的身份验证和内容服务需要与多个外部域进行通信。如果您的网络使用防火墙、VPN 或代理限制出站流量，您需要将下列域列入白名单，以确保 TinaCMS 正常运行。
+
+## 必需的域
+
+### TinaCloud 服务
+
+| 域 | 目的 |
+|---|---|
+| `*.tina.io` | TinaCloud 仪表板和资产交付 |
+| `identity.tinajs.io` | 身份验证和身份服务 |
+| `content.tinajs.io` | 内容 API 和数据层 |
+| `assets.tinajs.io` | 资产管理和交付 |
+
+### 身份验证（OAuth / SSO）
+
+TinaCloud 使用 AWS Cognito 和 API Gateway 进行身份验证。登录流程在登录时通过这些域进行重定向：
+
+| 域 | 目的 |
+|---|---|
+| `*.auth.us-east-1.amazoncognito.com` | AWS Cognito 托管 UI（OAuth 授权） |
+| `cognito-idp.us-east-1.amazonaws.com` | AWS Cognito 身份提供者 API |
+| `*.execute-api.us-east-1.amazonaws.com` | AWS API Gateway（OIDC 身份桥接） |
+
+### GitHub
+
+如果您的项目使用 GitHub 作为其 git 提供者（TinaCloud 的默认设置）：
+
+| 域 | 目的 |
+|---|---|
+| `github.com` | GitHub OAuth 授权和存储库访问 |
+| `api.github.com` | GitHub API 用于令牌交换和用户信息 |
+
+### 企业 SSO (WorkOS)
+
+如果您的组织通过 TinaCloud 使用企业 SSO：
+
+| 域 | 目的 |
+|---|---|
+| `*.workos.com` | WorkOS 企业 SSO 提供者 |
+
+## 故障排除
+
+### 在 VPN 或受限网络上登录超时
+
+如果您在通过 VPN 或受限网络进行身份验证时看到“登录尝试超时”错误，很可能是上述身份验证域之一被阻止。登录流程必须在 20 秒内完成完整的重定向链，链中的任何被阻止的域都会导致超时。
+
+### 内容安全策略 (CSP)
+
+如果您正在为您的网站配置内容安全策略头，请参阅 [CSP 配置指南](/docs/guides/csp-configuration/) 以获取所需的指令。
