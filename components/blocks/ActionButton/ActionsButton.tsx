@@ -1,5 +1,4 @@
 import { BiArrowBack } from 'react-icons/bi';
-import 'react-responsive-modal/styles.css';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
 import { FlushButton, LinkButton } from '../../ui';

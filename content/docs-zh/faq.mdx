@@ -11,12 +11,12 @@ previous: ''
 
 TinaCloud 是 TinaCMS 的一个托管 [数据层](/docs/reference/content-api/data-layer)。TinaCloud 是在生产环境中使用 TinaCMS 的最简单方式。它提供：
 
-* 为您的内容提供托管的 GraphQL 端点
+* 一个托管的内容 GraphQL 端点
 * Git 集成
 * 用户管理
 * [编辑工作流](/docs/drafts/editorial-workflow) 功能
 
-它还允许不同类型的用户（内容创建者、编辑者、市场营销人员等）授权登录并编辑他们的网站，而无需直接授予 GitHub 仓库的访问权限。
+它还允许不同类型的用户（内容创作者、编辑、市场人员等）进行授权登录和编辑他们的网站，而无需直接授予 GitHub 仓库的访问权限。
 
 TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud 使用。
 
@@ -26,7 +26,7 @@ TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud
 
 请访问我们的社区 [tina.io/community](https://tina.io/community)。
 
-## 3. 使用 Tina 需要认证人员吗？
+## 3. 我需要认证人员来使用 Tina 吗？
 
 任何人都可以立即开始使用 Tina，但它是为开发人员设置和定制而设计的。[认证开发人员](https://www.credly.com/org/superior-software-for-windows-ssw/badge/tinacms-developer) 可以加速设置、微调配置，并确保最佳实践架构。
 
@@ -62,13 +62,13 @@ NPM、PNPM 和 Yarn 包管理器都被支持。
 
 ## 6. 自托管 Tina 与 TinaCloud 相比有哪些不可用的功能？
 
-在比较 TinaCloud 与自托管 Tina 时，TinaCloud 有一些独特的功能。这些包括：
+在比较 TinaCloud 和自托管 Tina 时，TinaCloud 有一些独特的功能。这些包括：
 
 ### 1. Git 支持的媒体
 
 在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 仓库。然而，这一功能在自托管 Tina 中不存在。
 
-其缺失的原因是由于涉及媒体上传的过程。在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。否则，图像在站点重建之前不会出现在媒体管理器中。
+其缺失的原因是由于涉及媒体上传的过程。在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。没有这个，图像在网站重建之前不会出现在媒体管理器中。
 
 ### 2. 运行时动态分支切换
 
@@ -119,7 +119,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 生产模式
 
-一旦您准备好在生产环境中托管您的站点并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
+一旦您准备好在生产环境中托管您的网站并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
 
 无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 都直接与 GitHub 进行身份验证，无需用户创建 GitHub 账户。任何由您的编辑者保存的更改都将提交到您 GitHub 仓库中配置的分支。
 
@@ -129,7 +129,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ## 11. TinaCloud 支持 Monorepos 吗？
 
-支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的站点一起工作。
+支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的网站一起工作。
 
 如果您的仓库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于仓库的根目录。
 
@@ -143,7 +143,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 有关更多信息，请参阅 [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina)。
 
-## 12. 为什么从站点登录时 Tina.io 登录窗口不会关闭？
+## 12. 为什么从网站登录时 Tina.io 登录窗口不会关闭？
 
 当用户从您的站点登录时，我们会弹出一个登录窗口。当登录完成时，我们将尝试将消息发送回主窗口。
 
@@ -167,13 +167,13 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 当您在本地运行 `tinacms dev` 时，Tina 将生成一个开发 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中删除 admin/index.html 文件，他们可能会遇到此问题。
 
-### 您的站点在不同的基本路径上提供服务
+### 您的站点在不同的基础路径上提供服务
 
 如果您的站点在子目录中提供服务，请确保您的 `build.basePath` 已 [适当配置](/docs/reference/config/#definition)
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
-**视频：常见问题 - 为 TinaCMS 设置基本路径（3 分钟）**
+**视频：常见问题 - 为 TinaCMS 设置基础路径（3 分钟）**
 
 ## 14. 常见的 TinaCloud 错误是什么？
 
@@ -214,11 +214,11 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 
 ## 18. 您支持 Git LFS 吗？
 
-遗憾的是，由于 GitHub API 的限制，我们目前不支持 Git LFS。
+很遗憾，由于 GitHub API 的限制，我们目前不支持 Git LFS。
 
 ## 18. 加载引用字段时出现 503 服务不可用错误。
 
-在使用具有大量项目的集合上的引用字段时，您可能会发现网络请求超时。目前，我们没有任何机制来分页引用字段。
+在具有大量项目的集合上使用引用字段时，您可能会发现网络请求超时。目前，我们没有任何机制来分页引用字段。
 
 替代方法是添加一个带有分页的 [自定义字段组件](https://tina.io/docs/extending-tina/custom-field-components)。要检索分页结果，您可以使用 [自定义查询](https://tina.io/docs/data-fetching/custom-queries)。
 
