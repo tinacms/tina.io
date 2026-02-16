@@ -14,6 +14,10 @@ import { discoverPages } from './discover-pages';
  *   VISUAL_LABEL=current  pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium
  */
 
+// Limit workers to avoid overwhelming the dev server — too many concurrent
+// requests cause random pages to render with missing assets or loading states.
+test.describe.configure({ mode: 'parallel' });
+
 const LABEL = process.env.VISUAL_LABEL || 'current';
 const SCREENSHOT_DIR = path.join(__dirname, 'screenshots', LABEL);
 
@@ -40,7 +44,7 @@ for (const pagePath of PAGES) {
     }
 
     // Give lazy-loaded images / animations a moment to settle
-    await page.waitForTimeout(1500);
+    await page.waitForTimeout(2000);
 
     await page.screenshot({
       path: path.join(SCREENSHOT_DIR, `${slug}.png`),

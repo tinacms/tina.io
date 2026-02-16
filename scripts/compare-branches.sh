@@ -172,7 +172,8 @@ capture() {
   VISUAL_LABEL="$label" pnpm exec playwright test tests/visual-compare/capture.spec.ts \
     --project=chromium \
     --reporter=list \
-    --retries=1 || true
+    --retries=1 \
+    --workers=2 || true
 
   # Move screenshots to temp (safe from branch switches)
   if [ -d "$SCREENSHOT_DIR/$label" ]; then
