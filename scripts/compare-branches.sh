@@ -27,6 +27,7 @@ ORIGINAL_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 SCREENSHOT_DIR="$ROOT_DIR/tests/visual-compare/screenshots"
+TEMP_DIR=$(mktemp -d)
 
 # Colours
 RED='\033[0;31m'
@@ -46,6 +47,14 @@ cleanup() {
   if [ -n "$DEV_PID" ]; then
     kill "$DEV_PID" 2>/dev/null || true
     wait "$DEV_PID" 2>/dev/null || true
+  fi
+  # Remove temp stash of test files
+  rm -rf "$TEMP_DIR"
+  # Restore test files if they were removed by a branch switch
+  if [ -d "$TEMP_DIR_BACKUP" ]; then
+    mkdir -p "$ROOT_DIR/tests/visual-compare"
+    cp -r "$TEMP_DIR_BACKUP"/* "$ROOT_DIR/tests/visual-compare/" 2>/dev/null || true
+    rm -rf "$TEMP_DIR_BACKUP"
   fi
   # Return to original branch
   if [ "$(git rev-parse --abbrev-ref HEAD)" != "$ORIGINAL_BRANCH" ]; then
@@ -84,14 +93,26 @@ if lsof -ti:3000 >/dev/null 2>&1; then
   sleep 1
 fi
 
+# ── Stash test files so they survive branch switches ──────────────
+
+info "Saving test files to temp location..."
+cp -r "$ROOT_DIR/tests/visual-compare" "$TEMP_DIR/visual-compare"
+cp "$SCRIPT_DIR/visual-diff-report.mjs" "$TEMP_DIR/visual-diff-report.mjs"
+ok "Test files saved to $TEMP_DIR"
+
 # Clean previous screenshots
 rm -rf "$SCREENSHOT_DIR"
 mkdir -p "$SCREENSHOT_DIR"
 
-# ── Helper: capture screenshots on current checkout ────────────────
+# ── Helper: inject test files + capture screenshots ────────────────
 
 capture() {
   local label="$1"
+
+  # Inject the test files onto this branch (they may not exist here)
+  mkdir -p "$ROOT_DIR/tests/visual-compare"
+  cp -r "$TEMP_DIR/visual-compare"/* "$ROOT_DIR/tests/visual-compare/"
+
   info "Starting dev server..."
   cd "$ROOT_DIR"
   pnpm dev > /dev/null 2>&1 &
@@ -115,6 +136,12 @@ capture() {
     --reporter=list \
     --retries=1 || true
 
+  # Save screenshots to temp before they get wiped by branch switch
+  if [ -d "$SCREENSHOT_DIR/$label" ]; then
+    mkdir -p "$TEMP_DIR/screenshots/$label"
+    cp -r "$SCREENSHOT_DIR/$label"/* "$TEMP_DIR/screenshots/$label/"
+  fi
+
   # Count captured files
   local count
   count=$(ls "$SCREENSHOT_DIR/$label"/*.png 2>/dev/null | wc -l | tr -d ' ')
@@ -125,6 +152,9 @@ capture() {
   wait "$DEV_PID" 2>/dev/null || true
   unset DEV_PID
   sleep 2
+
+  # Clean injected test files so git checkout doesn't complain
+  git checkout -- tests/visual-compare/ 2>/dev/null || rm -rf "$ROOT_DIR/tests/visual-compare"
 }
 
 # ── 1. Capture baseline (base branch) ─────────────────────────────
@@ -148,9 +178,18 @@ capture "current"
 git checkout "$ORIGINAL_BRANCH" --quiet
 ok "Back on $ORIGINAL_BRANCH"
 
+# Restore screenshots from temp (branch switches may have wiped them)
+rm -rf "$SCREENSHOT_DIR"
+mkdir -p "$SCREENSHOT_DIR"
+cp -r "$TEMP_DIR/screenshots"/* "$SCREENSHOT_DIR/"
+
+# Restore test files
+mkdir -p "$ROOT_DIR/tests/visual-compare"
+cp -r "$TEMP_DIR/visual-compare"/* "$ROOT_DIR/tests/visual-compare/"
+
 echo ""
 echo -e "${BLUE}━━━ Step 3/3: Generating diff report ━━━${NC}"
-VISUAL_BASE_BRANCH="$BASE_BRANCH" VISUAL_PR_BRANCH="$PR_BRANCH" node "$SCRIPT_DIR/visual-diff-report.mjs"
+VISUAL_BASE_BRANCH="$BASE_BRANCH" VISUAL_PR_BRANCH="$PR_BRANCH" node "$TEMP_DIR/visual-diff-report.mjs"
 
 # Open report
 REPORT="$ROOT_DIR/tests/visual-compare/report.html"
