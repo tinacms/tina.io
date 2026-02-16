@@ -1,5 +1,5 @@
 ---
-title: How We Name Things in the TinaCMS
+title: How we name things in TinaCMS
 alias: lingo
 last_edited: '2026-02-08T22:41:21.654Z'
 next: content/docs/index.mdx
@@ -12,21 +12,21 @@ As TinaCMS continues to evolve, it's important to use clear and consistent langu
 
 ### Admin Sidebar
 
-The Sidebar with collections listed (Not to be confused with the TinaCMS Editor)
+The sidebar that lists collections (not to be confused with the TinaCMS Editor).
 
 ![](/lingo/tinacms-admin-sidebar.jpeg "Left-hand side Admin Sidebar")
-
-### TinaCMS Editor
-
-The left-hand pane where content is edited using structured fields and inputs.
-
-![](/lingo/tinacms-editor.jpeg "Left-hand side TinaCMS Editor")
 
 ### Visual Editing
 
 The overall two-pane editing experience, with the **Editor** on the left and a live **Site Preview** on the right.
 
 ![](/lingo/visual-editing.jpeg "Visual editing with Editor (left) and Site Preview (right)")
+
+### TinaCMS Editor
+
+The left-hand pane where content is edited using structured fields and inputs.
+
+![](/lingo/tinacms-editor.jpeg "Left-hand side TinaCMS Editor")
 
 ### Site Preview
 
@@ -40,7 +40,7 @@ Elements in the **Site Preview** with a blue outline 🟦 are editable. Clicking
 
 ### Fields
 
-[Fields](https://tina.io/docs/reference/fields) define the structure of the content served to your site. These are defined in your config, or in seperate `Template`'s.
+[Fields](https://tina.io/docs/reference/fields) define the structure of the content served to your site. These are defined in your config or within a separate `Template`.
 
 ```ts
 const someTemplate: Template = {
@@ -55,7 +55,7 @@ const someTemplate: Template = {
 
 ### Rich Text Embed
 
-Within [rich-text fields](/docs/reference/types/rich-text), we have the option to embed custom components as a template. Enriching markdown backed content with React components.
+Within [rich-text fields](/docs/reference/types/rich-text), we have the option to embed custom components as a template. This allows you to enrich markdown-backed content with React components.
 
 ```
 const someCollection: Collection = {
@@ -79,13 +79,13 @@ const someCollection: Collection = {
 
 ### Blocks
 
-[Blocks](/docs/editing/blocks) are a way to model flexible page-builder styled content. It is an ordered array of different components (sections), such as a hero, features, content etc.
+[Blocks](/docs/editing/blocks) are a way to model flexible page-builder styled content. They are an ordered array of different components (sections), such as a hero, features, content, etc.
 
 ![](/lingo/tinacms-editor.jpeg "Array of blocks under 'Page Sections'")
 
 ### Editorial Workflow
 
-The [editorial workflow](/editorial-workflow) allows users to easily make changes in TinaCMS for a Git based environment. It gives users the ability to:
+The [editorial workflow](/editorial-workflow) allows users to easily make changes in TinaCMS within a Git-based environment. It gives users the ability to:
 
 * Create branches in the TinaCMS Editor
 * Make Git commits from their own site
