@@ -60,13 +60,15 @@ cleanup() {
     kill "$DEV_PID" 2>/dev/null || true
     wait "$DEV_PID" 2>/dev/null || true
   fi
-  # Clean up injected files so branch switch works
-  remove_injected_files
-  # Return to original branch
+  # Only remove injected files if we're NOT on the original branch
+  # (on the original branch, these files are tracked by git)
   if [ "$(git rev-parse --abbrev-ref HEAD)" != "$ORIGINAL_BRANCH" ]; then
+    remove_injected_files
     warn "Returning to $ORIGINAL_BRANCH"
     git checkout "$ORIGINAL_BRANCH" --quiet 2>/dev/null || git checkout -f "$ORIGINAL_BRANCH" --quiet
   fi
+  # Discard any untracked Playwright artifacts (test-results, etc.)
+  git checkout -- test-results/ 2>/dev/null || true
   # Clean temp
   rm -rf "$TEMP_DIR"
 }
@@ -79,8 +81,11 @@ echo -e "${BOLD}Visual Branch Comparison${NC}"
 echo -e "Comparing ${BLUE}${PR_BRANCH}${NC} against ${BLUE}${BASE_BRANCH}${NC}"
 echo ""
 
-if [ -n "$(git status --porcelain)" ]; then
+# Check for dirty files, ignoring Playwright artifacts
+DIRTY_FILES=$(git status --porcelain | grep -v '^.. test-results/' || true)
+if [ -n "$DIRTY_FILES" ]; then
   err "Working tree is dirty. Commit or stash your changes first."
+  echo "$DIRTY_FILES"
   exit 1
 fi
 
