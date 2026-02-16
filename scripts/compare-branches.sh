@@ -202,7 +202,7 @@ cp -r "$TEMP_DIR/screenshots/current"/* "$SCREENSHOT_DIR/current/" 2>/dev/null |
 
 echo ""
 echo -e "${BLUE}━━━ Step 3/3: Generating diff report ━━━${NC}"
-VISUAL_BASE_BRANCH="$BASE_BRANCH" VISUAL_PR_BRANCH="$PR_BRANCH" node "$TEMP_DIR/visual-diff-report.mjs"
+VISUAL_BASE_BRANCH="$BASE_BRANCH" VISUAL_PR_BRANCH="$PR_BRANCH" node "$SCRIPT_DIR/visual-diff-report.mjs"
 
 # Open report
 REPORT="$ROOT_DIR/tests/visual-compare/report.html"
