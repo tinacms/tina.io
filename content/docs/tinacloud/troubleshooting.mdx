@@ -3,7 +3,7 @@ title: Troubleshooting
 alias: troubleshooting
 last_edited: '2025-10-16T02:02:56.166Z'
 next: content/docs/tinacloud/dashboard.mdx
-previous: content/docs/tinacloud.mdx
+previous: content/docs/tinacloud/network-requirements.mdx
 ---
 
 ## What are the common TinaCloud errors?
@@ -94,3 +94,9 @@ To resolve this, ensure that one of the URLs specified in your TinaCloud Site UR
 
 ![TinaCloud Site URLs settings](/img/docs/introduction/tina-site-url-highlight.png)\
 **Figure: TinaCloud Site URLs settings**
+
+### 9. How do I resolve `Login attempt timed out` errors on a VPN or restricted network?
+
+The TinaCloud login flow redirects through several external domains (AWS Cognito, API Gateway, GitHub) that may be blocked by your VPN or firewall. If any domain in the redirect chain is blocked, the login will time out before completing.
+
+To resolve this, ensure your network allows outbound traffic to all domains listed on the [Network Requirements](/docs/tinacloud/network-requirements/) page. Whitelisting `*.tina.io` alone is not sufficient — the authentication flow also requires access to AWS and GitHub domains.

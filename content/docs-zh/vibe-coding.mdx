@@ -9,7 +9,7 @@ previous: content/docs-zh/content-model-intro.mdx
 
 ## 1. 设置舞台
 
-设置一个环境，让你的AI助手能够大放异彩：
+设置一个让你的AI助手大放异彩的环境：
 
 ### 1.1 使用集成AI的IDE
 
@@ -26,7 +26,8 @@ AI在你的编辑器中效果最佳。为了实现无缝的内联辅助，我们
 AI在有上下文时效果最佳。拥有模板为其提供了一些代码模型。使用我们的[Tina Starter CLI工具](https://tina.io/docs/introduction/using-starter)或让你的助手通过如下提示为你完成：
 
 ```plaintext
-请使用以下命令设置TinaCMS入门模板：npx create-tina-app@latest
+请使用以下命令设置TinaCMS入门模板：
+npx create-tina-app@latest
 
 使用tina.io作为文档参考
 ```
@@ -36,7 +37,18 @@ AI在有上下文时效果最佳。拥有模板为其提供了一些代码模型
 
 安装完成后，探索生成的文件，以便你了解TinaCMS是如何连接在一起的。你的AI助手将在后续提示中自动引用此结构，因此你对起点了解得越多，你的方向就越精确。
 
-> **提示：** 查看[SSW的更好AI开发规则](https://www.ssw.com.au/rules/rules-to-better-ai-development/)
+示例：
+
+```plaintext
+# 项目：我的Tina博客
+栈：Next.js, TinaCMS, Tailwind CSS
+
+- 使用`tina/config.ts`进行模式定义。
+- 组件位于`components/`。
+- 对所有props使用TypeScript接口。
+```
+
+> **提示：** 要了解如何制作一个优秀的AGENTS.md文件，请阅读规则[编写AGENTS.md](https://www.ssw.com.au/rules/write-agents-md)
 
 ### 1.4 创建一个AGENTS.md文件
 
@@ -149,7 +161,7 @@ AI在处理小而集中的任务时效果最佳。与其请求*“整个项目�
 
 AI快速且自信，有时过于自信。它可能会：
 
-* 重命名不应触碰的东西
+* 重命名不应触碰的内容
 * “清理”实际上在做重要事情的代码
 * 重新格式化整个文件
 

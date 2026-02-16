@@ -1,30 +1,83 @@
 ---
 title: Data Layer
-last_edited: '2022-06-15T15:51:56.737Z'
+last_edited: '2026-02-10T23:24:00.000Z'
 ---
 
-TinaCMS implements a database layer between the Tina GraphQL API and the
-underlying Git repository. This data layer buffers requests between TinaCloud and GitHub resulting in improved editing performance with TinaCMS. It also enables additional capabilities such as:
+## What is the Tina Data Layer?
 
-- [sorting](/docs/graphql/queries/advanced/sorting/)
-- [filtering](/docs/graphql/queries/advanced/filter-documents/)
-- [pagination](/docs/graphql/queries/advanced/pagination/)
-- referential integrity
+The Tina Data Layer provides a GraphQL API that serves Markdown and JSON files backed by a database. You can think of the database as more of an ephemeral cache, since the single source of truth for your content is really your Markdown/JSON files.
 
-# Indexing
+![TinaCMS GraphQL Data Layer](/img/docs/tina-data-layer-diagram.png "TinaCMS Data Layer")
 
-TinaCloud will automatically maintain a synchronized copy of your repository in our
-secure cloud database. We refer to this synchronization process as indexing. It involves fetching each item from your
-GitHub remote repository and storing a copy in the database. After the initial indexing process, TinaCloud will only
-index content that has been updated. There are some circumstances where a full re-indexing may be required. Some example
-scenarios are:
+TinaCMS implements this database layer between the Tina GraphQL API and the underlying Git repository. This data layer buffers requests between TinaCloud and GitHub resulting in improved editing performance with TinaCMS. 
 
-- Changes to `tina/config.{ts,js}`
-- Changes to the [path to tina](/docs/tinacloud/dashboard/projects/#path-to-tina)
-- Changes to the configured [repository](/docs/tinacloud/dashboard/projects/#changing-the-repository)
-- New branches in GitHub
+Primary benefits of the Data Layer include:
 
-## Synchronization Issues
+- **Streamlined Authentication**: The Data Layer abstracts away the complexities of authenticating with GitHub, providing a seamless experience for editors.
+- **Local buffering**: The Data Layer serves the content directly, which means that editors can work with their content without needing to wait for round-trips to GitHub. This circumvents issues with GitHub API rate limits and results in a more responsive editing experience.
+- **Performance**: The Data Layer indexes your content for fast querying, so features like search, pagination, and references are performant even with large repositories.
+- **Scalability**: By decoupling the GraphQL API from direct file access, the Data Layer allows TinaCMS to scale to larger sites and teams without performance degradation.
+
+It also enables additional capabilities such as:
+
+- [Sorting](/docs/graphql/queries/advanced/sorting/)
+- [Filtering](/docs/graphql/queries/advanced/filter-documents/)
+- [Pagination](/docs/graphql/queries/advanced/pagination/)
+- Referential integrity
+
+## Why does TinaCMS need a Data Layer?
+
+Your Markdown files are the source of truth, but TinaCMS still requires the Data Layer to enable features like search, pagination, and references between Markdown files. Without it, every query would need to read and parse files directly from the filesystem or Git, which doesn't scale.
+
+Since the Data Layer provides an API, you can fetch your content like you would with a traditional headless CMS.
+
+## How the Data Layer works
+
+Under the hood, the Data Layer has two key components:
+
+- **Bridge** — reads content from the source (your local filesystem in dev, or GitHub in production)
+- **Database** — indexes that content into a queryable store
+
+When a GraphQL query comes in, TinaCMS reads from the indexed database rather than from raw files. This is what makes sorting, filtering, and pagination fast.
+
+### Local development
+
+When you run `tinacms dev`, the Data Layer starts automatically with no configuration needed. It uses an in-memory database and reads files directly from your filesystem. A file watcher keeps the index up to date as you edit, so changes appear instantly.
+
+### Production with TinaCloud
+
+TinaCloud provides the Data Layer for you as a fully hosted service.
+
+It syncs with your GitHub repository via webhooks and maintains the index automatically. Each project gets its own GraphQL endpoint.
+
+You can also [host your own Data Layer](/docs/self-hosted/overview) as an alternative.
+
+## Indexing
+
+Indexing is the process of scanning your content files and storing them in the database so they can be queried. The index includes:
+
+- **Content entries** — the parsed data from each document
+- **Index entries** — searchable metadata used for queries
+- **Reference entries** — relationships between documents (e.g. a post referencing an author)
+
+### When does indexing happen?
+
+**TinaCloud:** The index updates incrementally every time a push is made to your GitHub repository (via webhooks). Only the changed files are re-indexed, so this is fast. A full re-index is triggered when:
+
+- The schema in `tina/config.{ts,js}` changes
+- The [path to tina](/docs/tinacloud/dashboard/projects/#path-to-tina) changes
+- The configured [repository](/docs/tinacloud/dashboard/projects/#changing-the-repository) changes
+- A new branch is created in GitHub
+
+**Self-hosted:** Indexing occurs when your site is built. Content updates made by editors through Tina are immediately reflected, but edits made directly to GitHub outside of Tina won't appear until the next build.
+
+**Local dev:** The file watcher re-indexes files as soon as they change on disk.
+
+### Branch isolation
+
+Each Git branch has its own separate index. This means content on a feature branch won't affect your production branch, and vice versa.
+
+## Synchronization Issues (TinaCloud)
 
 ### Webhook Failures
 
@@ -42,9 +95,38 @@ state of your repository. This will discard any updates in the branch in TinaClo
 
 Use the [Refresh Webhooks](/docs/tinacloud/dashboard/projects/#refresh-webhooks) button to re-initialize the webhook.
 
+### Unindexed Branches
+
+Sometimes, you may find that a branch isn't indexed in TinaCloud. This can happen due to intermittent issues with GitHub. Alternatively, it can occur if you have existing branches from before connecting to TinaCloud. If you try to access a branch that hasn't been indexed, you'll see an error message indicating that the branch is unindexed.
+
+See the [Troubleshooting guide](/docs/tinacloud/troubleshooting#3-how-do-i-resolve-errors-caused-by-unindexed-branches) for a short walkthrough.
+
 ### Export Branch
 
 Using "Reindex" on a branch will discard any changes in
 TinaCloud that haven't been pushed to your repository for that branch. If you need to export your unsaved content from TinaCloud, you
 can use the [Export Branch](/docs/tinacloud/dashboard/projects/#export-branch) button to export the current state of
 your repository to a new branch.
+
+## Self-Hosting the Data Layer
+
+The Data Layer is designed so that it can be hosted as a Serverless function alongside your site (with Vercel/Netlify functions, for example). You can also host it separately wherever you like.
+
+When self-hosting, you need to provide two things:
+
+- **A Git provider** — connects to your repository (e.g. GitHub)
+- **A database adapter** — stores the index. Supported options are:
+  - **MongoDB** (`mongodb-level`) — for traditional database deployments
+  - **Upstash Redis** (`upstash-redis-level`) — for serverless deployments (e.g. Vercel KV)
+
+The database adapter is pluggable, so custom implementations are possible.
+
+Common reasons for self-hosting include:
+
+- Flexibility to eject from TinaCloud down the road
+- Need for content stored on-premise
+- Hosting servers in a particular region
+- Using custom authentication not supported in TinaCloud
+- Customizing/extending the behavior used within TinaCloud
+
+To learn more about self-hosting, see the [Self-Hosted Overview](/docs/self-hosted/overview).
