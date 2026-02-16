@@ -9,9 +9,9 @@ previous: ''
 
 ## 1. 什么是 TinaCloud？
 
-TinaCloud 是 TinaCMS 的托管 [数据层](/docs/reference/content-api/data-layer)。TinaCloud 是在生产环境中使用 TinaCMS 的最简单方式。它提供：
+TinaCloud 是 TinaCMS 的一个托管 [数据层](/docs/reference/content-api/data-layer)。TinaCloud 是在生产环境中使用 TinaCMS 的最简单方式。它提供：
 
-* 为您的内容提供托管的 GraphQL 端点
+* 一个托管的内容 GraphQL 端点
 * Git 集成
 * 用户管理
 * [编辑工作流](/docs/drafts/editorial-workflow) 功能
@@ -101,7 +101,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 在使用 TinaCMS 的 Markdown 时，数据库是必需的，因为服务于 Markdown 和 JSON 文件的数据层依赖于数据库来执行各种内容管理功能。虽然 Markdown 文件是您内容的主要来源，但数据库充当缓存以启用高级功能，如搜索、分页和文件之间的交叉引用。它还提供了一个 API，允许内容获取类似于传统的无头 CMS 操作。
 
-最初，TinaCMS 的数据层在本地开发期间不被注意，并在生产中由 TinaCloud 管理。随着自托管选项的引入，用户现在可以选择更多的控制和定制，集成自己的身份验证系统和托管。整个 TinaCMS，包括其数据层，都是开源的，允许社区驱动的增强和支持。
+最初，TinaCMS 的数据层在本地开发期间不被注意，并由生产中的 TinaCloud 管理。随着自托管选项的引入，用户现在可以选择更多的控制和定制，集成自己的身份验证系统和托管。整个 TinaCMS，包括其数据层，都是开源的，允许社区驱动的增强和支持。
 
 ## 9. 什么是“本地模式”与“生产模式”？
 
@@ -119,7 +119,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 生产模式
 
-一旦您准备好在生产环境中托管您的站点并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
+一旦您准备好在生产环境中托管您的网站并将编辑放在身份验证之后，您可以自行托管 CMS 后端，也可以使用 TinaCloud 的托管后端。
 
 无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，消除了用户创建 GitHub 账户的需要。任何由您的编辑保存的更改都将提交到您 GitHub 存储库中配置的分支。
 
@@ -129,7 +129,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ## 11. TinaCloud 支持 Monorepos 吗？
 
-支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的站点一起工作。
+支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的网站一起工作。
 
 如果您的存储库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于存储库的根目录。
 
@@ -143,7 +143,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 有关更多信息，请参阅 [Path To Tina](/docs/tinacloud/dashboard/projects/#path-to-tina)。
 
-## 12. 为什么从站点登录时 Tina.io 登录窗口不会关闭？
+## 12. 为什么从网站登录时 Tina.io 登录窗口不会关闭？
 
 当用户从您的站点登录时，我们会弹出一个登录窗口。当登录完成时，我们将尝试将消息发送回主窗口。
 
@@ -157,23 +157,23 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 站点在子路径上构建
 
-已知限制是当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/) 中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
+已知限制是，当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/) 中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
 
 ## 13. 如何解决“加载 TinaCMS 资产失败”错误？
 
-此错误意味着 TinaCMS 管理 HTML 文件未能加载 JavaScript 包。通常由于以下几个原因：
+此错误意味着 TinaCMS 管理 HTML 文件未能加载 JavaScript 包。通常有几个原因：
 
 ### 用户将开发的 admin/index.html 推送到生产环境
 
 当您在本地运行 `tinacms dev` 时，Tina 将生成一个开发的 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中移除 admin/index.html 文件，他们可能会遇到此问题。
 
-### 您的站点在不同的基本路径上提供服务
+### 您的站点在不同的基础路径上提供服务
 
 如果您的站点在子目录中提供服务，请确保您的 `build.basePath` [配置适当](/docs/reference/config/#definition)
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
-**视频：常见问题 - 为 TinaCMS 设置基本路径（3 分钟）**
+**视频：常见问题 - 为 TinaCMS 设置基础路径（3 分钟）**
 
 ## 14. 常见的 TinaCloud 错误是什么？
 
@@ -189,7 +189,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 如果您在本地工作，请确保您的 [GraphQL 服务器正在运行](/docs/graphql/cli/)。
 
-## 16. Vercel 部署问题 - 部署入门模板时的常见问题是什么？
+## 16. Vercel 部署问题 - 部署入门模板时有哪些常见问题？
 
 ### 1. 弹出窗口阻止 Vercel 安装其 GitHub 应用
 
@@ -210,7 +210,7 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 * 语义意义——格式化增加了清晰度和上下文
 * 适合提示——一致的标记减少了歧义
 * 人机可读——原始 Markdown 对人类和机器都很友好
-* 与 LLM 趋势一致——Markdown 自然适应向 LLM 优化内容的转变，如 [SEO 已死，LLMO 永存](https://jina.ai/news/seo-is-dead-long-live-llmo) 中所述
+* 符合 LLM 趋势——Markdown 自然适应向 LLM 优化内容的转变，如 [SEO 已死，LLMO 永生](https://jina.ai/news/seo-is-dead-long-live-llmo) 中所述
 
 ## 18. 您支持 Git LFS 吗？
 
@@ -218,7 +218,7 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 
 ## 18. 加载引用字段时出现 503 服务不可用错误。
 
-在使用具有大量项目的集合上的引用字段时，您可能会发现网络请求超时。目前，我们没有任何机制来分页引用字段。
+在具有大量项目的集合上使用引用字段时，您可能会发现网络请求超时。目前，我们没有任何机制来分页引用字段。
 
 替代方法是添加一个带有分页的 [自定义字段组件](https://tina.io/docs/extending-tina/custom-field-components)。要检索分页结果，您可以使用 [自定义查询](https://tina.io/docs/data-fetching/custom-queries)。
 
