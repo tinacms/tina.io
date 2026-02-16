@@ -20,11 +20,11 @@ TinaCloud 是 TinaCMS 的一个托管 [数据层](/docs/reference/content-api/da
 
 TinaCMS 也可以 [自托管](/docs/self-hosted/overview) 或独立于 TinaCloud 使用。
 
-欲了解更多信息，请参阅 [TinaCloud 概述](/docs/tinacloud/overview)。
+有关更多信息，请参阅 [TinaCloud 概述](/docs/tinacloud/overview)。
 
 ## 2. 我在哪里可以获得 TinaCMS 或 TinaCloud 的帮助或分享想法？
 
-请查看我们的社区：[tina.io/community](https://tina.io/community)。
+请访问我们的社区 [tina.io/community](https://tina.io/community)。
 
 ## 3. 我需要认证人员来使用 Tina 吗？
 
@@ -66,7 +66,7 @@ NPM、PNPM 和 Yarn 包管理器都被支持。
 
 ### 1. Git 支持的媒体
 
-在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 仓库。然而，这一功能在自托管 Tina 中不存在。
+在 TinaCloud 中，有一个 Git 支持的媒体功能。这将媒体集成到 Tina 媒体管理器中，并直接提交到 Git 存储库。然而，这一功能在自托管 Tina 中不存在。
 
 其缺失的原因是由于涉及媒体上传的过程。当在 TinaCloud 中使用媒体管理器时，图像会上传到 TinaCloud 服务器并通过 CDN 分发。这确保了图像可以通过 Tina 媒体管理器访问，因为它们需要一个 URL 来访问。没有这个，图像在网站重建之前不会出现在媒体管理器中。
 
@@ -101,7 +101,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 在使用 TinaCMS 的 Markdown 时，数据库是必需的，因为服务于 Markdown 和 JSON 文件的数据层依赖于数据库来执行各种内容管理功能。虽然 Markdown 文件是您内容的主要来源，但数据库充当缓存以启用高级功能，如搜索、分页和文件之间的交叉引用。它还提供了一个 API，允许内容获取类似于传统的无头 CMS 操作。
 
-最初，TinaCMS 的数据层在本地开发期间不被注意，并在生产中由 TinaCloud 管理。随着自托管选项的引入，用户现在可以选择更多的控制和定制，集成自己的身份验证系统和托管。整个 TinaCMS，包括其数据层，都是开源的，允许社区驱动的增强和支持。
+最初，TinaCMS 的数据层在本地开发期间不被注意，并由生产中的 TinaCloud 管理。随着自托管选项的引入，用户现在可以选择更多的控制和定制，集成自己的身份验证系统和托管。整个 TinaCMS，包括其数据层，都是开源的，允许社区驱动的增强和支持。
 
 ## 9. 什么是“本地模式”与“生产模式”？
 
@@ -123,7 +123,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 无论您是 [自托管](/docs/self-hosted/overview) Tina 还是使用 [TinaCloud](/docs/tinacloud/dashboard/)，Tina 的内容 API 直接与 GitHub 进行身份验证，无需用户创建 GitHub 账户。任何由您的编辑保存的更改都将提交到您 GitHub 仓库中配置的分支。
 
-## 10. TinaCloud 仅适用于 GitHub 仓库吗？
+## 10. TinaCloud 仅适用于 GitHub 存储库吗？
 
 目前是的，TinaCloud 集成的第一个 Git 提供商是 GitHub。未来可能会有其他 Git 提供商可用。
 
@@ -131,7 +131,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 支持！TinaCloud 可以通过在项目配置中指定 `tina` 文件夹的路径来与 monorepos 内的网站一起工作。
 
-如果您的仓库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于仓库的根目录。
+如果您的存储库不是 monorepo，则无需进行任何配置。我们会期望您的 `tina` 文件夹位于存储库的根目录。
 
 以下是一个与 TinaCloud 兼容的 monorepo 结构示例：
 
@@ -157,23 +157,23 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ### 站点在子路径上构建
 
-已知限制是当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/) 中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
+已知限制是，当管理员部署到子路径时，TinaCMS 无法正确加载资产：（例如 `https://jamespohalloran.github.io/my-site-root/admin/`）。要解决此问题，请在您的 [Tina 配置文件](/docs/reference/config/) 中，将 `build.basePath` 属性设置为子路径的值（例如 `my-site-root`）。
 
 ## 13. 如何解决“加载 TinaCMS 资产失败”错误？
 
-此错误意味着 TinaCMS 管理 HTML 文件未能加载 JavaScript 包。通常由于以下几个原因：
+此错误意味着 TinaCMS 管理 HTML 文件未能加载 JavaScript 包。通常有几个原因：
 
 ### 用户将开发的 admin/index.html 推送到生产环境
 
 当您在本地运行 `tinacms dev` 时，Tina 会生成一个开发的 admin/index.html 文件，该文件从 localhost 加载其资产。对于生产环境，此文件应在 CI 中使用 `tinacms build` 构建。如果开发人员手动从他们的 `.gitignore` 中删除 admin/index.html 文件，他们可能会遇到此问题。
 
-### 您的站点在不同的基本路径上提供服务
+### 您的站点在不同的基础路径上提供服务
 
-如果您的站点在子目录中提供服务，请确保您的 `build.basePath` 已 [适当配置](/docs/reference/config/#definition)
+如果您的站点在子目录中提供服务，请确保您的 `build.basePath` [配置适当](/docs/reference/config/#definition)
 
 <Youtube embedSrc="https://www.youtube.com/embed/9O6gCsxV4Ms?si=451MBmVoTsxXu7X7" />
 
-**视频：常见问题 - 为 TinaCMS 设置基本路径（3 分钟）**
+**视频：常见问题 - 为 TinaCMS 设置基础路径（3 分钟）**
 
 ## 14. 常见的 TinaCloud 错误有哪些？
 
@@ -202,7 +202,7 @@ client.queries.page({ relativePath: 'home.mdx' }, { branch: 'main' })
 
 ## 17. Tina 是否支持 LLM？
 
-是的。Tina 设计为高度支持 LLM，主要是因为它使用 Markdown 来构建内容。
+是的。Tina 设计为高度支持 LLM，主要是因为它使用 Markdown 来结构化内容。
 
 Markdown 为大型语言模型（LLM）提供了明显的优势：
 
@@ -218,7 +218,7 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 
 ## 18. 加载引用字段时出现 503 服务不可用错误。
 
-在使用具有大量项目的集合上的引用字段时，您可能会发现网络请求超时。目前，我们没有任何机制来分页引用字段。
+在具有大量项目的集合上使用引用字段时，您可能会发现网络请求超时。目前，我们没有任何机制来分页引用字段。
 
 替代方法是添加一个带有分页的 [自定义字段组件](https://tina.io/docs/extending-tina/custom-field-components)。要检索分页结果，您可以使用 [自定义查询](https://tina.io/docs/data-fetching/custom-queries)。
 
@@ -228,7 +228,7 @@ Markdown 为大型语言模型（LLM）提供了明显的优势：
 
 ## 19. 我需要 GitHub 账户来编辑吗？
 
-不需要！只有设置 TinaCloud 项目并将其链接到 GitHub 仓库的个人需要 GitHub。
+作为临时解决方案，可以从 [TinaCloud 仪表板](https://app.tina.io/) 手动重新索引由 GitHub Copilot 创建的分支。
 
 编辑者可以仅使用他们的电子邮件创建一个 [TinaCloud](https://app.tina.io) 账户。如果为编辑者启用了共同作者功能，则提交将由他们的电子邮件地址共同作者。
 

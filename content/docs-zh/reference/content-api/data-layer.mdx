@@ -1,38 +1,125 @@
 ---
 title: 数据层
-last_edited: '2022-06-15T15:51:56.737Z'
+last_edited: '2026-02-10T23:24:00.000Z'
 ---
 
-TinaCMS 在 Tina GraphQL API 和底层 Git 仓库之间实现了一个数据库层。这个数据层在 TinaCloud 和 GitHub 之间缓冲请求，从而提高了 TinaCMS 的编辑性能。它还支持其他功能，例如：
+## 什么是Tina数据层？
+
+Tina数据层提供了一个GraphQL API，用于服务由数据库支持的Markdown和JSON文件。你可以将数据库视为一种临时缓存，因为内容的唯一真实来源实际上是你的Markdown/JSON文件。
+
+![TinaCMS GraphQL 数据层](/img/docs/tina-data-layer-diagram.png "TinaCMS 数据层")
+
+TinaCMS在Tina GraphQL API和底层Git存储库之间实现了这个数据库层。这个数据层缓冲了TinaCloud和GitHub之间的请求，从而提高了TinaCMS的编辑性能。
+
+数据层的主要优点包括：
+
+- **简化的身份验证**：数据层抽象了与GitHub身份验证的复杂性，为编辑者提供了无缝的体验。
+- **本地缓冲**：数据层直接提供内容，这意味着编辑者可以在不需要等待与GitHub往返的情况下处理他们的内容。这避免了GitHub API速率限制的问题，并带来了更快速的编辑体验。
+- **性能**：数据层为快速查询索引了你的内容，因此即使在大型存储库中，搜索、分页和引用等功能也能高效运行。
+- **可扩展性**：通过将GraphQL API与直接文件访问解耦，数据层允许TinaCMS扩展到更大的网站和团队而不降低性能。
+
+它还支持其他功能，例如：
 
 - [排序](/docs/graphql/queries/advanced/sorting/)
 - [过滤](/docs/graphql/queries/advanced/filter-documents/)
 - [分页](/docs/graphql/queries/advanced/pagination/)
 - 参照完整性
 
-# 索引
+## 为什么TinaCMS需要数据层？
 
-TinaCloud 会自动在我们的安全云数据库中维护您的仓库的同步副本。我们将此同步过程称为索引。它涉及从您的 GitHub 远程仓库中获取每个项目，并在数据库中存储一个副本。在初始索引过程之后，TinaCloud 只会索引已更新的内容。在某些情况下，可能需要进行完整的重新索引。一些示例场景包括：
+你的Markdown文件是事实的来源，但TinaCMS仍然需要数据层来启用搜索、分页和Markdown文件之间的引用等功能。没有它，每个查询都需要直接从文件系统或Git读取和解析文件，这无法扩展。
 
-- 对 `tina/config.{ts,js}` 的更改
-- 对 [tina 路径](/docs/tinacloud/dashboard/projects/#path-to-tina) 的更改
-- 对配置的 [仓库](/docs/tinacloud/dashboard/projects/#changing-the-repository) 的更改
-- GitHub 中的新分支
+由于数据层提供了一个API，你可以像使用传统无头CMS一样获取你的内容。
 
-## 同步问题
+## 数据层如何工作
 
-### Webhook 失败
+在底层，数据层有两个关键组件：
 
-在极少数情况下，连接您的仓库到 TinaCloud 的 GitHub webhook 可能会中断。如果 webhook 未执行，TinaCloud 可能会与您的 GitHub 仓库不同步。
+- **桥接** — 从源（开发中的本地文件系统或生产中的GitHub）读取内容
+- **数据库** — 将内容索引到可查询的存储中
 
-使用 [刷新 Webhooks](/docs/tinacloud/dashboard/projects/#refresh-webhooks) 按钮重新初始化 webhook。
+当一个GraphQL查询进入时，TinaCMS从索引的数据库中读取，而不是从原始文件中读取。这使得排序、过滤和分页变得快速。
+
+### 本地开发
+
+当你运行`tinacms dev`时，数据层会自动启动，无需配置。它使用内存数据库并直接从你的文件系统读取文件。文件监视器在你编辑时保持索引更新，因此更改会立即显示。
+
+### 使用TinaCloud的生产环境
+
+TinaCloud为你提供了一个完全托管的服务的数据层。
+
+它通过webhooks与你的GitHub存储库同步，并自动维护索引。每个项目都有自己的GraphQL端点。
+
+你也可以选择[自托管数据层](/docs/self-hosted/overview)作为替代方案。
+
+## 索引
+
+索引是扫描你的内容文件并将它们存储在数据库中以便查询的过程。索引包括：
+
+- **内容条目** — 每个文档的解析数据
+- **索引条目** — 用于查询的可搜索元数据
+- **引用条目** — 文档之间的关系（例如，帖子引用作者）
+
+### 索引何时发生？
+
+**TinaCloud:** 每次推送到你的GitHub存储库时（通过webhooks），索引会增量更新。只有更改的文件会被重新索引，因此速度很快。以下情况会触发完整重新索引：
+
+- `tina/config.{ts,js}`中的架构更改
+- [tina路径](/docs/tinacloud/dashboard/projects/#path-to-tina)更改
+- 配置的[存储库](/docs/tinacloud/dashboard/projects/#changing-the-repository)更改
+- 在GitHub中创建了新分支
+
+**自托管:** 索引在你的网站构建时发生。通过Tina进行的内容更新会立即反映，但直接在GitHub中进行的编辑不会在下次构建前出现。
+
+**本地开发:** 文件监视器在文件在磁盘上更改时立即重新索引。
+
+### 分支隔离
+
+每个Git分支都有自己独立的索引。这意味着功能分支上的内容不会影响你的生产分支，反之亦然。
+
+## 同步问题（TinaCloud）
+
+### Webhook失败
+
+在极少数情况下，连接你的存储库到TinaCloud的GitHub webhook可能会中断。如果webhook未执行，TinaCloud可能会与GitHub存储库不同步。
+
+使用[刷新Webhooks](/docs/tinacloud/dashboard/projects/#refresh-webhooks)按钮重新初始化webhook。
 
 ### 外部更新未同步
 
-在某些情况下，TinaCloud 的仓库缓存可能会与您的 GitHub 仓库不同步，这可能导致更改存在于您的仓库中但不在 TinaCMS 中。通常，这只会在 GitHub webhook 出现问题时发生。如果发生这种情况，您可以重新索引不同步的分支，将其恢复到您仓库的当前状态。这将丢弃 TinaCloud 中尚未推送到您仓库的分支中的任何更新。
+在某些情况下，TinaCloud的存储库缓存可能与GitHub存储库不同步，这可能导致更改存在于你的存储库中但不在TinaCMS中。通常，这只有在GitHub webhook出现问题时才会发生。如果发生这种情况，你可以重新索引不同步的分支，将其恢复到存储库的当前状态。这将丢弃TinaCloud中尚未推送到存储库的分支中的任何更新。
 
-使用 [刷新 Webhooks](/docs/tinacloud/dashboard/projects/#refresh-webhooks) 按钮重新初始化 webhook。
+使用[刷新Webhooks](/docs/tinacloud/dashboard/projects/#refresh-webhooks)按钮重新初始化webhook。
+
+### 未索引的分支
+
+有时，你可能会发现某个分支在TinaCloud中没有被索引。这可能是由于GitHub的间歇性问题造成的。或者，如果你在连接到TinaCloud之前有现有分支，也可能发生这种情况。如果你尝试访问未索引的分支，你将看到一条错误消息，指示该分支未索引。
+
+请参阅[故障排除指南](/docs/tinacloud/troubleshooting#3-how-do-i-resolve-errors-caused-by-unindexed-branches)以获取简短的操作步骤。
 
 ### 导出分支
 
-在分支上使用“重新索引”将丢弃 TinaCloud 中尚未推送到您仓库的该分支的任何更改。如果您需要从 TinaCloud 导出未保存的内容，可以使用 [导出分支](/docs/tinacloud/dashboard/projects/#export-branch) 按钮将您仓库的当前状态导出到一个新分支。
+在分支上使用“重新索引”将丢弃TinaCloud中尚未推送到存储库的任何更改。如果你需要从TinaCloud导出未保存的内容，可以使用[导出分支](/docs/tinacloud/dashboard/projects/#export-branch)按钮将存储库的当前状态导出到新分支。
+
+## 自托管数据层
+
+数据层设计为可以作为无服务器函数与你的网站一起托管（例如使用Vercel/Netlify函数）。你也可以在任何你喜欢的地方单独托管它。
+
+自托管时，你需要提供两件事：
+
+- **Git提供商** — 连接到你的存储库（例如GitHub）
+- **数据库适配器** — 存储索引。支持的选项有：
+  - **MongoDB** (`mongodb-level`) — 用于传统数据库部署
+  - **Upstash Redis** (`upstash-redis-level`) — 用于无服务器部署（例如Vercel KV）
+
+数据库适配器是可插拔的，因此可以实现自定义。
+
+自托管的常见原因包括：
+
+- 将来从TinaCloud中退出的灵活性
+- 需要将内容存储在本地
+- 在特定地区托管服务器
+- 使用TinaCloud不支持的自定义身份验证
+- 自定义/扩展TinaCloud中的行为
+
+要了解更多关于自托管的信息，请参阅[自托管概述](/docs/self-hosted/overview)。

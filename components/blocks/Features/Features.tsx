@@ -109,7 +109,8 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage' ||
     data.media[0].__typename === 'PageBlocksHeroMediaImage'
   ) {
-    return (
+    console.log('data.media[0].image', data.media[0].image);
+    return data.media[0].image ? (
       <Image
         src={data.media[0].image}
         alt={data.headline}
@@ -119,6 +120,8 @@ export const RenderMedia = ({ data }) => {
         width={1200}
         height={1200}
       />
+    ) : (
+      <div className="w-full h-full m-auto rounded-lg bg-gray-200"></div>
     );
   }
   if (
