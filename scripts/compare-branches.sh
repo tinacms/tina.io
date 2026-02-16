@@ -45,13 +45,20 @@ warn()  { echo -e "${YELLOW}⚠${NC} $1"; }
 err()   { echo -e "${RED}✗${NC} $1"; }
 
 # Force-remove injected test files (they're untracked on other branches)
+# ONLY removes spec files — never touches screenshots
 remove_injected_files() {
   rm -f "$ROOT_DIR/tests/visual-compare/capture.spec.ts" 2>/dev/null || true
   rm -f "$ROOT_DIR/tests/visual-compare/discover-pages.ts" 2>/dev/null || true
-  rm -rf "$ROOT_DIR/tests/visual-compare/screenshots" 2>/dev/null || true
-  # Remove the directory only if it's now empty
-  rmdir "$ROOT_DIR/tests/visual-compare" 2>/dev/null || true
-  rmdir "$ROOT_DIR/tests" 2>/dev/null || true
+}
+
+# Rescue any screenshots from temp back to the project dir (idempotent)
+rescue_screenshots() {
+  for label in baseline current; do
+    if [ -d "$TEMP_DIR/screenshots/$label" ] && ls "$TEMP_DIR/screenshots/$label"/*.png >/dev/null 2>&1; then
+      mkdir -p "$SCREENSHOT_DIR/$label"
+      cp -rn "$TEMP_DIR/screenshots/$label"/* "$SCREENSHOT_DIR/$label/" 2>/dev/null || true
+    fi
+  done
 }
 
 cleanup() {
@@ -60,6 +67,10 @@ cleanup() {
     kill "$DEV_PID" 2>/dev/null || true
     wait "$DEV_PID" 2>/dev/null || true
   fi
+
+  # Rescue screenshots from temp so they survive even on failure
+  rescue_screenshots
+
   # Only remove injected files if we're NOT on the original branch
   # (on the original branch, these files are tracked by git)
   if [ "$(git rev-parse --abbrev-ref HEAD)" != "$ORIGINAL_BRANCH" ]; then
@@ -71,6 +82,11 @@ cleanup() {
   git checkout -- test-results/ 2>/dev/null || true
   # Clean temp
   rm -rf "$TEMP_DIR"
+
+  if [ -d "$SCREENSHOT_DIR/baseline" ] || [ -d "$SCREENSHOT_DIR/current" ]; then
+    ok "Screenshots preserved in $SCREENSHOT_DIR"
+    info "Re-run just the report with: pnpm visual:report"
+  fi
 }
 trap cleanup EXIT
 
