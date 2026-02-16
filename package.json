@@ -24,7 +24,10 @@
     "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
     "deploy": "pnpm build && pnpm export",
     "postbuild": "next-sitemap",
-    "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
+    "analytics:export:search": "node ./scripts/analytics/exportSearch.js",
+    "visual:compare": "./scripts/compare-branches.sh",
+    "visual:capture": "pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium --reporter=list --retries=1",
+    "visual:report": "node ./scripts/visual-diff-report.mjs"
   },
   "resolutions": {
     "graphql": "^15.5.1"
@@ -133,6 +136,8 @@
     "babel-plugin-styled-components": "^1.13.3",
     "jest": "^25.5.4",
     "next-sitemap": "^4.2.3",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
     "tailwindcss": "^4.1.8",
     "ts-jest": "^25.5.1",
     "typescript": "^5.9.3"
