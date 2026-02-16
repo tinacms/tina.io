@@ -14,7 +14,7 @@ function findFiles(dir: string, ext: string): string[] {
       const full = path.join(d, entry.name);
       if (entry.isDirectory()) {
         walk(full);
-      } else if (entry.name.endsWith(ext)) {
+      } else if (entry.name.endsWith(ext) && !entry.name.startsWith('.')) {
         results.push(path.relative(absDir, full));
       }
     }
@@ -29,7 +29,7 @@ function listFiles(dir: string, ext: string): string[] {
   if (!fs.existsSync(absDir)) return [];
   return fs
     .readdirSync(absDir)
-    .filter((f) => f.endsWith(ext))
+    .filter((f) => f.endsWith(ext) && !f.startsWith('.'))
     .sort();
 }
 
