@@ -12,21 +12,21 @@ previous: content/docs-zh/setup-overview.mdx
 
 ### 管理侧边栏
 
-列出集合的侧边栏（不要与TinaCMS编辑器混淆）
+列出集合的侧边栏（不要与TinaCMS编辑器混淆）。
 
 ![](/lingo/tinacms-admin-sidebar.jpeg "左侧管理侧边栏")
 
-### TinaCMS 编辑器
-
-左侧窗格，通过结构化字段和输入编辑内容。
-
-![](/lingo/tinacms-editor.jpeg "左侧TinaCMS编辑器")
-
 ### 可视化编辑
 
-整体的双窗格编辑体验，左侧是**编辑器**，右侧是实时的**网站预览**。
+整体的双窗格编辑体验，左侧为**编辑器**，右侧为实时**网站预览**。
 
-![](/lingo/visual-editing.jpeg "可视化编辑，左侧为编辑器，右侧为网站预览")
+![](/lingo/visual-editing.jpeg "左侧为编辑器，右侧为网站预览的可视化编辑")
+
+### TinaCMS 编辑器
+
+左侧窗格，通过结构化字段和输入来编辑内容。
+
+![](/lingo/tinacms-editor.jpeg "左侧TinaCMS编辑器")
 
 ### 网站预览
 
@@ -34,39 +34,39 @@ previous: content/docs-zh/setup-overview.mdx
 
 ### 可编辑区域
 
-在**网站预览**中带有蓝色轮廓 🟦 的元素是可编辑的。点击任何带轮廓的元素将自动聚焦其在侧边栏中对应的字段，以便立即编辑。
+在**网站预览**中带有蓝色轮廓 🟦 的元素是可编辑的。点击任何带轮廓的元素将自动聚焦到侧边栏中对应的字段以便立即编辑。
 
 ![](/lingo/visual-highlight.jpeg "标题的视觉元素高亮")
 
 ### 字段
 
-[字段](https://tina.io/docs/reference/fields)定义了提供给你的网站的内容结构。这些字段在你的配置中定义，或在单独的`Template`中定义。
+[字段](https://tina.io/docs/reference/fields)定义了提供给你的网站的内容结构。这些字段在你的配置中或在一个单独的`模板`中定义。
 
 ```ts
 const someTemplate: Template = {
   name: 'someTemplate',
-  label: 'Some Template',
+  label: '某个模板',
   fields: [
-    { name: 'title', label: 'Title', type: 'string' }
+    { name: 'title', label: '标题', type: 'string' }
    ]}
 ```
 
-![](</lingo/tinacms-fields.jpeg> "TinaCMS编辑器中高亮显示的字段")
+![](</lingo/tinacms-fields.jpeg> "TinaCMS编辑器中高亮的字段")
 
 ### 富文本嵌入
 
-在[富文本字段](/docs/reference/types/rich-text)中，我们可以选择将自定义组件作为模板嵌入。用React组件丰富基于Markdown的内容。
+在[富文本字段](/docs/reference/types/rich-text)中，我们可以选择将自定义组件作为模板嵌入。这允许你用React组件丰富基于Markdown的内容。
 
 ```
 const someCollection: Collection = {
   name: 'someCollection',
-  label: 'Some Collection',
+  label: '某个集合',
   path: 'content/someCollection',
   format: 'mdx',
   fields: [
     {
     name: 'richBody',
-    label: 'Rich Body',
+    label: '丰富的正文',
     type: 'rich-text',
     templates: [
       someTemplate
@@ -79,13 +79,13 @@ const someCollection: Collection = {
 
 ### 块
 
-[块](/docs/editing/blocks)是一种建模灵活页面构建器风格内容的方法。它是不同组件（部分）的有序数组，如英雄、功能、内容等。
+[块](/docs/editing/blocks)是一种建模灵活页面构建器风格内容的方法。它们是不同组件（部分）的有序数组，如英雄图、功能、内容等。
 
 ![](/lingo/tinacms-editor.jpeg "“页面部分”下的块数组")
 
-### 编辑工作流程
+### 编辑工作流
 
-[编辑工作流程](/editorial-workflow)允许用户在基于Git的环境中轻松地在TinaCMS中进行更改。它使用户能够：
+[编辑工作流](/editorial-workflow)允许用户在基于Git的环境中轻松地在TinaCMS中进行更改。它为用户提供了以下能力：
 
 * 在TinaCMS编辑器中创建分支
 * 从自己的网站进行Git提交
