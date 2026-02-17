@@ -119,5 +119,5 @@ export function discoverPages(): string[] {
     pages.push(`/zh/docs/${slug}`);
   }
 
-  return [...new Set(pages)].sort();
+  return Array.from(new Set(pages)).sort();
 }
