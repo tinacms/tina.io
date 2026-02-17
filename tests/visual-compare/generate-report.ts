@@ -253,7 +253,8 @@ function generateHtml(results: DiffResult[]): string {
 async function main() {
   const filesA = new Set(fs.readdirSync(dirA).filter(f => f.endsWith('.png')).map(f => f.replace('.png', '')));
   const filesB = new Set(fs.readdirSync(dirB).filter(f => f.endsWith('.png')).map(f => f.replace('.png', '')));
-  const allSlugs = [...new Set([...filesA, ...filesB])].sort();
+  filesB.forEach(f => filesA.add(f));
+  const allSlugs = Array.from(filesA).sort();
 
   console.log(`Comparing ${allSlugs.length} pages between ${labelA} and ${labelB}...`);
 
