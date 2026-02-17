@@ -17,7 +17,6 @@ You might want to do this for a variety of reasons, such as:
 
 * To decouple your website code from your content files so your commit history isn't a mix of content updates and code updates
 * To avoid having to give TinaCloud write access to your website's code (only give access to your content repo)
-* Your project is a monorepo where the content lives outside the application folder
 
 <WarningCallout
   body={<>
@@ -29,72 +28,9 @@ You might want to do this for a variety of reasons, such as:
 
 * You must have *both* the "content repo" and the "website repo" checked out onto your local machine.
 * You must provide the location of your content repo in your Tina config (more about that below).
-* The content repo **must contain a `tina/` folder** (even if empty). TinaCMS writes generated files like `tina-lock.json` into `tina/__generated__/` inside the content root.
 * When making changes, you'll need to ensure you've pushed *both* repos to GitHub, with the "content repo"
   changes first
 * When making changes you will need to sync the generated files in `tina/` (such as `tina-lock.json`, `__generated__` files etc) between your website repo and content repo
-
-## Configuring `localContentPath`
-
-The `localContentPath` config option tells TinaCMS where your content lives during local development. There are a few important details:
-
-### Path resolution
-
-The path is **resolved relative to the `tina/` config folder**, not the project root. For example, given this structure:
-
-```
-my-project/
-├── website/
-│   └── tina/
-│       └── config.ts    ← localContentPath is relative to here
-└── content/
-    ├── tina/            ← required (can be empty)
-    └── posts/
-        └── hello.md
-```
-
-Your config would use:
-
-```ts
-export default defineConfig({
-  // From website/tina/ → up two levels → into content/
-  localContentPath: process.env.TINA_CONTENT_REPO_PATH, // e.g. '../../content'
-  // ...
-})
-```
-
-<WarningCallout
-  body={<>
-    Use an environment variable for `localContentPath` since the path may differ per developer on your team.
-  </>}
-/>
-
-### The content directory must have a `tina/` folder
-
-TinaCMS writes generated files (`tina-lock.json`, `__generated__/` etc.) into a `tina/` folder inside the content root. If this folder doesn't exist, the CLI will fail with:
-
-```
-Unable to find Tina folder, if you're working in folder outside of the Tina config be sure to specify --rootPath
-```
-
-To fix this, create the folder in your content directory:
-
-```sh
-mkdir -p my-content-repo/tina
-```
-
-### Collection paths are relative to the content root
-
-When `localContentPath` is set, collection `path` values are resolved relative to the content root — **not** the website project root. For example, if your content lives at `my-content-repo/posts/`:
-
-```ts
-// tina/collections/post.ts
-export default {
-  name: "post",
-  path: "posts",  // relative to the content root, NOT "my-content-repo/posts"
-  // ...
-}
-```
 
 ## Create the website repository
 
@@ -114,13 +50,7 @@ To set up the "content repo", we'll start with a simple `.mdx` file:
 mkdir -p ../demo-content-repo/content/pages && touch ../demo-content-repo/content/pages/home.mdx && echo "Hello" >> ../demo-content-repo/content/pages/home.mdx
 ```
 
-This command creates a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
-
-Don't forget to create the required `tina/` folder in your content repo:
-
-```sh
-mkdir -p ../demo-content-repo/tina
-```
+This command creats a folder (`demo-content-repo`) and added a single MDX file to it in the `content/pages` directory, we'll be using that directory for the `page` collection defined in the Tina config.
 
 ## Local Development
 
