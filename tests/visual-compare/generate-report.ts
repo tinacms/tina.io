@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import sharp from 'sharp';
+import fs from 'node:fs';
+import path from 'node:path';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
+import sharp from 'sharp';
 
 /**
  * Generates a visual diff report comparing two sets of screenshots.
@@ -20,7 +20,9 @@ const dirA = path.join(SCREENSHOT_DIR, labelA);
 const dirB = path.join(SCREENSHOT_DIR, labelB);
 
 if (!fs.existsSync(dirA) || !fs.existsSync(dirB)) {
-  console.error(`Missing screenshot directories. Expected:\n  ${dirA}\n  ${dirB}`);
+  console.error(
+    `Missing screenshot directories. Expected:\n  ${dirA}\n  ${dirB}`,
+  );
   process.exit(1);
 }
 
@@ -30,7 +32,13 @@ interface DiffResult {
   diffPixels: number;
   totalPixels: number;
   diffPercent: number;
-  status: 'changed' | 'minimal' | 'identical' | 'only-a' | 'only-b' | 'size-mismatch';
+  status:
+    | 'changed'
+    | 'minimal'
+    | 'identical'
+    | 'only-a'
+    | 'only-b'
+    | 'size-mismatch';
   widthA?: number;
   heightA?: number;
   widthB?: number;
@@ -38,12 +46,30 @@ interface DiffResult {
 }
 
 async function compareImages(slug: string): Promise<DiffResult> {
-  const pagePath = slug === '_homepage' ? '/' : '/' + slug.replace(/__/g, '/');
+  const pagePath = slug === '_homepage' ? '/' : `/${slug.replace(/__/g, '/')}`;
   const fileA = path.join(dirA, `${slug}.png`);
   const fileB = path.join(dirB, `${slug}.png`);
 
-  if (!fs.existsSync(fileA)) return { slug, pagePath, diffPixels: 0, totalPixels: 0, diffPercent: 100, status: 'only-b' };
-  if (!fs.existsSync(fileB)) return { slug, pagePath, diffPixels: 0, totalPixels: 0, diffPercent: 100, status: 'only-a' };
+  if (!fs.existsSync(fileA)) {
+    return {
+      slug,
+      pagePath,
+      diffPixels: 0,
+      totalPixels: 0,
+      diffPercent: 100,
+      status: 'only-b',
+    };
+  }
+  if (!fs.existsSync(fileB)) {
+    return {
+      slug,
+      pagePath,
+      diffPixels: 0,
+      totalPixels: 0,
+      diffPercent: 100,
+      status: 'only-a',
+    };
+  }
 
   // Read metadata to check dimensions
   const metaA = await sharp(fileA).metadata();
@@ -62,7 +88,8 @@ async function compareImages(slug: string): Promise<DiffResult> {
   // Extend images from top-left to match canvas size (pad right/bottom only)
   const rgbaA = await sharp(fileA)
     .extend({
-      top: 0, left: 0,
+      top: 0,
+      left: 0,
       right: width - widthA,
       bottom: height - heightA,
       background: bg,
@@ -73,7 +100,8 @@ async function compareImages(slug: string): Promise<DiffResult> {
 
   const rgbaB = await sharp(fileB)
     .extend({
-      top: 0, left: 0,
+      top: 0,
+      left: 0,
       right: width - widthB,
       bottom: height - heightB,
       background: bg,
@@ -91,7 +119,7 @@ async function compareImages(slug: string): Promise<DiffResult> {
     new Uint8Array(diffPng.data.buffer),
     width,
     height,
-    { threshold: 0.1 }
+    { threshold: 0.1 },
   );
 
   const diffPercent = (diffPixels / totalPixels) * 100;
@@ -110,22 +138,30 @@ async function compareImages(slug: string): Promise<DiffResult> {
     diffPixels,
     totalPixels,
     diffPercent,
-    status: diffPixels === 0 ? 'identical' : diffPercent < 1 ? 'minimal' : 'changed',
-    widthA, heightA, widthB, heightB,
+    status:
+      diffPixels === 0 ? 'identical' : diffPercent < 1 ? 'minimal' : 'changed',
+    widthA,
+    heightA,
+    widthB,
+    heightB,
   };
 }
 
 function generateHtml(results: DiffResult[]): string {
-  const changed = results.filter(r => r.status === 'changed');
-  const minimal = results.filter(r => r.status === 'minimal');
-  const identical = results.filter(r => r.status === 'identical');
-  const onlyA = results.filter(r => r.status === 'only-a');
-  const onlyB = results.filter(r => r.status === 'only-b');
+  const changed = results.filter((r) => r.status === 'changed');
+  const minimal = results.filter((r) => r.status === 'minimal');
+  const identical = results.filter((r) => r.status === 'identical');
+  const onlyA = results.filter((r) => r.status === 'only-a');
+  const onlyB = results.filter((r) => r.status === 'only-b');
 
-  function renderPageCards(items: DiffResult[], badgeClass: string, badgeLabel: string): string {
+  function renderPageCards(
+    items: DiffResult[],
+    badgeClass: string,
+    badgeLabel: string,
+  ): string {
     return items
       .sort((a, b) => b.diffPercent - a.diffPercent)
-      .map(r => {
+      .map((r) => {
         const aPath = `screenshots/${labelA}/${r.slug}.png`;
         const bPath = `screenshots/${labelB}/${r.slug}.png`;
         const diffPath = `screenshots/diff/${r.slug}.png`;
@@ -161,11 +197,15 @@ function generateHtml(results: DiffResult[]): string {
   const minimalRows = renderPageCards(minimal, 'minimal', 'MINIMAL');
 
   const identicalList = identical
-    .map(r => `<li>${r.pagePath}</li>`)
+    .map((r) => `<li>${r.pagePath}</li>`)
     .join('\n');
 
-  const onlyAList = onlyA.map(r => `<li>${r.pagePath} (only in ${labelA})</li>`).join('\n');
-  const onlyBList = onlyB.map(r => `<li>${r.pagePath} (only in ${labelB})</li>`).join('\n');
+  const onlyAList = onlyA
+    .map((r) => `<li>${r.pagePath} (only in ${labelA})</li>`)
+    .join('\n');
+  const onlyBList = onlyB
+    .map((r) => `<li>${r.pagePath} (only in ${labelB})</li>`)
+    .join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -230,17 +270,25 @@ function generateHtml(results: DiffResult[]): string {
 
   ${changedRows}
 
-  ${minimal.length > 0 ? `
+  ${
+    minimal.length > 0
+      ? `
   <div class="section">
     <h2>Minimal Changes — under 1% diff (${minimal.length})</h2>
     ${minimalRows}
-  </div>` : ''}
+  </div>`
+      : ''
+  }
 
-  ${(onlyA.length + onlyB.length) > 0 ? `
+  ${
+    (onlyA.length + onlyB.length) > 0
+      ? `
   <div class="section">
     <h2>Missing Pages</h2>
     <ul class="identical-list">${onlyAList}${onlyBList}</ul>
-  </div>` : ''}
+  </div>`
+      : ''
+  }
 
   <div class="section">
     <h2>Identical Pages (${identical.length})</h2>
@@ -251,12 +299,26 @@ function generateHtml(results: DiffResult[]): string {
 }
 
 async function main() {
-  const filesA = new Set(fs.readdirSync(dirA).filter(f => f.endsWith('.png')).map(f => f.replace('.png', '')));
-  const filesB = new Set(fs.readdirSync(dirB).filter(f => f.endsWith('.png')).map(f => f.replace('.png', '')));
-  filesB.forEach(f => filesA.add(f));
+  const filesA = new Set(
+    fs
+      .readdirSync(dirA)
+      .filter((f) => f.endsWith('.png'))
+      .map((f) => f.replace('.png', '')),
+  );
+  const filesB = new Set(
+    fs
+      .readdirSync(dirB)
+      .filter((f) => f.endsWith('.png'))
+      .map((f) => f.replace('.png', '')),
+  );
+  filesB.forEach((f) => {
+    filesA.add(f);
+  });
   const allSlugs = Array.from(filesA).sort();
 
-  console.log(`Comparing ${allSlugs.length} pages between ${labelA} and ${labelB}...`);
+  console.log(
+    `Comparing ${allSlugs.length} pages between ${labelA} and ${labelB}...`,
+  );
 
   // Process in batches to avoid memory issues
   const BATCH_SIZE = 10;
@@ -264,12 +326,16 @@ async function main() {
 
   for (let i = 0; i < allSlugs.length; i += BATCH_SIZE) {
     const batch = allSlugs.slice(i, i + BATCH_SIZE);
-    const batchResults = await Promise.all(batch.map(slug => compareImages(slug)));
+    const batchResults = await Promise.all(
+      batch.map((slug) => compareImages(slug)),
+    );
     results.push(...batchResults);
 
     const done = Math.min(i + BATCH_SIZE, allSlugs.length);
-    const changed = results.filter(r => r.status === 'changed').length;
-    process.stdout.write(`\r  ${done}/${allSlugs.length} compared, ${changed} changed`);
+    const changed = results.filter((r) => r.status === 'changed').length;
+    process.stdout.write(
+      `\r  ${done}/${allSlugs.length} compared, ${changed} changed`,
+    );
   }
 
   console.log('\n\nGenerating report...');
@@ -278,11 +344,16 @@ async function main() {
   const reportPath = path.join(__dirname, 'report.html');
   fs.writeFileSync(reportPath, html);
 
-  const changedCount = results.filter(r => r.status === 'changed').length;
-  const minimalCount = results.filter(r => r.status === 'minimal').length;
-  const identicalCount = results.filter(r => r.status === 'identical').length;
-  console.log(`\nDone! ${changedCount} changed, ${minimalCount} minimal, ${identicalCount} identical.`);
+  const changedCount = results.filter((r) => r.status === 'changed').length;
+  const minimalCount = results.filter((r) => r.status === 'minimal').length;
+  const identicalCount = results.filter((r) => r.status === 'identical').length;
+  console.log(
+    `\nDone! ${changedCount} changed, ${minimalCount} minimal, ${identicalCount} identical.`,
+  );
   console.log(`Report: ${reportPath}`);
 }
 
-main().catch(err => { console.error(err); process.exit(1); });
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

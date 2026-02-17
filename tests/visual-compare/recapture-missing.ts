@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { chromium } from '@playwright/test';
 
 /**
@@ -12,26 +12,41 @@ import { chromium } from '@playwright/test';
 
 const SCREENSHOT_DIR = path.join(__dirname, 'screenshots');
 
-const [labelA = 'prod', labelB = 'staging', baseUrlA = 'https://tina.io', baseUrlB = ''] = process.argv.slice(2);
+const [
+  labelA = 'prod',
+  labelB = 'staging',
+  baseUrlA = 'https://tina.io',
+  baseUrlB = '',
+] = process.argv.slice(2);
 const dirA = path.join(SCREENSHOT_DIR, labelA);
 const dirB = path.join(SCREENSHOT_DIR, labelB);
 
 function slugToPath(slug: string): string {
-  return slug === '_homepage' ? '/' : '/' + slug.replace(/__/g, '/');
+  return slug === '_homepage' ? '/' : `/${slug.replace(/__/g, '/')}`;
 }
 
 function findMissing(): { slug: string; missingFrom: 'a' | 'b' }[] {
-  const arrA = fs.readdirSync(dirA).filter(f => f.endsWith('.png')).map(f => f.replace('.png', ''));
-  const arrB = fs.readdirSync(dirB).filter(f => f.endsWith('.png')).map(f => f.replace('.png', ''));
+  const arrA = fs
+    .readdirSync(dirA)
+    .filter((f) => f.endsWith('.png'))
+    .map((f) => f.replace('.png', ''));
+  const arrB = fs
+    .readdirSync(dirB)
+    .filter((f) => f.endsWith('.png'))
+    .map((f) => f.replace('.png', ''));
   const filesA = new Set(arrA);
   const filesB = new Set(arrB);
 
   const missing: { slug: string; missingFrom: 'a' | 'b' }[] = [];
-  arrB.forEach(slug => {
-    if (!filesA.has(slug)) missing.push({ slug, missingFrom: 'a' });
+  arrB.forEach((slug) => {
+    if (!filesA.has(slug)) {
+      missing.push({ slug, missingFrom: 'a' });
+    }
   });
-  arrA.forEach(slug => {
-    if (!filesB.has(slug)) missing.push({ slug, missingFrom: 'b' });
+  arrA.forEach((slug) => {
+    if (!filesB.has(slug)) {
+      missing.push({ slug, missingFrom: 'b' });
+    }
   });
   return missing;
 }
@@ -43,9 +58,13 @@ async function main() {
     return;
   }
 
-  console.log(`Found ${missing.length} missing pages. Recapturing with domcontentloaded strategy...\n`);
+  console.log(
+    `Found ${missing.length} missing pages. Recapturing with domcontentloaded strategy...\n`,
+  );
 
-  const browser = await chromium.launch({ args: ['--ignore-certificate-errors'] });
+  const browser = await chromium.launch({
+    args: ['--ignore-certificate-errors'],
+  });
 
   for (const { slug, missingFrom } of missing) {
     const pagePath = slugToPath(slug);
@@ -91,4 +110,7 @@ async function main() {
   console.log('\nDone!');
 }
 
-main().catch(err => { console.error(err); process.exit(1); });
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

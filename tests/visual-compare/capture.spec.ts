@@ -1,6 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { test } from '@playwright/test';
-import path from 'path';
-import fs from 'fs';
 import { discoverPages } from './discover-pages';
 
 /**

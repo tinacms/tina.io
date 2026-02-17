@@ -1,12 +1,14 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '../..');
 
 /** Recursively find files matching a pattern in a directory. */
 function findFiles(dir: string, ext: string): string[] {
   const absDir = path.resolve(ROOT, dir);
-  if (!fs.existsSync(absDir)) return [];
+  if (!fs.existsSync(absDir)) {
+    return [];
+  }
 
   const results: string[] = [];
   const walk = (d: string) => {
@@ -26,7 +28,9 @@ function findFiles(dir: string, ext: string): string[] {
 /** List files in a single directory (non-recursive) matching an extension. */
 function listFiles(dir: string, ext: string): string[] {
   const absDir = path.resolve(ROOT, dir);
-  if (!fs.existsSync(absDir)) return [];
+  if (!fs.existsSync(absDir)) {
+    return [];
+  }
   return fs
     .readdirSync(absDir)
     .filter((f) => f.endsWith(ext) && !f.startsWith('.'))
@@ -53,7 +57,7 @@ export function discoverPages(): string[] {
     '/whats-new/tinacms',
     '/whats-new/tinacloud',
     '/zh/blog',
-    '/zh/docs'
+    '/zh/docs',
   );
 
   // ── BlocksPages (EN) ────────────────────────────────────────────
@@ -61,7 +65,9 @@ export function discoverPages(): string[] {
   // home.json → / (already in static routes)
   for (const file of listFiles('content/blocksPages', '.json')) {
     const slug = path.basename(file, '.json');
-    if (slug === 'home') continue;
+    if (slug === 'home') {
+      continue;
+    }
     pages.push(`/${slug}`);
   }
 
@@ -69,7 +75,9 @@ export function discoverPages(): string[] {
   // content/blocksPages/zh/*.json → /zh/{slug}
   for (const file of listFiles('content/blocksPages/zh', '.json')) {
     const slug = path.basename(file, '.json');
-    if (slug === 'home') continue;
+    if (slug === 'home') {
+      continue;
+    }
     pages.push(`/zh/${slug}`);
   }
 
@@ -105,9 +113,13 @@ export function discoverPages(): string[] {
   // content/docs/**/*.mdx → /docs/{path}
   // Excludes: r/ directory (redirects), index.mdx (served at /docs)
   for (const relPath of findFiles('content/docs', '.mdx')) {
-    if (relPath.startsWith('r/') || relPath.startsWith('r\\')) continue;
+    if (relPath.startsWith('r/') || relPath.startsWith('r\\')) {
+      continue;
+    }
     const slug = relPath.replace(/\.mdx$/, '').replace(/\\/g, '/');
-    if (slug === 'index') continue;
+    if (slug === 'index') {
+      continue;
+    }
     pages.push(`/docs/${slug}`);
   }
 
@@ -115,7 +127,9 @@ export function discoverPages(): string[] {
   // content/docs-zh/**/*.mdx → /zh/docs/{path}
   for (const relPath of findFiles('content/docs-zh', '.mdx')) {
     const slug = relPath.replace(/\.mdx$/, '').replace(/\\/g, '/');
-    if (slug === 'index') continue;
+    if (slug === 'index') {
+      continue;
+    }
     pages.push(`/zh/docs/${slug}`);
   }
 
