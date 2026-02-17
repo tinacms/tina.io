@@ -399,7 +399,20 @@
       "features": [
         {
           "headline": "Avoid Mistakes with Editorial Workflow",
-          "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE",
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "With the Editorial Workflow feature, users can review and manage content on different branches without dropping into GitHub or another IDE"
+                  }
+                ]
+              }
+            ]
+          },
           "buttons": [
             {
               "label": "Editorial Workflow",
@@ -422,7 +435,20 @@
         },
         {
           "headline": "Unbeatable UX",
-          "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level",
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Editing content in Markdown, MDX, and JSON files doesn't need to feel clunky.  Tina supports a live preview that takes the UX to the next level"
+                  }
+                ]
+              }
+            ]
+          },
           "media": [
             {
               "thumbnailVideo": "/video/click-to-edit.webm",
@@ -440,7 +466,20 @@
       "features": [
         {
           "headline": "Talk to a Tina Expert",
-          "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect",
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Evaluating Tina for your project? Book a 30-minute call with a TinaCMS Architect"
+                  }
+                ]
+              }
+            ]
+          },
           "buttons": [
             {
               "label": "Schedule Call",

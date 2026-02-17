@@ -28,7 +28,20 @@
       "features": [
         {
           "headline": "Logos",
-          "text": "Download the SVG and PNG logo kit",
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Download the SVG and PNG logo kit"
+                  }
+                ]
+              }
+            ]
+          },
           "buttons": [
             {
               "label": "Download",
@@ -49,7 +62,20 @@
         },
         {
           "headline": "Backgrounds",
-          "text": "Download TinaCMS official backgrounds and dividers",
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Download TinaCMS official backgrounds and dividers"
+                  }
+                ]
+              }
+            ]
+          },
           "buttons": [
             {
               "label": "Download Zip",
@@ -71,7 +97,20 @@
         },
         {
           "headline": "Fonts",
-          "text": "The official fonts used in Tina.io and TinaCMS are IBM Plex Sans for headings, Inter for body text, and Roboto Mono for code blocks",
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "The official fonts used in Tina.io and TinaCMS are IBM Plex Sans for headings, Inter for body text, and Roboto Mono for code blocks"
+                  }
+                ]
+              }
+            ]
+          },
           "media": [
             {
               "image": "/img/brand-assets/Tina-Media-Fonts-hero.png",
@@ -82,7 +121,29 @@
         },
         {
           "headline": "Character Sheet",
-          "text": "This character sheet is used as a reference for generating new images and videos of Tina the Llama. \nUse a prompt like \"Use the provided character sheet as the exact character reference. Do not change colors, facial features, proportions, or style. Generate an image of Tina the Llama standing up and covering eyes.\"",
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "This character sheet is used as a reference for generating new images and videos of Tina the Llama. "
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Use a prompt like \"Use the provided character sheet as the exact character reference. Do not change colors, facial features, proportions, or style. Generate an image of Tina the Llama standing up and covering eyes.\""
+                  }
+                ]
+              }
+            ]
+          },
           "buttons": [
             {
               "label": "Do you generate consistent AI characters across images and videos?",

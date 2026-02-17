@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
@@ -41,12 +42,12 @@ export function FeatureBlock({ data }) {
         <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-3">
           <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
         </div>
-        <p
+        <div
           className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center lg:text-left py-4"
           data-tina-field={tinaField(data, 'text')}
         >
-          {data.text}
-        </p>
+          <TinaMarkdown content={data.text} />
+        </div>
         <div className="flex flex-col items-center lg:items-start">
           <div className="flex flex-col md:flex-row gap-2">
             {data.buttons?.slice(0, 2).map((button, index) => (
