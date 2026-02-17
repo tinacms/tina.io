@@ -35,15 +35,6 @@ const SCREENSHOT_DIR = path.join(__dirname, 'screenshots', LABEL);
 
 const PAGES = discoverPages();
 
-// Clean + mkdir at module level so it runs once before workers fork
-if (process.env.VISUAL_CLEAN === '1' && fs.existsSync(SCREENSHOT_DIR)) {
-  fs.rmSync(SCREENSHOT_DIR, { recursive: true });
-}
-fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
-
-const existing = fs.readdirSync(SCREENSHOT_DIR).filter((f) => f.endsWith('.png')).length;
-console.log(`Discovered ${PAGES.length} pages. Already captured: ${existing}. Saving to ${LABEL}/`);
-
 for (const pagePath of PAGES) {
   const slug =
     pagePath === '/' ? '_homepage' : pagePath.slice(1).replace(/\//g, '__');

@@ -8,6 +8,7 @@ const baseURL = process.env.BASE_URL || 'http://localhost:3000';
 const isExternalTarget = !!process.env.BASE_URL;
 
 export default defineConfig({
+  globalSetup: './tests/visual-compare/global-setup.ts',
   timeout: 120000,
   testDir: './tests',
   fullyParallel: true,
