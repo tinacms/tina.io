@@ -7,6 +7,7 @@ import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data }) {
@@ -46,7 +47,7 @@ export function FeatureBlock({ data }) {
           className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center lg:text-left py-4"
           data-tina-field={tinaField(data, 'text')}
         >
-          <TinaMarkdown content={data.text} />
+          <TinaMarkdown content={data.text} components={docAndBlogComponents} />
         </div>
         <div className="flex flex-col items-center lg:items-start">
           <div className="flex flex-col md:flex-row gap-2">
