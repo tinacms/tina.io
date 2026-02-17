@@ -29,20 +29,7 @@
       "features": [
         {
           "headline": "Branching",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "Create content on new branches without going to GitHub."
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "Create content on new branches without going to GitHub.",
           "media": [
             {
               "image": "/img/blog/editorial-workflow/create-branch-small_kzubqs.png",
@@ -52,20 +39,7 @@
         },
         {
           "headline": "Protect Branches",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "Prevent editing on specific branches. When attempting to save to a protected branch, content editors will be prompted to create a new branch instead.   "
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "Prevent editing on specific branches. When attempting to save to a protected branch, content editors will be prompted to create a new branch instead.   ",
           "media": [
             {
               "image": "/img/blog/editorial-workflow/enable-editorial-workflow.png",
@@ -75,20 +49,7 @@
         },
         {
           "headline": "Merge With Confidence",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "A Pull Request is automatically created when a content editor creates a new branch.  This also allows teams to ensure that their CI/CD workflow all passes before merging content into production."
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "A Pull Request is automatically created when a content editor creates a new branch.  This also allows teams to ensure that their CI/CD workflow all passes before merging content into production.",
           "media": [
             {
               "image": "/img/blog/editorial-workflow/github-pr.png",
@@ -98,20 +59,7 @@
         },
         {
           "headline": "Shareable Previews",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "Easily get to your preview on Netlify, Vercel, AWS, etc. This allows editors to easily share their site preview with other stakeholders."
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "Easily get to your preview on Netlify, Vercel, AWS, etc. This allows editors to easily share their site preview with other stakeholders.\n\n",
           "media": [
             {
               "image": "/img/blog/editorial-workflow/share-btn_xvmxii.png",

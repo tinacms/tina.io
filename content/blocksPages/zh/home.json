@@ -10,20 +10,7 @@
       "features": [
         {
           "headline": "网站、文档与羊驼，轻松无碍",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "TinaCMS是一个开源的无头内容管理系统，支持Git，并内置版本控制功能。"
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "TinaCMS是一个开源的无头内容管理系统，支持Git，并内置版本控制功能。",
           "buttons": [
             {
               "label": "立即体验在线编辑",
@@ -286,20 +273,7 @@
       "features": [
         {
           "headline": "与Tina专家对话",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "正在为您的项目考虑使用Tina？立即预约30分钟与TinaCMS架构师的专业咨询"
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "正在为您的项目考虑使用Tina？立即预约30分钟与TinaCMS架构师的专业咨询",
           "buttons": [
             {
               "label": "预约咨询",
@@ -466,20 +440,7 @@
       "features": [
         {
           "headline": "编辑工作流程助您避免错误",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "通过编辑工作流功能，用户可以在不使用GitHub或其他IDE的情况下，直接审阅和管理不同分支上的内容"
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "通过编辑工作流功能，用户可以在不使用GitHub或其他IDE的情况下，直接审阅和管理不同分支上的内容",
           "buttons": [
             {
               "label": "编辑工作流程",
@@ -501,20 +462,7 @@
         },
         {
           "headline": "无与伦比的用户体验",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "编辑Markdown、MDX和JSON文件的内容不再繁琐。Tina提供实时预览功能，让用户体验达到全新水平"
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "编辑Markdown、MDX和JSON文件的内容不再繁琐。Tina提供实时预览功能，让用户体验达到全新水平",
           "media": [
             {
               "thumbnailVideo": "/video/click-to-edit.webm",

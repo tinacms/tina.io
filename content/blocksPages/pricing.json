@@ -521,29 +521,7 @@
       "features": [
         {
           "headline": "Skip the Drama,\n\nChat with a Llama 🦙",
-          "text": {
-            "type": "root",
-            "children": [
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "Not sure if TinaCMS is the right fit?"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "type": "text",
-                    "text": "Let’s figure it out together. Book a call with our team."
-                  }
-                ]
-              }
-            ]
-          },
+          "text": "Not sure if TinaCMS is the right fit?\n\nLet’s figure it out together. Book a call with our team.",
           "buttons": [
             {
               "label": "Book a Chat",
