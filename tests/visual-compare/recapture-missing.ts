@@ -21,16 +21,18 @@ function slugToPath(slug: string): string {
 }
 
 function findMissing(): { slug: string; missingFrom: 'a' | 'b' }[] {
-  const filesA = new Set(fs.readdirSync(dirA).filter(f => f.endsWith('.png')).map(f => f.replace('.png', '')));
-  const filesB = new Set(fs.readdirSync(dirB).filter(f => f.endsWith('.png')).map(f => f.replace('.png', '')));
+  const arrA = fs.readdirSync(dirA).filter(f => f.endsWith('.png')).map(f => f.replace('.png', ''));
+  const arrB = fs.readdirSync(dirB).filter(f => f.endsWith('.png')).map(f => f.replace('.png', ''));
+  const filesA = new Set(arrA);
+  const filesB = new Set(arrB);
 
   const missing: { slug: string; missingFrom: 'a' | 'b' }[] = [];
-  for (const slug of filesB) {
+  arrB.forEach(slug => {
     if (!filesA.has(slug)) missing.push({ slug, missingFrom: 'a' });
-  }
-  for (const slug of filesA) {
+  });
+  arrA.forEach(slug => {
     if (!filesB.has(slug)) missing.push({ slug, missingFrom: 'b' });
-  }
+  });
   return missing;
 }
 
