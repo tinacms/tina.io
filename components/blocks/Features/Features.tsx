@@ -47,7 +47,12 @@ export function FeatureBlock({ data }) {
           className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-left py-4"
           data-tina-field={tinaField(data, 'text')}
         >
-          <TinaMarkdown content={data.text} components={docAndBlogComponents} />
+          {data.text && (
+            <TinaMarkdown
+              content={data.text}
+              components={docAndBlogComponents}
+            />
+          )}
         </div>
         <div className="flex flex-col items-start">
           <div className="flex flex-col md:flex-row gap-2">
