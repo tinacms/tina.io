@@ -21,11 +21,11 @@ export async function generateMetadata({
 }: {
   params: { page_index: string };
 }) {
-  const title = 'TinaCMS Blog';
-  const description =
-    'Stay updated with the TinaCMS blog. Get tips, guides and the latest news on content management and development';
   const pageIndex = params.page_index;
-  const url = `https://tinacms.org/zh/blog/page/${pageIndex}`;
+  const title = `TinaCMS 博客 - 第 ${pageIndex} 页`;
+  const description =
+    '关注 TinaCMS 博客，获取内容管理和开发的技巧、指南和最新资讯';
+  const url = `https://tina.io/zh/blog/page/${pageIndex}`;
   return {
     title: title,
     description: description,

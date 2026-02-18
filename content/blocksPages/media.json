@@ -19,6 +19,9 @@
           "_template": "actions"
         }
       ],
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {

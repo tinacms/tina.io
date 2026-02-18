@@ -1,12 +1,13 @@
 {
   "seo": {
-    "title": "Roadmap",
-    "description": "Roadmap for TinaCMS"
+    "title": "TinaCMS Product Roadmap – Features & Updates",
+    "description": "Explore the TinaCMS product roadmap. See what features are shipping now, what's coming soon, and submit your ideas via GitHub Discussions."
   },
   "blocks": [
     {
       "blockSettings": {
-        "isFullscreen": false
+        "isFullscreen": false,
+        "isHeadingOne": true
       },
       "headline": "Roadmap",
       "text": "Welcome to Tina's public roadmap! This is a live document, and will be updated regularly. To submit an idea, or to view a list of feature requests and ideas that we're considering, check out our GitHub Discussions.",
@@ -40,7 +41,7 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "blog/two_factor_authentication"
+              "url": "blog/two-factor-authentication"
             }
           ]
         },
