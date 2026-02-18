@@ -3,7 +3,7 @@ title: Troubleshooting
 alias: troubleshooting
 last_edited: '2025-10-16T02:02:56.166Z'
 next: content/docs/tinacloud/dashboard.mdx
-previous: content/docs/tinacloud.mdx
+previous: content/docs/tinacloud/network-requirements.mdx
 ---
 
 ## What are the common TinaCloud errors?
@@ -81,7 +81,7 @@ Everything in the `tina` directory (except the `__generated__` folder) needs to 
 
 ### 7. How do I resolve `API URL is misformatted` errors?
 
-The ContentAPI URL isn't formatted correctly. See [here](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
+The ContentAPI URL isn't formatted correctly. See our [TinaCloud URL formatting guide](/docs/tinacloud/overview/#enabling-tina-cloud-in-tinacms) for information on how the URL *should* be formatted.
 
 ### 8. How do I resolve `Invalid Site URL` errors?
 
@@ -101,3 +101,9 @@ Sometimes the editorial gets stuck on the updating branch step. When you see thi
 
 ![TinaCloud repository settings](/img/docs/introduction/repository-tinacloud.png)\
 **Figure: TinaCloud repository settings**
+
+### 10. How do I resolve `Login attempt timed out` errors on a VPN or restricted network?
+
+The TinaCloud login flow redirects through several external domains (AWS Cognito, API Gateway, GitHub) that may be blocked by your VPN or firewall. If any domain in the redirect chain is blocked, the login will time out before completing.
+
+To resolve this, ensure your network allows outbound traffic to all domains listed on the [Network Requirements](/docs/tinacloud/network-requirements/) page. Whitelisting `*.tina.io` alone is not sufficient — the authentication flow also requires access to AWS and GitHub domains.

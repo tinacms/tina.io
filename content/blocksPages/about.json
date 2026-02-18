@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "About TinaCMS | The Git and Markdown CMS",
-    "description": "The context of TinaCMS and intro to the product.",
+    "description": "Learn about TinaCMS, the open-source headless CMS powered by Git and Markdown. Discover our history from Forestry.io to SSW acquisition and our vision for content management.",
     "hasCustomSuffix": true
   },
   "blocks": [
@@ -95,6 +95,10 @@
     {
       "headline": "History of 🦙TinaCMS",
       "items": [
+        {
+          "headline": "2025: Improved performance by implementing webhooks",
+          "content": "For large sites like [SSW Rules](https://www.ssw.com.au/rules) (3,600+ pages), content updates go from **20+ min** full rebuilds to just **20 sec** when leveraging TinaCloud webhooks and ISR. More on [TinaCMS for GitHub - The SSW Rules Migration | Jake Bayliss](https://www.youtube.com/watch?v=lqqduKKhH_o). \n\n**Version 3** get a big change under the covers with the move to ESM (from CommonJS). \n\n[Improved usability of the flagship feature Editorial Workflow](https://www.youtube.com/watch?v=u5QsWV4_5aU)."
+        },
         {
           "headline": "2024: Acquired by SSW",
           "content": "**[SSW](https://www.ssw.com.au/)** loved using Tina so much that they reached out to help and **[SSW ended up acquiring TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)**, bringing greater enterprise resources, support, and expertise. \n\n**Version 2** was released, with big updates including improved content indexing and better performance. Additionally, the team launched the TinaGPT chatbot in June, integrating AI-driven assistance into the platform.\n"

@@ -6,15 +6,16 @@ import TinaWordmarkSvg from '../../public/svg/tina-wordmark.svg';
 export const TinaWordmark = styled(({ ...styleProps }) => {
   return (
     <a href="/" {...styleProps}>
-      <h1>
+      <span className="logo-wrapper">
         <TinaWordmarkSvg />
-      </h1>
+      </span>
     </a>
   );
 })`
   text-decoration: none;
 
-  h1 {
+  .logo-wrapper {
+    display: block;
     margin: 0;
     font-size: 1rem;
   }

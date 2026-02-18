@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2026.02.0",
+  "dateReleased": "2026-02-03T04:12:20Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "chore: update @tinacms/graphql to 2.1.1[bot]",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    },
+    {
+      "changesTitle": "New Contributors",
+      "changesList": [
+        {
+          "changesDescription": "@release-bot-allow-prs-and-push[bot] made their first contribution",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        }
+      ]
+    }
+  ]
+}

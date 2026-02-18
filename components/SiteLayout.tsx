@@ -22,7 +22,7 @@ export const SiteLayout = ({
         <AppNavBar sticky={sticky} />
       </div>
       {/* TODO: consult with betty - if we want to add global gutters we can do it here easily */}
-      <div className="flex flex-col flex-1">{children}</div>
+      <main className="flex flex-col flex-1">{children}</main>
       <Footer footerData={footerData} />
       <LanguageSupportAlert />
     </div>

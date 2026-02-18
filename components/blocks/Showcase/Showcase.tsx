@@ -8,6 +8,8 @@ import {
 } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
+import { LiteYouTube } from '../VideoEmbed/LiteYouTube';
+import { extractYouTubeId } from '../VideoEmbed/utils';
 
 export function ShowcaseBlock({ data, index }) {
   const isReversed = index % 2 === 1;
@@ -36,29 +38,37 @@ export function ShowcaseBlock({ data, index }) {
           )}
           {data.actions && <Actions items={data.actions} />}
         </div>
-        {data.media?.src && (
+        {(data.media?.youtubeUrl || data.media?.src) && (
           <div className="featureImage">
-            <a href={data.url} target="_blank">
-              {data.media.src.endsWith('.webm') ? (
-                <video
-                  className="showcaseVideo"
-                  src={data.media.src}
-                  autoPlay
-                  muted
-                  loop
-                  width={1120}
-                  height={800}
-                />
-              ) : (
-                <Image
-                  className="showcaseImage"
-                  src={data.media.src}
-                  alt={data.headline}
-                  width={1120}
-                  height={800}
-                />
-              )}
-            </a>
+            {data.media.youtubeUrl ? (
+              <LiteYouTube
+                id={extractYouTubeId(data.media.youtubeUrl)}
+                title={data.headline || 'YouTube video'}
+                className="rounded-lg"
+              />
+            ) : (
+              <a href={data.url} target="_blank">
+                {data.media.src.endsWith('.webm') ? (
+                  <video
+                    className="showcaseVideo"
+                    src={data.media.src}
+                    autoPlay
+                    muted
+                    loop
+                    width={1120}
+                    height={800}
+                  />
+                ) : (
+                  <Image
+                    className="showcaseImage"
+                    src={data.media.src}
+                    alt={data.headline}
+                    width={1120}
+                    height={800}
+                  />
+                )}
+              </a>
+            )}
           </div>
         )}
       </div>

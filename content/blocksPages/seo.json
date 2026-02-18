@@ -7,6 +7,9 @@
     {
       "headline": "Boost your SEO with TinaCMS.",
       "text": "Unlock the full potential of your SEO efforts with the flexibility and control provided by TinaCMS.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
       "_template": "hero"
     },
     {
@@ -51,7 +54,7 @@
       "text": "Get started with TinaCMS now.",
       "buttons": [
         {
-          "label": "Learn More",
+          "label": "Optimize Your SEO with Tina",
           "icon": false,
           "variant": "default",
           "size": "medium",

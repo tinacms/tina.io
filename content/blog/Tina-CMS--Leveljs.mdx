@@ -17,7 +17,7 @@ TinaCMS is an open-source, Git-backed headless content management system (CMS) w
 
 <WebmEmbed embedSrc="/img/blog/Tina-CMS--Leveljs/homepage-demo-2b_lmoaj8.webm" />
 
-# The Challenge of Building a CMS on Git
+## The Challenge of Building a CMS on Git
 
 One of the key features of TinaCMS is that instead of writing content to a database, it is stored in a Git repository. By using Git, Tina gets built-in version control and enables Git-based collaborative workflows. Similar to other headless CMS products, content is exposed for rendering using a queryable API that is generated using a developer-defined schema.
 
@@ -33,7 +33,7 @@ It’s self-evident, then, that Tina’s content API cannot rely solely on the G
 * It should be easy to get up and running
 * Behavior should be absolutely consistent between local development and production environments
 
-# Discovering Level.js
+## Discovering Level.js
 
 ## A Brief History
 
@@ -61,7 +61,7 @@ In addition to the myriad stores available, there was an accompanying proliferat
 
 This development approach is very much in harmony with the Node.js philosophy of having a small set of core functionality and leaving the remaining features as an ecosystem of modules outside of the core. Because of this philosophy, the Level.js ecosystem largely mirrored the larger Node.js community, with an explosion of small modules providing sophisticated functionality built around a stable core of limited functionality.
 
-# Why Level.js was the right choice for Tina
+## Why Level.js was the right choice for Tina
 
 With Level.js, Tina gets the benefits of an embedded database in local development, making it very easy to get up and running without the effort of setting up a database. Because of the simple API design, Tina can also support virtually any hosted database that has a Level.js store implementation, while providing an absolutely consistent feature set. Level.js also provides a lot of flexibility to layer on additional functionality without impacting developer or end user experience. The reason for this goes back to its adherence to the Node.js philosophy of a compact stable core with additional functionality provided in userland.
 
@@ -69,7 +69,7 @@ As an example, in order to provide sorting beyond the default filename sorting, 
 
 At this point, some readers might wonder how Tina handles schema migrations given this indexing functionality. What happens in the database, if a field that was being indexed is removed from the Tina schema? This is where the hybrid nature of Tina’s database really shines. Because Tina ultimately reads and writes content to the Git repository and doesn’t rely on the database for long term storage, the content and index data can be considered ephemeral. If the schema changes (or if the logic used to index the data changes), we can simply drop the existing data and rebuild it from the source of truth (Git). This provides a great deal of flexibility for us as we continue to iterate and improve the data layer and allows hassle-free schema updates for developers.
 
-# Beyond Databases: Search & Level.js in Tina
+## Beyond Databases: Search & Level.js in Tina
 
 The benefits of using Level.js in Tina go beyond just powering the Tina API. We recently added a search feature that allows the editor to perform full text searches to locate content.
 
@@ -77,7 +77,7 @@ The benefits of using Level.js in Tina go beyond just powering the Tina API. We 
 
 Originally, we planned on providing some integration with an existing solution like Algolia, but again we wanted to enable the simple local development experience while maintaining consistency between local development and hosted production sites. The solution presented itself in [Fergus McDowall’s](https://github.com/fergiemcdowall) [search-index](https://www.npmjs.com/package/search-index) library. This library provides an embeddable full-text search engine and is built on top of Level.js. Because it uses Level.js, it can be used with any database that has a Level.js store implementation. Using this library, Tina is able to provide full featured search both in local development and in the production hosted site with full feature parity.
 
-# Conclusion
+## Conclusion
 
 LevelDB emerged from the necessity for an embedded database capable of supporting a standardized API for web data storage, coinciding with the rise of the burgeoning Node.js community. Remarkably, despite the absence of a robust marketing campaign, forward-thinking Node.js developers recognized its potential and nurtured it into the thriving Level.js ecosystem we witness today. With its compact yet robust core functionalities and the rich diversity of its ecosystem, Level.js has become the cornerstone of Tina's content API even a decade after its initial release. If you find yourself embarking on a new project without a definitive database solution, we wholeheartedly recommend exploring Level.js. Its elegant simplicity has endowed Tina with unparalleled flexibility and a solid foundation for future innovations. Dive deeper into Level.js's capabilities at [leveljs.org](https://leveljs.org/) and unlock a world of possibilities.
 

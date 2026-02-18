@@ -14,12 +14,17 @@
           "_template": "item"
         },
         {
+          "title": "TinaCMS Lingo",
+          "slug": "content/docs/tinacms-lingo.mdx",
+          "_template": "item"
+        },
+        {
           "title": "The Editing Experience",
           "slug": "content/docs/using-tina-editor.mdx",
           "_template": "item"
         },
         {
-          "title": "The Tina Content Model",
+          "title": "Modelling your Content",
           "slug": "content/docs/content-model-intro.mdx",
           "_template": "item"
         },
@@ -486,6 +491,11 @@
           "_template": "item"
         },
         {
+          "title": "Network Requirements",
+          "slug": "content/docs/tinacloud/network-requirements.mdx",
+          "_template": "item"
+        },
+        {
           "title": "Troubleshooting",
           "slug": "content/docs/tinacloud/troubleshooting.mdx",
           "_template": "item"
@@ -577,7 +587,7 @@
               "_template": "item"
             },
             {
-              "title": "Github Pages",
+              "title": "GitHub Pages",
               "slug": "content/docs/tinacloud/deployment-options/github-pages.mdx",
               "_template": "item"
             },

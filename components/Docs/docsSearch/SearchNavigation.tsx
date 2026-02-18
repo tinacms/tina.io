@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
-import { Modal } from 'react-responsive-modal';
 import { fetchAlgoliaSearchResults } from 'utils/new-search';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { DocsNavigationList } from '../DocumentationNavigation/DocsNavigationList';
 
 // Helper function for highlighting Algolia search hits
@@ -231,59 +231,52 @@ export const SearchModal = ({
   };
 
   return (
-    <Modal
-      open={isOpen}
-      onClose={onClose}
-      center
-      classNames={{
-        overlay: 'bg-gray-900 bg-opacity-50',
-        modal:
-          'search-modal bg-white w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-4xl rounded-2xl text-left overflow-hidden',
-      }}
-    >
-      <div className="flex flex-col h-full">
-        {/* Search Input */}
-        <div className="relative px-10 py-6 border-b border-gray-200">
-          <input
-            ref={inputRef}
-            type="text"
-            className="w-full py-3 px-6 rounded-full border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-            placeholder="Search docs and blogs..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button
-            type="button"
-            onClick={handleSearchClick}
-            className="absolute right-12 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl cursor-pointer hover:text-orange-700"
-            aria-label="Search"
-          >
-            <HiMagnifyingGlass />
-          </button>
-        </div>
-
-        {/* Search Results */}
-        <div className="flex-1 overflow-y-auto">
-          {searchTerm.trim() ? (
-            <SearchResultsOverflowTabs
-              query={searchTerm}
-              onResultClick={onClose}
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="bg-white w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-5xl rounded-2xl text-left p-0">
+        <div className="flex flex-col h-full">
+          {/* Search Input */}
+          <div className="relative px-10 py-6 border-b border-gray-200">
+            <input
+              ref={inputRef}
+              type="text"
+              className="w-full py-3 px-6 rounded-full border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              placeholder="Search docs and blogs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
-          ) : (
-            <div className="p-12 text-center text-gray-500">
-              <HiMagnifyingGlass className="mx-auto text-5xl mb-4 text-gray-300" />
-              <p className="text-lg font-inter font-medium">
-                Start typing to search...
-              </p>
-              <p className="text-sm text-gray-400 mt-2">
-                Search through docs and blog posts
-              </p>
-            </div>
-          )}
+            <button
+              type="button"
+              onClick={handleSearchClick}
+              className="absolute right-12 top-1/2 transform -translate-y-1/2 text-orange-600 text-xl cursor-pointer hover:text-orange-700"
+              aria-label="Search"
+            >
+              <HiMagnifyingGlass />
+            </button>
+          </div>
+
+          {/* Search Results */}
+          <div className="flex-1 overflow-y-auto">
+            {searchTerm.trim() ? (
+              <SearchResultsOverflowTabs
+                query={searchTerm}
+                onResultClick={onClose}
+              />
+            ) : (
+              <div className="p-12 text-center text-gray-500">
+                <HiMagnifyingGlass className="mx-auto text-5xl mb-4 text-gray-300" />
+                <p className="text-lg font-inter font-medium">
+                  Start typing to search...
+                </p>
+                <p className="text-sm text-gray-400 mt-2">
+                  Search through docs and blog posts
+                </p>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </Modal>
+      </DialogContent>
+    </Dialog>
   );
 };
 
@@ -314,22 +307,24 @@ export const DocsSearchBarHeader = ({
     <>
       <div className={`${paddingGlobal} pt-8`}>
         <div className="flex gap-8 max-w-sm">
-          <h1
+          <button
+            type="button"
             className={`${
               !learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
             } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 ${headerPadding} bg-clip-text text-transparent`}
             onClick={() => setLearnActive(false)}
           >
             {isZh ? '文档' : 'Docs'}
-          </h1>
-          <h1
+          </button>
+          <button
+            type="button"
             className={`${
               learnActive ? 'opacity-100' : 'opacity-50 cursor-pointer'
             } hover:opacity-100 text-3xl pb-2 font-ibm-plex bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 ${headerPadding} bg-clip-text text-transparent`}
             onClick={() => setLearnActive(true)}
           >
             {isZh ? '学习' : 'Learn'}
-          </h1>
+          </button>
           <div className="mr-3"></div>
         </div>
         <div className="flex justify-between mb-4 md:ml-4">

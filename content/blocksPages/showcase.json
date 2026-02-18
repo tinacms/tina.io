@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Showcase",
-    "description": "Projects built using Tina."
+    "title": "TinaCMS Showcase – Websites Built with Tina",
+    "description": "Explore websites and projects built with TinaCMS. See how companies like Unity, Smashing Magazine, and NDC Conferences use Tina for content management."
   },
   "blocks": [
     {
@@ -26,6 +26,15 @@
           "url": "https://www.ssw.com.au/",
           "media": {
             "src": "/img/tina-showcase/ssw-website-screenshot.jpg"
+          }
+        },
+        {
+          "headline": "SSW Rules",
+          "text": "SSW Migrated **4000+** pages to TinaCMS from Decap CMS. [SSW Rules](https://www.ssw.com.au/rules)  is a site SSW uses to document industry best practices for software development based on their **30 years** of developer experience.",
+          "url": "",
+          "media": {
+            "youtubeUrl": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+            "src": ""
           }
         },
         {
@@ -94,7 +103,7 @@
         },
         {
           "headline": "Comedia",
-          "text": "[Comedia](http://www.comediadesign.com/) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC, and Postmates.",
+          "text": "[Comedia](https://www.comediadesign.com/) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC, and Postmates.",
           "url": "https://www.comediadesign.com/",
           "media": {
             "src": "/gif/comedia.gif"

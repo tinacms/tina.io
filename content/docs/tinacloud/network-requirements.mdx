@@ -1,0 +1,57 @@
+---
+title: Network Requirements
+next: content/docs/tinacloud/troubleshooting.mdx
+previous: content/docs/tinacloud/overview.mdx
+---
+
+## Overview
+
+TinaCloud's authentication and content services communicate with several external domains. If your network uses a firewall, VPN, or proxy that restricts outbound traffic, you will need to whitelist the domains listed below to ensure TinaCMS functions correctly.
+
+## Required Domains
+
+### TinaCloud Services
+
+| Domain | Purpose |
+|---|---|
+| `*.tina.io` | TinaCloud dashboard and asset delivery |
+| `identity.tinajs.io` | Authentication and identity services |
+| `content.tinajs.io` | Content API and data layer |
+| `assets.tinajs.io` | Asset management and delivery |
+
+### Authentication (OAuth / SSO)
+
+TinaCloud uses AWS Cognito and API Gateway for authentication. The login flow redirects through these domains during sign-in:
+
+| Domain | Purpose |
+|---|---|
+| `*.auth.us-east-1.amazoncognito.com` | AWS Cognito hosted UI (OAuth authorization) |
+| `cognito-idp.us-east-1.amazonaws.com` | AWS Cognito Identity Provider API |
+| `*.execute-api.us-east-1.amazonaws.com` | AWS API Gateway (OIDC identity bridge) |
+
+### GitHub
+
+If your project uses GitHub as its git provider (the default for TinaCloud):
+
+| Domain | Purpose |
+|---|---|
+| `github.com` | GitHub OAuth authorization and repository access |
+| `api.github.com` | GitHub API for token exchange and user info |
+
+### Enterprise SSO (WorkOS)
+
+If your organization uses enterprise SSO through TinaCloud:
+
+| Domain | Purpose |
+|---|---|
+| `*.workos.com` | WorkOS enterprise SSO provider |
+
+## Troubleshooting
+
+### Login times out on VPN or restricted network
+
+If you see a "Login attempt timed out" error when authenticating from a VPN or restricted network, it is likely that one of the authentication domains listed above is being blocked. The sign-in flow must complete a full redirect chain within 20 seconds, and any blocked domain in that chain will cause a timeout.
+
+### Content Security Policy (CSP)
+
+If you are configuring Content Security Policy headers for your site, see the [CSP Configuration guide](/docs/guides/csp-configuration/) for the required directives.

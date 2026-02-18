@@ -2,10 +2,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { tinaField } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import RenderButton from 'utils/renderButtonArrayHelper';
 import DocsRichText from '@/component/styles/DocsRichText';
 import { Prism } from '@/component/styles/Prism';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import { docAndBlogComponents } from '@/component/tinaMarkdownComponents/docAndBlogComponents';
 import PlayIcon from '@/public/svg/play-button.svg';
 
 export function FeatureBlock({ data }) {
@@ -24,7 +26,7 @@ export function FeatureBlock({ data }) {
       >
         {data.headingOne && data.headline && (
           <h1
-            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-center lg:text-left"
+            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-left"
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -32,7 +34,7 @@ export function FeatureBlock({ data }) {
         )}
         {data.headline && !data.headingOne && (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-center lg:text-left`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -41,13 +43,18 @@ export function FeatureBlock({ data }) {
         <div className="hidden sm:hidden lg:block lg:ml-0 lg:pl-0 lg:pb-3">
           <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
         </div>
-        <p
-          className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-center lg:text-left py-4"
+        <div
+          className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-left py-4"
           data-tina-field={tinaField(data, 'text')}
         >
-          {data.text}
-        </p>
-        <div className="flex flex-col items-center lg:items-start">
+          {data.text && (
+            <TinaMarkdown
+              content={data.text}
+              components={docAndBlogComponents}
+            />
+          )}
+        </div>
+        <div className="flex flex-col items-start">
           <div className="flex flex-col md:flex-row gap-2">
             {data.buttons?.slice(0, 2).map((button, index) => (
               <RenderButton
@@ -109,7 +116,8 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage' ||
     data.media[0].__typename === 'PageBlocksHeroMediaImage'
   ) {
-    return (
+    console.log('data.media[0].image', data.media[0].image);
+    return data.media[0].image ? (
       <Image
         src={data.media[0].image}
         alt={data.headline}
@@ -119,6 +127,8 @@ export const RenderMedia = ({ data }) => {
         width={1200}
         height={1200}
       />
+    ) : (
+      <div className="w-full h-full m-auto rounded-lg bg-gray-200"></div>
     );
   }
   if (

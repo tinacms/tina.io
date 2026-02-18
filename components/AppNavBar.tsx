@@ -4,9 +4,8 @@ import data from '@/content/navigationBar/navMenu.json';
 import zhData from '@/content/navigationBar/navMenuZh.json';
 import TinaIoLogoSvg from '@/public/svg/tinaio-logo.svg';
 import '@/styles/tailwind.css';
-import { DemoForm } from 'components/modals/BookDemo';
-import LanguageSelect from 'components/modals/LanguageSelect';
 import { DEFAULT_LOCALE, SupportedLocales } from 'middleware';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -16,13 +15,25 @@ import { BiChevronDown, BiLinkExternal, BiMenu } from 'react-icons/bi';
 import { FaCalendarDay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdEmail } from 'react-icons/md';
-import { Modal } from 'react-responsive-modal';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { getGitHubStarCount } from '@/utils/github-star-helper';
 import { saveLocaleToCookie } from '@/utils/locale';
 import { shouldPrefetchLink } from '@/utils/shouldPrefetchLink';
-import 'react-responsive-modal/styles.css';
-import { EmailForm } from '@/component/modals/EmailForm';
 import { Button, LinkButton } from './ui/Button';
+
+// Dynamic imports for modals - only loaded when modal is opened
+const DemoForm = dynamic(
+  () => import('components/modals/BookDemo').then((mod) => mod.DemoForm),
+  { ssr: false },
+);
+const EmailForm = dynamic(
+  () => import('@/component/modals/EmailForm').then((mod) => mod.EmailForm),
+  { ssr: false },
+);
+const LanguageSelect = dynamic(
+  () => import('components/modals/LanguageSelect'),
+  { ssr: false },
+);
 
 enum ValidColors {
   White = 'white',
@@ -495,7 +506,8 @@ const MobileNavMenu = ({
 
   return (
     <>
-      <div
+      <nav
+        aria-label="Mobile navigation"
         className={`fixed top-0 right-0 h-full w-[300px] bg-linear-to-t from-blue-50 to-white shadow-2xl z-50 transition ease-out duration-200 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         } `}
@@ -561,7 +573,7 @@ const MobileNavMenu = ({
             )}
           </ul>
         </div>
-      </div>
+      </nav>
 
       <div
         className={`fixed top-0 left-0 w-full h-full bg-gray-900/70 z-30 ${
@@ -773,7 +785,7 @@ export function AppNavBar({ sticky = true }) {
 
   return (
     <>
-      <div ref={navRef} className={`relative w-full`}>
+      <header ref={navRef} className={`relative w-full`}>
         <div className="flex xl:hidden w-full py-4 pl-4 pr-18 items-center justify-between gap-6">
           <MobileNavMenu
             navItems={navItems}
@@ -801,29 +813,37 @@ export function AppNavBar({ sticky = true }) {
             pathName={pathName}
           />
         </div>
-      </div>
+      </header>
 
-      <Modal open={modalType === 'BookDemo'} onClose={closeModal} center>
-        <DemoForm />
-      </Modal>
-
-      <Modal
-        open={modalType === 'EmailForm'}
-        onClose={closeModal}
-        center
-        classNames={{
-          modal: 'email-and-demo-modal email-form-modal',
-        }}
+      <Dialog
+        open={modalType === 'BookDemo'}
+        onOpenChange={(open) => !open && closeModal()}
       >
-        <EmailForm isFooter={false} />
-      </Modal>
+        <DialogContent className="max-w-5xl w-[90vw]">
+          <DemoForm />
+        </DialogContent>
+      </Dialog>
 
-      <Modal open={modalType === 'LanguageSelect'} onClose={closeModal} center>
-        <LanguageSelect
-          onLanguageSelect={handleLanguageChange}
-          currentLanguage={selectedFlag}
-        />
-      </Modal>
+      <Dialog
+        open={modalType === 'EmailForm'}
+        onOpenChange={(open) => !open && closeModal()}
+      >
+        <DialogContent className="max-w-5xl w-[90vw]">
+          <EmailForm isFooter={false} />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog
+        open={modalType === 'LanguageSelect'}
+        onOpenChange={(open) => !open && closeModal()}
+      >
+        <DialogContent className="sm:max-w-md">
+          <LanguageSelect
+            onLanguageSelect={handleLanguageChange}
+            currentLanguage={selectedFlag}
+          />
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

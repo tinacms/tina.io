@@ -2,7 +2,7 @@
 cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/tinacms/README.md'
 title: FAQ
 alias: FAQ
-last_edited: '2025-11-17T04:40:04.268Z'
+last_edited: '2026-02-09T05:31:49.762Z'
 next: ''
 previous: ''
 ---
@@ -32,7 +32,21 @@ Anyone can start using Tina right away but it is designed for developers to setu
 
 ## 4. What versions of Node are supported?
 
-TinaCMS is supported on currently maintained LTS versions of Node.js and works with NPM, PNPM, and Yarn.
+TinaCMS is supported on all active LTS versions of Node. See [Node.js Releases](https://nodejs.org/en/about/previous-releases) to find out more about release versions.
+
+NPM, PNPM and Yarn package managers are all supported.
+
+| Node Version |                                          |
+| ------------ | ---------------------------------------- |
+| v25.x        | ℹ️ Not supported - current but not LTS   |
+| v24.x LTS    | ✅ Supported - recommended for production |
+| v23.x        | ❌ EoL                                    |
+| v22.x LTS    | ✅ Supported - good for production        |
+| v21.x        | ❌ EoL                                    |
+| v20.x LTS    | ℹ️ Not supported - recommended to update |
+| v19.x        | ❌ EoL                                    |
+
+Table updated February 2026
 
 ## 5. What is Tina's tech stack?
 
@@ -139,7 +153,7 @@ The most common reasons for this issue are:
 * The Client ID setup in your site's environment variables does not match the Client ID in your project's settings on the TinaCloud dashboard.
 * The user attempting to login to TinaCloud does not have access to edit this site. Ensure that this user is authorized on the TinaCloud dashboard.
 
-> Make sure to include `https` in the Site URL eg: [https://forestry.io](https://forestry.io) or if you are testing locally, it might be something like `http://localhost:3000`
+> Make sure to include `https` in the Site URL eg: `https://example.com` or if you are testing locally, it might be something like `http://localhost:3000`
 
 ### Site is building on a sub-path
 
@@ -212,8 +226,31 @@ The alternative would be to add a [custom field component](https://tina.io/docs/
 
 **Video: FAQ - Getting a 503 Service Unavailable error when loading the reference field**
 
-## 19. Do I need a GitHub account to edit? 
+## 19. Do I need a GitHub account to edit?
 
-No! Only the individual who sets up the TinaCloud project, linking it to a GitHub repository, requires GitHub. 
+No! Only the individual who sets up the TinaCloud project, linking it to a GitHub repository, requires GitHub.
 
-Editors can create a [TinaCloud](https://app.tina.io) account with just their email. If co-authoring is enabled for the editor, then commits will be co-authored by their email address. 
+Editors can create a [TinaCloud](https://app.tina.io) account with just their email. If co-authoring is enabled for the editor, then commits will be co-authored by their email address.
+
+## 20. GitHub Copilot branches not indexed by TinaCloud
+
+Due to a current limitation in GitHub Copilot’s webhook behaviour, branches created through GitHub Copilot assignments are not automatically indexed by TinaCloud. These branches do not trigger the branch creation webhook that TinaCloud relies on to begin indexing content.
+
+We have raised this issue with GitHub and will provide updates as they become available in this [Issue](https://github.com/tinacms/tinacms/issues/6407).
+
+As a temporary workaround, branches created by GitHub Copilot can be manually re-indexed from the [TinaCloud dashboard](https://app.tina.io/).
+
+![](/img/docs/faq/renaming-copilot-branches.gif "Re-indexing GitHub Copilot branches in Tinacloud")
+
+## 21. How do I rename media files in the Media Manager?
+
+Renaming media files is not currently supported through the TinaCloud Media Manager. Repo-based media only tracks a single branch and does not have branching functionality for media operations like renaming. If the tracked branch is protected, uploading a renamed file will save it to storage (S3) but the change will not be committed to the branch.
+
+As a workaround, you can rename media files by making the changes directly in GitHub:
+
+1. Delete the old file from your media directory (e.g. `public/uploads/`) directly in GitHub
+2. Wait for the deletion to sync back to TinaCloud
+3. Add the file with the new name directly in GitHub
+4. Wait for the addition to sync back to TinaCloud
+
+For more details, see [Renaming Media Files](/docs/reference/media/repo-based/#renaming-media-files).

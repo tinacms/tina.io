@@ -1,12 +1,11 @@
 import { DemoForm } from 'components/modals/BookDemo';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
-import { Modal } from 'react-responsive-modal';
-import { EmailForm } from '@/component/modals/EmailForm';
-import 'react-responsive-modal/styles.css';
 import { tinaField } from 'tinacms/dist/react';
 import { sanitizeLabel } from 'utils/sanitizeLabel';
+import { EmailForm } from '@/component/modals/EmailForm';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 import { ModalButton } from '../../ui';
 
 // Function that returns modal components
@@ -36,16 +35,14 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
   return (
     <>
       <div
-        className={[
-          'actionGroup',
+        className={cn(
+          '-mb-2',
           'items-center',
           isList
             ? 'flex flex-col sm:flex-row md:flex-row lg:flex-row'
             : 'flex flex-row',
-          align === 'center' && 'actionGroupCenter',
-        ]
-          .filter(Boolean)
-          .join(' ')}
+          align === 'center' && 'justify-center',
+        )}
       >
         {items?.map((item, index) => {
           const { color, label, icon, modal, shape } = item;
@@ -69,30 +66,9 @@ export const ModalB = ({ items, align = 'left', className = '' }) => {
         })}
       </div>
 
-      <Modal open={open} onClose={closeModal} center>
-        {ModalContent}
-      </Modal>
-      <style jsx>{`
-        .actionGroup {
-          margin: 0 0 -0.5rem 0;
-        }
-
-        .actionGroupCenter {
-          justify-content: center;
-        }
-
-        .icon-class {
-          display: inline-block;
-          margin-left: 0.375em;
-          height: 1em;
-          width: auto;
-          transition: opacity ease-out 150ms;
-        }
-
-        .modal-button:hover .icon-class {
-          opacity: 0.85;
-        }
-      `}</style>
+      <Dialog open={open} onOpenChange={(isOpen) => !isOpen && closeModal()}>
+        <DialogContent className="sm:max-w-lg">{ModalContent}</DialogContent>
+      </Dialog>
     </>
   );
 };

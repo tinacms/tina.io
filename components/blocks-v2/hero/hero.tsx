@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { PageBlocksHeroV2 } from 'tina/__generated__/types';
+import { tinaField } from 'tinacms/dist/react';
 import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
@@ -37,14 +38,18 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             <RecentNewsBanner recentNewsBanner={recentNewsBanner} />
           )}
           {title && (
-            <h2
+            <h1
               className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
+              data-tina-field={tinaField(data.data, 'title')}
             >
               {curlyBracketFormatter(title)}
-            </h2>
+            </h1>
           )}
           {subtext && (
-            <p className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md">
+            <p
+              className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md"
+              data-tina-field={tinaField(data.data, 'subtext')}
+            >
               {subtext}
             </p>
           )}
@@ -58,6 +63,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
                 key={`button-${button?.label || index}`}
                 button={button}
                 className="py-3"
+                data-tina-field={tinaField(button, 'label')}
               />
             ))}
           </div>
