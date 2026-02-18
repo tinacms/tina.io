@@ -26,7 +26,7 @@ export function FeatureBlock({ data }) {
       >
         {data.headingOne && data.headline && (
           <h1
-            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-center lg:text-left"
+            className="font-ibm-plex inline-block text-4xl md:text-5xl py-4 lg:text-6xl lg:leading-tight text-balance text-left"
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -34,7 +34,7 @@ export function FeatureBlock({ data }) {
         )}
         {data.headline && !data.headingOne && (
           <h2
-            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-center lg:text-left`}
+            className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block  py-4  lg:leading-tight text-balance text-left`}
             data-tina-field={tinaField(data, 'headline')}
           >
             {data.headline}
@@ -49,7 +49,7 @@ export function FeatureBlock({ data }) {
         >
           <TinaMarkdown content={data.text} components={docAndBlogComponents} />
         </div>
-        <div className="flex flex-col items-center lg:items-start">
+        <div className="flex flex-col items-start">
           <div className="flex flex-col md:flex-row gap-2">
             {data.buttons?.slice(0, 2).map((button, index) => (
               <RenderButton
