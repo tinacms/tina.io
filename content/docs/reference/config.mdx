@@ -89,7 +89,7 @@ Note that it **must be** the default export.
       name: "localContentPath",
       type: "string",
       description:
-        "The relative path of a seperate content repo in local development.\n"
+        "The path to a separate content repo for local development, **resolved relative to the `tina/` config folder** (not the project root).\n\nWhen set, collection `path` values are resolved relative to this content root. The content directory **must contain a `tina/` folder** (it can be empty) — TinaCMS writes generated files like `tina-lock.json` there.\n\nUse an environment variable since the path may differ per developer:\n\n```ts\nlocalContentPath: process.env.TINA_CONTENT_REPO_PATH // e.g. '../../my-content-repo'\n```\n\nSee the [Separate Content Repo guide](/docs/guides/separate-content-repo) for full setup details.\n"
     },
     {
       groupName: "",

@@ -9,7 +9,7 @@ import { Container } from '../Container';
 const FeatureWrapper = ({ url, id, children }) => {
   const formattedUrl =
     url && !url.match(/^https?:\/\//) && !url.startsWith('/')
-      ? `http://${url}`
+      ? `https://${url}`
       : url;
   const isInternalLink = formattedUrl?.startsWith('/');
 

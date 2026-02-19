@@ -12,12 +12,21 @@ export function FooterLinkContentBlock({ data }) {
       {data.title && (
         <div className="py-16 text-center">
           <Container width="narrow">
-            <h1
-              className="text-4xl md:text-5xl font-bold text-orange-500 leading-tight"
-              data-tina-field={tinaField(data, 'title')}
-            >
-              {data.title}
-            </h1>
+            {data.isHeadingOne !== false ? (
+              <h1
+                className="text-4xl md:text-5xl font-bold text-orange-500 leading-tight"
+                data-tina-field={tinaField(data, 'title')}
+              >
+                {data.title}
+              </h1>
+            ) : (
+              <h2
+                className="text-4xl md:text-5xl font-bold text-orange-500 leading-tight"
+                data-tina-field={tinaField(data, 'title')}
+              >
+                {data.title}
+              </h2>
+            )}
           </Container>
         </div>
       )}

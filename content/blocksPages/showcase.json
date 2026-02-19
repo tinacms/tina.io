@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Showcase",
-    "description": "Projects built using Tina."
+    "title": "TinaCMS Showcase – Websites Built with Tina",
+    "description": "Explore websites and projects built with TinaCMS. See how companies like Unity, Smashing Magazine, and NDC Conferences use Tina for content management."
   },
   "blocks": [
     {
@@ -103,7 +103,7 @@
         },
         {
           "headline": "Comedia",
-          "text": "[Comedia](http://www.comediadesign.com/) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC, and Postmates.",
+          "text": "[Comedia](https://www.comediadesign.com/) is a digital product agency with offices in San Francisco and Vancouver. We craft product and experiences for clients large and small. Our clients include Vodafone, Ericsson, NEC, and Postmates.",
           "url": "https://www.comediadesign.com/",
           "media": {
             "src": "/gif/comedia.gif"
