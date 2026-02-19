@@ -44,7 +44,7 @@ export function FeatureBlock({ data }) {
           <hr className="my-0! w-full block border-none bg-[url('/svg/hr.svg')] bg-[length:auto_100%] bg-no-repeat h-[7px]" />
         </div>
         <div
-          className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-balance text-left py-4"
+          className="text-lg lg:text-xl lg:leading-normal text-neutral-text-secondary max-w-60ch text-pretty text-left py-4"
           data-tina-field={tinaField(data, 'text')}
         >
           {data.text && (
