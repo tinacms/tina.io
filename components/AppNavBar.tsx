@@ -30,6 +30,9 @@ const EmailForm = dynamic(
   () => import('@/component/modals/EmailForm').then((mod) => mod.EmailForm),
   { ssr: false },
 );
+
+import { ContactForm } from 'components/modals/ContactForm';
+
 const LanguageSelect = dynamic(
   () => import('components/modals/LanguageSelect'),
   { ssr: false },
@@ -118,6 +121,7 @@ interface GroupOfStringItems extends NavItemBase {
     label: string;
     href: string;
     external?: boolean;
+    modal?: string;
   }>;
 }
 
@@ -236,6 +240,7 @@ interface MobileNavItemMapperContext {
   openDropdown: string | null;
   setOpenDropdown: React.Dispatch<React.SetStateAction<string | null>>;
   closeMenu: () => void;
+  openModal: (modal: string) => void;
 }
 
 function desktopNavItemMapper(
@@ -296,12 +301,12 @@ function desktopNavItemMapper(
       return (
         <li
           key={`${index}-${item.label}`}
-          className={`group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2 cursor-pointer`}
+          className={`relative group ${_navLinkClasses} w-fit  ${isRouteActive(pathName, item.items) ? 'bg-[#ECF7F8]' : 'bg-transparent'} transition-all duration-300 ease-out hover:bg-[#ECF7F8] rounded-xl pl-3 pr-2 cursor-pointer`}
           onMouseLeave={closeDropdownMenu}
         >
           <button
             type="button"
-            className="relative flex items-center justify-center group cursor-pointer"
+            className="flex items-center justify-center group cursor-pointer"
             onMouseEnter={(e: React.MouseEvent) =>
               openDropdownMenu(`${index}-${item.label}`, e)
             }
@@ -309,20 +314,33 @@ function desktopNavItemMapper(
           >
             {item.label}
             <BiChevronDown className="w-4 h-4 ml-0.5" />
-            {/* hover bridge that is invisible to user (maintains hover state) */}
-            <div
-              className="absolute left-0 top-full h-5 min-w-full"
-              aria-hidden
-            />
-            <ul
-              className={`absolute -left-[10px] top-full min-w-full mt-5 w-max bg-[#ECF7F8] shadow-lg rounded-xl p-2 transition-opacity duration-200 ease-in-out ${
-                openDropdown === `${index}-${item.label}`
-                  ? 'opacity-100 pointer-events-auto'
-                  : 'opacity-0 pointer-events-none'
-              }`}
-            >
-              {item.items.map((subItem, subIndex) => (
-                <li key={`${index}-${subIndex}-${subItem.href}`}>
+          </button>
+          {/* hover bridge that is invisible to user (maintains hover state) */}
+          <div
+            className="absolute left-0 top-full h-5 min-w-full"
+            aria-hidden
+          />
+          <ul
+            className={`absolute -left-[10px] top-full min-w-full mt-5 w-max bg-[#ECF7F8] shadow-lg rounded-xl p-2 transition-opacity duration-200 ease-in-out ${
+              openDropdown === `${index}-${item.label}`
+                ? 'opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none'
+            }`}
+          >
+            {item.items.map((subItem, subIndex) => (
+              <li key={`${index}-${subIndex}-${subItem.modal || subItem.href}`}>
+                {subItem.modal ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpenDropdown(null);
+                      openModal(subItem.modal);
+                    }}
+                    className="touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60 rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500 w-full text-left cursor-pointer"
+                  >
+                    {subItem.label}
+                  </button>
+                ) : (
                   <Link
                     href={subItem.href}
                     prefetch={shouldPrefetchLink(subItem.href)}
@@ -334,8 +352,7 @@ function desktopNavItemMapper(
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    onClick={(e) => {
-                      e.stopPropagation();
+                    onClick={() => {
                       setOpenDropdown(null);
                     }}
                     className="touch-manipulation py-2 px-2 flex items-center group hover:bg-white/60  rounded-md transition duration-150 ease-out text-gray-600 hover:text-blue-500"
@@ -345,10 +362,10 @@ function desktopNavItemMapper(
                       <BiLinkExternal className="text-blue-200 text-sm group-hover:text-blue-400 inline ml-1" />
                     )}
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </button>
+                )}
+              </li>
+            ))}
+          </ul>
         </li>
       );
     case GitHubStarButton:
@@ -383,8 +400,14 @@ function mobileNavItemMapper(
   item: NavItem,
   context: MobileNavItemMapperContext,
 ): React.ReactNode {
-  const { index, starCount, closeMenu, openDropdown, setOpenDropdown } =
-    context;
+  const {
+    index,
+    starCount,
+    closeMenu,
+    openDropdown,
+    setOpenDropdown,
+    openModal,
+  } = context;
   const dropdownId = `mobile-${index}-${item.label}`;
   const isOpen = openDropdown === dropdownId;
 
@@ -413,21 +436,37 @@ function mobileNavItemMapper(
             }`}
           >
             {item.items.map((subItem, subIndex) => (
-              <li key={`${index}-${subIndex}-${subItem.href}`}>
-                <Link
-                  href={subItem.href}
-                  prefetch={shouldPrefetchLink(subItem.href)}
-                  target={subItem.external ? '_blank' : '_self'}
-                  rel={subItem.external ? 'noopener noreferrer' : undefined}
-                  onClick={() => {
-                    setOpenDropdown(null);
-                    closeMenu();
-                  }}
-                  className="py-2 px-2 flex items-center text-gray-600 hover:text-blue-500"
-                >
-                  {subItem.label}
-                  {subItem.href.startsWith('https://') && <ExternalLinkIcon />}
-                </Link>
+              <li key={`${index}-${subIndex}-${subItem.modal || subItem.href}`}>
+                {subItem.modal ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpenDropdown(null);
+                      closeMenu();
+                      openModal(subItem.modal);
+                    }}
+                    className="py-2 px-2 flex items-center text-gray-600 hover:text-blue-500 w-full text-left cursor-pointer"
+                  >
+                    {subItem.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={subItem.href}
+                    prefetch={shouldPrefetchLink(subItem.href)}
+                    target={subItem.external ? '_blank' : '_self'}
+                    rel={subItem.external ? 'noopener noreferrer' : undefined}
+                    onClick={() => {
+                      setOpenDropdown(null);
+                      closeMenu();
+                    }}
+                    className="py-2 px-2 flex items-center text-gray-600 hover:text-blue-500"
+                  >
+                    {subItem.label}
+                    {subItem.href.startsWith('https://') && (
+                      <ExternalLinkIcon />
+                    )}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -569,6 +608,7 @@ const MobileNavMenu = ({
                 openDropdown,
                 setOpenDropdown,
                 closeMenu: toggleMenu,
+                openModal,
               }),
             )}
           </ul>
@@ -830,6 +870,15 @@ export function AppNavBar({ sticky = true }) {
       >
         <DialogContent className="max-w-5xl w-[90vw]">
           <EmailForm isFooter={false} />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog
+        open={modalType === 'ContactForm'}
+        onOpenChange={(open) => !open && closeModal()}
+      >
+        <DialogContent className="!max-w-2xl w-[90vw] !p-0 !duration-0">
+          <ContactForm />
         </DialogContent>
       </Dialog>
 
