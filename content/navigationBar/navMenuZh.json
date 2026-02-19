@@ -45,6 +45,11 @@
           "label": "最新动态 - TinaCloud",
           "href": "/whats-new/tinacloud",
           "external": false
+        },
+        {
+          "label": "联系我们",
+          "href": "",
+          "modal": "ContactForm"
         }
       ],
       "_template": "groupOfStringItems"

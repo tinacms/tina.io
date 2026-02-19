@@ -1,4 +1,4 @@
-const _modals = ['BookDemo', 'EmailForm'];
+const _modals = ['BookDemo', 'EmailForm', 'ContactForm'];
 const iconOptions = ['FaCalendarDay', 'MdEmail'];
 
 import { modalButtonTemplateFields } from '../../components/blocks/ModalButton/ModalButton.template';
@@ -101,6 +101,14 @@ export const navigationBarCollection = {
                   name: 'href',
                   label: 'href',
                   type: 'string',
+                },
+                {
+                  name: 'modal',
+                  label: 'Modal',
+                  type: 'string',
+                  options: _modals,
+                  description:
+                    'If set, clicking this item opens a modal instead of navigating',
                 },
               ],
             },
