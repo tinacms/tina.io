@@ -11,15 +11,15 @@ TinaCMS has **a built-in Repository (git) based media storage option**. Alternat
 
 > Repo-based media keeps your assets alongside your content, meaning you can **track changes and roll back versions for both code and media**.
 
-This has other benefits such as reducing dependencies, usage of external APIs and syncronization between local development and preview environments.
+This has other benefits such as reducing dependencies on external APIs and keeping local development and preview environments in sync.
 
 <Youtube embedSrc="https://www.youtube.com/embed/x0ACBQeNcts?start=388&end=469" />
 
-> Not seeing your media? To see your media in the media manager, you will need to press the "Sync Media" button in the media manager. This will pull all of your media from GitHub and add it to TinaCMS.
+> Not seeing your media? For newly created projects, an initial media sync is triggered automatically and may still be in progress. If your media still isn't appearing, you can manually trigger a sync from the **Media** tab in your TinaCloud project dashboard.
 
 ## Configuration
 
-To configure repo-based media in your project, add the following to your schema definition in `tina/config.{ts,js}`
+To configure repo-based media in your project, add the following to your schema definition in `tina/config.{ts,js}`:
 
 ```javascript
 //tina/config.{ts,js}
@@ -40,7 +40,7 @@ export default defineConfig({
 
 Set `publicFolder` to the path to your site's "public" folder. This path is relative to your project's root.
 
-> For any NextJS site, (such as our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)), this value should be `"public"`.
+> For any Next.js site (such as our [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)), this value should be `"public"`.
 
 ### Media Storage Path
 
@@ -54,12 +54,12 @@ Set this to `""`, if you want your media to be uploaded to the root of your `pub
 
 The `static` property determines whether media files can be uploaded, edited, or deleted directly through the editor.
 
-* **`static: true`** Editors cannot upload/delete media (static assets)
+* **`static: true`**: Editors cannot upload/delete media (static assets)
 * **`static: false`** (default): Editors can upload/delete media (dynamic assets).
 
 ## Supported Media Types
 
-The following file types are supported by default
+The following file types are supported by default:
 
 | Format                        | MIME Type                                                                 | Examples               |
 | ----------------------------- | ------------------------------------------------------------------------- | ---------------------- |
@@ -85,7 +85,7 @@ The following file types are supported by default
 | USDZ Zip                      | `model/vnd.usdz+zip`                                                      | .usdz                  |
 | Videos                        | `video/*`                                                                 | .mp4, .avi, .mkv, etc. |
 
-If you would like to specify your own allowed file types, add the following to the **`media`** property
+If you would like to specify your own allowed file types, add the following to the **`media`** property:
 
 ```javascript
 //tina/config.{ts,js}
@@ -103,7 +103,7 @@ export default defineConfig({
 
 ### NextJS Images
 
-If you are using NextJS images, you will need to add some like the following to your `next.config.js` file to allow access to external images.
+If you are using Next.js images, you will need to add something like the following to your `next.config.js` file to allow access to external images.
 
 ```javascript
 module.exports = {
@@ -127,18 +127,14 @@ When uploading files to TinaCloud, the maximum allowed file size is 100 MiB.
 
 ## How does this work with Branching?
 
-Repo-based media is designed to be used around a single-branch workflow. If your project is using [multiple branches](/docs/tinacloud/branching/) or [Editorial Workflow](/docs/drafts/editorial-workflow/), there's some known caveats to be aware of.
+Repo-based media is designed to be used around a single-branch workflow. If your project is using [multiple branches](/docs/tinacloud/branching/) or [Editorial Workflow](/docs/drafts/editorial-workflow/), there are some known caveats to be aware of.
 
-* Images cannot be altered, once uploaded any subsequent changes to an asset will not be reflected.
+* Images cannot be altered. Once uploaded, any subsequent changes to an asset will not be reflected.
 * If you only have a single branch with media enabled, the media store will source/upload images to/from that branch.
 * If you have multiple branches with media enabled, then all media will be sourced/uploaded to/from the repository's default branch.
 * Media files cannot be renamed through the Media Manager. See [Renaming Media Files](#renaming-media-files) below for a workaround.
 
-If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), you may see this message in the TinaCloud media settings:
-
-![](/img/docs/reference/media-not-configured_lnr5lw.png)
-
-To workaround this, you may need to enable media **after** merging Tina to your default branch.
+If you are configuring Tina on a non-default branch (and the Tina config has not yet been merged to your default branch), the automatic media sync on project creation may not be able to locate your media configuration. In this case, the **Media** tab in your TinaCloud project dashboard will show that media has not yet been synced. Once your Tina config has been merged to the default branch, you can trigger a sync manually from that tab.
 
 ### Renaming Media Files
 
