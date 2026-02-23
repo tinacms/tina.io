@@ -6,7 +6,17 @@
   "title": "Where's Tina?",
   "byLine": "Tina's hitting the road, and you don't want to miss out. Check out our stops and see TinaCMS in action!",
   "cardItems": [
-    {},
+    {
+      "headline": "NDC Sydney",
+      "startDate": "2026-04-22T01:52:47.666Z",
+      "startTime": "09:00",
+      "endDate": "2026-04-23T14:00:00.000Z",
+      "timezone": 11,
+      "image": "/events/Sydney.png",
+      "link": "https://ndcsydney.com/",
+      "markerLAT": -33.86,
+      "markerLONG": 151.2077
+    },
     {
       "headline": "Data Saturdays - Brisbane",
       "startDate": "2026-02-28T00:46:39.747Z",
