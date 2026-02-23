@@ -6,6 +6,18 @@
   "title": "Where's Tina?",
   "byLine": "Tina's hitting the road, and you don't want to miss out. Check out our stops and see TinaCMS in action!",
   "cardItems": [
+    {},
+    {
+      "headline": "Data Saturdays - Brisbane",
+      "startDate": "2026-02-28T00:46:39.747Z",
+      "startTime": "09:00",
+      "endDate": "2026-02-28T00:47:30.851Z",
+      "timezone": 10,
+      "image": "/events/bbane.png",
+      "link": "https://datasaturdays.com/Event/20260228-datasaturday0079#speakers",
+      "markerLAT": -27.4705,
+      "markerLONG": 153.026
+    },
     {
       "headline": "NDC Oslo",
       "startDate": "2025-05-19T00:00:00.000Z",
