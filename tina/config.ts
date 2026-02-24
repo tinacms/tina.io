@@ -20,7 +20,11 @@ const tinaConfig = defineConfig({
       mediaRoot: '',
     },
   },
-
+  ui: {
+    previewUrl: (context) => {
+      return { url: `https://my-app-git-${context.branch}.vercel.app` };
+    },
+  },
   build: { outputFolder: 'admin', publicFolder: 'public' },
 });
 
