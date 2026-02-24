@@ -1,5 +1,5 @@
+import sgMail from '@sendgrid/mail';
 import { type NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,21 +14,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: Number(process.env.SMTP_PORT) === 465,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
     const fullName = [firstName, lastName].filter(Boolean).join(' ') || 'N/A';
 
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: process.env.CONTACT_FORM_TO,
+    await sgMail.send({
+      from: process.env.SENDGRID_FROM_EMAIL!,
+      to: process.env.CONTACT_FORM_TO!,
       replyTo: email,
       subject: `TinaCMS Contact Form: ${fullName}`,
       text: [
