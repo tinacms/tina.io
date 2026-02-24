@@ -35,7 +35,38 @@ export const ContactForm = () => {
   });
   const [formData, setFormData] = useState<FormData>(defaultValues.current);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [message, setMessage] = useState<{
+    text: React.ReactNode;
+    type: string;
+  }>({ text: '', type: '' });
+
+  const buildErrorMessage = () => {
+    const fullName =
+      [formData.firstName, formData.lastName].filter(Boolean).join(' ') ||
+      'N/A';
+    const subject = encodeURIComponent(`TinaCMS Contact Form: ${fullName}`);
+    const body = encodeURIComponent(
+      [
+        `Name: ${fullName}`,
+        `Email: ${formData.email}`,
+        `Company: ${formData.company || 'N/A'}`,
+        `How did you hear about us: ${formData.referralSource || 'N/A'}`,
+        '',
+        'Message:',
+        formData.message,
+      ].join('\n'),
+    );
+    const mailto = `mailto:info@tina.io?subject=${subject}&body=${body}`;
+    return (
+      <>
+        There was an error with the form. Please{' '}
+        <a href={mailto} className="underline font-semibold">
+          mail us
+        </a>{' '}
+        directly at info@tina.io.
+      </>
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,7 +88,7 @@ export const ContactForm = () => {
         setFormData(defaultValues.current);
       } else {
         setMessage({
-          text: 'There was an error. Please try again.',
+          text: buildErrorMessage(),
           type: 'error',
         });
       }
