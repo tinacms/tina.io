@@ -17,15 +17,9 @@ AI works best when it lives in your editor. For seamless inline assistance, we r
 
 For advanced tasks, terminal tools like **GitHub Copilot CLI** are faster than chat interfaces.
 
-### 1.2 Setup your folder structure
+### 1.2 Use a TinaCMS starter kit
 
-Before generating any code, create a new folder where your project will live.
-This helps AI understand where new files should go and keeps your workspace organized.
-Trying to manage TinaCMS code in a random folder can confuse the AI.
-
-### 1.3 Use a TinaCMS starter kit
-
-AI works best when it has context. Having the template gives it some code to model itself on. Use our [Tina Starter CLI tool](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you with a prompt like the one below:
+AI works best when it has context. Having the template provides it with some code to model itself after. Use our [Tina Starter CLI tool](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you with a prompt like the one below:
 
 ```plaintext
 Please set up a TinaCMS starter template
@@ -37,12 +31,16 @@ Use tina.io as documentation reference
 ![](/setup.png)
 **Figure: Results of the above prompt**
 
-Once installed, explore the generated files so you understand how TinaCMS is wired together.
+The Tina Starter CLI tool will generate a new folder named after your project and install everything required to run TinaCMS into it.
+
+Once installed, navigate to the created folder and explore the generated files so you understand how TinaCMS is wired together.
+
+
 Your AI assistant will reference this structure automatically in later prompts, so the more you know your starting point, the more precise your direction will be.
 
 > **Tip:** Check out [SSW's Rules to Better AI Development](https://www.ssw.com.au/rules/rules-to-better-ai-development/)
 
-### 1.4 Create an AGENTS.md File
+### 1.3 Create an AGENTS.md File
 
 Create a file named `AGENTS.md` in your root directory. This serves as a handbook for your AI assistant. Include high-level goals, tech stack details, and conventions.
 
@@ -85,6 +83,7 @@ Try: *"I want a portfolio site with a 'Projects' collection. Each project has a 
 ### 2.3 Explain the Context
 
 If you have existing code, tell the AI where to look.
+
 ```plaintext
 I have a `content/posts` directory and a `components/Post.tsx` file. I want to add a new field to the post schema.
 ```
@@ -98,6 +97,7 @@ Help your AI understand Tina's unique architecture.
 ### 3.1 Schema First
 
 Tina starts with the schema. Instead of asking for a page, ask for the schema definition first.
+
 ```plaintext
 Create a 'Testimonial' object for my schema. It should have an author name, quote, and avatar image.
 ```
@@ -105,6 +105,7 @@ Create a 'Testimonial' object for my schema. It should have an author name, quot
 ### 3.2 Visual Editing
 
 AI often forgets the glue that makes real-time editing work. Remind it:
+
 ```plaintext
 When building the component, ensure every editable element has a 'data-tina-field' attribute matching the schema.
 ```
@@ -112,6 +113,7 @@ When building the component, ensure every editable element has a 'data-tina-fiel
 ### 3.3 TypeScript Types
 
 Don't manually type your props.
+
 ```plaintext
 Generate the TypeScript interface for this component based on the Tina query response.
 ```
@@ -206,7 +208,7 @@ Here's the error: {{error}}
 What's likely causing this, and how can I fix it?
 ```
 
-AI won’t always nail the fix, but it will usually point you in the right direction. Use that feedback to keep momentum instead of getting stuck. 
+AI won’t always nail the fix, but it will usually point you in the right direction. Use that feedback to keep momentum instead of getting stuck.
 
 ***
 
