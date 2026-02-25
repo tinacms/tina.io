@@ -194,6 +194,20 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                 {new Date().getFullYear()}
               </p>
             </div>
+            <div>
+              <p>
+                TinaCMS was built by{' '}
+                <a
+                  href="https://www.ssw.com.au"
+                  className="transition-all duration-200 hover:underline hover:opacity-100 opacity-80"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  SSW
+                </a>
+                , Australia&apos;s leading software consultants
+              </p>
+            </div>
             {isZhPath && (
               <div>
                 <p>

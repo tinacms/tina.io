@@ -1,0 +1,101 @@
+{
+  "seo": {
+    "title": "Professional Services – TinaCMS",
+    "description": "Get expert help with TinaCMS. Priority support, onboarding, and custom feature development from the team behind TinaCMS."
+  },
+  "blocks": [
+    {
+      "headline": "Professional Services",
+      "text": "Whether you're launching your first project or scaling to millions of users, the TinaCMS team is here to help.",
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
+    },
+    {
+      "blockSettings": {
+        "isFullscreen": true
+      },
+      "features": [
+        {
+          "headline": "Priority Support",
+          "text": "Skip the community forums. Get direct contact with TinaCMS expert developers for technical blockers, troubleshooting, and architectural advice.\n\n- Priority bug fixes\n- Direct contact with TinaCMS experts\n- Walk through TinaCMS features\n",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": false,
+              "variant": "orange",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/ai-llamas/Relax-Llama.png",
+              "_template": "image"
+            }
+          ]
+        },
+        {
+          "headline": "Onboarding",
+          "text": "Accelerate your TinaCMS adoption with hands-on onboarding from our team. From initial setup to editorial training, we get you productive fast.\n\n- Custom configuration\n- Team training sessions\n- Migration assistance\n",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": false,
+              "variant": "orange",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/ai-llamas/Relax-Llama.png",
+              "_template": "image"
+            }
+          ],
+          "isReversed": true
+        },
+        {
+          "headline": "Custom Features",
+          "text": "Need something unique? Our team builds custom plugins, integrations, and features that extend TinaCMS to fit your exact content workflow.\n\n- Custom plugin development\n- Third-party integrations\n- Bespoke editing experiences\n",
+          "buttons": [
+            {
+              "label": "Schedule Call",
+              "icon": false,
+              "variant": "orange",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "media": [
+            {
+              "image": "/ai-llamas/Relax-Llama.png",
+              "_template": "image"
+            }
+          ]
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "title": "Talk to a Tina Expert",
+      "description": "Ready to get started? Book a call with our team to discuss your needs.",
+      "buttons": [
+        {
+          "label": "Schedule Call",
+          "icon": false,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "callToAction"
+    }
+  ]
+}
