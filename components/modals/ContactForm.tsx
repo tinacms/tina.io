@@ -35,11 +35,7 @@ export const ContactForm = () => {
   });
   const [formData, setFormData] = useState<FormData>(defaultValues.current);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [message, setMessage] = useState<{
-    text: React.ReactNode;
-    type: string;
-  }>({ text: '', type: '' });
-
+  const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
@@ -47,39 +43,6 @@ export const ContactForm = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  const errorMessage = (
-    <>
-      There was an error with the form. Please email us directly at{' '}
-      <span className="text-orange-500 font-semibold">info@tina.io</span>
-      <button
-        type="button"
-        onClick={copyEmail}
-        className="ml-1 inline-flex items-center text-orange-500 hover:text-orange-600 transition-colors"
-        title="Copy email address"
-      >
-        {copied ? (
-          <TiTick className="text-green-500" />
-        ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-3.5 h-3.5"
-            role="img"
-            aria-label="Copy"
-          >
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-          </svg>
-        )}
-      </button>
-    </>
-  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -101,14 +64,14 @@ export const ContactForm = () => {
         setFormData(defaultValues.current);
       } else {
         setMessage({
-          text: errorMessage,
+          text: 'error',
           type: 'error',
         });
       }
     } catch (error) {
       console.error('Error submitting contact form:', error);
       setMessage({
-        text: errorMessage,
+        text: 'error',
         type: 'error',
       });
     } finally {
@@ -142,7 +105,7 @@ export const ContactForm = () => {
         below and we&apos;ll get back to you.
       </p>
       {message.text && (
-        <p
+        <div
           className={`font-ibm-plex text-sm mb-4 flex items-center gap-2 ${
             message.type === 'success'
               ? 'text-green-500'
@@ -153,9 +116,44 @@ export const ContactForm = () => {
         >
           {message.type === 'success' && <TiTick />}
           {message.type === 'warning' && <IoIosWarning />}
-          {message.type === 'error' && <ImCross />}
-          <span>{message.text}</span>
-        </p>
+          {message.type === 'error' && <ImCross className="shrink-0" />}
+          {message.type === 'error' ? (
+            <span>
+              There was an error with the form. Please email us directly at{' '}
+              <span className="text-orange-500 font-semibold">
+                info@tina.io
+              </span>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="ml-1 align-middle inline-flex items-center text-orange-500 hover:text-orange-600 transition-colors"
+                title="Copy email address"
+              >
+                {copied ? (
+                  <TiTick className="text-green-500 w-4 h-4" />
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-3.5 h-3.5"
+                    role="img"
+                    aria-label="Copy"
+                  >
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                )}
+              </button>
+            </span>
+          ) : (
+            <span>{message.text}</span>
+          )}
+        </div>
       )}
       <div className="flex flex-col gap-1.5 md:flex-row md:gap-2 w-full md:mb-1">
         <Input
