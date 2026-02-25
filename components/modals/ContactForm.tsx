@@ -120,13 +120,11 @@ export const ContactForm = () => {
           {message.type === 'error' ? (
             <span>
               There was an error with the form. Please email us directly at{' '}
-              <span className="text-orange-500 font-semibold">
-                info@tina.io
-              </span>
+              <span className="text-black font-semibold">info@tina.io</span>
               <button
                 type="button"
                 onClick={copyEmail}
-                className="ml-1 align-middle inline-flex items-center text-orange-500 hover:text-orange-600 transition-colors"
+                className="ml-1 align-middle inline-flex items-center text-gray-500 hover:text-black transition-colors"
                 title="Copy email address"
               >
                 {copied ? (
