@@ -24,9 +24,9 @@ export function FlyingBlock({ data, index }) {
             <Image
               className="learnImage"
               src="/img/tina-llama-flying.png"
-              alt="Tina flying"
-              width={741}
-              height={580}
+              alt="Tina the Llama flying like a superhero."
+              width={816}
+              height={615}
             />
           </div>
         </div>
