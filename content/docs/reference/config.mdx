@@ -65,6 +65,13 @@ Note that it **must be** the default export.
         'Set if serving at a subpath.\n\nFor `[url]/my-site`, set to `"my-site"`.\n'
     },
     {
+      groupName: "server",
+      name: "allowedOrigins",
+      type: "(string | RegExp | 'private')[]",
+      description:
+        "Origins allowed to make cross-origin requests to the dev server (`tinacms dev`). Has no effect on production.\n\nDefaults to `localhost` / `127.0.0.1` / `[::1]` only. Each entry can be:\n\n- An **exact origin string** \u2014 e.g. `'https://my-codespace.github.dev'`\n- A **RegExp** \u2014 e.g. `/^\\.preview\\.app$/`\n- `'private'` \u2014 expands to all RFC 1918 private-network IP ranges (`10.x`, `172.16\u201331.x`, `192.168.x`), useful for Docker, WSL2, etc.\n\n```ts\nserver: {\n  allowedOrigins: ['private', 'https://my-codespace.github.dev']\n}\n```\n"
+    },
+    {
       groupName: "",
       name: "branch",
       type: "string | null",
@@ -225,6 +232,44 @@ Note that it **must be** the default export.
       default: "/[\\p{L}\\d_]+/"
     },
     {
+      groupName: "search.tina",
+      name: "fuzzyEnabled",
+      type: "boolean",
+      description: "Enable fuzzy search.\n",
+      default: "true"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.maxDistance",
+      type: "number",
+      description: "Maximum edit distance for fuzzy matching.\n",
+      default: "2"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.minSimilarity",
+      type: "number",
+      description:
+        "Minimum similarity score (0\u20131) for a fuzzy match to be included.\n",
+      default: "0.6"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.maxTermExpansions",
+      type: "number",
+      description:
+        "Maximum number of fuzzy term expansions to return per search term.\n",
+      default: "10"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.useTranspositions",
+      type: "boolean",
+      description:
+        "Use Damerau\u2013Levenshtein distance (allows transpositions).\n",
+      default: "true"
+    },
+    {
       description:
         "The defaultBranchName is used for overriding the local branch when resolving the `historyUrl` on local. The primary use case is for when the default branch is not called `main`\n",
       groupName: "repoProvider",
@@ -244,6 +289,14 @@ Note that it **must be** the default export.
       type: "string",
       description: "Override the default content API URL.\n",
       experimental: true
+    },
+    {
+      groupName: "",
+      name: "telemetry",
+      type: "'anonymous' | 'disabled'",
+      description:
+        "Controls telemetry collection for TinaCMS.\n\nSet to `'disabled'` to opt out of anonymous usage telemetry.\n",
+      default: "'anonymous'"
     }
   ]}
 />
