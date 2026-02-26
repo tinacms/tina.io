@@ -14,7 +14,10 @@ export function FeatureBlock({ data }) {
   const isReversed = data.isReversed;
 
   const anchorId = data.headline
-    ? data.headline.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+    ? data.headline
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
     : undefined;
 
   return (

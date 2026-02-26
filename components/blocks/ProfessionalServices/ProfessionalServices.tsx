@@ -3,7 +3,14 @@ import { FaArrowRight } from 'react-icons/fa';
 import * as MdIcons from 'react-icons/md';
 import Container from '@/component/util/Container';
 
-function ServiceIcon({ name, className }: { name: string; className?: string }) {
+function ServiceIcon({
+  name,
+  className,
+}: {
+  name: string;
+  className?: string;
+}) {
+  // biome-ignore lint/performance/noDynamicNamespaceImportAccess: icon name is configured via Tina CMS
   const IconSVG = MdIcons[name];
   if (!IconSVG) {
     return null;

@@ -144,43 +144,43 @@ export function Footer({ footerData }: { footerData: FooterData }) {
               <TinaIcon color="white" />
             </div>
             <div className="flex-1 grid grid-cols-2 py-2 lg:py-0 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
-            {currentFooterNav.map((item, _index) => {
-              const { header, footerItem } = item;
-              return (
-                <div
-                  key={`footer-nav-${header}-${item.id}`}
-                  className="flex flex-col items-stretch justify-start gap-2"
-                >
-                  <p className="uppercase text-orange-300/70 text-xs font-semibold tracking-wider -mt-1">
-                    {header}
-                  </p>
-                  {footerItem.map((item, itemIndex) => {
-                    return item.items ? (
-                      <LinkGroup
-                        key={`link-group-${item.label}-${itemIndex}`}
-                        item={item}
-                      />
-                    ) : (
-                      <LinkItem
-                        key={`link-item-${item.label}-${itemIndex}`}
-                        item={item}
-                      />
-                    );
-                  })}
+              {currentFooterNav.map((item, _index) => {
+                const { header, footerItem } = item;
+                return (
+                  <div
+                    key={`footer-nav-${header}-${item.id}`}
+                    className="flex flex-col items-stretch justify-start gap-2"
+                  >
+                    <p className="uppercase text-orange-300/70 text-xs font-semibold tracking-wider -mt-1">
+                      {header}
+                    </p>
+                    {footerItem.map((item, itemIndex) => {
+                      return item.items ? (
+                        <LinkGroup
+                          key={`link-group-${item.label}-${itemIndex}`}
+                          item={item}
+                        />
+                      ) : (
+                        <LinkItem
+                          key={`link-item-${item.label}-${itemIndex}`}
+                          item={item}
+                        />
+                      );
+                    })}
+                  </div>
+                );
+              })}
+              {modalButton && modalButton._template === 'modalButton' && (
+                <div className="hidden lg:block">
+                  <SubscriptionForm props={modalButton} />
                 </div>
-              );
-            })}
-            {modalButton && modalButton._template === 'modalButton' && (
-              <div className="hidden lg:block">
-                <SubscriptionForm props={modalButton} />
-              </div>
-            )}
-            <div className="flex items-end justify-end md:hidden">
-              <div className="w-12 drop-shadow-sm">
-                <TinaIcon color="white" />
+              )}
+              <div className="flex items-end justify-end md:hidden">
+                <div className="w-12 drop-shadow-sm">
+                  <TinaIcon color="white" />
+                </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
         <div className="max-w-7xl mx-auto flex flex-col items-center lg:flex-row lg:justify-between w-full lg:items-center py-8 gap-6 px-6 lg:px-8 text-white">
@@ -225,13 +225,15 @@ export function Footer({ footerData }: { footerData: FooterData }) {
       <div
         className="group relative flex justify-center overflow-hidden py-6"
         style={{
-          backgroundImage: 'linear-gradient(60deg, #000000 0%, #CC4141 50%, #000000 100%)',
+          backgroundImage:
+            'linear-gradient(60deg, #000000 0%, #CC4141 50%, #000000 100%)',
         }}
       >
         <div
           className="absolute top-0 -left-1/2 w-[200%] h-full z-[1] transition-transform duration-1000 ease-in-out group-hover:scale-x-[2]"
           style={{
-            backgroundImage: 'linear-gradient(60deg, #333333 25%, #CC4141 50%, #333333 75%)',
+            backgroundImage:
+              'linear-gradient(60deg, #333333 25%, #CC4141 50%, #333333 75%)',
           }}
         />
         <a
@@ -246,8 +248,10 @@ export function Footer({ footerData }: { footerData: FooterData }) {
             fill="white"
             xmlns="http://www.w3.org/2000/svg"
             className="inline-block h-[2em] w-auto"
+            role="img"
             aria-label="SSW"
           >
+            <title>SSW</title>
             <path d="M80.009 17.1911C75.893 12.4661 69.545 9.43706 62.43 9.43706C55.42 9.43706 49.1639 12.3691 45.049 16.9611C49.15 10.7141 56.1169 6.50906 64.0859 6.21606C64.3089 6.22406 64.5439 6.22906 64.7979 6.24306C65.0999 6.25606 65.42 6.30006 65.773 6.33206C66.467 6.40806 67.247 6.54606 68.08 6.74806C68.902 6.97906 69.795 7.25006 70.68 7.67106C71.565 8.08306 72.4559 8.59806 73.3259 9.21606C74.1919 9.83306 75.0259 10.5401 75.8499 11.3171C76.6629 12.0721 77.3889 12.9221 78.0479 13.8401C78.3759 14.2951 78.6899 14.7701 78.9789 15.2451C79.2699 15.7261 79.5239 16.1951 79.7839 16.7141C79.8589 16.8721 79.932 17.0291 80.009 17.1911Z" />
             <path d="M82.773 45.8201C78.41 50.7071 72.056 53.7831 64.986 53.7831C56.634 53.7831 49.292 49.4961 45.036 43.0081C49.154 47.6081 55.415 50.5471 62.423 50.5471C67.872 50.5471 72.861 48.7741 76.757 45.8221H82.774L82.773 45.8201Z" />
             <path d="M88.809 29.9932V30.0932H84.041C84.031 29.9002 84.016 29.6832 84.009 29.4362C83.952 28.4152 83.882 26.9562 83.669 25.1912C83.445 23.4382 83.086 21.3652 82.313 19.2582C81.928 18.1982 81.453 17.1532 80.864 16.1182C80.589 15.6352 80.266 15.1132 79.932 14.6312C79.604 14.1392 79.251 13.6632 78.875 13.2032C78.139 12.2852 77.305 11.4172 76.409 10.6752C75.54 9.93915 74.621 9.24515 73.689 8.66115C72.755 8.07215 71.798 7.59315 70.861 7.22215C69.929 6.84015 69.005 6.61215 68.148 6.42415C68.017 6.40015 67.878 6.37915 67.75 6.35815C79.607 7.72815 88.809 17.7842 88.809 29.9932Z" />
@@ -258,7 +262,8 @@ export function Footer({ footerData }: { footerData: FooterData }) {
             <path d="M82.77 31.332H76.766V37.336H82.77V31.332Z" />
             <path d="M90.014 38.5762H84.012V44.5822H90.014V38.5762Z" />
             <path d="M82.77 38.5762H76.766V44.5822H82.77V38.5822Z" />
-          </svg><span className="-ml-1">{', '}</span>
+          </svg>
+          <span className="-ml-1">{', '}</span>
           Australia&apos;s leading software consultants
         </a>
       </div>
