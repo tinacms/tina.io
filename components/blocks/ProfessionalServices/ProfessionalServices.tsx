@@ -73,7 +73,7 @@ export function ProfessionalServices({ data }: { data: any }) {
               {service.link && (
                 <Link
                   href={service.link}
-                  className="mt-4 inline-flex items-center gap-2 py-2 text-sm text-neutral-text-secondary hover:text-orange-500 transition-colors duration-150"
+                  className="mt-auto pt-6 inline-flex items-center gap-2 py-2 text-sm text-neutral-text-secondary hover:text-orange-500 transition-colors duration-150"
                 >
                   READ MORE
                   <FaArrowRight className="text-xs" />
