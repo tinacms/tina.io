@@ -1,0 +1,72 @@
+{
+  "versionNumber": "3.5.0",
+  "dateReleased": "2026-02-19T05:07:50Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "Telemetry - We’ve added anonymous telemetry to help us understand how Tina is used and prioritize improvements in areas where it matters. No personal or sensitive data is collected, and the information cannot be used to identify individual users. Telemetry is used solely to improve performance, stability, and the overall user experience. You can opt-out at any time by disabling telemetry in your Tina config.",
+          "pull_request_number": "6438",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6438",
+          "commit_hash": "f90d47b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f90d47b746b000e65324da430aacc8fd623f5065",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "The referenced files menu is being revamped to improve the UX and increase clarity.",
+          "pull_request_number": "5957",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/5957",
+          "commit_hash": "89aee8a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/89aee8ae3d6867e5793e4df7ff9c700dfd8a48c9",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "🔌 Modernisze Branch Switcher by adding `@tanstack/react-table`",
+          "pull_request_number": "6373",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6373",
+          "commit_hash": "da837f7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/da837f7b17f0540cd47025afd2c45140706d595d",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "💄 UI - Remove cursor-pointer from alert",
+          "pull_request_number": "6436",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6436",
+          "commit_hash": "c806e41",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/c806e41232e0204a13539d6236358cb58cbc7692",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.6.0",
+          "commit_hash": "f90d47b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f90d47b"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.3",
+          "commit_hash": "f90d47b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f90d47b"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.0.6",
+          "commit_hash": "f90d47b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/f90d47b"
+        }
+      ]
+    }
+  ]
+}
