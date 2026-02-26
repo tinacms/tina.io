@@ -14,15 +14,15 @@ previous: content/docs-zh/reference/overview.mdx
   body={<>
     重要 - 配置必须是确定性的
     
-    defineConfig 返回的对象在开发和构建过程中必须多次评估。避免在影响模式或运行时配置的配置属性中直接使用非确定性值（例如 Date.now(), Math.random()）。这可能导致 GraphQL 模式不匹配错误。
+    defineConfig 返回的对象在开发和构建期间必须多次评估。避免在影响模式或运行时配置的配置属性中直接使用非确定性值（例如 Date.now(), Math.random()）。这可能导致 GraphQL 模式不匹配错误。
     
     如果需要动态值，请返回一个函数并延迟计算该值。
   </>}
 />
 
-注意，它**必须是**默认导出。
+请注意，它**必须是**默认导出。
 
-> 配置文件的位置以前是在 `.tina/config.{ts,tsx,js,jsx}`
+> 配置文件的位置以前在 `.tina/config.{ts,tsx,js,jsx}`
 
 ## 选项
 
@@ -49,7 +49,7 @@ previous: content/docs-zh/reference/overview.mdx
       type: "string",
       required: true,
       description:
-        'TinaCMS 构建路径（编辑器路由）。\n\n通常为 `"admin"`。\n\n这将在 `[url]/admin/index.html` 中查看。\n'
+        'TinaCMS 构建路径（编辑器路由）。\n\n通常为 `"admin"`。\n\n这将在 `[url]/admin/index.html` 查看。\n'
     },
     {
       groupName: "build",
@@ -62,14 +62,21 @@ previous: content/docs-zh/reference/overview.mdx
       name: "basePath",
       type: "string",
       description:
-        '如果在子路径中提供服务，请设置。\n\n对于 `[url]/my-site`，设置为 `"my-site"`。\n'
+        '如果在子路径上提供服务，请设置。\n\n对于 `[url]/my-site`，设置为 `"my-site"`。\n'
+    },
+    {
+      groupName: "server",
+      name: "allowedOrigins",
+      type: "(string | RegExp | 'private')[]",
+      description:
+        "控制哪些网站可以与本地开发服务器通信。仅影响 `tinacms dev` — 在生产中无效。\n\n默认情况下，仅允许来自您自己机器（`localhost`）的请求。只有在您在远程环境中开发时才需要设置此项，例如 **GitHub Codespaces**、**Gitpod**、**Docker** 或 **WSL2**。\n\n每个条目可以是：\n\n- 一个 **URL 字符串** — 例如 `'https://my-codespace.github.dev'`\n- 一个 **RegExp** — 用于匹配 URL 模式\n- `'private'` — 一个允许本地网络上任何设备的简写，即 RFC 1918 私有 IP 范围（对 Docker 或 WSL2 有用）\n\n```ts\nserver: {\n  allowedOrigins: ['private', 'https://my-codespace.github.dev']\n}\n```\n"
     },
     {
       groupName: "",
       name: "branch",
       type: "string | null",
       description:
-        "用于拉取内容的基础分支。对于 **TinaCloud** 是必需的。\n"
+        "要从中提取内容的基本分支。对于 **TinaCloud** 是必需的。\n"
     },
     {
       groupName: "",
@@ -89,7 +96,7 @@ previous: content/docs-zh/reference/overview.mdx
       name: "localContentPath",
       type: "string",
       description:
-        "本地开发中单独内容仓库的相对路径。\n"
+        "用于本地开发的单独内容仓库的路径，**相对于 `tina/` 配置文件夹解析**（而不是项目根目录）。\n\n设置后，集合 `path` 值相对于此内容根目录解析。内容目录**必须包含一个 `tina/` 文件夹**（可以为空）— TinaCMS 会在其中写入生成的文件，如 `tina-lock.json`。\n\n使用环境变量，因为路径可能因开发人员而异：\n\n```ts\nlocalContentPath: process.env.TINA_CONTENT_REPO_PATH // 例如 '../../my-content-repo'\n```\n\n有关完整的设置详细信息，请参阅 [单独的内容仓库指南](/docs/guides/separate-content-repo)。\n"
     },
     {
       groupName: "",
@@ -122,7 +129,7 @@ previous: content/docs-zh/reference/overview.mdx
     },
     {
       description:
-        '新建文件夹时，文件夹名称必须匹配的正则表达式模式。仅适用于新创建的文件夹，不适用于现有文件夹。\n\n例如：对于小写字母、数字和连字符，使用 "^\\[a-z0-9-]+$"\n',
+        '新建文件夹时，文件夹名称必须匹配的正则表达式模式。仅适用于新创建的文件夹，不适用于现有文件夹。\n\n例如： "^\\[a-z0-9-]+$" 用于小写字母、数字和连字符\n',
       groupName: "ui",
       name: "regexValidation.folderNameRegex",
       type: "string"
@@ -187,7 +194,7 @@ previous: content/docs-zh/reference/overview.mdx
       groupName: "search",
       name: "indexBatchSize",
       type: "number",
-      description: "每个 PUT 请求索引的文档数量。\n"
+      description: "每个 PUT 请求要索引的文档数量。\n"
     },
     {
       groupName: "search",
@@ -225,8 +232,46 @@ previous: content/docs-zh/reference/overview.mdx
       default: "/[\\p{L}\\d_]+/"
     },
     {
+      groupName: "search.tina",
+      name: "fuzzyEnabled",
+      type: "boolean",
+      description: "启用后，即使查询中有小错误或拼写差异，搜索也会返回结果。\n",
+      default: "true"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.maxDistance",
+      type: "number",
+      description: "一个单词与搜索词之间可以有多少字符更改（插入、删除、替换）仍然算作匹配。较高的值会返回更多结果，但可能不太相关。\n",
+      default: "2"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.minSimilarity",
+      type: "number",
       description:
-        "defaultBranchName 用于在本地解析 `historyUrl` 时覆盖本地分支。主要用例是当默认分支不叫 `main` 时。\n",
+        "结果与搜索词的相似度必须达到的阈值，范围在 0 到 1 之间。提高此值以仅显示非常接近的匹配项；降低它以更宽松。\n",
+      default: "0.6"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.maxTermExpansions",
+      type: "number",
+      description:
+        "搜索引擎为每个搜索词考虑的相似词的最大数量。较高的值可以提高召回率，但可能会减慢搜索速度。\n",
+      default: "10"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.useTranspositions",
+      type: "boolean",
+      description:
+        "启用后，交换字符（例如输入 \"teh\" 而不是 \"the\"）算作单个编辑而不是两个，使搜索对常见拼写错误更宽容。\n",
+      default: "true"
+    },
+    {
+      description:
+        "defaultBranchName 用于在本地解析 `historyUrl` 时覆盖本地分支。主要用例是当默认分支不叫 `main` 时\n",
       groupName: "repoProvider",
       name: "defaultBranchName",
       type: "string"
@@ -244,6 +289,14 @@ previous: content/docs-zh/reference/overview.mdx
       type: "string",
       description: "覆盖默认内容 API URL。\n",
       experimental: true
+    },
+    {
+      groupName: "",
+      name: "telemetry",
+      type: "'anonymous' | 'disabled'",
+      description:
+        "控制 TinaCMS 是否收集匿名使用统计数据以帮助改进产品。\n\n设置为 `'disabled'` 以完全选择退出。\n",
+      default: "'anonymous'"
     }
   ]}
 />
@@ -252,7 +305,7 @@ previous: content/docs-zh/reference/overview.mdx
 
 ### Vercel 和 TinaCloud 配置
 
-这是一个使用 TinaCloud 托管数据层的标准配置，以及内置的 Tina 媒体和搜索功能。
+这是一个使用 TinaCloud 托管数据层和内置 Tina 媒体及搜索功能的标准配置。
 
 ```ts
 const branch =
@@ -276,7 +329,7 @@ export default defineConfig({
   },
   ui: {
     previewUrl: (context) => {
-      // 基于分支名称使用 Vercel 预览部署
+      // 根据分支名称使用 Vercel 预览部署
       return { url: `https://my-app-git-${context.branch}.vercel.app` };
     },
   },
@@ -313,7 +366,7 @@ export default defineConfig({
 
 ### TinaCloud 搜索选项
 
-Tina 通过 TinaCloud 提供内置的搜索功能。
+Tina 提供通过 TinaCloud 的内置搜索功能。
 
 ```ts
 // Tina Cloud 搜索
@@ -333,7 +386,7 @@ export default defineConfig({
 
 TinaCMS 支持在 `tina/config.{ts,js,tsx}` 文件和集合中使用 TypeScript 路径别名。
 
-确保 `tsconfig.json` 存在于项目的根目录。在 `compilerOptions` 部分定义你的别名。
+确保 `tsconfig.json` 存在于项目的根目录。 在 `compilerOptions` 部分定义你的别名。
 
 ```javascript
 //tsconfig.json
@@ -347,7 +400,7 @@ TinaCMS 支持在 `tina/config.{ts,js,tsx}` 文件和集合中使用 TypeScript 
 }
 ```
 
-现在你可以使用别名导入实用程序或其他模块。
+你现在可以使用别名导入实用程序或其他模块。
 
 ```typescript
 import { someUtility } from '@/lib/utils';
