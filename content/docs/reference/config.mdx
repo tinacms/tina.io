@@ -69,7 +69,7 @@ Note that it **must be** the default export.
       name: "allowedOrigins",
       type: "(string | RegExp | 'private')[]",
       description:
-        "Origins allowed to make cross-origin requests to the dev server (`tinacms dev`). Has no effect on production.\n\nDefaults to `localhost` / `127.0.0.1` / `[::1]` only. Each entry can be:\n\n- An **exact origin string** \u2014 e.g. `'https://my-codespace.github.dev'`\n- A **RegExp** \u2014 e.g. `/^\\.preview\\.app$/`\n- `'private'` \u2014 expands to all RFC 1918 private-network IP ranges (`10.x`, `172.16\u201331.x`, `192.168.x`), useful for Docker, WSL2, etc.\n\n```ts\nserver: {\n  allowedOrigins: ['private', 'https://my-codespace.github.dev']\n}\n```\n"
+        "Controls which websites are allowed to talk to your local dev server. Only affects `tinacms dev` — has no effect in production.\n\nBy default, only requests from your own machine (`localhost`) are allowed. You only need to set this if you develop in a remote environment like **GitHub Codespaces**, **Gitpod**, **Docker**, or **WSL2**.\n\nEach entry can be:\n\n- A **URL string** — e.g. `'https://my-codespace.github.dev'`\n- A **RegExp** — to match a pattern of URLs\n- `'private'` — a shorthand that allows any device on your local network, i.e. RFC 1918 private IP ranges (useful for Docker or WSL2)\n\n```ts\nserver: {\n  allowedOrigins: ['private', 'https://my-codespace.github.dev']\n}\n```\n"
     },
     {
       groupName: "",
@@ -235,14 +235,14 @@ Note that it **must be** the default export.
       groupName: "search.tina",
       name: "fuzzyEnabled",
       type: "boolean",
-      description: "Enable fuzzy search.\n",
+      description: "When enabled, search will return results even if the query has minor typos or spelling differences.\n",
       default: "true"
     },
     {
       groupName: "search.tina",
       name: "fuzzyOptions.maxDistance",
       type: "number",
-      description: "Maximum edit distance for fuzzy matching.\n",
+      description: "How many character changes (insertions, deletions, substitutions) a word can be from the search term and still count as a match. Higher values return more results but may be less relevant.\n",
       default: "2"
     },
     {
@@ -250,7 +250,7 @@ Note that it **must be** the default export.
       name: "fuzzyOptions.minSimilarity",
       type: "number",
       description:
-        "Minimum similarity score (0\u20131) for a fuzzy match to be included.\n",
+        "A threshold between 0 and 1 for how closely a result must resemble the search term. Raise this to only show very close matches; lower it to be more lenient.\n",
       default: "0.6"
     },
     {
@@ -258,7 +258,7 @@ Note that it **must be** the default export.
       name: "fuzzyOptions.maxTermExpansions",
       type: "number",
       description:
-        "Maximum number of fuzzy term expansions to return per search term.\n",
+        "The maximum number of similar words the search engine will consider for each search term. Higher values can improve recall but may slow down search.\n",
       default: "10"
     },
     {
@@ -266,7 +266,7 @@ Note that it **must be** the default export.
       name: "fuzzyOptions.useTranspositions",
       type: "boolean",
       description:
-        "Use Damerau\u2013Levenshtein distance (allows transpositions).\n",
+        "When enabled, swapped characters (e.g. typing \"teh\" instead of \"the\") count as a single edit rather than two, making the search more forgiving of common typos.\n",
       default: "true"
     },
     {
@@ -295,7 +295,7 @@ Note that it **must be** the default export.
       name: "telemetry",
       type: "'anonymous' | 'disabled'",
       description:
-        "Controls telemetry collection for TinaCMS.\n\nSet to `'disabled'` to opt out of anonymous usage telemetry.\n",
+        "Controls whether TinaCMS collects anonymous usage statistics to help improve the product.\n\nSet to `'disabled'` to opt out entirely.\n",
       default: "'anonymous'"
     }
   ]}
