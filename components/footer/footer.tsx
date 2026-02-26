@@ -183,7 +183,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto flex flex-col items-center lg:flex-row lg:justify-between w-full lg:items-center py-8 gap-6 px-6 lg:px-8 text-white border-t border-white/20">
+        <div className="max-w-7xl mx-auto flex flex-col items-center lg:flex-row lg:justify-between w-full lg:items-center py-8 gap-6 px-6 lg:px-8 text-white">
           <SocialIcon socialLinks={socialLinks} />
           <div className="flex drop-shadow-sm flex-wrap justify-center gap-x-6 gap-y-2 lg:justify-end">
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
