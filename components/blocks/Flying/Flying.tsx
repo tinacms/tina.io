@@ -23,10 +23,10 @@ export function FlyingBlock({ data, index }) {
           <div className="learnImageWrapper">
             <Image
               className="learnImage"
-              src="/img/3d-flying-llama.png"
-              alt="Tina learning"
-              width={600}
-              height={600}
+              src="/img/tina-llama-flying.png"
+              alt="Tina the Llama flying like a superhero."
+              width={816}
+              height={615}
             />
           </div>
         </div>
