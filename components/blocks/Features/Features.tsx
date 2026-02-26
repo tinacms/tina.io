@@ -121,7 +121,6 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage' ||
     data.media[0].__typename === 'PageBlocksHeroMediaImage'
   ) {
-    console.log('data.media[0].image', data.media[0].image);
     return data.media[0].image ? (
       <Image
         src={data.media[0].image}

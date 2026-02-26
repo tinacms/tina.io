@@ -423,27 +423,27 @@
     {
       "eyebrow": "Our Services",
       "title": "Expertise on Demand",
-      "description": "Whether you're launching your first project or scaling to millions of users, the TinaCMS team is here to help.",
+      "description": "Whether you're launching your first project or managing content at scale, the TinaCMS team is here to help.",
       "services": [
         {
           "icon": "MdOutlineHeadsetMic",
           "title": "Priority Support",
-          "description": "Skip the community forums. Get direct contact with TinaCMS expert developers for technical blockers, troubleshooting, and architectural advice.",
+          "description": "Get direct access to TinaCMS expert developers for technical blockers, troubleshooting, and architectural advice.",
           "features": [
             "Priority bug fixes",
-            "Direct contact with TinaCMS experts",
-            "Walk through TinaCMS features"
+            "Architecture and best-practice guidance",
+            "Dedicated support channel"
           ],
           "link": "/professional-services#priority-support"
         },
         {
           "icon": "MdOutlineRocketLaunch",
           "title": "Onboarding",
-          "description": "Accelerate your TinaCMS adoption with hands-on onboarding from our team. From initial setup to editorial training, we get you productive fast.",
+          "description": "Accelerate your TinaCMS adoption with hands-on onboarding from our team. From initial setup to editorial training, we'll get your team productive fast.",
           "features": [
+            "Migration assistance from other CMS platforms",
             "Custom configuration",
-            "Team training sessions",
-            "Migration assistance"
+            "Team training sessions"
           ],
           "link": "/professional-services#onboarding"
         },
@@ -454,7 +454,7 @@
           "features": [
             "Custom plugin development",
             "Third-party integrations",
-            "Bespoke editing experiences"
+            "Tailored editing workflows"
           ],
           "link": "/professional-services#custom-features"
         }
