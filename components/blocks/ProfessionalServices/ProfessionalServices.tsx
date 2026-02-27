@@ -35,7 +35,7 @@ export function ProfessionalServices({ data }: { data: any }) {
           </h2>
         )}
         {description && (
-          <p className="max-w-3xl text-center text-neutral-text-secondary text-sm">
+          <p className="max-w-[62ch] text-center text-neutral-text-secondary font-light leading-relaxed text-lg">
             {description}
           </p>
         )}
