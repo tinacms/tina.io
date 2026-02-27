@@ -7,7 +7,7 @@
   },
   "blocks": [
     {
-      "title": "{Sites,} Docs and Llamas. No Dramas",
+      "title": "{Sites}, Docs and Llamas. No Dramas",
       "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
       "buttons": [
         {
@@ -399,7 +399,6 @@
         "datePosted": "2026-01-16T13:00:00.000Z",
         "authorName": "Jake Bayliss",
         "authorUrl": "https://www.ssw.com.au/people/jake-bayliss/",
-        "embedUrl": "",
         "imageUrl": "/jake-ssw-rules-video.png"
       },
       "youtubeVideos": [
