@@ -28,7 +28,7 @@
         }
       ],
       "buttonHorizontalAlignment": "left",
-      "image": "/uploads/tina-enterprise-hero.png",
+      "image": "/ai-llamas/tina-enterprise-v2.png",
       "_template": "heroV2"
     },
     {
@@ -137,7 +137,7 @@
       "features": [
         {
           "headline": "Editorial Workflow",
-          "text": "Editorial Workflows backed by GitHub are built into TinaCloud. Your content team can make Pull Requests (PRs) without leaving the CMS",
+          "text": "Editorial Workflows backed by GitHub are built into TinaCloud. Your content team can make Pull Requests (PRs) without leaving the CMS\n",
           "buttons": [
             {
               "label": "Learn More",
@@ -198,7 +198,7 @@
       "features": [
         {
           "headline": "Built-in Version Control",
-          "text": "Your content lives in Git, providing you full version history, safe rollback and branch-based workflows. Every change is tracked automatically, making auditing and compliance significantly easier",
+          "text": "Your content lives in Git, providing you full version history, safe rollback and branch-based workflows. Every change is tracked automatically, making auditing and compliance significantly easier\n",
           "media": [
             {
               "src": "/video/key-features/2024-09-13-key-features-github-integration.webm",
