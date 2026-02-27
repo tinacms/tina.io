@@ -31,7 +31,7 @@
           ],
           "media": [
             {
-              "image": "/img/professional-services/priority-support.jpg",
+              "image": "/img/professional-services/priority-support.png",
               "_template": "image"
             }
           ]
@@ -50,7 +50,7 @@
           ],
           "media": [
             {
-              "image": "/img/professional-services/onboarding.jpg",
+              "image": "/img/professional-services/onboarding.png",
               "_template": "image"
             }
           ],
@@ -91,7 +91,7 @@
           ],
           "media": [
             {
-              "image": "/img/professional-services/fullstack-development.jpg",
+              "image": "/img/professional-services/fullstack-development.png",
               "_template": "image"
             }
           ],
