@@ -13,8 +13,16 @@ import PlayIcon from '@/public/svg/play-button.svg';
 export function FeatureBlock({ data }) {
   const isReversed = data.isReversed;
 
+  const anchorId = data.headline
+    ? data.headline
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+    : undefined;
+
   return (
     <div
+      id={anchorId}
       className={`my-6 flex flex-col-reverse w-full px-10 lg:gap-8 ${
         isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
       }`}
@@ -116,7 +124,6 @@ export const RenderMedia = ({ data }) => {
     data.media[0].__typename === 'PageBlocksFeaturesFeaturesMediaImage' ||
     data.media[0].__typename === 'PageBlocksHeroMediaImage'
   ) {
-    console.log('data.media[0].image', data.media[0].image);
     return data.media[0].image ? (
       <Image
         src={data.media[0].image}
