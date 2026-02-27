@@ -41,6 +41,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^8.17.14",
+    "@sendgrid/mail": "^8.1.6",
     "@styled-jsx/plugin-sass": "^4.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.1.1",
