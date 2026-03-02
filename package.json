@@ -113,7 +113,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "0.0.0-45f2792-20260302013638",
+    "tinacms": "0.0.0-607dc01-20260302031758",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
