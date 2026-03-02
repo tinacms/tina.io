@@ -64,7 +64,7 @@ export default function BlogIndexPageClient({
                   {formatDate(post.date || '')}
                 </time>
               </div>
-              <div className=" font-light mb-6">
+              <div className=" font-normal mb-6">
                 <MarkdownContent
                   skipHtml={true}
                   content={extractTextFromBody(post.body)}

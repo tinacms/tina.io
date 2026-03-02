@@ -29,7 +29,7 @@ const TableHeader = ({ data, scrollData }) => {
               {headerItem.columnHeader} {headerItem.isReccomended ? '⭐️' : ''}
             </Link>
           </div>
-          <div className="text-center font-light text-xs text-slate-400">
+          <div className="text-center font-normal text-xs text-slate-400">
             {headerItem.columnByLine}
           </div>
         </div>
