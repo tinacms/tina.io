@@ -216,7 +216,7 @@ const EventsBlock = () => {
         {eventsData.title}
       </h2>
       <div className="max-w-[62ch] mx-auto">
-        <p className="text-center text-neutral-text-secondary font-light leading-relaxed text-lg">
+        <p className="text-center text-neutral-text-secondary font-normal leading-relaxed text-lg">
           {eventsData.byLine}
         </p>
       </div>

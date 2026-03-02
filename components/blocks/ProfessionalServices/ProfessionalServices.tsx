@@ -40,7 +40,7 @@ export function ProfessionalServices({
           </h2>
         )}
         {description && (
-          <p className="max-w-[62ch] text-center text-neutral-text-secondary font-light leading-relaxed text-lg">
+          <p className="max-w-[62ch] text-center text-neutral-text-secondary font-normal leading-relaxed text-lg">
             {description}
           </p>
         )}
