@@ -1,6 +1,7 @@
 ---
 id: /docs/reference/self-hosted/database-adapter/overview
 title: Choosing a Database Adapter
+last_edited: '2026-03-03T03:31:39.326Z'
 next: ''
 previous: ''
 ---
@@ -37,7 +38,7 @@ This is a factory function that creates a new instance of the TinaCMS Database. 
 | `bridge`              | The bridge used to index the content to the database adapter. This defaults to the FileSystem. The `bridge` is a more advanced use case if you want to index from a different source other than the filesystem. Please [reach out on Discord](https://discord.gg/zumN63Ybpf) for further help. |
 | `indexStatusCallback` | async function called to report the status of the current indexing operation. (Optional)                                                                                                                                                                                                       |
 | `namespace`           | Specifies the namespace for the current indexed content. If specified, this will usually be an environment variable with the name of the current branch.                                                                                                                                       |
-| `levelBatchSize`	       | Number of operations per database write batch during indexing.                                                                                                                                                                                                                                 |
+| `levelBatchSize`      | Number of operations per database write batch during indexing.                                                                                                                                                                                                                                 |
 
 ## createLocalDatabase Function
 
