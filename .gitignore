@@ -55,5 +55,9 @@ scripts/content-auditor/content-auditor-prompt.txt
 /blob-report/
 /playwright/.cache/
 
+# Visual comparison
+/tests/visual-compare/screenshots/
+/tests/visual-compare/report.html
+
 # Vercel
 .vercel
