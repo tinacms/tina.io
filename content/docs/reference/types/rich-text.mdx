@@ -26,9 +26,10 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
       required: true
     },
     {
-      name: "overrides",
+      name: "",
       description: "Toolbar override and customisation options.\n",
-      type: "ToolbarOverrides"
+      type: "ToolbarOverrides",
+      groupName: "Overrides"
     },
     {
       name: "templates",
@@ -58,13 +59,15 @@ the rich-text editor.
     {
       name: "toolbar",
       type: "ToolbarOverrideType[]",
-      description: "Select which toolbar options are displayed. The following options are supported: `['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`.\n",
+      description:
+        "Select which toolbar options are displayed. The following options are supported: `['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`.\n"
     },
     {
       name: "showFloatingToolbar",
-      description: "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
-      type: "boolean",
-    },
+      description:
+        "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
+      type: "boolean"
+    }
   ]}
 />
 
