@@ -8,7 +8,7 @@ import { IconPickerInput } from '@/component/forms/IconPicker';
 
 export const herov2Template: Template = {
   name: 'heroV2',
-  label: 'V2 | Hero',
+  label: 'Hero Section',
   ui: {
     previewSrc: '/img/blocks/hero-v2.png',
   },
@@ -55,6 +55,30 @@ export const herov2Template: Template = {
       name: 'image',
       type: 'image',
       label: 'Image',
+    },
+    {
+      name: 'stats',
+      label: 'Stats',
+      type: 'object',
+      list: true,
+      ui: {
+        max: 3,
+      },
+      fields: [
+        {
+          name: 'statistic',
+          label: 'Statistic',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          label: 'Description',
+          type: 'string',
+          ui: {
+            component: 'textarea',
+          },
+        },
+      ],
     },
     {
       name: 'recentNewsBanner',

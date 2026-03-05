@@ -18,6 +18,20 @@
       ],
       "buttonHorizontalAlignment": "left",
       "image": "",
+      "stats": [
+        {
+          "statistic": "10x",
+          "description": "Faster AI indexing with structured markdown"
+        },
+        {
+          "statistic": "3x",
+          "description": "More citations in AI generated answers"
+        },
+        {
+          "statistic": "100%",
+          "description": "Git-backed version control"
+        }
+      ],
       "recentNewsBanner": {
         "title": "See how SSW moved 3500+ pages to TinaCMS",
         "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
