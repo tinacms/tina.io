@@ -1,6 +1,6 @@
 ---
 title: Rich-Text Fields
-last_edited: '2025-03-26T06:28:07.274Z'
+last_edited: '2026-03-05T00:23:07.014Z'
 next: ''
 previous: content/docs/extending-tina/customize-list-ui.mdx
 ---
@@ -26,16 +26,25 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
       required: true
     },
     {
-      name: "",
-      description: "Toolbar override and customisation options.\n",
-      type: "ToolbarOverrides",
-      groupName: "Overrides"
-    },
-    {
       name: "templates",
       description:
         'MDX support. The "embed" option in the editor to inject custom React components.\n',
       type: "Template[]"
+    },
+    {
+      name: "toolbar",
+      description:
+        "Select which toolbar options are displayed. The following options are supported: \n\n\\['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed'].\n",
+      type: "ToolbarOverrideType[]",
+      groupName: "overrides"
+    },
+    {
+      description:
+        "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
+      groupName: "overrides",
+      name: "showFloatingToolbar",
+      type: "boolean",
+      default: "true"
     }
   ]}
 />
@@ -49,9 +58,7 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
   </>}
 />
 
-## Customisation
-
-The `overrides` property controls a series of overrides and customisations to
+ property controls a series of overrides and customisations to
 the rich-text editor.
 
 <apiReference
@@ -108,7 +115,7 @@ configuration provided.
 }
 ```
 
-![](/img/docs/reference/rtf.png)
+![](/docs/rich-text-simple.png)
 
 ### Simple field with toolbar override
 
@@ -116,11 +123,14 @@ Change what you want to display and the order it is displayed in the editor
 
 ```javascript
 {
-  label: "Body",
-  name: "body",
-  isBody: true,
-  type: "rich-text",
-  toolbarOverride: ["heading","bold", "italic"],
+		type: "rich-text",
+		name: "body",
+		label: "Body",
+		isBody: true,
+		overrides: {
+			toolbar: ["heading", "bold", "italic"],
+			showFloatingToolbar: false,
+		},
 }
 ```
 
