@@ -34,7 +34,7 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
     {
       name: "toolbar",
       description:
-        "Select which toolbar options are displayed. The following options are supported: \n\n\\['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed'].\n",
+        "Select which toolbar options are displayed. The following options are supported:\n\n\\['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed'].\n",
       type: "ToolbarOverrideType[]",
       groupName: "overrides"
     },
@@ -58,7 +58,7 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
   </>}
 />
 
- property controls a series of overrides and customisations to
+property controls a series of overrides and customisations to
 the rich-text editor.
 
 <apiReference
@@ -98,6 +98,22 @@ Check out this video on how to use Table in rich text editor:
 > Multi-line cells are not supported because content is serialized as Markdown. Tables only support single-line rows and cells. Use lists or separate fields if you need to represent multiple lines of content.
 
 ***
+
+### Column Alignment
+
+> The visual editor does not currently support setting column alignment through the toolbar. If you need to align content in a table column, you can do so by switching to Raw Markdown mode and editing the alignment syntax in the table header separator row.
+
+Example — centering the second and third columns:
+
+```
+| Alignment   |  Separator  |    Example |
+| :---        |   :---:     |       ---: |
+| Left        |   `:---`    |       Left |
+| Center      |   `:---:`   |     Center |
+| Right       |   `---:`    |      Right |
+```
+
+To learn more about the alignment syntax, refer to the [Markdown Extended Syntax](https://www.markdownguide.org/extended-syntax/#alignment)
 
 ## Examples
 
