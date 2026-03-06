@@ -2,7 +2,9 @@
 import dynamic from 'next/dynamic';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
-import { OfficeMap } from '@/component/blocks-v2/map/map';
+const OfficeMap = dynamic(() =>
+  import('@/component/blocks-v2/map/map').then((mod) => mod.OfficeMap),
+);
 import type {
   PageBlocks,
   PostConnection,
