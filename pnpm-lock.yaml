@@ -53,9 +53,6 @@ importers:
       '@tinacms/auth':
         specifier: 1.1.1
         version: 1.1.1
-      '@tinacms/mdx':
-        specifier: ^2.0.1
-        version: 2.0.1(react@18.3.1)(typescript@5.9.3)(yup@1.6.1)
       '@tinacms/schema-tools':
         specifier: ^2.1.0
         version: 2.1.0(react@18.3.1)(yup@1.6.1)
