@@ -13,8 +13,12 @@ const getUtcOffsetHours = (ianaName: string): number => {
     timeZoneName: 'shortOffset',
   });
   const match = formatted.match(/GMT([+-]?\d+(?::(\d+))?)?$/);
-  if (!match) return 0;
-  if (!match[1]) return 0; // "GMT" with no offset = UTC
+  if (!match) {
+    return 0;
+  }
+  if (!match[1]) {
+    return 0;
+  } // "GMT" with no offset = UTC
   const hours = parseInt(match[1], 10);
   const minutes = match[2] ? parseInt(match[2], 10) : 0;
   return hours + (hours < 0 ? -minutes : minutes) / 60;

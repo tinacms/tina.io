@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import type { PageBlocksProfessionalServices } from 'tina/__generated__/types';
-import Container from '@/component/util/Container';
 import { IconOptions } from '@/component/forms/IconPicker';
+import Container from '@/component/util/Container';
 
 function ServiceIcon({
   name,

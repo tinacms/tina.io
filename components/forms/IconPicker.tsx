@@ -28,7 +28,10 @@ const parseIconName = (name: string) => {
   }
 };
 
-export const IconOptions: Record<string, React.ComponentType<{ className?: string }>> = {
+export const IconOptions: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   MdBook,
   MdEmail,
   MdMenu,
