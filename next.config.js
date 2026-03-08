@@ -1,4 +1,3 @@
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const redirects = require('./content/settings/config.json')?.redirects || [];
 const withSvgr = require('next-svgr');
@@ -158,8 +157,6 @@ const config = {
   webpack(config) {
     config.module.rules.push({ test: /\.md$/, use: 'raw-loader' });
     config.resolve.fallback = { ...config.resolve.fallback, fs: 'empty' };
-
-    config.plugins.push(new MomentLocalesPlugin());
 
     config.plugins.push(
       new MonacoWebpackPlugin({
