@@ -1,0 +1,31 @@
+{
+  "versionNumber": "2026.03.0",
+  "dateReleased": "2026-03-04T05:25:57Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        },
+        {
+          "changesDescription": "fix: use node to set devDependencies alias in update workflow",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "update dev dependency",
+          "gitHubName": "Ben0189",
+          "gitHubLink": "https://github.com/Ben0189"
+        },
+        {
+          "changesDescription": "Copy media index from default branch when a new branch is created",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}
