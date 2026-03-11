@@ -36,7 +36,7 @@ export default function CallToAction(data: any) {
 
         <div className="relative z-10 flex flex-col gap-6 items-start text-left max-w-full">
           <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h2>
-          <p className="text-neutral-text-secondary max-w-md font-light leading-relaxed text-lg">
+          <p className="text-neutral-text-secondary max-w-md font-normal leading-relaxed text-lg">
             {description}
           </p>
           <div className="flex flex-row gap-4">

@@ -23,6 +23,7 @@ import { highlightsSectionTemplate } from '../../components/blocks/HighlightsSec
 import { logoGridTemplate } from '../../components/blocks/LogoGrid/LogoGrid.template';
 import { mediaComponentTemplate } from '../../components/blocks/Media/MediaComponent.template';
 import { pricingTemplate } from '../../components/blocks/Pricing/Pricing.template';
+import { professionalServicesTemplate } from '../../components/blocks/ProfessionalServices/ProfessionalServices.template';
 import { quoteTemplate } from '../../components/blocks/Quote/Quote.template';
 import { recentPostsTemplate } from '../../components/blocks/RecentPosts/RecentPosts.template';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
@@ -89,6 +90,7 @@ const templates = [
   callToActionTemplate as Template,
   mapTemplate as Template,
   tripleBoxTemplate as Template,
+  professionalServicesTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {

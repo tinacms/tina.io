@@ -1,6 +1,6 @@
 ---
 title: Rich-Text Fields
-last_edited: '2025-03-26T06:28:07.274Z'
+last_edited: '2026-03-05T00:28:02.011Z'
 next: ''
 previous: content/docs/extending-tina/customize-list-ui.mdx
 ---
@@ -26,15 +26,25 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
       required: true
     },
     {
-      name: "overrides",
-      description: "Toolbar override and customisation options.\n",
-      type: "ToolbarOverrides"
-    },
-    {
       name: "templates",
       description:
         'MDX support. The "embed" option in the editor to inject custom React components.\n',
       type: "Template[]"
+    },
+    {
+      name: "toolbar",
+      description:
+        "Select which toolbar options are displayed. The following options are supported:\n\n\\['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed'].\n",
+      type: "ToolbarOverrideType[]",
+      groupName: "overrides"
+    },
+    {
+      description:
+        "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
+      groupName: "overrides",
+      name: "showFloatingToolbar",
+      type: "boolean",
+      default: "true"
     }
   ]}
 />
@@ -48,9 +58,7 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
   </>}
 />
 
-## Customisation
-
-The `overrides` property controls a series of overrides and customisations to
+property controls a series of overrides and customisations to
 the rich-text editor.
 
 <apiReference
@@ -58,24 +66,29 @@ the rich-text editor.
     {
       name: "toolbar",
       type: "ToolbarOverrideType[]",
-      description: "Select which toolbar options are displayed. The following options are supported: `['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`.\n",
+      description:
+        "Select which toolbar options are displayed. The following options are supported: `['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`.\n"
     },
     {
       name: "showFloatingToolbar",
-      description: "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
-      type: "boolean",
-    },
+      description:
+        "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
+      type: "boolean"
+    }
   ]}
 />
 
 ## Line Breaks
 
-To insert a line break into an empty line in TinaCMS Rich Text:
+To insert a visible line break in TinaCMS Rich Text (for example, inside a quote), press **Shift + Enter **(soft return) where you want the break.
 
-* Press Shift + Enter to create the line break
-* If the line break is not followed by a line with text, it will render as a \ in the final output.\
-  This can be fixed by deleting and re-creating the line\
-  Ensure that the line break precedes text content to avoid this issue
+After saving, check the Markdown. A preserved line break shows up as a standalone `\` line:
+
+```markdown
+> Quote text…
+> \
+> Author name
+```
 
 > This behavior is not part of the standard Markdown specification but is specific to TinaCMS Rich Text implementation.
 
@@ -88,6 +101,22 @@ Check out this video on how to use Table in rich text editor:
 > Multi-line cells are not supported because content is serialized as Markdown. Tables only support single-line rows and cells. Use lists or separate fields if you need to represent multiple lines of content.
 
 ***
+
+### Column Alignment
+
+> The visual editor does not currently support setting column alignment through the toolbar. If you need to align content in a table column, you can do so by switching to Raw Markdown mode and editing the alignment syntax in the table header separator row.
+
+Example — centering the second and third columns:
+
+```
+| Alignment   |  Separator  |    Example |
+| :---        |   :---:     |       ---: |
+| Left        |   `:---`    |       Left |
+| Center      |   `:---:`   |     Center |
+| Right       |   `---:`    |      Right |
+```
+
+To learn more about the alignment syntax, refer to the [Markdown Extended Syntax](https://www.markdownguide.org/extended-syntax/#alignment)
 
 ## Examples
 
@@ -105,7 +134,7 @@ configuration provided.
 }
 ```
 
-![](/img/docs/reference/rtf.png)
+![](/docs/rich-text-simple.png)
 
 ### Simple field with toolbar override
 
@@ -113,15 +142,18 @@ Change what you want to display and the order it is displayed in the editor
 
 ```javascript
 {
-  label: "Body",
-  name: "body",
-  isBody: true,
-  type: "rich-text",
-  toolbarOverride: ["heading","bold", "italic"],
+		type: "rich-text",
+		name: "body",
+		label: "Body",
+		isBody: true,
+		overrides: {
+			toolbar: ["heading", "bold", "italic"],
+			showFloatingToolbar: false,
+		},
 }
 ```
 
-![](/img/docs/reference/blog-post.png)
+![](/docs/rich-text-override.png)
 
 ### Field with custom component (`mdx`)
 
@@ -147,7 +179,7 @@ Custom components can be embedded in rich-text blocks.
 }
 ```
 
-![](/img/docs/reference/custom-template.png)
+![](/docs/custom-template.png)
 
 <GraphQLCodeBlock
   query="This#is#some#text

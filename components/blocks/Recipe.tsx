@@ -105,7 +105,7 @@ export const RecipeBlock = ({ data }) => {
         <h2 className="font-ibm-plex text-orange-500 text-2xl">
           {title || 'Default Title'}
         </h2>
-        <p className="font-light py-2 text-base">
+        <p className="font-normal py-2 text-base">
           {description || 'Default Description'}
         </p>
       </div>

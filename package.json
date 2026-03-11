@@ -24,7 +24,10 @@
     "create-rss": "tsc --project ./rss/tsconfig.json --outDir ./rss/out && node ./rss/out/rss/generateRss.js",
     "deploy": "pnpm build && pnpm export",
     "postbuild": "next-sitemap",
-    "analytics:export:search": "node ./scripts/analytics/exportSearch.js"
+    "analytics:export:search": "node ./scripts/analytics/exportSearch.js",
+    "visual:capture": "pnpm exec playwright test tests/visual-compare/capture.spec.ts --project=chromium --reporter=list",
+    "visual:report": "npx tsx tests/visual-compare/generate-report.ts",
+    "visual:recapture": "npx tsx tests/visual-compare/recapture-missing.ts"
   },
   "resolutions": {
     "graphql": "^15.5.1"
@@ -39,13 +42,11 @@
     "@next/third-parties": "^15.3.4",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.4",
-    "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^8.17.14",
     "@sendgrid/mail": "^8.1.6",
     "@styled-jsx/plugin-sass": "^4.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tinacms/auth": "1.1.1",
-    "@tinacms/mdx": "^2.0.1",
     "@tinacms/schema-tools": "^2.1.0",
     "@tinacms/search": "^1.1.7",
     "@vercel/postgres": "^0.10.0",
@@ -73,9 +74,6 @@
     "lucide-react": "^0.471.2",
     "markdown-toc": "^1.2.0",
     "mermaid": "^11.12.1",
-    "moment": "^2.30.1",
-    "moment-locales-webpack-plugin": "^1.2.0",
-    "moment-timezone": "^0.6.0",
     "monaco-editor": "^0.52.2",
     "monaco-editor-webpack-plugin": "^7.1.0",
     "negotiator": "^1.0.0",
@@ -91,7 +89,6 @@
     "raw-loader": "^4.0.2",
     "react": "^18.3.1",
     "react-animate-height": "^3.2.3",
-    "react-datetime": "^3.3.1",
     "react-dismissible": "^1.3.0",
     "react-dom": "^18.3.1",
     "react-github-btn": "^1.4.0",
@@ -134,6 +131,8 @@
     "babel-plugin-styled-components": "^1.13.3",
     "jest": "^25.5.4",
     "next-sitemap": "^4.2.3",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
     "tailwindcss": "^4.1.8",
     "ts-jest": "^25.5.1",
     "typescript": "^5.9.3"

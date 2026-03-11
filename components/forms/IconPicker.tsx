@@ -7,7 +7,16 @@ import {
 import React from 'react';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoCircleSlash } from 'react-icons/go';
-import * as MdIcons from 'react-icons/md';
+import {
+  MdBook,
+  MdEmail,
+  MdMenu,
+  MdOutlineContentCopy,
+  MdOutlineExtension,
+  MdOutlineHeadsetMic,
+  MdOutlineRocketLaunch,
+  MdOutlineVideocam,
+} from 'react-icons/md';
 import { Button, wrapFieldsWithMeta } from 'tinacms';
 
 const parseIconName = (name: string) => {
@@ -19,8 +28,18 @@ const parseIconName = (name: string) => {
   }
 };
 
-export const IconOptions = {
-  ...MdIcons,
+export const IconOptions: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
+  MdBook,
+  MdEmail,
+  MdMenu,
+  MdOutlineContentCopy,
+  MdOutlineExtension,
+  MdOutlineHeadsetMic,
+  MdOutlineRocketLaunch,
+  MdOutlineVideocam,
 };
 
 export const Icon = ({ data, className = '' }) => {

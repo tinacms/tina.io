@@ -526,10 +526,9 @@
             {
               "label": "Book a Chat",
               "icon": false,
-              "variant": "blue",
               "size": "medium",
-              "url": "/meetings",
-              "_template": "actions"
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
             }
           ],
           "media": [

@@ -31,7 +31,7 @@
       "features": [
         {
           "headline": "Logos",
-          "text": "Download the SVG and PNG logo kit",
+          "text": "Download the SVG and PNG logo kit\n",
           "buttons": [
             {
               "label": "Download",
@@ -52,7 +52,7 @@
         },
         {
           "headline": "Backgrounds",
-          "text": "Download TinaCMS official backgrounds and dividers",
+          "text": "Download TinaCMS official backgrounds and dividers\n",
           "buttons": [
             {
               "label": "Download Zip",
@@ -74,7 +74,7 @@
         },
         {
           "headline": "Fonts",
-          "text": "The official fonts used in Tina.io and TinaCMS are IBM Plex Sans for headings, Inter for body text, and Roboto Mono for code blocks",
+          "text": "The official fonts used in Tina.io and TinaCMS are IBM Plex Sans for headings, Inter for body text, and Roboto Mono for code blocks\n",
           "media": [
             {
               "image": "/img/brand-assets/Tina-Media-Fonts-hero.png",
@@ -85,18 +85,7 @@
         },
         {
           "headline": "Character Sheet",
-          "text": "This character sheet is used as a reference for generating new images and videos of Tina the Llama. \nUse a prompt like \"Use the provided character sheet as the exact character reference. Do not change colors, facial features, proportions, or style. Generate an image of Tina the Llama standing up and covering eyes.\"",
-          "buttons": [
-            {
-              "label": "Do you generate consistent AI characters across images and videos?",
-              "icon": true,
-              "shape": "pill",
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://www.ssw.com.au/rules/consistent-ai-generated-characters",
-              "_template": "actions"
-            }
-          ],
+          "text": "This character sheet is used as a reference for generating new images and videos of Tina the Llama.\n\nTo get consistent results use a prompt like…\n\n`Use the provided character sheet as the exact character reference. `\n\n`Do not change colors, facial features, proportions, or style. `\n\n`Generate an image of Tina the Llama standing up and covering eyes.`\n\nas per the SSW Rule [do you generate consistent AI characters across images and videos?](https://www.ssw.com.au/rules/consistent-ai-generated-characters)\n",
           "alignCenter": false,
           "headingOne": false,
           "media": [

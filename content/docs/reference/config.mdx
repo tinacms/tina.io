@@ -65,6 +65,13 @@ Note that it **must be** the default export.
         'Set if serving at a subpath.\n\nFor `[url]/my-site`, set to `"my-site"`.\n'
     },
     {
+      groupName: "server",
+      name: "allowedOrigins",
+      type: "(string | RegExp | 'private')[]",
+      description:
+        "Controls which websites are allowed to talk to your local dev server. Only affects `tinacms dev` — has no effect in production.\n\nBy default, only requests from your own machine (`localhost`) are allowed. You only need to set this if you develop in a remote environment like **GitHub Codespaces**, **Gitpod**, **Docker**, or **WSL2**.\n\nEach entry can be:\n\n- A **URL string** — e.g. `'https://my-codespace.github.dev'`\n- A **RegExp** — to match a pattern of URLs\n- `'private'` — a shorthand that allows any device on your local network, i.e. RFC 1918 private IP ranges (useful for Docker or WSL2)\n\n```ts\nserver: {\n  allowedOrigins: ['private', 'https://my-codespace.github.dev']\n}\n```\n"
+    },
+    {
       groupName: "",
       name: "branch",
       type: "string | null",
@@ -225,6 +232,44 @@ Note that it **must be** the default export.
       default: "/[\\p{L}\\d_]+/"
     },
     {
+      groupName: "search.tina",
+      name: "fuzzyEnabled",
+      type: "boolean",
+      description: "When enabled, search will return results even if the query has minor typos or spelling differences.\n",
+      default: "true"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.maxDistance",
+      type: "number",
+      description: "How many character changes (insertions, deletions, substitutions) a word can be from the search term and still count as a match. Higher values return more results but may be less relevant.\n",
+      default: "2"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.minSimilarity",
+      type: "number",
+      description:
+        "A threshold between 0 and 1 for how closely a result must resemble the search term. Raise this to only show very close matches; lower it to be more lenient.\n",
+      default: "0.6"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.maxTermExpansions",
+      type: "number",
+      description:
+        "The maximum number of similar words the search engine will consider for each search term. Higher values can improve recall but may slow down search.\n",
+      default: "10"
+    },
+    {
+      groupName: "search.tina",
+      name: "fuzzyOptions.useTranspositions",
+      type: "boolean",
+      description:
+        "When enabled, swapped characters (e.g. typing \"teh\" instead of \"the\") count as a single edit rather than two, making the search more forgiving of common typos.\n",
+      default: "true"
+    },
+    {
       description:
         "The defaultBranchName is used for overriding the local branch when resolving the `historyUrl` on local. The primary use case is for when the default branch is not called `main`\n",
       groupName: "repoProvider",
@@ -244,6 +289,14 @@ Note that it **must be** the default export.
       type: "string",
       description: "Override the default content API URL.\n",
       experimental: true
+    },
+    {
+      groupName: "",
+      name: "telemetry",
+      type: "'anonymous' | 'disabled'",
+      description:
+        "Controls whether TinaCMS collects anonymous usage statistics to help improve the product.\n\nSet to `'disabled'` to opt out entirely.\n",
+      default: "'anonymous'"
     }
   ]}
 />
@@ -252,7 +305,7 @@ Note that it **must be** the default export.
 
 ### Vercel and TinaCloud Configuration
 
-This is a standard configuration using TinaCloud to host your datalayer, and the built-in Tina media and search capabilities.
+This is a standard configuration using TinaCloud to host your datalayer and the built-in Tina media and search capabilities.
 
 ```ts
 const branch =
