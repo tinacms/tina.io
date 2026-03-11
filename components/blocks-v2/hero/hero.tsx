@@ -16,6 +16,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     image,
     buttonHorizontalAlignment,
     recentNewsBanner,
+    stats,
   } = data.data || {};
   const alignment = buttonHorizontalAlignment ?? 'center';
 
@@ -44,11 +45,28 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
           )}
           {subtext && (
             <p
-              className="text-neutral-text-secondary duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md"
+              className="text-neutral-text duration-75 md:max-w-[62ch] font-normal leading-relaxed text-lg max-w-md"
               data-tina-field={tinaField(data.data, 'subtext')}
             >
               {subtext}
             </p>
+          )}
+          {stats && stats.length > 0 && (
+            <div className="flex justify-between gap-2">
+              {stats.map((stat, index) => (
+                <div
+                  className="flex flex-col gap-2"
+                  key={`stat-${stat?.statistic || index}`}
+                >
+                  <h2 className="text-2xl bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent font-bold font-mono">
+                    {stat?.statistic}
+                  </h2>
+                  <p className="text-base text-neutral-text-secondary">
+                    {stat?.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           )}
         </div>
         {buttons && buttons.length > 0 && (
