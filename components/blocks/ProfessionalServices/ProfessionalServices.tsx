@@ -83,9 +83,10 @@ export function ProfessionalServices({
             {service?.link && (
               <Link
                 href={service.link}
-                className="mt-auto pt-6 inline-flex items-center gap-2 py-2 text-sm text-neutral-text-secondary hover:text-orange-500 transition-colors duration-150"
+                className="mt-auto pt-6 inline-flex items-center gap-2 py-2 text-sm text-neutral-text-secondary hover:text-orange-500 transition-colors duration-150 uppercase"
               >
-                READ MORE
+                Read more
+                <span className="sr-only">about {service.title}</span>
                 <FaArrowRight className="text-xs" />
               </Link>
             )}
