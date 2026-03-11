@@ -43,7 +43,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ data }) => {
               <strong>{blogPostData.author}</strong>
             </div>
           </div>
-          <div className="text-[#241748]">
+          <div>
             <TinaMarkdown
               content={blogPostData.body}
               components={docAndBlogComponents}
