@@ -129,9 +129,10 @@ export const Card = ({ cardItem, onHover }) => {
         </p>
         <Link
           href={cardItem.link}
-          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600"
+          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600 uppercase"
         >
-          READ MORE
+          Read more
+          <span className="sr-only">about {cardItem.headline}</span>
           <FaArrowRightLong className="text-black hover:text-blue-600 pr-1" />
         </Link>
       </div>
