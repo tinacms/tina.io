@@ -95,18 +95,18 @@ export const ContactForm = () => {
     <form
       id="contact-form"
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center px-6 pt-6 pb-8 sm:px-8 sm:pt-8 sm:pb-10"
+      className="flex flex-col justify-center px-6 pt-6 pb-8 sm:px-8 sm:pt-8 sm:pb-10 gap-4"
     >
       <h2 className="inline-block m-0 md:text-4xl font-ibm-plex text-2xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
         Contact Us
       </h2>
-      <p className="text-left w-full mt-2 mb-4">
+      <p className="text-left w-full">
         Have a question or want to learn more about TinaCMS? Fill out the form
         below and we&apos;ll get back to you.
       </p>
       {message.text && (
         <div
-          className={`font-ibm-plex text-sm mb-4 flex items-center gap-2 ${
+          className={`font-ibm-plex text-sm flex items-center gap-2 ${
             message.type === 'success'
               ? 'text-green-500'
               : message.type === 'warning'
@@ -153,7 +153,7 @@ export const ContactForm = () => {
           )}
         </div>
       )}
-      <div className="flex flex-col gap-1.5 md:flex-row md:gap-2 w-full md:mb-1">
+      <div className="flex flex-col gap-1.5 md:flex-row md:gap-2 w-full">
         <Input
           placeholder="First name"
           name="firstName"
@@ -173,7 +173,7 @@ export const ContactForm = () => {
           className="w-full"
         />
       </div>
-      <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
+      <div className="flex flex-col gap-1.5 w-full">
         <Input
           placeholder="Email *"
           name="email"
@@ -185,7 +185,7 @@ export const ContactForm = () => {
           className="w-full"
         />
       </div>
-      <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
+      <div className="flex flex-col gap-1.5 w-full">
         <Input
           placeholder="Company"
           name="company"
@@ -196,7 +196,7 @@ export const ContactForm = () => {
           className="w-full"
         />
       </div>
-      <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
+      <div className="flex flex-col gap-1.5 w-full">
         <select
           name="referralSource"
           value={formData.referralSource}
@@ -216,7 +216,7 @@ export const ContactForm = () => {
             ))}
         </select>
       </div>
-      <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
+      <div className="flex flex-col gap-1.5 w-full flex-1">
         <Textarea
           placeholder="Message *"
           name="message"
@@ -225,10 +225,10 @@ export const ContactForm = () => {
           onChange={handleInputChange}
           disabled={isProcessing}
           required
-          className="w-full"
+          className="w-full flex-1 min-h-[100px]"
         />
       </div>
-      <div className="w-full flex justify-end mt-6">
+      <div className="w-full flex justify-end">
         <Button
           type="submit"
           color="orange"

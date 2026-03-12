@@ -877,7 +877,7 @@ export function AppNavBar({ sticky = true }) {
         open={modalType === 'ContactForm'}
         onOpenChange={(open) => !open && closeModal()}
       >
-        <DialogContent className="!max-w-2xl w-[90vw] !p-0 !duration-0">
+        <DialogContent className="!max-w-2xl w-[90vw] !max-h-[90vh] !p-0 !duration-0">
           <ContactForm />
         </DialogContent>
       </Dialog>
