@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
-import * as MdIcons from 'react-icons/md';
 import type { PageBlocksProfessionalServices } from 'tina/__generated__/types';
+import { IconOptions } from '@/component/forms/IconPicker';
 import Container from '@/component/util/Container';
 
 function ServiceIcon({
@@ -11,8 +11,7 @@ function ServiceIcon({
   name: string;
   className?: string;
 }) {
-  // biome-ignore lint/performance/noDynamicNamespaceImportAccess: icon name is configured via Tina CMS
-  const IconSVG = MdIcons[name];
+  const IconSVG = IconOptions[name];
   if (!IconSVG) {
     return null;
   }
