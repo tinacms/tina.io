@@ -14,13 +14,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+    const { SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, CONTACT_FORM_TO } =
+      process.env;
+
+    if (!SENDGRID_API_KEY || !SENDGRID_FROM_EMAIL || !CONTACT_FORM_TO) {
+      console.error('Missing required SendGrid environment variables');
+      return NextResponse.json(
+        { error: true, message: 'Server configuration error.' },
+        { status: 500 },
+      );
+    }
+
+    sgMail.setApiKey(SENDGRID_API_KEY);
 
     const fullName = [firstName, lastName].filter(Boolean).join(' ') || 'N/A';
 
     await sgMail.send({
-      from: process.env.SENDGRID_FROM_EMAIL!,
-      to: process.env.CONTACT_FORM_TO!,
+      from: SENDGRID_FROM_EMAIL,
+      to: CONTACT_FORM_TO,
       replyTo: email,
       subject: `TinaCMS Contact Form: ${fullName}`,
       text: [
