@@ -1,0 +1,76 @@
+---
+id: /docs/editing/referenced-files
+title: Referenced Files
+last_edited: '2026-03-12T06:57:48.672Z'
+next: ''
+previous: content/docs/editing/single-document-collections.mdx
+---
+
+Most pages in your site pull content from a single document, but some pages are more complex. A homepage, for example, might display blog post titles, team member bios, or testimonials that each live in their own collection. TinaCMS calls these **referenced files**, and they're fully editable right from the page they appear on.
+
+## What are referenced files?
+
+When a page pulls in content from multiple documents, each of those documents is a referenced file. For example, a homepage might have:
+
+* A main document (`home.json`) containing the hero section, feature list, and other page content
+* Several blog post documents (`.mdx` files) whose titles, authors, and dates are displayed in a "Latest Posts" section
+
+TODO: Add screenshot of homepage with blog section highlighted
+
+These blog posts are not duplicated. They are pulled in using [reference fields](/docs/reference/types/reference), a field type that links one document to another at the schema level.
+
+## Viewing referenced files in the editor
+
+In the visual editor, click the **Referenced Files** banner to see a tree view of every document that contributes content to the current page.
+
+TODO: Add screenshot of Referenced Files panel open
+
+The tree shows you:
+
+* The **file path** of each document (e.g. `content/main/home.json`)
+* Which **collection** it belongs to
+* The full hierarchy of references
+
+This is useful for orientation. You can instantly see where each piece of content lives in your project without leaving the page.
+
+### Direct references only
+
+The **"Direct references only"** checkbox filters the tree to show only documents that are directly referenced by the page's main document. This hides any nested references (documents referenced by other referenced documents), giving you a cleaner view of the page's immediate content sources.
+
+## Editing referenced content inline
+
+Referenced documents are fully editable in the visual editor. You don't need to navigate to the original file, just click on the content and edit it in place.
+
+TODO: Add screenshot/video of editing a referenced blog post title inline
+
+For example, if your homepage displays blog post titles, you can click on a title, make your change, and save. The update is written back to the original blog post document, and the change is reflected everywhere that document is used.
+
+## How it works
+
+Under the hood, referenced files rely on the [reference field type](/docs/reference/types/reference). When you define a reference field in your schema, TinaCMS follows that reference at query time and makes the linked document available for editing.
+
+Here's a simplified example of a schema that references blog posts from a page:
+
+```typescript
+// In your page collection
+{
+  type: 'reference',
+  label: 'Featured Post',
+  name: 'featuredPost',
+  collections: ['post'],
+}
+```
+
+When TinaCMS fetches this page, it also fetches the referenced post document and makes it editable in the visual editor.
+
+> For a full guide on setting up reference fields, see the [Reference Field documentation](/docs/reference/types/reference).
+
+## Requirements
+
+Referenced files editing requires **TinaCMS v3.6 or later** for the best experience. Make sure your project is up to date to take advantage of the full referenced files workflow.
+
+## Video tutorial
+
+For a walkthrough of referenced files in action, check out our video guide.
+
+TODO: Add Youtube embed once video is published
