@@ -44,6 +44,7 @@ const initialFormData: FormData = {
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
@@ -218,7 +219,7 @@ export const ContactForm = () => {
         <Button
           type="submit"
           color="orange"
-          disabled={isProcessing || !formData.email || !formData.message}
+          disabled={isProcessing || !isValidEmail || !formData.message}
           className="px-6 py-2.5"
         >
           {isProcessing ? 'Sending...' : 'Send Message'}

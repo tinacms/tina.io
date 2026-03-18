@@ -31,6 +31,7 @@ const initialFormData: FormData = {
 
 export const EmailForm = (props: EmailFormProps) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -146,12 +147,13 @@ export const EmailForm = (props: EmailFormProps) => {
           </div>
           <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
             <Input
-              placeholder="Email"
+              placeholder="Email *"
               name="email"
               type="email"
               value={formData.email}
               onChange={handleInputChange}
               disabled={isProcessing}
+              required
               className="w-full"
             />
           </div>
@@ -170,7 +172,7 @@ export const EmailForm = (props: EmailFormProps) => {
             <Button
               type="submit"
               color="orange"
-              disabled={isProcessing}
+              disabled={isProcessing || !isValidEmail}
               className="px-6 py-2.5"
             >
               {isProcessing ? 'Processing...' : 'Subscribe'}
