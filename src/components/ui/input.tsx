@@ -8,7 +8,7 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<'input'>>(
       <input
         type={type}
         className={cn(
-          'flex h-10 w-full rounded-[5px] border-0 bg-white px-4 text-base font-ibm-plex text-[var(--color-secondary)] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08),0px_2px_3px_rgba(0,0,0,0.12)] transition-all duration-[85ms] ease-out placeholder:opacity-100 placeholder:text-base hover:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08),0_0_0_3px_rgba(236,72,21,0.2),0_2px_3px_rgba(0,0,0,0.12)] focus:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08),0_0_0_3px_rgba(236,72,21,0.7),0_2px_3px_rgba(0,0,0,0.12)] focus:outline-none focus:placeholder:opacity-50 disabled:cursor-not-allowed disabled:opacity-50',
+          'flex h-10 w-full rounded-[5px] border-0 bg-white px-4 text-base font-ibm-plex text-[var(--color-secondary)] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08),0px_2px_3px_rgba(0,0,0,0.12)] transition-all duration-[85ms] ease-out placeholder:text-gray-400 placeholder:text-base hover:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08),0_0_0_3px_rgba(236,72,21,0.2),0_2px_3px_rgba(0,0,0,0.12)] focus:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08),0_0_0_3px_rgba(236,72,21,0.7),0_2px_3px_rgba(0,0,0,0.12)] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
           className,
         )}
         ref={ref}
