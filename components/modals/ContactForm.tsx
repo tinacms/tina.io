@@ -1,10 +1,20 @@
 'use client';
 import type React from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { BiCopy } from 'react-icons/bi';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
-import { Button, Input, Textarea } from '../ui';
+import { Button } from '../ui';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface FormData {
   firstName: string;
@@ -16,7 +26,6 @@ interface FormData {
 }
 
 const referralOptions = [
-  '',
   'Conference',
   'Google',
   'Referral',
@@ -24,16 +33,17 @@ const referralOptions = [
   'Other',
 ];
 
+const initialFormData: FormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  company: '',
+  referralSource: '',
+  message: '',
+};
+
 export const ContactForm = () => {
-  const defaultValues = useRef<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    company: '',
-    referralSource: '',
-    message: '',
-  });
-  const [formData, setFormData] = useState<FormData>(defaultValues.current);
+  const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [copied, setCopied] = useState(false);
@@ -61,7 +71,7 @@ export const ContactForm = () => {
           text: "Thanks for reaching out! We'll be in touch soon.",
           type: 'success',
         });
-        setFormData(defaultValues.current);
+        setFormData(initialFormData);
       } else {
         setMessage({
           text: 'error',
@@ -80,9 +90,7 @@ export const ContactForm = () => {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -130,21 +138,7 @@ export const ContactForm = () => {
                 {copied ? (
                   <TiTick className="text-green-500 w-4 h-4" />
                 ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-3.5 h-3.5"
-                    role="img"
-                    aria-label="Copy"
-                  >
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  <BiCopy className="w-3.5 h-3.5" />
                 )}
               </button>
             </span>
@@ -153,7 +147,7 @@ export const ContactForm = () => {
           )}
         </div>
       )}
-      <div className="flex flex-col gap-1.5 md:flex-row md:gap-2 w-full">
+      <div className="flex flex-col gap-4 md:flex-row w-full">
         <Input
           placeholder="First name"
           name="firstName"
@@ -173,66 +167,58 @@ export const ContactForm = () => {
           className="w-full"
         />
       </div>
-      <div className="flex flex-col gap-1.5 w-full">
-        <Input
-          placeholder="Email *"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          disabled={isProcessing}
-          required
-          className="w-full"
-        />
-      </div>
-      <div className="flex flex-col gap-1.5 w-full">
-        <Input
-          placeholder="Company"
-          name="company"
-          type="text"
-          value={formData.company}
-          onChange={handleInputChange}
-          disabled={isProcessing}
-          className="w-full"
-        />
-      </div>
-      <div className="flex flex-col gap-1.5 w-full">
-        <select
-          name="referralSource"
-          value={formData.referralSource}
-          onChange={handleInputChange}
-          disabled={isProcessing}
-          className="block w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-400 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <option value="" disabled>
-            How did you hear about us?
-          </option>
-          {referralOptions
-            .filter((opt) => opt !== '')
-            .map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-        </select>
-      </div>
-      <div className="flex flex-col gap-1.5 w-full flex-1">
-        <Textarea
-          placeholder="Message *"
-          name="message"
-          rows={4}
-          value={formData.message}
-          onChange={handleInputChange}
-          disabled={isProcessing}
-          required
-          className="w-full flex-1 min-h-[100px]"
-        />
-      </div>
+      <Input
+        placeholder="Email *"
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleInputChange}
+        disabled={isProcessing}
+        required
+        className="w-full"
+      />
+      <Input
+        placeholder="Company"
+        name="company"
+        type="text"
+        value={formData.company}
+        onChange={handleInputChange}
+        disabled={isProcessing}
+        className="w-full"
+      />
+      <Select
+        value={formData.referralSource}
+        onValueChange={(value) =>
+          setFormData((prev) => ({ ...prev, referralSource: value }))
+        }
+        disabled={isProcessing}
+      >
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="How did you hear about us?" />
+        </SelectTrigger>
+        <SelectContent>
+          {referralOptions.map((option) => (
+            <SelectItem key={option} value={option}>
+              {option}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Textarea
+        placeholder="Message *"
+        name="message"
+        rows={4}
+        value={formData.message}
+        onChange={handleInputChange}
+        disabled={isProcessing}
+        required
+        className="w-full min-h-[100px] resize-y"
+      />
       <div className="w-full flex justify-end">
         <Button
           type="submit"
           color="orange"
-          disabled={isProcessing}
+          disabled={isProcessing || !formData.email || !formData.message}
           className="px-6 py-2.5"
         >
           {isProcessing ? 'Sending...' : 'Send Message'}
