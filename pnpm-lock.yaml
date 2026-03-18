@@ -16459,7 +16459,7 @@ snapshots:
       jest-environment-jsdom: 25.5.0(bufferutil@4.0.9)
       jest-environment-node: 25.5.0
       jest-get-type: 25.2.6
-      jest-jasmine2: 25.5.4(bufferutil@4.0.9)
+      jest-jasmine2: 25.5.4
       jest-regex-util: 25.2.6
       jest-resolve: 25.5.1
       jest-util: 25.5.0
@@ -16535,7 +16535,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-jasmine2@25.5.4(bufferutil@4.0.9):
+  jest-jasmine2@25.5.4:
     dependencies:
       '@babel/traverse': 7.28.0
       '@jest/environment': 25.5.0
@@ -16555,10 +16555,7 @@ snapshots:
       pretty-format: 25.5.0
       throat: 5.0.0
     transitivePeerDependencies:
-      - bufferutil
-      - canvas
       - supports-color
-      - utf-8-validate
 
   jest-leak-detector@25.5.0:
     dependencies:
@@ -16623,7 +16620,7 @@ snapshots:
       jest-config: 25.5.4(bufferutil@4.0.9)
       jest-docblock: 25.3.0
       jest-haste-map: 25.5.1
-      jest-jasmine2: 25.5.4(bufferutil@4.0.9)
+      jest-jasmine2: 25.5.4
       jest-leak-detector: 25.5.0
       jest-message-util: 25.5.0
       jest-resolve: 25.5.1

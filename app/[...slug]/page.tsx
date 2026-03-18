@@ -16,9 +16,9 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const pages = await fg(`./content/blocksPages/**/*.json`);
+  const pages = await fg(`./content/main/**/*.json`);
   return pages.map((file) => ({
-    slug: fileToUrl(file, 'blocksPages').split('/'),
+    slug: fileToUrl(file, 'main').split('/'),
   }));
 }
 

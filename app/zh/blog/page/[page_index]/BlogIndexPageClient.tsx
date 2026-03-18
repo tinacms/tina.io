@@ -54,7 +54,7 @@ export default function BlogIndexPageClient({
                 {post.title}
               </h2>
             </DynamicLink>
-            <div className="w-full text-[#241748] ">
+            <div className="w-full">
               <div className="flex justify-between items-center w-full mb-6 -mt-2">
                 <p className="opacity-70">
                   <span className="mr-1">By</span>
