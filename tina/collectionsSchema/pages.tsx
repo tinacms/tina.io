@@ -117,11 +117,16 @@ export const pagesCollection = {
     },
     beforeSubmit: async ({
       values,
+      form,
+      cms,
     }: {
       form: Form;
       cms: TinaCMS;
       values: Record<string, any>;
     }) => {
+      console.log('values', values);
+      console.log('form', form);
+      console.log('cms', cms);
       //Template based transformations (NOTE: this is the only way to pass data between parent/child form fields)
       const criteriaMappedValues = criteriaMapping(values);
       return {
