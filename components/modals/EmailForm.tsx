@@ -5,11 +5,11 @@ import { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import BettyWithLlama from '../../public/img/BettyWithLlama.png';
 import { addToMailchimp } from '../../utils';
 import { Button } from '../ui';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 
 interface EmailFormProps {
   isFooter: boolean;
