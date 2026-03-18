@@ -2,6 +2,7 @@
 dist
 .next
 out
+tsconfig.tsbuildinfo
 
 # dependencies
 .cursorrules
