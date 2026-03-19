@@ -71,6 +71,9 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      cli@0.0.0-bbf29da-20260319050442:
+        specifier: link:tinacms/cli@0.0.0-bbf29da-20260319050442
+        version: link:tinacms/cli@0.0.0-bbf29da-20260319050442
       clsx:
         specifier: ^2.1.1
         version: 2.1.1

@@ -53,6 +53,7 @@
     "axios": "^1.13.0",
     "btoa": "^1.2.1",
     "class-variance-authority": "^0.7.1",
+    "cli@0.0.0-bbf29da-20260319050442": "link:tinacms/cli@0.0.0-bbf29da-20260319050442",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.19",
