@@ -62,6 +62,9 @@ importers:
       algoliasearch:
         specifier: ^5.43.0
         version: 5.43.0
+      app@0.0.0-bbf29da-20260319050442:
+        specifier: link:tinacms/app@0.0.0-bbf29da-20260319050442
+        version: link:tinacms/app@0.0.0-bbf29da-20260319050442
       axios:
         specifier: ^1.13.0
         version: 1.13.2

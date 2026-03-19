@@ -50,6 +50,7 @@
     "@tinacms/search": "^1.1.7",
     "@vercel/postgres": "^0.10.0",
     "algoliasearch": "^5.43.0",
+    "app@0.0.0-bbf29da-20260319050442": "link:tinacms/app@0.0.0-bbf29da-20260319050442",
     "axios": "^1.13.0",
     "btoa": "^1.2.1",
     "class-variance-authority": "^0.7.1",
