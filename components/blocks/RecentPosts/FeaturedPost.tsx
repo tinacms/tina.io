@@ -23,8 +23,6 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
         <Link
           href={featuredPost.url}
           className="absolute inset-0 z-1"
-          target="_blank"
-          rel="noopener noreferrer"
         />
       )}
       <div className="md:gap-5 flex flex-col md:flex-row w-full">
@@ -85,7 +83,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
               By{' '}
               {featuredPost.authorUrl ? (
                 <Link
-                  className="relative hover:text-neutral-text z-2 uppercase underline transition-colors"
+                  className="relative hover:text-neutral-text z-2 underline transition-colors"
                   href={featuredPost.authorUrl}
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >
@@ -93,7 +91,6 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
                 </Link>
               ) : (
                 <span
-                  className="uppercase"
                   data-tina-field={tinaField(featuredPost, 'authorName')}
                 >
                   {featuredPost.authorName}
