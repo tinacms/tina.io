@@ -46,9 +46,7 @@ const VideoCard = ({
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
       </span>
-      <h3 className="text-base md:text-xl inline-block">
-        {title}
-      </h3>
+      <h3 className="text-base md:text-xl inline-block">{title}</h3>
       <span className="text-neutral-text-secondary text-sm">
         By{' '}
         <Link

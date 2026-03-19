@@ -20,10 +20,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
   return (
     <div className="flex hover:scale-101 hover:shadow-lg transition-all hover:bg-white overflow-hidden flex-col gap-2 shadow-md p-3 bg-gradient-to-br from-white/10 to-white/40 hover:to-white/40 w-full z-0 rounded-lg max-md:max-w-md relative">
       {featuredPost.url && (
-        <Link
-          href={featuredPost.url}
-          className="absolute inset-0 z-1"
-        />
+        <Link href={featuredPost.url} className="absolute inset-0 z-1" />
       )}
       <div className="md:gap-5 flex flex-col md:flex-row w-full">
         {featuredPost.imageUrl && (
@@ -90,9 +87,7 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
                   {featuredPost.authorName}
                 </Link>
               ) : (
-                <span
-                  data-tina-field={tinaField(featuredPost, 'authorName')}
-                >
+                <span data-tina-field={tinaField(featuredPost, 'authorName')}>
                   {featuredPost.authorName}
                 </span>
               )}
