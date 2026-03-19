@@ -3,12 +3,8 @@ import { DynamicLink } from 'components/ui';
 import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { tinaField } from 'tinacms/dist/react';
-import {
-  BLOCK_HEADINGS_SIZE,
-  SECTION_HEADINGS_SIZE,
-} from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
-import { extractYouTubeId } from '../VideoEmbed/utils';
 import { YouTubeEmbed } from '../VideoEmbed/videoEmbed';
 import { FeaturedPost } from './FeaturedPost';
 
@@ -26,7 +22,7 @@ export function formatDate(dateString: string): string {
     .toUpperCase();
   const year = date.getUTCFullYear();
 
-  return `${day} ${month}, ${year}`;
+  return `${day} ${month} ${year}`;
 }
 
 type VideoCardProps = {
@@ -44,29 +40,20 @@ const VideoCard = ({
   embedUrl,
   title,
 }: VideoCardProps) => {
-  const videoId = extractYouTubeId(embedUrl);
   return (
     <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
       <YouTubeEmbed src={embedUrl} />
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
       </span>
-      <Link
-        href={`https://www.youtube.com/watch?v=${videoId}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <h3 className="text-base md:text-xl inline-block hover:underline transition-all duration-300">
-          {title}
-        </h3>
-      </Link>
+      <h3 className="text-base md:text-xl inline-block">{title}</h3>
       <span className="text-neutral-text-secondary text-sm">
         By{' '}
         <Link
           className="underline hover:text-neutral-text transition-colors duration-300"
           href={authorUrl}
         >
-          {authorName.toUpperCase()}
+          {authorName}
         </Link>
       </span>
     </div>
@@ -103,11 +90,11 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         key={`recent-posts-${index}`}
         className={'relative z-10 col-span-3 lg:col-span-1'}
       >
-        <h3
-          className={`block text-center md:text-left ${SECTION_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
+        <h2
+          className={`block text-center md:text-left ${BLOCK_HEADINGS_SIZE} font-ibm-plex pb-8 lg:leading-tight text-black text-balance`}
         >
           Blog Posts
-        </h3>
+        </h2>
         <div className=" flex flex-col md:flex-wrap lg:flex-col gap-10 lg:gap-16 max-w-md mx-auto md:max-w-none">
           {recentPosts.edges.map(({ node: post }) => {
             const slug = post._sys.filename;
@@ -128,8 +115,8 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
                 <RichTextWrapper>
                   <div className="flex flex-row mb-3 text-center justify-between">
                     <div className="flex">
-                      <span className="text-neutral-text-secondary">
-                        By {post.author.toUpperCase()}
+                      <span className="text-neutral-text-secondary text-sm">
+                        By {post.author}
                       </span>{' '}
                     </div>
                   </div>
@@ -141,7 +128,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
             href="/blog"
             className="underline hover:no-underline transition-all duration-300 flex gap-2 pt-2 items-center text-black hover:text-blue-600 font-bold -mt-4 lg:-mt-10"
           >
-            READ MORE BLOGS
+            VIEW ALL POSTS
             <FaArrowRightLong className="pr-1" />
           </Link>
         </div>
