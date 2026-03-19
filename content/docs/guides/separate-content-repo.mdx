@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2026-03-19T00:08:03.875Z'
+last_edited: '2026-03-19T00:12:08.016Z'
 next: ''
 previous: ''
 ---
@@ -60,6 +60,7 @@ tree .
 mkdir -p demo-content-repo/content/pages
 cd demo-content-repo
 git init
+mkdir tina
 touch ./content/pages/home.mdx 
 echo "Hello" >> ./content/pages/home.mdx
 cd ..
@@ -67,6 +68,7 @@ cd ..
 tree .
 # .
 # ├── demo-content-repo
+# │   └── tina
 # │   └── content
 # │       └── pages
 # │           └── home.mdx
