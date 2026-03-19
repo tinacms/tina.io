@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2026-03-19T00:03:02.932Z'
+last_edited: '2026-03-19T00:07:57.442Z'
 next: ''
 previous: ''
 ---
@@ -91,11 +91,19 @@ tree .
 
 ## Local Development
 
-In the "website repo", install the project's dependencies and start the development server to generate the `tina-lock.json` and other required files.
+In the "website repo", install the project's dependencies and start the development server to generate the `tina-lock.json` and other required files
+
+First, Navigate into the website repo
 
 ```bash
-yarn install
-yarn dev
+cd separate-website-repo
+```
+
+Then install the project dependencies
+
+```
+pnpm install
+pnpm dev
 ```
 
 ## Edit the content
