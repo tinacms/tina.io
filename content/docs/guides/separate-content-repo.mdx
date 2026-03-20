@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2026-03-20T00:13:13.938Z'
+last_edited: '2026-03-20T00:14:02.226Z'
 next: ''
 previous: ''
 ---
@@ -134,7 +134,10 @@ The final thing to do is take note of the client ID token found on the projects 
 
 ## Connect the content repo
 
-Now that the “website repo” has been created in TinaCloud, grab the client ID retrieved in the previous step and create a new `tina/meta.json` file in the “content repo”. This is what connects the two together.
+Now that the “website repo” has been created in TinaCloud:
+
+1. Grab the client ID retrieved in the previous step (from the website repo's TinaCloud instance)
+2. Create a new `tina/meta.json` file in the “content repo”. This is what connects the two together.
 
 ```bash
 cd demo-content-repo
