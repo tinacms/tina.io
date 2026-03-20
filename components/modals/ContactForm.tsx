@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import type React from 'react';
 import { useState } from 'react';
 import { BiCopy } from 'react-icons/bi';
@@ -14,15 +15,18 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { addToMailchimp } from '@/utils/mailchimp_helper';
 import { Button } from '../ui';
 
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   company: string;
   referralSource: string;
   message: string;
+  subscribeNewsletter: boolean;
 }
 
 const referralOptions = [
@@ -37,9 +41,11 @@ const initialFormData: FormData = {
   firstName: '',
   lastName: '',
   email: '',
+  phone: '',
   company: '',
   referralSource: '',
   message: '',
+  subscribeNewsletter: false,
 };
 
 export const ContactForm = () => {
@@ -68,6 +74,13 @@ export const ContactForm = () => {
       });
 
       if (response.ok) {
+        if (formData.subscribeNewsletter) {
+          await addToMailchimp(
+            formData.email,
+            formData.firstName,
+            formData.lastName,
+          );
+        }
         setMessage({
           text: "Thanks for reaching out! We'll be in touch soon.",
           type: 'success',
@@ -106,9 +119,18 @@ export const ContactForm = () => {
       onSubmit={handleSubmit}
       className="flex flex-col justify-center px-6 pt-6 pb-8 sm:px-8 sm:pt-8 sm:pb-10 gap-4"
     >
-      <h2 className="inline-block m-0 md:text-4xl font-ibm-plex text-2xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-        Contact Us
-      </h2>
+      <div className="flex items-center gap-3">
+        <Image
+          src="/img/brand-assets/llama.svg"
+          alt="Tina llama"
+          width={48}
+          height={48}
+          className="w-12 h-12"
+        />
+        <h2 className="inline-block m-0 md:text-4xl font-ibm-plex text-2xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+          Contact Us
+        </h2>
+      </div>
       <p className="text-left w-full">
         Have a question or want to learn more about TinaCMS? Fill out the form
         below and we&apos;ll get back to you.
@@ -150,21 +172,23 @@ export const ContactForm = () => {
       )}
       <div className="flex flex-col gap-4 md:flex-row w-full">
         <Input
-          placeholder="First name"
+          placeholder="First name *"
           name="firstName"
           type="text"
           value={formData.firstName}
           onChange={handleInputChange}
           disabled={isProcessing}
+          required
           className="w-full"
         />
         <Input
-          placeholder="Last name"
+          placeholder="Last name *"
           name="lastName"
           type="text"
           value={formData.lastName}
           onChange={handleInputChange}
           disabled={isProcessing}
+          required
           className="w-full"
         />
       </div>
@@ -176,6 +200,15 @@ export const ContactForm = () => {
         onChange={handleInputChange}
         disabled={isProcessing}
         required
+        className="w-full"
+      />
+      <Input
+        placeholder="Phone number"
+        name="phone"
+        type="tel"
+        value={formData.phone}
+        onChange={handleInputChange}
+        disabled={isProcessing}
         className="w-full"
       />
       <Input
@@ -215,6 +248,23 @@ export const ContactForm = () => {
         required
         className="w-full min-h-[100px] resize-y"
       />
+      <label className="flex items-center gap-2 cursor-pointer select-none">
+        <input
+          type="checkbox"
+          checked={formData.subscribeNewsletter}
+          onChange={(e) =>
+            setFormData((prev) => ({
+              ...prev,
+              subscribeNewsletter: e.target.checked,
+            }))
+          }
+          disabled={isProcessing}
+          className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+        />
+        <span className="text-sm text-gray-600">
+          Subscribe to the TinaCMS newsletter
+        </span>
+      </label>
       <div className="w-full flex justify-end">
         <Button
           type="submit"
@@ -222,7 +272,7 @@ export const ContactForm = () => {
           disabled={isProcessing || !isValidEmail || !formData.message}
           className="px-6 py-2.5"
         >
-          {isProcessing ? 'Sending...' : 'Send Message'}
+          {isProcessing ? 'Sending...' : 'Send'}
         </Button>
       </div>
     </form>
