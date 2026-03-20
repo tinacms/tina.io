@@ -1,11 +1,11 @@
 ---
 title: 富文本字段
-last_edited: '2025-03-26T06:28:07.274Z'
+last_edited: '2026-03-05T00:28:02.011Z'
 next: ''
 previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 ---
 
-富文本字段通过WYSIWYG界面存储**Markdown内容**，支持文本格式、链接、媒体和自定义元素（如果与mdx一起使用）。
+富文本字段使用WYSIWYG界面存储**Markdown内容**，支持文本格式化、链接、媒体和自定义元素（如果与mdx一起使用）。
 
 ## 类型定义
 
@@ -21,25 +21,35 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
     },
     {
       name: "name",
-      description: "字段的内部使用名称。\n",
+      description: "用于内部使用的字段名称。\n",
       type: "string",
       required: true
-    },
-    {
-      name: "overrides",
-      description: "工具栏覆盖和自定义选项。\n",
-      type: "ToolbarOverrides"
     },
     {
       name: "templates",
       description:
         'MDX支持。在编辑器中使用"embed"选项注入自定义React组件。\n',
       type: "Template[]"
+    },
+    {
+      name: "toolbar",
+      description:
+        "选择显示哪些工具栏选项。支持以下选项：\n\n\\['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']。\n",
+      type: "ToolbarOverrideType[]",
+      groupName: "overrides"
+    },
+    {
+      description:
+        "是否启用或禁用富文本浮动工具栏。\n",
+      groupName: "overrides",
+      name: "showFloatingToolbar",
+      type: "boolean",
+      default: "true"
     }
   ]}
 />
 
-> `templates`属性用于`mdx`支持。
+> `templates` 属性用于 `mdx` 支持。
 
 <WarningCallout
   body={<>
@@ -47,22 +57,22 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
   </>}
 />
 
-## 自定义
-
-`overrides`属性控制对富文本编辑器的一系列覆盖和自定义。
+属性控制对富文本编辑器的一系列覆盖和自定义。
 
 <apiReference
   property={[
     {
       name: "toolbar",
       type: "ToolbarOverrideType[]",
-      description: "选择显示哪些工具栏选项。支持以下选项：`['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`。\n",
+      description:
+        "选择显示哪些工具栏选项。支持以下选项：`['heading', 'link', 'image', 'quote', 'ul', 'ol', 'bold', 'italic', 'code', 'codeBlock', 'mermaid', 'table', 'raw', 'embed']`。\n"
     },
     {
       name: "showFloatingToolbar",
-      description: "是否启用或禁用富文本浮动工具栏。\n",
-      type: "boolean",
-    },
+      description:
+        "是否启用或禁用富文本浮动工具栏。\n",
+      type: "boolean"
+    }
   ]}
 />
 
@@ -70,16 +80,16 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 要在TinaCMS富文本中插入空行换行：
 
-* 按Shift + Enter创建换行
-* 如果换行后没有跟随文本行，它将在最终输出中呈现为\。\
-  可以通过删除并重新创建该行来修复\
+* 按 Shift + Enter 创建换行
+* 如果换行后没有跟随文本行，它将在最终输出中呈现为 \。\
+  这可以通过删除并重新创建该行来修复\
   确保换行前有文本内容以避免此问题
 
 > 此行为不是标准Markdown规范的一部分，而是TinaCMS富文本实现的特定行为。
 
 ## 表格
 
-查看此视频以了解如何在富文本编辑器中使用表格：
+查看此视频，了解如何在富文本编辑器中使用表格：
 
 <Youtube embedSrc="https://www.youtube.com/embed/DnNTaS7lYZY?si=OoLw1D-to5qiHVNF" />
 
@@ -102,27 +112,30 @@ Tina将根据提供的配置生成适当的组件。
 }
 ```
 
-![](/img/docs/reference/rtf.png)
+![](/docs/rich-text-simple.png)
 
 ### 带工具栏覆盖的简单字段
 
-更改要显示的内容及其在编辑器中的显示顺序
+更改您想要显示的内容及其在编辑器中的显示顺序
 
 ```javascript
 {
-  label: "Body",
-  name: "body",
-  isBody: true,
-  type: "rich-text",
-  toolbarOverride: ["heading","bold", "italic"],
+		type: "rich-text",
+		name: "body",
+		label: "Body",
+		isBody: true,
+		overrides: {
+			toolbar: ["heading", "bold", "italic"],
+			showFloatingToolbar: false,
+		},
 }
 ```
 
-![](/img/docs/reference/blog-post.png)
+![](/docs/rich-text-override.png)
 
 ### 带自定义组件的字段（`mdx`）
 
-可以在富文本块中嵌入自定义组件。
+自定义组件可以嵌入到富文本块中。
 
 ```ts
 {
@@ -144,7 +157,7 @@ Tina将根据提供的配置生成适当的组件。
 }
 ```
 
-![](/img/docs/reference/custom-template.png)
+![](/docs/custom-template.png)
 
 <GraphQLCodeBlock
   query="This#is#some#text
@@ -185,9 +198,9 @@ Tina将根据提供的配置生成适当的组件。
 
 要为富文本字段设置默认值，应指定整个AST树，如下例所示。
 
-> 推荐的方法是填写您的数据，然后`console.log`相关字段的CMS API返回值。\
+> 推荐的方法是填写您的数据，然后 `console.log` CMS API返回的相关字段值。\
 > \
-> 然后将其复制到集合的`defaultItem`属性中。
+> 然后将其复制到集合的 `defaultItem` 属性中。
 
 ```javascript
 {
