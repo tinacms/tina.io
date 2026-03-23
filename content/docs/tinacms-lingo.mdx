@@ -1,7 +1,7 @@
 ---
 title: How we name things in TinaCMS
 alias: lingo
-last_edited: '2026-02-08T22:41:21.654Z'
+last_edited: '2026-03-03T06:50:30.554Z'
 next: content/docs/index.mdx
 previous: content/docs/setup-overview.mdx
 ---
@@ -14,19 +14,19 @@ As TinaCMS continues to evolve, it's important to use clear and consistent langu
 
 The sidebar that lists collections (not to be confused with the TinaCMS Editor).
 
-![](/lingo/tinacms-admin-sidebar.jpeg "Left-hand side Admin Sidebar")
+![](/img/docs/lingo-admin-sidebar.png)
 
 ### Visual Editing
 
 The overall two-pane editing experience, with the **Editor** on the left and a live **Site Preview** on the right.
 
-![](/lingo/visual-editing.jpeg "Visual editing with Editor (left) and Site Preview (right)")
+![](/img/docs/lingo-visual-editing.png)
 
 ### TinaCMS Editor
 
 The left-hand pane where content is edited using structured fields and inputs.
 
-![](/lingo/tinacms-editor.jpeg "Left-hand side TinaCMS Editor")
+![](/img/docs/lingo-tinacms-editor.png)
 
 ### Site Preview
 
@@ -36,46 +36,53 @@ The right-hand pane that displays a live view of the website as content is edite
 
 Elements in the **Site Preview** with a blue outline 🟦 are editable. Clicking any outlined element will automatically focus its corresponding field in the sidebar for immediate editing.
 
-![](/lingo/visual-highlight.jpeg "Visual Element Highlighting of Title")
+![](/img/docs/lingo-editable-regions.png)
 
 ### Fields
 
 [Fields](https://tina.io/docs/reference/fields) define the structure of the content served to your site. These are defined in your config or within a separate `Template`.
 
 ```ts
-const someTemplate: Template = {
-  name: 'someTemplate',
-  label: 'Some Template',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string' }
-   ]}
+fields: [
+  { 
+    name: 'image', 
+    label: 'Image', 
+    type: 'image' 
+  },
+  { 
+    name: 'content', 
+    label: 'Main Content', 
+    type: 'rich-text' 
+  }
+]
 ```
 
-![](</lingo/tinacms-fields.jpeg> "Fields Highlighted in TinaCMS Editor")
+![](/img/docs/lingo-fields.png)
 
 ### Rich Text Embed
 
 Within [rich-text fields](/docs/reference/types/rich-text), we have the option to embed custom components as a template. This allows you to enrich markdown-backed content with React components.
 
-```
-const someCollection: Collection = {
-  name: 'someCollection',
-  label: 'Some Collection',
-  path: 'content/someCollection',
+```ts
+const document: Collection = {
+  name: 'pageContent',
+  label: 'Page',
+  path: 'content/page',
   format: 'mdx',
   fields: [
     {
-    name: 'richBody',
-    label: 'Rich Body',
-    type: 'rich-text',
-    templates: [
-      someTemplate
-      ]}
-     ]
+      name: 'content',
+      label: 'Main Content',
+      type: 'rich-text',
+      templates: [
+        youtubeEmbed
+      ]
     }
+  ]
+}
 ```
 
-![](</lingo/tinacms-rich-text-embed.jpeg> "Rich-text embeds inside a rich-text body")
+![](/img/docs/lingo-rich-text-embed.png)
 
 ### Blocks
 

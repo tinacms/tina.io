@@ -2,7 +2,11 @@
 import dynamic from 'next/dynamic';
 // biome-ignore lint/correctness/noUnusedImports: <TODO>
 import React from 'react';
-import { OfficeMap } from '@/component/blocks-v2/map/map';
+
+const OfficeMap = dynamic(() =>
+  import('@/component/blocks-v2/map/map').then((mod) => mod.OfficeMap),
+);
+
 import type {
   PageBlocks,
   PostConnection,
@@ -28,6 +32,7 @@ import { ColumnsBlock } from './Columns/Columns';
 import { VerticalCardsBlock } from './Events/Events';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
 import { MediaComponent } from './Media/MediaComponent';
+import { ProfessionalServices } from './ProfessionalServices/ProfessionalServices';
 import { RecentPostsBlock } from './RecentPosts/RecentPosts';
 import RecipeBlock from './Recipe';
 import { RoadmapGridBlock } from './RoadMap/RoadmapGrid';
@@ -125,6 +130,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <OfficeMap data={block} />;
     case 'PageBlocksTripleBox':
       return <TripleBox data={block} />;
+    case 'PageBlocksProfessionalServices':
+      return <ProfessionalServices data={block} />;
     default:
       return null;
   }

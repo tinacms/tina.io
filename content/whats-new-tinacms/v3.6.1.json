@@ -1,0 +1,14 @@
+{
+  "versionNumber": "3.6.1",
+  "dateReleased": "2026-03-04T00:12:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.2.6"
+        }
+      ]
+    }
+  ]
+}

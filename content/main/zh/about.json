@@ -1,0 +1,147 @@
+{
+  "seo": {
+    "title": "关于TinaCMS | Git与Markdown内容管理系统",
+    "description": "TinaCMS的背景与产品介绍",
+    "hasCustomSuffix": true
+  },
+  "blocks": [
+    {
+      "spacingPx": 100,
+      "spacingPxMobile": 70,
+      "_template": "spacer"
+    },
+    {
+      "headline": "遇见Tina",
+      "text": " TinaCMS是一个面向开发者、由Git和Markdown驱动的开源内容管理系统。它提供实时预览、即时编辑功能，并为开发者提供无缝集成体验——同时确保内容创作者保持对内容的控制权。无需数据库，无需繁琐操作。",
+      "margin": " lg:pb-24",
+      "spacing": "",
+      "_template": "hero"
+    },
+    {
+      "isVideoOnLeft": false,
+      "body": "###### 使用Tina进行编辑\n\n要了解几种编辑内容的方法，请观看Landon制作的这段视频（3分钟）\n",
+      "mediaColumnItem": [
+        {
+          "embedUrl": "https://www.youtube.com/embed/4B7b6-bfWYI?si=vzakrDeab_QfZzQj",
+          "_template": "youtubeMedia"
+        }
+      ],
+      "_template": "textMediaColumnComponent"
+    },
+    {
+      "highlightColumn": [
+        {
+          "heading": "为创作者而生",
+          "highlights": [
+            {
+              "name": "实时可视化编辑",
+              "icon": "FaClock"
+            },
+            {
+              "name": "拖放式界面",
+              "icon": "FaHandPointer"
+            },
+            {
+              "name": "可共享草稿",
+              "icon": "FaShare"
+            },
+            {
+              "name": "掌控您的内容",
+              "icon": "FaDatabase"
+            },
+            {
+              "name": "最佳版本控制",
+              "icon": "FaGithub"
+            }
+          ]
+        },
+        {
+          "heading": "为开发者所爱",
+          "highlights": [
+            {
+              "name": "GitHub 集成",
+              "icon": "FaGithub"
+            },
+            {
+              "name": "Git 版本控制",
+              "icon": "FaCodeBranch"
+            },
+            {
+              "name": "免数据库式",
+              "icon": "FaFileAlt"
+            },
+            {
+              "name": "本地开发",
+              "icon": "FaDesktop"
+            },
+            {
+              "name": "完全开源",
+              "icon": "FaUnlock"
+            }
+          ]
+        }
+      ],
+      "_template": "highlightsSection"
+    },
+    {
+      "isVideoOnLeft": true,
+      "body": "###### GitHub上最佳的内容管理系统\n\n了解开发者和内容编辑为何钟爱TinaCMS，它不仅提供实时更新和简洁的Markdown体验，还拥有GitHub支持的强大版本控制功能。同时，一起探索Tina与SSW合作带来的精彩未来！\n",
+      "mediaColumnItem": [
+        {
+          "embedUrl": "https://www.youtube.com/embed/SjDsLgpuaJI?si=6bSk_qhwLycGd5ka",
+          "_template": "youtubeMedia"
+        }
+      ],
+      "_template": "textMediaColumnComponent"
+    },
+    {
+      "headline": "🦙TinaCMS的发展历程",
+      "items": [
+        {
+          "headline": "2024年：被SSW收购",
+          "content": "SSW对使用Tina的体验非常满意，以至于他们主动伸出援手，最终 **[SSW收购了TinaCMS](https://adamcogan.com/2024/05/15/ssw-purchases-tinacms/)** ，带来了更多企业资源、支持和专业知识。\n\n**Version 2** 正式发布，包含重大更新，如改进的内容索引和更佳的性能表现。此外，团队在六月推出了TinaGPT聊天机器人，将人工智能驱动的辅助功能整合到平台中。\n"
+        },
+        {
+          "headline": "2023年：在GitHub上获得10,000个收藏⭐",
+          "content": "Tina达成了一些令人兴奋的里程碑：**[现已完全开源](https://tina.io/blog/Tinacms-is-now-fully-open-source)**，多亏了令人惊叹的Tina社区，Tina在Discord支持论坛中拥有1,000名成员，并在GitHub上获得了10,000名关注者🥰\n\nTinaCloud增加了企业级功能，如[单点登录和编辑工作流程。](https://tina.io/blog/Introducing-Editorial-Workflow-Features-for-your-Team)\n"
+        },
+        {
+          "headline": "2022年：改进开发者体验",
+          "content": "**[1.0版本正式发布](https://tina.io/blog/tina-1-0-announcement/)**！团队优化了开发者工作流程，增加了详尽的文档以简化安装和集成过程。\n\nTina还增强了区块编辑器，改进了模式管理，并扩展了插件支持，使其在不同使用场景中更加灵活。\n"
+        },
+        {
+          "headline": "2021年：TinaCloud的推出",
+          "content": "**[TinaCMS推出了TinaCloud](https://tina.io/blog/2021-a-year-in-review/)**，这是一项托管服务，增加了实时协作、身份管理和高级内容工作流等功能，减少了自托管的复杂性。\n\nTinaCloud提供了基于Git的编辑功能，无需用户管理基础设施，使其对小型团队更加友好，同时降低了部署的复杂性。\n"
+        },
+        {
+          "headline": "2020年：超越Gatsby的扩展",
+          "content": "TinaCMS扩展了对Next.js、Hugo和Jekyll等其他静态网站生成器的支持，增强了其覆盖范围和通用性。媒体管理器被引入，同时 **[行内编辑功能进行了全面改进](https://tina.io/blog/inline-editing-project)** 。\n"
+        },
+        {
+          "headline": "2019年：TinaCMS诞生了！",
+          "content": "**[TinaCMS正式发布 🥳](https://tina.io/blog/announcing-tinacms/)**\n\n最初由Forestry.io作为开源项目推出，TinaCMS的开发旨在创建一个更灵活、支持行内编辑的内容管理系统体验，同时由Git提供支持。\n\n它的目标是让非技术用户能够更轻松地在Gatsby等静态网站生成器中编辑网站，使他们可以直接在前端进行编辑。\n"
+        },
+        {
+          "headline": "2016年：Forestry.io创立",
+          "status": "",
+          "content": "这是一个 **[革命性的无头内容管理系统](https://tina.io/forestry/)** ，它是最早专注于JAMstack的基于Git的CMS平台之一。其直接与GitHub等代码库集成的能力为管理基于markdown的内容设立了新标准。\n\n这个CMS系统让内容团队能够与开发者无缝协作，弥合了技术和非技术用户之间的鸿沟。\n"
+        }
+      ],
+      "options": {
+        "paddingTop": false,
+        "paddingBottom": true
+      },
+      "_template": "roadmapGrid"
+    },
+    {
+      "backdrop": "/img/brand-assets/grass.svg",
+      "leftFig": "/img/brand-assets/creator.svg",
+      "rightFig": "/img/brand-assets/developer.svg",
+      "leftScreen": "/img/brand-assets/visual-editor.svg",
+      "rightScreen": "/img/brand-assets/npx-command.svg",
+      "centerFig": "/img/brand-assets/street-lamp.svg",
+      "llama": "/img/brand-assets/llama.svg",
+      "_template": "tinaBanner"
+    }
+  ]
+}

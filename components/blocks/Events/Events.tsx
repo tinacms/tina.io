@@ -129,9 +129,10 @@ export const Card = ({ cardItem, onHover }) => {
         </p>
         <Link
           href={cardItem.link}
-          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600"
+          className="flex gap-2 pt-2 items-center text-black hover:text-blue-600 uppercase"
         >
-          READ MORE
+          Read more
+          <span className="sr-only">about {cardItem.headline}</span>
           <FaArrowRightLong className="text-black hover:text-blue-600 pr-1" />
         </Link>
       </div>
@@ -216,7 +217,7 @@ const EventsBlock = () => {
         {eventsData.title}
       </h2>
       <div className="max-w-[62ch] mx-auto">
-        <p className="text-center text-neutral-text-secondary font-light leading-relaxed text-lg">
+        <p className="text-center text-neutral-text-secondary font-normal leading-relaxed text-lg">
           {eventsData.byLine}
         </p>
       </div>

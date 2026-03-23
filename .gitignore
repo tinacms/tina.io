@@ -2,6 +2,7 @@
 dist
 .next
 out
+tsconfig.tsbuildinfo
 
 # dependencies
 .cursorrules
@@ -54,6 +55,10 @@ scripts/content-auditor/content-auditor-prompt.txt
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Visual comparison
+/tests/visual-compare/screenshots/
+/tests/visual-compare/report.html
 
 # Vercel
 .vercel

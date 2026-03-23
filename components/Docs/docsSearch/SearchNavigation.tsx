@@ -65,7 +65,7 @@ export const SearchResultsOverflowBody = ({
             <h2 className="text-md font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-xs font-light line-clamp-2 break-words mt-1">
+            <p className="text-gray-600 group-hover:text-gray-800 text-xs font-normal line-clamp-2 break-words mt-1">
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>
