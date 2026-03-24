@@ -23,10 +23,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
 
   return (
-    <Container
-      size="medium"
-      className="min-h-[50vh]  grid grid-cols-1 md:grid-cols-2 gap-4"
-    >
+    <Container size="medium" className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
         className={cn(
           'flex @container items-center flex-col gap-8  border-red-500 py-10',

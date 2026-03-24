@@ -103,7 +103,7 @@ function FeatureCardItem(data: {
         >
           {featureHeadline}
         </h4>
-        <p className="text-neutral-text-secondary font-light leading-relaxed text-lg max-w-[62ch] py-4">
+        <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
         <div className="flex flex-col sm:flex-row gap-2 gap-y-2">

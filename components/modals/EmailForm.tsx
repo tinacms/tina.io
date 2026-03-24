@@ -1,13 +1,15 @@
 'use client';
 import Image from 'next/image';
 import type React from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { IoIosWarning } from 'react-icons/io';
 import { TiTick } from 'react-icons/ti';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import BettyWithLlama from '../../public/img/BettyWithLlama.png';
 import { addToMailchimp } from '../../utils';
-import { Button, Input, Textarea } from '../ui';
+import { Button } from '../ui';
 
 interface EmailFormProps {
   isFooter: boolean;
@@ -20,14 +22,16 @@ interface FormData {
   notes?: string;
 }
 
+const initialFormData: FormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  notes: '',
+};
+
 export const EmailForm = (props: EmailFormProps) => {
-  const defaultValues = useRef<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    notes: '',
-  });
-  const [formData, setFormData] = useState<FormData>(defaultValues.current);
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -47,7 +51,7 @@ export const EmailForm = (props: EmailFormProps) => {
           text: "You've been added to the llama list.",
           type: 'success',
         });
-        setFormData(defaultValues.current);
+        setFormData(initialFormData);
       } else if (result.message.includes('400')) {
         setMessage({ text: "You're already in our herd!", type: 'warning' });
       } else {
@@ -121,7 +125,7 @@ export const EmailForm = (props: EmailFormProps) => {
               <span>{message.text}</span>
             </p>
           )}
-          <div className="flex flex-col gap-1.5 md:flex-row md:gap-2 w-full md:mb-1">
+          <div className="flex flex-col gap-4 md:flex-row w-full md:mb-1">
             <Input
               placeholder="First name"
               name="firstName"
@@ -143,12 +147,13 @@ export const EmailForm = (props: EmailFormProps) => {
           </div>
           <div className="flex flex-col gap-1.5 mt-2 mb-1 w-full">
             <Input
-              placeholder="Email"
+              placeholder="Email *"
               name="email"
               type="email"
               value={formData.email}
               onChange={handleInputChange}
               disabled={isProcessing}
+              required
               className="w-full"
             />
           </div>
@@ -160,14 +165,14 @@ export const EmailForm = (props: EmailFormProps) => {
               value={formData.notes}
               onChange={handleInputChange}
               disabled={isProcessing}
-              className="w-full"
+              className="w-full resize-y"
             />
           </div>
           <div className="w-full flex justify-end mt-6">
             <Button
               type="submit"
               color="orange"
-              disabled={isProcessing}
+              disabled={isProcessing || !isValidEmail}
               className="px-6 py-2.5"
             >
               {isProcessing ? 'Processing...' : 'Subscribe'}

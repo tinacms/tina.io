@@ -120,6 +120,11 @@
         {
           "label": "Examples",
           "href": "/examples"
+        },
+        {
+          "label": "Contact Us",
+          "href": "",
+          "modal": "ContactForm"
         }
       ],
       "_template": "groupOfStringItems"
