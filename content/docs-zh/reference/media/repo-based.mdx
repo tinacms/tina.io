@@ -1,6 +1,5 @@
 ---
-cmsUsageWarning: >-
-  https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts
+cmsUsageWarning: 'https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/schema-tools/src/types/index.ts'
 title: 基于仓库的媒体
 alias: repo-based-media
 last_edited: '2025-09-18T23:25:44.757Z'
@@ -8,19 +7,19 @@ next: ''
 previous: ''
 ---
 
-TinaCMS 有一个**内置的基于仓库（git）的媒体存储选项**。或者，您可以将您的CMS连接到外部媒体存储提供商。
+TinaCMS 提供了**内置的基于仓库（git）的媒体存储选项**。或者，你可以将你的CMS连接到外部媒体存储提供商。
 
-> 基于仓库的媒体将您的资产与内容放在一起，这意味着您可以**跟踪更改并回滚代码和媒体的版本**。
+> 基于仓库的媒体将你的资产与内容放在一起，这意味着你可以**跟踪代码和媒体的更改并回滚版本**。
 
-这还有其他好处，如减少依赖性、使用外部API、本地开发和预览环境之间的同步。
+这还有其他好处，比如减少对外部API的依赖，并保持本地开发和预览环境的同步。
 
 <Youtube embedSrc="https://www.youtube.com/embed/x0ACBQeNcts?start=388&end=469" />
 
-> 看不到您的媒体？要在媒体管理器中查看您的媒体，您需要在媒体管理器中按下“同步媒体”按钮。这将从GitHub中提取所有媒体并将其添加到TinaCMS中。
+> 看不到你的媒体？对于新创建的项目，初始媒体同步会自动触发，可能仍在进行中。如果你的媒体仍未出现，你可以从 TinaCloud 项目仪表板的**媒体**选项卡中手动触发同步。
 
 ## 配置
 
-要在您的项目中配置基于仓库的媒体，请在`tina/config.{ts,js}`中的架构定义中添加以下内容
+要在你的项目中配置基于仓库的媒体，请在 `tina/config.{ts,js}` 中的架构定义中添加以下内容：
 
 ```javascript
 //tina/config.{ts,js}
@@ -31,7 +30,7 @@ export default defineConfig({
     tina: {
       publicFolder: 'public',
       mediaRoot: 'uploads',
-      static: false, //默认是false
+      static: false, //默认是 false
     },
   },
 });
@@ -39,54 +38,54 @@ export default defineConfig({
 
 ### 资产存储路径
 
-将`publicFolder`设置为您网站“public”文件夹的路径。此路径是相对于您项目的根目录的。
+将 `publicFolder` 设置为你网站的“public”文件夹的路径。此路径是相对于项目根目录的。
 
-> 对于任何NextJS网站（例如我们的[tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)），此值应为`"public"`。
+> 对于任何 Next.js 网站（例如我们的 [tina-cloud-starter](https://github.com/tinacms/tina-cloud-starter/tree/main/public)），此值应为 `"public"`。
 
 ### 媒体存储路径
 
-媒体文件夹的路径，相对于`publicFolder`值。
+媒体文件夹的路径，相对于 `publicFolder` 的值。
 
-如果您希望将媒体上传到`publicFolder`的根目录，请将其设置为`""`。
+如果你希望你的媒体上传到 `publicFolder` 的根目录，请将其设置为 `""`。
 
-> 此目录中的任何内容都将与TinaCloud的媒体服务器同步，图像将公开可访问。
+> 此目录中的任何内容都将与 TinaCloud 的媒体服务器同步，图像将公开可访问。
 
 ### 媒体权限
 
-`static`属性决定了媒体文件是否可以通过编辑器直接上传、编辑或删除。
+`static` 属性决定了媒体文件是否可以通过编辑器直接上传、编辑或删除。
 
-* **`static: true`** 编辑者不能上传/删除媒体（静态资产）
+* **`static: true`**：编辑者不能上传/删除媒体（静态资产）
 * **`static: false`**（默认）：编辑者可以上传/删除媒体（动态资产）。
 
 ## 支持的媒体类型
 
-默认支持以下文件类型
+默认支持以下文件类型：
 
-| 格式                          | MIME类型                                                                  | 示例                   |
+| 格式                          | MIME 类型                                                                 | 示例                    |
 | ----------------------------- | ------------------------------------------------------------------------- | ---------------------- |
 | Adobe InDesign                | `application/x-indesign`                                                  | .indd                  |
 | Apple HTTP Live Streaming     | `application/vnd.apple.mpegurl`                                           | .m3u8                  |
 | 二进制文件                    | `application/octet-stream`                                                | .bin                   |
 | Filmbox                       | `model/fbx`                                                               | .fbx                   |
-| GL传输格式（JSON）            | `model/gltf+json`                                                         | .gltf                  |
-| 图像                          | `image/*`                                                                 | .jpg, .png, .gif等     |
+| GL 传输格式 (JSON)            | `model/gltf+json`                                                         | .gltf                  |
+| 图像                          | `image/*`                                                                 | .jpg, .png, .gif 等    |
 | JSON                          | `application/json`                                                        | .json                  |
 | JSON-LD                       | `application/ld+json`                                                     | .jsonld                |
 | 材料交换格式                  | `application/mxf`                                                         | .mxf                   |
-| Microsoft Excel（旧版）       | `application/vnd.ms-excel`                                                | .xls                   |
-| Microsoft Excel（OpenXML）    | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`       | .xlsx                  |
-| Microsoft Word（旧版）        | `application/msword`                                                      | .doc                   |
-| Microsoft Word（OpenXML）     | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | .docx                  |
+| Microsoft Excel (旧版)        | `application/vnd.ms-excel`                                                | .xls                   |
+| Microsoft Excel (OpenXML)     | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`       | .xlsx                  |
+| Microsoft Word (旧版)         | `application/msword`                                                      | .doc                   |
+| Microsoft Word (OpenXML)      | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | .docx                  |
 | MPEG-DASH                     | `application/dash+xml`                                                    | .mpd                   |
 | PDF                           | `application/pdf`                                                         | .pdf                   |
 | 多边形文件格式                | `model/ply`                                                               | .ply                   |
-| PostScript                    | `application/postscript`                                                  | .ps, .eps等            |
-| 文本文件                      | `text/*`                                                                  | .txt, .md等            |
-| U3D网格                       | `model/u3d+mesh`                                                          | .u3d                   |
-| USDZ压缩包                    | `model/vnd.usdz+zip`                                                      | .usdz                  |
-| 视频                          | `video/*`                                                                 | .mp4, .avi, .mkv等     |
+| PostScript                    | `application/postscript`                                                  | .ps, .eps 等           |
+| 文本文件                      | `text/*`                                                                  | .txt, .md 等           |
+| U3D 网格                      | `model/u3d+mesh`                                                          | .u3d                   |
+| USDZ 压缩包                   | `model/vnd.usdz+zip`                                                      | .usdz                  |
+| 视频                          | `video/*`                                                                 | .mp4, .avi, .mkv 等    |
 
-如果您想指定自己的允许文件类型，请在**`media`**属性中添加以下内容
+如果你想指定自己的允许文件类型，请在 **`media`** 属性中添加以下内容：
 
 ```javascript
 //tina/config.{ts,js}
@@ -102,9 +101,9 @@ export default defineConfig({
 });
 ```
 
-### NextJS图像
+### NextJS 图像
 
-如果您使用NextJS图像，您需要在`next.config.js`文件中添加如下内容以允许访问外部图像。
+如果你正在使用 Next.js 图像，你需要在 `next.config.js` 文件中添加如下内容以允许访问外部图像。
 
 ```javascript
 module.exports = {
@@ -120,39 +119,35 @@ module.exports = {
 };
 ```
 
-在[这里](https://nextjs.org/docs/app/api-reference/components/image#remotepatterns)了解更多关于远程模式的信息。
+了解更多关于 [Next.js 远程模式](https://nextjs.org/docs/app/api-reference/components/image#remotepatterns)。
 
 ### 最大文件大小
 
-上传文件到TinaCloud时，允许的最大文件大小为100 MiB。
+上传文件到 TinaCloud 时，最大允许文件大小为 100 MiB。
 
 ## 这如何与分支协作？
 
-基于仓库的媒体设计用于单一分支工作流。如果您的项目使用[多个分支](/docs/tinacloud/branching/)或[编辑工作流](/docs/drafts/editorial-workflow/)，需要注意一些已知的限制。
+基于仓库的媒体设计用于单一分支工作流。如果你的项目正在使用[多个分支](/docs/tinacloud/branching/)或[编辑工作流](/docs/drafts/editorial-workflow/)，需要注意一些已知的限制。
 
-* 图像一旦上传就不能更改，任何后续对资产的更改都不会反映。
-* 如果您只有一个启用媒体的分支，媒体存储将从该分支获取/上传图像。
-* 如果您有多个启用媒体的分支，则所有媒体将从/上传到存储库的默认分支。
+* 图像不能被更改。一旦上传，任何后续对资产的更改都不会反映出来。
+* 如果你只有一个启用媒体的分支，媒体存储将从该分支获取/上传图像。
+* 如果你有多个启用媒体的分支，那么所有媒体将从/上传到仓库的默认分支。
 * 媒体文件不能通过媒体管理器重命名。请参阅下面的[重命名媒体文件](#renaming-media-files)以获取解决方法。
 
-如果您在非默认分支上配置Tina（且Tina配置尚未合并到您的默认分支），您可能会在TinaCloud媒体设置中看到此消息：
-
-![](/img/docs/reference/media-not-configured_lnr5lw.png)
-
-为了解决这个问题，您可能需要在将Tina合并到默认分支后启用媒体。
+如果你在非默认分支上配置 Tina（且 Tina 配置尚未合并到默认分支），项目创建时的自动媒体同步可能无法找到你的媒体配置。在这种情况下，TinaCloud 项目仪表板中的**媒体**选项卡将显示媒体尚未同步。一旦你的 Tina 配置合并到默认分支，你可以从该选项卡手动触发同步。
 
 ### 重命名媒体文件
 
-基于仓库的媒体不支持通过媒体管理器重命名文件。因为媒体只跟踪单一分支，所以没有可用于媒体操作（如重命名）的分支功能。
+基于仓库的媒体不支持通过媒体管理器重命名文件。因为媒体只跟踪一个分支，所以没有可用于媒体操作（如重命名）的分支功能。
 
-如果跟踪的分支启用了分支保护规则，尝试上传文件的重命名版本将保存文件到媒体存储（S3），但更改将**不会**提交到受保护的分支。这导致新文件被存储但未在您的存储库中反映。
+如果被跟踪的分支启用了分支保护规则，尝试上传文件的重命名版本将保存文件到媒体存储（S3），但更改将**不会**提交到受保护的分支。这导致新文件被存储但未在你的仓库中反映。
 
-**解决方法：** 要重命名媒体文件，请在GitHub中直接执行以下步骤：
+**解决方法：** 要重命名媒体文件，请在 GitHub 中直接执行以下步骤：
 
-1. 在GitHub上导航到您的存储库，并在您的媒体目录中找到媒体文件（例如`public/uploads/`）
-2. 直接在GitHub中删除旧文件
-3. 等待删除同步回TinaCloud
-4. 直接在GitHub中添加新名称的文件
-5. 等待新文件同步回TinaCloud
+1. 在 GitHub 上导航到你的仓库，并在媒体目录中找到媒体文件（例如 `public/uploads/`）
+2. 直接在 GitHub 中删除旧文件
+3. 等待删除同步回 TinaCloud
+4. 直接在 GitHub 中添加新名称的文件
+5. 等待新文件同步回 TinaCloud
 
-> 这个解决方法是必要的，因为直接在GitHub中进行的更改将同步回TinaCloud，绕过单一分支媒体限制。
+> 这个解决方法是必要的，因为直接在 GitHub 中进行的更改将同步回 TinaCloud，绕过单一分支媒体限制。
