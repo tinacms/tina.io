@@ -16,7 +16,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
     {
       name: "type",
       type: "string",
-      description: '将此设置为 `"rich-text"` 以使用富文本字段。\n',
+      description: '设置为 `"rich-text"` 以使用富文本字段。\n',
       required: true
     },
     {
@@ -78,14 +78,17 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 ## 换行
 
-要在TinaCMS富文本中插入空行换行：
+要在TinaCMS富文本中插入可见的换行（例如，在引用中），请在需要换行的地方按 **Shift + Enter**（软回车）。
 
-* 按 Shift + Enter 创建换行
-* 如果换行后没有跟随文本行，它将在最终输出中呈现为 \。\
-  这可以通过删除并重新创建该行来修复\
-  确保换行前有文本内容以避免此问题
+保存后，检查Markdown。保留的换行显示为独立的 `\` 行：
 
-> 此行为不是标准Markdown规范的一部分，而是TinaCMS富文本实现的特定行为。
+```markdown
+> 引用文本…
+> \
+> 作者姓名
+```
+
+> 此行为不是标准Markdown规范的一部分，而是TinaCMS富文本实现的特定功能。
 
 ## 表格
 
