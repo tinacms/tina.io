@@ -58,6 +58,12 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
   </>}
 />
 
+<WarningCallout
+  body={<>
+    `mark` is a reserved component name used internally for the **highlight** feature. If you create a custom MDX component named mark, it will conflict with the highlight functionality and cause unexpected behavior in the editor.
+  </>}
+/>
+
 property controls a series of overrides and customisations to
 the rich-text editor.
 
@@ -80,7 +86,7 @@ the rich-text editor.
 
 ## Line Breaks
 
-To insert a visible line break in TinaCMS Rich Text (for example, inside a quote), press **Shift + Enter **(soft return) where you want the break.
+To insert a visible line break in TinaCMS Rich Text (for example, inside a quote), press \*\*Shift + Enter \*\*(soft return) where you want the break.
 
 After saving, check the Markdown. A preserved line break shows up as a standalone `\` line:
 
