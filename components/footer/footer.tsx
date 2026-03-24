@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import '../../styles/tailwind.css';
 import { TinaIcon } from '../logo';
+import { ContactForm } from '../modals/ContactForm';
 import { DynamicLink } from '../ui';
 import { footerLinksZh, footerNavZh } from './constants';
 import { SocialIcon } from './social-icon';
@@ -104,6 +106,7 @@ FooterLink.displayName = 'FooterLink';
 export function Footer({ footerData }: { footerData: FooterData }) {
   const pathName = usePathname();
   const isZhPath = pathName?.includes('/zh') || false;
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const { socialLinks, currentFooterNav, currentFooterLinks, modalButton } =
     useMemo(() => {
@@ -144,7 +147,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
               <TinaIcon color="white" />
             </div>
             <div className="flex-1 grid grid-cols-2 py-2 lg:py-0 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
-              {currentFooterNav.map((item, _index) => {
+              {currentFooterNav.map((item, columnIndex) => {
                 const { header, footerItem } = item;
                 return (
                   <div
@@ -197,6 +200,13 @@ export function Footer({ footerData }: { footerData: FooterData }) {
                   />
                 );
               })}
+              <button
+                type="button"
+                onClick={() => setIsContactOpen(true)}
+                className="transition ease-out duration-150 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] hover:opacity-100 opacity-70 whitespace-nowrap"
+              >
+                Contact Us
+              </button>
             </div>
             <div>
               <p>
@@ -220,6 +230,12 @@ export function Footer({ footerData }: { footerData: FooterData }) {
           </div>
         </div>
       </div>
+
+      <Dialog open={isContactOpen} onOpenChange={setIsContactOpen}>
+        <DialogContent className="!max-w-2xl w-[90vw] !max-h-[90vh] !p-0 !duration-0">
+          <ContactForm />
+        </DialogContent>
+      </Dialog>
 
       {/* SSW Banner */}
       <div

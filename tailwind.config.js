@@ -258,6 +258,12 @@ module.exports = {
         panel:
           '6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
+        input:
+          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12)',
+        'input-hover':
+          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.2), 0 2px 3px rgba(0, 0, 0, 0.12)',
+        'input-focus':
+          'inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.7), 0 2px 3px rgba(0, 0, 0, 0.12)',
       },
       dropShadow: {
         sm: '0 1px 1px rgb(20 70 150 / 0.05)',
