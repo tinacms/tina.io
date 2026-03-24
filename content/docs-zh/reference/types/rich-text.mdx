@@ -28,7 +28,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
     {
       name: "templates",
       description:
-        'MDX支持。在编辑器中使用"embed"选项注入自定义React组件。\n',
+        'MDX支持。编辑器中的"embed"选项用于注入自定义React组件。\n',
       type: "Template[]"
     },
     {
@@ -78,7 +78,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 ## 换行
 
-要在TinaCMS富文本中插入可见的换行（例如，在引用中），请在需要换行的地方按 **Shift + Enter**（软回车）。
+要在TinaCMS富文本中插入可见的换行（例如，在引用内），请在需要换行的地方按 **Shift + Enter**（软回车）。
 
 保存后，检查Markdown。保留的换行显示为独立的 `\` 行：
 
@@ -99,6 +99,22 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 > 不支持多行单元格，因为内容被序列化为Markdown。表格仅支持单行行和单元格。如果需要表示多行内容，请使用列表或单独的字段。
 
 ***
+
+### 列对齐
+
+> 可视化编辑器当前不支持通过工具栏设置列对齐。如果需要在表格列中对齐内容，可以切换到原始Markdown模式并编辑表头分隔行中的对齐语法。
+
+示例 — 居中第二和第三列：
+
+```
+| 对齐方式   |  分隔符  |    示例 |
+| :---        |   :---:     |       ---: |
+| 左对齐        |   `:---`    |       左对齐 |
+| 居中      |   `:---:`   |     居中 |
+| 右对齐       |   `---:`    |      右对齐 |
+```
+
+要了解更多关于对齐语法的信息，请参考[Markdown扩展语法](https://www.markdownguide.org/extended-syntax/#alignment)
 
 ## 示例
 
