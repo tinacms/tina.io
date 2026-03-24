@@ -101,9 +101,9 @@ const templates = [
 });
 
 export const pagesCollection = {
-  label: 'Pages',
+  label: 'Main',
   name: 'page',
-  path: 'content/blocksPages',
+  path: 'content/main',
   format: 'json',
   ui: {
     router: ({ document, collection }) => {

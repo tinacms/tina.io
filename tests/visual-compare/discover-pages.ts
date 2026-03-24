@@ -60,10 +60,10 @@ export function discoverPages(): string[] {
     '/zh/docs',
   );
 
-  // ── BlocksPages (EN) ────────────────────────────────────────────
-  // content/blocksPages/*.json → /{filename}
+  // ── Main (EN) ────────────────────────────────────────────
+  // content/main/*.json → /{filename}
   // home.json → / (already in static routes)
-  for (const file of listFiles('content/blocksPages', '.json')) {
+  for (const file of listFiles('content/main', '.json')) {
     const slug = path.basename(file, '.json');
     if (slug === 'home') {
       continue;
@@ -71,9 +71,9 @@ export function discoverPages(): string[] {
     pages.push(`/${slug}`);
   }
 
-  // ── BlocksPages (ZH) ────────────────────────────────────────────
-  // content/blocksPages/zh/*.json → /zh/{slug}
-  for (const file of listFiles('content/blocksPages/zh', '.json')) {
+  // ── Main (ZH) ────────────────────────────────────────────
+  // content/main/zh/*.json → /zh/{slug}
+  for (const file of listFiles('content/main/zh', '.json')) {
     const slug = path.basename(file, '.json');
     if (slug === 'home') {
       continue;
