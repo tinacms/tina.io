@@ -5,7 +5,7 @@ next: ''
 previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 ---
 
-富文本字段使用WYSIWYG界面存储**Markdown内容**，支持文本格式化、链接、媒体和自定义元素（如果与mdx一起使用）。
+富文本字段通过WYSIWYG界面存储**Markdown内容**，支持文本格式化、链接、媒体和自定义元素（如果与mdx一起使用）。
 
 ## 类型定义
 
@@ -21,7 +21,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
     },
     {
       name: "name",
-      description: "用于内部使用的字段名称。\n",
+      description: "字段的内部使用名称。\n",
       type: "string",
       required: true
     },
@@ -57,6 +57,12 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
   </>}
 />
 
+<WarningCallout
+  body={<>
+    `mark` 是一个保留的组件名称，用于内部的**高亮**功能。如果您创建一个名为mark的自定义MDX组件，它将与高亮功能冲突，并在编辑器中导致意外行为。
+  </>}
+/>
+
 属性控制对富文本编辑器的一系列覆盖和自定义。
 
 <apiReference
@@ -78,7 +84,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 ## 换行
 
-要在TinaCMS富文本中插入可见的换行（例如，在引用内），请在需要换行的地方按 **Shift + Enter**（软回车）。
+要在TinaCMS富文本中插入可见的换行（例如，在引用内），请在您希望换行的地方按下 **Shift + Enter**（软回车）。
 
 保存后，检查Markdown。保留的换行显示为独立的 `\` 行：
 
@@ -102,7 +108,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 ### 列对齐
 
-> 可视化编辑器当前不支持通过工具栏设置列对齐。如果需要在表格列中对齐内容，可以切换到原始Markdown模式并编辑表头分隔行中的对齐语法。
+> 可视化编辑器目前不支持通过工具栏设置列对齐。如果需要在表格列中对齐内容，可以切换到原始Markdown模式并编辑表头分隔行中的对齐语法。
 
 示例 — 居中第二和第三列：
 
@@ -133,9 +139,9 @@ Tina将根据提供的配置生成适当的组件。
 
 ![](/docs/rich-text-simple.png)
 
-### 带工具栏覆盖的简单字段
+### 带有工具栏覆盖的简单字段
 
-更改您想要显示的内容及其在编辑器中的显示顺序
+更改您想要显示的内容以及在编辑器中显示的顺序
 
 ```javascript
 {
@@ -152,7 +158,7 @@ Tina将根据提供的配置生成适当的组件。
 
 ![](/docs/rich-text-override.png)
 
-### 带自定义组件的字段（`mdx`）
+### 带有自定义组件的字段 (`mdx`)
 
 自定义组件可以嵌入到富文本块中。
 
@@ -213,11 +219,11 @@ Tina将根据提供的配置生成适当的组件。
   customResponseName="Parsed AST"
 />
 
-### 带默认富文本值的集合
+### 带有默认富文本值的集合
 
 要为富文本字段设置默认值，应指定整个AST树，如下例所示。
 
-> 推荐的方法是填写您的数据，然后 `console.log` CMS API返回的相关字段值。\
+> 推荐的方法是填写您的数据，然后 `console.log` CMS API返回的相关字段值。 \
 > \
 > 然后将其复制到集合的 `defaultItem` 属性中。
 
