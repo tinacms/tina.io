@@ -399,23 +399,22 @@
         "datePosted": "2026-01-16T13:00:00.000Z",
         "authorName": "Jake Bayliss",
         "authorUrl": "https://www.ssw.com.au/people/jake-bayliss/",
-        "embedUrl": "",
         "imageUrl": "/jake-ssw-rules-video.png"
       },
       "youtubeVideos": [
         {
-          "embedUrl": "https://www.youtube.com/embed/cChyJFvVo4A?si=0QrmfYk2Sn2TOHxT",
-          "dateReleased": "2025-09-09T00:00:00.000Z",
-          "title": "Top 5 TinaCMS Editor Upgrades You Need to Know",
-          "authorName": "Ben Neoh",
-          "authorUrl": "https://www.ssw.com.au/people/ben-neoh/"
+          "embedUrl": "https://www.youtube.com/embed/TE72AZQODaw?si=IlIW0bxlj7KvOgIu",
+          "dateReleased": "2026-03-19T23:00:00.000Z",
+          "title": "Vibe Coding TinaCMS Custom Components",
+          "authorName": "Thomas Sepanosian",
+          "authorUrl": "https://www.ssw.com.au/people/thomas-sepanosian/"
         },
         {
-          "embedUrl": "https://www.youtube.com/embed/CyWH5wPJUC8?si=LrKzd0KMUpoZPMCL",
-          "dateReleased": "2025-08-21T00:00:00.000Z",
-          "title": "Case Study - SSW migrating from MD to MDX for SSW Rules",
-          "authorName": "Chloe Lin",
-          "authorUrl": "https://www.ssw.com.au/people/chloe-lin/"
+          "embedUrl": "https://www.youtube.com/embed/TatnNqKPKIQ?si=KIn5BCJE5ZjbkaCM",
+          "dateReleased": "2025-02-19T23:00:00.000Z",
+          "title": "Why TinaCloud Works So Well with GitHub | TinaCMS Data Layer ",
+          "authorName": "Eli Kent",
+          "authorUrl": "https://www.ssw.com.au/people/eli-kent/"
         }
       ],
       "_template": "recentPosts"
