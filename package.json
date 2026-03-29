@@ -47,7 +47,7 @@
     "@sendgrid/mail": "^8.1.6",
     "@styled-jsx/plugin-sass": "^4.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tinacms/app": "0.0.0-8356828-20260327013652",
+    "@tinacms/app": "0.0.0-2657be8-20260329215133",
     "@tinacms/auth": "1.1.1",
     "@tinacms/schema-tools": "^2.1.0",
     "@tinacms/search": "^1.1.7",
@@ -113,7 +113,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
     "three": "^0.165.0",
-    "tinacms": "0.0.0-8356828-20260327013652",
+    "tinacms": "0.0.0-2657be8-20260329215133",
     "webpack": "^5.99.9"
   },
   "devDependencies": {
@@ -122,7 +122,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
-    "@tinacms/cli": "0.0.0-8356828-20260327013652",
+    "@tinacms/cli": "0.0.0-2657be8-20260329215133",
     "@types/cookie": "^0.6.0",
     "@types/jest": "^25.2.3",
     "@types/negotiator": "^0.6.4",
