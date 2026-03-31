@@ -25,8 +25,7 @@ export const featuresTemplate: Template = {
         {
           name: 'text',
           label: 'Text',
-          ui: { component: 'textarea' },
-          type: 'string',
+          type: 'rich-text',
         },
         {
           label: 'Buttons',

@@ -274,7 +274,7 @@ export default function ScrollBasedShowcase(data: {
           <img
             ref={activeImg}
             src={headings[0]?.src || ''}
-            alt=""
+            alt="Feature showcase illustration"
             className="absolute right-0 w-100 transition-all duration-1000 ease-in-out rounded-lg"
             style={{
               opacity: activeIds.length ? 1 : 0,

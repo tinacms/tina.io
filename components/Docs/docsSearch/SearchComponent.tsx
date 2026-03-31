@@ -26,9 +26,9 @@ export const SearchHeader = ({ query }: { query: string }) => {
   return (
     <div className="flex justify-between relative pt-4">
       <div className="flex items-center gap-3">
-        <div className="font-ibm-plex text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
+        <h1 className="font-ibm-plex text-3xl bg-linear-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
           Results for "{displayQuery}"
-        </div>
+        </h1>
         {isExactSearch && (
           <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
             Exact Match
@@ -50,7 +50,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
               {filterOptions.map((option) => (
                 <div
                   key={option}
-                  className="py-2 text-left cursor-pointer font-light"
+                  className="py-2 text-left cursor-pointer font-normal"
                   onClick={() => {
                     setIsFilterOpen(false);
                   }}
@@ -75,7 +75,7 @@ export const SearchHeader = ({ query }: { query: string }) => {
               {sortOptions.map((option) => (
                 <div
                   key={option}
-                  className="py-2 cursor-pointer font-light text-left"
+                  className="py-2 cursor-pointer font-normal text-left"
                   onClick={() => {
                     
                     setIsSortOpen(false);
@@ -198,7 +198,7 @@ export const SearchBody = ({
             <h2 className="text-xl font-inter font-semibold bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:via-orange-400 group-hover:to-orange-600 break-words">
               {highlightText(item._highlightResult.title.value)}
             </h2>
-            <p className="text-gray-600 group-hover:text-gray-800 text-sm font-light line-clamp-3 break-words">
+            <p className="text-gray-600 group-hover:text-gray-800 text-sm font-normal line-clamp-3 break-words">
               {highlightText(item._highlightResult.excerpt?.value || '')}
             </p>
           </Link>

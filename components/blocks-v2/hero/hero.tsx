@@ -23,10 +23,7 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
     recentNewsBanner && (recentNewsBanner.title || recentNewsBanner.link);
 
   return (
-    <Container
-      size="medium"
-      className="min-h-[50vh]  grid grid-cols-1 md:grid-cols-2 gap-4"
-    >
+    <Container size="medium" className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
         className={cn(
           'flex @container items-center flex-col gap-8  border-red-500 py-10',
@@ -38,12 +35,12 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             <RecentNewsBanner recentNewsBanner={recentNewsBanner} />
           )}
           {title && (
-            <h2
+            <h1
               className={`${H1_HEADINGS_SIZE} max-w-md md:max-w-none font-ibm-plex`}
               data-tina-field={tinaField(data.data, 'title')}
             >
               {curlyBracketFormatter(title)}
-            </h2>
+            </h1>
           )}
           {subtext && (
             <p

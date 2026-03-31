@@ -1,5 +1,3 @@
-import moment from 'moment-timezone';
-import 'react-datetime/css/react-datetime.css';
 // biome-ignore lint/correctness/noUnusedImports: React is required
 import React from 'react';
 import { LocationField } from 'tina/customTinaFormFields/locationField';
@@ -9,8 +7,22 @@ import { seoInformation } from './sharedFields/seoInformation';
 
 type offset = { value: any; label: string };
 
-//Basically the gist of most of this processing is to create the list of possible GMT offsets...
-//then associate relevant cities to them via the moment-timezone library.
+const getUtcOffsetHours = (ianaName: string): number => {
+  const formatted = new Date().toLocaleString('en-US', {
+    timeZone: ianaName,
+    timeZoneName: 'shortOffset',
+  });
+  const match = formatted.match(/GMT([+-]?\d+(?::(\d+))?)?$/);
+  if (!match) {
+    return 0;
+  }
+  if (!match[1]) {
+    return 0;
+  } // "GMT" with no offset = UTC
+  const hours = parseInt(match[1], 10);
+  const minutes = match[2] ? parseInt(match[2], 10) : 0;
+  return hours + (hours < 0 ? -minutes : minutes) / 60;
+};
 
 const dateFormat = Intl.DateTimeFormat('en-US', {
   year: 'numeric',
@@ -36,7 +48,7 @@ const addCitiesAndPrefix = (offsets: number[], _prefix = '+'): offset[] => {
   const cityTimezoneMap = new Map();
   //Get the timezones of major cities
   majorTimezones.forEach((cityOffset) => {
-    const zone = moment.tz(cityOffset.ianaName).utcOffset() / 60;
+    const zone = getUtcOffsetHours(cityOffset.ianaName);
     cityTimezoneMap.set(
       zone,
       cityTimezoneMap.get(zone)

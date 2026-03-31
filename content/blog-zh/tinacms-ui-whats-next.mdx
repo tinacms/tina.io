@@ -12,7 +12,7 @@ next: content/blog-zh/designing-an-extensible-styling-system.mdx
 
 本周，我们在 TinaCMS 网站上部署了[可视化开放创作](https://tinacms.org/blog/introducing-visual-open-authoring 'Introducing Visual Open Authoring')，以便为我们自己和所有社区成员提供绝佳的编辑体验！
 
-您可能已经注意到，[tinacms.org](http://tinacms.org) 上的编辑界面与我们的视频中以及您本地运行的界面不同。这个新的工具栏是我们在 [tinacms.org 仓库](https://github.com/tinacms/tinacms.org 'GitHub: tinacms.org')中直接进行的一个实验。在这篇文章中，我将讨论我们为什么采取这种方法以及如何让 Tina 工具栏对所有人开放的下一步。
+您可能已经注意到，[tinacms.org](https://tinacms.org) 上的编辑界面与我们的视频中以及您本地运行的界面不同。这个新的工具栏是我们在 [tinacms.org 仓库](https://github.com/tinacms/tinacms.org 'GitHub: tinacms.org')中直接进行的一个实验。在这篇文章中，我将讨论我们为什么采取这种方法以及如何让 Tina 工具栏对所有人开放的下一步。
 
 ![TinaCMS UI 选项](/img/blog/tinacms-ui-whats-next/sidebar-toolbar.jpg)
 
@@ -20,11 +20,11 @@ next: content/blog-zh/designing-an-extensible-styling-system.mdx
 
 它不是一个应用程序。它并不打算成为一个一体化的解决方案。它是一个工具包，用于将内容管理直接构建到您的应用程序和网站中。这种理念对 TinaCMS 代码库的架构有着巨大的影响。例如，我们提供的用户界面只是_默认选项_。
 
-为了为 [tinacms.org](http://tinacms.org/) 创建一个惊人的内联编辑体验，我们决定创建一个实验性的 UI。我们隐藏了侧边栏，并用屏幕顶部的持久工具栏替代。这个新的 UI 立即受到了我们团队的欢迎！工具栏使我们可以更轻松地访问常见操作，而无需打开和关闭侧边栏。我们仍然喜欢侧边栏，它更容易设置，并且在您不想或不需要内联编辑时非常有用，但它并不总是最佳体验。
+为了为 [tinacms.org](https://tinacms.org/) 创建一个惊人的内联编辑体验，我们决定创建一个实验性的 UI。我们隐藏了侧边栏，并用屏幕顶部的持久工具栏替代。这个新的 UI 立即受到了我们团队的欢迎！工具栏使我们可以更轻松地访问常见操作，而无需打开和关闭侧边栏。我们仍然喜欢侧边栏，它更容易设置，并且在您不想或不需要内联编辑时非常有用，但它并不总是最佳体验。
 
 不幸的是，您需要稍等一段时间才能使用新的工具栏。工具栏的创建对我们来说是一个令人兴奋的项目。我们能够完全重新构想 TinaCMS 的用户体验，而无需更改主仓库中的任何代码。这使我们能够快速尝试界面，而无需考虑它如何适应整个项目。正因为如此，只用了几天时间就让它准备好投入生产。这个项目通过展示我们可以在不拆解 TinaCMS 的情况下进行实验和创新，验证了我们的许多代码设计决策。
 
-现在，[tinacms.org](http://tinacms.org/) 的开放创作已经发布，我们正准备让它对所有人开放。Kendall 已经迁移了[新的内联编辑组件](https://github.com/tinacms/tinacms/pull/871)。接下来是弄清楚工具栏如何适应 TinaCMS 生态系统。这篇文章列出了实现这一目标的计划。
+现在，[tinacms.org](https://tinacms.org/) 的开放创作已经发布，我们正准备让它对所有人开放。Kendall 已经迁移了[新的内联编辑组件](https://github.com/tinacms/tinacms/pull/871)。接下来是弄清楚工具栏如何适应 TinaCMS 生态系统。这篇文章列出了实现这一目标的计划。
 
 ## _tinacms_ 作为快速启动包
 

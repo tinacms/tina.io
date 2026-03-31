@@ -277,11 +277,19 @@ export function PricingBlock({ data }) {
 
   return (
     <div className="max-w-7xl w-full px-8 mx-auto">
-      <h1
-        className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
-      >
-        {data.headline}
-      </h1>
+      {data.isHeadingOne ? (
+        <h1
+          className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+        >
+          {data.headline}
+        </h1>
+      ) : (
+        <h2
+          className={`${H1_HEADINGS_SIZE} font-ibm-plex text-center justify-center lg:leading-tight text-black`}
+        >
+          {data.headline}
+        </h2>
+      )}
 
       <div className="pt-2 max-w-7xl mx-auto flex justify-center">
         <FreeTier data={data} />

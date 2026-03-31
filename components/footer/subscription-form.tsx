@@ -90,6 +90,7 @@ export const SubscriptionForm = ({ props }) => {
               placeholder="First name"
               name="firstName"
               type="text"
+              autoComplete="given-name"
               value={formData.firstName}
               onChange={handleInputChange}
               required
@@ -100,6 +101,7 @@ export const SubscriptionForm = ({ props }) => {
               placeholder="Last name"
               name="lastName"
               type="text"
+              autoComplete="family-name"
               value={formData.lastName}
               onChange={handleInputChange}
               required
@@ -112,6 +114,7 @@ export const SubscriptionForm = ({ props }) => {
             placeholder="Email"
             name="email"
             type="email"
+            autoComplete="email"
             value={formData.email}
             onChange={handleInputChange}
             required
@@ -121,6 +124,7 @@ export const SubscriptionForm = ({ props }) => {
             className="w-full px-2 py-2 text-sm bg-white/10 text-white border rounded-sm border-white placeholder:!text-white/70"
             placeholder="Notes"
             name="notes"
+            autoComplete="off"
             rows={2}
             value={formData.notes}
             onChange={handleInputChange}

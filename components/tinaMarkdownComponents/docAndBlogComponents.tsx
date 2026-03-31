@@ -17,7 +17,16 @@ import { FiLink } from 'react-icons/fi';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getDocId } from 'utils/docs/getDocIds';
 import { Prism } from '../styles/Prism';
-import MermaidElement from './mermaid';
+
+// Dynamic import for Mermaid - reduces initial bundle by ~150KB
+const MermaidElement = dynamic(() => import('./mermaid'), {
+  ssr: false,
+  loading: () => (
+    <div className="animate-pulse bg-gray-100 rounded p-4 my-4">
+      <div className="h-32 bg-gray-200 rounded" />
+    </div>
+  ),
+});
 
 const ScrollBasedShowcase = dynamic(
   () => import('./templateComponents/scrollBasedShowcase'),

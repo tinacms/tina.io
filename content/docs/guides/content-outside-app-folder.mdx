@@ -1,0 +1,161 @@
+---
+id: /docs/guides/content-outside-app-folder
+title: Content Outside the App Folder
+last_edited: '2026-02-18T00:00:00.000Z'
+next: ''
+previous: ''
+---
+
+## Introduction
+
+In some projects, your content files live outside the application folder where TinaCMS is installed. For example, your Next.js app might be in `packages/website/` while your markdown content is in a top-level `content/` folder.
+
+TinaCMS supports this layout using the `localContentPath` config option. This guide walks through how to set it up.
+
+> If your content lives in a completely **separate Git repository**, see the [Separate Content Repo](/docs/guides/separate-content-repo) guide instead.
+
+## Example Structure
+
+```
+my-monorepo/
+├── content/               ← your markdown/MDX content
+│   ├── tina/              ← required (TinaCMS writes generated files here)
+│   ├── pages/
+│   │   └── home.mdx
+│   └── posts/
+│       └── hello.md
+└── packages/
+    └── website/           ← your Next.js app
+        ├── tina/
+        │   └── config.ts  ← TinaCMS config lives here
+        ├── package.json
+        └── ...
+```
+
+## Step 1: Configure `localContentPath`
+
+In your `tina/config.ts`, set `localContentPath` to point at your content directory. The path is **resolved relative to the `tina/` config folder**, not the project root.
+
+```ts
+// packages/website/tina/config.ts
+import { defineConfig } from 'tinacms'
+
+export default defineConfig({
+  // From packages/website/tina/ → up 3 levels → into content/
+  localContentPath: process.env.TINA_CONTENT_PATH || '../../../content',
+  build: {
+    publicFolder: 'public',
+    outputFolder: 'admin',
+  },
+  schema: {
+    collections: [
+      {
+        name: 'post',
+        label: 'Blog Posts',
+        path: 'posts',  // relative to content root, NOT the app
+        fields: [
+          {
+            type: 'string',
+            name: 'title',
+            label: 'Title',
+          },
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Body',
+            isBody: true,
+          },
+        ],
+      },
+    ],
+  },
+})
+```
+
+<WarningCallout
+  body={<>
+    Use an environment variable for `localContentPath` since the relative path may differ per developer depending on where they clone the repo.
+  </>}
+/>
+
+## Step 2: Create a `tina/` Folder in the Content Directory
+
+TinaCMS writes generated files (`tina-lock.json`, `__generated__/` etc.) into a `tina/` folder inside the content root. **This folder must exist** or the CLI will fail with:
+
+```
+Unable to find Tina folder, if you're working in folder outside of the Tina config be sure to specify --rootPath
+```
+
+Create it:
+
+```sh
+mkdir -p content/tina
+```
+
+You can add a `.gitkeep` file to ensure it's tracked by Git:
+
+```sh
+touch content/tina/.gitkeep
+```
+
+## Step 3: Set Collection Paths Relative to the Content Root
+
+When `localContentPath` is set, collection `path` values are resolved relative to the content root — **not** the application folder.
+
+For example, if your content lives at `content/posts/`:
+
+```ts
+// Correct - relative to content root
+{
+  name: 'post',
+  path: 'posts',
+  // ...
+}
+
+// Wrong - would look for content/content/posts/
+{
+  name: 'post',
+  path: 'content/posts',
+  // ...
+}
+```
+
+## Step 4: Run the Dev Server
+
+No special CLI flags are needed. Just run from your app directory as usual:
+
+```sh
+cd packages/website
+npx tinacms dev -c "next dev"
+```
+
+You should see:
+
+```
+🦙 TinaCMS Dev Server is initializing...
+Using separate content repo at /path/to/my-monorepo/content
+
+TinaCMS Dev Server is active
+```
+
+## Troubleshooting
+
+### "Unable to find Tina folder ... specify --rootPath"
+
+This error means the content directory is missing a `tina/` folder. Create one with `mkdir content/tina`. The `--rootPath` suggestion in the error message is misleading for this use case — it controls where TinaCMS looks for the **app config**, not the content directory.
+
+### Documents not found or empty collections
+
+Check that your collection `path` values are relative to the content root, not the app folder. If `localContentPath` points to `content/`, then `path: "posts"` resolves to `content/posts/`, not `content/content/posts/`.
+
+### Path resolution reference
+
+`localContentPath` is resolved relative to the `tina/` config folder. Count the directory levels carefully:
+
+```
+packages/website/tina/config.ts
+         ↑       ↑     ↑
+         │       │     └── the file
+         │       └── localContentPath resolves from here
+         └── ../../../content goes: tina/ → website/ → packages/ → repo root → content/
+```

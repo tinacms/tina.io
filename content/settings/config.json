@@ -19,6 +19,16 @@
   },
   "redirects": [
     {
+      "source": "/blog/two_factor_authentication",
+      "destination": "/blog/two-factor-authentication",
+      "permanent": true
+    },
+    {
+      "source": "/zh/blog/two_factor_authentication",
+      "destination": "/zh/blog/two-factor-authentication",
+      "permanent": true
+    },
+    {
       "source": "/conf",
       "destination": "/conference",
       "permanent": true

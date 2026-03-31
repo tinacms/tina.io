@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2026.02.5",
+  "dateReleased": "2026-02-19T22:58:35Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "🐛 Bug Fix - Add user deletion functionality to organization dashboard",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "🛠️ Email Invitation Logic - Direct users to correct email address",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "fix: disable Buildx default attestations to fix Lambda deploy",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}

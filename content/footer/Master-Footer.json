@@ -19,7 +19,12 @@
       },
       {
         "label": "Roadmap",
-        "href": "/roadmap ",
+        "href": "/roadmap",
+        "_template": "stringItem"
+      },
+      {
+        "label": "Compare Tina",
+        "href": "/compare-tina",
         "_template": "stringItem"
       }
     ]
@@ -40,11 +45,6 @@
       {
         "label": "Examples",
         "href": "/examples",
-        "_template": "stringItem"
-      },
-      {
-        "label": "Compare Tina",
-        "href": "/compare-tina",
         "_template": "stringItem"
       },
       {
@@ -176,11 +176,6 @@
       {
         "label": "License",
         "href": "https://github.com/tinacms/tinacms/blob/master/LICENSE",
-        "_template": "stringItem"
-      },
-      {
-        "label": "Support",
-        "href": "/docs/support",
         "_template": "stringItem"
       },
       {

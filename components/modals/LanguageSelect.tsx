@@ -51,9 +51,9 @@ export const LanguageSelect: React.FC<LanguageSelectProps> = ({
   return (
     <div className="p-6 md:py-10 mx-4">
       <div className="flex justify-center pb-8">
-        <h1 className="inline-block m-0 text-2xl md:text-3xl lg:leading-tight bg-linear-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+        <h2 className="inline-block m-0 text-2xl md:text-3xl lg:leading-tight bg-linear-to-br from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
           {languageTitles[currentLanguage] || languageTitles.en}
-        </h1>
+        </h2>
       </div>
       <div className="grid lg:grid-cols-1 gap-3">
         {languages.map((language) => (
