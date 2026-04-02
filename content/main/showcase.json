@@ -136,7 +136,10 @@
         {
           "headline": "Korean Patch",
           "text": "Korean Patch is named after an expression native speakers use for learners who are so good it seems like they've downloaded a software update. Through educational content, innovative software tools, and online courses, their mission is to reshape the Korean learning experience by making learners part of the Korean speaking world, not just teaching them the language.",
-          "url": "https://koreanpatch.co/"
+          "url": "https://koreanpatch.co/",
+          "media": {
+            "src": "/gif/korean-patch-showcase.gif"
+          }
         },
         {
           "headline": "Community Coordinated Modeling Center",
