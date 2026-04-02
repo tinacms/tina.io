@@ -23,11 +23,11 @@
         "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
         "openInNewTab": true,
         "badge": {
-          "text": "new",
-          "icon": "MdOutlineVideocam",
+          "text": "",
           "position": "left",
-          "color": "orange"
+          "color": "ghostBlue"
         },
+        "titleIcon": "MdOutlineRocketLaunch",
         "backgroundColor": "blueSecondary"
       },
       "_template": "heroV2"
