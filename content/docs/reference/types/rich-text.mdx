@@ -124,6 +124,30 @@ Example — centering the second and third columns:
 
 To learn more about the alignment syntax, refer to the [Markdown Extended Syntax](https://www.markdownguide.org/extended-syntax/#alignment)
 
+## Highlight
+
+### Customize highlight colors
+
+You can enable text highlighting in a rich-text field and define which highlight colors are available to editors by adding a `highlightColors` array to the field’s `overrides`.
+
+```ts
+export const heroBlockSchema = {
+  fields: [
+    {
+      label: "Text",
+      name: "text",
+      type: "rich-text",
+      overrides: {
+        highlightColors: [
+          { label: "Purple", value: "rgba(142, 132, 255, 0.55)" },
+          { label: "Blue", value: "rgba(132, 255, 255, 0.55)" }
+        ],
+      },
+    },
+  ],
+}
+```
+
 ## Examples
 
 Tina will generate the appropriate component depending on the
