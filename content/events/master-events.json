@@ -14,8 +14,8 @@
       "timezone": 11,
       "image": "/events/Sydney.png",
       "link": "https://ndcsydney.com/",
-      "markerLAT": -33.86,
-      "markerLONG": 151.2077
+      "markerLAT": -29.81015,
+      "markerLONG": 219.9541
     },
     {
       "headline": "Data Saturdays - Brisbane",
@@ -25,8 +25,8 @@
       "timezone": 10,
       "image": "/events/bbane.png",
       "link": "https://datasaturdays.com/Event/20260228-datasaturday0079#speakers",
-      "markerLAT": -27.4705,
-      "markerLONG": 153.026
+      "markerLAT": -29.81015,
+      "markerLONG": 212.9541
     },
     {
       "headline": "NDC Oslo",
