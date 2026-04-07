@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
-import { fetchMeetingLinks } from 'utils/getMeetingLinks';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 
 export type BookingItem = {
@@ -50,8 +49,16 @@ const BookingBlock = ({ data }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const meetingPeopleData = await fetchMeetingLinks();
-        setMeetingPeople(meetingPeopleData || []);
+        const response = await fetch('/api/meeting-links', {
+          method: 'GET',
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch meeting links: ${response.status}`);
+        }
+
+        const json = await response.json();
+        setMeetingPeople(json?.meetingPeople ?? []);
       } catch (err) {
         console.error('Failed to fetch meeting links:', err);
         setMeetingPeople([]);
