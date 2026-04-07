@@ -41,7 +41,7 @@
               "icon": true,
               "variant": "blue",
               "size": "medium",
-              "url": "blog/two-factor-authentication"
+              "url": "/blog/two-factor-authentication"
             }
           ]
         },

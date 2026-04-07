@@ -8,7 +8,7 @@
         {
           "changesDescription": "chore: update TinaCMS dependencies[bot]",
           "gitHubName": "release-bot-allow-prs-and-push",
-          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+          "gitHubLink": "https://github.com/apps/release-bot-allow-prs-and-push"
         },
         {
           "changesDescription": "fix: use node to set devDependencies alias in update workflow",
