@@ -1,9 +1,9 @@
 ---
 seo:
-  title: 使用GraphQL在Tina中构建内容结构 | TinaCMS博客
+  title: 使用GraphQL在Tina中构建你的内容 | TinaCMS博客
   description: >-
-    探索如何在TinaCMS中使用GraphQL来更高效地构建和查询内容，提升数据获取和内容管理。
-title: 使用GraphQL在Tina中构建内容结构
+    探索如何在TinaCMS中使用GraphQL来更高效地构建和查询你的内容，提升数据获取和内容管理。
+title: 使用GraphQL在Tina中构建你的内容
 date: '2021-06-25T18:34:12+02:00'
 last_edited: '2021-06-25T20:42:18.533Z'
 author: Frank Taillandier
@@ -13,21 +13,21 @@ next: content/blog-zh/manage-your-media-with-cloudinary.mdx
 
 <WarningCallout
   body={<>
-    **更新**: Tina API正在不断发展，本文中的内容已过时。要获取Tina的入门帮助，我们建议查看我们的[入门文档](https://tina.io/docs/setup-overview/)。
+    **更新**: Tina API一直在演变，本文中的内容已过时。要获取Tina的入门帮助，我们建议查看我们的[入门文档](https://tina.io/docs/setup-overview/)。
   </>}
 />
 
-Tina采用以开发者为中心的方法来构建内容，这意味着你可以在你喜欢的编辑器中本地建模你的内容。得益于存储在你仓库中的[文件之上的GraphQL层](/blog/using-graphql-with-the-filesystem/)，Tina使得在所有文件中查询内容变得更加简单。让我们看看这是什么感觉。
+Tina采用以开发者为中心的方法来构建内容，这意味着你可以在你喜欢的编辑器中本地建模你的内容。得益于存储在你仓库中的[文件上的GraphQL层](/blog/using-graphql-with-the-filesystem/)，Tina使得在所有文件中查询内容变得更加简单。让我们看看这是什么感觉。
 
-当我们提到基于Git时，这意味着你的内容存储在Markdown和JSON文件中，并用前置元数据建模；在此基础上，TinaCloud旨在让你利用[GraphQL](https://graphql.org/)的强大功能。
+当我们提到基于Git时，这意味着你的内容存储在Markdown和JSON文件中，并通过前置元数据建模；在此基础上，TinaCloud旨在让你利用[GraphQL](https://graphql.org/)的强大功能。
 
-我们开源了[tina-graphql-gateway包](https://github.com/tinacms/tina-graphql-gateway)，以便你可以了解其工作原理。它包含了开发者使用Tina和GraphQL的不同工具：
+我们开源了[tina-graphql-gateway包](https://github.com/tinacms/tina-graphql-gateway)，以便你可以了解其工作原理。它包含了开发者与Tina和GraphQL一起工作的不同工具：
 
 - 一个GraphQL模式编译器，
 - 一个GraphQL服务器，
 - 一个GraphQL客户端（Altair），
-- 一个用于编译模式和启动本地服务器的命令行接口，
-- Next.js的Tina助手，
+- 一个用于编译模式和启动本地服务器的命令行界面，
+- Tina的Next.js助手，
 - 以及更多……
 
 在处理结构化内容时，典型的开发者工作流程是运行Tina本地GraphQL服务器，编辑你的模式，创建和测试查询以在你的Next.js页面中使用。
@@ -47,7 +47,7 @@ GraphQL模式允许你描述你的内容类型或我们称之为的**集合**。
 
 让我们来看一个非常基本的例子，我们声明一个指向`content/posts`的博客文章集合，并简单地将我们的集合命名为`posts`。
 
-为了描述这种内容类型的形状，我们需要提供一个**模板**。对于我们的基本博客文章，我们将首先说明一个_文章_具有以下前置元数据字段：
+为了描述这种内容类型的结构，我们需要提供一个**模板**。对于我们的基本博客文章，我们将首先说明一个_文章_具有以下前置元数据字段：
 
 - `title`（文本），
 - `author`（对作者集合的引用）。
@@ -55,7 +55,7 @@ GraphQL模式允许你描述你的内容类型或我们称之为的**集合**。
 我们还需要为作者定义一个集合，以及一个具有以下内容的基本作者模板：
 
 - 一个`name`（文本），
-- 一个`avatar`（URL即文本）。
+- 一个`avatar`（URL，因此是文本）。
 
 > 💡 要在编辑模式时获得类型自动补全，请安装[VSCode GraphQL扩展](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql)。
 
@@ -121,7 +121,7 @@ export default defineSchema({
 
 ## 使用GraphQL查询你的内容
 
-Tina CLI提供了一个命令来运行本地GraphQL服务器，以监视我们模式中的更改并在编辑时编译它；它在开发模式下与Next.js一起运行。我们将其设为`package.json`中的默认`dev` npm脚本，这样当我们运行`yarn dev`时，我们可以访问一个GraphQL playground：
+Tina CLI提供了一个命令来运行本地GraphQL服务器，以监视我们模式中的更改，并在编辑时编译它；它在开发模式下与Next.js一起运行。我们将其设为`package.json`中的默认`dev` npm脚本，这样当我们运行`yarn dev`时，我们可以访问GraphQL playground：
 
 yarn dev
 yarn tina-gql server\:start -c "next dev"
@@ -154,6 +154,6 @@ query BlogPost {
 }
 ```
 
-现在我们知道如何从我们的文件中查询数据，我们仍然需要在我们的Next.js应用程序中使用该查询，从客户端请求它，并要求Tina生成相应的表单，以便我们的贡献者能够直观地编辑它。我们将在后续文章中详细介绍剩余的步骤，敬请期待！
+现在我们知道如何从文件中查询数据，我们仍然需要在我们的Next.js应用程序中使用该查询，从客户端请求它，并要求Tina生成相应的表单，以便我们的贡献者能够直观地编辑它。我们将在后续文章中详细介绍剩余步骤，敬请期待！
 
 _[加入我们的Discord](https://discord.com/invite/zumN63Ybpf)，如果你对如何使用Tina和Next.js有任何疑问。_
