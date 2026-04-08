@@ -126,31 +126,31 @@ module.exports = {
       '5xl': [
         '48px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '6xl': [
         '60px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '7xl': [
         '72px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '8xl': [
         '96px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
       '9xl': [
         '128px',
         {
-          lineHeight: '1',
+          lineHeight: 'normal',
         },
       ],
     },
