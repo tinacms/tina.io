@@ -1,7 +1,7 @@
 {
   "notFound": {
     "title": "404 - Oops, this llama took a wrong turn.",
-    "description": "404 - The page you’re looking for has gone on a spontaneous llama trek.",
+    "description": "The page you’re looking for has gone on a spontaneous llama trek.",
     "buttons": {
       "documentation": "Documentation",
       "guides": "Guides",
