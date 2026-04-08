@@ -80,7 +80,7 @@ Given it’s all React, it is tempting to load TinaCMS on your Next.js website a
 
 In edit mode, your site is wrapped with a `TinaProvider` component that uses React state to update your website in real-time. This removes the need to wait for a build step and unlocks instant previews.
 
-This is made easy with [Next.js dynamic imports](https://nextjs.org/docs/advanced-features/dynamic-import#basic-usage) that will code split out the `TinaWrapper` when not in edit mode.
+This is made easy with [Next.js dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading) that will code split out the `TinaWrapper` when not in edit mode.
 
 In your Next.js `_app.js` file you can write:
 

@@ -79,7 +79,7 @@ const TinaWrapper = (props) => {
 
 在编辑模式下，您的网站被一个使用 React 状态的 `TinaProvider` 组件包裹，以实时更新您的网站。这消除了等待构建步骤的需要，并解锁了即时预览。
 
-这通过 [Next.js 动态导入](https://nextjs.org/docs/advanced-features/dynamic-import#basic-usage) 变得简单，当不在编辑模式时将代码分割出 `TinaWrapper`。
+这通过 [Next.js 动态导入](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading) 变得简单，当不在编辑模式时将代码分割出 `TinaWrapper`。
 
 在您的 Next.js `_app.js` 文件中，您可以这样写：
 
