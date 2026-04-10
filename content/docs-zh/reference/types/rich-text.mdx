@@ -28,7 +28,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
     {
       name: "templates",
       description:
-        'MDX支持。编辑器中的"embed"选项用于注入自定义React组件。\n',
+        'MDX支持。在编辑器中使用"embed"选项注入自定义React组件。\n',
       type: "Template[]"
     },
     {
@@ -59,7 +59,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 <WarningCallout
   body={<>
-    `mark` 是一个保留的组件名称，用于内部的**高亮**功能。如果您创建一个名为mark的自定义MDX组件，它将与高亮功能冲突，并在编辑器中导致意外行为。
+    `mark` 是一个保留的组件名称，内部用于**高亮**功能。如果您创建了一个名为 mark 的自定义 MDX 组件，它将与高亮功能冲突，并导致编辑器中的意外行为。
   </>}
 />
 
@@ -108,7 +108,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 ### 列对齐
 
-> 可视化编辑器目前不支持通过工具栏设置列对齐。如果需要在表格列中对齐内容，可以切换到原始Markdown模式并编辑表头分隔行中的对齐语法。
+> 可视化编辑器当前不支持通过工具栏设置列对齐。如果需要在表格列中对齐内容，可以切换到原始Markdown模式并编辑表头分隔行中的对齐语法。
 
 示例 — 居中第二和第三列：
 
@@ -122,6 +122,30 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 要了解更多关于对齐语法的信息，请参考[Markdown扩展语法](https://www.markdownguide.org/extended-syntax/#alignment)
 
+## 高亮
+
+### 自定义高亮颜色
+
+您可以在富文本字段中启用文本高亮，并通过添加 `highlightColors` 数组到字段的 `overrides` 中来定义可供编辑者使用的高亮颜色。
+
+```ts
+export const heroBlockSchema = {
+  fields: [
+    {
+      label: "文本",
+      name: "text",
+      type: "rich-text",
+      overrides: {
+        highlightColors: [
+          { label: "紫色", value: "rgba(142, 132, 255, 0.55)" },
+          { label: "蓝色", value: "rgba(132, 255, 255, 0.55)" }
+        ],
+      },
+    },
+  ],
+}
+```
+
 ## 示例
 
 Tina将根据提供的配置生成适当的组件。
@@ -130,7 +154,7 @@ Tina将根据提供的配置生成适当的组件。
 
 ```javascript
 {
-  label: "Body",
+  label: "正文",
   name: "body",
   isBody: true,
   type: "rich-text",
@@ -139,15 +163,15 @@ Tina将根据提供的配置生成适当的组件。
 
 ![](/docs/rich-text-simple.png)
 
-### 带有工具栏覆盖的简单字段
+### 带工具栏覆盖的简单字段
 
-更改您想要显示的内容以及在编辑器中显示的顺序
+更改您希望在编辑器中显示的内容及其顺序
 
 ```javascript
 {
 		type: "rich-text",
 		name: "body",
-		label: "Body",
+		label: "正文",
 		isBody: true,
 		overrides: {
 			toolbar: ["heading", "bold", "italic"],
@@ -158,13 +182,13 @@ Tina将根据提供的配置生成适当的组件。
 
 ![](/docs/rich-text-override.png)
 
-### 带有自定义组件的字段 (`mdx`)
+### 带自定义组件的字段（`mdx`）
 
 自定义组件可以嵌入到富文本块中。
 
 ```ts
 {
-  label: "Body",
+  label: "正文",
   name: "body",
   isBody: true,
   type: "rich-text",
@@ -174,7 +198,7 @@ Tina将根据提供的配置生成适当的组件。
       label: "Cta",
       fields: [{
         name: "heading",
-        label: "Heading",
+        label: "标题",
         type: "string"
       }
     ]}
@@ -219,22 +243,22 @@ Tina将根据提供的配置生成适当的组件。
   customResponseName="Parsed AST"
 />
 
-### 带有默认富文本值的集合
+### 带默认富文本值的集合
 
 要为富文本字段设置默认值，应指定整个AST树，如下例所示。
 
-> 推荐的方法是填写您的数据，然后 `console.log` CMS API返回的相关字段值。 \
+> 推荐的方法是填写您的数据，然后 `console.log` CMS API 返回的相关字段值。 \
 > \
 > 然后将其复制到集合的 `defaultItem` 属性中。
 
 ```javascript
 {
-  label: 'Blog Posts',
+  label: '博客文章',
   name: 'post',
   path: 'content/posts',
   defaultItem: () => {
     return {
-      title: 'My New Post',
+      title: '我的新文章',
       body: {
         type: 'root',
         children: [
@@ -243,7 +267,7 @@ Tina将根据提供的配置生成适当的组件。
             children: [
               {
                 type: 'text',
-                text: 'Default Text',
+                text: '默认文本',
               },
             ],
           },
@@ -254,12 +278,12 @@ Tina将根据提供的配置生成适当的组件。
   fields: [
     {
       type: 'string',
-      label: 'Title',
+      label: '标题',
       name: 'title',
     },
     {
       type: 'string',
-      label: 'Post Body',
+      label: '文章正文',
       name: 'body',
       isBody: true,
     },
