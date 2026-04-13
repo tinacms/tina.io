@@ -2,12 +2,12 @@
 id: /docs/extending-tina/custom-field-components
 title: React 组件
 alias: custom-fields-react
-last_edited: '2025-11-03T22:58:44.784Z'
+last_edited: '2026-03-27T00:22:04.627Z'
 next: content/docs-zh/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
 
-可以通过在字段上设置 `ui.component` 属性来传递和渲染自定义组件。
+通过在字段上设置 `ui.component` 属性，可以传递并渲染自定义组件。
 
 这个组件完全覆盖了原始组件，提供给用户完全自定义字段的能力。
 
@@ -34,19 +34,19 @@ previous: ''
 
 集合中的任何字段都可以使用 `form.getFieldState(name: string)?.value` 访问，使用字段的 `name` 属性。
 
-> 更多使用模式可以从 [react-final-form FormAPI 文档](https://final-form.org/docs/final-form/types/FormApi) 中推断。
+> 可以从 [react-final-form FormAPI 文档](https://final-form.org/docs/final-form/types/FormApi) 中推断出更多的使用模式。
 
 ### 隐藏字段
 
 将 `component.ui` 设置为值 `"hidden"` 会将字段从编辑器中移除。
 
-该字段仍然在后台存在，可以通过其他方式访问。
+该字段仍然存在于后台，可以通过其他方式访问。
 
 ## 示例
 
 ### 滑块组件
 
-这是一个用于调整图像饱和度的自定义滑块组件。
+这是一个可用于调整图像饱和度的自定义滑块组件。
 
 ![一个基本的滑块自定义组件](/img/docs/extending-tina/image-saturation.png)
 
@@ -82,11 +82,11 @@ previous: ''
 
 ### 带有隐藏元字段的图像组件
 
-NextJS 和其他框架能够在提前知道图像宽度和高度的情况下提高性能。
+如果提前知道图像的宽度和高度，NextJS 和其他框架能够提高性能。
 
 **TinaCMS 可以用于在上传时确定并存储这些信息**。
 
-我们可以传递现有的 TinaCMS 图像组件，并使用 `useEffect` 拦截对它的更改，以更新我们的宽度和高度字段。
+我们可以传递现有的 TinaCMS 图像组件，并使用 `useEffect` 拦截对其的更改，以更新我们的宽度和高度字段。
 
 ```javascript
 
@@ -140,7 +140,7 @@ const CustomImageField = (props) => {
 }
 ```
 
-这在编辑器中显示为一个单一的图像输入，但每次更新时将保存 3 个值（图像源、高度和宽度）。
+这在编辑器中显示为单一的图像输入，但每次更新时将保存 3 个值（图像来源、高度和宽度）。
 
 ![](/img/docs/reference/SCR-20250317-mtnf.png)
 
@@ -154,7 +154,7 @@ imgHeight: 1480
 
 可以通过检查其他表单字段的值来创建条件字段。
 
-> 使用这种方法，隐藏的条件字段将保留隐藏前的内容。
+> 使用这种方法，隐藏的条件字段将保留在隐藏之前保存的任何值。
 
 ![](</gif/Screen Recording 2025-03-17 at 3.21.09 pm.gif>)
 
@@ -247,3 +247,11 @@ const Image = (props)=>{
   </div>
 }
 ```
+
+### 使用 AI 构建自定义组件
+
+在下面的视频中，探索了一种构建自定义组件的氛围编码方法。这展示了如何通过使用 AI 快速迭代复杂的 UI 逻辑和样式，以创建个性化的字段体验。
+
+<Youtube embedSrc="https://www.youtube.com/embed/TE72AZQODaw?si=Sa_FKuv3qo4Nz5bS" />
+
+视频: Vibe Coding TinaCMS 自定义组件 (7 分钟)
