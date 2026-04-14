@@ -4,6 +4,7 @@ import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.tem
 import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
 import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 import { mapTemplate } from '@/component/blocks-v2/map/map.template';
+import { markdownFeatureTemplate } from '@/component/blocks-v2/markdownFeature/markdownFeature.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -91,6 +92,7 @@ const templates = [
   mapTemplate as Template,
   tripleBoxTemplate as Template,
   professionalServicesTemplate as Template,
+  markdownFeatureTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
