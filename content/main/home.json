@@ -7,29 +7,47 @@
   },
   "blocks": [
     {
-      "title": "{Sites,} Docs and Llamas. No Dramas",
-      "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
-      "buttons": [
+      "slides": [
         {
-          "label": "npx create-tina-app@latest",
-          "helpText": "Need some help? Watch the video – see the [CLI docs](https://tina.io/docs/introduction/using-starter)\n",
-          "_template": "codeButton"
+          "title": "{Sites,} Docs and Llamas. No Dramas",
+          "subtext": "Build stunning websites with TinaCMS visual editor, or create beautiful documentation with TinaDocs. Both powered by Git and built for developers who love great UX.",
+          "buttons": [
+            {
+              "label": "npx create-tina-app@latest",
+              "helpText": "Need some help? Watch the video – see the [CLI docs](https://tina.io/docs/introduction/using-starter)\n",
+              "_template": "codeButton"
+            }
+          ],
+          "buttonHorizontalAlignment": "left",
+          "image": "/ai-llamas/Relax-Llama.png",
+          "layout": "default",
+          "recentNewsBanner": {
+            "title": "See how SSW moved 3500+ pages to TinaCMS",
+            "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
+            "openInNewTab": true,
+            "badge": {
+              "text": "new",
+              "icon": "MdOutlineVideocam",
+              "position": "left",
+              "color": "orange"
+            },
+            "backgroundColor": "blueSecondary"
+          }
+        },
+        {
+          "title": "{Markdown} is the Answer.",
+          "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nSearch engines are evolving into generative engines. LLMs don't scrape your website – they parse your content directly. Tina stores everything as Markdown in your Git repo, so your content is optimised for GEO from the moment you publish.",
+          "secondaryImage": "/ai-llamas/Peek-Llama.png",
+          "layout": "reversed",
+          "showTerminal": true,
+          "featureTags": [
+            { "label": "LLM-Ready" },
+            { "label": "Git-Native" },
+            { "label": "GEO-optimised" }
+          ]
         }
       ],
-      "buttonHorizontalAlignment": "left",
-      "image": "/ai-llamas/Relax-Llama.png",
-      "recentNewsBanner": {
-        "title": "See how SSW moved 3500+ pages to TinaCMS",
-        "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
-        "openInNewTab": true,
-        "badge": {
-          "text": "new",
-          "icon": "MdOutlineVideocam",
-          "position": "left",
-          "color": "orange"
-        },
-        "backgroundColor": "blueSecondary"
-      },
+      "autoplaySpeed": 8000,
       "_template": "heroV2"
     },
     {
