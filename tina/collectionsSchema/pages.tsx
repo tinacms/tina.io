@@ -1,9 +1,12 @@
 import type { Form, Template, TinaCMS } from 'tinacms';
+import { InfoBox } from 'tinacms';
+import { WarningBanner } from '../customTinaFormFields/warningBanner';
 import { callToActionTemplate } from '@/component/blocks/CallToAction/call-to-action.template';
 import { videoEmbedTemplate } from '@/component/blocks/VideoEmbed/VideoEmbed.template';
 import { featureCardTemplate } from '@/component/blocks-v2/featureCard/featureCard.template';
 import { herov2Template } from '@/component/blocks-v2/hero/hero-v2.template';
 import { mapTemplate } from '@/component/blocks-v2/map/map.template';
+import { markdownFeatureTemplate } from '@/component/blocks-v2/markdownFeature/markdownFeature.template';
 import { bookingTemplate } from '../../components/blocks/Booking/Booking.template';
 import { columnsTemplate } from '../../components/blocks/Columns/Columns.template';
 import {
@@ -36,7 +39,6 @@ import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testim
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { tripleBoxTemplate } from '../../components/blocks/TripleBox/TripleBox.template';
-import { DocsEditLinks } from '../customTinaFormFields/docsEditLinks';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
 
@@ -91,6 +93,7 @@ const templates = [
   mapTemplate as Template,
   tripleBoxTemplate as Template,
   professionalServicesTemplate as Template,
+  markdownFeatureTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
@@ -131,11 +134,33 @@ export const pagesCollection = {
   },
   fields: [
     {
-      type: 'string',
-      label: 'Edit Links',
+      type: 'displayOnly',
       name: '_docsEditLinks',
       ui: {
-        component: DocsEditLinks,
+        component: InfoBox({
+          message:
+            'TinaDocs website visual editing needs to be done via the below URLs:',
+          links: [
+            {
+              text: 'TinaDocs Landing',
+              url: 'https://tina-docs-landing.vercel.app/tinadocs/admin',
+            },
+            {
+              text: 'TinaDocs Documentation',
+              url: 'https://tina-docs-red.vercel.app/tinadocs/admin',
+            },
+          ],
+        }),
+      },
+    },
+    {
+      type: 'displayOnly',
+      name: '_warningBannerTest',
+      ui: {
+        component: WarningBanner({
+          message:
+            'This is a custom displayOnly component using a different visual style.',
+        }),
       },
     },
     extendedSeoInformation,
