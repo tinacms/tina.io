@@ -214,7 +214,7 @@
     },
     {
       "title": "{Markdown} is the Answer.",
-      "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nSearch engines are evolving into generative engines. LLMs don't scrape your website \u2013 they parse your content directly. Tina stores everything as Markdown in your Git repo, so your content is optimised for GEO from the moment you publish.",
+      "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nLLMs understand Markdown natively — it's the format they were trained on. Tina stores everything as Markdown in your Git repo, so your content stays clean, portable, and AI-friendly from the moment you publish.",
       "secondaryImage": "/ai-llamas/Peek-Llama.png",
       "featureTags": [
         {
@@ -227,7 +227,8 @@
           "label": "Open Format"
         }
       ],
-      "_template": "markdownFeature"
+      "_template": "markdownFeature",
+      "bodyText": ""
     },
     {
       "blockSettings": {
