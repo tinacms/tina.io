@@ -359,49 +359,78 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
             '@keyframes hero-progress { from { transform: translateX(-100%) } to { transform: translateX(0) } }',
         }}
       />
-      <div
-        className="relative"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+
+      {/* Mobile: show all slides stacked, no carousel */}
+      <div className="md:hidden flex flex-col gap-12">
         {slides.map((slide, index) => {
-          const isActive = index === activeIndex;
           const isReversed = slide.layout === 'reversed';
           return (
             <div
-              key={`slide-${slide.title || index}`}
-              className={cn(
-                'grid grid-cols-1 md:grid-cols-2 gap-4',
-                index === 0 ? 'relative' : 'absolute inset-0',
-                !isActive && 'pointer-events-none',
-              )}
-              aria-hidden={!isActive}
+              key={`mobile-slide-${slide.title || index}`}
+              className="grid grid-cols-1 gap-4"
             >
               {isReversed ? (
                 <>
-                  <SlideImage slide={slide} isActive={isActive} />
-                  <SlideContent slide={slide} isActive={isActive} />
+                  <SlideImage slide={slide} isActive={true} />
+                  <SlideContent slide={slide} isActive={true} />
                 </>
               ) : (
                 <>
-                  <SlideContent slide={slide} isActive={isActive} />
-                  <SlideImage slide={slide} isActive={isActive} />
+                  <SlideContent slide={slide} isActive={true} />
+                  <SlideImage slide={slide} isActive={true} />
                 </>
               )}
             </div>
           );
         })}
       </div>
-      <CarouselNav
-        slideCount={slideCount}
-        selectedIndex={activeIndex}
-        isPaused={isPaused}
-        duration={duration}
-        onPrev={goPrev}
-        onNext={goNext}
-        onDotClick={goToSlide}
-        onAutoAdvance={goNext}
-      />
+
+      {/* Desktop: carousel with fade transitions */}
+      <div className="hidden md:block">
+        <div
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {slides.map((slide, index) => {
+            const isActive = index === activeIndex;
+            const isReversed = slide.layout === 'reversed';
+            return (
+              <div
+                key={`slide-${slide.title || index}`}
+                className={cn(
+                  'grid grid-cols-2 gap-4',
+                  index === 0 ? 'relative' : 'absolute inset-0',
+                  !isActive && 'pointer-events-none',
+                )}
+                aria-hidden={!isActive}
+              >
+                {isReversed ? (
+                  <>
+                    <SlideImage slide={slide} isActive={isActive} />
+                    <SlideContent slide={slide} isActive={isActive} />
+                  </>
+                ) : (
+                  <>
+                    <SlideContent slide={slide} isActive={isActive} />
+                    <SlideImage slide={slide} isActive={isActive} />
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <CarouselNav
+          slideCount={slideCount}
+          selectedIndex={activeIndex}
+          isPaused={isPaused}
+          duration={duration}
+          onPrev={goPrev}
+          onNext={goNext}
+          onDotClick={goToSlide}
+          onAutoAdvance={goNext}
+        />
+      </div>
     </Container>
   );
 }
