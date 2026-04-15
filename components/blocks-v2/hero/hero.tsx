@@ -360,29 +360,17 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         }}
       />
 
-      {/* Mobile: show all slides stacked, no carousel */}
+      {/* Mobile: show all slides stacked, content always first */}
       <div className="md:hidden flex flex-col gap-12">
-        {slides.map((slide, index) => {
-          const isReversed = slide.layout === 'reversed';
-          return (
-            <div
-              key={`mobile-slide-${slide.title || index}`}
-              className="grid grid-cols-1 gap-4"
-            >
-              {isReversed ? (
-                <>
-                  <SlideImage slide={slide} isActive={true} />
-                  <SlideContent slide={slide} isActive={true} />
-                </>
-              ) : (
-                <>
-                  <SlideContent slide={slide} isActive={true} />
-                  <SlideImage slide={slide} isActive={true} />
-                </>
-              )}
-            </div>
-          );
-        })}
+        {slides.map((slide, index) => (
+          <div
+            key={`mobile-slide-${slide.title || index}`}
+            className="grid grid-cols-1 gap-4"
+          >
+            <SlideContent slide={slide} isActive={true} />
+            <SlideImage slide={slide} isActive={true} />
+          </div>
+        ))}
       </div>
 
       {/* Desktop: carousel with fade transitions */}
