@@ -1,9 +1,62 @@
 import Image from 'next/image';
 import type { PageBlocksFeatureCard } from 'tina/__generated__/types';
-import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
+import {
+  BLOCK_HEADINGS_SIZE,
+  SECTION_HEADINGS_SIZE,
+} from '@/component/styles/typography';
 import Container from '@/component/util/Container';
+import { cn } from '@/lib/utils';
 import RenderButton from '@/utils/renderButtonArrayHelper';
 import { sanitizeLabel } from '@/utils/sanitizeLabel';
+
+const HexagonBackground = ({
+  headlineClass,
+  className = '',
+}: {
+  headlineClass: string;
+  className?: string;
+}) => (
+  <div
+    className={cn(
+      'pointer-events-none absolute w-full aspect-square bottom-[-200px] right-[-150px]',
+      headlineClass,
+      className,
+    )}
+    style={{
+      zIndex: 0,
+      transform: 'rotate(45deg)',
+    }}
+  >
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="
+          M50,8
+          Q55,8 58,12
+          L87,30
+          Q92,33 92,40
+          L92,70
+          Q92,77 87,80
+          L58,98
+          Q55,102 50,98
+          L21,80
+          Q16,77 16,70
+          L16,40
+          Q16,33 21,30
+          L50,12
+          Q45,8 50,8
+          Z
+        "
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+);
 
 function FeatureCardItem(data: {
   data: PageBlocksFeatureCard['cards'][number];
@@ -11,49 +64,62 @@ function FeatureCardItem(data: {
   const { title, featureHeadline, featureText, buttons, image, themeColour } =
     data.data;
 
-  const themeColourMap = {
+  const hexagonColourMap = {
     black: 'text-black',
     blue: 'text-blue-600',
     tinaOrange: 'text-orange-500',
   };
 
-  const headlineClass = themeColourMap[themeColour] || 'text-black';
+  const subheadingGradientMap = {
+    black:
+      'bg-gradient-to-l from-black/80 to-black/40 bg-clip-text text-transparent',
+    blue: 'bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent',
+    tinaOrange:
+      'bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent',
+  };
+
+  const hexagonClass = hexagonColourMap[themeColour] || 'text-black';
+  const subheadingClass = subheadingGradientMap[themeColour] || 'text-black';
 
   return (
     <div
-      className="relative flex flex-col overflow-hidden rounded-lg bg-gradient-to-br from-white/10 to-white/40 shadow-lg"
+      className="relative flex flex-col gap-8 items-center bg-gradient-to-br from-white/10 to-white/40 shadow-[0px_10px_15px_-3px_rgba(20,70,150,0.1),0px_4px_6px_-4px_rgba(20,70,150,0.1)] px-8 lg:px-12 py-8 lg:py-10 rounded-md overflow-hidden"
       id={sanitizeLabel(title)}
     >
-      <div className="flex flex-col gap-3 p-8">
-        <h3 className="text-2xl md:text-3xl font-bold font-ibm-plex">
-          {title}
-        </h3>
+      <HexagonBackground headlineClass={`hidden lg:block ${hexagonClass}`} />
+      <div className="relative z-10 flex flex-col gap-2 w-full flex-1">
+        <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
         <h4
-          className={`text-base md:text-lg font-ibm-plex font-normal ${headlineClass}`}
+          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex-[400] ${subheadingClass}`}
         >
           {featureHeadline}
         </h4>
-        <p className="text-neutral-text-secondary font-normal leading-relaxed text-sm">
+        <div className="flex-1" />
+        <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
-        <div className="flex flex-row gap-2 pt-1">
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
           {buttons?.map((button, _index) => (
-            <RenderButton key={button.label} button={button} />
+            <RenderButton
+              key={button.label}
+              button={button}
+              className="w-full sm:w-auto"
+            />
           ))}
         </div>
       </div>
-      {image && (
-        <div className="mt-auto px-6">
+      <div className="relative z-10 hidden lg:flex items-center justify-center w-full mt-auto">
+        {image && (
           <Image
             src={image}
             alt={title}
-            width={600}
-            height={400}
-            className="rounded-t-md shadow-xl w-full"
+            width={500}
+            height={300}
+            className="rounded-md shadow-xl"
             style={{ objectFit: 'contain' }}
           />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
@@ -63,7 +129,7 @@ export default function FeatureCard(data: { data: PageBlocksFeatureCard }) {
 
   return (
     <Container className="flex flex-col items-center gap-6">
-      <h3 className="font-ibm-plex font-semibold bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+      <h3 className="font-ibm-plex font-semibold text-orange-500">
         {sectionEyebrow}
       </h3>
       <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h2>
