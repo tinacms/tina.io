@@ -61,12 +61,12 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
   return (
     <div className="relative flex items-center justify-center w-full h-full pt-[145px] pb-4 overflow-visible">
       {secondaryImage && (
-        <div className="absolute top-0 left-[65%] -translate-x-1/2 z-10">
+        <div className="absolute top-0 left-[65%] -translate-x-1/2 z-10 w-[200px] h-[200px]">
           <Image
             src={secondaryImage}
             alt="Llama peeking"
-            width={200}
-            height={200}
+            fill={true}
+            sizes="200px"
             className="object-contain object-bottom"
           />
         </div>
