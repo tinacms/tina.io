@@ -222,6 +222,20 @@ function SlideContent({
             </p>
           </StaggerItem>
         )}
+        {featureTags && featureTags.length > 0 && (
+          <StaggerItem isActive={isActive} delay={nextDelay()}>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 w-full">
+              {featureTags.map((tag, index) =>
+                tag?.label ? (
+                  <FeatureTag
+                    key={`tag-${tag.label}-${index}`}
+                    label={tag.label}
+                  />
+                ) : null,
+              )}
+            </div>
+          </StaggerItem>
+        )}
       </div>
       {buttons && buttons.length > 0 && (
         <StaggerItem isActive={isActive} delay={nextDelay()}>
@@ -236,20 +250,6 @@ function SlideContent({
                 data-tina-field={tinaField(button, 'label')}
               />
             ))}
-          </div>
-        </StaggerItem>
-      )}
-      {featureTags && featureTags.length > 0 && (
-        <StaggerItem isActive={isActive} delay={nextDelay()}>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 w-full">
-            {featureTags.map((tag, index) =>
-              tag?.label ? (
-                <FeatureTag
-                  key={`tag-${tag.label}-${index}`}
-                  label={tag.label}
-                />
-              ) : null,
-            )}
           </div>
         </StaggerItem>
       )}
