@@ -360,17 +360,13 @@ export default function HeroV2(data: { data: PageBlocksHeroV2 }) {
         }}
       />
 
-      {/* Mobile: show all slides stacked, content always first */}
-      <div className="md:hidden flex flex-col gap-12">
-        {slides.map((slide, index) => (
-          <div
-            key={`mobile-slide-${slide.title || index}`}
-            className="grid grid-cols-1 gap-4"
-          >
-            <SlideContent slide={slide} isActive={true} />
-            <SlideImage slide={slide} isActive={true} />
-          </div>
-        ))}
+      {/* Mobile: slide 1 content → terminal+llama → slide 2 content */}
+      <div className="md:hidden flex flex-col gap-8">
+        {slides[0] && <SlideContent slide={slides[0]} isActive={true} />}
+        {slides[1]?.showTerminal && (
+          <SlideImage slide={slides[1]} isActive={true} />
+        )}
+        {slides[1] && <SlideContent slide={slides[1]} isActive={true} />}
       </div>
 
       {/* Desktop: carousel with fade transitions */}
