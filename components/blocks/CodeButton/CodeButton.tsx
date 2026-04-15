@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useState } from 'react';
 import { BiCheck, BiCopy } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
@@ -24,13 +25,18 @@ export const CodeButton = ({
   id,
   className = '',
   helpText,
+  starterTemplates,
   ...props
 }) => {
   const [_copied, setCopied] = useState(false);
   const [showHelpText, setShowHelpText] = useState(false);
   const [isExplicitlyShown, setIsExplicitlyShown] = useState(false);
+  const [hoveredTemplate, setHoveredTemplate] = useState<number | null>(null);
 
   const buttonId = id || sanitizeLabel(label);
+  const hasTemplates = starterTemplates && starterTemplates.length > 0;
+  const hasDropdownContent = helpText?.children?.length > 0 || hasTemplates;
+  const isExpanded = showHelpText && hasDropdownContent;
 
   const clickEvent = () => {
     setCopied(true);
@@ -43,7 +49,7 @@ export const CodeButton = ({
   };
 
   const handleMouseEnter = () => {
-    if (helpText?.children?.length > 0) {
+    if (hasDropdownContent) {
       setShowHelpText(true);
     }
   };
@@ -55,10 +61,12 @@ export const CodeButton = ({
   };
 
   return (
-    <div className="relative flex flex-col border border-brand-primary rounded-md">
+    <div
+      className={`relative flex flex-col border border-brand-primary ${isExpanded ? 'rounded-t-md' : 'rounded-md'}`}
+    >
       <button
         type="button"
-        className={`relative ${_copied || showHelpText ? 'rounded-t-md' : 'rounded-sm'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
+        className={`relative ${_copied || isExpanded ? 'rounded-t-md' : 'rounded-md'} bg-white/50 text-black cursor-pointer hover:text-brand-primary transition-colors`}
         onClick={clickEvent}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -73,7 +81,7 @@ export const CodeButton = ({
             {label}
           </span>
           <span
-            className={`relative flex items-center bg-brand-primary h-full px-4 py-3 ${_copied || showHelpText ? '' : 'rounded-br-sm'} border-l border-brand-primary ease-out transition-colors duration-200 text-white group-hover:text-gray-200`}
+            className={`relative flex items-center rounded-tr-sm bg-brand-primary h-full px-4 py-3 ${_copied || isExpanded ? '' : 'rounded-br-sm'} border-l border-brand-primary ease-out transition-colors duration-200 text-white group-hover:text-gray-200`}
           >
             <BiCopy
               className={`w-5 h-5 duration-200 ${_copied ? 'rotate-180 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
@@ -84,26 +92,86 @@ export const CodeButton = ({
           </span>
         </div>
       </button>
-      {showHelpText && helpText?.children?.length > 0 && (
+      {isExpanded && (
         <div
-          className="bg-white/50 text-xs border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 overflow-hidden animate-slide-down max-h-[500px] max-w-min min-w-full"
+          className="absolute top-full left-[-1px] right-[-0.5px] z-50 overflow-hidden animate-slide-down bg-white border border-brand-primary rounded-b-md border-t border-t-brand-primary"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <TinaMarkdown
-            content={helpText}
-            components={CodeButtonMarkdownStyle}
-          />
-          <button
-            onClick={() => {
-              setShowHelpText(false);
-              setIsExplicitlyShown(false);
-            }}
-            type="button"
-            className="hover:text-brand-primary hover:cursor-pointer"
-          >
-            <IoMdClose className="w-5 h-5" />
-          </button>
+          {hasTemplates && (
+            <div className="px-4 pt-4 pb-2">
+              <div className="flex items-center justify-between px-2 pb-2">
+                <span className="font-mono text-xs text-[#333]">
+                  or deploy instantly...
+                </span>
+                <button
+                  onClick={() => {
+                    setShowHelpText(false);
+                    setIsExplicitlyShown(false);
+                  }}
+                  type="button"
+                  className="hover:text-brand-primary hover:cursor-pointer"
+                >
+                  <IoMdClose className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="flex flex-col gap-1">
+                {starterTemplates.map((template, index) => (
+                  <a
+                    key={template.title}
+                    href={template.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-between px-2 py-2 rounded transition-colors ${
+                      hoveredTemplate === index ? 'bg-[#F1F0EE]' : ''
+                    }`}
+                    onMouseEnter={() => setHoveredTemplate(index)}
+                    onMouseLeave={() => setHoveredTemplate(null)}
+                  >
+                    <div className="flex items-center gap-2">
+                      {template.icon && (
+                        <div className="size-[15px] rounded-full overflow-hidden bg-[#333] flex items-center justify-center shrink-0">
+                          <Image
+                            src={template.icon}
+                            alt={template.title || ''}
+                            width={15}
+                            height={15}
+                            className="object-contain"
+                          />
+                        </div>
+                      )}
+                      <span className="font-ibm-plex text-sm text-black">
+                        {template.title}
+                      </span>
+                    </div>
+                    {hoveredTemplate === index && (
+                      <span className="text-black text-sm">&#x21B5;</span>
+                    )}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+          {helpText?.children?.length > 0 && (
+            <div className="bg-white/50 text-xs border-t border-brand-primary rounded-b-md flex items-center justify-between px-2 pb-1 pt-2 max-h-[500px] max-w-min min-w-full">
+              <TinaMarkdown
+                content={helpText}
+                components={CodeButtonMarkdownStyle}
+              />
+              {!hasTemplates && (
+                <button
+                  onClick={() => {
+                    setShowHelpText(false);
+                    setIsExplicitlyShown(false);
+                  }}
+                  type="button"
+                  className="hover:text-brand-primary hover:cursor-pointer"
+                >
+                  <IoMdClose className="w-5 h-5" />
+                </button>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

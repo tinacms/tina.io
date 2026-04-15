@@ -13,6 +13,7 @@ import type {
 } from '../../tina/__generated__/types';
 import FeatureCard from '../blocks-v2/featureCard/featureCard';
 import HeroV2 from '../blocks-v2/hero/hero';
+import MarkdownFeature from '../blocks-v2/markdownFeature/markdownFeature';
 import {
   BlockWrapper,
   ContentBlock,
@@ -124,6 +125,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <HeroV2 data={block} />;
     case 'PageBlocksFeatureCard':
       return <FeatureCard data={block} />;
+    case 'PageBlocksMarkdownFeature':
+      return <MarkdownFeature data={block} />;
     case 'PageBlocksCallToAction':
       return <CallToAction data={block} />;
     case 'PageBlocksMap':

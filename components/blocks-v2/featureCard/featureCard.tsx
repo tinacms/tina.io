@@ -10,20 +10,15 @@ import RenderButton from '@/utils/renderButtonArrayHelper';
 import { sanitizeLabel } from '@/utils/sanitizeLabel';
 
 const HexagonBackground = ({
-  textOnRight,
   headlineClass,
   className = '',
 }: {
-  textOnRight: boolean;
   headlineClass: string;
   className?: string;
 }) => (
   <div
     className={cn(
-      'pointer-events-none absolute w-2/3 lg:w-2/3 aspect-square',
-      textOnRight
-        ? 'top-[-220px] left-[-150px]'
-        : 'top-[-220px] left-[-150px] lg:top-auto lg:left-auto lg:bottom-[-210px] lg:right-[-180px]',
+      'pointer-events-none absolute w-full aspect-square bottom-[-200px] right-[-150px]',
       headlineClass,
       className,
     )}
@@ -39,7 +34,6 @@ const HexagonBackground = ({
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      {/* Rounded hexagon, fill via tailwind class */}
       <path
         d="
           M50,8
@@ -67,60 +61,54 @@ const HexagonBackground = ({
 function FeatureCardItem(data: {
   data: PageBlocksFeatureCard['cards'][number];
 }) {
-  const {
-    title,
-    featureHeadline,
-    featureText,
-    buttons,
-    image,
-    textOnRight,
-    themeColour,
-  } = data.data;
+  const { title, featureHeadline, featureText, buttons, image, themeColour } =
+    data.data;
 
-  const themeColourMap = {
+  const hexagonColourMap = {
     black: 'text-black',
     blue: 'text-blue-600',
     tinaOrange: 'text-orange-500',
   };
 
-  const headlineClass = themeColourMap[themeColour] || 'text-black';
+  const subheadingGradientMap = {
+    black: 'bg-gradient-to-l from-black/80 to-black/40 bg-clip-text text-transparent',
+    blue: 'bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent',
+    tinaOrange: 'bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent',
+  };
+
+  const hexagonClass = hexagonColourMap[themeColour] || 'text-black';
+  const subheadingClass = subheadingGradientMap[themeColour] || 'text-black';
 
   return (
     <div
-      className="relative grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-white/10 to-white/40  shadow-lg py-12 lg:py-24 px-5 lg:px-10 rounded-md overflow-hidden gap-y-10"
+      className="relative flex flex-col gap-8 items-center bg-gradient-to-br from-white/10 to-white/40 shadow-[0px_10px_15px_-3px_rgba(20,70,150,0.1),0px_4px_6px_-4px_rgba(20,70,150,0.1)] px-8 lg:px-12 py-8 lg:py-10 rounded-md overflow-hidden"
       id={sanitizeLabel(title)}
     >
-      <HexagonBackground
-        textOnRight={textOnRight}
-        headlineClass={headlineClass}
-      />
-      <div
-        className={` flex flex-col md:px-10 gap-2 ${textOnRight ? 'order-2' : ' order-2 lg:order-1'}`}
-      >
+      <HexagonBackground headlineClass={hexagonClass} />
+      <div className="relative z-10 flex flex-col gap-2 w-full flex-1">
         <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
         <h4
-          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex-[400] ${headlineClass}`}
+          className={`${SECTION_HEADINGS_SIZE} font-ibm-plex-[400] ${subheadingClass}`}
         >
           {featureHeadline}
         </h4>
+        <div className="flex-1" />
         <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
-        <div className="flex flex-col sm:flex-row gap-2 gap-y-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           {buttons?.map((button, _index) => (
             <RenderButton key={button.label} button={button} />
           ))}
         </div>
       </div>
-      <div
-        className={`relative  flex items-center justify-center ${textOnRight ? 'order-1' : ' order-1 lg:order-2'}`}
-      >
+      <div className="relative z-10 flex items-center justify-center w-full mt-auto">
         {image && (
           <Image
             src={image}
             alt={title}
             width={500}
-            height={500}
+            height={300}
             className="rounded-md shadow-xl"
             style={{ objectFit: 'contain' }}
           />
@@ -135,11 +123,11 @@ export default function FeatureCard(data: { data: PageBlocksFeatureCard }) {
 
   return (
     <Container className="flex flex-col items-center gap-6">
-      <h3 className="font-ibm-plex font-semibold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+      <h3 className="font-ibm-plex font-semibold text-orange-500">
         {sectionEyebrow}
       </h3>
       <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h2>
-      <div className="grid grid-cols-1 w-full gap-10 py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-10 py-10">
         {cards?.map((card) => (
           <FeatureCardItem key={card.title} data={card} />
         ))}
