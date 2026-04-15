@@ -37,6 +37,18 @@
         {
           "title": "{Markdown} is the Answer.",
           "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nSearch engines are evolving into generative engines. LLMs don't scrape your website – they parse your content directly. Tina stores everything as Markdown in your Git repo, so your content is optimised for GEO from the moment you publish.",
+          "buttons": [
+            {
+              "label": "Building at scale? Let's talk",
+              "icon": true,
+              "shape": "square",
+              "color": "orange",
+              "size": "medium",
+              "modal": "BookDemo.tsx",
+              "_template": "modalButton"
+            }
+          ],
+          "buttonHorizontalAlignment": "left",
           "secondaryImage": "/ai-llamas/Peek-Llama.png",
           "layout": "reversed",
           "showTerminal": true,
