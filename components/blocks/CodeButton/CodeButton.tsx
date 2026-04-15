@@ -62,7 +62,7 @@ export const CodeButton = ({
 
   return (
     <div
-      className={`relative flex flex-col border border-brand-primary ${isExpanded ? 'rounded-t-md' : 'rounded-md'}`}
+      className={`relative flex flex-col border border-brand-primary max-w-full ${isExpanded ? 'rounded-t-md' : 'rounded-md'}`}
     >
       <button
         type="button"
@@ -94,7 +94,7 @@ export const CodeButton = ({
       </button>
       {isExpanded && (
         <div
-          className="absolute top-full left-[-1px] right-[-0.5px] z-50 overflow-hidden animate-slide-down bg-white border border-brand-primary rounded-b-md border-t border-t-brand-primary"
+          className="absolute top-full left-[-1px] right-[-1px] z-50 overflow-hidden animate-slide-down bg-white border border-brand-primary rounded-b-md border-t border-t-brand-primary"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

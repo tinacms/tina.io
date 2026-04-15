@@ -42,10 +42,10 @@ export default function MarkdownFeature(data: {
       size="medium"
       className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-24"
     >
-      <div className="order-2 md:order-1">
+      <div className="order-1 md:order-1">
         <TerminalPanel secondaryImage={secondaryImage} />
       </div>
-      <div className="flex flex-col gap-6 order-1 md:order-2">
+      <div className="flex flex-col gap-6 order-2 md:order-2">
         {title && (
           <h2 className={`${H1_HEADINGS_SIZE} font-ibm-plex`}>
             {curlyBracketFormatter(title)}

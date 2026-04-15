@@ -71,9 +71,11 @@ function FeatureCardItem(data: {
   };
 
   const subheadingGradientMap = {
-    black: 'bg-gradient-to-l from-black/80 to-black/40 bg-clip-text text-transparent',
+    black:
+      'bg-gradient-to-l from-black/80 to-black/40 bg-clip-text text-transparent',
     blue: 'bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent',
-    tinaOrange: 'bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent',
+    tinaOrange:
+      'bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent',
   };
 
   const hexagonClass = hexagonColourMap[themeColour] || 'text-black';
@@ -84,7 +86,7 @@ function FeatureCardItem(data: {
       className="relative flex flex-col gap-8 items-center bg-gradient-to-br from-white/10 to-white/40 shadow-[0px_10px_15px_-3px_rgba(20,70,150,0.1),0px_4px_6px_-4px_rgba(20,70,150,0.1)] px-8 lg:px-12 py-8 lg:py-10 rounded-md overflow-hidden"
       id={sanitizeLabel(title)}
     >
-      <HexagonBackground headlineClass={hexagonClass} />
+      <HexagonBackground headlineClass={`hidden lg:block ${hexagonClass}`} />
       <div className="relative z-10 flex flex-col gap-2 w-full flex-1">
         <h3 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>{title}</h3>
         <h4
@@ -96,13 +98,17 @@ function FeatureCardItem(data: {
         <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
           {buttons?.map((button, _index) => (
-            <RenderButton key={button.label} button={button} />
+            <RenderButton
+              key={button.label}
+              button={button}
+              className="w-full sm:w-auto"
+            />
           ))}
         </div>
       </div>
-      <div className="relative z-10 flex items-center justify-center w-full mt-auto">
+      <div className="relative z-10 hidden lg:flex items-center justify-center w-full mt-auto">
         {image && (
           <Image
             src={image}
