@@ -1,5 +1,5 @@
 import type { PageBlocksMarkdownFeature } from 'tina/__generated__/types';
-import { H1_HEADINGS_SIZE } from '@/component/styles/typography';
+import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
 import { curlyBracketFormatter } from '@/component/util/CurlyBracketFormatter';
 import { TerminalPanel } from './TerminalPanel';
@@ -35,29 +35,30 @@ function FeatureTag({ label }: { label: string }) {
 export default function MarkdownFeature(data: {
   data: PageBlocksMarkdownFeature;
 }) {
-  const { title, subtext, featureTags, secondaryImage } = data.data;
+  const { title, subtitle, subtext, featureTags, secondaryImage } = data.data;
 
   return (
     <Container
       size="medium"
-      className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-24"
+      className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-10"
     >
-      <div className="order-1 md:order-1">
+      <div className="order-1 md:order-1 pt-8 md:pt-16">
         <TerminalPanel secondaryImage={secondaryImage} />
       </div>
       <div className="flex flex-col gap-6 order-2 md:order-2">
         {title && (
-          <h2 className={`${H1_HEADINGS_SIZE} font-ibm-plex`}>
+          <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>
             {curlyBracketFormatter(title)}
           </h2>
         )}
-        {subtext && (
+        {(subtitle || subtext) && (
           <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch]">
+            {subtitle && <strong className="text-black">{subtitle} </strong>}
             {subtext}
           </p>
         )}
         {featureTags && featureTags.length > 0 && (
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 py-1">
             {featureTags.map((tag) =>
               tag?.label ? (
                 <FeatureTag key={tag.label} label={tag.label} />

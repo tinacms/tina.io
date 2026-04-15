@@ -15,6 +15,12 @@ export const markdownFeatureTemplate: Template = {
         'Use {curly braces} around words to highlight them in orange.',
     },
     {
+      name: 'subtitle',
+      label: 'Subtitle',
+      type: 'string',
+      description: 'Second line of the heading, displayed in a lighter style.',
+    },
+    {
       name: 'subtext',
       label: 'Subtext',
       type: 'string',
