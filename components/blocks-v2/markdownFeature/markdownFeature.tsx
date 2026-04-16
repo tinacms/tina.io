@@ -49,11 +49,16 @@ export default function MarkdownFeature(data: {
         {title && (
           <h2 className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex`}>
             {curlyBracketFormatter(title)}
+            {subtitle && (
+              <>
+                <br />
+                <span className="text-black/50">{subtitle}</span>
+              </>
+            )}
           </h2>
         )}
-        {(subtitle || subtext) && (
+        {subtext && (
           <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch]">
-            {subtitle && <strong className="text-black">{subtitle} </strong>}
             {subtext}
           </p>
         )}
