@@ -214,7 +214,7 @@
     },
     {
       "title": "{Markdown} is the Answer.",
-      "subtitle": "The Question is Irrelevant...",
+      "subtitle": "The question is irrelevant...",
       "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nLLMs understand Markdown natively — it's the format they were trained on. Tina stores everything as Markdown in your Git repo, so your content stays clean, portable, and AI-friendly from the moment you publish.",
       "featureTags": [
         {
