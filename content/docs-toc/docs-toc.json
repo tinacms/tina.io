@@ -175,14 +175,14 @@
                   "title": "Object Fields",
                   "slug": "content/docs/reference/types/object.mdx",
                   "_template": "item"
-                },
-                {
-                  "title": "Custom List Rendering",
-                  "slug": "content/docs/extending-tina/customize-list-ui.mdx",
-                  "_template": "item"
                 }
               ],
               "_template": "items"
+            },
+            {
+              "title": "Custom List Rendering",
+              "slug": "content/docs/extending-tina/customize-list-ui.mdx",
+              "_template": "item"
             },
             {
               "title": "Markdown (MD) Fields",
