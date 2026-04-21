@@ -180,11 +180,6 @@
               "_template": "items"
             },
             {
-              "title": "Custom List Rendering",
-              "slug": "content/docs/extending-tina/customize-list-ui.mdx",
-              "_template": "item"
-            },
-            {
               "title": "Markdown (MD) Fields",
               "items": [
                 {
@@ -216,9 +211,25 @@
               "_template": "items"
             },
             {
-              "title": "React Components",
-              "slug": "content/docs/extending-tina/custom-field-components.mdx",
-              "_template": "item"
+              "title": "Form Customization",
+              "items": [
+                {
+                  "title": "React Components",
+                  "slug": "content/docs/extending-tina/custom-field-components.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Display-only Fields",
+                  "slug": "content/docs/reference/types/display-only.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Custom List Rendering",
+                  "slug": "content/docs/extending-tina/customize-list-ui.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
             },
             {
               "title": "Plug-in Components",
