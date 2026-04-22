@@ -1,3 +1,4 @@
+import { FaCheckCircle } from 'react-icons/fa';
 import type { PageBlocksMarkdownFeature } from 'tina/__generated__/types';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import Container from '@/component/util/Container';
@@ -7,25 +8,8 @@ import { TerminalPanel } from './TerminalPanel';
 function FeatureTag({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-1">
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-        className="shrink-0"
-        role="img"
-        aria-label={label}
-      >
-        <circle cx="8" cy="8" r="8" fill="#ec4815" />
-        <path
-          d="M5 8l2 2 4-4"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span className="text-[#ec4815] text-xs font-semibold font-ibm-plex uppercase">
+      <FaCheckCircle className="shrink-0 text-brand-primary" size={16} />
+      <span className="text-brand-primary text-xs font-semibold font-ibm-plex uppercase">
         {label}
       </span>
     </div>
@@ -58,7 +42,7 @@ export default function MarkdownFeature(data: {
           </h2>
         )}
         {subtext && (
-          <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch]">
+          <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-prose">
             {subtext}
           </p>
         )}

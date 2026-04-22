@@ -3,9 +3,7 @@ import type { Template } from 'tinacms';
 export const markdownFeatureTemplate: Template = {
   name: 'markdownFeature',
   label: 'Markdown Feature',
-  ui: {
-    previewSrc: '/img/blocks/markdownFeature.png',
-  },
+  ui: {},
   fields: [
     {
       name: 'title',

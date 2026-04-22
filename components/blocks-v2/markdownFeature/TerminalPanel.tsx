@@ -64,7 +64,7 @@ export function TerminalPanel({ secondaryImage }: TerminalPanelProps) {
         <div className="absolute top-[-185px] left-[65%] -translate-x-1/2 z-10 w-[200px] h-[200px]">
           <Image
             src={secondaryImage}
-            alt="Llama peeking"
+            alt="Secondary image"
             fill={true}
             sizes="200px"
             className="object-contain object-bottom"

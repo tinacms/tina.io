@@ -101,7 +101,7 @@ export const CodeButton = ({
           {hasTemplates && (
             <div className="px-4 pt-4 pb-2">
               <div className="flex items-center justify-between px-2 pb-2">
-                <span className="font-mono text-xs text-[#333]">
+                <span className="font-mono text-xs text-neutral-text">
                   or deploy instantly...
                 </span>
                 <button
@@ -123,19 +123,21 @@ export const CodeButton = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center justify-between px-2 py-2 rounded transition-colors ${
-                      hoveredTemplate === index ? 'bg-[#F1F0EE]' : ''
+                      hoveredTemplate === index
+                        ? 'bg-neutral-background-secondary'
+                        : ''
                     }`}
                     onMouseEnter={() => setHoveredTemplate(index)}
                     onMouseLeave={() => setHoveredTemplate(null)}
                   >
                     <div className="flex items-center gap-2">
                       {template.icon && (
-                        <div className="size-[15px] rounded-full overflow-hidden bg-[#333] flex items-center justify-center shrink-0">
+                        <div className="size-4 rounded-full overflow-hidden bg-neutral-text flex items-center justify-center shrink-0">
                           <Image
                             src={template.icon}
                             alt={template.title || ''}
-                            width={15}
-                            height={15}
+                            width={16}
+                            height={16}
                             className="object-contain"
                           />
                         </div>

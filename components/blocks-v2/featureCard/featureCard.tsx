@@ -83,7 +83,7 @@ function FeatureCardItem(data: {
 
   return (
     <div
-      className="relative flex flex-col gap-8 items-center bg-gradient-to-br from-white/10 to-white/40 shadow-[0px_10px_15px_-3px_rgba(20,70,150,0.1),0px_4px_6px_-4px_rgba(20,70,150,0.1)] px-8 lg:px-12 py-8 lg:py-10 rounded-md overflow-hidden"
+      className="relative flex flex-col gap-8 items-center bg-gradient-to-br from-white/10 to-white/40 shadow-lg px-8 lg:px-12 py-8 lg:py-10 rounded-md overflow-hidden"
       id={sanitizeLabel(title)}
     >
       <HexagonBackground headlineClass={`hidden lg:block ${hexagonClass}`} />
@@ -98,7 +98,7 @@ function FeatureCardItem(data: {
         <p className="text-neutral-text-secondary font-normal leading-relaxed text-lg max-w-[62ch] py-4">
           {featureText}
         </p>
-        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-2 w-full">
           {buttons?.map((button, _index) => (
             <RenderButton
               key={button.label}
