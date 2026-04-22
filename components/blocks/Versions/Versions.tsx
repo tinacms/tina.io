@@ -8,102 +8,274 @@ import {
   type PackageInfo,
 } from './fetchPackageInfo';
 import { formatPublishedDate } from './formatPublishedDate';
-import { TINA_PACKAGES } from './packages';
+import { TINA_PACKAGES, type TinaPackage } from './packages';
 
 type VersionsBlockData = {
   title?: string;
 };
 
 type RowState =
-  | { status: 'loading'; name: string }
+  | { status: 'loading' }
   | { status: 'resolved'; info: PackageInfo };
 
 export function VersionsBlock({ data }: { data: VersionsBlockData }) {
-  const [rows, setRows] = useState<RowState[]>(() =>
-    TINA_PACKAGES.map((p) => ({ status: 'loading', name: p.name })),
+  const [rows, setRows] = useState<Record<string, RowState>>(() =>
+    Object.fromEntries(
+      TINA_PACKAGES.map((p) => [p.name, { status: 'loading' } as RowState]),
+    ),
   );
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all(TINA_PACKAGES.map((p) => fetchPackageInfo(p.name))).then(
-      (results) => {
+    for (const pkg of TINA_PACKAGES) {
+      fetchPackageInfo(pkg.name).then((info) => {
         if (cancelled) {
           return;
         }
-        setRows(results.map((info) => ({ status: 'resolved', info })));
-      },
-    );
+        setRows((prev) => ({
+          ...prev,
+          [pkg.name]: { status: 'resolved', info },
+        }));
+      });
+    }
     return () => {
       cancelled = true;
     };
   }, []);
 
+  const title = data?.title ?? 'TinaCMS Package Versions';
+
   return (
-    <Container width="medium">
-      <h1 className="text-3xl md:text-4xl font-ibm-plex font-medium text-blue-800 mt-16 mb-4">
-        {data?.title ?? 'TinaCMS Package Versions'}
-      </h1>
-      <p className="text-gray-700 mb-8">
-        Latest published version of every TinaCMS package, fetched live from
-        npm.
-      </p>
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-3 pr-4 font-medium text-gray-600">Package</th>
-              <th className="py-3 pr-4 font-medium text-gray-600">Latest</th>
-              <th className="py-3 pr-4 font-medium text-gray-600">Published</th>
-              <th className="py-3 font-medium text-gray-600">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {TINA_PACKAGES.map((pkg, i) => {
-              const row = rows[i];
-              return (
-                <tr key={pkg.name} className="border-b border-gray-100">
-                  <td className="py-3 pr-4 font-mono text-sm text-blue-800">
-                    <a
-                      href={`https://www.npmjs.com/package/${pkg.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                    >
-                      {pkg.name}
-                    </a>
-                  </td>
-                  <td className="py-3 pr-4 font-mono text-sm">
-                    <VersionCell row={row} />
-                  </td>
-                  <td className="py-3 pr-4 text-sm text-gray-700">
-                    <PublishedCell row={row} />
-                  </td>
-                  <td className="py-3 text-sm text-gray-700">
-                    {pkg.description}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </Container>
+    <div className="relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 left-1/2 h-[640px] w-[1100px] -translate-x-1/2 rounded-full blur-3xl"
+        style={{
+          background:
+            'radial-gradient(closest-side, rgba(236, 72, 21, 0.14), rgba(236, 72, 21, 0) 70%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 1px 1px, rgba(17, 24, 39, 0.08) 1px, transparent 0)',
+          backgroundSize: '22px 22px',
+          maskImage:
+            'radial-gradient(ellipse at center top, black 20%, transparent 75%)',
+        }}
+      />
+
+      <Container width="medium">
+        <header className="relative pt-20 pb-10 md:pt-28 md:pb-14">
+          <div className="inline-flex items-center gap-2 rounded-full border border-orange-200/80 bg-white/70 px-3 py-1 font-source-code-pro text-[11px] uppercase tracking-[0.18em] text-orange-700 backdrop-blur">
+            <span className="relative inline-flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
+            </span>
+            Fetched live from npm
+          </div>
+
+          <h1 className="mt-6 font-ibm-plex text-4xl leading-[1.05] tracking-tight text-gray-900 md:text-6xl">
+            {title.split(' ').slice(0, -1).join(' ')}{' '}
+            <span className="bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+              {title.split(' ').slice(-1)[0]}
+            </span>
+          </h1>
+          <p className="mt-4 max-w-2xl text-balance text-lg text-gray-600">
+            The currently published version of every package in the TinaCMS
+            ecosystem — pulled straight from the npm registry on page load.
+          </p>
+        </header>
+
+        <div className="relative">
+          <div className="hidden md:block">
+            <DesktopTable rows={rows} />
+          </div>
+          <div className="md:hidden">
+            <MobileList rows={rows} />
+          </div>
+        </div>
+
+        <footer className="pt-10 pb-24 font-source-code-pro text-xs uppercase tracking-[0.18em] text-gray-400">
+          <span className="mr-2 text-orange-500">{'//'}</span>
+          Source: registry.npmjs.org &nbsp;·&nbsp; {TINA_PACKAGES.length}{' '}
+          packages
+        </footer>
+      </Container>
+
+      <style>{`
+        @keyframes versionsShimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        @keyframes versionsRowIn {
+          from { opacity: 0; transform: translateY(2px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .versions-skel {
+          background: linear-gradient(
+            90deg,
+            rgba(17, 24, 39, 0.06) 0%,
+            rgba(17, 24, 39, 0.12) 50%,
+            rgba(17, 24, 39, 0.06) 100%
+          );
+          background-size: 200% 100%;
+          animation: versionsShimmer 1.6s ease-in-out infinite;
+          border-radius: 6px;
+        }
+        .versions-row-in {
+          animation: versionsRowIn 240ms ease-out both;
+        }
+      `}</style>
+    </div>
   );
 }
 
-function VersionCell({ row }: { row: RowState }) {
-  if (row.status === 'loading') {
-    return <span className="text-gray-400">—</span>;
-  }
-  if (isPackageInfoError(row.info)) {
-    return <span className="text-red-600">error</span>;
-  }
-  return <span>{row.info.version}</span>;
+function DesktopTable({ rows }: { rows: Record<string, RowState> }) {
+  return (
+    <div className="rounded-2xl border border-gray-200/80 bg-white/60 shadow-[0_1px_0_rgba(17,24,39,0.04),0_24px_48px_-24px_rgba(17,24,39,0.12)] backdrop-blur-sm">
+      <table className="w-full border-collapse text-left">
+        <colgroup>
+          <col style={{ width: '30%' }} />
+          <col style={{ width: '14%' }} />
+          <col style={{ width: '18%' }} />
+          <col />
+        </colgroup>
+        <thead>
+          <tr className="border-b border-gray-200/80">
+            <th className="py-4 pl-6 pr-4 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+              Package
+            </th>
+            <th className="py-4 pr-4 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+              Latest
+            </th>
+            <th className="py-4 pr-4 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+              Published
+            </th>
+            <th className="py-4 pr-6 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+              Role
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {TINA_PACKAGES.map((pkg) => (
+            <DesktopRow key={pkg.name} pkg={pkg} row={rows[pkg.name]} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
-function PublishedCell({ row }: { row: RowState }) {
-  if (row.status === 'loading' || isPackageInfoError(row.info)) {
-    return <span className="text-gray-400">—</span>;
-  }
-  return <span>{formatPublishedDate(row.info.publishedAt)}</span>;
+function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
+  const resolved = row.status === 'resolved' ? row.info : null;
+  const errored = resolved ? isPackageInfoError(resolved) : false;
+
+  return (
+    <tr className="group relative border-b border-gray-100 last:border-b-0 transition-colors duration-150 hover:bg-orange-50/40">
+      <td className="relative py-4 pl-6 pr-4">
+        <span className="pointer-events-none absolute left-0 top-1/2 h-6 w-[2px] -translate-y-1/2 bg-orange-500 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+        <a
+          href={`https://www.npmjs.com/package/${pkg.name}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-source-code-pro text-[13.5px] text-gray-900 decoration-orange-400/60 underline-offset-4 hover:text-orange-600 hover:underline"
+        >
+          {pkg.name}
+        </a>
+      </td>
+      <td className="py-4 pr-4 align-middle">
+        {row.status === 'loading' ? (
+          <SkelBar widthClass="w-16" />
+        ) : errored ? (
+          <span className="font-source-code-pro text-[13px] text-gray-400">
+            —
+          </span>
+        ) : (
+          <span className="versions-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
+            {(resolved as { version: string }).version}
+          </span>
+        )}
+      </td>
+      <td className="py-4 pr-4">
+        {row.status === 'loading' ? (
+          <SkelBar widthClass="w-24" />
+        ) : errored ? (
+          <span className="text-sm text-gray-400">unavailable</span>
+        ) : (
+          <span className="versions-row-in font-source-code-pro text-[13px] text-gray-600">
+            {formatPublishedDate(
+              (resolved as { publishedAt: string }).publishedAt,
+            )}
+          </span>
+        )}
+      </td>
+      <td className="py-4 pr-6">
+        <span className="text-sm text-gray-600">{pkg.description}</span>
+      </td>
+    </tr>
+  );
+}
+
+function MobileList({ rows }: { rows: Record<string, RowState> }) {
+  return (
+    <ul className="flex flex-col gap-3">
+      {TINA_PACKAGES.map((pkg) => {
+        const row = rows[pkg.name];
+        const resolved = row?.status === 'resolved' ? row.info : null;
+        const errored = resolved ? isPackageInfoError(resolved) : false;
+        return (
+          <li
+            key={pkg.name}
+            className="rounded-xl border border-gray-200/80 bg-white/70 p-4 backdrop-blur-sm"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <a
+                href={`https://www.npmjs.com/package/${pkg.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-source-code-pro text-[13px] text-gray-900 hover:text-orange-600"
+              >
+                {pkg.name}
+              </a>
+              {row?.status === 'loading' ? (
+                <SkelBar widthClass="w-14" />
+              ) : errored ? (
+                <span className="font-source-code-pro text-[13px] text-gray-400">
+                  —
+                </span>
+              ) : (
+                <span className="versions-row-in inline-flex shrink-0 items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
+                  {(resolved as { version: string }).version}
+                </span>
+              )}
+            </div>
+            <div className="mt-2 flex items-center justify-between">
+              <span className="text-sm text-gray-600">{pkg.description}</span>
+              {row?.status === 'loading' ? (
+                <SkelBar widthClass="w-20" />
+              ) : errored ? null : (
+                <span className="versions-row-in ml-3 shrink-0 font-source-code-pro text-[12px] text-gray-500">
+                  {formatPublishedDate(
+                    (resolved as { publishedAt: string }).publishedAt,
+                  )}
+                </span>
+              )}
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function SkelBar({ widthClass }: { widthClass: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`versions-skel inline-block h-[18px] align-middle ${widthClass}`}
+    />
+  );
 }
