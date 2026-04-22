@@ -19,6 +19,7 @@ const RenderButton = ({ button, className = '' }) => {
           label={button.label}
           className={className}
           helpText={button?.helpText}
+          starterTemplates={button?.starterTemplates}
         >
           {button.children}
         </CodeButton>

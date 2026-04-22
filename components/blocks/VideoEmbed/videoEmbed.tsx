@@ -71,15 +71,16 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
           </>
         )}
 
-        <div className="w-full rounded-xl overflow-hidden">
-          <YouTubeEmbed src={externalVideoLink || ''} />
+        <div className="w-full lg:max-w-3xl lg:mx-auto">
+          <div className="rounded-xl overflow-hidden">
+            <YouTubeEmbed src={externalVideoLink || ''} />
+          </div>
+          {figureCaption && (
+            <p className="text-sm text-gray-400 mt-2 text-left">
+              {figureCaption}
+            </p>
+          )}
         </div>
-
-        {figureCaption && (
-          <p className="text-sm text-gray-400 mt-2 text-left">
-            {figureCaption}
-          </p>
-        )}
       </div>
     </Container>
   );
