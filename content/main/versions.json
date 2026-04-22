@@ -7,7 +7,8 @@
   "blocks": [
     {
       "_template": "versions",
-      "title": "TinaCMS Package Versions"
+      "title": "TinaCMS Package Versions",
+      "description": "The currently published version of every package in the TinaCMS ecosystem — pulled straight from the npm registry on page load."
     }
   ]
 }

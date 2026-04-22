@@ -14,5 +14,15 @@ export const versionsTemplate: Template = {
       description:
         'Heading shown above the live table of TinaCMS package versions.',
     },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'string',
+      ui: {
+        component: 'textarea',
+      },
+      description:
+        'Short paragraph shown under the heading. Leave blank to hide.',
+    },
   ],
 };

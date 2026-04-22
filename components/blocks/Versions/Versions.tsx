@@ -12,6 +12,7 @@ import { TINA_PACKAGES, type TinaPackage } from './packages';
 
 type VersionsBlockData = {
   title?: string;
+  description?: string;
 };
 
 type RowState =
@@ -44,49 +45,25 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
   }, []);
 
   const title = data?.title ?? 'TinaCMS Package Versions';
+  const description =
+    data?.description ??
+    'The currently published version of every package in the TinaCMS ecosystem — pulled straight from the npm registry on page load.';
 
   return (
     <div className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[640px] w-[1100px] -translate-x-1/2 rounded-full blur-3xl"
-        style={{
-          background:
-            'radial-gradient(closest-side, rgba(236, 72, 21, 0.14), rgba(236, 72, 21, 0) 70%)',
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 1px 1px, rgba(17, 24, 39, 0.08) 1px, transparent 0)',
-          backgroundSize: '22px 22px',
-          maskImage:
-            'radial-gradient(ellipse at center top, black 20%, transparent 75%)',
-        }}
-      />
-
       <Container width="medium">
         <header className="relative pt-20 pb-10 md:pt-28 md:pb-14">
-          <div className="inline-flex items-center gap-2 rounded-full border border-orange-200/80 bg-white/70 px-3 py-1 font-source-code-pro text-[11px] uppercase tracking-[0.18em] text-orange-700 backdrop-blur">
-            <span className="relative inline-flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
-            </span>
-            Fetched live from npm
-          </div>
-
           <h1 className="mt-6 font-ibm-plex text-4xl leading-[1.05] tracking-tight text-gray-900 md:text-6xl">
             {title.split(' ').slice(0, -1).join(' ')}{' '}
             <span className="bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
               {title.split(' ').slice(-1)[0]}
             </span>
           </h1>
-          <p className="mt-4 max-w-2xl text-balance text-lg text-gray-600">
-            The currently published version of every package in the TinaCMS
-            ecosystem — pulled straight from the npm registry on page load.
-          </p>
+          {description ? (
+            <p className="mt-4 max-w-2xl text-balance text-lg text-gray-600">
+              {description}
+            </p>
+          ) : null}
         </header>
 
         <div className="relative">
