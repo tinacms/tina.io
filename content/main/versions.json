@@ -1,0 +1,13 @@
+{
+  "seo": {
+    "title": "TinaCMS Package Versions",
+    "description": "The current published version of every TinaCMS package, fetched live from npm.",
+    "canonicalUrl": "https://tina.io/versions"
+  },
+  "blocks": [
+    {
+      "_template": "versions",
+      "title": "TinaCMS Package Versions"
+    }
+  ]
+}
