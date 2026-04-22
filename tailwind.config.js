@@ -259,6 +259,13 @@ module.exports = {
         shimmer: 'shimmer 1.6s ease-in-out infinite',
         'row-in': 'row-in 240ms ease-out both',
       },
+      backgroundImage: {
+        'skeleton-shimmer':
+          'linear-gradient(90deg, rgba(17,24,39,0.06) 0%, rgba(17,24,39,0.12) 50%, rgba(17,24,39,0.06) 100%)',
+      },
+      backgroundSize: {
+        skeleton: '200% 100%',
+      },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
         sm: '0 1px 3px 0 rgba(20, 70, 150, 0.05)',

@@ -61,9 +61,9 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
 
   return (
     <div className="relative overflow-hidden">
-      <div className="mx-auto w-[90%] max-w-[1350px] lg:w-4/5">
+      <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
         <header className="relative pt-20 pb-10 md:pt-28 md:pb-14">
-          <h1 className="font-ibm-plex text-4xl leading-[1.05] tracking-tight text-gray-900 md:text-6xl">
+          <h1 className="font-ibm-plex text-4xl leading-tight tracking-tight text-gray-900 md:text-6xl">
             {titleHead ? <>{titleHead} </> : null}
             <span className="bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
               {titleTail}
@@ -95,7 +95,7 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
           </div>
         </div>
 
-        <footer className="pt-10 pb-24 font-source-code-pro text-xs uppercase tracking-[0.18em] text-gray-400">
+        <footer className="pt-10 pb-24 font-source-code-pro text-xs uppercase tracking-widest text-gray-400">
           <span className="mr-2 text-orange-500">{'//'}</span>
           Source: registry.npmjs.org &nbsp;·&nbsp; {TINA_PACKAGES.length}{' '}
           packages
@@ -107,26 +107,26 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
 
 function DesktopTable({ rows }: { rows: Record<string, RowState> }) {
   return (
-    <div className="rounded-2xl border border-gray-200/80 bg-white/60 shadow-[0_1px_0_rgba(17,24,39,0.04),0_24px_48px_-24px_rgba(17,24,39,0.12)] backdrop-blur-sm">
-      <table className="w-full border-collapse text-left">
+    <div className="rounded-2xl border border-gray-200/80 bg-white/60 shadow-lg backdrop-blur-sm">
+      <table className="w-full table-fixed border-collapse text-left">
         <colgroup>
-          <col className="w-[30%]" />
-          <col className="w-[14%]" />
-          <col className="w-[18%]" />
+          <col className="w-1/3" />
+          <col className="w-1/6" />
+          <col className="w-1/6" />
           <col />
         </colgroup>
         <thead>
           <tr className="border-b border-gray-200/80">
-            <th className="py-4 pl-6 pr-4 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+            <th className="py-4 pl-6 pr-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
               Package
             </th>
-            <th className="py-4 pr-4 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+            <th className="py-4 pr-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
               Latest
             </th>
-            <th className="py-4 pr-4 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+            <th className="py-4 pr-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
               Published
             </th>
-            <th className="py-4 pr-6 font-source-code-pro text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
+            <th className="py-4 pr-6 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
               Role
             </th>
           </tr>
@@ -148,12 +148,12 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
   return (
     <tr className="group relative border-b border-gray-100 last:border-b-0 transition-colors duration-150 hover:bg-orange-50/40">
       <td className="relative py-4 pl-6 pr-4">
-        <span className="pointer-events-none absolute left-0 top-1/2 h-6 w-[2px] -translate-y-1/2 bg-orange-500 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+        <span className="pointer-events-none absolute left-0 top-1/2 h-6 w-0.5 -translate-y-1/2 bg-orange-500 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
         <a
           href={`https://www.npmjs.com/package/${pkg.name}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-source-code-pro text-[13.5px] text-gray-900 decoration-orange-400/60 underline-offset-4 hover:text-orange-600 hover:underline"
+          className="font-source-code-pro text-xs text-gray-900 decoration-orange-400/60 underline-offset-4 hover:text-orange-600 hover:underline"
         >
           {pkg.name}
         </a>
@@ -162,11 +162,9 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
         {row.status === 'loading' ? (
           <SkelBar widthClass="w-16" />
         ) : errored ? (
-          <span className="font-source-code-pro text-[13px] text-gray-400">
-            —
-          </span>
+          <span className="font-source-code-pro text-xs text-gray-400">—</span>
         ) : (
-          <span className="animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
+          <span className="animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-xs font-medium text-orange-700">
             {(resolved as { version: string }).version}
           </span>
         )}
@@ -177,7 +175,7 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
         ) : errored ? (
           <span className="text-sm text-gray-400">unavailable</span>
         ) : (
-          <span className="animate-row-in font-source-code-pro text-[13px] text-gray-600">
+          <span className="animate-row-in font-source-code-pro text-xs text-gray-600">
             {formatPublishedDate(
               (resolved as { publishedAt: string }).publishedAt,
             )}
@@ -208,18 +206,18 @@ function MobileList({ rows }: { rows: Record<string, RowState> }) {
                 href={`https://www.npmjs.com/package/${pkg.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-source-code-pro text-[13px] text-gray-900 hover:text-orange-600"
+                className="font-source-code-pro text-xs text-gray-900 hover:text-orange-600"
               >
                 {pkg.name}
               </a>
               {row?.status === 'loading' ? (
                 <SkelBar widthClass="w-14" />
               ) : errored ? (
-                <span className="font-source-code-pro text-[13px] text-gray-400">
+                <span className="font-source-code-pro text-xs text-gray-400">
                   —
                 </span>
               ) : (
-                <span className="animate-row-in inline-flex shrink-0 items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
+                <span className="animate-row-in inline-flex shrink-0 items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-xs font-medium text-orange-700">
                   {(resolved as { version: string }).version}
                 </span>
               )}
@@ -229,7 +227,7 @@ function MobileList({ rows }: { rows: Record<string, RowState> }) {
               {row?.status === 'loading' ? (
                 <SkelBar widthClass="w-20" />
               ) : errored ? null : (
-                <span className="animate-row-in ml-3 shrink-0 font-source-code-pro text-[12px] text-gray-500">
+                <span className="animate-row-in ml-3 shrink-0 font-source-code-pro text-xxs text-gray-500">
                   {formatPublishedDate(
                     (resolved as { publishedAt: string }).publishedAt,
                   )}
@@ -247,7 +245,7 @@ function SkelBar({ widthClass }: { widthClass: string }) {
   return (
     <span
       aria-hidden
-      className={`inline-block h-[18px] align-middle rounded-md animate-shimmer bg-[linear-gradient(90deg,rgba(17,24,39,0.06)_0%,rgba(17,24,39,0.12)_50%,rgba(17,24,39,0.06)_100%)] bg-[length:200%_100%] ${widthClass}`}
+      className={`inline-block h-5 align-middle rounded-md animate-shimmer bg-skeleton-shimmer bg-skeleton ${widthClass}`}
     />
   );
 }
