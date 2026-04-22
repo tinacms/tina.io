@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import RenderButton from 'utils/renderButtonArrayHelper';
 import {
   fetchPackageInfo,
   isPackageInfoError,
@@ -9,16 +10,15 @@ import {
 import { formatPublishedDate } from './formatPublishedDate';
 import { TINA_PACKAGES, type TinaPackage } from './packages';
 
-type VersionsButton = {
-  label?: string;
-  url?: string;
-  variant?: string;
-};
-
 type VersionsBlockData = {
   title?: string;
   description?: string;
-  buttons?: VersionsButton[];
+  buttons?: Array<
+    { __typename?: string; id?: string; label?: string } & Record<
+      string,
+      unknown
+    >
+  >;
 };
 
 type RowState =
@@ -54,10 +54,7 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
   const description =
     data?.description ??
     'The currently published version of every package in the TinaCMS ecosystem — pulled straight from the npm registry on page load.';
-  const buttons = (data?.buttons ?? []).filter(
-    (b): b is VersionsButton & { label: string; url: string } =>
-      Boolean(b?.label && b?.url),
-  );
+  const buttons = data?.buttons ?? [];
   const titleWords = title.trim().split(/\s+/);
   const titleHead = titleWords.slice(0, -1).join(' ');
   const titleTail = titleWords[titleWords.length - 1] ?? '';
@@ -78,9 +75,12 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
             </p>
           ) : null}
           {buttons.length > 0 ? (
-            <div className="mt-6 flex flex-wrap gap-3">
-              {buttons.map((btn) => (
-                <VersionsButtonLink key={`${btn.label}-${btn.url}`} {...btn} />
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              {buttons.map((button, index) => (
+                <RenderButton
+                  key={button.id ?? `${button.label}-${index}`}
+                  button={button}
+                />
               ))}
             </div>
           ) : null}
@@ -265,41 +265,6 @@ function MobileList({ rows }: { rows: Record<string, RowState> }) {
         );
       })}
     </ul>
-  );
-}
-
-function VersionsButtonLink({
-  label,
-  url,
-  variant,
-}: {
-  label: string;
-  url: string;
-  variant?: string;
-}) {
-  const isExternal = /^https?:\/\//.test(url);
-  const base =
-    'group inline-flex items-center gap-2 rounded-full px-5 py-2 font-ibm-plex text-sm transition-all duration-150';
-  const styles =
-    variant === 'secondary'
-      ? 'border border-gray-300 bg-white/70 text-gray-800 hover:border-orange-400 hover:text-orange-600'
-      : 'bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 text-white shadow-[0_6px_18px_-8px_rgba(236,72,21,0.6)] hover:shadow-[0_10px_28px_-10px_rgba(236,72,21,0.7)]';
-
-  return (
-    <a
-      href={url}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noopener noreferrer' : undefined}
-      className={`${base} ${styles}`}
-    >
-      {label}
-      <span
-        aria-hidden
-        className="translate-x-0 transition-transform duration-150 group-hover:translate-x-0.5"
-      >
-        →
-      </span>
-    </a>
   );
 }
 
