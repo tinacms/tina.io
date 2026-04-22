@@ -1,14 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import RenderButton from 'utils/renderButtonArrayHelper';
-import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import {
   fetchPackageInfo,
   isPackageInfoError,
   type PackageInfo,
-} from './fetchPackageInfo';
-import { formatPublishedDate } from './formatPublishedDate';
+} from 'utils/fetchPackageInfo';
+import { formatPublishedDate } from 'utils/formatPublishedDate';
+import RenderButton from 'utils/renderButtonArrayHelper';
+import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import { TINA_PACKAGES, type TinaPackage } from './packages';
 
 type VersionsBlockData = {
