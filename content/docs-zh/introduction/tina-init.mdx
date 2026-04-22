@@ -5,11 +5,11 @@ id: /docs/introduction/tina-init/
 last_edited: '2022-02-04T15:51:56.737Z'
 ---
 
-> 注意：本文档假设您已经有一个正在运行的站点。如果没有，您可以快速开始使用我们的[NextJS入门项目](/docs/introduction/using-starter/)。
+> 注意：本文档假设您已经有一个正在运行的站点。如果没有，您可以快速使用我们的[NextJS入门](/docs/introduction/using-starter/)之一开始。
 
 ## 添加Tina
 
-我们创建了一种快速启动Tina应用程序的方法，以展示可视化编辑的强大功能；在终端中输入以下命令：
+我们创建了一种快速引导Tina应用程序的方法，以展示可视化编辑的强大功能；在终端中输入以下命令：
 
 ```bash
 npx @tinacms/cli@latest init
@@ -47,7 +47,7 @@ _有关非NextJS站点的提示帮助，请参阅[本指南](/docs/frameworks/ot
   }
 ```
 
-如果CLI没有设置这些，您需要手动应用。
+如果CLI没有设置这些脚本，则应手动应用。
 
 ### 快速测试
 
@@ -57,9 +57,25 @@ _有关非NextJS站点的提示帮助，请参阅[本指南](/docs/frameworks/ot
 yarn dev
 ```
 
-当Tina在NextJS站点上初始化时，会创建一个"/admin/index.html"页面，允许编辑者登录并开始进行内容更改。
+当Tina在NextJS站点上初始化时，会创建一个"/admin/index.html"页面，以允许编辑者登录并开始进行内容更改。
 
 现在，如果您导航到`http://localhost:3000/admin/index.html`（假设您的站点运行在端口3000），您应该会看到一个新的CMS登录页面已添加到您的站点！
+
+### 提交tina-lock.json文件
+
+<WarningCallout
+  body={<>
+    <strong>重要：</strong> 运行<code>tinacms dev</code>（或<code>yarn dev</code>如果您的开发脚本包装了它）会生成一个<code>tina/tina-lock.json</code>文件。此文件<strong>必须提交并推送到您的存储库</strong>，以便TinaCloud索引您的内容和分支。没有它，TinaCloud将无法检测到您的架构，您的分支将保持未索引状态。
+  </>}
+/>
+
+首次运行开发命令后，请确保提交并推送生成的`tina/tina-lock.json`：
+
+```bash
+git add tina/tina-lock.json
+git commit -m "Add tina-lock.json"
+git push
+```
 
 > 注意，许多框架提供了一种将`/admin/index.html`重定向到`/admin`的方法。
 
