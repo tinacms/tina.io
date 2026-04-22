@@ -43,6 +43,7 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import TripleBox from './TripleBox/TripleBox';
+import { VersionsBlock } from './Versions/Versions';
 import VideoDisplay from './VideoEmbed/videoEmbed';
 
 const CarouselFeatureBlock = dynamic(
@@ -135,6 +136,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <TripleBox data={block} />;
     case 'PageBlocksProfessionalServices':
       return <ProfessionalServices data={block} />;
+    case 'PageBlocksVersions':
+      return <VersionsBlock data={block} />;
     default:
       return null;
   }
