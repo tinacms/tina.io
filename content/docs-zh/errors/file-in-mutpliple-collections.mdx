@@ -1,6 +1,7 @@
 ---
+alias: file-in-multiple-collections
 cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/graphql/src/database/util.ts"
-title: '文件属于多个集合错误'
+title: '文件在多个集合中的错误'
 ---
 
 当一个文件位于多个集合中时，会发生此错误。这通常是由于集合中的路径重叠或[匹配属性](/docs/reference/collections#matchinclude)中的错误导致的。
@@ -60,7 +61,7 @@ export default defineConfig({
 
 ## 使用包含的示例
 
-包含的一个示例可能是如果您只想包含具有特定名称的文件。例如，如果您想包含`content/posts`目录中所有名称为`index`的文件。
+包含的一个示例可能是如果您只想包含具有特定名称的文件。例如，如果您想包含`content/posts`目录中名称为`index`的所有文件。
 
 ```ts
 // tina/schema.ts

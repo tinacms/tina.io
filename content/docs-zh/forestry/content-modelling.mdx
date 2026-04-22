@@ -1,4 +1,5 @@
 ---
+alias: forestry-content-modelling
 cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/cli/src/cmds/forestry-migrate/index.ts"
 title: '比较 Tina 和 Forestry：内容建模'
 id: '/docs/forestry/content-modelling/'
@@ -14,15 +15,15 @@ id: '/docs/forestry/content-modelling/'
 
 ## TinaCMS 中的内容建模
 
-在 TinaCMS 中，内容建模是在代码中完成的。这种方法的优点是允许开发人员对其内容模型有更多的控制。项目可以轻松重用模型，从其他项目导入模型，添加自定义验证等。
+在 TinaCMS 中，内容建模是在代码中完成的。这种方法的优点是允许开发人员对其内容模型有更多的控制。项目可以轻松地重用模型，从其他项目导入模型，添加自定义验证等。
 
 ### "包含字段"
 
 Forestry 支持一种称为“Include Template”的字段类型。Include Template 字段类型允许您包含已在另一个前置模板中指定的字段。
 
-在 TinaCMS 中，由于配置全部在一个 JavaScript 文件中建模，因此包含其他模型的字段无需特殊的字段类型：
+在 TinaCMS 中，由于配置全部在一个 JavaScript 文件中建模，因此包含来自其他模型的字段无需特殊的字段类型：
 
-这种差异的一个具体例子是可重用字段集的处理方式。在 Forestry 中，我们有一个称为“Include Template”的字段类型，允许您在内容模型中包含预定义的字段集。在 TinaCMS 中，这通过简单地将可重用字段集分离到自己的文件中，然后将其导入到所需的集合中来完成。
+这种差异的一个具体例子是可重用字段集的处理方式。在 Forestry 中，我们有一种称为“Include Template”的字段类型，允许您在内容模型中包含预定义的字段集。在 TinaCMS 中，这通过简单地将可重用字段集分离到自己的文件中，然后将其导入到所需的集合中来完成。
 
 在以下示例中，我们定义了一组“seoFields”，可以在我们的任何集合中重用：
 
