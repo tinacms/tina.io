@@ -100,7 +100,7 @@ Two locales: English (`en`, default) and Chinese (`zh`). Middleware handles loca
 
 - **Biome** is the sole linter/formatter — no ESLint or Prettier
 - Single quotes, semicolons required, 2-space indent, LF line endings
-- Use Tailwind classes over inline CSS or styled components
+- ❗ Use Tailwind classes - DO NOT use inline styles, <style> or other
 - Block statements required (no single-line `if` without braces)
 - `noUnusedVariables: error`, `useOptionalChain: error`, `noArrayIndexKey: error`
 - `noExplicitAny` and `noNonNullAssertion` are allowed (off)
