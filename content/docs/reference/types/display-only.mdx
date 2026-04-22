@@ -1,6 +1,6 @@
 ---
 title: Display-only Fields
-last_edited: '2026-04-21T04:24:15.742Z'
+last_edited: '2026-04-22T03:00:55.241Z'
 next: ''
 previous: ''
 ---
@@ -93,7 +93,7 @@ import { InfoBox } from 'tinacms';
 
 ### Custom component
 
-For anything beyond a message + links, pass your own React component. Display-only components don't receive `input` values — they're purely presentational.
+For anything beyond a message + links, pass your own React component. Display-only components don't receive `input` values… they're purely presentational.
 
 ```tsx
 import type { FC } from 'react';
@@ -124,4 +124,4 @@ const SeoChecklist: FC = () => (
 
 If you need to **replace the UI of a field that stores data** (e.g. a custom slider for a `number`, or a color picker for a `string`), use [React Components](/docs/extending-tina/custom-field-components).
 
-If you need to **add UI to the form that doesn't store data** — instructions, warnings, quick links — reach for `displayOnly`.
+If you need to **add UI to the form that doesn't store data**, instructions, warnings, quick links, reach for `displayOnly`.
