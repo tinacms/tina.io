@@ -25,11 +25,6 @@ describe('fetchPackageInfo', () => {
     });
     expect(global.fetch).toHaveBeenCalledWith(
       'https://registry.npmjs.org/tinacms',
-      expect.objectContaining({
-        headers: expect.objectContaining({
-          Accept: 'application/vnd.npm.install-v1+json',
-        }),
-      }),
     );
   });
 
@@ -46,7 +41,6 @@ describe('fetchPackageInfo', () => {
 
     expect(global.fetch).toHaveBeenCalledWith(
       'https://registry.npmjs.org/@tinacms%2Fcli',
-      expect.anything(),
     );
   });
 

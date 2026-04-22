@@ -20,11 +20,7 @@ export function isPackageInfoError(
 export async function fetchPackageInfo(name: string): Promise<PackageInfo> {
   const url = `https://registry.npmjs.org/${name.replace('/', '%2F')}`;
   try {
-    const res = await fetch(url, {
-      headers: {
-        Accept: 'application/vnd.npm.install-v1+json',
-      },
-    });
+    const res = await fetch(url);
     if (!res.ok) {
       return { name, error: `HTTP ${res.status}` };
     }
