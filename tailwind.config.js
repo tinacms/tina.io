@@ -244,7 +244,7 @@ module.exports = {
           '100%': { backgroundPosition: '200% 0' },
         },
         'row-in': {
-          from: { opacity: '0', transform: 'translateY(2px)' },
+          from: { opacity: '0', transform: 'translateY(0.125rem)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
       },

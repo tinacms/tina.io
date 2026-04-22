@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import RenderButton from 'utils/renderButtonArrayHelper';
+import { SkeletonBar } from '@/component/ui/SkeletonBar';
 import {
   fetchPackageInfo,
   isPackageInfoError,
@@ -25,8 +26,20 @@ type RowState =
   | { status: 'loading' }
   | { status: 'resolved'; info: PackageInfo };
 
+type RowMap = Record<string, RowState>;
+
+const HEADER_CELL_CLASS =
+  'py-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500';
+const CARD_CLASS =
+  'rounded-2xl border border-gray-200/80 bg-white/60 shadow-lg backdrop-blur-sm';
+const PACKAGE_LINK_BASE =
+  'font-source-code-pro text-xs text-gray-900 hover:text-orange-600';
+const PILL_CLASS =
+  'animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-xs font-medium text-orange-700';
+const PLACEHOLDER_CLASS = 'font-source-code-pro text-xs text-gray-400';
+
 export function VersionsBlock({ data }: { data: VersionsBlockData }) {
-  const [rows, setRows] = useState<Record<string, RowState>>(() =>
+  const [rows, setRows] = useState<RowMap>(() =>
     Object.fromEntries(
       TINA_PACKAGES.map((p) => [p.name, { status: 'loading' } as RowState]),
     ),
@@ -64,17 +77,17 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
       <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
         <header className="relative pt-20 pb-10 md:pt-28 md:pb-14">
           <h1 className="font-ibm-plex text-4xl leading-tight tracking-tight text-gray-900 md:text-6xl">
-            {titleHead ? <>{titleHead} </> : null}
+            {titleHead && <>{titleHead} </>}
             <span className="bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
               {titleTail}
             </span>
           </h1>
-          {description ? (
+          {description && (
             <p className="mt-4 max-w-2xl text-balance text-lg text-gray-600">
               {description}
             </p>
-          ) : null}
-          {buttons.length > 0 ? (
+          )}
+          {buttons.length > 0 && (
             <div className="mt-6 flex flex-wrap items-center gap-4">
               {buttons.map((button, index) => (
                 <RenderButton
@@ -83,7 +96,7 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
                 />
               ))}
             </div>
-          ) : null}
+          )}
         </header>
 
         <div className="relative">
@@ -105,9 +118,9 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
   );
 }
 
-function DesktopTable({ rows }: { rows: Record<string, RowState> }) {
+function DesktopTable({ rows }: { rows: RowMap }) {
   return (
-    <div className="rounded-2xl border border-gray-200/80 bg-white/60 shadow-lg backdrop-blur-sm">
+    <div className={CARD_CLASS}>
       <table className="w-full table-fixed border-collapse text-left">
         <colgroup>
           <col className="w-1/3" />
@@ -117,18 +130,10 @@ function DesktopTable({ rows }: { rows: Record<string, RowState> }) {
         </colgroup>
         <thead>
           <tr className="border-b border-gray-200/80">
-            <th className="py-4 pl-6 pr-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
-              Package
-            </th>
-            <th className="py-4 pr-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
-              Latest
-            </th>
-            <th className="py-4 pr-4 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
-              Published
-            </th>
-            <th className="py-4 pr-6 font-source-code-pro text-xxs font-medium uppercase tracking-widest text-gray-500">
-              Role
-            </th>
+            <HeaderCell className="pl-6 pr-4">Package</HeaderCell>
+            <HeaderCell className="pr-4">Latest</HeaderCell>
+            <HeaderCell className="pr-4">Published</HeaderCell>
+            <HeaderCell className="pr-6">Role</HeaderCell>
           </tr>
         </thead>
         <tbody>
@@ -142,45 +147,20 @@ function DesktopTable({ rows }: { rows: Record<string, RowState> }) {
 }
 
 function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
-  const resolved = row.status === 'resolved' ? row.info : null;
-  const errored = resolved ? isPackageInfoError(resolved) : false;
-
   return (
     <tr className="group relative border-b border-gray-100 last:border-b-0 transition-colors duration-150 hover:bg-orange-50/40">
       <td className="relative py-4 pl-6 pr-4">
         <span className="pointer-events-none absolute left-0 top-1/2 h-6 w-0.5 -translate-y-1/2 bg-orange-500 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
-        <a
-          href={`https://www.npmjs.com/package/${pkg.name}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-source-code-pro text-xs text-gray-900 decoration-orange-400/60 underline-offset-4 hover:text-orange-600 hover:underline"
-        >
-          {pkg.name}
-        </a>
+        <PackageLink
+          name={pkg.name}
+          className={`${PACKAGE_LINK_BASE} decoration-orange-400/60 underline-offset-4 hover:underline`}
+        />
       </td>
       <td className="py-4 pr-4 align-middle">
-        {row.status === 'loading' ? (
-          <SkelBar widthClass="w-16" />
-        ) : errored ? (
-          <span className="font-source-code-pro text-xs text-gray-400">—</span>
-        ) : (
-          <span className="animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-xs font-medium text-orange-700">
-            {(resolved as { version: string }).version}
-          </span>
-        )}
+        <VersionField row={row} skeletonWidth="w-16" />
       </td>
       <td className="py-4 pr-4">
-        {row.status === 'loading' ? (
-          <SkelBar widthClass="w-24" />
-        ) : errored ? (
-          <span className="text-sm text-gray-400">unavailable</span>
-        ) : (
-          <span className="animate-row-in font-source-code-pro text-xs text-gray-600">
-            {formatPublishedDate(
-              (resolved as { publishedAt: string }).publishedAt,
-            )}
-          </span>
-        )}
+        <PublishedField row={row} skeletonWidth="w-24" />
       </td>
       <td className="py-4 pr-6">
         <span className="text-sm text-gray-600">{pkg.description}</span>
@@ -189,63 +169,106 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
   );
 }
 
-function MobileList({ rows }: { rows: Record<string, RowState> }) {
+function MobileList({ rows }: { rows: RowMap }) {
   return (
     <ul className="flex flex-col gap-3">
-      {TINA_PACKAGES.map((pkg) => {
-        const row = rows[pkg.name];
-        const resolved = row?.status === 'resolved' ? row.info : null;
-        const errored = resolved ? isPackageInfoError(resolved) : false;
-        return (
-          <li
-            key={pkg.name}
-            className="rounded-xl border border-gray-200/80 bg-white/70 p-4 backdrop-blur-sm"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <a
-                href={`https://www.npmjs.com/package/${pkg.name}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-source-code-pro text-xs text-gray-900 hover:text-orange-600"
-              >
-                {pkg.name}
-              </a>
-              {row?.status === 'loading' ? (
-                <SkelBar widthClass="w-14" />
-              ) : errored ? (
-                <span className="font-source-code-pro text-xs text-gray-400">
-                  —
-                </span>
-              ) : (
-                <span className="animate-row-in inline-flex shrink-0 items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-xs font-medium text-orange-700">
-                  {(resolved as { version: string }).version}
-                </span>
-              )}
-            </div>
-            <div className="mt-2 flex items-center justify-between">
-              <span className="text-sm text-gray-600">{pkg.description}</span>
-              {row?.status === 'loading' ? (
-                <SkelBar widthClass="w-20" />
-              ) : errored ? null : (
-                <span className="animate-row-in ml-3 shrink-0 font-source-code-pro text-xxs text-gray-500">
-                  {formatPublishedDate(
-                    (resolved as { publishedAt: string }).publishedAt,
-                  )}
-                </span>
-              )}
-            </div>
-          </li>
-        );
-      })}
+      {TINA_PACKAGES.map((pkg) => (
+        <li
+          key={pkg.name}
+          className="rounded-xl border border-gray-200/80 bg-white/70 p-4 backdrop-blur-sm"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <PackageLink name={pkg.name} className={PACKAGE_LINK_BASE} />
+            <VersionField row={rows[pkg.name]} skeletonWidth="w-14" shrink />
+          </div>
+          <div className="mt-2 flex items-center justify-between">
+            <span className="text-sm text-gray-600">{pkg.description}</span>
+            <PublishedField
+              row={rows[pkg.name]}
+              skeletonWidth="w-20"
+              variant="compact"
+            />
+          </div>
+        </li>
+      ))}
     </ul>
   );
 }
 
-function SkelBar({ widthClass }: { widthClass: string }) {
+function HeaderCell({
+  className = '',
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return <th className={`${HEADER_CELL_CLASS} ${className}`}>{children}</th>;
+}
+
+function PackageLink({ name, className }: { name: string; className: string }) {
   return (
-    <span
-      aria-hidden
-      className={`inline-block h-5 align-middle rounded-md animate-shimmer bg-skeleton-shimmer bg-skeleton ${widthClass}`}
-    />
+    <a
+      href={`https://www.npmjs.com/package/${name}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {name}
+    </a>
+  );
+}
+
+function VersionField({
+  row,
+  skeletonWidth,
+  shrink = false,
+}: {
+  row: RowState;
+  skeletonWidth: string;
+  shrink?: boolean;
+}) {
+  if (row.status === 'loading') {
+    return <SkeletonBar width={skeletonWidth} />;
+  }
+  if (isPackageInfoError(row.info)) {
+    return <span className={PLACEHOLDER_CLASS}>—</span>;
+  }
+  return (
+    <span className={shrink ? `${PILL_CLASS} shrink-0` : PILL_CLASS}>
+      {row.info.version}
+    </span>
+  );
+}
+
+function PublishedField({
+  row,
+  skeletonWidth,
+  variant = 'regular',
+}: {
+  row: RowState;
+  skeletonWidth: string;
+  variant?: 'regular' | 'compact';
+}) {
+  if (row.status === 'loading') {
+    return <SkeletonBar width={skeletonWidth} />;
+  }
+  if (isPackageInfoError(row.info)) {
+    if (variant === 'compact') {
+      return null;
+    }
+    return <span className="text-sm text-gray-400">unavailable</span>;
+  }
+  const formatted = formatPublishedDate(row.info.publishedAt);
+  if (variant === 'compact') {
+    return (
+      <span className="animate-row-in ml-3 shrink-0 font-source-code-pro text-xxs text-gray-500">
+        {formatted}
+      </span>
+    );
+  }
+  return (
+    <span className="animate-row-in font-source-code-pro text-xs text-gray-600">
+      {formatted}
+    </span>
   );
 }
