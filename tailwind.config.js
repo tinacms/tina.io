@@ -239,6 +239,14 @@ module.exports = {
             opacity: '1',
           },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        'row-in': {
+          from: { opacity: '0', transform: 'translateY(2px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         jelly: 'jelly 0.6s ease',
@@ -248,6 +256,8 @@ module.exports = {
         marquee: 'marquee var(--duration) infinite linear',
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
         'slide-down': 'slideDown 500ms ease-out',
+        shimmer: 'shimmer 1.6s ease-in-out infinite',
+        'row-in': 'row-in 240ms ease-out both',
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',

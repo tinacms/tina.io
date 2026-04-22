@@ -101,31 +101,6 @@ export function VersionsBlock({ data }: { data: VersionsBlockData }) {
           packages
         </footer>
       </div>
-
-      <style>{`
-        @keyframes versionsShimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-        @keyframes versionsRowIn {
-          from { opacity: 0; transform: translateY(2px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .versions-skel {
-          background: linear-gradient(
-            90deg,
-            rgba(17, 24, 39, 0.06) 0%,
-            rgba(17, 24, 39, 0.12) 50%,
-            rgba(17, 24, 39, 0.06) 100%
-          );
-          background-size: 200% 100%;
-          animation: versionsShimmer 1.6s ease-in-out infinite;
-          border-radius: 6px;
-        }
-        .versions-row-in {
-          animation: versionsRowIn 240ms ease-out both;
-        }
-      `}</style>
     </div>
   );
 }
@@ -135,9 +110,9 @@ function DesktopTable({ rows }: { rows: Record<string, RowState> }) {
     <div className="rounded-2xl border border-gray-200/80 bg-white/60 shadow-[0_1px_0_rgba(17,24,39,0.04),0_24px_48px_-24px_rgba(17,24,39,0.12)] backdrop-blur-sm">
       <table className="w-full border-collapse text-left">
         <colgroup>
-          <col style={{ width: '30%' }} />
-          <col style={{ width: '14%' }} />
-          <col style={{ width: '18%' }} />
+          <col className="w-[30%]" />
+          <col className="w-[14%]" />
+          <col className="w-[18%]" />
           <col />
         </colgroup>
         <thead>
@@ -191,7 +166,7 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
             —
           </span>
         ) : (
-          <span className="versions-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
+          <span className="animate-row-in inline-flex items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
             {(resolved as { version: string }).version}
           </span>
         )}
@@ -202,7 +177,7 @@ function DesktopRow({ pkg, row }: { pkg: TinaPackage; row: RowState }) {
         ) : errored ? (
           <span className="text-sm text-gray-400">unavailable</span>
         ) : (
-          <span className="versions-row-in font-source-code-pro text-[13px] text-gray-600">
+          <span className="animate-row-in font-source-code-pro text-[13px] text-gray-600">
             {formatPublishedDate(
               (resolved as { publishedAt: string }).publishedAt,
             )}
@@ -244,7 +219,7 @@ function MobileList({ rows }: { rows: Record<string, RowState> }) {
                   —
                 </span>
               ) : (
-                <span className="versions-row-in inline-flex shrink-0 items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
+                <span className="animate-row-in inline-flex shrink-0 items-center rounded-md border border-orange-200/80 bg-orange-50/80 px-2 py-0.5 font-source-code-pro text-[13px] font-medium text-orange-700">
                   {(resolved as { version: string }).version}
                 </span>
               )}
@@ -254,7 +229,7 @@ function MobileList({ rows }: { rows: Record<string, RowState> }) {
               {row?.status === 'loading' ? (
                 <SkelBar widthClass="w-20" />
               ) : errored ? null : (
-                <span className="versions-row-in ml-3 shrink-0 font-source-code-pro text-[12px] text-gray-500">
+                <span className="animate-row-in ml-3 shrink-0 font-source-code-pro text-[12px] text-gray-500">
                   {formatPublishedDate(
                     (resolved as { publishedAt: string }).publishedAt,
                   )}
@@ -272,7 +247,7 @@ function SkelBar({ widthClass }: { widthClass: string }) {
   return (
     <span
       aria-hidden
-      className={`versions-skel inline-block h-[18px] align-middle ${widthClass}`}
+      className={`inline-block h-[18px] align-middle rounded-md animate-shimmer bg-[linear-gradient(90deg,rgba(17,24,39,0.06)_0%,rgba(17,24,39,0.12)_50%,rgba(17,24,39,0.06)_100%)] bg-[length:200%_100%] ${widthClass}`}
     />
   );
 }
