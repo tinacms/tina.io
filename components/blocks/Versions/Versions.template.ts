@@ -24,5 +24,39 @@ export const versionsTemplate: Template = {
       description:
         'Short paragraph shown under the heading. Leave blank to hide.',
     },
+    {
+      name: 'buttons',
+      label: 'Buttons',
+      type: 'object',
+      list: true,
+      description:
+        'Optional links shown under the description — e.g. to changesets or release notes.',
+      ui: {
+        itemProps: (item) => ({
+          label: item?.label ?? 'New button',
+        }),
+      },
+      fields: [
+        {
+          name: 'label',
+          label: 'Label',
+          type: 'string',
+        },
+        {
+          name: 'url',
+          label: 'URL',
+          type: 'string',
+        },
+        {
+          name: 'variant',
+          label: 'Variant',
+          type: 'string',
+          options: [
+            { value: 'primary', label: 'Primary (filled orange)' },
+            { value: 'secondary', label: 'Secondary (outlined)' },
+          ],
+        },
+      ],
+    },
   ],
 };
