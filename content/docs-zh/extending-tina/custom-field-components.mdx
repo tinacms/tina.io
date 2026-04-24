@@ -7,17 +7,45 @@ next: content/docs-zh/extending-tina/customize-list-ui.mdx
 previous: ''
 ---
 
-通过在字段上设置 `ui.component` 属性，可以传递并渲染自定义组件。
+可以通过在字段上设置 `ui.component` 属性来传递和渲染自定义组件。
 
 这个组件完全覆盖了原始组件，提供给用户完全自定义字段的能力。
 
+## 自定义组件中的环境变量
+
+自定义字段组件在 Tina 管理界面中运行，该界面作为一个与您的网站分开的**静态 SPA**构建。环境变量在构建时嵌入到管理界面的 JavaScript 中——它们不会在运行时读取。这意味着要使变量可用，必须满足两个条件：
+
+1. **必须使用允许的前缀。** 出于安全原因，仅包括以下变量：
+   - `TINA_PUBLIC_*`
+   - `NEXT_PUBLIC_*`
+   - `NODE_ENV`
+   - `HEAD`
+
+2. **必须在运行 `tinacms build`（或 `tinacms dev`）时设置。** 如果变量在构建期间不在环境中，则无论其名称如何，它都不会存在于管理界面中。
+
+任何其他环境变量（例如 `process.env.MY_SECRET_KEY`）在自定义组件中将是 `undefined`。
+
+```tsx
+// 这是可行的——正确的前缀并在构建期间设置
+const apiKey = process.env.TINA_PUBLIC_MY_API_KEY
+
+// 这将是未定义的——没有允许的前缀
+const secret = process.env.MY_API_KEY
+```
+
+<WarningCallout
+  body={<>
+    如果您的自定义组件依赖于环境变量并且它总是 `undefined`，请检查：(1) 变量名称以 `TINA_PUBLIC_` 或 `NEXT_PUBLIC_` 开头，并且 (2) 变量在运行 `tinacms build` 时在您的 `.env` 文件或 CI 环境中定义。请注意，Tina 仅加载 `.env` 文件——不加载 `.env.local` 或 `.env.development`。有关详细信息，请参阅[配置参考](/docs/reference/config#environment-variables)和[安全公告](/blog/2023-02-security-update)。
+  </>}
+/>
+
 ## `ui.component` 属性
 
-这应该设置为一个有效的 React 组件，该组件最多接受四个属性：
+这应该设置为一个有效的 React 组件，该组件接受最多四个属性：
 
 * `field`: 当前字段的[字段定义](https://tinacms.org/docs/reference/toolkit/fields)。
 * `input`: 制作输入所需的数据和回调。
-* `meta`: 表单中关于字段的元数据。（例如 `dirty`，`valid`）。
+* `meta`: 表单中关于字段的元数据。（例如 `dirty`、`valid`）。
 * `form`: CMS 表单，用于检索和更新同一集合中的其他字段。
 
 > 查看 [react-final-form](https://github.com/final-form/react-final-form#fieldrenderprops) 文档以获取 `input` 和 `meta` 属性的更详细描述。
@@ -30,17 +58,17 @@ previous: ''
 
 `form` 属性可用于控制其他字段中的表单值。
 
-集合中的任何字段都可以使用 `form.change` 更新 – `form.change(name: string, value: any) => void`，使用字段的 `name` 属性。
+集合中的任何字段都可以使用 `form.change` 更新——`form.change(name: string, value: any) => void`，使用字段的 `name` 属性。
 
 集合中的任何字段都可以使用 `form.getFieldState(name: string)?.value` 访问，使用字段的 `name` 属性。
 
-> 可以从 [react-final-form FormAPI 文档](https://final-form.org/docs/final-form/types/FormApi) 中推断出更多的使用模式。
+> 可以从 [react-final-form FormAPI 文档](https://final-form.org/docs/final-form/types/FormApi)中推断出更多的使用模式。
 
 ### 隐藏字段
 
 将 `component.ui` 设置为值 `"hidden"` 会将字段从编辑器中移除。
 
-该字段仍然存在于后台，可以通过其他方式访问。
+该字段仍然在后台存在，并且可以通过其他方式访问。
 
 ## 示例
 
@@ -82,7 +110,7 @@ previous: ''
 
 ### 带有隐藏元字段的图像组件
 
-如果提前知道图像的宽度和高度，NextJS 和其他框架能够提高性能。
+NextJS 和其他框架能够在提前知道图像宽度和高度的情况下提高性能。
 
 **TinaCMS 可以用于在上传时确定并存储这些信息**。
 
@@ -140,7 +168,7 @@ const CustomImageField = (props) => {
 }
 ```
 
-这在编辑器中显示为单一的图像输入，但每次更新时将保存 3 个值（图像来源、高度和宽度）。
+这在编辑器中显示为一个单一的图像输入，但每次更新时将保存 3 个值（图像源、高度和宽度）。
 
 ![](/img/docs/reference/SCR-20250317-mtnf.png)
 
@@ -186,13 +214,13 @@ imgHeight: 1480
 
 ### 图像缩放滑块组件
 
-通过一些额外的 CSS，你可以在 Tina 中创建可缩放的图像。这将节省你为博客裁剪图像的时间。
+通过一些额外的 CSS，您可以在 Tina 中创建可缩放的图像。这将节省您为博客裁剪图像的时间。
 ![在 Tina 编辑器中缩放图像](/img-scale-component.gif)
 
 ```
 import { wrapFieldsWithMeta } from 'tinacms';
 
-// 在你的集合中
+// 在您的集合中
 {
   label: "图像缩放",
   name: "scale",
@@ -224,7 +252,7 @@ import { wrapFieldsWithMeta } from 'tinacms';
 import client from "@/tina/client";
 import { useTina } from "tinacms/dist/react";
 
-// 你的组件
+// 您的组件
 const Image = (props)=>{ 
   
   const response = useTina({
@@ -254,4 +282,4 @@ const Image = (props)=>{
 
 <Youtube embedSrc="https://www.youtube.com/embed/TE72AZQODaw?si=Sa_FKuv3qo4Nz5bS" />
 
-视频: Vibe Coding TinaCMS 自定义组件 (7 分钟)
+视频：Vibe Coding TinaCMS 自定义组件（7 分钟）

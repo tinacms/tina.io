@@ -11,10 +11,16 @@ previous: content/docs-zh/tinacloud/deployment-options/vercel.mdx
 
 ![Netlify构建配置](/img/docs/tina-cloud-deployment-options/build-settings.png 'Netlify构建配置')
 
-> 如果您的package.json中有一个类似于 `tinacms build && <your-site-build-cmd>` 的“build”脚本，这可能不需要更改。如果您的Netlify配置没有运行自定义构建脚本（例如 `next build`），您需要将其更改为 `tinacms build && next build`
+> 如果您的package.json中有一个类似于 `tinacms build && <your-site-build-cmd>` 的“build”脚本，这通常不需要更改。如果您的Netlify配置没有运行自定义构建脚本（例如 `next build`），您需要将其更改为 `tinacms build && next build`
 
 > 如果您的项目有一个设置了构建命令的 `netlify.toml`，它将优先于上述构建命令UI
 
 ## 环境变量
 
-假设您的Tina `clientID` 和 `token` 已设置为环境变量，您需要将这些添加到您的项目的Netlify UI中。您可以在[这里](https://docs.netlify.com/environment-variables/overview/?_ga=2.128850127.213489666.1674607241-1149277376.1674150726 'netlify environment variables')了解更多关于环境变量的信息。
+假设您的Tina `clientID` 和 `token` 已设置为环境变量，您需要将这些添加到Netlify项目的UI中。您可以了解更多关于[Netlify环境变量](https://docs.netlify.com/environment-variables/overview/)的信息。
+
+<WarningCallout
+  body={<>
+    `tinacms build` 需要在构建时提供像 `TINA_TOKEN` 和 `NEXT_PUBLIC_TINA_CLIENT_ID` 这样的环境变量。确保这些已在Netlify的环境设置中配置。如果您使用像Turborepo这样的monorepo工具，您可能还需要显式地转发这些变量（例如，通过 `turbo.json` 中的 `env` 键）——否则即使它们在Netlify中设置了，`tinacms build` 也可能无法接收到它们。详情请参阅[环境变量参考](/docs/reference/config#environment-variables)。
+  </>}
+/>
