@@ -239,6 +239,14 @@ module.exports = {
             opacity: '1',
           },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        'row-in': {
+          from: { opacity: '0', transform: 'translateY(0.125rem)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         jelly: 'jelly 0.6s ease',
@@ -248,6 +256,11 @@ module.exports = {
         marquee: 'marquee var(--duration) infinite linear',
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
         'slide-down': 'slideDown 500ms ease-out',
+        shimmer: 'shimmer 1.6s ease-in-out infinite',
+        'row-in': 'row-in 240ms ease-out both',
+      },
+      backgroundSize: {
+        skeleton: '200% 100%',
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
@@ -423,6 +436,8 @@ module.exports = {
         '50vh': '50vh',
       },
       backgroundImage: {
+        'skeleton-shimmer':
+          'linear-gradient(90deg, rgba(17,24,39,0.06) 0%, rgba(17,24,39,0.12) 50%, rgba(17,24,39,0.06) 100%)',
         'blob-bg':
           "url(\"data:image/svg+xml,%3Csvg preserveAspectRatio='none' viewBox='0 0 194 109' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_566_318)'%3E%3Crect width='194' height='109' fill='white' /%3E%3Cmask id='mask0_566_318' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='194' height='109'%3E%3Crect width='194' height='109' fill='url(%23paint0_linear_566_318)' /%3E%3C/mask%3E%3Cg mask='url(%23mask0_566_318)'%3E%3Crect width='194' height='109' fill='url(%23paint1_linear_566_318)' /%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_566_318' x1='97' y1='0' x2='97' y2='109' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D9D9D9' stop-opacity='0.45' /%3E%3Cstop offset='0.229052' stop-color='%23D9D9D9' stop-opacity='0.1678' /%3E%3Cstop offset='0.677779' stop-color='%23D9D9D9' stop-opacity='0.0513' /%3E%3Cstop offset='1' stop-color='%23D9D9D9' stop-opacity='0' /%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_566_318' x1='0' y1='54.5' x2='194' y2='54.5' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2353E9DD' /%3E%3Cstop offset='0.34375' stop-color='%2368D7E4' /%3E%3Cstop offset='0.59375' stop-color='%2359BFF2' /%3E%3Cstop offset='1' stop-color='%234BA8FF' /%3E%3C/linearGradient%3E%3CclipPath id='clip0_566_318'%3E%3Crect width='194' height='109' fill='white' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E\")",
       },

@@ -37,6 +37,7 @@ import { testimonialsTemplate } from '../../components/blocks/Testimonial/Testim
 import { textAndMediaColumnsComponentTemplate } from '../../components/blocks/TextAndMediaColumn/TextAndMediaColumns.template';
 import { tinaBannerTemplate } from '../../components/blocks/TinaBanner/TinaBanner.template';
 import { tripleBoxTemplate } from '../../components/blocks/TripleBox/TripleBox.template';
+import { versionsTemplate } from '../../components/blocks/Versions/Versions.template';
 import { DocsEditLinks } from '../customTinaFormFields/docsEditLinks';
 import { blockSettings } from './sharedFields/blockSettings';
 import { seoInformation } from './sharedFields/seoInformation';
@@ -93,6 +94,7 @@ const templates = [
   mapTemplate as Template,
   tripleBoxTemplate as Template,
   professionalServicesTemplate as Template,
+  versionsTemplate as Template,
 ].map((template) => {
   const updatedTemplate = template;
   if (updatedTemplate.fields) {
