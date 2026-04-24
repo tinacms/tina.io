@@ -26,6 +26,12 @@ Whatever environment variables you have defined locally in your `.env` file will
 
 Mandatory environment variables include the NEXT\_PUBLIC\_TINA\_CLIENT\_ID and the TINA\_TOKEN, both of which can be found in your [TinaCloud project](https://app.tina.io)
 
+<WarningCallout
+  body={<>
+    `tinacms build` requires environment variables like `TINA_TOKEN` and `NEXT_PUBLIC_TINA_CLIENT_ID` to be available at build time. Make sure these are configured in Vercel's environment settings. If you use a monorepo tool like Turborepo, you may also need to explicitly forward these variables (e.g. via the `env` key in `turbo.json`) — otherwise `tinacms build` may not receive them even if they are set in Vercel. See the [Environment Variables reference](/docs/reference/config#environment-variables) for details.
+  </>}
+/>
+
 ## Your First Deployment
 
 Once ready, select `Deploy` and wait for your first build to run. Once it succeeds, visit your new Tina site by selecting `Inspect Deployment`.
