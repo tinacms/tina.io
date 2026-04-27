@@ -1,0 +1,64 @@
+{
+  "versionNumber": "3.7.4",
+  "dateReleased": "2026-04-27T22:49:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Updated tinacms dependency mermaid",
+          "pull_request_number": "6410",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6410",
+          "commit_hash": "4672251",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/4672251c813e51f4471f025943008d2dea700aca",
+          "gitHubName": "TihomirIvanov",
+          "gitHubLink": "https://github.com/TihomirIvanov"
+        },
+        {
+          "changesDescription": "Fix rich-text image edit form: the URL field now shows the correct `URL` label and loads the existing image (previously it displayed the raw field path like `body.children[10].props.url` and rendered as an empty upload dropzone). The breadcrumb for the image form also now reads \"Image\" instead of the full path.",
+          "pull_request_number": "6708",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6708",
+          "commit_hash": "ca725ac",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/ca725acb42be499c146d76b12982e05a8127f81e",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        },
+        {
+          "changesDescription": "feat: simplify errors shown to users",
+          "pull_request_number": "6687",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6687",
+          "commit_hash": "a526f9f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a526f9f4c37a0aaefb572c9dcc562d89aa9e5c7e",
+          "gitHubName": "brookjeynes-ssw",
+          "gitHubLink": "https://github.com/brookjeynes-ssw"
+        },
+        {
+          "changesDescription": "Migrate docs links in shipped package code from raw `tina.io/docs/<path>` URLs to aliased `tina.io/docs/r/<alias>` URLs so the links survive future docs restructuring.",
+          "pull_request_number": "6720",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6720",
+          "commit_hash": "b260b5e",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b260b5ed4beb5d678b9605357b99a8667fddc8de",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Fix the radio-group field styling so radio options render with a circular indicator and no longer look disabled when unselected.",
+          "pull_request_number": "6728",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6728",
+          "commit_hash": "b56dad4",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b56dad42d2216ac9c8f90f19b78a4951ca97a61f",
+          "gitHubName": "monsonego",
+          "gitHubLink": "https://github.com/monsonego"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/search@1.2.11"
+        }
+      ]
+    }
+  ]
+}
