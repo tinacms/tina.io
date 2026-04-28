@@ -60,17 +60,19 @@ Once your project is created, you will see it listed on your [Projects](https://
 
 ## Administering the project
 
-### Overview
+### Overview Tab
 
 A project's Overview page gives you an important value: your project's unique **Client ID**. This value is used by TinaCloud to connect to your site's repository. You will need to use this value when setting up your site to use Tina.
 
-### Configuration
+### Configuration Tab
 
 After your project has been created, you can visit the Configuration page to update the Project Name, Site URL(s), or the GitHub repository.
 
 #### Changing the Repository
 
 From the project configuration screen, click the "Change Repository" button. You will authorize Tina.io again and a list of repositories will be displayed. Select the new repository and click Save Project to update the repository.
+
+***
 
 #### Advanced Settings
 
@@ -81,9 +83,23 @@ The Advanced Settings button is located in the Configuration tab of your project
 If your `tina` directory is at the project root (as is for most sites), this field can be left blank.
 
 If your GitHub repository uses a monorepo structure, the Path To Tina Config input can be used to specify the path to the
-`tina` directory in your repository. For example, if you have a project named `my-site`, and it is located in the
-`projects` directory of your repository, you would enter `projects/my-site` in this field and click Save Project to
-update the project.
+`tina` directory in your repository. 
+
+For example, if you have a project named `my-site`, and it is located in the
+`projects` directory of your repository, the Path To Tina Field would be `projects/my-site` .
+
+Example setup for Path to Tina Field = projects/my-site
+
+```
+- projects
+     |
+     |- my-site
+     |     |
+     |     |- tina/     
+     |
+     |     
+     |- cat-photos
+```
 
 ##### Refresh Webhooks
 
@@ -100,12 +116,14 @@ existing branch name. Next, select the point in time from which you want to push
 a few minutes, the new branch will be available in your GitHub repository with any changes in TinaCloud. A pull request
 can then be created to merge the changes to your desired branch.
 
-##### Branch "Reindex"
+***
+
+#### Branch "Reindex"
 
 Clicking "Reindex" on a branch will completely reset the cached copy of that branch in your GitHub repository and initiate a reindexing process. Any changes only present in the cached copy will be lost. Before reindexing, you should ensure that any changes have
 been successfully pushed to GitHub using the Export Branch feature.
 
-### API tokens
+### Tokens Tab
 
 There are two types of tokens associated with projects in TinaCloud: Content (Read-only) and Search.
 
