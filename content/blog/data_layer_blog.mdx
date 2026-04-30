@@ -1,0 +1,104 @@
+---
+title: Why TinaCloud Works So Well with GitHub
+date: '2026-01-08T01:24:29.840Z'
+last_edited: '2026-01-08T01:24:36.464Z'
+author: TinaCMS Team
+prev: ''
+next: ''
+---
+
+One of the most common questions we hear is how TinaCMS works so seamlessly with GitHub. The answer lies in the data layer, a core part of how Tina handles content efficiently behind the scenes.
+
+This post breaks down what the data layer is, why it matters, and how to work with it using TinaCloud.
+
+## What the Data Layer Does
+
+The data layer sits between your GitHub repository and your TinaCMS-powered site.
+
+Instead of sending repeated requests directly to GitHub every time content is queried or updated, Tina routes those interactions through the data layer. This creates a more efficient and responsive experience when working with content.
+
+In practice, this means:
+
+* Faster content queries
+* Fewer direct API calls to GitHub
+* A smoother editing experience inside TinaCMS
+
+## Why Avoid Direct GitHub Requests
+
+Without a data layer, every content operation would require direct communication with GitHub. This can introduce latency and unnecessary complexity, especially as projects scale.
+
+By centralizing content access through the data layer, TinaCMS reduces overhead and improves performance while maintaining Git as the source of truth.
+
+## Data Layer Setup Options
+
+There are two primary ways to set up the data layer in TinaCMS.
+
+### Self-Hosting
+
+You can configure the data layer yourself using Tina’s self-hosting packages. This gives you full control, but it also requires additional setup and maintenance.
+
+Because it is a custom implementation, this approach can take more time and is generally not recommended unless you have specific infrastructure needs.
+
+### TinaCloud (Recommended)
+
+TinaCloud provides a fully managed data layer out of the box.
+
+When you connect your project to TinaCloud, the data layer is automatically configured and ready to use. This removes the need for manual setup and allows you to take advantage of additional features such as:
+
+* Editorial workflow
+* Branch-based content editing
+* Built-in content indexing
+
+## How TinaCloud Uses the Data Layer
+
+A key feature of the TinaCloud data layer is its ability to index branches from your GitHub repository.
+
+This allows your TinaCMS site to:
+
+* Access content across different branches
+* Support editorial workflows tied to pull requests
+* Provide visibility into available content states
+
+Within the TinaCloud dashboard, you can view which branches have been indexed and are available for use in your project.
+
+## Working with Indexed Branches
+
+In the TinaCloud project configuration, there is a dedicated section for branches. This shows all branches currently indexed in the data layer.
+
+This visibility helps you understand what content is available and ensures your CMS reflects the current state of your repository.
+
+## Handling Unindexed Branches
+
+In some cases, GitHub webhooks may not fire as expected. When this happens, TinaCloud may not automatically index new branches.
+
+When that occurs, TinaCloud surfaces unindexed branches directly in the dashboard.
+
+From there, you can:
+
+* View the list of unindexed branches
+* Select the branches you want to index
+* Trigger indexing manually
+
+Once indexed, those branches become immediately available in the data layer and can be used within TinaCMS.
+
+## Troubleshooting Tips
+
+If you run into issues with missing or unindexed branches, the TinaCloud documentation includes a dedicated troubleshooting section.
+
+Specifically, the guide on resolving errors caused by unindexed branches walks through common causes and how to fix them.
+
+## Why This Matters
+
+The data layer is foundational to how TinaCMS delivers a fast, Git-backed editing experience.
+
+By abstracting direct GitHub interactions and adding intelligent indexing, it enables:
+
+* Better performance
+* More reliable workflows
+* Greater visibility into content across branches
+
+## Closing Thoughts
+
+TinaCMS is built around making Git-based content management intuitive and efficient. The data layer plays a central role in that goal.
+
+With TinaCloud, this complexity is handled for you, allowing you to focus on building and editing content while still benefiting from the power and flexibility of Git.
