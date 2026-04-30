@@ -1,0 +1,128 @@
+---
+title: Vibe blogging with GitHub Copilot & TinaCMS
+date: '2026-03-20T04:35:13.195Z'
+last_edited: '2026-03-20T04:35:18.374Z'
+author: TinaCMS Team
+prev: ''
+next: ''
+---
+
+Setting up a personal blog usually involves choosing a platform, configuring themes, and writing content. Tools like WordPress, Medium, and Wix make this easier, but they come with tradeoffs around ownership and flexibility.
+
+With TinaCMS and modern AI tools, you can take a different approach. You can generate, customize, and manage your entire blog using prompts, while keeping full control of your content in Git.
+
+Here is what that workflow looks like in practice.
+
+## Starting with TinaCMS Best Practices
+
+TinaCMS provides documentation specifically for AI-assisted workflows, often referred to as “vibe coding.” These guides outline a few helpful patterns:
+
+* Plan before prompting
+* Break tasks into smaller steps
+* Use structured prompts for better results
+
+In this walkthrough, the process leans more experimental. Instead of strictly following best practices, everything is driven through prompts to see how far AI can take the setup.
+
+## Scaffolding a Blog with AI
+
+The first step is creating a new TinaCMS project using a starter prompt.
+
+Using GitHub Copilot in agent mode, the prompt initializes a project with:
+
+* A Next.js starter template
+* A chosen package manager
+* A project name
+
+From there, Copilot runs the setup commands and scaffolds the full project automatically. Once complete, running the development server spins up a local version of the site.
+
+At this point, you already have a working blog with default styling and sample content.
+
+## Customizing the Site with Prompts
+
+With the base project running, the next step is to make it your own.
+
+Instead of manually editing styles and components, a single prompt can redefine the homepage. In this case, the prompt includes:
+
+* Switching to a dark theme
+* Changing the primary color
+* Replacing homepage content with a custom title and subtitle
+* Updating icons and branding
+
+After running the prompt, the site updates instantly. The default template transforms into a personalized homepage without directly editing code.
+
+## Generating Content with AI
+
+Once the UI is in place, the next step is creating content.
+
+Using another prompt, AI generates a new blog post directly within the project. The request can be as creative or structured as needed. In this example, the post follows an “inception-style” format, documenting the process of writing a blog while building it.
+
+The generated post includes:
+
+* Structured sections
+* Commands used during setup
+* Prompts that can be reused
+
+This turns the blog itself into a reproducible guide.
+
+## Editing Content with TinaCMS
+
+While AI handles generation, TinaCMS provides a powerful editing interface for refining content.
+
+By navigating to the /admin route, you can:
+
+* Edit titles, authors, and metadata
+* Modify content in real time
+* Preview changes instantly
+
+Adding media is just as straightforward. For example, inserting a featured image can be done directly through the editor, with changes reflected immediately in both the UI and underlying code.
+
+This combination of AI generation and visual editing creates a flexible workflow for both developers and content creators.
+
+## Iterating Quickly
+
+One of the key advantages of this approach is speed.
+
+If something is missing, like images or layout tweaks, you can:
+
+* Update content directly in the editor
+* Or prompt AI to make broader changes
+
+You can also extend the site further by prompting AI to:
+
+* Add animations
+* Create custom components
+* Adjust layouts or styles
+
+This enables rapid iteration without getting blocked by implementation details.
+
+## Owning Your Content
+
+Unlike traditional platforms, this setup keeps everything in your GitHub repository.
+
+That means:
+
+* Full ownership of your content
+* Version control for every change
+* Flexibility to deploy anywhere
+
+With TinaCloud, you can also manage media and streamline workflows like content editing and publishing.
+
+## From Setup to Production
+
+The full workflow goes from zero to a production-ready blog:
+
+1. Generate a project with AI
+2. Customize the UI with prompts
+3. Create content programmatically
+4. Refine using TinaCMS editor
+5. Deploy and manage via Git and TinaCloud
+
+All without needing to manually wire up every piece.
+
+## Closing Thoughts
+
+TinaCMS combined with AI tools introduces a new way of building content-driven sites. Instead of starting from code, you start from intent and refine from there.
+
+You still have full control when you need it, but much of the heavy lifting can be handled through prompts and iteration.
+
+If you want to experiment with a faster, more flexible way to build and manage a blog, this workflow is worth trying.
