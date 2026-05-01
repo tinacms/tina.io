@@ -737,6 +737,10 @@
       "source": "/docs/introduction/faq",
       "destination": "/docs/faq",
       "permanent": true
+    },
+    {
+      "source": "/docs/search",
+      "destination": "/docs/reference/search/overview"
     }
   ]
 }
