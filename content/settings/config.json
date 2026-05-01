@@ -740,7 +740,8 @@
     },
     {
       "source": "/docs/search",
-      "destination": "/docs/reference/search/overview"
+      "destination": "/docs/reference/search/overview",
+      "permanent": false
     }
   ]
 }
