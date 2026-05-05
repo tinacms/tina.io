@@ -16,6 +16,7 @@ next: content/docs/reference/media/overview.mdx
   init [options]         Add TinaCloud to an existing project
   audit [options]        Audit your schema and the files to check for errors
   search-index [options] Builds the TinaCMS search index and uploads it to TinaCloud
+  doctor [options]       Check direct TinaCMS dependencies against npm latest
   help [command]         display help for command
 ```
 
@@ -140,3 +141,27 @@ By default the mutation will not change the content of the files.
 ### "tinacms search-index"
 
 This command builds the search-index using the content in your repository and uploads it to TinaCloud.
+
+### "tinacms doctor"
+
+The `doctor` command checks whether the Tina packages installed in your project are current against the npm `latest` dist-tag. It answers the question "am *I* current?" — the CLI counterpart to the [`/versions`](/versions) page.
+
+The command:
+
+* Reads your `package.json` and resolves installed versions from `node_modules` or your project lockfile (supports `package-lock.json`, `pnpm-lock.yaml`, and `yarn.lock`).
+* Filters to the Tina package family: `tinacms`, `@tinacms/*`, `tinacms-*`, `next-tinacms-*`, and `create-tina-app`.
+* Fetches `dist-tags.latest` from `registry.npmjs.org` for each installed package in parallel.
+* Prints a table of **declared**, **installed**, and **latest** versions with a status column (`CURRENT`, `OUTDATED`, `LOCAL`, or `UNKNOWN`).
+* Exits with code `1` if any package is outdated or cannot be resolved, so it's CI-friendly.
+
+```bash
+pnpm tinacms doctor
+```
+
+#### Options
+
+| Argument            | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `--rootPath <path>` | Specify the root directory to inspect (defaults to current working directory)          |
+| `--json`            | Print machine-readable JSON output instead of the formatted table                      |
+| `--timeout <ms>`    | npm registry request timeout in milliseconds (default: 5000)                           |
