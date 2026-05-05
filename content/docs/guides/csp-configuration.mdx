@@ -22,15 +22,16 @@ TinaCMS needs access to load images from its asset delivery network:
 
 ### Connect Sources
 
-TinaCMS requires connections to several services for authentication and content delivery:
+TinaCMS requires connections to several services for authentication, content delivery, and media uploads:
 
 ```javascript
-"connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+"connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com;"
 ```
 
 * **identity.tinajs.io** - Authentication and identity services
 * **content.tinajs.io** - Content API and data layer
 * **assets.tinajs.io** - Asset management and delivery
+* **s3.us-east-1.amazonaws.com** - Direct media uploads. The TinaCMS media manager `PUT`s files to a presigned S3 URL on this host. Without it, uploads fail with a CSP `connect-src` violation in the browser console.
 
 ## Implementation Examples
 
@@ -50,7 +51,7 @@ const baseCsp = [
     "worker-src 'self' blob:;",
     "frame-ancestors 'none';",
     "base-uri 'self';",
-    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com;"
 ];
 
 /** @type {import('next').NextConfig} */
@@ -90,7 +91,7 @@ export function middleware(request: NextRequest) {
   const csp = [
     "default-src 'self'",
     "img-src 'self' data: assets.tina.io",
-    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io",
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com",
     // ... other directives
   ].join('; ');
   
@@ -108,7 +109,7 @@ Add CSP headers in your `netlify.toml`:
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
 ```
 
 ### Vercel Configuration
@@ -123,7 +124,7 @@ Add headers in your `vercel.json`:
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
         }
       ]
     }
@@ -137,7 +138,7 @@ Add to your `.htaccess` file:
 
 ```apache
 <IfModule mod_headers.c>
-  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
 </IfModule>
 ```
 
@@ -146,7 +147,7 @@ Add to your `.htaccess` file:
 Add to your nginx configuration:
 
 ```nginx
-add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
+add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
 ```
 
 ## Self-Hosted Considerations

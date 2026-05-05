@@ -22,15 +22,16 @@ TinaCMS 需要访问其资产交付网络以加载图像：
 
 ### 连接来源
 
-TinaCMS 需要连接到多个服务以进行身份验证和内容交付：
+TinaCMS 需要连接到多个服务以进行身份验证、内容交付和媒体上传：
 
 ```javascript
-"connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+"connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com;"
 ```
 
 * **identity.tinajs.io** - 身份验证和身份服务
 * **content.tinajs.io** - 内容 API 和数据层
 * **assets.tinajs.io** - 资产管理和交付
+* **s3.us-east-1.amazonaws.com** - 直接媒体上传。TinaCMS 媒体管理器将文件 `PUT` 到此主机上的预签名 S3 URL。如果没有它，上传将因浏览器控制台中的 CSP `connect-src` 违规而失败。
 
 ## 实现示例
 
@@ -50,7 +51,7 @@ const baseCsp = [
     "worker-src 'self' blob:;",
     "frame-ancestors 'none';",
     "base-uri 'self';",
-    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io;"
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com;"
 ];
 
 /** @type {import('next').NextConfig} */
@@ -90,7 +91,7 @@ export function middleware(request: NextRequest) {
   const csp = [
     "default-src 'self'",
     "img-src 'self' data: assets.tina.io",
-    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io",
+    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com",
     // ... 其他指令
   ].join('; ');
   
@@ -108,7 +109,7 @@ export function middleware(request: NextRequest) {
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
 ```
 
 ### Vercel 配置
@@ -123,7 +124,7 @@ export function middleware(request: NextRequest) {
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
         }
       ]
     }
@@ -137,7 +138,7 @@ export function middleware(request: NextRequest) {
 
 ```apache
 <IfModule mod_headers.c>
-  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
 </IfModule>
 ```
 
@@ -146,7 +147,7 @@ export function middleware(request: NextRequest) {
 添加到您的 nginx 配置：
 
 ```nginx
-add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
+add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
 ```
 
 ## 自托管注意事项
