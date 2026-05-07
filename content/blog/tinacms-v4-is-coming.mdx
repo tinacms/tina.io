@@ -1,5 +1,13 @@
 ---
-title: TinaCMS V4 is coming!
+seo:
+  title: TinaCMS v4 is coming! | TinaCMS Blog
+  description: >-
+    TinaCMS v4 is about to begin: a more extensible architecture, a sharper
+    Editorial Workflow, a refreshed editor UI, a rebuilt forms experience, and a
+    clearer migration path are all planned.
+title: TinaCMS v4 is coming!
+date: '2026-05-07T00:00:00.000Z'
+last_edited: '2026-05-07T00:00:00.000Z'
 author: TinaCMS Team
 prev: ''
 next: ''
@@ -15,11 +23,11 @@ This post is a first look at what's coming.
 
 TinaCMS v4 will ship as a brand new package: `@tinacms/tinacms`.
 
-We're taking the same approach Angular took when it moved from AngularJS to Angular 2+ — shipping the new version under a different package name so that v3 can keep doing its job while v4 is built on modernised foundations. Existing projects can continue to rely on the current `tinacms` package without any disruption, and adopting v4 will be an explicit, intentional step you take when you're ready.
+The new package name gives v4 room to be built on modernised foundations while v3 keeps doing its job. Existing projects can continue to rely on the current `tinacms` package without disruption, and adopting v4 will be an explicit, intentional step you take when you're ready.
 
 ## A More Extensible Architecture
 
-The biggest shift in v4 is that almost every part of the CMS - fields, sidebars, screens, media providers, search providers becomes a customisable building block you can plug in, swap out, or extend.
+The biggest shift in v4 is that almost every part of the CMS - fields, sidebars, screens, media providers, and search providers - becomes a customisable building block you can plug in, swap out, or extend.
 
 What this means for you:
 
@@ -65,7 +73,7 @@ You can expect:
 
 ## Fields You Can Trust
 
-Every field type - text, numbers, dates, images, references, rich text, and the rest is getting the same care and attention in v4.
+Every field type - text, numbers, dates, images, references, rich text, and the rest - is getting the same care and attention in v4.
 
 What that means in practice:
 
@@ -78,14 +86,14 @@ What that means in practice:
 
 We know that any major version bump raises the same question: *"What does this mean for my project?"*
 
-Our goal is straightforward. **For the vast majority of projects, upgrading to v4 should be as simple as installing the new package and running a codemod**.
+Our goal is straightforward: **make the v4 upgrade path as smooth and predictable as possible for existing TinaCMS projects**.
 
-* A purpose-built codemod will handle the schema migration automatically.
+* A purpose-built codemod is planned to handle as much of the schema migration as possible.
 * Migration documentation will cover every breaking change, what the codemod takes care of, and what (if anything) needs manual attention.
 * Projects with custom fields or heavily customised components will get clear before/after examples to follow.
 * Troubleshooting guides will walk through common edge cases.
 
-If your project uses a fairly standard TinaCMS setup, the upgrade should take minutes, not days.
+If your project uses a fairly standard TinaCMS setup, our aim is to make the upgrade feel measured and straightforward rather than open-ended.
 
 ## v3 Is Going Nowhere
 
