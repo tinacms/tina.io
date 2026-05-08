@@ -1,7 +1,7 @@
 ---
 id: /docs/guides/separate-content-repo
 title: Separate Content Repo
-last_edited: '2026-05-06T00:00:00.000Z'
+last_edited: '2026-05-08T10:42:49.525Z'
 next: ''
 previous: ''
 ---
@@ -12,32 +12,32 @@ TinaCloud lets you split a single project across two GitHub repositories: a **ge
 
 Throughout this guide:
 
-- **Generator repo** — your `tina/config.tsx`, your Next.js / Astro / Remix / etc. app code, and the generated artifacts under `tina/__generated__/`.
-- **Content repo** — your `.md` / `.mdx` files and media. No Tina configuration lives here.
+* **Generator repo** — your `tina/config.tsx`, your Next.js / Astro / Remix / etc. app code, and the generated artifacts under `tina/__generated__/`.
+* **Content repo** — your `.md` / `.mdx` files and media. No Tina configuration lives here.
 
 ### Why?
 
 A few reasons you might want this split:
 
-- **Decouple commit history.** Editors commit dozens of small content edits a day; engineers commit once or twice. Keeping them in different repos keeps each repo's history readable.
-- **Permissions hygiene.** Editors get write access to the content repo without ever touching application code.
-- **Multi-site reuse.** A single content repo can power more than one generator (regional sites, partner-facing variants, docs + marketing).
+* **Decouple commit history.** Editors commit dozens of small content edits a day; engineers commit once or twice. Keeping them in different repos keeps each repo's history readable.
+* **Permissions hygiene.** Editors get write access to the content repo without ever touching application code.
+* **Multi-site reuse.** A single content repo can power more than one generator (regional sites, partner-facing variants, docs + marketing).
 
 ### Requirements
 
-- A TinaCloud account.
-- Two GitHub repositories you control — one for the generator, one for the content.
-- The TinaCloud GitHub App installed on **both** repos' organisations (these may differ).
+* A TinaCloud account.
+* Two GitHub repositories you control — one for the generator, one for the content.
+* The TinaCloud GitHub App installed on **both** repos' organisations (these may differ).
 
 ## How it works
 
 After setup, your TinaCloud project is bound to both repos. From the editor's point of view nothing about the dashboard changes — they edit, save, and submit for review the same way they always have. Behind the scenes:
 
-- **Schema** is loaded from the generator repo's indexed schema. It is never read from the content repo.
-- **Editorial branches and pull requests** created via Tina's editorial workflow are made on the **content repo**.
-- **Media uploads** go to the **content repo**.
-- **Search index rebuilds** on every content-repo push.
-- The CLI reads content from a sibling content directory via `localContentPath` during local development and CI builds.
+* **Schema** is loaded from the generator repo's indexed schema. It is never read from the content repo.
+* **Editorial branches and pull requests** created via Tina's editorial workflow are made on the **content repo**.
+* **Media uploads** go to the **content repo**.
+* **Search index rebuilds** on every content-repo push.
+* The CLI reads content from a sibling content directory via `localContentPath` during local development and CI builds.
 
 ## Set up a new TinaCloud project
 
@@ -45,9 +45,11 @@ The TinaCloud dashboard surfaces the multi-repo option directly in the create-pr
 
 1. From the TinaCloud dashboard, click **Create Project**.
 2. Pick your **generator repo** as you would for any project.
-3. Toggle on **Use a separate content repository**.
+3. Project Configuration | Toggle on **Use a separate content repository**.
 4. Pick the **content repo** from the list. (If your content repo lives in a different GitHub organisation, install the TinaCloud GitHub App there first — the picker will only list repos the app has access to.)
 5. Click create.
+
+![](/docs/seperate-content-repo-new-project.png)
 
 TinaCloud automatically installs the necessary GitHub webhook on both repos.
 
@@ -57,11 +59,13 @@ TinaCloud automatically installs the necessary GitHub webhook on both repos.
 
 If you already have a single-repo TinaCloud project and want to convert it to multi-repo:
 
-1. Open your project's **Settings** page.
+1. Open your project's **Configuration** page.
 2. Find the **Content Repository** section.
 3. Toggle on **Use a separate content repository**.
 4. Pick the content repo.
 5. Confirm.
+
+![](/docs/seperate-content-repo-existing-project.png)
 
 TinaCloud will index the content repo's default branch from scratch and re-route subsequent editorial workflow operations to it. You can flip the toggle off later to revert to single-repo, though the content repo's editorial branches will remain on the content repo until cleaned up manually.
 
@@ -107,15 +111,15 @@ Tina's dev server will watch the content repo's files alongside the generator's 
 
 ## What lives where
 
-| Item | Generator repo | Content repo |
-| --- | :-: | :-: |
-| `tina/config.tsx` (schema) | ✅ | ❌ |
-| `tina/__generated__/*` (build output) | ✅ | ❌ |
-| `tina/tina-lock.json` | ✅ | ❌ |
-| Application code (Next.js / Astro / etc.) | ✅ | ❌ |
-| `.md` / `.mdx` content | ❌ | ✅ |
-| Media (images, video, etc.) | ❌ | ✅ |
-| Editorial branches / PRs from the Tina UI | ❌ | ✅ |
+|                    Item                   | Generator repo | Content repo |
+| :---------------------------------------: | :------------: | ------------ |
+|         `tina/config.tsx` (schema)        |        ✅       | ❌            |
+|   `tina/__generated__/*` (build output)   |        ✅       | ❌            |
+|           `tina/tina-lock.json`           |        ✅       | ❌            |
+| Application code (Next.js / Astro / etc.) |        ✅       | ❌            |
+|           `.md` / `.mdx` content          |        ❌       | ✅            |
+|        Media (images, video, etc.)        |        ❌       | ✅            |
+| Editorial branches / PRs from the Tina UI |        ❌       | ✅            |
 
 ## Migrating from the old "two TinaCloud projects" pattern
 
@@ -203,13 +207,13 @@ jobs:
 
 This setup requires:
 
-- A GitHub App with access to both repos.
-- Token and app secrets saved in GitHub repo settings.
+* A GitHub App with access to both repos.
+* Token and app secrets saved in GitHub repo settings.
 
 ## Troubleshooting
 
-- **"GitHub App not installed on this repository's organisation"** when picking a content repo. The TinaCloud GitHub App must be installed on the *organisation* (or user account) that owns the repo. If your generator and content repos live under different GitHub orgs, install the app on each separately.
-- **The content repo's picker is missing repos you expect to see.** GitHub Apps grant per-repo access. Open the GitHub App's settings on the relevant org and grant access to the specific repo you want to use, then refresh the dashboard.
-- **Stale `tina/` folder in the content repo after upgrading.** Pre-upgrade builds committed `tina/__generated__/*` and `tina/tina-lock.json` to the content repo. Nothing updates or reads those files in the new model. Safe — and recommended — to delete from the content repo in a single cleanup commit.
-- **Old `tina/meta.json` file in the content repo.** This was the connector for the old two-projects pattern. No longer used; delete it.
-- **Content edits aren't appearing in builds.** Confirm the generator repo's `tina/config.tsx` has `localContentPath` set, and that you have the content repo checked out as a sibling on disk.
+* **"GitHub App not installed on this repository's organisation"** when picking a content repo. The TinaCloud GitHub App must be installed on the *organisation* (or user account) that owns the repo. If your generator and content repos live under different GitHub orgs, install the app on each separately.
+* **The content repo's picker is missing repos you expect to see.** GitHub Apps grant per-repo access. Open the GitHub App's settings on the relevant org and grant access to the specific repo you want to use, then refresh the dashboard.
+* **Stale `tina/` folder in the content repo after upgrading.** Pre-upgrade builds committed `tina/__generated__/*` and `tina/tina-lock.json` to the content repo. Nothing updates or reads those files in the new model. Safe — and recommended — to delete from the content repo in a single cleanup commit.
+* **Old `tina/meta.json` file in the content repo.** This was the connector for the old two-projects pattern. No longer used; delete it.
+* **Content edits aren't appearing in builds.** Confirm the generator repo's `tina/config.tsx` has `localContentPath` set, and that you have the content repo checked out as a sibling on disk.
