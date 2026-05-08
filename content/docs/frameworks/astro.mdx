@@ -33,7 +33,7 @@ Alternatively, scaffold from the React-free starter template:
 npx create-tina-app@latest --template tina-astro-starter
 ```
 
-This sets up a blog-ready [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) with TinaCMS and visual editing preconfigured — no React in the source tree.
+This sets up a blog-ready [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) with TinaCMS and visual editing preconfigured, no React in the source tree.
 
 ## Modeling Your Content
 
@@ -65,7 +65,7 @@ You should now see the Tina admin interface, be able to select a post, save chan
 
 ## Enabling Visual Editing
 
-Visual editing — click-to-focus, live preview as the editor types, side-by-side admin + page — works on Astro without React via the `@tinacms/astro` package. The starter has it preconfigured. For an existing site:
+Visual editing (click-to-focus, live preview as the editor types, side-by-side admin + page) works on Astro without React via the `@tinacms/astro` package. The starter has it preconfigured. For an existing site:
 
 ```bash
 npm install @tinacms/astro @astrojs/node
@@ -83,7 +83,7 @@ export default defineConfig({
 });
 ```
 
-> **SSR is required.** The bridge POSTs to a per-page refresh endpoint when content changes; that endpoint needs a server runtime. Use `@astrojs/node`, `@astrojs/vercel`, `@astrojs/netlify`, or any other Astro adapter — visual editing works against all of them.
+> **SSR is required.** The bridge POSTs to a per-page refresh endpoint when content changes; that endpoint needs a server runtime. Use `@astrojs/node`, `@astrojs/vercel`, `@astrojs/netlify`, or any other Astro adapter; visual editing works against all of them.
 
 The full wiring (bridge `init()`, form payload `<script>` tags, `data-tina-island` wrappers, `tinaField()` markers, the per-island endpoint) is documented in [Visual Editing Setup → Astro](/docs/contextual-editing/astro/).
 
@@ -93,17 +93,17 @@ The full wiring (bridge `init()`, form payload `<script>` tags, `data-tina-islan
 
 The starter and the visual-editing setup organise around four moving pieces:
 
-* **`src/lib/`** — `tina-preview.ts` (the `withOverlay()` data-loader seam), `data.ts` (per-collection fetchers), `islands.ts` (registry of editable regions), `metadata.ts` (`_content_source` stamping for click-to-edit), `queries.ts` (extracts the canonical query strings from `tina/__generated__/`).
-* **`src/pages/tina-island/[name].ts`** — the dynamic endpoint the bridge POSTs to on every keystroke. Renders the matching component to an HTML fragment via `experimental_AstroContainer`.
-* **`src/components/islands/*.astro`** — pure Astro renderers (`<TinaMarkdown>` for rich-text, `tinaField()` for click-to-edit markers).
-* **`src/components/BaseHead.astro`** — emits one `<script type="application/tina+json">` per form payload and loads the bridge.
+* **`src/lib/`**: `tina-preview.ts` (the `withOverlay()` data-loader seam), `data.ts` (per-collection fetchers), `islands.ts` (registry of editable regions), `metadata.ts` (`_content_source` stamping for click-to-edit), `queries.ts` (extracts the canonical query strings from `tina/__generated__/`).
+* **`src/pages/tina-island/[name].ts`**: the dynamic endpoint the bridge POSTs to on every keystroke. Renders the matching component to an HTML fragment via `experimental_AstroContainer`.
+* **`src/components/islands/*.astro`**: pure Astro renderers (`<TinaMarkdown>` for rich-text, `tinaField()` for click-to-edit markers).
+* **`src/components/BaseHead.astro`**: emits one `<script type="application/tina+json">` per form payload and loads the bridge.
 
 See [Visual Editing Setup → Astro](/docs/contextual-editing/astro/) for the full architecture.
 
 ## Next Steps
 
-* [Visual Editing Setup → Astro](/docs/contextual-editing/astro/) — the bridge, per-island refetch, and custom MDX embeds
-* [Migrating from React-based Visual Editing](/docs/migrations/astro-react-free-visual-editing/) — for existing Astro sites on the old `client:tina` path
+* [Visual Editing Setup → Astro](/docs/contextual-editing/astro/): the bridge, per-island refetch, and custom MDX embeds
+* [Migrating from React-based Visual Editing](/docs/migrations/astro-react-free-visual-editing/): for existing Astro sites on the old `client:tina` path
 * [Content modelling](/docs/schema/)
 * [Data fetching](/docs/features/data-fetching/)
 * [Deploy your site](/docs/tinacloud)

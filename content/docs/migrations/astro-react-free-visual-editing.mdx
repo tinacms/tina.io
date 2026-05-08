@@ -10,7 +10,7 @@ seo:
 last_edited: '2026-05-08T00:00:00.000Z'
 ---
 
-Older Astro sites integrated TinaCMS visual editing through `@astrojs/react` and a custom `client:tina` directive — every editable page hydrated a React component just for the editor. That requirement is gone: `@tinacms/astro` runs the same visual-editing UX through a vanilla-JS bridge.
+Older Astro sites integrated TinaCMS visual editing through `@astrojs/react` and a custom `client:tina` directive: every editable page hydrated a React component just for the editor. That requirement is gone: `@tinacms/astro` runs the same visual-editing UX through a vanilla-JS bridge.
 
 This page walks an existing site through the migration. The end state matches the [Astro Starter Template](https://github.com/tinacms/tina-astro-starter); diff against it for any step that's unclear.
 
@@ -49,7 +49,7 @@ export default defineConfig({
 });
 ```
 
-Drop the `react()` integration. If you used a custom client directive (`addClientDirective({ name: 'tina', … })`), drop that too — it's replaced by the `data-tina-island` mechanism.
+Drop the `react()` integration. If you used a custom client directive (`addClientDirective({ name: 'tina', … })`), drop that too; it's replaced by the `data-tina-island` mechanism.
 
 ## 3. Delete the React glue
 
@@ -65,17 +65,17 @@ If you scaffolded from the old starter you'll also have an `astro-tina-directive
 
 Create `src/lib/` with the helpers that bridge Astro and Tina:
 
-* `metadata.ts` — `addContentSourceMetadata()` and `hashFromQuery()`
-* `tina-preview.ts` — `withOverlay()` (the disk-fetch-vs-overlay seam)
-* `queries.ts` — extracts query strings from `tina/__generated__/`
-* `data.ts` — per-collection fetchers (`getPage`, `getBlog`, etc.)
-* `islands.ts` — registry of editable regions
+* `metadata.ts`: `addContentSourceMetadata()` and `hashFromQuery()`
+* `tina-preview.ts`: `withOverlay()` (the disk-fetch-vs-overlay seam)
+* `queries.ts`: extracts query strings from `tina/__generated__/`
+* `data.ts`: per-collection fetchers (`getPage`, `getBlog`, etc.)
+* `islands.ts`: registry of editable regions
 
 Copy these from the [starter template](https://github.com/tinacms/tina-astro-starter/tree/main/src/lib). Each file is small (under 100 lines) and self-contained.
 
 ## 5. Add the per-island endpoint
 
-Create `src/pages/tina-island/[name].ts` — single dynamic route the bridge POSTs to. Copy from the [starter](https://github.com/tinacms/tina-astro-starter/blob/main/src/pages/tina-island/%5Bname%5D.ts).
+Create `src/pages/tina-island/[name].ts`, the single dynamic route the bridge POSTs to. Copy from the [starter](https://github.com/tinacms/tina-astro-starter/blob/main/src/pages/tina-island/%5Bname%5D.ts).
 
 ## 6. Move rendering from React to Astro
 
@@ -102,7 +102,7 @@ For each `tina/pages/*.tsx` file, create a matching `.astro` component under `sr
 + )}
 ```
 
-The render shape is the same. The only difference: no `useTina()` — the bridge handles re-rendering by re-fetching this island.
+The render shape is the same. The only difference: no `useTina()`; the bridge handles re-rendering by re-fetching this island.
 
 ## 7. Update each page
 
@@ -172,10 +172,10 @@ Run `pnpm dev`, open `/admin`, and edit a page. You should see:
 * Clicking a `data-tina-field`-marked element focuses the matching field in the sidebar.
 * Navigating between docs in the admin (e.g. `#/~/` → `#/~/about`) updates the sidebar to match the active page.
 
-If the third bullet doesn't work, double-check the `astro:page-load` listener in step 8 — without it, view-transitions setups strand the admin on the previous page's form.
+If the third bullet doesn't work, double-check the `astro:page-load` listener in step 8: without it, view-transitions setups strand the admin on the previous page's form.
 
 ## See Also
 
-* [Astro Setup Guide](/docs/frameworks/astro/) — the full integration starting point
-* [Visual Editing Setup → Astro](/docs/contextual-editing/astro/) — bridge architecture deep-dive
-* [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) — reference implementation
+* [Astro Setup Guide](/docs/frameworks/astro/): the full integration starting point
+* [Visual Editing Setup → Astro](/docs/contextual-editing/astro/): bridge architecture deep-dive
+* [Astro Starter Template](https://github.com/tinacms/tina-astro-starter): reference implementation

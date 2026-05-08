@@ -13,12 +13,12 @@ next: content/docs/contextual-editing/tinafield.mdx
 previous: content/docs/contextual-editing/react.mdx
 ---
 
-Astro's visual editing path doesn't use `useTina()` — that hook is React-specific. Instead, Astro sites use `@tinacms/astro`, a vanilla-Astro renderer + a ~2 kB gzipped postMessage bridge that loads only inside the editor iframe.
+Astro's visual editing path doesn't use `useTina()`; that hook is React-specific. Instead, Astro sites use `@tinacms/astro`, a vanilla-Astro renderer + a ~2 kB gzipped postMessage bridge that loads only inside the editor iframe.
 
 The flow:
 
 1. Each editable page renders one or more `<script type="application/tina+json">` payloads in `<head>` (one per query the page consumes).
-2. The bridge — loaded via `import { init } from '@tinacms/astro/bridge'` — reads those payloads, posts `open` to the parent admin window, and seeds an in-memory data store.
+2. The bridge, loaded via `import { init } from '@tinacms/astro/bridge'`, reads those payloads, posts `open` to the parent admin window, and seeds an in-memory data store.
 3. As the editor types, the admin posts `updateData` back to the iframe. The bridge stores it.
 4. Each editable region in the page is wrapped in a `<… data-tina-island="/tina-island/<name>?<params>">`. On every store update, the bridge POSTs the current overlay to that endpoint.
 5. The endpoint re-renders the matching Astro component against the overlay data and returns an HTML fragment. The bridge swaps it into the live DOM.
@@ -57,7 +57,7 @@ const forms = [
   <script>
     import { init, refreshForms } from '@tinacms/astro/bridge';
     init();
-    // Required if you use Astro's <ClientRouter /> or any view-transitions setup —
+    // Required if you use Astro's <ClientRouter /> or any view-transitions setup:
     // re-scans form payloads after each soft navigation. No-op without view transitions.
     document.addEventListener('astro:page-load', refreshForms);
   </script>
@@ -68,7 +68,7 @@ The `forms` array carries one entry per Tina query the page renders. The admin u
 
 ## Mark editable regions
 
-Wrap each editable region in a `data-tina-island` element. The attribute value is the URL of the per-island refresh endpoint — same path the bridge will POST to:
+Wrap each editable region in a `data-tina-island` element. The attribute value is the URL of the per-island refresh endpoint, the same path the bridge will POST to:
 
 ```astro
 ---
@@ -100,7 +100,7 @@ const { data } = Astro.props;
 </div>
 ```
 
-Coarse-grained markers (the whole `body`) are usually right — clicking any rich-text node inside focuses the editor on that field. See [The Click-To-Edit API](/docs/contextual-editing/tinafield/) for the full helper reference.
+Coarse-grained markers (the whole `body`) are usually right; clicking any rich-text node inside focuses the editor on that field. See [The Click-To-Edit API](/docs/contextual-editing/tinafield/) for the full helper reference.
 
 ## The per-island endpoint
 
@@ -134,7 +134,7 @@ export const ALL: APIRoute = async ({ params, request, url }) => {
 };
 ```
 
-The registry (`src/lib/islands.ts`) maps island names → `{ fetch, component, wrapper, propsFromData }`. Adding a new editable region only ever touches the registry — never the dynamic route.
+The registry (`src/lib/islands.ts`) maps island names to `{ fetch, component, wrapper, propsFromData }`. Adding a new editable region only ever touches the registry, never the dynamic route.
 
 ## The `withOverlay()` data seam
 
@@ -157,7 +157,7 @@ export function getPage(slug: string, request: Request) {
 }
 ```
 
-The returned object's `id` is a stable hash of `{ query, variables }` — the bridge uses the same hashing client-side to match overlays back to forms.
+The returned object's `id` is a stable hash of `{ query, variables }`; the bridge uses the same hashing client-side to match overlays back to forms.
 
 ## Custom MDX embeds
 
@@ -229,7 +229,7 @@ const components = { YouTubeEmbed };
 
 ## Default-tag overrides
 
-The same `components` map can override the default HTML tag for any rich-text node — useful for styling without forking the renderer:
+The same `components` map can override the default HTML tag for any rich-text node, useful for styling without forking the renderer:
 
 ```ts
 const components = {
@@ -255,14 +255,14 @@ Everything you need ships under `@tinacms/astro`:
 |---------|-------------------|
 | `@tinacms/astro` | `TinaMarkdown` (default export) |
 | `@tinacms/astro/bridge` | `init`, `refreshForms`, `tinaField` |
-| `@tinacms/astro/tina-field` | `tinaField()` only — useful when you don't want to load the bridge bundle |
-| `@tinacms/astro/preview` | `readOverlay()` — server-side helper for the per-island endpoint |
+| `@tinacms/astro/tina-field` | `tinaField()` only, useful when you don't want to load the bridge bundle |
+| `@tinacms/astro/preview` | `readOverlay()`, the server-side helper for the per-island endpoint |
 | `@tinacms/astro/types` | TypeScript types (`TinaRichTextContent`, `CustomComponentsMap`, etc.) |
 | `@tinacms/astro/sanitize` | `sanitizeHref` / `sanitizeImageSrc` for CMS-supplied URLs |
 
 ## See Also
 
-* [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) — reference implementation with all of the above wired up
-* [The Click-To-Edit API](/docs/contextual-editing/tinafield/) — `tinaField()` semantics
-* [Visual Editing Router](/docs/contextual-editing/router/) — wiring deep-link admin URLs to your routes
+* [Astro Starter Template](https://github.com/tinacms/tina-astro-starter): reference implementation with all of the above wired up
+* [The Click-To-Edit API](/docs/contextual-editing/tinafield/): `tinaField()` semantics
+* [Visual Editing Router](/docs/contextual-editing/router/): wiring deep-link admin URLs to your routes
 * [Migrating from React-based Visual Editing](/docs/migrations/astro-react-free-visual-editing/)
