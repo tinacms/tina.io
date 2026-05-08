@@ -8,12 +8,12 @@ previous: ''
 
 ## Introduction
 
-TinaCloud lets you split a single project across two GitHub repositories: a **generator repo** that holds your Tina schema and your application code, and a **content repo** that holds your editorial files (markdown / MDX content and media). Both repos belong to the **same** TinaCloud project — you don't create two projects and link them.
+TinaCloud lets you split a single project across two GitHub repositories: a **generator repo** that holds your Tina schema and your application code, and a **content repo** that holds your editorial files (markdown / MDX content and media). Both repos belong to the **same** TinaCloud project; you don't create two projects and link them.
 
 Throughout this guide:
 
-* **Generator repo** — your `tina/config.tsx`, your Next.js / Astro / Remix / etc. app code, and the generated artifacts under `tina/__generated__/`.
-* **Content repo** — your `.md` / `.mdx` files and media. No Tina configuration lives here.
+* **Generator repo** - your `tina/config.tsx`, your Next.js / Astro / Remix / etc. app code, and the generated artifacts under `tina/__generated__/`.
+* **Content repo** - your `.md` / `.mdx` files and media. No Tina configuration lives here.
 
 ### Why?
 
@@ -26,12 +26,12 @@ A few reasons you might want this split:
 ### Requirements
 
 * A TinaCloud account.
-* Two GitHub repositories you control — one for the generator, one for the content.
+* Two GitHub repositories you control, one for the generator, one for the content.
 * The TinaCloud GitHub App installed on **both** repos' organisations (these may differ).
 
 ## How it works
 
-After setup, your TinaCloud project is bound to both repos. From the editor's point of view nothing about the dashboard changes — they edit, save, and submit for review the same way they always have. Behind the scenes:
+After setup, your TinaCloud project is bound to both repos. From the editor's point of view nothing about the dashboard changes; they edit, save, and submit for review the same way they always have. Behind the scenes:
 
 * **Schema** is loaded from the generator repo's indexed schema. It is never read from the content repo.
 * **Editorial branches and pull requests** created via Tina's editorial workflow are made on the **content repo**.
@@ -46,7 +46,7 @@ The TinaCloud dashboard surfaces the multi-repo option directly in the create-pr
 1. From the TinaCloud dashboard, click **Create Project**.
 2. Pick your **generator repo** as you would for any project.
 3. Project Configuration | Toggle on **Use a separate content repository**.
-4. Pick the **content repo** from the list. (If your content repo lives in a different GitHub organisation, install the TinaCloud GitHub App there first — the picker will only list repos the app has access to.)
+4. Pick the **content repo** from the list. (If your content repo lives in a different GitHub organisation, install the TinaCloud GitHub App there first; the picker will only list repos the app has access to.)
 5. Click create.
 
 ![](/docs/seperate-content-repo-new-project.png)
@@ -82,7 +82,7 @@ export default defineConfig({
 });
 ```
 
-The path is resolved relative to the `tina/` folder. The most common layout is **siblings under a shared parent directory** — both repos cloned into the same folder.
+The path is resolved relative to the `tina/` folder. The most common layout is **siblings under a shared parent directory**, both repos cloned into the same folder.
 
 `localContentPath` is local-dev only. The TinaCloud production runtime reads content from the content repo via GitHub regardless of this setting; the field is consumed by `tinacms dev` and `tinacms build` so the CLI can locate content files when they aren't checked out next to the generator code.
 
@@ -123,15 +123,15 @@ Tina's dev server will watch the content repo's files alongside the generator's 
 
 ## Migrating from the old "two TinaCloud projects" pattern
 
-Previous versions of this guide had you create **two separate TinaCloud projects** and connect them via a `tina/meta.json` file with an `upstreamClientId`. That pattern is no longer the recommended setup — a single TinaCloud project with two repo bindings replaces it.
+Previous versions of this guide had you create **two separate TinaCloud projects** and connect them via a `tina/meta.json` file with an `upstreamClientId`. That pattern is no longer the recommended setup; a single TinaCloud project with two repo bindings replaces it.
 
 If you have an existing setup following the old pattern, migrate as follows:
 
 1. Pick the project that points at your **generator repo**. This is the project you will keep.
 2. Open that project's settings, toggle on **Use a separate content repository**, and pick the same content repo you've been using.
 3. Update your `.env` in the generator repo so `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` reference the **generator project's** credentials (you may already be doing this).
-4. Delete the **content repo's** TinaCloud project — it is no longer used.
-5. Optional clean-up: delete the `tina/meta.json` file from the content repo; nothing reads it any more. You can also delete the `tina/__generated__/` folder from the content repo if your previous setup committed it there — these artifacts now only live in the generator.
+4. Delete the **content repo's** TinaCloud project; it is no longer used.
+5. Optional clean-up: delete the `tina/meta.json` file from the content repo; nothing reads it any more. You can also delete the `tina/__generated__/` folder from the content repo if your previous setup committed it there; these artifacts now only live in the generator.
 
 ## Path Configuration Considerations
 
@@ -139,7 +139,7 @@ When defining collection paths inside your `tina/config.(ts/js)`, avoid setting 
 
 ## Static Site Generator Compatibility
 
-If you are using a static site generator other than Next.js (such as Astro), ensure your content pipeline ignores the `tina/` directory inside your **generator repo** — Tina's config and generated files are not content files and may cause parsing errors when picked up by content collections.
+If you are using a static site generator other than Next.js (such as Astro), ensure your content pipeline ignores the `tina/` directory inside your **generator repo**; Tina's config and generated files are not content files and may cause parsing errors when picked up by content collections.
 
 ```javascript
 export default defineCollection({
@@ -148,7 +148,7 @@ export default defineCollection({
 });
 ```
 
-If you previously set up multi-repo before the latest tinacms version, your **content repo** may also have a stale `tina/` folder left over from when generated artifacts were written there. It is safe to delete — nothing reads it any more.
+If you previously set up multi-repo before the latest tinacms version, your **content repo** may also have a stale `tina/` folder left over from when generated artifacts were written there. It is safe to delete; nothing reads it any more.
 
 ## Triggering Website Builds from the Content Repo (Optional)
 
@@ -214,6 +214,6 @@ This setup requires:
 
 * **"GitHub App not installed on this repository's organisation"** when picking a content repo. The TinaCloud GitHub App must be installed on the *organisation* (or user account) that owns the repo. If your generator and content repos live under different GitHub orgs, install the app on each separately.
 * **The content repo's picker is missing repos you expect to see.** GitHub Apps grant per-repo access. Open the GitHub App's settings on the relevant org and grant access to the specific repo you want to use, then refresh the dashboard.
-* **Stale `tina/` folder in the content repo after upgrading.** Pre-upgrade builds committed `tina/__generated__/*` and `tina/tina-lock.json` to the content repo. Nothing updates or reads those files in the new model. Safe — and recommended — to delete from the content repo in a single cleanup commit.
+* **Stale `tina/` folder in the content repo after upgrading.** Pre-upgrade builds committed `tina/__generated__/*` and `tina/tina-lock.json` to the content repo. Nothing updates or reads those files in the new model. Safe, and recommended, to delete from the content repo in a single cleanup commit.
 * **Old `tina/meta.json` file in the content repo.** This was the connector for the old two-projects pattern. No longer used; delete it.
 * **Content edits aren't appearing in builds.** Confirm the generator repo's `tina/config.tsx` has `localContentPath` set, and that you have the content repo checked out as a sibling on disk.
