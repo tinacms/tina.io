@@ -69,6 +69,7 @@ This command takes all the common [options](#common-options) as well as a few ot
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `--tina-graphql-version`  | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)                           |
 | `--local`                 | Will start the local Graphql server and generate the local client. This is useful for static builds but will not work with SSR |
+| `--content=local`         | Source content from the local filesystem during the build so no TinaCloud Content API calls are made, while the generated client still points at TinaCloud at runtime. Recommended for SSG sites with many pages. |
 | `--skip-cloud-checks`     | Skip the TinaCloud checks (dangerous and not recommended)                                                                      |
 | `--skip-search-indexing`  | Skip the search indexing                                                                                                       |
 | `--no-client-build-cache` | Disables automatic caching of queries by local client                                                                          |
@@ -100,6 +101,29 @@ This will
 * Produce local image paths
 * build production SPA
 * run Next build
+
+**Building from local content with a TinaCloud production client**
+
+```bash
+tinacms build --content=local -c "next build"
+```
+
+This will
+
+* Index your content into a temporary in-memory data layer for the duration of the build
+* Generate the **production** TinaCMS client (so the deployed site still talks to TinaCloud at runtime)
+* Make **zero** TinaCloud Content API requests during the build
+* Run your framework's build command
+
+Useful when SSG is generating thousands of pages. On SSW Rules (~4,000 pages) build time dropped from 4:55 to 2:12, with TinaCloud Content API calls dropping from ~4,000 to 0.
+
+Because the generated client is the production client, `branch`, `clientId`, and `token` must be configured in your Tina config — the same values you would use for a normal `tinacms build`.
+
+A few things to know:
+
+* Search indexing is skipped during the build (a warning is emitted). Reindex separately if you rely on search.
+* TinaCloud validation checks (branch status, schema match) still run — pass `--skip-cloud-checks` to skip them.
+* If both `--local` and `--content=local` are passed, `--local` takes precedence.
 
 ### "npx @tinacms/cli\@latest init"
 
