@@ -6,8 +6,6 @@ const TextAndMediaColumnsComponent = ({ data }) => {
   const { mediaColumnItem, body, isVideoOnLeft } = data || {};
 
   const typenames = {
-    cloudinary:
-      'PageBlocksTextMediaColumnComponentMediaColumnItemCloudinaryMediaComponent',
     youtube: 'PageBlocksTextMediaColumnComponentMediaColumnItemYoutubeMedia',
   };
 
