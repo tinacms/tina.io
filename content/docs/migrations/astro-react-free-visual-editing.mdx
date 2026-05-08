@@ -1,0 +1,181 @@
+---
+id: /docs/migrations/astro-react-free-visual-editing
+title: Migrating Astro to React-free Visual Editing
+seo:
+  title: Migrating Astro Visual Editing from React to @tinacms/astro
+  description: >-
+    Step-by-step migration from the legacy client:tina React-based Astro
+    integration to the @tinacms/astro bridge. Covers dep removal, file
+    deletions, and the per-page wiring changes.
+last_edited: '2026-05-08T00:00:00.000Z'
+---
+
+Older Astro sites integrated TinaCMS visual editing through `@astrojs/react` and a custom `client:tina` directive — every editable page hydrated a React component just for the editor. That requirement is gone: `@tinacms/astro` runs the same visual-editing UX through a vanilla-JS bridge.
+
+This page walks an existing site through the migration. The end state matches the [Astro Starter Template](https://github.com/tinacms/tina-astro-starter); diff against it for any step that's unclear.
+
+## What changes
+
+| | Before | After |
+|---|---|---|
+| Deps | `@astrojs/react`, `react`, `react-dom`, `react-icons`, `@tanstack/react-virtual`, `tinacms` | `@tinacms/astro`, `@astrojs/node` (or another adapter), `tinacms` |
+| Output | `static` | `server` |
+| Page wiring | `<HomePage client:tina />` (React component, hydrated) | `<main data-tina-island="/tina-island/page?slug=home"><PageBody /></main>` |
+| Custom MDX | React components in `tina/pages/*.tsx` | One schema `Template` + one `.astro` renderer |
+| Rich-text rendering | `<TinaMarkdown />` from `tinacms/dist/rich-text` (React) | `<TinaMarkdown />` from `@tinacms/astro` (Astro) |
+
+## 1. Update dependencies
+
+Remove the React deps, install the new packages:
+
+```bash
+npm uninstall @astrojs/react react react-dom react-icons @tanstack/react-virtual
+npm install @tinacms/astro @astrojs/node
+```
+
+## 2. Switch to SSR
+
+In `astro.config.mjs`:
+
+```js
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import node from '@astrojs/node';
+
+export default defineConfig({
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
+  integrations: [mdx()],
+});
+```
+
+Drop the `react()` integration. If you used a custom client directive (`addClientDirective({ name: 'tina', … })`), drop that too — it's replaced by the `data-tina-island` mechanism.
+
+## 3. Delete the React glue
+
+The React-based path keeps editing components in `tina/pages/`. Those are no longer referenced:
+
+```bash
+rm -rf tina/pages tina/components/IconComponent.tsx
+```
+
+If you scaffolded from the old starter you'll also have an `astro-tina-directive/` folder at the repo root. Delete it.
+
+## 4. Add the lib helpers
+
+Create `src/lib/` with the helpers that bridge Astro and Tina:
+
+* `metadata.ts` — `addContentSourceMetadata()` and `hashFromQuery()`
+* `tina-preview.ts` — `withOverlay()` (the disk-fetch-vs-overlay seam)
+* `queries.ts` — extracts query strings from `tina/__generated__/`
+* `data.ts` — per-collection fetchers (`getPage`, `getBlog`, etc.)
+* `islands.ts` — registry of editable regions
+
+Copy these from the [starter template](https://github.com/tinacms/tina-astro-starter/tree/main/src/lib). Each file is small (under 100 lines) and self-contained.
+
+## 5. Add the per-island endpoint
+
+Create `src/pages/tina-island/[name].ts` — single dynamic route the bridge POSTs to. Copy from the [starter](https://github.com/tinacms/tina-astro-starter/blob/main/src/pages/tina-island/%5Bname%5D.ts).
+
+## 6. Move rendering from React to Astro
+
+For each `tina/pages/*.tsx` file, create a matching `.astro` component under `src/components/islands/`:
+
+```diff
+- // tina/pages/HomePage.tsx
+- import { useTina } from 'tinacms/dist/react';
+- import { TinaMarkdown } from 'tinacms/dist/rich-text';
+- export default function HomePage(props) {
+-   const { data } = useTina(props);
+-   return <main><TinaMarkdown content={data.page.body} /></main>;
+- }
++ ---
++ // src/components/islands/PageBody.astro
++ import TinaMarkdown from '@tinacms/astro';
++ import { tinaField } from '@tinacms/astro/tina-field';
++ const { data } = Astro.props;
++ ---
++ {data?.body && (
++   <div data-tina-field={tinaField(data, 'body')}>
++     <TinaMarkdown content={data.body} />
++   </div>
++ )}
+```
+
+The render shape is the same. The only difference: no `useTina()` — the bridge handles re-rendering by re-fetching this island.
+
+## 7. Update each page
+
+Pages move from "render a React component with `client:tina`" to "fetch from Tina at request time and wrap in `data-tina-island`":
+
+```diff
+- ---
+- import HomePage from '../../tina/pages/HomePage.tsx';
+- import client from '../../tina/__generated__/client';
+- const data = await client.queries.page({ relativePath: 'home.mdx' });
+- ---
+- <html>
+-   <body>
+-     <HomePage {...data} client:tina />
+-   </body>
+- </html>
++ ---
++ export const prerender = false;
++ import PageBody from '../components/islands/PageBody.astro';
++ import { getPage } from '../lib/data';
++ const slug = 'home';
++ const page = await getPage(slug, Astro.request);
++ ---
++ <html>
++   <body>
++     <main data-tina-island={`/tina-island/page?slug=${slug}`}>
++       <PageBody data={page.data?.page} />
++     </main>
++   </body>
++ </html>
+```
+
+## 8. Wire the bridge in your base layout
+
+Add to your shared `<head>` partial:
+
+```astro
+---
+const forms = Astro.props.forms ?? [];
+---
+{forms.map((form) => (
+  <script type="application/tina+json" set:html={JSON.stringify(form)} />
+))}
+<script>
+  import { init, refreshForms } from '@tinacms/astro/bridge';
+  init();
+  document.addEventListener('astro:page-load', refreshForms);
+</script>
+```
+
+Pass the form payload from each page through the layout's `forms` prop. The form's `id`, `query`, `variables`, and `data` come straight off the `getPage()` (or `getBlog()`, etc.) result.
+
+## 9. Convert custom MDX components
+
+Each React MDX component in `tina/pages/*.tsx` (passed via `<TinaMarkdown components={…} />`) becomes:
+
+* A `Template` (schema-only) in `src/components/mdx/<Name>.template.ts`
+* A renderer in `src/components/mdx/<Name>.astro`
+
+See [Visual Editing Setup → Astro → Custom MDX embeds](/docs/contextual-editing/astro/#custom-mdx-embeds) for the full pattern.
+
+## 10. Verify
+
+Run `pnpm dev`, open `/admin`, and edit a page. You should see:
+
+* Field changes appear in the public preview as you type.
+* Clicking a `data-tina-field`-marked element focuses the matching field in the sidebar.
+* Navigating between docs in the admin (e.g. `#/~/` → `#/~/about`) updates the sidebar to match the active page.
+
+If the third bullet doesn't work, double-check the `astro:page-load` listener in step 8 — without it, view-transitions setups strand the admin on the previous page's form.
+
+## See Also
+
+* [Astro Setup Guide](/docs/frameworks/astro/) — the full integration starting point
+* [Visual Editing Setup → Astro](/docs/contextual-editing/astro/) — bridge architecture deep-dive
+* [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) — reference implementation
