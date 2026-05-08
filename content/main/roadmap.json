@@ -159,6 +159,20 @@
               "url": "https://github.com/tinacms/tinacms/issues/6156"
             }
           ]
+        },
+        {
+          "headline": "□ TinaCMS v4",
+          "content": "We're reworking the foundation of TinaCMS so more parts can be customised or replaced without forking the project. This will make Tina easier to maintain and give teams more control over how the editor works.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/6782"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
