@@ -161,37 +161,37 @@ The returned object's `id` is a stable hash of `{ query, variables }` — the br
 
 ## Custom MDX embeds
 
-To render a custom component inside a rich-text body (for example, a `YouTubeEmbed`), you author **two files**:
+To render a custom component inside a rich-text body (for example, a `YouTubeEmbed`), author two files: a schema `Template` describing the editor UI, and an Astro renderer named the same as the template.
 
-1. A schema `Template` describing the editor UI:
+**1. The schema `Template`:**
 
-   ```ts
-   // src/components/mdx/YouTubeEmbed.template.ts
-   import type { Template } from 'tinacms';
+```ts
+// src/components/mdx/YouTubeEmbed.template.ts
+import type { Template } from 'tinacms';
 
-   export const youTubeEmbedTemplate: Template = {
-     name: 'YouTubeEmbed',
-     label: 'YouTube Embed',
-     fields: [
-       { name: 'videoId', label: 'YouTube video ID', type: 'string', required: true },
-     ],
-   };
-   ```
+export const youTubeEmbedTemplate: Template = {
+  name: 'YouTubeEmbed',
+  label: 'YouTube Embed',
+  fields: [
+    { name: 'videoId', label: 'YouTube video ID', type: 'string', required: true },
+  ],
+};
+```
 
-2. The Astro renderer, named the same as the template:
+**2. The Astro renderer:**
 
-   ```astro
-   ---
-   // src/components/mdx/YouTubeEmbed.astro
-   const { videoId } = Astro.props;
-   ---
-   <iframe
-     src={`https://www.youtube.com/embed/${videoId}`}
-     title="YouTube video player"
-     allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-     allowfullscreen
-   />
-   ```
+```astro
+---
+// src/components/mdx/YouTubeEmbed.astro
+const { videoId } = Astro.props;
+---
+<iframe
+  src={`https://www.youtube.com/embed/${videoId}`}
+  title="YouTube video player"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+  allowfullscreen
+/>
+```
 
 Register the template on the rich-text field's `templates` array:
 
