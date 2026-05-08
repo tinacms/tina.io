@@ -117,12 +117,12 @@ This will
 
 Useful when SSG is generating thousands of pages. On SSW Rules (~4,000 pages) build time dropped from 4:55 to 2:12, with TinaCloud Content API calls dropping from ~4,000 to 0.
 
-Because the generated client is the production client, `branch`, `clientId`, and `token` must be configured in your Tina config — the same values you would use for a normal `tinacms build`.
+Because the generated client is the production client, `branch`, `clientId`, and `token` must be configured in your Tina config, the same values you would use for a normal `tinacms build`.
 
 A few things to know:
 
 * Search indexing is skipped during the build (a warning is emitted). Reindex separately if you rely on search.
-* TinaCloud validation checks (branch status, schema match) still run — pass `--skip-cloud-checks` to skip them.
+* TinaCloud validation checks (branch status, schema match) still run; pass `--skip-cloud-checks` to skip them.
 * If both `--local` and `--content=local` are passed, `--local` takes precedence.
 
 ### "npx @tinacms/cli\@latest init"
