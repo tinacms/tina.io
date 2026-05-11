@@ -36,12 +36,12 @@
       "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/Relax-Llama.png",
       "recentNewsBanner": {
-        "title": "See how SSW moved 3500+ pages to TinaCMS",
-        "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
-        "openInNewTab": true,
+        "title": "What we're planning for TinaCMS v4",
+        "link": "/blog/tinacms-v4-is-coming",
+        "openInNewTab": false,
         "badge": {
           "text": "new",
-          "icon": "MdOutlineVideocam",
+          "icon": "MdBook",
           "position": "left",
           "color": "orange"
         },
