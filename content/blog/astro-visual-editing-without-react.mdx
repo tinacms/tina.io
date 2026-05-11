@@ -1,0 +1,125 @@
+---
+title: Visual editing for Astro. Now without React
+author: Matt Wicks
+prev: content/blog/customblog_tinacmsai.mdx
+next: ''
+---
+
+TinaCMS visual editing now works on Astro **without shipping React**.
+
+The Astro community picks Astro for runtime cost. Pages that ship zero JS by default, hydrated only where needed. Until this release, getting live editing on an Astro page meant breaking that rule: a custom \`client\:tina\` directive hydrated \`useTina()\` inside the editor iframe so the page tree could re-render against admin postMessages. It worked, but it's the exact pattern Astro authors avoid.
+
+The new path ships a \~2 KB gzipped vanilla-JS bridge to the iframe only. Public visitors get zero JS. Production HTML is byte-identical to a Tina-free Astro app.
+
+> New projects get this by default. The bridge is the recommended path for Astro + TinaCMS going forward. The React + \`useTina()\` setup moves to an opt-in secondary path: still fully supported and maintained. If your project ships fine today, you don't need to touch it.
+
+## How the new path works
+
+* **`@tinacms/bridge`** — a zero-dependency ESM bundle that speaks the existing TinaCMS admin postMessage protocol. `init()` boots once inside the iframe, registers `[data-tina-form]` payloads, wires click-to-focus, and dispatches data updates. `refreshForms()` re-scans the DOM after view transitions so soft navigations inside the editor don't lose form bindings.
+* **`@tinacms/astro`** — the Astro integration. `tina()` in `astro.config.mjs` auto-injects the middleware + bridge script on edit-mode responses; serves zero JS on every other request.
+* **Sticky edit-mode** via a `__tina_edit` session cookie (SameSite=Strict, gated on `Sec-Fetch-Dest: iframe`) keeps the iframe in edit mode across in-iframe link clicks. Top-level visitors never get edit mode because the dest check fails before the cookie is consulted.
+
+## How edits propagate without re-rendering React
+
+```
+┌─────────────────────────────────┐    ┌─────────────────────────────-─┐
+│  Admin (/admin/index.html)      │    │  Iframe (your Astro page)     │
+│  React app, owns the form       │    │  Server-rendered HTML +       │
+│                                 │    │  bridge script + form         │
+│                                 │    │  payloads spliced into <head> │
+│                                 │    │  by the tina() middleware     │
+│                                 │    │                               │
+│  ◀── {open, id, query, data} ◀──┼────│  bridge reads                 │
+│                                 │    │   [data-tina-form] elements   │
+│                                 │    │                               │
+│  user edits a field             │    │                               │
+│  ─── {updateData, id, data} ──▶ │    │  bridge POSTs                 │
+│                                 │    │   /tina-island/post?slug=…    │
+│                                 │    │   body: {[id]: data}          │
+│                                 │    │                               │
+│                                 │    │  Astro re-renders the island  │
+│                                 │    │  bridge swaps HTML in DOM     │
+└─────────────────────────────────┘    └──────────────────────────-────┘
+```
+
+Per-island scoped — editing the hero re-renders only the hero, not the whole page. The transport is JSON-over-POST so UTF-8 (em-dashes, smart quotes, emoji) and large rich-text bodies round-trip without size or charset limits.
+
+The protocol stays stateless: the admin pushes already-resolved data to the bridge, the bridge forwards it to the island endpoint, the endpoint reads it via `readOverlay()` instead of hitting the canonical content store. No backend changes shipped — works against self-hosted Tina, TinaCloud, or any GraphQL endpoint.
+
+TODO: screenshot — click-to-edit demo (admin iframe with a field focused, sidebar form open)
+
+## Adding it to your Astro project
+
+The fastest way to try it is to clone the [Astro starter template](https://tina.io/docs/frameworks/astro/) — it's pre-wired with the bridge, the integration, an island registry, and a sample rich-text setup. The five steps below are what the starter does under the hood; reach for them when adding the bridge to an existing Astro project.
+
+**1. Install.**
+
+```bash
+pnpm add @tinacms/astro tinacms
+pnpm add -D @tinacms/cli
+pnpm add @astrojs/node           # or @astrojs/vercel / netlify / cloudflare
+```
+
+**2. Scaffold Tina** if you don't have a `tina/` directory:
+
+```bash
+pnpm tinacms init
+```
+
+**3. Wire the integration** in `astro.config.mjs`:
+
+```js
+import { defineConfig } from 'astro/config';
+import tina from '@tinacms/astro/integration';
+import node from '@astrojs/node';
+import mdx from '@astrojs/mdx';
+
+export default defineConfig({
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
+  integrations: [mdx(), tina()],
+});
+```
+
+**4. Wrap every data loader with `requestWithMetadata`.** It stamps the result with the metadata `tinaField()` reads, derives the form id the bridge uses to address the form, and in edit mode swaps `data` for the unsaved overlay automatically.
+
+```ts
+import { requestWithMetadata } from '@tinacms/astro';
+import client from '../../tina/__generated__/client';
+
+export const getPost = (slug: string) =>
+  requestWithMetadata(client.queries.post({ relativePath: `${slug}.md` }));
+```
+
+**5. Mark editable regions** with `<TinaIsland>` + `data-tina-field`:
+
+```astro
+<TinaIsland name="post" wrapper={islands.post.wrapper} params={{ slug }}>
+  <h1 data-tina-field={tinaField(data, 'title')}>{data.title}</h1>
+  <div data-tina-field={tinaField(data, '_body')}>
+    <TinaMarkdown content={data._body} />
+  </div>
+</TinaIsland>
+```
+
+Open `/admin/`, click a field — the iframe re-fetches only the affected island and swaps it into the DOM. No full reload, no React in your page tree.
+
+TODO: screenshot — finished editor UI in iframe, sidebar form open, browser devtools Network tab showing the /tina-island POST
+
+## Already on the React path? You don't have to move
+
+The React + `useTina()` setup keeps working — `@astrojs/react`, `client:tina`, and `useTina()` are all still supported, and we'll keep maintaining the path. Nothing in this release breaks an existing project.
+
+If you decide later that the runtime cost matters to your audience, the migration is mechanical:
+
+* Drop `@astrojs/react`, `react`, `react-dom` from `dependencies`.
+* Replace the `client:tina` directive + `useTina()` hook with `<TinaIsland>` + `data-tina-field`.
+* Re-author your custom rich-text components (`MyComponent.tsx`) as `MyComponent.astro` and register them on the `CustomComponentsMap` — same `components` map shape as `tinacms/dist/rich-text`'s `TinaMarkdown`, just emitting Astro markup.
+
+The [Astro starter template](https://tina.io/docs/frameworks/astro/) is the easiest diff target — line it up next to your project and the moves are obvious.
+
+## What's next
+
+The bridge contract is framework-free. Hugo / Eleventy adapters on the same protocol are unblocked but unshipped — happy to take contributions. TinaCloud users get the same behaviour with no changes; the stateless POST protocol works against any backend.
+
+**Try it:** clone the [Astro starter template](https://tina.io/docs/frameworks/astro/) and run `pnpm dev`. Hop into `/admin/`, click around, watch the iframe re-render without a single byte of React in your page tree.
