@@ -1,0 +1,97 @@
+---
+seo:
+  title: What we're planning for TinaCMS v4 | TinaCMS Blog
+  description: >-
+    We are starting work on TinaCMS v4, with a focus on making TinaCMS easier to
+    extend, easier to customise, and easier to upgrade.
+title: What we're planning for TinaCMS v4
+date: '2026-05-13T00:00:00.000Z'
+last_edited: '2026-05-13T00:00:00.000Z'
+author: TinaCMS Team
+prev: ''
+next: ''
+---
+
+We're starting work on **TinaCMS v4**.
+
+**TL;DR:** TinaCMS v3 will continue to be supported, and v4 will focus on making TinaCMS easier to extend, customise, and upgrade.
+
+TinaCMS has grown a lot over the last few years. Along the way, we've found parts of the system that are harder to extend than they should be. Some customisations are too difficult. Some integrations are more tightly coupled than we'd like. Some parts of the editing experience need a proper rethink rather than another small patch.
+
+v4 is our chance to fix those things properly.
+
+This is not a release announcement. It is the start of the work, and we want to share the direction early.
+
+## Why v4?
+
+The main goal for v4 is to make TinaCMS easier to build on.
+
+Today, TinaCMS gives developers a lot of control, but too much of that control depends on knowing internal details or working around existing assumptions. We want more parts of TinaCMS to be exposed as clear extension points instead.
+
+That means field types, sidebars, screens, media providers, search providers, and other CMS features should be easier to plug in, replace, or customise without maintaining a fork.
+
+For example, a media provider should be something you install and configure, not something that needs to be wired through several internal layers of the CMS.
+
+It also means we can make TinaCMS easier to maintain. Cleaner boundaries between packages should make upgrades less risky and let us improve one part of the system without surprising another.
+
+## A New Package
+
+TinaCMS v4 will ship as a brand new package: `@tinacms/tinacms`.
+
+The new package name gives v4 room to be built on modernised foundations while v3 keeps doing its job. Existing projects can continue to rely on the current `tinacms` package without disruption, and adopting v4 will be an explicit, intentional step you take when you're ready.
+
+## What we're looking at
+
+The work is still starting, but these are the areas we expect to focus on first:
+
+* **Plugin-based architecture.** Make fields, sidebars, screens, media, and search easier to extend or replace.
+* **Forms.** Rebuild the forms system around React Hook Form, with better dirty state, validation, drafts, and hooks for custom behaviour.
+* **Fields.** Rework the built-in field types so they behave more consistently and are easier to customise.
+* **Editorial Workflow.** Bring branch and pull request workflows further into the editor, so content teams can work with Git without needing to live in GitHub.
+* **The editor UI.** Review the admin layout, navigation, media manager, and editing experience for nested content.
+
+<WideImage
+  src="/img/blog/tinacms-v4-is-coming/cms-v4-preview.png"
+  alt="An early TinaCMS v4 editor preview"
+/>
+
+*An early look at the TinaCMS v4 editor direction.*
+
+We have also been using AI to prototype ideas quickly before deciding what to build. The editor preview above came out of that process. If you're interested in how we approach that kind of work and why it doesn't turn into slop, SSW has a good rule on [using AI for prototype development](https://www.ssw.com.au/rules/ai-for-prototype-development).
+
+We'll share more detailed posts on these areas as the work gets further along.
+
+## Migration
+
+We know that any major version bump raises the same question: *"What does this mean for my project?"*
+
+Our goal is to make the v4 upgrade path as smooth and predictable as possible for existing TinaCMS projects.
+
+We are planning a codemod to handle as much of the schema migration as possible. We also want the migration docs to be clear about every breaking change, what the codemod can handle, and what may still need manual attention.
+
+Projects with custom fields or heavily customised components will need more care, so we plan to include before and after examples for those cases.
+
+## What happens to v3?
+
+TinaCMS v3 will continue to be supported while v4 is built and stabilised.
+
+Existing projects can stay on v3 and move to v4 when the timing is right.
+
+We don't have a specific end-of-life date for v3 yet. v3 will be maintained with bug fixes and security patches for as long as it makes sense, and we'll give plenty of notice when we start to wind down support.
+
+## What's Next
+
+Over the coming months we'll share more as the work takes shape: design previews, architecture notes, migration details, and early opportunities for the community to give feedback.
+
+If you'd like to follow along:
+
+* Watch this blog for regular updates
+* Star the [TinaCMS GitHub repository](https://github.com/tinacms/tinacms)
+* Share feedback in the [TinaCMS v4 GitHub Discussion](https://github.com/tinacms/tinacms/discussions/6782)
+* Join the conversation in the [TinaCMS Discord](https://discord.com/invite/zumN63Ybpf)
+
+Thanks for being part of TinaCMS. We're excited to start this next chapter and share the progress as we go.
+
+Best,
+
+The TinaCMS Team 🦙
