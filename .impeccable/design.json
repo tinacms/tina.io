@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-08T00:00:00Z",
+  "title": "Design System: Tina.io",
+  "extensions": {
+    "colorMeta": {
+      "tina-orange": {
+        "role": "primary",
+        "displayName": "Tina Orange",
+        "canonical": "oklch(59.5% 0.205 27)",
+        "tonalRamp": [
+          "oklch(20% 0.08 27)",
+          "oklch(30% 0.12 27)",
+          "oklch(40% 0.155 27)",
+          "oklch(50% 0.18 27)",
+          "oklch(59.5% 0.205 27)",
+          "oklch(70% 0.16 27)",
+          "oklch(82% 0.1 27)",
+          "oklch(93% 0.04 27)"
+        ]
+      },
+      "tina-orange-hover": {
+        "role": "primary",
+        "displayName": "Tina Orange Hover",
+        "canonical": "oklch(53% 0.19 27)",
+        "tonalRamp": []
+      },
+      "tina-orange-light": {
+        "role": "primary",
+        "displayName": "Tina Orange Light",
+        "canonical": "oklch(90% 0.06 27)",
+        "tonalRamp": []
+      },
+      "tina-orange-warm": {
+        "role": "primary",
+        "displayName": "Tina Orange Warm",
+        "canonical": "oklch(67% 0.18 30)",
+        "tonalRamp": []
+      },
+      "tina-blue": {
+        "role": "secondary",
+        "displayName": "Tina Blue",
+        "canonical": "oklch(60% 0.2 250)",
+        "tonalRamp": [
+          "oklch(18% 0.06 260)",
+          "oklch(28% 0.1 260)",
+          "oklch(38% 0.14 255)",
+          "oklch(48% 0.17 252)",
+          "oklch(60% 0.2 250)",
+          "oklch(72% 0.14 245)",
+          "oklch(84% 0.08 240)",
+          "oklch(94% 0.03 240)"
+        ]
+      },
+      "tina-blue-hover": {
+        "role": "secondary",
+        "displayName": "Tina Blue Hover",
+        "canonical": "oklch(52% 0.18 255)",
+        "tonalRamp": []
+      },
+      "tina-blue-light": {
+        "role": "secondary",
+        "displayName": "Tina Blue Light",
+        "canonical": "oklch(92% 0.04 245)",
+        "tonalRamp": []
+      },
+      "tina-blue-deep": {
+        "role": "secondary",
+        "displayName": "Tina Blue Deep",
+        "canonical": "oklch(38% 0.13 265)",
+        "tonalRamp": []
+      },
+      "tina-blue-midnight": {
+        "role": "secondary",
+        "displayName": "Tina Blue Midnight",
+        "canonical": "oklch(28% 0.1 275)",
+        "tonalRamp": []
+      },
+      "seafoam": {
+        "role": "tertiary",
+        "displayName": "Seafoam",
+        "canonical": "oklch(86% 0.1 165)",
+        "tonalRamp": [
+          "oklch(18% 0.03 165)",
+          "oklch(30% 0.05 165)",
+          "oklch(42% 0.07 165)",
+          "oklch(55% 0.09 165)",
+          "oklch(68% 0.1 165)",
+          "oklch(78% 0.1 165)",
+          "oklch(86% 0.1 165)",
+          "oklch(95% 0.03 165)"
+        ]
+      },
+      "seafoam-light": {
+        "role": "tertiary",
+        "displayName": "Seafoam Light",
+        "canonical": "oklch(97% 0.02 165)",
+        "tonalRamp": []
+      },
+      "seafoam-mist": {
+        "role": "tertiary",
+        "displayName": "Seafoam Mist",
+        "canonical": "oklch(96% 0.025 180)",
+        "tonalRamp": []
+      },
+      "slate-background": {
+        "role": "neutral",
+        "displayName": "Slate Background",
+        "canonical": "oklch(98% 0.005 250)",
+        "tonalRamp": []
+      },
+      "slate-surface": {
+        "role": "neutral",
+        "displayName": "Slate Surface",
+        "canonical": "oklch(96% 0.008 250)",
+        "tonalRamp": []
+      },
+      "warm-surface": {
+        "role": "neutral",
+        "displayName": "Warm Surface",
+        "canonical": "oklch(95% 0.025 30)",
+        "tonalRamp": []
+      },
+      "slate-text": {
+        "role": "neutral",
+        "displayName": "Slate Text",
+        "canonical": "oklch(18% 0.02 260)",
+        "tonalRamp": []
+      },
+      "slate-text-muted": {
+        "role": "neutral",
+        "displayName": "Slate Text Muted",
+        "canonical": "oklch(55% 0.015 250)",
+        "tonalRamp": []
+      },
+      "slate-border": {
+        "role": "neutral",
+        "displayName": "Slate Border",
+        "canonical": "oklch(84% 0.01 250)",
+        "tonalRamp": []
+      },
+      "slate-border-subtle": {
+        "role": "neutral",
+        "displayName": "Slate Border Subtle",
+        "canonical": "oklch(90% 0.008 250)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headlines only. IBM Plex Sans SemiBold at maximum scale, often rendered with gradient text fills."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings (H2). The workhorse heading level that anchors every content block."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Feature headings (H3), card titles. Tight leading for compact layouts."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running text. Inter at normal weight. Max line length 65ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navigation links, button text, form labels, meta. IBM Plex Sans Medium. The UI voice."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Inline code, version numbers, package names, technical references."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-low",
+        "value": "0 1px 3px 0 rgba(20, 70, 150, 0.05)",
+        "purpose": "Resting state for minor elevations. Subtle separation from background."
+      },
+      {
+        "name": "ambient-default",
+        "value": "0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07)",
+        "purpose": "Standard card and container elevation. Default resting shadow."
+      },
+      {
+        "name": "ambient-high",
+        "value": "0 10px 15px -3px rgb(20 70 150 / 0.1), 0 4px 6px -4px rgb(20 70 150 / 0.1)",
+        "purpose": "Feature cards, testimonials. Hover targets transition from Default to High."
+      },
+      {
+        "name": "panel",
+        "value": "6px 4px 16px rgba(0,132,255, 0.07), 10px 8px 32px rgba(0,132,255, 0.07), 18px 16px 64px rgba(0,132,255, 0.1)",
+        "purpose": "Maximum elevation for feature showcases. Three-layer blue glow."
+      },
+      {
+        "name": "input-resting",
+        "value": "inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12)",
+        "purpose": "Form fields at rest. Inset border + subtle outer shadow."
+      },
+      {
+        "name": "input-hover",
+        "value": "inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.2), 0 2px 3px rgba(0, 0, 0, 0.12)",
+        "purpose": "Preview orange glow on input hover."
+      },
+      {
+        "name": "input-focus",
+        "value": "inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.7), 0 2px 3px rgba(0, 0, 0, 0.12)",
+        "purpose": "Full orange focus ring. The forge-glow interaction."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "purpose": "Default easing for state transitions. 150ms duration."
+      },
+      {
+        "name": "ease-out-smooth",
+        "value": "ease-out",
+        "purpose": "Most common transition. Used on buttons, nav, cards."
+      },
+      {
+        "name": "ease-out-fast",
+        "value": "ease-out",
+        "purpose": "Input focus transitions at 85ms. Snappy form response."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Orange)",
+      "kind": "button",
+      "refersTo": "button-orange",
+      "description": "Main CTA button. Gradient orange fill, pill shape, translate-on-hover physics.",
+      "html": "<button class=\"ds-btn-orange\">Get Started</button>",
+      "css": ".ds-btn-orange { background: linear-gradient(to bottom right, #FF724B, #D13F13); color: #fff; font-family: 'IBMPlexSans-Medium', 'Inter', system-ui, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; padding: 10px 24px; border: 1px solid transparent; border-radius: 9999px; cursor: pointer; transition: all 150ms ease-out; white-space: nowrap; } .ds-btn-orange:hover { transform: translate(-1px, -1px); filter: brightness(1.05); } .ds-btn-orange:active { transform: translate(1px, 1px); } .ds-btn-orange:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); } .ds-btn-orange:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }"
+    },
+    {
+      "name": "Secondary Button (Blue)",
+      "kind": "button",
+      "refersTo": "button-blue",
+      "description": "Secondary CTA. Blue gradient fill, pill shape.",
+      "html": "<button class=\"ds-btn-blue\">Learn More</button>",
+      "css": ".ds-btn-blue { background: linear-gradient(to bottom right, #4EABFE, #2296FE, #0574E4); color: #fff; font-family: 'IBMPlexSans-Medium', 'Inter', system-ui, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; padding: 10px 24px; border: 1px solid transparent; border-radius: 9999px; cursor: pointer; transition: all 150ms ease-out; white-space: nowrap; } .ds-btn-blue:hover { transform: translate(-1px, -1px); filter: brightness(1.05); } .ds-btn-blue:active { transform: translate(1px, 1px); } .ds-btn-blue:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); } .ds-btn-blue:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }"
+    },
+    {
+      "name": "Seafoam Button",
+      "kind": "button",
+      "refersTo": "button-seafoam",
+      "description": "Soft alternative CTA. Seafoam gradient background with orange text.",
+      "html": "<button class=\"ds-btn-seafoam\">Try It Out</button>",
+      "css": ".ds-btn-seafoam { background: linear-gradient(to bottom right, #EEFDF9, #C1F5EB); color: #D13F13; font-family: 'IBMPlexSans-Medium', 'Inter', system-ui, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; padding: 10px 24px; border: 1px solid transparent; border-radius: 9999px; cursor: pointer; transition: all 150ms ease-out; white-space: nowrap; } .ds-btn-seafoam:hover { transform: translate(-1px, -1px); color: #EC4815; } .ds-btn-seafoam:active { transform: translate(1px, 1px); } .ds-btn-seafoam:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Transparent button for tertiary actions. Orange text, no background.",
+      "html": "<button class=\"ds-btn-ghost\">View Docs</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: #EC4815; font-family: 'IBMPlexSans-Medium', 'Inter', system-ui, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; padding: 10px 24px; border: 1px solid transparent; border-radius: 9999px; cursor: pointer; transition: all 150ms ease-out; white-space: nowrap; } .ds-btn-ghost:hover { color: #FF724B; transform: translate(-1px, -1px); } .ds-btn-ghost:active { transform: translate(1px, 1px); } .ds-btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); }"
+    },
+    {
+      "name": "Badge (Orange)",
+      "kind": "chip",
+      "refersTo": "badge-orange",
+      "description": "Status or category badge. Orange fill, pill shape.",
+      "html": "<span class=\"ds-badge-orange\">New</span>",
+      "css": ".ds-badge-orange { display: inline-flex; align-items: center; gap: 8px; background: #EC4815; color: #fff; font-family: 'IBMPlexSans-Medium', 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; line-height: 1.43; padding: 6px 14px; border: 1px solid #EC4815; border-radius: 9999px; white-space: nowrap; }"
+    },
+    {
+      "name": "Badge (Blue)",
+      "kind": "chip",
+      "refersTo": "badge-blue",
+      "description": "Informational badge. Blue fill, pill shape.",
+      "html": "<span class=\"ds-badge-blue\">Docs</span>",
+      "css": ".ds-badge-blue { display: inline-flex; align-items: center; gap: 8px; background: #0084FF; color: #fff; font-family: 'IBMPlexSans-Medium', 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; line-height: 1.43; padding: 6px 14px; border: 1px solid #0084FF; border-radius: 9999px; white-space: nowrap; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-default",
+      "description": "Standard form input. Recessed shadow at rest, orange glow on focus.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Enter your email\" />",
+      "css": ".ds-input { display: flex; height: 40px; width: 100%; background: #fff; color: #0F172A; font-family: 'IBMPlexSans-Medium', 'Inter', system-ui, sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.5; padding: 10px 16px; border: none; border-radius: 5px; outline: none; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12); transition: box-shadow 85ms ease-out; } .ds-input::placeholder { color: #9CA3AF; } .ds-input:hover { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.2), 0 2px 3px rgba(0, 0, 0, 0.12); } .ds-input:focus { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(236, 72, 21, 0.7), 0 2px 3px rgba(0, 0, 0, 0.12); } .ds-input:disabled { opacity: 0.5; cursor: not-allowed; }"
+    },
+    {
+      "name": "Feature Card",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Frosted glass card for feature grids. Gradient white background, blue-tinted shadow.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Visual Editing</h3><p class=\"ds-card-text\">Edit content directly on your site with a real-time visual editor.</p></div>",
+      "css": ".ds-card { display: flex; flex-direction: column; padding: 24px 32px; background: linear-gradient(to bottom right, #fff, #fff, rgba(255, 255, 255, 0.5)); border-radius: 8px; box-shadow: 0 1px 3px 0 rgb(20 70 150 / 0.07), 0 2px 6px -1px rgb(20 70 150 / 0.07); transition: all 150ms ease-out; } .ds-card:hover { box-shadow: 0 10px 15px -3px rgb(20 70 150 / 0.1), 0 4px 6px -4px rgb(20 70 150 / 0.1); transform: scale(1.01); } .ds-card-title { font-family: 'IBMPlexSans-SemiBold', 'Inter', system-ui, sans-serif; font-size: 1.5rem; font-weight: 600; line-height: 1.33; color: #0F172A; margin: 0 0 8px 0; } .ds-card-text { font-family: 'Inter', system-ui, sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #64748B; margin: 0; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Desktop navigation link. Blue text with drop shadow, transitions to lighter blue on hover.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Documentation</a>",
+      "css": ".ds-nav-link { display: flex; align-items: center; padding: 8px 0; color: #1D4ED8; font-family: 'Inter', system-ui, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.5; text-decoration: none; filter: drop-shadow(0 1px 1px rgb(20 70 150 / 0.05)); transition: color 150ms ease-out; } .ds-nav-link:hover { color: #3B82F6; } .ds-nav-link:focus-visible { outline: 2px solid rgba(66, 153, 225, 0.5); outline-offset: 2px; border-radius: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Friendly Forge",
+    "overview": "Tina.io is a workshop where things get built. The visual system carries the warm glow of creative energy: an orange hearth at the center, blue structural steel around it, and seafoam coolant for breathing room. It is friendly without being childish, bold without being loud, and technical without being cold. The llama mascot sets the emotional register: a project that takes its craft seriously but greets you with a grin.\n\nThe system rejects enterprise formality (no committee-designed gray expanses), generic SaaS templates (no interchangeable hero + features + pricing grids), hacker/terminal aesthetics (no neon-on-black gatekeeping), and overdesigned startup excess (no gratuitous 3D, no parallax for its own sake). Every visual choice should feel like it was made by a person who builds things, for people who build things.",
+    "keyCharacteristics": [
+      "Warm gradients and blue-tinted shadows create depth without heaviness",
+      "IBM Plex Sans brings industrial clarity to headings; Inter keeps body text effortless",
+      "Pill-shaped interactive elements (buttons, badges) feel tactile and inviting",
+      "Generous section spacing gives content room to breathe; the site never feels cramped",
+      "Orange is the spark of action; blue is the structure of trust; seafoam is the moment of calm"
+    ],
+    "rules": [
+      {
+        "name": "The Forge Glow Rule",
+        "body": "Orange appears on no more than 15% of any screen outside hero sections. Its power comes from scarcity. When everything glows, nothing does.",
+        "section": "colors"
+      },
+      {
+        "name": "The Blue Structure Rule",
+        "body": "Blue carries navigation, headings, and trust signals (pricing, feature comparisons). It is never decorative. If a blue element doesn't orient or inform, it doesn't belong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Family Rule",
+        "body": "IBM Plex for structure (anything the user scans), Inter for content (anything the user reads). Never mix them within a single text block. Source Code Pro is reserved strictly for technical literals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Blue Tint Rule",
+        "body": "All ambient shadows use the blue channel (20, 70, 150), never neutral gray. This binds the elevation system to the brand palette. The exception is input shadows, which use neutral black for the inset border and brand orange for the focus ring.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use blue-tinted shadows (rgba(20, 70, 150, x)) for all ambient elevation. The blue channel ties shadows to the brand palette.",
+      "Do use gradient fills (bg-gradient-to-br) for buttons and card backgrounds. The site's depth comes from layered white gradients, not flat fills.",
+      "Do let orange lead every CTA. One orange action per content block is the target density.",
+      "Do use IBM Plex Sans for anything the user scans (headings, nav, labels) and Inter for anything the user reads (paragraphs, descriptions, docs content).",
+      "Do give sections generous vertical spacing (144px section padding). Breathing room is part of the brand.",
+      "Do use pill shapes (rounded-full) for primary buttons and badges. The rounded vocabulary is core to the approachable feel.",
+      "Do apply translate physics on interactive elements (hover: -1px Y/X, active: +1px). This tactile motion is the \"warm and responsive\" signature.",
+      "Do respect WCAG AA contrast. 4.5:1 minimum for text, keyboard navigable, reduced-motion support."
+    ],
+    "donts": [
+      "Don't use pure black (#000000) or pure white (#FFFFFF) for backgrounds or text. Tint neutrals toward slate.",
+      "Don't build generic SaaS landing page templates. No interchangeable hero + three feature cards + pricing grid layouts.",
+      "Don't adopt enterprise/corporate visual language. No dense feature matrices, no gray-on-gray conservatism, no \"contact sales\" energy.",
+      "Don't use hacker/terminal aesthetics. No dark mode with neon accents, no monospace-everything, no \"built for 10x devs\" gatekeeping.",
+      "Don't overdesign with gratuitous 3D, excessive parallax, or animations that compete with content.",
+      "Don't use border-left or border-right greater than 1px as colored accent stripes on cards, alerts, or callouts.",
+      "Don't use neutral gray shadows. The blue-tinted shadow system is deliberate; gray shadows will feel disconnected.",
+      "Don't use em dashes anywhere in copy. Use commas, colons, semicolons, or periods.",
+      "Don't flatten the typography hierarchy. Maintain at least a 1.25x ratio between adjacent levels."
+    ]
+  }
+}

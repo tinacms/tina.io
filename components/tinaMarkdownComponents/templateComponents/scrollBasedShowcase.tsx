@@ -1,33 +1,12 @@
-// biome-ignore lint/style/useImportType: <TODO>
-import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
-/** Minimal inline docAndBlogComponents for headings only */
 const docAndBlogComponents = {
   h2: (props: any) => <h2 {...props} />,
   h3: (props: any) => <h3 {...props} />,
 };
-
-/** UseWindowSize Hook */
-function _useWindowSize() {
-  const [windowSize, setWindowSize] = useState<{
-    width: number;
-    height: number;
-  }>();
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  if (typeof window !== 'undefined') {
-    return { width: 1200, height: 800 };
-  }
-  return windowSize;
-}
 
 /** Throttled scroll listener */
 function createListener(
@@ -201,8 +180,8 @@ export default function ScrollBasedShowcase(data: {
                 className={`mt-0 md:mt-8 transition-all duration-300 ease-in-out
                   ${
                     isFocused
-                      ? 'opacity-100  text-gray-900'
-                      : 'opacity-15  border-gray-300 text-gray-800'
+                      ? 'opacity-100 text-neutral-text'
+                      : 'opacity-40 text-neutral-text-secondary'
                   }
                 `}
               >
@@ -214,11 +193,11 @@ export default function ScrollBasedShowcase(data: {
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <div
-                      className={`bg-linear-to-br bg-clip-text text-transparent text-xl font-medium mt-2 mb-2 ${
+                      className={`text-xl font-medium mt-2 mb-2 ${
                         isFocused
-                          ? 'from-orange-400 via-orange-500 to-orange-600'
-                          : 'from-gray-800 to-gray-700'
-                      } !important`}
+                          ? 'text-orange-500'
+                          : 'text-neutral-text-secondary'
+                      }`}
                     >
                       {item.title}
                     </div>
@@ -231,10 +210,10 @@ export default function ScrollBasedShowcase(data: {
                     ref={(el) => (headingRefs.current[index] = el)}
                   >
                     <h2
-                      className={`bg-linear-to-br  bg-clip-text text-transparent text-3xl mt-4 mb-3 ${
+                      className={`text-3xl font-ibm-plex mt-4 mb-3 ${
                         isFocused
-                          ? 'from-orange-400 via-orange-500 to-orange-600'
-                          : 'from-gray-800 to-gray-700'
+                          ? 'text-orange-500'
+                          : 'text-neutral-text-secondary'
                       }`}
                     >
                       {item.title}
@@ -243,8 +222,8 @@ export default function ScrollBasedShowcase(data: {
                 )}
 
                 <ul
-                  className={`list-none pl-4 transition-colors duration-500 ease-in-out border-l-4 ${
-                    isFocused ? 'border-orange-400' : 'border-gray-800'
+                  className={`list-none pl-4 rounded-lg transition-colors duration-500 ease-in-out ${
+                    isFocused ? 'bg-orange-50' : 'bg-transparent'
                   }`}
                 >
                   <li>
@@ -255,13 +234,12 @@ export default function ScrollBasedShowcase(data: {
                   </li>
                 </ul>
 
-                {/* This image is only shown on mobile (md:hidden).
-                    On larger screens, the separate container is used. */}
-                {/** biome-ignore lint/performance/noImgElement: <TODO> */}
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="block md:hidden my-8"
+                  width={600}
+                  height={400}
+                  className="block md:hidden my-8 w-full h-auto rounded-lg"
                 />
               </div>
             );
