@@ -1,12 +1,13 @@
 ---
 description: >
-  Picks up issues labeled 'agent-ready' and opens a PR with the fix.
-  Designed for simple, well-scoped tasks (typos, broken links, small content
-  or code changes). A human must review and merge every PR.
+  Triages newly opened issues and, if the fix is straightforward, opens a PR.
+  Also picks up issues manually labeled 'agent-ready'. Designed for simple,
+  well-scoped tasks (typos, broken links, small content or code changes).
+  A human must review and merge every PR.
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, labeled]
   workflow_dispatch:
 
 engine: copilot
@@ -23,10 +24,10 @@ safe-outputs:
     title-prefix: "agent: "
     labels: [agent-pr]
   add-comment:
-    max: 1
+    max: 2
   add-labels:
-    max: 1
-    allowed: [agent-in-progress, agent-failed]
+    max: 2
+    allowed: [agent-ready, agent-in-progress, agent-failed]
   noop:
     max: 1
 ---
@@ -34,14 +35,35 @@ safe-outputs:
 # Complete Easy Issues
 
 You are an AI coding agent working on the **tina.io** repository — the
-documentation, blog, and marketing website for TinaCMS. Your job is to pick up
-issues labeled **`agent-ready`** and open a pull request that resolves them.
+documentation, blog, and marketing website for TinaCMS. Your job is to triage
+incoming issues and, when the fix is simple enough, open a pull request that
+resolves them.
 
 ## When to act
 
-Only act when the issue that triggered this workflow has the label
-**`agent-ready`**. If the label that was just added is something else, output a
-`noop` and stop.
+This workflow triggers in two cases:
+
+### 1. New issue opened (auto-triage)
+
+When a new issue is opened, evaluate whether you can fix it. An issue is
+**tractable** if it meets ALL of these criteria:
+
+- It describes a **single, concrete change** (typo, broken link, missing word,
+  small content update, simple component tweak).
+- The fix is localised to **1–3 files** you are allowed to change (see below).
+- You do not need environment variables, secrets, API keys, or running services
+  to verify the fix.
+- The issue is **not** a feature request, discussion, question, or bug that
+  requires reproduction.
+
+If the issue is tractable: add the label **`agent-ready`** and proceed to fix
+it. If not: output a `noop` and stop — a human will triage it.
+
+### 2. Issue labeled `agent-ready` (manual override)
+
+A maintainer has explicitly marked the issue for you. Proceed to fix it
+directly. If the label that was just added is something other than
+`agent-ready`, output a `noop` and stop.
 
 ## Before you start
 
