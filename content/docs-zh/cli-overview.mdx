@@ -16,6 +16,7 @@ next: content/docs-zh/reference/media/overview.mdx
   init [options]         将 TinaCloud 添加到现有项目
   audit [options]        审核你的架构和文件以检查错误
   search-index [options] 构建 TinaCMS 搜索索引并上传到 TinaCloud
+  doctor [options]       根据 npm latest 检查直接的 TinaCMS 依赖项
   help [command]         显示命令的帮助信息
 ```
 
@@ -140,3 +141,27 @@ npx @tinacms/cli init
 ### "tinacms search-index"
 
 此命令使用存储库中的内容构建搜索索引并将其上传到 TinaCloud。
+
+### "tinacms doctor"
+
+`doctor` 命令根据 npm `latest` dist-tag 检查项目中安装的 Tina 包是否为最新版本。它回答的问题是"*我*的版本是最新的吗？"——这是 [`/versions`](/versions) 页面的 CLI 对应工具。
+
+该命令：
+
+* 读取你的 `package.json`，并从 `node_modules` 或项目锁文件中解析已安装的版本（支持 `package-lock.json`、`pnpm-lock.yaml` 和 `yarn.lock`）。
+* 过滤 Tina 包系列：`tinacms`、`@tinacms/*`、`tinacms-*`、`next-tinacms-*` 以及 `create-tina-app`。
+* 并行从 `registry.npmjs.org` 获取每个已安装包的 `dist-tags.latest`。
+* 打印一个表格，显示**声明的**、**已安装的**和**最新的**版本，并附带状态列（`CURRENT`、`OUTDATED`、`LOCAL` 或 `UNKNOWN`）。
+* 如果任何包已过时或无法解析，则以代码 `1` 退出，因此适合在 CI 中使用。
+
+```bash
+pnpm tinacms doctor
+```
+
+#### 选项
+
+| 参数                | 描述                                                                |
+| ------------------- | ------------------------------------------------------------------- |
+| `--rootPath <path>` | 指定要检查的根目录（默认为当前工作目录）                            |
+| `--json`            | 输出机器可读的 JSON 格式，而不是格式化的表格                        |
+| `--timeout <ms>`    | npm 注册表请求超时时间（毫秒，默认：5000）                          |

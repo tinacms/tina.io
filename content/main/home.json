@@ -13,74 +13,41 @@
         {
           "label": "npx create-tina-app@latest",
           "helpText": "Need some help? Watch the video – see the [CLI docs](https://tina.io/docs/introduction/using-starter)\n",
+          "starterTemplates": [
+            {
+              "title": "Next.js",
+              "icon": "/Starters/next.js.svg",
+              "link": "https://app.tina.io/quickstart"
+            },
+            {
+              "title": "TinaDocs",
+              "icon": "/Starters/tina-docs.svg",
+              "link": "https://app.tina.io/quickstart"
+            },
+            {
+              "title": "Astro",
+              "icon": "/Starters/astro.svg",
+              "link": "https://app.tina.io/quickstart"
+            }
+          ],
           "_template": "codeButton"
         }
       ],
       "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/Relax-Llama.png",
       "recentNewsBanner": {
-        "title": "See how SSW moved 3500+ pages to TinaCMS",
-        "link": "https://www.youtube.com/watch?v=lqqduKKhH_o",
-        "openInNewTab": true,
+        "title": "What we're planning for TinaCMS v4",
+        "link": "/blog/tinacms-v4-is-coming",
+        "openInNewTab": false,
         "badge": {
           "text": "new",
-          "icon": "MdOutlineVideocam",
+          "icon": "MdBook",
           "position": "left",
           "color": "orange"
         },
         "backgroundColor": "blueSecondary"
       },
       "_template": "heroV2"
-    },
-    {
-      "title": "Get started with one of our templates",
-      "tagLine": "Building at scale?",
-      "buttons": [
-        {
-          "label": "Let's talk",
-          "icon": true,
-          "shape": "square",
-          "color": "orange",
-          "size": "medium",
-          "modal": "BookDemo.tsx",
-          "_template": "modalButton"
-        }
-      ],
-      "boxes": [
-        {
-          "title": "Next.js",
-          "description": "A marketing landing page with a blog powered by Tina and styled with Tailwind",
-          "image": "/Starters/next.js.svg",
-          "link": "https://app.tina.io/quickstart",
-          "badges": [
-            "Next.js",
-            "Blog",
-            "Website"
-          ]
-        },
-        {
-          "title": "TinaDocs",
-          "description": "A modern and customizable documentation template powered by TinaCMS",
-          "image": "/Starters/tina-docs.svg",
-          "link": "https://app.tina.io/quickstart",
-          "badges": [
-            "Next.js",
-            "Documentation"
-          ]
-        },
-        {
-          "title": "Astro",
-          "description": "A modern static site generator designed for fast, lightweight, and flexible web projects paired with TinaCMS",
-          "image": "/Starters/astro.svg",
-          "link": "https://app.tina.io/quickstart",
-          "badges": [
-            "Astro",
-            "Blog",
-            "Website"
-          ]
-        }
-      ],
-      "_template": "tripleBox"
     },
     {
       "blockSettings": {
@@ -244,6 +211,24 @@
         }
       ],
       "_template": "featureCard"
+    },
+    {
+      "title": "{Markdown} is the Answer.",
+      "subtitle": "The question is irrelevant...",
+      "subtext": "LLMs think in it. GEO runs on it. Your CMS should too.\n\nLLMs understand Markdown natively — it's the format they were trained on. Tina stores everything as Markdown in your Git repo, so your content stays clean, portable, and AI-friendly from the moment you publish.",
+      "featureTags": [
+        {
+          "label": "LLM-Ready"
+        },
+        {
+          "label": "Git-Native"
+        },
+        {
+          "label": "Open Format"
+        }
+      ],
+      "secondaryImage": "/ai-llamas/Peek-Llama.png",
+      "_template": "markdownFeature"
     },
     {
       "blockSettings": {

@@ -29,6 +29,14 @@ TinaCloud uses AWS Cognito and API Gateway for authentication. The login flow re
 | `cognito-idp.us-east-1.amazonaws.com` | AWS Cognito Identity Provider API |
 | `*.execute-api.us-east-1.amazonaws.com` | AWS API Gateway (OIDC identity bridge) |
 
+### Media Uploads (S3)
+
+When you upload media through the TinaCMS media manager, the dashboard receives a presigned URL from the assets API and `PUT`s the file directly to S3. The browser must be able to reach S3 for any media upload to succeed:
+
+| Domain | Purpose |
+|---|---|
+| `s3.us-east-1.amazonaws.com` | Direct file uploads to TinaCloud's media bucket via presigned URL |
+
 ### GitHub
 
 If your project uses GitHub as its git provider (the default for TinaCloud):

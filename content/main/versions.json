@@ -1,0 +1,34 @@
+{
+  "seo": {
+    "title": "TinaCMS Package Versions",
+    "description": "The current published version of every TinaCMS package, fetched live from npm.",
+    "canonicalUrl": "https://tina.io/versions"
+  },
+  "blocks": [
+    {
+      "title": "TinaCMS Package Versions",
+      "description": "The currently published version of every package in the TinaCMS ecosystem - pulled straight from the npm registry on page load.",
+      "buttons": [
+        {
+          "label": "TinaCMS Changeset",
+          "icon": true,
+          "shape": "square",
+          "variant": "orange",
+          "size": "medium",
+          "url": "/whats-new/tinacms",
+          "_template": "actions"
+        },
+        {
+          "label": "TinaCloud Changeset",
+          "icon": true,
+          "shape": "square",
+          "variant": "orangeWithBorder",
+          "size": "medium",
+          "url": "/whats-new/tinacloud",
+          "_template": "actions"
+        }
+      ],
+      "_template": "versions"
+    }
+  ]
+}

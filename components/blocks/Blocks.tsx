@@ -13,6 +13,7 @@ import type {
 } from '../../tina/__generated__/types';
 import FeatureCard from '../blocks-v2/featureCard/featureCard';
 import HeroV2 from '../blocks-v2/hero/hero';
+import MarkdownFeature from '../blocks-v2/markdownFeature/markdownFeature';
 import {
   BlockWrapper,
   ContentBlock,
@@ -42,6 +43,7 @@ import TableBox from './Table/table';
 import { TextAndMediaColumnsComponent } from './TextAndMediaColumn/TextAndMediaColumns';
 import { TinaBanner } from './TinaBanner/TinaBanner';
 import TripleBox from './TripleBox/TripleBox';
+import { VersionsBlock } from './Versions/Versions';
 import VideoDisplay from './VideoEmbed/videoEmbed';
 
 const CarouselFeatureBlock = dynamic(
@@ -124,6 +126,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <HeroV2 data={block} />;
     case 'PageBlocksFeatureCard':
       return <FeatureCard data={block} />;
+    case 'PageBlocksMarkdownFeature':
+      return <MarkdownFeature data={block} />;
     case 'PageBlocksCallToAction':
       return <CallToAction data={block} />;
     case 'PageBlocksMap':
@@ -132,6 +136,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <TripleBox data={block} />;
     case 'PageBlocksProfessionalServices':
       return <ProfessionalServices data={block} />;
+    case 'PageBlocksVersions':
+      return <VersionsBlock data={block} />;
     default:
       return null;
   }
