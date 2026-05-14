@@ -12,11 +12,11 @@ next: content/docs-zh/reference/media/overview.mdx
   命令:
 
   dev [options]          构建 Tina 并启动开发服务器
-  build [options]        构建 CMS 和自动生成的模块以用于 TinaCloud
+  build [options]        构建 CMS 和自动生成的模块以供 TinaCloud 使用
   init [options]         将 TinaCloud 添加到现有项目
-  audit [options]        审核你的架构和文件以检查错误
+  audit [options]        审核您的架构和文件以检查错误
   search-index [options] 构建 TinaCMS 搜索索引并上传到 TinaCloud
-  doctor [options]       根据 npm latest 检查直接的 TinaCMS 依赖项
+  doctor [options]       检查直接的 TinaCMS 依赖项与 npm 最新版本的对比
   help [command]         显示命令的帮助信息
 ```
 
@@ -26,12 +26,12 @@ next: content/docs-zh/reference/media/overview.mdx
 
 | 参数                      | 描述                                                                                                                                                                  |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-c`                      | `-c` 允许你选择性地将命令作为子进程运行。例如，你可以在 graphQL 服务器旁边运行你的 Next.js 项目 `yarn tinacms dev -c next dev`。                                        |
+| `-c`                      | `-c` 允许您选择性地将命令作为子进程运行。例如，您可以在 graphQL 服务器旁边运行您的 Next.js 项目 `yarn tinacms dev -c next dev`。                                        |
 | `--port <port>`           | 指定运行服务器的端口。（默认 4001）                                                                                                                                   |
 | `--datalayer-port <port>` | 指定运行本地级别服务器的端口。（默认 9000）                                                                                                                          |
-| `--noWatch`               | 不在文件更改时重新生成配置。此选项适合在 CI 中构建时添加，或者如果你不想监视文件系统的更改。                                                                           |
+| `--noWatch`               | 不在文件更改时重新生成配置。此选项在 CI 构建时或不希望监视文件系统更改时很有用。                                                                                     |
 | `--noSDK`                 | 不生成生成的客户端 SDK。有关 SDK 的更多详细信息，请[阅读此处](/docs/graphql/cli/)。                                                                                   |
-| `-v`,`--verbose`          | 增加日志输出的详细程度（默认：false）                                                                                                                                 |
+| `-v`,`--verbose`          | 增加日志输出的详细程度（默认：false）                                                                                                                                  |
 | `--rootPath`              | 指定运行 CLI 的根目录（默认为当前工作目录）                                                                                                                           |
 | `--noTelemetry`           | 不报告匿名遥测数据                                                                                                                                                     |
 
@@ -39,9 +39,9 @@ next: content/docs-zh/reference/media/overview.mdx
 
 ### "tinacms dev"
 
-> 要运行此命令，你必须有一个有效的 `tina/config.{ts,tsx,js,jsx}` 文件。
+> 要运行此命令，您必须有一个有效的 `tina/config.{ts,tsx,js,jsx}` 文件。
 
-`dev` 将架构编译为静态文件，为你的项目生成 TypeScript 类型，并在 [http://localhost:4001](http://localhost:4001) 上启动一个 graphQL 服务器。
+`dev` 将架构编译为静态文件，为您的项目生成 TypeScript 类型，并在 [http://localhost:4001](http://localhost:4001) 上启动一个 graphQL 服务器。
 
 此命令接受在[常用选项](#common-options)中列出的参数
 
@@ -59,16 +59,17 @@ tinacms dev -c \"<Yor Dev Command>\"
 
 ### "tinacms build"
 
-此命令编译和验证架构，并生成客户端和类型。它还将确保你的内容已完成索引。
+此命令编译和验证架构并生成客户端和类型。它还将确保您的内容已完成索引。
 
 #### 选项
 
-此命令接受所有常用的[选项](#common-options)以及其他一些选项：
+此命令接受所有常用[选项](#common-options)以及其他一些选项：
 
 | 参数                      | 描述                                                                                                                    |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `--tina-graphql-version`  | 指定后端将使用的 `@tinacms/graphql` 版本。（仅在高级情况下需要）                                                        |
 | `--local`                 | 将启动本地 Graphql 服务器并生成本地客户端。这对于静态构建很有用，但不适用于 SSR                                         |
+| `--content=local`         | 在构建期间从本地文件系统获取内容，因此不会进行 TinaCloud 内容 API 调用，而生成的客户端在运行时仍指向 TinaCloud。推荐用于有许多页面的 SSG 网站。 |
 | `--skip-cloud-checks`     | 跳过 TinaCloud 检查（危险且不推荐）                                                                                     |
 | `--skip-search-indexing`  | 跳过搜索索引                                                                                                            |
 | `--no-client-build-cache` | 禁用本地客户端的查询自动缓存                                                                                            |
@@ -93,13 +94,36 @@ tinacms build && <Your SSG build command>
 tinacms build --local -c "next build"
 ```
 
-这将会：
+这将会
 
 * 启动本地 graphql 服务器
 * 生成将查询本地文件系统的本地 TinaCMS 客户端
 * 生成本地图像路径
 * 构建生产 SPA
 * 运行 Next 构建
+
+**使用本地内容构建 TinaCloud 生产客户端**
+
+```bash
+tinacms build --content=local -c "next build"
+```
+
+这将会
+
+* 在构建期间将您的内容索引到一个临时的内存数据层中
+* 生成**生产** TinaCMS 客户端（因此部署的网站在运行时仍与 TinaCloud 通信）
+* 在构建期间进行**零** TinaCloud 内容 API 请求
+* 运行您的框架的构建命令
+
+当 SSG 生成数千个页面时很有用。在 SSW 规则（约 4,000 页）上，构建时间从 4:55 降至 2:12，TinaCloud 内容 API 调用从约 4,000 次降至 0 次。
+
+由于生成的客户端是生产客户端，因此必须在您的 Tina 配置中配置 `branch`、`clientId` 和 `token`，这些值与正常的 `tinacms build` 使用的值相同。
+
+需要注意的几点：
+
+* 在构建期间跳过搜索索引（会发出警告）。如果依赖于搜索，请单独重新索引。
+* TinaCloud 验证检查（分支状态、架构匹配）仍会运行；传递 `--skip-cloud-checks` 以跳过它们。
+* 如果同时传递了 `--local` 和 `--content=local`，则 `--local` 优先。
 
 ### "npx @tinacms/cli\@latest init"
 
@@ -135,24 +159,24 @@ npx @tinacms/cli init
 
 | 参数             | 描述                                                                                                                                                                                                                                                                |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--clean`        | 使用此标志时，它会将实际的 Graphql 变更提交到文件系统。这意味着它将清除架构中未定义的任何字段。最好在执行此操作之前进行 `git commit`，以便可以轻松撤销意外更改。                                                                                                         |
+| `--clean`        | 使用此标志时，它会将实际的 Graphql 变更提交到文件系统。这意味着它将清除架构中未定义的任何字段。最好在执行此操作之前进行 `git commit`，以便可以轻松撤销意外更改。                                                                                                           |
 | `-v`,`--verbose` | 增加日志输出的详细程度（默认：false）                                                                                                                                                                                                                               |
 
 ### "tinacms search-index"
 
-此命令使用存储库中的内容构建搜索索引并将其上传到 TinaCloud。
+此命令使用您存储库中的内容构建搜索索引并将其上传到 TinaCloud。
 
 ### "tinacms doctor"
 
-`doctor` 命令根据 npm `latest` dist-tag 检查项目中安装的 Tina 包是否为最新版本。它回答的问题是"*我*的版本是最新的吗？"——这是 [`/versions`](/versions) 页面的 CLI 对应工具。
+`doctor` 命令检查您项目中安装的 Tina 包是否与 npm `latest` dist-tag 一致。它回答了“我是否是最新的？”这个问题——CLI 对应于 [`/versions`](/versions) 页面。
 
 该命令：
 
-* 读取你的 `package.json`，并从 `node_modules` 或项目锁文件中解析已安装的版本（支持 `package-lock.json`、`pnpm-lock.yaml` 和 `yarn.lock`）。
-* 过滤 Tina 包系列：`tinacms`、`@tinacms/*`、`tinacms-*`、`next-tinacms-*` 以及 `create-tina-app`。
+* 读取您的 `package.json` 并从 `node_modules` 或项目锁文件中解析已安装的版本（支持 `package-lock.json`、`pnpm-lock.yaml` 和 `yarn.lock`）。
+* 过滤到 Tina 包系列：`tinacms`、`@tinacms/*`、`tinacms-*`、`next-tinacms-*` 和 `create-tina-app`。
 * 并行从 `registry.npmjs.org` 获取每个已安装包的 `dist-tags.latest`。
-* 打印一个表格，显示**声明的**、**已安装的**和**最新的**版本，并附带状态列（`CURRENT`、`OUTDATED`、`LOCAL` 或 `UNKNOWN`）。
-* 如果任何包已过时或无法解析，则以代码 `1` 退出，因此适合在 CI 中使用。
+* 打印一个表格，显示 **declared**、**installed** 和 **latest** 版本，并带有状态列（`CURRENT`、`OUTDATED`、`LOCAL` 或 `UNKNOWN`）。
+* 如果任何包过时或无法解析，则以代码 `1` 退出，因此它对 CI 友好。
 
 ```bash
 pnpm tinacms doctor
@@ -160,8 +184,8 @@ pnpm tinacms doctor
 
 #### 选项
 
-| 参数                | 描述                                                                |
-| ------------------- | ------------------------------------------------------------------- |
-| `--rootPath <path>` | 指定要检查的根目录（默认为当前工作目录）                            |
-| `--json`            | 输出机器可读的 JSON 格式，而不是格式化的表格                        |
-| `--timeout <ms>`    | npm 注册表请求超时时间（毫秒，默认：5000）                          |
+| 参数                | 描述                                                                            |
+| ------------------- | -------------------------------------------------------------------------------- |
+| `--rootPath <path>` | 指定要检查的根目录（默认为当前工作目录）                                        |
+| `--json`            | 打印机器可读的 JSON 输出而不是格式化的表格                                      |
+| `--timeout <ms>`    | npm 注册表请求超时时间（毫秒）（默认：5000）                                    |
