@@ -12,9 +12,9 @@ previous: ''
 
 TinaCMS 需要以下 CSP 指令才能正常运行：
 
-### 图像来源
+### 图片来源
 
-TinaCMS 需要访问其资产交付网络以加载图像：
+TinaCMS 需要访问其资产交付网络以加载图片：
 
 ```javascript
 "img-src 'self' data: assets.tina.io;"
@@ -31,13 +31,13 @@ TinaCMS 需要连接到多个服务以进行身份验证、内容交付和媒体
 * **identity.tinajs.io** - 身份验证和身份服务
 * **content.tinajs.io** - 内容 API 和数据层
 * **assets.tinajs.io** - 资产管理和交付
-* **s3.us-east-1.amazonaws.com** - 直接媒体上传。TinaCMS 媒体管理器将文件 `PUT` 到此主机上的预签名 S3 URL。如果没有它，上传将因浏览器控制台中的 CSP `connect-src` 违规而失败。
+* **s3.us-east-1.amazonaws.com** - 直接媒体上传。TinaCMS 媒体管理器在此主机上将文件 `PUT` 到预签名的 S3 URL。如果没有它，上传将在浏览器控制台中因 CSP `connect-src` 违规而失败。
 
-## 实现示例
+## 实施示例
 
 ### Next.js 配置
 
-#### 应用路由器 (Next.js 13+)
+#### 应用路由 (Next.js 13+)
 
 在 `next.config.js` 中添加 CSP 头：
 
@@ -74,9 +74,9 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-#### 页面路由器
+#### 页面路由
 
-对于页面路由器，您也可以在 `next.config.js` 中使用上述相同的方法配置 CSP。
+对于页面路由，您也可以使用上述方法在 `next.config.js` 中配置 CSP。
 
 或者，在中间件中设置 CSP 头：
 
@@ -134,7 +134,7 @@ export function middleware(request: NextRequest) {
 
 ### Apache 配置
 
-添加到您的 `.htaccess` 文件：
+添加到您的 `.htaccess` 文件中：
 
 ```apache
 <IfModule mod_headers.c>
@@ -144,7 +144,7 @@ export function middleware(request: NextRequest) {
 
 ### Nginx 配置
 
-添加到您的 nginx 配置：
+添加到您的 nginx 配置中：
 
 ```nginx
 add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
@@ -176,11 +176,10 @@ const baseCsp = [
 如果您在浏览器控制台中看到 CSP 违规错误：
 
 1. 检查错误消息以识别被阻止的资源
-2. 将适当的域添加到相关的 CSP 指令
+2. 将适当的域添加到相关的 CSP 指令中
 3. 彻底测试以确保 TinaCMS 功能正常
 
 常见违规：
-
 
 * **阻止的图片加载**：将域添加到 `img-src`
 * **阻止的 API 调用**：将域添加到 `connect-src`
@@ -224,6 +223,6 @@ const baseCsp = [
 
 1. **从严格开始，然后放宽**：从严格的 CSP 开始，仅在需要时添加例外
 2. **使用仅报告模式**：在强制执行之前使用 `Content-Security-Policy-Report-Only` 测试 CSP 更改
-3. **定期审计**：随着应用程序的发展，审查和更新您的 CSP
+3. **定期审核**：随着应用程序的发展，审查和更新您的 CSP
 4. **记录例外**：记录为什么特定域被列入白名单
 5. **环境特定策略**：考虑为开发和生产设置不同的 CSP 规则
