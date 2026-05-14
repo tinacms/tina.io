@@ -18,3 +18,9 @@ In Netlify, your build configuration can be updated at **Settings** > **Build & 
 ## Environment variables
 
 Assuming that your Tina `clientID` and `token` are setup as environment variables, you will need to add those to the Netlify UI for your project. You can learn more about [Netlify environment variables](https://docs.netlify.com/environment-variables/overview/).
+
+<WarningCallout
+  body={<>
+    `tinacms build` requires environment variables like `TINA_TOKEN` and `NEXT_PUBLIC_TINA_CLIENT_ID` to be available at build time. Make sure these are configured in Netlify's environment settings. If you use a monorepo tool like Turborepo, you may also need to explicitly forward these variables (e.g. via the `env` key in `turbo.json`) — otherwise `tinacms build` may not receive them even if they are set in Netlify. See the [Environment Variables reference](/docs/reference/config#environment-variables) for details.
+  </>}
+/>

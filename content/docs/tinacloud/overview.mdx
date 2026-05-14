@@ -129,6 +129,12 @@ The next step is to update your deployment configuration, so the TinaCMS admin g
 
 In general, you'll want to make sure that your build command is running `tinacms build` before your site's build command. This will build the TinaCMS admin alongside your site. You'll also want to make sure that your Tina `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` are setup as environment variables on your host.
 
+<WarningCallout
+  body={<>
+    The TinaCMS admin is a statically built SPA — environment variables are embedded into its JavaScript at build time. Any variable you need in the admin (including in [custom field components](/docs/extending-tina/custom-field-components)) must: (1) use the `TINA_PUBLIC_` or `NEXT_PUBLIC_` prefix, and (2) be configured in your hosting provider's environment settings so it's available when `tinacms build` runs. See the [Environment Variables reference](/docs/reference/config#environment-variables) for the full list of allowed prefixes.
+  </>}
+/>
+
 We have docs for some popular deployment options:
 
 * [Vercel](/docs/tinacloud/deployment-options/vercel)

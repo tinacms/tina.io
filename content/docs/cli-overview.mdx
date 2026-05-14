@@ -16,6 +16,7 @@ next: content/docs/reference/media/overview.mdx
   init [options]         Add TinaCloud to an existing project
   audit [options]        Audit your schema and the files to check for errors
   search-index [options] Builds the TinaCMS search index and uploads it to TinaCloud
+  doctor [options]       Check direct TinaCMS dependencies against npm latest
   help [command]         display help for command
 ```
 
@@ -68,6 +69,7 @@ This command takes all the common [options](#common-options) as well as a few ot
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `--tina-graphql-version`  | Specify the version of `@tinacms/graphql` that the backend will use. (Only needed in advanced cases)                           |
 | `--local`                 | Will start the local Graphql server and generate the local client. This is useful for static builds but will not work with SSR |
+| `--content=local`         | Source content from the local filesystem during the build so no TinaCloud Content API calls are made, while the generated client still points at TinaCloud at runtime. Recommended for SSG sites with many pages. |
 | `--skip-cloud-checks`     | Skip the TinaCloud checks (dangerous and not recommended)                                                                      |
 | `--skip-search-indexing`  | Skip the search indexing                                                                                                       |
 | `--no-client-build-cache` | Disables automatic caching of queries by local client                                                                          |
@@ -99,6 +101,29 @@ This will
 * Produce local image paths
 * build production SPA
 * run Next build
+
+**Building from local content with a TinaCloud production client**
+
+```bash
+tinacms build --content=local -c "next build"
+```
+
+This will
+
+* Index your content into a temporary in-memory data layer for the duration of the build
+* Generate the **production** TinaCMS client (so the deployed site still talks to TinaCloud at runtime)
+* Make **zero** TinaCloud Content API requests during the build
+* Run your framework's build command
+
+Useful when SSG is generating thousands of pages. On SSW Rules (~4,000 pages) build time dropped from 4:55 to 2:12, with TinaCloud Content API calls dropping from ~4,000 to 0.
+
+Because the generated client is the production client, `branch`, `clientId`, and `token` must be configured in your Tina config, the same values you would use for a normal `tinacms build`.
+
+A few things to know:
+
+* Search indexing is skipped during the build (a warning is emitted). Reindex separately if you rely on search.
+* TinaCloud validation checks (branch status, schema match) still run; pass `--skip-cloud-checks` to skip them.
+* If both `--local` and `--content=local` are passed, `--local` takes precedence.
 
 ### "npx @tinacms/cli\@latest init"
 
@@ -140,3 +165,27 @@ By default the mutation will not change the content of the files.
 ### "tinacms search-index"
 
 This command builds the search-index using the content in your repository and uploads it to TinaCloud.
+
+### "tinacms doctor"
+
+The `doctor` command checks whether the Tina packages installed in your project are current against the npm `latest` dist-tag. It answers the question "am *I* current?" — the CLI counterpart to the [`/versions`](/versions) page.
+
+The command:
+
+* Reads your `package.json` and resolves installed versions from `node_modules` or your project lockfile (supports `package-lock.json`, `pnpm-lock.yaml`, and `yarn.lock`).
+* Filters to the Tina package family: `tinacms`, `@tinacms/*`, `tinacms-*`, `next-tinacms-*`, and `create-tina-app`.
+* Fetches `dist-tags.latest` from `registry.npmjs.org` for each installed package in parallel.
+* Prints a table of **declared**, **installed**, and **latest** versions with a status column (`CURRENT`, `OUTDATED`, `LOCAL`, or `UNKNOWN`).
+* Exits with code `1` if any package is outdated or cannot be resolved, so it's CI-friendly.
+
+```bash
+pnpm tinacms doctor
+```
+
+#### Options
+
+| Argument            | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `--rootPath <path>` | Specify the root directory to inspect (defaults to current working directory)          |
+| `--json`            | Print machine-readable JSON output instead of the formatted table                      |
+| `--timeout <ms>`    | npm registry request timeout in milliseconds (default: 5000)                           |

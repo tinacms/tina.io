@@ -11,6 +11,34 @@ A custom component can be passed and rendered by setting the ui.component proper
 
 This component completely overrides the original component, providing the user with the ability to fully customize the field.
 
+## Environment Variables in Custom Components
+
+Custom field components run inside the Tina admin, which is built as a **static SPA** separately from your site. Environment variables are embedded into the admin JavaScript at build time — they are not read at runtime. This means two things must be true for a variable to be available:
+
+1. **It must use an allowed prefix.** For security reasons, only these variables are included:
+   - `TINA_PUBLIC_*`
+   - `NEXT_PUBLIC_*`
+   - `NODE_ENV`
+   - `HEAD`
+
+2. **It must be set when `tinacms build` (or `tinacms dev`) runs.** If the variable isn't in the environment during the build, it won't exist in the admin regardless of its name.
+
+Any other environment variables (e.g. `process.env.MY_SECRET_KEY`) will be `undefined` in custom components.
+
+```tsx
+// This works — correct prefix AND set during build
+const apiKey = process.env.TINA_PUBLIC_MY_API_KEY
+
+// This will be undefined — no allowed prefix
+const secret = process.env.MY_API_KEY
+```
+
+<WarningCallout
+  body={<>
+    If your custom component relies on an environment variable and it's always `undefined`, check that: (1) the variable name starts with `TINA_PUBLIC_` or `NEXT_PUBLIC_`, and (2) the variable is defined in your `.env` file or CI environment when `tinacms build` runs. Note that Tina only loads `.env` files — not `.env.local` or `.env.development`. See the [config reference](/docs/reference/config#environment-variables) and [security advisory](/blog/2023-02-security-update) for details.
+  </>}
+/>
+
 ## The `ui.component` Property
 
 This should be set to a valid React component that accepts up to four props:
