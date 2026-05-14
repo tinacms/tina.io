@@ -116,3 +116,69 @@ yarn dev
 ```
 
 You will be able to view your starter on `http://localhost:3000`. To edit content with TinaCMS go to `http://localhost:3000/admin`
+
+## Troubleshooting
+
+### "Failed loading TinaCMS assets" Error
+
+If you see a "Failed loading TinaCMS assets" error in the `/admin` interface, this is typically caused by using incompatible package versions.
+
+<WarningCallout>
+  **Version Compatibility:** The `tina-self-hosted-demo` template currently uses **TinaCMS v2.x** and is **not compatible with v3.x**. TinaCMS v3 introduced a major CommonJS-to-ESM migration ([PR #5982](https://github.com/tinacms/tinacms/pull/5982)) that breaks admin asset loading in the current template setup.
+</WarningCallout>
+
+**Use the template's stable package versions:**
+
+```json
+{
+  "@tinacms/cli": "^1.12.6",
+  "@tinacms/datalayer": "^1.4.3",
+  "tinacms": "^2.10.1",
+  "tinacms-authjs": "^5.0.9",
+  "tinacms-gitprovider-github": "^2.0.19",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "next": "14.2.35"
+}
+```
+
+**Common mistakes:**
+
+- ❌ Manually upgrading to `tinacms@3.x` and `@tinacms/cli@2.x`
+- ❌ Copying package versions from the monorepo's `examples/tina-self-hosted-demo` (which uses `workspace:*` protocol for development)
+- ❌ Adding unnecessary `transpilePackages` to `next.config.js`
+
+**How to fix:**
+
+1. Revert to the template's package versions shown above
+2. Remove any custom `transpilePackages` configuration from `next.config.js`
+3. Clean install:
+   ```bash
+   rm -rf node_modules pnpm-lock.yaml
+   pnpm install
+   ```
+4. Rebuild and redeploy
+
+See [issue #148](https://github.com/tinacms/tina-self-hosted-demo/issues/148) for tracking v3.x compatibility.
+
+### Authentication Errors
+
+**"SyntaxError: The string did not match the expected pattern"**
+
+This error usually indicates malformed environment variables. Check that:
+
+1. Environment variables are set exactly as shown in the [Setup Environment Variables](#setup-environment-variables) section
+2. `KV_REST_API_URL` and `KV_REST_API_TOKEN` match the values from your Vercel KV dashboard (no extra prefixes)
+3. `GITHUB_PERSONAL_ACCESS_TOKEN` is valid and has the correct permissions
+4. `NEXTAUTH_SECRET` is properly set (generate with `openssl rand -hex 16`)
+5. On Vercel, `NEXTAUTH_URL` is not needed (it's auto-detected)
+
+### Build Failures
+
+If your build fails with errors related to `better-sqlite3` or native modules:
+
+- This typically happens when deploying to serverless environments
+- Vercel KV uses Redis, which doesn't require native compilation
+- Make sure your `tina/database.ts` is configured to use `RedisLevel` from `upstash-redis-level`, not `better-sqlite3`
+
+For more help, visit our [Discord community](https://discord.com/invite/zumN63Ybpf) or open an issue in the [tina-self-hosted-demo repository](https://github.com/tinacms/tina-self-hosted-demo/issues).

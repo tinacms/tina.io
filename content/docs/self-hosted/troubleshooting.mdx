@@ -1,0 +1,377 @@
+---
+title: Self-Hosted Troubleshooting
+last_edited: '2026-04-16T00:00:00.000Z'
+next: content/docs/self-hosted/user-management.mdx
+previous: content/docs/self-hosted/querying-data.mdx
+---
+
+This guide covers common issues and solutions when running a self-hosted TinaCMS instance.
+
+## Version Compatibility Issues
+
+### "Failed loading TinaCMS assets"
+
+This error typically appears when using incompatible package versions with the self-hosted template.
+
+<WarningCallout>
+  **Root Cause:** The `tina-self-hosted-demo` template is built for TinaCMS v2.x. TinaCMS v3.0.0 introduced a major [CommonJS-to-ESM migration](https://github.com/tinacms/tinacms/pull/5982) that breaks admin asset loading in the current template setup.
+</WarningCallout>
+
+**Symptoms:**
+- Error message "Failed loading TinaCMS assets" in `/admin`
+- Blank admin page or loading spinner that never completes
+- Console errors about module resolution
+
+**Solution:**
+
+Use the template's stable package versions:
+
+```json
+{
+  "@tinacms/cli": "^1.12.6",
+  "@tinacms/datalayer": "^1.4.3",
+  "tinacms": "^2.10.1",
+  "tinacms-authjs": "^5.0.9",
+  "tinacms-gitprovider-github": "^2.0.19",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "next": "14.2.35"
+}
+```
+
+**Steps to fix:**
+
+1. Revert `package.json` to use the versions above
+2. Remove any `transpilePackages` configuration from `next.config.js`
+3. Clean install:
+   ```bash
+   rm -rf node_modules pnpm-lock.yaml package-lock.json
+   npm install  # or pnpm install, yarn install
+   ```
+4. Rebuild:
+   ```bash
+   npm run build
+   ```
+5. Redeploy to your hosting platform
+
+**Common mistakes to avoid:**
+- ❌ Manually upgrading to `tinacms@3.x` and `@tinacms/cli@2.x`
+- ❌ Copying package versions from the monorepo's `examples/tina-self-hosted-demo` (which uses `workspace:*` protocol for local development)
+- ❌ Following general upgrade guides without checking self-hosted template compatibility
+
+**Related Issues:**
+- [Issue #148](https://github.com/tinacms/tina-self-hosted-demo/issues/148) - Tracking v3.x compatibility
+
+---
+
+## Authentication & Authorization Issues
+
+### "SyntaxError: The string did not match the expected pattern"
+
+This authentication error usually indicates malformed or incorrect environment variables.
+
+**Checklist:**
+
+1. **Verify all required environment variables are set:**
+   ```env
+   GITHUB_PERSONAL_ACCESS_TOKEN=ghp_xxxxxxxxxxxxx
+   NEXTAUTH_SECRET=<random-32-char-hex>
+   KV_REST_API_URL=https://xxxxx.kv.vercel-storage.com
+   KV_REST_API_TOKEN=xxxxxxxxxxxxx
+   ```
+
+2. **Check GitHub Personal Access Token:**
+   - Token must be valid (not expired)
+   - Must have `repo` access with Read/Write permissions to Contents
+   - Generate a new token at https://github.com/settings/personal-access-tokens/new
+
+3. **Verify NEXTAUTH_SECRET:**
+   - Should be a random string (generate with `openssl rand -hex 16`)
+   - Must be the same across all environments (local and production)
+
+4. **Check Vercel KV credentials:**
+   - `KV_REST_API_URL` and `KV_REST_API_TOKEN` should match exactly from your [Vercel KV dashboard](https://vercel.com/dashboard/stores)
+   - Do NOT add extra prefixes like `KV_KV_REST_API_URL`
+   - These are auto-populated in Vercel deployments but must be set manually for local development
+
+5. **Verify NEXTAUTH_URL (if set):**
+   - On Vercel, this is auto-detected and should NOT be set manually
+   - For local development: `NEXTAUTH_URL=http://localhost:3000`
+   - For custom domains: `NEXTAUTH_URL=https://your-domain.com`
+
+### Unable to Login / Invalid Credentials
+
+**Default credentials:**
+- Username: `tinauser`
+- Password: `tinarocks`
+
+If the default credentials don't work:
+
+1. Check `content/users/index.json` exists and contains the default user
+2. Verify the database is properly initialized (check Vercel KV dashboard for data)
+3. Try resetting the database by clearing all keys in Vercel KV
+4. Redeploy the application to reinitialize
+
+### Permission Denied Errors
+
+If you get permission errors when trying to save content:
+
+1. **Verify GitHub token permissions:**
+   - Must have `Contents: Read and Write` permission
+   - Check token hasn't expired
+   - Test the token with GitHub API directly
+
+2. **Check repository settings:**
+   - Ensure `GITHUB_OWNER`, `GITHUB_REPO`, and `GITHUB_BRANCH` are correct
+   - On Vercel, these default to `VERCEL_GIT_REPO_OWNER`, `VERCEL_GIT_REPO_SLUG`, and `VERCEL_GIT_COMMIT_REF`
+
+3. **Branch protection rules:**
+   - If your branch has protection rules, the PAT must belong to a user with override permissions
+   - Consider using a separate branch for Tina edits
+
+---
+
+## Database & Storage Issues
+
+### Connection to Vercel KV Failed
+
+**Symptoms:**
+- Error messages about Redis connection
+- Timeout errors when loading content
+- 500 errors from `/api/tina/[...routes]`
+
+**Solutions:**
+
+1. **Verify Vercel KV is created and linked:**
+   - Go to [Vercel Dashboard > Storage](https://vercel.com/dashboard/stores)
+   - Ensure a KV store exists for your project
+   - Check the store is linked to your deployment
+
+2. **Check environment variables:**
+   ```bash
+   # These should be automatically set by Vercel
+   KV_REST_API_URL=https://xxxxx.kv.vercel-storage.com
+   KV_REST_API_TOKEN=xxxxxxxxxxxxx
+   ```
+
+3. **For local development:**
+   - Copy values from Vercel dashboard
+   - Add to `.env` file
+   - Make sure `.env` is gitignored
+
+4. **Database adapter configuration:**
+   Verify `tina/database.ts` uses `RedisLevel`:
+   ```ts
+   import { RedisLevel } from "upstash-redis-level";
+
+   // ...
+   databaseAdapter: new RedisLevel({
+     redis: {
+       url: process.env.KV_REST_API_URL,
+       token: process.env.KV_REST_API_TOKEN,
+     },
+   })
+   ```
+
+### Build Errors with `better-sqlite3`
+
+**Error:**
+```
+gyp ERR! build error
+Error: `make` failed with exit code: 2
+```
+
+**Solution:**
+
+The self-hosted template should use Vercel KV (Redis), not SQLite. If you see SQLite-related errors:
+
+1. Check `tina/database.ts` is using `RedisLevel` from `upstash-redis-level`, not `better-sqlite3`
+2. Ensure `package.json` doesn't include `better-sqlite3` as a dependency
+3. If you intentionally want to use SQLite, see [MongoDB setup guide](/docs/self-hosted/overview#using-mongodb-for-the-datalayer) for alternative database options
+
+---
+
+## Deployment Issues
+
+### Build Succeeds but Admin Returns 404
+
+**Symptoms:**
+- `/` works fine
+- `/admin` or `/admin/index.html` returns 404
+
+**Solutions:**
+
+1. **Check Next.js rewrite rules in `next.config.js`:**
+   ```js
+   async rewrites() {
+     return [
+       {
+         source: "/admin",
+         destination: "/admin/index.html",
+       },
+     ];
+   },
+   ```
+
+2. **Verify TinaCMS build ran before Next.js build:**
+   ```json
+   {
+     "scripts": {
+       "build": "tinacms build --partial-reindex && next build"
+     }
+   }
+   ```
+   Order matters! TinaCMS must build before Next.js.
+
+3. **Check `.tina/__generated__` directory exists** after build
+
+### Content Not Saving to GitHub
+
+**Symptoms:**
+- Edits appear to save in the CMS
+- No commits appear in GitHub
+- Changes lost after page refresh
+
+**Solutions:**
+
+1. **Check GitHub provider configuration in `tina/database.ts`:**
+   ```ts
+   import { GitHubProvider } from "tinacms-gitprovider-github";
+
+   gitProvider: new GitHubProvider({
+     branch: process.env.GITHUB_BRANCH || "main",
+     owner: process.env.GITHUB_OWNER,
+     repo: process.env.GITHUB_REPO,
+     token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+   })
+   ```
+
+2. **Verify environment variables:**
+   - `GITHUB_PERSONAL_ACCESS_TOKEN` is set and valid
+   - `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH` match your repository
+
+3. **Check API route logs:**
+   - Look at Vercel function logs for errors
+   - May reveal permission or token issues
+
+4. **Test with a simple content change:**
+   - Try editing a single field
+   - Check if any GitHub API errors appear in logs
+
+---
+
+## Performance Issues
+
+### Slow Admin Load Times
+
+**Possible causes:**
+
+1. **Large content files:**
+   - Break up large MDX files into smaller pieces
+   - Use pagination for list queries
+   - Consider [partial reindex](/docs/self-hosted/querying-data) for faster builds
+
+2. **Database query optimization:**
+   - Check if you're loading too much data at once
+   - Use GraphQL field selection to request only needed fields
+   - Implement pagination on collections
+
+3. **Build-time indexing:**
+   - Run `tinacms build --partial-reindex` instead of full reindex
+   - Only reindex changed files
+
+### High Vercel Function Execution Time
+
+If you're hitting Vercel function timeout limits:
+
+1. **Optimize GraphQL queries:**
+   - Request only necessary fields
+   - Use pagination for large collections
+   - Avoid deep nested queries
+
+2. **Check database adapter performance:**
+   - Vercel KV should be fast
+   - Monitor Redis connection latency
+   - Consider upgrading Vercel KV plan if hitting rate limits
+
+3. **Review custom hooks:**
+   - If using `onPut`/`onDelete` hooks, ensure they're optimized
+   - Avoid synchronous operations
+   - Consider background processing for heavy operations
+
+---
+
+## Environment-Specific Issues
+
+### Works Locally, Fails in Production
+
+**Common causes:**
+
+1. **Environment variables not set in production:**
+   - Double-check all env vars are set in Vercel dashboard
+   - Note: `.env.local` is NOT read by TinaCMS (use `.env` for local dev)
+
+2. **Different Node.js versions:**
+   - Specify Node version in `package.json`:
+     ```json
+     {
+       "engines": {
+         "node": ">=20.0.0"
+       }
+     }
+     ```
+
+3. **Build output differences:**
+   - Ensure `tinacms build` runs in production
+   - Check build logs for warnings/errors
+   - Verify `.tina/__generated__` is committed or generated during build
+
+4. **URL configuration:**
+   - Use relative URLs, not `localhost` references
+   - Check API route paths are correct for production
+
+### Works in Production, Fails Locally
+
+1. **Missing Vercel KV credentials in `.env`:**
+   - Copy from Vercel dashboard
+   - Ensure `.env` (not `.env.local`) is used
+
+2. **Using `pnpm dev:prod` vs `pnpm dev`:**
+   - `pnpm dev` uses local mode (no auth, filesystem only)
+   - `pnpm dev:prod` uses production mode (requires all env vars)
+
+3. **Port conflicts:**
+   - Default port 3000 might be in use
+   - Try: `PORT=3001 npm run dev`
+
+---
+
+## Getting Help
+
+If you're still experiencing issues:
+
+1. **Check existing issues:**
+   - [tina-self-hosted-demo issues](https://github.com/tinacms/tina-self-hosted-demo/issues)
+   - [tinacms issues](https://github.com/tinacms/tinacms/issues)
+
+2. **Join our Discord:**
+   - [TinaCMS Discord community](https://discord.com/invite/zumN63Ybpf)
+   - #self-hosted channel for self-hosting questions
+
+3. **Open a new issue:**
+   - Provide error messages
+   - Include package versions
+   - Share relevant configuration (sanitize secrets!)
+   - Describe steps to reproduce
+
+4. **Helpful debugging info to include:**
+   ```bash
+   # Package versions
+   npm list tinacms @tinacms/cli @tinacms/datalayer tinacms-authjs
+
+   # Node version
+   node --version
+
+   # Check build output
+   ls -la .tina/__generated__
+   ```
