@@ -41,11 +41,11 @@ jobs:
               --body "Auto-approving release notes PR (deterministic content, bot-authored)."
           done
 
-      - name: Enable auto-merge
+      - name: Merge PRs
         if: steps.find.outputs.numbers != ''
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_NOTES_APPROVAL_TOKEN }}
         run: |
           for pr in ${{ steps.find.outputs.numbers }}; do
-            gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --auto --squash
+            gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
           done
