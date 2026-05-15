@@ -1,0 +1,127 @@
+---
+title: 仅显示字段
+last_edited: '2026-04-22T03:00:55.241Z'
+next: ''
+previous: ''
+---
+
+`displayOnly`字段在编辑器表单中渲染UI，而不存储任何数据。使用它可以在编辑者填写字段时显示说明、上下文帮助、文档链接或警告。
+
+由于没有任何内容被持久化，`displayOnly`字段不会出现在你的内容文件或GraphQL模式中……它们纯粹是为了塑造编辑体验而存在。
+
+## 类型定义
+
+> 有关所有字段类型通用的其他属性，请查看[字段](/docs/reference/fields)类型定义。
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: '将此设置为`"displayOnly"`以使用仅显示字段。\n',
+      required: true
+    },
+    {
+      name: "name",
+      description:
+        "供内部使用的字段名称。必须在集合中仍然是唯一的。\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "component",
+      description:
+        "用于在表单中渲染字段的React组件。\n",
+      type: "function",
+      required: true
+    }
+  ]}
+/>
+
+<WarningCallout
+  body={<>
+    仅显示字段仅用于展示，因此`list`、`required`和`indexed`不支持此字段类型。`label`会被静默忽略——组件处理所有渲染。
+  </>}
+/>
+
+## 示例
+
+### 信息框（内置助手）
+
+Tina提供了一个`InfoBox`助手，用于显示简短消息，选择性地带有链接。从`tinacms`中导入它并将其作为`ui.component`传递。
+
+```tsx
+import { InfoBox } from 'tinacms';
+
+{
+  type: 'displayOnly',
+  name: 'authorGuidelines',
+  ui: {
+    component: InfoBox({
+      message: '将作者简介保持在280个字符以内——它们会出现在文章页脚。',
+    }),
+  },
+}
+```
+
+![作者表单中在简介字段上方的InfoBox提醒](/img/docs/reference/display-only-infobox.png "作者表单中在简介字段上方的InfoBox提醒")
+
+### 带链接的信息框
+
+`InfoBox`接受一个可选的`links`数组，以便编辑者可以直接跳转到相关文档或风格指南。
+
+```tsx
+import { InfoBox } from 'tinacms';
+
+{
+  type: 'displayOnly',
+  name: 'imageHelp',
+  ui: {
+    component: InfoBox({
+      message: '主图必须至少1600px宽，并使用批准的主题。',
+      links: [
+        { text: '图像风格指南', url: 'https://example.com/style/images' },
+        { text: '批准的图库', url: 'https://example.com/stock' },
+      ],
+    }),
+  },
+}
+```
+
+![博客文章表单中在主图字段上方显示图像指南和两个链接的InfoBox](/img/docs/reference/display-only-infobox-links.png "博客文章表单中在主图字段上方显示图像指南和两个链接的InfoBox")
+
+### 自定义组件
+
+对于超出消息+链接的内容，传递你自己的React组件。仅显示组件不接收`input`值……它们纯粹是展示性的。
+
+```tsx
+import type { FC } from 'react';
+
+const SeoChecklist: FC = () => (
+  <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm">
+    <strong>发布前：</strong>
+    <ul className="list-disc pl-5 mt-1">
+      <li>填写元描述</li>
+      <li>添加至少一个内部链接</li>
+      <li>确认主图有替代文本</li>
+    </ul>
+  </div>
+);
+
+{
+  type: 'displayOnly',
+  name: 'seoChecklist',
+  ui: {
+    component: SeoChecklist,
+  },
+}
+```
+
+![登录页面表单中在元描述字段下方渲染的自定义SEO检查列表组件](/img/docs/reference/display-only-custom.png "登录页面表单中在元描述字段下方渲染的自定义SEO检查列表组件")
+
+## 何时选择`displayOnly`与自定义组件
+
+如果你需要**替换存储数据的字段的UI**（例如用于`number`的自定义滑块，或用于`string`的颜色选择器），请使用[React组件](/docs/extending-tina/custom-field-components)。
+
+如果你需要**向表单添加不存储数据的UI**、说明、警告、快速链接，请选择`displayOnly`。
