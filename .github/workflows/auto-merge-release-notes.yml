@@ -1,0 +1,51 @@
+name: Auto-merge Release Notes PRs
+
+on:
+  workflow_run:
+    workflows: ["Create What's New Page for TinaCMS or TinaCloud"]
+    types: [completed]
+  # Backup trigger in case workflow_run misses one (manual re-run, etc.)
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find open release notes PRs
+        id: find
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBERS=$(gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --search 'is:open is:pr author:app/github-actions head:releaseNotes/' \
+            --json number \
+            --jq '[.[].number] | join(" ")')
+          echo "numbers=$PR_NUMBERS" >> "$GITHUB_OUTPUT"
+          echo "Found PRs: $PR_NUMBERS"
+
+      - name: Approve PRs
+        if: steps.find.outputs.numbers != ''
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_NOTES_APPROVAL_TOKEN }}
+        run: |
+          for pr in ${{ steps.find.outputs.numbers }}; do
+            gh pr review "$pr" --repo "$GITHUB_REPOSITORY" --approve \
+              --body "Auto-approving Release Notes PR - From GitHub Action/ Workflow ${{ github.workflow }}"
+          done
+
+      - name: Merge PRs
+        if: steps.find.outputs.numbers != ''
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_NOTES_APPROVAL_TOKEN }}
+        run: |
+          for pr in ${{ steps.find.outputs.numbers }}; do
+            gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
+          done
