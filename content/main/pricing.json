@@ -100,7 +100,7 @@
               "icon": "CgCrown"
             },
             {
-              "name": "AI Features (Beta)",
+              "name": "AI Features (Coming Soon)",
               "icon": "HiOutlineSparkles"
             }
           ],
@@ -148,7 +148,7 @@
               "icon": "CgCrown"
             },
             {
-              "name": "AI Features (Beta)",
+              "name": "AI Features (Coming Soon)",
               "icon": "HiOutlineSparkles"
             },
             {
@@ -198,7 +198,7 @@
               "icon": "CgCrown"
             },
             {
-              "name": "AI Features (Beta)",
+              "name": "AI Features (Coming Soon)",
               "icon": "HiOutlineSparkles"
             },
             {
@@ -459,14 +459,14 @@
           ]
         },
         {
-          "rowHeader": "AI Assist (Beta)",
+          "rowHeader": "AI Assist",
           "rowDescription": "Check the Tina Roadmap for more details",
           "rowCells": [
             "{\"columnHeader\":\"Free\",\"cellValue\":\"\",\"isTicked\":false}",
             "{\"columnHeader\":\"Team\",\"cellValue\":\"\",\"isTicked\":false}",
-            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Business\",\"cellValue\":\"\",\"isTicked\":true}",
-            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"\",\"isTicked\":true}"
+            "{\"columnHeader\":\"Team Plus\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Business\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}",
+            "{\"columnHeader\":\"Enterprise\",\"cellValue\":\"Coming Soon\",\"isTicked\":false}"
           ]
         },
         {
