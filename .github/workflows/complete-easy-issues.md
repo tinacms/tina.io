@@ -26,7 +26,7 @@ safe-outputs:
   add-comment:
     max: 2
   add-labels:
-    max: 2
+    max: 3
     allowed: [agent-ready, agent-in-progress, agent-failed]
   noop:
     max: 1

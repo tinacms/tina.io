@@ -20,6 +20,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
       - name: Install gh-aw extension
         uses: github/gh-aw-actions/setup-cli@20045bbd5ad2632b9809856c389708eab1bd16ef # v0.62.2
         with:
