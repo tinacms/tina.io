@@ -1,12 +1,12 @@
 {
   "seo": {
     "title": "Forestry.io to TinaCMS Migration Guide",
-    "description": "The Forestry.io team is now focused on building TinaCMS. Migrate your Forestry site to Tina with our step-by-step guide and enjoy enhanced visual editing features."
+    "description": "TinaCMS is the successor to Forestry.io, now maintained by SSW. Migrate your Forestry site to Tina with our step-by-step guide and enjoy enhanced visual editing features."
   },
   "blocks": [
     {
       "headline": "Goodbye Forestry.io, Hello TinaCMS",
-      "text": "The Forestry.io team is focused on building TinaCMS, the next iteration of our vision. See the migration guide or test it with the following command. ",
+      "text": "TinaCMS is the successor to Forestry.io, now maintained by SSW. See the migration guide or test it with the following command. ",
       "buttons": [
         {
           "label": "Tina Migration Guide",
