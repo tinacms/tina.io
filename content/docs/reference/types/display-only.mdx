@@ -1,0 +1,127 @@
+---
+title: Display-only Fields
+last_edited: '2026-04-22T03:00:55.241Z'
+next: ''
+previous: ''
+---
+
+A `displayOnly` field renders UI inside the editor form without storing any data. Use it to show instructions, contextual help, links to documentation, or warnings alongside the fields an editor is filling in.
+
+Because nothing is persisted, `displayOnly` fields don't appear in your content files or in the GraphQL schema... they exist purely to shape the editing experience.
+
+## Type Definition
+
+> For additional properties common to all Field types, check the [Field](/docs/reference/fields) type definition.
+
+<apiReference
+  property={[
+    {
+      name: "type",
+      type: "string",
+      description: 'Set this to `"displayOnly"` to use the Display-only Field.\n',
+      required: true
+    },
+    {
+      name: "name",
+      description:
+        "The name of the field for internal use. Must still be unique within the collection.\n",
+      type: "string",
+      required: true
+    },
+    {
+      groupName: "ui",
+      name: "component",
+      description:
+        "A React component used to render the field inside the form.\n",
+      type: "function",
+      required: true
+    }
+  ]}
+/>
+
+<WarningCallout
+  body={<>
+    Display-only fields are presentation-only, so `list`, `required`, and `indexed` are not supported on this field type. `label` is silently ignored — the component handles all rendering.
+  </>}
+/>
+
+## Examples
+
+### Info box (built-in helper)
+
+Tina ships an `InfoBox` helper for the common case of showing a short message, optionally with links. Import it from `tinacms` and pass it as `ui.component`.
+
+```tsx
+import { InfoBox } from 'tinacms';
+
+{
+  type: 'displayOnly',
+  name: 'authorGuidelines',
+  ui: {
+    component: InfoBox({
+      message: 'Keep author bios under 280 characters — they appear in the post footer.',
+    }),
+  },
+}
+```
+
+![Author form with an InfoBox reminder above the Bio field](/img/docs/reference/display-only-infobox.png "Author form with an InfoBox reminder above the Bio field")
+
+### Info box with links
+
+`InfoBox` accepts an optional `links` array so editors can jump straight to relevant documentation or style guides.
+
+```tsx
+import { InfoBox } from 'tinacms';
+
+{
+  type: 'displayOnly',
+  name: 'imageHelp',
+  ui: {
+    component: InfoBox({
+      message: 'Hero images must be at least 1600px wide and use an approved subject.',
+      links: [
+        { text: 'Image style guide', url: 'https://example.com/style/images' },
+        { text: 'Approved stock library', url: 'https://example.com/stock' },
+      ],
+    }),
+  },
+}
+```
+
+![Blog post form with an InfoBox showing image guidelines and two links above the Hero Image field](/img/docs/reference/display-only-infobox-links.png "Blog post form with an InfoBox showing image guidelines and two links above the Hero Image field")
+
+### Custom component
+
+For anything beyond a message + links, pass your own React component. Display-only components don't receive `input` values… they're purely presentational.
+
+```tsx
+import type { FC } from 'react';
+
+const SeoChecklist: FC = () => (
+  <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm">
+    <strong>Before publishing:</strong>
+    <ul className="list-disc pl-5 mt-1">
+      <li>Fill in the meta description</li>
+      <li>Add at least one internal link</li>
+      <li>Confirm the hero image has alt text</li>
+    </ul>
+  </div>
+);
+
+{
+  type: 'displayOnly',
+  name: 'seoChecklist',
+  ui: {
+    component: SeoChecklist,
+  },
+}
+```
+
+![Landing page form with a custom SEO checklist component rendered below the Meta Description field](/img/docs/reference/display-only-custom.png "Landing page form with a custom SEO checklist component rendered below the Meta Description field")
+
+## When to reach for `displayOnly` vs. a custom component
+
+If you need to **replace the UI of a field that stores data** (e.g. a custom slider for a `number`, or a color picker for a `string`), use [React Components](/docs/extending-tina/custom-field-components).
+
+If you need to **add UI to the form that doesn't store data**, instructions, warnings, quick links, reach for `displayOnly`.
