@@ -38,7 +38,7 @@ jobs:
         run: |
           for pr in ${{ steps.find.outputs.numbers }}; do
             gh pr review "$pr" --repo "$GITHUB_REPOSITORY" --approve \
-              --body "Auto-approving release notes PR (deterministic content, bot-authored)."
+              --body "Auto-approving Release Notes PR - From GitHub Action/ Workflow ${{ github.workflow }}"
           done
 
       - name: Merge PRs
