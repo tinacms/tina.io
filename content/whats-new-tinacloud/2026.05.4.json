@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.05.4",
+  "dateReleased": "2026-05-14T04:34:49Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix(content-api): use ConsistentRead in App lookups that race producing writes",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "chore(content-api): bump @tinacms/graphql to 2.4.1",
+          "gitHubName": "tinacms",
+          "gitHubLink": "https://github.com/tinacms"
+        }
+      ]
+    }
+  ]
+}
