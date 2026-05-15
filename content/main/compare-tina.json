@@ -105,7 +105,7 @@
             "true-Content API",
             "false-Git-based Content Management ",
             "true-GitHub Contributions",
-            "false-Markdown Support",
+            "true-Markdown Support",
             "true-Visual Editing Capabilities ",
             "true-Free Option",
             "true-Local Development Workflow ",
@@ -121,13 +121,13 @@
             "true-Repo-based Media",
             "true-Open Source Front-end",
             "false-Content API",
-            "false-Git-based Content Management ",
+            "true-Git-based Content Management ",
             "true-GitHub Contributions",
             "true-Markdown Support",
             "false-Visual Editing Capabilities ",
             "true-Free Option",
-            "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "true-Local Development Workflow ",
+            "true-Self-hosted Option"
           ]
         },
         {
@@ -145,7 +145,7 @@
             "true-Visual Editing Capabilities ",
             "false-Free Option",
             "false-Local Development Workflow ",
-            "false-Self-hosted Option"
+            "true-Self-hosted Option"
           ]
         },
         {
@@ -160,7 +160,7 @@
             "false-Git-based Content Management ",
             "false-GitHub Contributions",
             "true-Markdown Support",
-            "false-Visual Editing Capabilities ",
+            "true-Visual Editing Capabilities ",
             "false-Free Option",
             "false-Local Development Workflow ",
             "false-Self-hosted Option"
@@ -195,7 +195,7 @@
             "true-Content API",
             "false-Git-based Content Management ",
             "false-GitHub Contributions",
-            "false-Markdown Support",
+            "true-Markdown Support",
             "true-Visual Editing Capabilities ",
             "true-Free Option",
             "false-Local Development Workflow ",
@@ -210,8 +210,8 @@
           "satisfiedCriteria": [
             "false-Repo-based Media",
             "true-Open Source Front-end",
-            "false-Content API",
-            "true-Git-based Content Management ",
+            "true-Content API",
+            "false-Git-based Content Management ",
             "false-GitHub Contributions",
             "true-Markdown Support",
             "true-Visual Editing Capabilities ",
@@ -231,7 +231,7 @@
             "true-Content API",
             "false-Git-based Content Management ",
             "false-GitHub Contributions",
-            "false-Markdown Support",
+            "true-Markdown Support",
             "true-Visual Editing Capabilities ",
             "true-Free Option",
             "true-Local Development Workflow ",
@@ -252,7 +252,7 @@
             "true-Markdown Support",
             "true-Visual Editing Capabilities ",
             "true-Free Option",
-            "false-Local Development Workflow ",
+            "true-Local Development Workflow ",
             "false-Self-hosted Option"
           ]
         }
