@@ -40,12 +40,6 @@ const config = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        port: '',
-        pathname: '/forestry-demo/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'assets.tina.io',
         port: '',
       },
