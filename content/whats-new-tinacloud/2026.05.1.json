@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.05.1",
+  "dateReleased": "2026-05-12T05:18:32Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "chore: update TinaCMS dependencies[bot]",
+          "gitHubName": "release-bot-allow-prs-and-push",
+          "gitHubLink": "https://github.com/release-bot-allow-prs-and-push"
+        }
+      ]
+    }
+  ]
+}
