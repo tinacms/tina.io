@@ -22,7 +22,7 @@
 #
 # Triages newly opened issues and, if the fix is straightforward, opens a PR. Also picks up issues manually labeled 'agent-ready'. Designed for simple, well-scoped tasks (typos, broken links, small content or code changes). A human must review and merge every PR.
 #
-# gh-aw-metadata: {"schema_version":"v2","frontmatter_hash":"f7371c8e68df9106f84c9d091d85e8a326050849684bd80b1f0667279c14fd5c","compiler_version":"v0.62.2","strict":true}
+# gh-aw-metadata: {"schema_version":"v2","frontmatter_hash":"e2aefc0e2fccf36905699c4b7a2fea3eef75316311f647969c4afb6442598532","compiler_version":"v0.62.2","strict":true}
 
 name: "Complete Easy Issues"
 "on":
@@ -31,6 +31,11 @@ name: "Complete Easy Issues"
     - opened
     - labeled
   workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to process
+        required: true
+        type: number
 
 permissions: {}
 

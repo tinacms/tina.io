@@ -9,6 +9,11 @@ on:
   issues:
     types: [opened, labeled]
   workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to process'
+        required: true
+        type: number
 
 engine: copilot
 
