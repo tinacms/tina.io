@@ -1,0 +1,75 @@
+---
+id: /docs/tinacloud/deployment-options/cloudflare-pages
+title: Deploying to Cloudflare Pages
+last_edited: '2026-05-15T07:24:35.115Z'
+next: content/docs/tinacloud/deployment-options/alibaba-cloud.mdx
+previous: content/docs/tinacloud/deployment-options/github-pages.mdx
+---
+
+TinaCMS works well with Cloudflare Pages when your site is deployed as a **static export**: content is rendered at build time, while visual editing remains fully live in the browser via Tina's client-side data layer.
+
+## Why static export works well with Tina
+
+Tina's live editing experience is client-side. Pages are pre-rendered at build time, and the `useTina()` hook in your client components hydrates with the build-time data for visitors. 
+
+When you open `/admin` and edit a page, Tina swaps live data into the React tree, no server required. Saving commits to GitHub, which triggers a new Cloudflare build, which deploys the updated static site.
+
+## Configure your project for static export
+
+In your `next.config.ts` (or `next.config.js`), add `output: 'export'` and disable image optimization (static exports cannot use the Next.js image optimizer):
+
+```ts
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true,
+    // your remotePatterns, etc.
+  },
+}
+
+export default nextConfig
+```
+
+<WarningCallout
+  body={<>
+    `next.config` `headers()` and `rewrites()` functions do not run in static exports. Move any custom headers (CSP, X-Frame-Options, etc.) into a `public/_headers` file, Cloudflare Pages reads this automatically. URL rewrites need to be handled via Cloudflare's [\_redirects](https://developers.cloudflare.com/pages/configuration/redirects/) file.
+  </>}
+/>
+
+## Remove server-only route options
+
+Static exports do not have a server, so per-route options like `export const revalidate` (ISR) or `export const dynamic = 'force-dynamic'` have no effect and should be removed from your route segments. The rebuild itself serves as your "revalidation."
+
+## Cloudflare Pages build settings
+
+In the Cloudflare dashboard, go to **Workers & Pages** > **Create application** > **Pages** > **Connect to Git** and select your repository.
+
+Configure the build:
+
+* **Framework preset:** Next.js (Static HTML Export), or "None"
+* **Build command:** `pnpm build` (or your package manager)
+* **Build output directory:** `out`
+* **Root directory:** leave blank unless your project is in a subdirectory
+
+Cloudflare auto-detects pnpm from your `pnpm-lock.yaml`. If it doesn't pick it up, add an environment variable `PACKAGE_MANAGER=pnpm`.
+
+Your `package.json` build script should run TinaCMS before the framework build, for example:
+
+```json
+{
+  "scripts": {
+    "build": "tinacms build && next build"
+  }
+}
+```
+
+## Environment variables
+
+`tinacms build` requires your TinaCloud credentials at build time. Add the following to **Settings** > **Environment variables** in your Cloudflare Pages project:
+
+* `NEXT_PUBLIC_TINA_CLIENT_ID` : your TinaCloud client ID
+* `TINA_TOKEN` : a content token from TinaCloud
+
+Both can be found in your [TinaCloud project](https://app.tina.io). Add them to both Production and Preview environments.
