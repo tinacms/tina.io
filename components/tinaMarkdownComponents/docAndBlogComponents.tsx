@@ -174,7 +174,7 @@ export const docAndBlogComponents: Components<{
   },
   code: (props) => (
     <code
-      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded font-source-code-pro"
+      className="px-1 text-orange-500 p-0.5  bg-orange-500/5 rounded font-source-code-pro"
       {...props}
     />
   ),
