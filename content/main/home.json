@@ -31,6 +31,14 @@
             }
           ],
           "_template": "codeButton"
+        },
+        {
+          "label": "modify",
+          "icon": false,
+          "variant": "default",
+          "size": "medium",
+          "url": "/",
+          "_template": "actions"
         }
       ],
       "buttonHorizontalAlignment": "left",
