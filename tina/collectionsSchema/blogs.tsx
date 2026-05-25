@@ -313,18 +313,6 @@ export const blogsCollection = {
           fields: [{ type: 'string', name: 'test' }],
         },
         {
-          name: 'CloudinaryVideo',
-          label: 'Cloudinary Video',
-          fields: [
-            {
-              type: 'string',
-              name: 'src',
-              label: 'Cloudinary URL',
-              description: 'Full URL with no file extension',
-            },
-          ],
-        },
-        {
           name: 'Button',
           label: 'Button',
           fields: [

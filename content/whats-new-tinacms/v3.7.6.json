@@ -1,0 +1,76 @@
+{
+  "versionNumber": "3.7.6",
+  "dateReleased": "2026-05-08T05:45:57Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Fix HTML code block language tag from 'htmlbars' to 'html'",
+          "pull_request_number": "6652",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6652",
+          "commit_hash": "3e4dcc7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3e4dcc76d5fb89ec900b778cb7e82f3aa3ed6501",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "- Improved error handling for file and folder operations: errors are now shown as clear notifications in the UI rather than just logging to the console.",
+          "pull_request_number": "6770",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6770",
+          "commit_hash": "3da4588",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/3da45887c23da552a4bd994154eeaaf8990065f7",
+          "gitHubName": "zaidkhatri-dev",
+          "gitHubLink": "https://github.com/zaidkhatri-dev"
+        },
+        {
+          "changesDescription": "🐛 fix Popover on rich-text fields from being hidden under other content",
+          "pull_request_number": "6761",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6761",
+          "commit_hash": "b37187d",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b37187d46b6e1a274db7ab79372f02aaa2ef992d",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "🧹 Change colour picker from div to button element",
+          "pull_request_number": "6746",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6746",
+          "commit_hash": "84ec7ad",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/84ec7adea7a1d8015cf1430fe804886493c5ae21",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "feat(tinacms): show content file path on breadcrumb hover",
+          "pull_request_number": "6752",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6752",
+          "commit_hash": "28b869a",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/28b869a0d2c9b2a608e1076b6dea24bd3e01ac31",
+          "gitHubName": "isaaclombardssw",
+          "gitHubLink": "https://github.com/isaaclombardssw"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/schema-tools@2.7.4",
+          "commit_hash": "38cbec7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/38cbec7"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.13",
+          "commit_hash": "38cbec7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/38cbec7"
+        },
+        {
+          "changesDescription": "@tinacms/mdx@2.1.4",
+          "commit_hash": "38cbec7",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/38cbec7"
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 import type { Template } from 'tinacms';
-import { cloudinaryMediaComponent } from '../../sharedTemplates/CloudinaryMedia.template';
 import { youtubeMediaTemplate } from '../../sharedTemplates/YoutubeMediaTemplate';
 
 export const textAndMediaColumnsComponentTemplate: Template = {
@@ -21,10 +20,7 @@ export const textAndMediaColumnsComponentTemplate: Template = {
       label: 'Media Item',
       type: 'object',
       list: true,
-      templates: [
-        cloudinaryMediaComponent as Template,
-        youtubeMediaTemplate as Template,
-      ],
+      templates: [youtubeMediaTemplate as Template],
     },
   ],
 };

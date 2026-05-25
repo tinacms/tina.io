@@ -1,28 +1,28 @@
 ---
 title: 项目
 alias: tinacloud-projects
-last_edited: '2025-09-24T04:49:59.628Z'
+last_edited: '2026-04-29T08:05:47.458Z'
 next: content/docs-zh/tinacloud/dashboard/users.mdx
 previous: content/docs-zh/tinacloud/dashboard/projects.mdx
 ---
 
-**项目**将TinaCloud与GitHub仓库连接起来。一个项目是**你的网站与网站编辑者之间的链接**，允许你授权的用户访问和修改网站的内容。
+**项目**将 TinaCloud 与 GitHub 仓库连接起来。一个项目是**你的网站与网站编辑者之间的链接**，允许你授权的用户访问和修改网站的内容。
 
-> 如果这是你第一次访问TinaCloud仪表板，你将有两个选项来设置你的第一个项目。你可以分叉我们的[预构建Next.js入门项目](https://github.com/tinacms/tina-cloud-starter)，这可以让你快速轻松地使用Tina。或者，你可以连接到一个现有的GitHub仓库。
+> 如果这是你第一次访问 TinaCloud 仪表板，你将有两个选项来设置你的第一个项目。你可以分叉我们的[预构建的 Next.js 启动器](https://github.com/tinacms/tina-cloud-starter)，这可以让你快速轻松地使用 Tina。或者，你可以连接到一个现有的 GitHub 仓库。
 
 ## 设置
 
-### 1. 授权GitHub
+### 1. 授权 GitHub
 
-在设置项目时，第一步是通过GitHub进行身份验证。一个弹出窗口将请求允许Tina.io访问你的GitHub仓库。
+在设置项目时，第一步是通过 GitHub 进行身份验证。一个弹出窗口将请求权限，以便 Tina.io 访问你的 GitHub 仓库。
 
-此授权将允许TinaCloud推送和拉取与你网站关联的GitHub仓库的内容。
+此授权将允许 TinaCloud 推送和拉取与你网站关联的 GitHub 仓库的内容。
 
-### 2. 选择GitHub仓库
+### 2. 选择 GitHub 仓库
 
-一旦GitHub被授权，将显示一个仓库列表。下一步是选择包含你网站内容的仓库。
+一旦 GitHub 被授权，将显示一个仓库列表。下一步是选择包含你网站内容的仓库。
 
-如果你在列表中没有看到你的仓库，你可能需要在GitHub中重新配置你的Tina.io权限。
+如果你在列表中没有看到你的仓库，你可能需要在 GitHub 中重新配置你的 Tina.io 权限。
 
 ### 3. 配置项目
 
@@ -30,80 +30,102 @@ previous: content/docs-zh/tinacloud/dashboard/projects.mdx
 
 #### 项目名称
 
-此名称将在用户登录项目时显示给他们。默认为仓库名称。
+当用户登录到项目时，此名称将显示给他们。默认为仓库名称。
 
-#### 网站URL
+#### 网站 URL
 
-在这些字段中，输入本地URL和生产网站URL（如果已知）。出于安全原因，Tina只会在这些位置工作。
+在这些字段中，输入本地 URL 和生产网站 URL（如果已知）。出于安全原因，Tina 只会在这些位置工作。
 
 如果你在本地开发，这个值可能是：
 
 `http://localhost:3000`
 
-如果TinaCloud配置在你的生产网站上，这个值可能是：
+如果 TinaCloud 配置在你的生产网站上，这个值可能是：
 
 `https://<YOUR-SITE-NAME.com>`
 
-> 对于网站URL，只需要URL的起始部分。无需包含任何特定页面的路径。
+> 对于网站 URL，只需要 URL 的起始部分。无需包含任何特定页面的路径。
 
-##### Glob模式
+##### Glob 模式
 
-Tina还支持网站URL的Glob模式。如果你想在动态预览部署上允许编辑，这可能会很有用。
+Tina 还支持网站 URL 的 Glob 模式。如果你想在动态预览部署上允许编辑，这可能会很有用。
 
-例如，在Vercel上可能看起来像这样：`https://<VERCEL-PROJECT-NAME>-*-<VERCEL-ACCOUNT-OWNER>.vercel.app`
+例如，在 Vercel 上可能看起来像这样：`https://<VERCEL-PROJECT-NAME>-*-<VERCEL-ACCOUNT-OWNER>.vercel.app`
 
 ### 4. 使用项目
 
 一旦你的项目创建完成，你将在你的[项目](https://app.tina.io/projects)页面上看到它。
 
-> 如果你的项目使用[基于仓库的媒体](/docs/reference/media/repo-based/)，TinaCloud将在项目创建时自动触发初始媒体同步。你可以在项目仪表板的**媒体**标签中监控同步状态并随时手动重新同步。
+> 如果你的项目使用[基于仓库的媒体](/docs/reference/media/repo-based/)，TinaCloud 将在项目创建时自动触发初始媒体同步。你可以在项目仪表板的**媒体**标签中随时监控同步状态并手动重新同步。
 
 ## 管理项目
 
-### 概览
+### 概览标签
 
-项目的概览页面为你提供了一个重要的值：项目的唯一**客户端ID**。TinaCloud使用此值连接到你的网站仓库。你需要在设置网站以使用Tina时使用此值。
+项目的概览页面为你提供了一个重要的值：项目的唯一**客户端 ID**。TinaCloud 使用此值连接到你网站的仓库。在设置你的网站以使用 Tina 时，你将需要使用此值。
 
-### 配置
+### 配置标签
 
-项目创建后，你可以访问配置页面以更新项目名称、网站URL或GitHub仓库。
+项目创建后，你可以访问配置页面以更新项目名称、网站 URL 或 GitHub 仓库。
 
 #### 更改仓库
 
-在项目配置屏幕中，点击“更改仓库”按钮。你将再次授权Tina.io，并显示一个仓库列表。选择新的仓库并点击保存项目以更新仓库。
+在项目配置屏幕中，点击“更改仓库”按钮。你将再次授权 Tina.io，并显示一个仓库列表。选择新的仓库并点击保存项目以更新仓库。
+
+***
 
 #### 高级设置
 
-高级设置按钮位于TinaCloud中项目的配置标签中。
+高级设置按钮位于 TinaCloud 中项目的配置标签中。
 
-##### Tina路径
+##### Tina 的路径
 
-如果你的`tina`目录位于项目根目录（如大多数网站），此字段可以留空。
+如果你的 `tina` 目录位于项目根目录（如大多数网站），此字段可以留空。
 
-如果你的GitHub仓库使用monorepo结构，Tina配置路径输入可以用来指定仓库中`tina`目录的路径。例如，如果你有一个名为`my-site`的项目，并且它位于仓库的`projects`目录中，你可以在此字段中输入`projects/my-site`并点击保存项目以更新项目。
+如果你的 GitHub 仓库使用 monorepo 结构，Tina 配置路径输入可以用来指定你仓库中 `tina` 目录的路径。
 
-##### 刷新Webhooks
+例如，如果你有一个名为 `northwind-docs` 的项目，并且它位于你仓库的 `projects` 目录中，Tina 字段的路径将是 `projects/northwind-docs`。
 
-在极少数情况下，连接你的仓库到TinaCloud的GitHub Webhook可能会中断。如果Webhook未执行，TinaCloud可能会与GitHub仓库不同步。点击“刷新Webhooks”按钮以恢复它们。
+Tina 字段路径的示例设置 = projects/northwind-docs
+
+```
+- projects
+     |
+     |- northwind-docs
+     |     |- tina
+     |         |- config.ts
+     |         |- __generated__              
+     |
+     |     
+     |- cat-photos
+```
+
+![](/docs/path-to-tina-folder.png "高级设置下的 Tina 文件夹路径 UI")
+
+##### 刷新 Webhooks
+
+在极少数情况下，连接你的仓库到 TinaCloud 的 GitHub Webhook 可能会中断。如果 webhook 没有执行，TinaCloud 可能会与 GitHub 仓库不同步。点击“刷新 Webhooks”按钮以恢复它们。
 
 ##### 导出分支
 
-点击此按钮会打开一个模态对话框，允许你在特定时间点推送一个带有现有分支更改的新分支。首先在源分支下选择更改所在的分支。导出分支名称会根据此选择自动生成，但只要不与现有分支名称冲突，也可以根据需要编辑。接下来，选择要推送更改的时间点，可以是“最后一次成功推送”或过去的自定义日期。一旦完成这些选择，点击“导出分支”按钮。几分钟后，新分支将在你的GitHub仓库中可用，并包含TinaCloud中的任何更改。然后可以创建一个拉取请求以将更改合并到你想要的分支。
+点击此按钮会打开一个模态对话框，允许你在特定时间点从现有分支推送一个新分支。首先在源分支下选择更改所在的分支。导出分支名称是从此选择自动生成的，但只要不与现有分支名称冲突，也可以根据需要进行编辑。接下来，选择你想要推送更改的时间点，可以是“上次成功推送”或过去的自定义日期。一旦做出这些选择，点击“导出分支”按钮。几分钟后，新分支将在你的 GitHub 仓库中可用，并包含 TinaCloud 中的任何更改。然后可以创建一个拉取请求以将更改合并到你想要的分支。
 
-##### 分支“重新索引”
+***
 
-点击分支上的“重新索引”将完全重置GitHub仓库中该分支的缓存副本并启动重新索引过程。仅存在于缓存副本中的任何更改将会丢失。在重新索引之前，你应该确保任何更改已使用导出分支功能成功推送到GitHub。
+#### 分支“重新索引”
 
-### API令牌
+点击分支上的“重新索引”将完全重置你 GitHub 仓库中该分支的缓存副本，并启动重新索引过程。仅存在于缓存副本中的任何更改将会丢失。在重新索引之前，你应该确保任何更改已成功使用导出分支功能推送到 GitHub。
 
-在TinaCloud中与项目关联的令牌有两种类型：内容（只读）和搜索。
+### 令牌标签
+
+在 TinaCloud 中与项目关联的令牌有两种类型：内容（只读）和搜索。
 
 * 内容令牌提供对项目内容的只读访问。
-* 搜索令牌提供对TinaCloud搜索API的写入访问。
+* 搜索令牌提供对 TinaCloud 搜索 API 的写入访问。
 
 <WarningCallout
   body={<>
-    警告：API令牌应被视为敏感信息，不应提交到你的项目仓库。内容令牌允许客户端对你的仓库内容进行只读访问。搜索令牌允许客户端更新你网站的TinaCloud托管搜索索引。请在Tina配置中使用环境变量来处理这些。
+    警告：API 令牌应被视为敏感信息，不应提交到你的项目仓库。内容令牌允许客户端对你的仓库内容进行只读访问。搜索令牌允许客户端更新你网站的 TinaCloud 托管搜索索引。请在你的 Tina 配置中使用环境变量来处理这些令牌。
   </>}
 />
 
@@ -111,17 +133,17 @@ Tina还支持网站URL的Glob模式。如果你想在动态预览部署上允许
 
 默认情况下，一个新项目将自动生成具有对所有分支类型访问权限的两种类型的令牌。如果项目不需要限制对特定分支的访问，这些令牌应该足够。
 
-如果需要额外的令牌，可以通过导航到[TinaCloud](https://app.tina.io)，点击你希望添加令牌的项目，然后点击“令牌”标签来生成：
-![TinaCloud令牌标签](/img/docs/tinacloud/api_tokens_list_v1_mmjpsp.png)
+如果需要额外的令牌，可以通过导航到 [TinaCloud](https://app.tina.io)，点击你希望添加令牌的项目，然后点击“令牌”标签来生成：
+![TinaCloud 令牌标签](/img/docs/tinacloud/api_tokens_list_v1_mmjpsp.png)
 
-接下来，点击“新建令牌”并填写字段。“类型”字段选择正在创建的令牌类型。“名称”用于标识令牌。“Git分支”是令牌有权访问的分支列表（用逗号分隔）。
+接下来，点击“新建令牌”并填写字段。“类型”字段选择正在创建的令牌类型。“名称”用于标识令牌。“Git 分支”是令牌有权访问的分支列表（用逗号分隔）。
 
-![在TinaCloud中创建新令牌](/img/docs/tinacloud/new_api_token_v1_lq1rfy.png)
+![在 TinaCloud 中创建新令牌](/img/docs/tinacloud/new_api_token_v1_lq1rfy.png)
 
-这些令牌将在我们将网站前端连接到我们的项目时使用。
+这些令牌将在我们将网站的前端连接到我们的项目时使用。
 
 #### 分支名称中的通配符
 
-分支名称中支持使用'\*'进行通配符匹配。例如：`feat/*`将匹配`feat/foo`和`feat/bar`。如果仅输入`*`，则将匹配任何分支。
+分支名称中支持使用 '\*' 进行通配符匹配。例如：`feat/*` 将匹配 `feat/foo` 和 `feat/bar`。如果仅输入 `*`，则将匹配任何分支。
 
 通配符匹配对于匹配尚未创建的分支很有用，并且可以用于编辑工作流。

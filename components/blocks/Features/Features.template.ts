@@ -83,8 +83,7 @@ export const featuresTemplate: Template = {
                 {
                   name: 'src',
                   label: 'Video Source',
-                  description:
-                    'This is the Cloudinary Public ID, for example "tina-io/docs/quick-edit-demo".',
+                  description: 'Full URL to the video file (.webm or .mp4).',
                   type: 'string',
                 },
                 {
