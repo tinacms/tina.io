@@ -51,6 +51,7 @@ jobs:
       - name: Rebuild native modules
         run: pnpm rebuild
       - name: pnpm build
+        if: ${{ env.NEXT_PUBLIC_TINA_CLIENT_ID != '' && env.TINA_TOKEN != '' && env.TINA_SEARCH_TOKEN != '' }}
         run: pnpm build
       - name: pnpm lint
         run: pnpm lint
@@ -59,6 +60,7 @@ jobs:
         env:
           CI: true
       - name: pnpm export
+        if: ${{ env.NEXT_PUBLIC_TINA_CLIENT_ID != '' && env.TINA_TOKEN != '' && env.TINA_SEARCH_TOKEN != '' }}
         run: |
           pnpm export
         env:
