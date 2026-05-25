@@ -31,6 +31,9 @@ export const Prism = (props: {
             border: 'none',
             marginBottom: 0,
             borderRadius: '12px',
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word',
+            overflowWrap: 'anywhere',
           }}
         >
           {tokens.map((line, i) => (
