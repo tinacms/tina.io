@@ -45,6 +45,11 @@
               "title": "Add to an Existing Site",
               "items": [
                 {
+                  "title": "⭐ Astro",
+                  "slug": "content/docs/frameworks/astro.mdx",
+                  "_template": "item"
+                },
+                {
                   "title": "NextJS (App Router)",
                   "slug": "content/docs/frameworks/next/app-router.mdx",
                   "_template": "item"
@@ -52,11 +57,6 @@
                 {
                   "title": "NextJS (Pages Router)",
                   "slug": "content/docs/frameworks/next/pages-router.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "Astro",
-                  "slug": "content/docs/frameworks/astro.mdx",
                   "_template": "item"
                 },
                 {
