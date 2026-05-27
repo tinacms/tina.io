@@ -28,15 +28,15 @@ On the TinaCMS side: content lives in your repo as Markdown and MDX, every edit 
 
 ## Why live editing needs Astro's SSR
 
-Live editing means re-rendering parts of the page as the editor types. A page that was rendered server-side with one set of data has to be rendered again with the new data — and that's a server operation. Doing it on the client would mean hydrating the page with React (or another framework) just so it can re-execute the template, which is exactly what we wanted to stop doing.
+Live editing means re-rendering parts of the page as the editor types. A page that was rendered server-side with one set of data has to be rendered again with the new data — and that's a server operation. Doing it on the client would mean hydrating the page with React (or another framework) just so it can re-execute the template.
 
-Astro's per-route SSR is the way out. The whole project can stay `output: 'static'` — every page prerendered, served from a CDN — while a single route opts into server rendering by setting `prerender = false`. The starter does exactly that: `/tina-island/[name]` runs server-side, and nothing else does.
+Astro lets a single route opt into server rendering while the rest of the project stays static. In the starter, `/tina-island/[name]` declares `prerender = false` and runs server-side. Everything else stays `output: 'static'` — prerendered at build time and served from a CDN.
 
-When the editor sends unsaved data to that route, the server re-renders the affected component with the overlay data and returns the HTML fragment for the bridge to swap in. The static site stays static; only the editing path pays the SSR cost. Before this, the only way to get a live preview was to ship React and hydrate the page in the editor — which is what the old Astro setup did.
+When the editor sends unsaved data to that route, the server re-renders the affected component with the overlay data and returns the HTML fragment for the bridge to swap in. Only the editing path pays the SSR cost. Before this, the only way to get a live preview was to ship React and hydrate the page in the editor — which is what the old Astro setup did.
 
 ## What visitors actually load
 
-Nothing from Tina, really. There's a small inline `<script>` on pages with editable regions that checks `window.self !== window.top` and exits immediately outside the editor iframe — a few dozen bytes, no network request. Visitors never fetch the bridge bundle.
+On pages with editable regions there's a small inline `<script>` that checks `window.self !== window.top` and exits immediately outside the editor iframe — a few dozen bytes, no network request.
 
 ## How an edit reaches the page
 
@@ -55,7 +55,7 @@ sequenceDiagram
     Note over Bridge: swap fragment into the live DOM — no reload
 ```
 
-Each editable region is wrapped in a `<TinaIsland>` that emits a `data-tina-island="/tina-island/<name>?…"` attribute. The bridge POSTs the unsaved form data to that URL, the endpoint calls `readOverlay()` and renders the component server-side with the overlay applied, and the bridge swaps the response HTML in. The endpoint never reads from the content store on that path, so the flow stays stateless. Updates debounce into a single request per 300ms.
+Each editable region is wrapped in a `<TinaIsland>` that emits a `data-tina-island="/tina-island/<name>?…"` attribute. The bridge POSTs the unsaved form data to that URL, the endpoint calls `readOverlay()` and renders the component server-side with the overlay applied, and the bridge swaps the response HTML in. The endpoint never reads from the content store on that path. Updates debounce into a single request per 300ms.
 
 ## Adding a new editable region
 
@@ -88,7 +88,7 @@ export const prerender = false;
 export const ALL = experimental_createIslandRoute(islands);
 ```
 
-Add an entry to `islands.ts`, reference it from a page with `<TinaIsland name="...">`, and the bridge picks it up. The `experimental_` prefix is real — these APIs may change before they stabilise.
+Add an entry to `islands.ts` and reference it from a page with `<TinaIsland name="...">`. The `experimental_` prefix is real — these APIs may change before they stabilise.
 
 ## Already running Tina on Astro?
 
@@ -96,7 +96,7 @@ If you're on the React setup, you don't have to migrate. The old path (`@astrojs
 
 If you do want to move across, expect most of the work to be in your custom rich-text components — anything in your `TinaMarkdown` `components` map needs to go from `.tsx` to `.astro`. The integration changes themselves (installing `@tinacms/astro` and `@tinacms/bridge`, swapping `useTina()` for `<TinaIsland>`, wrapping data loaders in `requestWithMetadata`) are an afternoon's work.
 
-The starter at [tina.io/docs/frameworks/astro/](https://tina.io/docs/frameworks/astro/) is the reference to diff against.
+Diff against the starter when you're ready: [tina.io/docs/frameworks/astro/](https://tina.io/docs/frameworks/astro/).
 
 ## Other frameworks
 
