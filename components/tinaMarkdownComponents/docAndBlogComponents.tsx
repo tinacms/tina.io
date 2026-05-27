@@ -70,7 +70,6 @@ export const docAndBlogComponents: Components<{
   WideImage: { alt: string; src: string };
   // biome-ignore lint/complexity/noBannedTypes: <TODO>
   CustomFieldComponentDemo: {};
-  CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
   ImageAndText: { docText: string; image: string; heading?: string };
   Summary: { heading: string; text: string };
@@ -175,7 +174,7 @@ export const docAndBlogComponents: Components<{
   },
   code: (props) => (
     <code
-      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded font-source-code-pro"
+      className="px-1 text-orange-500 p-0.5  bg-orange-500/5 rounded font-source-code-pro"
       {...props}
     />
   ),
@@ -761,12 +760,6 @@ export const docAndBlogComponents: Components<{
       <a href="https://codepen.io/kendallstrautman">@kendallstrautman</a>) on{' '}
       <a href="https://codepen.io">CodePen</a>.
     </iframe>
-  ),
-  CloudinaryVideo: ({ src }) => (
-    <video className="video my-6" autoPlay loop muted playsInline>
-      <source src={`${src}.webm`} type="video/webm" />
-      <source src={`${src}.mp4`} type="video/mp4" />
-    </video>
   ),
   Button: ({ link, label }) => (
     <div className="w-full flex justify-start my-6">
