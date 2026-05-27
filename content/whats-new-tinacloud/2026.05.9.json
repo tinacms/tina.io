@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.05.9",
+  "dateReleased": "2026-05-27T05:04:47Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "docs(adr): WorkOS AuthKit vs raw WorkOS API spike decision",
+          "gitHubName": "KahaMason",
+          "gitHubLink": "https://github.com/KahaMason"
+        }
+      ]
+    }
+  ]
+}
