@@ -1,31 +1,44 @@
 ---
-title: Visual editing for Astro. Now without React
+seo:
+  title: Astro is the new default TinaCMS starter | TinaCMS Blog
+  description: 'TinaCMS now ships an Astro-first starter by default — fast builds, built-in image optimisation, and visual editing with zero JavaScript shipped to visitors.'
+  canonicalUrl: 'https://tina.io/blog/astro-visual-editing-without-react'
+  ogImage: /img/og/astro-default-starter.png
+title: Astro is the new default TinaCMS starter
+date: '2026-05-27T00:00:00.000Z'
+last_edited: '2026-05-27T00:00:00.000Z'
 author: Matt Wicks
 prev: content/blog/customblog_tinacmsai.mdx
 next: ''
 ---
 
-You probably reach for Astro because you don't want to ship a frontend framework to every visitor. Turning on TinaCMS visual editing used to undercut that: add `@astrojs/react`, hydrate `useTina()` inside the editor iframe, accept React in the page tree.
+As of today, `pnpm create tina-app@latest` defaults to the Astro starter instead of Next.js. The Next.js starter is still there if you want it. We made the switch because last release we shipped a new `@tinacms/astro` integration that removes the React dependency from visual editing, so a TinaCMS site on Astro can now ship without any TinaCMS JavaScript reaching visitors.
 
-But not anymore.
+## Why we flipped the default
 
-TinaCMS visual editing on Astro now runs on a small vanilla-JS bridge which is only delivered to the editor iframe. Visitors get zero JS from Tina. Production HTML is byte-for-byte what you'd get without Tina installed. For new projects this is the new default; the [Astro starter](https://tina.io/docs/frameworks/astro/) is shipping it now.
+GitHub clones of the Astro starter have been trending up for a while, and recently overtook clones of the Next.js one — despite the CLI defaulting to Next.js the whole time. Discord questions and support requests have been skewing Astro for months. Internally, Astro is the framework most of us actually want to work on right now.
 
-Already on the React setup? Nothing here breaks it. `@astrojs/react`, `client:tina`, `useTina()` — still supported, still maintained. Move when you feel like it. Or don't.
+There's more context in the [latest sprint review](https://youtu.be/bhjE5i0y8VY) if you want it.
 
-## What's doing the work
+## What you get
 
-Two packages.
+Astro builds are quick — static output, parallel rendering, and image optimisation built into `<Image />` (formats, responsive sizes, lazy loading) without installing anything else. `.astro` files are mostly HTML with a small templating syntax on top, so React or Vue developers find them easy to read straight away.
 
-`@tinacms/bridge` is the runtime piece: a dependency-free ESM bundle that talks the same postMessage protocol the TinaCMS admin already speaks. `init()` runs once inside the iframe, reads the `[data-tina-form]` payloads on the page, wires up click-to-focus, and forwards data changes back to the admin. There's a `refreshForms()` for view transitions, so navigating between pages inside the editor doesn't strand your form bindings.
+On the TinaCMS side: content lives in your repo as Markdown and MDX, every edit is a commit, and the visual editor lets you click a field on the rendered page to jump straight to it in the admin.
 
-`@tinacms/astro` is the glue. Drop `tina()` into your `astro.config.mjs` and its middleware splices the bridge script and form payloads into `<head>` — but only on edit-mode requests. Every other request gets the page untouched.
+## Why live editing needs Astro's SSR
 
-Edit mode survives in-iframe navigation through a `__tina_edit` session cookie (SameSite=Strict, and it only sets when `Sec-Fetch-Dest: iframe`). Top-level visitors can't trip it, so nothing leaks into your public pages.
+Live editing means re-rendering parts of the page as the editor types. A page that was rendered server-side with one set of data has to be rendered again with the new data — and that's a server operation. Doing it on the client would mean hydrating the page with React (or another framework) just so it can re-execute the template, which is exactly what we wanted to stop doing.
+
+Astro's per-route SSR is the way out. The whole project can stay `output: 'static'` — every page prerendered, served from a CDN — while a single route opts into server rendering by setting `prerender = false`. The starter does exactly that: `/tina-island/[name]` runs server-side, and nothing else does.
+
+When the editor sends unsaved data to that route, the server re-renders the affected component with the overlay data and returns the HTML fragment for the bridge to swap in. The static site stays static; only the editing path pays the SSR cost. Before this, the only way to get a live preview was to ship React and hydrate the page in the editor — which is what the old Astro setup did.
+
+## What visitors actually load
+
+Nothing from Tina, really. There's a small inline `<script>` on pages with editable regions that checks `window.self !== window.top` and exits immediately outside the editor iframe — a few dozen bytes, no network request. Visitors never fetch the bridge bundle.
 
 ## How an edit reaches the page
-
-The bridge does a scoped soft-refresh instead:
 
 ```mermaid
 sequenceDiagram
@@ -37,84 +50,63 @@ sequenceDiagram
     Admin->>Bridge: open · id · query · data
     Note over Admin: editor types into a field
     Admin->>Bridge: updateData · id · data
-    Bridge->>Island: POST /tina-island/post?slug=… · { [id]: data }
+    Bridge->>Island: POST /tina-island/blog?slug=… · { [id]: data }
     Island-->>Bridge: re-rendered HTML fragment
     Note over Bridge: swap fragment into the live DOM — no reload
 ```
 
-Mark a region with `data-tina-island="<endpoint>"`. When a field changes, the bridge POSTs the current unsaved data to that endpoint, the endpoint re-renders just that component on the server, and the bridge swaps the returned HTML into the DOM.
+Each editable region is wrapped in a `<TinaIsland>` that emits a `data-tina-island="/tina-island/<name>?…"` attribute. The bridge POSTs the unsaved form data to that URL, the endpoint calls `readOverlay()` and renders the component server-side with the overlay applied, and the bridge swaps the response HTML in. The endpoint never reads from the content store on that path, so the flow stays stateless. Updates debounce into a single request per 300ms.
 
-The admin hands the bridge already-resolved data, the bridge passes it along, and the endpoint reads it with `readOverlay()` rather than going back to the content store. So the whole process is stateless.
+## Adding a new editable region
 
-## Wiring it into an existing project
+Every editable region the bridge can refresh is declared in `src/lib/islands.ts`. Each entry names a fetcher, the component to render, a wrapper tag, and a function that maps the fetched data into props:
 
-Quickest path is the [Astro starter](https://tina.io/docs/frameworks/astro/) but retrofitting an existing site looks like this.
+```ts
+// src/lib/islands.ts
+import type { IslandRegistry } from '@tinacms/astro/experimental';
+import BlogBody from '../components/islands/BlogBody.astro';
+import { getBlog } from './data';
 
-Install:
+export const islands: IslandRegistry = {
+  blog: {
+    fetch: (_request, params) => getBlog(params.get('slug') ?? ''),
+    component: BlogBody,
+    wrapper: { tag: 'article' },
+    propsFromData: (data) => ({ data: data.data?.blog }),
+  },
+  // ...page, global header, global footer, etc.
+};
+```
+
+The route at `/tina-island/[name]` reads from that registry directly, so you don't write any route code per island:
+
+```ts
+// src/pages/tina-island/[name].ts
+import { experimental_createIslandRoute } from '@tinacms/astro/experimental';
+import { islands } from '../../lib/islands';
+export const prerender = false;
+export const ALL = experimental_createIslandRoute(islands);
+```
+
+Add an entry to `islands.ts`, reference it from a page with `<TinaIsland name="...">`, and the bridge picks it up. The `experimental_` prefix is real — these APIs may change before they stabilise.
+
+## Already running Tina on Astro?
+
+If you're on the React setup, you don't have to migrate. The old path (`@astrojs/react`, `client:tina`, `useTina()`) is still supported and maintained.
+
+If you do want to move across, expect most of the work to be in your custom rich-text components — anything in your `TinaMarkdown` `components` map needs to go from `.tsx` to `.astro`. The integration changes themselves (installing `@tinacms/astro` and `@tinacms/bridge`, swapping `useTina()` for `<TinaIsland>`, wrapping data loaders in `requestWithMetadata`) are an afternoon's work.
+
+The starter at [tina.io/docs/frameworks/astro/](https://tina.io/docs/frameworks/astro/) is the reference to diff against.
+
+## Other frameworks
+
+The bridge protocol is postMessage in, HTML out — it doesn't depend on Astro. A Nuxt or Eleventy adapter would follow the same pattern, but we haven't built one. We're happy to review pull requests for new framework adapters.
+
+## Try it
 
 ```bash
-pnpm add @tinacms/astro tinacms
-pnpm add -D @tinacms/cli
-pnpm add @astrojs/node           # or vercel / netlify / cloudflare
+pnpm create tina-app@latest
+# pick "Astro" — or just hit enter, it's the default now
 ```
 
-No `tina/` directory yet? `pnpm tinacms init`.
-
-Add the integration:
-
-```ts
-# astro.config.js
-import { defineConfig } from 'astro/config';
-import tina from '@tinacms/astro/integration';
-import node from '@astrojs/node';
-import mdx from '@astrojs/mdx';
-
-export default defineConfig({
-  output: 'server',
-  adapter: node({ mode: 'standalone' }),
-  integrations: [mdx(), tina()],
-});
-```
-
-Wrap your data loaders in `requestWithMetadata`. It tags the result with the metadata `tinaField()` needs, derives the form id the bridge uses, and in edit mode quietly swaps in the unsaved overlay:
-
-```ts
-import { requestWithMetadata } from '@tinacms/astro';
-import client from '../../tina/__generated__/client';
-
-export const getPost = (slug: string) =>
-  requestWithMetadata(client.queries.post({ relativePath: `${slug}.md` }));
-```
-
-Then mark up whatever should be editable:
-
-```htmlbars
-<TinaIsland name="post" wrapper={islands.post.wrapper} params={{ slug }}>
-  <h1 data-tina-field={tinaField(data, 'title')}>{data.title}</h1>
-  <div data-tina-field={tinaField(data, '_body')}>
-    <TinaMarkdown content={data._body} />
-  </div>
-</TinaIsland>
-```
-
-Open `/admin/`, click into a field, make an edit, and watch the island re-render. The full walkthrough is in the getting-started guide.
-
-## Coming from the React setup
-
-If your site works today, leave it. This release doesn't touch the React path.
-
-When you do want the lighter runtime, the move is mechanical:
-
-1. drop `@astrojs/react` and the `react`/`react-dom` deps
-2. swap `client:tina` + `useTina()` for `<TinaIsland>` + `data-tina-field`
-3. rewrite any custom rich-text components from `.tsx` to `.astro` (AI is really good at this bit)
-
-The `components` map you hand `TinaMarkdown` keeps the same shape; it just emits Astro now instead of React. Diff your project against the [starter](https://tina.io/docs/frameworks/astro/) and the changes show up in one pass.
-
-## Not here yet
-
-The bridge protocol isn't tied to Astro. There's a `postMessage` in, HTML out. Building adapters so that other frameworks (e.g. Nuxt, Hugo, and Eleventy) doable; but we haven't built them.
-
-If that's your stack and you want to take a swing, the door's open. TinaCloud already works as-is; the stateless POST flow doesn't care what's behind the GraphQL endpoint.
-
-Grab the [Astro starter](https://tina.io/docs/frameworks/astro/), run `pnpm dev`, and poke around `/admin/`. Same editing experience, none of the React.
+If you build something with it, share the URL in [Discord](https://discord.com/invite/zumN63Ybpf).
