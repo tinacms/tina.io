@@ -123,7 +123,7 @@
         {
           "headline": "□ TinaCloud Separate Content Repo Support",
           "status": "",
-          "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate Tina lock files.\n"
+          "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate TinaCMS lock files.\n"
         },
         {
           "headline": "□ Editorial Workflow Support for Media Manager",
