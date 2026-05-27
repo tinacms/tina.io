@@ -27,6 +27,10 @@
       "headline": "Done",
       "items": [
         {
+          "headline": "☑︎ TinaCMS - Astro Live Editing Support",
+          "content": "Inline visual editing for Astro sites, where editors click any field to edit it live in the TinaCMS admin while production ships zero editor code\n"
+        },
+        {
           "headline": "☑︎ GitHub Enterprise Support",
           "status": "",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
