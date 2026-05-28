@@ -14,7 +14,7 @@ next: ''
 
 The latest **Astro** starter already uses React-free visual editing, and Astro will become the default once that new path has had more time in real projects.
 
-We have not changed the default yet. The latest Astro starter is already available, and we want more people to try it before we make Astro the main path for new projects.
+We have not changed the default yet. [The latest Astro starter is already available](https://tina.io/roadmap), and we want more people to try it before we make Astro the main path for new projects.
 
 ***
 
@@ -22,13 +22,13 @@ We have not changed the default yet. The latest Astro starter is already availab
 
 ## Why Astro?
 
-More TinaCMS users are choosing Astro. Starter clones have recently passed the Next.js starter, even though Next.js is still the default. We are also seeing more Astro questions in Discord and support. That lines up with our own experience: 
+More TinaCMS users are choosing Astro. Starter clones have recently passed the Next.js starter, even though Next.js is still the default. We are also seeing [more Astro questions in Discord and support](https://github.com/tinacms/tinacms/discussions/3399). That lines up with our own experience: 
 
 Astro is straightforward to work with, and it fits many of the sites people build with TinaCMS, including docs, blogs, marketing pages, changelogs, and company websites.
 
 ![GitHub poll results showing Astro as the most requested framework for more TinaCMS investment](/img/blog/astro-is-the-default-tinacms-starter/astro-github-poll.png)
 
-**Figure: GitHub Discussions poll on which framework to invest in**
+**Figure: [GitHub Discussions poll](https://github.com/tinacms/tinacms/discussions/5247) on which framework to invest in**
 
 |                             Repo | Clones - Sprint 108 |
 | -------------------------------: | ------------------- |
@@ -39,7 +39,9 @@ Astro is straightforward to work with, and it fits many of the sites people buil
 
 **Figure: Starter repository clones during Sprint 108, a one-week sprint**
 
-Astro is also fast. It builds static output quickly, renders pages in parallel, and includes image optimisation through its `<Image />` component, with formats, responsive sizes, and lazy loading handled for you. It is intentionally lightweight too. You can use React, Vue, or other UI frameworks when you need them, but you do not have to make the whole site behave like a React app.
+Astro is also fast. It builds static output quickly, renders pages in parallel, and includes image optimisation through its `<Image />` component, with formats, responsive sizes, and lazy loading handled for you. 
+
+It is intentionally lightweight too. You can use React, Vue, or other UI frameworks when you need them, but you do not have to make the whole site behave like a React app.
 
 That gives us a better foundation for visual editing. Editors still get a live preview. Visitors just get the page.
 
@@ -53,15 +55,15 @@ That always felt heavier than it needed to be. If the editing UI is only for edi
 
 The latest Astro starter now uses React-free visual editing. Pages can still be built as static HTML, and editable sections can still update while an editor is typing.
 
-**For editors, the workflow should feel the same.** They open TinaCMS, click into content on the page, make changes, and preview them before publishing. Content still lives in your repository as Markdown or MDX, and every saved change can still become a Git commit.
+### For editors, the workflow should feel the same
+
+They open TinaCMS, click into content on the page, make changes, and preview them before publishing. Content still lives in your repository as Markdown or MDX, and every saved change can still become a Git commit.
 
 The main change is behind the scenes. When an editor opens TinaCMS, editable areas on the page are connected to the editor. As the editor types, Astro re-renders just the edited section with the draft content, and TinaCMS swaps that section into the preview without reloading the whole page.
 
-This works for both static and server-generated pages. Your page can still
-render the way your project needs it to. TinaCMS only needs to refresh the part the editor is changing.
+This works for both static and server-generated pages. Your page can still render the way your project needs it to. TinaCMS only needs to refresh the part the editor is changing.
 
-On the public site, a tiny inline check detects whether the page is inside the
-TinaCMS editor. If it is not, it exits immediately.
+On the public site, a tiny inline check detects whether the page is inside the TinaCMS editor. If it is not, it exits immediately.
 
 ## Show me the code!
 
