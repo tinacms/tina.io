@@ -1,10 +1,10 @@
 ---
 seo:
-  title: Astro is the new default TinaCMS starter | TinaCMS Blog
-  description: 'TinaCMS now ships an Astro-first starter by default — fast builds, built-in image optimisation, and visual editing with zero JavaScript shipped to visitors.'
+  title: Astro is becoming the default starter for TinaCMS | TinaCMS Blog
+  description: 'Astro is becoming the default TinaCMS starter after the latest React-free visual editing path has had more time in real projects.'
   canonicalUrl: 'https://tina.io/blog/astro-is-the-default-tinacms-starter'
   ogImage: /img/og/astro-default-starter.png
-title: Astro is the new default TinaCMS starter
+title: Astro is becoming the default starter for TinaCMS
 date: '2026-05-27T00:00:00.000Z'
 last_edited: '2026-05-27T00:00:00.000Z'
 author: Matt Wicks
@@ -12,54 +12,71 @@ prev: content/blog/customblog_tinacmsai.mdx
 next: ''
 ---
 
-As of today, `npx create-tina-app@latest` defaults to the Astro starter instead of Next.js. The Next.js starter is still there if you want it. We made the switch because last release we shipped a new `@tinacms/astro` integration that removes the React dependency from visual editing, so a TinaCMS site on Astro can now ship without any TinaCMS JavaScript reaching visitors.
+We're planning to make **Astro** the default starter for TinaCMS.
 
-## Why we flipped the default
+**TL;DR:** The Next.js starter is not going away. The latest Astro starter
+already uses React-free visual editing, and Astro will become the default once
+that new path has had more time in real projects.
 
-GitHub clones of the Astro starter have been trending up for a while, and recently overtook clones of the Next.js one — despite the CLI defaulting to Next.js the whole time. Discord questions and support requests have been skewing Astro for months. Internally, Astro is the framework most of us actually want to work on right now.
+We have not changed the default yet. The latest Astro starter is already
+available, and we want more people to try it before we make Astro the main path
+for new projects.
 
-There's more context in the [latest sprint review](https://youtu.be/bhjE5i0y8VY) (@17:00) if you want it.
+## Why Astro?
 
-## What you get
+More TinaCMS users are choosing Astro. Starter clones have recently passed the
+Next.js starter, even though Next.js is still the default. We are also seeing
+more Astro questions in Discord and support. That lines up with our own
+experience: Astro is straightforward to work with, and it fits many of the sites
+people build with TinaCMS, including docs, blogs, marketing pages, changelogs,
+and company websites.
 
-Astro builds are quick — static output, parallel rendering, and image optimisation built into `<Image />` (formats, responsive sizes, lazy loading) without installing anything else. `.astro` files are mostly HTML with a small templating syntax on top, so React or Vue developers find them easy to read straight away.
+Astro is also fast. It builds static output quickly, renders pages in parallel,
+and includes image optimisation through its `<Image />` component, with formats,
+responsive sizes, and lazy loading handled for you. It is intentionally
+lightweight too. You can use React, Vue, or other UI frameworks when you need
+them, but you do not have to make the whole site behave like a React app.
 
-On the TinaCMS side: content lives in your repo as Markdown and MDX, every edit is a commit, and the visual editor lets you click a field on the rendered page to jump straight to it in the admin.
+That gives us a better foundation for visual editing. Editors still get a live
+preview. Visitors just get the page.
 
-## Why live editing needs Astro's SSR
+There is more background in the [latest sprint review](https://youtu.be/bhjE5i0y8VY?si=FIzRQLCvnhVO8A01&t=1001)
+around the 17-minute mark.
 
-Live editing means re-rendering parts of the page as the editor types. A page that was rendered server-side with one set of data has to be rendered again with the new data — and that's a server operation. Doing it on the client would mean hydrating the page with React (or another framework) just so it can re-execute the template.
+## What we've improved
 
-Astro lets a single route opt into server rendering while the rest of the project stays static. In the starter, `/tina-island/[name]` declares `prerender = false` and runs server-side. Everything else stays `output: 'static'` — prerendered at build time and served from a CDN.
+The previous Astro setup used React for live editing. That worked, but it meant
+a site could carry client-side code for an experience only editors use.
 
-When the editor sends unsaved data to that route, the server re-renders the affected component with the overlay data and returns the HTML fragment for the bridge to swap in. Only the editing path pays the SSR cost. Before this, the only way to get a live preview was to ship React and hydrate the page in the editor — which is what the old Astro setup did.
+That always felt heavier than it needed to be. If the editing UI is only for
+editors, visitors should not have to worry about it.
 
-## What visitors actually load
+The latest Astro starter now uses React-free visual editing. Pages can still be
+built as static HTML, and editable sections can still update while an editor is
+typing.
 
-On pages with editable regions there's a small inline `<script>` that checks `window.self !== window.top` and exits immediately outside the editor iframe — a few dozen bytes, no network request.
+For editors, the workflow should feel the same. They open TinaCMS, click into
+content on the page, make changes, and preview them before publishing. Content
+still lives in your repository as Markdown or MDX, and every saved change can
+still become a Git commit.
 
-## How an edit reaches the page
+The main change is behind the scenes. When an editor opens TinaCMS, editable
+areas on the page are connected to the editor. As the editor types, Astro
+re-renders just the edited section with the draft content, and TinaCMS swaps that
+section into the preview without reloading the whole page.
 
-```mermaid
-sequenceDiagram
-    participant Admin as TinaCMS admin
-    participant Bridge as @tinacms/bridge (editor iframe)
-    participant Island as Island endpoint (Astro server)
+This works for both static and server-generated pages. Your page can still
+render the way your project needs it to. TinaCMS only needs to refresh the part
+the editor is changing.
 
-    Note over Bridge: init() scans [data-tina-form] payloads, wires click-to-focus
-    Admin->>Bridge: open · id · query · data
-    Note over Admin: editor types into a field
-    Admin->>Bridge: updateData · id · data
-    Bridge->>Island: POST /tina-island/blog?slug=… · { [id]: data }
-    Island-->>Bridge: re-rendered HTML fragment
-    Note over Bridge: swap fragment into the live DOM — no reload
-```
+On the public site, a tiny inline check detects whether the page is inside the
+TinaCMS editor. If it is not, it exits immediately.
 
-Each editable region is wrapped in a `<TinaIsland>` that emits a `data-tina-island="/tina-island/<name>?…"` attribute. The bridge POSTs the unsaved form data to that URL, the endpoint calls `readOverlay()` and renders the component server-side with the overlay applied, and the bridge swaps the response HTML in. The endpoint never reads from the content store on that path. Updates debounce into a single request per 300ms.
+## Show me the code!
 
-## Adding a new editable region
-
-Every editable region the bridge can refresh is declared in `src/lib/islands.ts`. Each entry names a fetcher, the component to render, a wrapper tag, and a function that maps the fetched data into props:
+Each editable part of the page is registered as an island. The island knows how
+to fetch its content, which component to render, and how to turn the fetched data
+into component props.
 
 ```ts
 // src/lib/islands.ts
@@ -67,46 +84,100 @@ import type { IslandRegistry } from '@tinacms/astro/experimental';
 import BlogBody from '../components/islands/BlogBody.astro';
 import { getBlog } from './data';
 
+type BlogResult = {
+  data?: {
+    blog?: unknown;
+  };
+};
+
 export const islands: IslandRegistry = {
   blog: {
     fetch: (_request, params) => getBlog(params.get('slug') ?? ''),
     component: BlogBody,
     wrapper: { tag: 'article' },
-    propsFromData: (data) => ({ data: data.data?.blog }),
+    propsFromData: (data) => {
+      const result = data as BlogResult;
+      return { data: result.data?.blog };
+    },
   },
-  // ...page, global header, global footer, etc.
 };
 ```
 
-The route at `/tina-island/[name]` reads from that registry directly, so you don't write any route code per island:
+One route handles the preview updates for those islands:
 
 ```ts
 // src/pages/tina-island/[name].ts
 import { experimental_createIslandRoute } from '@tinacms/astro/experimental';
 import { islands } from '../../lib/islands';
+
 export const prerender = false;
 export const ALL = experimental_createIslandRoute(islands);
 ```
 
-Add an entry to `islands.ts` and reference it from a page with `<TinaIsland name="...">`. The `experimental_` prefix is real — these APIs may change before they stabilise.
+On the page itself, you wrap the editable section with `<TinaIsland>`. When an
+editor changes content, TinaCMS sends the draft data to the island route, Astro
+renders the updated HTML with the draft overlay applied, and the preview swaps
+it into the page.
+
+The island route does not need to read the content store again for each update.
+It renders from the draft data TinaCMS sends through the bridge, and updates are
+debounced so typing does not send a request for every keystroke.
+
+Here is the same flow as a sequence diagram:
+
+```mermaid
+sequenceDiagram
+    participant Admin as TinaCMS admin
+    participant Bridge as @tinacms/bridge
+    participant Island as Astro island route
+
+    Admin->>Bridge: open page data
+    Admin->>Bridge: update draft content
+    Bridge->>Island: POST draft data
+    Island-->>Bridge: return updated HTML
+    Bridge->>Bridge: swap preview section
+```
+
+The `experimental_` prefix is real. This functionality is available in the
+latest Astro starter, but we are still polishing the APIs and testing the edge
+cases before making Astro the default.
 
 ## Already running Tina on Astro?
 
-If you're on the React setup, you don't have to migrate. The old path (`@astrojs/react`, `client:tina`, `useTina()`) is still supported and maintained.
+You do not have to migrate right away. The existing React-based setup
+(`@astrojs/react`, `client:tina`, and `useTina()`) is still supported and
+maintained.
 
-If you do want to move across, expect most of the work to be in your custom rich-text components — anything in your `TinaMarkdown` `components` map needs to go from `.tsx` to `.astro`. The integration changes themselves (installing `@tinacms/astro` and `@tinacms/bridge`, swapping `useTina()` for `<TinaIsland>`, wrapping data loaders in `requestWithMetadata`) are an afternoon's work.
+If you want to test the new setup, most of the migration work is usually in
+custom rich-text components. Anything in your `TinaMarkdown` `components` map may
+need to move from `.tsx` to `.astro`.
 
-Diff against the starter when you're ready: [tina.io/docs/frameworks/astro/](https://tina.io/docs/frameworks/astro/).
+The other changes are smaller: install `@tinacms/astro`, replace `useTina()`
+with `<TinaIsland>`, and update your data loaders for the new preview flow.
+
+When you are ready, compare your project against the
+[Astro guide](https://tina.io/docs/frameworks/astro/).
 
 ## Other frameworks
 
-A Nuxt or Eleventy adapter would follow the same bridge protocol pattern, but we haven't built one. We're happy to review pull requests for new framework adapters.
+The same approach could work for other frameworks too. A Nuxt or Eleventy
+adapter would follow a similar shape: send draft data from the editor, render the
+updated section on the server, then swap the HTML into the preview.
 
-## Try it
+We have not built those adapters yet, but we would be happy to review PRs.
+
+## What's next
+
+Before Astro becomes the default starter, we want more real projects using the
+new visual editing flow.
+
+Try the Astro starter:
 
 ```bash
 npx create-tina-app@latest
-# pick "Astro" — or just hit enter, it's the default now
+# choose the Astro starter
 ```
 
 If you build something with it, share the URL in [Discord](https://discord.com/invite/zumN63Ybpf).
+If something feels off, tell us. Open an issue, send a PR, or drop into Discord
+with what you found.
