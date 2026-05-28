@@ -41,7 +41,7 @@
         "openInNewTab": false,
         "badge": {
           "text": "new",
-          "icon": "MdBook",
+          "icon": "",
           "position": "left",
           "color": "orange"
         },
