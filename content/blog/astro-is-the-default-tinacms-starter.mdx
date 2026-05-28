@@ -12,13 +12,13 @@ prev: content/blog/customblog_tinacmsai.mdx
 next: ''
 ---
 
-As of today, `pnpm create tina-app@latest` defaults to the Astro starter instead of Next.js. The Next.js starter is still there if you want it. We made the switch because last release we shipped a new `@tinacms/astro` integration that removes the React dependency from visual editing, so a TinaCMS site on Astro can now ship without any TinaCMS JavaScript reaching visitors.
+As of today, `npx create-tina-app@latest` defaults to the Astro starter instead of Next.js. The Next.js starter is still there if you want it. We made the switch because last release we shipped a new `@tinacms/astro` integration that removes the React dependency from visual editing, so a TinaCMS site on Astro can now ship without any TinaCMS JavaScript reaching visitors.
 
 ## Why we flipped the default
 
 GitHub clones of the Astro starter have been trending up for a while, and recently overtook clones of the Next.js one — despite the CLI defaulting to Next.js the whole time. Discord questions and support requests have been skewing Astro for months. Internally, Astro is the framework most of us actually want to work on right now.
 
-There's more context in the [latest sprint review](https://youtu.be/bhjE5i0y8VY) if you want it.
+There's more context in the [latest sprint review](https://youtu.be/bhjE5i0y8VY) (@17:00) if you want it.
 
 ## What you get
 
@@ -100,12 +100,12 @@ Diff against the starter when you're ready: [tina.io/docs/frameworks/astro/](htt
 
 ## Other frameworks
 
-The bridge protocol is postMessage in, HTML out — it doesn't depend on Astro. A Nuxt or Eleventy adapter would follow the same pattern, but we haven't built one. We're happy to review pull requests for new framework adapters.
+A Nuxt or Eleventy adapter would follow the same bridge protocol pattern, but we haven't built one. We're happy to review pull requests for new framework adapters.
 
 ## Try it
 
 ```bash
-pnpm create tina-app@latest
+npx create-tina-app@latest
 # pick "Astro" — or just hit enter, it's the default now
 ```
 

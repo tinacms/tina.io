@@ -1,5 +1,5 @@
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: Highlight tokenizes deterministically; index is a stable key. */
 import { Highlight, Prism as rootPrism, themes } from 'prism-react-renderer';
-import React from 'react';
 
 (typeof global !== 'undefined' ? global : window).Prism = rootPrism;
 require('prismjs/components/prism-bash');
