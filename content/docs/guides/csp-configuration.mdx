@@ -22,16 +22,19 @@ TinaCMS needs access to load images from its asset delivery network:
 
 ### Connect Sources
 
-TinaCMS requires connections to several services for authentication, content delivery, and media uploads:
+TinaCMS requires connections to several services for authentication, content delivery, media uploads, and product analytics:
 
 ```javascript
-"connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com;"
+"connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com;"
 ```
 
-* **identity.tinajs.io** - Authentication and identity services
+* **identity.tinajs.io** - Authentication and identity services (v1)
+* **identity-v2.tinajs.io** - Authentication and identity services (v2). Both `identity.tinajs.io` and `identity-v2.tinajs.io` are required during the v1→v2 rollout; the admin UI calls both depending on the endpoint.
 * **content.tinajs.io** - Content API and data layer
 * **assets.tinajs.io** - Asset management and delivery
 * **s3.us-east-1.amazonaws.com** - Direct media uploads. The TinaCMS media manager `PUT`s files to a presigned S3 URL on this host. Without it, uploads fail with a CSP `connect-src` violation in the browser console.
+* **us.i.posthog.com** - PostHog event ingestion. The TinaCMS admin UI emits product-analytics events to help us improve the editor. Without it, you will see a CSP `connect-src` violation in the browser console for each event the editor tries to send.
+* **us-assets.i.posthog.com** - PostHog runtime assets (autocapture, session recording, feature flags). Loaded lazily by `posthog-js`; required even though the library itself is bundled in the admin UI.
 
 ## Implementation Examples
 
@@ -51,7 +54,7 @@ const baseCsp = [
     "worker-src 'self' blob:;",
     "frame-ancestors 'none';",
     "base-uri 'self';",
-    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com;"
+    "connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com;"
 ];
 
 /** @type {import('next').NextConfig} */
@@ -91,7 +94,7 @@ export function middleware(request: NextRequest) {
   const csp = [
     "default-src 'self'",
     "img-src 'self' data: assets.tina.io",
-    "connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com",
+    "connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com",
     // ... other directives
   ].join('; ');
   
@@ -109,7 +112,7 @@ Add CSP headers in your `netlify.toml`:
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
 ```
 
 ### Vercel Configuration
@@ -124,7 +127,7 @@ Add headers in your `vercel.json`:
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+          "value": "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
         }
       ]
     }
@@ -138,7 +141,7 @@ Add to your `.htaccess` file:
 
 ```apache
 <IfModule mod_headers.c>
-  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
+  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
 </IfModule>
 ```
 
@@ -147,7 +150,7 @@ Add to your `.htaccess` file:
 Add to your nginx configuration:
 
 ```nginx
-add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
+add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
 ```
 
 ## Self-Hosted Considerations
