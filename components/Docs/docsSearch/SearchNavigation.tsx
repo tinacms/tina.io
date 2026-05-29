@@ -136,8 +136,9 @@ export const SearchResultsOverflowTabs = ({
           <nav className="relative flex gap-16 px-6">
             <button
               type="button"
-              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-              ref={(el) => (tabRefs.current[0] = el)}
+              ref={(el) => {
+                tabRefs.current[0] = el;
+              }}
               className={`font-inter font-semibold text-sm py-4 ${
                 activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
               }`}
@@ -147,8 +148,9 @@ export const SearchResultsOverflowTabs = ({
             </button>
             <button
               type="button"
-              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-              ref={(el) => (tabRefs.current[1] = el)}
+              ref={(el) => {
+                tabRefs.current[1] = el;
+              }}
               className={`font-inter font-semibold text-sm py-4 ${
                 activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
               }`}
