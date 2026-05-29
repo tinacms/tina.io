@@ -27,16 +27,19 @@
       "headline": "Done",
       "items": [
         {
-          "headline": "☑︎ TinaCMS - Astro Live Editing (no React)",
+          "icon": "FaRegCheckCircle",
+          "heading": "TinaCMS - Astro Live Editing (no React)",
           "content": "TinaCMS live editing now works in Astro without pulling React into your site. Editors click any field to edit it inline in the admin while production ships zero editor code\n"
         },
         {
-          "headline": "☑︎ GitHub Enterprise Support",
+          "icon": "FaRegCheckCircle",
+          "heading": "GitHub Enterprise Support",
           "status": "",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
         },
         {
-          "headline": "☑︎ 2FA Authentication",
+          "icon": "FaRegCheckCircle",
+          "heading": "2FA Authentication",
           "status": "",
           "content": "Strengthens security for TinaCloud users by adding an extra layer of protection to prevent unauthorized access, ensuring safer content management.\n",
           "actions": [
@@ -50,7 +53,8 @@
           ]
         },
         {
-          "headline": "☑︎ Vercel Data Cache Support",
+          "icon": "FaRegCheckCircle",
+          "heading": "Vercel Data Cache Support",
           "status": "",
           "content": "Hosting on Vercel? This enhances TinaCMS performance by leveraging Vercel’s data caching to speed up content delivery, reduce API load, and improve editing responsiveness.\n",
           "actions": [
@@ -64,7 +68,8 @@
           ]
         },
         {
-          "headline": "☑︎ React 19 Support",
+          "icon": "FaRegCheckCircle",
+          "heading": "React 19 Support",
           "content": "Enhances TinaCMS with improved performance, more efficient rendering, and better compatibility with modern React features.\n",
           "actions": [
             {
@@ -84,7 +89,8 @@
           ]
         },
         {
-          "headline": "☑︎ Docs Starter Template",
+          "icon": "FaRegCheckCircle",
+          "heading": "Docs Starter Template",
           "content": "Since Tina works so well with documentation sites, we've built a best-of-breed TinaCMS + Docs starter template with Next.js.\n",
           "actions": [
             {
@@ -97,7 +103,8 @@
           ]
         },
         {
-          "headline": "☑︎ Build system - move from Commonjs to ESM",
+          "icon": "FaRegCheckCircle",
+          "heading": "Build system - move from Commonjs to ESM",
           "content": "We’re modernizing our build system by switching from CommonJS to ESM for better performance and compatibility.\n",
           "actions": [
             {
@@ -121,16 +128,19 @@
       "headline": "Working on it now",
       "items": [
         {
-          "headline": "□ TinaCloud Separate Content Repo Support",
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCloud Separate Content Repo Support",
           "status": "",
           "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate TinaCMS lock files.\n"
         },
         {
-          "headline": "□ Editorial Workflow Support for Media Manager",
+          "icon": "FaHourglassHalf",
+          "heading": "Editorial Workflow Support for Media Manager",
           "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n"
         },
         {
-          "headline": "□ TinaCloud Performance",
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCloud Performance",
           "content": "Improvements to our Content API - faster response times for content retrieval. This will improve static site build times for quicker deployments. For enterprise customers, we are adding data isolation, ensuring their data remains separate from other accounts for better security and scalability.\n",
           "actions": [
             {
@@ -143,7 +153,8 @@
           ]
         },
         {
-          "headline": "□ Improving Media Management UX",
+          "icon": "FaHourglassHalf",
+          "heading": "Improving Media Management UX",
           "content": "There are several media management improvements that we have on our list (image search, support for more media types, etc).\n",
           "actions": [
             {
@@ -156,7 +167,8 @@
           ]
         },
         {
-          "headline": "□ Content Changes with GitHub Actions",
+          "icon": "FaHourglassHalf",
+          "heading": "Content Changes with GitHub Actions",
           "content": "We're adding a public GitHub Action for querying and editing your content. One of the use cases for this would be using GitHub actions to periodically use AI to find content in your project, e.g. documentation.\n",
           "actions": [
             {
@@ -170,7 +182,8 @@
           ]
         },
         {
-          "headline": "□ TinaCMS v4",
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCMS v4",
           "content": "We're reworking the foundation of TinaCMS so more parts can be customised or replaced without forking the project. This will make TinaCMS easier to maintain and give teams more control over how the editor works.\n",
           "actions": [
             {
@@ -184,7 +197,8 @@
           ]
         },
         {
-          "headline": "□ TinaCMS - Telemetry (powered by PostHog)",
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCMS - Telemetry (powered by PostHog)",
           "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
           "actions": [
             {
@@ -197,7 +211,8 @@
           ]
         },
         {
-          "headline": "□ TinaCloud - CLI ",
+          "icon": "FaHourglassHalf",
+          "heading": "TinaCloud - CLI ",
           "content": "A first-party TinaCloud CLI lets developers manage projects, repos, branches, and more from the terminal.\n"
         }
       ],
@@ -210,7 +225,8 @@
       "headline": "Coming Soon",
       "items": [
         {
-          "headline": "Improved PR workflow",
+          "icon": "FaRegClock",
+          "heading": "Improved PR workflow",
           "status": "",
           "content": "We are making some improvements to Tina's Editorial Workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
           "actions": [
@@ -224,15 +240,18 @@
           ]
         },
         {
-          "headline": "Copilot Instructions",
+          "icon": "FaRegClock",
+          "heading": "Copilot Instructions",
           "content": "We're working on providing documentation for VibeCoding with TinaCMS to make it even easier to use.\n"
         },
         {
-          "headline": "TinaCloud - Project Insights",
+          "icon": "FaRegClock",
+          "heading": "TinaCloud - Project Insights",
           "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
         },
         {
-          "headline": "MCP Server",
+          "icon": "FaRegClock",
+          "heading": "MCP Server",
           "status": "",
           "content": "We're working on some ways to leverage AI in the content creation process.\n",
           "actions": [
@@ -246,7 +265,8 @@
           ]
         },
         {
-          "headline": "Swapping auth from AWS Cognito to WorkOS",
+          "icon": "FaRegClock",
+          "heading": "Swapping auth from AWS Cognito to WorkOS",
           "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n"
         }
       ],
