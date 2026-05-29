@@ -2,28 +2,6 @@ import { type Template, wrapFieldsWithMeta } from 'tinacms';
 import RoadmapIconSelector from '../../forms/RoadmapIconSelector';
 import { actionsButtonTemplate } from '../ActionButton/ActionsButton.template';
 
-// Rich-text headlines are stored as markdown strings in this JSON collection,
-// but in the Tina admin the form value is the parsed AST object. Extract a
-// plain-text label so the sidebar list stays readable for both shapes.
-const richTextToPlainText = (node: any): string => {
-  if (!node) {
-    return '';
-  }
-  if (typeof node === 'string') {
-    return node;
-  }
-  if (Array.isArray(node)) {
-    return node.map(richTextToPlainText).join('');
-  }
-  if (typeof node.text === 'string') {
-    return node.text;
-  }
-  if (node.children) {
-    return richTextToPlainText(node.children);
-  }
-  return '';
-};
-
 export const roadmapGridTemplate: Template = {
   label: 'Roadmap Grid',
   name: 'roadmapGrid',
@@ -44,7 +22,10 @@ export const roadmapGridTemplate: Template = {
       ui: {
         itemProps: (item) => ({
           key: item.id,
-          label: richTextToPlainText(item.heading) || 'Roadmap Item',
+          // `heading` is rich-text — its admin value is an AST object, so pull
+          // the first line of text for a readable sidebar label.
+          label:
+            item.heading?.children?.[0]?.children?.[0]?.text || 'Roadmap Item',
         }),
       },
       fields: [
