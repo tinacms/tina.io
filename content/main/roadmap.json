@@ -26,7 +26,7 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
-          "heading": "TinaCMS - Astro Live Editing (no React)\n",
+          "heading": "React-Free Astro Support\n",
           "content": "TinaCMS live editing now works in Astro without pulling React into your site. Editors click any field to edit it inline in the admin while production ships zero editor code\n"
         },
         {
