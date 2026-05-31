@@ -43,7 +43,16 @@
           "icon": "FaRegCheckCircle",
           "heading": "GitHub Enterprise Support\n",
           "status": "",
-          "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
+          "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n",
+          "actions": [
+            {
+              "label": "Documentation",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/docs/tinacloud/github-enterprise-integration"
+            }
+          ]
         },
         {
           "icon": "FaRegCheckCircle",
@@ -139,12 +148,31 @@
           "icon": "FaHourglassHalf",
           "heading": "TinaCloud Separate Content Repo Support\n",
           "status": "",
-          "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate TinaCMS lock files.\n"
+          "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate TinaCMS lock files.\n",
+          "actions": [
+            {
+              "label": "Documentation",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/docs/guides/separate-content-repo"
+            }
+          ]
         },
         {
           "icon": "FaHourglassHalf",
           "heading": "Editorial Workflow Support for Media Manager\n",
-          "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n"
+          "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7002"
+            }
+          ]
         },
         {
           "icon": "FaHourglassHalf",
@@ -221,7 +249,17 @@
         {
           "icon": "FaHourglassHalf",
           "heading": "TinaCloud - CLI\n",
-          "content": "A first-party TinaCloud CLI lets developers manage projects, repos, branches, and more from the terminal.\n"
+          "content": "A first-party TinaCloud CLI lets developers manage projects, repos, branches, and more from the terminal.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7000"
+            }
+          ]
         }
       ],
       "_template": "roadmapGrid"
@@ -250,7 +288,16 @@
         {
           "icon": "FaRegClock",
           "heading": "Copilot Instructions\n",
-          "content": "We're working on providing documentation for VibeCoding with TinaCMS to make it even easier to use.\n"
+          "content": "We're working on providing documentation for VibeCoding with TinaCMS to make it even easier to use.\n",
+          "actions": [
+            {
+              "label": "Documentation",
+              "icon": true,
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/docs/vibe-coding"
+            }
+          ]
         },
         {
           "icon": "FaRegClock",
@@ -275,7 +322,17 @@
         {
           "icon": "FaRegClock",
           "heading": "Swapping auth from AWS Cognito to WorkOS\n",
-          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n"
+          "content": "We’re updating our authentication to use WorkOS, making it simpler and more reliable to manage user access.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/7001"
+            }
+          ]
         }
       ],
       "options": {
