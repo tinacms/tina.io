@@ -1,7 +1,5 @@
-/** biome-ignore-all lint/correctness/useJsxKeyInIterable: <TODO> */
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: Highlight tokenizes deterministically; index is a stable key. */
 import { Highlight, Prism as rootPrism, themes } from 'prism-react-renderer';
-// biome-ignore lint/correctness/noUnusedImports: <TODO>
-import React from 'react';
 
 (typeof global !== 'undefined' ? global : window).Prism = rootPrism;
 require('prismjs/components/prism-bash');
@@ -31,26 +29,35 @@ export const Prism = (props: {
             border: 'none',
             marginBottom: 0,
             borderRadius: '12px',
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word',
+            overflowWrap: 'anywhere',
           }}
         >
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => {
-                const tokenProps = getTokenProps({ token, key });
-                return (
-                  <span
-                    {...tokenProps}
-                    style={{
-                      ...tokenProps.style,
-                      fontFamily:
-                        'SourceCodePro-Regular, Monaco, Menlo, "Ubuntu Mono", Consolas, "source-code-pro", monospace',
-                      paddingRight: key === line.length - 1 ? '3em' : '0px',
-                    }}
-                  />
-                );
-              })}
-            </div>
-          ))}
+          {tokens.map((line, i) => {
+            const { key: _lineKey, ...lineProps } = getLineProps({ line });
+            return (
+              <div key={i} {...lineProps}>
+                {line.map((token, j) => {
+                  const { key: _tokenKey, ...tokenProps } = getTokenProps({
+                    token,
+                  });
+                  return (
+                    <span
+                      key={j}
+                      {...tokenProps}
+                      style={{
+                        ...tokenProps.style,
+                        fontFamily:
+                          'SourceCodePro-Regular, Monaco, Menlo, "Ubuntu Mono", Consolas, "source-code-pro", monospace',
+                        paddingRight: j === line.length - 1 ? '3em' : '0px',
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            );
+          })}
         </pre>
       )}
     </Highlight>

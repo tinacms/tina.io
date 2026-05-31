@@ -27,6 +27,10 @@
       "headline": "Done",
       "items": [
         {
+          "headline": "☑︎ TinaCMS - Astro Live Editing (no React)",
+          "content": "TinaCMS live editing now works in Astro without pulling React into your site. Editors click any field to edit it inline in the admin while production ships zero editor code\n"
+        },
+        {
           "headline": "☑︎ GitHub Enterprise Support",
           "status": "",
           "content": "TinaCloud now supports connecting to GitHub enterprise on-premise installations.\n"
@@ -80,8 +84,8 @@
           ]
         },
         {
-          "headline": "☑︎ Docs Template",
-          "content": "Since Tina works so well with documentation sites, we've built a best-of-breed Tina + Docs starter template.\n",
+          "headline": "☑︎ Docs Starter Template",
+          "content": "Since Tina works so well with documentation sites, we've built a best-of-breed TinaCMS + Docs starter template with Next.js.\n",
           "actions": [
             {
               "label": "TinaDocs",
@@ -116,6 +120,11 @@
     {
       "headline": "Working on it now",
       "items": [
+        {
+          "headline": "□ TinaCloud Separate Content Repo Support",
+          "status": "",
+          "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate TinaCMS lock files.\n"
+        },
         {
           "headline": "□ Editorial Workflow Support for Media Manager",
           "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n"
@@ -159,6 +168,37 @@
               "url": "https://github.com/tinacms/tinacms/issues/6156"
             }
           ]
+        },
+        {
+          "headline": "□ TinaCMS v4",
+          "content": "We're reworking the foundation of TinaCMS so more parts can be customised or replaced without forking the project. This will make TinaCMS easier to maintain and give teams more control over how the editor works.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/6782"
+            }
+          ]
+        },
+        {
+          "headline": "□ TinaCMS - Telemetry (powered by PostHog)",
+          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
+          "actions": [
+            {
+              "label": "PostHog 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://posthog.com/"
+            }
+          ]
+        },
+        {
+          "headline": "□ TinaCloud - CLI ",
+          "content": "A first-party TinaCloud CLI lets developers manage projects, repos, branches, and more from the terminal.\n"
         }
       ],
       "_template": "roadmapGrid"
@@ -190,19 +230,6 @@
         {
           "headline": "TinaCloud - Project Insights",
           "content": "We’re adding new analytics to the TinaCloud portal to help teams understand how their content is evolving. These insights show who is making changes, which files are being updated, and how activity trends over time — giving teams clearer visibility into their content workflows.\n"
-        },
-        {
-          "headline": "TinaCMS - Telemetry (powered by PostHog)",
-          "content": "We’re introducing optional telemetry powered by PostHog to better understand how users interact with TinaCMS. This data will help guide improvements to the platform while maintaining user privacy. Since TinaCMS is open source, all telemetry will be fully optional and configurable.\n",
-          "actions": [
-            {
-              "label": "PostHog 🔗",
-              "icon": false,
-              "variant": "default",
-              "size": "medium",
-              "url": "https://posthog.com/"
-            }
-          ]
         },
         {
           "headline": "MCP Server",

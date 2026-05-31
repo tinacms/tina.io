@@ -1,0 +1,58 @@
+{
+  "versionNumber": "3.8.0",
+  "dateReleased": "2026-05-12T00:39:07Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "✨ **Visual editing for Astro — without React.**",
+          "pull_request_number": "6771",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6771",
+          "commit_hash": "95758a0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/95758a0ad31ec96aa652f247211a769e82a37cbb",
+          "gitHubName": "wicksipedia",
+          "gitHubLink": "https://github.com/wicksipedia"
+        },
+        {
+          "changesDescription": "Forward the editor's current branch to the TinaCloud assets-api on every cloud media call, and fix staging URL handling for multi-segment branches",
+          "pull_request_number": "6765",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6765",
+          "commit_hash": "9e7eba9",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/9e7eba9f290c935cd56569421de88b5adfac65d8",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Fix crash in `getFieldGroup` when editing deeply nested rich-text fields (3+ levels) with templates. The method used `findIndex` which always searched from the start of the path array, causing it to resolve the wrong \"children\"/\"props\" segments on recursive calls. Replaced with `indexOf` searching from the current position, and added a null guard for graceful fallback on malformed content.",
+          "pull_request_number": "6694",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6694",
+          "commit_hash": "723632b",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/723632b050b1e9502c46215fd6e8e548cc108ac0",
+          "gitHubName": "alhafoudh",
+          "gitHubLink": "https://github.com/alhafoudh"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Updated Dependencies",
+      "changesList": [
+        {
+          "changesDescription": "@tinacms/bridge@0.2.0",
+          "commit_hash": "95758a0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/95758a0"
+        },
+        {
+          "changesDescription": "@tinacms/search@1.2.14",
+          "commit_hash": "95758a0",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/95758a0"
+        }
+      ]
+    }
+  ]
+}
