@@ -74,7 +74,10 @@ const Roadmap = ({ data, last = false, index }) => {
           </div>
         )}
         {data.content && (
-          <div className='lg:max-w-prose' data-tina-field={tinaField(data, 'content')}>
+          <div
+            className="lg:max-w-prose"
+            data-tina-field={tinaField(data, 'content')}
+          >
             <TinaMarkdown content={data.content} />
           </div>
         )}
