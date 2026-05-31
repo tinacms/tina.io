@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import styled from 'styled-components';
-import { HitsWrapper } from '@/component/search/styles';
 import { Overlay } from '@/component/ui';
 
 export interface DocsNavProps {
@@ -98,22 +97,4 @@ const _DocsSidebarHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-`;
-
-const _DocsSidebarHeaderWrapper = styled.div`
-  flex: 0 0 auto;
-  background-color: transparent;
-  z-index: 500;
-  padding: 1rem 1rem 1.25rem 1rem;
-  position: relative;
-
-  ${HitsWrapper} {
-    right: auto;
-    left: 1.25rem;
-    margin-top: -1.625rem;
-  }
-
-  @media (min-width: 1600px) {
-    padding: 1rem 1.75rem 1.5rem 1.75rem;
-  }
 `;
