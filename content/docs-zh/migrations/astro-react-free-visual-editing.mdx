@@ -1,0 +1,223 @@
+---
+id: /docs/migrations/astro-react-free-visual-editing
+title: 将Astro迁移到无React的可视化编辑
+seo:
+  title: 将Astro可视化编辑从React迁移到@tinacms/astro
+  description: >-
+    从传统的基于React的Astro集成迁移到@tinacms/astro的逐步指南。涵盖依赖移除、文件删除和每页的连接更改。
+last_edited: '2026-05-26T00:00:00.000Z'
+---
+
+旧的Astro站点通过`@astrojs/react`和一个自定义的`client:tina`指令集成了TinaCMS可视化编辑：每个可编辑页面都为编辑器加载了一个React组件。这个要求已经不存在了：`@tinacms/astro`通过一个原生JS桥接和一个单行Astro集成运行相同的可视化编辑用户体验，该集成在编辑模式请求时自动注入连接。
+
+本页面将引导现有站点完成迁移。最终状态与[Astro入门模板](https://github.com/tinacms/tina-astro-starter)相匹配；对于任何不清楚的步骤，请与其进行比较。
+
+## 变化内容
+
+| | 之前 | 之后 |
+|---|---|---|
+| 依赖 | `@astrojs/react`, `react`, `react-dom`, `react-icons`, `@tanstack/react-virtual`, `tinacms` | `@tinacms/astro`, `@astrojs/node`（或其他适配器），`tinacms` |
+| 集成 | `react()` + 自定义 `addClientDirective({ name: 'tina', … })` | `tina()` 来自 `@tinacms/astro/integration` |
+| 页面连接 | `<HomePage client:tina />`（React组件，已加载） | `<TinaIsland name="page" wrapper={...} params={{ slug }} primary>` |
+| 数据加载器 | 手动编写的 `withOverlay()` + `tina-preview.ts` | `requestWithMetadata(client.queries.X(...))` |
+| 每个岛屿路由 | 手动编写的 `experimental_AstroContainer` 调用 | `experimental_createIslandRoute(islands)` |
+| 自定义MDX | `tina/pages/*.tsx`中的React组件 | 一个模式 `Template` + 一个 `.astro` 渲染器 |
+| 富文本渲染 | `<TinaMarkdown />` 来自 `tinacms/dist/rich-text`（React） | `<TinaMarkdown />` 来自 `@tinacms/astro/TinaMarkdown.astro` |
+
+## 1. 更新依赖
+
+移除React依赖，安装新包：
+
+```bash
+pnpm remove @astrojs/react react react-dom react-icons @tanstack/react-virtual
+pnpm add @tinacms/astro @astrojs/node
+```
+
+## 2. 连接集成
+
+在`astro.config.mjs`中：
+
+```js
+import { defineConfig } from 'astro/config';
+import tina from '@tinacms/astro/integration';
+import mdx from '@astrojs/mdx';
+import node from '@astrojs/node';
+
+export default defineConfig({
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
+  integrations: [mdx(), tina()],
+});
+```
+
+删除`react()`集成。如果你使用了自定义客户端指令（`addClientDirective({ name: 'tina', … })`），也删除它——它被新路径使用的`<TinaIsland>`组件替代，用于标记可编辑区域。
+
+`output: 'static'`也支持，只要你将可编辑区域包裹在`<TinaIsland>`中；请参阅可视化编辑指南中的[静态站点编辑](/docs/contextual-editing/astro/#static-site-editing)。
+
+## 3. 删除React粘合代码
+
+基于React的路径将编辑组件保存在`tina/pages/`中。这些不再被引用：
+
+```bash
+rm -rf tina/pages tina/components/IconComponent.tsx
+```
+
+如果你从旧的入门模板生成，你还将在仓库根目录下有一个`astro-tina-directive/`文件夹。删除它。
+
+## 4. 用`requestWithMetadata`替换自定义数据加载器助手
+
+基于React的路径需要四个手动编写的助手（`metadata.ts`、`tina-preview.ts`、`queries.ts`、`data.ts`）来计算表单ID、保持覆盖并标记内容源元数据。集成现在通过一个助手提供所有这些功能：
+
+```ts
+// src/lib/data.ts
+import { requestWithMetadata } from '@tinacms/astro/data';
+import client from '../../tina/__generated__/client';
+
+export const getPage = (slug: string) =>
+  requestWithMetadata(
+    client.queries.page({ relativePath: `${slug}.mdx` }),
+    { priority: 'primary' },
+  );
+
+export const getBlog = (slug: string) =>
+  requestWithMetadata(
+    client.queries.blog({ relativePath: `${slug}.mdx` }),
+    { priority: 'primary' },
+  );
+```
+
+你可以删除`src/lib/metadata.ts`、`src/lib/tina-preview.ts`和`src/lib/queries.ts`。`requestWithMetadata`从`{ query, variables }`中派生表单ID，从编辑模式中的请求范围存储中读取桥接的覆盖，标记`click-to-focus`所需的元数据`tinaField()`，并记录中间件将拼接到`<head>`中的表单负载。
+
+`priority: 'primary'`标志镜像`useTina()`的`experimental___selectFormByFormId`——它告诉编辑器在加载时打开此表单而不是布局级别的全局表单。
+
+## 5. 添加岛屿注册表
+
+创建`src/lib/islands.ts`。每个可编辑区域一个条目：
+
+```ts
+import type { IslandRegistry } from '@tinacms/astro/experimental';
+import type { QueryResult } from '@tinacms/astro/data';
+import type { PageQuery } from '../../tina/__generated__/types';
+import PageBody from '../components/islands/PageBody.astro';
+import { getPage } from './data';
+
+export const islands: IslandRegistry = {
+  page: {
+    fetch: (_request, params) => getPage(params.get('slug') ?? 'home'),
+    component: PageBody,
+    wrapper: { tag: 'main' },
+    propsFromData: (data) => ({
+      data: (data as QueryResult<PageQuery>).data?.page,
+    }),
+  },
+};
+```
+
+## 6. 添加每个岛屿的端点
+
+创建`src/pages/tina-island/[name].ts`。使用`experimental_createIslandRoute`，整个文件只有三行：
+
+```ts
+import type { APIRoute } from 'astro';
+import { experimental_createIslandRoute } from '@tinacms/astro/experimental';
+import { islands } from '../../lib/islands';
+
+export const prerender = false;
+export const ALL: APIRoute = experimental_createIslandRoute(islands);
+```
+
+## 7. 将渲染从React移到Astro
+
+对于每个`tina/pages/*.tsx`文件，在`src/components/islands/`下创建一个匹配的`.astro`组件：
+
+```diff
+- // tina/pages/HomePage.tsx
+- import { useTina } from 'tinacms/dist/react';
+- import { TinaMarkdown } from 'tinacms/dist/rich-text';
+- export default function HomePage(props) {
+-   const { data } = useTina(props);
+-   return <main><TinaMarkdown content={data.page.body} /></main>;
+- }
++ ---
++ // src/components/islands/PageBody.astro
++ import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
++ import { tinaField } from '@tinacms/astro/tina-field';
++ const { data } = Astro.props;
++ ---
++ {data?.body && (
++   <div data-tina-field={tinaField(data, 'body')}>
++     <TinaMarkdown content={data.body} />
++   </div>
++ )}
+```
+
+渲染形状是相同的。唯一的区别：没有`useTina()`；桥接通过重新获取此岛屿来处理重新渲染。
+
+> 从`/TinaMarkdown.astro`子路径导入`TinaMarkdown`，而不是从裸`@tinacms/astro`导入。裸包默认通过`types`条件解析为Astro不识别为可渲染组件的占位符。
+
+## 8. 更新每个页面
+
+页面从“使用`client:tina`渲染一个React组件”移动到“通过`requestWithMetadata`从Tina获取，然后包裹在`<TinaIsland>`中”：
+
+```diff
+- ---
+- import HomePage from '../../tina/pages/HomePage.tsx';
+- import client from '../../tina/__generated__/client';
+- const data = await client.queries.page({ relativePath: 'home.mdx' });
+- ---
+- <html>
+-   <body>
+-     <HomePage {...data} client:tina />
+-   </body>
+- </html>
++ ---
++ import Base from '../layouts/Base.astro';
++ import TinaIsland from '@tinacms/astro/TinaIsland.astro';
++ import PageBody from '../components/islands/PageBody.astro';
++ import { getPage } from '../lib/data';
++ import { islands } from '../lib/islands';
++
++ const slug = 'home';
++ const page = await getPage(slug);
++ const data = page.data?.page;
++ if (!data) return new Response('Not Found', { status: 404 });
++ ---
++ <Base title={data.seoTitle ?? ''} description="">
++   <TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }} primary>
++     <PageBody data={data} />
++   </TinaIsland>
++ </Base>
+```
+
+`wrapper`属性必须与注册表条目匹配（桥接会替换整个元素）。`primary`标记这是页面的主要可编辑区域。
+
+## 9. 从布局中删除手动桥接连接
+
+基于React的路径要求你编写一个`<head>`部分，发出表单负载的`<script>`标签并调用`@tinacms/astro/bridge`中的`init()`。**删除所有这些。** `tina()`集成的中间件现在缓冲每个HTML响应，并在编辑模式请求时，自动将桥接引导和每个表单负载的一个`<div data-tina-form>`拼接到`<head>`中。
+
+如果你的布局仍然从`@tinacms/astro/bridge`导入或映射一个`forms`属性，删除它们——它们不再通过任何地方传递。
+
+## 10. 转换自定义MDX组件
+
+每个`tina/pages/*.tsx`中的React MDX组件（通过`<TinaMarkdown components={…} />`传递）变为：
+
+* `src/components/mdx/<Name>.template.ts`中的一个`Template`（仅模式）
+* `src/components/mdx/<Name>.astro`中的一个渲染器
+
+请参阅[可视化编辑设置 → Astro → 自定义MDX嵌入](/docs/contextual-editing/astro/#custom-mdx-embeds)以获取完整模式。
+
+## 11. 验证
+
+运行`pnpm dev`，打开`/admin`，并编辑一个页面。你应该看到：
+
+* 字段更改在你输入时出现在公共预览中。
+* 点击一个`data-tina-field`标记的元素会聚焦侧边栏中的匹配字段。
+* 在管理界面中导航文档（例如`#/~/` → `#/~/about`）会更新侧边栏以匹配活动页面。
+
+如果编辑似乎无效，请在iframe上打开开发者工具并确认`<head>`包含一个`<div data-tina-form="…" hidden>`负载和一个`<script type="module" src="/admin/bridge.js">`。如果它们缺失，中间件没有运行——检查你是否确实将`tina()`添加到集成数组中，并且（对于预渲染路由）页面的可编辑区域是否包裹在`<TinaIsland>`中。
+
+## 另请参阅
+
+* [Astro设置指南](/docs/frameworks/astro/): 完整的集成起点
+* [可视化编辑设置 → Astro](/docs/contextual-editing/astro/): 桥接架构深入解析
+* [Astro入门模板](https://github.com/tinacms/tina-astro-starter): 参考实现

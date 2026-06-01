@@ -22,6 +22,13 @@ const tinaConfig = defineConfig({
   },
 
   build: { outputFolder: 'admin', publicFolder: 'public' },
+
+  repoProvider: {
+    defaultBranchName: 'main',
+    historyUrl: ({ relativePath, branch }) => ({
+      url: `https://github.com/tinacms/tina.io/commits/${branch}/${relativePath}`,
+    }),
+  },
 });
 
 export default tinaConfig;
