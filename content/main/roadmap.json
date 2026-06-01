@@ -18,6 +18,7 @@
           "_template": "actions"
         }
       ],
+      "buttonHorizontalAlignment": "left",
       "image": "/ai-llamas/llama_roadmap.png",
       "_template": "heroV2"
     },
