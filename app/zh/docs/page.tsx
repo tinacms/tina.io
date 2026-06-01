@@ -1,30 +1,30 @@
 import { notFound } from 'next/navigation';
-import client from 'tina/__generated__/client';
 import getTableOfContents from 'utils/docs/getTableOfContents';
-import { generateMetadata as generateMetadataDocs } from './[...slug]/page';
-import MainDocClient from './doc-client';
+import MainDocClient from 'components/Docs/MainDocClient';
+import { generateDocsMetadata } from 'utils/docs/generateDocsMetadata';
+import { getDocsDocument } from 'utils/docs/getDocsDocument';
 
-export async function generateMetadata() {
-  return generateMetadataDocs({ params: { slug: ['index'] } });
+export function generateMetadata() {
+  return generateDocsMetadata('zh', 'index');
 }
 
 export default async function DocsPage() {
-  const slug = 'index';
-
   try {
-    const results = await client.queries.docZh({ relativePath: `${slug}.mdx` });
-    const docData = results.data.docZh;
-    const PageTableOfContents = getTableOfContents(docData.body.children);
-
+    const { document, data, query, variables } = await getDocsDocument(
+      'zh',
+      'index',
+    );
+    const PageTableOfContents = getTableOfContents(document.body.children);
     return (
       <MainDocClient
         props={{
-          query: results.query,
-          variables: results.variables,
-          data: results.data,
+          query,
+          variables,
+          data,
           PageTableOfContents,
-          DocumentationData: docData,
+          DocumentationData: document,
         }}
+        locale="zh"
       />
     );
   } catch (_error) {

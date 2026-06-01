@@ -1,23 +1,9 @@
-import { getDocsNav, getLearnNav } from 'utils/docs/getDocProps';
-import DocsLayoutClient from './toc-layout-client';
+import DocsLayoutServer from 'components/Docs/DocsLayoutServer';
 
-export default async function DocsLayout({
+export default function DocsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Fetch navigation data that will be shared across all docs pages
-  const [navDocData, navLearnData] = await Promise.all([
-    getDocsNav(false, null, 'zh'),
-    getLearnNav(false, null, 'zh'),
-  ]);
-
-  return (
-    <DocsLayoutClient
-      NavigationDocsData={navDocData}
-      NavigationLearnData={navLearnData}
-    >
-      {children}
-    </DocsLayoutClient>
-  );
+  return <DocsLayoutServer locale="zh">{children}</DocsLayoutServer>;
 }
