@@ -1,5 +1,6 @@
 // components/blog/BlogType.ts
 import type { TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import type { Locale } from 'utils/i18n/localeRouteConfig';
 
 interface Sys {
   filename: string;
@@ -46,5 +47,5 @@ export interface BlogPageClientProps {
   data: { post: BlogPost };
   variables: any;
   query: string;
-  locale: import('utils/i18n/localeRouteConfig').Locale;
+  locale: Locale;
 }
