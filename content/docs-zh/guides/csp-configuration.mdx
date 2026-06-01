@@ -22,13 +22,14 @@ TinaCMS 需要访问其资产交付网络以加载图片：
 
 ### 连接来源
 
-TinaCMS 需要连接到多个服务以进行身份验证、内容交付和媒体上传：
+TinaCMS 需要连接到多个服务以进行身份验证、内容交付、媒体上传和产品分析：
 
 ```javascript
 "connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com;"
 ```
 
-* **identity.tinajs.io** - 身份验证和身份服务
+* **identity.tinajs.io** - 身份验证和身份服务 (v1)
+* **identity-v2.tinajs.io** - 身份验证和身份服务 (v2)。在 v1→v2 过渡期间，`identity.tinajs.io` 和 `identity-v2.tinajs.io` 都是必需的；管理 UI 根据端点调用两者。
 * **content.tinajs.io** - 内容 API 和数据层
 * **assets.tinajs.io** - 资产管理和交付
 * **s3.us-east-1.amazonaws.com** - 直接媒体上传。TinaCMS 媒体管理器在此主机上将文件 `PUT` 到预签名的 S3 URL。如果没有它，上传将在浏览器控制台中因 CSP `connect-src` 违规而失败。
@@ -152,7 +153,7 @@ add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: ass
 
 ## 自托管注意事项
 
-如果您使用 [自托管 TinaCMS 设置](/docs/self-hosted/overview/)，您可能需要调整这些 CSP 指令：
+如果您使用的是 [自托管 TinaCMS 设置](/docs/self-hosted/overview/)，您可能需要调整这些 CSP 指令：
 
 * 将 TinaCloud 域替换为您自己的后端 URL
 * 确保 `connect-src` 包含您的内容 API 端点
@@ -183,7 +184,7 @@ const baseCsp = [
 
 * **阻止的图片加载**：将域添加到 `img-src`
 * **阻止的 API 调用**：将域添加到 `connect-src`
-* **阻止的内联样式**：您可能需要为某些 TinaCMS 功能添加 `style-src 'unsafe-inline'`
+* **阻止的内联样式**：对于某些 TinaCMS 功能，您可能需要 `style-src 'unsafe-inline'`
 
 ### TinaCMS 编辑器未加载
 
