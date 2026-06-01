@@ -1,17 +1,87 @@
 name: PR Lighthouse Insights
 
+# Runs Lighthouse on demand, only when someone comments `/lighthouse` on a PR.
+# Previously ran on every successful preview deployment, which nobody reads —
+# this makes it opt-in so it doesn't burn Actions minutes on every build.
+#
+# Note: issue_comment workflows are always read from the DEFAULT branch (main),
+# so this only takes effect once merged. It still audits the commenting PR's
+# own preview (resolved from that PR's latest successful deployment).
+
 on:
-  deployment_status:
+  issue_comment:
     types: [created]
 
 jobs:
-  prLighthouseInsights:
-    name: Run PR Lighthouse Insights
-    if: github.event.deployment_status.environment == 'Preview' && github.event.deployment_status.state == 'success'
+  resolve:
+    name: Resolve /lighthouse command
+    # PR comments only · the /lighthouse command only · write-access users only.
+    if: >
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/lighthouse') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      deployments: read
+    outputs:
+      url: ${{ steps.find.outputs.url }}
+    steps:
+      - name: Acknowledge command with 👀
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes',
+            });
+
+      - name: Find this PR's preview URL
+        id: find
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            const { data: deps } = await github.rest.repos.listDeployments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: pr.head.sha,
+              per_page: 10,
+            });
+            for (const d of deps) {
+              const { data: st } = await github.rest.repos.listDeploymentStatuses({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                deployment_id: d.id,
+              });
+              const ok = st.find(
+                (s) => s.state === 'success' && (s.environment_url || s.target_url),
+              );
+              if (ok) {
+                core.setOutput('url', ok.environment_url || ok.target_url);
+                return;
+              }
+            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '⚠️ `/lighthouse`: no successful preview deployment found for this PR yet. Push a commit (or wait for the preview to finish) and try again.',
+            });
+            core.setFailed('No successful preview deployment found for this PR.');
+
+  audit:
+    needs: resolve
     uses: ./.github/workflows/template-lighthouse.yml
     permissions:
       pull-requests: write
     with:
-      url: ${{ github.event.deployment_status.target_url }}
+      url: ${{ needs.resolve.outputs.url }}
     secrets:
       GH_APP_KEY: ${{ secrets.GH_APP_KEY }}
