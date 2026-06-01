@@ -12,9 +12,9 @@ previous: ''
 
 TinaCMS 需要以下 CSP 指令才能正常运行：
 
-### 图像来源
+### 图片来源
 
-TinaCMS 需要访问其资产交付网络以加载图像：
+TinaCMS 需要访问其资产交付网络以加载图片：
 
 ```javascript
 "img-src 'self' data: assets.tina.io;"
@@ -32,15 +32,13 @@ TinaCMS 需要连接到多个服务以进行身份验证、内容交付、媒体
 * **identity-v2.tinajs.io** - 身份验证和身份服务 (v2)。在 v1→v2 过渡期间，`identity.tinajs.io` 和 `identity-v2.tinajs.io` 都是必需的；管理 UI 根据端点调用两者。
 * **content.tinajs.io** - 内容 API 和数据层
 * **assets.tinajs.io** - 资产管理和交付
-* **s3.us-east-1.amazonaws.com** - 直接媒体上传。TinaCMS 媒体管理器通过此主机上的预签名 S3 URL `PUT` 文件。没有它，上传将在浏览器控制台中因 CSP `connect-src` 违规而失败。
-* **us.i.posthog.com** - PostHog 事件摄取。TinaCMS 管理 UI 发出产品分析事件以帮助我们改进编辑器。没有它，您将在浏览器控制台中看到编辑器尝试发送的每个事件的 CSP `connect-src` 违规。
-* **us-assets.i.posthog.com** - PostHog 运行时资产（自动捕获、会话记录、功能标志）。由 `posthog-js` 懒加载；即使库本身已捆绑在管理 UI 中，也需要。
+* **s3.us-east-1.amazonaws.com** - 直接媒体上传。TinaCMS 媒体管理器在此主机上将文件 `PUT` 到预签名的 S3 URL。如果没有它，上传将在浏览器控制台中因 CSP `connect-src` 违规而失败。
 
 ## 实施示例
 
 ### Next.js 配置
 
-#### 应用路由器 (Next.js 13+)
+#### 应用路由 (Next.js 13+)
 
 在 `next.config.js` 中添加 CSP 头：
 
@@ -77,9 +75,9 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-#### 页面路由器
+#### 页面路由
 
-对于页面路由器，您也可以使用上述方法在 `next.config.js` 中配置 CSP。
+对于页面路由，您也可以使用上述方法在 `next.config.js` 中配置 CSP。
 
 或者，在中间件中设置 CSP 头：
 
@@ -137,7 +135,7 @@ export function middleware(request: NextRequest) {
 
 ### Apache 配置
 
-添加到您的 `.htaccess` 文件：
+添加到您的 `.htaccess` 文件中：
 
 ```apache
 <IfModule mod_headers.c>
@@ -147,7 +145,7 @@ export function middleware(request: NextRequest) {
 
 ### Nginx 配置
 
-添加到您的 nginx 配置：
+添加到您的 nginx 配置中：
 
 ```nginx
 add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: assets.tina.io; connect-src 'self' identity.tinajs.io identity-v2.tinajs.io content.tinajs.io assets.tinajs.io s3.us-east-1.amazonaws.com us.i.posthog.com us-assets.i.posthog.com; font-src 'self' data: fonts.gstatic.com; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';" always;
@@ -179,12 +177,12 @@ const baseCsp = [
 如果您在浏览器控制台中看到 CSP 违规错误：
 
 1. 检查错误消息以识别被阻止的资源
-2. 将适当的域添加到相关的 CSP 指令
+2. 将适当的域添加到相关的 CSP 指令中
 3. 彻底测试以确保 TinaCMS 功能正常
 
 常见违规：
 
-* **阻止的图像加载**：将域添加到 `img-src`
+* **阻止的图片加载**：将域添加到 `img-src`
 * **阻止的 API 调用**：将域添加到 `connect-src`
 * **阻止的内联样式**：对于某些 TinaCMS 功能，您可能需要 `style-src 'unsafe-inline'`
 
