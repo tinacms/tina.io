@@ -70,7 +70,6 @@ export const docAndBlogComponents: Components<{
   WideImage: { alt: string; src: string };
   // biome-ignore lint/complexity/noBannedTypes: <TODO>
   CustomFieldComponentDemo: {};
-  CloudinaryVideo: { src: string };
   Button: { link: string; label: string };
   ImageAndText: { docText: string; image: string; heading?: string };
   Summary: { heading: string; text: string };
@@ -175,7 +174,7 @@ export const docAndBlogComponents: Components<{
   },
   code: (props) => (
     <code
-      className="px-1 text-orange-500 py-0.5 border-y-stone-600 bg-white/50 rounded font-source-code-pro"
+      className="px-1 text-orange-500 p-0.5  bg-orange-500/5 rounded font-source-code-pro"
       {...props}
     />
   ),
@@ -696,8 +695,14 @@ export const docAndBlogComponents: Components<{
   code_block: ({ value, lang, children }) => {
     const [hasCopied, setHasCopied] = React.useState(false);
 
+    const source = children || value || '';
+
+    if (lang === 'mermaid') {
+      return <MermaidElement value={source} />;
+    }
+
     const handleCopy = () => {
-      navigator.clipboard.writeText(children || value || '');
+      navigator.clipboard.writeText(source);
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 2000);
     };
@@ -716,11 +721,7 @@ export const docAndBlogComponents: Components<{
           )}
           <span className="sr-only">Copy</span>
         </button>
-        <Prism
-          value={children || value || ''}
-          lang={lang || 'jsx'}
-          theme="nightOwl"
-        />
+        <Prism value={source} lang={lang || 'jsx'} theme="nightOwl" />
       </div>
     );
   },
@@ -762,12 +763,6 @@ export const docAndBlogComponents: Components<{
       <a href="https://codepen.io">CodePen</a>.
     </iframe>
   ),
-  CloudinaryVideo: ({ src }) => (
-    <video className="video my-6" autoPlay loop muted playsInline>
-      <source src={`${src}.webm`} type="video/webm" />
-      <source src={`${src}.mp4`} type="video/mp4" />
-    </video>
-  ),
   Button: ({ link, label }) => (
     <div className="w-full flex justify-start my-6">
       <a
@@ -787,14 +782,10 @@ function FormatHeaders({ children, level }) {
     children.props?.content.map((content) => content.text).join('') ?? children,
   );
 
-  const [currentUrl, setCurrentUrl] = useState(
-    typeof window !== 'undefined' ? window.location.pathname : '',
-  );
+  const [currentUrl, setCurrentUrl] = useState('');
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentUrl(window.location.pathname);
-    }
+    setCurrentUrl(window.location.pathname);
   }, []);
 
   const linkHref = `${currentUrl}#${id}`;

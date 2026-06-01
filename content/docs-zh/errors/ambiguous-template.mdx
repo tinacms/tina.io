@@ -1,17 +1,18 @@
 ---
+alias: ambiguous-template
 cmsUsageWarning: "https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/graphql/src/database/util.ts"
 title: 模糊模板
 last_edited: '2023-10-23T04:00:00.000Z'
 ---
 
-当一个集合使用模板而在文档中找不到模板键时，会发生此错误。这种情况在从字段迁移到模板或在林业迁移期间很常见。
+当一个集合使用模板且在文档中找不到模板键时，会发生此错误。这通常在从字段迁移到模板或在林业迁移期间发生。
 
 ## 如何修复
 
-可以通过在每个出现此错误的文档中添加一个根级别的\_template字段来修复此错误。目前没有任何方法可以自动迁移内容，必须手动完成或使用自定义脚本。
+可以通过在每个出现此错误的文档中添加一个根级字段\_template来修复此错误。目前没有任何方法可以自动迁移内容，必须手动完成或使用自定义脚本。
 
 例如：
-如果你有一个Markdown文件，你需要添加：
+如果你有一个Markdown文件，你可以添加：
 
 ```markdown
 ---

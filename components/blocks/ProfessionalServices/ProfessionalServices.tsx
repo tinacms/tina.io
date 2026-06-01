@@ -29,7 +29,7 @@ export function ProfessionalServices({
     <Container size="medium" className="flex flex-col gap-6">
       <div className="flex flex-col items-center gap-3.5">
         {eyebrow && (
-          <p className="text-center text-orange-400 text-lg font-semibold font-ibm-plex leading-7">
+          <p className="text-center text-orange-500 text-lg font-semibold font-ibm-plex leading-7">
             {eyebrow}
           </p>
         )}

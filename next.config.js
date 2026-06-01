@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const isStatic = process.env.EXPORT_MODE === 'static';
 
-const TINA_DOCS_URL = 'https://tina-docs-red.vercel.app';
+const TINA_DOCS_URL = 'https://tina-docs-zeta-one.vercel.app';
 const TINA_DOCS_LANDING_URL = 'https://tina-docs-landing.vercel.app';
 
 /**
@@ -38,12 +38,6 @@ const config = {
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        port: '',
-        pathname: '/forestry-demo/**',
-      },
       {
         protocol: 'https',
         hostname: 'assets.tina.io',

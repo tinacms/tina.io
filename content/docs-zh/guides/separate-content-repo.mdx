@@ -1,172 +1,145 @@
 ---
 id: /docs/guides/separate-content-repo
 title: 分离内容仓库
-last_edited: '2026-03-20T00:14:02.226Z'
+last_edited: '2026-05-08T10:42:49.525Z'
 next: ''
 previous: ''
 ---
 
 ## 介绍
 
-Tina支持从一个独立的Git仓库获取内容。通过这种方式，你可以继续在你的“网站仓库”中定义Tina配置，但文档将被外部保存到一个“内容仓库”中。
+TinaCloud 允许你将一个项目分成两个 GitHub 仓库：一个包含你的 Tina 架构和应用代码的 **生成器仓库**，以及一个包含你的编辑文件（markdown / MDX 内容和媒体）的 **内容仓库**。这两个仓库属于 **同一个** TinaCloud 项目；你不需要创建两个项目并链接它们。
+
+在本指南中：
+
+* **生成器仓库** - 包含你的 `tina/config.tsx`、你的 Next.js / Astro / Remix / 等应用代码，以及在 `tina/__generated__/` 下生成的工件。
+* **内容仓库** - 包含你的 `.md` / `.mdx` 文件和媒体。这里没有 Tina 配置。
 
 ### 为什么？
 
-你可能出于多种原因想要这样做，例如：
+你可能想要进行这种分离的几个原因：
 
-* 将你的网站代码与内容文件解耦，这样你的提交历史就不会混合内容更新和代码更新。
-* 避免必须给予TinaCloud对你网站代码的写入权限（只需给予对内容仓库的访问权限）。
-
-<WarningCallout
-  body={<>
-    在本指南中，我们将提到“网站仓库”和“内容仓库”。“网站仓库”是你实际运行网站的地方，而“内容仓库”是你存储Markdown内容的地方。
-  </>}
-/>
+* **解耦提交历史。** 编辑者每天提交几十个小的内容编辑；工程师提交一到两次。将它们保存在不同的仓库中可以保持每个仓库的历史记录可读。
+* **权限管理。** 编辑者获得内容仓库的写入权限，而无需接触应用代码。
+* **多站点复用。** 单个内容仓库可以为多个生成器提供支持（区域站点、面向合作伙伴的变体、文档 + 营销）。
 
 ### 要求
 
-* 你必须在本地机器上同时检出“内容仓库”和“网站仓库”。
-* 你必须在Tina配置中提供内容仓库的位置（下面会详细介绍）。
+* 一个 TinaCloud 账户。
+* 你控制的两个 GitHub 仓库，一个用于生成器，一个用于内容。
+* 在 **两个** 仓库的组织中安装 TinaCloud GitHub 应用（这些可能不同）。
 
-## 创建网站仓库
+## 工作原理
 
-我们将首先创建“网站仓库”。为此，我们创建了一个[基本模板](https://github.com/tinacms/separate-website-repo)，你可以克隆下来并跟随操作。该模板包含一个NextJS站点，以及已经配置好本地配置路径的`tina`配置。
+设置完成后，你的 TinaCloud 项目绑定到两个仓库。从编辑者的角度来看，仪表板没有任何变化；他们以往的方式编辑、保存和提交审核。在幕后：
 
-```bash
-git clone https://github.com/tinacms/separate-website-repo.git
+* **架构** 从生成器仓库的索引架构中加载。它从不从内容仓库读取。
+* **编辑分支和拉取请求** 通过 Tina 的编辑工作流在 **内容仓库** 上创建。
+* **媒体上传** 到 **内容仓库**。
+* **搜索索引重建** 在每次内容仓库推送时进行。
+* CLI 在本地开发和 CI 构建期间通过 `localContentPath` 从兄弟内容目录读取内容。
+
+## 设置一个新的 TinaCloud 项目
+
+TinaCloud 仪表板在创建项目流程中直接显示多仓库选项。
+
+1. 在 TinaCloud 仪表板中，点击 **创建项目**。
+2. 像往常一样选择你的 **生成器仓库**。
+3. 项目配置 | 打开 **使用单独的内容仓库**。
+4. 从列表中选择 **内容仓库**。（如果你的内容仓库位于不同的 GitHub 组织中，先在那里安装 TinaCloud GitHub 应用；选择器只会列出应用有访问权限的仓库。）
+5. 点击创建。
+
+![](/docs/seperate-content-repo-new-project.png)
+
+TinaCloud 会自动在两个仓库上安装必要的 GitHub webhook。
+
+> 内容仓库 **不需要** 包含 `tina/` 文件夹。仪表板将从头开始索引它。
+
+## 设置一个现有的 TinaCloud 项目
+
+如果你已经有一个单仓库的 TinaCloud 项目并想将其转换为多仓库：
+
+1. 打开项目的 **配置** 页面。
+2. 找到 **内容仓库** 部分。
+3. 打开 **使用单独的内容仓库**。
+4. 选择内容仓库。
+5. 确认。
+
+![](/docs/seperate-content-repo-existing-project.png)
+
+TinaCloud 将从头开始索引内容仓库的默认分支，并将后续的编辑工作流操作重新路由到它。你可以稍后关闭该开关以恢复到单仓库，尽管内容仓库的编辑分支将保留在内容仓库中，直到手动清理。
+
+## 配置你的生成器仓库
+
+在你的生成器仓库的 `tina/config.tsx` 中，添加 `localContentPath` 以便 CLI 在本地开发和 CI 构建期间找到你的内容文件：
+
+```ts
+import { defineConfig } from 'tinacms';
+
+export default defineConfig({
+  // ...你的现有配置
+  localContentPath: '../my-content-repo',
+});
 ```
 
-如果你不想从模板开始，请按照[快速入门指南创建TinaCMS项目](https://tina.io/docs/setup-overview)。在此步骤结束时，你应该具备以下重要内容：
+路径是相对于 `tina/` 文件夹解析的。最常见的布局是 **在共享父目录下的兄弟仓库**，两个仓库克隆到同一个文件夹中。
 
-1. 一个已设置TinaCMS的项目。
-2. 该项目已推送到GitHub。
-
-> 此阶段的项目不必在TinaCloud中设置和部署。这将在本指南的后续步骤中完成。
-
-## 创建内容仓库
-
-接下来我们将设置“内容仓库”。让我们从创建一个简单的`.mdx`文件开始。
-
-以下命令创建一个文件夹（`demo-content-repo`），在该文件夹中初始化Git，并在`content/pages`目录中添加一个初始的MDX文件。我们将在Tina配置中为`page`集合使用该目录。
-
-```bash
-tree .
-# .
-# └── separate-website-repo
-#
-# 2 directories, 0 files
-
-mkdir -p demo-content-repo/content/pages
-cd demo-content-repo
-git init
-mkdir tina
-touch ./content/pages/home.mdx 
-echo "Hello" >> ./content/pages/home.mdx
-cd ..
-
-tree .
-# .
-# ├── demo-content-repo
-# │   └── tina
-# │   └── content
-# │       └── pages
-# │           └── home.mdx
-# └── separate-website-repo
-# 
-# 5 directories, 1 file
-```
-
-<WarningCallout
-  body={<>
-    在继续之前，确保“内容仓库”已推送到GitHub。
-  </>}
-/>
+`localContentPath` 仅用于本地开发。TinaCloud 生产运行时通过 GitHub 从内容仓库读取内容，无论此设置如何；该字段由 `tinacms dev` 和 `tinacms build` 使用，以便 CLI 在内容文件未与生成器代码一起检出时定位它们。
 
 ## 本地开发
 
-在“网站仓库”中，安装项目的依赖并启动开发服务器以生成`tina-lock.json`和其他所需文件。
-
-首先，进入网站仓库
+将两个仓库作为磁盘上的兄弟仓库检出：
 
 ```bash
-cd separate-website-repo
+parent/
+├── my-generator-repo/
+│   └── tina/
+│       └── config.tsx
+└── my-content-repo/
+    └── content/
+        └── posts/
+            └── hello.mdx
 ```
 
-然后安装项目依赖
-
-```
-yarn install
-yarn dev
-```
-
-## 编辑内容
-
-在开发服务器运行的情况下，打开你选择的浏览器并访问`http://localhost:3000/admin/index.html`。
-
-在这里，你可以在`tina/config.js`中为你的内容模型添加更多字段。要了解更多信息，请访问[内容建模文档](https://tina.io/docs/schema/)。
-
-## 在TinaCloud中部署内容仓库
-
-在本地和GitHub中创建内容仓库后，是时候在TinaCloud中创建它了。[此过程在以下指南中详细介绍。](https://tina.io/docs/tinacloud/dashboard/projects/)
-
-完成后，请注意以下两个令牌。你将在下一步中需要它们。
-
-1. 在项目“概览”标签中找到的客户端ID。
-2. 在项目“令牌”标签中找到的内容令牌。
-
-> 你可以将内容令牌限制在某些分支上。要了解更多信息，请访问[如何创建内容令牌的文档](https://tina.io/docs/tinacloud/dashboard/projects/#api-tokens)。
-
-## 在TinaCloud中部署网站仓库
-
-在本地和GitHub中创建网站仓库后，是时候在TinaCloud中创建它了。此过程与“内容仓库”相同。
-
-1. 在“网站仓库”中创建一个`.env`文件
-2. 使用上一步中从内容仓库的TinaCloud实例中检索到的令牌填写它
+从生成器仓库运行你的常规开发命令：
 
 ```bash
-cp .env.example .env
+pnpm dev   # 或 npm run dev / yarn dev
 ```
 
-当你运行`tinacms build`时，它将使用这些凭据连接到TinaCloud，而不是本地服务器。如果你在使用模板，我们已将此过程集成到`yarn build`命令中。
+Tina 的开发服务器将监视内容仓库的文件以及生成器的架构。在 `my-content-repo/content/posts/hello.mdx` 中编辑内容文件将热重载管理 UI；在 `my-generator-repo/tina/config.tsx` 中编辑将重新生成架构。生成的工件只会出现在 `my-generator-repo/tina/__generated__/` 中。
 
-最后要做的是记下在项目“概览”标签中找到的客户端ID令牌。你将在下一步中需要它。
+## 什么内容存放在哪里
 
-## 连接内容仓库
+|                    项目                   | 生成器仓库 | 内容仓库 |
+| :---------------------------------------: | :--------: | -------- |
+|         `tina/config.tsx` (架构)          |     ✅     | ❌        |
+|   `tina/__generated__/*` (构建输出)       |     ✅     | ❌        |
+|           `tina/tina-lock.json`           |     ✅     | ❌        |
+| 应用代码 (Next.js / Astro / 等)           |     ✅     | ❌        |
+|           `.md` / `.mdx` 内容             |     ❌     | ✅        |
+|        媒体 (图片、视频等)                |     ❌     | ✅        |
+| 从 Tina UI 的编辑分支 / PRs               |     ❌     | ✅        |
 
-现在“网站仓库”已在TinaCloud中创建：
+## 从旧的“两 TinaCloud 项目”模式迁移
 
-1. 获取上一步中从网站仓库的TinaCloud实例中检索到的客户端ID
-2. 在“内容仓库”中创建一个新的`tina/meta.json`文件。这是连接两者的关键。
+本指南的早期版本要求你创建 **两个独立的 TinaCloud 项目** 并通过 `tina/meta.json` 文件中的 `upstreamClientId` 连接它们。该模式不再是推荐的设置；一个具有两个仓库绑定的单一 TinaCloud 项目取代了它。
 
-```bash
-cd demo-content-repo
-touch tina/meta.json
-```
+如果你有一个遵循旧模式的现有设置，请按以下步骤迁移：
 
-然后将以下内容添加到其中：
-
-```
-{
-  "upstreamBranch": "main",
-  "upstreamClientId": "{{ website repo client ID }}"
-}
-```
-
-<WarningCallout
-  body={<>
-    以前的TinaCMS版本要求你在两个仓库中维护一个最新的`/tina`文件夹。现在已简化为一个`tina/meta.json`文件。如果你正在从旧版本迁移，请确保将TinaCloud中的仓库从“内容仓库”更新为“网站仓库”。
-  </>}
-/>
+1. 选择指向你的 **生成器仓库** 的项目。这是你将保留的项目。
+2. 打开该项目的设置，打开 **使用单独的内容仓库**，并选择你一直在使用的内容仓库。
+3. 更新生成器仓库中的 `.env`，使 `NEXT_PUBLIC_TINA_CLIENT_ID` 和 `TINA_TOKEN` 引用 **生成器项目** 的凭据（你可能已经在这样做）。
+4. 删除 **内容仓库** 的 TinaCloud 项目；它不再使用。
+5. 可选清理：从内容仓库中删除 `tina/meta.json` 文件；没有东西再读取它。你还可以从内容仓库中删除 `tina/__generated__/` 文件夹，如果你的先前设置将其提交在那里；这些工件现在只存在于生成器中。
 
 ## 路径配置注意事项
 
-在你的`tina/config.(ts/js)`中定义集合路径时，避免设置`path: ''`。因为Tina期望一个相对于文件夹的路径。使用空字符串`''`可能会导致在创建新文档时出现错误，因为Tina在保存时会添加一个`/`，这可能导致无效的GitHub路径和创建错误。
+在你的 `tina/config.(ts/js)` 中定义集合路径时，避免设置 `path: ''`。Tina 期望一个相对于文件夹的路径；空字符串可能导致在创建新文档时出现错误，因为 Tina 在保存时会添加一个 `/`，这可能会产生无效的 GitHub 路径。
 
 ## 静态网站生成器兼容性
 
-如果你使用的是NextJS以外的静态网站生成器（SSG），例如Astro。确保你的内容管道忽略“内容仓库”中的`tina/`目录。Tina的配置文件不是内容文件，这可能导致解析错误。
-
-以下是如何排除`tina/`目录的示例：
+如果你使用的是 Next.js 以外的静态网站生成器（如 Astro），请确保你的内容管道忽略 **生成器仓库** 内的 `tina/` 目录；Tina 的配置和生成文件不是内容文件，可能会在被内容集合拾取时导致解析错误。
 
 ```javascript
 export default defineCollection({
@@ -175,24 +148,25 @@ export default defineCollection({
 });
 ```
 
+如果你在最新的 tinacms 版本之前设置了多仓库，你的 **内容仓库** 可能还有一个陈旧的 `tina/` 文件夹，这是从前生成的工件写入的地方。可以安全删除；没有东西再读取它。
+
 ## 从内容仓库触发网站构建（可选）
 
-使用独立的内容仓库时，你可能希望内容更新（例如来自TinaCMS UI）自动触发你的网站构建。TinaCloud支持通过webhooks开箱即用地实现这一点。
+使用单独的内容仓库时，你可能希望内容更新（例如来自 Tina UI）自动触发网站的构建。TinaCloud 支持通过 webhooks 开箱即用地实现这一点。
 
-### 使用TinaCloud Webhooks（推荐）
+### 使用 TinaCloud Webhooks（推荐）
 
-TinaCloud可以配置为在内容更改提交时向webhook端点发送POST请求。这是触发网站重建的推荐方式。
+TinaCloud 可以配置为在提交内容更改时向 webhook 端点发送 POST 请求。这是触发网站重建的推荐方式。
 
-👉 查看[webhook功能](https://tina.io/docs/tinacloud/webhooks)以获取更多详细信息
+👉 查看 [webhook 功能](https://tina.io/docs/tinacloud/webhooks) 以获取更多详细信息。
 
-### 使用GitHub Actions触发构建
+### 使用 GitHub Actions 触发构建
 
-作为使用webhooks的替代方案，你可以使用GitHub Actions触发网站构建。\
-如果你的平台不支持构建webhooks，或者你希望对构建过程有更多控制，这将非常有用。
+作为使用 webhooks 的替代方案，你可以使用 GitHub Actions 触发网站构建。如果你的平台不支持构建 webhooks，或者你希望对构建过程有更多控制，这将非常有用。
 
 #### 示例工作流
 
-在你的内容仓库中创建一个工作流文件（例如`.github/workflows/trigger-website-build.yml`）：
+在你的内容仓库中创建一个工作流文件（例如 `.github/workflows/trigger-website-build.yml`）：
 
 ```yaml
 name: Trigger Website Build
@@ -233,5 +207,13 @@ jobs:
 
 此设置需要：
 
-* 一个具有访问两个仓库权限的GitHub应用
-* 在GitHub仓库设置中保存的令牌和应用密钥
+* 一个具有两个仓库访问权限的 GitHub 应用。
+* 在 GitHub 仓库设置中保存的令牌和应用密钥。
+
+## 故障排除
+
+* **在选择内容仓库时出现“GitHub 应用未安装在此仓库的组织上”**。TinaCloud GitHub 应用必须安装在拥有仓库的 *组织*（或用户账户）上。如果你的生成器和内容仓库位于不同的 GitHub 组织下，请分别在每个组织上安装应用。
+* **内容仓库的选择器缺少你期望看到的仓库。** GitHub 应用授予每个仓库的访问权限。打开相关组织上的 GitHub 应用设置，并授予你想使用的特定仓库的访问权限，然后刷新仪表板。
+* **升级后内容仓库中存在陈旧的 `tina/` 文件夹。** 升级前的构建将 `tina/__generated__/*` 和 `tina/tina-lock.json` 提交到内容仓库。新模型中没有东西更新或读取这些文件。建议在单次清理提交中从内容仓库中删除。
+* **内容仓库中的旧 `tina/meta.json` 文件。** 这是旧的两项目模式的连接器。不再使用；删除它。
+* **内容编辑未出现在构建中。** 确认生成器仓库的 `tina/config.tsx` 设置了 `localContentPath`，并且你已将内容仓库作为磁盘上的兄弟仓库检出。

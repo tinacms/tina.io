@@ -23,6 +23,10 @@
         {
           "label": "What's New in TinaCMS",
           "href": "/whats-new/tinacms"
+        },
+        {
+          "label": "Versions",
+          "href": "/versions"
         }
       ],
       "_template": "groupOfStringItems"

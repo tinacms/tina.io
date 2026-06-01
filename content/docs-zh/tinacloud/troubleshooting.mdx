@@ -21,34 +21,35 @@ previous: content/docs-zh/tinacloud/network-requirements.mdx
 
 ### 2. 如何解决 `The local GraphQL schema doesn't match the remote GraphQL schema` 错误？
 
-如果您在构建日志中收到此错误，意味着您部署站点中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
+如果您在构建日志中收到此错误，这意味着您部署的网站中的 `tina/tina-lock.json` 与 TinaCloud 中的版本不匹配。要解决此问题：
 
-1. 确保您的架构（从 `tina/config.ts` 生成）不包含任何变化的信息，如时间戳或随机文本
+1. 确保您的架构（从 `tina/config.ts` 生成）不包含任何变化的信息，例如时间戳或随机文本
 2. 确保您的项目中有最新版本的 `@tinacms/cli` 和 `tinacms`
 3. 在本地运行开发命令
 4. 提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库
 
-如果您在访问 TinaCMS 界面时收到此错误，可能是项目中 `tinacms` 和 `@tinacms/cli` 的版本不匹配所致。更新这两个依赖项到最新版本并在本地运行开发命令。提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库。
+如果您在访问 TinaCMS 界面时收到此错误，可能是项目中 `tinacms` 和 `@tinacms/cli` 的版本不匹配导致的。更新这两个依赖项到最新版本，并在本地运行开发命令。提交对 `tina/tina-lock.json` 的任何更改，并将其推送到 TinaCloud 中链接的 git 仓库。
 
-### 3. 如何解决由未索引分支引起的错误？
+### 3. 如何解决由未索引的分支引起的错误？
 
-如果您收到类似 `The specified branch, 'my-branch-name', has not been indexed by TinaCloud` 的错误，或根本没有看到任何分支被索引，请尝试以下操作：
+如果您收到类似 `The specified branch, 'my-branch-name', has not been indexed by TinaCloud` 的错误，或者看到没有分支被索引，请尝试以下操作：
 
-1. 验证默认分支上是否存在 `tina/config.ts` 配置文件
-2. 验证在传递给 `tina/config.ts` 中 defineConfig 的配置属性中指定了正确的分支。注意，此值可能在您的 CI 构建过程中设置为环境变量
-3. 验证分支是否存在于 GitHub 仓库中
-4. 将分支拉入您的 TinaCloud 项目。<Youtube embedSrc="https://youtube.com/embed/TatnNqKPKIQ?start=109" caption="" /> **视频：TinaCloud - 如何索引缺失的分支（3 分钟）**
-5. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，几分钟后错误应得到解决
-6. 确保 Tina 项目位于根目录中
+1. **确保 `tina/tina-lock.json` 存在并已提交到您的仓库。** 这是分支未被索引的最常见原因。`tina-lock.json` 文件是在您本地运行 `tinacms dev` 时生成的——它**不是**仅通过 `tinacms build` 生成的。运行 `tinacms dev`（或您的包装开发命令，如 `yarn dev`），然后提交并推送生成的 `tina/tina-lock.json` 文件。有关更多详细信息，请参阅[将 Tina 添加到现有站点](/docs/introduction/tina-init/)。
+2. 验证默认分支上是否存在 `tina/config.ts` 配置文件
+3. 验证在 `tina/config.ts` 中传递给 defineConfig 的配置属性中指定了正确的分支。请注意，此值可能在您的 CI 构建过程中设置为环境变量
+4. 验证分支是否存在于 GitHub 仓库中
+5. 将分支拉入您的 TinaCloud 项目。<Youtube embedSrc="https://youtube.com/embed/TatnNqKPKIQ?start=109" /> **视频：为什么 TinaCloud 与 GitHub 配合得如此好 | TinaCMS 数据层 | Eli Kent（3 分钟）**
+6. 您还可以通过在该分支的 `tina/tina-lock.json` 文件中进行空白更改、提交并推送到 GitHub 来强制 TinaCloud 重新索引分支。这将启动分支的索引，并且（几分钟后）错误应得到解决
+7. 确保 Tina 项目位于根目录中
 
 ### 4. 如何解决 `There was a problem saving your document` 错误？
 
-在不使用 [编辑工作流](/editorial-workflow) 的情况下使用 TinaCloud 时，您需要确保 [TinaCloud App](https://github.com/apps/tina-cloud-app) 能够提交到仓库的选定分支。
+在不使用[编辑工作流](/editorial-workflow)的情况下使用 TinaCloud 时，您需要确保 [TinaCloud 应用](https://github.com/apps/tina-cloud-app)能够提交到仓库的选定分支。
 
 如果不能，您将看到如下形式的错误：
 
 ```text
-Tina 在更新页面时捕获到错误：
+Tina 在更新页面时捕获了一个错误：
 
 错误：无法获取，错误：
     在 PUT 中出错，路径为 src/pages/some-page.md
@@ -58,17 +59,17 @@ Tina 在更新页面时捕获到错误：
 
 **视频：常见问题 - 使用 TinaCMS 绕过 GitHub 分支保护（3 分钟）**
 
-通常这种情况发生在您的主分支上有分支保护，而 TinaCloud 无法绕过它。在 2024 年 7 月之前，TinaCloud GitHub 应用具有仓库的管理员权限，可以绕过大多数仓库的这些规则。
+通常这种情况发生在您的主分支上有分支保护，而 TinaCloud 无法绕过它。在 2024 年 7 月之前，TinaCloud GitHub 应用对仓库拥有管理员权限，这使得它能够绕过大多数仓库的这些规则。
 
 要解决此问题，可以：
 
 * 从传统分支保护升级到分支规则集 - [https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)\
-  确保 TinaCloud 应用被允许绕过需要分支保护的规则
-* 启用 [编辑工作流](/editorial-workflow) 在分支上创建 PR
+  确保允许 TinaCloud 应用绕过需要分支保护的规则
+* 启用[编辑工作流](/editorial-workflow)以在分支上创建 PR
 
 ### 5. 如何解决 `Invalid or undefined branch` 错误？
 
-Tina 当前使用的分支无效或未定义。仔细检查是否选择了正确的分支，并且它确实存在。
+Tina 当前使用的分支无效或未定义。请仔细检查是否选择了正确的分支，并且该分支确实存在。
 
 您可以通过访问 `https://app.tina.io/projects/<your-project-id>/configuration` 查看 TinaCloud 已索引的分支。
 
@@ -77,7 +78,7 @@ Tina 当前使用的分支无效或未定义。仔细检查是否选择了正确
 
 ### 6. 如何解决 `tina directory not pushed to git` 错误？
 
-`tina` 目录中的所有内容（除了 `__generated__` 文件夹）都需要推送到 git 仓库。确保将其添加到您的 git 仓库中（并确保您**没有**在 `.gitignore` 中列出它）。还要确保您尝试使用的分支具有 `tina` 目录并且是最新的。
+`tina` 目录中的所有内容（除了 `__generated__` 文件夹）都需要推送到 git 仓库。请确保将其添加到您的 git 仓库中（并确保您**没有**在 `.gitignore` 中列出它）。还要确保您尝试使用的分支具有 `tina` 目录并且是最新的。
 
 ### 7. 如何解决 `API URL is misformatted` 错误？
 
@@ -85,7 +86,7 @@ ContentAPI URL 格式不正确。请参阅我们的 [TinaCloud URL 格式指南]
 
 ### 8. 如何解决 `Invalid Site URL` 错误？
 
-登录 TinaCloud 时，您尝试登录的网站的 URL 会通过 `?origin=` URL 参数发送。当认证窗口的 `?origin=` URL 参数中指定的 URL 与您的 TinaCloud 站点 URL 中定义的不匹配时，会出现此错误。
+登录 TinaCloud 时，您尝试登录的网站的 URL 会通过 `?origin=` URL 参数发送。当身份验证窗口的 `?origin=` URL 参数中指定的 URL 与您的 TinaCloud 站点 URL 中定义的 URL 不匹配时，可能会发生此错误。
 
 要解决此问题，请确保您的 TinaCloud 站点 URL 设置中指定的 URL 之一与 `?origin=` URL 参数中显示的完全匹配。
 
@@ -95,8 +96,10 @@ ContentAPI URL 格式不正确。请参阅我们的 [TinaCloud URL 格式指南]
 ![TinaCloud 站点 URL 设置](/img/docs/introduction/tina-site-url-highlight.png)\
 **图：TinaCloud 站点 URL 设置**
 
-### 9. 如何解决在 VPN 或受限网络上 `Login attempt timed out` 错误？
+### 9. 如何在 VPN 或受限网络上解决 `Login attempt timed out` 错误？
 
-TinaCloud 登录流程会重定向通过多个外部域（AWS Cognito、API Gateway、GitHub），这些域可能会被您的 VPN 或防火墙阻止。如果重定向链中的任何域被阻止，登录将在完成前超时。
+TinaCloud 登录流程会通过几个可能被您的 VPN 或防火墙阻止的外部域（AWS Cognito、API Gateway、GitHub）进行重定向。如果重定向链中的任何域被阻止，登录将在完成前超时。
 
-要解决此问题，请确保您的网络允许出站流量到 [网络要求](/docs/tinacloud/network-requirements/) 页面上列出的所有域。仅将 `*.tina.io` 列入白名单是不够的——认证流程还需要访问 AWS 和 GitHub 域。
+要解决此问题，请确保您的网络允许对 [网络要求](/docs/tinacloud/network-requirements/)页面上列出的所有域的出站流量。仅将 `*.tina.io` 列入白名单是不够的——身份验证流程还需要访问 AWS 和 GitHub 域。
+
+要诊断哪个域被阻止，请打开浏览器的开发者工具（网络选项卡）并尝试登录。查找任何停滞或失败的请求。

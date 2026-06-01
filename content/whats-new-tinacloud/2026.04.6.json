@@ -1,0 +1,16 @@
+{
+  "versionNumber": "2026.04.6",
+  "dateReleased": "2026-04-30T01:08:16Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix: drop content-api DDB connectionTimeout — too tight under fan-out",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}
