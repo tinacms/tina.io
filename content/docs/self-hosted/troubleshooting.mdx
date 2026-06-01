@@ -7,63 +7,6 @@ previous: content/docs/self-hosted/querying-data.mdx
 
 This guide covers common issues and solutions when running a self-hosted TinaCMS instance.
 
-## Version Compatibility Issues
-
-### "Failed loading TinaCMS assets"
-
-This error typically appears when using incompatible package versions with the self-hosted template.
-
-<WarningCallout>
-  **Root Cause:** The `tina-self-hosted-demo` template is built for TinaCMS v2.x. TinaCMS v3.0.0 introduced a major [CommonJS-to-ESM migration](https://github.com/tinacms/tinacms/pull/5982) that breaks admin asset loading in the current template setup.
-</WarningCallout>
-
-**Symptoms:**
-- Error message "Failed loading TinaCMS assets" in `/admin`
-- Blank admin page or loading spinner that never completes
-- Console errors about module resolution
-
-**Solution:**
-
-Use the template's stable package versions:
-
-```json
-{
-  "@tinacms/cli": "^1.12.6",
-  "@tinacms/datalayer": "^1.4.3",
-  "tinacms": "^2.10.1",
-  "tinacms-authjs": "^5.0.9",
-  "tinacms-gitprovider-github": "^2.0.19",
-  "react": "^18.3.1",
-  "react-dom": "^18.3.1",
-  "next": "14.2.35"
-}
-```
-
-**Steps to fix:**
-
-1. Revert `package.json` to use the versions above
-2. Remove any `transpilePackages` configuration from `next.config.js`
-3. Clean install:
-   ```bash
-   rm -rf node_modules pnpm-lock.yaml package-lock.json
-   npm install  # or pnpm install, yarn install
-   ```
-4. Rebuild:
-   ```bash
-   npm run build
-   ```
-5. Redeploy to your hosting platform
-
-**Common mistakes to avoid:**
-- ❌ Manually upgrading to `tinacms@3.x` and `@tinacms/cli@2.x`
-- ❌ Copying package versions from the monorepo's `examples/tina-self-hosted-demo` (which uses `workspace:*` protocol for local development)
-- ❌ Following general upgrade guides without checking self-hosted template compatibility
-
-**Related Issues:**
-- [Issue #148](https://github.com/tinacms/tina-self-hosted-demo/issues/148) - Tracking v3.x compatibility
-
----
-
 ## Authentication & Authorization Issues
 
 ### "SyntaxError: The string did not match the expected pattern"
