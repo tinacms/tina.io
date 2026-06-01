@@ -1,9 +1,18 @@
-import DocsLayoutServer from 'components/Docs/DocsLayoutServer';
+import DocsLayoutClient from 'components/Docs/DocsLayoutClient';
+import { getDocsLayoutNav } from 'components/Docs/getDocsLayoutNav';
 
-export default function DocsLayout({
+export default async function DocsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <DocsLayoutServer locale="zh">{children}</DocsLayoutServer>;
+  const { navDocData, navLearnData } = await getDocsLayoutNav('zh');
+  return (
+    <DocsLayoutClient
+      NavigationDocsData={navDocData}
+      NavigationLearnData={navLearnData}
+    >
+      {children}
+    </DocsLayoutClient>
+  );
 }
