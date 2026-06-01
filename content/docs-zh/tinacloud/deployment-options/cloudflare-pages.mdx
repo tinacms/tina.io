@@ -1,0 +1,75 @@
+---
+id: /docs/tinacloud/deployment-options/cloudflare-pages
+title: 部署到 Cloudflare Pages
+last_edited: '2026-05-15T07:24:35.115Z'
+next: content/docs-zh/tinacloud/deployment-options/alibaba-cloud.mdx
+previous: content/docs-zh/tinacloud/deployment-options/github-pages.mdx
+---
+
+当您的网站以**静态导出**的形式部署时，TinaCMS 可以很好地与 Cloudflare Pages 配合使用：内容在构建时渲染，而通过 Tina 的客户端数据层，视觉编辑在浏览器中保持完全实时。
+
+## 为什么静态导出与 Tina 配合良好
+
+Tina 的实时编辑体验是客户端的。页面在构建时预渲染，您的客户端组件中的 `useTina()` 钩子会使用构建时的数据为访问者提供数据。
+
+当您打开 `/admin` 并编辑页面时，Tina 将实时数据替换到 React 树中，无需服务器。保存提交到 GitHub，这会触发新的 Cloudflare 构建，从而部署更新的静态站点。
+
+## 配置您的项目以进行静态导出
+
+在您的 `next.config.ts`（或 `next.config.js`）中，添加 `output: 'export'` 并禁用图像优化（静态导出不能使用 Next.js 图像优化器）：
+
+```ts
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true,
+    // 您的 remotePatterns 等。
+  },
+}
+
+export default nextConfig
+```
+
+<WarningCallout
+  body={<>
+    `next.config` 中的 `headers()` 和 `rewrites()` 函数在静态导出中不运行。将任何自定义头（CSP、X-Frame-Options 等）移到 `public/_headers` 文件中，Cloudflare Pages 会自动读取此文件。URL 重写需要通过 Cloudflare 的 [\_redirects](https://developers.cloudflare.com/pages/configuration/redirects/) 文件处理。
+  </>}
+/>
+
+## 移除仅服务器路由选项
+
+静态导出没有服务器，因此每个路由选项如 `export const revalidate`（ISR）或 `export const dynamic = 'force-dynamic'` 无效，应从您的路由段中移除。重建本身即作为您的“重新验证”。
+
+## Cloudflare Pages 构建设置
+
+在 Cloudflare 仪表板中，转到 **Workers & Pages** > **Create application** > **Pages** > **Connect to Git** 并选择您的存储库。
+
+配置构建：
+
+* **框架预设：** Next.js（静态 HTML 导出），或“无”
+* **构建命令：** `pnpm build`（或您的包管理器）
+* **构建输出目录：** `out`
+* **根目录：** 除非您的项目在子目录中，否则保持为空
+
+Cloudflare 会自动从您的 `pnpm-lock.yaml` 中检测到 pnpm。如果没有检测到，请添加环境变量 `PACKAGE_MANAGER=pnpm`。
+
+您的 `package.json` 构建脚本应在框架构建之前运行 TinaCMS，例如：
+
+```json
+{
+  "scripts": {
+    "build": "tinacms build && next build"
+  }
+}
+```
+
+## 环境变量
+
+`tinacms build` 在构建时需要您的 TinaCloud 凭证。在您的 Cloudflare Pages 项目中，添加以下内容到 **Settings** > **Environment variables**：
+
+* `NEXT_PUBLIC_TINA_CLIENT_ID`：您的 TinaCloud 客户端 ID
+* `TINA_TOKEN`：来自 TinaCloud 的内容令牌
+
+两者都可以在您的 [TinaCloud 项目](https://app.tina.io) 中找到。将它们添加到生产和预览环境中。

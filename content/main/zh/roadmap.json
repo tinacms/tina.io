@@ -21,7 +21,7 @@
       "headline": "最新动态",
       "items": [
         {
-          "headline": "GitHub企业版集成",
+          "heading": "GitHub企业版集成",
           "status": "已上线",
           "content": "TinaCloud现已支持与本地部署的GitHub企业版无缝对接。\n"
         }
@@ -39,22 +39,22 @@
       "headline": "未来展望",
       "items": [
         {
-          "headline": "媒体管理体验升级",
+          "heading": "媒体管理体验升级",
           "status": "开发中",
           "content": "我们正在规划多项媒体管理功能优化，包括图片智能搜索、支持更多媒体格式等。\n"
         },
         {
-          "headline": "AI智能工具",
+          "heading": "AI智能工具",
           "status": "即将发布",
           "content": "我们正在研发一系列AI辅助工具，帮助您更高效地创建和管理内容。\n"
         },
         {
-          "headline": "文档模板库",
+          "heading": "文档模板库",
           "status": "即将发布",
           "content": "基于Tina在文档网站中的出色表现，我们正在打造一套最佳实践模板，助您快速搭建文档站点。\n"
         },
         {
-          "headline": "PR工作流优化",
+          "heading": "PR工作流优化",
           "status": "即将发布",
           "content": "我们正在改进Tina的编辑工作流，未来您可以直接在CMS界面完成拉取请求的合并操作。\n",
           "actions": [
