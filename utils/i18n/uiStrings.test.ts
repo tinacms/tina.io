@@ -10,6 +10,11 @@ describe('getUiStrings', () => {
     expect(s.blogIndex.metaTitle(2)).toBe('TinaCMS Blog - Page 2');
   });
 
+  it('includes the page number even on page 1 (intentional — no special-casing)', () => {
+    const s = getUiStrings('en');
+    expect(s.blogIndex.metaTitle(1)).toBe('TinaCMS Blog - Page 1');
+  });
+
   it('returns Chinese strings', () => {
     const s = getUiStrings('zh');
     expect(s.docs.lastEdited).toBe('上次编辑');

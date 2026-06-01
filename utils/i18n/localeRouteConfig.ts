@@ -1,5 +1,6 @@
 // utils/i18n/localeRouteConfig.ts
-export type Locale = 'en' | 'zh';
+import type { SupportedLocales } from 'middleware';
+export type Locale = `${SupportedLocales}`;
 
 export interface LocaleRouteConfig {
   /** Directory globbed for static params, e.g. './content/docs/' */

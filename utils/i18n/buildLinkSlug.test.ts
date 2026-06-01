@@ -23,6 +23,10 @@ describe('buildDocLinkSlug', () => {
   it('returns empty string for a missing id', () => {
     expect(buildDocLinkSlug(undefined, 'en')).toBe('');
   });
+
+  it('does NOT trim /index for English (intentional — only zh trims it)', () => {
+    expect(buildDocLinkSlug('content/docs/index.mdx', 'en')).toBe('/docs/index');
+  });
 });
 
 describe('buildBlogLinkSlug', () => {
