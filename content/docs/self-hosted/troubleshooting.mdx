@@ -18,7 +18,7 @@ This authentication error usually indicates malformed or incorrect environment v
 1. **Verify all required environment variables are set:**
    ```env
    GITHUB_PERSONAL_ACCESS_TOKEN=ghp_xxxxxxxxxxxxx
-   NEXTAUTH_SECRET=<random-32-char-hex>
+   NEXTAUTH_SECRET=<random-string>
    KV_REST_API_URL=https://xxxxx.kv.vercel-storage.com
    KV_REST_API_TOKEN=xxxxxxxxxxxxx
    ```
@@ -29,8 +29,8 @@ This authentication error usually indicates malformed or incorrect environment v
    - Generate a new token at https://github.com/settings/personal-access-tokens/new
 
 3. **Verify NEXTAUTH_SECRET:**
-   - Should be a random string (generate with `openssl rand -hex 16`)
-   - Must be the same across all environments (local and production)
+   - Should be a random string (NextAuth recommends `openssl rand -base64 32`)
+   - Must be stable within an environment — rotating it invalidates existing sessions. Local and production can use different values.
 
 4. **Check Vercel KV credentials:**
    - `KV_REST_API_URL` and `KV_REST_API_TOKEN` should match exactly from your [Vercel KV dashboard](https://vercel.com/dashboard/stores)
@@ -130,7 +130,7 @@ The self-hosted template should use Vercel KV (Redis), not SQLite. If you see SQ
 
 1. Check `tina/database.ts` is using `RedisLevel` from `upstash-redis-level`, not `better-sqlite3`
 2. Ensure `package.json` doesn't include `better-sqlite3` as a dependency
-3. If you intentionally want to use SQLite, see [MongoDB setup guide](/docs/self-hosted/overview#using-mongodb-for-the-datalayer) for alternative database options
+3. If you want to use a different database adapter, see the [Self-Hosted Overview](/docs/self-hosted/overview) for the supported options
 
 ---
 
@@ -166,7 +166,7 @@ The self-hosted template should use Vercel KV (Redis), not SQLite. If you see SQ
    ```
    Order matters! TinaCMS must build before Next.js.
 
-3. **Check `.tina/__generated__` directory exists** after build
+3. **Check `tina/__generated__` directory exists** after build
 
 ### Content Not Saving to GitHub
 
@@ -252,7 +252,7 @@ If you're hitting Vercel function timeout limits:
 
 1. **Environment variables not set in production:**
    - Double-check all env vars are set in Vercel dashboard
-   - Note: `.env.local` is NOT read by TinaCMS (use `.env` for local dev)
+   - For local dev, copy the template's `.env.example` to `.env` (the file the template documents). If your env vars aren't being picked up, try `.env` rather than `.env.local` — the TinaCMS CLI's env loading does not always match Next.js's.
 
 2. **Different Node.js versions:**
    - Specify Node version in `package.json`:
@@ -267,7 +267,7 @@ If you're hitting Vercel function timeout limits:
 3. **Build output differences:**
    - Ensure `tinacms build` runs in production
    - Check build logs for warnings/errors
-   - Verify `.tina/__generated__` is committed or generated during build
+   - Verify `tina/__generated__` is committed or generated during build
 
 4. **URL configuration:**
    - Use relative URLs, not `localhost` references
@@ -275,9 +275,8 @@ If you're hitting Vercel function timeout limits:
 
 ### Works in Production, Fails Locally
 
-1. **Missing Vercel KV credentials in `.env`:**
-   - Copy from Vercel dashboard
-   - Ensure `.env` (not `.env.local`) is used
+1. **Missing Vercel KV credentials locally:**
+   - Copy from Vercel dashboard into the env file the template documents (`.env`, per the [starter guide](/docs/self-hosted/starters/nextjs-vercel#configure-the-development-environment))
 
 2. **Using `pnpm dev:prod` vs `pnpm dev`:**
    - `pnpm dev` uses local mode (no auth, filesystem only)
@@ -316,5 +315,5 @@ If you're still experiencing issues:
    node --version
 
    # Check build output
-   ls -la .tina/__generated__
+   ls -la tina/__generated__
    ```

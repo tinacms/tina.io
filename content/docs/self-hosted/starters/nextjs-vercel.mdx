@@ -128,7 +128,7 @@ This error usually indicates malformed environment variables. Check that:
 1. Environment variables are set exactly as shown in the [Setup Environment Variables](#setup-environment-variables) section
 2. `KV_REST_API_URL` and `KV_REST_API_TOKEN` match the values from your Vercel KV dashboard (no extra prefixes)
 3. `GITHUB_PERSONAL_ACCESS_TOKEN` is valid and has the correct permissions
-4. `NEXTAUTH_SECRET` is properly set (generate with `openssl rand -hex 16`)
+4. `NEXTAUTH_SECRET` is properly set (NextAuth recommends `openssl rand -base64 32`)
 5. On Vercel, `NEXTAUTH_URL` is not needed (it's auto-detected)
 
 ### Build Failures
