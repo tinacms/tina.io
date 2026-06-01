@@ -53,11 +53,10 @@ export async function getBlogPost(locale: Locale, slugPath: string) {
         post: null,
         query: res.query,
         variables: res.variables,
-        data: res.data,
       };
     }
     const post = buildPost(fetchedPost);
-    return { post, query: res.query, variables: res.variables, data: res.data };
+    return { post, query: res.query, variables: res.variables };
   }
 
   const res = await client.queries.getExpandedPostDocument(vars);
@@ -67,9 +66,8 @@ export async function getBlogPost(locale: Locale, slugPath: string) {
       post: null,
       query: res.query,
       variables: res.variables,
-      data: res.data,
     };
   }
   const post = buildPost(fetchedPost);
-  return { post, query: res.query, variables: res.variables, data: res.data };
+  return { post, query: res.query, variables: res.variables };
 }
