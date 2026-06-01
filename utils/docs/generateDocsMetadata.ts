@@ -13,7 +13,7 @@ export async function generateDocsMetadata(locale: Locale, slug: string) {
 
   if (!document.seo) {
     document.seo = {
-      __typename: 'DocSeo',
+      __typename: locale === 'zh' ? 'DocZhSeo' : 'DocSeo',
       canonicalUrl,
     };
   } else if (!document.seo.canonicalUrl) {
