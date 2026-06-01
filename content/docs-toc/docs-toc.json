@@ -45,18 +45,18 @@
               "title": "Add to an Existing Site",
               "items": [
                 {
-                  "title": "NextJS (App Router)",
+                  "title": "⭐ Astro",
+                  "slug": "content/docs/frameworks/astro.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "⭐ NextJS (App Router)",
                   "slug": "content/docs/frameworks/next/app-router.mdx",
                   "_template": "item"
                 },
                 {
                   "title": "NextJS (Pages Router)",
                   "slug": "content/docs/frameworks/next/pages-router.mdx",
-                  "_template": "item"
-                },
-                {
-                  "title": "Astro",
-                  "slug": "content/docs/frameworks/astro.mdx",
                   "_template": "item"
                 },
                 {
@@ -175,11 +175,6 @@
                   "title": "Object Fields",
                   "slug": "content/docs/reference/types/object.mdx",
                   "_template": "item"
-                },
-                {
-                  "title": "Custom List Rendering",
-                  "slug": "content/docs/extending-tina/customize-list-ui.mdx",
-                  "_template": "item"
                 }
               ],
               "_template": "items"
@@ -216,9 +211,25 @@
               "_template": "items"
             },
             {
-              "title": "React Components",
-              "slug": "content/docs/extending-tina/custom-field-components.mdx",
-              "_template": "item"
+              "title": "Form Customization",
+              "items": [
+                {
+                  "title": "React Components",
+                  "slug": "content/docs/extending-tina/custom-field-components.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Display-only Fields",
+                  "slug": "content/docs/reference/types/display-only.mdx",
+                  "_template": "item"
+                },
+                {
+                  "title": "Custom List Rendering",
+                  "slug": "content/docs/extending-tina/customize-list-ui.mdx",
+                  "_template": "item"
+                }
+              ],
+              "_template": "items"
             },
             {
               "title": "Plug-in Components",
@@ -360,6 +371,11 @@
               "_template": "item"
             },
             {
+              "title": "Visual Editing Setup (Astro)",
+              "slug": "content/docs/contextual-editing/astro.mdx",
+              "_template": "item"
+            },
+            {
               "title": "The Click-To-Edit API",
               "slug": "content/docs/contextual-editing/tinafield.mdx",
               "_template": "item"
@@ -367,6 +383,11 @@
             {
               "title": "Visual Editing Router",
               "slug": "content/docs/contextual-editing/router.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Migrating Astro to React-free Visual Editing",
+              "slug": "content/docs/migrations/astro-react-free-visual-editing.mdx",
               "_template": "item"
             }
           ],
@@ -589,6 +610,11 @@
             {
               "title": "GitHub Pages",
               "slug": "content/docs/tinacloud/deployment-options/github-pages.mdx",
+              "_template": "item"
+            },
+            {
+              "title": "Cloudflare Pages",
+              "slug": "content/docs/tinacloud/deployment-options/cloudflare-pages.mdx",
               "_template": "item"
             },
             {

@@ -128,8 +128,9 @@ export const SearchTabs = ({ query }: { query: string }) => {
           <nav className="relative flex gap-16 px-4">
             <button
               type="button"
-              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-              ref={(el) => (tabRefs.current[0] = el)}
+              ref={(el) => {
+                tabRefs.current[0] = el;
+              }}
               className={`font-inter text-lg ${
                 activeTab === 'DOCS' ? 'text-blue-800' : 'text-gray-500'
               }`}
@@ -139,8 +140,9 @@ export const SearchTabs = ({ query }: { query: string }) => {
             </button>
             <button
               type="button"
-              // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-              ref={(el) => (tabRefs.current[1] = el)}
+              ref={(el) => {
+                tabRefs.current[1] = el;
+              }}
               className={`font-inter text-lg ${
                 activeTab === 'BLOG' ? 'text-blue-800' : 'text-gray-500'
               }`}

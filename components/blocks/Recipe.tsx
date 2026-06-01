@@ -137,8 +137,9 @@ export const RecipeBlock = ({ data }) => {
             {instruction?.map((inst, idx) => (
               <div
                 key={inst.id}
-                // biome-ignore lint/suspicious/noAssignInExpressions: <TODO>
-                ref={(el) => (instructionRefs.current[idx] = el)}
+                ref={(el) => {
+                  instructionRefs.current[idx] = el;
+                }}
                 className={`instruction-item cursor-pointer p-4 border-gray-700 border-y bg-gray-800 text-white 
                 ${clickedInstruction === idx ? 'bg-slate-600' : ''}`}
                 onClick={() =>

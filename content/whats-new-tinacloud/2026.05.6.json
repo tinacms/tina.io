@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2026.05.6",
+  "dateReleased": "2026-05-17T23:04:27Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "ci(deps-bump): include patch versions and consolidate auto-bumps in one PR",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "remove cloudinary asset usage",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        },
+        {
+          "changesDescription": "Clone-and-walk search-index rebuild instead of GitHub API fan-out",
+          "gitHubName": "joshbermanssw",
+          "gitHubLink": "https://github.com/joshbermanssw"
+        }
+      ]
+    }
+  ]
+}

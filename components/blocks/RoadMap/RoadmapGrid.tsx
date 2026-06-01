@@ -1,10 +1,44 @@
+import type { IconType } from 'react-icons';
+import { FaHourglassHalf, FaRegCheckCircle, FaRegClock } from 'react-icons/fa';
+import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { BLOCK_HEADINGS_SIZE } from '@/component/styles/typography';
 import { Actions } from '../ActionButton/ActionsButton';
 import { Container } from '../Container';
 
+// The status icons the roadmap supports. Kept in sync with the picker in
+// components/forms/RoadmapIconSelector.tsx.
+const icons: Record<string, IconType> = {
+  FaRegCheckCircle,
+  FaHourglassHalf,
+  FaRegClock,
+};
+
+// Semantic colour per status icon — green for done, amber for in progress,
+// blue for upcoming. Falls back to brand blue for anything unexpected.
+const iconColorClasses: Record<string, string> = {
+  FaRegCheckCircle: 'text-success',
+  FaHourglassHalf: 'text-warning',
+  FaRegClock: 'text-blue-500',
+};
+
+// The headline uses a gradient `bg-clip-text` fill, which renders text (and a
+// strikethrough line) transparent. Restore a visible fill on struck text so
+// crossed-out items read clearly.
+const headlineComponents = {
+  p: (props: any) => <>{props.children}</>,
+  strikethrough: (props: any) => (
+    <s className="[-webkit-text-fill-color:#144696] decoration-blue-800">
+      {props.children}
+    </s>
+  ),
+};
+
 // biome-ignore lint/correctness/noUnusedFunctionParameters: <TODO>
 const Roadmap = ({ data, last = false, index }) => {
+  const Icon = data.icon ? icons[data.icon] : null;
+  const iconColor =
+    (data.icon && iconColorClasses[data.icon]) || 'text-blue-700';
   return (
     <div className="px-6 flex items-stretch w-full gap-8">
       <div className="flex-0 flex flex-col items-center">
@@ -20,14 +54,38 @@ const Roadmap = ({ data, last = false, index }) => {
         )}
       </div>
       <div className="flex-1 pt-10 pb-4 flex flex-col items-start gap-4">
-        {data.headline && (
-          <h3 className="text-2xl lg:text-3xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent">
-            {data.headline}
-          </h3>
+        {data.heading && (
+          <div className="flex items-start gap-3">
+            {Icon && (
+              <Icon
+                data-tina-field={tinaField(data, 'icon')}
+                className={`shrink-0 text-2xl lg:text-3xl ${iconColor} mt-px`}
+              />
+            )}
+            <h3
+              data-tina-field={tinaField(data, 'heading')}
+              className="text-2xl lg:text-3xl font-ibm-plex lg:leading-tight bg-linear-to-br from-blue-700/80 via-blue-900/90 to-blue-1000 bg-clip-text text-transparent"
+            >
+              <TinaMarkdown
+                content={data.heading}
+                components={headlineComponents}
+              />
+            </h3>
+          </div>
         )}
-        {data.content && <TinaMarkdown content={data.content} />}
+        {data.content && (
+          <div
+            className="lg:max-w-prose"
+            data-tina-field={tinaField(data, 'content')}
+          >
+            <TinaMarkdown content={data.content} />
+          </div>
+        )}
         {data.status && (
-          <span className="rounded-full w-auto grow-0 flex items-center font-ibm-plex whitespace-nowrap leading-snug text-blue-800 px-4 pt-[7px] pb-[5px] text-sm font-medium border border-blue-100 bg-linear-to-br from-white to-blue-50">
+          <span
+            data-tina-field={tinaField(data, 'status')}
+            className="rounded-full w-auto grow-0 flex items-center font-ibm-plex whitespace-nowrap leading-snug text-blue-800 px-4 pt-[7px] pb-[5px] text-sm font-medium border border-blue-100 bg-linear-to-br from-white to-blue-50"
+          >
             {data.status}
           </span>
         )}
@@ -40,8 +98,9 @@ const Roadmap = ({ data, last = false, index }) => {
 export function RoadmapGridBlock({ data, index }) {
   return (
     <section key={`roadmap-grid-${index}`} className={`w-full`}>
-      <Container width="narrow">
+      <Container width="medium">
         <h2
+          data-tina-field={tinaField(data, 'headline')}
           className={`${BLOCK_HEADINGS_SIZE} font-ibm-plex inline-block lg:leading-tight  mb-4`}
         >
           {data.headline}

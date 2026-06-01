@@ -1,0 +1,20 @@
+{
+  "versionNumber": "3.8.3",
+  "dateReleased": "2026-05-28T04:59:54Z",
+  "changesObject": [
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Aligned rich text editor typography class names with the actual font used and updated related references.",
+          "pull_request_number": "6947",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6947",
+          "commit_hash": "7be8175",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/7be81751a6b93f785d347e759e91f024bb12c452",
+          "gitHubName": "MirkaJuliet34",
+          "gitHubLink": "https://github.com/MirkaJuliet34"
+        }
+      ]
+    }
+  ]
+}

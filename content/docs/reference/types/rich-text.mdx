@@ -45,6 +45,13 @@ The rich-text field stores **markdown content** with a WYSIWYG interface, suppor
       name: "showFloatingToolbar",
       type: "boolean",
       default: "true"
+    },
+    {
+      description:
+        "Restricts which heading levels are offered in the editor UI. Accepts any subset of `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']`. When omitted, all levels are available.\n",
+      groupName: "overrides",
+      name: "headingLevels",
+      type: "HeadingLevel[]"
     }
   ]}
 />
@@ -80,6 +87,12 @@ the rich-text editor.
       description:
         "Whether the rich-text Floating Toolbar is enabled or disabled.\n",
       type: "boolean"
+    },
+    {
+      name: "headingLevels",
+      description:
+        "Restricts which heading levels are offered in the editor UI. Accepts any subset of `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']`. When omitted, all levels are available.\n",
+      type: "HeadingLevel[]"
     }
   ]}
 />
@@ -184,6 +197,26 @@ Change what you want to display and the order it is displayed in the editor
 ```
 
 ![](/docs/rich-text-override.png)
+
+### Limit the available heading levels
+
+Use `headingLevels` to control which headings editors can choose. Pass any subset of `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']`, in any order — the value is applied to the headings dropdown, the "Turn into" menu, the slash menu, and the markdown autoformat shortcuts (for example, typing `## ` for an h2). When omitted, all six levels are available.
+
+```js
+{
+  type: 'rich-text',
+  label: 'Excerpt',
+  name: 'excerpt',
+  overrides: {
+    toolbar: ['heading', 'bold', 'italic', 'link'],
+    headingLevels: ['h2'],
+  },
+}
+```
+
+> `headingLevels` was released in **tinacms@3.8.4**. Update your packages to use it.
+
+This option is UI-only — it limits what editors can insert going forward. Existing content that already uses a disallowed level is still rendered as-is. Passing an empty array (`headingLevels: []`) removes every heading level from the editor.
 
 ### Field with custom component (`mdx`)
 

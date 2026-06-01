@@ -1,0 +1,367 @@
+---
+id: /docs/contextual-editing/astro
+seo:
+  title: Visual Editing Setup for Astro
+  description: >-
+    Wire TinaCMS visual editing into an Astro site without React. Covers the
+    @tinacms/astro integration, the TinaIsland wrapper, requestWithMetadata,
+    the per-island refresh endpoint, click-to-edit markers, and custom MDX
+    embeds.
+title: Visual Editing Setup (Astro)
+alias: visual-editing-astro
+last_edited: '2026-05-26T00:00:00.000Z'
+next: content/docs/contextual-editing/tinafield.mdx
+previous: content/docs/contextual-editing/react.mdx
+---
+
+Astro's visual editing path doesn't use `useTina()`; that hook is React-specific. Instead, Astro sites use `@tinacms/astro`, a vanilla-Astro renderer plus a small postMessage bridge that loads only inside the editor iframe.
+
+The flow:
+
+1. The `tina()` integration's request-scoped middleware buffers each HTML response and, on edit-mode requests, splices the bridge bootstrap and one `<div data-tina-form>` payload per Tina query the page consumes into `<head>`.
+2. The bridge (loaded from `/admin/bridge.js`) reads those payloads, posts `open` to the parent admin window, and seeds an in-memory data store.
+3. As the editor types, the admin posts `updateData` back to the iframe. The bridge stores it.
+4. Each editable region in the page is wrapped in `<TinaIsland>`, which emits a `<… data-tina-island="/tina-island/<name>?<params>">` marker. On every store update, the bridge POSTs the current overlay to that endpoint.
+5. The endpoint re-renders the matching Astro component against the overlay data and returns an HTML fragment. The bridge swaps it into the live DOM.
+
+In production (no admin parent), the middleware injects nothing and `init()` exits immediately — production HTML is byte-identical to a Tina-free Astro app. (Exception: pages that use `<TinaIsland>` carry a one-line inline bootstrap so editing still works when the page is statically built.)
+
+<WarningCallout
+  body={<>
+    **You need an SSR adapter.** The per-island refresh endpoint (`/tina-island/[name]`)
+    runs at request time on every keystroke. Set `adapter` in `astro.config.mjs` to
+    `@astrojs/node`, `@astrojs/vercel`, `@astrojs/netlify`, or `@astrojs/cloudflare`.
+    `output: 'server'` is the simplest choice; `output: 'static'` also works as
+    long as you wrap editable regions in [`<TinaIsland>`](#static-site-editing).
+  </>}
+/>
+
+## Install
+
+```bash
+pnpm add @tinacms/astro tinacms
+pnpm add -D @tinacms/cli
+pnpm add @astrojs/node          # or @astrojs/vercel / netlify / cloudflare
+```
+
+If your collections use MDX bodies, add `@astrojs/mdx`. If you're self-hosting (no TinaCloud), add `@tinacms/datalayer`.
+
+## Wire the integration
+
+Add `tina()` to `astro.config.mjs` once. That single call wires the middleware (which resolves `Astro.locals.tinaEdit` and injects the bridge wiring on edit-mode responses) and stages the vanilla-JS bridge as a static asset at `/admin/bridge.js`.
+
+```js
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+import tina from '@tinacms/astro/integration';
+import { tinaAdminDevRedirect } from '@tinacms/astro/vite';
+import node from '@astrojs/node';
+import mdx from '@astrojs/mdx';
+
+export default defineConfig({
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
+  integrations: [mdx(), tina()],
+  vite: {
+    plugins: [tinaAdminDevRedirect()],
+  },
+});
+```
+
+`tinaAdminDevRedirect()` is a dev-only Vite plugin that redirects `/admin` and `/admin/` to `/admin/index.html` so the admin SPA is reachable from a bare URL during `astro dev`.
+
+There is no shared `<head>` wiring component, no `forms` prop to thread, no manual `init()` call. The integration handles all of it.
+
+## Data loaders — wrap every query with `requestWithMetadata`
+
+Each route's data loader calls the generated Tina client and pipes the result through `requestWithMetadata()`. That single call:
+
+- Hashes `{ query, variables }` into a stable form id the bridge uses to address the form.
+- Reads the bridge's overlay from request-scoped storage and swaps `data` for the unsaved overlay when the page is rendered inside the admin iframe.
+- Stamps the result with the metadata `tinaField()` needs for click-to-focus.
+- Records the form payload that the middleware will splice into `<head>` for edit-mode requests.
+
+```ts
+// src/lib/data.ts
+import { requestWithMetadata } from '@tinacms/astro/data';
+import client from '../../tina/__generated__/client';
+
+export const getConfig = () =>
+  requestWithMetadata(client.queries.config({ relativePath: 'config.json' }));
+
+export const getPage = (slug: string) =>
+  requestWithMetadata(
+    client.queries.page({ relativePath: `${slug}.mdx` }),
+    { priority: 'primary' },
+  );
+
+export const getBlog = (slug: string) =>
+  requestWithMetadata(
+    client.queries.blog({ relativePath: `${slug}.mdx` }),
+    { priority: 'primary' },
+  );
+```
+
+`priority: 'primary'` marks a form as the page's main document so the editor opens it on load instead of landing on a layout-level global (a header/footer config, say). It mirrors `useTina()`'s `experimental___selectFormByFormId`. On SSR pages the first `requestWithMetadata()` call is treated as primary automatically; pass it explicitly when you want to override.
+
+The returned object has `{ data, query, variables, id }` — `data` is what you render, and the hashed `id` is what the bridge uses to match overlays back to forms.
+
+## The island registry
+
+A small registry maps each editable region to a fetcher, a component, an outer wrapper, and a `propsFromData` projection. Adding a new editable region is one entry here; the dynamic route picks it up automatically.
+
+```ts
+// src/lib/islands.ts
+import type { IslandRegistry } from '@tinacms/astro/experimental';
+import type { QueryResult } from '@tinacms/astro/data';
+import type { BlogQuery, ConfigQuery, PageQuery } from '../../tina/__generated__/types';
+import PageBody from '../components/islands/PageBody.astro';
+import BlogBody from '../components/islands/BlogBody.astro';
+import Header from '../components/Header.astro';
+import { getBlog, getConfig, getPage } from './data';
+
+export const islands: IslandRegistry = {
+  page: {
+    fetch: (_request, params) => getPage(params.get('slug') ?? 'home'),
+    component: PageBody,
+    wrapper: { tag: 'main' },
+    propsFromData: (data) => ({
+      data: (data as QueryResult<PageQuery>).data?.page,
+    }),
+  },
+  blog: {
+    fetch: (_request, params) => getBlog(params.get('slug') ?? ''),
+    component: BlogBody,
+    wrapper: { tag: 'article' },
+    propsFromData: (data) => ({
+      data: (data as QueryResult<BlogQuery>).data?.blog,
+    }),
+  },
+  global: {
+    fetch: () => getConfig(),
+    component: Header,
+    wrapper: { tag: 'div' },
+    propsFromData: (data) => ({
+      config: (data as QueryResult<ConfigQuery>).data?.config,
+    }),
+  },
+};
+```
+
+## The per-island endpoint — one generic route
+
+The bridge POSTs to `/tina-island/<name>` on every keystroke. One dynamic route, plus `experimental_createIslandRoute()`, handles every entry in the registry:
+
+```ts
+// src/pages/tina-island/[name].ts
+import type { APIRoute } from 'astro';
+import { experimental_createIslandRoute } from '@tinacms/astro/experimental';
+import { islands } from '../../lib/islands';
+
+export const prerender = false;
+export const ALL: APIRoute = experimental_createIslandRoute(islands);
+```
+
+That's the only file the bridge needs. The helper enforces same-origin POST with the Tina-preview content-type, renders the registered component via Astro's container API, and wraps the output in the registered wrapper element — matching the page-side `<TinaIsland>` so the bridge can swap it in.
+
+## Use editable regions in pages
+
+Wrap each editable region in `<TinaIsland>`. The `wrapper` prop must match the registry entry's wrapper (the bridge swaps the whole element). Mark the page's main region `primary` so the admin opens that form on load.
+
+```astro
+---
+// src/pages/[...slug].astro
+import Base from '../layouts/Base.astro';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import PageBody from '../components/islands/PageBody.astro';
+import { getPage } from '../lib/data';
+import { islands } from '../lib/islands';
+
+const slug = (Astro.params.slug ?? '').toString();
+const page = await getPage(slug);
+const data = page.data?.page;
+if (!data) return new Response('Not Found', { status: 404 });
+---
+<Base title={data.seoTitle ?? ''} description="">
+  <TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }} primary>
+    <PageBody data={data} />
+  </TinaIsland>
+</Base>
+```
+
+## Add field-level click-to-edit
+
+`tinaField()` returns a string identifying which form field a DOM element corresponds to. Stamp it on any element you want clickable in the editor:
+
+```astro
+---
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { PageQuery } from '../../tina/__generated__/types';
+
+interface Props { data?: PageQuery['page'] | null; }
+const { data } = Astro.props;
+---
+{data && (
+  <>
+    <h1 data-tina-field={tinaField(data, 'seoTitle')}>{data.seoTitle}</h1>
+    {data.body && (
+      <div data-tina-field={tinaField(data, 'body')}>
+        <TinaMarkdown content={data.body} />
+      </div>
+    )}
+  </>
+)}
+```
+
+<WarningCallout
+  body={<>
+    Import `TinaMarkdown` from `@tinacms/astro/TinaMarkdown.astro` (the subpath),
+    not from the bare `@tinacms/astro`. Astro's type-checker reads the `.astro`
+    file directly via the subpath; the bare-package default resolves through the
+    `types` condition to a placeholder that Astro doesn't recognize as a
+    renderable component.
+  </>}
+/>
+
+Coarse-grained markers (the whole `body`) are usually right; clicking any rich-text node inside focuses the editor on that field. See [The Click-To-Edit API](/docs/contextual-editing/tinafield/) for the full helper reference.
+
+## Custom MDX embeds
+
+To render a custom component inside a rich-text body (for example, a `YouTubeEmbed`), author two files: a schema `Template` describing the editor UI, and an Astro renderer named the same as the template.
+
+**1. The schema `Template`:**
+
+```ts
+// src/components/mdx/YouTubeEmbed.template.ts
+import type { Template } from 'tinacms';
+
+export const youTubeEmbedTemplate: Template = {
+  name: 'YouTubeEmbed',
+  label: 'YouTube Embed',
+  fields: [
+    { name: 'videoId', label: 'YouTube video ID', type: 'string', required: true },
+  ],
+};
+```
+
+**2. The Astro renderer:**
+
+```astro
+---
+// src/components/mdx/YouTubeEmbed.astro
+const { videoId } = Astro.props;
+---
+<iframe
+  src={`https://www.youtube.com/embed/${videoId}`}
+  title="YouTube video player"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+  allowfullscreen
+/>
+```
+
+Register the template on the rich-text field's `templates` array:
+
+```ts
+// tina/collections/page.ts
+import { youTubeEmbedTemplate } from '../../src/components/mdx/YouTubeEmbed.template';
+
+export const PageCollection = {
+  // ...
+  fields: [
+    {
+      name: 'body',
+      type: 'rich-text',
+      isBody: true,
+      templates: [youTubeEmbedTemplate],
+    },
+  ],
+};
+```
+
+And register the renderer on the `<TinaMarkdown components={…}>` map:
+
+```astro
+---
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import type { CustomComponentsMap } from '@tinacms/astro/types';
+import YouTubeEmbed from '../mdx/YouTubeEmbed.astro';
+
+const { data } = Astro.props;
+const components: CustomComponentsMap = { YouTubeEmbed };
+---
+<TinaMarkdown content={data.body} components={components} />
+```
+
+> **The two `name` strings must match.** The template's `name: 'YouTubeEmbed'` and the components-map key `YouTubeEmbed` are how the renderer dispatches `mdxJsxFlowElement` nodes from the rich-text AST. A mismatch renders the embed as a visible placeholder so you spot missing registrations during development.
+
+## Default-tag overrides
+
+The same `components` map can override the default HTML tag for any rich-text node, useful for styling without forking the renderer:
+
+```ts
+const components: CustomComponentsMap = {
+  // Custom MDX components
+  YouTubeEmbed,
+  // Default-tag overrides
+  p: Paragraph,
+  h1: Heading1,
+  blockquote: BlockquoteTag,
+  code_block: CodeBlock,
+  a: Anchor,
+  img: Img,
+};
+```
+
+Supported override keys: `p`, `h1`–`h6`, `ul`, `ol`, `li`, `blockquote`, `lic`, `a`, `img`, `code_block`, `hr`, `break`. See the [`@tinacms/astro` README](https://github.com/tinacms/tinacms/blob/main/packages/@tinacms/astro/README.md) for the full node reference.
+
+CMS-supplied URLs in `a` and `img` nodes pass through `sanitizeHref` / `sanitizeImageSrc`, blocking `javascript:`, `data:`, `vbscript:`, and protocol-relative URLs. Both helpers are exposed on `@tinacms/astro/sanitize` for use in your own components.
+
+## Static-site editing
+
+`output: 'static'` is supported. The middleware described above only runs on on-demand-rendered routes, so on a prerendered page it never injects anything — instead, **`<TinaIsland>` emits a tiny in-iframe bootstrap script** that loads `/admin/bridge.js` only when the page is open inside the admin iframe. On boot the bridge fetches each island's `/tina-island/[name]` endpoint (still `prerender = false`, so the adapter renders it on demand) to pick up the page's form payloads, after which editing works exactly as in an SSR project.
+
+Requirements for static editing:
+
+- Wrap every editable region in `<TinaIsland>` with a registered island — that's both how the bridge re-renders regions and how the bootstrap gets onto the page.
+- Pass `primary` on the page's main `<TinaIsland>`. On a static page the bridge can't tell which island is "the page" automatically, so without this the editor may land on the multi-document picker.
+- Keep `export const prerender = false` on `src/pages/tina-island/[name].ts`.
+
+Trade-off: a page that uses `<TinaIsland>` ships that one-line inline bootstrap in production HTML — it's no longer byte-identical to a Tina-free Astro app. Pages without `<TinaIsland>` are unchanged.
+
+## Cross-origin admin
+
+If your admin is on a different origin (Codespaces, separate-domain self-hosted), set in your `.env`:
+
+```
+PUBLIC_TINA_ADMIN_ORIGIN=https://admin.example.com
+```
+
+Comma-separate to allow multiple (preview + prod). The middleware embeds it inline so the bridge validates inbound postMessages.
+
+## Sub-package exports
+
+Everything you need ships under `@tinacms/astro`:
+
+| Subpath | What it gives you |
+|---------|-------------------|
+| `@tinacms/astro` | `requestWithMetadata`, `tinaField`, `QueryResult`, and the rich-text types |
+| `@tinacms/astro/TinaMarkdown.astro` | `<TinaMarkdown content components />` — the rich-text renderer. Import from this subpath so Astro's check sees a real `.astro` component. |
+| `@tinacms/astro/TinaIsland.astro` | `<TinaIsland name wrapper params [primary] />` — marker wrapper for an editable region |
+| `@tinacms/astro/integration` | `tina()` integration — auto-wires the middleware and stages `/admin/bridge.js` |
+| `@tinacms/astro/middleware` | The middleware the integration auto-wires — exported in case you need to compose it manually |
+| `@tinacms/astro/data` | `requestWithMetadata`, `QueryResult` |
+| `@tinacms/astro/tina-field` | `tinaField()` helper for `data-tina-field` markers |
+| `@tinacms/astro/experimental` | `experimental_createIslandRoute()`, `IslandRegistry`, `IslandConfig` |
+| `@tinacms/astro/is-edit-mode` | `isEditMode(request)` — server-side admin-iframe detection |
+| `@tinacms/astro/types` | `TinaRichTextContent`, `CustomComponentsMap`, `TinaRichTextNode`, `MdxElement`, `TextElement` |
+| `@tinacms/astro/sanitize` | `sanitizeHref` / `sanitizeImageSrc` for CMS-supplied URLs |
+| `@tinacms/astro/bridge` | `init`, `refreshForms`, and the rest of `@tinacms/bridge` |
+| `@tinacms/astro/vite` | `tinaAdminDevRedirect()` — dev-only redirect from `/admin` to `/admin/index.html` |
+
+## See Also
+
+* [Astro Starter Template](https://github.com/tinacms/tina-astro-starter): reference implementation with all of the above wired up
+* [The Click-To-Edit API](/docs/contextual-editing/tinafield/): `tinaField()` semantics
+* [Visual Editing Router](/docs/contextual-editing/router/): wiring deep-link admin URLs to your routes
+* [Migrating from React-based Visual Editing](/docs/migrations/astro-react-free-visual-editing/)
