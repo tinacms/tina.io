@@ -25,7 +25,9 @@ describe('buildDocLinkSlug', () => {
   });
 
   it('does NOT trim /index for English (intentional — only zh trims it)', () => {
-    expect(buildDocLinkSlug('content/docs/index.mdx', 'en')).toBe('/docs/index');
+    expect(buildDocLinkSlug('content/docs/index.mdx', 'en')).toBe(
+      '/docs/index',
+    );
   });
 });
 

@@ -1,4 +1,3 @@
-// components/docs/MainDocClient.tsx
 'use client';
 
 import { TinaClient } from 'app/tina-client';

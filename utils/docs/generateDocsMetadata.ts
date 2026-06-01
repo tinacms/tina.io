@@ -1,7 +1,8 @@
 // utils/docs/generateDocsMetadata.ts
+
+import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
 import settings from '@/content/settings/config.json';
 import { getSeo } from '@/utils/metadata/getSeo';
-import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
 import { getDocsDocument } from './getDocsDocument';
 
 export async function generateDocsMetadata(locale: Locale, slug: string) {

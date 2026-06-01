@@ -1,8 +1,8 @@
-import { notFound } from 'next/navigation';
-import getTableOfContents from 'utils/docs/getTableOfContents';
 import MainDocClient from 'components/Docs/MainDocClient';
+import { notFound } from 'next/navigation';
 import { generateDocsMetadata } from 'utils/docs/generateDocsMetadata';
 import { getDocsDocument } from 'utils/docs/getDocsDocument';
+import getTableOfContents from 'utils/docs/getTableOfContents';
 
 export function generateMetadata() {
   return generateDocsMetadata('en', 'index');

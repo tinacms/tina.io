@@ -1,4 +1,3 @@
-// components/docs/DocsClient.tsx
 'use client';
 
 import { useDocsNavigation } from 'components/Docs/DocsNavigationContext';
@@ -12,10 +11,10 @@ import { DocsPagination } from 'components/ui';
 import { useCallback, useEffect, useState } from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { formatDate } from '@/utils/formatDate';
 import { buildDocLinkSlug } from 'utils/i18n/buildLinkSlug';
 import type { Locale } from 'utils/i18n/localeRouteConfig';
 import { getUiStrings } from 'utils/i18n/uiStrings';
+import { formatDate } from '@/utils/formatDate';
 import { useNavigationData } from './DocsLayoutClient';
 
 export default function DocsClient({

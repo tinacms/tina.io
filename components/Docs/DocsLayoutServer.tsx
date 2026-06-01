@@ -1,4 +1,3 @@
-// components/docs/DocsLayoutServer.tsx
 import { getDocsNav, getLearnNav } from 'utils/docs/getDocProps';
 import type { Locale } from 'utils/i18n/localeRouteConfig';
 import DocsLayoutClient from './DocsLayoutClient';

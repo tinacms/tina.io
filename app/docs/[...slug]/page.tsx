@@ -1,9 +1,9 @@
-import { notFound } from 'next/navigation';
-import getTableOfContents from 'utils/docs/getTableOfContents';
 import DocsClient from 'components/Docs/DocsClient';
+import { notFound } from 'next/navigation';
 import { generateDocsMetadata } from 'utils/docs/generateDocsMetadata';
 import { generateDocsStaticParams } from 'utils/docs/generateDocsStaticParams';
 import { getDocsDocument } from 'utils/docs/getDocsDocument';
+import getTableOfContents from 'utils/docs/getTableOfContents';
 
 export const dynamicParams = false;
 

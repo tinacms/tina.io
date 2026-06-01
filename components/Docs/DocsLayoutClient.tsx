@@ -1,4 +1,3 @@
-// components/docs/DocsLayoutClient.tsx
 'use client';
 
 import {
