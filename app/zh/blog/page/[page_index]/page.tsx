@@ -1,39 +1,30 @@
-import { glob } from 'fast-glob';
-import { notFound } from 'next/navigation';
-import client from 'tina/__generated__/client';
-import BlogIndexPageClient from './BlogIndexPageClient';
-
-const POSTS_PER_PAGE = 8;
+import BlogIndexPageClient from 'components/blog/BlogIndexPageClient';
+import {
+  getBlogIndexPosts,
+  getBlogIndexStaticParams,
+} from 'utils/blog/getBlogIndexPosts';
+import { getUiStrings } from 'utils/i18n/uiStrings';
 
 export const dynamicParams = false;
 
-export async function generateStaticParams() {
-  const contentDir = './content/blog-zh/';
-  const files = await glob(`${contentDir}**/*.mdx`);
-  const numFiles = Math.ceil(files.length / POSTS_PER_PAGE);
-  return Array.from(Array(numFiles).keys()).map((page) => ({
-    page_index: (page + 1).toString(),
-  }));
+export function generateStaticParams() {
+  return getBlogIndexStaticParams('zh');
 }
 
-export async function generateMetadata({
+export function generateMetadata({
   params,
 }: {
   params: { page_index: string };
 }) {
-  const pageIndex = params.page_index;
-  const title = `TinaCMS 博客 - 第 ${pageIndex} 页`;
-  const description =
-    '关注 TinaCMS 博客，获取内容管理和开发的技巧、指南和最新资讯';
-  const url = `https://tina.io/zh/blog/page/${pageIndex}`;
+  const pageIndex = parseInt(params.page_index, 10) || 1;
+  const strings = getUiStrings('zh');
+  const title = strings.blogIndex.metaTitle(pageIndex);
+  const description = strings.blogIndex.metaDescription;
+  const url = `https://tina.io/zh/blog/page/${params.page_index}`;
   return {
-    title: title,
-    description: description,
-    openGraph: {
-      title: title,
-      description: description,
-      url: url,
-    },
+    title,
+    description,
+    openGraph: { title, description, url },
   };
 }
 
@@ -42,44 +33,16 @@ export default async function BlogPaginationPage({
 }: {
   params: { page_index: string };
 }) {
-  const contentDir = './content/blog-zh/';
-  const posts = await glob(`${contentDir}**/*.mdx`);
-  const numPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-  const pageIndex = parseInt(params.page_index, 10) || 1;
-  const startIndex = (pageIndex - 1) * POSTS_PER_PAGE;
-
-  let postResponse = null;
-  try {
-    postResponse = await client.queries.postZhConnection({
-      first: posts.length,
-      sort: 'date',
-    });
-  } catch (err) {
-    console.error('Error fetching postConnection:', err);
-    notFound();
-  }
-
-  let reversedPosts = [];
-  try {
-    reversedPosts = postResponse?.data?.postZhConnection?.edges
-      ?.map((edge) => edge?.node)
-      ?.filter(Boolean)
-      ?.reverse();
-  } catch (err) {
-    console.error('Error processing posts:', err);
-    notFound();
-  }
-
-  const finalisedPostData = reversedPosts.slice(
-    startIndex,
-    startIndex + POSTS_PER_PAGE,
+  const { pageIndex, numPages, posts } = await getBlogIndexPosts(
+    'zh',
+    params.page_index,
   );
-
   return (
     <BlogIndexPageClient
       currentPageIndexNumber={pageIndex}
-      postsForPageIndex={finalisedPostData}
+      postsForPageIndex={posts}
       numberOfPages={numPages}
+      locale="zh"
     />
   );
 }
