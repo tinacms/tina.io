@@ -1,0 +1,43 @@
+{
+  "versionNumber": "3.9.0",
+  "dateReleased": "2026-06-03T02:27:22Z",
+  "changesObject": [
+    {
+      "changesTitle": "Minor Changes",
+      "changesList": [
+        {
+          "changesDescription": "chore: remove deprecated code",
+          "pull_request_number": "7009",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7009",
+          "commit_hash": "a8dd9af",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/a8dd9af056b17a8faeaa621bbf7722a62b396cf8",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        },
+        {
+          "changesDescription": "Support Tina media uploads and deletes in the editorial workflow on protected branches. Media changes now prompt for a branch, write to that branch, switch the editor to it after the media operation succeeds, and continue through indexing and pull request creation with the same workflow progress UI as content edits.",
+          "pull_request_number": "6902",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/6902",
+          "commit_hash": "b9d561f",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/b9d561fcea56185f0f146d2bdb1b510caab180d3",
+          "gitHubName": "18-th",
+          "gitHubLink": "https://github.com/18-th"
+        }
+      ]
+    },
+    {
+      "changesTitle": "Patch Changes",
+      "changesList": [
+        {
+          "changesDescription": "Remove deprecated GitClient.onSubmit alias",
+          "pull_request_number": "7010",
+          "pull_request_link": "https://github.com/tinacms/tinacms/pull/7010",
+          "commit_hash": "916bd43",
+          "commit_link": "https://github.com/tinacms/tinacms/commit/916bd43de1b563854fac65a74ecf04f946ebda56",
+          "gitHubName": "JackDevAU",
+          "gitHubLink": "https://github.com/JackDevAU"
+        }
+      ]
+    }
+  ]
+}
