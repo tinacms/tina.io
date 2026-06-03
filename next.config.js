@@ -146,6 +146,11 @@ const config = {
         destination: '/:locale',
         permanent: true,
       },
+      {
+        source: '/discord',
+        destination: 'https://discord.com/invite/zumN63Ybpf',
+        permanent: true,
+      },
       // existing redirects from JSON
       ...redirects.map((redirect) => ({
         source: redirect.source,
