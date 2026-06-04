@@ -6,7 +6,7 @@ next: ''
 previous: ''
 ---
 
-A good bug report is the single biggest factor in how quickly we can fix your issue — for both humans on our team and the AI tooling we use to triage. Five extra minutes of writing can turn "doesn't work" into something we can act on inside one session.
+A good bug report is the single biggest factor in how quickly we can fix your issue - for both humans on our team and the AI tooling we use to triage. Five extra minutes of writing can turn "doesn't work" into something we can act on inside one session.
 
 This page is the canonical checklist. The same list is enforced as the post guidelines in our Discord `#ask-for-help` channel and as the fields in our [GitHub bug report template](https://github.com/tinacms/tinacms/issues/new?template=bug-report.yml).
 
@@ -20,15 +20,15 @@ Copy-paste it, don't paraphrase. The exact string is what we grep for, and what 
 
 ### 2. Steps to reproduce
 
-What you clicked, in order. Even a numbered text list is enough — you don't need a video.
+What you clicked, in order. Even a numbered text list is enough - you don't need a video.
 
-**❌ Bad example — vague description we can't act on**
+**❌ Bad example - vague description we can't act on**
 
 ```
 The image insert is broken, it just crashes.
 ```
 
-**✅ Good example — numbered click-by-click sequence**
+**✅ Good example - numbered click-by-click sequence**
 
 ```
 1. Open TinaCMS admin
@@ -46,14 +46,14 @@ A single sentence each is fine. Tells us whether you've hit a bug or a misunders
 
 **Actual:** TinaCMS admin goes blank/white screen. Console shows `React error #31`.
 
-### 4. Your environment — including anything non-default
+### 4. Your environment - including anything non-default
 
 This is the one most people forget, and the one that most often points us straight at the root cause. Include:
 
 - Version of `tinacms` and `@tinacms/cli`
 - Framework (Next.js, Astro, Remix, etc.)
 - TinaCloud or self-hosted
-- **Anything non-default** — custom `MediaStore`, custom auth, custom adapters, self-hosted setup, etc.
+- **Anything non-default** - custom `MediaStore`, custom auth, custom adapters, self-hosted setup, etc.
 
 ### 5. A way for us to reproduce
 
@@ -64,11 +64,11 @@ A minimal reproduction repo we can clone and run is the gold standard. `npx crea
 If your issue involves the schema or TinaCloud, also include:
 
 - **Relevant sections of your schema file** (you don't have to paste the whole thing)
-- **Client ID** — for any TinaCloud-related issue
+- **Client ID** - for any TinaCloud-related issue
 
 ## A real-world example
 
-[Issue #6679 — React Error #31 when inserting image from Media Library with custom MediaStore](https://github.com/tinacms/tinacms/issues/6679) is what a good report looks like in practice. It includes:
+[Issue #6679 - React Error #31 when inserting image from Media Library with custom MediaStore](https://github.com/tinacms/tinacms/issues/6679) is what a good report looks like in practice. It includes:
 
 - The exact error string ("React Error #31: Objects are not valid as a React child")
 - A numbered list of steps to reproduce
@@ -80,8 +80,8 @@ That report was investigated, fixed, tested and merged in a single session becau
 
 ## Where to file
 
-- **Discord** — `#ask-for-help` in the [TinaCMS Discord server](https://discord.com/invite/zumN63Ybpf). Best for "is this a bug or am I doing something wrong?" questions, and for community help.
-- **GitHub Issues** — [tinacms/tinacms/issues](https://github.com/tinacms/tinacms/issues/new/choose) for confirmed bugs. Our GitHub issue template prompts you with the same checklist as this page.
+- **Discord** - `#ask-for-help` in the [TinaCMS Discord server](https://discord.com/invite/zumN63Ybpf). Best for "is this a bug or am I doing something wrong?" questions, and for community help.
+- **GitHub Issues** - [tinacms/tinacms/issues](https://github.com/tinacms/tinacms/issues/new/choose) for confirmed bugs. Our GitHub issue template prompts you with the same checklist as this page.
 
 ## Why this works
 
@@ -89,9 +89,9 @@ The format isn't arbitrary. Each item maps to something a human or AI agent does
 
 | Item | Why it matters |
 | --- | --- |
-| Exact error | The grep target — points at the right file and line within seconds |
+| Exact error | The grep target - points at the right file and line within seconds |
 | Repro steps | Tells us *when* the code path is taken |
-| Environment + custom adapters | The biggest source of "works for me but not for them" — calls out the variable to test |
+| Environment + custom adapters | The biggest source of "works for me but not for them" - calls out the variable to test |
 | Repro repo | Removes the gap between "we think we've fixed it" and "we've actually fixed it for you" |
 
 Five minutes of your writing saves hours of back-and-forth, and lets the agents we use triage your report instead of waiting on it.
