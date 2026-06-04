@@ -1,6 +1,6 @@
 ---
 title: Vibe Coding with TinaCMS
-last_edited: '2026-02-06T04:16:09.804Z'
+last_edited: '2026-06-04T05:10:51.675Z'
 next: content/docs/introduction/using-starter.mdx
 previous: content/docs/content-model-intro.mdx
 ---
@@ -21,15 +21,44 @@ AI works best when it lives in your editor. For seamless inline assistance, we r
 
 For advanced tasks, terminal tools like **GitHub Copilot CLI** are faster than chat interfaces.
 
-### 1.2 Use a TinaCMS starter kit
+### 1.2 Set up Node and Git
 
-AI works best when it has context. Having the template provides it with some code to model itself after. Use our [Tina Starter CLI tool](https://tina.io/docs/introduction/using-starter) or ask your assistant to do it for you with a prompt like the one below:
+Your machine needs 3 things to scaffold a TinaCMS site:
 
-```plaintext
-Please set up a TinaCMS starter template
-using the command: npx create-tina-app@latest
+* [Node.js](https://nodejs.org/en/download) (Long Term Support version) for JavaScript runtime
+* [Git](https://git-scm.com/install/) for version control
+* [pnpm](https://pnpm.io/) as package manager ([Do you know the best package manager for Node?](https://www.ssw.com.au/rules/best-package-manager-for-node))
 
-Use tina.io as documentation reference
+Install them via the links above, or paste this prompt into your AI assistant:
+
+```markdown
+1. Check whether Node.js, Git & pnpm are already installed
+
+2. If Node.js is missing, detect my OS and install Node.js LTS:
+   a. macOS / Linux: install via nvm
+   b. Windows: install via Chocolatey
+      
+3. Enable pnpm via corepack
+   
+4. If Git is missing, install it.
+
+5. Confirm everything by running `node -v`, `pnpm -v`, and `git --version`.
+```
+
+> **Heads up: This may take 10-15 minutes.**
+
+### 1.3 Scaffold TinaCMS site
+
+AI works best when it has context. Having the template provides it with some code to model itself after.
+
+Install via our [Tina Starter CLI tool](https://tina.io/docs/introduction/using-starter), or paste this prompt into your AI assistant:
+
+```markdown
+- Set up a TinaCMS site using the command: npx create-tina-app@latest
+
+- Use pnpm package manager
+
+- Use tina.io/docs as documentation reference
 ```
 
 ![](/setup.png)
@@ -39,12 +68,11 @@ The Tina Starter CLI tool will generate a new folder named after your project an
 
 Once installed, navigate to the created folder and explore the generated files so you understand how TinaCMS is wired together.
 
-
 Your AI assistant will reference this structure automatically in later prompts, so the more you know your starting point, the more precise your direction will be.
 
 > **Tip:** Check out [SSW's Rules to Better AI Development](https://www.ssw.com.au/rules/rules-to-better-ai-development/)
 
-### 1.3 Create an AGENTS.md File
+### 1.4 Create an AGENTS.md File
 
 Create a file named `AGENTS.md` in your root directory. This serves as a handbook for your AI assistant. Include high-level goals, tech stack details, and conventions.
 
