@@ -1,7 +1,7 @@
 ---
 id: /docs/frameworks/astro
 title: Astro + Tina Setup Guide
-last_edited: '2026-06-09T07:00:15.087Z'
+last_edited: '2026-06-09T23:46:33.998Z'
 next: content/docs/frameworks/hugo.mdx
 previous: content/docs/frameworks/next/pages-router.mdx
 ---
@@ -18,29 +18,35 @@ There are 2 ways to set up TinaCMS with Astro.
 * **Option 1: Scaffold from the starter template.** Best for new projects.
 * **Option 2: Add Tina to an existing Astro site.**
 
-### Option 1: Scaffold from the starter template (Recommended)
+### Option 1: Scaffold from the starter template 
 
-1\. Scaffold the project. It asks what to name your project, then creates the folder and installs everything.
+1\. Scaffold the project with `create-tina-app` command
 
 ```bash
-npx create-tina-app@latest -t tina-astro-starter -p pnpm
+npx create-tina-app@latest -t tina-astro-starter
 ```
 
-2\. Move into your new project (use the name you chose):
+2\. Select package manager (`PNPM` or `NPM`)
+
+* Read more: [Do you know the best package manager for Node?](https://www.ssw.com.au/rules/best-package-manager-for-node)
+
+3\. Enter project folder name
+
+4\. Move into your new project (use the name you chose):
 
 ```bash
 cd <your-project>
 ```
 
-3\. Start the dev server. This runs Tina and Astro together.
+5\. Start the dev server. This runs Tina and Astro together.
 
 ```bash
 pnpm dev
 ```
 
-4\. Open the editor at `http://localhost:4321/admin/index.html`. (4321 is Astro's default port.)
+6\. Open the visual editor at [http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html) and start editing. (4321 is Astro's default port.)
 
-### Option 2: Add Tina to an existing Astro site
+### Option 2: Add TinaCMS to an existing Astro site
 
 1\. `cd` into your existing Astro site:
 
@@ -57,8 +63,6 @@ npx @tinacms/cli@latest init
 3\. Choose `Astro/Other` when asked *"What framework are you using?"*
 
 4\. Choose the package manager your site uses
-
-* Read more: [Do you know the best package manager for Node?](https://www.ssw.com.au/rules/best-package-manager-for-node)
 
 5\. Choose `Yes` when asked *"Would you like to use TypeScript for your Tina configuration?"* (Recommended.)
 
