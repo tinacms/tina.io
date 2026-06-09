@@ -104,6 +104,11 @@
           "title": "FAQ",
           "slug": "content/docs/faq.mdx",
           "_template": "item"
+        },
+        {
+          "title": "Filing a Bug Report",
+          "slug": "content/docs/contributing/bug-reports.mdx",
+          "_template": "item"
         }
       ]
     },
