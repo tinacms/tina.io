@@ -1,7 +1,7 @@
 ---
 id: /docs/frameworks/astro
 title: Astro + TinaCMS Setup Guide
-last_edited: '2026-06-09T23:55:11.492Z'
+last_edited: '2026-06-10T00:26:56.822Z'
 next: content/docs/frameworks/hugo.mdx
 previous: content/docs/frameworks/next/pages-router.mdx
 ---
@@ -26,25 +26,21 @@ There are 2 ways to set up TinaCMS with Astro.
 npx create-tina-app@latest -t tina-astro-starter
 ```
 
-2\. Select package manager (`PNPM` or `NPM`)
+2\. Enter project folder name
 
-* Read more: [Do you know the best package manager for Node?](https://www.ssw.com.au/rules/best-package-manager-for-node)
-
-3\. Enter project folder name
-
-4\. Move into your new project (use the name you chose):
+3\. Move into your new project (use the name you chose):
 
 ```bash
 cd <your-project>
 ```
 
-5\. Start the dev server. This runs TinaCMS and Astro together.
+4\. Start the dev server. This runs TinaCMS and Astro together.
 
 ```bash
 pnpm dev
 ```
 
-6\. Open the visual editor at [http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html) and start editing. (4321 is Astro's default port.)
+5\. Open the visual editor at [http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html) and start editing. (4321 is Astro's default port.)
 
 ### Option 2: Add TinaCMS to an existing Astro site
 
