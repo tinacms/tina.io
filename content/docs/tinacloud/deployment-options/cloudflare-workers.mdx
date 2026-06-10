@@ -1,6 +1,6 @@
 ---
 title: Cloudflare Workers
-last_edited: '2026-06-10T00:30:00.810Z'
+last_edited: '2026-06-10T00:31:05.569Z'
 next: ''
 previous: ''
 ---
@@ -41,3 +41,9 @@ Deploy command: `npx wrangler deploy` (Astro) or `npx opennextjs-cloudflare depl
 
 * `PUBLIC_TINA_CLIENT_ID` - Your TinaCloud client ID 
 * `TINA_TOKEN` - The content token from TinaCloud | Tokens 
+
+<WarningCallout
+  body={<>
+    Workers keep build variables and runtime variables separate. If your site reads any of the mentioned variables during runtime, add them again under **Settings** | **Variables and Secrets**
+  </>}
+/>
