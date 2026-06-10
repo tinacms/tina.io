@@ -1,6 +1,6 @@
 ---
 title: Cloudflare Workers
-last_edited: '2026-06-10T00:31:05.569Z'
+last_edited: '2026-06-10T00:34:30.381Z'
 next: ''
 previous: ''
 ---
@@ -47,3 +47,13 @@ Deploy command: `npx wrangler deploy` (Astro) or `npx opennextjs-cloudflare depl
     Workers keep build variables and runtime variables separate. If your site reads any of the mentioned variables during runtime, add them again under **Settings** | **Variables and Secrets**
   </>}
 />
+
+## Finalising TinaCloud Setup
+
+Once you have your first deployment, Cloudflare will give you a default domain URL like `https://<site-name>.<account-name>.workers.dev`, make sure to set this as a Site URL inside your TinaCloud project's configuration! 
+
+## Troubleshooting
+
+1. “JavaScript heap out of memory” during the build
+
+The TinaCloud indexing step can exceed Node's default 2GB heap. Raise the limit by prefixing your build command or setting a build time environment variable `NODE_OPTIONS = —max-old-space-size=4096`
