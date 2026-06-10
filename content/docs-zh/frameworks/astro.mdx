@@ -1,71 +1,102 @@
 ---
 id: /docs/frameworks/astro
-title: Astro + Tina 设置指南
-last_edited: '2026-05-26T00:00:00.000Z'
+title: Astro + TinaCMS 设置指南
+last_edited: '2026-06-10T00:26:56.822Z'
 next: content/docs-zh/frameworks/hugo.mdx
 previous: content/docs-zh/frameworks/next/pages-router.mdx
 ---
 
 \
-TinaCMS 与 Astro 并行运行，具有**无需在页面树中使用 React 的一流可视化编辑功能**。该集成以 `@tinacms/astro`（一个原生 Astro 富文本渲染器加上一行 Astro 集成）和 `@tinacms/bridge`（一个仅在编辑器 iframe 内加载的小型 postMessage 客户端）的形式提供。
+TinaCMS 与 Astro 并行运行，具有**无需在页面树中使用 React 的一流可视化编辑功能**。集成以 `@tinacms/astro`（一个原生 Astro 富文本渲染器加上一行 Astro 集成）和 `@tinacms/bridge`（一个仅在编辑器 iframe 内加载的小型 postMessage 客户端）的形式提供。
 
 本指南将介绍本地设置、内容建模、运行 TinaCMS 和连接可视化编辑的过程。
 
 ## 入门
 
-### 1. 在您的 Astro 站点中初始化 TinaCMS
+有两种方式可以在 Astro 中设置 TinaCMS。
 
-在站点的根目录中运行：
+* **选项 1：从入门模板搭建。** 适合新项目。
+* **选项 2：将 TinaCMS 添加到现有的 Astro 站点。**
+
+### 选项 1：从入门模板搭建
+
+1\. 使用 `create-tina-app` 命令搭建项目
+
+```bash
+npx create-tina-app@latest -t tina-astro-starter
+```
+
+2\. 输入项目文件夹名称
+
+3\. 进入你的新项目（使用你选择的名称）：
+
+```bash
+cd <your-project>
+```
+
+4\. 启动开发服务器。这将同时运行 TinaCMS 和 Astro。
+
+```bash
+pnpm dev
+```
+
+5\. 在 [http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html) 打开可视化编辑器并开始编辑。（4321 是 Astro 的默认端口。）
+
+### 选项 2：将 TinaCMS 添加到现有的 Astro 站点
+
+1\. `cd` 到你现有的 Astro 站点：
+
+```bash
+cd <your-astro-site>
+```
+
+2\. 运行 TinaCMS `init` 命令：
 
 ```bash
 npx @tinacms/cli@latest init
 ```
 
-此命令将提示您进行一些设置问题。当被问及**公共资产目录**时，输入：
+3\. 当被问到*“你正在使用什么框架？”*时选择 `Astro/Other`
 
-```
-public
-```
+4\. 选择你站点使用的包管理器
 
-或者，从无 React 的入门模板开始：
+5\. 当被问到*“你想使用 TypeScript 来配置 Tina 吗？”*时选择 `Yes`（推荐）。
 
-```bash
-npx create-tina-app@latest --template tina-astro-starter
-```
+6\. 当被问到*“公共资产存储在哪里？”*时接受默认的 `public`（Astro 使用 `public`）。
 
-这将设置一个博客就绪的 [Astro 入门模板](https://github.com/tinacms/tina-astro-starter)，其中 TinaCMS 和可视化编辑已预配置，源代码树中没有 React。
+## 建模你的内容
 
-## 建模您的内容
-
-在 `tina/config.ts` 中定义您的内容模型。完整的模式参考请参见[内容建模](/docs/schema/)文档。
+在 `tina/config.ts` 中定义你的内容模型。完整的模式参考请参见[内容建模](/docs/schema/)文档。
 
 ## 运行 TinaCMS
 
-与 Astro 一起启动开发服务器：
+`cd` 到你的 TinaCMS + Astro 站点并运行：
 
 ```bash
 npx tinacms dev -c "astro dev"
 ```
 
-> 注意：可以在 `astro dev` 后添加 `--port 8080` 以指定自定义端口。
-
-运行后，导航到：
+这将在默认端口 **4321** 上启动 Astro。打开编辑器：
 
 ```
-http://localhost:<port>/admin/index.html
+http://localhost:4321/admin/index.html
 或
-/admin（如果使用 Tina Astro Starter，它会重定向到 /admin/index.html）
+http://localhost:4321/admin   （Tina Astro Starter 会将 /admin 重定向到 /admin/index.html）
 ```
+
+> **可选：自定义端口。** 要使用不同的端口，请将 `--port` 传递给内部命令，例如 `npx tinacms dev -c "astro dev --port 8080"`。然后在管理 URL 中使用该端口。
 
 > **提示：** 如果遇到错误，请查看[常见错误](/docs/forestry/common-errors)页面。
 
-您现在应该可以看到 Tina 管理界面，能够选择帖子、保存更改，并观察更新持久化到本地 markdown 文件中。
+你现在应该可以看到 TinaCMS 管理界面，能够选择一个帖子，保存更改，并观察更新持久化到本地 markdown 文件中。
 
 ![TinaCMS 管理界面](/img/hugo-tina-admin-screenshot.png)
 
 ## 启用可视化编辑
 
-可视化编辑（点击聚焦、编辑器输入时实时预览、并排管理 + 页面）在没有 React 的 Astro 上通过 `@tinacms/astro` 包工作。入门模板已预配置。对于现有站点：
+> **仅适用于现有站点。** 如果你使用了[入门模板](#getting-started)（选项 1），这已经设置好了。请跳过。
+
+可视化编辑（点击聚焦、编辑器输入时实时预览、并排的管理和页面）在 Astro 上无需 React 即可通过 `@tinacms/astro` 包实现。要将其添加到现有站点：
 
 ```bash
 pnpm add @tinacms/astro tinacms
@@ -86,11 +117,11 @@ export default defineConfig({
 });
 ```
 
-那单个 `tina()` 调用自动注入请求范围的中间件（在编辑模式响应中拼接桥接线）并将原生 JS 桥接作为静态文件阶段在 `/admin/bridge.js`。生产 HTML 与无 Tina 的 Astro 应用字节相同。
+那单个 `tina()` 调用会自动注入请求范围的中间件（在编辑模式响应中拼接桥接线）并将原生 JS 桥接作为静态文件放置在 `/admin/bridge.js`。生产 HTML 与无 Tina 的 Astro 应用字节相同。
 
-> **您需要一个 SSR 适配器。** 每个岛屿刷新端点（`/tina-island/[name]`）在请求时运行。使用 `@astrojs/node`、`@astrojs/vercel`、`@astrojs/netlify` 或 `@astrojs/cloudflare`。`output: 'server'` 是最简单的选择；`output: 'static'` 也可以，只要可编辑区域被 `<TinaIsland>`（包的标记组件）包裹，并且适配器可以提供按需的一个岛屿路由。
+> **你需要一个 SSR 适配器。** 每个岛屿的刷新端点（`/tina-island/[name]`）在请求时运行。使用 `@astrojs/node`、`@astrojs/vercel`、`@astrojs/netlify` 或 `@astrojs/cloudflare`。`output: 'server'` 是最简单的选择；`output: 'static'` 也可以，只要可编辑区域被 `<TinaIsland>`（包的标记组件）包裹，并且适配器可以服务于一个按需的岛屿路由。
 
-完整的连接（`requestWithMetadata()` 数据加载器、岛屿注册表、`<TinaIsland>` 包装器、`tinaField()` 标记、每个岛屿端点）记录在[可视化编辑设置 → Astro](/docs/contextual-editing/astro/)中。
+完整的连接（`requestWithMetadata()` 数据加载器、岛屿注册表、`<TinaIsland>` 包装器、`tinaField()` 标记、每个岛屿的端点）在[可视化编辑设置 → Astro](/docs/contextual-editing/astro/)中有记录。
 
 ![可视化编辑](/gif/blocks.gif)
 
@@ -98,25 +129,25 @@ export default defineConfig({
 
 入门模板和可视化编辑设置围绕四个活动部分组织：
 
-* **`src/lib/`**：`data.ts`（每个集合的获取器——每个调用生成的 Tina 客户端并通过 `@tinacms/astro/data` 中的 `requestWithMetadata()` 管道结果），`islands.ts`（由 `experimental_createIslandRoute` 消费的可编辑区域注册表）。
-* **`src/pages/tina-island/[name].ts`**：桥接在每次按键时 POST 的动态端点。一行：`experimental_createIslandRoute(islands)`。
+* **`src/lib/`**：`data.ts`（每个集合的获取器；每个调用生成的 Tina 客户端并通过 `@tinacms/astro/data` 中的 `requestWithMetadata()` 传递结果），`islands.ts`（由 `experimental_createIslandRoute` 消费的可编辑区域注册表）。
+* **`src/pages/tina-island/[name].ts`**：桥接在每次按键时 POST 的动态端点。一行代码：`experimental_createIslandRoute(islands)`。
 * **`src/components/islands/*.astro`**：纯 Astro 渲染器（用于富文本的 `<TinaMarkdown>`，用于点击编辑标记的 `tinaField()`）。
-* **`astro.config.mjs`**：注册 `tina()` 集成；中间件自动处理桥接注入——无需维护共享的 `<head>` 连接组件。
+* **`astro.config.mjs`**：注册 `tina()` 集成；中间件自动处理桥接注入，无需维护共享的 `<head>` 连接组件。
 
-有关完整架构，请参见[可视化编辑设置 → Astro](/docs/contextual-editing/astro/)。
+完整的架构请参见[可视化编辑设置 → Astro](/docs/contextual-editing/astro/)。
 
 ## 下一步
 
-* [可视化编辑设置 → Astro](/docs/contextual-editing/astro/)：集成、每个岛屿重新获取和自定义 MDX 嵌入
+* [可视化编辑设置 → Astro](/docs/contextual-editing/astro/)：集成、每个岛屿的重新获取和自定义 MDX 嵌入
 * [从基于 React 的可视化编辑迁移](/docs/migrations/astro-react-free-visual-editing/)：适用于旧 `client:tina` 路径上的现有 Astro 站点
 * [内容建模](/docs/schema/)
 * [数据获取](/docs/features/data-fetching/)
-* [部署您的站点](/docs/tinacloud)
+* [部署你的站点](/docs/tinacloud)
 
-有关更多详细信息，请访问官方 [TinaCMS 文档](https://tina.io/docs/)和 [Astro 文档](https://astro.build/docs/)。加入 [TinaCMS Discord](https://discord.gg/suurtdwX) 以获得社区支持。
+有关更多详细信息，请访问官方 [TinaCMS 文档](https://tina.io/docs/)和 [Astro 文档](https://astro.build/docs/)。加入 [TinaCMS Discord](https://discord.gg/suurtdwX) 获取社区支持。
 
 ## 另请参阅
 
-* [Next.js 设置指南](/docs/frameworks/next/app-router/) - 使用 Tina 与 Next.js
-* [Hugo 设置指南](/docs/frameworks/hugo/) - 使用 Tina 与 Hugo
-* [自托管选项](/docs/self-hosted/overview/) - 在您自己的基础设施上托管 Tina
+* [Next.js 设置指南](/docs/frameworks/next/app-router/) - 使用 TinaCMS 与 Next.js
+* [Hugo 设置指南](/docs/frameworks/hugo/) - 使用 TinaCMS 与 Hugo
+* [自托管选项](/docs/self-hosted/overview/) - 在你自己的基础设施上托管 TinaCMS
