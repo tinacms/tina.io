@@ -1,12 +1,5 @@
 name: PR Lighthouse Insights
 
-# Runs Lighthouse on demand, only when someone comments `/lighthouse` on a PR.
-# Previously ran on every successful preview deployment, which nobody reads —
-# this makes it opt-in so it doesn't burn Actions minutes on every build.
-#
-# Note: issue_comment workflows are always read from the DEFAULT branch (main),
-# so this only takes effect once merged. It still audits the commenting PR's
-# own preview (resolved from that PR's latest successful deployment).
 
 on:
   issue_comment:
