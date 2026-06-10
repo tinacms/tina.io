@@ -1,0 +1,59 @@
+---
+title: Cloudflare Workers
+last_edited: '2026-06-10T00:46:42.475Z'
+next: ''
+previous: ''
+---
+
+TinaCMS works with Cloudflare Workers when using git-connected builds. Every push to your production branch builds the site, including the `tinacms build` step, and deploys it to the Workers runtime.
+
+If your site is a fully static export, [Cloudflare Pages](/docs/tinacloud/deployment-options/cloudflare-pages) is the simpler option. Use Workers when your framework needs a server runtime (SSR routes, API endpoints, redirects,  etc.).
+
+## Add the Cloudflare Adapter
+
+Your starter needs to build for the Workers runtime
+
+**Astro:**
+
+```
+npx astro add cloudflare
+```
+
+Then make sure a `wrangler.jsonc` exists at the repo root and points at the build
+
+**Next.js**
+
+Use the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare) and follow its setup to generate the `open-next.config.ts` and `wrangler.jsonc`.
+
+## Create the Worker
+
+In the Cloudflare dashboard, go to **Workers & pages** | **Create** | **Workers** | **Import** **a repository**, connect your GitHub account and select your repo.
+
+### Build Configuration
+
+Build command: `pnpm run build` (Astro) or `npx opennextjs-cloudflare build` (Next.js)
+
+Deploy command: `npx wrangler deploy` (Astro) or `npx opennextjs-cloudflare deploy` (Next.js)
+
+### Environment Variables
+
+`tinacms build` requires your TinaCloud credentials at build time. Add the following in your Workers, **Settings **| **Build** | **Variables and Secrets**:
+
+* `PUBLIC_TINA_CLIENT_ID` (Astro) OR `NEXT_PUBLIC_TINA_CLIENT_ID` (Next.js) - Your TinaCloud client ID
+* `TINA_TOKEN` - The content token from TinaCloud | Tokens
+
+<WarningCallout
+  body={<>
+    Workers keep build variables and runtime variables separate. If your site reads any of the mentioned variables during runtime, add them again under **Settings** | **Variables and Secrets**
+  </>}
+/>
+
+## Finalising TinaCloud Setup
+
+Once you have your first deployment, Cloudflare will give you a default domain URL like `https://<site-name>.<account-name>.workers.dev`, make sure to set this as a Site URL inside your TinaCloud project's configuration!
+
+## Troubleshooting
+
+1. “JavaScript heap out of memory” during the build
+
+The TinaCloud indexing step can exceed Node's default 2GB heap. Raise the limit by prefixing your build command or setting a build time environment variable `NODE_OPTIONS = —max-old-space-size=4096`
