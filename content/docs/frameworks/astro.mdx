@@ -1,7 +1,7 @@
 ---
 id: /docs/frameworks/astro
-title: Astro + Tina Setup Guide
-last_edited: '2026-05-26T00:00:00.000Z'
+title: Astro + TinaCMS Setup Guide
+last_edited: '2026-06-10T00:26:56.822Z'
 next: content/docs/frameworks/hugo.mdx
 previous: content/docs/frameworks/next/pages-router.mdx
 ---
@@ -13,27 +13,56 @@ This guide walks through local setup, content modeling, running TinaCMS, and wir
 
 ## Getting Started
 
-### 1. Initialize TinaCMS in Your Astro Site
+There are 2 ways to set up TinaCMS with Astro.
 
-From within your site's root directory, run:
+* **Option 1: Scaffold from the starter template.** Best for new projects.
+* **Option 2: Add TinaCMS to an existing Astro site.**
+
+### Option 1: Scaffold from the starter template
+
+1\. Scaffold the project with `create-tina-app` command
+
+```bash
+npx create-tina-app@latest -t tina-astro-starter
+```
+
+2\. Enter project folder name
+
+3\. Move into your new project (use the name you chose):
+
+```bash
+cd <your-project>
+```
+
+4\. Start the dev server. This runs TinaCMS and Astro together.
+
+```bash
+pnpm dev
+```
+
+5\. Open the visual editor at [http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html) and start editing. (4321 is Astro's default port.)
+
+### Option 2: Add TinaCMS to an existing Astro site
+
+1\. `cd` into your existing Astro site:
+
+```bash
+cd <your-astro-site>
+```
+
+2\. Run TinaCMS `init` command:
 
 ```bash
 npx @tinacms/cli@latest init
 ```
 
-This command will prompt you with a few setup questions. When asked for the **public assets directory**, enter:
+3\. Choose `Astro/Other` when asked *"What framework are you using?"*
 
-```
-public
-```
+4\. Choose the package manager your site uses
 
-Alternatively, scaffold from the React-free starter template:
+5\. Choose `Yes` when asked *"Would you like to use TypeScript for your Tina configuration?"* (Recommended.)
 
-```bash
-npx create-tina-app@latest --template tina-astro-starter
-```
-
-This sets up a blog-ready [Astro Starter Template](https://github.com/tinacms/tina-astro-starter) with TinaCMS and visual editing preconfigured, no React in the source tree.
+6\. Accept the default `public` when asked *"Where are public assets stored?"* (Astro uses `public`.)
 
 ## Modeling Your Content
 
@@ -41,31 +70,33 @@ Define your content models in `tina/config.ts`. See the [content modeling](/docs
 
 ## Running TinaCMS
 
-Start the dev server alongside Astro:
+`cd` into your TinaCMS + Astro site and run:
 
 ```bash
 npx tinacms dev -c "astro dev"
 ```
 
-> Note: `--port 8080` can be added after `astro dev` to specify a custom port.
-
-Once running, navigate to:
+This starts Astro on its default port, **4321**. Open the editor at:
 
 ```
-http://localhost:<port>/admin/index.html
+http://localhost:4321/admin/index.html
 or
-/admin (If using the Tina Astro Starter, which redirects to /admin/index.html)
+http://localhost:4321/admin   (the Tina Astro Starter redirects /admin to /admin/index.html)
 ```
+
+> **Optional: custom port.** To use a different port, pass `--port` to the inner command, e.g. `npx tinacms dev -c "astro dev --port 8080"`. Then use that port in the admin URL.
 
 > **Tip:** If you encounter errors, check the [Common Errors](/docs/forestry/common-errors) page.
 
-You should now see the Tina admin interface, be able to select a post, save changes, and observe updates persisting to your local markdown files.
+You should now see the TinaCMS admin interface, be able to select a post, save changes, and observe updates persisting to your local markdown files.
 
 ![TinaCMS Admin](/img/hugo-tina-admin-screenshot.png)
 
 ## Enabling Visual Editing
 
-Visual editing (click-to-focus, live preview as the editor types, side-by-side admin + page) works on Astro without React via the `@tinacms/astro` package. The starter has it preconfigured. For an existing site:
+> **For existing sites only.** If you used the [starter template](#getting-started) (Option 1), this is already set up. Skip ahead.
+
+Visual editing (click-to-focus, live preview as the editor types, side-by-side admin and page) works on Astro without React via the `@tinacms/astro` package. To add it to an existing site:
 
 ```bash
 pnpm add @tinacms/astro tinacms
@@ -98,10 +129,10 @@ The full wiring (`requestWithMetadata()` data loaders, the island registry, `<Ti
 
 The starter and the visual-editing setup organize around four moving pieces:
 
-* **`src/lib/`**: `data.ts` (per-collection fetchers — each one calls the generated Tina client and pipes the result through `requestWithMetadata()` from `@tinacms/astro/data`), `islands.ts` (registry of editable regions consumed by `experimental_createIslandRoute`).
+* **`src/lib/`**: `data.ts` (per-collection fetchers; each one calls the generated Tina client and pipes the result through `requestWithMetadata()` from `@tinacms/astro/data`), `islands.ts` (registry of editable regions consumed by `experimental_createIslandRoute`).
 * **`src/pages/tina-island/[name].ts`**: the dynamic endpoint the bridge POSTs to on every keystroke. One line: `experimental_createIslandRoute(islands)`.
 * **`src/components/islands/*.astro`**: pure Astro renderers (`<TinaMarkdown>` for rich-text, `tinaField()` for click-to-edit markers).
-* **`astro.config.mjs`**: registers the `tina()` integration; the middleware handles bridge injection automatically — no shared `<head>` wiring component to maintain.
+* **`astro.config.mjs`**: registers the `tina()` integration; the middleware handles bridge injection automatically, with no shared `<head>` wiring component to maintain.
 
 See [Visual Editing Setup → Astro](/docs/contextual-editing/astro/) for the full architecture.
 
@@ -117,6 +148,6 @@ For more details, visit the official [TinaCMS documentation](https://tina.io/doc
 
 ## See Also
 
-* [Next.js setup guide](/docs/frameworks/next/app-router/) - Using Tina with Next.js
-* [Hugo setup guide](/docs/frameworks/hugo/) - Using Tina with Hugo
-* [Self-hosting options](/docs/self-hosted/overview/) - Host Tina on your own infrastructure
+* [Next.js setup guide](/docs/frameworks/next/app-router/) - Using TinaCMS with Next.js
+* [Hugo setup guide](/docs/frameworks/hugo/) - Using TinaCMS with Hugo
+* [Self-hosting options](/docs/self-hosted/overview/) - Host TinaCMS on your own infrastructure
