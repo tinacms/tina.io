@@ -16,7 +16,7 @@ There are 2 ways to set up TinaCMS with Astro.
 * **Option 1: Scaffold from the starter template** (best for new projects).
 * **Option 2: Add TinaCMS to an existing Astro site** with `tinacms init`.
 
-> Examples use **pnpm** (the [SSW default](https://www.ssw.com.au/rules/best-package-manager-for-node)). On npm or yarn, swap the commands: `pnpm dev` becomes `npm run dev` or `yarn dev`; `pnpm add x` becomes `npm install x` or `yarn add x`.
+> Examples use **pnpm**. On npm or yarn, swap the commands: `pnpm dev` becomes `npm run dev` or `yarn dev`; `pnpm add x` becomes `npm install x` or `yarn add x`.
 
 ### Option 1: Scaffold from the starter template
 
@@ -111,11 +111,11 @@ pnpm add -D @tinacms/cli
 pnpm add @astrojs/node          # or @astrojs/vercel / netlify / cloudflare
 ```
 
-`@astrojs/node` is the safe default for local editing. Match it to your host (Vercel, Netlify, Cloudflare) when you deploy, or let your AI assistant pick.
+`@astrojs/node` is the safe default for local editing. Match it to your host (Vercel, Netlify, Cloudflare) when you deploy.
 
 Add the Tina integration and an SSR adapter to `astro.config.mjs`. If you already have an `integrations` array or an adapter, **keep them** and just append `tina()`.
 
-> **Not sure how to merge it?** Paste your `astro.config.mjs` and the snippet below into your AI assistant and let it combine them, or copy the version `init` printed in your terminal.
+> **Not sure how to merge it?** Copy the version `init` printed in your terminal, or compare your file against the snippet below and keep your existing integrations and adapter.
 
 ```js
 import { defineConfig } from 'astro/config';
@@ -127,7 +127,11 @@ export default defineConfig({
   output: 'server',
   adapter: node({ mode: 'standalone' }),       // or your existing adapter (Vercel, Netlify, ...)
   integrations: [tina()],                      // append tina() to your existing array
-  vite: { plugins: [tinaAdminDevRedirect()] }, // lets /admin work in dev
+  vite: {
+    plugins: [tinaAdminDevRedirect()], // lets /admin work in dev
+    // Optional: only needed for SSR builds, not fully static sites.
+    ssr: { noExternal: ['@tinacms/astro', '@tinacms/bridge'] },
+  },
 });
 ```
 
@@ -142,7 +146,7 @@ pnpm dev
 
 ## Make your existing Astro pages editable
 
-Right after `init`, **`/tinacms-demo` is the only page wired for Tina editing**. It's a working template for the rest of your site: to make your existing pages and components editable, the easiest path is to **ask your AI assistant** to do it for you (it works for devs and non-devs alike), or wire them by hand. (An *island* is just an editable section of a page.) Each editable page wires these five things, all scaffolded for the demo:
+Right after `init`, **`/tinacms-demo` is the only page wired for Tina editing**. It's a working template for the rest of your site: copy the same pattern into your existing pages and components. (An *island* is just an editable section of a page.) Each editable page wires these five things, all scaffolded for the demo:
 
 1. **A field in your schema** (`tina/config.ts`): whatever you want to edit.
 2. **A data loader**: wrap the query in `requestWithMetadata()`.
@@ -150,7 +154,7 @@ Right after `init`, **`/tinacms-demo` is the only page wired for Tina editing**.
 4. **The per-island endpoint**: `src/pages/tina-island/[name].ts` (handles every region; keep its `export const prerender = false`).
 5. **`<TinaIsland>` and `tinaField()`**: wrap the region and stamp the clickable elements. *(Import `TinaMarkdown` from `@tinacms/astro/TinaMarkdown.astro`, the subpath, or Astro won't compile it.)*
 
-Full walkthrough with code for each: **[Visual Editing Setup → Astro](/docs/contextual-editing/astro/)**. Hand that link plus the page you want editable to your AI assistant and wait for the magic; it has the exact file names and patterns, and works whether or not you code.
+Full walkthrough with code for each: **[Visual Editing Setup → Astro](/docs/contextual-editing/astro/)**. It has the exact file names and patterns to follow when you move from the demo to your real pages.
 
 ## Project Structure
 
