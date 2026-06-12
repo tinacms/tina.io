@@ -1,0 +1,125 @@
+---
+seo:
+  title: Separate Content Repos are here for TinaCloud | TinaCMS Blog
+  description: 'TinaCloud now supports a separate content repository per project, so your app code and your editorial content can live in two repos with one dashboard.'
+  canonicalUrl: 'https://tina.io/blog/tinacloud-separate-content-repos'
+title: Separate Content Repos are here for TinaCloud
+date: '2026-06-12T00:00:00.000Z'
+last_edited: '2026-06-12T00:00:00.000Z'
+author: Josh Berman
+prev: content/blog/astro-is-becoming-the-default-tinacms-starter.mdx
+next: ''
+---
+
+TinaCloud projects can now bind **two** GitHub repositories: a **generator repo** that holds your Tina schema and application code, and a separate **content repo** that holds your markdown, MDX, and media.
+
+**TL;DR:** One TinaCloud project, two repos. Editors commit content to the content repo, engineers commit code to the generator repo, and TinaCloud keeps everything connected. It is a toggle in the dashboard, available for new and existing projects today.
+
+<Youtube embedSrc="https://www.youtube.com/embed/fYGPW4185bg?si=oo3-sx4jm1imojba" caption="TinaCloud - Supporting Growth with Separate Content Repository Setups" minutes="4" />
+
+## Why split your repos?
+
+Plenty of teams have asked for this, and they usually want it for one of a few reasons:
+
+* **Decoupled commit history.** Editors commit dozens of small content edits a day. Engineers commit once or twice. Keeping them in different repos keeps each repo's history readable.
+* **Permissions hygiene.** Editors get write access to the content repo without ever touching application code.
+* **Scaling.** As a site grows, content volume grows much faster than code. Splitting the repos keeps the generator repo lean, so clones, CI builds, and code reviews stay fast no matter how large the content library gets.
+* **Multi-site reuse.** A single content repo can power more than one generator, like regional sites, partner-facing variants, internationalized sites serving translated content per locale, or docs and marketing sites sharing one source of truth.
+
+Until now, the workaround was to create two TinaCloud projects and wire them together with a `tina/meta.json` file. That pattern worked, but it came with sync issues, duplicate Tina lock files, and search results that could drift out of date. Separate content repos replace it with a single project that understands both repos natively.
+
+## How it works
+
+From your editors' point of view, nothing changes. They open the dashboard, edit, save, and submit for review exactly as before. Behind the scenes:
+
+* **Schema** is loaded from the generator repo. It is never read from the content repo.
+* **Editorial branches and pull requests** created through Tina's editorial workflow are made on the content repo.
+* **Media uploads** go to the content repo.
+* **Search re-indexes** on every content-repo push, so results stay current no matter which repo changed.
+
+Here is what lives where:
+
+|                    Item                   | Generator repo | Content repo |
+| :---------------------------------------: | :------------: | :----------: |
+|         `tina/config.tsx` (schema)        |        ✅       |       ❌      |
+|   `tina/__generated__/*` (build output)   |        ✅       |       ❌      |
+| Application code (Next.js / Astro / etc.) |        ✅       |       ❌      |
+|           `.md` / `.mdx` content          |        ❌       |       ✅      |
+|        Media (images, video, etc.)        |        ❌       |       ✅      |
+| Editorial branches / PRs from the Tina UI |        ❌       |       ✅      |
+
+## Setting up a new project
+
+The option is right in the create-project flow:
+
+1. From the TinaCloud dashboard, click **Create Project**.
+2. Pick your **generator repo** as you would for any project.
+3. Toggle on **Use a separate content repository**.
+4. Pick the **content repo** from the list.
+5. Click create.
+
+![The new-project flow with the separate content repository toggle enabled](/docs/seperate-content-repo-new-project.png)
+
+TinaCloud installs the necessary GitHub webhooks on both repos automatically. The content repo does not need a `tina/` folder. The dashboard indexes it from scratch.
+
+## Converting an existing project
+
+Already have a single-repo project? You can convert it without recreating anything:
+
+1. Open your project's **Configuration** page.
+2. Find the **Content Repository** section.
+3. Toggle on **Use a separate content repository**.
+4. Pick the content repo and confirm.
+
+![The project configuration page showing the content repository section](/docs/seperate-content-repo-existing-project.png)
+
+TinaCloud indexes the content repo's default branch and re-routes editorial workflow operations to it. The toggle works in reverse too, so you can revert to single-repo later.
+
+## Local development
+
+Locally, the two repos sit side by side on disk. Point your config at the content repo with the new `localContentPath` field:
+
+```ts
+import { defineConfig } from 'tinacms';
+
+export default defineConfig({
+  // ...your existing config
+  localContentPath: '../my-content-repo',
+});
+```
+
+Then check both repos out as siblings and run your usual dev command from the generator repo:
+
+```bash
+parent/
+├── my-generator-repo/
+│   └── tina/
+│       └── config.tsx
+└── my-content-repo/
+    └── content/
+        └── posts/
+            └── hello.mdx
+```
+
+`tinacms dev` watches the content repo's files alongside the generator's schema. Editing a content file hot-reloads the admin UI, editing your schema regenerates it, and generated artifacts only ever land in the generator repo.
+
+`localContentPath` is local-dev only. In production, TinaCloud reads content from the content repo via GitHub regardless of this setting.
+
+## Already using the old two-projects pattern?
+
+If you set up a content repo the old way, with two TinaCloud projects connected through `tina/meta.json`, migrating is quick:
+
+1. Keep the project that points at your **generator repo**.
+2. Toggle on **Use a separate content repository** in its settings and pick your existing content repo.
+3. Delete the content repo's TinaCloud project; it is no longer used.
+4. Optional clean-up: delete `tina/meta.json` and any stale `tina/__generated__/` folder from the content repo. Nothing reads them any more.
+
+The [docs guide](https://tina.io/docs/guides/separate-content-repo) covers migration in more detail, plus build triggers, troubleshooting, and static site generator considerations.
+
+## Try it out
+
+Separate content repos are live in TinaCloud now. Flip the toggle on a test project and see how it fits your team.
+
+If something feels off, tell us. Open an issue, or drop into [Discord](https://discord.com/invite/zumN63Ybpf) with what you found.
+
+The TinaCMS Team 🦙
