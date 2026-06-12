@@ -21,7 +21,7 @@ TinaCloud projects can now bind **two** GitHub repositories: a **generator repo*
 
 Plenty of teams have asked for this, and they usually want it for one of a few reasons:
 
-* **Decoupled commit history.** Editors commit dozens of small content edits a day; engineers commit once or twice. Keeping them in different repos keeps each repo's history readable.
+* **Decoupled commit history.** Editors commit dozens of small content edits a day. Engineers commit once or twice. Keeping them in different repos keeps each repo's history readable.
 * **Permissions hygiene.** Editors get write access to the content repo without ever touching application code.
 * **Scaling.** As a site grows, content volume grows much faster than code. Splitting the repos keeps the generator repo lean, so clones, CI builds, and code reviews stay fast no matter how large the content library gets.
 * **Multi-site reuse.** A single content repo can power more than one generator, like regional sites, partner-facing variants, internationalized sites serving translated content per locale, or docs and marketing sites sharing one source of truth.
@@ -60,7 +60,7 @@ The option is right in the create-project flow:
 
 ![The new-project flow with the separate content repository toggle enabled](/docs/seperate-content-repo-new-project.png)
 
-TinaCloud installs the necessary GitHub webhooks on both repos automatically. The content repo does not need a `tina/` folder; the dashboard indexes it from scratch.
+TinaCloud installs the necessary GitHub webhooks on both repos automatically. The content repo does not need a `tina/` folder. The dashboard indexes it from scratch.
 
 ## Converting an existing project
 
