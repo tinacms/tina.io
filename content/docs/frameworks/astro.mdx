@@ -1,153 +1,180 @@
 ---
 id: /docs/frameworks/astro
 title: Astro + TinaCMS Setup Guide
-last_edited: '2026-06-10T00:26:56.822Z'
+last_edited: '2026-06-12T00:00:00.000Z'
 next: content/docs/frameworks/hugo.mdx
 previous: content/docs/frameworks/next/pages-router.mdx
 ---
 
 \
-TinaCMS runs side-by-side with Astro, with **first-class visual editing that requires no React in your page tree**. The integration ships as `@tinacms/astro` (a vanilla-Astro rich-text renderer plus a one-line Astro integration) and `@tinacms/bridge` (a small postMessage client that loads only inside the editor iframe).
-
-This guide walks through local setup, content modeling, running TinaCMS, and wiring visual editing.
+TinaCMS runs side-by-side with Astro, with **first-class visual editing that needs no React in your page tree**. It ships as `@tinacms/astro`, a vanilla-Astro rich-text renderer plus a one-line integration.
 
 ## Getting Started
 
 There are 2 ways to set up TinaCMS with Astro.
 
-* **Option 1: Scaffold from the starter template.** Best for new projects.
-* **Option 2: Add TinaCMS to an existing Astro site.**
+* **Option 1: Scaffold from the starter template** (best for new projects).
+* **Option 2: Add TinaCMS to an existing Astro site** with `tinacms init`.
+
+> Examples use **pnpm** (the [SSW default](https://www.ssw.com.au/rules/best-package-manager-for-node)). On npm or yarn, swap the commands: `pnpm dev` becomes `npm run dev` or `yarn dev`; `pnpm add x` becomes `npm install x` or `yarn add x`.
 
 ### Option 1: Scaffold from the starter template
 
-1\. Scaffold the project with `create-tina-app` command
-
 ```bash
-npx create-tina-app@latest -t tina-astro-starter
+npx create-tina-app@latest --template tina-astro-starter
 ```
 
-2\. Enter project folder name
-
-3\. Move into your new project (use the name you chose):
+Enter a project name when prompted. Then move into that folder and start the dev server:
 
 ```bash
-cd <your-project>
+cd your-project-name      # the folder you just created
+pnpm dev
 ```
 
-4\. Start the dev server. This runs TinaCMS and Astro together.
+Leave the dev server running. Open **[http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html)**, pick a post, and edit. Visual editing is already wired, nothing else to do. *(`4321` is Astro's default port; use whatever your terminal prints.)*
+
+### Option 2: Add TinaCMS to an existing Astro site
+
+From your site's root:
+
+```bash
+cd your-astro-site       # your existing site
+npx @tinacms/cli@latest init
+```
+
+Answer the prompts:
+
+| Prompt | Answer |
+|---|---|
+| Which framework is your existing site built with? | **Astro** |
+| Choose your package manager | *the one your site uses* |
+| Would you like to use TypeScript for your Tina configuration? | **Yes** |
+
+> `init` adds TinaCMS to an **existing** site. Run it in an empty folder and it stops and points you to Option 1.
+
+`init` installs `@tinacms/astro` + an SSR adapter, wraps your `dev` / `build` scripts, and adds new files: a ready-to-edit demo at **`/tinacms-demo`**, your `tina/` config, and one sample collection. It won't overwrite your content, and it leaves a customized `astro.config` alone (an empty or default config gets the Tina wiring).
+
+Start the dev server:
 
 ```bash
 pnpm dev
 ```
 
-5\. Open the visual editor at [http://localhost:4321/admin/index.html](http://localhost:4321/admin/index.html) and start editing. (4321 is Astro's default port.)
+Leave it running. In a browser, open:
 
-### Option 2: Add TinaCMS to an existing Astro site
+* **http://localhost:4321/tinacms-demo** shows the demo hero. *(Different port in your terminal? Use that one.)*
+* **http://localhost:4321/admin/index.html#/~/tinacms-demo** opens the editor. Paste the whole URL (`#/~/` included). Click the headline or a button: it should highlight and open a form in the sidebar to edit live.
 
-1\. `cd` into your existing Astro site:
+![Editing the demo live](/gif/blocks.gif)
 
-```bash
-cd <your-astro-site>
-```
+#### Did clicking open an editable field?
 
-2\. Run TinaCMS `init` command:
-
-```bash
-npx @tinacms/cli@latest init
-```
-
-3\. Choose `Astro/Other` when asked *"What framework are you using?"*
-
-4\. Choose the package manager your site uses
-
-5\. Choose `Yes` when asked *"Would you like to use TypeScript for your Tina configuration?"* (Recommended.)
-
-6\. Accept the default `public` when asked *"Where are public assets stored?"* (Astro uses `public`.)
+* ✅ **Yes** (the field highlighted and a form opened). `init` wired your config for you. The demo works and also builds and deploys as-is. Next: [make your existing pages editable](#make-your-existing-astro-pages-editable) (so far only `/tinacms-demo` is editable).
+* ❌ **No** (the page shows but clicking does nothing, or `pnpm build` later fails with `[NoAdapterInstalled]`). Your `astro.config` already had content, so `init` left it untouched. **Open `astro.config.mjs`: if `integrations` has no `tina()`, that's the cause.** Wire it in [Enabling Visual Editing](#enabling-visual-editing) below, then restart.
 
 ## Modeling Your Content
 
-Define your content models in `tina/config.ts`. See the [content modeling](/docs/schema/) docs for the full schema reference.
+Define your collections in `tina/config.ts`. Each field maps to both the editor UI and your content files. `init` seeds one collection to start from. Full reference: [Content modeling](/docs/schema/).
 
 ## Running TinaCMS
 
-`cd` into your TinaCMS + Astro site and run:
+From your project's root, start the dev server:
 
 ```bash
-npx tinacms dev -c "astro dev"
+cd your-project          # your project folder
+pnpm dev
 ```
 
-This starts Astro on its default port, **4321**. Open the editor at:
+`pnpm dev` runs TinaCMS and Astro together (it calls `tinacms dev -c "astro dev"`). The admin lives at:
 
 ```
 http://localhost:4321/admin/index.html
-or
-http://localhost:4321/admin   (the Tina Astro Starter redirects /admin to /admin/index.html)
 ```
 
-> **Optional: custom port.** To use a different port, pass `--port` to the inner command, e.g. `npx tinacms dev -c "astro dev --port 8080"`. Then use that port in the admin URL.
+> **Custom port:** run `pnpm exec tinacms dev -c "astro dev --port 8080"`, then use that port in the admin URL.
+> **Errors?** See [Common Errors](/docs/forestry/common-errors).
 
-> **Tip:** If you encounter errors, check the [Common Errors](/docs/forestry/common-errors) page.
-
-You should now see the TinaCMS admin interface, be able to select a post, save changes, and observe updates persisting to your local markdown files.
+You should see the TinaCMS admin, be able to select a post, save, and watch changes persist to your local content files.
 
 ![TinaCMS Admin](/img/hugo-tina-admin-screenshot.png)
 
 ## Enabling Visual Editing
 
-> **For existing sites only.** If you used the [starter template](#getting-started) (Option 1), this is already set up. Skip ahead.
+**Existing Astro sites only.** Skip this if you scaffolded from the starter (Option 1, `tina-astro-starter`): visual editing is already wired there. You need it only when **`init` left your existing `astro.config` untouched** (the ❌ case above) or you're wiring up an existing site by hand.
 
-Visual editing (click-to-focus, live preview as the editor types, side-by-side admin and page) works on Astro without React via the `@tinacms/astro` package. To add it to an existing site:
+From your existing site's root, install the package and an SSR adapter:
 
 ```bash
+cd your-astro-site       # your existing site
 pnpm add @tinacms/astro tinacms
+pnpm add -D @tinacms/cli
 pnpm add @astrojs/node          # or @astrojs/vercel / netlify / cloudflare
 ```
 
-Then in `astro.config.mjs`:
+`@astrojs/node` is the safe default for local editing. Match it to your host (Vercel, Netlify, Cloudflare) when you deploy, or let your AI assistant pick.
+
+Add the Tina integration and an SSR adapter to `astro.config.mjs`. If you already have an `integrations` array or an adapter, **keep them** and just append `tina()`.
+
+> **Not sure how to merge it?** Paste your `astro.config.mjs` and the snippet below into your AI assistant and let it combine them, or copy the version `init` printed in your terminal.
 
 ```js
 import { defineConfig } from 'astro/config';
 import tina from '@tinacms/astro/integration';
+import { tinaAdminDevRedirect } from '@tinacms/astro/vite';
 import node from '@astrojs/node';
 
 export default defineConfig({
   output: 'server',
-  adapter: node({ mode: 'standalone' }),
-  integrations: [tina()],
+  adapter: node({ mode: 'standalone' }),       // or your existing adapter (Vercel, Netlify, ...)
+  integrations: [tina()],                      // append tina() to your existing array
+  vite: { plugins: [tinaAdminDevRedirect()] }, // lets /admin work in dev
 });
 ```
 
-That single `tina()` call auto-injects the request-scoped middleware (which splices the bridge wiring on edit-mode responses) and stages the vanilla-JS bridge as a static file at `/admin/bridge.js`. Production HTML is byte-identical to a Tina-free Astro app.
+Then **stop and restart** the dev server (Astro doesn't reload config changes):
 
-> **You need an SSR adapter.** The per-island refresh endpoint (`/tina-island/[name]`) runs at request time. Use `@astrojs/node`, `@astrojs/vercel`, `@astrojs/netlify`, or `@astrojs/cloudflare`. `output: 'server'` is the simplest choice; `output: 'static'` also works as long as editable regions are wrapped in `<TinaIsland>` (the package's marker component) and the adapter can serve the one on-demand island route.
+```bash
+# Ctrl-C, then:
+pnpm dev
+```
 
-The full wiring (`requestWithMetadata()` data loaders, the island registry, `<TinaIsland>` wrappers, `tinaField()` markers, the per-island endpoint) is documented in [Visual Editing Setup → Astro](/docs/contextual-editing/astro/).
+> **Why `output: 'server'` and an adapter?** The editor refetches each region from an on-demand route. `output: 'server'` is simplest; `output: 'static'` also works if every editable region is wrapped in `<TinaIsland>`. See [Static-site editing](/docs/contextual-editing/astro/#static-site-editing).
 
-![Visual Editing](/gif/blocks.gif)
+## Make your existing Astro pages editable
+
+Right after `init`, **`/tinacms-demo` is the only page wired for Tina editing**. It's a working template for the rest of your site: to make your existing pages and components editable, the easiest path is to **ask your AI assistant** to do it for you (it works for devs and non-devs alike), or wire them by hand. (An *island* is just an editable section of a page.) Each editable page wires these five things, all scaffolded for the demo:
+
+1. **A field in your schema** (`tina/config.ts`): whatever you want to edit.
+2. **A data loader**: wrap the query in `requestWithMetadata()`.
+3. **An island registry** entry for the region.
+4. **The per-island endpoint**: `src/pages/tina-island/[name].ts` (handles every region; keep its `export const prerender = false`).
+5. **`<TinaIsland>` and `tinaField()`**: wrap the region and stamp the clickable elements. *(Import `TinaMarkdown` from `@tinacms/astro/TinaMarkdown.astro`, the subpath, or Astro won't compile it.)*
+
+Full walkthrough with code for each: **[Visual Editing Setup → Astro](/docs/contextual-editing/astro/)**. Hand that link plus the page you want editable to your AI assistant and wait for the magic; it has the exact file names and patterns, and works whether or not you code.
 
 ## Project Structure
 
-The starter and the visual-editing setup organize around four moving pieces:
+`init` (and the starter) organize visual editing around these files:
 
-* **`src/lib/`**: `data.ts` (per-collection fetchers; each one calls the generated Tina client and pipes the result through `requestWithMetadata()` from `@tinacms/astro/data`), `islands.ts` (registry of editable regions consumed by `experimental_createIslandRoute`).
-* **`src/pages/tina-island/[name].ts`**: the dynamic endpoint the bridge POSTs to on every keystroke. One line: `experimental_createIslandRoute(islands)`.
-* **`src/components/islands/*.astro`**: pure Astro renderers (`<TinaMarkdown>` for rich-text, `tinaField()` for click-to-edit markers).
-* **`astro.config.mjs`**: registers the `tina()` integration; the middleware handles bridge injection automatically, with no shared `<head>` wiring component to maintain.
+* **`tina/config.ts`**: your collections (schema); generates the typed client.
+* **`src/lib/tina/data.ts`**: per-collection fetchers, each piped through `requestWithMetadata()`.
+* **`src/lib/tina/islands.ts`**: the registry of editable regions.
+* **`src/pages/tina-island/[name].ts`**: the on-demand endpoint the bridge refetches, via `experimental_createIslandRoute(islands)`.
+* **`src/components/tina/*.astro`**: Astro renderers using `<TinaMarkdown>` and `tinaField()`.
+* **`astro.config.mjs`**: registers `tina()`; the middleware injects the bridge automatically.
 
 See [Visual Editing Setup → Astro](/docs/contextual-editing/astro/) for the full architecture.
 
 ## Next Steps
 
 * [Visual Editing Setup → Astro](/docs/contextual-editing/astro/): the integration, per-island refetch, and custom MDX embeds
-* [Migrating from React-based Visual Editing](/docs/migrations/astro-react-free-visual-editing/): for existing Astro sites on the old `client:tina` path
-* [Content modeling](/docs/schema/)
-* [Data fetching](/docs/features/data-fetching/)
-* [Deploy your site](/docs/tinacloud)
+* [Migrating from React-based Visual Editing](/docs/migrations/astro-react-free-visual-editing/): existing sites on the old `client:tina` path
+* [Content modeling](/docs/schema/) · [Data fetching](/docs/features/data-fetching/) · [Deploy your site](/docs/tinacloud)
 
-For more details, visit the official [TinaCMS documentation](https://tina.io/docs/) and [Astro documentation](https://astro.build/docs/). Join the [TinaCMS Discord](https://discord.gg/suurtdwX) for community support.
+Questions? Join the [TinaCMS Discord](https://discord.gg/suurtdwX).
 
 ## See Also
 
-* [Next.js setup guide](/docs/frameworks/next/app-router/) - Using TinaCMS with Next.js
-* [Hugo setup guide](/docs/frameworks/hugo/) - Using TinaCMS with Hugo
-* [Self-hosting options](/docs/self-hosted/overview/) - Host TinaCMS on your own infrastructure
+* [Next.js setup guide](/docs/frameworks/next/app-router/): Using TinaCMS with Next.js
+* [Hugo setup guide](/docs/frameworks/hugo/): Using TinaCMS with Hugo
+* [Self-hosting options](/docs/self-hosted/overview/): Host TinaCMS on your own infrastructure
