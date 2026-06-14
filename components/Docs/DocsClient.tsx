@@ -1,6 +1,7 @@
 'use client';
 
 import { useDocsNavigation } from 'components/Docs/DocsNavigationContext';
+import DocsBreadcrumbs from 'components/Docs/docsMain/docsBreadcrumbs';
 import MainDocsBodyHeader from 'components/Docs/docsMain/docsMainBody';
 import TocOverflowButton from 'components/Docs/docsMain/tocOverflowButton';
 import ToC from 'components/Docs/toc';
@@ -87,6 +88,7 @@ export default function DocsClient({
           !DocumentationData?.tocIsHidden ? 'xl:col-span-1' : ''
         }`}
       >
+        <DocsBreadcrumbs locale={locale} />
         <MainDocsBodyHeader
           DocumentTitle={DocumentationData?.title}
           NavigationDocsItems={NavigationDocsData.data}
