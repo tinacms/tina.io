@@ -1,0 +1,175 @@
+{
+  "seo": {
+    "title": "TinaCMS Partners – Find an Agency or Become One",
+    "description": "Work with a vetted TinaCMS agency partner to build fast, Git-backed websites with a best-in-class editing experience – or join the program to grow your agency."
+  },
+  "blocks": [
+    {
+      "headline": "Build with a TinaCMS partner.",
+      "headline2": "Find a vetted agency, or become one.",
+      "text": "Our partner agencies deliver beautiful, Git-backed websites with the visual editing experience your clients will love.",
+      "buttons": [
+        {
+          "label": "Find a partner",
+          "icon": true,
+          "variant": "blue",
+          "size": "medium",
+          "url": "#find-a-partner",
+          "_template": "actions"
+        },
+        {
+          "label": "Become a partner",
+          "icon": false,
+          "shape": "square",
+          "color": "blue",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "blockSettings": {
+        "isHeadingOne": true
+      },
+      "_template": "hero"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Why work with a TinaCMS partner?\n\nTina partners are agencies with proven TinaCMS expertise. They know the workflows, the framework integrations, and the editing patterns that get your project shipped faster – and maintained painlessly.\n",
+      "_template": "content"
+    },
+    {
+      "items": [
+        {
+          "headline": "Developer-first, Git-backed",
+          "text": "Partners build on Tina's open-source, Git-backed workflow – so your content lives in version control with no lock-in and no fear of breaking changes."
+        },
+        {
+          "headline": "Vetted Tina expertise",
+          "text": "Every partner has hands-on experience delivering TinaCMS projects, applying best practices for schema design, visual editing, and media management."
+        },
+        {
+          "headline": "Faster time to launch",
+          "text": "Reusable templates and code-based configuration mean partners spin up polished, production-ready sites for your clients in less time."
+        }
+      ],
+      "_template": "featureGrid"
+    },
+    {
+      "title": "Find a partner",
+      "subText": "Vetted agencies ready to build your next TinaCMS project. Reach out to them directly.",
+      "items": [
+        {
+          "name": "SSW",
+          "logo": "/svg/logos/ssw.svg",
+          "tier": "Premier",
+          "location": "Sydney, Australia",
+          "description": "Full-service consultancy delivering enterprise web apps and content-driven sites with TinaCMS and Next.js.",
+          "services": ["Next.js", "Enterprise", "Migrations"],
+          "website": "https://www.ssw.com.au"
+        },
+        {
+          "name": "Comedia",
+          "logo": "/svg/logos/comedia.svg",
+          "tier": "Gold",
+          "location": "Remote, EU",
+          "description": "Digital studio crafting brand and marketing sites with a focus on editor-friendly visual editing.",
+          "services": ["Marketing sites", "Branding", "Astro"],
+          "website": "https://example.com"
+        },
+        {
+          "name": "Shadow Lion",
+          "logo": "/svg/logos/shadowlion.svg",
+          "tier": "Certified",
+          "location": "London, UK",
+          "description": "Boutique agency building fast, content-rich websites for media and publishing clients.",
+          "services": ["Publishing", "Performance", "Hugo"],
+          "website": "https://example.com"
+        }
+      ],
+      "_template": "partnerGrid"
+    },
+    {
+      "options": {
+        "narrow": true,
+        "color": "white"
+      },
+      "content": "## Become a TinaCMS partner\n\nJoin the program to grow your agency, deepen your Tina expertise, and get in front of teams looking for a partner to build with.\n",
+      "_template": "content"
+    },
+    {
+      "highlightColumn": [
+        {
+          "heading": "Grow your agency",
+          "highlights": [
+            {
+              "name": "Get listed in our partner directory",
+              "icon": "AiOutlineUsergroupAdd"
+            },
+            {
+              "name": "Receive qualified client leads",
+              "icon": "GoPeople"
+            },
+            {
+              "name": "Co-marketing opportunities",
+              "icon": "FaShare"
+            }
+          ]
+        },
+        {
+          "heading": "Build with confidence",
+          "highlights": [
+            {
+              "name": "Direct access to the Tina team",
+              "icon": "BiSupport"
+            },
+            {
+              "name": "Early roadmap and feature previews",
+              "icon": "HiOutlineSparkles"
+            },
+            {
+              "name": "Technical onboarding and support",
+              "icon": "TbPlugConnected"
+            }
+          ]
+        },
+        {
+          "heading": "Stand out",
+          "highlights": [
+            {
+              "name": "Earn a Certified Partner badge",
+              "icon": "BiBadge"
+            },
+            {
+              "name": "Free Tina license for your own site",
+              "icon": "CgCrown"
+            },
+            {
+              "name": "Showcase your best Tina work",
+              "icon": "FaRegStar"
+            }
+          ]
+        }
+      ],
+      "_template": "highlightsSection"
+    },
+    {
+      "title": "Ready to partner with Tina?",
+      "description": "Tell us about your agency and the work you do. We'll be in touch about joining the TinaCMS partner program.",
+      "buttons": [
+        {
+          "label": "Apply to become a partner",
+          "icon": true,
+          "shape": "square",
+          "color": "orange",
+          "size": "medium",
+          "modal": "BookDemo.tsx",
+          "_template": "modalButton"
+        }
+      ],
+      "_template": "callToAction"
+    }
+  ]
+}
