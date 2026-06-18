@@ -273,6 +273,20 @@
       "items": [
         {
           "icon": "FaRegClock",
+          "heading": "TinaCMS v4.1 - Docs framework adapters\n",
+          "content": "Most docs frameworks (Fumadocs, Nextra, VitePress and more) have no visual editor, so content is edited by hand in code. We're bringing TinaCMS visual editing to them, starting with Fumadocs.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/6973"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegClock",
           "heading": "Improved PR workflow\n",
           "status": "",
           "content": "We are making some improvements to Tina's Editorial Workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
