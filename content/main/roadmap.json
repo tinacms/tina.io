@@ -273,7 +273,7 @@
       "items": [
         {
           "icon": "FaRegClock",
-          "heading": "TinaCMS v4.1 - Docs framework adapters\n",
+          "heading": "TinaCMS v4.1 - Visual editing for docs frameworks\n",
           "content": "Most docs frameworks (Fumadocs, Nextra, VitePress and more) have no visual editor, so content is edited by hand in code. We're bringing TinaCMS visual editing to them, starting with Fumadocs.\n",
           "actions": [
             {
