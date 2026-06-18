@@ -273,8 +273,8 @@
       "items": [
         {
           "icon": "FaRegClock",
-          "heading": "TinaCMS v4.1 - Visual editing for docs frameworks\n",
-          "content": "Most docs frameworks (Fumadocs, Nextra, VitePress and more) have no visual editor, so content is edited by hand in code. We're bringing TinaCMS visual editing to them, starting with Fumadocs.\n",
+          "heading": "TinaCMS v4.1 - MDX plugin adaptors\n",
+          "content": "We are bringing MDX plugin adaptors to TinaCMS. This will allow users to bring their favourite tools with their own flavours of Markdown and still use TinaCMS' visual editing, getting the best of both worlds.\n",
           "actions": [
             {
               "label": "GitHub Discussion 🔗",
