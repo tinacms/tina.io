@@ -274,7 +274,7 @@
         {
           "icon": "FaRegClock",
           "heading": "TinaCMS v4.1 - MDX plugin adaptors\n",
-          "content": "We are bringing MDX plugin adaptors to TinaCMS. This will allow users to bring their favourite tools with their own flavours of Markdown and still use TinaCMS' visual editing, getting the best of both worlds.\n",
+          "content": "We’re adding MDX plugin adapters so teams can use their preferred Markdown tools and Markdown flavors while keeping TinaCMS Visual Editing. Fumadocs is planned as the first supported adapter.\n",
           "actions": [
             {
               "label": "GitHub Discussion 🔗",
