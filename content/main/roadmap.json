@@ -273,6 +273,20 @@
       "items": [
         {
           "icon": "FaRegClock",
+          "heading": "TinaCMS v4.1 - MDX plugin adaptors\n",
+          "content": "We’re adding MDX plugin adapters so teams can use their preferred Markdown tools and Markdown flavors while keeping TinaCMS Visual Editing. Fumadocs is planned as the first supported adapter.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/6973"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegClock",
           "heading": "Improved PR workflow\n",
           "status": "",
           "content": "We are making some improvements to Tina's Editorial Workflow that will allow you to merge Pull Requests from within the CMS UI.\n",
