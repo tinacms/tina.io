@@ -147,7 +147,7 @@ export function Footer({ footerData }: { footerData: FooterData }) {
               <TinaIcon color="white" />
             </div>
             <div className="flex-1 grid grid-cols-2 py-2 lg:py-0 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
-              {currentFooterNav.map((item, columnIndex) => {
+              {currentFooterNav.map((item, _columnIndex) => {
                 const { header, footerItem } = item;
                 return (
                   <div

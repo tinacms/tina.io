@@ -9,7 +9,6 @@ import { LeftHandSideParentContainer } from 'components/Docs/docsSearch/SearchNa
 // biome-ignore lint/style/useImportType: <TODO>
 import React, { createContext, useContext } from 'react';
 
-// Create a context for the navigation data
 type NavigationDataContextType = {
   NavigationDocsData: any;
   NavigationLearnData: any;
@@ -20,7 +19,6 @@ const NavigationDataContext = createContext<NavigationDataContextType>({
   NavigationLearnData: {},
 });
 
-// Export a hook to access navigation data
 export const useNavigationData = () => useContext(NavigationDataContext);
 
 export default function DocsLayoutClient({
@@ -52,7 +50,6 @@ function DocsLayoutContent({ children }: { children: React.ReactNode }) {
       <div
         className={`xl:px-16 md:px-8 px-3 w-full max-w-[2000px] grid grid-cols-1 md:grid-cols-[1.25fr_3fr] xl:grid-cols-[1.25fr_3fr_0.75fr]`}
       >
-        {/* LEFT COLUMN */}
         <div className={`sticky top-32 h-[calc(100vh)] hidden md:block`}>
           <LeftHandSideParentContainer
             tableOfContents={NavigationDocsData?.data}
@@ -61,7 +58,6 @@ function DocsLayoutContent({ children }: { children: React.ReactNode }) {
             setLearnActive={setLearnActive}
           />
         </div>
-        {/* MIDDLE COLUMN */}
         <div className="col-span-2 md:col-span-1 xl:col-span-2">{children}</div>
       </div>
     </div>

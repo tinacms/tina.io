@@ -1,7 +1,10 @@
+// components/blog/BlogIndexPageClient.tsx
 'use client';
 
 import { MarkdownContent } from 'components/layout';
 import { DynamicLink } from 'components/ui';
+import { LOCALE_ROUTE_CONFIG, type Locale } from 'utils/i18n/localeRouteConfig';
+import { getUiStrings } from 'utils/i18n/uiStrings';
 import NewBlogPagination from '@/component/Blogs/BlogPagination';
 import { extractTextFromBody } from '@/utils/extractTextFromBody';
 import { formatDate } from '@/utils/formatDate';
@@ -12,10 +15,7 @@ interface Post {
   date?: string;
   author?: string;
   body?: string;
-  seo?: {
-    title?: string;
-    description?: string;
-  };
+  seo?: { title?: string; description?: string };
   _sys: {
     filename: string;
     basename: string;
@@ -26,21 +26,28 @@ interface Post {
   };
 }
 
-interface BlogPageClientProps {
+interface BlogIndexPageClientProps {
   currentPageIndexNumber: number;
   numberOfPages: number;
   postsForPageIndex: Post[];
+  locale: Locale;
 }
+
 export default function BlogIndexPageClient({
   currentPageIndexNumber: pageIndex,
   postsForPageIndex: posts,
   numberOfPages: numPages,
-}: BlogPageClientProps) {
+  locale,
+}: BlogIndexPageClientProps) {
+  const strings = getUiStrings(locale);
+  const prefix = LOCALE_ROUTE_CONFIG[locale].pathPrefix; // '' or '/zh'
+
   return (
     <section className="p-6">
       <header className="text-center pt-8 pb-4">
         <h1 className="font-ibm-plex text-4xl md:text-5xl lg:text-6xl bg-linear-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-          博客{pageIndex > 1 ? ` - 第${pageIndex}页` : ''}
+          {strings.blogIndex.heading}
+          {strings.blogIndex.pageSuffix(pageIndex)}
         </h1>
       </header>
       <div className="py-12 lg:py-16 last:pb-20 lg:last:pb-32 max-w-prose mx-auto">
@@ -49,7 +56,7 @@ export default function BlogIndexPageClient({
             key={post.id}
             className="w-full group flex flex-col gap-6 lg:gap-8 items-start mb-6 lg:mb-8"
           >
-            <DynamicLink href={`/zh/blog/${post._sys.filename}`} passHref>
+            <DynamicLink href={`${prefix}/blog/${post._sys.filename}`} passHref>
               <h2 className="font-ibm-plex text-3xl lg:text-4xl lg:leading-tight bg-linear-to-br from-blue-700/70 via-blue-900/90 to-blue-1000 group-hover:from-orange-300 group-hover:via-orange-500 group-hover:to-orange-700 bg-clip-text text-transparent">
                 {post.title}
               </h2>
@@ -70,7 +77,6 @@ export default function BlogIndexPageClient({
                   content={extractTextFromBody(post.body)}
                 />
               </div>
-
               <hr className="block border-none bg-[url('/svg/hr.svg')] bg-no-repeat bg-[length:auto_100%] h-[7px] w-full my-8" />
             </div>
           </article>

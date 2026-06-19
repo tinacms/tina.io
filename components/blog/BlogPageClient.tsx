@@ -1,3 +1,4 @@
+// components/blog/BlogPageClient.tsx
 'use client';
 
 import Giscus from '@giscus/react';
@@ -7,6 +8,9 @@ import { DocsPagination } from 'components/ui';
 import React from 'react';
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { buildBlogLinkSlug } from 'utils/i18n/buildLinkSlug';
+import { LOCALE_ROUTE_CONFIG } from 'utils/i18n/localeRouteConfig';
+import { getUiStrings } from 'utils/i18n/uiStrings';
 import { formatDate } from '@/utils/formatDate';
 import type { BlogPageClientProps } from './BlogType';
 
@@ -14,29 +18,21 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
   data,
   variables,
   query,
+  locale,
 }) => {
-  const { data: blogPostData } = useTina({
-    query,
-    variables,
-    data: data,
-  });
+  const { data: blogPostData } = useTina({ query, variables, data });
 
   const post = blogPostData.post;
+  const strings = getUiStrings(locale);
   const postedDate = formatDate(post.date);
   const lastEditedDate = post.last_edited ? formatDate(post.last_edited) : null;
 
   const previousPage = post.prev
-    ? {
-        slug: post.prev.id.slice(7, -4),
-        title: post.prev.title,
-      }
+    ? { slug: buildBlogLinkSlug(post.prev.id, locale), title: post.prev.title }
     : null;
 
   const nextPage = post.next
-    ? {
-        slug: post.next.id.slice(7, -4),
-        title: post.next.title,
-      }
+    ? { slug: buildBlogLinkSlug(post.next.id, locale), title: post.next.title }
     : null;
 
   return (
@@ -60,7 +56,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
 
           {lastEditedDate && (
             <div className="mt-2 text-sm opacity-50">
-              Last Edited:{' '}
+              {strings.blogPost.lastEdited}:{' '}
               <time dateTime={post.last_edited}>{lastEditedDate}</time>
             </div>
           )}
@@ -78,7 +74,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({
               emitMetadata="0"
               inputPosition="top"
               theme={post.giscusProps?.giscusThemeUrl}
-              lang="en"
+              lang={LOCALE_ROUTE_CONFIG[locale].giscusLang}
               loading="lazy"
             />
           </div>

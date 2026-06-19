@@ -37,6 +37,13 @@ const config = {
   outputFileTracing: false,
   images: {
     unoptimized: process.env.UNOPTIMIZED_IMAGES === 'true',
+    // Cache optimized images for 31 days. Next.js defaults to 60s, which
+    // causes the optimizer to re-fetch and re-write variants constantly
+    // (the dominant Image Optimization cost was cache writes, not transforms).
+    minimumCacheTTL: 2678400,
+    // Drop the 3840px (4K) variant: it doubles the transform/cache cost of
+    // every image for a rare case, and Next falls back to 2048px gracefully.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     remotePatterns: [
       {
         protocol: 'https',
@@ -137,6 +144,11 @@ const config = {
       {
         source: '/:locale(en|zh)/home',
         destination: '/:locale',
+        permanent: true,
+      },
+      {
+        source: '/discord',
+        destination: 'https://discord.com/invite/zumN63Ybpf',
         permanent: true,
       },
       // existing redirects from JSON
