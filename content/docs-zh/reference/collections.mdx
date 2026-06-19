@@ -11,7 +11,7 @@ previous: content/docs-zh/reference/schema.mdx
 
 每个集合都是一个独特的内容结构。在TinaCMS中创建内容文档是基于每个集合进行的，以便：
 
-* 内容结构与集合定义匹配。
+* 内容结构与集合定义相匹配。
 * 文档存在于该集合下。
 
 ![](/img/docs/schema/SCR-20250312-nnbi.png)
@@ -38,7 +38,7 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "",
       name: "path",
       type: "string",
-      description: "确定此集合中文档的存储位置。\n",
+      description: "确定此集合中文档存储的位置。\n",
       required: true
     },
     {
@@ -58,13 +58,13 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "",
       name: "fields",
       type: "Field[]",
-      description: "[字段](/docs/reference/fields/)的数组。\n"
+      description: "一个[字段](/docs/reference/fields/)数组。\n"
     },
     {
       groupName: "",
       name: "templates",
       type: "Template[]",
-      description: "[模板](/docs/reference/templates/)的数组。\n"
+      description: "一个[模板](/docs/reference/templates/)数组。\n"
     },
     {
       groupName: "",
@@ -112,7 +112,7 @@ previous: content/docs-zh/reference/schema.mdx
       groupName: "ui",
       name: "global",
       type: "boolean",
-      description: "一个布尔值，如果为true，将使此集合全局化。\n",
+      description: "将集合标记为全局：一个单一的、站点范围的设置文档，从侧边栏的站点区域而不是集合列表中编辑。参见[全局集合](#global-collections)。\n",
       default: "false"
     },
     {
@@ -284,6 +284,38 @@ defaultItem: () => {
 
 要为[富文本字段](/docs/reference/types/rich-text/)设置默认值，您必须提供一个抽象语法树（AST）。更多信息请参见此处。
 
+## 全局集合
+
+设置`ui.global: true`以使集合**全局化**。全局集合包含一个单一的、站点范围的设置文档——例如页眉和页脚内容、导航、主题选项或SEO默认值——而不是多个文档的列表。
+
+在编辑器中，全局集合的呈现方式与常规集合不同：
+
+* 它在侧边栏的**站点**标题下出现一次（带有地球图标），而不是在主集合列表中。
+* 打开它直接进入文档的表单——没有文档列表需要浏览，因为全局集合旨在包含单个文档。
+
+![在TinaCMS侧边栏的站点标题下列出的全局集合（Global, SEO Defaults, Announcement Bar），每个都有一个地球图标，与上面的常规集合列表分开。](/img/docs/reference/global-collections.png)
+
+```ts
+{
+  label: 'Global',
+  name: 'global',
+  path: 'content/global',
+  format: 'json',
+  ui: {
+    global: true,
+  },
+  fields: [
+    // 例如：header, footer, theme, seo …
+  ],
+}
+```
+
+<WarningCallout
+  body={<>
+    全局集合旨在包含单个文档。如果它包含零个或多个文档，编辑器将回退到常规列表视图。
+  </>}
+/>
+
 ## 示例
 
 ### 简单的markdown集合
@@ -339,7 +371,7 @@ export default defineConfig({
 });
 ```
 
-### 具有默认标题的Markdown集合
+### 带有默认标题的Markdown集合
 
 ```js
 export default defineConfig({
