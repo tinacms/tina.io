@@ -112,7 +112,7 @@ The `format` property can be set to control the filetype of content created in t
       groupName: "ui",
       name: "global",
       type: "boolean",
-      description: "A boolean that if true will make this collection Global.\n",
+      description: "Marks the collection as global: a single, site-wide settings document edited from the Site area of the sidebar rather than the collection list. See [Global collections](#global-collections).\n",
       default: "false"
     },
     {
@@ -283,6 +283,38 @@ defaultItem: () => {
 ### Default value for rich-text
 
 To set the default for a [rich-text field](/docs/reference/types/rich-text/), you must provide an Abstract Syntax Tree (AST). See here for more information.
+
+## Global Collections
+
+Set `ui.global: true` to make a collection **global**. A global collection holds a single, site-wide settings document — things like header and footer content, navigation, theme options, or SEO defaults — rather than a list of many documents.
+
+In the editor, a global collection is presented differently from a regular collection:
+
+* It appears once under the **Site** heading in the sidebar (with a globe icon), instead of in the main collections list.
+* Opening it goes straight to the document's form — there's no document list to step through, because a global collection is meant to contain a single document.
+
+![Global collections (Global, SEO Defaults, Announcement Bar) listed under the Site heading in the TinaCMS sidebar, each with a globe icon, separate from the regular Collections list above.](/img/docs/reference/global-collections.png)
+
+```ts
+{
+  label: 'Global',
+  name: 'global',
+  path: 'content/global',
+  format: 'json',
+  ui: {
+    global: true,
+  },
+  fields: [
+    // e.g. header, footer, theme, seo …
+  ],
+}
+```
+
+<WarningCallout
+  body={<>
+    A global collection is intended to hold a single document. If it contains zero or multiple documents, the editor falls back to the regular list view.
+  </>}
+/>
 
 ## Examples
 
