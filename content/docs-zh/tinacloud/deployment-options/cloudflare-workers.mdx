@@ -1,0 +1,59 @@
+---
+title: Cloudflare Workers
+last_edited: '2026-06-10T00:46:42.475Z'
+next: ''
+previous: ''
+---
+
+TinaCMS在使用git连接的构建时与Cloudflare Workers一起工作。每次推送到你的生产分支都会构建网站，包括`tinacms build`步骤，并将其部署到Workers运行时。
+
+如果你的网站是完全静态导出的，[Cloudflare Pages](/docs/tinacloud/deployment-options/cloudflare-pages)是更简单的选择。当你的框架需要服务器运行时（SSR路由、API端点、重定向等）时，使用Workers。
+
+## 添加Cloudflare适配器
+
+你的启动项目需要为Workers运行时构建
+
+**Astro:**
+
+```
+npx astro add cloudflare
+```
+
+然后确保在仓库根目录存在一个`wrangler.jsonc`并指向构建
+
+**Next.js**
+
+使用[OpenNext Cloudflare适配器](https://opennext.js.org/cloudflare)并按照其设置生成`open-next.config.ts`和`wrangler.jsonc`。
+
+## 创建Worker
+
+在Cloudflare仪表板中，转到**Workers & pages** | **Create** | **Workers** | **Import** **a repository**，连接你的GitHub账户并选择你的仓库。
+
+### 构建配置
+
+构建命令：`pnpm run build` (Astro) 或 `npx opennextjs-cloudflare build` (Next.js)
+
+部署命令：`npx wrangler deploy` (Astro) 或 `npx opennextjs-cloudflare deploy` (Next.js)
+
+### 环境变量
+
+`tinacms build`在构建时需要你的TinaCloud凭证。在你的Workers中添加以下内容，**Settings** | **Build** | **Variables and Secrets**：
+
+* `PUBLIC_TINA_CLIENT_ID` (Astro) 或 `NEXT_PUBLIC_TINA_CLIENT_ID` (Next.js) - 你的TinaCloud客户端ID
+* `TINA_TOKEN` - 来自TinaCloud的内容令牌 | Tokens
+
+<WarningCallout
+  body={<>
+    Workers将构建变量和运行时变量分开。如果你的网站在运行时读取任何提到的变量，请在**Settings** | **Variables and Secrets**下再次添加它们
+  </>}
+/>
+
+## 完成TinaCloud设置
+
+一旦你有了第一次部署，Cloudflare会给你一个默认的域名URL，如`https://<site-name>.<account-name>.workers.dev`，确保在你的TinaCloud项目配置中将其设置为站点URL！
+
+## 故障排除
+
+1. 构建期间“JavaScript堆内存不足”
+
+TinaCloud索引步骤可能会超过Node的默认2GB堆。通过在构建命令前添加前缀或设置构建时环境变量`NODE_OPTIONS = —max-old-space-size=4096`来提高限制。

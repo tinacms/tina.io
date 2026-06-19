@@ -45,6 +45,13 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
       name: "showFloatingToolbar",
       type: "boolean",
       default: "true"
+    },
+    {
+      description:
+        "限制编辑器UI中提供的标题级别。接受 `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']` 的任何子集。省略时，所有级别均可用。\n",
+      groupName: "overrides",
+      name: "headingLevels",
+      type: "HeadingLevel[]"
     }
   ]}
 />
@@ -59,7 +66,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 <WarningCallout
   body={<>
-    `mark` 是一个保留的组件名称，内部用于**高亮**功能。如果您创建了一个名为 mark 的自定义 MDX 组件，它将与高亮功能冲突，并导致编辑器中的意外行为。
+    `mark` 是内部用于**高亮**功能的保留组件名称。如果您创建了一个名为mark的自定义MDX组件，它将与高亮功能冲突，并导致编辑器中的意外行为。
   </>}
 />
 
@@ -78,13 +85,19 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
       description:
         "是否启用或禁用富文本浮动工具栏。\n",
       type: "boolean"
+    },
+    {
+      name: "headingLevels",
+      description:
+        "限制编辑器UI中提供的标题级别。接受 `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']` 的任何子集。省略时，所有级别均可用。\n",
+      type: "HeadingLevel[]"
     }
   ]}
 />
 
 ## 换行
 
-要在TinaCMS富文本中插入可见的换行（例如，在引用内），请在您希望换行的地方按下 **Shift + Enter**（软回车）。
+要在TinaCMS富文本中插入可见的换行（例如，在引用中），请在您希望换行的地方按下 **Shift + Enter**（软回车）。
 
 保存后，检查Markdown。保留的换行显示为独立的 `\` 行：
 
@@ -126,7 +139,7 @@ previous: content/docs-zh/extending-tina/customize-list-ui.mdx
 
 ### 自定义高亮颜色
 
-您可以在富文本字段中启用文本高亮，并通过添加 `highlightColors` 数组到字段的 `overrides` 中来定义可供编辑者使用的高亮颜色。
+您可以在富文本字段中启用文本高亮，并通过添加 `highlightColors` 数组来定义编辑器可用的高亮颜色。
 
 ```ts
 export const heroBlockSchema = {
@@ -181,6 +194,26 @@ Tina将根据提供的配置生成适当的组件。
 ```
 
 ![](/docs/rich-text-override.png)
+
+### 限制可用的标题级别
+
+使用 `headingLevels` 控制编辑器可以选择的标题。传递 `['h1', 'h2', 'h3', 'h4', 'h5', 'h6']` 的任何子集，以任何顺序——该值应用于标题下拉菜单、“转换为”菜单、斜杠菜单和Markdown自动格式化快捷方式（例如，输入 `## ` 以获得h2）。省略时，所有六个级别均可用。
+
+```js
+{
+  type: 'rich-text',
+  label: '摘要',
+  name: 'excerpt',
+  overrides: {
+    toolbar: ['heading', 'bold', 'italic', 'link'],
+    headingLevels: ['h2'],
+  },
+}
+```
+
+> `headingLevels` 在 **tinacms@3.8.4** 中发布。更新您的包以使用它。
+
+此选项仅限于UI——它限制了编辑器可以插入的内容。现有内容中已经使用的不允许级别仍然按原样呈现。传递一个空数组（`headingLevels: []`）将从编辑器中移除所有标题级别。
 
 ### 带自定义组件的字段（`mdx`）
 
@@ -247,7 +280,7 @@ Tina将根据提供的配置生成适当的组件。
 
 要为富文本字段设置默认值，应指定整个AST树，如下例所示。
 
-> 推荐的方法是填写您的数据，然后 `console.log` CMS API 返回的相关字段值。 \
+> 推荐的方法是填写您的数据，然后 `console.log` CMS API返回的相关字段值。\
 > \
 > 然后将其复制到集合的 `defaultItem` 属性中。
 

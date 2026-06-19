@@ -1,0 +1,21 @@
+{
+  "versionNumber": "2026.06.7",
+  "dateReleased": "2026-06-19T04:30:19Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "Add Instructions-Security.md",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "fix(identity): disable federated users by resolved Cognito username",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}
