@@ -24,11 +24,16 @@ export async function generateMetadata({
     return notFound();
   }
   const excerpt = getExcerpt(post.body, 140);
-  return getSeo({
-    title: `${post.title} | TinaCMS Blog`,
-    description: excerpt,
-    canonicalUrl: `${settings.siteUrl}/blog/${slugPath}`,
-  });
+  return getSeo(
+    {
+      title: `${post.title} | TinaCMS Blog`,
+      description: excerpt,
+      canonicalUrl: `${settings.siteUrl}/blog/${slugPath}`,
+    },
+    undefined,
+    // og:image / twitter:image come from the dynamic opengraph-image.tsx
+    { omitOgImage: true },
+  );
 }
 
 export default async function BlogPage({
