@@ -233,6 +233,14 @@
           "content": "We're reworking the foundation of TinaCMS so more parts can be customised or replaced without forking the project. This will make TinaCMS easier to maintain and give teams more control over how the editor works.\n",
           "actions": [
             {
+              "label": "Blogged",
+              "icon": false,
+              "shape": "pill",
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/blog/tinacms-v4-is-coming"
+            },
+            {
               "label": "GitHub Discussion 🔗",
               "icon": false,
               "shape": "pill",
