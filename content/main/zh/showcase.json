@@ -47,14 +47,6 @@
           }
         },
         {
-          "headline": "Unity",
-          "text": "[Unity](https://docs.unity.com/cloud/en-us) 是《Pokémon Go》和《Call of Duty》背后的游戏引擎，正在使用TinaCMS和Next.js构建一个新的文档平台。他们选择Tina是因为它为Markdown内容提供了图形用户界面，并且Tina的GraphQL API允许他们将文档内容导入其他系统，如他们的AI聊天机器人。",
-          "url": "https://docs.unity.com/cloud/en-us",
-          "media": {
-            "src": "/img/tina-showcase/unity-documentation-tinacms.png"
-          }
-        },
-        {
           "headline": "Locality Bank",
           "text": "[Locality](https://localitybank.com) 正在重新定义本地商业银行业务——将最佳的个人关系与全面的融资经验和创新技术相结合，帮助南佛罗里达的企业蓬勃发展。",
           "url": "https://localitybank.com",

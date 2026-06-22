@@ -40,12 +40,6 @@
           "size": 220
         },
         {
-          "name": "Unity",
-          "link": "/showcase#unity",
-          "logo": "/svg/logos/unity.svg",
-          "size": 220
-        },
-        {
           "name": "Protocol Labs",
           "link": "/showcase#protocol-labs",
           "logo": "/svg/logos/protocollabs.svg",
@@ -163,12 +157,6 @@
         }
       ],
       "_template": "featureGrid"
-    },
-    {
-      "title2": "\"Tina彻底革新了Unity的文档管理方式\"",
-      "subtext": "Anton Iancu，AI与文档产品工程经理",
-      "logo": "/svg/logos/unity.svg",
-      "_template": "quote"
     },
     {
       "items": [

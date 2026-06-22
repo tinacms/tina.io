@@ -42,12 +42,6 @@
           "size": 220
         },
         {
-          "name": "Unity",
-          "link": "/showcase#unity",
-          "logo": "/svg/logos/unity.svg",
-          "size": 220
-        },
-        {
           "name": "Protocol Labs",
           "link": "/showcase#protocol-labs",
           "logo": "/svg/logos/protocollabs.svg",
@@ -187,12 +181,6 @@
         }
       ],
       "_template": "featureGrid"
-    },
-    {
-      "title2": "\"Tina is transforming the way we do docs at Unity\"",
-      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "/svg/logos/unity.svg",
-      "_template": "quote"
     },
     {
       "features": [

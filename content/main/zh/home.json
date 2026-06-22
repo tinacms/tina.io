@@ -60,12 +60,6 @@
           "size": 220
         },
         {
-          "name": "Unity",
-          "link": "/showcase#unity",
-          "logo": "/svg/logos/unity.svg",
-          "size": 200
-        },
-        {
           "name": "Protocol Labs",
           "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
@@ -295,15 +289,6 @@
         }
       ],
       "_template": "features"
-    },
-    {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "title2": "\"Tina 正在改变我们在 Unity 处理文档的方式\"",
-      "subtext": "Anton Iancu，AI 和文档产品工程经理",
-      "logo": "/img/logos/unity-logo.webp",
-      "_template": "quote"
     },
     {
       "title": "开发者的最爱",

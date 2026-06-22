@@ -61,12 +61,6 @@
           "size": 220
         },
         {
-          "name": "Unity",
-          "link": "/showcase#unity",
-          "logo": "/svg/logos/unity.svg",
-          "size": 200
-        },
-        {
           "name": "Protocol Labs",
           "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
@@ -296,15 +290,6 @@
         }
       ],
       "_template": "features"
-    },
-    {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "title2": "\"Tina is transforming the way we do docs at Unity\"",
-      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "/img/logos/unity-logo.png",
-      "_template": "quote"
     },
     {
       "title": "Loved by Developers",

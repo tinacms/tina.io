@@ -240,12 +240,6 @@
           "size": 220
         },
         {
-          "name": "Unity",
-          "link": "/showcase#unity",
-          "logo": "/svg/logos/unity.svg",
-          "size": 200
-        },
-        {
           "name": "Protocol Labs",
           "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",

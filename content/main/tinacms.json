@@ -50,12 +50,6 @@
           "size": 220
         },
         {
-          "name": "Unity",
-          "link": "/showcase#unity",
-          "logo": "/svg/logos/unity.svg",
-          "size": 200
-        },
-        {
           "name": "Protocol Labs",
           "link": "/showcase#Microgen",
           "logo": "/svg/logos/protocollabs.svg",
@@ -255,15 +249,6 @@
       "externalVideoLink": "https://www.youtube.com/embed/E0nehGoMwWM?si=yCzOYaMmbrdx_h7G",
       "figureCaption": "Video: Getting Started in TinaCMS with NPX (2 min)",
       "_template": "videoEmbed"
-    },
-    {
-      "blockSettings": {
-        "isFullscreen": false
-      },
-      "title2": "\"Tina is transforming the way we do docs at Unity\"",
-      "subtext": "Anton Iancu, Product Engineering Manager for AI and Docs",
-      "logo": "/svg/logos/unity-logo.svg",
-      "_template": "quote"
     },
     {
       "title": "Loved by Developers",

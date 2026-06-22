@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "TinaCMS Showcase – Websites Built with Tina",
-    "description": "Explore websites and projects built with TinaCMS. See how companies like Unity, Smashing Magazine, and NDC Conferences use Tina for content management."
+    "description": "Explore websites and projects built with TinaCMS. See how companies like Smashing Magazine and NDC Conferences use Tina for content management."
   },
   "blocks": [
     {
@@ -51,14 +51,6 @@
           "url": "https://www.devolverdigital.com/",
           "media": {
             "src": "/img/tina-showcase/devolver.png"
-          }
-        },
-        {
-          "headline": "Unity ",
-          "text": "[Unity](https://docs.unity.com/cloud/en-us), the game engine behind Pokémon Go and Call of Duty, is building a new documentation platform with TinaCMS and Next.js. They chose Tina because it provides a GUI for their Markdown content and because Tina's GraphQL API allows them to ingest docs content into other systems such as their AI chatbot. ",
-          "url": "https://docs.unity.com/cloud/en-us",
-          "media": {
-            "src": "/img/tina-showcase/unity-documentation-tinacms.png"
           }
         },
         {

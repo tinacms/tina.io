@@ -1,6 +1,6 @@
 # TinaCMS
 
-> TinaCMS is an open-source, Git-backed headless CMS that supports Markdown, MDX, and JSON content. It offers visual editing, a flexible content model, and seamless integration with modern frameworks. Trusted by Unity, Smashing Magazine, and more.
+> TinaCMS is an open-source, Git-backed headless CMS that supports Markdown, MDX, and JSON content. It offers visual editing, a flexible content model, and seamless integration with modern frameworks. Trusted by Smashing Magazine and more.
 
 ## Details
 
