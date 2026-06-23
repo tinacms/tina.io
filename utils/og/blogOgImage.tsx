@@ -15,8 +15,6 @@ import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
 
 export const OG_SIZE = { width: 1200, height: 630 };
-export const OG_CONTENT_TYPE = 'image/png';
-export const OG_ALT = 'TinaCMS Blog';
 
 const W = OG_SIZE.width;
 const H = OG_SIZE.height;
