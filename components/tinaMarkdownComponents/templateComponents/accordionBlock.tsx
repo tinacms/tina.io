@@ -51,7 +51,7 @@ export const AccordionBlock = ({
 
   return (
     <div
-      className={`mx-auto flex flex-col justify-center items-center rounded-lg bg-white shadow-sm mb-5 py-6 border border-gray-200 ${
+      className={`mx-auto flex flex-col justify-center items-center rounded-lg bg-white shadow-sm mb-5 my-6 border border-gray-200 ${
         fullWidth ? 'w-full' : 'w-3/4'
       }`}
     >
