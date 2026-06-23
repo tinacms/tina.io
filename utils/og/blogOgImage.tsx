@@ -4,12 +4,10 @@
 // `opengraph-image` file conventions under app/blog and app/zh/blog.
 //
 // Design: a dark charcoal left side (white "New Post" pill, IBM Plex headline,
-// "By {author}", orange Tina logo) and an S-curve dividing it from the right.
-// Two right-hand modes:
-//  - photo mode: a framed author photo (.jpg) masked to the curve, with the
-//    orange brand panel revealed alongside it as a border.
-//  - figure mode: a transparent cutout / llama mascot standing on the orange
-//    panel (the no-photo fallback).
+// "By {author}", orange Tina logo) and an orange brand-gradient panel on the
+// right whose left edge is a smooth S-curve. The subject — the author's cutout
+// if we have one, otherwise a llama mascot — stands on the orange panel and is
+// clipped to the curve.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -52,17 +50,6 @@ function pngDataUri(publicPath: string): string | null {
   return fileToDataUri(fromPublic(publicPath.replace(/^\//, '')), 'image/png');
 }
 
-/** Load a public image, picking the mime from its extension. */
-function imageDataUri(publicPath: string): string | null {
-  const mime = /\.jpe?g$/i.test(publicPath) ? 'image/jpeg' : 'image/png';
-  return fileToDataUri(fromPublic(publicPath.replace(/^\//, '')), mime);
-}
-
-/** Is this a framed photo (rectangular, with background) vs a cutout/llama? */
-function isFramedPhoto(publicPath: string | null): boolean {
-  return !!publicPath && /\.jpe?g$/i.test(publicPath);
-}
-
 function svgDataUri(svg: string): string {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 }
@@ -77,34 +64,14 @@ function logoDataUri(): string | null {
   }
 }
 
-// Curve geometry. curveAt(edge) returns the S-curve pieces for a given nominal
-// divider x, so the dark side, the orange panel, and a right-shifted copy (for
-// the border reveal) all come from one definition.
-function curveAt(edge: number) {
-  const topX = edge + AMP * 0.55;
-  const botX = edge - AMP * 0.55;
-  const c1a = `${topX - AMP * 1.9} ${H * 0.3}`;
-  const c1b = `${edge - AMP * 1.2} ${H * 0.34}`;
-  const p1 = `${edge - AMP * 0.15} ${H * 0.5}`;
-  const c2a = `${edge + AMP * 0.9} ${H * 0.66}`;
-  const c2b = `${botX + AMP * 1.7} ${H * 0.7}`;
-  const end = `${botX} ${H}`;
-  return {
-    topX,
-    botX,
-    body: `C ${c1a}, ${c1b}, ${p1} C ${c2a}, ${c2b}, ${end}`, // top -> bottom
-    reversed: `C ${c2b}, ${c2a}, ${p1} C ${c1b}, ${c1a}, ${topX} 0`, // bottom -> top
-  };
-}
-
-// BORDER = how much orange is revealed to the left of the photo.
-const BORDER = 46;
-const MAIN = curveAt(EDGE);
-const SHIFTED = curveAt(EDGE + BORDER);
-
-const CURVE_TOP_X = MAIN.topX;
-const CURVE_BOT_X = MAIN.botX;
-const CURVE_BODY = MAIN.body;
+// The S-curve dividing the dark side from the orange panel. CURVE_BODY is the
+// two cubic segments (top -> bottom); the orange panel and the dark clip
+// overlay reuse it so their edges line up exactly.
+const CURVE_TOP_X = EDGE + AMP * 0.55;
+const CURVE_BOT_X = EDGE - AMP * 0.55;
+const CURVE_BODY =
+  `C ${CURVE_TOP_X - AMP * 1.9} ${H * 0.3}, ${EDGE - AMP * 1.2} ${H * 0.34}, ${EDGE - AMP * 0.15} ${H * 0.5} ` +
+  `C ${EDGE + AMP * 0.9} ${H * 0.66}, ${CURVE_BOT_X + AMP * 1.7} ${H * 0.7}, ${CURVE_BOT_X} ${H}`;
 
 // Orange panel: from the curve to the right edge, with a faint highlight along
 // the curve.
@@ -137,22 +104,6 @@ const DARK_OVERLAY_URI = svgDataUri(
   </svg>`,
 );
 
-// Orange border band: the orange panel revealed between the main curve (left)
-// and the right-shifted curve (right), i.e. the orange peeking out to the left
-// of the photo. Same orange as the panel.
-const ORANGE_RIBBON_URI = svgDataUri(
-  `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="ob" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#FFA06B"/>
-        <stop offset="0.45" stop-color="#F2541B"/>
-        <stop offset="1" stop-color="#B83310"/>
-      </linearGradient>
-    </defs>
-    <path d="M ${MAIN.topX} 0 ${MAIN.body} L ${SHIFTED.botX} ${H} ${SHIFTED.reversed} Z" fill="url(#ob)"/>
-  </svg>`,
-);
-
 // Faint dot texture for the dark side.
 const DOT_GRID_URI = (() => {
   const dots: string[] = [];
@@ -168,12 +119,11 @@ const DOT_GRID_URI = (() => {
   );
 })();
 
-// Bottom-right placement, tuned per subject (silhouettes differ a lot). Llamas
-// sit fully on the orange panel; author photos fill it and may clip the curve.
+// Bottom-right placement on the orange panel, tuned per subject (silhouettes
+// differ a lot). The dark overlay clips anything that overflows past the curve.
 type SubjectLayout = { width: number; bottom: number; right: number };
 
 const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
-  '/ai-llamas/Peek-Llama.png': { width: 372, bottom: -12, right: 54 },
   '/ai-llamas/Relax-Llama.png': { width: 352, bottom: 0, right: 46 },
   '/ai-llamas/tina-llama-working-laptop-table.png': {
     width: 452,
@@ -182,9 +132,8 @@ const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
   },
 };
 
-// Placement for a transparent cutout figure (e.g. a .png author cutout) that
-// stands on the orange panel, like the llamas. Framed .jpg photos use photo
-// mode instead and don't use this.
+// Placement for an author cutout. Cutouts are pre-normalised to a uniform head
+// size + position off their alpha channel, so one placement works for everyone.
 const AUTHOR_PORTRAIT_LAYOUT: SubjectLayout = {
   width: 500,
   bottom: 0,
@@ -223,24 +172,15 @@ export async function renderBlogOgImage({
     readFont('Inter-Regular.woff'),
   ];
 
-  // Right-hand subject. Two modes:
-  //  - photo mode: a framed photo (.jpg, with background) masked to the curve.
-  //  - figure mode: a transparent cutout / llama standing on the orange panel.
+  // Right-hand subject: the author's cutout if we have one, otherwise a llama
+  // mascot. Both are transparent figures standing on the orange panel.
   const mappedAvatar = authorImagePath(author);
-  const photoUri =
-    mappedAvatar && isFramedPhoto(mappedAvatar)
-      ? imageDataUri(mappedAvatar)
-      : null;
-  const cutoutUri =
-    mappedAvatar && !isFramedPhoto(mappedAvatar)
-      ? imageDataUri(mappedAvatar)
-      : null;
+  const avatarUri = mappedAvatar ? pngDataUri(mappedAvatar) : null;
   const llamaSrc = pickLlama(seed);
-  const figureUri = cutoutUri ?? pngDataUri(llamaSrc);
-  const figureLayout = cutoutUri
+  const subjectUri = avatarUri ?? pngDataUri(llamaSrc);
+  const subjectLayout = avatarUri
     ? AUTHOR_PORTRAIT_LAYOUT
     : LLAMA_LAYOUT[llamaSrc];
-  const usePhoto = !!photoUri;
 
   const logo = logoDataUri();
   const fontSize = titleFontSize(title);
@@ -262,46 +202,27 @@ export async function renderBlogOgImage({
           'linear-gradient(135deg, #1b1a1f 0%, #0a0a0b 55%, #050505 100%)',
       }}
     >
-      {/* PHOTO MODE: framed photo filling the right side (clipped to the curve
-          by the dark overlay below) */}
-      {usePhoto ? (
-        // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
-        // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
-        <img
-          src={photoUri ?? ''}
-          width={W - EDGE + AMP + 30}
-          height={H}
-          style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            height: H,
-            objectFit: 'cover',
-          }}
-        />
-      ) : null}
+      {/* Orange S-curve panel */}
+      {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
+      {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
+      <img
+        src={ORANGE_PANEL_URI}
+        width={W}
+        height={H}
+        style={{ position: 'absolute', top: 0, left: 0 }}
+      />
 
-      {/* FIGURE MODE: orange panel + cutout/llama standing on it */}
-      {!usePhoto ? (
+      {/* Subject — author cutout or llama, standing on the orange panel */}
+      {subjectUri ? (
         // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
         // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
         <img
-          src={ORANGE_PANEL_URI}
-          width={W}
-          height={H}
-          style={{ position: 'absolute', top: 0, left: 0 }}
-        />
-      ) : null}
-      {!usePhoto && figureUri ? (
-        // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
-        // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
-        <img
-          src={figureUri}
-          width={figureLayout.width}
+          src={subjectUri}
+          width={subjectLayout.width}
           style={{
             position: 'absolute',
-            bottom: figureLayout.bottom,
-            right: figureLayout.right,
+            bottom: subjectLayout.bottom,
+            right: subjectLayout.right,
             objectFit: 'contain',
           }}
         />
@@ -317,18 +238,6 @@ export async function renderBlogOgImage({
         height={H}
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
-
-      {/* Orange border band revealed to the left of the photo (photo mode) */}
-      {usePhoto ? (
-        // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
-        // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
-        <img
-          src={ORANGE_RIBBON_URI}
-          width={W}
-          height={H}
-          style={{ position: 'absolute', top: 0, left: 0 }}
-        />
-      ) : null}
 
       {/* faint dot texture on the dark side */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}

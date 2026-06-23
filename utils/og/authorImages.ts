@@ -34,9 +34,11 @@ export const AUTHOR_IMAGES: Record<string, string> = {
   'scott gallant': '/img/blog/authors/scott-gallant.png',
   'kendall strautman': '/img/blog/authors/kendall-strautman.png',
   'jack pettit': '/img/blog/authors/jack-pettit.png',
-  'matt wicks': '/img/blog/authors/matt-wicks.jpg',
-  'josh berman': '/img/blog/authors/josh-berman.jpg',
-  'brook jeynes': '/img/blog/authors/brook-jeynes.jpg',
+  'matt wicks': '/img/blog/authors/matt-wicks.png',
+  'josh berman': '/img/blog/authors/josh-berman.png',
+  'brook jeynes': '/img/blog/authors/brook-jeynes.png',
+  // Ivan has no blog posts yet — mapped so it's ready if he writes one.
+  ivan: '/img/blog/authors/ivan.png',
   'logan anderson': '/img/blog/authors/logan-anderson.png',
   'landon maxwell': '/img/blog/authors/landon-maxwell.png',
   'jeff see': '/img/blog/authors/jeff-see.png',
@@ -49,10 +51,11 @@ export const AUTHOR_IMAGES: Record<string, string> = {
   'joe haddad': '/img/blog/authors/joe-haddad.png',
 };
 
-// Three friendly llama mascots used when an author has no photo. Picked
-// deterministically per-post so a given slug always shows the same llama.
+// Friendly llama mascots used when an author has no photo, picked
+// deterministically per-post. Only self-contained scenes (their own chair /
+// desk) — no mascots that rest on an external hard edge, which look cut off
+// floating on the panel.
 export const FALLBACK_LLAMAS = [
-  '/ai-llamas/Peek-Llama.png',
   '/ai-llamas/Relax-Llama.png',
   '/ai-llamas/tina-llama-working-laptop-table.png',
 ] as const;
