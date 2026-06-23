@@ -3,6 +3,7 @@ import React from 'react';
 import type { Template } from 'tinacms';
 import { CardGridSchema } from '../../components/blocks/CardGrid.schema';
 import { RecipeBlock } from '../../components/blocks/Recipe.template';
+import { AccordionBlockSchema } from '../../components/tinaMarkdownComponents/templateComponents/accordionBlock.schema';
 import ScrollBasedShowcase from '../../components/tinaMarkdownComponents/templateComponents/scrollBasedShowcase.schema';
 import { seoInformation } from './sharedFields/seoInformation';
 
@@ -335,52 +336,7 @@ export const docsCollection = {
             },
           ],
         },
-        {
-          name: 'accordionBlock',
-          label: 'Accordion Block',
-          fields: [
-            {
-              name: 'fullWidth',
-              label: 'Full Width',
-              type: 'boolean',
-            },
-            {
-              name: 'accordionItems',
-              label: 'Accordion Items',
-              type: 'object',
-              list: true,
-              ui: {
-                itemProps: (item) => {
-                  return {
-                    label: item?.heading ?? 'Accordion Item',
-                  };
-                },
-                defaultItem: {
-                  heading: 'Click to expand',
-                },
-              },
-              fields: [
-                {
-                  name: 'heading',
-                  label: 'Heading',
-                  type: 'string',
-                  description:
-                    'The heading text that will be displayed in the collapsed state',
-                },
-                {
-                  name: 'docText',
-                  label: 'Body Text',
-                  type: 'rich-text',
-                },
-                {
-                  name: 'image',
-                  label: 'Image',
-                  type: 'image',
-                },
-              ],
-            },
-          ],
-        },
+        AccordionBlockSchema as Template,
         {
           name: 'SummaryTab',
           label: 'Summary Tab',
