@@ -54,10 +54,10 @@ function svgDataUri(svg: string): string {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 }
 
-/** The official TinaCMS logo (orange wordmark), inlined as an SVG data URI. */
+/** The official TinaCMS logo (orange llama + "tinacms"), as an SVG data URI. */
 function logoDataUri(): string | null {
   try {
-    const svg = fs.readFileSync(fromPublic('svg/tina-logo.svg'), 'utf8');
+    const svg = fs.readFileSync(fromPublic('svg/tina-extended-logo.svg'), 'utf8');
     return svgDataUri(svg);
   } catch {
     return null;
@@ -132,13 +132,11 @@ const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
   },
 };
 
-// Placement for an author cutout. Cutouts are pre-normalised to a uniform head
-// size + position off their alpha channel, so one placement works for everyone.
-const AUTHOR_PORTRAIT_LAYOUT: SubjectLayout = {
-  width: 500,
-  bottom: 0,
-  right: 8,
-};
+// Author cutouts are trimmed to the person, then fit to a fixed HEIGHT and
+// centred in this panel area, bottom-anchored — so every author is sized and
+// placed identically, never cropped (no straight edges) and never clipping.
+const AUTHOR_AREA = { width: 540, right: 0, height: H };
+const AUTHOR_HEIGHT = 552; // leaves ~78px headroom above the head
 
 function titleFontSize(title: string): number {
   const len = title.length;
@@ -172,15 +170,14 @@ export async function renderBlogOgImage({
     readFont('Inter-Regular.woff'),
   ];
 
-  // Right-hand subject: the author's cutout if we have one, otherwise a llama
-  // mascot. Both are transparent figures standing on the orange panel.
+  // Right-hand subject: the author's trimmed cutout if we have one, otherwise a
+  // llama mascot. Authors fit-to-height + centre in the panel; the llama
+  // mascots are scene illustrations placed by their own per-llama layout.
   const mappedAvatar = authorImagePath(author);
   const avatarUri = mappedAvatar ? pngDataUri(mappedAvatar) : null;
   const llamaSrc = pickLlama(seed);
-  const subjectUri = avatarUri ?? pngDataUri(llamaSrc);
-  const subjectLayout = avatarUri
-    ? AUTHOR_PORTRAIT_LAYOUT
-    : LLAMA_LAYOUT[llamaSrc];
+  const llamaUri = avatarUri ? null : pngDataUri(llamaSrc);
+  const llamaLayout = LLAMA_LAYOUT[llamaSrc];
 
   const logo = logoDataUri();
   const fontSize = titleFontSize(title);
@@ -212,17 +209,38 @@ export async function renderBlogOgImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* Subject — author cutout or llama, standing on the orange panel */}
-      {subjectUri ? (
+      {/* AUTHOR — trimmed cutout, fit to a fixed height and centred in the
+          panel area, bottom-anchored. Same treatment for every author. */}
+      {avatarUri ? (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: AUTHOR_AREA.right,
+            width: AUTHOR_AREA.width,
+            height: AUTHOR_AREA.height,
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          }}
+        >
+          {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
+          {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
+          <img src={avatarUri} height={AUTHOR_HEIGHT} />
+        </div>
+      ) : null}
+
+      {/* LLAMA fallback — scene illustration placed by its own layout */}
+      {llamaUri ? (
         // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
         // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
         <img
-          src={subjectUri}
-          width={subjectLayout.width}
+          src={llamaUri}
+          width={llamaLayout.width}
           style={{
             position: 'absolute',
-            bottom: subjectLayout.bottom,
-            right: subjectLayout.right,
+            bottom: llamaLayout.bottom,
+            right: llamaLayout.right,
             objectFit: 'contain',
           }}
         />
@@ -335,7 +353,7 @@ export async function renderBlogOgImage({
           {logo ? (
             // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
             // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
-            <img src={logo} width={140} height={60} />
+            <img src={logo} width={188} height={47} />
           ) : (
             <div
               style={{
