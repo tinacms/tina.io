@@ -8,43 +8,37 @@ interface DefaultProps {
   body: any;
 }
 
-interface SeoOptions {
-  // When true, omit openGraph.images so a route-level `opengraph-image` file
-  // convention is the single source of the og:image / twitter:image tags
-  // (avoids emitting a duplicate, conflicting image).
-  omitOgImage?: boolean;
-}
-
-export const getSeo = (
-  seo: any,
-  data?: DefaultProps,
-  options?: SeoOptions,
-): Metadata => {
+export const getSeo = (seo: any, data?: DefaultProps): Metadata => {
   const excerpt = data ? getExcerpt(data.body, 140) : '';
 
-  const openGraph: NonNullable<Metadata['openGraph']> = {
-    title: seo?.title || `${data?.pageTitle} | TinaCMS`,
-    url: envUrl(seo?.canonicalUrl),
-    description: seo?.description || `${excerpt}`,
-  };
+  // A custom per-page image (e.g. the dynamic blog OG route) resolves against
+  // metadataBase; otherwise fall back to the site default.
+  const imageUrl =
+    seo?.ogImage || envUrl(DEFAULT_SEO.openGraph?.images?.[0]?.url);
 
-  if (!options?.omitOgImage) {
-    openGraph.images = [
-      {
-        ...DEFAULT_SEO.openGraph?.images?.[0],
-        url: seo?.ogImage || envUrl(DEFAULT_SEO.openGraph?.images?.[0]?.url),
-      },
-    ];
-  }
-
-  const SEO = {
+  const SEO: Metadata = {
     title: seo?.title || `${data?.pageTitle} | TinaCMS`,
     description: seo?.description || `${excerpt}`,
     alternates: {
       canonical: envUrl(seo?.canonicalUrl),
     },
-    openGraph,
+    openGraph: {
+      title: seo?.title || `${data?.pageTitle} | TinaCMS`,
+      url: envUrl(seo?.canonicalUrl),
+      description: seo?.description || `${excerpt}`,
+      images: [
+        {
+          ...DEFAULT_SEO.openGraph?.images?.[0],
+          url: imageUrl,
+        },
+      ],
+    },
   };
+
+  // When a page supplies its own image, mirror it onto the Twitter card too.
+  if (seo?.ogImage) {
+    SEO.twitter = { ...DEFAULT_SEO.twitter, images: [seo.ogImage] };
+  }
 
   return {
     ...DEFAULT_SEO,
