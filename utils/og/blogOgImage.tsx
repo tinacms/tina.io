@@ -57,7 +57,10 @@ function svgDataUri(svg: string): string {
 /** The official TinaCMS logo (orange llama + "tinacms"), as an SVG data URI. */
 function logoDataUri(): string | null {
   try {
-    const svg = fs.readFileSync(fromPublic('svg/tina-extended-logo.svg'), 'utf8');
+    const svg = fs.readFileSync(
+      fromPublic('svg/tina-extended-logo.svg'),
+      'utf8',
+    );
     return svgDataUri(svg);
   } catch {
     return null;
