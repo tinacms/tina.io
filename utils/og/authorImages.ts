@@ -10,9 +10,8 @@
 //
 // Paths point at /public. A mapped author only shows a photo once the file
 // actually exists on disk — otherwise the renderer falls back to a llama — so
-// it's safe to list authors here before their images have been added.
-
-export const AUTHOR_IMAGE_DIR = 'public/img/blog/authors';
+// it's safe to list authors here before their images have been added
+// (under public/img/blog/authors/).
 
 /** Normalise an author string to a stable lookup key (first author only). */
 export function normaliseAuthorKey(author: string | null | undefined): string {
