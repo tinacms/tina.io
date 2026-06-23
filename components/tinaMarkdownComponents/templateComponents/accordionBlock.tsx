@@ -1,7 +1,3 @@
-/** biome-ignore-all lint/performance/noImgElement: <TODO> */
-/** biome-ignore-all lint/a11y/noRedundantAlt: <TODO> */
-/** biome-ignore-all lint/correctness/useExhaustiveDependencies: <TODO> */
-/** biome-ignore-all lint/suspicious/noArrayIndexKey: <TODO> */
 import { useEffect, useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { type Components, TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -55,7 +51,7 @@ export const AccordionBlock = ({
 
   return (
     <div
-      className={`mx-auto flex flex-col justify-center items-center rounded-lg bg-white shadow-sm mb-5 border border-gray-200 ${
+      className={`mx-auto flex flex-col justify-center items-center rounded-lg bg-white shadow-sm mb-5 py-6 border border-gray-200 ${
         fullWidth ? 'w-full' : 'w-3/4'
       }`}
     >
@@ -63,7 +59,7 @@ export const AccordionBlock = ({
         const image = item.image || null;
 
         return (
-          <div key={`accordion-${index}`} className="w-full my-4">
+          <div key={item.heading || 'Untitled item'} className="w-full">
             <div
               className="flex cursor-pointer items-center justify-between px-6 py-6"
               onClick={() => toggleExpand(index)}
