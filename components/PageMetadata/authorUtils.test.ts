@@ -5,7 +5,11 @@ const makeCommit = (authorName: string, message: string): GitHubCommit => ({
   sha: 'abc123',
   commit: {
     author: { name: authorName, email: 'a@example.com', date: '2026-06-01' },
-    committer: { name: 'GitHub', email: 'noreply@github.com', date: '2026-06-01' },
+    committer: {
+      name: 'GitHub',
+      email: 'noreply@github.com',
+      date: '2026-06-01',
+    },
     message,
   },
   author: null,
@@ -48,9 +52,9 @@ describe('parseCoAuthors', () => {
 
 describe('resolveDisplayAuthor', () => {
   it('substitutes the co-author when the author is a bot', () => {
-    expect(resolveDisplayAuthor(makeCommit('tinacloud-app[bot]', BOT_MESSAGE))).toBe(
-      'Eli Kent [SSW]',
-    );
+    expect(
+      resolveDisplayAuthor(makeCommit('tinacloud-app[bot]', BOT_MESSAGE)),
+    ).toBe('Eli Kent [SSW]');
   });
 
   it('handles the dashed bot name variant', () => {
@@ -60,9 +64,9 @@ describe('resolveDisplayAuthor', () => {
   });
 
   it('keeps a human author and ignores any co-author trailer', () => {
-    expect(resolveDisplayAuthor(makeCommit('Eli Kent [SSW]', BOT_MESSAGE))).toBe(
-      'Eli Kent [SSW]',
-    );
+    expect(
+      resolveDisplayAuthor(makeCommit('Eli Kent [SSW]', BOT_MESSAGE)),
+    ).toBe('Eli Kent [SSW]');
   });
 
   it('falls back to the bot name when a bot commit has no co-author', () => {
