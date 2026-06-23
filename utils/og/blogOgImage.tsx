@@ -1,13 +1,9 @@
-// utils/og/blogOgImage.tsx
+// Renders the dynamic OpenGraph image for a blog post (served by the route
+// handlers under app/blog/og and app/zh/blog/og).
 //
-// Renders the dynamic OpenGraph image for a blog post. Used by the
-// `opengraph-image` file conventions under app/blog and app/zh/blog.
-//
-// Design: a dark charcoal left side (white "New Post" pill, IBM Plex headline,
-// "By {author}", orange Tina logo) and an orange brand-gradient panel on the
-// right whose left edge is a smooth S-curve. The subject — the author's cutout
-// if we have one, otherwise a llama mascot — stands on the orange panel and is
-// clipped to the curve.
+// Design: a dark charcoal left side (title, "By {author}", tinacms logo, "New
+// Post" pill) and an orange S-curve panel on the right holding the author's
+// cutout — or a llama mascot when there's no photo.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -24,11 +20,8 @@ const H = OG_SIZE.height;
 const EDGE = Math.round(W * 0.58); // ~696
 const AMP = 70;
 
-// ---------------------------------------------------------------------------
-// Asset loading (Node runtime, build time). Fonts must be ttf/otf/woff —
-// satori does not support woff2.
-// ---------------------------------------------------------------------------
-
+// Asset loading at build time. Fonts must be ttf/otf/woff — satori (next/og)
+// does not support woff2.
 const fromPublic = (p: string) => path.join(process.cwd(), 'public', p);
 
 function readFont(file: string) {

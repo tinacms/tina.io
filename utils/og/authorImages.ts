@@ -1,17 +1,11 @@
-// utils/og/authorImages.ts
-//
-// Maps a blog post `author` string to an avatar image used in the dynamic
-// OpenGraph image (see utils/og/blogOgImage.tsx).
+// Maps a blog post `author` string to an avatar image for the OG renderer.
 //
 // Authors are free-text strings today (no authors collection — see the TODO in
 // tina/collectionsSchema/blogs.tsx), and several posts credit multiple people
-// ("James Perkins & James O'Halloran"). We key off the FIRST author and match
-// on a normalised name so casing/whitespace differences don't matter.
-//
-// Paths point at /public. A mapped author only shows a photo once the file
-// actually exists on disk — otherwise the renderer falls back to a llama — so
-// it's safe to list authors here before their images have been added
-// (under public/img/blog/authors/).
+// ("James Perkins & James O'Halloran"), so we key off the first author on a
+// normalised name. A mapped author only shows a photo once the file exists on
+// disk (otherwise the renderer falls back to a llama), so it's safe to list
+// authors here before their images have been added.
 
 /** Normalise an author string to a stable lookup key (first author only). */
 export function normaliseAuthorKey(author: string | null | undefined): string {
