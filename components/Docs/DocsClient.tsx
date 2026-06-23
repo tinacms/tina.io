@@ -108,13 +108,6 @@ export default function DocsClient({
             components={docAndBlogComponents}
           />
         </div>
-
-        {formattedDate && (
-          <span className="text-slate-500 text-md">
-            {' '}
-            {strings.docs.lastEdited}: {formattedDate}
-          </span>
-        )}
         <DocsPagination prevPage={previousPage} nextPage={nextPage} />
       </div>
       {DocumentationData?.tocIsHidden ? null : (
