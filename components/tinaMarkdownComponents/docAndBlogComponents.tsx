@@ -220,7 +220,7 @@ export const docAndBlogComponents: Components<{
           const image = item.image || null;
 
           return (
-            <div key={`accordion-${index}`} className="w-full my-2">
+            <div key={`accordion-${index}`} className="w-full my-4">
               <div
                 className="flex cursor-pointer items-center justify-between px-6 py-6"
                 onClick={() => toggleExpand(index)}
