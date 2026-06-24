@@ -132,18 +132,32 @@ const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
 const AUTHOR_AREA = { width: 540, right: 0, height: H };
 const AUTHOR_HEIGHT = 552; // leaves ~78px headroom above the head
 
+// Font shrinks by length so each tier's longest title still fits ~4 lines in
+// the title column (satori doesn't honour line-clamp, so we size to fit).
 function titleFontSize(title: string): number {
   const len = title.length;
-  if (len <= 34) {
-    return 66;
+  if (len <= 40) {
+    return 64;
   }
-  if (len <= 66) {
+  if (len <= 62) {
     return 54;
   }
-  if (len <= 104) {
+  if (len <= 80) {
     return 44;
   }
   return 38;
+}
+
+// Beyond what fits at the smallest size, truncate at a word boundary with an
+// ellipsis so the title ends cleanly instead of being hard-cut mid-phrase.
+const TITLE_CAP = 86;
+function clampTitle(title: string): string {
+  if (title.length <= TITLE_CAP) {
+    return title;
+  }
+  const cut = title.slice(0, TITLE_CAP);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
 export interface BlogOgInput {
@@ -174,7 +188,8 @@ export async function renderBlogOgImage({
   const llamaLayout = LLAMA_LAYOUT[llamaSrc];
 
   const logo = logoDataUri();
-  const fontSize = titleFontSize(title);
+  const displayTitle = clampTitle(title);
+  const fontSize = titleFontSize(displayTitle);
 
   // Author display: keep the full credited string, but the avatar reflects the
   // first author only.
@@ -325,7 +340,7 @@ export async function renderBlogOgImage({
               overflow: 'hidden',
             }}
           >
-            {title}
+            {displayTitle}
           </div>
         </div>
 
