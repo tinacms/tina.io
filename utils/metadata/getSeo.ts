@@ -10,34 +10,43 @@ interface DefaultProps {
 
 export const getSeo = (seo: any, data?: DefaultProps): Metadata => {
   const excerpt = data ? getExcerpt(data.body, 140) : '';
+  const title = seo?.title || `${data?.pageTitle} | TinaCMS`;
+  const description = seo?.description || `${excerpt}`;
 
-  // A custom per-page image (e.g. the dynamic blog OG route) resolves against
-  // metadataBase; otherwise fall back to the site default.
+  // A custom per-page image (e.g. the dynamic blog OG route) is used verbatim;
+  // otherwise fall back to the site default.
   const imageUrl =
     seo?.ogImage || envUrl(DEFAULT_SEO.openGraph?.images?.[0]?.url);
 
   const SEO: Metadata = {
-    title: seo?.title || `${data?.pageTitle} | TinaCMS`,
-    description: seo?.description || `${excerpt}`,
+    title,
+    description,
     alternates: {
       canonical: envUrl(seo?.canonicalUrl),
     },
     openGraph: {
-      title: seo?.title || `${data?.pageTitle} | TinaCMS`,
+      // spread the defaults so type / locale / siteName are preserved
+      ...DEFAULT_SEO.openGraph,
+      title,
       url: envUrl(seo?.canonicalUrl),
-      description: seo?.description || `${excerpt}`,
+      description,
       images: [
         {
           ...DEFAULT_SEO.openGraph?.images?.[0],
           url: imageUrl,
+          ...(seo?.ogImage && { alt: title }),
         },
       ],
     },
   };
 
-  // When a page supplies its own image, mirror it onto the Twitter card too.
+  // When a page supplies its own image, mirror it (with alt) onto the Twitter
+  // card too.
   if (seo?.ogImage) {
-    SEO.twitter = { ...DEFAULT_SEO.twitter, images: [seo.ogImage] };
+    SEO.twitter = {
+      ...DEFAULT_SEO.twitter,
+      images: [{ url: seo.ogImage, alt: title }],
+    };
   }
 
   return {
