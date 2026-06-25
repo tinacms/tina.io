@@ -15,6 +15,8 @@ module.exports = function createJestConfig(pack) {
       '^@/content/(.*)$': '<rootDir>/content/$1',
       '^@/public/(.*)$': '<rootDir>/public/$1',
       '^@/styles/(.*)$': '<rootDir>/styles/$1',
+      '^@/utils/(.*)$': '<rootDir>/utils/$1',
+      '^@/component/(.*)$': '<rootDir>/components/$1',
       '^@/(.*)$': '<rootDir>/src/$1',
       '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
         '<rootDir>/../../__mocks__/fileMock.js',
