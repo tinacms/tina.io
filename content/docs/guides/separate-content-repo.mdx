@@ -113,6 +113,8 @@ pnpm dev   # or npm run dev / yarn dev
 
 Tina's dev server will watch the content repo's files alongside the generator's schema. Editing a content file in `my-content-repo/content/posts/hello.mdx` will hot-reload the admin UI; editing `my-generator-repo/tina/config.tsx` will regenerate the schema. Generated artifacts only ever land in `my-generator-repo/tina/__generated__/`.
 
+> **Note:** the hot reload above refers to Tina's admin UI, which watches the content repo directly. Your framework's own dev server only watches files inside the generator project, so it won't pick up edits made in the sibling content repo. For routes built from a path list that is cached during dev (for example, Astro's `getStaticPaths`), a newly created entry can 404 on the locally running site until you restart the framework dev server. The admin UI and production builds are unaffected.
+
 ## What lives where
 
 |                    Item                   | Generator repo | Content repo |
@@ -221,3 +223,4 @@ This setup requires:
 * **Stale `tina/` folder in the content repo after upgrading.** Pre-upgrade builds committed `tina/__generated__/*` and `tina/tina-lock.json` to the content repo. Nothing updates or reads those files in the new model. Safe, and recommended, to delete from the content repo in a single cleanup commit.
 * **Old `tina/meta.json` file in the content repo.** This was the connector for the old two-projects pattern. No longer used; delete it.
 * **Content edits aren't appearing in builds.** Confirm the generator repo's `tina/config.tsx` has `localContentPath` set, and that you have the content repo checked out as a sibling on disk.
+* **A newly created entry 404s on the local dev site.** Your framework's dev server only watches the generator project, so it doesn't detect files added in the sibling content repo. Restart the framework dev server (or rebuild) to regenerate the routes. The Tina admin UI and production builds already see the new entry.
