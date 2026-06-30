@@ -8,7 +8,14 @@
 import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
 import { logoDataUri, ogFonts, pngDataUri } from './ogAssets';
-import { darkOverlayUri, dotGridUri, orangePanelUri } from './ogShared';
+import {
+  darkOverlayUri,
+  dotGridUri,
+  orangePanelUri,
+  pickFontSize,
+  type SubjectLayout,
+  truncateTitle,
+} from './ogShared';
 
 export const IG_SIZE = { width: 1080, height: 1350 };
 
@@ -27,8 +34,6 @@ const DOT_GRID_URI = dotGridUri({ W, H, maxX: EDGE - 120 });
 
 // Subject placement on the orange panel. The dark overlay clips anything that
 // overflows past the curve.
-type SubjectLayout = { width: number; bottom: number; right: number };
-
 const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
   '/ai-llamas/Relax-Llama.png': { width: 520, bottom: 0, right: 36 },
   '/ai-llamas/tina-llama-working-laptop-table.png': {
@@ -46,34 +51,16 @@ const AUTHOR_AREA = { width: 556, right: 0, height: H };
 const AUTHOR_HEIGHT = 1000;
 
 // Bigger type than the landscape image — a portrait feed post has the room and
-// is viewed small, so the headline should dominate. Font shrinks by length.
-function titleFontSize(title: string): number {
-  const len = title.length;
-  if (len <= 30) {
-    return 88;
-  }
-  if (len <= 55) {
-    return 76;
-  }
-  if (len <= 78) {
-    return 58;
-  }
-  if (len <= 100) {
-    return 48;
-  }
-  return 42;
-}
-
-// Truncate at a word boundary with an ellipsis beyond what fits the clamp.
+// is viewed small, so the headline should dominate. Font shrinks by length
+// ([maxLength, fontSize], largest-first), then truncates beyond TITLE_CAP.
+const TITLE_TIERS: ReadonlyArray<[number, number]> = [
+  [30, 88],
+  [55, 76],
+  [78, 58],
+  [100, 48],
+];
+const TITLE_FONT_MIN = 42;
 const TITLE_CAP = 118;
-function clampTitle(title: string): string {
-  if (title.length <= TITLE_CAP) {
-    return title;
-  }
-  const cut = title.slice(0, TITLE_CAP);
-  const lastSpace = cut.lastIndexOf(' ');
-  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
-}
 
 export interface BlogInstagramInput {
   title: string;
@@ -94,9 +81,16 @@ export async function renderBlogInstagramImage({
   const llamaLayout = LLAMA_LAYOUT[llamaSrc];
 
   const logo = logoDataUri();
-  const displayTitle = clampTitle(title);
-  const fontSize = titleFontSize(displayTitle);
-  const authorLabel = author?.trim() || 'The TinaCMS Team';
+  const displayTitle = truncateTitle(title.trim() || 'TinaCMS Blog', TITLE_CAP);
+  const fontSize = pickFontSize(
+    displayTitle.length,
+    TITLE_TIERS,
+    TITLE_FONT_MIN,
+  );
+  // The portrait column is narrow, so credit just the first author (which also
+  // matches the featured photo) rather than overflowing a long multi-author line.
+  const firstAuthor = author?.split(/&|,| and /i)[0]?.trim();
+  const authorLabel = firstAuthor || 'The TinaCMS Team';
 
   return new ImageResponse(
     <div

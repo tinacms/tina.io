@@ -8,7 +8,14 @@
 import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
 import { logoDataUri, ogFonts, pngDataUri } from './ogAssets';
-import { darkOverlayUri, dotGridUri, orangePanelUri } from './ogShared';
+import {
+  darkOverlayUri,
+  dotGridUri,
+  orangePanelUri,
+  pickFontSize,
+  type SubjectLayout,
+  truncateTitle,
+} from './ogShared';
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
@@ -26,8 +33,6 @@ const DOT_GRID_URI = dotGridUri({ W, H, maxX: EDGE - 130 });
 
 // Bottom-right placement on the orange panel, tuned per subject (silhouettes
 // differ a lot). The dark overlay clips anything that overflows past the curve.
-type SubjectLayout = { width: number; bottom: number; right: number };
-
 const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
   '/ai-llamas/Relax-Llama.png': { width: 352, bottom: 0, right: 46 },
   '/ai-llamas/tina-llama-working-laptop-table.png': {
@@ -44,32 +49,15 @@ const AUTHOR_AREA = { width: 540, right: 0, height: H };
 const AUTHOR_HEIGHT = 552; // leaves ~78px headroom above the head
 
 // Font shrinks by length so each tier's longest title still fits ~4 lines in
-// the title column (satori doesn't honour line-clamp, so we size to fit).
-function titleFontSize(title: string): number {
-  const len = title.length;
-  if (len <= 40) {
-    return 64;
-  }
-  if (len <= 62) {
-    return 54;
-  }
-  if (len <= 80) {
-    return 44;
-  }
-  return 38;
-}
-
-// Beyond what fits at the smallest size, truncate at a word boundary with an
-// ellipsis so the title ends cleanly instead of being hard-cut mid-phrase.
+// the title column (satori doesn't honour line-clamp, so we size to fit), then
+// truncates beyond TITLE_CAP. Tiers are [maxLength, fontSize], largest-first.
+const TITLE_TIERS: ReadonlyArray<[number, number]> = [
+  [40, 64],
+  [62, 54],
+  [80, 44],
+];
+const TITLE_FONT_MIN = 38;
 const TITLE_CAP = 86;
-function clampTitle(title: string): string {
-  if (title.length <= TITLE_CAP) {
-    return title;
-  }
-  const cut = title.slice(0, TITLE_CAP);
-  const lastSpace = cut.lastIndexOf(' ');
-  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
-}
 
 export interface BlogOgInput {
   title: string;
@@ -93,8 +81,12 @@ export async function renderBlogOgImage({
   const llamaLayout = LLAMA_LAYOUT[llamaSrc];
 
   const logo = logoDataUri();
-  const displayTitle = clampTitle(title);
-  const fontSize = titleFontSize(displayTitle);
+  const displayTitle = truncateTitle(title, TITLE_CAP);
+  const fontSize = pickFontSize(
+    displayTitle.length,
+    TITLE_TIERS,
+    TITLE_FONT_MIN,
+  );
 
   // Author display: keep the full credited string, but the avatar reflects the
   // first author only.

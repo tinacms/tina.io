@@ -1,10 +1,38 @@
-// Shared brand SVG builders for the dynamic blog images (landscape OpenGraph +
-// 4:5 Instagram): the orange S-curve panel, the dark clip overlay, and the dot
-// grid. Pure (no filesystem) so the curve geometry is unit-testable — font and
-// image loading lives in ./ogAssets.
+// Shared helpers for the dynamic blog images (landscape OpenGraph + 4:5
+// Instagram): the orange S-curve panel builders, plus title fitting and layout
+// types. Pure (no filesystem) so it's unit-testable — font and image loading
+// lives in ./ogAssets.
 
 export function svgDataUri(svg: string): string {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+}
+
+/** Bottom-right placement of the subject (author/llama) on the orange panel. */
+export type SubjectLayout = { width: number; bottom: number; right: number };
+
+/** First matching `[maxLen, size]` tier (largest-first), else `fallback`. */
+export function pickFontSize(
+  len: number,
+  tiers: ReadonlyArray<[number, number]>,
+  fallback: number,
+): number {
+  for (const [maxLen, size] of tiers) {
+    if (len <= maxLen) {
+      return size;
+    }
+  }
+  return fallback;
+}
+
+/** Truncate beyond `cap` chars at a word boundary, with a trailing ellipsis, so
+ *  a long title ends cleanly instead of being hard-cut mid-phrase. */
+export function truncateTitle(title: string, cap: number): string {
+  if (title.length <= cap) {
+    return title;
+  }
+  const cut = title.slice(0, cap);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
 // The S-curve dividing the dark side from the orange panel.
