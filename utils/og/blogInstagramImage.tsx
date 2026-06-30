@@ -1,67 +1,71 @@
-// Renders the dynamic OpenGraph image for a blog post (served by the route
-// handlers under app/blog/og and app/zh/blog/og).
+// Renders the 4:5 portrait Instagram image for a blog post (served by the route
+// handlers under app/blog/instagram and app/zh/blog/instagram).
 //
-// Design: a dark charcoal left side (title, "By {author}", tinacms logo, "New
-// Post" pill) and an orange S-curve panel on the right holding the author's
-// cutout — or a llama mascot when there's no photo.
+// Same brand language as the landscape OpenGraph image (utils/og/blogOgImage) —
+// dark text side, orange S-curve panel, author cutout or llama — reflowed for a
+// tall 1080x1350 feed post with the subject shown larger.
 
 import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
 import { logoDataUri, ogFonts, pngDataUri } from './ogAssets';
 import { darkOverlayUri, dotGridUri, orangePanelUri } from './ogShared';
 
-export const OG_SIZE = { width: 1200, height: 630 };
+export const IG_SIZE = { width: 1080, height: 1350 };
 
-const W = OG_SIZE.width;
-const H = OG_SIZE.height;
+const W = IG_SIZE.width;
+const H = IG_SIZE.height;
 
-// Orange panel occupies ~42% on the right; its left edge is a vertical S-curve.
-// EDGE = nominal divider x; the curve swings AMP px either side as it descends.
-const EDGE = Math.round(W * 0.58); // ~696
-const AMP = 70;
+// The orange panel takes a touch under half the width; the curve swings wider
+// than the landscape version so it still reads as a clear S over the tall
+// canvas. EDGE = nominal divider x, AMP = how far it swings either side.
+const EDGE = Math.round(W * 0.52); // ~562
+const AMP = 104;
 
 const ORANGE_PANEL_URI = orangePanelUri({ W, H, edge: EDGE, amp: AMP });
 const DARK_OVERLAY_URI = darkOverlayUri({ W, H, edge: EDGE, amp: AMP });
-const DOT_GRID_URI = dotGridUri({ W, H, maxX: EDGE - 130 });
+const DOT_GRID_URI = dotGridUri({ W, H, maxX: EDGE - 120 });
 
-// Bottom-right placement on the orange panel, tuned per subject (silhouettes
-// differ a lot). The dark overlay clips anything that overflows past the curve.
+// Subject placement on the orange panel. The dark overlay clips anything that
+// overflows past the curve.
 type SubjectLayout = { width: number; bottom: number; right: number };
 
 const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
-  '/ai-llamas/Relax-Llama.png': { width: 352, bottom: 0, right: 46 },
+  '/ai-llamas/Relax-Llama.png': { width: 520, bottom: 0, right: 36 },
   '/ai-llamas/tina-llama-working-laptop-table.png': {
-    width: 452,
-    bottom: 16,
-    right: 12,
+    width: 640,
+    bottom: 24,
+    right: 0,
   },
 };
 
-// Author cutouts are trimmed to the person, then fit to a fixed HEIGHT and
-// centred in this panel area, bottom-anchored — so every author is sized and
-// placed identically, never cropped (no straight edges) and never clipping.
-const AUTHOR_AREA = { width: 540, right: 0, height: H };
-const AUTHOR_HEIGHT = 552; // leaves ~78px headroom above the head
+// Author cutout: fit to a tall height and centred in the panel area, bottom-
+// anchored — sized and placed identically for every author, never cropped.
+// Centre the subject within the orange region (right of the curve), not the
+// whole right half, so the curve doesn't clip into the body.
+const AUTHOR_AREA = { width: 556, right: 0, height: H };
+const AUTHOR_HEIGHT = 1000;
 
-// Font shrinks by length so each tier's longest title still fits ~4 lines in
-// the title column (satori doesn't honour line-clamp, so we size to fit).
+// Bigger type than the landscape image — a portrait feed post has the room and
+// is viewed small, so the headline should dominate. Font shrinks by length.
 function titleFontSize(title: string): number {
   const len = title.length;
-  if (len <= 40) {
-    return 64;
+  if (len <= 30) {
+    return 88;
   }
-  if (len <= 62) {
-    return 54;
+  if (len <= 55) {
+    return 76;
   }
-  if (len <= 80) {
-    return 44;
+  if (len <= 78) {
+    return 58;
   }
-  return 38;
+  if (len <= 100) {
+    return 48;
+  }
+  return 42;
 }
 
-// Beyond what fits at the smallest size, truncate at a word boundary with an
-// ellipsis so the title ends cleanly instead of being hard-cut mid-phrase.
-const TITLE_CAP = 86;
+// Truncate at a word boundary with an ellipsis beyond what fits the clamp.
+const TITLE_CAP = 118;
 function clampTitle(title: string): string {
   if (title.length <= TITLE_CAP) {
     return title;
@@ -71,21 +75,18 @@ function clampTitle(title: string): string {
   return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
-export interface BlogOgInput {
+export interface BlogInstagramInput {
   title: string;
   author?: string | null;
   /** Stable seed for the llama fallback (use the post slug). */
   seed: string;
 }
 
-export async function renderBlogOgImage({
+export async function renderBlogInstagramImage({
   title,
   author,
   seed,
-}: BlogOgInput): Promise<ImageResponse> {
-  // Right-hand subject: the author's trimmed cutout if we have one, otherwise a
-  // llama mascot. Authors fit-to-height + centre in the panel; the llama
-  // mascots are scene illustrations placed by their own per-llama layout.
+}: BlogInstagramInput): Promise<ImageResponse> {
   const mappedAvatar = authorImagePath(author);
   const avatarUri = mappedAvatar ? pngDataUri(mappedAvatar) : null;
   const llamaSrc = pickLlama(seed);
@@ -95,9 +96,6 @@ export async function renderBlogOgImage({
   const logo = logoDataUri();
   const displayTitle = clampTitle(title);
   const fontSize = titleFontSize(displayTitle);
-
-  // Author display: keep the full credited string, but the avatar reflects the
-  // first author only.
   const authorLabel = author?.trim() || 'The TinaCMS Team';
 
   return new ImageResponse(
@@ -110,7 +108,7 @@ export async function renderBlogOgImage({
         fontFamily: 'Inter',
         backgroundColor: '#0c0c0e',
         backgroundImage:
-          'linear-gradient(135deg, #1b1a1f 0%, #0a0a0b 55%, #050505 100%)',
+          'linear-gradient(150deg, #1b1a1f 0%, #0a0a0b 55%, #050505 100%)',
       }}
     >
       {/* Orange S-curve panel */}
@@ -123,8 +121,7 @@ export async function renderBlogOgImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* AUTHOR — trimmed cutout, fit to a fixed height and centred in the
-          panel area, bottom-anchored. Same treatment for every author. */}
+      {/* AUTHOR — trimmed cutout, fit to a tall height, bottom-anchored */}
       {avatarUri ? (
         <div
           style={{
@@ -160,8 +157,7 @@ export async function renderBlogOgImage({
         />
       ) : null}
 
-      {/* DARK CLIP OVERLAY — repaints the dark side over any overflow,
-          clipping the subject exactly along the curve */}
+      {/* DARK CLIP OVERLAY — repaints the dark side over any overflow */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
       {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
       <img
@@ -187,25 +183,25 @@ export async function renderBlogOgImage({
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: EDGE - AMP - 30,
+          width: EDGE - AMP + 40,
           height: '100%',
-          padding: '60px 40px 58px 72px',
+          padding: '72px 36px 76px 76px',
           position: 'relative',
         }}
       >
-        {/* New Post pill (white on dark, orange dot) */}
+        {/* New Post pill */}
         <div style={{ display: 'flex' }}>
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 12,
+              gap: 14,
               backgroundColor: '#ffffff',
               color: '#16151a',
               fontFamily: 'IBM Plex Sans',
-              fontSize: 25,
+              fontSize: 30,
               lineHeight: 1,
-              padding: '13px 24px',
+              padding: '16px 30px',
               borderRadius: 9999,
               boxShadow: '0 8px 22px rgba(0,0,0,0.45)',
             }}
@@ -213,8 +209,8 @@ export async function renderBlogOgImage({
             <div
               style={{
                 display: 'flex',
-                width: 11,
-                height: 11,
+                width: 13,
+                height: 13,
                 borderRadius: 9999,
                 backgroundColor: '#EC4815',
               }}
@@ -223,14 +219,14 @@ export async function renderBlogOgImage({
           </div>
         </div>
 
-        {/* Title (vertically centred so it never collides with the row below) */}
+        {/* Title */}
         <div
           style={{
             display: 'flex',
             flexGrow: 1,
             alignItems: 'center',
             minHeight: 0,
-            padding: '26px 0',
+            padding: '40px 0',
           }}
         >
           <div
@@ -238,10 +234,10 @@ export async function renderBlogOgImage({
               display: 'flex',
               fontFamily: 'IBM Plex Sans',
               fontSize,
-              lineHeight: 1.13,
+              lineHeight: 1.1,
               color: '#ffffff',
               letterSpacing: '-0.02em',
-              maxHeight: Math.round(fontSize * 1.13 * 4.4),
+              maxHeight: Math.round(fontSize * 1.1 * 8),
               overflow: 'hidden',
             }}
           >
@@ -250,16 +246,16 @@ export async function renderBlogOgImage({
         </div>
 
         {/* Author + official Tina logo */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              fontSize: 27,
+              fontSize: 34,
               fontFamily: 'Inter',
             }}
           >
-            <span style={{ color: '#7d7d86', paddingRight: 10 }}>By</span>
+            <span style={{ color: '#7d7d86', paddingRight: 12 }}>By</span>
             <span style={{ color: '#ffffff', fontWeight: 500 }}>
               {authorLabel}
             </span>
@@ -267,13 +263,13 @@ export async function renderBlogOgImage({
           {logo ? (
             // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
             // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
-            <img src={logo} width={188} height={47} />
+            <img src={logo} width={236} height={59} />
           ) : (
             <div
               style={{
                 display: 'flex',
                 fontFamily: 'IBM Plex Sans',
-                fontSize: 30,
+                fontSize: 38,
                 color: '#ffffff',
               }}
             >
@@ -284,7 +280,7 @@ export async function renderBlogOgImage({
       </div>
     </div>,
     {
-      ...OG_SIZE,
+      ...IG_SIZE,
       fonts: ogFonts(),
     },
   );

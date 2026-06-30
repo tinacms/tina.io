@@ -10,6 +10,8 @@ module.exports = function createJestConfig(pack) {
     displayName: pack.name,
     name: pack.name,
     moduleNameMapper: {
+      // strip the node: protocol so this jest version can resolve core modules
+      '^node:(.*)$': '$1',
       // mirror the tsconfig `@/*` path aliases so tests can import modules that
       // use them (e.g. getSeo -> defaultSeo -> @/content/settings/config.json)
       '^@/content/(.*)$': '<rootDir>/content/$1',
