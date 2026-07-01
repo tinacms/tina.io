@@ -1,6 +1,7 @@
 import {
   buildCurve,
   dotGridUri,
+  orangeSweepUri,
   pickFontSize,
   svgDataUri,
   truncateTitle,
@@ -31,6 +32,18 @@ describe('svgDataUri', () => {
     const uri = svgDataUri('<svg/>');
     expect(uri.startsWith('data:image/svg+xml;base64,')).toBe(true);
     expect(Buffer.from(uri.split(',')[1], 'base64').toString()).toBe('<svg/>');
+  });
+});
+
+describe('orangeSweepUri', () => {
+  it('builds an svg data uri with the orange gradient and a rim stroke', () => {
+    const svg = Buffer.from(
+      orangeSweepUri({ W: 1080, H: 1350, cy: 700 }).split(',')[1],
+      'base64',
+    ).toString();
+    expect(svg).toContain('#FF724B');
+    expect(svg).toContain('stroke'); // rim light along the sweep
+    expect(svg).toContain('C '); // cubic sweep segment
   });
 });
 

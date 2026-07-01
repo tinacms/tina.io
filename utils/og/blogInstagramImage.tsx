@@ -1,19 +1,20 @@
 // Renders the 4:5 portrait Instagram image for a blog post (served by the route
 // handlers under app/blog/instagram and app/zh/blog/instagram).
 //
-// Same brand language as the landscape OpenGraph image (utils/og/blogOgImage) —
-// dark text side, orange S-curve panel, author cutout or llama — reflowed for a
-// tall 1080x1350 feed post with the subject shown larger.
+// Layout: a dark top zone carries the full-width headline, "New Post" pill, "By
+// {author}" and the tinacms logo; an orange brand-gradient panel sweeps across
+// the bottom with the author's cutout (or a llama) standing on it and rising up
+// into the dark above the curve. Same brand language as the landscape OG image
+// (utils/og/blogOgImage), re-composed top/bottom for portrait — so text lives
+// entirely on the dark side and never crosses the curve.
 
 import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
 import { logoDataUri, ogFonts, pngDataUri } from './ogAssets';
 import {
-  darkOverlayUri,
   dotGridUri,
-  orangePanelUri,
+  orangeSweepUri,
   pickFontSize,
-  type SubjectLayout,
   truncateTitle,
 } from './ogShared';
 
@@ -22,45 +23,31 @@ export const IG_SIZE = { width: 1080, height: 1350 };
 const W = IG_SIZE.width;
 const H = IG_SIZE.height;
 
-// The orange panel takes a touch under half the width; the curve swings wider
-// than the landscape version so it still reads as a clear S over the tall
-// canvas. EDGE = nominal divider x, AMP = how far it swings either side.
-const EDGE = Math.round(W * 0.52); // ~562
-const AMP = 104;
+// The orange panel sweeps across the bottom; CY is the nominal y of its top
+// edge — low enough that the subject overlaps up into the dark zone above it.
+const CY = 700;
+const ORANGE_PANEL_URI = orangeSweepUri({ W, H, cy: CY });
+const DOT_GRID_URI = dotGridUri({ W, H, maxX: W - 44, maxY: CY });
 
-const ORANGE_PANEL_URI = orangePanelUri({ W, H, edge: EDGE, amp: AMP });
-const DARK_OVERLAY_URI = darkOverlayUri({ W, H, edge: EDGE, amp: AMP });
-const DOT_GRID_URI = dotGridUri({ W, H, maxX: EDGE - 120 });
-
-// Subject placement on the orange panel. The dark overlay clips anything that
-// overflows past the curve.
-const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
-  '/ai-llamas/Relax-Llama.png': { width: 520, bottom: 0, right: 36 },
-  '/ai-llamas/tina-llama-working-laptop-table.png': {
-    width: 640,
-    bottom: 24,
-    right: 0,
-  },
+// Subject: centred and bottom-anchored. Author cutouts fit to a fixed height;
+// the llamas are scene illustrations sized by width.
+const AUTHOR_HEIGHT = 770;
+const LLAMA_WIDTH: Record<LlamaSrc, number> = {
+  '/ai-llamas/Relax-Llama.png': 520,
+  '/ai-llamas/tina-llama-working-laptop-table.png': 600,
 };
 
-// Author cutout: fit to a tall height and centred in the panel area, bottom-
-// anchored — sized and placed identically for every author, never cropped.
-// Centre the subject within the orange region (right of the curve), not the
-// whole right half, so the curve doesn't clip into the body.
-const AUTHOR_AREA = { width: 556, right: 0, height: H };
-const AUTHOR_HEIGHT = 1000;
-
-// Bigger type than the landscape image — a portrait feed post has the room and
-// is viewed small, so the headline should dominate. Font shrinks by length
-// ([maxLength, fontSize], largest-first), then truncates beyond TITLE_CAP.
+// Full-width headline on the dark top zone. Font shrinks by length ([maxLength,
+// fontSize], largest-first) then truncates beyond TITLE_CAP; TITLE_MAX_H caps
+// the block so a long headline stays clear of the subject below.
 const TITLE_TIERS: ReadonlyArray<[number, number]> = [
-  [30, 88],
-  [55, 76],
-  [78, 58],
-  [100, 48],
+  [42, 82],
+  [82, 66],
+  [118, 54],
 ];
-const TITLE_FONT_MIN = 42;
+const TITLE_FONT_MIN = 50;
 const TITLE_CAP = 118;
+const TITLE_MAX_H = 240;
 
 export interface BlogInstagramInput {
   title: string;
@@ -78,7 +65,7 @@ export async function renderBlogInstagramImage({
   const avatarUri = mappedAvatar ? pngDataUri(mappedAvatar) : null;
   const llamaSrc = pickLlama(seed);
   const llamaUri = avatarUri ? null : pngDataUri(llamaSrc);
-  const llamaLayout = LLAMA_LAYOUT[llamaSrc];
+  const llamaWidth = LLAMA_WIDTH[llamaSrc];
 
   const logo = logoDataUri();
   const displayTitle = truncateTitle(title.trim() || 'TinaCMS Blog', TITLE_CAP);
@@ -87,8 +74,8 @@ export async function renderBlogInstagramImage({
     TITLE_TIERS,
     TITLE_FONT_MIN,
   );
-  // The portrait column is narrow, so credit just the first author (which also
-  // matches the featured photo) rather than overflowing a long multi-author line.
+  // Credit the first author (also the featured photo); avoids overflowing a
+  // long multi-author line.
   const firstAuthor = author?.split(/&|,| and /i)[0]?.trim();
   const authorLabel = firstAuthor || 'The TinaCMS Team';
 
@@ -102,66 +89,10 @@ export async function renderBlogInstagramImage({
         fontFamily: 'Inter',
         backgroundColor: '#0c0c0e',
         backgroundImage:
-          'linear-gradient(150deg, #1b1a1f 0%, #0a0a0b 55%, #050505 100%)',
+          'linear-gradient(160deg, #1b1a1f 0%, #0a0a0b 55%, #050505 100%)',
       }}
     >
-      {/* Orange S-curve panel */}
-      {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
-      {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
-      <img
-        src={ORANGE_PANEL_URI}
-        width={W}
-        height={H}
-        style={{ position: 'absolute', top: 0, left: 0 }}
-      />
-
-      {/* AUTHOR — trimmed cutout, fit to a tall height, bottom-anchored */}
-      {avatarUri ? (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            right: AUTHOR_AREA.right,
-            width: AUTHOR_AREA.width,
-            height: AUTHOR_AREA.height,
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-          }}
-        >
-          {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
-          {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
-          <img src={avatarUri} height={AUTHOR_HEIGHT} />
-        </div>
-      ) : null}
-
-      {/* LLAMA fallback — scene illustration placed by its own layout */}
-      {llamaUri ? (
-        // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
-        // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
-        <img
-          src={llamaUri}
-          width={llamaLayout.width}
-          style={{
-            position: 'absolute',
-            bottom: llamaLayout.bottom,
-            right: llamaLayout.right,
-            objectFit: 'contain',
-          }}
-        />
-      ) : null}
-
-      {/* DARK CLIP OVERLAY — repaints the dark side over any overflow */}
-      {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
-      {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
-      <img
-        src={DARK_OVERLAY_URI}
-        width={W}
-        height={H}
-        style={{ position: 'absolute', top: 0, left: 0 }}
-      />
-
-      {/* faint dot texture on the dark side */}
+      {/* faint dot texture on the dark top zone */}
       {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
       {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
       <img
@@ -171,19 +102,51 @@ export async function renderBlogInstagramImage({
         style={{ position: 'absolute', top: 0, left: 0 }}
       />
 
-      {/* LEFT COLUMN (dark charcoal side) */}
+      {/* orange brand panel sweeping across the bottom */}
+      {/* biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM */}
+      {/* biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse */}
+      <img
+        src={ORANGE_PANEL_URI}
+        width={W}
+        height={H}
+        style={{ position: 'absolute', top: 0, left: 0 }}
+      />
+
+      {/* SUBJECT — centred, bottom-anchored; rises into the dark above the curve */}
       <div
         style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: W,
+          height: H,
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          width: EDGE - AMP + 40,
-          height: '100%',
-          padding: '72px 36px 76px 76px',
-          position: 'relative',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
         }}
       >
-        {/* New Post pill */}
+        {avatarUri ? (
+          // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
+          // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
+          <img src={avatarUri} height={AUTHOR_HEIGHT} />
+        ) : llamaUri ? (
+          // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
+          // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
+          <img src={llamaUri} width={llamaWidth} />
+        ) : null}
+      </div>
+
+      {/* TEXT — dark top zone, all white on one background */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 72,
+          left: 76,
+          width: W - 152,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <div style={{ display: 'flex' }}>
           <div
             style={{
@@ -213,64 +176,53 @@ export async function renderBlogInstagramImage({
           </div>
         </div>
 
-        {/* Title */}
         <div
           style={{
             display: 'flex',
-            flexGrow: 1,
-            alignItems: 'center',
-            minHeight: 0,
-            padding: '40px 0',
+            marginTop: 44,
+            fontFamily: 'IBM Plex Sans',
+            fontSize,
+            lineHeight: 1.05,
+            color: '#ffffff',
+            letterSpacing: '-0.02em',
+            maxHeight: TITLE_MAX_H,
+            overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              fontFamily: 'IBM Plex Sans',
-              fontSize,
-              lineHeight: 1.1,
-              color: '#ffffff',
-              letterSpacing: '-0.02em',
-              maxHeight: Math.round(fontSize * 1.1 * 8),
-              overflow: 'hidden',
-            }}
-          >
-            {displayTitle}
-          </div>
+          {displayTitle}
         </div>
 
-        {/* Author + official Tina logo */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: 32,
+            marginTop: 38,
+          }}
+        >
+          <span style={{ color: '#8a8a92', paddingRight: 12 }}>By</span>
+          <span style={{ color: '#ffffff', fontWeight: 500 }}>
+            {authorLabel}
+          </span>
+        </div>
+
+        {logo ? (
+          // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
+          // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
+          <img src={logo} width={224} height={56} style={{ marginTop: 28 }} />
+        ) : (
           <div
             style={{
               display: 'flex',
-              alignItems: 'center',
-              fontSize: 34,
-              fontFamily: 'Inter',
+              marginTop: 28,
+              fontFamily: 'IBM Plex Sans',
+              fontSize: 36,
+              color: '#ffffff',
             }}
           >
-            <span style={{ color: '#7d7d86', paddingRight: 12 }}>By</span>
-            <span style={{ color: '#ffffff', fontWeight: 500 }}>
-              {authorLabel}
-            </span>
+            TinaCMS
           </div>
-          {logo ? (
-            // biome-ignore lint/a11y/useAltText: rendered by satori, not the DOM
-            // biome-ignore lint/performance/noImgElement: next/image is unsupported in ImageResponse
-            <img src={logo} width={236} height={59} />
-          ) : (
-            <div
-              style={{
-                display: 'flex',
-                fontFamily: 'IBM Plex Sans',
-                fontSize: 38,
-                color: '#ffffff',
-              }}
-            >
-              TinaCMS
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </div>,
     {

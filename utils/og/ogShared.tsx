@@ -95,20 +95,22 @@ export function darkOverlayUri(spec: CurveSpec): string {
   );
 }
 
-/** Faint dot texture for the dark side (stops short of the curve at maxX). */
+/** Faint dot texture for the dark side (stops short of maxX / maxY). */
 export function dotGridUri({
   W,
   H,
   maxX,
+  maxY = H,
   step = 46,
 }: {
   W: number;
   H: number;
   maxX: number;
+  maxY?: number;
   step?: number;
 }): string {
   const dots: string[] = [];
-  for (let y = 44; y < H; y += step) {
+  for (let y = 44; y < maxY; y += step) {
     for (let x = 44; x < maxX; x += step) {
       dots.push(
         `<circle cx="${x}" cy="${y}" r="1.6" fill="#ffffff" fill-opacity="0.05"/>`,
@@ -117,5 +119,37 @@ export function dotGridUri({
   }
   return svgDataUri(
     `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">${dots.join('')}</svg>`,
+  );
+}
+
+// Horizontal sweep dividing the portrait image top/bottom: a gentle organic S
+// at ~cy that dips slightly on the left and rises on the right.
+export interface SweepSpec {
+  W: number;
+  H: number;
+  cy: number;
+}
+
+// Cubic segment of the sweep, from its left point (0, cy+70) to the right
+// point (W, cy-55) — shared by the fill and the rim so they line up.
+function sweepCurve({ W, cy }: SweepSpec): string {
+  return `C ${W * 0.3} ${cy + 100}, ${W * 0.52} ${cy - 130}, ${W} ${cy - 55}`;
+}
+
+/** Orange brand-gradient panel filling below the horizontal sweep, with a faint
+ *  rim light tracing the sweep edge. */
+export function orangeSweepUri(spec: SweepSpec): string {
+  const { W, H, cy } = spec;
+  const curve = sweepCurve(spec);
+  return svgDataUri(
+    `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="o" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#FF724B"/><stop offset="1" stop-color="#D13F13"/>
+      </linearGradient>
+    </defs>
+    <path d="M 0 ${H} L 0 ${cy + 70} ${curve} L ${W} ${H} Z" fill="url(#o)"/>
+    <path d="M 0 ${cy + 70} ${curve}" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="3"/>
+  </svg>`,
   );
 }
