@@ -197,6 +197,11 @@
         "_template": "socialLink"
       },
       {
+        "label": "WeChat",
+        "image": "/wechat-group.svg",
+        "_template": "socialLink"
+      },
+      {
         "label": "YouTube",
         "href": "https://www.youtube.com/@TinaCMS",
         "image": "/youtube-logo-white1.svg",
