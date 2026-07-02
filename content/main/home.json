@@ -31,6 +31,14 @@
             }
           ],
           "_template": "codeButton"
+        },
+        {
+          "label": "Test the CMS",
+          "icon": false,
+          "variant": "ghostBlue",
+          "size": "medium",
+          "url": "https://app.tina.io/quickstart",
+          "_template": "actions"
         }
       ],
       "buttonHorizontalAlignment": "left",
