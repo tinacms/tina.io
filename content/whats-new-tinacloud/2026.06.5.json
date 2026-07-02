@@ -1,0 +1,26 @@
+{
+  "versionNumber": "2026.06.5",
+  "dateReleased": "2026-06-16T07:19:53Z",
+  "changesObject": [
+    {
+      "changesTitle": "✨ Features",
+      "changesList": [
+        {
+          "changesDescription": "fix(identity): treat Cognito UserNotFound as idempotent on disable",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        },
+        {
+          "changesDescription": "fix(content-api): surface wrapped error cause in transaction event log",
+          "gitHubName": "Aibono1225",
+          "gitHubLink": "https://github.com/Aibono1225"
+        },
+        {
+          "changesDescription": "feat: enable branch-aware media by default for all apps",
+          "gitHubName": "kulesy",
+          "gitHubLink": "https://github.com/kulesy"
+        }
+      ]
+    }
+  ]
+}
