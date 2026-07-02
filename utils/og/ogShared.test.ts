@@ -95,4 +95,16 @@ describe('dotGridUri', () => {
     expect(xs.length).toBeGreaterThan(0);
     expect(Math.max(...xs)).toBeLessThan(200);
   });
+
+  it('stops short of maxY when given (portrait top zone)', () => {
+    const svg = Buffer.from(
+      dotGridUri({ W: 1080, H: 1350, maxX: 1080, maxY: 400 }).split(',')[1],
+      'base64',
+    ).toString();
+    const ys = (svg.match(/cy="(\d+)"/g) || []).map((m) =>
+      Number(m.replace(/\D/g, '')),
+    );
+    expect(ys.length).toBeGreaterThan(0);
+    expect(Math.max(...ys)).toBeLessThan(400);
+  });
 });
