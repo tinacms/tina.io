@@ -1,139 +1,134 @@
 'use client';
 
 import { useNavigationData } from 'components/Docs/DocsLayoutClient';
-import { buildDocLinkSlug } from 'utils/i18n/buildLinkSlug';
-import type { Locale } from 'utils/i18n/localeRouteConfig';
 import { useDocsNavigation } from 'components/Docs/DocsNavigationContext';
 import React from 'react';
 
 interface BreadcrumbItem {
   title: string;
   slug?: string;
-  originalSlug?: string;
 }
 
-// Recursively create path
-const findNavigationPathWithSlugs = (
-  items: any[],
-  targetContentId: string,
-  normalizeSlug: (slug: string | undefined) => string | null,
-  currentPath: BreadcrumbItem[] = []
-): BreadcrumbItem[] | null => {
-  for (const item of items) {
-    const normalizedItemSlug = normalizeSlug(item.slug);
-    const newPath = [...currentPath, { title: item.title, slug: item.slug, originalSlug: normalizedItemSlug }];
-    
-    if (normalizedItemSlug === targetContentId) {
-      return newPath;
+const cleanPath = (path: string | undefined): string => {
+  return path ? path.replace(/\/+$/, '').replace(/^\/+/, '') : '';
+};
+
+const matchSlug = (
+  itemSlug: string | undefined,
+  currentPath: string,
+): boolean => {
+  if (!itemSlug) return false;
+  return cleanPath(itemSlug) === cleanPath(currentPath);
+};
+
+const getFirstChildSlug = (item: any): string | undefined => {
+  if (!item) return undefined;
+  if (item.slug) return item.slug;
+  if (item.items && item.items.length > 0) {
+    for (const child of item.items) {
+      const slug = getFirstChildSlug(child);
+      if (slug) {
+        return slug;
+      }
     }
-    
+  }
+  return undefined;
+};
+
+const findNavigationPath = (
+  items: any[],
+  currentPath: string,
+  currentBreadcrumbs: BreadcrumbItem[] = [],
+): BreadcrumbItem[] | null => {
+  if (!items) {
+    return null;
+  }
+  for (const item of items) {
+    if (!item) {
+      continue;
+    }
+    const isMatch = matchSlug(item.slug, currentPath);
+    const resolvedSlug = item.slug || getFirstChildSlug(item);
+    const newPath = [
+      ...currentBreadcrumbs,
+      { title: item.title || '', slug: resolvedSlug },
+    ];
+
+    if (isMatch) return newPath;
+
     if (item.items && item.items.length > 0) {
-      const childPath = findNavigationPathWithSlugs(item.items, targetContentId, normalizeSlug, newPath);
+      const childPath = findNavigationPath(item.items, currentPath, newPath);
       if (childPath) {
         return childPath;
       }
     }
   }
-  
+
   return null;
 };
 
-const DocsBreadcrumbs = ({ locale }: { locale: Locale }) => {
+const DocsBreadcrumbs = () => {
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { learnActive } = useDocsNavigation();
-  const navigationItems = learnActive ? NavigationLearnData?.data : NavigationDocsData?.data;
-  
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
-  
-  // Convert pathname to content ID format
-  const convertPathToId = (pathname: string, locale: Locale): string | null => {
-    let path = pathname;
-    if (locale === 'zh' && pathname.startsWith('/zh/')) {
-      path = pathname.substring(3);
-    } else if (pathname.startsWith('/docs/')) {
-      path = pathname.substring(6);
-    }
-    
-    if (!path || path === '/') return null;
-    
-    path = path.replace(/\/$/, '');
-    
-    return `content/docs/${path}.mdx`;
-  };
+  const navigationItems = learnActive
+    ? NavigationLearnData?.data
+    : NavigationDocsData?.data;
 
-  const contentId = convertPathToId(currentPath, locale);
-  
-  if (!contentId || !navigationItems) {
-    return null;
-  }
+  const currentPath =
+    typeof window !== 'undefined' ? window.location.pathname : '';
+  if (!navigationItems) return null;
 
-  // Helper to normalize slugs for comparison
-  const normalizeSlug = (slug: string | undefined): string | null => {
-    if (!slug) return null;
-    
-    // If it's already in content/docs/ format
-    if (slug.startsWith('content/docs/')) {
-      return slug;
-    }
-    
-    // If it's a URL slug format (starts with /)
-    if (slug.startsWith('/')) {
-      // Remove leading / and trailing / if present
-      let path = slug;
-      if (path.startsWith('/')) {
-        path = path.substring(1);
-      }
-      if (path.endsWith('/')) {
-        path = path.substring(0, path.length - 1);
-      }
-      // Slugs already have /docs/ prefix, so use content/ + path
-      return `content/${path}.mdx`;
-    }
-    
-    return slug;
-  };
-
-  const breadcrumbPath = findNavigationPathWithSlugs(navigationItems, contentId, normalizeSlug);
-  if (!breadcrumbPath || breadcrumbPath.length < 1) {
-    return null;
-  }
+  const breadcrumbPath = findNavigationPath(navigationItems, currentPath);
+  if (!breadcrumbPath || breadcrumbPath.length < 1) return null;
 
   return (
-    <nav className="flex items-center text-sm text-slate-600 mb-1 flex-wrap" aria-label="Breadcrumb">
+    <nav
+      className="flex items-center text-sm text-neutral-text-secondary mb-1 flex-wrap"
+      aria-label="Breadcrumb"
+    >
       <ol className="flex flex-wrap items-center max-w-full">
         {breadcrumbPath.map((item, index) => {
           const isLast = index === breadcrumbPath.length - 1;
-          const hasSlug = !!item.originalSlug;
-          
-          if (hasSlug) {
-            const urlSlug = buildDocLinkSlug(item.originalSlug, locale);
+          const hasSlug = !!item.slug;
+
+          if (hasSlug && !isLast) {
             return (
-              <li key={index} className="flex items-center whitespace-nowrap font-ibm-plex">
+              <li
+                key={index}
+                className="flex items-center whitespace-nowrap font-ibm-plex"
+              >
                 {index > 0 && (
-                  <span className="text-slate-400 px-1.5">
+                  <span className="text-neutral-text-secondary opacity-60 px-1.5">
                     {'>'}
                   </span>
                 )}
                 <a
-                  href={urlSlug}
-                  className={isLast && 'text-slate-900'}
-                  aria-current={isLast ? 'page' : undefined}
+                  href={item.slug}
+                  className="text-neutral-text-secondary hover:text-brand-primary transition-colors"
                 >
                   {item.title}
                 </a>
               </li>
             );
           }
-          
-          // Ellipsis item - no link, just display ...
+
           return (
-            <li key={index} className="flex items-center whitespace-nowrap font-ibm-plex">
+            <li
+              key={index}
+              className="flex items-center whitespace-nowrap font-ibm-plex"
+            >
               {index > 0 && (
-                <span className="text-slate-400 px-1.5">
+                <span className="text-neutral-text-secondary opacity-60 px-1.5">
                   {'>'}
                 </span>
               )}
-              <span className="text-slate-400">
+              <span
+                className={
+                  isLast
+                    ? 'text-neutral-text font-medium'
+                    : 'text-neutral-text-secondary'
+                }
+              >
                 {item.title}
               </span>
             </li>
