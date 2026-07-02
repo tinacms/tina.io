@@ -23,6 +23,7 @@ import { heroTemplate } from '../../components/blocks/Hero/Hero.template';
 import { highlightsSectionTemplate } from '../../components/blocks/HighlightsSection/HighlightsSection.template';
 import { logoGridTemplate } from '../../components/blocks/LogoGrid/LogoGrid.template';
 import { mediaComponentTemplate } from '../../components/blocks/Media/MediaComponent.template';
+import { partnerGridTemplate } from '../../components/blocks/PartnerGrid/PartnerGrid.template';
 import { pricingTemplate } from '../../components/blocks/Pricing/Pricing.template';
 import { professionalServicesTemplate } from '../../components/blocks/ProfessionalServices/ProfessionalServices.template';
 import { quoteTemplate } from '../../components/blocks/Quote/Quote.template';
@@ -72,6 +73,7 @@ const templates = [
   pricingTemplate as Template,
   spacerTemplate as Template,
   featureGridTemplate as Template,
+  partnerGridTemplate as Template,
   heroTemplate as Template,
   flyingTemplate as Template,
   faqTemplate as Template,

@@ -33,6 +33,7 @@ import { ColumnsBlock } from './Columns/Columns';
 import { VerticalCardsBlock } from './Events/Events';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
 import { MediaComponent } from './Media/MediaComponent';
+import { PartnerGridBlock } from './PartnerGrid/PartnerGrid';
 import { ProfessionalServices } from './ProfessionalServices/ProfessionalServices';
 import { RecentPostsBlock } from './RecentPosts/RecentPosts';
 import RecipeBlock from './Recipe';
@@ -92,6 +93,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <StoryBlock index={index} />;
     case 'PageBlocksFeatureGrid':
       return <FeatureGridBlock data={block} index={index} />;
+    case 'PageBlocksPartnerGrid':
+      return <PartnerGridBlock data={block} index={index} />;
     case 'PageBlocksLogoGrid':
       return <LogoGridBlock data={block} index={index} />;
     case 'PageBlocksCarouselFeature':
