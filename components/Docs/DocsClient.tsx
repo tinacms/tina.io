@@ -88,7 +88,7 @@ export default function DocsClient({
           !DocumentationData?.tocIsHidden ? 'xl:col-span-1' : ''
         }`}
       >
-        <DocsBreadcrumbs locale={locale} />
+        <DocsBreadcrumbs />
         <MainDocsBodyHeader
           DocumentTitle={DocumentationData?.title}
           NavigationDocsItems={NavigationDocsData.data}
