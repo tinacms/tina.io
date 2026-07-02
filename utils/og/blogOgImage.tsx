@@ -5,10 +5,17 @@
 // Post" pill) and an orange S-curve panel on the right holding the author's
 // cutout — or a llama mascot when there's no photo.
 
-import fs from 'node:fs';
-import path from 'node:path';
 import { ImageResponse } from 'next/og';
 import { authorImagePath, type LlamaSrc, pickLlama } from './authorImages';
+import { logoDataUri, ogFonts, pngDataUri } from './ogAssets';
+import {
+  darkOverlayUri,
+  dotGridUri,
+  orangePanelUri,
+  pickFontSize,
+  type SubjectLayout,
+  truncateTitle,
+} from './ogShared';
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
@@ -20,103 +27,12 @@ const H = OG_SIZE.height;
 const EDGE = Math.round(W * 0.58); // ~696
 const AMP = 70;
 
-// Asset loading at build time. Fonts must be ttf/otf/woff — satori (next/og)
-// does not support woff2.
-const fromPublic = (p: string) => path.join(process.cwd(), 'public', p);
-
-function readFont(file: string) {
-  return fs.readFileSync(path.join(process.cwd(), 'public', 'fonts', file));
-}
-
-function fileToDataUri(absPath: string, mime: string): string | null {
-  try {
-    const data = fs.readFileSync(absPath);
-    return `data:${mime};base64,${data.toString('base64')}`;
-  } catch {
-    return null;
-  }
-}
-
-function pngDataUri(publicPath: string): string | null {
-  return fileToDataUri(fromPublic(publicPath.replace(/^\//, '')), 'image/png');
-}
-
-function svgDataUri(svg: string): string {
-  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
-}
-
-/** The official TinaCMS logo (orange llama + "tinacms"), as an SVG data URI. */
-function logoDataUri(): string | null {
-  try {
-    const svg = fs.readFileSync(
-      fromPublic('svg/tina-extended-logo.svg'),
-      'utf8',
-    );
-    return svgDataUri(svg);
-  } catch {
-    return null;
-  }
-}
-
-// The S-curve dividing the dark side from the orange panel. CURVE_BODY is the
-// two cubic segments (top -> bottom); the orange panel and the dark clip
-// overlay reuse it so their edges line up exactly.
-const CURVE_TOP_X = EDGE + AMP * 0.55;
-const CURVE_BOT_X = EDGE - AMP * 0.55;
-const CURVE_BODY =
-  `C ${CURVE_TOP_X - AMP * 1.9} ${H * 0.3}, ${EDGE - AMP * 1.2} ${H * 0.34}, ${EDGE - AMP * 0.15} ${H * 0.5} ` +
-  `C ${EDGE + AMP * 0.9} ${H * 0.66}, ${CURVE_BOT_X + AMP * 1.7} ${H * 0.7}, ${CURVE_BOT_X} ${H}`;
-
-// Orange panel: from the curve to the right edge, with a faint highlight along
-// the curve.
-const ORANGE_PANEL_URI = svgDataUri(
-  `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="o" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#FF724B"/><stop offset="1" stop-color="#D13F13"/>
-      </linearGradient>
-      <linearGradient id="hl" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/>
-        <stop offset="0.12" stop-color="#ffffff" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <path d="M ${CURVE_TOP_X} 0 ${CURVE_BODY} L ${W} ${H} L ${W} 0 Z" fill="url(#o)"/>
-    <path d="M ${CURVE_TOP_X} 0 ${CURVE_BODY} L ${CURVE_BOT_X + 80} ${H} C ${EDGE + AMP * 0.9 + 80} ${H * 0.66}, ${EDGE - AMP * 0.15 + 80} ${H * 0.34}, ${CURVE_TOP_X + 80} 0 Z" fill="url(#hl)"/>
-  </svg>`,
-);
-
-// Dark clip overlay: from the left edge to the curve, painted over the subject
-// so anything overflowing past the curve is hidden (the "clip").
-const DARK_OVERLAY_URI = svgDataUri(
-  `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="d" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#1b1a1f"/><stop offset="0.55" stop-color="#0a0a0b"/><stop offset="1" stop-color="#050505"/>
-      </linearGradient>
-    </defs>
-    <path d="M 0 0 L ${CURVE_TOP_X} 0 ${CURVE_BODY} L 0 ${H} Z" fill="url(#d)"/>
-  </svg>`,
-);
-
-// Faint dot texture for the dark side.
-const DOT_GRID_URI = (() => {
-  const dots: string[] = [];
-  for (let y = 44; y < H; y += 46) {
-    for (let x = 44; x < EDGE - 130; x += 46) {
-      dots.push(
-        `<circle cx="${x}" cy="${y}" r="1.6" fill="#ffffff" fill-opacity="0.05"/>`,
-      );
-    }
-  }
-  return svgDataUri(
-    `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">${dots.join('')}</svg>`,
-  );
-})();
+const ORANGE_PANEL_URI = orangePanelUri({ W, H, edge: EDGE, amp: AMP });
+const DARK_OVERLAY_URI = darkOverlayUri({ W, H, edge: EDGE, amp: AMP });
+const DOT_GRID_URI = dotGridUri({ W, H, maxX: EDGE - 130 });
 
 // Bottom-right placement on the orange panel, tuned per subject (silhouettes
 // differ a lot). The dark overlay clips anything that overflows past the curve.
-type SubjectLayout = { width: number; bottom: number; right: number };
-
 const LLAMA_LAYOUT: Record<LlamaSrc, SubjectLayout> = {
   '/ai-llamas/Relax-Llama.png': { width: 352, bottom: 0, right: 46 },
   '/ai-llamas/tina-llama-working-laptop-table.png': {
@@ -133,32 +49,15 @@ const AUTHOR_AREA = { width: 540, right: 0, height: H };
 const AUTHOR_HEIGHT = 552; // leaves ~78px headroom above the head
 
 // Font shrinks by length so each tier's longest title still fits ~4 lines in
-// the title column (satori doesn't honour line-clamp, so we size to fit).
-function titleFontSize(title: string): number {
-  const len = title.length;
-  if (len <= 40) {
-    return 64;
-  }
-  if (len <= 62) {
-    return 54;
-  }
-  if (len <= 80) {
-    return 44;
-  }
-  return 38;
-}
-
-// Beyond what fits at the smallest size, truncate at a word boundary with an
-// ellipsis so the title ends cleanly instead of being hard-cut mid-phrase.
+// the title column (satori doesn't honour line-clamp, so we size to fit), then
+// truncates beyond TITLE_CAP. Tiers are [maxLength, fontSize], largest-first.
+const TITLE_TIERS: ReadonlyArray<[number, number]> = [
+  [40, 64],
+  [62, 54],
+  [80, 44],
+];
+const TITLE_FONT_MIN = 38;
 const TITLE_CAP = 86;
-function clampTitle(title: string): string {
-  if (title.length <= TITLE_CAP) {
-    return title;
-  }
-  const cut = title.slice(0, TITLE_CAP);
-  const lastSpace = cut.lastIndexOf(' ');
-  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
-}
 
 export interface BlogOgInput {
   title: string;
@@ -172,12 +71,6 @@ export async function renderBlogOgImage({
   author,
   seed,
 }: BlogOgInput): Promise<ImageResponse> {
-  const [ibmPlexSemiBold, interMedium, interRegular] = [
-    readFont('IBMPlexSans-SemiBold.ttf'),
-    readFont('Inter-Medium.woff'),
-    readFont('Inter-Regular.woff'),
-  ];
-
   // Right-hand subject: the author's trimmed cutout if we have one, otherwise a
   // llama mascot. Authors fit-to-height + centre in the panel; the llama
   // mascots are scene illustrations placed by their own per-llama layout.
@@ -188,8 +81,12 @@ export async function renderBlogOgImage({
   const llamaLayout = LLAMA_LAYOUT[llamaSrc];
 
   const logo = logoDataUri();
-  const displayTitle = clampTitle(title);
-  const fontSize = titleFontSize(displayTitle);
+  const displayTitle = truncateTitle(title, TITLE_CAP);
+  const fontSize = pickFontSize(
+    displayTitle.length,
+    TITLE_TIERS,
+    TITLE_FONT_MIN,
+  );
 
   // Author display: keep the full credited string, but the avatar reflects the
   // first author only.
@@ -380,16 +277,7 @@ export async function renderBlogOgImage({
     </div>,
     {
       ...OG_SIZE,
-      fonts: [
-        {
-          name: 'IBM Plex Sans',
-          data: ibmPlexSemiBold,
-          weight: 600,
-          style: 'normal',
-        },
-        { name: 'Inter', data: interMedium, weight: 500, style: 'normal' },
-        { name: 'Inter', data: interRegular, weight: 400, style: 'normal' },
-      ],
+      fonts: ogFonts(),
     },
   );
 }
