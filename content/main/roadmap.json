@@ -55,6 +55,13 @@
           "content": "TinaCMS live editing now works in Astro without pulling React into your site. Editors click any field to edit it inline in the admin while production ships zero editor code\n",
           "actions": [
             {
+              "label": "Blogged",
+              "icon": false,
+              "variant": "blue",
+              "size": "medium",
+              "url": "/blog/astro-is-becoming-the-default-tinacms-starter"
+            },
+            {
               "label": "GitHub Discussion 🔗",
               "icon": false,
               "shape": "pill",
