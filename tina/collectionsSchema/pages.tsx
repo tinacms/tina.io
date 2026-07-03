@@ -21,6 +21,7 @@ import { flyingTemplate } from '../../components/blocks/Flying/Flying.template';
 import { footerLinkContentTemplate } from '../../components/blocks/FooterLinkContent/footerLinkContent.template';
 import { heroTemplate } from '../../components/blocks/Hero/Hero.template';
 import { highlightsSectionTemplate } from '../../components/blocks/HighlightsSection/HighlightsSection.template';
+import { imageBandTemplate } from '../../components/blocks/ImageBand/ImageBand.template';
 import { logoGridTemplate } from '../../components/blocks/LogoGrid/LogoGrid.template';
 import { mediaComponentTemplate } from '../../components/blocks/Media/MediaComponent.template';
 import { partnerGridTemplate } from '../../components/blocks/PartnerGrid/PartnerGrid.template';
@@ -74,6 +75,7 @@ const templates = [
   spacerTemplate as Template,
   featureGridTemplate as Template,
   partnerGridTemplate as Template,
+  imageBandTemplate as Template,
   heroTemplate as Template,
   flyingTemplate as Template,
   faqTemplate as Template,

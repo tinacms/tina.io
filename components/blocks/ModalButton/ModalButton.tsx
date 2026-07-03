@@ -1,4 +1,5 @@
 import { DemoForm } from 'components/modals/BookDemo';
+import { ContactForm } from 'components/modals/ContactForm';
 import { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { tinaField } from 'tinacms/dist/react';
@@ -15,6 +16,12 @@ const getModalContent = (modal: string) => {
   }
   if (modal === 'EmailForm.tsx') {
     return <EmailForm />;
+  }
+  if (modal === 'ContactForm.tsx') {
+    return <ContactForm />;
+  }
+  if (modal === 'BecomePartner.tsx') {
+    return <ContactForm variant="partner" />;
   }
   return null;
 };

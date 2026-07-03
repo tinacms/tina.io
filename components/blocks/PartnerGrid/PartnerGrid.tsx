@@ -15,7 +15,7 @@ const PartnerCard = ({ data }) => {
       : data.website;
 
   return (
-    <div className="flex h-full flex-col gap-4 rounded-lg bg-linear-to-br from-white via-white to-white/50 p-6 shadow-lg md:p-8">
+    <div className="flex h-full flex-col gap-4 rounded-lg bg-white p-6 shadow-lg md:p-8">
       <div className="flex items-start justify-between gap-4">
         <div className="relative h-12 w-40">
           {data.logo ? (
@@ -81,7 +81,7 @@ const PartnerCard = ({ data }) => {
           href={website}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center gap-1 font-medium text-tina-blue hover:text-tina-blue-dark"
+          className="mt-auto inline-flex items-center gap-1 font-medium text-blue-500 hover:text-blue-700"
         >
           Visit website
           <span aria-hidden="true">&rarr;</span>
@@ -92,12 +92,20 @@ const PartnerCard = ({ data }) => {
 };
 
 export function PartnerGridBlock({ data, index }) {
+  // Suffix with `-section` so the anchor can't collide with an Actions/Modal
+  // button whose label slugifies to the same value (e.g. a "Find a partner"
+  // CTA that links here) — a duplicate id would make the browser jump to the
+  // button instead of this section.
   const id = data.title
-    ? data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    ? `${data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-section`
     : `partner-grid-${index}`;
 
   return (
-    <section id={id} key={`partner-grid-${index}`} className="w-full">
+    <section
+      id={id}
+      key={`partner-grid-${index}`}
+      className="w-full scroll-mt-24"
+    >
       <Container width="wide">
         {data.title &&
           (data.blockSettings?.isHeadingOne ? (

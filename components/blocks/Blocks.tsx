@@ -32,6 +32,7 @@ import CallToAction from './CallToAction/call-to-action';
 import { ColumnsBlock } from './Columns/Columns';
 import { VerticalCardsBlock } from './Events/Events';
 import { HighlightsSection } from './HighlightsSection/HighlightsSection';
+import { ImageBandBlock } from './ImageBand/ImageBand';
 import { MediaComponent } from './Media/MediaComponent';
 import { PartnerGridBlock } from './PartnerGrid/PartnerGrid';
 import { ProfessionalServices } from './ProfessionalServices/ProfessionalServices';
@@ -95,6 +96,8 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
       return <FeatureGridBlock data={block} index={index} />;
     case 'PageBlocksPartnerGrid':
       return <PartnerGridBlock data={block} index={index} />;
+    case 'PageBlocksImageBand':
+      return <ImageBandBlock data={block} index={index} />;
     case 'PageBlocksLogoGrid':
       return <LogoGridBlock data={block} index={index} />;
     case 'PageBlocksCarouselFeature':

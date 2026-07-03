@@ -29,6 +29,41 @@ interface FormData {
   subscribeNewsletter: boolean;
 }
 
+type ContactVariant = 'contact' | 'partner';
+
+interface ContactFormProps {
+  variant?: ContactVariant;
+}
+
+// Copy + behaviour per variant. `inquiryType` is sent to /api/contact so the
+// email is tagged (e.g. so partner applications are easy to triage).
+const VARIANTS: Record<
+  ContactVariant,
+  {
+    heading: string;
+    intro: string;
+    messagePlaceholder: string;
+    submitLabel: string;
+    inquiryType?: string;
+  }
+> = {
+  contact: {
+    heading: 'Contact Us',
+    intro:
+      "Have a question or want to learn more about TinaCMS? Fill out the form below and we'll get back to you.",
+    messagePlaceholder: 'Message *',
+    submitLabel: 'Send',
+  },
+  partner: {
+    heading: 'Become a Partner',
+    intro:
+      "Tell us about your agency and the work you do. We'll be in touch about joining the TinaCMS partner program.",
+    messagePlaceholder: 'Tell us about your agency *',
+    submitLabel: 'Apply',
+    inquiryType: 'Partner application',
+  },
+};
+
 const referralOptions = [
   'Conference',
   'Google',
@@ -48,7 +83,8 @@ const initialFormData: FormData = {
   subscribeNewsletter: false,
 };
 
-export const ContactForm = () => {
+export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
+  const config = VARIANTS[variant];
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -70,7 +106,7 @@ export const ContactForm = () => {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, inquiryType: config.inquiryType }),
       });
 
       if (response.ok) {
@@ -128,13 +164,10 @@ export const ContactForm = () => {
           className="w-12 h-12"
         />
         <h2 className="inline-block m-0 md:text-4xl font-ibm-plex text-2xl lg:text-3xl lg:leading-tight bg-linear-to-br from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-          Contact Us
+          {config.heading}
         </h2>
       </div>
-      <p className="text-left w-full">
-        Have a question or want to learn more about TinaCMS? Fill out the form
-        below and we&apos;ll get back to you.
-      </p>
+      <p className="text-left w-full">{config.intro}</p>
       {message.text && (
         <div
           className={`font-ibm-plex text-sm flex items-center gap-2 ${
@@ -239,7 +272,7 @@ export const ContactForm = () => {
         </SelectContent>
       </Select>
       <Textarea
-        placeholder="Message *"
+        placeholder={config.messagePlaceholder}
         name="message"
         rows={4}
         value={formData.message}
@@ -272,7 +305,7 @@ export const ContactForm = () => {
           disabled={isProcessing || !isValidEmail || !formData.message}
           className="px-6 py-2.5"
         >
-          {isProcessing ? 'Sending...' : 'Send'}
+          {isProcessing ? 'Sending...' : config.submitLabel}
         </Button>
       </div>
     </form>

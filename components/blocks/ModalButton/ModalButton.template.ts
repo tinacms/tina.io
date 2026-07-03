@@ -1,4 +1,9 @@
-const modals = ['BookDemo.tsx', 'EmailForm.tsx'];
+const modals = [
+  'BookDemo.tsx',
+  'EmailForm.tsx',
+  'ContactForm.tsx',
+  'BecomePartner.tsx',
+];
 
 export const modalButtonTemplateFields = [
   { name: 'label', label: 'Label', type: 'string' },

@@ -4,8 +4,15 @@ import { type NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { firstName, lastName, email, company, referralSource, message } =
-      body;
+    const {
+      firstName,
+      lastName,
+      email,
+      company,
+      referralSource,
+      message,
+      inquiryType,
+    } = body;
 
     if (!email || !message) {
       return NextResponse.json(
@@ -33,8 +40,9 @@ export async function POST(request: NextRequest) {
       from: SENDGRID_FROM_EMAIL,
       to: CONTACT_FORM_TO,
       replyTo: email,
-      subject: `TinaCMS Contact Form: ${fullName}`,
+      subject: `TinaCMS ${inquiryType || 'Contact Form'}: ${fullName}`,
       text: [
+        ...(inquiryType ? [`Type: ${inquiryType}`, ''] : []),
         `Name: ${fullName}`,
         `Email: ${email}`,
         `Company: ${company || 'N/A'}`,
