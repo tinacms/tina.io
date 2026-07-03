@@ -32,7 +32,6 @@ export default function DocsClient({
   const { NavigationDocsData, NavigationLearnData } = useNavigationData();
   const { PageTableOfContents } = props;
   const DocumentationData = locale === 'zh' ? data.docZh : data.doc;
-  const strings = getUiStrings(locale);
 
   const { learnActive, setLearnActive } = useDocsNavigation();
   const [_isLearnDocument, setIsLearnDocument] = useState(learnActive);
@@ -76,10 +75,6 @@ export default function DocsClient({
   useEffect(() => {
     checkLearn(setLearnActive);
   }, [checkLearn, setLearnActive]);
-
-  const lastEdited = DocumentationData?.last_edited;
-  const formattedDate = formatDate(lastEdited);
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-[3fr_0.5fr] xl:grid-cols-[3fr_0.25fr]">
       <div
@@ -108,13 +103,6 @@ export default function DocsClient({
             components={docAndBlogComponents}
           />
         </div>
-
-        {formattedDate && (
-          <span className="text-slate-500 text-md">
-            {' '}
-            {strings.docs.lastEdited}: {formattedDate}
-          </span>
-        )}
         <DocsPagination prevPage={previousPage} nextPage={nextPage} />
       </div>
       {DocumentationData?.tocIsHidden ? null : (

@@ -23,11 +23,14 @@ export async function generateMetadata({
     console.warn(`No metadata found for slug: ${slugPath}`);
     return notFound();
   }
-  const excerpt = getExcerpt(post.body, 140);
+  // ~120 chars keeps og:description under the ~125 social-preview cutoff
+  const excerpt = getExcerpt(post.body, 120);
   return getSeo({
     title: `${post.title} | TinaCMS Blog`,
     description: excerpt,
     canonicalUrl: `${settings.siteUrl}/zh/blog/${slugPath}`,
+    // dynamic per-post OG image (app/zh/blog/og/[...slug]/route.tsx)
+    ogImage: `/zh/blog/og/${slugPath}`,
   });
 }
 

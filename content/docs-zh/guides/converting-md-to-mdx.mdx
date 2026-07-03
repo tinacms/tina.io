@@ -1,0 +1,156 @@
+---
+title: Markdown 到 MDX 迁移指南
+last_edited: '2025-10-10T01:14:27.575Z'
+next: content/docs-zh/cli-overview.mdx
+previous: content/docs-zh/guides/converting-gatsby-to-tina.mdx
+---
+
+## 介绍
+
+从传统的 Markdown (.md) 迁移到 MDX (.mdx) 可以让你在内容中使用类型化的、交互式的 React 组件。如果你正在迁移到像 TinaCMS 这样的现代 CMS 或者在基于 Next.js 的静态网站中工作，本指南将展示如何自动将自定义 Markdown 内容转换为干净的 MDX。
+
+## 一目了然
+
+如果你需要以下内容：
+
+* 你正在采用 MDX 进行基于 React 的内容渲染
+* 你的 Markdown 文件使用自定义容器，例如 YouTube 嵌入
+* 你想避免手动重写成千上万的文件
+
+## 关键迁移挑战
+
+* 旧的短代码和自定义语法不兼容 MDX
+* MDX 需要有效的 JSX —— 原始 HTML 和插件无法工作
+* Markdown 插件不可移植
+* 手动转换既慢又容易出错
+
+## 脚本概述
+
+我们编写了一个 Python 脚本，它可以：
+
+* 递归扫描 .md 文件
+* 使用正则表达式检测自定义块
+* 用 JSX 组件替换每个块
+* 清理格式工件（例如 `<!--endintro-->`）
+* 输出 .mdx 文件
+
+## 支持的块类型
+
+以下是脚本将 Markdown 模式转换为 MDX 组件的关键模式：
+
+**注意：** 一些示例是为其开发的项目所独有的。
+
+| 原始格式 (.md)                    | 它代表的内容                     | 转换后 (.mdx)                  |
+| --------------------------------- | -------------------------------- | ------------------------------ |
+| `::: greybox/highlight/...`       | 信息或旁白框                     | `<asideEmbed variant="..." />` |
+| `::: email-template :::`          | 带有主题、正文等的电子邮件       | `<emailEmbed />`               |
+| `::: good/bad/ok + image`         | 带有反馈标签的图像               | `<imageEmbed />`               |
+| `::: img-small/img-large + image` | 带有大小/边框变体的图像          | `<imageEmbed size="..." />`    |
+| `![Figure: Caption](src)`         | 带有标题的独立图像               | `<imageEmbed />`               |
+| `::: good + Caption :::`          | 样式化的标题文本                 | `<figureEmbed />`              |
+| `youtube: URL` + caption          | 带有描述的 YouTube 视频          | `<youtubeEmbed />`             |
+
+这些反映了我们在原始 Markdown 内容中使用的常见模式。
+
+## 示例转换（前后对比）
+
+**之前（Markdown）：**
+
+```
+::: email-template  
+| | |
+| -------- | --- |
+| To: | XXX |
+| Cc: | YYY |
+| Bcc: | ZZZ |
+| Subject: | {{ EMAIL SUBJECT }} |  
+::: email-content
+### Hi XXX,
+{{ EMAIL CONTENT }}
+:::  
+:::  
+::: good  
+Figure: Good example - Nice email template  
+:::
+
+
+
+::: good
+![Figure: Well-structured diagram](diagram.png)
+:::
+
+`youtube: https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+**Watch this classic hit**
+
+```
+
+**之后（MDX）：**
+
+```jsx
+
+<emailEmbed
+  from=""
+  to="XXX"
+  cc="YYY"
+  bcc="ZZZ"
+  subject="&#123;&#123; EMAIL SUBJECT &#125;&#125;"
+  body={<>
+    ## Hi XXX,
+&#123;&#123; EMAIL CONTENT &#125;&#125;
+  </>}
+  figureEmbed={{
+    preset: "goodExample",
+    figure: "Good example - Nice email template",
+    shouldDisplay: true
+  }}
+/>
+
+
+<imageEmbed
+  alt="Image"
+  size="large"
+  showBorder={true}
+  figureEmbed={{
+    preset: "goodExample",
+    figure: 'Well-structured diagram',
+    shouldDisplay: true
+  }}
+  src="diagram.png"
+/>
+
+<youtubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" description="Watch this classic hit" />
+
+
+```
+
+**渲染的电子邮件模板：**![](/img/docs/converting-md-to-mdx/nice-email-template.png)
+
+## 运行脚本
+
+要转换单个文件：
+
+```bash
+python convert_md_to_mdx.py path/to/rule.md
+```
+
+要转换所有文件：
+
+```bash
+python convert_md_to_mdx.py
+```
+
+转换后，启动你的本地 TinaCMS 网站并浏览转换后的页面，以确保自定义块（视频、旁白、电子邮件、图像等）正确渲染。
+
+## 扩展脚本
+
+* 为自定义容器添加新的正则表达式模式
+* 修改 JSX 输出以匹配你的组件 API
+* 调整解析逻辑以处理边缘情况或元数据
+
+## 最后说明
+
+这个脚本使得将成千上万的 Markdown 文件转换为适合现代框架的干净、结构化的 MDX 成为可能。
+
+如果你正在进行类似的迁移并希望帮助适应或扩展这种方法，[SSW](https://www.ssw.com.au) 团队在 MDX 和 [TinaCMS 项目方面有经验，可以提供帮助](https://www.ssw.com.au/consulting/tinacms)。
+
+**→ 查看脚本**: [convert\_md\_to\_mdx.py](https://github.com/SSWConsulting/SSW.Rules.Content/blob/tina/migration-dev-content/scripts/tina-migration/convert-rule-md-to-mdx.py)

@@ -4,6 +4,7 @@ import { formatDate } from 'date-fns';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaHistory } from 'react-icons/fa';
+import { resolveDisplayAuthor } from './authorUtils';
 import { getRelativeTime } from './timeUtils';
 import type { GitHubMetadataProps, GitHubMetadataResponse } from './type';
 
@@ -94,7 +95,7 @@ export default function GitHubMetadata({
         <span>
           Last updated by{' '}
           <span className="font-bold text-black">
-            {latestCommit.commit.author.name}
+            {resolveDisplayAuthor(latestCommit)}
           </span>
           {` ${lastUpdateInRelativeTime}.`}
         </span>

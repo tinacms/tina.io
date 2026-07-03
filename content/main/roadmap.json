@@ -27,6 +27,30 @@
       "items": [
         {
           "icon": "FaRegCheckCircle",
+          "heading": "TinaCloud Separate Content Repo Support\n",
+          "status": "",
+          "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate TinaCMS lock files.\n",
+          "actions": [
+            {
+              "label": "Blogged",
+              "icon": false,
+              "shape": "pill",
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/blog/tinacloud-separate-content-repos"
+            },
+            {
+              "label": "Documentation",
+              "icon": true,
+              "shape": "pill",
+              "variant": "default",
+              "size": "medium",
+              "url": "https://tina.io/docs/guides/separate-content-repo"
+            }
+          ]
+        },
+        {
+          "icon": "FaRegCheckCircle",
           "heading": "React-Free Astro Support\n",
           "content": "TinaCMS live editing now works in Astro without pulling React into your site. Editors click any field to edit it inline in the admin while production ships zero editor code\n",
           "actions": [
@@ -147,21 +171,6 @@
       "items": [
         {
           "icon": "FaHourglassHalf",
-          "heading": "TinaCloud Separate Content Repo Support\n",
-          "status": "",
-          "content": "Multi-repo support lets a single TinaCloud project connect a separate content repository alongside the generator/code repo - an Enterprise-friendly setup that decouples editors' content from the application code, eliminating schema-sync issues and duplicate TinaCMS lock files.\n",
-          "actions": [
-            {
-              "label": "Documentation",
-              "icon": true,
-              "variant": "blue",
-              "size": "medium",
-              "url": "https://tina.io/docs/guides/separate-content-repo"
-            }
-          ]
-        },
-        {
-          "icon": "FaHourglassHalf",
           "heading": "Editorial Workflow Support for Media Manager\n",
           "content": "We're adding Editorial Workflow support to the Media Manager, enabling media changes to go through the same branch-based workflow as content edits.\n",
           "actions": [
@@ -224,6 +233,14 @@
           "content": "We're reworking the foundation of TinaCMS so more parts can be customised or replaced without forking the project. This will make TinaCMS easier to maintain and give teams more control over how the editor works.\n",
           "actions": [
             {
+              "label": "Blogged",
+              "icon": false,
+              "shape": "pill",
+              "variant": "blue",
+              "size": "medium",
+              "url": "https://tina.io/blog/tinacms-v4-is-coming"
+            },
+            {
               "label": "GitHub Discussion 🔗",
               "icon": false,
               "shape": "pill",
@@ -271,6 +288,20 @@
       },
       "headline": "Coming Soon",
       "items": [
+        {
+          "icon": "FaRegClock",
+          "heading": "TinaCMS v4.1 - MDX plugin adaptors\n",
+          "content": "We’re adding MDX plugin adapters so teams can use their preferred Markdown tools and Markdown flavors while keeping TinaCMS Visual Editing. Fumadocs is planned as the first supported adapter.\n",
+          "actions": [
+            {
+              "label": "GitHub Discussion 🔗",
+              "icon": false,
+              "variant": "default",
+              "size": "medium",
+              "url": "https://github.com/tinacms/tinacms/discussions/6973"
+            }
+          ]
+        },
         {
           "icon": "FaRegClock",
           "heading": "Improved PR workflow\n",
