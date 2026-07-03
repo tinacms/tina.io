@@ -88,7 +88,7 @@
           "logo": "/svg/logos/ssw.svg",
           "tier": "Premier",
           "location": "Sydney, Australia",
-          "description": "Full-service consultancy delivering enterprise web apps and content-driven sites with TinaCMS and Next.js.",
+          "description": "Full-service consultancy delivering enterprise web apps and content-driven sites with TinaCMS, Next.js and Astro.",
           "services": ["Next.js", "Enterprise", "Migrations"],
           "website": "https://www.ssw.com.au"
         },
