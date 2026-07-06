@@ -33,25 +33,26 @@
       "_template": "hero"
     },
     {
+      "brandColorIcons": true,
       "highlightColumn": [
         {
           "heading": "Why choose a partner?",
           "highlights": [
             {
               "name": "Direct access to the development team",
-              "icon": "BiSupport"
+              "icon": "AiOutlineCustomerService"
             },
             {
               "name": "Guaranteed TinaCMS development experience",
-              "icon": "HiOutlineSparkles"
+              "icon": "AiOutlineStar"
             },
             {
               "name": "No lock-in – Git-backed & open source",
-              "icon": "FaCodeBranch"
+              "icon": "AiOutlineBranches"
             },
             {
               "name": "Ongoing support & maintenance",
-              "icon": "FaClock"
+              "icon": "AiOutlineClockCircle"
             }
           ]
         },
@@ -60,19 +61,19 @@
           "highlights": [
             {
               "name": "Co-marketing opportunities",
-              "icon": "FaShare"
+              "icon": "AiOutlineShareAlt"
             },
             {
               "name": "A Certified Partner badge",
-              "icon": "BiBadge"
+              "icon": "AiOutlineSafetyCertificate"
             },
             {
               "name": "Free TinaCMS licence for your own website",
-              "icon": "CgCrown"
+              "icon": "AiOutlineCrown"
             },
             {
               "name": "Technical assistance and priority feature requests",
-              "icon": "TbPlugConnected"
+              "icon": "AiOutlineApi"
             }
           ]
         }
@@ -99,7 +100,7 @@
           "location": "Remote, EU",
           "description": "Digital studio crafting brand and marketing sites with a focus on editor-friendly visual editing.",
           "services": ["Marketing sites", "Branding", "Astro"],
-          "website": "https://example.com"
+          "website": "https://www.comediadesign.com"
         },
         {
           "name": "Shadow Lion",
@@ -108,7 +109,7 @@
           "location": "London, UK",
           "description": "Boutique agency building fast, content-rich websites for media and publishing clients.",
           "services": ["Publishing", "Performance", "Hugo"],
-          "website": "https://example.com"
+          "website": "https://shadowlion.com"
         }
       ],
       "_template": "partnerGrid"
