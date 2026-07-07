@@ -17,7 +17,7 @@ This will be a short recap of what shipped across TinaCMS and TinaCloud, posted 
 
 ## Keep up with Socials
 
-Our social channels have been quiet for a while… the dev effort hasn't been and we want to keep everyone in the loop. 
+Our social channels have been quiet for a while… the dev effort hasn't been and we want to keep everyone in the loop.
 
 So we're back to posting regularly, with product updates, video and tutorial content, and related news.
 
@@ -69,15 +69,13 @@ Two changes to smooth the road to V4: the new `tinacms doctor` command flags any
 
 We ran a focused security pass over the codebase. The dev server now rejects cross-origin requests that try to change state, message origins and rich-text URLs are validated and sanitised, and every GitHub Actions workflow runs with least-privilege permissions. We also locked down our npm publish pipeline and added dependency review, with a cooldown before new package versions are pulled in.
 
-None of this is something you have to think about — it just makes Tina safer by default.
+There's nothing needed on your side – this all just makes Tina safer by default.
 
-### 🪶 A lighter admin bundle
+### ✨ UX Improvements
 
-We trimmed weight that editors never needed to download. Swapping `moment` for `date-fns` and clearing out some legacy code shaved around 40 KB off the shipped admin bundle, so the editing UI loads a little faster.
+A few quality-of-life upgrades for editors: the editorial workflow now has a save-options dropdown for choosing between draft and ready-for-review, and admin editor pages have a back-to-collection breadcrumb so it's quicker to move around.
 
-### ✨ Editing experience
-
-A few quality-of-life upgrades for editors: the editorial workflow now has a save-options dropdown for choosing between draft and ready-for-review, and admin editor pages have a back-to-collection breadcrumb so it's quicker to move around. `create-tina-app` also shows live install activity as it scaffolds, so you're not left watching a silent spinner.
+ `create-tina-app` also shows live install activity as it scaffolds, so you're not left watching a silent spinner.
 
 ### 🧪 More tests
 
