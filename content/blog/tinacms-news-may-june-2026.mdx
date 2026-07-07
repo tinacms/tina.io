@@ -1,0 +1,110 @@
+---
+seo:
+  title: 'TinaCMS News: May & June 2026 | TinaCMS Blog'
+  description: >-
+    We're back with regular monthly updates. Here's what shipped across TinaCMS
+    and TinaCloud in May and June 2026 — Astro, Tina V4 foundations, a security
+    hardening pass, a lighter admin bundle, and a big reliability win.
+  canonicalUrl: 'https://tina.io/blog/tinacms-news-may-june-2026'
+title: 'TinaCMS News: May & June 2026'
+date: '2026-07-07T00:00:00.000Z'
+last_edited: '2026-07-07T00:00:00.000Z'
+author: Isaac Lombard
+prev: content/blog/tinacloud-separate-content-repos.mdx
+next: ''
+---
+
+We're bringing back regular monthly updates — a short recap of what shipped across TinaCMS and TinaCloud, posted here on the blog and sent out as a newsletter.
+
+## We're posting again 👋
+
+Our social channels have been quiet for a while. That's changing. We're back to posting regularly, with product updates, behind-the-scenes work, and short video content on the way.
+
+Follow our business accounts to keep up:
+
+- **X** — [@tinacms](https://twitter.com/tinacms)
+- **LinkedIn** — [TinaCMS](https://www.linkedin.com/company/tinacms)
+- **YouTube** — [@TinaCMS](https://www.youtube.com/@TinaCMS)
+
+Two of us on the team — **Brook** and **Isaac** — will be posting and replying to comments directly, so when you reply you'll be talking to real people on the team, not a faceless brand account. Come say hi.
+
+***
+
+## May recap
+
+**37 PRs merged in TinaCMS this month.** The highlights:
+
+### ⭐️ TinaCMS in the Astro news
+
+TinaCMS got a shout-out in [Astro's "What's new in May" post](https://astro.build/blog/whats-new-may-2026). Give it some love — and read our side of the story in [Astro is becoming the default TinaCMS starter](/blog/astro-is-becoming-the-default-tinacms-starter).
+
+### 🧩 All-in on Astro
+
+TinaCMS visual editing no longer needs React. A ~2 KB vanilla-JS bridge (#6771) powers live editing, and it now works on statically-built pages too (#6843), with Astro 6 supported (#6969) and the starter rebuilt React-free.
+
+The driver is simple: Astro is seeing roughly **6× the starter clone rate of Next.js**, so we've standardised on it for content sites. Next.js isn't going anywhere — it just makes sense to lead with Astro.
+
+### 🚀 Tina V4 announced
+
+We officially announced [Tina V4](/blog/tinacms-v4-is-coming). The seven-epic foundation work kicked off in Sprint 109, and auth is heading to WorkOS AuthKit pending a cross-origin proof-of-concept.
+
+### 🩺 Upgrade-path tooling
+
+Two changes to smooth the road to V4: the new `tinacms doctor` command flags any outdated Tina package against the latest on npm (#6758), and legacy `.tina/` folders now surface a deprecation warning (#6776).
+
+### 🧪 More tests
+
+Playwright coverage grew from **4 to 52 tests** — a big jump in end-to-end confidence.
+
+### 📦 Downloads
+
+**215,000** package downloads in the month of May.
+
+### 📉 TinaCloud: a reliability month
+
+The cloud team spent May on reliability, and the numbers moved:
+
+- **Content API 500s cut from ~13K to ~2K**, and **Identity API 500s down 87%**.
+- Search rebuilds on large repos no longer fail from GitHub rate limits (#3526).
+- Rate limiting now stops runaway traffic from taking the API down (#3587).
+
+***
+
+## Since then: what's new in June
+
+The pace didn't slow down. A curated look at what landed after the May recap:
+
+### 🧱 Tina V4 foundations taking shape
+
+The V4 groundwork is now real code. We scaffolded the new `@tinacms/tinacms` package (#7005) and shipped the first pieces of the V4 field-plugin system — String (#7099), Boolean (#7137), and Number (#7139) fields — alongside [the V4 plugin-system docs](/docs) (#7121).
+
+### 🔒 Security hardening pass
+
+A focused sweep to tighten things up: the dev server now rejects cross-origin state-changing requests (#7111), message origin and sender checks are hardened with rich-text URL sanitization (#7056, #7128), every GitHub Actions workflow runs with least-privilege permissions (#7093), and the npm publish pipeline is locked down (#7095) with dependency review (#7074) and a documented dependency cooldown policy (#7080).
+
+### 🪶 A lighter admin bundle
+
+We trimmed weight editors never needed to download: `moment-timezone` is out of the shipped admin bundle (~39 KB gzip, #7103), date handling is standardised on `date-fns` with `moment` and `react-datetime` removed (#7107), the unused legacy Express dev server is gone (#7113), and a dead MDX module took ~400 lines with it (#7105).
+
+### ✨ Editing experience
+
+- Editorial workflow gained a **save-options dropdown** for draft vs. ready-for-review (#7138), with the choice tracked in PostHog (#7140).
+- A **back-to-collection breadcrumb** on admin editor pages makes navigation quicker (#6939).
+- `create-tina-app` now streams live install activity on the spinner so you can see what it's doing (#7122).
+- On Astro, `getStaticPaths` re-runs in dev when Tina writes content, so new pages show up without a manual restart (#7069).
+
+### ☁️ TinaCloud: Separate Content Repos
+
+TinaCloud projects can now bind two repos — one for your app code, one for your editorial content — with a single dashboard. Full details in [Separate Content Repos are here for TinaCloud](/blog/tinacloud-separate-content-repos).
+
+***
+
+## Stay in the loop
+
+That's the catch-up. From here we'll keep these coming every month.
+
+- Follow along on [X](https://twitter.com/tinacms), [LinkedIn](https://www.linkedin.com/company/tinacms), and [YouTube](https://www.youtube.com/@TinaCMS).
+- Join the conversation in [Discord](https://discord.com/invite/zumN63Ybpf).
+- [Subscribe to the blog](/rss.xml) so the next one lands in your feed.
+
+See you next month. 🦙
