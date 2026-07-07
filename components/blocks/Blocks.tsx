@@ -7,6 +7,7 @@ const OfficeMap = dynamic(() =>
   import('@/component/blocks-v2/map/map').then((mod) => mod.OfficeMap),
 );
 
+import type { ChannelVideo } from '@/utils/youtube/getChannelVideos';
 import type {
   PageBlocks,
   PostConnection,
@@ -58,7 +59,12 @@ const CompareBoxBlock = dynamic(() => import('./CompareBox/CompareBox'), {
   ssr: false,
 });
 
-const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
+const blockByType = (
+  block: PageBlocks,
+  index: number,
+  recentPosts?,
+  latestVideos?: ChannelVideo[],
+) => {
   switch (block.__typename) {
     case 'PageBlocksFeatures':
       return <FeaturesBlock data={block} index={index} />;
@@ -104,6 +110,7 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
           data={block}
           index={index}
           recentPosts={recentPosts}
+          latestVideos={latestVideos}
         />
       );
     case 'PageBlocksTestimonials':
@@ -146,9 +153,11 @@ const blockByType = (block: PageBlocks, index: number, recentPosts?) => {
 export const Blocks = ({
   blocks,
   recentPosts,
+  latestVideos,
 }: {
   blocks: PageBlocks[];
   recentPosts: PostConnection;
+  latestVideos?: ChannelVideo[];
 }) => {
   if (!blocks) {
     return null;
@@ -157,7 +166,7 @@ export const Blocks = ({
   return blocks.map((block, index) => {
     // FooterLinkContent blocks don't use BlockWrapper
     if (block.__typename === 'PageBlocksFooterLinkContent') {
-      return blockByType(block, index, recentPosts);
+      return blockByType(block, index, recentPosts, latestVideos);
     }
 
     return (
@@ -165,7 +174,7 @@ export const Blocks = ({
         data={block.blockSettings}
         key={`${block.__typename}-${index}`}
       >
-        {blockByType(block, index, recentPosts)}
+        {blockByType(block, index, recentPosts, latestVideos)}
       </BlockWrapper>
     );
   });

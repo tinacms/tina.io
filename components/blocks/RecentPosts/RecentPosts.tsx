@@ -73,8 +73,19 @@ const VideoCard = ({
   );
 };
 
-export const RecentPostsBlock = ({ data, index, recentPosts }) => {
+export const RecentPostsBlock = ({
+  data,
+  index,
+  recentPosts,
+  latestVideos,
+}) => {
   const featuredPost = data?.featuredPost;
+  // Prefer the live channel feed; fall back to the curated videos in content
+  // if the feed couldn't be fetched (offline build, network flake, etc.).
+  const videos =
+    latestVideos && latestVideos.length > 0
+      ? latestVideos
+      : data?.youtubeVideos;
 
   return (
     <Container size="medium" className="grid grid-cols-3 gap-16 py-16">
@@ -87,7 +98,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
           {data?.title || 'Recent Posts'}
         </h2>
         <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-4 max-w-4xl">
-          {data?.youtubeVideos?.map((video: VideoCardProps) => (
+          {videos?.map((video: VideoCardProps) => (
             <VideoCard
               key={video.embedUrl}
               authorName={video.authorName}
