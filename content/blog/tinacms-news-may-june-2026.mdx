@@ -35,10 +35,9 @@ Come say hi.
 
 ***
 
-## May recap
+## What's new
 
-**37 PRs merged in TinaCMS this month.** 
-The highlights:
+Across May and June the team merged 70+ PRs into TinaCMS and shipped a wave of updates to TinaCloud. Here are the highlights:
 
 ### ⭐️ TinaCMS in the Astro news
 
@@ -50,17 +49,35 @@ TinaCMS got a shout-out in [Astro's "What's new in May" post](https://astro.buil
 
 TinaCMS visual editing no longer needs React.
 
- A \~2 KB vanilla-JS bridge can now power live editing, and it now works on statically-built pages too, with Astro 6 supported and the starter rebuilt React-free.
+A \~2 KB vanilla-JS bridge can now power live editing, and it now works on statically-built pages too, with Astro 6 supported and the starter rebuilt React-free.
 
 We've done this as Astro was winning in terms of user interest – we've been collecting some stats on this. After this update Astro jumped up to **6× the starter clone rate of Next.js** for our CMS starter projects!
+
+We've kept polishing the Astro dev experience too — new pages now show up as you write content, without having to restart the dev server.
 
 ### 🚀 Tina V4 announced
 
 We officially announced [Tina V4](/blog/tinacms-v4-is-coming). The seven-epic foundation work kicked off in Sprint 109, and auth is heading to WorkOS AuthKit.
 
+And it's not just an announcement — the groundwork is already landing. We've scaffolded the new core package and shipped the first of the V4 field plugins (String, Boolean and Number), along with early docs for the new plugin system.
+
 ### 🩺 Upgrade-path tooling
 
 Two changes to smooth the road to V4: the new `tinacms doctor` command flags any outdated Tina package against the latest on npm, and legacy `.tina/` folders now surface a deprecation warning. We're hoping this makes the maintenance story of using TinaCMS more compelling.
+
+### 🔒 Security hardening
+
+We ran a focused security pass over the codebase. The dev server now rejects cross-origin requests that try to change state, message origins and rich-text URLs are validated and sanitised, and every GitHub Actions workflow runs with least-privilege permissions. We also locked down our npm publish pipeline and added dependency review, with a cooldown before new package versions are pulled in.
+
+None of this is something you have to think about — it just makes Tina safer by default.
+
+### 🪶 A lighter admin bundle
+
+We trimmed weight that editors never needed to download. Swapping `moment` for `date-fns` and clearing out some legacy code shaved around 40 KB off the shipped admin bundle, so the editing UI loads a little faster.
+
+### ✨ Editing experience
+
+A few quality-of-life upgrades for editors: the editorial workflow now has a save-options dropdown for choosing between draft and ready-for-review, and admin editor pages have a back-to-collection breadcrumb so it's quicker to move around. `create-tina-app` also shows live install activity as it scaffolds, so you're not left watching a silent spinner.
 
 ### 🧪 More tests
 
@@ -68,7 +85,7 @@ We're committed to writing more frontend tests, to improve reliability and limit
 
 ### 📦 Downloads
 
-Over** 200,000** package downloads in the month of May.
+Over **200,000** package downloads in the month of May.
 
 ### ☁️ TinaCloud Improvements
 
@@ -78,34 +95,7 @@ The cloud team worked on reliability, and the numbers reflect that:
 * Search rebuilds on large repos no longer fail from GitHub rate limits.
 * Rate limiting now stops runaway traffic from taking the API down.
 
-***
-
-## Since then: what's new in June
-
-The pace didn't slow down. A curated look at what landed after the May recap:
-
-### 🧱 Tina V4 foundations taking shape
-
-The V4 groundwork is now real code. We scaffolded the new `@tinacms/tinacms` package (#7005) and shipped the first pieces of the V4 field-plugin system — String (#7099), Boolean (#7137), and Number (#7139) fields — alongside [the V4 plugin-system docs](/docs) (#7121).
-
-### 🔒 Security hardening pass
-
-A focused sweep to tighten things up: the dev server now rejects cross-origin state-changing requests (#7111), message origin and sender checks are hardened with rich-text URL sanitization (#7056, #7128), every GitHub Actions workflow runs with least-privilege permissions (#7093), and the npm publish pipeline is locked down (#7095) with dependency review (#7074) and a documented dependency cooldown policy (#7080).
-
-### 🪶 A lighter admin bundle
-
-We trimmed weight editors never needed to download: `moment-timezone` is out of the shipped admin bundle (\~39 KB gzip, #7103), date handling is standardised on `date-fns` with `moment` and `react-datetime` removed (#7107), the unused legacy Express dev server is gone (#7113), and a dead MDX module took \~400 lines with it (#7105).
-
-### ✨ Editing experience
-
-* Editorial workflow gained a **save-options dropdown** for draft vs. ready-for-review (#7138), with the choice tracked in PostHog (#7140).
-* A **back-to-collection breadcrumb** on admin editor pages makes navigation quicker (#6939).
-* `create-tina-app` now streams live install activity on the spinner so you can see what it's doing (#7122).
-* On Astro, `getStaticPaths` re-runs in dev when Tina writes content, so new pages show up without a manual restart (#7069).
-
-### ☁️ TinaCloud: Separate Content Repos
-
-TinaCloud projects can now bind two repos — one for your app code, one for your editorial content — with a single dashboard. Full details in [Separate Content Repos are here for TinaCloud](/blog/tinacloud-separate-content-repos).
+We also shipped **Separate Content Repos**: you can now bind two GitHub repos to a single TinaCloud project — one for your app code, one for your editorial content — all under one dashboard. More in [Separate Content Repos are here for TinaCloud](/blog/tinacloud-separate-content-repos).
 
 ***
 
