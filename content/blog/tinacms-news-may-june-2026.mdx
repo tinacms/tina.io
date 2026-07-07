@@ -49,13 +49,13 @@ Two changes to smooth the road to V4: the new `tinacms doctor` command flags any
 
 We ran a focused security pass over the codebase, and published advisories for the issues we found and fixed:
 
-* **postMessage handlers now validate origin and source** ([GHSA-g5qx-h5f3-mp2f](https://github.com/tinacms/tinacms/security/advisories/GHSA-g5qx-h5f3-mp2f)): closes a message-forgery path that could lead to OAuth session takeover.
-* **Rich-text link and image URLs are sanitised** ([GHSA-2vcc-5v34-9jc8](https://github.com/tinacms/tinacms/security/advisories/GHSA-2vcc-5v34-9jc8)): blocks stored XSS via dangerous URL schemes.
-* **The dev server rejects cross-origin media uploads** ([GHSA-rgr9-r7mj-mf6x](https://github.com/tinacms/tinacms/security/advisories/GHSA-rgr9-r7mj-mf6x)): stops arbitrary files being written into the dev media root.
-* **Production media adapters are locked down** ([GHSA-8mq9-5fw2-5rm4](https://github.com/tinacms/tinacms/security/advisories/GHSA-8mq9-5fw2-5rm4)): fixes arbitrary bucket-key write and delete in `next-tinacms-s3` and its siblings.
-* **The Forestry migration no longer allows code execution** ([GHSA-4936-9hrh-qqpw](https://github.com/tinacms/tinacms/security/advisories/GHSA-4936-9hrh-qqpw)): unsanitised YAML labels in `@tinacms/cli` could run arbitrary code.
+* postMessage handlers now validate their origin, closing an OAuth session-takeover path.
+* Rich-text link and image URLs are sanitised, blocking stored XSS.
+* The dev server rejects cross-origin media uploads.
+* Production media adapters are locked down against arbitrary writes and deletes.
+* The Forestry migration no longer allows code execution.
 
-We also tightened the supply chain: every GitHub Actions workflow now runs with least-privilege permissions, our npm publish pipeline is locked down, and dependency review runs with a cooldown before new package versions are pulled in.
+We also tightened the supply chain, with least-privilege CI permissions and a locked-down publish pipeline.
 
 There's nothing needed on your side, this all just makes Tina safer by default.
 
