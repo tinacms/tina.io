@@ -57,12 +57,16 @@ export async function getChannelVideos(
       { next: { revalidate: REVALIDATE_SECONDS } },
     );
     if (!res.ok) {
-      return [];
+      throw new Error(`feed responded with ${res.status} ${res.statusText}`);
     }
 
     const xml = await res.text();
-    // Drop everything before the first <entry> (channel-level metadata).
-    const entries = xml.split('<entry>').slice(1);
+    // Drop channel-level metadata (before the first <entry>) and only scan as
+    // many entries as we could possibly need — enough to fill `count` even if
+    // every excluded id happens to sit at the top of the feed.
+    const entries = xml
+      .split('<entry>')
+      .slice(1, 1 + count + excludeVideoIds.length);
     const videos: ChannelVideo[] = [];
 
     for (const entry of entries) {
@@ -94,8 +98,14 @@ export async function getChannelVideos(
     }
 
     return videos;
-  } catch {
-    // Network flake / feed unavailable — caller falls back to curated content.
+  } catch (error) {
+    // Feed unreachable / bad status / parse issue — log it and return empty so
+    // the caller falls back to the curated videos in content.
+    console.warn(
+      `[getChannelVideos] Could not load the YouTube feed, falling back to curated videos: ${
+        error instanceof Error ? error.message : error
+      }`,
+    );
     return [];
   }
 }
