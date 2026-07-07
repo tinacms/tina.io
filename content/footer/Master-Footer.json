@@ -220,6 +220,18 @@
         "_template": "socialLink"
       },
       {
+        "label": "Bluesky",
+        "href": "https://bsky.app/profile/tina.io",
+        "image": "/svg/bluesky-logo-white.svg",
+        "_template": "socialLink"
+      },
+      {
+        "label": "Threads",
+        "href": "https://www.threads.com/@tinacms_",
+        "image": "/svg/threads-logo-white.svg",
+        "_template": "socialLink"
+      },
+      {
         "label": "Subscribe",
         "icon": false,
         "color": "orange",
