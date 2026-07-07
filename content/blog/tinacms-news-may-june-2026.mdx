@@ -49,11 +49,11 @@ Two changes to smooth the road to V4: the new `tinacms doctor` command flags any
 
 We ran a focused security pass over the codebase, and published advisories for the issues we found and fixed:
 
-* postMessage handlers now validate their origin, closing an OAuth session-takeover path.
-* Rich-text link and image URLs are sanitised, blocking stored XSS.
-* The dev server rejects cross-origin media uploads.
-* Production media adapters are locked down against arbitrary writes and deletes.
-* The Forestry migration no longer allows code execution.
+* postMessage handlers have origin validation
+* Rich-text link and image URL sanitisation
+* The dev server rejects cross-origin media uploads
+* Production media adapters are locked down against arbitrary writes and deletes
+* The Forestry migration no longer allows code execution
 
 We also tightened the supply chain, with least-privilege CI permissions and a locked-down publish pipeline.
 
