@@ -1,9 +1,9 @@
 ---
 seo:
   title: 'TinaCMS News: May & June 2026 | TinaCMS Blog'
-  description: 'We''re back with regular monthly updates. Here''s what shipped across TinaCMS and TinaCloud in May and June 2026 — Astro, Tina V4 foundations, a security hardening pass, a lighter admin bundle, and a big reliability win.'
+  description: 'We''re back with regular monthly updates. Here''s what shipped across TinaCMS and TinaCloud in May and June 2026: Astro, Tina V4 foundations, a security hardening pass, a lighter admin bundle, and a big reliability win.'
   canonicalUrl: 'https://tina.io/blog/tinacms-news-may-june-2026'
-title: 'The Llama Update: May + June'
+title: 'Spit Happens'
 date: '2026-07-07T00:00:00.000Z'
 last_edited: '2026-07-07T00:00:00.000Z'
 author: Isaac Lombard
@@ -33,7 +33,7 @@ A \~2 KB vanilla-JS bridge can now power live editing, and it now works on stati
 
 We've done this as Astro was winning in terms of user interest – we've been collecting some stats on this. After this update Astro jumped up to **6× the starter clone rate of Next.js** for our CMS starter projects!
 
-We've kept polishing the Astro dev experience too — new pages now show up as you write content, without having to restart the dev server.
+We've kept polishing the Astro dev experience too. New pages now show up as you write content, without having to restart the dev server.
 
 ### 🚀 Tina V4 announced
 
@@ -47,9 +47,17 @@ Two changes to smooth the road to V4: the new `tinacms doctor` command flags any
 
 ### 🔒 Security hardening
 
-We ran a focused security pass over the codebase. The dev server now rejects cross-origin requests that try to change state, message origins and rich-text URLs are validated and sanitised, and every GitHub Actions workflow runs with least-privilege permissions. We also locked down our npm publish pipeline and added dependency review, with a cooldown before new package versions are pulled in.
+We ran a focused security pass over the codebase, and published advisories for the issues we found and fixed:
 
-There's nothing needed on your side – this all just makes Tina safer by default.
+* **postMessage handlers now validate origin and source** ([GHSA-g5qx-h5f3-mp2f](https://github.com/tinacms/tinacms/security/advisories/GHSA-g5qx-h5f3-mp2f)): closes a message-forgery path that could lead to OAuth session takeover.
+* **Rich-text link and image URLs are sanitised** ([GHSA-2vcc-5v34-9jc8](https://github.com/tinacms/tinacms/security/advisories/GHSA-2vcc-5v34-9jc8)): blocks stored XSS via dangerous URL schemes.
+* **The dev server rejects cross-origin media uploads** ([GHSA-rgr9-r7mj-mf6x](https://github.com/tinacms/tinacms/security/advisories/GHSA-rgr9-r7mj-mf6x)): stops arbitrary files being written into the dev media root.
+* **Production media adapters are locked down** ([GHSA-8mq9-5fw2-5rm4](https://github.com/tinacms/tinacms/security/advisories/GHSA-8mq9-5fw2-5rm4)): fixes arbitrary bucket-key write and delete in `next-tinacms-s3` and its siblings.
+* **The Forestry migration no longer allows code execution** ([GHSA-4936-9hrh-qqpw](https://github.com/tinacms/tinacms/security/advisories/GHSA-4936-9hrh-qqpw)): unsanitised YAML labels in `@tinacms/cli` could run arbitrary code.
+
+We also tightened the supply chain: every GitHub Actions workflow now runs with least-privilege permissions, our npm publish pipeline is locked down, and dependency review runs with a cooldown before new package versions are pulled in.
+
+There's nothing needed on your side, this all just makes Tina safer by default.
 
 ### ✨ UX Improvements
 
@@ -83,11 +91,11 @@ So we're back to posting regularly, with product updates, video and tutorial con
 
 Follow our business accounts to keep up:
 
-* **X** — [@tinacms](https://x.com/tinacms)
-* **LinkedIn** — [TinaCMS](https://www.linkedin.com/company/tinacms)
-* **YouTube** — [@TinaCMS](https://www.youtube.com/@TinaCMS)
-* **Bluesky** — [@tina.io](https://bsky.app/profile/tina.io)
-* **Threads** — [@tinacms\_](https://www.threads.com/@tinacms_)
+* **X**: [@tinacms](https://x.com/tinacms)
+* **LinkedIn**: [TinaCMS](https://www.linkedin.com/company/tinacms)
+* **YouTube**: [@TinaCMS](https://www.youtube.com/@TinaCMS)
+* **Bluesky**: [@tina.io](https://bsky.app/profile/tina.io)
+* **Threads**: [@tinacms\_](https://www.threads.com/@tinacms_)
 
 Two of the devs on the team, **Brook** and **Isaac**, will be posting and replying to comments directly, so when you reply you'll be talking to real people on the team.
 
