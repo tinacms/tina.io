@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fileToUrl } from 'utils/urls';
-import { getRecentVideos } from '@/component/blocks/RecentPosts/getRecentVideos';
 import settings from '@/content/settings/config.json';
 import { getSeo } from '@/utils/metadata/getSeo';
 import { client } from '../../tina/__generated__/client';
@@ -56,17 +55,11 @@ export default async function Page({ params }: PageProps) {
     const res = await queryFunction({
       relativePath: relativePath,
     });
-
-    // Live YouTube videos for the Recent Posts block (returns [] on pages
-    // without it, so most pages skip the fetch entirely).
-    const latestVideos = await getRecentVideos(res.data.page);
-
     return (
       <ClientPage
         query={res.query}
         data={res.data}
         variables={{ relativePath }}
-        latestVideos={latestVideos}
       />
     );
   } catch {

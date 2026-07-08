@@ -7,9 +7,9 @@
 export const TINACMS_YOUTUBE_CHANNEL_ID = 'UCUvqCjr8Xq_IRMDcuJrqIXA';
 const TINACMS_YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TinaCMS';
 
-// Re-fetch the feed at most once an hour (ISR). Uploads are infrequent, so a
-// longer window keeps build/runtime fetches cheap without going stale.
-const REVALIDATE_SECONDS = 3600;
+// Re-fetch the feed at most once a day. Uploads are infrequent, so a daily
+// window keeps fetches cheap without the section going noticeably stale.
+const REVALIDATE_SECONDS = 86400;
 
 export interface ChannelVideo {
   embedUrl: string;
