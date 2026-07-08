@@ -45,6 +45,7 @@ const VARIANTS: Record<
     messagePlaceholder: string;
     submitLabel: string;
     inquiryType?: string;
+    showNewsletter: boolean;
   }
 > = {
   contact: {
@@ -53,6 +54,7 @@ const VARIANTS: Record<
       "Have a question or want to learn more about TinaCMS? Fill out the form below and we'll get back to you.",
     messagePlaceholder: 'Message *',
     submitLabel: 'Send',
+    showNewsletter: true,
   },
   partner: {
     heading: 'Become a Partner',
@@ -61,6 +63,7 @@ const VARIANTS: Record<
     messagePlaceholder: 'Tell us about your agency *',
     submitLabel: 'Apply',
     inquiryType: 'Partner application',
+    showNewsletter: false,
   },
 };
 
@@ -281,23 +284,25 @@ export const ContactForm = ({ variant = 'contact' }: ContactFormProps) => {
         required
         className="w-full min-h-[100px] resize-y"
       />
-      <label className="flex items-center gap-2 cursor-pointer select-none">
-        <input
-          type="checkbox"
-          checked={formData.subscribeNewsletter}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              subscribeNewsletter: e.target.checked,
-            }))
-          }
-          disabled={isProcessing}
-          className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
-        />
-        <span className="text-sm text-gray-600">
-          Subscribe to the TinaCMS newsletter
-        </span>
-      </label>
+      {config.showNewsletter && (
+        <label className="flex items-center gap-2 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={formData.subscribeNewsletter}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                subscribeNewsletter: e.target.checked,
+              }))
+            }
+            disabled={isProcessing}
+            className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer"
+          />
+          <span className="text-sm text-gray-600">
+            Subscribe to the TinaCMS newsletter
+          </span>
+        </label>
+      )}
       <div className="w-full flex justify-end">
         <Button
           type="submit"
