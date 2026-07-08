@@ -148,7 +148,7 @@ export const RecentPostsBlock = ({ data, index, recentPosts }) => {
         >
           {data?.title || 'Recent Posts'}
         </h2>
-        <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-4 max-w-4xl">
+        <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-4 w-full max-w-4xl">
           {isLoading
             ? VIDEO_SKELETON_KEYS.map((key) => <VideoCardSkeleton key={key} />)
             : videos?.map((video: VideoCardProps) => (
