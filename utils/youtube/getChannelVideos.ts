@@ -1,15 +1,15 @@
-// Fetches the latest uploads from the TinaCMS YouTube channel via its public
-// RSS feed (https://www.youtube.com/feeds/videos.xml). The feed needs no API
-// key and has no quota, so the homepage "Recent Videos" section can stay
-// current without anyone hand-editing content. Server-only.
+// Fetches the latest uploads from the TinaCMS YouTube channel via the official
+// YouTube Data API v3 (playlistItems.list on the channel's uploads playlist).
+//
+// We used the public RSS feed first, but YouTube rate-limits / blocks requests
+// from datacenter IPs — so it worked intermittently from Vercel and mostly
+// returned empty. The Data API is key-authenticated and built for server use,
+// so it's reliable from serverless. Cost is ~1 quota unit per call against a
+// 10,000/day budget. Server-only (reads YOUTUBE_API_KEY).
 
 // TinaCMS channel: https://www.youtube.com/@TinaCMS
 export const TINACMS_YOUTUBE_CHANNEL_ID = 'UCUvqCjr8Xq_IRMDcuJrqIXA';
 const TINACMS_YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TinaCMS';
-
-// Re-fetch the feed at most once a day. Uploads are infrequent, so a daily
-// window keeps fetches cheap without the section going noticeably stale.
-const REVALIDATE_SECONDS = 86400;
 
 export interface ChannelVideo {
   embedUrl: string;
@@ -18,6 +18,11 @@ export interface ChannelVideo {
   authorName: string;
   authorUrl: string;
 }
+
+// A channel's "uploads" playlist id is the channel id with the leading "UC"
+// swapped for "UU", so we can list uploads without a separate channels.list call.
+const uploadsPlaylistId = (channelId: string): string =>
+  `UU${channelId.slice(2)}`;
 
 const decodeEntities = (text: string): string =>
   text
@@ -41,43 +46,57 @@ const splitTitleAndAuthor = (title: string): [string, string] => {
   return [title, 'TinaCMS'];
 };
 
-const matchTag = (entry: string, tag: string): string | null => {
-  const match = entry.match(new RegExp(`<${tag}>([^<]*)</${tag}>`));
-  return match ? match[1] : null;
-};
-
 export async function getChannelVideos(
   count = 2,
   channelId: string = TINACMS_YOUTUBE_CHANNEL_ID,
   excludeVideoIds: string[] = [],
 ): Promise<ChannelVideo[]> {
+  const apiKey = process.env.YOUTUBE_API_KEY;
+  if (!apiKey) {
+    console.warn(
+      '[getChannelVideos] YOUTUBE_API_KEY is not set; falling back to curated videos.',
+    );
+    return [];
+  }
+
   try {
+    const params = new URLSearchParams({
+      part: 'snippet',
+      playlistId: uploadsPlaylistId(channelId),
+      // Ask for enough to fill `count` even if some excluded/unavailable items
+      // sit at the top of the list.
+      maxResults: String(count + excludeVideoIds.length + 2),
+      key: apiKey,
+    });
     const res = await fetch(
-      `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
-      { next: { revalidate: REVALIDATE_SECONDS } },
+      `https://www.googleapis.com/youtube/v3/playlistItems?${params}`,
+      // Reflect reality when the function runs; the proxy route handles caching.
+      { cache: 'no-store' },
     );
     if (!res.ok) {
-      throw new Error(`feed responded with ${res.status} ${res.statusText}`);
+      throw new Error(
+        `Data API responded with ${res.status} ${res.statusText}`,
+      );
     }
 
-    const xml = await res.text();
-    // Drop channel-level metadata (before the first <entry>) and only scan as
-    // many entries as we could possibly need — enough to fill `count` even if
-    // every excluded id happens to sit at the top of the feed.
-    const entries = xml
-      .split('<entry>')
-      .slice(1, 1 + count + excludeVideoIds.length);
+    const data = await res.json();
+    const items: any[] = Array.isArray(data.items) ? data.items : [];
     const videos: ChannelVideo[] = [];
 
-    for (const entry of entries) {
-      const videoId = matchTag(entry, 'yt:videoId');
-      const rawTitle = matchTag(entry, 'title');
-      const published = matchTag(entry, 'published');
+    for (const item of items) {
+      const snippet = item?.snippet;
+      const videoId = snippet?.resourceId?.videoId;
+      const rawTitle = snippet?.title;
+      const published = snippet?.publishedAt;
 
       if (!videoId || !rawTitle || !published) {
         continue;
       }
       if (excludeVideoIds.includes(videoId)) {
+        continue;
+      }
+      // Private/deleted uploads still appear in the playlist as placeholders.
+      if (rawTitle === 'Private video' || rawTitle === 'Deleted video') {
         continue;
       }
 
@@ -99,10 +118,10 @@ export async function getChannelVideos(
 
     return videos;
   } catch (error) {
-    // Feed unreachable / bad status / parse issue — log it and return empty so
-    // the caller falls back to the curated videos in content.
+    // Unreachable / bad status / parse issue — log it and return empty so the
+    // caller falls back to the curated videos in content.
     console.warn(
-      `[getChannelVideos] Could not load the YouTube feed, falling back to curated videos: ${
+      `[getChannelVideos] Could not load the YouTube Data API, falling back to curated videos: ${
         error instanceof Error ? error.message : error
       }`,
     );
