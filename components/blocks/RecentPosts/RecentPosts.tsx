@@ -57,7 +57,7 @@ const VideoCard = ({
 }: VideoCardProps) => {
   const videoId = extractYouTubeId(embedUrl);
   return (
-    <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2">
+    <div className="flex-1 max-w-md flex flex-col gap-1 md:gap-2 animate-row-in">
       <YouTubeEmbed src={embedUrl} />
       <span className="text-neutral-text-secondary text-sm">
         {formatDate(dateReleased)}
