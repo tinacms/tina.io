@@ -232,6 +232,22 @@ function Agenda({
     (a, b) => a.timeStart - b.timeStart,
   );
 
+  if (timeSlots.length === 0) {
+    return (
+      <div className="flex flex-col items-center" ref={agendaRef}>
+        <h2
+          id="agenda"
+          className="text-3xl font-bold pt-16 pb-8 bg-linear-to-br from-blue-600/80 via-blue-800/80 to-blue-1000 text-transparent bg-clip-text"
+        >
+          Agenda
+        </h2>
+        <p className="text-lg text-gray-600 pb-16">
+          The full agenda is coming soon.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center" ref={agendaRef}>
       <h2
