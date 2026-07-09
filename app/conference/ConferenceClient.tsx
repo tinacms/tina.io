@@ -31,9 +31,11 @@ const HeaderBanner = ({
         <div className="flex gap-2 items-center">
           <FaRegCalendar /> <span>{tinaData.date}</span>
         </div>
-        <div className="flex gap-2 items-center">
-          <FaRegClock /> <span>{tinaData.time}</span>
-        </div>
+        {tinaData.time && (
+          <div className="flex gap-2 items-center">
+            <FaRegClock /> <span>{tinaData.time}</span>
+          </div>
+        )}
         <div className="flex gap-2 items-center">
           <FaRegMap />{' '}
           <Link
